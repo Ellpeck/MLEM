@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>Ellpeck</Authors>
+        <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame for MonoGame.Extended</Description>
+        <PackageTags>monogame ellpeck mlem utility extensions monogame.extended extended</PackageTags>
+        <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
+        <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
+        <Version>1.0.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MonoGame.Extended" Version="3.6.0-beta0001" />
+        <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.0.1708" />
+    </ItemGroup>
+</Project>

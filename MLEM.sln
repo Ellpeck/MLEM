@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM", "MLEM\MLEM.csproj", "{1D6AB762-43C4-4775-8924-707C7EC3F142}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Extended", "MLEM.Extended\MLEM.Extended.csproj", "{232A6513-A28C-4D7F-BA5A-89281BFC1538}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1D6AB762-43C4-4775-8924-707C7EC3F142}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D6AB762-43C4-4775-8924-707C7EC3F142}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D6AB762-43C4-4775-8924-707C7EC3F142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232A6513-A28C-4D7F-BA5A-89281BFC1538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232A6513-A28C-4D7F-BA5A-89281BFC1538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232A6513-A28C-4D7F-BA5A-89281BFC1538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232A6513-A28C-4D7F-BA5A-89281BFC1538}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
