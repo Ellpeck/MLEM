@@ -10,10 +10,12 @@
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
-        <Version>1.0.4</Version>
+        <Version>1.0.5</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.0.1708" PrivateAssets="All" />
+        <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.0.1708">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>
