@@ -18,10 +18,10 @@ namespace MLEM.Misc {
             var (x, y) = pos;
             var (sizeX, sizeY) = textureRegion.Size;
             var (halfSizeX, halfSizeY) = new Point(sizeX / 2, sizeY / 2);
-            batch.Draw(texture, new Vector2(x, y), new Rectangle(textureRegion.X + 0 + xUl * sizeX, textureRegion.Y + 0, sizeX, sizeY), color);
-            batch.Draw(texture, new Vector2(x + 0.5F * sizeX, y), new Rectangle(textureRegion.X + halfSizeX + xUr * sizeX, textureRegion.Y + 0, sizeX, sizeY), color);
-            batch.Draw(texture, new Vector2(x, y + 0.5F * sizeY), new Rectangle(textureRegion.X + xDl * sizeX, textureRegion.Y + halfSizeY, sizeX, sizeY), color);
-            batch.Draw(texture, new Vector2(x + 0.5F * sizeX, y + 0.5F * sizeY), new Rectangle(textureRegion.X + halfSizeX + xDr * sizeX, textureRegion.Y + halfSizeY, sizeX, sizeY), color);
+            batch.Draw(texture, new Vector2(x, y), new Rectangle(textureRegion.X + 0 + xUl * sizeX, textureRegion.Y + 0, halfSizeX, halfSizeY), color);
+            batch.Draw(texture, new Vector2(x + 0.5F * sizeX, y), new Rectangle(textureRegion.X + halfSizeX + xUr * sizeX, textureRegion.Y + 0, halfSizeX, halfSizeY), color);
+            batch.Draw(texture, new Vector2(x, y + 0.5F * sizeY), new Rectangle(textureRegion.X + xDl * sizeX, textureRegion.Y + halfSizeY, halfSizeX, halfSizeY), color);
+            batch.Draw(texture, new Vector2(x + 0.5F * sizeX, y + 0.5F * sizeY), new Rectangle(textureRegion.X + halfSizeX + xDr * sizeX, textureRegion.Y + halfSizeY, halfSizeX, halfSizeY), color);
         }
 
         public delegate bool ConnectsTo(int xOff, int yOff);
