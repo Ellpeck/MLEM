@@ -2,21 +2,18 @@ using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Input;
 
 namespace MLEM.Startup {
     public class MlemGame : Game {
 
         private static MlemGame instance;
-        public static KeyboardStateExtended Keyboard => instance.keyboardState;
-        public static MouseStateExtended Mouse => instance.mouseState;
+        public static InputHandler Input => instance.InputHandler;
 
         public readonly GraphicsDeviceManager GraphicsDeviceManager;
-        public SpriteBatch SpriteBatch { get; private set; }
-
-        private KeyboardStateExtended keyboardState;
-        private MouseStateExtended mouseState;
+        public SpriteBatch SpriteBatch { get; protected set; }
+        public InputHandler InputHandler { get; protected set; }
 
         public MlemGame(int windowWidth = 1280, int windowHeight = 720, bool vsync = false, bool allowResizing = true, string contentDir = "Content") {
             instance = this;
@@ -40,6 +37,7 @@ namespace MLEM.Startup {
 
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
+            this.InputHandler = new InputHandler();
         }
 
         protected override void Initialize() {
@@ -50,10 +48,16 @@ namespace MLEM.Startup {
         protected override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
-            CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
+            if (this.InputHandler != null)
+                this.InputHandler.Update();
 
-            this.keyboardState = KeyboardExtended.GetState();
-            this.mouseState = MouseExtended.GetState();
+            CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
+            CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
+        }
+
+        protected override void Draw(GameTime gameTime) {
+            base.Draw(gameTime);
+            CoroutineHandler.RaiseEvent(CoroutineEvents.Draw);
         }
 
         public static T LoadContent<T>(string name) {

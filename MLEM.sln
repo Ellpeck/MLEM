@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Startup", "MLEM.Startu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1BC4682B-AA14-4937-B5C7-707E20FE88FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Ui", "MLEM.Ui\MLEM.Ui.csproj", "{6F00629A-8B87-4264-8896-19983285E32F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1BC4682B-AA14-4937-B5C7-707E20FE88FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BC4682B-AA14-4937-B5C7-707E20FE88FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BC4682B-AA14-4937-B5C7-707E20FE88FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F00629A-8B87-4264-8896-19983285E32F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F00629A-8B87-4264-8896-19983285E32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F00629A-8B87-4264-8896-19983285E32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F00629A-8B87-4264-8896-19983285E32F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
