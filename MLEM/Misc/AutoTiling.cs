@@ -18,13 +18,12 @@ namespace MLEM.Misc {
             var xDl = down && left ? connectsTo(-1, 1) ? 0 : 4 : left ? 1 : down ? 3 : 2;
             var xDr = down && right ? connectsTo(1, 1) ? 0 : 4 : right ? 1 : down ? 3 : 2;
 
-            var (x, y) = pos;
-            var (sizeX, sizeY) = textureRegion.Size;
-            var (halfSizeX, halfSizeY) = new Point(sizeX / 2, sizeY / 2);
-            batch.Draw(texture, new Vector2(x, y), new Rectangle(textureRegion.X + 0 + xUl * sizeX, textureRegion.Y + 0, halfSizeX, halfSizeY), color, rotation, org, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, new Vector2(x + 0.5F * sizeX * sc.X, y), new Rectangle(textureRegion.X + halfSizeX + xUr * sizeX, textureRegion.Y + 0, halfSizeX, halfSizeY), color, rotation, org, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, new Vector2(x, y + 0.5F * sizeY * sc.Y), new Rectangle(textureRegion.X + xDl * sizeX, textureRegion.Y + halfSizeY, halfSizeX, halfSizeY), color, rotation, org, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, new Vector2(x + 0.5F * sizeX * sc.X, y + 0.5F * sizeY * sc.Y), new Rectangle(textureRegion.X + halfSizeX + xDr * sizeX, textureRegion.Y + halfSizeY, halfSizeX, halfSizeY), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            var size = textureRegion.Size;
+            var halfSize = new Point(size.X / 2, size.Y / 2);
+            batch.Draw(texture, new Vector2(pos.X, pos.Y), new Rectangle(textureRegion.X + 0 + xUl * size.X, textureRegion.Y + 0, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture, new Vector2(pos.X + 0.5F * size.X * sc.X, pos.Y), new Rectangle(textureRegion.X + halfSize.X + xUr * size.X, textureRegion.Y + 0, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture, new Vector2(pos.X, pos.Y + 0.5F * size.Y * sc.Y), new Rectangle(textureRegion.X + xDl * size.X, textureRegion.Y + halfSize.Y, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture, new Vector2(pos.X + 0.5F * size.X * sc.X, pos.Y + 0.5F * size.Y * sc.Y), new Rectangle(textureRegion.X + halfSize.X + xDr * size.X, textureRegion.Y + halfSize.Y, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
         }
 
         public delegate bool ConnectsTo(int xOff, int yOff);
