@@ -27,19 +27,6 @@ namespace MLEM.Noise {
             }
         }
 
-        public static double GenerateOctaves(double x, double y, double z, int octaves, double persistence) {
-            var total = 0D;
-            var frequency = 1D;
-            var amplitude = 1D;
-            for (var i = 0; i < octaves; i++) {
-                total += Generate(x * frequency, y * frequency, z * frequency) * amplitude;
-                amplitude *= persistence;
-                frequency *= 2;
-            }
-
-            return total;
-        }
-
         public static double Generate(double x, double y, double z) {
             var xi = (int) x & 255; // Calculate the "unit cube" that the point asked will be located in
             var yi = (int) y & 255; // The left bound is ( |_x_|,|_y_|,|_z_| ) and the right bound is that
