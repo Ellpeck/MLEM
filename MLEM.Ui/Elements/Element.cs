@@ -58,7 +58,14 @@ namespace MLEM.Ui.Elements {
         public UiSystem System { get; private set; }
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
-        public bool IsHidden;
+        private bool isHidden;
+        public bool IsHidden {
+            get => this.isHidden;
+            set {
+                this.isHidden = value;
+                this.SetDirty();
+            }
+        }
         public bool IgnoresMouse;
 
         private Rectangle area;
@@ -90,11 +97,14 @@ namespace MLEM.Ui.Elements {
             this.SetDirty();
         }
 
-        public void AddChild(Element element) {
-            this.children.Add(element);
+        public Element AddChild(Element element, int index = -1) {
+            if (index < 0 || index > this.children.Count)
+                index = this.children.Count;
+            this.children.Insert(index, element);
             element.Parent = this;
             element.System = this.System;
             this.SetDirty();
+            return element;
         }
 
         public void RemoveChild(Element element) {
@@ -104,8 +114,24 @@ namespace MLEM.Ui.Elements {
             this.SetDirty();
         }
 
+        public void MoveToFront() {
+            if (this.Parent != null) {
+                this.Parent.RemoveChild(this);
+                this.Parent.AddChild(this);
+            }
+        }
+
+        public void MoveToBack() {
+            if (this.Parent != null) {
+                this.Parent.RemoveChild(this);
+                this.Parent.AddChild(this, 0);
+            }
+        }
+
         public void SetDirty() {
             this.areaDirty = true;
+            if (this.Parent != null)
+                this.Parent.SetDirty();
         }
 
         public void UpdateAreaIfDirty() {
@@ -176,7 +202,7 @@ namespace MLEM.Ui.Elements {
             }
 
             if (this.Anchor >= Anchor.AutoLeft) {
-                var previousChild = this.GetPreviousChild();
+                var previousChild = this.GetPreviousChild(false);
                 if (previousChild != null) {
                     var prevArea = previousChild.Area;
                     switch (this.Anchor) {
@@ -214,12 +240,14 @@ namespace MLEM.Ui.Elements {
                 (this.size.Y > 1 ? this.size.Y : parentArea.Height * this.size.Y).Floor());
         }
 
-        protected Element GetPreviousChild() {
+        protected Element GetPreviousChild(bool hiddenAlso) {
             if (this.Parent == null)
                 return null;
 
             Element lastChild = null;
             foreach (var child in this.Parent.children) {
+                if (!hiddenAlso && child.IsHidden)
+                    continue;
                 if (child == this)
                     break;
                 lastChild = child;
@@ -257,8 +285,8 @@ namespace MLEM.Ui.Elements {
                 return null;
             if (!this.Area.Contains(mousePos))
                 return null;
-            foreach (var child in this.children) {
-                var element = child.GetMousedElement(mousePos);
+            for (var i = this.children.Count - 1; i >= 0; i--) {
+                var element = this.children[i].GetMousedElement(mousePos);
                 if (element != null)
                     return element;
             }

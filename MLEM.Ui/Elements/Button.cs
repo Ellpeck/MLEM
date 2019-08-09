@@ -11,10 +11,10 @@ namespace MLEM.Ui.Elements {
         public Color HoveredColor;
         public AutoScaledText Text;
 
-        public Button(Anchor anchor, Vector2 size, NinePatch texture, string text = null, NinePatch hoveredTexture = null, Color? hoveredColor = null) : base(anchor, size) {
+        public Button(Anchor anchor, Vector2 size, NinePatch texture, string text = null, Color? hoveredColor = null, NinePatch hoveredTexture = null) : base(anchor, size) {
             this.Texture = texture;
             this.HoveredTexture = hoveredTexture;
-            this.HoveredColor = hoveredColor ?? Color.White;
+            this.HoveredColor = hoveredColor ?? Color.LightGray;
 
             if (text != null) {
                 this.Text = new AutoScaledText(Anchor.Center, Vector2.One, text, true) {

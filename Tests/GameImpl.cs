@@ -32,10 +32,11 @@ namespace Tests {
 
             var root = new Panel(Anchor.BottomLeft, new Vector2(100, 100), new Point(5, 5), this.testPatch);
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a test text that is hopefully long enough to cover at least a few lines, otherwise it would be very sad.", 0.2F));
+            var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(20, 20), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true});
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 15), new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4), "Test Button") {
                 OnClicked = (element, pos, button) => {
                     if (button == MouseButton.Left)
-                        Console.WriteLine("Clicked");
+                        image.IsHidden = !image.IsHidden;
                 }
             });
             this.uiSystem.Add("Test", root);
