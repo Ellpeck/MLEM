@@ -14,13 +14,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoGame.Extended" Version="3.6.0-beta0001"/>
+        <PackageReference Include="MonoGame.Extended" Version="3.6.0-beta0001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.6.0.1625">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MLEM\MLEM.csproj"/>
+        <ProjectReference Include="..\MLEM\MLEM.csproj" />
     </ItemGroup>
 </Project>

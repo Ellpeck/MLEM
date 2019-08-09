@@ -10,6 +10,12 @@ namespace MLEM.Extensions {
             if (blankTexture == null) {
                 blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
                 blankTexture.SetData(new[] {Color.White});
+                batch.Disposing += (sender, args) => {
+                    if (blankTexture != null) {
+                        blankTexture.Dispose();
+                        blankTexture = null;
+                    }
+                };
             }
             return blankTexture;
         }

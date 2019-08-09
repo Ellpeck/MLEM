@@ -14,7 +14,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoGame.Extended" Version="3.6.0-beta0001" />
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.6.0.1625">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
