@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Font;
 using MLEM.Ui.Elements;
 
 namespace MLEM.Ui {
@@ -11,7 +12,8 @@ namespace MLEM.Ui {
         private readonly GraphicsDevice graphicsDevice;
         private readonly List<RootElement> rootElements = new List<RootElement>();
 
-        public float GlobalScale;
+        public readonly float GlobalScale;
+        public readonly IGenericFont DefaultFont;
         public Rectangle ScaledViewport {
             get {
                 var bounds = this.graphicsDevice.Viewport.Bounds;
@@ -19,9 +21,11 @@ namespace MLEM.Ui {
             }
         }
 
-        public UiSystem(GameWindow window, GraphicsDevice device, float scale) {
+        public UiSystem(GameWindow window, GraphicsDevice device, float scale, IGenericFont defaultFont) {
             this.graphicsDevice = device;
             this.GlobalScale = scale;
+            this.DefaultFont = defaultFont;
+
             window.ClientSizeChanged += (sender, args) => {
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
@@ -33,11 +37,16 @@ namespace MLEM.Ui {
                 root.Element.Update(time);
         }
 
-        public void Draw(GameTime time, SpriteBatch batch, BlendState blendState = null, SamplerState samplerState = null) {
+        public void Draw(GameTime time, SpriteBatch batch, Color? color = null, BlendState blendState = null, SamplerState samplerState = null) {
+            var col = color ?? Color.White;
+
             batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, transformMatrix: Matrix.CreateScale(this.GlobalScale));
             foreach (var root in this.rootElements)
-                root.Element.Draw(time, batch);
+                root.Element.Draw(time, batch, col);
             batch.End();
+
+            foreach (var root in this.rootElements)
+                root.Element.DrawUnbound(time, batch, col, blendState, samplerState);
         }
 
         public void Add(string name, Element root) {
@@ -45,7 +54,7 @@ namespace MLEM.Ui {
                 throw new ArgumentException($"There is already a root element with name {name}");
 
             this.rootElements.Add(new RootElement(name, root));
-            root.System = this;
+            root.SetUiSystem(this);
         }
 
         public void Remove(string name) {

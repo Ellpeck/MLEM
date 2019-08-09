@@ -57,7 +57,8 @@ namespace MLEM.Textures {
             var dest = texture.CreateRectangles(destinationRectangle);
             var count = 0;
             foreach (var rect in dest) {
-                batch.Draw(texture.Region.Texture, rect, texture.SourceRectangles[count], color, rotation, origin, effects, layerDepth);
+                if (!rect.IsEmpty)
+                    batch.Draw(texture.Region.Texture, rect, texture.SourceRectangles[count], color, rotation, origin, effects, layerDepth);
                 count++;
             }
         }

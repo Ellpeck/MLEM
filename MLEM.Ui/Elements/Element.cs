@@ -5,12 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 
 namespace MLEM.Ui.Elements {
-    public class Element {
+    public abstract class Element {
 
         private Anchor anchor;
-        private Point size;
+        private Vector2 size;
         private Point offset;
         private Point padding;
+        private Point childPadding;
         public Anchor Anchor {
             get => this.anchor;
             set {
@@ -18,7 +19,7 @@ namespace MLEM.Ui.Elements {
                 this.SetDirty();
             }
         }
-        public Point Size {
+        public Vector2 Size {
             get => this.size;
             set {
                 this.size = value;
@@ -39,8 +40,15 @@ namespace MLEM.Ui.Elements {
                 this.SetDirty();
             }
         }
+        public Point ChildPadding {
+            get => this.childPadding;
+            set {
+                this.childPadding = value;
+                this.SetDirty();
+            }
+        }
 
-        public UiSystem System;
+        public UiSystem System { get; private set; }
         public Element Parent { get; private set; }
         private readonly List<Element> children = new List<Element>();
 
@@ -61,43 +69,54 @@ namespace MLEM.Ui.Elements {
             }
 
         }
-        protected bool AreaDirty;
+        private bool areaDirty;
 
-        public Element(Anchor anchor, Point size, Point positionOffset) {
+        public Element(Anchor anchor, Vector2 size, Point positionOffset) {
             this.anchor = anchor;
             this.size = size;
             this.offset = positionOffset;
+            this.SetDirty();
         }
 
         public void AddChild(Element element) {
             this.children.Add(element);
             element.Parent = this;
+            element.System = this.System;
             this.SetDirty();
         }
 
         public void RemoveChild(Element element) {
             this.children.Remove(element);
             element.Parent = null;
+            element.System = null;
             this.SetDirty();
         }
 
         public void SetDirty() {
-            this.AreaDirty = true;
+            this.areaDirty = true;
         }
 
         public void UpdateAreaIfDirty() {
-            if (this.AreaDirty)
+            if (this.areaDirty)
                 this.ForceUpdateArea();
         }
 
-        public void ForceUpdateArea() {
-            this.AreaDirty = false;
+        public virtual void ForceUpdateArea() {
+            this.areaDirty = false;
 
-            var parentArea = this.Parent != null ? this.Parent.area : this.System.ScaledViewport;
+            Rectangle parentArea;
+            if (this.Parent != null) {
+                parentArea = this.Parent.area;
+                parentArea.Location += this.Parent.ChildPadding;
+                parentArea.Width -= this.Parent.ChildPadding.X * 2;
+                parentArea.Height -= this.Parent.ChildPadding.Y * 2;
+            } else {
+                parentArea = this.System.ScaledViewport;
+            }
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
 
-            var actualSize = this.CalcActualSize();
+            var actualSize = this.CalcActualSize(parentArea);
             var pos = new Point();
 
             switch (this.anchor) {
@@ -177,11 +196,13 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
         }
 
-        private Point CalcActualSize() {
-            return this.size;
+        protected virtual Point CalcActualSize(Rectangle parentArea) {
+            return new Point(
+                (this.size.X > 1 ? this.size.X : parentArea.Width * this.size.X).Floor(),
+                (this.size.Y > 1 ? this.size.Y : parentArea.Height * this.size.Y).Floor());
         }
 
-        public Element GetPreviousChild() {
+        protected Element GetPreviousChild() {
             if (this.Parent == null)
                 return null;
 
@@ -194,16 +215,25 @@ namespace MLEM.Ui.Elements {
             return lastChild;
         }
 
-        public void Update(GameTime time) {
+        public virtual void Update(GameTime time) {
             foreach (var child in this.children)
                 child.Update(time);
         }
 
-        public void Draw(GameTime time, SpriteBatch batch) {
-            batch.Draw(batch.GetBlankTexture(), this.DisplayArea, this.Parent == null ? Color.Blue : Color.Red);
-
+        public virtual void Draw(GameTime time, SpriteBatch batch, Color color) {
             foreach (var child in this.children)
-                child.Draw(time, batch);
+                child.Draw(time, batch, color);
+        }
+
+        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, Color color, BlendState blendState = null, SamplerState samplerState = null) {
+            foreach (var child in this.children)
+                child.DrawUnbound(time, batch, color, blendState, samplerState);
+        }
+
+        public void SetUiSystem(UiSystem system) {
+            this.System = system;
+            foreach (var child in this.children)
+                child.System = system;
         }
 
     }
