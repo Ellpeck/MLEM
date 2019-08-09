@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Input;
+using MLEM.Ui;
 using MonoGame.Extended;
 
 namespace MLEM.Startup {
@@ -14,6 +15,7 @@ namespace MLEM.Startup {
         public readonly GraphicsDeviceManager GraphicsDeviceManager;
         public SpriteBatch SpriteBatch { get; protected set; }
         public InputHandler InputHandler { get; protected set; }
+        public UiSystem UiSystem { get; protected set; }
 
         public MlemGame(int windowWidth = 1280, int windowHeight = 720, bool vsync = false, bool allowResizing = true, string contentDir = "Content") {
             instance = this;
@@ -38,6 +40,7 @@ namespace MLEM.Startup {
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler();
+            this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, this.InputHandler);
         }
 
         protected override void Initialize() {
@@ -48,8 +51,8 @@ namespace MLEM.Startup {
         protected override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
-            if (this.InputHandler != null)
-                this.InputHandler.Update();
+            this.InputHandler.Update();
+            this.UiSystem.Update(gameTime);
 
             CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
@@ -57,6 +60,7 @@ namespace MLEM.Startup {
 
         protected override void Draw(GameTime gameTime) {
             base.Draw(gameTime);
+            this.UiSystem.Draw(gameTime, this.SpriteBatch);
             CoroutineHandler.RaiseEvent(CoroutineEvents.Draw);
         }
 

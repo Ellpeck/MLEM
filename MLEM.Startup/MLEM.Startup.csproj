@@ -24,6 +24,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MLEM.Extended\MLEM.Extended.csproj" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
     </ItemGroup>
 </Project>

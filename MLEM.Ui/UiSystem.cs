@@ -15,21 +15,30 @@ namespace MLEM.Ui {
         private readonly InputHandler inputHandler;
         private readonly bool isInputOurs;
 
-        public readonly float GlobalScale;
-        public readonly IGenericFont DefaultFont;
+        private float globalScale;
+        public float GlobalScale {
+            get => this.globalScale;
+            set {
+                this.globalScale = value;
+                foreach (var root in this.rootElements)
+                    root.Element.ForceUpdateArea();
+            }
+        }
+        public IGenericFont DefaultFont;
         public Rectangle ScaledViewport {
             get {
                 var bounds = this.graphicsDevice.Viewport.Bounds;
-                return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.GlobalScale).Floor(), (bounds.Height / this.GlobalScale).Floor());
+                return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.globalScale).Floor(), (bounds.Height / this.globalScale).Floor());
             }
         }
-        public Vector2 MousePos => this.inputHandler.MousePosition.ToVector2() / this.GlobalScale;
+        public Vector2 MousePos => this.inputHandler.MousePosition.ToVector2() / this.globalScale;
         public Element MousedElement { get; private set; }
+        public Color DrawColor = Color.White;
+        public BlendState BlendState;
+        public SamplerState SamplerState = SamplerState.PointClamp;
 
-        public UiSystem(GameWindow window, GraphicsDevice device, float scale, IGenericFont defaultFont, InputHandler inputHandler = null) {
+        public UiSystem(GameWindow window, GraphicsDevice device, InputHandler inputHandler = null) {
             this.graphicsDevice = device;
-            this.GlobalScale = scale;
-            this.DefaultFont = defaultFont;
             this.inputHandler = inputHandler ?? new InputHandler();
             this.isInputOurs = inputHandler == null;
 
@@ -65,19 +74,17 @@ namespace MLEM.Ui {
                 root.Element.Update(time);
         }
 
-        public void Draw(GameTime time, SpriteBatch batch, Color? color = null, BlendState blendState = null, SamplerState samplerState = null) {
-            var col = color ?? Color.White;
-
-            batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, transformMatrix: Matrix.CreateScale(this.GlobalScale));
+        public void Draw(GameTime time, SpriteBatch batch) {
+            batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, transformMatrix: Matrix.CreateScale(this.globalScale));
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.Draw(time, batch, col);
+                    root.Element.Draw(time, batch, this.DrawColor);
             }
             batch.End();
 
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.DrawUnbound(time, batch, col, blendState, samplerState);
+                    root.Element.DrawUnbound(time, batch, this.DrawColor, this.BlendState, this.SamplerState);
             }
         }
 
