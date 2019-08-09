@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Input;
 
 namespace MLEM.Ui.Elements {
     public abstract class Element {
 
+        private readonly List<Element> children = new List<Element>();
         private Anchor anchor;
         private Vector2 size;
         private Point offset;
@@ -48,10 +50,16 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        public MouseClickCallback OnClicked;
+        public MouseClickCallback OnMouseDown;
+        public MouseCallback OnMouseEnter;
+        public MouseCallback OnMouseExit;
+
         public UiSystem System { get; private set; }
         public Element Parent { get; private set; }
+        public bool IsMouseOver { get; private set; }
         public bool IsHidden;
-        private readonly List<Element> children = new List<Element>();
+        public bool IgnoresMouse;
 
         private Rectangle area;
         public Rectangle Area {
@@ -72,10 +80,13 @@ namespace MLEM.Ui.Elements {
         }
         private bool areaDirty;
 
-        public Element(Anchor anchor, Vector2 size, Point positionOffset) {
+        public Element(Anchor anchor, Vector2 size) {
             this.anchor = anchor;
             this.size = size;
-            this.offset = positionOffset;
+
+            this.OnMouseEnter += (element, mousePos) => this.IsMouseOver = true;
+            this.OnMouseExit += (element, mousePos) => this.IsMouseOver = false;
+
             this.SetDirty();
         }
 
@@ -238,8 +249,25 @@ namespace MLEM.Ui.Elements {
         public void SetUiSystem(UiSystem system) {
             this.System = system;
             foreach (var child in this.children)
-                child.System = system;
+                child.SetUiSystem(system);
         }
+
+        public Element GetMousedElement(Vector2 mousePos) {
+            if (this.IsHidden || this.IgnoresMouse)
+                return null;
+            if (!this.Area.Contains(mousePos))
+                return null;
+            foreach (var child in this.children) {
+                var element = child.GetMousedElement(mousePos);
+                if (element != null)
+                    return element;
+            }
+            return this;
+        }
+
+        public delegate void MouseClickCallback(Element element, Vector2 mousePos, MouseButton button);
+
+        public delegate void MouseCallback(Element element, Vector2 mousePos);
 
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Input;
 using MLEM.Ui.Elements;
 
 namespace MLEM.Ui {
@@ -11,6 +12,8 @@ namespace MLEM.Ui {
 
         private readonly GraphicsDevice graphicsDevice;
         private readonly List<RootElement> rootElements = new List<RootElement>();
+        private readonly InputHandler inputHandler;
+        private readonly bool isInputOurs;
 
         public readonly float GlobalScale;
         public readonly IGenericFont DefaultFont;
@@ -20,11 +23,15 @@ namespace MLEM.Ui {
                 return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.GlobalScale).Floor(), (bounds.Height / this.GlobalScale).Floor());
             }
         }
+        public Vector2 MousePos => this.inputHandler.MousePosition.ToVector2() / this.GlobalScale;
+        public Element MousedElement { get; private set; }
 
-        public UiSystem(GameWindow window, GraphicsDevice device, float scale, IGenericFont defaultFont) {
+        public UiSystem(GameWindow window, GraphicsDevice device, float scale, IGenericFont defaultFont, InputHandler inputHandler = null) {
             this.graphicsDevice = device;
             this.GlobalScale = scale;
             this.DefaultFont = defaultFont;
+            this.inputHandler = inputHandler ?? new InputHandler();
+            this.isInputOurs = inputHandler == null;
 
             window.ClientSizeChanged += (sender, args) => {
                 foreach (var root in this.rootElements)
@@ -33,6 +40,27 @@ namespace MLEM.Ui {
         }
 
         public void Update(GameTime time) {
+            if (this.isInputOurs)
+                this.inputHandler.Update();
+
+            var mousedNow = this.GetMousedElement();
+            if (mousedNow != this.MousedElement) {
+                if (this.MousedElement != null)
+                    this.MousedElement.OnMouseExit?.Invoke(this.MousedElement, this.MousePos);
+                if (mousedNow != null)
+                    mousedNow.OnMouseEnter?.Invoke(mousedNow, this.MousePos);
+                this.MousedElement = mousedNow;
+            }
+
+            if (mousedNow != null && (mousedNow.OnMouseDown != null || mousedNow.OnClicked != null)) {
+                foreach (var button in InputHandler.MouseButtons) {
+                    if (mousedNow.OnMouseDown != null && this.inputHandler.IsMouseButtonDown(button))
+                        mousedNow.OnMouseDown(mousedNow, this.MousePos, button);
+                    if (mousedNow.OnClicked != null && this.inputHandler.IsMouseButtonPressed(button))
+                        mousedNow.OnClicked(mousedNow, this.MousePos, button);
+                }
+            }
+
             foreach (var root in this.rootElements)
                 root.Element.Update(time);
         }
@@ -75,6 +103,15 @@ namespace MLEM.Ui {
 
         private int IndexOf(string name) {
             return this.rootElements.FindIndex(element => element.Name == name);
+        }
+
+        private Element GetMousedElement() {
+            foreach (var root in this.rootElements) {
+                var moused = root.Element.GetMousedElement(this.MousePos);
+                if (moused != null)
+                    return moused;
+            }
+            return null;
         }
 
     }

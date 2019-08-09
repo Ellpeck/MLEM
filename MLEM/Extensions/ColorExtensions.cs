@@ -12,5 +12,9 @@ namespace MLEM.Extensions {
             return new Color((int) (value >> 16 & 0xFF), (int) (value >> 8 & 0xFF), (int) (value >> 0 & 0xFF), (int) (value >> 24 & 0xFF));
         }
 
+        public static Color CopyAlpha(this Color color, Color other) {
+            return color * (other.A / 255F);
+        }
+
     }
 }

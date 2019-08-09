@@ -26,7 +26,7 @@ namespace MLEM.Ui.Elements {
         }
         public IGenericFont Font => this.font ?? this.System.DefaultFont;
 
-        public Paragraph(Anchor anchor, float width, Point positionOffset, string text, float textScale = 1, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0), positionOffset) {
+        public Paragraph(Anchor anchor, float width, string text, float textScale = 1, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
             this.font = font;
             this.TextScale = textScale;

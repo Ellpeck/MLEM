@@ -1,9 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Misc;
 
 namespace MLEM.Input {
     public class InputHandler {
+
+        public static MouseButton[] MouseButtons = EnumHelper.GetValues<MouseButton>().ToArray();
 
         public KeyboardState LastKeyboardState { get; private set; }
         public KeyboardState KeyboardState { get; private set; }
