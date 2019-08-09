@@ -50,6 +50,7 @@ namespace MLEM.Ui.Elements {
 
         public UiSystem System { get; private set; }
         public Element Parent { get; private set; }
+        public bool IsHidden;
         private readonly List<Element> children = new List<Element>();
 
         private Rectangle area;
@@ -221,13 +222,17 @@ namespace MLEM.Ui.Elements {
         }
 
         public virtual void Draw(GameTime time, SpriteBatch batch, Color color) {
-            foreach (var child in this.children)
-                child.Draw(time, batch, color);
+            foreach (var child in this.children) {
+                if (!child.IsHidden)
+                    child.Draw(time, batch, color);
+            }
         }
 
         public virtual void DrawUnbound(GameTime time, SpriteBatch batch, Color color, BlendState blendState = null, SamplerState samplerState = null) {
-            foreach (var child in this.children)
-                child.DrawUnbound(time, batch, color, blendState, samplerState);
+            foreach (var child in this.children) {
+                if (!child.IsHidden)
+                    child.DrawUnbound(time, batch, color, blendState, samplerState);
+            }
         }
 
         public void SetUiSystem(UiSystem system) {

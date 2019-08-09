@@ -41,12 +41,16 @@ namespace MLEM.Ui {
             var col = color ?? Color.White;
 
             batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, transformMatrix: Matrix.CreateScale(this.GlobalScale));
-            foreach (var root in this.rootElements)
-                root.Element.Draw(time, batch, col);
+            foreach (var root in this.rootElements) {
+                if (!root.Element.IsHidden)
+                    root.Element.Draw(time, batch, col);
+            }
             batch.End();
 
-            foreach (var root in this.rootElements)
-                root.Element.DrawUnbound(time, batch, col, blendState, samplerState);
+            foreach (var root in this.rootElements) {
+                if (!root.Element.IsHidden)
+                    root.Element.DrawUnbound(time, batch, col, blendState, samplerState);
+            }
         }
 
         public void Add(string name, Element root) {
