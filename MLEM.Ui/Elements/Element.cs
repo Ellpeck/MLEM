@@ -140,7 +140,7 @@ namespace MLEM.Ui.Elements {
         public void RemoveChild(Element element) {
             this.children.Remove(element);
             element.Parent = null;
-            element.PropagateUiSystem(this.System);
+            element.PropagateUiSystem(null);
             this.SetDirty();
         }
 
