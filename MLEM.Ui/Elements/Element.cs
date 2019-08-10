@@ -17,6 +17,8 @@ namespace MLEM.Ui.Elements {
         public Anchor Anchor {
             get => this.anchor;
             set {
+                if (this.anchor == value)
+                    return;
                 this.anchor = value;
                 this.SetDirty();
             }
@@ -24,6 +26,8 @@ namespace MLEM.Ui.Elements {
         public Vector2 Size {
             get => this.size;
             set {
+                if (this.size == value)
+                    return;
                 this.size = value;
                 this.SetDirty();
             }
@@ -31,6 +35,8 @@ namespace MLEM.Ui.Elements {
         public Point PositionOffset {
             get => this.offset;
             set {
+                if (this.offset == value)
+                    return;
                 this.offset = value;
                 this.SetDirty();
             }
@@ -38,6 +44,8 @@ namespace MLEM.Ui.Elements {
         public Point Padding {
             get => this.padding;
             set {
+                if (this.padding == value)
+                    return;
                 this.padding = value;
                 this.SetDirty();
             }
@@ -45,6 +53,8 @@ namespace MLEM.Ui.Elements {
         public Point ChildPadding {
             get => this.childPadding;
             set {
+                if (this.childPadding == value)
+                    return;
                 this.childPadding = value;
                 this.SetDirty();
             }
@@ -62,6 +72,8 @@ namespace MLEM.Ui.Elements {
         public bool IsHidden {
             get => this.isHidden;
             set {
+                if (this.isHidden == value)
+                    return;
                 this.isHidden = value;
                 this.SetDirty();
             }
@@ -131,7 +143,7 @@ namespace MLEM.Ui.Elements {
 
         public void SetDirty() {
             this.areaDirty = true;
-            if (this.Parent != null)
+            if (this.Anchor >= Anchor.AutoLeft && this.Parent != null)
                 this.Parent.SetDirty();
         }
 
