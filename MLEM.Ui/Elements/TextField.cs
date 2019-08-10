@@ -5,28 +5,24 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Font;
 using MLEM.Textures;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     public class TextField : Element {
 
-        public static NinePatch DefaultTexture;
-        public static NinePatch DefaultHoveredTexture;
-        public static Color DefaultHoveredColor = Color.LightGray;
-
-        public NinePatch Texture = DefaultTexture;
-        public NinePatch HoveredTexture = DefaultHoveredTexture;
-        public Color HoveredColor = DefaultHoveredColor;
+        public NinePatch Texture;
+        public NinePatch HoveredTexture;
+        public Color HoveredColor;
         public float TextScale;
         public readonly StringBuilder Text = new StringBuilder();
         public TextChanged OnTextChange;
         public int MaxTextLength = int.MaxValue;
         public float TextOffsetX = 4;
-        private readonly IGenericFont font;
+        private IGenericFont font;
         private double caretBlinkTimer;
 
         public TextField(Anchor anchor, Vector2 size, IGenericFont font = null) : base(anchor, size) {
-            this.font = font ?? Paragraph.DefaultFont;
-            this.TextScale = Paragraph.DefaultTextScale;
+            this.font = font;
             this.OnTextInput += (element, key, character) => {
                 if (!this.IsSelected)
                     return;
@@ -67,6 +63,15 @@ namespace MLEM.Ui.Elements {
             var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
             this.font.DrawCenteredString(batch, this.Text + caret, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX, this.DisplayArea.Height / 2), this.TextScale, Color.White * alpha, false, true);
             base.Draw(time, batch, alpha);
+        }
+
+        protected override void InitStyle(UiStyle style) {
+            base.InitStyle(style);
+            this.TextScale = style.TextScale;
+            this.font = style.Font;
+            this.Texture = style.TextFieldTexture;
+            this.HoveredTexture = style.TextFieldHoveredTexture;
+            this.HoveredColor = style.TextFieldHoveredColor;
         }
 
         public delegate void TextChanged(TextField field, string text);

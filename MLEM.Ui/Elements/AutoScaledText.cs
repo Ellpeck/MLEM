@@ -3,11 +3,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     public class AutoScaledText : Element {
 
-        private readonly IGenericFont font;
+        private IGenericFont font;
         private float scale;
         private string text;
 
@@ -22,7 +23,7 @@ namespace MLEM.Ui.Elements {
 
         public AutoScaledText(Anchor anchor, Vector2 size, string text, IGenericFont font = null) : base(anchor, size) {
             this.Text = text;
-            this.font = font ?? Paragraph.DefaultFont;
+            this.font = font;
             this.IgnoresMouse = true;
         }
 
@@ -41,6 +42,11 @@ namespace MLEM.Ui.Elements {
             var pos = this.DisplayArea.Location.ToVector2() + this.DisplayArea.Size.ToVector2() / 2;
             this.font.DrawCenteredString(batch, this.Text, pos, this.scale, this.Color * alpha, true, true);
             base.Draw(time, batch, alpha);
+        }
+
+        protected override void InitStyle(UiStyle style) {
+            base.InitStyle(style);
+            this.font = style.Font;
         }
 
     }

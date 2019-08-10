@@ -27,6 +27,9 @@ namespace MLEM.Textures {
             this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom) {
         }
 
+        public NinePatch(Texture2D texture, int padding) : this(new TextureRegion(texture), padding) {
+        }
+
         public NinePatch(TextureRegion texture, int padding) : this(texture, padding, padding, padding, padding) {
         }
 

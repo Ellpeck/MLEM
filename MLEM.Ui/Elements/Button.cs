@@ -2,17 +2,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Textures;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     public class Button : Element {
 
-        public static NinePatch DefaultTexture;
-        public static NinePatch DefaultHoveredTexture;
-        public static Color DefaultHoveredColor = Color.LightGray;
-
-        public NinePatch Texture = DefaultTexture;
-        public NinePatch HoveredTexture = DefaultHoveredTexture;
-        public Color HoveredColor = DefaultHoveredColor;
+        public NinePatch Texture;
+        public NinePatch HoveredTexture;
+        public Color HoveredColor;
         public AutoScaledText Text;
 
         public Button(Anchor anchor, Vector2 size, string text = null) : base(anchor, size) {
@@ -34,6 +31,13 @@ namespace MLEM.Ui.Elements {
             }
             batch.Draw(tex, this.DisplayArea, color);
             base.Draw(time, batch, alpha);
+        }
+
+        protected override void InitStyle(UiStyle style) {
+            base.InitStyle(style);
+            this.Texture = style.ButtonTexture;
+            this.HoveredTexture = style.ButtonHoveredTexture;
+            this.HoveredColor = style.ButtonHoveredColor;
         }
 
     }

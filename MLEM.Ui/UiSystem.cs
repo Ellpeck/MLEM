@@ -6,6 +6,7 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Input;
 using MLEM.Ui.Elements;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui {
     public class UiSystem {
@@ -33,14 +34,26 @@ namespace MLEM.Ui {
         public Vector2 MousePos => this.InputHandler.MousePosition.ToVector2() / this.globalScale;
         public Element MousedElement { get; private set; }
         public Element SelectedElement { get; private set; }
+        private UiStyle style;
+        public UiStyle Style {
+            get => this.style;
+            set {
+                this.style = value;
+                foreach (var root in this.rootElements) {
+                    root.Element.PropagateUiSystem(this);
+                    root.Element.SetDirty();
+                }
+            }
+        }
         public float DrawAlpha = 1;
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
 
-        public UiSystem(GameWindow window, GraphicsDevice device, InputHandler inputHandler = null) {
+        public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.GraphicsDevice = device;
             this.InputHandler = inputHandler ?? new InputHandler();
             this.isInputOurs = inputHandler == null;
+            this.style = style;
 
             window.ClientSizeChanged += (sender, args) => {
                 foreach (var root in this.rootElements)
@@ -103,7 +116,7 @@ namespace MLEM.Ui {
                 throw new ArgumentException($"There is already a root element with name {name}");
 
             this.rootElements.Add(new RootElement(name, root));
-            root.SetUiSystem(this);
+            root.PropagateUiSystem(this);
         }
 
         public void Remove(string name) {

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Input;
 using MLEM.Ui;
+using MLEM.Ui.Style;
 using MonoGame.Extended;
 
 namespace MLEM.Startup {
@@ -40,7 +41,7 @@ namespace MLEM.Startup {
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler();
-            this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, this.InputHandler);
+            this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
         }
 
         protected override void Initialize() {

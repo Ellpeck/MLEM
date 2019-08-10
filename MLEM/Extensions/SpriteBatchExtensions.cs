@@ -8,7 +8,7 @@ namespace MLEM.Extensions {
 
         public static Texture2D GetBlankTexture(this SpriteBatch batch) {
             if (blankTexture == null) {
-                blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+                blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1);
                 blankTexture.SetData(new[] {Color.White});
                 batch.Disposing += (sender, args) => {
                     if (blankTexture != null) {

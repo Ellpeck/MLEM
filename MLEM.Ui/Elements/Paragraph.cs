@@ -5,20 +5,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
-        public static IGenericFont DefaultFont;
-        public static float DefaultTextScale = 1;
-
         private string text;
         private float lineHeight;
         private string[] splitText;
-        private readonly IGenericFont font;
+        private IGenericFont font;
         private readonly bool centerText;
 
-        public float TextScale = DefaultTextScale;
+        public float TextScale;
         public string Text {
             get => this.text;
             set {
@@ -29,7 +27,7 @@ namespace MLEM.Ui.Elements {
 
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
-            this.font = font ?? DefaultFont;
+            this.font = font;
             this.centerText = centerText;
         }
 
@@ -61,6 +59,12 @@ namespace MLEM.Ui.Elements {
                 }
                 offset.Y += this.lineHeight + 1;
             }
+        }
+
+        protected override void InitStyle(UiStyle style) {
+            base.InitStyle(style);
+            this.TextScale = style.TextScale;
+            this.font = style.Font;
         }
 
     }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     public abstract class Element {
@@ -68,7 +69,15 @@ namespace MLEM.Ui.Elements {
         public MouseCallback OnMouseExit;
         public TextInputCallback OnTextInput;
 
-        public UiSystem System { get; private set; }
+        private UiSystem system;
+        public UiSystem System {
+            get => this.system;
+            set {
+                this.system = value;
+                if (this.system != null && !this.HasCustomStyle)
+                    this.InitStyle(this.system.Style);
+            }
+        }
         protected InputHandler Input => this.System.InputHandler;
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
@@ -85,6 +94,7 @@ namespace MLEM.Ui.Elements {
         }
         public bool IgnoresMouse;
         public float DrawAlpha = 1;
+        public bool HasCustomStyle;
 
         private Rectangle area;
         public Rectangle Area {
@@ -122,7 +132,7 @@ namespace MLEM.Ui.Elements {
                 index = this.children.Count;
             this.children.Insert(index, element);
             element.Parent = this;
-            element.System = this.System;
+            element.PropagateUiSystem(this.System);
             this.SetDirty();
             return element;
         }
@@ -130,7 +140,7 @@ namespace MLEM.Ui.Elements {
         public void RemoveChild(Element element) {
             this.children.Remove(element);
             element.Parent = null;
-            element.System = null;
+            element.PropagateUiSystem(this.System);
             this.SetDirty();
         }
 
@@ -307,6 +317,9 @@ namespace MLEM.Ui.Elements {
             return this;
         }
 
+        protected virtual void InitStyle(UiStyle style) {
+        }
+
         public delegate void MouseClickCallback(Element element, Vector2 mousePos, MouseButton button);
 
         public delegate void MouseCallback(Element element, Vector2 mousePos);
@@ -315,10 +328,10 @@ namespace MLEM.Ui.Elements {
 
         public delegate void GenericCallback(Element element);
 
-        internal void SetUiSystem(UiSystem system) {
+        internal void PropagateUiSystem(UiSystem system) {
             this.System = system;
             foreach (var child in this.children)
-                child.SetUiSystem(system);
+                child.PropagateUiSystem(system);
         }
 
         internal void PropagateInput(Keys key, char character) {
