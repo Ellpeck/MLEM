@@ -11,7 +11,7 @@ with.
     <!--
     Modify this string to change the font that will be imported.
     -->
-    <FontName>BitPotion</FontName>
+    <FontName>BitPotionExt</FontName>
 
     <!--
     Size is a float value, measured in points. Modify this value to change
@@ -41,7 +41,7 @@ with.
     If you uncomment this line, the default character will be substituted if you draw
     or measure text that contains characters which were not included in the font.
     -->
-    <!-- <DefaultCharacter>*</DefaultCharacter> -->
+    <DefaultCharacter>*</DefaultCharacter>
 
     <!--
     CharacterRegions control what letters are available in the font. Every
