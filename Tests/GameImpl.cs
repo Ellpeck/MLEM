@@ -28,6 +28,7 @@ namespace Tests {
             Paragraph.DefaultFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             Paragraph.DefaultTextScale = 0.2F;
             Button.DefaultTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4);
+            TextField.DefaultTexture = Button.DefaultTexture;
             this.UiSystem.GlobalScale = 5;
 
             var root = new Panel(Anchor.BottomLeft, new Vector2(100, 100), new Point(5, 5), this.testPatch);
@@ -39,6 +40,7 @@ namespace Tests {
                         image.IsHidden = !image.IsHidden;
                 }
             });
+            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 15)));
             this.UiSystem.Add("Test", root);
         }
 

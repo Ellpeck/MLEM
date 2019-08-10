@@ -25,7 +25,6 @@ namespace MLEM.Ui.Elements {
                 this.text = value;
                 this.SetDirty();
             }
-
         }
 
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
