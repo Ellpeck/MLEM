@@ -72,7 +72,7 @@ namespace MLEM.Ui.Elements {
         private UiSystem system;
         public UiSystem System {
             get => this.system;
-            set {
+            private set {
                 this.system = value;
                 if (this.system != null && !this.HasCustomStyle)
                     this.InitStyle(this.system.Style);
