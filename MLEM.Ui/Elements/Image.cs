@@ -20,9 +20,9 @@ namespace MLEM.Ui.Elements {
             return this.scaleToImage ? this.texture.Size : base.CalcActualSize(parentArea);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, Color color) {
-            batch.Draw(this.texture, this.DisplayArea, this.Color.CopyAlpha(color));
-            base.Draw(time, batch, color);
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+            batch.Draw(this.texture, this.DisplayArea, this.Color * alpha);
+            base.Draw(time, batch, alpha);
         }
 
     }

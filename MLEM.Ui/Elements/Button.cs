@@ -28,15 +28,16 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, Color color) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             var tex = this.Texture;
+            var color = Color.White * alpha;
             if (this.IsMouseOver) {
                 if (this.HoveredTexture != null)
                     tex = this.HoveredTexture;
-                color = this.HoveredColor.CopyAlpha(color);
+                color = this.HoveredColor * alpha;
             }
             batch.Draw(tex, this.DisplayArea, color);
-            base.Draw(time, batch, color);
+            base.Draw(time, batch, alpha);
         }
 
     }

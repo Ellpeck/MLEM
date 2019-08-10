@@ -10,7 +10,7 @@ namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
         public static IGenericFont DefaultFont;
-        
+
         private string text;
         private float lineHeight;
         private string[] splitText;
@@ -49,16 +49,16 @@ namespace MLEM.Ui.Elements {
             return new Point(size.X, height.Ceil());
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, Color color) {
-            base.Draw(time, batch, color);
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+            base.Draw(time, batch, alpha);
 
             var pos = this.DisplayArea.Location.ToVector2();
             var offset = new Vector2();
             foreach (var line in this.splitText) {
                 if (this.centerText) {
-                    this.font.DrawCenteredString(batch, line, pos + offset + new Vector2(this.DisplayArea.Width / 2, 0), this.TextScale, color);
+                    this.font.DrawCenteredString(batch, line, pos + offset + new Vector2(this.DisplayArea.Width / 2, 0), this.TextScale, Color.White * alpha);
                 } else {
-                    this.font.DrawString(batch, line, pos + offset, color, 0, Vector2.Zero, this.TextScale, SpriteEffects.None, 0);
+                    this.font.DrawString(batch, line, pos + offset, Color.White * alpha, 0, Vector2.Zero, this.TextScale, SpriteEffects.None, 0);
                 }
                 offset.Y += this.lineHeight + 1;
             }

@@ -32,7 +32,7 @@ namespace MLEM.Ui {
         }
         public Vector2 MousePos => this.inputHandler.MousePosition.ToVector2() / this.globalScale;
         public Element MousedElement { get; private set; }
-        public Color DrawColor = Color.White;
+        public float DrawAlpha = 1;
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
 
@@ -77,13 +77,13 @@ namespace MLEM.Ui {
             batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, transformMatrix: Matrix.CreateScale(this.globalScale));
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.Draw(time, batch, this.DrawColor);
+                    root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
             }
             batch.End();
 
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.DrawUnbound(time, batch, this.DrawColor, this.BlendState, this.SamplerState);
+                    root.Element.DrawUnbound(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState);
             }
         }
 

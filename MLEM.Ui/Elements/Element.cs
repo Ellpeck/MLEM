@@ -67,6 +67,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public bool IgnoresMouse;
+        public float DrawAlpha = 1;
 
         private Rectangle area;
         public Rectangle Area {
@@ -260,17 +261,17 @@ namespace MLEM.Ui.Elements {
                 child.Update(time);
         }
 
-        public virtual void Draw(GameTime time, SpriteBatch batch, Color color) {
+        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha) {
             foreach (var child in this.children) {
                 if (!child.IsHidden)
-                    child.Draw(time, batch, color);
+                    child.Draw(time, batch, alpha * child.DrawAlpha);
             }
         }
 
-        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, Color color, BlendState blendState = null, SamplerState samplerState = null) {
+        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
             foreach (var child in this.children) {
                 if (!child.IsHidden)
-                    child.DrawUnbound(time, batch, color, blendState, samplerState);
+                    child.DrawUnbound(time, batch, alpha * child.DrawAlpha, blendState, samplerState);
             }
         }
 

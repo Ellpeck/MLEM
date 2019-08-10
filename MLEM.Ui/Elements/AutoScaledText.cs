@@ -37,10 +37,10 @@ namespace MLEM.Ui.Elements {
             } while (measure.X <= this.DisplayArea.Size.X && measure.Y <= this.DisplayArea.Size.Y);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, Color color) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             var pos = this.DisplayArea.Location.ToVector2() + this.DisplayArea.Size.ToVector2() / 2;
-            this.font.DrawCenteredString(batch, this.Text, pos, this.scale, this.Color.CopyAlpha(color), true, true);
-            base.Draw(time, batch, color);
+            this.font.DrawCenteredString(batch, this.Text, pos, this.scale, this.Color * alpha, true, true);
+            base.Draw(time, batch, alpha);
         }
 
     }
