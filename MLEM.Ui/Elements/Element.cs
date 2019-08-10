@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Input;
 
@@ -61,13 +62,17 @@ namespace MLEM.Ui.Elements {
         }
 
         public MouseClickCallback OnClicked;
-        public MouseClickCallback OnMouseDown;
+        public GenericCallback OnSelected;
+        public GenericCallback OnDeselected;
         public MouseCallback OnMouseEnter;
         public MouseCallback OnMouseExit;
+        public TextInputCallback OnTextInput;
 
         public UiSystem System { get; private set; }
+        protected InputHandler Input => this.System.InputHandler;
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
+        public bool IsSelected { get; private set; }
         private bool isHidden;
         public bool IsHidden {
             get => this.isHidden;
@@ -106,11 +111,13 @@ namespace MLEM.Ui.Elements {
 
             this.OnMouseEnter += (element, mousePos) => this.IsMouseOver = true;
             this.OnMouseExit += (element, mousePos) => this.IsMouseOver = false;
+            this.OnSelected += element => this.IsSelected = true;
+            this.OnDeselected += element => this.IsSelected = false;
 
             this.SetDirty();
         }
 
-        public Element AddChild(Element element, int index = -1) {
+        public T AddChild<T>(T element, int index = -1) where T : Element {
             if (index < 0 || index > this.children.Count)
                 index = this.children.Count;
             this.children.Insert(index, element);
@@ -287,12 +294,6 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public void SetUiSystem(UiSystem system) {
-            this.System = system;
-            foreach (var child in this.children)
-                child.SetUiSystem(system);
-        }
-
         public Element GetMousedElement(Vector2 mousePos) {
             if (this.IsHidden || this.IgnoresMouse)
                 return null;
@@ -309,6 +310,22 @@ namespace MLEM.Ui.Elements {
         public delegate void MouseClickCallback(Element element, Vector2 mousePos, MouseButton button);
 
         public delegate void MouseCallback(Element element, Vector2 mousePos);
+
+        public delegate void TextInputCallback(Element element, Keys key, char character);
+
+        public delegate void GenericCallback(Element element);
+
+        internal void SetUiSystem(UiSystem system) {
+            this.System = system;
+            foreach (var child in this.children)
+                child.SetUiSystem(system);
+        }
+
+        internal void PropagateInput(Keys key, char character) {
+            this.OnTextInput?.Invoke(this, key, character);
+            foreach (var child in this.children)
+                child.PropagateInput(key, character);
+        }
 
     }
 }

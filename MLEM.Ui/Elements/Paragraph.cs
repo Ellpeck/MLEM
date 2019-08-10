@@ -10,6 +10,7 @@ namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
         public static IGenericFont DefaultFont;
+        public static float DefaultTextScale = 1;
 
         private string text;
         private float lineHeight;
@@ -17,7 +18,7 @@ namespace MLEM.Ui.Elements {
         private readonly IGenericFont font;
         private readonly bool centerText;
 
-        public float TextScale;
+        public float TextScale = DefaultTextScale;
         public string Text {
             get => this.text;
             set {
@@ -27,10 +28,9 @@ namespace MLEM.Ui.Elements {
 
         }
 
-        public Paragraph(Anchor anchor, float width, string text, float textScale = 1, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
+        public Paragraph(Anchor anchor, float width, string text, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
             this.font = font ?? DefaultFont;
-            this.TextScale = textScale;
             this.centerText = centerText;
         }
 

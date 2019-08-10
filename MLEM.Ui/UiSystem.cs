@@ -10,9 +10,9 @@ using MLEM.Ui.Elements;
 namespace MLEM.Ui {
     public class UiSystem {
 
-        private readonly GraphicsDevice graphicsDevice;
+        public readonly GraphicsDevice GraphicsDevice;
         private readonly List<RootElement> rootElements = new List<RootElement>();
-        private readonly InputHandler inputHandler;
+        public readonly InputHandler InputHandler;
         private readonly bool isInputOurs;
 
         private float globalScale;
@@ -26,30 +26,35 @@ namespace MLEM.Ui {
         }
         public Rectangle ScaledViewport {
             get {
-                var bounds = this.graphicsDevice.Viewport.Bounds;
+                var bounds = this.GraphicsDevice.Viewport.Bounds;
                 return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.globalScale).Floor(), (bounds.Height / this.globalScale).Floor());
             }
         }
-        public Vector2 MousePos => this.inputHandler.MousePosition.ToVector2() / this.globalScale;
+        public Vector2 MousePos => this.InputHandler.MousePosition.ToVector2() / this.globalScale;
         public Element MousedElement { get; private set; }
+        public Element SelectedElement { get; private set; }
         public float DrawAlpha = 1;
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
 
         public UiSystem(GameWindow window, GraphicsDevice device, InputHandler inputHandler = null) {
-            this.graphicsDevice = device;
-            this.inputHandler = inputHandler ?? new InputHandler();
+            this.GraphicsDevice = device;
+            this.InputHandler = inputHandler ?? new InputHandler();
             this.isInputOurs = inputHandler == null;
 
             window.ClientSizeChanged += (sender, args) => {
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
+            window.TextInput += (sender, args) => {
+                foreach (var root in this.rootElements)
+                    root.Element.PropagateInput(args.Key, args.Character);
+            };
         }
 
         public void Update(GameTime time) {
             if (this.isInputOurs)
-                this.inputHandler.Update();
+                this.InputHandler.Update();
 
             var mousedNow = this.GetMousedElement();
             if (mousedNow != this.MousedElement) {
@@ -60,11 +65,17 @@ namespace MLEM.Ui {
                 this.MousedElement = mousedNow;
             }
 
-            if (mousedNow != null && (mousedNow.OnMouseDown != null || mousedNow.OnClicked != null)) {
+            if (this.SelectedElement != mousedNow && this.InputHandler.IsMouseButtonPressed(MouseButton.Left)) {
+                if (this.SelectedElement != null)
+                    this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
+                if (mousedNow != null)
+                    mousedNow.OnSelected?.Invoke(mousedNow);
+                this.SelectedElement = mousedNow;
+            }
+
+            if (mousedNow?.OnClicked != null) {
                 foreach (var button in InputHandler.MouseButtons) {
-                    if (mousedNow.OnMouseDown != null && this.inputHandler.IsMouseButtonDown(button))
-                        mousedNow.OnMouseDown(mousedNow, this.MousePos, button);
-                    if (mousedNow.OnClicked != null && this.inputHandler.IsMouseButtonPressed(button))
+                    if (this.InputHandler.IsMouseButtonPressed(button))
                         mousedNow.OnClicked(mousedNow, this.MousePos, button);
                 }
             }

@@ -10,16 +10,12 @@ namespace MLEM.Ui.Elements {
         public static NinePatch DefaultHoveredTexture;
         public static Color DefaultHoveredColor = Color.LightGray;
 
-        public NinePatch Texture;
-        public NinePatch HoveredTexture;
-        public Color HoveredColor;
+        public NinePatch Texture = DefaultTexture;
+        public NinePatch HoveredTexture = DefaultHoveredTexture;
+        public Color HoveredColor = DefaultHoveredColor;
         public AutoScaledText Text;
 
-        public Button(Anchor anchor, Vector2 size, NinePatch texture = null, string text = null, Color? hoveredColor = null, NinePatch hoveredTexture = null) : base(anchor, size) {
-            this.Texture = texture ?? DefaultTexture;
-            this.HoveredTexture = hoveredTexture ?? DefaultHoveredTexture;
-            this.HoveredColor = hoveredColor ?? DefaultHoveredColor;
-
+        public Button(Anchor anchor, Vector2 size, string text = null) : base(anchor, size) {
             if (text != null) {
                 this.Text = new AutoScaledText(Anchor.Center, Vector2.One, text) {
                     IgnoresMouse = true

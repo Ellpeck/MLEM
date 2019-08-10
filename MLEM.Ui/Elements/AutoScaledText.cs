@@ -18,12 +18,12 @@ namespace MLEM.Ui.Elements {
                 this.SetDirty();
             }
         }
-        public Color Color;
+        public Color Color = Color.White;
 
-        public AutoScaledText(Anchor anchor, Vector2 size, string text, Color? color = null, IGenericFont font = null) : base(anchor, size) {
+        public AutoScaledText(Anchor anchor, Vector2 size, string text, IGenericFont font = null) : base(anchor, size) {
             this.Text = text;
             this.font = font ?? Paragraph.DefaultFont;
-            this.Color = color ?? Color.White;
+            this.IgnoresMouse = true;
         }
 
         public override void ForceUpdateArea() {
