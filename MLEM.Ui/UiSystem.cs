@@ -24,7 +24,6 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             }
         }
-        public IGenericFont DefaultFont;
         public Rectangle ScaledViewport {
             get {
                 var bounds = this.graphicsDevice.Viewport.Bounds;

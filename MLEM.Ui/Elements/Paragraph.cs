@@ -9,6 +9,8 @@ using MLEM.Font;
 namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
+        public static IGenericFont DefaultFont;
+        
         private string text;
         private float lineHeight;
         private string[] splitText;
@@ -24,23 +26,22 @@ namespace MLEM.Ui.Elements {
             }
 
         }
-        public IGenericFont Font => this.font ?? this.System.DefaultFont;
 
         public Paragraph(Anchor anchor, float width, string text, float textScale = 1, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
-            this.font = font;
+            this.font = font ?? DefaultFont;
             this.TextScale = textScale;
             this.centerText = centerText;
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {
             var size = base.CalcActualSize(parentArea);
-            this.splitText = this.Font.SplitString(this.text, size.X, this.TextScale).ToArray();
+            this.splitText = this.font.SplitString(this.text, size.X, this.TextScale).ToArray();
 
             this.lineHeight = 0;
             var height = 0F;
             foreach (var strg in this.splitText) {
-                var strgHeight = this.Font.MeasureString(strg).Y * this.TextScale;
+                var strgHeight = this.font.MeasureString(strg).Y * this.TextScale;
                 height += strgHeight + 1;
                 if (strgHeight > this.lineHeight)
                     this.lineHeight = strgHeight;
@@ -55,9 +56,9 @@ namespace MLEM.Ui.Elements {
             var offset = new Vector2();
             foreach (var line in this.splitText) {
                 if (this.centerText) {
-                    this.Font.DrawCenteredString(batch, line, pos + offset + new Vector2(this.DisplayArea.Width / 2, 0), this.TextScale, color);
+                    this.font.DrawCenteredString(batch, line, pos + offset + new Vector2(this.DisplayArea.Width / 2, 0), this.TextScale, color);
                 } else {
-                    this.Font.DrawString(batch, line, pos + offset, color, 0, Vector2.Zero, this.TextScale, SpriteEffects.None, 0);
+                    this.font.DrawString(batch, line, pos + offset, color, 0, Vector2.Zero, this.TextScale, SpriteEffects.None, 0);
                 }
                 offset.Y += this.lineHeight + 1;
             }

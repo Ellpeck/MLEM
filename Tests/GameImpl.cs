@@ -9,7 +9,6 @@ using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
-using MonoGame.Extended.TextureAtlases;
 
 namespace Tests {
     public class GameImpl : MlemGame {
@@ -26,7 +25,7 @@ namespace Tests {
             this.testTexture = LoadContent<Texture2D>("Textures/Test");
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
 
-            this.UiSystem.DefaultFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
+            Paragraph.DefaultFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             this.UiSystem.GlobalScale = 5;
 
             var root = new Panel(Anchor.BottomLeft, new Vector2(100, 100), new Point(5, 5), this.testPatch);
