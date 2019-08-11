@@ -41,7 +41,7 @@ namespace MLEM.Ui.Elements {
                 }
                 if (textChanged) {
                     var length = this.font.MeasureString(this.Text).X * this.TextScale;
-                    var maxWidth = this.DisplayArea.Width - this.TextOffsetX * 2;
+                    var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
                     if (length > maxWidth) {
                         for (var i = 0; i < this.Text.Length; i++) {
                             var substring = this.Text.ToString(i, this.Text.Length - i);
@@ -78,7 +78,7 @@ namespace MLEM.Ui.Elements {
             batch.Draw(tex, this.DisplayArea, color, this.Scale);
             var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
             var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
-            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX, this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);
+            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);
             base.Draw(time, batch, alpha);
         }
 
