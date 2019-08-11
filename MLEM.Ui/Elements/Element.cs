@@ -15,6 +15,7 @@ namespace MLEM.Ui.Elements {
         private Vector2 size;
         private Point offset;
         public Point Padding;
+        public Point ScaledPadding => this.Padding.Multiply(this.Scale);
         private Point childPadding;
         public Anchor Anchor {
             get => this.anchor;
@@ -34,6 +35,7 @@ namespace MLEM.Ui.Elements {
                 this.SetDirty();
             }
         }
+        public Vector2 ScaledSize => this.size * this.Scale;
         public Point PositionOffset {
             get => this.offset;
             set {
@@ -43,6 +45,7 @@ namespace MLEM.Ui.Elements {
                 this.SetDirty();
             }
         }
+        public Point ScaledOffset => this.offset.Multiply(this.Scale);
         public Point ChildPadding {
             get => this.childPadding;
             set {
@@ -52,6 +55,7 @@ namespace MLEM.Ui.Elements {
                 this.SetDirty();
             }
         }
+        public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
 
         public MouseClickCallback OnClicked;
         public GenericCallback OnSelected;
@@ -71,13 +75,8 @@ namespace MLEM.Ui.Elements {
         }
         protected InputHandler Input => this.System.InputHandler;
         public RootElement Root { get; private set; }
-        public Rectangle ScaledViewport {
-            get {
-                var bounds = this.System.GraphicsDevice.Viewport;
-                return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.Root.ActualScale).Ceil(), (bounds.Height / this.Root.ActualScale).Ceil());
-            }
-        }
-        public Vector2 MousePos => this.Input.MousePosition.ToVector2() / this.Root.ActualScale;
+        public float Scale => this.Root.ActualScale;
+        public Vector2 MousePos => this.Input.MousePosition.ToVector2();
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
         public bool IsSelected { get; private set; }
@@ -106,12 +105,11 @@ namespace MLEM.Ui.Elements {
         public Rectangle DisplayArea {
             get {
                 var padded = this.Area;
-                padded.Location += this.Padding;
-                padded.Width -= this.Padding.X * 2;
-                padded.Height -= this.Padding.Y * 2;
+                padded.Location += this.ScaledPadding;
+                padded.Width -= this.ScaledPadding.X * 2;
+                padded.Height -= this.ScaledPadding.Y * 2;
                 return padded;
             }
-
         }
         private bool areaDirty;
 
@@ -177,11 +175,11 @@ namespace MLEM.Ui.Elements {
             Rectangle parentArea;
             if (this.Parent != null) {
                 parentArea = this.Parent.area;
-                parentArea.Location += this.Parent.ChildPadding;
-                parentArea.Width -= this.Parent.ChildPadding.X * 2;
-                parentArea.Height -= this.Parent.ChildPadding.Y * 2;
+                parentArea.Location += this.Parent.ScaledChildPadding;
+                parentArea.Width -= this.Parent.ScaledChildPadding.X * 2;
+                parentArea.Height -= this.Parent.ScaledChildPadding.Y * 2;
             } else {
-                parentArea = this.ScaledViewport;
+                parentArea = this.system.GraphicsDevice.Viewport.Bounds;
             }
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
@@ -194,42 +192,42 @@ namespace MLEM.Ui.Elements {
                 case Anchor.AutoLeft:
                 case Anchor.AutoInline:
                 case Anchor.AutoInlineIgnoreOverflow:
-                    pos.X = parentArea.X + this.offset.X;
-                    pos.Y = parentArea.Y + this.offset.Y;
+                    pos.X = parentArea.X + this.ScaledOffset.X;
+                    pos.Y = parentArea.Y + this.ScaledOffset.Y;
                     break;
                 case Anchor.TopCenter:
                 case Anchor.AutoCenter:
-                    pos.X = parentCenterX - actualSize.X / 2 + this.offset.X;
-                    pos.Y = parentArea.Y + this.offset.Y;
+                    pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                    pos.Y = parentArea.Y + this.ScaledOffset.Y;
                     break;
                 case Anchor.TopRight:
                 case Anchor.AutoRight:
-                    pos.X = parentArea.Right - actualSize.X - this.offset.X;
-                    pos.Y = parentArea.Y + this.offset.Y;
+                    pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                    pos.Y = parentArea.Y + this.ScaledOffset.Y;
                     break;
                 case Anchor.CenterLeft:
-                    pos.X = parentArea.X + this.offset.X;
-                    pos.Y = parentCenterY - actualSize.Y / 2 + this.offset.Y;
+                    pos.X = parentArea.X + this.ScaledOffset.X;
+                    pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
                     break;
                 case Anchor.Center:
-                    pos.X = parentCenterX - actualSize.X / 2 + this.offset.X;
-                    pos.Y = parentCenterY - actualSize.Y / 2 + this.offset.Y;
+                    pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                    pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
                     break;
                 case Anchor.CenterRight:
-                    pos.X = parentArea.Right - actualSize.X - this.offset.X;
-                    pos.Y = parentCenterY - actualSize.Y / 2 + this.offset.Y;
+                    pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                    pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
                     break;
                 case Anchor.BottomLeft:
-                    pos.X = parentArea.X + this.offset.X;
-                    pos.Y = parentArea.Bottom - actualSize.Y - this.offset.Y;
+                    pos.X = parentArea.X + this.ScaledOffset.X;
+                    pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
                     break;
                 case Anchor.BottomCenter:
-                    pos.X = parentCenterX - actualSize.X / 2 + this.offset.X;
-                    pos.Y = parentArea.Bottom - actualSize.Y - this.offset.Y;
+                    pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                    pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
                     break;
                 case Anchor.BottomRight:
-                    pos.X = parentArea.Right - actualSize.X - this.offset.X;
-                    pos.Y = parentArea.Bottom - actualSize.Y - this.offset.Y;
+                    pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                    pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
                     break;
             }
 
@@ -241,19 +239,19 @@ namespace MLEM.Ui.Elements {
                         case Anchor.AutoLeft:
                         case Anchor.AutoCenter:
                         case Anchor.AutoRight:
-                            pos.Y = prevArea.Bottom + this.PositionOffset.Y;
+                            pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
                             break;
                         case Anchor.AutoInline:
-                            var newX = prevArea.Right + this.PositionOffset.X;
+                            var newX = prevArea.Right + this.ScaledOffset.X;
                             if (newX + actualSize.X <= parentArea.Right) {
                                 pos.X = newX;
                                 pos.Y = prevArea.Y;
                             } else {
-                                pos.Y = prevArea.Bottom + this.PositionOffset.Y;
+                                pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
                             }
                             break;
                         case Anchor.AutoInlineIgnoreOverflow:
-                            pos.X = prevArea.Right + this.PositionOffset.X;
+                            pos.X = prevArea.Right + this.ScaledOffset.X;
                             pos.Y = prevArea.Y;
                             break;
                     }
@@ -271,7 +269,7 @@ namespace MLEM.Ui.Elements {
                         height = child.area.Bottom;
                 }
 
-                var newHeight = height - pos.Y + this.ChildPadding.Y;
+                var newHeight = (height - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
                     this.ForceUpdateArea();
@@ -281,8 +279,8 @@ namespace MLEM.Ui.Elements {
 
         protected virtual Point CalcActualSize(Rectangle parentArea) {
             return new Point(
-                (this.size.X > 1 ? this.size.X : parentArea.Width * this.size.X).Floor(),
-                (this.size.Y > 1 ? this.size.Y : parentArea.Height * this.size.Y).Floor());
+                (this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X).Floor(),
+                (this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y).Floor());
         }
 
         protected Element GetPreviousChild(bool hiddenAlso) {

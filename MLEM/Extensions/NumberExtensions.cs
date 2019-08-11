@@ -24,5 +24,9 @@ namespace MLEM.Extensions {
             return new Vector4(vec.X.Floor(), vec.Y.Floor(), vec.Z.Floor(), vec.W.Floor());
         }
 
+        public static Point Multiply(this Point point, float f) {
+            return new Point((point.X * f).Floor(), (point.Y * f).Floor());
+        }
+
     }
 }

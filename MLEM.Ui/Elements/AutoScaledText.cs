@@ -9,7 +9,7 @@ namespace MLEM.Ui.Elements {
     public class AutoScaledText : Element {
 
         private IGenericFont font;
-        private float scale;
+        private float textScale;
         private string text;
 
         public string Text {
@@ -30,17 +30,17 @@ namespace MLEM.Ui.Elements {
         public override void ForceUpdateArea() {
             base.ForceUpdateArea();
 
-            this.scale = 0;
+            this.textScale = 0;
             Vector2 measure;
             do {
-                this.scale += 0.1F;
-                measure = this.font.MeasureString(this.Text) * this.scale;
-            } while (measure.X <= this.DisplayArea.Size.X && measure.Y <= this.DisplayArea.Size.Y);
+                this.textScale += 0.1F;
+                measure = this.font.MeasureString(this.Text) * this.textScale;
+            } while (measure.X <= this.DisplayArea.Size.X / this.Scale && measure.Y <= this.DisplayArea.Size.Y / this.Scale);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             var pos = this.DisplayArea.Location.ToVector2() + this.DisplayArea.Size.ToVector2() / 2;
-            this.font.DrawCenteredString(batch, this.Text, pos, this.scale, this.Color * alpha, true, true);
+            this.font.DrawCenteredString(batch, this.Text, pos, this.textScale * this.Scale, this.Color * alpha, true, true);
             base.Draw(time, batch, alpha);
         }
 

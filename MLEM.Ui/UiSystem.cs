@@ -94,7 +94,7 @@ namespace MLEM.Ui {
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
                     continue;
-                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, transformMatrix: Matrix.CreateScale(root.ActualScale));
+                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState);
                 root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
                 batch.End();
             }

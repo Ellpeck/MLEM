@@ -78,7 +78,7 @@ namespace MLEM.Ui.Elements {
             batch.Draw(tex, this.DisplayArea, color);
             var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
             var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
-            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX, this.DisplayArea.Height / 2), this.TextScale, Color.White * alpha, false, true);
+            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX, this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);
             base.Draw(time, batch, alpha);
         }
 
