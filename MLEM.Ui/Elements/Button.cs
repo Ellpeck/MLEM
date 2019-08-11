@@ -29,7 +29,7 @@ namespace MLEM.Ui.Elements {
                     tex = this.HoveredTexture;
                 color = this.HoveredColor * alpha;
             }
-            batch.Draw(tex, this.DisplayArea, color);
+            batch.Draw(tex, this.DisplayArea, color, this.Scale);
             base.Draw(time, batch, alpha);
         }
 

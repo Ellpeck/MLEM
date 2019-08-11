@@ -16,7 +16,7 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
-            batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha);
+            batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
             base.Draw(time, batch, alpha);
         }
 

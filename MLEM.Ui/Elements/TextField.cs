@@ -75,7 +75,7 @@ namespace MLEM.Ui.Elements {
                     tex = this.HoveredTexture;
                 color = this.HoveredColor * alpha;
             }
-            batch.Draw(tex, this.DisplayArea, color);
+            batch.Draw(tex, this.DisplayArea, color, this.Scale);
             var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
             var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
             this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX, this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);

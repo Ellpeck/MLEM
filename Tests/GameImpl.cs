@@ -41,7 +41,7 @@ namespace Tests {
             this.UiSystem.Style = style;
             this.UiSystem.GlobalScale = 5;
 
-            var root = new Panel(Anchor.BottomLeft, new Vector2(100, 120), Point.Zero, true);
+            var root = new Panel(Anchor.Center, new Vector2(100, 120), Point.Zero, true);
             this.UiSystem.Add("Test", root);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a test text that is hopefully long enough to cover at least a few lines, otherwise it would be very sad."));
