@@ -16,7 +16,7 @@ namespace MLEM.Ui {
         public readonly InputHandler InputHandler;
         private readonly bool isInputOurs;
 
-        private float globalScale;
+        private float globalScale = 1;
         public float GlobalScale {
             get => this.globalScale;
             set {
@@ -25,13 +25,6 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             }
         }
-        public Rectangle ScaledViewport {
-            get {
-                var bounds = this.GraphicsDevice.Viewport.Bounds;
-                return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.globalScale).Floor(), (bounds.Height / this.globalScale).Floor());
-            }
-        }
-        public Vector2 MousePos => this.InputHandler.MousePosition.ToVector2() / this.globalScale;
         public Element MousedElement { get; private set; }
         public Element SelectedElement { get; private set; }
         private UiStyle style;
@@ -72,9 +65,9 @@ namespace MLEM.Ui {
             var mousedNow = this.GetMousedElement();
             if (mousedNow != this.MousedElement) {
                 if (this.MousedElement != null)
-                    this.MousedElement.OnMouseExit?.Invoke(this.MousedElement, this.MousePos);
+                    this.MousedElement.OnMouseExit?.Invoke(this.MousedElement);
                 if (mousedNow != null)
-                    mousedNow.OnMouseEnter?.Invoke(mousedNow, this.MousePos);
+                    mousedNow.OnMouseEnter?.Invoke(mousedNow);
                 this.MousedElement = mousedNow;
             }
 
@@ -89,7 +82,7 @@ namespace MLEM.Ui {
             if (mousedNow?.OnClicked != null) {
                 foreach (var button in InputHandler.MouseButtons) {
                     if (this.InputHandler.IsMouseButtonPressed(button))
-                        mousedNow.OnClicked(mousedNow, this.MousePos, button);
+                        mousedNow.OnClicked(mousedNow, button);
                 }
             }
 
@@ -98,25 +91,29 @@ namespace MLEM.Ui {
         }
 
         public void Draw(GameTime time, SpriteBatch batch) {
-            batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, transformMatrix: Matrix.CreateScale(this.globalScale));
             foreach (var root in this.rootElements) {
-                if (!root.Element.IsHidden)
-                    root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
+                if (root.Element.IsHidden)
+                    continue;
+                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, transformMatrix: Matrix.CreateScale(root.ActualScale));
+                root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
+                batch.End();
             }
-            batch.End();
 
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.DrawUnbound(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState);
+                    root.Element.DrawUnbound(time, batch, this.DrawAlpha * root.Element.DrawAlpha, root.ActualScale, this.BlendState, this.SamplerState);
             }
         }
 
-        public void Add(string name, Element root) {
+        public RootElement Add(string name, Element root) {
             if (this.IndexOf(name) >= 0)
                 throw new ArgumentException($"There is already a root element with name {name}");
 
-            this.rootElements.Add(new RootElement(name, root));
+            var rootInst = new RootElement(name, root, this);
+            this.rootElements.Add(rootInst);
+            root.PropagateRoot(rootInst);
             root.PropagateUiSystem(this);
+            return rootInst;
         }
 
         public void Remove(string name) {
@@ -126,9 +123,9 @@ namespace MLEM.Ui {
             this.rootElements.RemoveAt(index);
         }
 
-        public Element Get(string name) {
+        public RootElement Get(string name) {
             var index = this.IndexOf(name);
-            return index < 0 ? null : this.rootElements[index].Element;
+            return index < 0 ? null : this.rootElements[index];
         }
 
         private int IndexOf(string name) {
@@ -137,7 +134,7 @@ namespace MLEM.Ui {
 
         private Element GetMousedElement() {
             foreach (var root in this.rootElements) {
-                var moused = root.Element.GetMousedElement(this.MousePos);
+                var moused = root.Element.GetMousedElement();
                 if (moused != null)
                     return moused;
             }
@@ -146,14 +143,27 @@ namespace MLEM.Ui {
 
     }
 
-    public struct RootElement {
+    public class RootElement {
 
         public readonly string Name;
         public readonly Element Element;
+        public readonly UiSystem System;
+        private float scale = 1;
+        public float Scale {
+            get => this.scale;
+            set {
+                if (this.scale == value)
+                    return;
+                this.scale = value;
+                this.Element.ForceUpdateArea();
+            }
+        }
+        public float ActualScale => this.System.GlobalScale * this.Scale;
 
-        public RootElement(string name, Element element) {
+        public RootElement(string name, Element element, UiSystem system) {
             this.Name = name;
             this.Element = element;
+            this.System = system;
         }
 
     }

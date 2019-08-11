@@ -79,6 +79,14 @@ namespace MLEM.Ui.Elements {
             }
         }
         protected InputHandler Input => this.System.InputHandler;
+        public RootElement Root { get; private set; }
+        public Rectangle ScaledViewport {
+            get {
+                var bounds = this.System.GraphicsDevice.Viewport;
+                return new Rectangle(bounds.X, bounds.Y, (bounds.Width / this.Root.ActualScale).Ceil(), (bounds.Height / this.Root.ActualScale).Ceil());
+            }
+        }
+        public Vector2 MousePos => this.Input.MousePosition.ToVector2() / this.Root.ActualScale;
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
         public bool IsSelected { get; private set; }
@@ -119,8 +127,8 @@ namespace MLEM.Ui.Elements {
             this.anchor = anchor;
             this.size = size;
 
-            this.OnMouseEnter += (element, mousePos) => this.IsMouseOver = true;
-            this.OnMouseExit += (element, mousePos) => this.IsMouseOver = false;
+            this.OnMouseEnter += element => this.IsMouseOver = true;
+            this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnSelected += element => this.IsSelected = true;
             this.OnDeselected += element => this.IsSelected = false;
 
@@ -132,6 +140,7 @@ namespace MLEM.Ui.Elements {
                 index = this.children.Count;
             this.children.Insert(index, element);
             element.Parent = this;
+            element.PropagateRoot(this.Root);
             element.PropagateUiSystem(this.System);
             this.SetDirty();
             return element;
@@ -140,6 +149,7 @@ namespace MLEM.Ui.Elements {
         public void RemoveChild(Element element) {
             this.children.Remove(element);
             element.Parent = null;
+            element.PropagateRoot(null);
             element.PropagateUiSystem(null);
             this.SetDirty();
         }
@@ -179,7 +189,7 @@ namespace MLEM.Ui.Elements {
                 parentArea.Width -= this.Parent.ChildPadding.X * 2;
                 parentArea.Height -= this.Parent.ChildPadding.Y * 2;
             } else {
-                parentArea = this.System.ScaledViewport;
+                parentArea = this.ScaledViewport;
             }
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
@@ -297,20 +307,20 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
+        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, float scale, BlendState blendState = null, SamplerState samplerState = null) {
             foreach (var child in this.children) {
                 if (!child.IsHidden)
-                    child.DrawUnbound(time, batch, alpha * child.DrawAlpha, blendState, samplerState);
+                    child.DrawUnbound(time, batch, alpha * child.DrawAlpha, scale, blendState, samplerState);
             }
         }
 
-        public Element GetMousedElement(Vector2 mousePos) {
+        public Element GetMousedElement() {
             if (this.IsHidden || this.IgnoresMouse)
                 return null;
-            if (!this.Area.Contains(mousePos))
+            if (!this.Area.Contains(this.MousePos))
                 return null;
             for (var i = this.children.Count - 1; i >= 0; i--) {
-                var element = this.children[i].GetMousedElement(mousePos);
+                var element = this.children[i].GetMousedElement();
                 if (element != null)
                     return element;
             }
@@ -320,9 +330,9 @@ namespace MLEM.Ui.Elements {
         protected virtual void InitStyle(UiStyle style) {
         }
 
-        public delegate void MouseClickCallback(Element element, Vector2 mousePos, MouseButton button);
+        public delegate void MouseClickCallback(Element element, MouseButton button);
 
-        public delegate void MouseCallback(Element element, Vector2 mousePos);
+        public delegate void MouseCallback(Element element);
 
         public delegate void TextInputCallback(Element element, Keys key, char character);
 
@@ -332,6 +342,12 @@ namespace MLEM.Ui.Elements {
             this.System = system;
             foreach (var child in this.children)
                 child.PropagateUiSystem(system);
+        }
+
+        internal void PropagateRoot(RootElement root) {
+            this.Root = root;
+            foreach (var child in this.children)
+                child.PropagateRoot(root);
         }
 
         internal void PropagateInput(Keys key, char character) {
