@@ -43,7 +43,7 @@ namespace MLEM.Ui.Elements {
                     var length = this.font.MeasureString(this.Text).X * this.TextScale;
                     var maxWidth = this.DisplayArea.Width - this.TextOffsetX * 2;
                     if (length > maxWidth) {
-                        for (var i = Math.Max(0, this.textStartIndex - 1); i < this.Text.Length; i++) {
+                        for (var i = 0; i < this.Text.Length; i++) {
                             var substring = this.Text.ToString(i, this.Text.Length - i);
                             if (this.font.MeasureString(substring).X * this.TextScale <= maxWidth) {
                                 this.textStartIndex = i;
