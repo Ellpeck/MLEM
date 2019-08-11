@@ -8,9 +8,10 @@ namespace MLEM.Ui.Elements {
 
         public NinePatch Texture;
 
-        public Panel(Anchor anchor, Vector2 size, Point positionOffset, NinePatch texture = null) : base(anchor, size) {
+        public Panel(Anchor anchor, Vector2 size, Point positionOffset, bool setHeightBasedOnChildren = false, NinePatch texture = null) : base(anchor, size) {
             this.Texture = texture;
             this.PositionOffset = positionOffset;
+            this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
             this.ChildPadding = new Point(5);
         }
 

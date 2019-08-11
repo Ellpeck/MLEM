@@ -41,11 +41,11 @@ namespace Tests {
             this.UiSystem.Style = style;
             this.UiSystem.GlobalScale = 1.25F;
 
-            var root = new Panel(Anchor.Center, new Vector2(300, 450), Point.Zero);
+            var root = new Panel(Anchor.BottomLeft, new Vector2(300, 450), Point.Zero, true);
             this.UiSystem.Add("Test", root);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a test text that is hopefully long enough to cover at least a few lines, otherwise it would be very sad."));
-            var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true});
+            var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(70, 70), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Point(10)});
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 40), "Test Button") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)

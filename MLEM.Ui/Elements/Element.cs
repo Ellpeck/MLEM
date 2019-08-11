@@ -14,7 +14,7 @@ namespace MLEM.Ui.Elements {
         private Anchor anchor;
         private Vector2 size;
         private Point offset;
-        private Point padding;
+        public Point Padding;
         private Point childPadding;
         public Anchor Anchor {
             get => this.anchor;
@@ -40,15 +40,6 @@ namespace MLEM.Ui.Elements {
                 if (this.offset == value)
                     return;
                 this.offset = value;
-                this.SetDirty();
-            }
-        }
-        public Point Padding {
-            get => this.padding;
-            set {
-                if (this.padding == value)
-                    return;
-                this.padding = value;
                 this.SetDirty();
             }
         }
@@ -103,6 +94,7 @@ namespace MLEM.Ui.Elements {
         public bool IgnoresMouse;
         public float DrawAlpha = 1;
         public bool HasCustomStyle;
+        public bool SetHeightBasedOnChildren;
 
         private Rectangle area;
         public Rectangle Area {
@@ -269,9 +261,22 @@ namespace MLEM.Ui.Elements {
             }
 
             this.area = new Rectangle(pos, actualSize);
-
             foreach (var child in this.children)
                 child.ForceUpdateArea();
+
+            if (this.SetHeightBasedOnChildren) {
+                var height = 0;
+                foreach (var child in this.children) {
+                    if (!child.isHidden && (child.Anchor <= Anchor.TopRight || child.Anchor >= Anchor.AutoLeft) && child.area.Bottom > height)
+                        height = child.area.Bottom;
+                }
+
+                var newHeight = height - pos.Y + this.ChildPadding.Y;
+                if (newHeight != this.size.Y) {
+                    this.size.Y = newHeight;
+                    this.ForceUpdateArea();
+                }
+            }
         }
 
         protected virtual Point CalcActualSize(Rectangle parentArea) {

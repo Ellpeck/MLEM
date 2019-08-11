@@ -13,7 +13,6 @@ namespace MLEM.Ui.Elements {
         public Image(Anchor anchor, Vector2 size, TextureRegion texture, bool scaleToImage = false) : base(anchor, size) {
             this.texture = texture;
             this.scaleToImage = scaleToImage;
-            this.Padding = new Point(1);
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {
