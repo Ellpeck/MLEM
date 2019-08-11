@@ -272,7 +272,8 @@ namespace MLEM.Ui.Elements {
                 var newHeight = (height - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
-                    this.ForceUpdateArea();
+                    if (this.Anchor > Anchor.TopRight)
+                        this.ForceUpdateArea();
                 }
             }
         }
