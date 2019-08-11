@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MLEM.Extended.Extensions;
 using MLEM.Font;
 using MLEM.Input;
 using MLEM.Startup;
@@ -13,7 +11,7 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
-namespace Tests {
+namespace Examples {
     public class GameImpl : MlemGame {
 
         private Texture2D testTexture;

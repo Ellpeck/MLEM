@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tests {
+﻿namespace Examples {
     public static class Program {
 
         public static void Main() {
