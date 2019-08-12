@@ -28,5 +28,11 @@ namespace MLEM.Extensions {
             return new Point((point.X * f).Floor(), (point.Y * f).Floor());
         }
 
+        public static Rectangle OffsetCopy(this Rectangle rect, Point offset) {
+            rect.X += offset.X;
+            rect.Y += offset.Y;
+            return rect;
+        }
+
     }
 }

@@ -26,7 +26,7 @@ namespace Examples {
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
             base.LoadContent();
 
-            var style = new UiStyle {
+            var style = new UntexturedStyle(this.SpriteBatch) {
                 Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
                 TextScale = 0.2F,
                 PanelTexture = this.testPatch,
@@ -39,7 +39,7 @@ namespace Examples {
             this.UiSystem.Style = style;
             this.UiSystem.GlobalScale = 5;
 
-            var root = new Panel(Anchor.Center, new Vector2(100, 120), Point.Zero, true);
+            var root = new Panel(Anchor.Center, new Vector2(100, 80), Point.Zero, false, true, new Point(5, 10));
             this.UiSystem.Add("Test", root);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a test text that is hopefully long enough to cover at least a few lines, otherwise it would be very sad."));
@@ -53,7 +53,7 @@ namespace Examples {
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 15), "Change Style") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
-                        this.UiSystem.Style = this.UiSystem.Style is UntexturedStyle ? style : untexturedStyle;
+                        this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle;
                 },
                 HasCustomStyle = true,
                 Texture = this.testPatch,
@@ -75,6 +75,7 @@ namespace Examples {
                 }
             });
             root.AddChild(new Button(Anchor.AutoInline, new Vector2(30, 15), "Woop") {
+                PositionOffset = new Point(2, 0),
                 OnClicked = (element, button) => CoroutineHandler.Start(Woop(element))
             });
         }

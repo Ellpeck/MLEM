@@ -14,6 +14,9 @@ namespace MLEM.Ui.Style {
             this.PanelTexture = GenerateTexture(batch, Color.Gray);
             this.TextFieldTexture = GenerateTexture(batch, Color.MediumBlue);
             this.TextFieldHoveredColor = Color.LightGray;
+            this.ScrollBarBackground = GenerateTexture(batch, Color.LightBlue);
+            this.ScrollBarScrollerTexture = GenerateTexture(batch, Color.Blue);
+            this.ScrollBarHoveredColor = Color.LightGray;
             this.Font = new EmptyFont();
         }
 

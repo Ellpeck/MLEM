@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Textures;
 using MLEM.Ui.Style;
@@ -67,7 +68,7 @@ namespace MLEM.Ui.Elements {
                 this.caretBlinkTimer = 0;
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -75,11 +76,11 @@ namespace MLEM.Ui.Elements {
                     tex = this.HoveredTexture;
                 color = this.HoveredColor * alpha;
             }
-            batch.Draw(tex, this.DisplayArea, color, this.Scale);
+            batch.Draw(tex, this.DisplayArea.OffsetCopy(offset), color, this.Scale);
             var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
             var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
-            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);
-            base.Draw(time, batch, alpha);
+            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(offset.X + this.TextOffsetX * this.Scale, offset.Y + this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);
+            base.Draw(time, batch, alpha, offset);
         }
 
         protected override void InitStyle(UiStyle style) {

@@ -21,7 +21,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -29,8 +29,8 @@ namespace MLEM.Ui.Elements {
                     tex = this.HoveredTexture;
                 color = this.HoveredColor * alpha;
             }
-            batch.Draw(tex, this.DisplayArea, color, this.Scale);
-            base.Draw(time, batch, alpha);
+            batch.Draw(tex, this.DisplayArea.OffsetCopy(offset), color, this.Scale);
+            base.Draw(time, batch, alpha, offset);
         }
 
         protected override void InitStyle(UiStyle style) {

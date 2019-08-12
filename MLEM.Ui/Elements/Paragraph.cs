@@ -46,19 +46,18 @@ namespace MLEM.Ui.Elements {
             return new Point(size.X, height.Ceil());
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
-            base.Draw(time, batch, alpha);
-
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
             var pos = this.DisplayArea.Location.ToVector2();
-            var offset = new Vector2();
+            var off = offset.ToVector2();
             foreach (var line in this.splitText) {
                 if (this.centerText) {
-                    this.font.DrawCenteredString(batch, line, pos + offset + new Vector2(this.DisplayArea.Width / 2, 0), this.TextScale * this.Scale, Color.White * alpha);
+                    this.font.DrawCenteredString(batch, line, pos + off + new Vector2(this.DisplayArea.Width / 2, 0), this.TextScale * this.Scale, Color.White * alpha);
                 } else {
-                    this.font.DrawString(batch, line, pos + offset, Color.White * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
+                    this.font.DrawString(batch, line, pos + off, Color.White * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
                 }
-                offset.Y += this.lineHeight + 1;
+                off.Y += this.lineHeight + 1;
             }
+            base.Draw(time, batch, alpha, offset);
         }
 
         protected override void InitStyle(UiStyle style) {

@@ -63,6 +63,15 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
+        public Rectangle ChildPaddedArea {
+            get {
+                var padded = this.Area;
+                padded.Location += this.ScaledChildPadding;
+                padded.Width -= this.ScaledChildPadding.X * 2;
+                padded.Height -= this.ScaledChildPadding.Y * 2;
+                return padded;
+            }
+        }
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
 
         public MouseClickCallback OnClicked;
@@ -143,38 +152,42 @@ namespace MLEM.Ui.Elements {
             this.SetAreaDirty();
         }
 
-        public T AddChild<T>(T element, int index = -1) where T : Element {
+        public T AddChild<T>(T element, int index = -1, bool propagateInfo = true) where T : Element {
             if (index < 0 || index > this.Children.Count)
                 index = this.Children.Count;
             this.Children.Insert(index, element);
-            element.Parent = this;
-            element.PropagateRoot(this.Root);
-            element.PropagateUiSystem(this.System);
+            if (propagateInfo) {
+                element.Parent = this;
+                element.PropagateRoot(this.Root);
+                element.PropagateUiSystem(this.System);
+            }
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
             return element;
         }
 
-        public void RemoveChild(Element element) {
+        public void RemoveChild(Element element, bool propagateInfo = true) {
             this.Children.Remove(element);
-            element.Parent = null;
-            element.PropagateRoot(null);
-            element.PropagateUiSystem(null);
+            if (propagateInfo) {
+                element.Parent = null;
+                element.PropagateRoot(null);
+                element.PropagateUiSystem(null);
+            }
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
         }
 
         public void MoveToFront() {
             if (this.Parent != null) {
-                this.Parent.RemoveChild(this);
-                this.Parent.AddChild(this);
+                this.Parent.RemoveChild(this, false);
+                this.Parent.AddChild(this, -1, false);
             }
         }
 
         public void MoveToBack() {
             if (this.Parent != null) {
-                this.Parent.RemoveChild(this);
-                this.Parent.AddChild(this, 0);
+                this.Parent.RemoveChild(this, false);
+                this.Parent.AddChild(this, 0, false);
             }
         }
 
@@ -206,15 +219,7 @@ namespace MLEM.Ui.Elements {
         public virtual void ForceUpdateArea() {
             this.areaDirty = false;
 
-            Rectangle parentArea;
-            if (this.Parent != null) {
-                parentArea = this.Parent.area;
-                parentArea.Location += this.Parent.ScaledChildPadding;
-                parentArea.Width -= this.Parent.ScaledChildPadding.X * 2;
-                parentArea.Height -= this.Parent.ScaledChildPadding.Y * 2;
-            } else {
-                parentArea = this.system.GraphicsDevice.Viewport.Bounds;
-            }
+            var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
 
@@ -338,17 +343,17 @@ namespace MLEM.Ui.Elements {
                 child.Update(time);
         }
 
-        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
             foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
-                    child.Draw(time, batch, alpha * child.DrawAlpha);
+                    child.Draw(time, batch, alpha * child.DrawAlpha, offset);
             }
         }
 
-        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, float scale, BlendState blendState = null, SamplerState samplerState = null) {
+        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
             foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
-                    child.DrawUnbound(time, batch, alpha * child.DrawAlpha, scale, blendState, samplerState);
+                    child.DrawUnbound(time, batch, alpha * child.DrawAlpha, blendState, samplerState);
             }
         }
 

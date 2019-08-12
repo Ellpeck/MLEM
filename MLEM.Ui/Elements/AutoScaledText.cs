@@ -38,10 +38,10 @@ namespace MLEM.Ui.Elements {
             } while (measure.X <= this.DisplayArea.Size.X / this.Scale && measure.Y <= this.DisplayArea.Size.Y / this.Scale);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
-            var pos = this.DisplayArea.Location.ToVector2() + this.DisplayArea.Size.ToVector2() / 2;
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
+            var pos = this.DisplayArea.Location.ToVector2() + this.DisplayArea.Size.ToVector2() / 2 + offset.ToVector2();
             this.font.DrawCenteredString(batch, this.Text, pos, this.textScale * this.Scale, this.Color * alpha, true, true);
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, offset);
         }
 
         protected override void InitStyle(UiStyle style) {

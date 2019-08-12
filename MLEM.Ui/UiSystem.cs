@@ -12,6 +12,7 @@ namespace MLEM.Ui {
     public class UiSystem {
 
         public readonly GraphicsDevice GraphicsDevice;
+        public Rectangle Viewport { get; private set; }
         private readonly List<RootElement> rootElements = new List<RootElement>();
         public readonly InputHandler InputHandler;
         private readonly bool isInputOurs;
@@ -47,8 +48,10 @@ namespace MLEM.Ui {
             this.InputHandler = inputHandler ?? new InputHandler();
             this.isInputOurs = inputHandler == null;
             this.style = style;
+            this.Viewport = device.Viewport.Bounds;
 
             window.ClientSizeChanged += (sender, args) => {
+                this.Viewport = device.Viewport.Bounds;
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
@@ -92,16 +95,16 @@ namespace MLEM.Ui {
 
         public void Draw(GameTime time, SpriteBatch batch) {
             foreach (var root in this.rootElements) {
-                if (root.Element.IsHidden)
-                    continue;
-                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState);
-                root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
-                batch.End();
+                if (!root.Element.IsHidden)
+                    root.Element.DrawUnbound(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState);
             }
 
             foreach (var root in this.rootElements) {
-                if (!root.Element.IsHidden)
-                    root.Element.DrawUnbound(time, batch, this.DrawAlpha * root.Element.DrawAlpha, root.ActualScale, this.BlendState, this.SamplerState);
+                if (root.Element.IsHidden)
+                    continue;
+                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState);
+                root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha, Point.Zero);
+                batch.End();
             }
         }
 
