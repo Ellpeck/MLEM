@@ -43,9 +43,12 @@ namespace MLEM.Ui.Elements {
 
         public override void Update(GameTime time) {
             base.Update(time);
-            var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
-            if (scroll != 0)
-                this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
+            var moused = this.System.MousedElement;
+            if (moused == this.Parent || moused?.Parent == this.Parent) {
+                var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
+                if (scroll != 0)
+                    this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
+            }
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
