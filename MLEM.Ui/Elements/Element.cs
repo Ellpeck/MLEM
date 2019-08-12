@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,7 +11,14 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public abstract class Element {
 
-        private readonly List<Element> children = new List<Element>();
+        protected readonly List<Element> Children = new List<Element>();
+        private readonly List<Element> sortedChildren = new List<Element>();
+        protected List<Element> SortedChildren {
+            get {
+                this.UpdateSortedChildrenIfDirty();
+                return this.sortedChildren;
+            }
+        }
         private Anchor anchor;
         private Vector2 size;
         private Point offset;
@@ -23,7 +31,7 @@ namespace MLEM.Ui.Elements {
                 if (this.anchor == value)
                     return;
                 this.anchor = value;
-                this.SetDirty();
+                this.SetAreaDirty();
             }
         }
         public Vector2 Size {
@@ -32,7 +40,7 @@ namespace MLEM.Ui.Elements {
                 if (this.size == value)
                     return;
                 this.size = value;
-                this.SetDirty();
+                this.SetAreaDirty();
             }
         }
         public Vector2 ScaledSize => this.size * this.Scale;
@@ -42,7 +50,7 @@ namespace MLEM.Ui.Elements {
                 if (this.offset == value)
                     return;
                 this.offset = value;
-                this.SetDirty();
+                this.SetAreaDirty();
             }
         }
         public Point ScaledOffset => this.offset.Multiply(this.Scale);
@@ -52,7 +60,7 @@ namespace MLEM.Ui.Elements {
                 if (this.childPadding == value)
                     return;
                 this.childPadding = value;
-                this.SetDirty();
+                this.SetAreaDirty();
             }
         }
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
@@ -87,7 +95,7 @@ namespace MLEM.Ui.Elements {
                 if (this.isHidden == value)
                     return;
                 this.isHidden = value;
-                this.SetDirty();
+                this.SetAreaDirty();
             }
         }
         public bool IgnoresMouse;
@@ -111,7 +119,17 @@ namespace MLEM.Ui.Elements {
                 return padded;
             }
         }
+        private int priority;
+        public int Priority {
+            get => this.priority;
+            set {
+                this.priority = value;
+                if (this.Parent != null)
+                    this.Parent.SetSortedChildrenDirty();
+            }
+        }
         private bool areaDirty;
+        private bool sortedChildrenDirty;
 
         public Element(Anchor anchor, Vector2 size) {
             this.anchor = anchor;
@@ -122,26 +140,28 @@ namespace MLEM.Ui.Elements {
             this.OnSelected += element => this.IsSelected = true;
             this.OnDeselected += element => this.IsSelected = false;
 
-            this.SetDirty();
+            this.SetAreaDirty();
         }
 
         public T AddChild<T>(T element, int index = -1) where T : Element {
-            if (index < 0 || index > this.children.Count)
-                index = this.children.Count;
-            this.children.Insert(index, element);
+            if (index < 0 || index > this.Children.Count)
+                index = this.Children.Count;
+            this.Children.Insert(index, element);
             element.Parent = this;
             element.PropagateRoot(this.Root);
             element.PropagateUiSystem(this.System);
-            this.SetDirty();
+            this.SetSortedChildrenDirty();
+            this.SetAreaDirty();
             return element;
         }
 
         public void RemoveChild(Element element) {
-            this.children.Remove(element);
+            this.Children.Remove(element);
             element.Parent = null;
             element.PropagateRoot(null);
             element.PropagateUiSystem(null);
-            this.SetDirty();
+            this.SetSortedChildrenDirty();
+            this.SetAreaDirty();
         }
 
         public void MoveToFront() {
@@ -158,10 +178,24 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public void SetDirty() {
+        public void SetAreaDirty() {
             this.areaDirty = true;
             if (this.Anchor >= Anchor.AutoLeft && this.Parent != null)
-                this.Parent.SetDirty();
+                this.Parent.SetAreaDirty();
+        }
+
+        public void SetSortedChildrenDirty() {
+            this.sortedChildrenDirty = true;
+        }
+
+        public void UpdateSortedChildrenIfDirty() {
+            if (this.sortedChildrenDirty) {
+                this.sortedChildrenDirty = false;
+
+                this.sortedChildren.Clear();
+                this.sortedChildren.AddRange(this.Children);
+                this.sortedChildren.Sort((e1, e2) => e1.Priority.CompareTo(e1.Priority));
+            }
         }
 
         public void UpdateAreaIfDirty() {
@@ -259,12 +293,12 @@ namespace MLEM.Ui.Elements {
             }
 
             this.area = new Rectangle(pos, actualSize);
-            foreach (var child in this.children)
+            foreach (var child in this.Children)
                 child.ForceUpdateArea();
 
             if (this.SetHeightBasedOnChildren) {
                 var height = 0;
-                foreach (var child in this.children) {
+                foreach (var child in this.Children) {
                     if (!child.isHidden && (child.Anchor <= Anchor.TopRight || child.Anchor >= Anchor.AutoLeft) && child.area.Bottom > height)
                         height = child.area.Bottom;
                 }
@@ -289,7 +323,7 @@ namespace MLEM.Ui.Elements {
                 return null;
 
             Element lastChild = null;
-            foreach (var child in this.Parent.children) {
+            foreach (var child in this.Parent.Children) {
                 if (!hiddenAlso && child.IsHidden)
                     continue;
                 if (child == this)
@@ -300,19 +334,19 @@ namespace MLEM.Ui.Elements {
         }
 
         public virtual void Update(GameTime time) {
-            foreach (var child in this.children)
+            foreach (var child in this.SortedChildren)
                 child.Update(time);
         }
 
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha) {
-            foreach (var child in this.children) {
+            foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
                     child.Draw(time, batch, alpha * child.DrawAlpha);
             }
         }
 
         public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, float scale, BlendState blendState = null, SamplerState samplerState = null) {
-            foreach (var child in this.children) {
+            foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
                     child.DrawUnbound(time, batch, alpha * child.DrawAlpha, scale, blendState, samplerState);
             }
@@ -323,8 +357,8 @@ namespace MLEM.Ui.Elements {
                 return null;
             if (!this.Area.Contains(this.MousePos))
                 return null;
-            for (var i = this.children.Count - 1; i >= 0; i--) {
-                var element = this.children[i].GetMousedElement();
+            for (var i = this.SortedChildren.Count - 1; i >= 0; i--) {
+                var element = this.SortedChildren[i].GetMousedElement();
                 if (element != null)
                     return element;
             }
@@ -344,19 +378,19 @@ namespace MLEM.Ui.Elements {
 
         internal void PropagateUiSystem(UiSystem system) {
             this.System = system;
-            foreach (var child in this.children)
+            foreach (var child in this.Children)
                 child.PropagateUiSystem(system);
         }
 
         internal void PropagateRoot(RootElement root) {
             this.Root = root;
-            foreach (var child in this.children)
+            foreach (var child in this.Children)
                 child.PropagateRoot(root);
         }
 
         internal void PropagateInput(Keys key, char character) {
             this.OnTextInput?.Invoke(this, key, character);
-            foreach (var child in this.children)
+            foreach (var child in this.Children)
                 child.PropagateInput(key, character);
         }
 

@@ -16,7 +16,7 @@ namespace MLEM.Ui.Elements {
             get => this.text;
             set {
                 this.text = value;
-                this.SetDirty();
+                this.SetAreaDirty();
             }
         }
         public Color Color = Color.White;

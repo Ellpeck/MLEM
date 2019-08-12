@@ -34,7 +34,7 @@ namespace MLEM.Ui {
                 this.style = value;
                 foreach (var root in this.rootElements) {
                     root.Element.PropagateUiSystem(this);
-                    root.Element.SetDirty();
+                    root.Element.SetAreaDirty();
                 }
             }
         }
