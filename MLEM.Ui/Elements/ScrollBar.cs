@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Input;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -35,6 +36,7 @@ namespace MLEM.Ui.Elements {
         }
         public float StepPerScroll = 1;
         public ValueChanged OnValueChanged;
+        private bool isMouseHeld;
 
         public ScrollBar(Anchor anchor, Vector2 size, int scrollerHeight, float maxValue) : base(anchor, size) {
             this.maxValue = maxValue;
@@ -44,6 +46,17 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             base.Update(time);
             var moused = this.System.MousedElement;
+            if (moused == this && this.Input.IsMouseButtonDown(MouseButton.Left)) {
+                this.isMouseHeld = true;
+            } else if (this.isMouseHeld && this.Input.IsMouseButtonUp(MouseButton.Left)) {
+                this.isMouseHeld = false;
+            }
+            
+            if (this.isMouseHeld) {
+                var internalY = this.MousePos.Y - this.Area.Y;
+                this.CurrentValue = internalY / (float) this.Area.Height * this.MaxValue;
+            }
+            
             if (moused == this.Parent || moused?.Parent == this.Parent) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)

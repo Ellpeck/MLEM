@@ -93,7 +93,7 @@ namespace MLEM.Ui.Elements {
         protected InputHandler Input => this.System.InputHandler;
         public RootElement Root { get; private set; }
         public float Scale => this.Root.ActualScale;
-        public Vector2 MousePos => this.Input.MousePosition.ToVector2();
+        public Point MousePos => this.Input.MousePosition;
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
         public bool IsSelected { get; private set; }
