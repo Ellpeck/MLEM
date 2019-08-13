@@ -22,6 +22,8 @@ namespace MLEM.Ui.Style {
         public NinePatch RadioHoveredTexture;
         public Color RadioHoveredColor;
         public TextureRegion RadioCheckmark;
+        public NinePatch TooltipBackground;
+        public Color TooltipBackgroundColor;
         public IGenericFont Font;
         public float TextScale = 1;
 

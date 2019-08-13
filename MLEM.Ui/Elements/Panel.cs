@@ -14,7 +14,7 @@ namespace MLEM.Ui.Elements {
         private readonly bool scrollOverflow;
         private RenderTarget2D renderTarget;
 
-        public Panel(Anchor anchor, Vector2 size, Point positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null) : base(anchor, size) {
+        public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
             this.scrollOverflow = scrollOverflow;
@@ -30,14 +30,14 @@ namespace MLEM.Ui.Elements {
                         if (firstChild == element)
                             return;
                         // as all children have to be auto-aligned, moving the first one up will move all others
-                        firstChild.PositionOffset = new Point(firstChild.PositionOffset.X, -value.Ceil());
+                        firstChild.PositionOffset = new Vector2(firstChild.PositionOffset.X, -value.Ceil());
                         this.ForceUpdateArea();
                     }
                 };
                 this.AddChild(this.ScrollBar);
 
                 // modify the padding so that the scroll bar isn't over top of something else
-                this.ScrollBar.PositionOffset -= new Point(scrollSize.X + 1, 0);
+                this.ScrollBar.PositionOffset -= new Vector2(scrollSize.X + 1, 0);
                 this.ChildPadding += new Point(scrollSize.X, 0);
             }
         }

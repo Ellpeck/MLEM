@@ -21,7 +21,7 @@ namespace MLEM.Ui.Elements {
         }
         private Anchor anchor;
         private Vector2 size;
-        private Point offset;
+        private Vector2 offset;
         public Point Padding;
         public Point ScaledPadding => this.Padding.Multiply(this.Scale);
         private Point childPadding;
@@ -44,7 +44,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Vector2 ScaledSize => this.size * this.Scale;
-        public Point PositionOffset {
+        public Vector2 PositionOffset {
             get => this.offset;
             set {
                 if (this.offset == value)
@@ -53,7 +53,7 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public Point ScaledOffset => this.offset.Multiply(this.Scale);
+        public Point ScaledOffset => (this.offset * this.Scale).ToPoint();
         public Point ChildPadding {
             get => this.childPadding;
             set {

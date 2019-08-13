@@ -11,11 +11,17 @@ namespace MLEM.Ui.Elements {
         public NinePatch HoveredTexture;
         public Color HoveredColor;
         public Paragraph Text;
+        public Tooltip Tooltip;
 
-        public Button(Anchor anchor, Vector2 size, string text = null) : base(anchor, size) {
+        public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float tooltipWidth = 50) : base(anchor, size) {
             if (text != null) {
                 this.Text = new Paragraph(Anchor.Center, 1, text, true);
                 this.AddChild(this.Text);
+            }
+            if (tooltipText != null) {
+                this.Tooltip = new Tooltip(tooltipWidth, tooltipText);
+                this.OnMouseEnter += element => this.System.Add("ButtonTooltip", this.Tooltip);
+                this.OnMouseExit += element => this.System.Remove("ButtonTooltip");
             }
         }
 

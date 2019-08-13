@@ -22,6 +22,8 @@ namespace MLEM.Ui.Style {
             this.RadioTexture = GenerateTexture(batch, Color.AliceBlue);
             this.RadioHoveredColor = Color.LightGray;
             this.RadioCheckmark = GenerateTexture(batch, Color.CornflowerBlue).Region;
+            this.TooltipBackground = GenerateTexture(batch, Color.DarkGray);
+            this.TooltipBackgroundColor = new Color(Color.Black, 0.65F);
             this.Font = new EmptyFont();
         }
 

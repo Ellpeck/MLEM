@@ -32,8 +32,8 @@ namespace Examples {
                 PanelTexture = this.testPatch,
                 ButtonTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
                 TextFieldTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
-                ScrollBarBackground = new NinePatch(new TextureRegion(this.testTexture, 8, 0, 4, 8), 1, 1, 2, 2),
-                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(this.testTexture, 12, 0, 4, 8), 1, 1, 2, 2),
+                ScrollBarBackground = new NinePatch(new TextureRegion(this.testTexture, 12, 0, 4, 8), 1, 1, 2, 2),
+                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(this.testTexture, 8, 0, 4, 8), 1, 1, 2, 2),
                 CheckboxTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
@@ -43,12 +43,12 @@ namespace Examples {
             this.UiSystem.Style = style;
             this.UiSystem.GlobalScale = 5;
 
-            var root = new Panel(Anchor.Center, new Vector2(80, 100), Point.Zero, false, true, new Point(5, 10));
+            var root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
             this.UiSystem.Add("Test", root);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));
             var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Point(3)});
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Test Image") {
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Test Image", "This button shows a grass tile as a test image to show the automatic anchoring of objects.") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
                         image.IsHidden = !image.IsHidden;
@@ -61,7 +61,7 @@ namespace Examples {
                     if (button == MouseButton.Left)
                         this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle;
                 },
-                PositionOffset = new Point(0, 1),
+                PositionOffset = new Vector2(0, 1),
                 HasCustomStyle = true,
                 Texture = this.testPatch,
                 HoveredColor = Color.LightGray
@@ -69,7 +69,7 @@ namespace Examples {
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
-            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PositionOffset = new Point(0, 1)});
+            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PositionOffset = new Vector2(0, 1)});
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));
@@ -84,16 +84,16 @@ namespace Examples {
                     if (element.Root.Scale > 0.5F)
                         element.Root.Scale -= 0.1F;
                 },
-                PositionOffset = new Point(1, 0)
+                PositionOffset = new Vector2(1, 0)
             });
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 1!"));
-            root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 2!") {PositionOffset = new Point(0, 1)});
+            root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 2!") {PositionOffset = new Vector2(0, 1)});
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 1!"));
-            root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Point(0, 1)});
+            root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Vector2(0, 1)});
         }
 
         protected override void Draw(GameTime gameTime) {
