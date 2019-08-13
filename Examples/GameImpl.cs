@@ -47,13 +47,15 @@ namespace Examples {
             this.UiSystem.Add("Test", root);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));
-            var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(20, 20), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true});
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Image") {
+            var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Point(3)});
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Test Image") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
                         image.IsHidden = !image.IsHidden;
                 }
             });
+            root.AddChild(new VerticalSpace(3));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
