@@ -29,6 +29,7 @@ namespace MLEM.Ui.Elements {
             this.text = text;
             this.font = font;
             this.centerText = centerText;
+            this.IgnoresMouse = true;
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {

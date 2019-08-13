@@ -10,13 +10,11 @@ namespace MLEM.Ui.Elements {
         public NinePatch Texture;
         public NinePatch HoveredTexture;
         public Color HoveredColor;
-        public AutoScaledText Text;
+        public Paragraph Text;
 
         public Button(Anchor anchor, Vector2 size, string text = null) : base(anchor, size) {
             if (text != null) {
-                this.Text = new AutoScaledText(Anchor.Center, Vector2.One, text) {
-                    IgnoresMouse = true
-                };
+                this.Text = new Paragraph(Anchor.Center, 1, text, true);
                 this.AddChild(this.Text);
             }
         }

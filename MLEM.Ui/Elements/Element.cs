@@ -338,6 +338,17 @@ namespace MLEM.Ui.Elements {
             return lastChild;
         }
 
+        protected IEnumerable<Element> GetSiblings(bool hiddenAlso) {
+            if (this.Parent == null)
+                yield break;
+            foreach (var child in this.Parent.Children) {
+                if (!hiddenAlso && child.IsHidden)
+                    continue;
+                if (child != this)
+                    yield return child;
+            }
+        }
+
         public virtual void Update(GameTime time) {
             foreach (var child in this.SortedChildren)
                 child.Update(time);

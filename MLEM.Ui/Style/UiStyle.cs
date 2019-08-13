@@ -14,7 +14,14 @@ namespace MLEM.Ui.Style {
         public Color TextFieldHoveredColor;
         public NinePatch ScrollBarBackground;
         public NinePatch ScrollBarScrollerTexture;
-        public Color ScrollBarHoveredColor;
+        public NinePatch CheckboxTexture;
+        public NinePatch CheckboxHoveredTexture;
+        public Color CheckboxHoveredColor;
+        public TextureRegion CheckboxCheckmark;
+        public NinePatch RadioTexture;
+        public NinePatch RadioHoveredTexture;
+        public Color RadioHoveredColor;
+        public TextureRegion RadioCheckmark;
         public IGenericFont Font;
         public float TextScale = 1;
 

@@ -16,7 +16,12 @@ namespace MLEM.Ui.Style {
             this.TextFieldHoveredColor = Color.LightGray;
             this.ScrollBarBackground = GenerateTexture(batch, Color.LightBlue);
             this.ScrollBarScrollerTexture = GenerateTexture(batch, Color.Blue);
-            this.ScrollBarHoveredColor = Color.LightGray;
+            this.CheckboxTexture = GenerateTexture(batch, Color.LightBlue);
+            this.CheckboxHoveredColor = Color.LightGray;
+            this.CheckboxCheckmark = GenerateTexture(batch, Color.Blue).Region;
+            this.RadioTexture = GenerateTexture(batch, Color.AliceBlue);
+            this.RadioHoveredColor = Color.LightGray;
+            this.RadioCheckmark = GenerateTexture(batch, Color.CornflowerBlue).Region;
             this.Font = new EmptyFont();
         }
 

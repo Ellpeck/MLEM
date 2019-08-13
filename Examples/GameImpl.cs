@@ -28,66 +28,70 @@ namespace Examples {
 
             var style = new UntexturedStyle(this.SpriteBatch) {
                 Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
-                TextScale = 0.2F,
+                TextScale = 0.1F,
                 PanelTexture = this.testPatch,
                 ButtonTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
                 TextFieldTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
-                ButtonHoveredColor = Color.LightGray,
-                TextFieldHoveredColor = Color.LightGray
+                ScrollBarBackground = new NinePatch(new TextureRegion(this.testTexture, 8, 0, 4, 8), 1, 1, 2, 2),
+                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(this.testTexture, 12, 0, 4, 8), 1, 1, 2, 2),
+                CheckboxTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
+                CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
+                RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
+                RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8)
             };
             var untexturedStyle = this.UiSystem.Style;
             this.UiSystem.Style = style;
             this.UiSystem.GlobalScale = 5;
 
-            var root = new Panel(Anchor.Center, new Vector2(100, 80), Point.Zero, false, true, new Point(5, 10));
+            var root = new Panel(Anchor.Center, new Vector2(80, 100), Point.Zero, false, true, new Point(5, 10));
             this.UiSystem.Add("Test", root);
 
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a test text that is hopefully long enough to cover at least a few lines, otherwise it would be very sad."));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));
             var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(20, 20), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true});
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 15), "Test Button") {
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Image") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
                         image.IsHidden = !image.IsHidden;
                 }
             });
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 15), "Change Style") {
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
                         this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle;
                 },
+                PositionOffset = new Point(0, 1),
                 HasCustomStyle = true,
                 Texture = this.testPatch,
                 HoveredColor = Color.LightGray
             });
-            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 15)));
 
             root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(15), "+") {
+            root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
+            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PositionOffset = new Point(0, 1)});
+
+            root.AddChild(new VerticalSpace(3));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));
+            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(10), "+") {
                 OnClicked = (element, button) => {
                     if (element.Root.Scale < 2)
                         element.Root.Scale += 0.1F;
                 }
             });
-            root.AddChild(new Button(Anchor.AutoInline, new Vector2(15), "-") {
+            root.AddChild(new Button(Anchor.AutoInline, new Vector2(10), "-") {
                 OnClicked = (element, button) => {
                     if (element.Root.Scale > 0.5F)
                         element.Root.Scale -= 0.1F;
-                }
+                },
+                PositionOffset = new Point(1, 0)
             });
-            root.AddChild(new Button(Anchor.AutoInline, new Vector2(30, 15), "Woop") {
-                PositionOffset = new Point(2, 0),
-                OnClicked = (element, button) => CoroutineHandler.Start(Woop(element))
-            });
-        }
 
-        private static IEnumerator<Wait> Woop(Element element) {
-            var angle = 0;
-            var startScale = element.Root.Scale;
-            while (angle < 180) {
-                element.Root.Scale = startScale + (float) Math.Sin(MathHelper.ToRadians(angle));
-                angle++;
-                yield return new WaitSeconds(0.01F);
-            }
+            root.AddChild(new VerticalSpace(3));
+            root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 1!"));
+            root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 2!") {PositionOffset = new Point(0, 1)});
+
+            root.AddChild(new VerticalSpace(3));
+            root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 1!"));
+            root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Point(0, 1)});
         }
 
         protected override void Draw(GameTime gameTime) {

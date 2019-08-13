@@ -11,7 +11,6 @@ namespace MLEM.Ui.Elements {
 
         public NinePatch Background;
         public NinePatch ScrollerTexture;
-        public Color HoveredColor;
         public Point ScrollerOffset;
         public Point ScrollerSize;
         private float maxValue;
@@ -78,7 +77,6 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.Background = style.ScrollBarBackground;
             this.ScrollerTexture = style.ScrollBarScrollerTexture;
-            this.HoveredColor = style.ScrollBarHoveredColor;
         }
 
         public delegate void ValueChanged(Element element, float value);
