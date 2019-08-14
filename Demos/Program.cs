@@ -11,6 +11,7 @@ namespace Demos {
         static Program() {
             Demos.Add("Ui", () => new UiDemo());
             Demos.Add("AutoTiling", () => new AutoTilingDemo());
+            Demos.Add("Animation", () => new AnimationDemo());
         }
 
         public static void Main(string[] args) {
