@@ -56,7 +56,7 @@ namespace Demos {
 
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(10));
             // draw the group's current region
-            // if not using a group, just update the animation's CurrentRegion here
+            // if not using a group, just draw the animation's CurrentRegion here
             this.SpriteBatch.Draw(this.group.CurrentRegion, new Vector2(10, 10), Color.White);
             this.SpriteBatch.End();
 
