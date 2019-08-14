@@ -11,13 +11,20 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
-namespace Examples {
-    public class GameImpl : MlemGame {
+namespace Demos {
+    /// <remarks>
+    /// NOTE: This ui demo derives from <see cref="MlemGame"/>. To use MLEM.Ui, it's not required to use MLEM.Startup (which MlemGame is a part of).
+    /// If using your own game class that derives from <see cref="Game"/>, however, you will have to do a few additional things to get MLEM.Ui up and running:
+    /// - Create an instance of <see cref="UiSystem"/>
+    /// - Call the instance's Update method in your game's Update method
+    /// - Call the instance's Draw method in your game's Draw method
+    /// </remarks>
+    public class UiDemo : MlemGame {
 
         private Texture2D testTexture;
         private NinePatch testPatch;
 
-        public GameImpl() {
+        public UiDemo() {
             this.IsMouseVisible = true;
         }
 
@@ -26,7 +33,11 @@ namespace Examples {
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
             base.LoadContent();
 
+            // create a new style
+            // this one derives form UntexturedStyle so that stuff like the hover colors don't have to be set again
             var style = new UntexturedStyle(this.SpriteBatch) {
+                // when using a SpriteFont, use GenericSpriteFont. When using a MonoGame.Extended BitmapFont, use GenericBitmapFont.
+                // Wrapping fonts like this allows for both types to be usable within MLEM.Ui easily
                 Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
                 TextScale = 0.1F,
                 PanelTexture = this.testPatch,
@@ -40,9 +51,12 @@ namespace Examples {
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8)
             };
             var untexturedStyle = this.UiSystem.Style;
+            // set the defined style as the current one
             this.UiSystem.Style = style;
+            // scale every ui up by 5
             this.UiSystem.GlobalScale = 5;
 
+            // create the root panel that all the other components sit on and add it to the ui system
             var root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
             this.UiSystem.Add("Test", root);
 
@@ -62,6 +76,8 @@ namespace Examples {
                         this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle;
                 },
                 PositionOffset = new Vector2(0, 1),
+                // set HasCustomStyle to true before changing style information so that, when changing the style globally
+                // (like above), these custom values don't get undone
                 HasCustomStyle = true,
                 Texture = this.testPatch,
                 HoveredColor = Color.LightGray
