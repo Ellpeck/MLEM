@@ -93,12 +93,14 @@ namespace MLEM.Ui {
                 root.Element.Update(time);
         }
 
-        public void Draw(GameTime time, SpriteBatch batch) {
+        public void DrawEarly(GameTime time, SpriteBatch batch) {
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.DrawUnbound(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState);
+                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState);
             }
+        }
 
+        public void Draw(GameTime time, SpriteBatch batch) {
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
                     continue;

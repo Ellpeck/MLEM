@@ -91,7 +91,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
+        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
             if (this.scrollOverflow) {
                 // draw children onto the render target
                 batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
@@ -103,7 +103,7 @@ namespace MLEM.Ui.Elements {
                 batch.End();
                 batch.GraphicsDevice.SetRenderTarget(null);
             }
-            base.DrawUnbound(time, batch, alpha, blendState, samplerState);
+            base.DrawEarly(time, batch, alpha, blendState, samplerState);
         }
 
         private Rectangle GetRenderTargetArea() {

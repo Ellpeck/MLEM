@@ -60,9 +60,14 @@ namespace MLEM.Startup {
         }
 
         protected override void Draw(GameTime gameTime) {
-            base.Draw(gameTime);
+            this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
+            this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
             CoroutineHandler.RaiseEvent(CoroutineEvents.Draw);
+        }
+
+        protected virtual void DoDraw(GameTime gameTime) {
+            base.Draw(gameTime);
         }
 
         public static T LoadContent<T>(string name) {

@@ -218,6 +218,8 @@ namespace MLEM.Ui.Elements {
 
         public virtual void ForceUpdateArea() {
             this.areaDirty = false;
+            if (this.IsHidden)
+                return;
 
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
@@ -361,10 +363,10 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public virtual void DrawUnbound(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
+        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
             foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
-                    child.DrawUnbound(time, batch, alpha * child.DrawAlpha, blendState, samplerState);
+                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState);
             }
         }
 

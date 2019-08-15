@@ -29,6 +29,7 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
+        public bool AutoAdjustWidth;
 
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
@@ -39,7 +40,7 @@ namespace MLEM.Ui.Elements {
 
         protected override Point CalcActualSize(Rectangle parentArea) {
             var size = base.CalcActualSize(parentArea);
-            this.splitText = this.font.SplitString(this.text, size.X, this.TextScale * this.Scale).ToArray();
+            this.splitText = this.font.SplitString(this.text, size.X - this.ScaledPadding.X * 2, this.TextScale * this.Scale).ToArray();
 
             this.lineHeight = 0;
             this.longestLineLength = 0;
@@ -52,14 +53,12 @@ namespace MLEM.Ui.Elements {
                 if (strgScale.X > this.longestLineLength)
                     this.longestLineLength = strgScale.X;
             }
-            return new Point(size.X, height.Ceil());
+            return new Point(this.AutoAdjustWidth ? (this.longestLineLength + this.ScaledPadding.X * 2).Ceil() : size.X, height.Ceil() + this.ScaledPadding.Y * 2);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
-            if (this.Background != null) {
-                var backgroundArea = new Rectangle(this.Area.X + offset.X, this.Area.Y + offset.Y, this.longestLineLength.Ceil() + this.ScaledPadding.X * 2, this.Area.Height + this.ScaledPadding.Y * 2);
-                batch.Draw(this.Background, backgroundArea, this.BackgroundColor * alpha);
-            }
+            if (this.Background != null)
+                batch.Draw(this.Background, this.Area.OffsetCopy(offset), this.BackgroundColor * alpha);
 
             var pos = this.DisplayArea.Location.ToVector2();
             var off = offset.ToVector2();

@@ -11,12 +11,24 @@ namespace MLEM.Ui.Elements {
 
         public Tooltip(float width, string text, IGenericFont font = null) :
             base(Anchor.TopLeft, width, text, false, font) {
+            this.AutoAdjustWidth = true;
             this.Padding = new Point(2);
         }
 
         public override void Update(GameTime time) {
             base.Update(time);
-            this.PositionOffset = this.MousePos.ToVector2() / this.Scale + this.MouseOffset;
+
+            var viewport = this.System.Viewport.Size;
+            var offset = this.MousePos.ToVector2() / this.Scale + this.MouseOffset;
+            if (offset.X < 0)
+                offset.X = 0;
+            if (offset.Y < 0)
+                offset.Y = 0;
+            if (offset.X * this.Scale + this.Area.Width >= viewport.X)
+                offset.X = (viewport.X - this.Area.Width) / this.Scale;
+            if (offset.Y * this.Scale + this.Area.Height >= viewport.Y)
+                offset.Y = (viewport.Y - this.Area.Height) / this.Scale;
+            this.PositionOffset = offset;
         }
 
         public override void ForceUpdateArea() {

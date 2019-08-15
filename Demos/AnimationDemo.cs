@@ -51,7 +51,7 @@ namespace Demos {
             this.group.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime) {
+        protected override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.Black);
 
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(10));
@@ -60,7 +60,7 @@ namespace Demos {
             this.SpriteBatch.Draw(this.group.CurrentRegion, new Vector2(10, 10), Color.White);
             this.SpriteBatch.End();
 
-            base.Draw(gameTime);
+            base.DoDraw(gameTime);
         }
 
     }

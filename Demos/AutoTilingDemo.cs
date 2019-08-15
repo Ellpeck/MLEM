@@ -35,7 +35,7 @@ namespace Demos {
             };
         }
 
-        protected override void Draw(GameTime gameTime) {
+        protected override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.Black);
 
             // the texture region supplied to the AutoTiling method should only encompass the first filler tile's location and size
@@ -49,7 +49,7 @@ namespace Demos {
                     // don't draw non-grass tiles ( )
                     if (this.layout[y][x] != 'X')
                         continue;
-                    
+
                     var x1 = x;
                     var y1 = y;
                     // the connectsTo function determines for any given tile if it should connect to, that is, auto-tile with the
@@ -67,7 +67,7 @@ namespace Demos {
             }
             this.SpriteBatch.End();
 
-            base.Draw(gameTime);
+            base.DoDraw(gameTime);
         }
 
     }
