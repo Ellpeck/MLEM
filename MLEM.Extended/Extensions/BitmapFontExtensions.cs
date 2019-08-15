@@ -12,11 +12,11 @@ namespace MLEM.Extended.Extensions {
                 builder.Append(word).Append(' ');
                 if (font.MeasureString(builder).Width * scale >= width) {
                     var len = builder.Length - word.Length - 1;
-                    yield return builder.ToString(0, len);
+                    yield return builder.ToString(0, len - 1);
                     builder.Remove(0, len);
                 }
             }
-            yield return builder.ToString();
+            yield return builder.ToString(0, builder.Length - 1);
         }
 
     }

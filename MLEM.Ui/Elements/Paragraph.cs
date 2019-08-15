@@ -44,16 +44,14 @@ namespace MLEM.Ui.Elements {
 
             this.lineHeight = 0;
             this.longestLineLength = 0;
-            var height = 0F;
             foreach (var strg in this.splitText) {
                 var strgScale = this.font.MeasureString(strg) * this.TextScale * this.Scale;
-                height += strgScale.Y + 1;
-                if (strgScale.Y > this.lineHeight)
-                    this.lineHeight = strgScale.Y;
+                if (strgScale.Y + 1 > this.lineHeight)
+                    this.lineHeight = strgScale.Y + 1;
                 if (strgScale.X > this.longestLineLength)
                     this.longestLineLength = strgScale.X;
             }
-            return new Point(this.AutoAdjustWidth ? (this.longestLineLength + this.ScaledPadding.X * 2).Ceil() : size.X, height.Ceil() + this.ScaledPadding.Y * 2);
+            return new Point(this.AutoAdjustWidth ? this.longestLineLength.Ceil() + this.ScaledPadding.X * 2 : size.X, (this.lineHeight * this.splitText.Length).Ceil() + this.ScaledPadding.Y * 2);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
@@ -68,7 +66,7 @@ namespace MLEM.Ui.Elements {
                 } else {
                     this.font.DrawString(batch, line, pos + off, this.TextColor * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
                 }
-                off.Y += this.lineHeight + 1;
+                off.Y += this.lineHeight;
             }
             base.Draw(time, batch, alpha, offset);
         }
