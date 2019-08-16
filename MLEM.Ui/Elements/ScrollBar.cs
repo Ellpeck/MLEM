@@ -33,30 +33,37 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        public readonly bool Horizontal;
         public float StepPerScroll = 1;
         public ValueChanged OnValueChanged;
         private bool isMouseHeld;
 
-        public ScrollBar(Anchor anchor, Vector2 size, int scrollerHeight, float maxValue) : base(anchor, size) {
+        public ScrollBar(Anchor anchor, Vector2 size, int scrollerSize, float maxValue, bool horizontal = false) : base(anchor, size) {
             this.maxValue = maxValue;
-            this.ScrollerSize = new Point(size.X.Floor(), scrollerHeight);
+            this.Horizontal = horizontal;
+            this.ScrollerSize = new Point(horizontal ? scrollerSize : size.X.Floor(), !horizontal ? scrollerSize : size.Y.Floor());
         }
 
         public override void Update(GameTime time) {
             base.Update(time);
             var moused = this.System.MousedElement;
-            if (moused == this && this.Input.IsMouseButtonDown(MouseButton.Left)) {
+            if (moused == this && this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 this.isMouseHeld = true;
             } else if (this.isMouseHeld && this.Input.IsMouseButtonUp(MouseButton.Left)) {
                 this.isMouseHeld = false;
             }
-            
+
             if (this.isMouseHeld) {
-                var internalY = this.MousePos.Y - this.Area.Y;
-                this.CurrentValue = internalY / (float) this.Area.Height * this.MaxValue;
+                if (this.Horizontal) {
+                    var internalX = this.MousePos.X - this.Area.X;
+                    this.CurrentValue = internalX / (float) this.Area.Width * this.MaxValue;
+                } else {
+                    var internalY = this.MousePos.Y - this.Area.Y;
+                    this.CurrentValue = internalY / (float) this.Area.Height * this.MaxValue;
+                }
             }
-            
-            if (moused == this.Parent || moused?.Parent == this.Parent) {
+
+            if (!this.Horizontal && (moused == this.Parent || moused?.Parent == this.Parent)) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
                     this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
@@ -67,8 +74,10 @@ namespace MLEM.Ui.Elements {
             batch.Draw(this.Background, this.DisplayArea.OffsetCopy(offset), Color.White * alpha, this.Scale);
 
             var scrollerPos = new Point(this.DisplayArea.X + offset.X + this.ScrollerOffset.X, this.DisplayArea.Y + offset.Y + this.ScrollerOffset.Y);
-            var scrollerYOffset = (this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale)).Floor();
-            var scrollerRect = new Rectangle(scrollerPos + new Point(0, scrollerYOffset), this.ScrollerSize.Multiply(this.Scale));
+            var scrollerOffset = new Point(
+                !this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale)).Floor(),
+                this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale)).Floor());
+            var scrollerRect = new Rectangle(scrollerPos + scrollerOffset, this.ScrollerSize.Multiply(this.Scale));
             batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             base.Draw(time, batch, alpha, offset);
         }

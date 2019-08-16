@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,11 +26,20 @@ namespace MLEM.Ui.Elements {
         public string Text {
             get => this.text;
             set {
-                this.text = value;
-                this.SetAreaDirty();
+                if (this.text != value) {
+                    this.text = value;
+                    this.SetAreaDirty();
+                }
             }
         }
         public bool AutoAdjustWidth;
+        public TextCallback GetTextCallback;
+
+        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false, IGenericFont font = null)
+            : this(anchor, width, "", centerText, font) {
+            this.GetTextCallback = textCallback;
+            this.Text = textCallback(this);
+        }
 
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false, IGenericFont font = null) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
@@ -54,6 +64,12 @@ namespace MLEM.Ui.Elements {
             return new Point(this.AutoAdjustWidth ? this.longestLineLength.Ceil() + this.ScaledPadding.X * 2 : size.X, (this.lineHeight * this.splitText.Length).Ceil() + this.ScaledPadding.Y * 2);
         }
 
+        public override void Update(GameTime time) {
+            base.Update(time);
+            if (this.GetTextCallback != null)
+                this.Text = this.GetTextCallback(this);
+        }
+
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
             if (this.Background != null)
                 batch.Draw(this.Background, this.Area.OffsetCopy(offset), this.BackgroundColor * alpha);
@@ -76,6 +92,8 @@ namespace MLEM.Ui.Elements {
             this.TextScale = style.TextScale;
             this.font = style.Font;
         }
+
+        public delegate string TextCallback(Paragraph paragraph);
 
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Input;
 using MLEM.Startup;
@@ -121,6 +122,10 @@ namespace Demos {
                         tooltip.IsHidden = !tooltip.IsHidden;
                 }
             });
+
+            var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1);
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
+            root.AddChild(slider);
         }
 
         protected override void DoDraw(GameTime gameTime) {
