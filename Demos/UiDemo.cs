@@ -136,6 +136,10 @@ namespace Demos {
 
             // Below are some querying examples that help you find certain elements easily
 
+            var children = root.GetChildren();
+            var totalChildren = root.GetChildren(regardChildrensChildren: true);
+            Console.WriteLine($"The root has {children.Count()} children, but there are {totalChildren.Count()} when regarding children's children");
+            
             var textFields = root.GetChildren<TextField>();
             Console.WriteLine($"The root has {textFields.Count()} text fields");
 
