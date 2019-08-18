@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -329,7 +330,7 @@ namespace MLEM.Ui.Elements {
             return this.Area;
         }
 
-        protected Element GetPreviousChild(bool hiddenAlso) {
+        public Element GetPreviousChild(bool hiddenAlso) {
             if (this.Parent == null)
                 return null;
 
@@ -344,7 +345,7 @@ namespace MLEM.Ui.Elements {
             return lastChild;
         }
 
-        protected IEnumerable<Element> GetSiblings(bool hiddenAlso) {
+        public IEnumerable<Element> GetSiblings(bool hiddenAlso) {
             if (this.Parent == null)
                 yield break;
             foreach (var child in this.Parent.Children) {
@@ -352,6 +353,28 @@ namespace MLEM.Ui.Elements {
                     continue;
                 if (child != this)
                     yield return child;
+            }
+        }
+
+        public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardChildrensChildren = false) {
+            foreach (var child in this.Children) {
+                if (condition == null || condition(child))
+                    yield return child;
+                if (regardChildrensChildren) {
+                    foreach (var cc in child.GetChildren(condition, true))
+                        yield return cc;
+                }
+            }
+        }
+
+        public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardChildrensChildren = false) where T : Element {
+            foreach (var child in this.Children) {
+                if (child is T t && (condition == null || condition(t)))
+                    yield return t;
+                if (regardChildrensChildren) {
+                    foreach (var cc in child.GetChildren(condition, true))
+                        yield return cc;
+                }
             }
         }
 

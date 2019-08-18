@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -132,6 +133,19 @@ namespace Demos {
             var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1);
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
             root.AddChild(slider);
+
+            // Below are some querying examples that help you find certain elements easily
+
+            var textFields = root.GetChildren<TextField>();
+            Console.WriteLine($"The root has {textFields.Count()} text fields");
+
+            var paragraphs = root.GetChildren<Paragraph>();
+            var totalParagraphs = root.GetChildren<Paragraph>(regardChildrensChildren: true);
+            Console.WriteLine($"The root has {paragraphs.Count()} paragraphs, but there are {totalParagraphs.Count()} when regarding children's children");
+
+            var autoWidthChildren = root.GetChildren(e => e.Size.X == 1);
+            var autoWidthButtons = root.GetChildren<Button>(e => e.Size.X == 1);
+            Console.WriteLine($"The root has {autoWidthChildren.Count()} auto-width children, {autoWidthButtons.Count()} of which are buttons");
         }
 
         protected override void DoDraw(GameTime gameTime) {
