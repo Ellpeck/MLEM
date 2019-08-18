@@ -275,7 +275,7 @@ namespace MLEM.Ui.Elements {
             if (this.Anchor >= Anchor.AutoLeft) {
                 var previousChild = this.GetPreviousChild(false);
                 if (previousChild != null) {
-                    var prevArea = previousChild.Area;
+                    var prevArea = previousChild.GetAreaForAutoAnchors();
                     switch (this.Anchor) {
                         case Anchor.AutoLeft:
                         case Anchor.AutoCenter:
@@ -323,6 +323,10 @@ namespace MLEM.Ui.Elements {
             return new Point(
                 (this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X).Floor(),
                 (this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y).Floor());
+        }
+
+        protected Rectangle GetAreaForAutoAnchors() {
+            return this.Area;
         }
 
         protected Element GetPreviousChild(bool hiddenAlso) {
