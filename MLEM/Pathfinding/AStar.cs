@@ -1,34 +1,39 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
 
 namespace MLEM.Pathfinding {
-    public static class AStar {
+    public abstract class AStar<T> {
 
-        private static readonly Point[] AdjacentDirections = {
-            new Point(1, 0),
-            new Point(-1, 0),
-            new Point(0, 1),
-            new Point(0, -1)
-        };
+        public readonly T[] AllDirections;
+        public readonly T[] AdjacentDirections;
+        public GetCost DefaultCostFunction;
+        public float DefaultCost;
+        public int DefaultMaxTries;
+        public bool DefaultAllowDiagonals;
+        public int LastTriesNeeded { get; private set; }
 
-        private static readonly Point[] AllDirections = AdjacentDirections.Concat(new[] {
-            new Point(1, 1),
-            new Point(-1, 1),
-            new Point(1, -1),
-            new Point(-1, -1)
-        }).ToArray();
+        protected AStar(T[] allDirections, T[] adjacentDirections, GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) {
+            this.AllDirections = allDirections;
+            this.AdjacentDirections = adjacentDirections;
+            this.DefaultCostFunction = defaultCostFunction;
+            this.DefaultCost = defaultCost;
+            this.DefaultMaxTries = defaultMaxTries;
+            this.DefaultAllowDiagonals = defaultAllowDiagonals;
+        }
 
-        public static Stack<Point> FindPath(Point start, Point goal, int defaultCost, GetCost getCost, int maxTries = 10000, bool allowDiagonals = false) {
-            var open = new List<PathPoint>();
-            var closed = new List<PathPoint>();
-            open.Add(new PathPoint(start, goal, null, 0, defaultCost));
+        public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
+            var getCost = costFunction ?? this.DefaultCostFunction;
+            var diags = allowDiagonals ?? this.DefaultAllowDiagonals;
+            var tries = maxTries ?? this.DefaultMaxTries;
+            var defCost = defaultCost ?? this.DefaultCost;
+
+            var open = new List<PathPoint<T>>();
+            var closed = new List<PathPoint<T>>();
+            open.Add(new PathPoint<T>(start, this.GetManhattanDistance(start, goal), null, 0, defCost));
 
             var count = 0;
             while (open.Count > 0) {
-                PathPoint current = null;
-                var lowestF = int.MaxValue;
+                PathPoint<T> current = null;
+                var lowestF = float.MaxValue;
                 foreach (var point in open)
                     if (point.F < lowestF) {
                         current = point;
@@ -40,15 +45,17 @@ namespace MLEM.Pathfinding {
                 open.Remove(current);
                 closed.Add(current);
 
-                if (current.Pos.Equals(goal))
+                if (current.Pos.Equals(goal)) {
+                    this.LastTriesNeeded = count;
                     return CompilePath(current);
+                }
 
-                var dirsUsed = allowDiagonals ? AllDirections : AdjacentDirections;
+                var dirsUsed = diags ? this.AllDirections : this.AdjacentDirections;
                 foreach (var dir in dirsUsed) {
-                    var neighborPos = current.Pos + dir;
-                    var cost = getCost(neighborPos);
-                    if (cost < int.MaxValue) {
-                        var neighbor = new PathPoint(neighborPos, goal, current, cost, defaultCost);
+                    var neighborPos = this.AddPositions(current.Pos, dir);
+                    var cost = getCost(current.Pos, neighborPos);
+                    if (cost < float.MaxValue) {
+                        var neighbor = new PathPoint<T>(neighborPos, this.GetManhattanDistance(neighborPos, goal), current, cost, defCost);
                         if (!closed.Contains(neighbor)) {
                             var alreadyIndex = open.IndexOf(neighbor);
                             if (alreadyIndex < 0) {
@@ -65,14 +72,19 @@ namespace MLEM.Pathfinding {
                 }
 
                 count++;
-                if (count >= maxTries)
+                if (count >= tries)
                     break;
             }
+            this.LastTriesNeeded = count;
             return null;
         }
 
-        private static Stack<Point> CompilePath(PathPoint current) {
-            var path = new Stack<Point>();
+        protected abstract T AddPositions(T first, T second);
+
+        protected abstract float GetManhattanDistance(T first, T second);
+
+        private static Stack<T> CompilePath(PathPoint<T> current) {
+            var path = new Stack<T>();
             while (current != null) {
                 path.Push(current.Pos);
                 current = current.Parent;
@@ -80,30 +92,29 @@ namespace MLEM.Pathfinding {
             return path;
         }
 
-        public delegate int GetCost(Point pos);
+        public delegate float GetCost(T currPos, T nextPos);
 
     }
 
-    public class PathPoint {
+    public class PathPoint<T> {
 
-        public readonly PathPoint Parent;
-        public readonly Point Pos;
-        public readonly int F;
-        public readonly int G;
+        public readonly PathPoint<T> Parent;
+        public readonly T Pos;
+        public readonly float F;
+        public readonly float G;
 
-        public PathPoint(Point pos, Point goal, PathPoint parent, int terrainCostForThisPos, int defaultCost) {
+        public PathPoint(T pos, float distance, PathPoint<T> parent, float terrainCostForThisPos, float defaultCost) {
             this.Pos = pos;
             this.Parent = parent;
 
             this.G = (parent == null ? 0 : parent.G) + terrainCostForThisPos;
-            var manhattan = (Math.Abs(goal.X - pos.X) + Math.Abs(goal.Y - pos.Y)) * defaultCost;
-            this.F = this.G + manhattan;
+            this.F = this.G + distance * defaultCost;
         }
 
         public override bool Equals(object obj) {
             if (obj == this)
                 return true;
-            return obj is PathPoint point && point.Pos.Equals(this.Pos);
+            return obj is PathPoint<T> point && point.Pos.Equals(this.Pos);
         }
 
         public override int GetHashCode() {

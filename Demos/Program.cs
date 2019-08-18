@@ -12,6 +12,7 @@ namespace Demos {
             Demos.Add("Ui", () => new UiDemo());
             Demos.Add("AutoTiling", () => new AutoTilingDemo());
             Demos.Add("Animation", () => new AnimationDemo());
+            Demos.Add("Pathfinding", () => new PathfindingDemo());
         }
 
         public static void Main(string[] args) {
