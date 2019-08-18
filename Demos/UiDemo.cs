@@ -64,6 +64,8 @@ namespace Demos {
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));
             var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Point(3)});
+            // Setting their the x or y coordinate to 1 or a lower number causes the width or height to be a percentage of the parent's width or height
+            // (for example, setting the size's x to 0.75 would make the element's width be 0.75*parentWidth)
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Test Image", "This button shows a grass tile as a test image to show the automatic anchoring of objects.") {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left)
@@ -88,6 +90,10 @@ namespace Demos {
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
             root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PositionOffset = new Vector2(0, 1)});
+
+            root.AddChild(new VerticalSpace(3));
+            root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Numbers-only input:", true));
+            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10), TextField.OnlyNumbers) {PositionOffset = new Vector2(0, 1)});
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));

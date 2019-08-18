@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +12,11 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public class TextField : Element {
 
+        public static readonly Rule DefaultRule = (field, add) => !add.Any(char.IsControl);
+        public static readonly Rule OnlyLetters = (field, add) => add.All(char.IsLetter);
+        public static readonly Rule OnlyNumbers = (field, add) => add.All(char.IsNumber);
+        public static readonly Rule LettersNumbers = (field, add) => add.All(c => char.IsLetter(c) || char.IsNumber(c));
+
         public NinePatch Texture;
         public NinePatch HoveredTexture;
         public Color HoveredColor;
@@ -22,8 +28,10 @@ namespace MLEM.Ui.Elements {
         private IGenericFont font;
         private double caretBlinkTimer;
         private int textStartIndex;
+        public Rule InputRule;
 
-        public TextField(Anchor anchor, Vector2 size, IGenericFont font = null) : base(anchor, size) {
+        public TextField(Anchor anchor, Vector2 size, Rule rule = null, IGenericFont font = null) : base(anchor, size) {
+            this.InputRule = rule ?? DefaultRule;
             this.font = font;
             this.OnTextInput += (element, key, character) => {
                 if (!this.IsSelected)
@@ -34,7 +42,7 @@ namespace MLEM.Ui.Elements {
                         this.Text.Remove(this.Text.Length - 1, 1);
                         textChanged = true;
                     }
-                } else if (!char.IsControl(character)) {
+                } else if (this.InputRule(this, character.ToString())) {
                     if (this.Text.Length < this.MaxTextLength) {
                         this.Text.Append(character);
                         textChanged = true;
@@ -93,6 +101,8 @@ namespace MLEM.Ui.Elements {
         }
 
         public delegate void TextChanged(TextField field, string text);
+
+        public delegate bool Rule(TextField field, string textToAdd);
 
     }
 }
