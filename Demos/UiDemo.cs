@@ -134,12 +134,19 @@ namespace Demos {
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
             root.AddChild(slider);
 
+            // This button uses a coroutine from my Coroutine NuGet package (which is included with MLEM.Startup)
+            // but the important thing it does is change its visual scale and offset (check the method below for more info)
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
+                OnClicked = (element, button) => CoroutineHandler.Start(this.WobbleButton(element)),
+                PositionOffset = new Vector2(0, 1)
+            });
+
             // Below are some querying examples that help you find certain elements easily
 
             var children = root.GetChildren();
             var totalChildren = root.GetChildren(regardChildrensChildren: true);
             Console.WriteLine($"The root has {children.Count()} children, but there are {totalChildren.Count()} when regarding children's children");
-            
+
             var textFields = root.GetChildren<TextField>();
             Console.WriteLine($"The root has {textFields.Count()} text fields");
 
@@ -150,6 +157,23 @@ namespace Demos {
             var autoWidthChildren = root.GetChildren(e => e.Size.X == 1);
             var autoWidthButtons = root.GetChildren<Button>(e => e.Size.X == 1);
             Console.WriteLine($"The root has {autoWidthChildren.Count()} auto-width children, {autoWidthButtons.Count()} of which are buttons");
+        }
+
+        // This method is used by the wobbling button (see above)
+        // Note that this particular example makes use of the Coroutine package
+        private IEnumerator<Wait> WobbleButton(Element button) {
+            var counter = 0F;
+            while (counter < 10) {
+                // The imporant bit is that it changes its added display scale and offset, allowing the button to still maintain the
+                // correct position and scaling for both anchoring and interacting purposes, but to show any kind of animation visually
+                // This could be useful, for example, to create a little feedback effect to clicking it where it changes size for a second
+                button.AddedDisplayScale = new Vector2((float) Math.Sin(counter));
+                button.AddedDisplayOffset = new Vector2((float) Math.Sin(counter / 2) * 4, 0);
+                counter += 0.1F;
+                yield return new WaitSeconds(0.01F);
+            }
+            button.AddedDisplayScale = Vector2.Zero;
+            button.AddedDisplayOffset = Vector2.Zero;
         }
 
         protected override void DoDraw(GameTime gameTime) {

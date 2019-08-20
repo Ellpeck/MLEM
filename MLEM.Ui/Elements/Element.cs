@@ -74,6 +74,10 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
+        public Vector2 AddedDisplayOffset;
+        public Point ScaledDisplayOffset => (this.AddedDisplayOffset * this.Scale).ToPoint();
+        public Vector2 AddedDisplayScale;
+        public Point ScaledDisplayScale => (this.AddedDisplayScale * this.Scale).ToPoint();
 
         public MouseClickCallback OnClicked;
         public GenericCallback OnSelected;
@@ -123,7 +127,8 @@ namespace MLEM.Ui.Elements {
         public Rectangle DisplayArea {
             get {
                 var padded = this.Area;
-                padded.Location += this.ScaledPadding;
+                padded.Inflate(this.ScaledDisplayScale.X, this.ScaledDisplayScale.Y);
+                padded.Location += this.ScaledPadding + this.ScaledDisplayOffset;
                 padded.Width -= this.ScaledPadding.X * 2;
                 padded.Height -= this.ScaledPadding.Y * 2;
                 return padded;
@@ -358,23 +363,23 @@ namespace MLEM.Ui.Elements {
 
         public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardChildrensChildren = false) {
             foreach (var child in this.Children) {
-                if (condition == null || condition(child))
-                    yield return child;
                 if (regardChildrensChildren) {
                     foreach (var cc in child.GetChildren(condition, true))
                         yield return cc;
                 }
+                if (condition == null || condition(child))
+                    yield return child;
             }
         }
 
         public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardChildrensChildren = false) where T : Element {
             foreach (var child in this.Children) {
-                if (child is T t && (condition == null || condition(t)))
-                    yield return t;
                 if (regardChildrensChildren) {
                     foreach (var cc in child.GetChildren(condition, true))
                         yield return cc;
                 }
+                if (child is T t && (condition == null || condition(t)))
+                    yield return t;
             }
         }
 
