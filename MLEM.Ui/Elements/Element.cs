@@ -402,17 +402,15 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public Element GetMousedElement() {
+        public virtual Element GetMousedElement() {
             if (this.IsHidden || this.IgnoresMouse)
-                return null;
-            if (!this.Area.Contains(this.MousePos))
                 return null;
             for (var i = this.SortedChildren.Count - 1; i >= 0; i--) {
                 var element = this.SortedChildren[i].GetMousedElement();
                 if (element != null)
                     return element;
             }
-            return this;
+            return this.Area.Contains(this.MousePos) ? this : null;
         }
 
         protected virtual void InitStyle(UiStyle style) {
