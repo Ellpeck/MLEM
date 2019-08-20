@@ -309,7 +309,7 @@ namespace MLEM.Ui.Elements {
             foreach (var child in this.Children)
                 child.ForceUpdateArea();
 
-            if (this.SetHeightBasedOnChildren) {
+            if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
                 var height = 0;
                 foreach (var child in this.Children) {
                     if (!child.isHidden && (child.Anchor <= Anchor.TopRight || child.Anchor >= Anchor.AutoLeft) && child.area.Bottom > height)
@@ -331,7 +331,7 @@ namespace MLEM.Ui.Elements {
                 (this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y).Floor());
         }
 
-        protected Rectangle GetAreaForAutoAnchors() {
+        protected virtual Rectangle GetAreaForAutoAnchors() {
             return this.Area;
         }
 
