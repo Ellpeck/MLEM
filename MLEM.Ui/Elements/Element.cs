@@ -383,6 +383,14 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        public IEnumerable<Element> GetParentTree() {
+            if (this.Parent == null)
+                yield break;
+            yield return this.Parent;
+            foreach (var parent in this.Parent.GetParentTree())
+                yield return parent;
+        }
+
         public virtual void Update(GameTime time) {
             foreach (var child in this.SortedChildren)
                 child.Update(time);

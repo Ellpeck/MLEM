@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -63,7 +64,7 @@ namespace MLEM.Ui.Elements {
                 }
             }
 
-            if (!this.Horizontal && (moused == this.Parent || moused?.Parent == this.Parent)) {
+            if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
                     this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
