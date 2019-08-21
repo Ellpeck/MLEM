@@ -20,7 +20,6 @@ namespace MLEM.Animations {
                         return frame;
                 }
                 // if we're here then the time is negative for some reason, so just return the first frame
-                Console.WriteLine("Test");
                 return this.frames[0];
             }
         }
