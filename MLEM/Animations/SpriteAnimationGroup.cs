@@ -8,8 +8,9 @@ namespace MLEM.Animations {
 
         private readonly List<ConditionedAnimation> animations = new List<ConditionedAnimation>();
         private ConditionedAnimation currAnimation;
-        public AnimationFrame CurrentFrame => this.currAnimation != null ? this.currAnimation.Animation.CurrentFrame : null;
-        public TextureRegion CurrentRegion => this.currAnimation != null ? this.currAnimation.Animation.CurrentRegion : null;
+        public SpriteAnimation CurrentAnimation => this.currAnimation?.Animation;
+        public AnimationFrame CurrentFrame => this.CurrentAnimation?.CurrentFrame;
+        public TextureRegion CurrentRegion => this.CurrentAnimation?.CurrentRegion;
 
         public SpriteAnimationGroup Add(SpriteAnimation anim, Func<bool> condition) {
             this.animations.Add(new ConditionedAnimation(anim, condition));
