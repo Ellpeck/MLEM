@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,12 +16,12 @@ namespace Demos {
             base.LoadContent();
 
             var tex = LoadContent<Texture2D>("Textures/Anim");
-            
+
             // create the four animations by supplying the time per frame, the texture and the four regions used
-            var downAnim = new SpriteAnimation(0.2F, tex, new Rectangle(0, 0, 8, 8), new Rectangle(0, 8, 8, 8), new Rectangle(0, 16, 8, 8), new Rectangle(0, 24, 8, 8));
-            var upAnim = new SpriteAnimation(0.2F, tex, new Rectangle(8, 0, 8, 8), new Rectangle(8, 8, 8, 8), new Rectangle(8, 16, 8, 8), new Rectangle(8, 24, 8, 8));
-            var leftAnim = new SpriteAnimation(0.2F, tex, new Rectangle(16, 0, 8, 8), new Rectangle(16, 8, 8, 8), new Rectangle(16, 16, 8, 8), new Rectangle(16, 24, 8, 8));
-            var rightAnim = new SpriteAnimation(0.2F, tex, new Rectangle(24, 0, 8, 8), new Rectangle(24, 8, 8, 8), new Rectangle(24, 16, 8, 8), new Rectangle(24, 24, 8, 8));
+            var downAnim = new SpriteAnimation(0.2F, tex, new Rectangle(0, 0, 8, 8), new Rectangle(0, 8, 8, 8), new Rectangle(0, 16, 8, 8), new Rectangle(0, 24, 8, 8)) {Name = "Down"};
+            var upAnim = new SpriteAnimation(0.2F, tex, new Rectangle(8, 0, 8, 8), new Rectangle(8, 8, 8, 8), new Rectangle(8, 16, 8, 8), new Rectangle(8, 24, 8, 8)) {Name = "Up"};
+            var leftAnim = new SpriteAnimation(0.2F, tex, new Rectangle(16, 0, 8, 8), new Rectangle(16, 8, 8, 8), new Rectangle(16, 16, 8, 8), new Rectangle(16, 24, 8, 8)) {Name = "Left"};
+            var rightAnim = new SpriteAnimation(0.2F, tex, new Rectangle(24, 0, 8, 8), new Rectangle(24, 8, 8, 8), new Rectangle(24, 16, 8, 8), new Rectangle(24, 24, 8, 8)) {Name = "Right"};
 
             // create a sprite animation group which manages a list of animations and figures out which one should
             // be playing right now based on supplied conditions
@@ -32,6 +33,16 @@ namespace Demos {
             this.group.Add(upAnim, () => this.facing == 1);
             this.group.Add(leftAnim, () => this.facing == 2);
             this.group.Add(rightAnim, () => this.facing == 3);
+
+            // you can also add a priority to an animation in the group (10 in this case, which is higher than the default of 0)
+            // if two animations' playing conditions are both true, then the one with the higher priority will be picked to play
+            // in this instance, a standing "animation" is displayed when we're facing down and also holding the space key
+            this.group.Add(new SpriteAnimation(1F, tex, new Rectangle(0, 0, 8, 8)) {Name = "DownStanding"}, () => this.facing == 0 && Input.IsKeyDown(Keys.Space), 10);
+
+            // you can also add a callback to see when the animation used changes
+            this.group.OnAnimationChanged += (anim, newAnim) => {
+                Console.WriteLine("Changing anim from " + (anim?.Name ?? "None") + " to " + (newAnim?.Name ?? "None"));
+            };
         }
 
         protected override void Update(GameTime gameTime) {

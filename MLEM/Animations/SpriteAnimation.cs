@@ -10,20 +10,25 @@ namespace MLEM.Animations {
         public AnimationFrame this[int index] => this.frames[index];
         public AnimationFrame CurrentFrame {
             get {
+                // we might have overshot the end time by a little bit, so just return the last frame
+                if (this.TimeIntoAnimation >= this.TotalTime)
+                    return this.frames[this.frames.Length - 1];
                 var accum = 0D;
                 foreach (var frame in this.frames) {
                     accum += frame.Seconds;
                     if (accum >= this.TimeIntoAnimation)
                         return frame;
                 }
-                // we might have overshot the end time by a little bit, so just return the last frame
-                return this.frames[this.frames.Length - 1];
+                // if we're here then the time is negative for some reason, so just return the first frame
+                Console.WriteLine("Test");
+                return this.frames[0];
             }
         }
         public TextureRegion CurrentRegion => this.CurrentFrame.Region;
         public readonly double TotalTime;
         public double TimeIntoAnimation { get; private set; }
         public bool IsFinished { get; private set; }
+        public string Name;
 
         public bool IsLooping = true;
         public Completed OnCompleted;

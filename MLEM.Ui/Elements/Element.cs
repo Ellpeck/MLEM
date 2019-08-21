@@ -213,7 +213,7 @@ namespace MLEM.Ui.Elements {
 
                 this.sortedChildren.Clear();
                 this.sortedChildren.AddRange(this.Children);
-                this.sortedChildren.Sort((e1, e2) => e1.Priority.CompareTo(e1.Priority));
+                this.sortedChildren.Sort((e1, e2) => e1.Priority.CompareTo(e2.Priority));
             }
         }
 
