@@ -108,7 +108,7 @@ namespace MLEM.Ui.Elements {
 
         public override Element GetMousedElement() {
             // if overflow is handled, don't propagate mouse checks to hidden children
-            if (this.scrollOverflow && !this.Area.Contains(this.MousePos))
+            if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(this.MousePos))
                 return null;
             return base.GetMousedElement();
         }
