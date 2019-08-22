@@ -34,6 +34,7 @@ namespace MLEM.Ui.Elements {
         }
         public bool AutoAdjustWidth;
         public TextCallback GetTextCallback;
+        public float LineSpace = 1;
 
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false, IGenericFont font = null)
             : this(anchor, width, "", centerText, font) {
@@ -61,6 +62,7 @@ namespace MLEM.Ui.Elements {
                 if (strgScale.X > this.longestLineLength)
                     this.longestLineLength = strgScale.X;
             }
+            this.lineHeight *= this.LineSpace;
             return new Point(this.AutoAdjustWidth ? this.longestLineLength.Ceil() + this.ScaledPadding.X * 2 : size.X, (this.lineHeight * this.splitText.Length).Ceil() + this.ScaledPadding.Y * 2);
         }
 
