@@ -118,22 +118,29 @@ namespace MLEM.Ui {
             }
         }
 
-        public RootElement Add(string name, Element root) {
-            if (this.IndexOf(name) >= 0)
-                throw new ArgumentException($"There is already a root element with name {name}");
+        public RootElement Add(string name, Element element) {
+            var root = new RootElement(name, element, this);
+            this.Add(root);
+            return root;
+        }
 
-            var rootInst = new RootElement(name, root, this);
-            this.rootElements.Add(rootInst);
-            root.PropagateRoot(rootInst);
-            root.PropagateUiSystem(this);
-            return rootInst;
+        internal void Add(RootElement root, int index = -1) {
+            if (this.IndexOf(root.Name) >= 0)
+                throw new ArgumentException($"There is already a root element with name {root.Name}");
+            if (index < 0 || index > this.rootElements.Count)
+                index = this.rootElements.Count;
+            this.rootElements.Insert(index, root);
+            root.Element.PropagateRoot(root);
+            root.Element.PropagateUiSystem(this);
         }
 
         public void Remove(string name) {
-            var index = this.IndexOf(name);
-            if (index < 0)
+            var root = this.Get(name);
+            if (root == null)
                 return;
-            this.rootElements.RemoveAt(index);
+            this.rootElements.Remove(root);
+            root.Element.PropagateRoot(null);
+            root.Element.PropagateUiSystem(null);
         }
 
         public RootElement Get(string name) {
@@ -177,6 +184,16 @@ namespace MLEM.Ui {
             this.Name = name;
             this.Element = element;
             this.System = system;
+        }
+
+        public void MoveToFront() {
+            this.System.Remove(this.Name);
+            this.System.Add(this);
+        }
+
+        public void MoveToBack() {
+            this.System.Remove(this.Name);
+            this.System.Add(this, 0);
         }
 
     }

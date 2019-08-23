@@ -116,6 +116,7 @@ namespace MLEM.Ui.Elements {
         public float DrawAlpha = 1;
         public bool HasCustomStyle;
         public bool SetHeightBasedOnChildren;
+        public bool CanAutoAnchorsAttach = true;
 
         private Rectangle area;
         public Rectangle Area {
@@ -158,43 +159,25 @@ namespace MLEM.Ui.Elements {
             this.SetAreaDirty();
         }
 
-        public T AddChild<T>(T element, int index = -1, bool propagateInfo = true) where T : Element {
+        public T AddChild<T>(T element, int index = -1) where T : Element {
             if (index < 0 || index > this.Children.Count)
                 index = this.Children.Count;
             this.Children.Insert(index, element);
-            if (propagateInfo) {
-                element.Parent = this;
-                element.PropagateRoot(this.Root);
-                element.PropagateUiSystem(this.System);
-            }
+            element.Parent = this;
+            element.PropagateRoot(this.Root);
+            element.PropagateUiSystem(this.System);
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
             return element;
         }
 
-        public void RemoveChild(Element element, bool propagateInfo = true) {
+        public void RemoveChild(Element element) {
             this.Children.Remove(element);
-            if (propagateInfo) {
-                element.Parent = null;
-                element.PropagateRoot(null);
-                element.PropagateUiSystem(null);
-            }
+            element.Parent = null;
+            element.PropagateRoot(null);
+            element.PropagateUiSystem(null);
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
-        }
-
-        public void MoveToFront() {
-            if (this.Parent != null) {
-                this.Parent.RemoveChild(this, false);
-                this.Parent.AddChild(this, -1, false);
-            }
-        }
-
-        public void MoveToBack() {
-            if (this.Parent != null) {
-                this.Parent.RemoveChild(this, false);
-                this.Parent.AddChild(this, 0, false);
-            }
         }
 
         public void SetAreaDirty() {
@@ -279,7 +262,7 @@ namespace MLEM.Ui.Elements {
             }
 
             if (this.Anchor >= Anchor.AutoLeft) {
-                var previousChild = this.GetPreviousChild(false);
+                var previousChild = this.GetPreviousChild(false, false);
                 if (previousChild != null) {
                     var prevArea = previousChild.GetAreaForAutoAnchors();
                     switch (this.Anchor) {
@@ -335,13 +318,15 @@ namespace MLEM.Ui.Elements {
             return this.Area;
         }
 
-        public Element GetPreviousChild(bool hiddenAlso) {
+        public Element GetPreviousChild(bool hiddenAlso, bool unattachableAlso) {
             if (this.Parent == null)
                 return null;
 
             Element lastChild = null;
             foreach (var child in this.Parent.Children) {
                 if (!hiddenAlso && child.IsHidden)
+                    continue;
+                if (!unattachableAlso && !child.CanAutoAnchorsAttach)
                     continue;
                 if (child == this)
                     break;

@@ -25,14 +25,16 @@ namespace MLEM.Ui.Elements {
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(scrollSize.X, 1), scrollSize.Y, 0) {
                     StepPerScroll = 10,
                     OnValueChanged = (element, value) => {
-                        var firstChild = this.Children[0];
-                        // if the first child is the scrollbar, there are no other children
-                        if (firstChild == element)
+                        // if there is only one child, then we have just the scroll bar
+                        if (this.Children.Count == 1)
                             return;
+                        // the "real" first child is the scroll bar, which we want to ignore
+                        var firstChild = this.Children[1];
                         // as all children have to be auto-aligned, moving the first one up will move all others
                         firstChild.PositionOffset = new Vector2(firstChild.PositionOffset.X, -value.Ceil());
                         this.ForceUpdateArea();
-                    }
+                    },
+                    CanAutoAnchorsAttach = false
                 };
                 this.AddChild(this.ScrollBar);
 
@@ -53,19 +55,17 @@ namespace MLEM.Ui.Elements {
                     if (child is Panel panel && panel.scrollOverflow)
                         throw new NotSupportedException($"A panel that scrolls overflow cannot contain another panel that scrolls overflow ({child})");
                 }
-
-                // move the scrollbar to the front so it isn't used for auto-aligning
-                this.ScrollBar.MoveToFront();
             }
 
             base.ForceUpdateArea();
 
             if (this.scrollOverflow) {
-                var firstChild = this.Children[0];
-                // if the first child is the scrollbar, then we know there's no other children
-                if (firstChild == this.ScrollBar)
+                // if there is only one child, then we have just the scroll bar
+                if (this.Children.Count == 1)
                     return;
-                var lastChild = this.Children[this.Children.Count - 2];
+                // the "real" first child is the scroll bar, which we want to ignore
+                var firstChild = this.Children[1];
+                var lastChild = this.Children[this.Children.Count - 1];
                 // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
                 var childrenHeight = lastChild.Area.Bottom - firstChild.Area.Top;
                 this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Y * 2;
@@ -85,14 +85,14 @@ namespace MLEM.Ui.Elements {
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow) {
                 base.Draw(time, batch, alpha, offset);
-            } else {
+            } else if (this.renderTarget != null) {
                 // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
                 batch.Draw(this.renderTarget, this.GetRenderTargetArea().OffsetCopy(offset), Color.White);
             }
         }
 
         public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
-            if (this.scrollOverflow) {
+            if (this.scrollOverflow && this.renderTarget != null) {
                 // draw children onto the render target
                 batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
                 batch.GraphicsDevice.Clear(Color.Transparent);
