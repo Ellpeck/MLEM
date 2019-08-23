@@ -22,6 +22,7 @@ namespace MLEM.Ui.Elements {
         public Color HoveredColor;
         public float TextScale;
         public readonly StringBuilder Text = new StringBuilder();
+        public string PlaceholderText;
         public TextChanged OnTextChange;
         public int MaxTextLength = int.MaxValue;
         public float TextOffsetX = 4;
@@ -85,9 +86,15 @@ namespace MLEM.Ui.Elements {
                 color = this.HoveredColor * alpha;
             }
             batch.Draw(tex, this.DisplayArea.OffsetCopy(offset), color, this.Scale);
-            var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
-            var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
-            this.font.DrawCenteredString(batch, text, this.DisplayArea.Location.ToVector2() + new Vector2(offset.X + this.TextOffsetX * this.Scale, offset.Y + this.DisplayArea.Height / 2), this.TextScale * this.Scale, Color.White * alpha, false, true);
+
+            var textPos = this.DisplayArea.Location.ToVector2() + new Vector2(offset.X + this.TextOffsetX * this.Scale, offset.Y + this.DisplayArea.Height / 2);
+            if (this.Text.Length > 0 || this.IsSelected) {
+                var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
+                var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
+                this.font.DrawCenteredString(batch, text, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
+            } else if (this.PlaceholderText != null) {
+                this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
+            }
             base.Draw(time, batch, alpha, offset);
         }
 

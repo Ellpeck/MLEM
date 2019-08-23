@@ -90,7 +90,10 @@ namespace Demos {
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
-            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PositionOffset = new Vector2(0, 1)});
+            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {
+                PositionOffset = new Vector2(0, 1),
+                PlaceholderText = "Click here to input text"
+            });
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Numbers-only input:", true));
