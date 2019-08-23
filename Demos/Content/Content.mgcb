@@ -20,6 +20,27 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/TestFont.spritefont
 
+#begin Fonts/TestFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TestFont.spritefont
+
+#begin Fonts/TestFontBold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TestFontBold.spritefont
+
+#begin Fonts/TestFontItalic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TestFontItalic.spritefont
+
 #begin Textures/Anim.png
 /importer:TextureImporter
 /processor:TextureProcessor

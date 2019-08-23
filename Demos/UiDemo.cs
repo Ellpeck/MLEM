@@ -42,6 +42,8 @@ namespace Demos {
                 // when using a SpriteFont, use GenericSpriteFont. When using a MonoGame.Extended BitmapFont, use GenericBitmapFont.
                 // Wrapping fonts like this allows for both types to be usable within MLEM.Ui easily
                 Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
+                BoldFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFontBold")),
+                ItalicFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFontItalic")),
                 TextScale = 0.1F,
                 PanelTexture = this.testPatch,
                 ButtonTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
@@ -77,6 +79,7 @@ namespace Demos {
                         image.IsHidden = !image.IsHidden;
                 }
             });
+            
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
@@ -91,6 +94,10 @@ namespace Demos {
                 Texture = this.testPatch,
                 HoveredColor = Color.LightGray
             });
+
+            root.AddChild(new VerticalSpace(3));
+            // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1,"Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular] and [Bold]Bold[Regular]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));

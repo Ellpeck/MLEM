@@ -9,8 +9,8 @@ namespace MLEM.Ui.Elements {
 
         public Vector2 MouseOffset = new Vector2(2, 3);
 
-        public Tooltip(float width, string text, IGenericFont font = null) :
-            base(Anchor.TopLeft, width, text, false, font) {
+        public Tooltip(float width, string text) :
+            base(Anchor.TopLeft, width, text) {
             this.AutoAdjustWidth = true;
             this.Padding = new Point(2);
         }

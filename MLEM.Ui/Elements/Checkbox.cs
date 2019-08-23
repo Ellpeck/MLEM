@@ -13,6 +13,7 @@ namespace MLEM.Ui.Elements {
         public Color HoveredColor;
         public TextureRegion Checkmark;
         public Paragraph Label;
+        public float TextOffsetX = 2;
 
         private bool checced;
         public bool Checked {
@@ -35,15 +36,17 @@ namespace MLEM.Ui.Elements {
             };
 
             if (label != null) {
-                this.Label = new Paragraph(Anchor.CenterRight, 0, label, true);
+                this.Label = new Paragraph(Anchor.CenterLeft, 0, label);
                 this.AddChild(this.Label);
             }
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {
             var size = base.CalcActualSize(parentArea);
-            if (this.Label != null)
-                this.Label.Size = new Vector2((size.X - size.Y) / this.Scale, 1);
+            if (this.Label != null) {
+                this.Label.Size = new Vector2((size.X - size.Y) / this.Scale - this.TextOffsetX, 1);
+                this.Label.PositionOffset = new Vector2(size.Y / this.Scale + this.TextOffsetX, 0);
+            }
             return size;
         }
 

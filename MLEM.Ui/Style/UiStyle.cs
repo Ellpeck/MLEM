@@ -25,7 +25,8 @@ namespace MLEM.Ui.Style {
         public NinePatch TooltipBackground;
         public Color TooltipBackgroundColor;
         public IGenericFont Font;
+        public IGenericFont BoldFont;
+        public IGenericFont ItalicFont;
         public float TextScale = 1;
-
     }
 }
