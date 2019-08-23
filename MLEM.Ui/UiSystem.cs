@@ -17,9 +17,16 @@ namespace MLEM.Ui {
         public readonly InputHandler InputHandler;
         private readonly bool isInputOurs;
 
+        public bool AutoScaleWithScreen;
+        public Point AutoScaleReferenceSize;
+
         private float globalScale = 1;
         public float GlobalScale {
-            get => this.globalScale;
+            get {
+                if (!this.AutoScaleWithScreen)
+                    return this.globalScale;
+                return Math.Min(this.Viewport.Width / (float) this.AutoScaleReferenceSize.X, this.Viewport.Height / (float) this.AutoScaleReferenceSize.Y) * this.globalScale;
+            }
             set {
                 this.globalScale = value;
                 foreach (var root in this.rootElements)
@@ -49,6 +56,7 @@ namespace MLEM.Ui {
             this.isInputOurs = inputHandler == null;
             this.style = style;
             this.Viewport = device.Viewport.Bounds;
+            this.AutoScaleReferenceSize = this.Viewport.Size;
 
             window.ClientSizeChanged += (sender, args) => {
                 this.Viewport = device.Viewport.Bounds;

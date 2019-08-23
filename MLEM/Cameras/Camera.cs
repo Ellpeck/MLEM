@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -7,12 +8,22 @@ namespace MLEM.Cameras {
 
         public Vector2 Position;
         public float Scale;
+        public bool AutoScaleWithScreen;
+        public Point AutoScaleReferenceSize;
+        public float ActualScale {
+            get {
+                if (!this.AutoScaleWithScreen)
+                    return this.Scale;
+                return Math.Min(this.Viewport.Width / (float) this.AutoScaleReferenceSize.X, this.Viewport.Height / (float) this.AutoScaleReferenceSize.Y) * this.Scale;
+            }
+        }
         public Matrix ViewMatrix {
             get {
-                var pos = -this.Position * this.Scale;
+                var sc = this.ActualScale;
+                var pos = -this.Position * sc;
                 if (this.roundPosition)
                     pos = pos.Floor();
-                return Matrix.CreateScale(this.Scale, this.Scale, 1) * Matrix.CreateTranslation(new Vector3(pos, 0));
+                return Matrix.CreateScale(sc, sc, 1) * Matrix.CreateTranslation(new Vector3(pos, 0));
             }
         }
         public Vector2 Max {
@@ -23,14 +34,15 @@ namespace MLEM.Cameras {
             get => this.Position + this.ScaledViewport / 2;
             set => this.Position = value - this.ScaledViewport / 2;
         }
-        public Viewport Viewport => this.graphicsDevice.Viewport;
-        public Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.Scale;
+        public Rectangle Viewport => this.graphicsDevice.Viewport.Bounds;
+        public Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.ActualScale;
 
         private readonly bool roundPosition;
         private readonly GraphicsDevice graphicsDevice;
 
         public Camera(GraphicsDevice graphicsDevice, bool roundPosition = true) {
             this.graphicsDevice = graphicsDevice;
+            this.AutoScaleReferenceSize = this.Viewport.Size;
             this.roundPosition = roundPosition;
         }
 
