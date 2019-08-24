@@ -18,15 +18,13 @@ namespace MLEM.Ui.Elements {
             return box;
         }
 
-        public static Group[] MakeColumns(Element parent, Anchor anchor, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true) {
-            var group = new Group(anchor, totalSize, setHeightBasedOnChildren);
+        public static Group[] MakeColumns(Element parent, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true) {
             var cols = new Group[amount];
             for (var i = 0; i < amount; i++) {
                 cols[i] = new Group(Anchor.AutoInline, new Vector2(totalSize.X / amount, totalSize.Y), setHeightBasedOnChildren);
-                group.AddChild(cols[i]);
+                if (parent != null)
+                    parent.AddChild(cols[i]);
             }
-            if (parent != null)
-                parent.AddChild(group);
             return cols;
         }
 

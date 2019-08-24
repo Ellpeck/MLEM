@@ -263,7 +263,7 @@ namespace MLEM.Ui.Elements {
             }
 
             if (this.Anchor >= Anchor.AutoLeft) {
-                var previousChild = this.GetPreviousChild(false, false);
+                var previousChild = this.GetLowestOlderSibling(false, false);
                 if (previousChild != null) {
                     var prevArea = previousChild.GetAreaForAutoAnchors();
                     switch (this.Anchor) {
@@ -296,7 +296,7 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
 
             if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
-                var lowest = this.GetLowestReachingChild(false, true);
+                var lowest = this.GetLowestChild(false, true);
                 var newHeight = (lowest.area.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
@@ -316,7 +316,7 @@ namespace MLEM.Ui.Elements {
             return this.Area;
         }
 
-        public Element GetLowestReachingChild(bool hiddenAlso, bool unattachableAlso) {
+        public Element GetLowestChild(bool hiddenAlso, bool unattachableAlso) {
             Element lowest = null;
             // the lowest child is expected to be towards the back, so search is usually faster if done backwards
             for (var i = this.Children.Count - 1; i >= 0; i--) {
@@ -331,19 +331,22 @@ namespace MLEM.Ui.Elements {
             return lowest;
         }
 
-        public Element GetPreviousChild(bool hiddenAlso, bool unattachableAlso) {
+        public Element GetLowestOlderSibling(bool hiddenAlso, bool unattachableAlso) {
             if (this.Parent == null)
                 return null;
 
-            Element lastChild = null;
+            Element lowest = null;
             foreach (var child in this.Parent.Children) {
-                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
-                    continue;
                 if (child == this)
                     break;
-                lastChild = child;
+                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
+                    continue;
+                if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
+                    continue;
+                if (lowest == null || child.Area.Bottom > lowest.Area.Bottom)
+                    lowest = child;
             }
-            return lastChild;
+            return lowest;
         }
 
         public IEnumerable<Element> GetSiblings(bool hiddenAlso) {
