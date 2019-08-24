@@ -85,6 +85,7 @@ namespace MLEM.Ui.Elements {
         public MouseCallback OnMouseEnter;
         public MouseCallback OnMouseExit;
         public TextInputCallback OnTextInput;
+        public GenericCallback OnAreaUpdated;
 
         private UiSystem system;
         public UiSystem System {
@@ -289,6 +290,8 @@ namespace MLEM.Ui.Elements {
             }
 
             this.area = new Rectangle(pos, actualSize);
+            this.OnAreaUpdated?.Invoke(this);
+
             foreach (var child in this.Children)
                 child.ForceUpdateArea();
 

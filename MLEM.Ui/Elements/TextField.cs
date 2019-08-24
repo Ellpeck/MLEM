@@ -21,10 +21,10 @@ namespace MLEM.Ui.Elements {
         public NinePatch HoveredTexture;
         public Color HoveredColor;
         public float TextScale;
-        public readonly StringBuilder Text = new StringBuilder();
+        private readonly StringBuilder text = new StringBuilder();
+        public string Text => this.text.ToString();
         public string PlaceholderText;
         public TextChanged OnTextChange;
-        public int MaxTextLength = int.MaxValue;
         public float TextOffsetX = 4;
         private IGenericFont font;
         private double caretBlinkTimer;
@@ -37,36 +37,35 @@ namespace MLEM.Ui.Elements {
             this.OnTextInput += (element, key, character) => {
                 if (!this.IsSelected)
                     return;
-                var textChanged = false;
                 if (key == Keys.Back) {
-                    if (this.Text.Length > 0) {
-                        this.Text.Remove(this.Text.Length - 1, 1);
-                        textChanged = true;
+                    if (this.text.Length > 0) {
+                        this.RemoveText(this.text.Length - 1, 1);
                     }
-                } else if (this.InputRule(this, character.ToString())) {
-                    if (this.Text.Length < this.MaxTextLength) {
-                        this.Text.Append(character);
-                        textChanged = true;
-                    }
-                }
-                if (textChanged) {
-                    var length = this.font.MeasureString(this.Text).X * this.TextScale;
-                    var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
-                    if (length > maxWidth) {
-                        for (var i = 0; i < this.Text.Length; i++) {
-                            var substring = this.Text.ToString(i, this.Text.Length - i);
-                            if (this.font.MeasureString(substring).X * this.TextScale <= maxWidth) {
-                                this.textStartIndex = i;
-                                break;
-                            }
-                        }
-                    } else {
-                        this.textStartIndex = 0;
-                    }
-
-                    this.OnTextChange?.Invoke(this, this.Text.ToString());
+                } else {
+                    this.AppendText(character);
                 }
             };
+        }
+
+        private void HandleTextChange() {
+            // not initialized yet
+            if (this.font == null)
+                return;
+            var length = this.font.MeasureString(this.text).X * this.TextScale;
+            var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
+            if (length > maxWidth) {
+                for (var i = 0; i < this.text.Length; i++) {
+                    var substring = this.text.ToString(i, this.text.Length - i);
+                    if (this.font.MeasureString(substring).X * this.TextScale <= maxWidth) {
+                        this.textStartIndex = i;
+                        break;
+                    }
+                }
+            } else {
+                this.textStartIndex = 0;
+            }
+
+            this.OnTextChange?.Invoke(this, this.text.ToString());
         }
 
         public override void Update(GameTime time) {
@@ -88,14 +87,34 @@ namespace MLEM.Ui.Elements {
             batch.Draw(tex, this.DisplayArea.OffsetCopy(offset), color, this.Scale);
 
             var textPos = this.DisplayArea.Location.ToVector2() + new Vector2(offset.X + this.TextOffsetX * this.Scale, offset.Y + this.DisplayArea.Height / 2);
-            if (this.Text.Length > 0 || this.IsSelected) {
+            if (this.text.Length > 0 || this.IsSelected) {
                 var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
-                var text = this.Text.ToString(this.textStartIndex, this.Text.Length - this.textStartIndex) + caret;
-                this.font.DrawCenteredString(batch, text, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
+                var display = this.text.ToString(this.textStartIndex, this.text.Length - this.textStartIndex) + caret;
+                this.font.DrawCenteredString(batch, display, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
             } else if (this.PlaceholderText != null) {
                 this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
             }
             base.Draw(time, batch, alpha, offset);
+        }
+
+        public void SetText(object text) {
+            if (!this.InputRule(this, text.ToString()))
+                return;
+            this.text.Clear();
+            this.text.Append(text);
+            this.HandleTextChange();
+        }
+
+        public void AppendText(object text) {
+            if (!this.InputRule(this,  text.ToString()))
+                return;
+            this.text.Append(text);
+            this.HandleTextChange();
+        }
+
+        public void RemoveText(int index, int length) {
+            this.text.Remove(index, length);
+            this.HandleTextChange();
         }
 
         protected override void InitStyle(UiStyle style) {

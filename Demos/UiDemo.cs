@@ -79,7 +79,7 @@ namespace Demos {
                         image.IsHidden = !image.IsHidden;
                 }
             });
-            
+
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
@@ -97,7 +97,7 @@ namespace Demos {
 
             root.AddChild(new VerticalSpace(3));
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1,"Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular] and [Bold]Bold[Regular]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular] and [Bold]Bold[Regular]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
@@ -154,6 +154,10 @@ namespace Demos {
                 OnClicked = (element, button) => CoroutineHandler.Start(this.WobbleButton(element)),
                 PositionOffset = new Vector2(0, 1)
             });
+
+            root.AddChild(new VerticalSpace(3));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There are also some additional \"components\" which are created as combinations of other components. You can find all of them in the ElementHelper class. Here are some examples:"));
+            root.AddChild(ElementHelper.NumberField(Anchor.AutoLeft, new Vector2(1, 10))).PositionOffset = new Vector2(0, 1);
 
             // Below are some querying examples that help you find certain elements easily
 
