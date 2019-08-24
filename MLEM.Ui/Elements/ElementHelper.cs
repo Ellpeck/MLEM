@@ -17,7 +17,8 @@ namespace MLEM.Ui.Elements {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left) {
                         var text = field.Text.ToString();
-                        field.SetText(int.Parse(text) + stepPerClick);
+                        if (int.TryParse(text, out var val))
+                            field.SetText(val + stepPerClick);
                     }
                 }
             };
@@ -28,7 +29,8 @@ namespace MLEM.Ui.Elements {
                 OnClicked = (element, button) => {
                     if (button == MouseButton.Left) {
                         var text = field.Text.ToString();
-                        field.SetText(int.Parse(text) - stepPerClick);
+                        if (int.TryParse(text, out var val))
+                            field.SetText(val - stepPerClick);
                     }
                 }
             };
