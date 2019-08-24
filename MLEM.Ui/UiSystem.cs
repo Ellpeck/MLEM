@@ -120,18 +120,18 @@ namespace MLEM.Ui {
 
         public RootElement Add(string name, Element element) {
             var root = new RootElement(name, element, this);
-            this.Add(root);
-            return root;
+            return !this.Add(root) ? null : root;
         }
 
-        internal void Add(RootElement root, int index = -1) {
+        internal bool Add(RootElement root, int index = -1) {
             if (this.IndexOf(root.Name) >= 0)
-                throw new ArgumentException($"There is already a root element with name {root.Name}");
+                return false;
             if (index < 0 || index > this.rootElements.Count)
                 index = this.rootElements.Count;
             this.rootElements.Insert(index, root);
             root.Element.PropagateRoot(root);
             root.Element.PropagateUiSystem(this);
+            return true;
         }
 
         public void Remove(string name) {
@@ -153,8 +153,8 @@ namespace MLEM.Ui {
         }
 
         private Element GetMousedElement() {
-            foreach (var root in this.rootElements) {
-                var moused = root.Element.GetMousedElement();
+            for (var i = this.rootElements.Count - 1; i >= 0; i--) {
+                var moused = this.rootElements[i].Element.GetMousedElement();
                 if (moused != null)
                     return moused;
             }

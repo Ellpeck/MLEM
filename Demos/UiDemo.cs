@@ -160,10 +160,18 @@ namespace Demos {
             root.AddChild(ElementHelper.NumberField(Anchor.AutoLeft, new Vector2(1, 10))).PositionOffset = new Vector2(0, 1);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There is an easy helper method to make any amount of same-sized columns:") {PositionOffset = new Vector2(0, 1)});
-            var cols = ElementHelper.MakeColumns(root, new Vector2(1), 3);
+            var cols = ElementHelper.MakeColumns(root, Anchor.AutoLeft, new Vector2(1), 3);
             cols[0].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the first column"));
             cols[1].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the second column"));
             cols[2].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the third column"));
+
+            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Show Info Box") {
+                OnClicked = (element, button) => {
+                    if (button == MouseButton.Left)
+                        ElementHelper.ShowInfoBox(this.UiSystem, Anchor.Center, 100, "This is an easy info box that you can open with just one line of code! It automatically closes when you press the button below as well.");
+                },
+                PositionOffset = new Vector2(0, 1)
+            });
 
             // Below are some querying examples that help you find certain elements easily
 

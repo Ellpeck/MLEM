@@ -296,7 +296,7 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
 
             if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
-                var lowest = this.GetLowestReachingChild();
+                var lowest = this.GetLowestReachingChild(false, true);
                 var newHeight = (lowest.area.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
@@ -316,12 +316,12 @@ namespace MLEM.Ui.Elements {
             return this.Area;
         }
 
-        public Element GetLowestReachingChild() {
+        public Element GetLowestReachingChild(bool hiddenAlso, bool unattachableAlso) {
             Element lowest = null;
             // the lowest child is expected to be towards the back, so search is usually faster if done backwards
             for (var i = this.Children.Count - 1; i >= 0; i--) {
                 var child = this.Children[i];
-                if (child.isHidden)
+                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
                     continue;
                 if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
                     continue;
@@ -337,9 +337,7 @@ namespace MLEM.Ui.Elements {
 
             Element lastChild = null;
             foreach (var child in this.Parent.Children) {
-                if (!hiddenAlso && child.IsHidden)
-                    continue;
-                if (!unattachableAlso && !child.CanAutoAnchorsAttach)
+                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
                     continue;
                 if (child == this)
                     break;

@@ -4,13 +4,29 @@ using MLEM.Input;
 namespace MLEM.Ui.Elements {
     public static class ElementHelper {
 
-        public static Group[] MakeColumns(Element parent, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true) {
+        public static Panel ShowInfoBox(UiSystem system, Anchor anchor, float width, string text, float buttonHeight = 10, string okText = "Okay") {
+            var box = new Panel(anchor, new Vector2(width, 1), Vector2.Zero, true);
+            box.AddChild(new Paragraph(Anchor.AutoLeft, 1, text));
+            box.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, buttonHeight), okText) {
+                OnClicked = (element, button) => {
+                    if (button == MouseButton.Left)
+                        system.Remove("InfoBox");
+                },
+                PositionOffset = new Vector2(0, 1)
+            });
+            system.Add("InfoBox", box);
+            return box;
+        }
+
+        public static Group[] MakeColumns(Element parent, Anchor anchor, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true) {
+            var group = new Group(anchor, totalSize, setHeightBasedOnChildren);
             var cols = new Group[amount];
             for (var i = 0; i < amount; i++) {
                 cols[i] = new Group(Anchor.AutoInline, new Vector2(totalSize.X / amount, totalSize.Y), setHeightBasedOnChildren);
-                if (parent != null)
-                    parent.AddChild(cols[i]);
+                group.AddChild(cols[i]);
             }
+            if (parent != null)
+                parent.AddChild(group);
             return cols;
         }
 
