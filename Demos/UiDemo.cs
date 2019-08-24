@@ -195,7 +195,7 @@ namespace Demos {
         // Note that this particular example makes use of the Coroutine package
         private IEnumerator<Wait> WobbleButton(Element button) {
             var counter = 0F;
-            while (counter < 10) {
+            while (counter < 4 * Math.PI) {
                 // The imporant bit is that it changes its added display scale and offset, allowing the button to still maintain the
                 // correct position and scaling for both anchoring and interacting purposes, but to show any kind of animation visually
                 // This could be useful, for example, to create a little feedback effect to clicking it where it changes size for a second
