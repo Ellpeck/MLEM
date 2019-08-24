@@ -18,11 +18,8 @@ namespace MLEM.Ui.Elements {
                 this.Text = new Paragraph(Anchor.Center, 1, text, true);
                 this.AddChild(this.Text);
             }
-            if (tooltipText != null) {
-                this.Tooltip = new Tooltip(tooltipWidth, tooltipText);
-                this.OnMouseEnter += element => this.System.Add("ButtonTooltip", this.Tooltip);
-                this.OnMouseExit += element => this.System.Remove("ButtonTooltip");
-            }
+            if (tooltipText != null)
+                this.Tooltip = new Tooltip(tooltipWidth, tooltipText, this);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {

@@ -9,10 +9,15 @@ namespace MLEM.Ui.Elements {
 
         public Vector2 MouseOffset = new Vector2(2, 3);
 
-        public Tooltip(float width, string text) :
+        public Tooltip(float width, string text, Element elementToHover = null) :
             base(Anchor.TopLeft, width, text) {
             this.AutoAdjustWidth = true;
             this.Padding = new Point(2);
+
+            if (elementToHover != null) {
+                elementToHover.OnMouseEnter += element => element.System.Add(element.GetType().Name + "Tooltip", this);
+                elementToHover.OnMouseExit += element => element.System.Remove(element.GetType().Name + "Tooltip");
+            }
         }
 
         public override void Update(GameTime time) {
