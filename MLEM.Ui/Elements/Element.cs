@@ -343,7 +343,7 @@ namespace MLEM.Ui.Elements {
                     continue;
                 if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
                     continue;
-                if (lowest == null || child.Area.Bottom > lowest.Area.Bottom)
+                if (lowest == null || child.Area.Bottom >= lowest.Area.Bottom)
                     lowest = child;
             }
             return lowest;
