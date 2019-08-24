@@ -296,13 +296,8 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
 
             if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
-                var height = 0;
-                foreach (var child in this.Children) {
-                    if (!child.isHidden && (child.Anchor <= Anchor.TopRight || child.Anchor >= Anchor.AutoLeft) && child.area.Bottom > height)
-                        height = child.area.Bottom;
-                }
-
-                var newHeight = (height - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
+                var lowest = this.GetLowestReachingChild();
+                var newHeight = (lowest.area.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
                     if (this.Anchor > Anchor.TopRight)
@@ -319,6 +314,21 @@ namespace MLEM.Ui.Elements {
 
         protected virtual Rectangle GetAreaForAutoAnchors() {
             return this.Area;
+        }
+
+        public Element GetLowestReachingChild() {
+            Element lowest = null;
+            // the lowest child is expected to be towards the back, so search is usually faster if done backwards
+            for (var i = this.Children.Count - 1; i >= 0; i--) {
+                var child = this.Children[i];
+                if (child.isHidden)
+                    continue;
+                if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
+                    continue;
+                if (lowest == null || child.Area.Bottom > lowest.Area.Bottom)
+                    lowest = child;
+            }
+            return lowest;
         }
 
         public Element GetPreviousChild(bool hiddenAlso, bool unattachableAlso) {

@@ -4,6 +4,16 @@ using MLEM.Input;
 namespace MLEM.Ui.Elements {
     public static class ElementHelper {
 
+        public static Group[] MakeColumns(Element parent, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true) {
+            var cols = new Group[amount];
+            for (var i = 0; i < amount; i++) {
+                cols[i] = new Group(Anchor.AutoInline, new Vector2(totalSize.X / amount, totalSize.Y), setHeightBasedOnChildren);
+                if (parent != null)
+                    parent.AddChild(cols[i]);
+            }
+            return cols;
+        }
+
         public static Group NumberField(Anchor anchor, Vector2 size, int defaultValue = 0, int stepPerClick = 1, TextField.Rule rule = null, TextField.TextChanged onTextChange = null) {
             var group = new Group(anchor, size, false);
 

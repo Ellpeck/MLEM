@@ -159,6 +159,12 @@ namespace Demos {
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There are also some additional \"components\" which are created as combinations of other components. You can find all of them in the ElementHelper class. Here are some examples:"));
             root.AddChild(ElementHelper.NumberField(Anchor.AutoLeft, new Vector2(1, 10))).PositionOffset = new Vector2(0, 1);
 
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There is an easy helper method to make any amount of same-sized columns:") {PositionOffset = new Vector2(0, 1)});
+            var cols = ElementHelper.MakeColumns(root, new Vector2(1), 3);
+            cols[0].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the first column"));
+            cols[1].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the second column"));
+            cols[2].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the third column"));
+
             // Below are some querying examples that help you find certain elements easily
 
             var children = root.GetChildren();
