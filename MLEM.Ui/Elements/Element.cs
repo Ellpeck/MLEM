@@ -66,7 +66,7 @@ namespace MLEM.Ui.Elements {
         }
         public Rectangle ChildPaddedArea {
             get {
-                var padded = this.Area;
+                var padded = this.UnscrolledArea;
                 padded.Location += this.ScaledChildPadding;
                 padded.Width -= this.ScaledChildPadding.X * 2;
                 padded.Height -= this.ScaledChildPadding.Y * 2;
@@ -120,12 +120,15 @@ namespace MLEM.Ui.Elements {
         public bool CanAutoAnchorsAttach = true;
 
         private Rectangle area;
-        public Rectangle Area {
+        public Rectangle UnscrolledArea {
             get {
                 this.UpdateAreaIfDirty();
                 return this.area;
             }
         }
+        public Rectangle Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
+        public Point ScrollOffset;
+        public Point ScaledScrollOffset => this.ScrollOffset.Multiply(this.Scale);
         public Rectangle DisplayArea {
             get {
                 var padded = this.Area;
@@ -302,7 +305,7 @@ namespace MLEM.Ui.Elements {
 
             if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
                 var lowest = this.GetLowestChild(false, true);
-                var newHeight = (lowest.area.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
+                var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
                     if (this.Anchor > Anchor.TopRight)
@@ -318,7 +321,7 @@ namespace MLEM.Ui.Elements {
         }
 
         protected virtual Rectangle GetAreaForAutoAnchors() {
-            return this.Area;
+            return this.UnscrolledArea;
         }
 
         public Element GetLowestChild(bool hiddenAlso, bool unattachableAlso) {
@@ -330,7 +333,7 @@ namespace MLEM.Ui.Elements {
                     continue;
                 if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
                     continue;
-                if (lowest == null || child.Area.Bottom > lowest.Area.Bottom)
+                if (lowest == null || child.UnscrolledArea.Bottom > lowest.UnscrolledArea.Bottom)
                     lowest = child;
             }
             return lowest;
@@ -345,7 +348,7 @@ namespace MLEM.Ui.Elements {
                     break;
                 if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
                     continue;
-                if (lowest == null || child.Area.Bottom >= lowest.Area.Bottom)
+                if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
                     lowest = child;
             }
             return lowest;

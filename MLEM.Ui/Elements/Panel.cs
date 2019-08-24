@@ -24,16 +24,7 @@ namespace MLEM.Ui.Elements {
                 var scrollSize = scrollerSize ?? Point.Zero;
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(scrollSize.X, 1), scrollSize.Y, 0) {
                     StepPerScroll = 10,
-                    OnValueChanged = (element, value) => {
-                        // if there is only one child, then we have just the scroll bar
-                        if (this.Children.Count == 1)
-                            return;
-                        // the "real" first child is the scroll bar, which we want to ignore
-                        var firstChild = this.Children[1];
-                        // as all children have to be auto-aligned, moving the first one up will move all others
-                        firstChild.PositionOffset = new Vector2(firstChild.PositionOffset.X, -value.Floor());
-                        this.ForceUpdateArea();
-                    },
+                    OnValueChanged = (element, value) => this.ForceChildrenScroll(),
                     CanAutoAnchorsAttach = false
                 };
                 this.AddChild(this.ScrollBar);
@@ -58,6 +49,7 @@ namespace MLEM.Ui.Elements {
             }
 
             base.ForceUpdateArea();
+            this.ForceChildrenScroll();
 
             if (this.scrollOverflow) {
                 // if there is only one child, then we have just the scroll bar
@@ -78,6 +70,14 @@ namespace MLEM.Ui.Elements {
                     this.renderTarget = new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
                 }
             }
+        }
+
+        private void ForceChildrenScroll() {
+            if (!this.scrollOverflow)
+                return;
+            var offset = -this.ScrollBar.CurrentValue.Floor();
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true))
+                child.ScrollOffset = new Point(0, offset);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
