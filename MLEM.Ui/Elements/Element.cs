@@ -263,7 +263,12 @@ namespace MLEM.Ui.Elements {
             }
 
             if (this.Anchor >= Anchor.AutoLeft) {
-                var previousChild = this.GetLowestOlderSibling(false, false);
+                Element previousChild;
+                if (this.Anchor == Anchor.AutoInline || this.Anchor == Anchor.AutoInlineIgnoreOverflow) {
+                    previousChild = this.GetOlderSibling(false, false);
+                } else {
+                    previousChild = this.GetLowestOlderSibling(false, false);
+                }
                 if (previousChild != null) {
                     var prevArea = previousChild.GetAreaForAutoAnchors();
                     switch (this.Anchor) {
@@ -334,19 +339,30 @@ namespace MLEM.Ui.Elements {
         public Element GetLowestOlderSibling(bool hiddenAlso, bool unattachableAlso) {
             if (this.Parent == null)
                 return null;
-
             Element lowest = null;
             foreach (var child in this.Parent.Children) {
                 if (child == this)
                     break;
                 if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
                     continue;
-                if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
-                    continue;
                 if (lowest == null || child.Area.Bottom >= lowest.Area.Bottom)
                     lowest = child;
             }
             return lowest;
+        }
+
+        public Element GetOlderSibling(bool hiddenAlso, bool unattachableAlso) {
+            if (this.Parent == null)
+                return null;
+            Element older = null;
+            foreach (var child in this.Parent.Children) {
+                if (child == this)
+                    break;
+                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
+                    continue;
+                older = child;
+            }
+            return older;
         }
 
         public IEnumerable<Element> GetSiblings(bool hiddenAlso) {
