@@ -97,10 +97,12 @@ namespace MLEM.Ui {
                 }
 
                 // first action on element
-                mousedNow?.OnPressed?.Invoke(mousedNow);
+                if (mousedNow != null)
+                    mousedNow.OnPressed?.Invoke(mousedNow);
             } else if (this.InputHandler.IsMouseButtonPressed(this.SecondaryButton)) {
                 // secondary action on element
-                mousedNow?.OnSecondaryPressed?.Invoke(mousedNow);
+                if (mousedNow != null)
+                    mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
             }
 
             // generic element click
