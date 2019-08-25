@@ -16,7 +16,7 @@
 
     <ItemGroup>
         <PackageReference Include="Coroutine" Version="1.0.1" />
-        <PackageReference Include="MonoGame.Extended" Version="3.6.0-beta0001" />
+        <PackageReference Include="MonoGame.Extended" Version="3.7.0" />
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.6.0.1625">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
