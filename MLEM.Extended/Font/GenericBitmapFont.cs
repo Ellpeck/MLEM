@@ -16,10 +16,6 @@ namespace MLEM.Extended.Font {
             this.Font = font;
         }
 
-        public static implicit operator GenericBitmapFont(BitmapFont font) {
-            return new GenericBitmapFont(font);
-        }
-
         public Vector2 MeasureString(string text) {
             return this.Font.MeasureString(text);
         }
