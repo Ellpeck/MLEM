@@ -50,6 +50,9 @@ namespace MLEM.Ui {
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
 
+        public MouseButton MainButton = MouseButton.Left;
+        public MouseButton SecondaryButton = MouseButton.Right;
+
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.GraphicsDevice = device;
             this.InputHandler = inputHandler ?? new InputHandler();
@@ -74,6 +77,7 @@ namespace MLEM.Ui {
                 this.InputHandler.Update();
 
             var mousedNow = this.GetMousedElement();
+            // mouse new element
             if (mousedNow != this.MousedElement) {
                 if (this.MousedElement != null)
                     this.MousedElement.OnMouseExit?.Invoke(this.MousedElement);
@@ -82,14 +86,24 @@ namespace MLEM.Ui {
                 this.MousedElement = mousedNow;
             }
 
-            if (this.SelectedElement != mousedNow && this.InputHandler.IsMouseButtonPressed(MouseButton.Left)) {
-                if (this.SelectedElement != null)
-                    this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
-                if (mousedNow != null)
-                    mousedNow.OnSelected?.Invoke(mousedNow);
-                this.SelectedElement = mousedNow;
+            if (this.InputHandler.IsMouseButtonPressed(this.MainButton)) {
+                // select element
+                if (this.SelectedElement != mousedNow) {
+                    if (this.SelectedElement != null)
+                        this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
+                    if (mousedNow != null)
+                        mousedNow.OnSelected?.Invoke(mousedNow);
+                    this.SelectedElement = mousedNow;
+                }
+
+                // first action on element
+                mousedNow?.OnPressed?.Invoke(mousedNow);
+            } else if (this.InputHandler.IsMouseButtonPressed(this.SecondaryButton)) {
+                // secondary action on element
+                mousedNow?.OnSecondaryPressed?.Invoke(mousedNow);
             }
 
+            // generic element click
             if (mousedNow?.OnClicked != null) {
                 foreach (var button in InputHandler.MouseButtons) {
                     if (this.InputHandler.IsMouseButtonPressed(button))

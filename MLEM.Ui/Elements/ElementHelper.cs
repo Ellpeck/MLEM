@@ -8,10 +8,7 @@ namespace MLEM.Ui.Elements {
             var box = new Panel(anchor, new Vector2(width, 1), Vector2.Zero, true);
             box.AddChild(new Paragraph(Anchor.AutoLeft, 1, text));
             box.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, buttonHeight), okText) {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left)
-                        system.Remove("InfoBox");
-                },
+                OnPressed = element => system.Remove("InfoBox"),
                 PositionOffset = new Vector2(0, 1)
             });
             system.Add("InfoBox", box);
@@ -38,24 +35,20 @@ namespace MLEM.Ui.Elements {
             group.OnAreaUpdated += e => field.Size = new Vector2((e.Area.Width - e.Area.Height / 2) / e.Scale, 1);
 
             var upButton = new Button(Anchor.TopRight, Vector2.One, "+") {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left) {
-                        var text = field.Text.ToString();
-                        if (int.TryParse(text, out var val))
-                            field.SetText(val + stepPerClick);
-                    }
+                OnPressed = element => {
+                    var text = field.Text.ToString();
+                    if (int.TryParse(text, out var val))
+                        field.SetText(val + stepPerClick);
                 }
             };
             group.AddChild(upButton);
             group.OnAreaUpdated += e => upButton.Size = new Vector2(e.Area.Height / 2 / e.Scale);
 
             var downButton = new Button(Anchor.BottomRight, Vector2.One, "-") {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left) {
-                        var text = field.Text.ToString();
-                        if (int.TryParse(text, out var val))
-                            field.SetText(val - stepPerClick);
-                    }
+                OnPressed = element => {
+                    var text = field.Text.ToString();
+                    if (int.TryParse(text, out var val))
+                        field.SetText(val - stepPerClick);
                 }
             };
             group.AddChild(downButton);

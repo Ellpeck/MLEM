@@ -29,11 +29,7 @@ namespace MLEM.Ui.Elements {
 
         public Checkbox(Anchor anchor, Vector2 size, string label, bool defaultChecked = false) : base(anchor, size) {
             this.checced = defaultChecked;
-
-            this.OnClicked += (element, button) => {
-                if (button == MouseButton.Left)
-                    this.Checked = !this.Checked;
-            };
+            this.OnPressed += element => this.Checked = !this.Checked;
 
             if (label != null) {
                 this.Label = new Paragraph(Anchor.CenterLeft, 0, label);

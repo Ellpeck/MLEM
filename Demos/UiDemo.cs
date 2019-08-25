@@ -74,19 +74,13 @@ namespace Demos {
             // Setting the x or y coordinate of the size to 1 or a lower number causes the width or height to be a percentage of the parent's width or height
             // (for example, setting the size's x to 0.75 would make the element's width be 0.75*parentWidth)
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Test Image", "This button shows a grass tile as a test image to show the automatic anchoring of objects.") {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left)
-                        image.IsHidden = !image.IsHidden;
-                }
+                OnPressed = element => image.IsHidden = !image.IsHidden
             });
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left)
-                        this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle;
-                },
+                OnPressed = element => this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle,
                 PositionOffset = new Vector2(0, 1),
                 // set HasCustomStyle to true before changing style information so that, when changing the style globally
                 // (like above), these custom values don't get undone
@@ -113,13 +107,13 @@ namespace Demos {
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(10), "+") {
-                OnClicked = (element, button) => {
+                OnPressed = element => {
                     if (element.Root.Scale < 2)
                         element.Root.Scale += 0.1F;
                 }
             });
             root.AddChild(new Button(Anchor.AutoInline, new Vector2(10), "-") {
-                OnClicked = (element, button) => {
+                OnPressed = element => {
                     if (element.Root.Scale > 0.5F)
                         element.Root.Scale -= 0.1F;
                 },
@@ -138,10 +132,7 @@ namespace Demos {
             this.UiSystem.Add("TestTooltip", tooltip);
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Test Tooltip") {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left)
-                        tooltip.IsHidden = !tooltip.IsHidden;
-                }
+                OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden
             });
 
             var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1);
@@ -151,7 +142,7 @@ namespace Demos {
             // This button uses a coroutine from my Coroutine NuGet package (which is included with MLEM.Startup)
             // but the important thing it does is change its visual scale and offset (check the method below for more info)
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
-                OnClicked = (element, button) => CoroutineHandler.Start(this.WobbleButton(element)),
+                OnPressed = element => CoroutineHandler.Start(this.WobbleButton(element)),
                 PositionOffset = new Vector2(0, 1)
             });
 
@@ -166,10 +157,7 @@ namespace Demos {
             cols[2].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the third column"));
 
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Show Info Box") {
-                OnClicked = (element, button) => {
-                    if (button == MouseButton.Left)
-                        ElementHelper.ShowInfoBox(this.UiSystem, Anchor.Center, 100, "This is an easy info box that you can open with just one line of code! It automatically closes when you press the button below as well.");
-                },
+                OnPressed = element => ElementHelper.ShowInfoBox(this.UiSystem, Anchor.Center, 100, "This is an easy info box that you can open with just one line of code! It automatically closes when you press the button below as well."),
                 PositionOffset = new Vector2(0, 1)
             });
 

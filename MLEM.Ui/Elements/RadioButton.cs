@@ -12,13 +12,11 @@ namespace MLEM.Ui.Elements {
             this.Group = group;
 
             // don't += because we want to override the checking + unchecking behavior of Checkbox
-            this.OnClicked = (element, button) => {
-                if (button == MouseButton.Left) {
-                    this.Checked = true;
-                    foreach (var sib in this.GetSiblings(true)) {
-                        if (sib is RadioButton radio && radio.Group == this.Group)
-                            radio.Checked = false;
-                    }
+            this.OnPressed = element => {
+                this.Checked = true;
+                foreach (var sib in this.GetSiblings(true)) {
+                    if (sib is RadioButton radio && radio.Group == this.Group)
+                        radio.Checked = false;
                 }
             };
         }

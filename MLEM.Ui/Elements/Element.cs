@@ -79,9 +79,12 @@ namespace MLEM.Ui.Elements {
         public Vector2 AddedDisplayScale;
         public Point ScaledDisplayScale => (this.AddedDisplayScale * this.Scale).ToPoint();
 
-        public MouseClickCallback OnClicked;
+        public GenericCallback OnPressed;
+        public GenericCallback OnSecondaryPressed;
         public GenericCallback OnSelected;
         public GenericCallback OnDeselected;
+
+        public MouseClickCallback OnClicked;
         public MouseCallback OnMouseEnter;
         public MouseCallback OnMouseExit;
         public TextInputCallback OnTextInput;
