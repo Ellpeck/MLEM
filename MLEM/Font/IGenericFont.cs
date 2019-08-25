@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace MLEM.Font {
     public interface IGenericFont {
 
+        float LineHeight { get; }
+
         Vector2 MeasureString(string text);
 
         Vector2 MeasureString(StringBuilder text);
@@ -24,7 +26,7 @@ namespace MLEM.Font {
 
         void DrawCenteredString(SpriteBatch batch, string text, Vector2 position, float scale, Color color, bool horizontal = true, bool vertical = false, float addedScale = 0);
 
-        IEnumerable<string> SplitString(string text, float width, float scale);
+        string SplitString(string text, float width, float scale);
 
     }
 }

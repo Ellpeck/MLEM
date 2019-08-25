@@ -10,6 +10,7 @@ namespace MLEM.Extended.Font {
     public class GenericBitmapFont : IGenericFont {
 
         public readonly BitmapFont Font;
+        public float LineHeight => this.Font.LineHeight;
 
         public GenericBitmapFont(BitmapFont font) {
             this.Font = font;
@@ -55,7 +56,7 @@ namespace MLEM.Extended.Font {
             batch.DrawCenteredString(this.Font, text, position, scale, color, horizontal, vertical, addedScale);
         }
 
-        public IEnumerable<string> SplitString(string text, float width, float scale) {
+        public string SplitString(string text, float width, float scale) {
             return this.Font.SplitString(text, width, scale);
         }
 

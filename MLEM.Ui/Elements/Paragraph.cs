@@ -14,9 +14,7 @@ namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
         private string text;
-        private float lineHeight;
-        private float longestLineLength;
-        private string[] splitText;
+        private string splitText;
         private Dictionary<int, FormattingCode> codeLocations;
         private IGenericFont regularFont;
         private IGenericFont boldFont;
@@ -37,7 +35,6 @@ namespace MLEM.Ui.Elements {
         }
         public bool AutoAdjustWidth;
         public TextCallback GetTextCallback;
-        public float LineSpace = 1;
 
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
             : this(anchor, width, "", centerText) {
@@ -53,21 +50,13 @@ namespace MLEM.Ui.Elements {
 
         protected override Point CalcActualSize(Rectangle parentArea) {
             var size = base.CalcActualSize(parentArea);
+
             var sc = this.TextScale * this.Scale;
-            this.splitText = this.regularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc).ToArray();
+            this.splitText = this.regularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
             this.codeLocations = this.text.GetFormattingCodes();
 
-            this.lineHeight = 0;
-            this.longestLineLength = 0;
-            foreach (var strg in this.splitText) {
-                var strgScale = this.regularFont.MeasureString(strg) * sc;
-                if (strgScale.Y + 1 > this.lineHeight)
-                    this.lineHeight = strgScale.Y + 1;
-                if (strgScale.X > this.longestLineLength)
-                    this.longestLineLength = strgScale.X;
-            }
-            this.lineHeight *= this.LineSpace;
-            return new Point(this.AutoAdjustWidth ? this.longestLineLength.Ceil() + this.ScaledPadding.X * 2 : size.X, (this.lineHeight * this.splitText.Length).Ceil() + this.ScaledPadding.Y * 2);
+            var textDims = this.regularFont.MeasureString(this.splitText) * sc;
+            return new Point(this.AutoAdjustWidth ? textDims.X.Ceil() + this.ScaledPadding.X * 2 : size.X, textDims.Y.Ceil() + this.ScaledPadding.Y * 2);
         }
 
         public override void Update(GameTime time) {
@@ -86,51 +75,45 @@ namespace MLEM.Ui.Elements {
 
             // if we don't have any formatting codes, then we don't need to do complex drawing
             if (this.codeLocations.Count <= 0) {
-                foreach (var line in this.splitText) {
-                    this.regularFont.DrawString(batch, line, pos + off, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
-                    off.Y += this.lineHeight;
-                }
+                this.regularFont.DrawString(batch, this.splitText, pos + off, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we need to go through each index and see how it should be drawn
                 var characterCounter = 0;
                 var currColor = this.TextColor;
                 var currFont = this.regularFont;
 
-                foreach (var line in this.splitText) {
-                    var lineOffset = new Vector2();
-                    foreach (var c in line) {
-                        // check if the current character's index has a formatting code
-                        this.codeLocations.TryGetValue(characterCounter, out var code);
-                        if (code != null) {
-                            // if so, apply it
-                            if (code.IsColorCode) {
-                                currColor = code.Color;
-                            } else {
-                                switch (code.Style) {
-                                    case TextStyle.Regular:
-                                        currFont = this.regularFont;
-                                        break;
-                                    case TextStyle.Bold:
-                                        currFont = this.boldFont;
-                                        break;
-                                    case TextStyle.Italic:
-                                        currFont = this.italicFont;
-                                        break;
-                                }
+                var innerOffset = new Vector2();
+                foreach (var c in this.splitText) {
+                    // check if the current character's index has a formatting code
+                    this.codeLocations.TryGetValue(characterCounter, out var code);
+                    if (code != null) {
+                        // if so, apply it
+                        if (code.IsColorCode) {
+                            currColor = code.Color;
+                        } else {
+                            switch (code.Style) {
+                                case TextStyle.Regular:
+                                    currFont = this.regularFont;
+                                    break;
+                                case TextStyle.Bold:
+                                    currFont = this.boldFont;
+                                    break;
+                                case TextStyle.Italic:
+                                    currFont = this.italicFont;
+                                    break;
                             }
                         }
-
-                        var cSt = c.ToString();
-                        currFont.DrawString(batch, cSt, pos + off + lineOffset, currColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
-
-                        // get the width based on the regular font so that the split text doesn't overshoot the borders
-                        // this is a bit of a hack, but bold fonts shouldn't be that much thicker so it won't look bad
-                        lineOffset.X += this.regularFont.MeasureString(cSt).X * sc;
-                        characterCounter++;
                     }
-                    // spaces are replaced by newline characters, account for that
                     characterCounter++;
-                    off.Y += this.lineHeight;
+
+                    var cSt = c.ToString();
+                    if (c == '\n') {
+                        innerOffset.X = 0;
+                        innerOffset.Y += this.regularFont.LineHeight * sc;
+                    } else {
+                        currFont.DrawString(batch, cSt, pos + off + innerOffset, currColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                        innerOffset.X += this.regularFont.MeasureString(cSt).X * sc;
+                    }
                 }
             }
             base.Draw(time, batch, alpha, offset);

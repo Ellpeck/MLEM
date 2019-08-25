@@ -45,6 +45,8 @@ namespace MLEM.Ui.Style {
 
         private class EmptyFont : IGenericFont {
 
+            public float LineHeight => 1;
+
             public Vector2 MeasureString(string text) {
                 return Vector2.One;
             }
@@ -74,8 +76,8 @@ namespace MLEM.Ui.Style {
             public void DrawCenteredString(SpriteBatch batch, string text, Vector2 position, float scale, Color color, bool horizontal = true, bool vertical = false, float addedScale = 0) {
             }
 
-            public IEnumerable<string> SplitString(string text, float width, float scale) {
-                yield break;
+            public string SplitString(string text, float width, float scale) {
+                return text;
             }
 
         }

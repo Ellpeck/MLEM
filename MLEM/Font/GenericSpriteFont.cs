@@ -8,13 +8,10 @@ namespace MLEM.Font {
     public class GenericSpriteFont : IGenericFont {
 
         public readonly SpriteFont Font;
+        public float LineHeight => this.Font.LineSpacing;
 
         public GenericSpriteFont(SpriteFont font) {
             this.Font = font;
-        }
-
-        public static implicit operator GenericSpriteFont(SpriteFont font) {
-            return new GenericSpriteFont(font);
         }
 
         public Vector2 MeasureString(string text) {
@@ -53,7 +50,7 @@ namespace MLEM.Font {
             batch.DrawCenteredString(this.Font, text, position, scale, color, horizontal, vertical, addedScale);
         }
 
-        public IEnumerable<string> SplitString(string text, float width, float scale) {
+        public string SplitString(string text, float width, float scale) {
             return this.Font.SplitString(text, width, scale);
         }
 
