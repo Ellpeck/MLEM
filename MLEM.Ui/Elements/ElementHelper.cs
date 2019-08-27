@@ -1,8 +1,20 @@
 using Microsoft.Xna.Framework;
 using MLEM.Input;
+using MLEM.Textures;
 
 namespace MLEM.Ui.Elements {
     public static class ElementHelper {
+
+        public static Button ImageButton(Anchor anchor, Vector2 size, TextureRegion texture, string text = null, string tooltipText = null, float tooltipWidth = 50, int imagePadding = 2) {
+            var button = new Button(anchor, size, text, tooltipText, tooltipWidth);
+            var image = new Image(Anchor.CenterLeft, Vector2.One, texture) {
+                Padding = new Point(imagePadding),
+                IgnoresMouse = true
+            };
+            button.OnAreaUpdated += e => image.Size = new Vector2(e.Area.Height, e.Area.Height) / e.Scale;
+            button.AddChild(image, 0);
+            return button;
+        }
 
         public static Panel ShowInfoBox(UiSystem system, Anchor anchor, float width, string text, float buttonHeight = 10, string okText = "Okay") {
             var box = new Panel(anchor, new Vector2(width, 1), Vector2.Zero, true);

@@ -20,13 +20,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/TestFont.spritefont
 
-#begin Fonts/TestFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/TestFont.spritefont
-
 #begin Fonts/TestFontBold.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -76,4 +69,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/Test.png
+
+#begin Textures/Tree.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Tree.png
 

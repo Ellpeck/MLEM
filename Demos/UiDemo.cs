@@ -161,6 +161,9 @@ namespace Demos {
                 PositionOffset = new Vector2(0, 1)
             });
 
+            var region = new TextureRegion(LoadContent<Texture2D>("Textures/Tree"));
+            root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), region, "Button with image")).PositionOffset = new Vector2(0, 1);
+
             // Below are some querying examples that help you find certain elements easily
 
             var children = root.GetChildren();
