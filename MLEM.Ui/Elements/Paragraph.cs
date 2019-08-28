@@ -45,7 +45,8 @@ namespace MLEM.Ui.Elements {
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false) : base(anchor, new Vector2(width, 0)) {
             this.text = text;
             this.AutoAdjustWidth = centerText;
-            this.IgnoresMouse = true;
+            this.CanBeSelected = false;
+            this.CanBeMoused = false;
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {

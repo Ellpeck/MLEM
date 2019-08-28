@@ -5,6 +5,7 @@ using MLEM.Textures;
 namespace MLEM.Ui.Style {
     public class UiStyle {
 
+        public NinePatch SelectionIndicator;
         public NinePatch ButtonTexture;
         public NinePatch ButtonHoveredTexture;
         public Color ButtonHoveredColor;
@@ -28,5 +29,6 @@ namespace MLEM.Ui.Style {
         public IGenericFont BoldFont;
         public IGenericFont ItalicFont;
         public float TextScale = 1;
+
     }
 }

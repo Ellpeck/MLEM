@@ -43,14 +43,15 @@ namespace MLEM.Ui.Elements {
             this.maxValue = maxValue;
             this.Horizontal = horizontal;
             this.ScrollerSize = new Point(horizontal ? scrollerSize : size.X.Floor(), !horizontal ? scrollerSize : size.Y.Floor());
+            this.CanBeSelected = false;
         }
 
         public override void Update(GameTime time) {
             base.Update(time);
-            var moused = this.System.MousedElement;
-            if (moused == this && this.Controls.MainButton(this.Input)) {
+            var moused = this.Controls.MousedElement;
+            if (moused == this && this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = true;
-            } else if (this.isMouseHeld && this.Controls.MainButton(this.Input)) {
+            } else if (this.isMouseHeld && !this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = false;
             }
 
@@ -65,7 +66,7 @@ namespace MLEM.Ui.Elements {
             }
 
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
-                var scroll = this.Controls.Scroll(this.Input);
+                var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
                     this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
             }

@@ -9,6 +9,7 @@ namespace MLEM.Ui.Style {
     public class UntexturedStyle : UiStyle {
 
         public UntexturedStyle(SpriteBatch batch) {
+            this.SelectionIndicator = GenerateTexture(batch, Color.Transparent, Color.Red);
             this.ButtonTexture = GenerateTexture(batch, Color.CadetBlue);
             this.ButtonHoveredColor = Color.LightGray;
             this.PanelTexture = GenerateTexture(batch, Color.Gray);
@@ -27,12 +28,13 @@ namespace MLEM.Ui.Style {
             this.Font = new EmptyFont();
         }
 
-        private static NinePatch GenerateTexture(SpriteBatch batch, Color color) {
+        private static NinePatch GenerateTexture(SpriteBatch batch, Color color, Color? outlineColor = null) {
+            var outli = outlineColor ?? Color.Black;
             var tex = new Texture2D(batch.GraphicsDevice, 3, 3);
             tex.SetData(new[] {
-                Color.Black, Color.Black, Color.Black,
-                Color.Black, color, Color.Black,
-                Color.Black, Color.Black, Color.Black
+                outli, outli, outli,
+                outli, color, outli,
+                outli, outli, outli
             });
             batch.Disposing += (sender, args) => {
                 if (tex != null) {

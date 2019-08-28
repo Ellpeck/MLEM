@@ -13,9 +13,10 @@ namespace MLEM.Ui.Elements {
             base(Anchor.TopLeft, width, text) {
             this.AutoAdjustWidth = true;
             this.Padding = new Point(2);
+            this.CanBeSelected = false;
 
             if (elementToHover != null) {
-                elementToHover.OnMouseEnter += element => element.System.Add(element.GetType().Name + "Tooltip", this);
+                elementToHover.OnMouseEnter += element => element.System.Add(element.GetType().Name + "Tooltip", this).CanSelectContent = false;
                 elementToHover.OnMouseExit += element => element.System.Remove(element.GetType().Name + "Tooltip");
             }
         }

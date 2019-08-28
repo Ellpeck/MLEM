@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -14,8 +15,6 @@ namespace MLEM.Ui {
         public readonly GraphicsDevice GraphicsDevice;
         public Rectangle Viewport { get; private set; }
         private readonly List<RootElement> rootElements = new List<RootElement>();
-        public readonly InputHandler InputHandler;
-        private readonly bool isInputOurs;
 
         public bool AutoScaleWithScreen;
         public Point AutoScaleReferenceSize;
@@ -33,8 +32,6 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             }
         }
-        public Element MousedElement { get; private set; }
-        public Element SelectedElement { get; private set; }
         private UiStyle style;
         public UiStyle Style {
             get => this.style;
@@ -49,12 +46,11 @@ namespace MLEM.Ui {
         public float DrawAlpha = 1;
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
-        public UiControls Controls = new UiControls();
+        public UiControls Controls;
 
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
+            this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
-            this.InputHandler = inputHandler ?? new InputHandler();
-            this.isInputOurs = inputHandler == null;
             this.style = style;
             this.Viewport = device.Viewport.Bounds;
             this.AutoScaleReferenceSize = this.Viewport.Size;
@@ -71,37 +67,7 @@ namespace MLEM.Ui {
         }
 
         public void Update(GameTime time) {
-            if (this.isInputOurs)
-                this.InputHandler.Update();
-
-            var mousedNow = this.GetMousedElement();
-            // mouse new element
-            if (mousedNow != this.MousedElement) {
-                if (this.MousedElement != null)
-                    this.MousedElement.OnMouseExit?.Invoke(this.MousedElement);
-                if (mousedNow != null)
-                    mousedNow.OnMouseEnter?.Invoke(mousedNow);
-                this.MousedElement = mousedNow;
-            }
-
-            if (this.Controls.MainButton(this.InputHandler)) {
-                // select element
-                if (this.SelectedElement != mousedNow) {
-                    if (this.SelectedElement != null)
-                        this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
-                    if (mousedNow != null)
-                        mousedNow.OnSelected?.Invoke(mousedNow);
-                    this.SelectedElement = mousedNow;
-                }
-
-                // first action on element
-                if (mousedNow != null)
-                    mousedNow.OnPressed?.Invoke(mousedNow);
-            } else if (this.Controls.SecondaryButton(this.InputHandler)) {
-                // secondary action on element
-                if (mousedNow != null)
-                    mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
-            }
+            this.Controls.Update();
 
             foreach (var root in this.rootElements)
                 root.Element.Update(time);
@@ -158,13 +124,9 @@ namespace MLEM.Ui {
             return this.rootElements.FindIndex(element => element.Name == name);
         }
 
-        private Element GetMousedElement() {
-            for (var i = this.rootElements.Count - 1; i >= 0; i--) {
-                var moused = this.rootElements[i].Element.GetMousedElement();
-                if (moused != null)
-                    return moused;
-            }
-            return null;
+        public IEnumerable<RootElement> GetRootElements() {
+            for (var i = this.rootElements.Count - 1; i >= 0; i--)
+                yield return this.rootElements[i];
         }
 
     }
@@ -185,6 +147,7 @@ namespace MLEM.Ui {
             }
         }
         public float ActualScale => this.System.GlobalScale * this.Scale;
+        public bool CanSelectContent = true;
 
         public RootElement(string name, Element element, UiSystem system) {
             this.Name = name;

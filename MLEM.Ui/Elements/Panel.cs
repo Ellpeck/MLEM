@@ -19,6 +19,7 @@ namespace MLEM.Ui.Elements {
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
             this.scrollOverflow = scrollOverflow;
             this.ChildPadding = new Point(5);
+            this.CanBeSelected = false;
 
             if (scrollOverflow) {
                 var scrollSize = scrollerSize ?? Point.Zero;

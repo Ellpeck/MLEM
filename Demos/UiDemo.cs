@@ -86,7 +86,8 @@ namespace Demos {
                 // (like above), these custom values don't get undone
                 HasCustomStyle = true,
                 Texture = this.testPatch,
-                HoveredColor = Color.LightGray
+                HoveredColor = Color.LightGray,
+                SelectionIndicator = style.SelectionIndicator
             });
 
             root.AddChild(new VerticalSpace(3));
@@ -129,7 +130,7 @@ namespace Demos {
             root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Vector2(0, 1)});
 
             var tooltip = new Tooltip(50, "This is a test tooltip to see the window bounding") {IsHidden = true};
-            this.UiSystem.Add("TestTooltip", tooltip);
+            this.UiSystem.Add("TestTooltip", tooltip).CanSelectContent = false;
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Test Tooltip") {
                 OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden

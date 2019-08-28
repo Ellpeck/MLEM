@@ -77,6 +77,19 @@ namespace MLEM.Input {
             return this.WasKeyUp(key) && this.IsKeyDown(key);
         }
 
+        public bool IsModifierKeyDown(ModifierKey modifier) {
+            switch (modifier) {
+                case ModifierKey.Shift:
+                    return this.IsKeyDown(Keys.LeftShift) || this.IsKeyDown(Keys.RightShift);
+                case ModifierKey.Control:
+                    return this.IsKeyDown(Keys.LeftControl) || this.IsKeyDown(Keys.RightControl);
+                case ModifierKey.Alt:
+                    return this.IsKeyDown(Keys.LeftAlt) || this.IsKeyDown(Keys.RightAlt);
+                default:
+                    throw new ArgumentException(nameof(modifier));
+            }
+        }
+
         public bool IsMouseButtonDown(MouseButton button) {
             return GetState(this.MouseState, button) == ButtonState.Pressed;
         }
@@ -143,6 +156,14 @@ namespace MLEM.Input {
         Right,
         Extra1,
         Extra2
+
+    }
+
+    public enum ModifierKey {
+
+        Shift,
+        Control,
+        Alt
 
     }
 }

@@ -7,10 +7,7 @@ namespace MLEM.Ui.Elements {
 
         public static Button ImageButton(Anchor anchor, Vector2 size, TextureRegion texture, string text = null, string tooltipText = null, float tooltipWidth = 50, int imagePadding = 2) {
             var button = new Button(anchor, size, text, tooltipText, tooltipWidth);
-            var image = new Image(Anchor.CenterLeft, Vector2.One, texture) {
-                Padding = new Point(imagePadding),
-                IgnoresMouse = true
-            };
+            var image = new Image(Anchor.CenterLeft, Vector2.One, texture) {Padding = new Point(imagePadding)};
             button.OnAreaUpdated += e => image.Size = new Vector2(e.Area.Height, e.Area.Height) / e.Scale;
             button.AddChild(image, 0);
             return button;

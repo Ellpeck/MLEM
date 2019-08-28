@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Textures;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
@@ -98,11 +99,11 @@ namespace MLEM.Ui.Elements {
                     this.InitStyle(this.system.Style);
             }
         }
-        protected InputHandler Input => this.System.InputHandler;
         protected UiControls Controls => this.System.Controls;
+        protected InputHandler Input => this.Controls.Input;
+        public Point MousePos => this.Input.MousePosition;
         public RootElement Root { get; private set; }
         public float Scale => this.Root.ActualScale;
-        public Point MousePos => this.Input.MousePosition;
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
         public bool IsSelected { get; private set; }
@@ -116,7 +117,8 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public bool IgnoresMouse;
+        public bool CanBeSelected = true;
+        public bool CanBeMoused = true;
         public float DrawAlpha = 1;
         public bool HasCustomStyle;
         public bool SetHeightBasedOnChildren;
@@ -153,6 +155,7 @@ namespace MLEM.Ui.Elements {
         }
         private bool areaDirty;
         private bool sortedChildrenDirty;
+        public NinePatch SelectionIndicator;
 
         public Element(Anchor anchor, Vector2 size) {
             this.anchor = anchor;
@@ -422,6 +425,10 @@ namespace MLEM.Ui.Elements {
                 if (!child.IsHidden)
                     child.Draw(time, batch, alpha * child.DrawAlpha, offset);
             }
+
+            if (this.IsSelected && this.Controls.ShowSelectionIndicator && this.SelectionIndicator != null) {
+                batch.Draw(this.SelectionIndicator, this.DisplayArea.OffsetCopy(offset), Color.White * alpha);
+            }
         }
 
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
@@ -432,17 +439,18 @@ namespace MLEM.Ui.Elements {
         }
 
         public virtual Element GetMousedElement() {
-            if (this.IsHidden || this.IgnoresMouse)
+            if (this.IsHidden)
                 return null;
             for (var i = this.SortedChildren.Count - 1; i >= 0; i--) {
                 var element = this.SortedChildren[i].GetMousedElement();
                 if (element != null)
                     return element;
             }
-            return this.Area.Contains(this.MousePos) ? this : null;
+            return this.CanBeMoused && this.Area.Contains(this.MousePos) ? this : null;
         }
 
         protected virtual void InitStyle(UiStyle style) {
+            this.SelectionIndicator = style.SelectionIndicator;
         }
 
         public delegate void TextInputCallback(Element element, Keys key, char character);

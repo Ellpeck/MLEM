@@ -4,6 +4,7 @@ namespace MLEM.Ui.Elements {
     public class VerticalSpace : Element {
 
         public VerticalSpace(int height) : base(Anchor.AutoCenter, new Vector2(1, height)) {
+            this.CanBeSelected = false;
         }
 
     }
