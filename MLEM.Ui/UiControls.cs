@@ -14,7 +14,7 @@ namespace MLEM.Ui {
 
         public Element MousedElement { get; private set; }
         public Element SelectedElement { get; private set; }
-        public bool ShowSelectionIndicator;
+        public bool SelectedLastElementWithMouse { get; private set; }
 
         public UiControls(UiSystem system, InputHandler inputHandler = null) {
             this.system = system;
@@ -34,13 +34,14 @@ namespace MLEM.Ui {
                 if (mousedNow != null)
                     mousedNow.OnMouseEnter?.Invoke(mousedNow);
                 this.MousedElement = mousedNow;
+                this.system.Propagate(e => e.OnMousedElementChanged?.Invoke(e, mousedNow));
             }
 
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 // select element
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                 if (this.SelectedElement != selectedNow)
-                    this.SelectElement(selectedNow, false);
+                    this.SelectElement(selectedNow, true);
 
                 // first action on element
                 if (mousedNow != null)
@@ -61,17 +62,18 @@ namespace MLEM.Ui {
                 }
             } else if (this.Input.IsKeyPressed(Keys.Tab)) {
                 // tab or shift-tab to next or previous element
-                this.SelectElement(this.GetNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), true);
+                this.SelectElement(this.GetNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), false);
             }
         }
 
-        public void SelectElement(Element element, bool show) {
+        public void SelectElement(Element element, bool mouse) {
             if (this.SelectedElement != null)
                 this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
             if (element != null)
                 element.OnSelected?.Invoke(element);
             this.SelectedElement = element;
-            this.ShowSelectionIndicator = show;
+            this.SelectedLastElementWithMouse = mouse;
+            this.system.Propagate(e => e.OnSelectedElementChanged?.Invoke(e, element));
         }
 
         public Element GetMousedElement() {

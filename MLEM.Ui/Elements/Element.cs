@@ -84,16 +84,17 @@ namespace MLEM.Ui.Elements {
         public GenericCallback OnSecondaryPressed;
         public GenericCallback OnSelected;
         public GenericCallback OnDeselected;
-
         public GenericCallback OnMouseEnter;
         public GenericCallback OnMouseExit;
         public TextInputCallback OnTextInput;
         public GenericCallback OnAreaUpdated;
+        public OtherElementCallback OnMousedElementChanged;
+        public OtherElementCallback OnSelectedElementChanged;
 
         private UiSystem system;
         public UiSystem System {
             get => this.system;
-            private set {
+            internal set {
                 this.system = value;
                 if (this.system != null && !this.HasCustomStyle)
                     this.InitStyle(this.system.Style);
@@ -102,7 +103,7 @@ namespace MLEM.Ui.Elements {
         protected UiControls Controls => this.System.Controls;
         protected InputHandler Input => this.Controls.Input;
         public Point MousePos => this.Input.MousePosition;
-        public RootElement Root { get; private set; }
+        public RootElement Root { get; internal set; }
         public float Scale => this.Root.ActualScale;
         public Element Parent { get; private set; }
         public bool IsMouseOver { get; private set; }
@@ -174,8 +175,10 @@ namespace MLEM.Ui.Elements {
                 index = this.Children.Count;
             this.Children.Insert(index, element);
             element.Parent = this;
-            element.PropagateRoot(this.Root);
-            element.PropagateUiSystem(this.System);
+            element.Propagate(e => {
+                e.Root = this.Root;
+                e.System = this.System;
+            });
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
             return element;
@@ -184,8 +187,10 @@ namespace MLEM.Ui.Elements {
         public void RemoveChild(Element element) {
             this.Children.Remove(element);
             element.Parent = null;
-            element.PropagateRoot(null);
-            element.PropagateUiSystem(null);
+            element.Propagate(e => {
+                e.Root = null;
+                e.System = null;
+            });
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
         }
@@ -426,7 +431,7 @@ namespace MLEM.Ui.Elements {
                     child.Draw(time, batch, alpha * child.DrawAlpha, offset);
             }
 
-            if (this.IsSelected && this.Controls.ShowSelectionIndicator && this.SelectionIndicator != null) {
+            if (this.IsSelected && !this.Controls.SelectedLastElementWithMouse && this.SelectionIndicator != null) {
                 batch.Draw(this.SelectionIndicator, this.DisplayArea.OffsetCopy(offset), Color.White * alpha);
             }
         }
@@ -457,22 +462,12 @@ namespace MLEM.Ui.Elements {
 
         public delegate void GenericCallback(Element element);
 
-        internal void PropagateUiSystem(UiSystem system) {
-            this.System = system;
-            foreach (var child in this.Children)
-                child.PropagateUiSystem(system);
-        }
+        public delegate void OtherElementCallback(Element thisElement, Element otherElement);
 
-        internal void PropagateRoot(RootElement root) {
-            this.Root = root;
+        internal void Propagate(Action<Element> action) {
+            action(this);
             foreach (var child in this.Children)
-                child.PropagateRoot(root);
-        }
-
-        internal void PropagateInput(Keys key, char character) {
-            this.OnTextInput?.Invoke(this, key, character);
-            foreach (var child in this.Children)
-                child.PropagateInput(key, character);
+                child.Propagate(action);
         }
 
     }

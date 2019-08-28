@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -33,6 +34,15 @@ namespace MLEM.Ui.Elements {
                 // modify the padding so that the scroll bar isn't over top of something else
                 this.ScrollBar.PositionOffset -= new Vector2(scrollSize.X + 1, 0);
                 this.ChildPadding += new Point(scrollSize.X, 0);
+
+                // handle automatic element selection, the scroller needs to scroll to the right location
+                this.OnSelectedElementChanged += (element, otherElement) => {
+                    if (this.Controls.SelectedLastElementWithMouse)
+                        return;
+                    if (otherElement == null || !otherElement.GetParentTree().Contains(this))
+                        return;
+                    this.ScrollBar.CurrentValue = (otherElement.Area.Bottom - this.Children[1].Area.Top - this.Area.Height / 2) / this.Scale;
+                };
             }
         }
 
