@@ -130,6 +130,36 @@ namespace MLEM.Input {
             return this.WasGamepadButtonUp(index, button) && this.IsGamepadButtonDown(index, button);
         }
 
+        public bool IsDown(object control, int index = 0) {
+            if (control is Keys key)
+                return this.IsKeyDown(key);
+            if (control is Buttons button)
+                return this.IsGamepadButtonDown(index, button);
+            if (control is MouseButton mouse)
+                return this.IsMouseButtonDown(mouse);
+            throw new ArgumentException(nameof(control));
+        }
+
+        public bool IsUp(object control, int index = 0) {
+            if (control is Keys key)
+                return this.IsKeyUp(key);
+            if (control is Buttons button)
+                return this.IsGamepadButtonUp(index, button);
+            if (control is MouseButton mouse)
+                return this.IsMouseButtonUp(mouse);
+            throw new ArgumentException(nameof(control));
+        }
+
+        public bool IsPressed(object control, int index = 0) {
+            if (control is Keys key)
+                return this.IsKeyPressed(key);
+            if (control is Buttons button)
+                return this.IsGamepadButtonPressed(index, button);
+            if (control is MouseButton mouse)
+                return this.IsMouseButtonPressed(mouse);
+            throw new ArgumentException(nameof(control));
+        }
+
         private static ButtonState GetState(MouseState state, MouseButton button) {
             switch (button) {
                 case MouseButton.Left:
