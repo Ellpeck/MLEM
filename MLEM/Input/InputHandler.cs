@@ -110,51 +110,75 @@ namespace MLEM.Input {
             return this.WasMouseButtonUp(button) && this.IsMouseButtonDown(button);
         }
 
-        public bool IsGamepadButtonDown(int index, Buttons button) {
+        public bool IsGamepadButtonDown(Buttons button, int index = -1) {
+            if (index < 0) {
+                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                    if (this.GetGamepadState(i).IsButtonDown(button))
+                        return true;
+                return false;
+            }
             return this.GetGamepadState(index).IsButtonDown(button);
         }
 
-        public bool IsGamepadButtonUp(int index, Buttons button) {
+        public bool IsGamepadButtonUp(Buttons button, int index = -1) {
+            if (index < 0) {
+                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                    if (this.GetGamepadState(i).IsButtonUp(button))
+                        return true;
+                return false;
+            }
             return this.GetGamepadState(index).IsButtonUp(button);
         }
 
-        public bool WasGamepadButtonDown(int index, Buttons button) {
+        public bool WasGamepadButtonDown(Buttons button, int index = -1) {
+            if (index < 0) {
+                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                    if (this.GetLastGamepadState(i).IsButtonDown(button))
+                        return true;
+                return false;
+            }
             return this.GetLastGamepadState(index).IsButtonDown(button);
         }
 
-        public bool WasGamepadButtonUp(int index, Buttons button) {
+        public bool WasGamepadButtonUp(Buttons button, int index = -1) {
+            if (index < 0) {
+                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                    if (this.GetLastGamepadState(i).IsButtonUp(button))
+                        return true;
+                return false;
+            }
             return this.GetLastGamepadState(index).IsButtonUp(button);
         }
 
-        public bool IsGamepadButtonPressed(int index, Buttons button) {
-            return this.WasGamepadButtonUp(index, button) && this.IsGamepadButtonDown(index, button);
+        public bool IsGamepadButtonPressed(Buttons button, int index = -1) {
+            return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
         }
 
-        public bool IsDown(object control, int index = 0) {
+        public bool IsDown(object control, int index = -1) {
             if (control is Keys key)
                 return this.IsKeyDown(key);
             if (control is Buttons button)
-                return this.IsGamepadButtonDown(index, button);
+                return this.IsGamepadButtonDown(button, index);
             if (control is MouseButton mouse)
                 return this.IsMouseButtonDown(mouse);
             throw new ArgumentException(nameof(control));
         }
 
-        public bool IsUp(object control, int index = 0) {
+        public bool IsUp(object control, int index = -1) {
             if (control is Keys key)
                 return this.IsKeyUp(key);
             if (control is Buttons button)
-                return this.IsGamepadButtonUp(index, button);
+                return this.IsGamepadButtonUp(button, index);
             if (control is MouseButton mouse)
                 return this.IsMouseButtonUp(mouse);
             throw new ArgumentException(nameof(control));
         }
 
-        public bool IsPressed(object control, int index = 0) {
+        public bool IsPressed(object control, int index = -1) {
             if (control is Keys key)
                 return this.IsKeyPressed(key);
             if (control is Buttons button)
-                return this.IsGamepadButtonPressed(index, button);
+                return this.IsGamepadButtonPressed(button, index);
             if (control is MouseButton mouse)
                 return this.IsMouseButtonPressed(mouse);
             throw new ArgumentException(nameof(control));
