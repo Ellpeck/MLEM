@@ -48,9 +48,9 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             base.Update(time);
             var moused = this.System.MousedElement;
-            if (moused == this && this.Input.IsMouseButtonPressed(MouseButton.Left)) {
+            if (moused == this && this.Controls.MainButton(this.Input)) {
                 this.isMouseHeld = true;
-            } else if (this.isMouseHeld && this.Input.IsMouseButtonUp(MouseButton.Left)) {
+            } else if (this.isMouseHeld && this.Controls.MainButton(this.Input)) {
                 this.isMouseHeld = false;
             }
 
@@ -65,7 +65,7 @@ namespace MLEM.Ui.Elements {
             }
 
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
-                var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
+                var scroll = this.Controls.Scroll(this.Input);
                 if (scroll != 0)
                     this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
             }

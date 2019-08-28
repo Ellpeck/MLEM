@@ -49,9 +49,7 @@ namespace MLEM.Ui {
         public float DrawAlpha = 1;
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
-
-        public MouseButton MainButton = MouseButton.Left;
-        public MouseButton SecondaryButton = MouseButton.Right;
+        public UiControls Controls = new UiControls();
 
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.GraphicsDevice = device;
@@ -86,7 +84,7 @@ namespace MLEM.Ui {
                 this.MousedElement = mousedNow;
             }
 
-            if (this.InputHandler.IsMouseButtonPressed(this.MainButton)) {
+            if (this.Controls.MainButton(this.InputHandler)) {
                 // select element
                 if (this.SelectedElement != mousedNow) {
                     if (this.SelectedElement != null)
@@ -99,18 +97,10 @@ namespace MLEM.Ui {
                 // first action on element
                 if (mousedNow != null)
                     mousedNow.OnPressed?.Invoke(mousedNow);
-            } else if (this.InputHandler.IsMouseButtonPressed(this.SecondaryButton)) {
+            } else if (this.Controls.SecondaryButton(this.InputHandler)) {
                 // secondary action on element
                 if (mousedNow != null)
                     mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
-            }
-
-            // generic element click
-            if (mousedNow?.OnClicked != null) {
-                foreach (var button in InputHandler.MouseButtons) {
-                    if (this.InputHandler.IsMouseButtonPressed(button))
-                        mousedNow.OnClicked(mousedNow, button);
-                }
             }
 
             foreach (var root in this.rootElements)

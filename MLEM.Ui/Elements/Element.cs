@@ -84,9 +84,8 @@ namespace MLEM.Ui.Elements {
         public GenericCallback OnSelected;
         public GenericCallback OnDeselected;
 
-        public MouseClickCallback OnClicked;
-        public MouseCallback OnMouseEnter;
-        public MouseCallback OnMouseExit;
+        public GenericCallback OnMouseEnter;
+        public GenericCallback OnMouseExit;
         public TextInputCallback OnTextInput;
         public GenericCallback OnAreaUpdated;
 
@@ -100,6 +99,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         protected InputHandler Input => this.System.InputHandler;
+        protected UiControls Controls => this.System.Controls;
         public RootElement Root { get; private set; }
         public float Scale => this.Root.ActualScale;
         public Point MousePos => this.Input.MousePosition;
@@ -444,10 +444,6 @@ namespace MLEM.Ui.Elements {
 
         protected virtual void InitStyle(UiStyle style) {
         }
-
-        public delegate void MouseClickCallback(Element element, MouseButton button);
-
-        public delegate void MouseCallback(Element element);
 
         public delegate void TextInputCallback(Element element, Keys key, char character);
 
