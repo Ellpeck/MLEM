@@ -47,7 +47,8 @@ namespace MLEM.Ui {
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
         public UiControls Controls;
-
+        public readonly bool SupportsTextInput;
+            
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
@@ -60,10 +61,15 @@ namespace MLEM.Ui {
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
-            window.TextInput += (sender, args) => {
-                foreach (var root in this.rootElements)
-                    root.Element.Propagate(e => e.OnTextInput?.Invoke(e, args.Key, args.Character));
-            };
+            try {
+                window.TextInput += (sender, args) => {
+                    foreach (var root in this.rootElements)
+                        root.Element.Propagate(e => e.OnTextInput?.Invoke(e, args.Key, args.Character));
+                };
+                this.SupportsTextInput = true;
+            } catch (TypeLoadException) {
+                this.SupportsTextInput = false;
+            }
         }
 
         public void Update(GameTime time) {

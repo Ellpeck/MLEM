@@ -26,27 +26,13 @@ namespace MLEM.Startup {
                 SynchronizeWithVerticalRetrace = vsync
             };
             this.Content.RootDirectory = contentDir;
-
             this.Window.AllowUserResizing = allowResizing;
-            this.Window.ClientSizeChanged += (win, args) => this.OnWindowSizeChange(this.GraphicsDevice.Viewport);
-            this.Window.TextInput += (win, args) => this.OnTextInput(args.Key, args.Character);
-        }
-
-        public virtual void OnWindowSizeChange(Viewport viewport) {
-        }
-
-        public virtual void OnTextInput(Keys key, char character) {
         }
 
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler();
             this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
-        }
-
-        protected override void Initialize() {
-            base.Initialize();
-            this.OnWindowSizeChange(this.GraphicsDevice.Viewport);
         }
 
         protected override void Update(GameTime gameTime) {
