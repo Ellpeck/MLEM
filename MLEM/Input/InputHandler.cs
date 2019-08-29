@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Misc;
 
 namespace MLEM.Input {
@@ -12,7 +14,7 @@ namespace MLEM.Input {
 
         public KeyboardState LastKeyboardState { get; private set; }
         public KeyboardState KeyboardState { get; private set; }
-        private readonly bool handleKeyboard;
+        public bool HandleKeyboard;
 
         public MouseState LastMouseState { get; private set; }
         public MouseState MouseState { get; private set; }
@@ -20,35 +22,52 @@ namespace MLEM.Input {
         public Point LastMousePosition => this.LastMouseState.Position;
         public int ScrollWheel => this.MouseState.ScrollWheelValue;
         public int LastScrollWheel => this.LastMouseState.ScrollWheelValue;
-        private readonly bool handleMouse;
+        public bool HandleMouse;
 
         private readonly GamePadState[] lastGamepads = new GamePadState[GamePad.MaximumGamePadCount];
         private readonly GamePadState[] gamepads = new GamePadState[GamePad.MaximumGamePadCount];
-        private readonly bool handleGamepads;
         public int ConnectedGamepads { get; private set; }
+        public bool HandleGamepads;
 
-        public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true) {
-            this.handleKeyboard = handleKeyboard;
-            this.handleMouse = handleMouse;
-            this.handleGamepads = handleGamepads;
+        public TouchCollection LastTouchState { get; private set; }
+        public TouchCollection TouchState { get; private set; }
+        public readonly ReadOnlyCollection<GestureSample> Gestures;
+        private readonly List<GestureSample> gestures = new List<GestureSample>();
+        public bool HandleTouch;
+
+        public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) {
+            this.HandleKeyboard = handleKeyboard;
+            this.HandleMouse = handleMouse;
+            this.HandleGamepads = handleGamepads;
+            this.HandleTouch = handleTouch;
+
+            this.Gestures = this.gestures.AsReadOnly();
         }
 
         public void Update() {
-            if (this.handleKeyboard) {
+            if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = Keyboard.GetState();
             }
-            if (this.handleMouse) {
+            if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
                 this.MouseState = Mouse.GetState();
             }
-            if (this.handleGamepads) {
+            if (this.HandleGamepads) {
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
                     this.gamepads[i] = GamePad.GetState(i);
                     if (this.ConnectedGamepads > i && !this.gamepads[i].IsConnected)
                         this.ConnectedGamepads = i;
                 }
+            }
+            if (this.HandleTouch) {
+                this.LastTouchState = this.TouchState;
+                this.TouchState = TouchPanel.GetState();
+
+                this.gestures.Clear();
+                while (TouchPanel.IsGestureAvailable)
+                    this.gestures.Add(TouchPanel.ReadGesture());
             }
         }
 
@@ -155,6 +174,14 @@ namespace MLEM.Input {
 
         public bool IsGamepadButtonPressed(Buttons button, int index = -1) {
             return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
+        }
+
+        public GestureSample GetGesture(GestureType type) {
+            foreach (var gesture in this.Gestures) {
+                if (gesture.GestureType == type)
+                    return gesture;
+            }
+            return default;
         }
 
         public bool IsDown(object control, int index = -1) {
