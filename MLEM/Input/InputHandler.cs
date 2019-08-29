@@ -25,6 +25,7 @@ namespace MLEM.Input {
         private readonly GamePadState[] lastGamepads = new GamePadState[GamePad.MaximumGamePadCount];
         private readonly GamePadState[] gamepads = new GamePadState[GamePad.MaximumGamePadCount];
         private readonly bool handleGamepads;
+        public int ConnectedGamepads { get; private set; }
 
         public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true) {
             this.handleKeyboard = handleKeyboard;
@@ -45,6 +46,8 @@ namespace MLEM.Input {
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
                     this.gamepads[i] = GamePad.GetState(i);
+                    if (this.ConnectedGamepads > i && !this.gamepads[i].IsConnected)
+                        this.ConnectedGamepads = i;
                 }
             }
         }
@@ -112,7 +115,7 @@ namespace MLEM.Input {
 
         public bool IsGamepadButtonDown(Buttons button, int index = -1) {
             if (index < 0) {
-                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                for (var i = 0; i < this.ConnectedGamepads; i++)
                     if (this.GetGamepadState(i).IsButtonDown(button))
                         return true;
                 return false;
@@ -122,7 +125,7 @@ namespace MLEM.Input {
 
         public bool IsGamepadButtonUp(Buttons button, int index = -1) {
             if (index < 0) {
-                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                for (var i = 0; i < this.ConnectedGamepads; i++)
                     if (this.GetGamepadState(i).IsButtonUp(button))
                         return true;
                 return false;
@@ -132,7 +135,7 @@ namespace MLEM.Input {
 
         public bool WasGamepadButtonDown(Buttons button, int index = -1) {
             if (index < 0) {
-                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                for (var i = 0; i < this.ConnectedGamepads; i++)
                     if (this.GetLastGamepadState(i).IsButtonDown(button))
                         return true;
                 return false;
@@ -142,7 +145,7 @@ namespace MLEM.Input {
 
         public bool WasGamepadButtonUp(Buttons button, int index = -1) {
             if (index < 0) {
-                for (var i = 0; i < GamePad.MaximumGamePadCount; i++)
+                for (var i = 0; i < this.ConnectedGamepads; i++)
                     if (this.GetLastGamepadState(i).IsButtonUp(button))
                         return true;
                 return false;
