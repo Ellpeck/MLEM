@@ -39,6 +39,8 @@ namespace AndroidTests {
             panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Toggle Image") {
                 OnPressed = element => image.IsHidden = !image.IsHidden
             });
+
+            panel.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PlaceholderText = "Tap to type"});
         }
 
         protected override void DoDraw(GameTime gameTime) {

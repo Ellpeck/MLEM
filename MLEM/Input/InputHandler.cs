@@ -11,6 +11,7 @@ namespace MLEM.Input {
     public class InputHandler {
 
         public static MouseButton[] MouseButtons = EnumHelper.GetValues<MouseButton>().ToArray();
+        public static readonly bool TextInputSupported = typeof(GameWindow).GetEvent("TextInput") != null;
 
         public KeyboardState LastKeyboardState { get; private set; }
         public KeyboardState KeyboardState { get; private set; }
@@ -40,7 +41,6 @@ namespace MLEM.Input {
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
             this.HandleTouch = handleTouch;
-
             this.Gestures = this.gestures.AsReadOnly();
         }
 

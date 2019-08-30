@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Input;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -30,21 +31,35 @@ namespace MLEM.Ui.Elements {
         private double caretBlinkTimer;
         private int textStartIndex;
         public Rule InputRule;
+        public string MobileTitle;
+        public string MobileDescription;
 
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, IGenericFont font = null) : base(anchor, size) {
             this.InputRule = rule ?? DefaultRule;
             this.font = font;
-            this.OnTextInput += (element, key, character) => {
-                if (!this.IsSelected)
-                    return;
-                if (key == Keys.Back) {
-                    if (this.text.Length > 0) {
-                        this.RemoveText(this.text.Length - 1, 1);
+
+            if (InputHandler.TextInputSupported) {
+                this.OnTextInput += (element, key, character) => {
+                    if (!this.IsSelected)
+                        return;
+                    if (key == Keys.Back) {
+                        if (this.text.Length > 0) {
+                            this.RemoveText(this.text.Length - 1, 1);
+                        }
+                    } else {
+                        this.AppendText(character);
                     }
-                } else {
-                    this.AppendText(character);
-                }
-            };
+                };
+            } else {
+                this.OnPressed += async e => {
+                    if (!KeyboardInput.IsVisible) {
+                        var title = this.MobileTitle ?? this.PlaceholderText;
+                        var result = await KeyboardInput.Show(title, this.MobileDescription, this.Text);
+                        if (result != null)
+                            this.SetText(result.Replace('\n', ' '));
+                    }
+                };
+            }
         }
 
         private void HandleTextChange() {
@@ -106,7 +121,7 @@ namespace MLEM.Ui.Elements {
         }
 
         public void AppendText(object text) {
-            if (!this.InputRule(this,  text.ToString()))
+            if (!this.InputRule(this, text.ToString()))
                 return;
             this.text.Append(text);
             this.HandleTextChange();

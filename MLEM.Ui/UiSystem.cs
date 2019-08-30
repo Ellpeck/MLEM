@@ -48,7 +48,6 @@ namespace MLEM.Ui {
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
         public UiControls Controls;
-        public readonly bool SupportsTextInput;
 
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
@@ -62,16 +61,17 @@ namespace MLEM.Ui {
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
-            
-            try {
-                NativeTextInput.AddToTextInput(window, (key, character) => {
+
+            if (InputHandler.TextInputSupported) {
+                AddToTextInput(window, (key, character) => {
                     foreach (var root in this.rootElements)
                         root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
                 });
-                this.SupportsTextInput = true;
-            } catch (TypeLoadException) {
-                this.SupportsTextInput = false;
             }
+        }
+
+        private static void AddToTextInput(GameWindow window, Action<Keys, char> func) {
+            window.TextInput += (sender, args) => func(args.Key, args.Character);
         }
 
         public void Update(GameTime time) {
@@ -144,14 +144,6 @@ namespace MLEM.Ui {
         internal void Propagate(Action<Element> action) {
             foreach (var root in this.rootElements)
                 root.Element.Propagate(action);
-        }
-
-        private static class NativeTextInput {
-
-            internal static void AddToTextInput(GameWindow window, Action<Keys, char> func) {
-                window.TextInput += (sender, args) => func(args.Key, args.Character);
-            }
-
         }
 
     }
