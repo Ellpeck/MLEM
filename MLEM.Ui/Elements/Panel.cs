@@ -117,11 +117,11 @@ namespace MLEM.Ui.Elements {
             base.DrawEarly(time, batch, alpha, blendState, samplerState);
         }
 
-        public override Element GetMousedElement() {
+        public override Element GetElementUnderPos(Point position) {
             // if overflow is handled, don't propagate mouse checks to hidden children
-            if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(this.MousePos))
+            if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(position))
                 return null;
-            return base.GetMousedElement();
+            return base.GetElementUnderPos(position);
         }
 
         private Rectangle GetRenderTargetArea() {

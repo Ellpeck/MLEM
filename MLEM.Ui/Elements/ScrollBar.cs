@@ -56,11 +56,12 @@ namespace MLEM.Ui.Elements {
             }
 
             if (this.isMouseHeld) {
+                var mouse = this.Input.MousePosition;
                 if (this.Horizontal) {
-                    var internalX = this.MousePos.X - this.Area.X - this.ScrollerSize.X * this.Scale / 2;
+                    var internalX = mouse.X - this.Area.X - this.ScrollerSize.X * this.Scale / 2;
                     this.CurrentValue = internalX / (this.Area.Width - this.ScrollerSize.X * this.Scale) * this.MaxValue;
                 } else {
-                    var internalY = this.MousePos.Y - this.Area.Y - this.ScrollerSize.Y * this.Scale / 2;
+                    var internalY = mouse.Y - this.Area.Y - this.ScrollerSize.Y * this.Scale / 2;
                     this.CurrentValue = internalY / (this.Area.Height - this.ScrollerSize.Y * this.Scale) * this.MaxValue;
                 }
             }

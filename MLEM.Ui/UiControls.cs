@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Input;
 using MLEM.Ui.Elements;
 
@@ -20,14 +21,17 @@ namespace MLEM.Ui {
             this.system = system;
             this.Input = inputHandler ?? new InputHandler();
             this.isInputOurs = inputHandler == null;
+
+            // enable all required gestures
+            this.Input.EnableGestures(GestureType.Tap, GestureType.Hold);
         }
 
         public void Update() {
             if (this.isInputOurs)
                 this.Input.Update();
 
-            var mousedNow = this.GetMousedElement();
-            // mouse new element
+            // MOUSE INPUT
+            var mousedNow = this.GetElementUnderPos(this.Input.MousePosition);
             if (mousedNow != this.MousedElement) {
                 if (this.MousedElement != null)
                     this.MousedElement.OnMouseExit?.Invoke(this.MousedElement);
@@ -36,21 +40,19 @@ namespace MLEM.Ui {
                 this.MousedElement = mousedNow;
                 this.system.Propagate(e => e.OnMousedElementChanged?.Invoke(e, mousedNow));
             }
-
+            
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
-                // select element
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
-                if (this.SelectedElement != selectedNow)
-                    this.SelectElement(selectedNow, true);
-
-                // first action on element
+                this.SelectElement(selectedNow, true);
                 if (mousedNow != null)
                     mousedNow.OnPressed?.Invoke(mousedNow);
             } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
-                // secondary action on element
                 if (mousedNow != null)
                     mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
-            } else if (this.Input.IsKeyPressed(Keys.Enter) || this.Input.IsKeyPressed(Keys.Space)) {
+            }
+            
+            // KEYBOARD INPUT
+            else if (this.Input.IsKeyPressed(Keys.Enter) || this.Input.IsKeyPressed(Keys.Space)) {
                 if (this.SelectedElement != null) {
                     if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                         // secondary action on element using space or enter
@@ -64,9 +66,25 @@ namespace MLEM.Ui {
                 // tab or shift-tab to next or previous element
                 this.SelectElement(this.GetNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), false);
             }
+            
+            // TOUCH INPUT
+            else if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
+                var tapped = this.GetElementUnderPos(tap.Position.ToPoint());
+                this.SelectElement(tapped, true);
+                if (tapped != null)
+                    tapped.OnPressed?.Invoke(tapped);
+            } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
+                var held = this.GetElementUnderPos(hold.Position.ToPoint());
+                this.SelectElement(held, true);
+                if (held != null)
+                    held.OnSecondaryPressed?.Invoke(held);
+            }
         }
 
         public void SelectElement(Element element, bool mouse) {
+            if (this.SelectedElement == element)
+                return;
+
             if (this.SelectedElement != null)
                 this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
             if (element != null)
@@ -76,9 +94,9 @@ namespace MLEM.Ui {
             this.system.Propagate(e => e.OnSelectedElementChanged?.Invoke(e, element));
         }
 
-        public Element GetMousedElement() {
+        public Element GetElementUnderPos(Point position) {
             foreach (var root in this.system.GetRootElements()) {
-                var moused = root.Element.GetMousedElement();
+                var moused = root.Element.GetElementUnderPos(position);
                 if (moused != null)
                     return moused;
             }

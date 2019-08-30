@@ -25,7 +25,7 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
 
             var viewport = this.System.Viewport.Size;
-            var offset = this.MousePos.ToVector2() / this.Scale + this.MouseOffset;
+            var offset = this.Input.MousePosition.ToVector2() / this.Scale + this.MouseOffset;
             if (offset.X < 0)
                 offset.X = 0;
             if (offset.Y < 0)

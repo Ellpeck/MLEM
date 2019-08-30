@@ -102,7 +102,6 @@ namespace MLEM.Ui.Elements {
         }
         protected UiControls Controls => this.System.Controls;
         protected InputHandler Input => this.Controls.Input;
-        public Point MousePos => this.Input.MousePosition;
         public RootElement Root { get; internal set; }
         public float Scale => this.Root.ActualScale;
         public Element Parent { get; private set; }
@@ -443,15 +442,15 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public virtual Element GetMousedElement() {
+        public virtual Element GetElementUnderPos(Point position) {
             if (this.IsHidden)
                 return null;
             for (var i = this.SortedChildren.Count - 1; i >= 0; i--) {
-                var element = this.SortedChildren[i].GetMousedElement();
+                var element = this.SortedChildren[i].GetElementUnderPos(position);
                 if (element != null)
                     return element;
             }
-            return this.CanBeMoused && this.Area.Contains(this.MousePos) ? this : null;
+            return this.CanBeMoused && this.Area.Contains(position) ? this : null;
         }
 
         protected virtual void InitStyle(UiStyle style) {

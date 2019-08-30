@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos", "Demos\Demos.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Ui", "MLEM.Ui\MLEM.Ui.csproj", "{6F00629A-8B87-4264-8896-19983285E32F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTests", "Test\AndroidTests.csproj", "{410C0262-131C-4D0E-910D-D01B4F7143E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{6F00629A-8B87-4264-8896-19983285E32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F00629A-8B87-4264-8896-19983285E32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F00629A-8B87-4264-8896-19983285E32F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410C0262-131C-4D0E-910D-D01B4F7143E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410C0262-131C-4D0E-910D-D01B4F7143E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410C0262-131C-4D0E-910D-D01B4F7143E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410C0262-131C-4D0E-910D-D01B4F7143E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

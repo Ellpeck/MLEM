@@ -176,12 +176,19 @@ namespace MLEM.Input {
             return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
         }
 
-        public GestureSample GetGesture(GestureType type) {
+        public void EnableGestures(params GestureType[] gestures) {
+            foreach (var gesture in gestures)
+                TouchPanel.EnabledGestures |= gesture;
+        }
+
+        public bool GetGesture(GestureType type, out GestureSample sample) {
             foreach (var gesture in this.Gestures) {
-                if (gesture.GestureType == type)
-                    return gesture;
+                if (gesture.GestureType == type) {
+                    sample = gesture;
+                    return true;
+                }
             }
-            return default;
+            return false;
         }
 
         public bool IsDown(object control, int index = -1) {

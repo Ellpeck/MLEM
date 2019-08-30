@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Input;
@@ -48,7 +49,7 @@ namespace MLEM.Ui {
         public SamplerState SamplerState = SamplerState.PointClamp;
         public UiControls Controls;
         public readonly bool SupportsTextInput;
-            
+
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
@@ -61,11 +62,12 @@ namespace MLEM.Ui {
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
+            
             try {
-                window.TextInput += (sender, args) => {
+                NativeTextInput.AddToTextInput(window, (key, character) => {
                     foreach (var root in this.rootElements)
-                        root.Element.Propagate(e => e.OnTextInput?.Invoke(e, args.Key, args.Character));
-                };
+                        root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
+                });
                 this.SupportsTextInput = true;
             } catch (TypeLoadException) {
                 this.SupportsTextInput = false;
@@ -142,6 +144,14 @@ namespace MLEM.Ui {
         internal void Propagate(Action<Element> action) {
             foreach (var root in this.rootElements)
                 root.Element.Propagate(action);
+        }
+
+        private static class NativeTextInput {
+
+            internal static void AddToTextInput(GameWindow window, Action<Keys, char> func) {
+                window.TextInput += (sender, args) => func(args.Key, args.Character);
+            }
+
         }
 
     }
