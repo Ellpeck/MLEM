@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Input;
+using MLEM.Textures;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
@@ -49,6 +50,9 @@ namespace MLEM.Ui {
         public SamplerState SamplerState = SamplerState.PointClamp;
         public UiControls Controls;
 
+        public Element.DrawCallback OnElementDrawn;
+        public Element.DrawCallback OnSelectedElementDrawn;
+
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
@@ -68,6 +72,12 @@ namespace MLEM.Ui {
                         root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
                 });
             }
+
+            this.OnSelectedElementDrawn = (element, time, batch, alpha, offset) => {
+                if (!this.Controls.SelectedLastElementWithMouse && element.SelectionIndicator != null) {
+                    batch.Draw(element.SelectionIndicator, element.DisplayArea.OffsetCopy(offset), Color.White * alpha);
+                }
+            };
         }
 
         private static void AddToTextInput(GameWindow window, Action<Keys, char> func) {

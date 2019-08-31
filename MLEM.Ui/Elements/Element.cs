@@ -425,14 +425,15 @@ namespace MLEM.Ui.Elements {
         }
 
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
+            this.System.OnElementDrawn?.Invoke(this, time, batch, alpha, offset);
+
             foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
                     child.Draw(time, batch, alpha * child.DrawAlpha, offset);
             }
 
-            if (this.IsSelected && !this.Controls.SelectedLastElementWithMouse && this.SelectionIndicator != null) {
-                batch.Draw(this.SelectionIndicator, this.DisplayArea.OffsetCopy(offset), Color.White * alpha);
-            }
+            if (this.IsSelected)
+                this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha, offset);
         }
 
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
@@ -462,6 +463,8 @@ namespace MLEM.Ui.Elements {
         public delegate void GenericCallback(Element element);
 
         public delegate void OtherElementCallback(Element thisElement, Element otherElement);
+
+        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha, Point offset);
 
         internal void Propagate(Action<Element> action) {
             action(this);
