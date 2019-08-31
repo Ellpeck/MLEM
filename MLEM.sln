@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos", "Demos\Demos.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Ui", "MLEM.Ui\MLEM.Ui.csproj", "{6F00629A-8B87-4264-8896-19983285E32F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTests", "Test\AndroidTests.csproj", "{410C0262-131C-4D0E-910D-D01B4F7143E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTests", "AndroidTests\AndroidTests.csproj", "{410C0262-131C-4D0E-910D-D01B4F7143E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
