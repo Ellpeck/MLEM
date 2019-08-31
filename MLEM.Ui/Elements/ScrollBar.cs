@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Extensions;
 using MLEM.Input;
 using MLEM.Textures;
@@ -38,6 +39,12 @@ namespace MLEM.Ui.Elements {
         public float StepPerScroll = 1;
         public ValueChanged OnValueChanged;
         private bool isMouseHeld;
+        private bool isDragging;
+        private bool isTouchHeld;
+
+        static ScrollBar() {
+            InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);
+        }
 
         public ScrollBar(Anchor anchor, Vector2 size, int scrollerSize, float maxValue, bool horizontal = false) : base(anchor, size) {
             this.maxValue = maxValue;
@@ -48,28 +55,62 @@ namespace MLEM.Ui.Elements {
 
         public override void Update(GameTime time) {
             base.Update(time);
+
+            // MOUSE INPUT
             var moused = this.Controls.MousedElement;
             if (moused == this && this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = true;
             } else if (this.isMouseHeld && !this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = false;
             }
-
-            if (this.isMouseHeld) {
-                var mouse = this.Input.MousePosition;
-                if (this.Horizontal) {
-                    var internalX = mouse.X - this.Area.X - this.ScrollerSize.X * this.Scale / 2;
-                    this.CurrentValue = internalX / (this.Area.Width - this.ScrollerSize.X * this.Scale) * this.MaxValue;
-                } else {
-                    var internalY = mouse.Y - this.Area.Y - this.ScrollerSize.Y * this.Scale / 2;
-                    this.CurrentValue = internalY / (this.Area.Height - this.ScrollerSize.Y * this.Scale) * this.MaxValue;
-                }
-            }
-
+            if (this.isMouseHeld)
+                this.ScrollToPos(this.Input.MousePosition);
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
                     this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
+            }
+
+            // TOUCH INPUT
+            if (!this.Horizontal) {
+                // are we dragging on top of the panel?
+                if (this.Input.GetGesture(GestureType.VerticalDrag, out var drag)) {
+                    // if the element under the drag's start position is on top of the panel, start dragging
+                    var touched = this.Parent.GetElementUnderPos(drag.Position.ToPoint());
+                    if (touched != null && touched != this)
+                        this.isDragging = true;
+
+                    // if we're dragging at all, then move the scroller
+                    if (this.isDragging)
+                        this.CurrentValue -= drag.Delta.Y / this.Scale;
+                } else {
+                    this.isDragging = false;
+                }
+            }
+            if (this.Input.TouchState.Count <= 0) {
+                // if no touch has occured this tick, then reset the variable
+                this.isTouchHeld = false;
+            } else {
+                foreach (var loc in this.Input.TouchState) {
+                    // if we just started touching and are on top of the scroller, then we should start scrolling
+                    if (this.DisplayArea.Contains(loc.Position) && !loc.TryGetPreviousLocation(out _)) {
+                        this.isTouchHeld = true;
+                        break;
+                    }
+                    // scroll no matter if we're on the scroller right now
+                    if (this.isTouchHeld)
+                        this.ScrollToPos(loc.Position.ToPoint());
+                }
+            }
+        }
+
+        private void ScrollToPos(Point position) {
+            if (this.Horizontal) {
+                var internalX = position.X - this.Area.X - this.ScrollerSize.X * this.Scale / 2;
+                this.CurrentValue = internalX / (this.Area.Width - this.ScrollerSize.X * this.Scale) * this.MaxValue;
+            } else {
+                var internalY = position.Y - this.Area.Y - this.ScrollerSize.Y * this.Scale / 2;
+                this.CurrentValue = internalY / (this.Area.Height - this.ScrollerSize.Y * this.Scale) * this.MaxValue;
             }
         }
 

@@ -5,7 +5,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>A Ui system that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame, featuring automatic anchoring, sizing and several ready-to-use element types</Description>
+        <Description>A mouse, keyboard and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types. Part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame</Description>
         <PackageTags>monogame ellpeck mlem ui user interface graphical gui system</PackageTags>
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

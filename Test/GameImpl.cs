@@ -27,10 +27,10 @@ namespace AndroidTests {
                 RadioCheckmark = new TextureRegion(tex, 32, 0, 8, 8)
             };
             this.UiSystem.Style = style;
-            this.UiSystem.GlobalScale = 10;
+            this.UiSystem.GlobalScale = 15;
             this.UiSystem.AutoScaleWithScreen = true;
 
-            var panel = new Panel(Anchor.Center, new Vector2(100, 0), Vector2.Zero, true);
+            var panel = new Panel(Anchor.Center, new Vector2(100, 50), Vector2.Zero, false, true, new Point(5, 10));
             this.UiSystem.Add("Panel", panel);
             panel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "I am Android"));
 
@@ -41,6 +41,11 @@ namespace AndroidTests {
             });
 
             panel.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {PlaceholderText = "Tap to type"});
+
+            panel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Here is some text that makes it so that the panel is actually long enough for me to try out the scroll behavior."));
+            panel.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 100));
+
+            panel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sapien elit, congue sit amet condimentum in, hendrerit iaculis leo. Phasellus mollis turpis felis, ac finibus elit tincidunt quis. Vestibulum maximus, velit non consequat porttitor, quam diam consequat eros, in cursus nunc mi id dui. Vivamus semper neque at feugiat semper. Nunc ultrices egestas placerat. Proin lectus felis, rutrum quis porta vel, eleifend eget eros. Morbi porttitor massa finibus felis vestibulum, quis faucibus dui volutpat. Nam enim mi, euismod a pharetra vel, suscipit eu tortor. Integer vehicula ligula at consectetur dictum. Etiam fringilla volutpat est, id egestas nunc. Maecenas turpis felis, eleifend non felis a, fringilla lobortis nibh. Morbi rhoncus vestibulum dignissim. Ut posuere nulla ipsum, non condimentum dui posuere sit amet."));
         }
 
         protected override void DoDraw(GameTime gameTime) {

@@ -176,11 +176,6 @@ namespace MLEM.Input {
             return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
         }
 
-        public void EnableGestures(params GestureType[] gestures) {
-            foreach (var gesture in gestures)
-                TouchPanel.EnabledGestures |= gesture;
-        }
-
         public bool GetGesture(GestureType type, out GestureSample sample) {
             foreach (var gesture in this.Gestures) {
                 if (gesture.GestureType == type) {
@@ -219,6 +214,11 @@ namespace MLEM.Input {
             if (control is MouseButton mouse)
                 return this.IsMouseButtonPressed(mouse);
             throw new ArgumentException(nameof(control));
+        }
+
+        public static void EnableGestures(params GestureType[] gestures) {
+            foreach (var gesture in gestures)
+                TouchPanel.EnabledGestures |= gesture;
         }
 
         private static ButtonState GetState(MouseState state, MouseButton button) {

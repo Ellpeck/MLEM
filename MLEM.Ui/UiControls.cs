@@ -23,7 +23,7 @@ namespace MLEM.Ui {
             this.isInputOurs = inputHandler == null;
 
             // enable all required gestures
-            this.Input.EnableGestures(GestureType.Tap, GestureType.Hold);
+            InputHandler.EnableGestures(GestureType.Tap, GestureType.Hold);
         }
 
         public void Update() {
