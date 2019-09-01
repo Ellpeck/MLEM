@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Ui", "MLEM.Ui\MLEM.Ui.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.DesktopGL", "Demos.DesktopGL\Demos.DesktopGL.csproj", "{468A868F-FB75-4D48-BC03-6F9FCDB014C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Android", "AndroidDemos\Demos.Android.csproj", "{410C0262-131C-4D0E-910D-D01B4F7143E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Android", "Demos.Android\Demos.Android.csproj", "{410C0262-131C-4D0E-910D-D01B4F7143E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
