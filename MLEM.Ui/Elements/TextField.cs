@@ -38,7 +38,7 @@ namespace MLEM.Ui.Elements {
             this.InputRule = rule ?? DefaultRule;
             this.font = font;
 
-            if (InputHandler.TextInputSupported) {
+            if (WindowExtensions.SupportsTextInput()) {
                 this.OnTextInput += (element, key, character) => {
                     if (!this.IsSelected)
                         return;

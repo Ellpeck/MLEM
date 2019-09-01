@@ -16,6 +16,7 @@ namespace MLEM.Ui {
     public class UiSystem {
 
         public readonly GraphicsDevice GraphicsDevice;
+        public readonly GameWindow Window;
         public Rectangle Viewport { get; private set; }
         private readonly List<RootElement> rootElements = new List<RootElement>();
 
@@ -57,6 +58,7 @@ namespace MLEM.Ui {
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
+            this.Window = window;
             this.style = style;
             this.Viewport = device.Viewport.Bounds;
             this.AutoScaleReferenceSize = this.Viewport.Size;
@@ -67,14 +69,10 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             };
 
-            if (InputHandler.TextInputSupported) {
-                // this needs to be done using reflection because the event and 
-                // its argument class don't exist on non-Desktop devices annoyingly
-                new TextInputReflector((sender, key, character) => {
-                    foreach (var root in this.rootElements)
-                        root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
-                }).AddToWindow(window);
-            }
+            window.AddTextInputListener((sender, key, character) => {
+                foreach (var root in this.rootElements)
+                    root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
+            });
 
             this.OnSelectedElementDrawn = (element, time, batch, alpha, offset) => {
                 if (!this.Controls.SelectedLastElementWithMouse && element.SelectionIndicator != null) {
