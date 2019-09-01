@@ -10,12 +10,16 @@ using MLEM.Startup;
 using MonoGame.Extended;
 
 namespace Demos {
-    public class PathfindingDemo : MlemGame {
+    public class PathfindingDemo : Demo {
 
         private bool[,] world;
         private AStar2 pathfinder;
         private List<Point> path;
 
+        public PathfindingDemo(MlemGame game) : base(game) {
+            
+        }
+        
         private void Init() {
             // generate a simple random world for testing, where true is walkable area, and false is a wall
             var random = new Random();
@@ -53,21 +57,21 @@ namespace Demos {
                 Console.WriteLine("Couldn't find a path, press the left mouse button to try again");
         }
 
-        protected override void LoadContent() {
+        public override void LoadContent() {
             base.LoadContent();
             this.Init();
         }
 
-        protected override void Update(GameTime gameTime) {
+        public override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
             // when pressing the left mouse button, generate a new world and find a new path
-            if (Input.IsMouseButtonPressed(MouseButton.Left)) {
+            if (this.InputHandler.IsMouseButtonPressed(MouseButton.Left)) {
                 this.Init();
             }
         }
 
-        protected override void DoDraw(GameTime gameTime) {
+        public override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.White);
 
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(14));

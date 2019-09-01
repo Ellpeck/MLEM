@@ -22,16 +22,15 @@ namespace Demos {
     /// - Call the instance's DrawEarly method before clearing your <see cref="GraphicsDevice"/>
     /// - Call the instance's Draw method in your game's Draw method
     /// </remarks>
-    public class UiDemo : MlemGame {
+    public class UiDemo : Demo {
 
         private Texture2D testTexture;
         private NinePatch testPatch;
 
-        public UiDemo() {
-            this.IsMouseVisible = true;
+        public UiDemo(MlemGame game) : base(game) {
         }
 
-        protected override void LoadContent() {
+        public override void LoadContent() {
             this.testTexture = LoadContent<Texture2D>("Textures/Test");
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
             base.LoadContent();
@@ -55,7 +54,7 @@ namespace Demos {
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8)
             };
-            var untexturedStyle = this.UiSystem.Style;
+            var untexturedStyle = new UntexturedStyle(this.SpriteBatch);
             // set the defined style as the current one
             this.UiSystem.Style = style;
             // scale every ui up by 5
@@ -200,7 +199,12 @@ namespace Demos {
             button.AddedDisplayOffset = Vector2.Zero;
         }
 
-        protected override void DoDraw(GameTime gameTime) {
+        public override void Clear() {
+            this.UiSystem.Remove("Test");
+            this.UiSystem.Remove("TestTooltip");
+        }
+
+        public override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
             base.DoDraw(gameTime);
         }

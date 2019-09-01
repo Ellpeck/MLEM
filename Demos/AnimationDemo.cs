@@ -7,12 +7,15 @@ using MLEM.Startup;
 using MLEM.Textures;
 
 namespace Demos {
-    public class AnimationDemo : MlemGame {
+    public class AnimationDemo : Demo {
 
         private SpriteAnimationGroup group;
         private int facing;
 
-        protected override void LoadContent() {
+        public AnimationDemo(MlemGame game) : base(game) {
+        }
+
+        public override void LoadContent() {
             base.LoadContent();
 
             var tex = LoadContent<Texture2D>("Textures/Anim");
@@ -37,7 +40,7 @@ namespace Demos {
             // you can also add a priority to an animation in the group (10 in this case, which is higher than the default of 0)
             // if two animations' playing conditions are both true, then the one with the higher priority will be picked to play
             // in this instance, a standing "animation" is displayed when we're facing down and also holding the space key
-            this.group.Add(new SpriteAnimation(1F, tex, new Rectangle(0, 0, 8, 8)) {Name = "DownStanding"}, () => this.facing == 0 && Input.IsKeyDown(Keys.Space), 10);
+            this.group.Add(new SpriteAnimation(1F, tex, new Rectangle(0, 0, 8, 8)) {Name = "DownStanding"}, () => this.facing == 0 && this.InputHandler.IsKeyDown(Keys.Space), 10);
 
             // you can also add a callback to see when the animation used changes
             this.group.OnAnimationChanged += (anim, newAnim) => {
@@ -45,7 +48,7 @@ namespace Demos {
             };
         }
 
-        protected override void Update(GameTime gameTime) {
+        public override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
             if (this.InputHandler.IsKeyDown(Keys.Down))
@@ -62,7 +65,7 @@ namespace Demos {
             this.group.Update(gameTime);
         }
 
-        protected override void DoDraw(GameTime gameTime) {
+        public override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.Black);
 
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(10));

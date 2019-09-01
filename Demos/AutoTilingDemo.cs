@@ -7,12 +7,15 @@ namespace Demos {
     /// <summary>
     /// This is a demo for <see cref="AutoTiling"/>.
     /// </summary>
-    public class AutoTilingDemo : MlemGame {
+    public class AutoTilingDemo : Demo {
 
         private Texture2D texture;
         private string[] layout;
 
-        protected override void LoadContent() {
+        public AutoTilingDemo(MlemGame game) : base(game) {
+        }
+
+        public override void LoadContent() {
             base.LoadContent();
             // The layout of the texture is important for auto tiling to work correctly.
             // It needs to be laid out as follows: Five tiles aligned horizontally within the texture file, with the following information
@@ -35,7 +38,7 @@ namespace Demos {
             };
         }
 
-        protected override void DoDraw(GameTime gameTime) {
+        public override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.Black);
 
             // the texture region supplied to the AutoTiling method should only encompass the first filler tile's location and size
