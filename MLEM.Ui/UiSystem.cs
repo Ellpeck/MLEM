@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
@@ -67,10 +68,12 @@ namespace MLEM.Ui {
             };
 
             if (InputHandler.TextInputSupported) {
-                AddToTextInput(window, (key, character) => {
+                // this needs to be done using reflection because the event and 
+                // its argument class don't exist on non-Desktop devices annoyingly
+                new TextInputReflector((sender, key, character) => {
                     foreach (var root in this.rootElements)
                         root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
-                });
+                }).AddToWindow(window);
             }
 
             this.OnSelectedElementDrawn = (element, time, batch, alpha, offset) => {
@@ -78,10 +81,6 @@ namespace MLEM.Ui {
                     batch.Draw(element.SelectionIndicator, element.DisplayArea.OffsetCopy(offset), Color.White * alpha);
                 }
             };
-        }
-
-        private static void AddToTextInput(GameWindow window, Action<Keys, char> func) {
-            window.TextInput += (sender, args) => func(args.Key, args.Character);
         }
 
         public void Update(GameTime time) {
