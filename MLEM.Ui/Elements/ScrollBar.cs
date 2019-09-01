@@ -22,6 +22,8 @@ namespace MLEM.Ui.Elements {
                 this.maxValue = Math.Max(0, value);
                 // force current value to be clamped
                 this.CurrentValue = this.currValue;
+                if (this.AutoHideWhenEmpty)
+                    this.IsHidden = this.maxValue <= 0;
             }
         }
         private float currValue;
@@ -41,6 +43,7 @@ namespace MLEM.Ui.Elements {
         private bool isMouseHeld;
         private bool isDragging;
         private bool isTouchHeld;
+        public bool AutoHideWhenEmpty;
 
         static ScrollBar() {
             InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);

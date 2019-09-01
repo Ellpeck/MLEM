@@ -27,7 +27,8 @@ namespace MLEM.Ui.Elements {
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(scrollSize.X, 1), scrollSize.Y, 0) {
                     StepPerScroll = 10,
                     OnValueChanged = (element, value) => this.ForceChildrenScroll(),
-                    CanAutoAnchorsAttach = false
+                    CanAutoAnchorsAttach = false,
+                    AutoHideWhenEmpty = true
                 };
                 this.AddChild(this.ScrollBar);
 
