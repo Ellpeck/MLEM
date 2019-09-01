@@ -48,7 +48,7 @@ namespace Demos {
             this.path = foundPath != null ? foundPath.ToList() : null;
 
             // print out some info
-            Console.WriteLine("Pathfinding took " + this.pathfinder.LastTriesNeeded + " tries");
+            Console.WriteLine("Pathfinding took " + this.pathfinder.LastTriesNeeded + " tries and "+this.pathfinder.LastTimeNeeded.TotalSeconds+" seconds");
             if (this.path == null)
                 Console.WriteLine("Couldn't find a path, press the left mouse button to try again");
         }

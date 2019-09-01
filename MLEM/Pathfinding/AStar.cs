@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MLEM.Pathfinding {
@@ -10,6 +11,7 @@ namespace MLEM.Pathfinding {
         public int DefaultMaxTries;
         public bool DefaultAllowDiagonals;
         public int LastTriesNeeded { get; private set; }
+        public TimeSpan LastTimeNeeded { get; private set; }
 
         protected AStar(T[] allDirections, T[] adjacentDirections, GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) {
             this.AllDirections = allDirections;
@@ -21,6 +23,8 @@ namespace MLEM.Pathfinding {
         }
 
         public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
+            var startTime = DateTime.UtcNow;
+
             var getCost = costFunction ?? this.DefaultCostFunction;
             var diags = allowDiagonals ?? this.DefaultAllowDiagonals;
             var tries = maxTries ?? this.DefaultMaxTries;
@@ -31,6 +35,7 @@ namespace MLEM.Pathfinding {
             open.Add(new PathPoint<T>(start, this.GetManhattanDistance(start, goal), null, 0, defCost));
 
             var count = 0;
+            Stack<T> ret = null;
             while (open.Count > 0) {
                 PathPoint<T> current = null;
                 var lowestF = float.MaxValue;
@@ -46,8 +51,8 @@ namespace MLEM.Pathfinding {
                 closed.Add(current);
 
                 if (current.Pos.Equals(goal)) {
-                    this.LastTriesNeeded = count;
-                    return CompilePath(current);
+                    ret = CompilePath(current);
+                    break;
                 }
 
                 var dirsUsed = diags ? this.AllDirections : this.AdjacentDirections;
@@ -75,8 +80,10 @@ namespace MLEM.Pathfinding {
                 if (count >= tries)
                     break;
             }
+            
             this.LastTriesNeeded = count;
-            return null;
+            this.LastTimeNeeded = DateTime.UtcNow - startTime;
+            return ret;
         }
 
         protected abstract T AddPositions(T first, T second);
