@@ -56,7 +56,7 @@ namespace MLEM.Ui.Elements {
                         var title = this.MobileTitle ?? this.PlaceholderText;
                         var result = await KeyboardInput.Show(title, this.MobileDescription, this.Text);
                         if (result != null)
-                            this.SetText(result.Replace('\n', ' '));
+                            this.SetText(result.Replace('\n', ' '), true);
                     }
                 };
             }
@@ -112,8 +112,15 @@ namespace MLEM.Ui.Elements {
             base.Draw(time, batch, alpha, offset);
         }
 
-        public void SetText(object text) {
-            if (!this.InputRule(this, text.ToString()))
+        public void SetText(object text, bool removeMismatching = false) {
+            if (removeMismatching) {
+                var result = new StringBuilder();
+                foreach (var c in text.ToString()) {
+                    if (this.InputRule(this, c.ToString()))
+                        result.Append(c);
+                }
+                text = result.ToString();
+            } else if (!this.InputRule(this, text.ToString()))
                 return;
             this.text.Clear();
             this.text.Append(text);
