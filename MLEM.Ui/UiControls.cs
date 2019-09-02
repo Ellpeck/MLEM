@@ -38,7 +38,7 @@ namespace MLEM.Ui {
                 if (mousedNow != null)
                     mousedNow.OnMouseEnter?.Invoke(mousedNow);
                 this.MousedElement = mousedNow;
-                this.system.Propagate(e => e.OnMousedElementChanged?.Invoke(e, mousedNow));
+                this.system.ApplyToAll(e => e.OnMousedElementChanged?.Invoke(e, mousedNow));
             }
             
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
@@ -91,7 +91,7 @@ namespace MLEM.Ui {
                 element.OnSelected?.Invoke(element);
             this.SelectedElement = element;
             this.SelectedLastElementWithMouse = mouse;
-            this.system.Propagate(e => e.OnSelectedElementChanged?.Invoke(e, element));
+            this.system.ApplyToAll(e => e.OnSelectedElementChanged?.Invoke(e, element));
         }
 
         public Element GetElementUnderPos(Point position) {

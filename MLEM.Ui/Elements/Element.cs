@@ -174,7 +174,7 @@ namespace MLEM.Ui.Elements {
                 index = this.Children.Count;
             this.Children.Insert(index, element);
             element.Parent = this;
-            element.Propagate(e => {
+            element.AndChildren(e => {
                 e.Root = this.Root;
                 e.System = this.System;
             });
@@ -186,7 +186,7 @@ namespace MLEM.Ui.Elements {
         public void RemoveChild(Element element) {
             this.Children.Remove(element);
             element.Parent = null;
-            element.Propagate(e => {
+            element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
             });
@@ -454,6 +454,12 @@ namespace MLEM.Ui.Elements {
             return this.CanBeMoused && this.Area.Contains(position) ? this : null;
         }
 
+        public void AndChildren(Action<Element> action) {
+            action(this);
+            foreach (var child in this.Children)
+                child.AndChildren(action);
+        }
+
         protected virtual void InitStyle(UiStyle style) {
             this.SelectionIndicator = style.SelectionIndicator;
         }
@@ -465,12 +471,6 @@ namespace MLEM.Ui.Elements {
         public delegate void OtherElementCallback(Element thisElement, Element otherElement);
 
         public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha, Point offset);
-
-        internal void Propagate(Action<Element> action) {
-            action(this);
-            foreach (var child in this.Children)
-                child.Propagate(action);
-        }
 
     }
 }

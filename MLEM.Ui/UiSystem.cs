@@ -42,7 +42,7 @@ namespace MLEM.Ui {
             set {
                 this.style = value;
                 foreach (var root in this.rootElements) {
-                    root.Element.Propagate(e => e.System = this);
+                    root.Element.AndChildren(e => e.System = this);
                     root.Element.SetAreaDirty();
                 }
             }
@@ -71,7 +71,7 @@ namespace MLEM.Ui {
 
             window.AddTextInputListener((sender, key, character) => {
                 foreach (var root in this.rootElements)
-                    root.Element.Propagate(e => e.OnTextInput?.Invoke(e, key, character));
+                    root.Element.AndChildren(e => e.OnTextInput?.Invoke(e, key, character));
             });
 
             this.OnSelectedElementDrawn = (element, time, batch, alpha, offset) => {
@@ -116,7 +116,7 @@ namespace MLEM.Ui {
             if (index < 0 || index > this.rootElements.Count)
                 index = this.rootElements.Count;
             this.rootElements.Insert(index, root);
-            root.Element.Propagate(e => {
+            root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
             });
@@ -128,7 +128,7 @@ namespace MLEM.Ui {
             if (root == null)
                 return;
             this.rootElements.Remove(root);
-            root.Element.Propagate(e => {
+            root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
             });
@@ -148,9 +148,9 @@ namespace MLEM.Ui {
                 yield return this.rootElements[i];
         }
 
-        internal void Propagate(Action<Element> action) {
+        public void ApplyToAll(Action<Element> action) {
             foreach (var root in this.rootElements)
-                root.Element.Propagate(action);
+                root.Element.AndChildren(action);
         }
 
     }
