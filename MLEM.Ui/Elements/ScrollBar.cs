@@ -61,7 +61,7 @@ namespace MLEM.Ui.Elements {
 
             // MOUSE INPUT
             var moused = this.Controls.MousedElement;
-            if (moused == this && this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
+            if (moused == this && this.Controls.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 this.isMouseHeld = true;
             } else if (this.isMouseHeld && !this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = false;
