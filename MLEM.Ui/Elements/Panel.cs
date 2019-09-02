@@ -103,11 +103,12 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
+        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             if (this.scrollOverflow && this.renderTarget != null) {
                 // draw children onto the render target
                 batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
                 batch.GraphicsDevice.Clear(Color.Transparent);
+                // we don't apply the matrix here because it's already applied when drawing the render target
                 batch.Begin(SpriteSortMode.Deferred, blendState, samplerState);
                 // offset children by the render target's location
                 var area = this.GetRenderTargetArea();
@@ -115,7 +116,7 @@ namespace MLEM.Ui.Elements {
                 batch.End();
                 batch.GraphicsDevice.SetRenderTarget(null);
             }
-            base.DrawEarly(time, batch, alpha, blendState, samplerState);
+            base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         public override Element GetElementUnderPos(Point position) {

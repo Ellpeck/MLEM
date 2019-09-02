@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using MLEM.Extensions;
 using MLEM.Input;
 using MLEM.Ui.Elements;
 
@@ -40,7 +41,7 @@ namespace MLEM.Ui {
                 this.MousedElement = mousedNow;
                 this.system.ApplyToAll(e => e.OnMousedElementChanged?.Invoke(e, mousedNow));
             }
-            
+
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                 this.SelectElement(selectedNow, true);
@@ -50,7 +51,7 @@ namespace MLEM.Ui {
                 if (mousedNow != null)
                     mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
             }
-            
+
             // KEYBOARD INPUT
             else if (this.Input.IsKeyPressed(Keys.Enter) || this.Input.IsKeyPressed(Keys.Space)) {
                 if (this.SelectedElement != null) {
@@ -66,7 +67,7 @@ namespace MLEM.Ui {
                 // tab or shift-tab to next or previous element
                 this.SelectElement(this.GetNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), false);
             }
-            
+
             // TOUCH INPUT
             else if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
                 var tapped = this.GetElementUnderPos(tap.Position.ToPoint());
@@ -94,9 +95,10 @@ namespace MLEM.Ui {
             this.system.ApplyToAll(e => e.OnSelectedElementChanged?.Invoke(e, element));
         }
 
-        public Element GetElementUnderPos(Point position) {
+        public Element GetElementUnderPos(Point position, bool transform = true) {
             foreach (var root in this.system.GetRootElements()) {
-                var moused = root.Element.GetElementUnderPos(position);
+                var pos = transform ? position.Transform(root.InvTransform) : position;
+                var moused = root.Element.GetElementUnderPos(pos);
                 if (moused != null)
                     return moused;
             }

@@ -91,7 +91,7 @@ namespace MLEM.Ui {
         public void DrawEarly(GameTime time, SpriteBatch batch) {
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState);
+                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, root.Transform);
             }
         }
 
@@ -99,7 +99,7 @@ namespace MLEM.Ui {
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
                     continue;
-                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState);
+                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, null, null, null, root.Transform);
                 root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha, Point.Zero);
                 batch.End();
             }
@@ -172,6 +172,9 @@ namespace MLEM.Ui {
         }
         public float ActualScale => this.System.GlobalScale * this.Scale;
         public bool CanSelectContent = true;
+
+        public Matrix Transform = Matrix.Identity;
+        public Matrix InvTransform => Matrix.Invert(this.Transform);
 
         public RootElement(string name, Element element, UiSystem system) {
             this.Name = name;

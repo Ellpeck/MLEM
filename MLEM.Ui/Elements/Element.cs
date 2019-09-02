@@ -436,10 +436,10 @@ namespace MLEM.Ui.Elements {
                 this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha, offset);
         }
 
-        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState = null, SamplerState samplerState = null) {
+        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
-                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState);
+                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
             }
         }
 

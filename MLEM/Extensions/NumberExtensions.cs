@@ -32,6 +32,12 @@ namespace MLEM.Extensions {
             return new Point((point.X / f).Floor(), (point.Y / f).Floor());
         }
 
+        public static Point Transform(this Point position, Matrix matrix) {
+            return new Point(
+                (position.X * matrix.M11 + position.Y * matrix.M21 + matrix.M41).Floor(),
+                (position.X * matrix.M12 + position.Y * matrix.M22 + matrix.M42).Floor());
+        }
+
         public static Rectangle OffsetCopy(this Rectangle rect, Point offset) {
             rect.X += offset.X;
             rect.Y += offset.Y;

@@ -67,7 +67,7 @@ namespace MLEM.Ui.Elements {
                 this.isMouseHeld = false;
             }
             if (this.isMouseHeld)
-                this.ScrollToPos(this.Input.MousePosition);
+                this.ScrollToPos(this.Input.MousePosition.Transform(this.Root.InvTransform));
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
@@ -79,7 +79,7 @@ namespace MLEM.Ui.Elements {
                 // are we dragging on top of the panel?
                 if (this.Input.GetGesture(GestureType.VerticalDrag, out var drag)) {
                     // if the element under the drag's start position is on top of the panel, start dragging
-                    var touched = this.Parent.GetElementUnderPos(drag.Position.ToPoint());
+                    var touched = this.Parent.GetElementUnderPos(drag.Position.ToPoint().Transform(this.Root.InvTransform));
                     if (touched != null && touched != this)
                         this.isDragging = true;
 
@@ -95,14 +95,15 @@ namespace MLEM.Ui.Elements {
                 this.isTouchHeld = false;
             } else {
                 foreach (var loc in this.Input.TouchState) {
+                    var pos = Vector2.Transform(loc.Position, this.Root.InvTransform);
                     // if we just started touching and are on top of the scroller, then we should start scrolling
-                    if (this.DisplayArea.Contains(loc.Position) && !loc.TryGetPreviousLocation(out _)) {
+                    if (this.DisplayArea.Contains(pos) && !loc.TryGetPreviousLocation(out _)) {
                         this.isTouchHeld = true;
                         break;
                     }
                     // scroll no matter if we're on the scroller right now
                     if (this.isTouchHeld)
-                        this.ScrollToPos(loc.Position.ToPoint());
+                        this.ScrollToPos(pos.ToPoint());
                 }
             }
         }

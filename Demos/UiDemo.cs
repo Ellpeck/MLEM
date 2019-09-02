@@ -139,10 +139,19 @@ namespace Demos {
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
             root.AddChild(slider);
 
-            // This button uses a coroutine from my Coroutine NuGet package (which is included with MLEM.Startup)
-            // but the important thing it does is change its visual scale and offset (check the method below for more info)
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
+            // Check the WobbleButton method for an explanation of how this button works
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
                 OnPressed = element => CoroutineHandler.Start(this.WobbleButton(element)),
+                PositionOffset = new Vector2(0, 1)
+            });
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale). As this is an easily pulled off operation, it can be used for animations and other gimmicks.") {
+                OnPressed = element => {
+                    if (element.Root.Transform == Matrix.Identity) {
+                        element.Root.Transform = Matrix.CreateScale(0.75F) * Matrix.CreateRotationZ(0.25F) * Matrix.CreateTranslation(50, -10, 0);
+                    } else {
+                        element.Root.Transform = Matrix.Identity;
+                    }
+                },
                 PositionOffset = new Vector2(0, 1)
             });
 
@@ -183,7 +192,7 @@ namespace Demos {
         }
 
         // This method is used by the wobbling button (see above)
-        // Note that this particular example makes use of the Coroutine package
+        // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
         private IEnumerator<Wait> WobbleButton(Element button) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
