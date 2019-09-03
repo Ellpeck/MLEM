@@ -1,5 +1,7 @@
 namespace MLEM.Noise {
-    // The code in this class is based on https://gist.github.com/Flafla2/1a0b9ebef678bbce3215
+    /// <summary>
+    /// The code in this class is based on https://gist.github.com/Flafla2/1a0b9ebef678bbce3215
+    /// </summary>
     public static class Perlin {
 
         private static readonly int[] P;
