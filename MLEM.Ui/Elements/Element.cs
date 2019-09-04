@@ -306,12 +306,8 @@ namespace MLEM.Ui.Elements {
                     }
                 }
             }
-
-            var newArea = new Rectangle(pos, actualSize);
-            if (newArea == this.area)
-                return;
             
-            this.area = newArea;
+            this.area = new Rectangle(pos, actualSize);
             this.OnAreaUpdated?.Invoke(this);
 
             foreach (var child in this.Children)
