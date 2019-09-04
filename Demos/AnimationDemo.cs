@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Animations;
+using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
 
@@ -10,7 +11,7 @@ namespace Demos {
     public class AnimationDemo : Demo {
 
         private SpriteAnimationGroup group;
-        private int facing;
+        private Direction2 facing = Direction2.Down;
 
         public AnimationDemo(MlemGame game) : base(game) {
         }
@@ -31,16 +32,16 @@ namespace Demos {
             // using a group isn't necessary, but highly recommended for things like character animations as it makes
             // it very easy to have different animations play at different times
             this.group = new SpriteAnimationGroup();
-            // for example, the down animation should only play when we're facing down (0 in this case)
-            this.group.Add(downAnim, () => this.facing == 0);
-            this.group.Add(upAnim, () => this.facing == 1);
-            this.group.Add(leftAnim, () => this.facing == 2);
-            this.group.Add(rightAnim, () => this.facing == 3);
+            // for example, the down animation should only play when we're facing down
+            this.group.Add(downAnim, () => this.facing == Direction2.Down);
+            this.group.Add(upAnim, () => this.facing == Direction2.Up);
+            this.group.Add(leftAnim, () => this.facing == Direction2.Left);
+            this.group.Add(rightAnim, () => this.facing == Direction2.Right);
 
             // you can also add a priority to an animation in the group (10 in this case, which is higher than the default of 0)
             // if two animations' playing conditions are both true, then the one with the higher priority will be picked to play
             // in this instance, a standing "animation" is displayed when we're facing down and also holding the space key
-            this.group.Add(new SpriteAnimation(1F, tex, new Rectangle(0, 0, 8, 8)) {Name = "DownStanding"}, () => this.facing == 0 && this.InputHandler.IsKeyDown(Keys.Space), 10);
+            this.group.Add(new SpriteAnimation(1F, tex, new Rectangle(0, 0, 8, 8)) {Name = "DownStanding"}, () => this.facing == Direction2.Down && this.InputHandler.IsKeyDown(Keys.Space), 10);
 
             // you can also add a callback to see when the animation used changes
             this.group.OnAnimationChanged += (anim, newAnim) => {
@@ -52,13 +53,13 @@ namespace Demos {
             base.Update(gameTime);
 
             if (this.InputHandler.IsKeyDown(Keys.Down))
-                this.facing = 0;
+                this.facing = Direction2.Down;
             else if (this.InputHandler.IsKeyDown(Keys.Up))
-                this.facing = 1;
+                this.facing = Direction2.Up;
             else if (this.InputHandler.IsKeyDown(Keys.Left))
-                this.facing = 2;
+                this.facing = Direction2.Left;
             else if (this.InputHandler.IsKeyDown(Keys.Right))
-                this.facing = 3;
+                this.facing = Direction2.Right;
 
             // update the animation group
             // if not using a group, just update the animation itself here

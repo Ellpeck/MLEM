@@ -1,23 +1,13 @@
 using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MLEM.Misc;
 
 namespace MLEM.Pathfinding {
     public class AStar2 : AStar<Point> {
 
-        private static readonly Point[] AdjacentDirs = {
-            new Point(1, 0),
-            new Point(-1, 0),
-            new Point(0, 1),
-            new Point(0, -1)
-        };
-
-        private static readonly Point[] AllDirs = AdjacentDirs.Concat(new[] {
-            new Point(1, 1),
-            new Point(-1, 1),
-            new Point(1, -1),
-            new Point(-1, -1)
-        }).ToArray();
+        private static readonly Point[] AdjacentDirs = Direction2Helper.Adjacent.Offsets().ToArray();
+        private static readonly Point[] AllDirs = Direction2Helper.All.Offsets().ToArray();
 
         public AStar2(GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) :
             base(AllDirs, AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {
