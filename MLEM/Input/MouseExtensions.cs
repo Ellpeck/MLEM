@@ -1,8 +1,12 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Misc;
 
 namespace MLEM.Input {
     public static class MouseExtensions {
+
+        public static readonly MouseButton[] MouseButtons = EnumHelper.GetValues<MouseButton>().ToArray();
 
         public static ButtonState GetState(this MouseState state, MouseButton button) {
             switch (button) {
