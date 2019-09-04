@@ -54,7 +54,7 @@ namespace MLEM.Ui {
 
             // KEYBOARD INPUT
             else if (this.Input.IsKeyPressed(Keys.Enter) || this.Input.IsKeyPressed(Keys.Space)) {
-                if (this.SelectedElement != null) {
+                if (this.SelectedElement?.Root != null) {
                     if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                         // secondary action on element using space or enter
                         this.SelectedElement.OnSecondaryPressed?.Invoke(this.SelectedElement);
@@ -109,8 +109,8 @@ namespace MLEM.Ui {
             var currRoot = this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
             if (currRoot == null)
                 return null;
-            var children = currRoot.Element.GetChildren(regardChildrensChildren: true);
-            if (this.SelectedElement == null || this.SelectedElement.Root != currRoot) {
+            var children = currRoot.Element.GetChildren(regardChildrensChildren: true).Append(currRoot.Element);
+            if (this.SelectedElement?.Root != currRoot) {
                 return backward ? children.LastOrDefault(c => c.CanBeSelected) : children.FirstOrDefault(c => c.CanBeSelected);
             } else {
                 var foundCurr = false;
