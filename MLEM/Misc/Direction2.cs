@@ -53,7 +53,7 @@ namespace MLEM.Misc {
                 case Direction2.DownLeft:
                     return new Point(-1, 1);
                 case Direction2.UpLeft:
-                    return new Point(-1, 1);
+                    return new Point(-1, -1);
                 default:
                     return Point.Zero;
             }
