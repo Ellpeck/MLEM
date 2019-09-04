@@ -71,7 +71,7 @@ namespace MLEM.Input {
                         }
                     } else {
                         // if the repeating key isn't being held anymore, reset
-                        if (!this.KeyboardState.IsKeyDown(this.heldKey)) {
+                        if (!this.IsKeyDown(this.heldKey)) {
                             this.heldKey = Keys.None;
                         } else {
                             var now = DateTime.UtcNow;
