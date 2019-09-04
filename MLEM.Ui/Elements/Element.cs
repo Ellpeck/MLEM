@@ -307,7 +307,11 @@ namespace MLEM.Ui.Elements {
                 }
             }
 
-            this.area = new Rectangle(pos, actualSize);
+            var newArea = new Rectangle(pos, actualSize);
+            if (newArea == this.area)
+                return;
+            
+            this.area = newArea;
             this.OnAreaUpdated?.Invoke(this);
 
             foreach (var child in this.Children)
