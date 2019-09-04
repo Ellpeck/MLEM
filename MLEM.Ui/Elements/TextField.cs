@@ -91,7 +91,7 @@ namespace MLEM.Ui.Elements {
                 this.caretBlinkTimer = 0;
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -99,9 +99,9 @@ namespace MLEM.Ui.Elements {
                     tex = this.HoveredTexture;
                 color = this.HoveredColor * alpha;
             }
-            batch.Draw(tex, this.DisplayArea.OffsetCopy(offset), color, this.Scale);
+            batch.Draw(tex, this.DisplayArea, color, this.Scale);
 
-            var textPos = this.DisplayArea.Location.ToVector2() + new Vector2(offset.X + this.TextOffsetX * this.Scale, offset.Y + this.DisplayArea.Height / 2);
+            var textPos = this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2);
             if (this.text.Length > 0 || this.IsSelected) {
                 var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
                 var display = this.text.ToString(this.textStartIndex, this.text.Length - this.textStartIndex) + caret;
@@ -109,7 +109,7 @@ namespace MLEM.Ui.Elements {
             } else if (this.PlaceholderText != null) {
                 this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
             }
-            base.Draw(time, batch, alpha, offset);
+            base.Draw(time, batch, alpha);
         }
 
         public void SetText(object text, bool removeMismatching = false) {

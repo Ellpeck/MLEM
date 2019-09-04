@@ -74,9 +74,9 @@ namespace MLEM.Ui {
                     root.Element.AndChildren(e => e.OnTextInput?.Invoke(e, key, character));
             });
 
-            this.OnSelectedElementDrawn = (element, time, batch, alpha, offset) => {
+            this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
                 if (!this.Controls.SelectedLastElementWithMouse && element.SelectionIndicator != null) {
-                    batch.Draw(element.SelectionIndicator, element.DisplayArea.OffsetCopy(offset), Color.White * alpha);
+                    batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha);
                 }
             };
         }
@@ -100,7 +100,7 @@ namespace MLEM.Ui {
                 if (root.Element.IsHidden)
                     continue;
                 batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, null, null, null, root.Transform);
-                root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha, Point.Zero);
+                root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
                 batch.End();
             }
         }

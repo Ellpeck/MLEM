@@ -118,16 +118,16 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
-            batch.Draw(this.Background, this.DisplayArea.OffsetCopy(offset), Color.White * alpha, this.Scale);
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+            batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
 
-            var scrollerPos = new Point(this.DisplayArea.X + offset.X + this.ScrollerOffset.X, this.DisplayArea.Y + offset.Y + this.ScrollerOffset.Y);
+            var scrollerPos = new Point(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
             var scrollerOffset = new Point(
                 !this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale)).Floor(),
                 this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale)).Floor());
             var scrollerRect = new Rectangle(scrollerPos + scrollerOffset, this.ScrollerSize.Multiply(this.Scale));
             batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
-            base.Draw(time, batch, alpha, offset);
+            base.Draw(time, batch, alpha);
         }
 
         protected override void InitStyle(UiStyle style) {

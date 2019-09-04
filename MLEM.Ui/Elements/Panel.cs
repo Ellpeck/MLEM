@@ -92,14 +92,14 @@ namespace MLEM.Ui.Elements {
                 child.ScrollOffset = new Point(0, offset);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
-            batch.Draw(this.Texture, this.DisplayArea.OffsetCopy(offset), Color.White * alpha, this.Scale);
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+            batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow) {
-                base.Draw(time, batch, alpha, offset);
+                base.Draw(time, batch, alpha);
             } else if (this.renderTarget != null) {
                 // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
-                batch.Draw(this.renderTarget, this.GetRenderTargetArea().OffsetCopy(offset), Color.White);
+                batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
             }
         }
 
@@ -108,11 +108,10 @@ namespace MLEM.Ui.Elements {
                 // draw children onto the render target
                 batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
                 batch.GraphicsDevice.Clear(Color.Transparent);
-                // we don't apply the matrix here because it's already applied when drawing the render target
-                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState);
                 // offset children by the render target's location
                 var area = this.GetRenderTargetArea();
-                base.Draw(time, batch, alpha, new Point(-area.X, -area.Y));
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, Matrix.CreateTranslation(-area.X, -area.Y, 0));
+                base.Draw(time, batch, alpha);
                 batch.End();
                 batch.GraphicsDevice.SetRenderTarget(null);
             }

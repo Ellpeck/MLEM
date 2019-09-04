@@ -428,16 +428,16 @@ namespace MLEM.Ui.Elements {
                 child.Update(time);
         }
 
-        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
-            this.System.OnElementDrawn?.Invoke(this, time, batch, alpha, offset);
+        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha) {
+            this.System.OnElementDrawn?.Invoke(this, time, batch, alpha);
 
             foreach (var child in this.SortedChildren) {
                 if (!child.IsHidden)
-                    child.Draw(time, batch, alpha * child.DrawAlpha, offset);
+                    child.Draw(time, batch, alpha * child.DrawAlpha);
             }
 
             if (this.IsSelected)
-                this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha, offset);
+                this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha);
         }
 
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
@@ -474,7 +474,7 @@ namespace MLEM.Ui.Elements {
 
         public delegate void OtherElementCallback(Element thisElement, Element otherElement);
 
-        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha, Point offset);
+        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha);
 
     }
 }

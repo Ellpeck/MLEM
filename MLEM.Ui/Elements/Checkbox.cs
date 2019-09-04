@@ -46,7 +46,7 @@ namespace MLEM.Ui.Elements {
             return size;
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -55,11 +55,11 @@ namespace MLEM.Ui.Elements {
                 color = this.HoveredColor * alpha;
             }
 
-            var boxDisplayArea = new Rectangle(this.DisplayArea.Location, new Point(this.DisplayArea.Height)).OffsetCopy(offset);
+            var boxDisplayArea = new Rectangle(this.DisplayArea.Location, new Point(this.DisplayArea.Height));
             batch.Draw(tex, boxDisplayArea, color, this.Scale);
             if (this.Checked)
                 batch.Draw(this.Checkmark, boxDisplayArea, Color.White * alpha);
-            base.Draw(time, batch, alpha, offset);
+            base.Draw(time, batch, alpha);
         }
 
         protected override void InitStyle(UiStyle style) {

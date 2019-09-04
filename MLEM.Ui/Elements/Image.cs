@@ -22,15 +22,15 @@ namespace MLEM.Ui.Elements {
             return this.ScaleToImage ? this.Texture.Size : base.CalcActualSize(parentArea);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             if (this.MaintainImageAspect) {
                 var scale = Math.Min(this.DisplayArea.Width / (float) this.Texture.Width, this.DisplayArea.Height / (float) this.Texture.Height);
                 var imageOffset = new Vector2(this.DisplayArea.Width / 2F - this.Texture.Width * scale / 2, this.DisplayArea.Height / 2F - this.Texture.Height * scale / 2);
-                batch.Draw(this.Texture, (this.DisplayArea.Location + offset).ToVector2() + imageOffset, this.Color * alpha, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                batch.Draw(this.Texture, this.DisplayArea.Location.ToVector2() + imageOffset, this.Color * alpha, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
             } else {
-                batch.Draw(this.Texture, this.DisplayArea.OffsetCopy(offset), this.Color * alpha);
+                batch.Draw(this.Texture, this.DisplayArea, this.Color * alpha);
             }
-            base.Draw(time, batch, alpha, offset);
+            base.Draw(time, batch, alpha);
         }
 
     }

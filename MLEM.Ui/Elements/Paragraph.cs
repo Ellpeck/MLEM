@@ -66,17 +66,16 @@ namespace MLEM.Ui.Elements {
                 this.Text = this.GetTextCallback(this);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, Point offset) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
             if (this.Background != null)
-                batch.Draw(this.Background, this.Area.OffsetCopy(offset), this.BackgroundColor * alpha);
+                batch.Draw(this.Background, this.Area, this.BackgroundColor * alpha);
 
             var pos = this.DisplayArea.Location.ToVector2();
-            var off = offset.ToVector2();
             var sc = this.TextScale * this.Scale;
 
             // if we don't have any formatting codes, then we don't need to do complex drawing
             if (this.codeLocations.Count <= 0) {
-                this.regularFont.DrawString(batch, this.splitText, pos + off, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                this.regularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we need to go through each index and see how it should be drawn
                 var characterCounter = 0;
@@ -112,12 +111,12 @@ namespace MLEM.Ui.Elements {
                         innerOffset.X = 0;
                         innerOffset.Y += this.regularFont.LineHeight * sc;
                     } else {
-                        currFont.DrawString(batch, cSt, pos + off + innerOffset, currColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                        currFont.DrawString(batch, cSt, pos + innerOffset, currColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
                         innerOffset.X += this.regularFont.MeasureString(cSt).X * sc;
                     }
                 }
             }
-            base.Draw(time, batch, alpha, offset);
+            base.Draw(time, batch, alpha);
         }
 
         protected override void InitStyle(UiStyle style) {
