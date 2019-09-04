@@ -5,15 +5,17 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Input {
     public class InputHandler {
 
-        public static MouseButton[] MouseButtons = EnumHelper.GetValues<MouseButton>().ToArray();
+        public static readonly MouseButton[] MouseButtons = EnumHelper.GetValues<MouseButton>().ToArray();
 
         public KeyboardState LastKeyboardState { get; private set; }
         public KeyboardState KeyboardState { get; private set; }
+        public Keys[] PressedKeys { get; private set; }
         public bool HandleKeyboard;
 
         public MouseState LastMouseState { get; private set; }
@@ -35,6 +37,14 @@ namespace MLEM.Input {
         private readonly List<GestureSample> gestures = new List<GestureSample>();
         public bool HandleTouch;
 
+        public bool HandleKeyboardRepeats = true;
+        public TimeSpan KeyRepeatDelay = TimeSpan.FromSeconds(0.65);
+        public TimeSpan KeyRepeatRate = TimeSpan.FromSeconds(0.05);
+        private DateTime heldKeyStart;
+        private DateTime lastKeyRepeat;
+        private bool triggerRepeat;
+        private Keys heldKey;
+
         public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
@@ -44,9 +54,41 @@ namespace MLEM.Input {
         }
 
         public void Update() {
+            this.triggerRepeat = false;
             if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = Keyboard.GetState();
+                this.PressedKeys = this.KeyboardState.GetPressedKeys();
+
+                if (this.HandleKeyboardRepeats) {
+                    if (this.heldKey == Keys.None) {
+                        // if we're not repeating a key, set the first key being held to the repeat key
+                        // note that modifier keys don't count as that wouldn't really make sense
+                        var key = this.PressedKeys.FirstOrDefault(k => !k.IsModifier());
+                        if (key != Keys.None) {
+                            this.heldKey = key;
+                            this.heldKeyStart = DateTime.UtcNow;
+                        }
+                    } else {
+                        // if the repeating key isn't being held anymore, reset
+                        if (!this.KeyboardState.IsKeyDown(this.heldKey)) {
+                            this.heldKey = Keys.None;
+                        } else {
+                            var now = DateTime.UtcNow;
+                            var holdTime = now - this.heldKeyStart;
+                            // if we've been holding the key longer than the initial delay...
+                            if (holdTime >= this.KeyRepeatDelay) {
+                                var diff = now - this.lastKeyRepeat;
+                                // and we've been holding it for longer than a repeat...
+                                if (diff >= this.KeyRepeatRate) {
+                                    this.lastKeyRepeat = now;
+                                    // then trigger a repeat, causing IsKeyPressed to be true once
+                                    this.triggerRepeat = true;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
@@ -95,36 +137,30 @@ namespace MLEM.Input {
         }
 
         public bool IsKeyPressed(Keys key) {
+            // if the queried key is the held key and a repeat should be triggered, return true
+            if (key == this.heldKey && this.triggerRepeat)
+                return true;
             return this.WasKeyUp(key) && this.IsKeyDown(key);
         }
 
         public bool IsModifierKeyDown(ModifierKey modifier) {
-            switch (modifier) {
-                case ModifierKey.Shift:
-                    return this.IsKeyDown(Keys.LeftShift) || this.IsKeyDown(Keys.RightShift);
-                case ModifierKey.Control:
-                    return this.IsKeyDown(Keys.LeftControl) || this.IsKeyDown(Keys.RightControl);
-                case ModifierKey.Alt:
-                    return this.IsKeyDown(Keys.LeftAlt) || this.IsKeyDown(Keys.RightAlt);
-                default:
-                    throw new ArgumentException(nameof(modifier));
-            }
+            return modifier.GetKeys().Any(this.IsKeyDown);
         }
 
         public bool IsMouseButtonDown(MouseButton button) {
-            return GetState(this.MouseState, button) == ButtonState.Pressed;
+            return this.MouseState.GetState(button) == ButtonState.Pressed;
         }
 
         public bool IsMouseButtonUp(MouseButton button) {
-            return GetState(this.MouseState, button) == ButtonState.Released;
+            return this.MouseState.GetState(button) == ButtonState.Released;
         }
 
         public bool WasMouseButtonDown(MouseButton button) {
-            return GetState(this.LastMouseState, button) == ButtonState.Pressed;
+            return this.LastMouseState.GetState(button) == ButtonState.Pressed;
         }
 
         public bool WasMouseButtonUp(MouseButton button) {
-            return GetState(this.LastMouseState, button) == ButtonState.Released;
+            return this.LastMouseState.GetState(button) == ButtonState.Released;
         }
 
         public bool IsMouseButtonPressed(MouseButton button) {
@@ -219,41 +255,6 @@ namespace MLEM.Input {
             foreach (var gesture in gestures)
                 TouchPanel.EnabledGestures |= gesture;
         }
-
-        private static ButtonState GetState(MouseState state, MouseButton button) {
-            switch (button) {
-                case MouseButton.Left:
-                    return state.LeftButton;
-                case MouseButton.Middle:
-                    return state.MiddleButton;
-                case MouseButton.Right:
-                    return state.RightButton;
-                case MouseButton.Extra1:
-                    return state.XButton1;
-                case MouseButton.Extra2:
-                    return state.XButton2;
-                default:
-                    throw new ArgumentException(nameof(button));
-            }
-        }
-
-    }
-
-    public enum MouseButton {
-
-        Left,
-        Middle,
-        Right,
-        Extra1,
-        Extra2
-
-    }
-
-    public enum ModifierKey {
-
-        Shift,
-        Control,
-        Alt
 
     }
 }
