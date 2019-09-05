@@ -326,8 +326,8 @@ namespace MLEM.Ui.Elements {
 
         protected virtual Point CalcActualSize(Rectangle parentArea) {
             return new Point(
-                (this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X).Floor(),
-                (this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y).Floor());
+                (this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X).Ceil(),
+                (this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y).Ceil());
         }
 
         protected virtual Rectangle GetAreaForAutoAnchors() {
