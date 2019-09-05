@@ -54,5 +54,9 @@ namespace MLEM.Font {
             return this.Font.SplitString(text, width, scale);
         }
 
+        public string TruncateString(string text, float width, float scale, bool fromBack = false) {
+            return this.Font.TruncateString(text, width, scale, fromBack);
+        }
+
     }
 }

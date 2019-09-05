@@ -82,6 +82,10 @@ namespace MLEM.Ui.Style {
                 return text;
             }
 
+            public string TruncateString(string text, float width, float scale, bool fromBack = false) {
+                return text;
+            }
+
         }
 
     }

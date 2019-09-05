@@ -29,8 +29,8 @@ namespace MLEM.Ui.Elements {
         public float TextOffsetX = 4;
         private IGenericFont font;
         private double caretBlinkTimer;
-        private int textStartIndex;
-        private int textDisplayLength;
+        private string displayedText;
+        private int textOffset;
         public Rule InputRule;
         public string MobileTitle;
         public string MobileDescription;
@@ -57,8 +57,10 @@ namespace MLEM.Ui.Elements {
                     if (!this.IsSelected)
                         return;
                     if (key == Keys.Back) {
-                        this.CaretPos--;
-                        this.RemoveText(this.CaretPos, 1);
+                        if (this.CaretPos > 0) {
+                            this.CaretPos--;
+                            this.RemoveText(this.CaretPos, 1);
+                        }
                     } else if (key == Keys.Delete) {
                         this.RemoveText(this.CaretPos, 1);
                     } else {
@@ -81,19 +83,27 @@ namespace MLEM.Ui.Elements {
 
         private void HandleTextChange(bool textChanged = true) {
             // not initialized yet
-            if (this.font == null) {
-                this.textDisplayLength = this.text.Length;
+            if (this.font == null)
                 return;
-            }
             var length = this.font.MeasureString(this.text).X * this.TextScale;
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
             if (length > maxWidth) {
-                // TODO
-                this.textStartIndex = 0;
-                this.textDisplayLength = this.text.Length;
+                // if we're moving the caret to the left
+                if (this.textOffset > this.CaretPos) {
+                    this.textOffset = this.CaretPos;
+                } else {
+                    // if we're moving the caret to the right
+                    var importantArea = this.text.ToString(this.textOffset, Math.Min(this.CaretPos, this.text.Length) - this.textOffset);
+                    var bound = this.CaretPos - this.font.TruncateString(importantArea, maxWidth, this.TextScale, true).Length;
+                    if (this.textOffset < bound) {
+                        this.textOffset = bound;
+                    }
+                }
+                var visible = this.text.ToString(this.textOffset, this.text.Length - this.textOffset);
+                this.displayedText = this.font.TruncateString(visible, maxWidth, this.TextScale);
             } else {
-                this.textStartIndex = 0;
-                this.textDisplayLength = this.text.Length;
+                this.displayedText = this.Text;
+                this.textOffset = 0;
             }
 
             if (textChanged)
@@ -102,6 +112,10 @@ namespace MLEM.Ui.Elements {
 
         public override void Update(GameTime time) {
             base.Update(time);
+
+            // handle first initialization if not done
+            if (this.displayedText == null)
+                this.HandleTextChange(false);
 
             if (this.Input.IsKeyPressed(Keys.Left)) {
                 this.CaretPos--;
@@ -131,7 +145,7 @@ namespace MLEM.Ui.Elements {
             var textPos = this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2);
             if (this.text.Length > 0 || this.IsSelected) {
                 var caret = this.IsSelected ? this.caretBlinkTimer >= 0.5F ? "|" : " " : "";
-                var display = this.text.ToString(this.textStartIndex, this.textDisplayLength).Insert(this.CaretPos - this.textStartIndex, caret);
+                var display = this.displayedText.Insert(this.CaretPos - this.textOffset, caret);
                 this.font.DrawCenteredString(batch, display, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
             } else if (this.PlaceholderText != null) {
                 this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);

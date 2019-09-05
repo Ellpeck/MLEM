@@ -11,5 +11,9 @@ namespace MLEM.Extended.Extensions {
             return SpriteFontExtensions.SplitString(s => font.MeasureString(s).Width, text, width, scale);
         }
 
+        public static string TruncateString(this BitmapFont font, string text, float width, float scale, bool fromBack = false) {
+            return SpriteFontExtensions.TruncateString(s => font.MeasureString(s).Width, text, width, scale, fromBack);
+        }
+
     }
 }

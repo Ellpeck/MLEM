@@ -10,6 +10,25 @@ namespace MLEM.Extensions {
             return SplitString(s => font.MeasureString(s).X, text, width, scale);
         }
 
+        public static string TruncateString(this SpriteFont font, string text, float width, float scale, bool fromBack = false) {
+            return TruncateString(s => font.MeasureString(s).X, text, width, scale, fromBack);
+        }
+
+        public static string TruncateString(Func<StringBuilder, float> widthFunc, string text, float width, float scale, bool fromBack = false) {
+            var total = new StringBuilder();
+            for (var i = 0; i < text.Length; i++) {
+                if (fromBack) {
+                    total.Insert(0, text[text.Length - 1 - i]);
+                } else {
+                    total.Append(text[i]);
+                }
+
+                if (widthFunc(total) * scale >= width)
+                    return total.ToString(fromBack ? 1 : 0, total.Length - 1);
+            }
+            return total.ToString();
+        }
+
         public static string SplitString(Func<StringBuilder, float> widthFunc, string text, float width, float scale) {
             var total = new StringBuilder();
             foreach (var line in text.Split('\n')) {

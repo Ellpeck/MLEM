@@ -28,5 +28,7 @@ namespace MLEM.Font {
 
         string SplitString(string text, float width, float scale);
 
+        string TruncateString(string text, float width, float scale, bool fromBack = false);
+
     }
 }
