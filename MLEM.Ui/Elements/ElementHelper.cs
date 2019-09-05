@@ -39,7 +39,7 @@ namespace MLEM.Ui.Elements {
 
             var field = new TextField(Anchor.TopLeft, Vector2.One, rule ?? TextField.OnlyNumbers);
             field.OnTextChange = onTextChange;
-            field.AppendText(defaultValue.ToString());
+            field.SetText(defaultValue.ToString());
             group.AddChild(field);
             group.OnAreaUpdated += e => field.Size = new Vector2((e.Area.Width - e.Area.Height / 2) / e.Scale, 1);
 

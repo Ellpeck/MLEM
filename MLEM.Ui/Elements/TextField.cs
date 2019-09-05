@@ -30,9 +30,23 @@ namespace MLEM.Ui.Elements {
         private IGenericFont font;
         private double caretBlinkTimer;
         private int textStartIndex;
+        private int textDisplayLength;
         public Rule InputRule;
         public string MobileTitle;
         public string MobileDescription;
+        private int caretPos;
+        public int CaretPos {
+            get {
+                this.CaretPos = MathHelper.Clamp(this.caretPos, 0, this.text.Length);
+                return this.caretPos;
+            }
+            set {
+                if (this.caretPos != value) {
+                    this.caretPos = value;
+                    this.HandleTextChange(false);
+                }
+            }
+        }
 
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, IGenericFont font = null) : base(anchor, size) {
             this.InputRule = rule ?? DefaultRule;
@@ -43,11 +57,12 @@ namespace MLEM.Ui.Elements {
                     if (!this.IsSelected)
                         return;
                     if (key == Keys.Back) {
-                        if (this.text.Length > 0) {
-                            this.RemoveText(this.text.Length - 1, 1);
-                        }
+                        this.CaretPos--;
+                        this.RemoveText(this.CaretPos, 1);
+                    } else if (key == Keys.Delete) {
+                        this.RemoveText(this.CaretPos, 1);
                     } else {
-                        this.AppendText(character);
+                        this.InsertText(character);
                     }
                 };
             } else {
@@ -60,31 +75,43 @@ namespace MLEM.Ui.Elements {
                     }
                 };
             }
+            this.OnDeselected += e => this.CaretPos = 0;
+            this.OnSelected += e => this.CaretPos = this.text.Length;
         }
 
-        private void HandleTextChange() {
+        private void HandleTextChange(bool textChanged = true) {
             // not initialized yet
-            if (this.font == null)
+            if (this.font == null) {
+                this.textDisplayLength = this.text.Length;
                 return;
+            }
             var length = this.font.MeasureString(this.text).X * this.TextScale;
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
             if (length > maxWidth) {
-                for (var i = 0; i < this.text.Length; i++) {
-                    var substring = this.text.ToString(i, this.text.Length - i);
-                    if (this.font.MeasureString(substring).X * this.TextScale <= maxWidth) {
-                        this.textStartIndex = i;
-                        break;
-                    }
-                }
+                // TODO
+                this.textStartIndex = 0;
+                this.textDisplayLength = this.text.Length;
             } else {
                 this.textStartIndex = 0;
+                this.textDisplayLength = this.text.Length;
             }
 
-            this.OnTextChange?.Invoke(this, this.text.ToString());
+            if (textChanged)
+                this.OnTextChange?.Invoke(this, this.Text);
         }
 
         public override void Update(GameTime time) {
             base.Update(time);
+
+            if (this.Input.IsKeyPressed(Keys.Left)) {
+                this.CaretPos--;
+            } else if (this.Input.IsKeyPressed(Keys.Right)) {
+                this.CaretPos++;
+            } else if (this.Input.IsKeyPressed(Keys.Home)) {
+                this.CaretPos = 0;
+            } else if (this.Input.IsKeyPressed(Keys.End)) {
+                this.CaretPos = this.text.Length;
+            }
 
             this.caretBlinkTimer += time.ElapsedGameTime.TotalSeconds;
             if (this.caretBlinkTimer >= 1)
@@ -103,8 +130,8 @@ namespace MLEM.Ui.Elements {
 
             var textPos = this.DisplayArea.Location.ToVector2() + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2);
             if (this.text.Length > 0 || this.IsSelected) {
-                var caret = this.IsSelected && this.caretBlinkTimer >= 0.5F ? "|" : "";
-                var display = this.text.ToString(this.textStartIndex, this.text.Length - this.textStartIndex) + caret;
+                var caret = this.IsSelected ? this.caretBlinkTimer >= 0.5F ? "|" : " " : "";
+                var display = this.text.ToString(this.textStartIndex, this.textDisplayLength).Insert(this.CaretPos - this.textStartIndex, caret);
                 this.font.DrawCenteredString(batch, display, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
             } else if (this.PlaceholderText != null) {
                 this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
@@ -124,17 +151,22 @@ namespace MLEM.Ui.Elements {
                 return;
             this.text.Clear();
             this.text.Append(text);
+            this.CaretPos = this.text.Length;
             this.HandleTextChange();
         }
 
-        public void AppendText(object text) {
-            if (!this.InputRule(this, text.ToString()))
+        public void InsertText(object text) {
+            var strg = text.ToString();
+            if (!this.InputRule(this, strg))
                 return;
-            this.text.Append(text);
+            this.text.Insert(this.CaretPos, strg);
+            this.CaretPos += strg.Length;
             this.HandleTextChange();
         }
 
         public void RemoveText(int index, int length) {
+            if (index < 0 || index >= this.text.Length)
+                return;
             this.text.Remove(index, length);
             this.HandleTextChange();
         }
