@@ -11,6 +11,7 @@ using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
+using MLEM.Ui.Format;
 using MLEM.Ui.Style;
 
 namespace Demos {
@@ -33,6 +34,7 @@ namespace Demos {
         public override void LoadContent() {
             this.testTexture = LoadContent<Texture2D>("Textures/Test");
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
+            var tree = new TextureRegion(LoadContent<Texture2D>("Textures/Tree"));
             base.LoadContent();
 
             // create a new style
@@ -90,8 +92,15 @@ namespace Demos {
             });
 
             root.AddChild(new VerticalSpace(3));
+
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular] and [Bold]Bold[Regular]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
+
+            // adding some custom image formatting codes
+            // note that all added formatting codes need to be lowercase, while their casing doesn't matter when used
+            TextFormatting.FormattingCodes["grass"] = new FormattingCode(image.Texture);
+            TextFormatting.FormattingCodes["tree"] = new FormattingCode(tree);
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images! Note that these images have to be square, or [Tree] bad things happen."));
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
@@ -170,8 +179,7 @@ namespace Demos {
                 PositionOffset = new Vector2(0, 1)
             });
 
-            var region = new TextureRegion(LoadContent<Texture2D>("Textures/Tree"));
-            root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), region, "Button with image")).PositionOffset = new Vector2(0, 1);
+            root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), tree, "Button with image")).PositionOffset = new Vector2(0, 1);
 
             // Below are some querying examples that help you find certain elements easily
 

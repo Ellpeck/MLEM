@@ -77,44 +77,8 @@ namespace MLEM.Ui.Elements {
             if (this.codeLocations.Count <= 0) {
                 this.regularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
-                // if we have formatting codes, we need to go through each index and see how it should be drawn
-                var characterCounter = 0;
-                var currColor = this.TextColor;
-                var currFont = this.regularFont;
-
-                var innerOffset = new Vector2();
-                foreach (var c in this.splitText) {
-                    // check if the current character's index has a formatting code
-                    this.codeLocations.TryGetValue(characterCounter, out var code);
-                    if (code != null) {
-                        // if so, apply it
-                        if (code.IsColorCode) {
-                            currColor = code.Color;
-                        } else {
-                            switch (code.Style) {
-                                case TextStyle.Regular:
-                                    currFont = this.regularFont;
-                                    break;
-                                case TextStyle.Bold:
-                                    currFont = this.boldFont;
-                                    break;
-                                case TextStyle.Italic:
-                                    currFont = this.italicFont;
-                                    break;
-                            }
-                        }
-                    }
-                    characterCounter++;
-
-                    var cSt = c.ToString();
-                    if (c == '\n') {
-                        innerOffset.X = 0;
-                        innerOffset.Y += this.regularFont.LineHeight * sc;
-                    } else {
-                        currFont.DrawString(batch, cSt, pos + innerOffset, currColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
-                        innerOffset.X += this.regularFont.MeasureString(cSt).X * sc;
-                    }
-                }
+                // if we have formatting codes, we should do it
+                this.regularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.boldFont, this.italicFont);
             }
             base.Draw(time, batch, alpha);
         }
