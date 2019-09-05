@@ -18,6 +18,8 @@ namespace AndroidDemos {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
             var g = new GameImpl();
+            // disable mouse handling for android to make emulator behavior more coherent
+            g.OnLoadContent += game => game.InputHandler.HandleMouse = false;
             this.SetContentView((View) g.Services.GetService(typeof(View)));
             g.Run();
         }

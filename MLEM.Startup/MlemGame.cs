@@ -18,6 +18,10 @@ namespace MLEM.Startup {
         public InputHandler InputHandler { get; protected set; }
         public UiSystem UiSystem { get; protected set; }
 
+        public GenericCallback OnLoadContent;
+        public TimeCallback OnUpdate;
+        public TimeCallback OnDraw;
+
         public MlemGame(int windowWidth = 1280, int windowHeight = 720, bool vsync = false, bool allowResizing = true, string contentDir = "Content") {
             instance = this;
             this.GraphicsDeviceManager = new GraphicsDeviceManager(this) {
@@ -33,6 +37,7 @@ namespace MLEM.Startup {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler();
             this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
+            this.OnLoadContent?.Invoke(this);
         }
 
         protected override void Update(GameTime gameTime) {
@@ -41,6 +46,7 @@ namespace MLEM.Startup {
             this.InputHandler.Update();
             this.UiSystem.Update(gameTime);
 
+            this.OnUpdate?.Invoke(this, gameTime);
             CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
         }
@@ -49,6 +55,7 @@ namespace MLEM.Startup {
             this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
+            this.OnDraw?.Invoke(this, gameTime);
             CoroutineHandler.RaiseEvent(CoroutineEvents.Draw);
         }
 
@@ -59,6 +66,10 @@ namespace MLEM.Startup {
         public static T LoadContent<T>(string name) {
             return instance.Content.Load<T>(name);
         }
+
+        public delegate void GenericCallback(MlemGame game);
+
+        public delegate void TimeCallback(MlemGame game, GameTime time);
 
     }
 }
