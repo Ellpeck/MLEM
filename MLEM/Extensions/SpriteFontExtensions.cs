@@ -37,8 +37,10 @@ namespace MLEM.Extensions {
                     curr.Append(word).Append(' ');
                     if (widthFunc(curr) * scale >= width) {
                         var len = curr.Length - word.Length - 1;
-                        total.Append(curr.ToString(0, len - 1)).Append('\n');
-                        curr.Remove(0, len);
+                        if (len > 0) {
+                            total.Append(curr.ToString(0, len - 1)).Append('\n');
+                            curr.Remove(0, len);
+                        }
                     }
                 }
                 total.Append(curr.ToString(0, curr.Length - 1)).Append('\n');
