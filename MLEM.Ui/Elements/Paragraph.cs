@@ -14,8 +14,7 @@ namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
         private string text;
-        private string splitText;
-        private Dictionary<int, FormattingCode> codeLocations;
+        private readonly FormattedString formattedText = new FormattedString();
         private IGenericFont regularFont;
         private IGenericFont boldFont;
         private IGenericFont italicFont;
@@ -54,10 +53,9 @@ namespace MLEM.Ui.Elements {
             var size = base.CalcActualSize(parentArea);
 
             var sc = this.TextScale * this.Scale;
-            this.splitText = this.regularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
-            this.codeLocations = this.text.GetFormattingCodes();
+            this.formattedText.Value = this.regularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
 
-            var textDims = this.regularFont.MeasureString(this.splitText) * sc;
+            var textDims = this.regularFont.MeasureString(this.formattedText) * sc;
             return new Point(this.AutoAdjustWidth ? textDims.X.Ceil() + this.ScaledPadding.X * 2 : size.X, textDims.Y.Ceil() + this.ScaledPadding.Y * 2);
         }
 
@@ -74,14 +72,7 @@ namespace MLEM.Ui.Elements {
 
             var pos = this.DisplayArea.Location.ToVector2();
             var sc = this.TextScale * this.Scale;
-
-            // if we don't have any formatting codes, then we don't need to do complex drawing
-            if (this.codeLocations.Count <= 0) {
-                this.regularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
-            } else {
-                // if we have formatting codes, we should do it
-                this.regularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.boldFont, this.italicFont, 0, this.TimeIntoAnimation);
-            }
+            this.formattedText.Draw(this.regularFont, batch, pos, this.TextColor * alpha, sc, this.boldFont, this.italicFont, 0, this.TimeIntoAnimation);
             base.Draw(time, batch, alpha);
         }
 
