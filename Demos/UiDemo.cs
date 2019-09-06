@@ -102,6 +102,12 @@ namespace Demos {
             TextFormatting.FormattingCodes["tree"] = new FormattingCode(tree);
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images! Note that these images have to be square, or [Tree] bad things happen."));
 
+            var animatedPar = root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esc typing effect by default. Of course, more animations can be added though."));
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {
+                // to reset any animation, simply change the paragraph's TimeIntoAnimation
+                OnPressed = e => animatedPar.TimeIntoAnimation = TimeSpan.Zero
+            });
+
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
             root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {

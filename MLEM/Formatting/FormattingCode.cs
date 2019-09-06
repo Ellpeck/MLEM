@@ -8,6 +8,7 @@ namespace MLEM.Formatting {
         public readonly Color Color;
         public readonly TextStyle Style;
         public readonly TextureRegion Icon;
+        public readonly TextAnimation.DrawCharacter Animation;
 
         public FormattingCode(Color color) {
             this.Color = color;
@@ -24,6 +25,11 @@ namespace MLEM.Formatting {
             this.CodeType = Type.Icon;
         }
 
+        public FormattingCode(TextAnimation.DrawCharacter animation) {
+            this.Animation = animation;
+            this.CodeType = Type.Animation;
+        }
+
         public string GetReplacementString() {
             return this.CodeType == Type.Icon ? TextFormatting.OneEmString : string.Empty;
         }
@@ -32,7 +38,8 @@ namespace MLEM.Formatting {
 
             Color,
             Style,
-            Icon
+            Icon,
+            Animation
 
         }
 

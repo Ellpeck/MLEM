@@ -35,6 +35,7 @@ namespace MLEM.Ui.Elements {
         }
         public bool AutoAdjustWidth;
         public TextCallback GetTextCallback;
+        public TimeSpan TimeIntoAnimation;
 
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
             : this(anchor, width, "", centerText) {
@@ -64,6 +65,7 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
             if (this.GetTextCallback != null)
                 this.Text = this.GetTextCallback(this);
+            this.TimeIntoAnimation += time.ElapsedGameTime;
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
@@ -78,7 +80,7 @@ namespace MLEM.Ui.Elements {
                 this.regularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we should do it
-                this.regularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.boldFont, this.italicFont);
+                this.regularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.boldFont, this.italicFont, 0, this.TimeIntoAnimation);
             }
             base.Draw(time, batch, alpha);
         }
