@@ -11,15 +11,16 @@ namespace MLEM.Formatting {
         public string Value {
             get => this.value;
             set {
-                if (this.value != value) {
-                    this.value = value;
+                var val = value ?? string.Empty;
+                if (this.value != val) {
+                    this.value = val;
                     this.isDirty = true;
                 }
             }
         }
         private Dictionary<int, FormattingCode> codeLocations;
         private string textWithoutFormatting;
-        private bool isDirty;
+        private bool isDirty = true;
 
         public FormattedString(string s = null) {
             this.Value = s;
@@ -32,8 +33,8 @@ namespace MLEM.Formatting {
         private void CheckDirtyState() {
             if (this.isDirty) {
                 this.isDirty = false;
-                this.codeLocations = this.value.GetFormattingCodes();
-                this.textWithoutFormatting = this.value.RemoveFormatting();
+                this.codeLocations = this.Value.GetFormattingCodes();
+                this.textWithoutFormatting = this.Value.RemoveFormatting();
             }
         }
 
