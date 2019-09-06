@@ -1,8 +1,7 @@
-using System;
 using Microsoft.Xna.Framework;
 using MLEM.Textures;
 
-namespace MLEM.Ui.Format {
+namespace MLEM.Formatting {
     public class FormattingCode {
 
         public readonly Type CodeType;

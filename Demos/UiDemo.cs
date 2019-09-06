@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Formatting;
 using MLEM.Input;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
-using MLEM.Ui.Format;
 using MLEM.Ui.Style;
 
 namespace Demos {

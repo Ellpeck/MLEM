@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Formatting;
 using MLEM.Textures;
-using MLEM.Ui.Format;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {

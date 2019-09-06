@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -7,12 +6,16 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Textures;
 
-namespace MLEM.Ui.Format {
+namespace MLEM.Formatting {
     public static class TextFormatting {
 
         public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>();
-        public static string OneEmString = "    ";
         private static Regex formatRegex;
+
+        // Unicode suggests that a space should be 1/4em in length, so this string should be
+        // 1em in length for most fonts. If it's not for the used font, the user can just
+        // change the value of this string to something that is in fact 1em long
+        public static string OneEmString = "    ";
 
         static TextFormatting() {
             SetFormatIndicators('[', ']');
