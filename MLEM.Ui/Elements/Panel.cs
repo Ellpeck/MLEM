@@ -116,7 +116,7 @@ namespace MLEM.Ui.Elements {
                 base.Draw(time, batch, alpha);
                 batch.End();
                 // also draw any children early within the render target with the translation applied
-                base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix * trans);
+                base.DrawEarly(time, batch, alpha, blendState, samplerState, trans);
                 batch.GraphicsDevice.SetRenderTarget(null);
             } else {
                 base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
