@@ -110,12 +110,17 @@ namespace MLEM.Ui.Elements {
                 batch.GraphicsDevice.Clear(Color.Transparent);
                 // offset children by the render target's location
                 var area = this.GetRenderTargetArea();
-                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, Matrix.CreateTranslation(-area.X, -area.Y, 0));
+                var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
+                // do the usual draw, but within the render target
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, trans);
                 base.Draw(time, batch, alpha);
                 batch.End();
+                // also draw any children early within the render target with the translation applied
+                base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix * trans);
                 batch.GraphicsDevice.SetRenderTarget(null);
+            } else {
+                base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
             }
-            base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         public override Element GetElementUnderPos(Point position) {
