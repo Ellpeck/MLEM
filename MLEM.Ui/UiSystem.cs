@@ -76,7 +76,7 @@ namespace MLEM.Ui {
 
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
                 if (!this.Controls.SelectedLastElementWithMouse && element.SelectionIndicator != null) {
-                    batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha);
+                    batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
                 }
             };
         }
