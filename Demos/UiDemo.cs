@@ -155,8 +155,9 @@ namespace Demos {
             root.AddChild(slider);
 
             // Check the WobbleButton method for an explanation of how this button works
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
-                OnPressed = element => CoroutineHandler.Start(this.WobbleButton(element)),
+            var group = root.AddChild(new CustomDrawGroup(Anchor.AutoLeft, new Vector2(1, 0)));
+            group.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
+                OnPressed = element => CoroutineHandler.Start(this.WobbleButton(group)),
                 PositionOffset = new Vector2(0, 1)
             });
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale). As this is an easily pulled off operation, it can be used for animations and other gimmicks.") {
@@ -207,19 +208,18 @@ namespace Demos {
 
         // This method is used by the wobbling button (see above)
         // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
-        private IEnumerator<Wait> WobbleButton(Element button) {
+        private IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
-                // The imporant bit is that it changes its added display scale and offset, allowing the button to still maintain the
+                // The important bit is that it changes its added display scale and offset, allowing the button to still maintain the
                 // correct position and scaling for both anchoring and interacting purposes, but to show any kind of animation visually
                 // This could be useful, for example, to create a little feedback effect to clicking it where it changes size for a second
-                button.AddedDisplayScale = new Vector2((float) Math.Sin(counter));
-                button.AddedDisplayOffset = new Vector2((float) Math.Sin(counter / 2) * 4, 0);
+                // note that other changes can be applied to a custom draw group, like MG effects and so on
+                group.Transform = Matrix.CreateTranslation((float) Math.Sin(counter / 2) * 10 * group.Scale, 0, 0);
                 counter += 0.1F;
                 yield return new WaitSeconds(0.01F);
             }
-            button.AddedDisplayScale = Vector2.Zero;
-            button.AddedDisplayOffset = Vector2.Zero;
+            group.Transform = Matrix.Identity;
         }
 
         public override void Clear() {

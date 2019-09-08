@@ -75,11 +75,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
-        public Vector2 AddedDisplayOffset;
-        public Point ScaledDisplayOffset => (this.AddedDisplayOffset * this.Scale).ToPoint();
-        public Vector2 AddedDisplayScale;
-        public Point ScaledDisplayScale => (this.AddedDisplayScale * this.Scale).ToPoint();
-
+        
         public GenericCallback OnPressed;
         public GenericCallback OnSecondaryPressed;
         public GenericCallback OnSelected;
@@ -137,8 +133,7 @@ namespace MLEM.Ui.Elements {
         public Rectangle DisplayArea {
             get {
                 var padded = this.Area;
-                padded.Inflate(this.ScaledDisplayScale.X, this.ScaledDisplayScale.Y);
-                padded.Location += this.ScaledPadding + this.ScaledDisplayOffset;
+                padded.Location += this.ScaledPadding;
                 padded.Width -= this.ScaledPadding.X * 2;
                 padded.Height -= this.ScaledPadding.Y * 2;
                 return padded;
