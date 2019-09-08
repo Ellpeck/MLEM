@@ -211,10 +211,12 @@ namespace Demos {
         private IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
-                // The important bit is that it changes its added display scale and offset, allowing the button to still maintain the
-                // correct position and scaling for both anchoring and interacting purposes, but to show any kind of animation visually
-                // This could be useful, for example, to create a little feedback effect to clicking it where it changes size for a second
-                // note that other changes can be applied to a custom draw group, like MG effects and so on
+                // A custom draw group allows the implementation of any sort of custom rendering for all of its child components
+                // This includes simply changing the transform matrix like here, but also applying custom effects and doing
+                // anything else that can be done in the SpriteBatch's Begin call.
+                // Note that changing visual features like this
+                // has no effect on the ui's actual interaction behavior (mouse position interpretation, for example), but it can
+                // be a great way to accomplish feedback animations for buttons and so on.
                 group.Transform = Matrix.CreateTranslation((float) Math.Sin(counter / 2) * 10 * group.Scale, 0, 0);
                 counter += 0.1F;
                 yield return new WaitSeconds(0.01F);
