@@ -132,6 +132,7 @@ namespace MLEM.Ui {
                 e.Root = null;
                 e.System = null;
             });
+            root.SelectElement(null);
         }
 
         public RootElement Get(string name) {
