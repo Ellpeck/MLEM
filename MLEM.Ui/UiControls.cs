@@ -15,8 +15,9 @@ namespace MLEM.Ui {
         private readonly bool isInputOurs;
         private readonly UiSystem system;
 
+        public RootElement ActiveRoot { get; private set; }
         public Element MousedElement { get; private set; }
-        public Element SelectedElement => this.GetActiveRoot()?.SelectedElement;
+        public Element SelectedElement => this.ActiveRoot.SelectedElement;
 
         public Buttons[] GamepadButtons = {Buttons.A};
         public Buttons[] SecondaryGamepadButtons = {Buttons.X};
@@ -36,6 +37,7 @@ namespace MLEM.Ui {
         public void Update() {
             if (this.isInputOurs)
                 this.Input.Update();
+            this.ActiveRoot = this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
 
             // MOUSE INPUT
             var mousedNow = this.GetElementUnderPos(this.Input.MousePosition);
@@ -51,7 +53,7 @@ namespace MLEM.Ui {
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 this.IsAutoNavMode = false;
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
-                this.GetActiveRoot().SelectElement(selectedNow);
+                this.ActiveRoot.SelectElement(selectedNow);
                 if (mousedNow != null)
                     mousedNow.OnPressed?.Invoke(mousedNow);
             } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
@@ -79,20 +81,20 @@ namespace MLEM.Ui {
                 var next = this.GetTabNextElement(backward);
                 if (this.SelectedElement?.Root != null)
                     next = this.SelectedElement.GetTabNextElement(backward, next);
-                this.GetActiveRoot().SelectElement(next);
+                this.ActiveRoot.SelectElement(next);
             }
 
             // TOUCH INPUT
             else if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
                 this.IsAutoNavMode = false;
                 var tapped = this.GetElementUnderPos(tap.Position.ToPoint());
-                this.GetActiveRoot().SelectElement(tapped);
+                this.ActiveRoot.SelectElement(tapped);
                 if (tapped != null)
                     tapped.OnPressed?.Invoke(tapped);
             } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                 this.IsAutoNavMode = false;
                 var held = this.GetElementUnderPos(hold.Position.ToPoint());
-                this.GetActiveRoot().SelectElement(held);
+                this.ActiveRoot.SelectElement(held);
                 if (held != null)
                     held.OnSecondaryPressed?.Invoke(held);
             }
@@ -128,11 +130,10 @@ namespace MLEM.Ui {
         }
 
         private Element GetTabNextElement(bool backward) {
-            var currRoot = this.GetActiveRoot();
-            if (currRoot == null)
+            if (this.ActiveRoot == null)
                 return null;
-            var children = currRoot.Element.GetChildren(regardChildrensChildren: true).Append(currRoot.Element);
-            if (this.SelectedElement?.Root != currRoot) {
+            var children = this.ActiveRoot.Element.GetChildren(regardChildrensChildren: true).Append(this.ActiveRoot.Element);
+            if (this.SelectedElement?.Root != this.ActiveRoot) {
                 return backward ? children.LastOrDefault(c => c.CanBeSelected) : children.FirstOrDefault(c => c.CanBeSelected);
             } else {
                 var foundCurr = false;
@@ -183,15 +184,14 @@ namespace MLEM.Ui {
             if (this.SelectedElement != null)
                 next = this.SelectedElement.GetGamepadNextElement(dir, next);
             if (next != null)
-                this.GetActiveRoot().SelectElement(next);
+                this.ActiveRoot.SelectElement(next);
         }
 
         private Element GetGamepadNextElement(Rectangle searchArea) {
-            var currRoot = this.GetActiveRoot();
-            if (currRoot == null)
+            if (this.ActiveRoot == null)
                 return null;
-            var children = currRoot.Element.GetChildren(regardChildrensChildren: true).Append(currRoot.Element);
-            if (this.SelectedElement?.Root != currRoot) {
+            var children = this.ActiveRoot.Element.GetChildren(regardChildrensChildren: true).Append(this.ActiveRoot.Element);
+            if (this.SelectedElement?.Root != this.ActiveRoot) {
                 return children.FirstOrDefault(c => c.CanBeSelected);
             } else {
                 Element closest = null;
@@ -207,10 +207,6 @@ namespace MLEM.Ui {
                 }
                 return closest;
             }
-        }
-
-        public RootElement GetActiveRoot() {
-            return this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
         }
 
     }
