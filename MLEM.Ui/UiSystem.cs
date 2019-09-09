@@ -128,11 +128,11 @@ namespace MLEM.Ui {
             if (root == null)
                 return;
             this.rootElements.Remove(root);
+            root.SelectElement(null);
             root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
             });
-            root.SelectElement(null);
         }
 
         public RootElement Get(string name) {
