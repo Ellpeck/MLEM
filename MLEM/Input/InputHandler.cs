@@ -35,13 +35,20 @@ namespace MLEM.Input {
         private readonly List<GestureSample> gestures = new List<GestureSample>();
         public bool HandleTouch;
 
-        public bool HandleKeyboardRepeats = true;
         public TimeSpan KeyRepeatDelay = TimeSpan.FromSeconds(0.65);
         public TimeSpan KeyRepeatRate = TimeSpan.FromSeconds(0.05);
+
+        public bool HandleKeyboardRepeats = true;
         private DateTime heldKeyStart;
         private DateTime lastKeyRepeat;
-        private bool triggerRepeat;
+        private bool triggerKeyRepeat;
         private Keys heldKey;
+
+        public bool HandleGamepadRepeats = true;
+        private DateTime[] heldGamepadButtonStarts = new DateTime[GamePad.MaximumGamePadCount];
+        private DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
+        private bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
+        private Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
 
         public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) {
             this.HandleKeyboard = handleKeyboard;
@@ -52,13 +59,13 @@ namespace MLEM.Input {
         }
 
         public void Update() {
-            this.triggerRepeat = false;
             if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = Keyboard.GetState();
                 this.PressedKeys = this.KeyboardState.GetPressedKeys();
 
                 if (this.HandleKeyboardRepeats) {
+                    this.triggerKeyRepeat = false;
                     if (this.heldKey == Keys.None) {
                         // if we're not repeating a key, set the first key being held to the repeat key
                         // note that modifier keys don't count as that wouldn't really make sense
@@ -81,17 +88,19 @@ namespace MLEM.Input {
                                 if (diff >= this.KeyRepeatRate) {
                                     this.lastKeyRepeat = now;
                                     // then trigger a repeat, causing IsKeyPressed to be true once
-                                    this.triggerRepeat = true;
+                                    this.triggerKeyRepeat = true;
                                 }
                             }
                         }
                     }
                 }
             }
+
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
                 this.MouseState = Mouse.GetState();
             }
+
             if (this.HandleGamepads) {
                 this.ConnectedGamepads = GamePad.MaximumGamePadCount;
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
@@ -100,7 +109,38 @@ namespace MLEM.Input {
                     if (this.ConnectedGamepads > i && !this.gamepads[i].IsConnected)
                         this.ConnectedGamepads = i;
                 }
+
+                if (this.HandleGamepadRepeats) {
+                    for (var i = 0; i < this.ConnectedGamepads; i++) {
+                        this.triggerGamepadButtonRepeat[i] = false;
+                        
+                        if (!this.heldGamepadButtons[i].HasValue) {
+                            foreach (var b in EnumHelper.Buttons) {
+                                if (this.IsGamepadButtonDown(b, i)) {
+                                    this.heldGamepadButtons[i] = b;
+                                    this.heldGamepadButtonStarts[i] = DateTime.UtcNow;
+                                    break;
+                                }
+                            }
+                        } else {
+                            if (!this.IsGamepadButtonDown(this.heldGamepadButtons[i].Value, i)) {
+                                this.heldGamepadButtons[i] = null;
+                            } else {
+                                var now = DateTime.UtcNow;
+                                var holdTime = now - this.heldGamepadButtonStarts[i];
+                                if (holdTime >= this.KeyRepeatDelay) {
+                                    var diff = now - this.lastGamepadButtonRepeats[i];
+                                    if (diff >= this.KeyRepeatRate) {
+                                        this.lastGamepadButtonRepeats[i] = now;
+                                        this.triggerGamepadButtonRepeat[i] = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+
             if (this.HandleTouch) {
                 this.LastTouchState = this.TouchState;
                 this.TouchState = TouchPanel.GetState();
@@ -137,7 +177,7 @@ namespace MLEM.Input {
 
         public bool IsKeyPressed(Keys key) {
             // if the queried key is the held key and a repeat should be triggered, return true
-            if (key == this.heldKey && this.triggerRepeat)
+            if (this.HandleKeyboardRepeats && key == this.heldKey && this.triggerKeyRepeat)
                 return true;
             return this.WasKeyUp(key) && this.IsKeyDown(key);
         }
@@ -207,6 +247,15 @@ namespace MLEM.Input {
         }
 
         public bool IsGamepadButtonPressed(Buttons button, int index = -1) {
+            if (this.HandleGamepadRepeats) {
+                if (index < 0) {
+                    for (var i = 0; i < this.ConnectedGamepads; i++)
+                        if (this.heldGamepadButtons[i] == button && this.triggerGamepadButtonRepeat[i])
+                            return true;
+                } else if (this.heldGamepadButtons[index] == button && this.triggerGamepadButtonRepeat[index]) {
+                    return true;
+                }
+            }
             return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
         }
 
