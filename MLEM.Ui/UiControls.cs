@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Ui.Elements;
 
 namespace MLEM.Ui {
@@ -17,6 +18,10 @@ namespace MLEM.Ui {
         public Element MousedElement { get; private set; }
         public Element SelectedElement { get; private set; }
         public bool SelectedLastElementWithMouse { get; private set; }
+
+        public Buttons[] GamepadButtons = {Buttons.A};
+        public Buttons[] SecondaryGamepadButtons = {Buttons.X};
+        public int GamepadIndex = -1;
 
         public UiControls(UiSystem system, InputHandler inputHandler = null) {
             this.system = system;
@@ -65,7 +70,7 @@ namespace MLEM.Ui {
                 }
             } else if (this.Input.IsKeyPressed(Keys.Tab)) {
                 // tab or shift-tab to next or previous element
-                this.SelectElement(this.GetNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), false);
+                this.SelectElement(this.GetTabNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), false);
             }
 
             // TOUCH INPUT
@@ -79,6 +84,45 @@ namespace MLEM.Ui {
                 this.SelectElement(held, true);
                 if (held != null)
                     held.OnSecondaryPressed?.Invoke(held);
+            }
+
+            // GAMEPAD INPUT
+            else if (this.GamepadButtons.Any(b => this.Input.IsGamepadButtonPressed(b, this.GamepadIndex))) {
+                if (this.SelectedElement?.Root != null)
+                    this.SelectedElement.OnPressed?.Invoke(this.SelectedElement);
+            } else if (this.SecondaryGamepadButtons.Any(b => this.Input.IsGamepadButtonPressed(b, this.GamepadIndex))) {
+                if (this.SelectedElement?.Root != null)
+                    this.SelectedElement.OnSecondaryPressed?.Invoke(this.SelectedElement);
+            } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadDown) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickDown)) {
+                var next = this.GetGamepadNextElement(searchArea => {
+                    searchArea.Height += this.system.Viewport.Height;
+                    return searchArea;
+                });
+                if (next != null)
+                    this.SelectElement(next, false);
+            } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadLeft) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickLeft)) {
+                var next = this.GetGamepadNextElement(searchArea => {
+                    searchArea.X -= this.system.Viewport.Width;
+                    searchArea.Width += this.system.Viewport.Width;
+                    return searchArea;
+                });
+                if (next != null)
+                    this.SelectElement(next, false);
+            } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadRight) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickRight)) {
+                var next = this.GetGamepadNextElement(searchArea => {
+                    searchArea.Width += this.system.Viewport.Width;
+                    return searchArea;
+                });
+                if (next != null)
+                    this.SelectElement(next, false);
+            } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadUp) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickUp)) {
+                var next = this.GetGamepadNextElement(searchArea => {
+                    searchArea.Y -= this.system.Viewport.Height;
+                    searchArea.Height += this.system.Viewport.Height;
+                    return searchArea;
+                });
+                if (next != null)
+                    this.SelectElement(next, false);
             }
         }
 
@@ -105,7 +149,7 @@ namespace MLEM.Ui {
             return null;
         }
 
-        private Element GetNextElement(bool backward) {
+        private Element GetTabNextElement(bool backward) {
             var currRoot = this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
             if (currRoot == null)
                 return null;
@@ -131,6 +175,30 @@ namespace MLEM.Ui {
                     lastFound = child;
                 }
                 return null;
+            }
+        }
+
+        private Element GetGamepadNextElement(Func<Rectangle, Rectangle> searchAreaFunc) {
+            var currRoot = this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
+            if (currRoot == null)
+                return null;
+            var children = currRoot.Element.GetChildren(regardChildrensChildren: true).Append(currRoot.Element);
+            if (this.SelectedElement?.Root != currRoot) {
+                return children.FirstOrDefault(c => c.CanBeSelected);
+            } else {
+                var searchArea = searchAreaFunc(this.SelectedElement.Area);
+                Element closest = null;
+                float closestDist = 0;
+                foreach (var child in children) {
+                    if (!child.CanBeSelected || child == this.SelectedElement || !searchArea.Intersects(child.Area))
+                        continue;
+                    var dist = Vector2.Distance(child.Area.Center.ToVector2(), this.SelectedElement.Area.Center.ToVector2());
+                    if (closest == null || dist < closestDist) {
+                        closest = child;
+                        closestDist = dist;
+                    }
+                }
+                return closest;
             }
         }
 
