@@ -93,6 +93,7 @@ namespace MLEM.Input {
                 this.MouseState = Mouse.GetState();
             }
             if (this.HandleGamepads) {
+                this.ConnectedGamepads = GamePad.MaximumGamePadCount;
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
                     this.gamepads[i] = GamePad.GetState(i);
