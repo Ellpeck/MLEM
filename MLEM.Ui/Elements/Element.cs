@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -75,7 +76,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
-        
+
         public GenericCallback OnPressed;
         public GenericCallback OnSecondaryPressed;
         public GenericCallback OnSelected;
@@ -301,7 +302,7 @@ namespace MLEM.Ui.Elements {
                     }
                 }
             }
-            
+
             this.area = new Rectangle(pos, actualSize);
             this.OnAreaUpdated?.Invoke(this);
 
@@ -447,6 +448,14 @@ namespace MLEM.Ui.Elements {
                     return element;
             }
             return this.CanBeMoused && this.Area.Contains(position) ? this : null;
+        }
+
+        public virtual Element GetTabNextElement(bool backward, Element usualNext) {
+            return usualNext;
+        }
+
+        public virtual Element GetGamepadNextElement(Direction2 dir, Element usualNext) {
+            return usualNext;
         }
 
         public void AndChildren(Action<Element> action) {

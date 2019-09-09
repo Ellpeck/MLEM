@@ -75,7 +75,7 @@ namespace MLEM.Ui {
             });
 
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
-                if (!this.Controls.SelectedLastElementWithMouse && element.SelectionIndicator != null) {
+                if (this.Controls.IsAutoNavMode && element.SelectionIndicator != null) {
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
                 }
             };
@@ -176,10 +176,24 @@ namespace MLEM.Ui {
         public Matrix Transform = Matrix.Identity;
         public Matrix InvTransform => Matrix.Invert(this.Transform);
 
+        public Element SelectedElement { get; private set; }
+
         public RootElement(string name, Element element, UiSystem system) {
             this.Name = name;
             this.Element = element;
             this.System = system;
+        }
+
+        public void SelectElement(Element element) {
+            if (this.SelectedElement == element)
+                return;
+
+            if (this.SelectedElement != null)
+                this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
+            if (element != null)
+                element.OnSelected?.Invoke(element);
+            this.SelectedElement = element;
+            this.System.ApplyToAll(e => e.OnSelectedElementChanged?.Invoke(e, element));
         }
 
         public void MoveToFront() {

@@ -16,12 +16,13 @@ namespace MLEM.Ui {
         private readonly UiSystem system;
 
         public Element MousedElement { get; private set; }
-        public Element SelectedElement { get; private set; }
-        public bool SelectedLastElementWithMouse { get; private set; }
+        public Element SelectedElement => this.GetActiveRoot()?.SelectedElement;
 
         public Buttons[] GamepadButtons = {Buttons.A};
         public Buttons[] SecondaryGamepadButtons = {Buttons.X};
         public int GamepadIndex = -1;
+
+        public bool IsAutoNavMode { get; private set; }
 
         public UiControls(UiSystem system, InputHandler inputHandler = null) {
             this.system = system;
@@ -48,17 +49,20 @@ namespace MLEM.Ui {
             }
 
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
+                this.IsAutoNavMode = false;
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
-                this.SelectElement(selectedNow, true);
+                this.GetActiveRoot().SelectElement(selectedNow);
                 if (mousedNow != null)
                     mousedNow.OnPressed?.Invoke(mousedNow);
             } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
+                this.IsAutoNavMode = false;
                 if (mousedNow != null)
                     mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
             }
 
             // KEYBOARD INPUT
             else if (this.Input.IsKeyPressed(Keys.Enter) || this.Input.IsKeyPressed(Keys.Space)) {
+                this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null) {
                     if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                         // secondary action on element using space or enter
@@ -69,74 +73,48 @@ namespace MLEM.Ui {
                     }
                 }
             } else if (this.Input.IsKeyPressed(Keys.Tab)) {
+                this.IsAutoNavMode = true;
                 // tab or shift-tab to next or previous element
-                this.SelectElement(this.GetTabNextElement(this.Input.IsModifierKeyDown(ModifierKey.Shift)), false);
+                var backward = this.Input.IsModifierKeyDown(ModifierKey.Shift);
+                var next = this.GetTabNextElement(backward);
+                if (this.SelectedElement?.Root != null)
+                    next = this.SelectedElement.GetTabNextElement(backward, next);
+                this.GetActiveRoot().SelectElement(next);
             }
 
             // TOUCH INPUT
             else if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
+                this.IsAutoNavMode = false;
                 var tapped = this.GetElementUnderPos(tap.Position.ToPoint());
-                this.SelectElement(tapped, true);
+                this.GetActiveRoot().SelectElement(tapped);
                 if (tapped != null)
                     tapped.OnPressed?.Invoke(tapped);
             } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
+                this.IsAutoNavMode = false;
                 var held = this.GetElementUnderPos(hold.Position.ToPoint());
-                this.SelectElement(held, true);
+                this.GetActiveRoot().SelectElement(held);
                 if (held != null)
                     held.OnSecondaryPressed?.Invoke(held);
             }
 
             // GAMEPAD INPUT
             else if (this.GamepadButtons.Any(b => this.Input.IsGamepadButtonPressed(b, this.GamepadIndex))) {
+                this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null)
                     this.SelectedElement.OnPressed?.Invoke(this.SelectedElement);
             } else if (this.SecondaryGamepadButtons.Any(b => this.Input.IsGamepadButtonPressed(b, this.GamepadIndex))) {
+                this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null)
                     this.SelectedElement.OnSecondaryPressed?.Invoke(this.SelectedElement);
             } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadDown) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickDown)) {
-                var next = this.GetGamepadNextElement(searchArea => {
-                    searchArea.Height += this.system.Viewport.Height;
-                    return searchArea;
-                });
-                if (next != null)
-                    this.SelectElement(next, false);
+                this.HandleGamepadNextElement(Direction2.Down);
             } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadLeft) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickLeft)) {
-                var next = this.GetGamepadNextElement(searchArea => {
-                    searchArea.X -= this.system.Viewport.Width;
-                    searchArea.Width += this.system.Viewport.Width;
-                    return searchArea;
-                });
-                if (next != null)
-                    this.SelectElement(next, false);
+                this.HandleGamepadNextElement(Direction2.Left);
             } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadRight) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickRight)) {
-                var next = this.GetGamepadNextElement(searchArea => {
-                    searchArea.Width += this.system.Viewport.Width;
-                    return searchArea;
-                });
-                if (next != null)
-                    this.SelectElement(next, false);
+                this.HandleGamepadNextElement(Direction2.Right);
             } else if (this.Input.IsGamepadButtonPressed(Buttons.DPadUp) || this.Input.IsGamepadButtonPressed(Buttons.LeftThumbstickUp)) {
-                var next = this.GetGamepadNextElement(searchArea => {
-                    searchArea.Y -= this.system.Viewport.Height;
-                    searchArea.Height += this.system.Viewport.Height;
-                    return searchArea;
-                });
-                if (next != null)
-                    this.SelectElement(next, false);
+                this.HandleGamepadNextElement(Direction2.Up);
             }
-        }
-
-        public void SelectElement(Element element, bool mouse) {
-            if (this.SelectedElement == element)
-                return;
-
-            if (this.SelectedElement != null)
-                this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
-            if (element != null)
-                element.OnSelected?.Invoke(element);
-            this.SelectedElement = element;
-            this.SelectedLastElementWithMouse = mouse;
-            this.system.ApplyToAll(e => e.OnSelectedElementChanged?.Invoke(e, element));
         }
 
         public Element GetElementUnderPos(Point position, bool transform = true) {
@@ -150,7 +128,7 @@ namespace MLEM.Ui {
         }
 
         private Element GetTabNextElement(bool backward) {
-            var currRoot = this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
+            var currRoot = this.GetActiveRoot();
             if (currRoot == null)
                 return null;
             var children = currRoot.Element.GetChildren(regardChildrensChildren: true).Append(currRoot.Element);
@@ -178,15 +156,44 @@ namespace MLEM.Ui {
             }
         }
 
-        private Element GetGamepadNextElement(Func<Rectangle, Rectangle> searchAreaFunc) {
-            var currRoot = this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
+        private void HandleGamepadNextElement(Direction2 dir) {
+            this.IsAutoNavMode = true;
+            Rectangle searchArea = default;
+            if (this.SelectedElement?.Root != null) {
+                searchArea = this.SelectedElement.Area;
+                var (_, _, width, height) = this.system.Viewport;
+                switch (dir) {
+                    case Direction2.Down:
+                        searchArea.Height += height;
+                        break;
+                    case Direction2.Left:
+                        searchArea.X -= width;
+                        searchArea.Width += width;
+                        break;
+                    case Direction2.Right:
+                        searchArea.Width += width;
+                        break;
+                    case Direction2.Up:
+                        searchArea.Y -= height;
+                        searchArea.Height += height;
+                        break;
+                }
+            }
+            var next = this.GetGamepadNextElement(searchArea);
+            if (this.SelectedElement != null)
+                next = this.SelectedElement.GetGamepadNextElement(dir, next);
+            if (next != null)
+                this.GetActiveRoot().SelectElement(next);
+        }
+
+        private Element GetGamepadNextElement(Rectangle searchArea) {
+            var currRoot = this.GetActiveRoot();
             if (currRoot == null)
                 return null;
             var children = currRoot.Element.GetChildren(regardChildrensChildren: true).Append(currRoot.Element);
             if (this.SelectedElement?.Root != currRoot) {
                 return children.FirstOrDefault(c => c.CanBeSelected);
             } else {
-                var searchArea = searchAreaFunc(this.SelectedElement.Area);
                 Element closest = null;
                 float closestDist = 0;
                 foreach (var child in children) {
@@ -200,6 +207,10 @@ namespace MLEM.Ui {
                 }
                 return closest;
             }
+        }
+
+        public RootElement GetActiveRoot() {
+            return this.system.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
         }
 
     }

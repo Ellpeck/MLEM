@@ -38,7 +38,7 @@ namespace MLEM.Ui.Elements {
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {
-                    if (this.Controls.SelectedLastElementWithMouse)
+                    if (!this.Controls.IsAutoNavMode)
                         return;
                     if (otherElement == null || !otherElement.GetParentTree().Contains(this))
                         return;

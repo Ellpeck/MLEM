@@ -150,7 +150,9 @@ namespace Demos {
                 OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden
             });
 
-            var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1);
+            var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+                StepPerScroll = 0.01F
+            };
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
             root.AddChild(slider);
 
