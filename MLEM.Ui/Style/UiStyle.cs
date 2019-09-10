@@ -25,6 +25,11 @@ namespace MLEM.Ui.Style {
         public TextureRegion RadioCheckmark;
         public NinePatch TooltipBackground;
         public Color TooltipBackgroundColor;
+        public NinePatch ProgressBarTexture;
+        public Color ProgressBarColor;
+        public Point ProgressBarProgressPadding;
+        public NinePatch ProgressBarProgressTexture;
+        public Color ProgressBarProgressColor;
         public IGenericFont Font;
         public IGenericFont BoldFont;
         public IGenericFont ItalicFont;

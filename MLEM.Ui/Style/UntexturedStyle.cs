@@ -25,6 +25,10 @@ namespace MLEM.Ui.Style {
             this.RadioCheckmark = GenerateTexture(batch, Color.CornflowerBlue).Region;
             this.TooltipBackground = GenerateTexture(batch, Color.DarkGray);
             this.TooltipBackgroundColor = new Color(Color.Black, 0.65F);
+            this.ProgressBarTexture = GenerateTexture(batch, Color.RoyalBlue);
+            this.ProgressBarColor = Color.White;
+            this.ProgressBarProgressPadding = new Point(1);
+            this.ProgressBarProgressColor = Color.Red;
             this.Font = new EmptyFont();
         }
 

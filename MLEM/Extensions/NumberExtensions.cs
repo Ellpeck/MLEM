@@ -44,5 +44,13 @@ namespace MLEM.Extensions {
             return rect;
         }
 
+        public static Rectangle Shrink(this Rectangle rect, Point padding) {
+            rect.X += padding.X;
+            rect.Y += padding.Y;
+            rect.Width -= padding.X * 2;
+            rect.Height -= padding.Y * 2;
+            return rect;
+        }
+
     }
 }

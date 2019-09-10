@@ -8,6 +8,7 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
@@ -174,6 +175,17 @@ namespace Demos {
             });
 
             root.AddChild(new VerticalSpace(3));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Progress bars in multiple orientations:"));
+            var bar1 = root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Right, 10) {PositionOffset = new Vector2(0, 1)});
+            CoroutineHandler.Start(this.WobbleProgressBar(bar1));
+            var bar2 = root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Left, 10) {PositionOffset = new Vector2(0, 1)});
+            CoroutineHandler.Start(this.WobbleProgressBar(bar2));
+            var bar3 = root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(8, 30), Direction2.Down, 10) {PositionOffset = new Vector2(0, 1)});
+            CoroutineHandler.Start(this.WobbleProgressBar(bar3));
+            var bar4 = root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 1)});
+            CoroutineHandler.Start(this.WobbleProgressBar(bar4));
+
+            root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There are also some additional \"components\" which are created as combinations of other components. You can find all of them in the ElementHelper class. Here are some examples:"));
             root.AddChild(ElementHelper.NumberField(Anchor.AutoLeft, new Vector2(1, 10))).PositionOffset = new Vector2(0, 1);
 
@@ -224,6 +236,22 @@ namespace Demos {
                 yield return new WaitSeconds(0.01F);
             }
             group.Transform = Matrix.Identity;
+        }
+
+        private IEnumerator<Wait> WobbleProgressBar(ProgressBar bar) {
+            var reducing = false;
+            while (bar.Root != null) {
+                if (reducing) {
+                    bar.CurrentValue -= 0.1F;
+                    if (bar.CurrentValue <= 0)
+                        reducing = false;
+                } else {
+                    bar.CurrentValue += 0.1F;
+                    if (bar.CurrentValue >= bar.MaxValue)
+                        reducing = true;
+                }
+                yield return new WaitSeconds(0.01F);
+            }
         }
 
         public override void Clear() {

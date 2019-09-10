@@ -66,15 +66,7 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public Rectangle ChildPaddedArea {
-            get {
-                var padded = this.UnscrolledArea;
-                padded.Location += this.ScaledChildPadding;
-                padded.Width -= this.ScaledChildPadding.X * 2;
-                padded.Height -= this.ScaledChildPadding.Y * 2;
-                return padded;
-            }
-        }
+        public Rectangle ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
 
         public GenericCallback OnPressed;
@@ -131,15 +123,7 @@ namespace MLEM.Ui.Elements {
         public Rectangle Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
         public Point ScrollOffset;
         public Point ScaledScrollOffset => this.ScrollOffset.Multiply(this.Scale);
-        public Rectangle DisplayArea {
-            get {
-                var padded = this.Area;
-                padded.Location += this.ScaledPadding;
-                padded.Width -= this.ScaledPadding.X * 2;
-                padded.Height -= this.ScaledPadding.Y * 2;
-                return padded;
-            }
-        }
+        public Rectangle DisplayArea => this.Area.Shrink(this.ScaledPadding);
         private int priority;
         public int Priority {
             get => this.priority;
