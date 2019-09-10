@@ -45,10 +45,10 @@ namespace MLEM.Input {
         private Keys heldKey;
 
         public bool HandleGamepadRepeats = true;
-        private DateTime[] heldGamepadButtonStarts = new DateTime[GamePad.MaximumGamePadCount];
-        private DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
-        private bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
-        private Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
+        private readonly DateTime[] heldGamepadButtonStarts = new DateTime[GamePad.MaximumGamePadCount];
+        private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
+        private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
+        private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
 
         public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) {
             this.HandleKeyboard = handleKeyboard;
