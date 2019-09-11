@@ -29,6 +29,7 @@ namespace MLEM.Ui.Elements {
             this.Direction = direction;
             this.MaxValue = maxValue;
             this.currentValue = currentValue;
+            this.CanBeSelected = false;
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
