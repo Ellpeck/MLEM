@@ -16,6 +16,7 @@ namespace MLEM.Ui.Elements {
             this.Texture = texture;
             this.ScaleToImage = scaleToImage;
             this.CanBeSelected = false;
+            this.CanBeMoused = false;
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {
