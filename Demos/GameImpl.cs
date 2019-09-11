@@ -17,8 +17,8 @@ namespace Demos {
 
         static GameImpl() {
             Demos.Add("Ui", game => new UiDemo(game));
-            Demos.Add("Animation", game => new AnimationDemo(game));
-            Demos.Add("AutoTiling", game => new AutoTilingDemo(game));
+            Demos.Add("Animation and Texture Atlas", game => new AnimationDemo(game));
+            Demos.Add("Auto Tiling", game => new AutoTilingDemo(game));
             Demos.Add("Pathfinding", game => new PathfindingDemo(game));
         }
 

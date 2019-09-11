@@ -19,13 +19,20 @@ namespace Demos {
         public override void LoadContent() {
             base.LoadContent();
 
-            var tex = LoadContent<Texture2D>("Textures/Anim");
+            // create a uniform texture atlas with a width and height of 4
+            // this means that, no matter how many pixels the texture has, it will always have 4 * 4 regions in total
+            // this allows for texture artists to change the resolution of a texture atlas without every texture region
+            // using it having wrong coordinates and/or sizes
+            // the regions that are part of the atlas are then referenced by region coordinates rather than texture coordinates
+            // (as seen below)
+            var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
 
-            // create the four animations by supplying the time per frame, the texture and the four regions used
-            var downAnim = new SpriteAnimation(0.2F, tex, new Rectangle(0, 0, 8, 8), new Rectangle(0, 8, 8, 8), new Rectangle(0, 16, 8, 8), new Rectangle(0, 24, 8, 8)) {Name = "Down"};
-            var upAnim = new SpriteAnimation(0.2F, tex, new Rectangle(8, 0, 8, 8), new Rectangle(8, 8, 8, 8), new Rectangle(8, 16, 8, 8), new Rectangle(8, 24, 8, 8)) {Name = "Up"};
-            var leftAnim = new SpriteAnimation(0.2F, tex, new Rectangle(16, 0, 8, 8), new Rectangle(16, 8, 8, 8), new Rectangle(16, 16, 8, 8), new Rectangle(16, 24, 8, 8)) {Name = "Left"};
-            var rightAnim = new SpriteAnimation(0.2F, tex, new Rectangle(24, 0, 8, 8), new Rectangle(24, 8, 8, 8), new Rectangle(24, 16, 8, 8), new Rectangle(24, 24, 8, 8)) {Name = "Right"};
+            // create the four animations by supplying the time per frame, and the four regions used
+            // note that you don't need to use a texture atlas for this, you can also simply supply the texture and the regions manually here
+            var downAnim = new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]) {Name = "Down"};
+            var upAnim = new SpriteAnimation(0.2F, atlas[1, 0], atlas[1, 1], atlas[1, 2], atlas[1, 3]) {Name = "Up"};
+            var leftAnim = new SpriteAnimation(0.2F, atlas[2, 0], atlas[2, 1], atlas[2, 2], atlas[2, 3]) {Name = "Left"};
+            var rightAnim = new SpriteAnimation(0.2F, atlas[3, 0], atlas[3, 1], atlas[3, 2], atlas[3, 3]) {Name = "Right"};
 
             // create a sprite animation group which manages a list of animations and figures out which one should
             // be playing right now based on supplied conditions
@@ -41,7 +48,7 @@ namespace Demos {
             // you can also add a priority to an animation in the group (10 in this case, which is higher than the default of 0)
             // if two animations' playing conditions are both true, then the one with the higher priority will be picked to play
             // in this instance, a standing "animation" is displayed when we're facing down and also holding the space key
-            this.group.Add(new SpriteAnimation(1F, tex, new Rectangle(0, 0, 8, 8)) {Name = "DownStanding"}, () => this.facing == Direction2.Down && this.InputHandler.IsKeyDown(Keys.Space), 10);
+            this.group.Add(new SpriteAnimation(1F, atlas[0, 0]) {Name = "DownStanding"}, () => this.facing == Direction2.Down && this.InputHandler.IsKeyDown(Keys.Space), 10);
 
             // you can also add a callback to see when the animation used changes
             this.group.OnAnimationChanged += (anim, newAnim) => {
@@ -67,7 +74,7 @@ namespace Demos {
         }
 
         public override void DoDraw(GameTime gameTime) {
-            this.GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(10));
             // draw the group's current region
