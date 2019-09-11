@@ -21,6 +21,11 @@ namespace MLEM.Ui {
 
         public Buttons[] GamepadButtons = {Buttons.A};
         public Buttons[] SecondaryGamepadButtons = {Buttons.X};
+        public Keys[] KeyboardButtons = {Keys.Space, Keys.Enter};
+        public object[] UpButtons = {Buttons.DPadUp, Buttons.LeftThumbstickUp};
+        public object[] DownButtons = {Buttons.DPadDown, Buttons.LeftThumbstickDown};
+        public object[] LeftButtons = {Buttons.DPadLeft, Buttons.LeftThumbstickLeft};
+        public object[] RightButtons = {Buttons.DPadRight, Buttons.LeftThumbstickRight};
         public int GamepadIndex = -1;
 
         public bool IsAutoNavMode { get; private set; }
@@ -63,7 +68,7 @@ namespace MLEM.Ui {
             }
 
             // KEYBOARD INPUT
-            else if (this.Input.IsKeyPressed(Keys.Enter) || this.Input.IsKeyPressed(Keys.Space)) {
+            else if (this.KeyboardButtons.Any(this.Input.IsKeyPressed)) {
                 this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null) {
                     if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
@@ -100,21 +105,21 @@ namespace MLEM.Ui {
             }
 
             // GAMEPAD INPUT
-            else if (this.GamepadButtons.Any(this.IsGamepadPressed)) {
+            else if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
                 this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null)
                     this.SelectedElement.OnPressed?.Invoke(this.SelectedElement);
-            } else if (this.SecondaryGamepadButtons.Any(this.IsGamepadPressed)) {
+            } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
                 this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null)
                     this.SelectedElement.OnSecondaryPressed?.Invoke(this.SelectedElement);
-            } else if (this.IsGamepadPressed(Buttons.DPadDown) || this.IsGamepadPressed(Buttons.LeftThumbstickDown)) {
+            } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
                 this.HandleGamepadNextElement(Direction2.Down);
-            } else if (this.IsGamepadPressed(Buttons.DPadLeft) || this.IsGamepadPressed(Buttons.LeftThumbstickLeft)) {
+            } else if (this.LeftButtons.Any(this.IsGamepadPressed)) {
                 this.HandleGamepadNextElement(Direction2.Left);
-            } else if (this.IsGamepadPressed(Buttons.DPadRight) || this.IsGamepadPressed(Buttons.LeftThumbstickRight)) {
+            } else if (this.RightButtons.Any(this.IsGamepadPressed)) {
                 this.HandleGamepadNextElement(Direction2.Right);
-            } else if (this.IsGamepadPressed(Buttons.DPadUp) || this.IsGamepadPressed(Buttons.LeftThumbstickUp)) {
+            } else if (this.UpButtons.Any(this.IsGamepadPressed)) {
                 this.HandleGamepadNextElement(Direction2.Up);
             }
         }
@@ -209,8 +214,8 @@ namespace MLEM.Ui {
             }
         }
 
-        private bool IsGamepadPressed(Buttons button) {
-            return this.Input.IsGamepadButtonPressed(button, this.GamepadIndex);
+        private bool IsGamepadPressed(object button) {
+            return this.Input.IsPressed(button, this.GamepadIndex);
         }
 
     }
