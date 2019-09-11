@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Misc;
@@ -19,9 +20,9 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
 
             if (this.IsSelected) {
-                if (this.Input.IsGamepadButtonDown(Buttons.DPadLeft) || this.Input.IsGamepadButtonDown(Buttons.LeftThumbstickLeft)) {
+                if (this.Controls.LeftButtons.Any(b => this.Input.IsDown(b, this.Controls.GamepadIndex))) {
                     this.CurrentValue -= this.StepPerScroll;
-                } else if (this.Input.IsGamepadButtonDown(Buttons.DPadRight) || this.Input.IsGamepadButtonDown(Buttons.LeftThumbstickRight)) {
+                } else if (this.Controls.RightButtons.Any(b => this.Input.IsDown(b, this.Controls.GamepadIndex))) {
                     this.CurrentValue += this.StepPerScroll;
                 }
             }
