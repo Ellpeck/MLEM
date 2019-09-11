@@ -8,6 +8,11 @@ namespace MLEM.Ui.Elements {
         public Slider(Anchor anchor, Vector2 size, int scrollerSize, float maxValue) :
             base(anchor, size, scrollerSize, maxValue, true) {
             this.CanBeSelected = true;
+            this.GetGamepadNextElement = (dir, next) => {
+                if (dir == Direction2.Left || dir == Direction2.Right)
+                    return null;
+                return next;
+            };
         }
 
         public override void Update(GameTime time) {
@@ -20,12 +25,6 @@ namespace MLEM.Ui.Elements {
                     this.CurrentValue += this.StepPerScroll;
                 }
             }
-        }
-
-        public override Element GetGamepadNextElement(Direction2 dir, Element usualNext) {
-            if (dir == Direction2.Left || dir == Direction2.Right)
-                return null;
-            return base.GetGamepadNextElement(dir, usualNext);
         }
 
     }

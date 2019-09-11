@@ -79,6 +79,8 @@ namespace MLEM.Ui.Elements {
         public GenericCallback OnAreaUpdated;
         public OtherElementCallback OnMousedElementChanged;
         public OtherElementCallback OnSelectedElementChanged;
+        public TabNextElementCallback GetTabNextElement;
+        public GamepadNextElementCallback GetGamepadNextElement;
 
         private UiSystem system;
         public UiSystem System {
@@ -145,6 +147,8 @@ namespace MLEM.Ui.Elements {
             this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnSelected += element => this.IsSelected = true;
             this.OnDeselected += element => this.IsSelected = false;
+            this.GetTabNextElement = (backward, next) => next;
+            this.GetGamepadNextElement = (dir, next) => next;
 
             this.SetAreaDirty();
         }
@@ -434,14 +438,6 @@ namespace MLEM.Ui.Elements {
             return this.CanBeMoused && this.Area.Contains(position) ? this : null;
         }
 
-        public virtual Element GetTabNextElement(bool backward, Element usualNext) {
-            return usualNext;
-        }
-
-        public virtual Element GetGamepadNextElement(Direction2 dir, Element usualNext) {
-            return usualNext;
-        }
-
         public void AndChildren(Action<Element> action) {
             action(this);
             foreach (var child in this.Children)
@@ -459,6 +455,10 @@ namespace MLEM.Ui.Elements {
         public delegate void OtherElementCallback(Element thisElement, Element otherElement);
 
         public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha);
+
+        public delegate Element TabNextElementCallback(bool backward, Element usualNext);
+
+        public delegate Element GamepadNextElementCallback(Direction2 dir, Element usualNext);
 
     }
 }
