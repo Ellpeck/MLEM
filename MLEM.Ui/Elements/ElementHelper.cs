@@ -28,7 +28,8 @@ namespace MLEM.Ui.Elements {
         public static Group[] MakeColumns(Element parent, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true) {
             var cols = new Group[amount];
             for (var i = 0; i < amount; i++) {
-                cols[i] = new Group(Anchor.AutoInline, new Vector2(totalSize.X / amount, totalSize.Y), setHeightBasedOnChildren);
+                var anchor = i == amount - 1 ? Anchor.AutoInlineIgnoreOverflow : Anchor.AutoInline;
+                cols[i] = new Group(anchor, new Vector2(totalSize.X / amount, totalSize.Y), setHeightBasedOnChildren);
                 if (parent != null)
                     parent.AddChild(cols[i]);
             }
