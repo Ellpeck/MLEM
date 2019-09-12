@@ -137,7 +137,7 @@ namespace MLEM.Ui {
         protected virtual Element GetTabNextElement(bool backward) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(regardChildrensChildren: true).Append(this.ActiveRoot.Element);
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
                 return backward ? children.LastOrDefault(c => c.CanBeSelected) : children.FirstOrDefault(c => c.CanBeSelected);
             } else {
@@ -165,7 +165,7 @@ namespace MLEM.Ui {
         protected virtual Element GetGamepadNextElement(Rectangle searchArea) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(regardChildrensChildren: true).Append(this.ActiveRoot.Element);
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
                 return children.FirstOrDefault(c => c.CanBeSelected);
             } else {

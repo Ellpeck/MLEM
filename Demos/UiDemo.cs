@@ -186,6 +186,13 @@ namespace Demos {
             CoroutineHandler.Start(this.WobbleProgressBar(bar4));
 
             root.AddChild(new VerticalSpace(3));
+            var dropdown = root.AddChild(new Dropdown(Anchor.AutoLeft, new Vector2(1, 10), "Dropdown Menu"));
+            dropdown.AddElement("First Option");
+            dropdown.AddElement("Second Option");
+            dropdown.AddElement("Third Option");
+            dropdown.AddElement(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Button Option"));
+
+            root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There are also some additional \"components\" which are created as combinations of other components. You can find all of them in the ElementHelper class. Here are some examples:"));
             root.AddChild(ElementHelper.NumberField(Anchor.AutoLeft, new Vector2(1, 10))).PositionOffset = new Vector2(0, 1);
 
@@ -205,14 +212,14 @@ namespace Demos {
             // Below are some querying examples that help you find certain elements easily
 
             var children = root.GetChildren();
-            var totalChildren = root.GetChildren(regardChildrensChildren: true);
+            var totalChildren = root.GetChildren(regardGrandchildren: true);
             Console.WriteLine($"The root has {children.Count()} children, but there are {totalChildren.Count()} when regarding children's children");
 
             var textFields = root.GetChildren<TextField>();
             Console.WriteLine($"The root has {textFields.Count()} text fields");
 
             var paragraphs = root.GetChildren<Paragraph>();
-            var totalParagraphs = root.GetChildren<Paragraph>(regardChildrensChildren: true);
+            var totalParagraphs = root.GetChildren<Paragraph>(regardGrandchildren: true);
             Console.WriteLine($"The root has {paragraphs.Count()} paragraphs, but there are {totalParagraphs.Count()} when regarding children's children");
 
             var autoWidthChildren = root.GetChildren(e => e.Size.X == 1);

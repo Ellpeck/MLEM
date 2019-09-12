@@ -268,9 +268,9 @@ namespace MLEM.Ui.Elements {
             if (this.Anchor >= Anchor.AutoLeft) {
                 Element previousChild;
                 if (this.Anchor == Anchor.AutoInline || this.Anchor == Anchor.AutoInlineIgnoreOverflow) {
-                    previousChild = this.GetOlderSibling(false, false);
+                    previousChild = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
                 } else {
-                    previousChild = this.GetLowestOlderSibling(false, false);
+                    previousChild = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
                 }
                 if (previousChild != null) {
                     var prevArea = previousChild.GetAreaForAutoAnchors();
@@ -304,12 +304,11 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
 
             if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
-                var lowest = this.GetLowestChild(false, true);
+                var lowest = this.GetLowestChild(e => !e.IsHidden);
                 var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
                 if (newHeight != this.size.Y) {
                     this.size.Y = newHeight;
-                    if (this.Anchor > Anchor.TopRight)
-                        this.ForceUpdateArea();
+                    this.ForceUpdateArea();
                 }
             }
         }
@@ -324,12 +323,12 @@ namespace MLEM.Ui.Elements {
             return this.UnscrolledArea;
         }
 
-        public Element GetLowestChild(bool hiddenAlso, bool unattachableAlso) {
+        public Element GetLowestChild(Func<Element, bool> condition = null) {
             Element lowest = null;
             // the lowest child is expected to be towards the back, so search is usually faster if done backwards
             for (var i = this.Children.Count - 1; i >= 0; i--) {
                 var child = this.Children[i];
-                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
+                if (condition != null && !condition(child))
                     continue;
                 if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
                     continue;
@@ -339,14 +338,14 @@ namespace MLEM.Ui.Elements {
             return lowest;
         }
 
-        public Element GetLowestOlderSibling(bool hiddenAlso, bool unattachableAlso) {
+        public Element GetLowestOlderSibling(Func<Element, bool> condition = null) {
             if (this.Parent == null)
                 return null;
             Element lowest = null;
             foreach (var child in this.Parent.Children) {
                 if (child == this)
                     break;
-                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
+                if (condition != null && !condition(child))
                     continue;
                 if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
                     lowest = child;
@@ -354,50 +353,52 @@ namespace MLEM.Ui.Elements {
             return lowest;
         }
 
-        public Element GetOlderSibling(bool hiddenAlso, bool unattachableAlso) {
+        public Element GetOlderSibling(Func<Element, bool> condition = null) {
             if (this.Parent == null)
                 return null;
             Element older = null;
             foreach (var child in this.Parent.Children) {
                 if (child == this)
                     break;
-                if (!hiddenAlso && child.IsHidden || !unattachableAlso && !child.CanAutoAnchorsAttach)
+                if (condition != null && !condition(child))
                     continue;
                 older = child;
             }
             return older;
         }
 
-        public IEnumerable<Element> GetSiblings(bool hiddenAlso) {
+        public IEnumerable<Element> GetSiblings(Func<Element, bool> condition = null) {
             if (this.Parent == null)
                 yield break;
             foreach (var child in this.Parent.Children) {
-                if (!hiddenAlso && child.IsHidden)
+                if (condition != null && !condition(child))
                     continue;
                 if (child != this)
                     yield return child;
             }
         }
 
-        public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardChildrensChildren = false) {
+        public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) {
             foreach (var child in this.Children) {
-                if (regardChildrensChildren) {
-                    foreach (var cc in child.GetChildren(condition, true))
+                var applies = condition == null || condition(child);
+                if (applies)
+                    yield return child;
+                if (regardGrandchildren && (!ignoreFalseGrandchildren || applies)) {
+                    foreach (var cc in child.GetChildren(condition, true, ignoreFalseGrandchildren))
                         yield return cc;
                 }
-                if (condition == null || condition(child))
-                    yield return child;
             }
         }
 
-        public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardChildrensChildren = false) where T : Element {
+        public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) where T : Element {
             foreach (var child in this.Children) {
-                if (regardChildrensChildren) {
-                    foreach (var cc in child.GetChildren(condition, true))
+                var applies = child is T t && (condition == null || condition(t));
+                if (applies)
+                    yield return (T) child;
+                if (regardGrandchildren && (!ignoreFalseGrandchildren || applies)) {
+                    foreach (var cc in child.GetChildren(condition, true, ignoreFalseGrandchildren))
                         yield return cc;
                 }
-                if (child is T t && (condition == null || condition(t)))
-                    yield return t;
             }
         }
 
