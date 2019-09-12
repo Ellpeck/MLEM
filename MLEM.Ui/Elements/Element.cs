@@ -178,6 +178,12 @@ namespace MLEM.Ui.Elements {
             this.SetAreaDirty();
         }
 
+        public void RemoveChildren() {
+            for (var i = this.Children.Count - 1; i >= 0; i--) {
+                this.RemoveChild(this.Children[i]);
+            }
+        }
+
         public void SetAreaDirty() {
             this.areaDirty = true;
             if (this.Anchor >= Anchor.AutoLeft && this.Parent != null)
