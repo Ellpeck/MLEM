@@ -30,6 +30,9 @@ namespace MLEM.Ui.Elements {
             }
         }
         public bool MaintainImageAspect = true;
+        public SpriteEffects ImageEffects = SpriteEffects.None;
+        public Vector2 ImageScale = Vector2.One;
+        public float ImageRotation;
 
         public Image(Anchor anchor, Vector2 size, TextureRegion texture, bool scaleToImage = false) : base(anchor, size) {
             this.texture = texture;
@@ -43,12 +46,14 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+            var center = new Vector2(this.texture.Width / 2F, this.texture.Height / 2F);
             if (this.MaintainImageAspect) {
                 var scale = Math.Min(this.DisplayArea.Width / (float) this.texture.Width, this.DisplayArea.Height / (float) this.texture.Height);
                 var imageOffset = new Vector2(this.DisplayArea.Width / 2F - this.texture.Width * scale / 2, this.DisplayArea.Height / 2F - this.texture.Height * scale / 2);
-                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + imageOffset, this.Color * alpha, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale + imageOffset, this.Color * alpha, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             } else {
-                batch.Draw(this.texture, this.DisplayArea, this.Color * alpha);
+                var scale = new Vector2(1F / this.texture.Width, 1F / this.texture.Height) * this.DisplayArea.Size.ToVector2();
+                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale, this.Color * alpha, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             }
             base.Draw(time, batch, alpha);
         }
