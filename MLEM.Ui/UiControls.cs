@@ -48,11 +48,11 @@ namespace MLEM.Ui {
             var mousedNow = this.GetElementUnderPos(this.Input.MousePosition);
             if (mousedNow != this.MousedElement) {
                 if (this.MousedElement != null)
-                    this.MousedElement.OnMouseExit?.Invoke(this.MousedElement);
+                    this.System.OnElementMouseExit?.Invoke(this.MousedElement);
                 if (mousedNow != null)
-                    mousedNow.OnMouseEnter?.Invoke(mousedNow);
+                    this.System.OnElementMouseEnter?.Invoke(mousedNow);
                 this.MousedElement = mousedNow;
-                this.System.ApplyToAll(e => e.OnMousedElementChanged?.Invoke(e, mousedNow));
+                this.System.OnMousedElementChanged?.Invoke(mousedNow);
             }
 
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
@@ -60,11 +60,11 @@ namespace MLEM.Ui {
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                 this.ActiveRoot.SelectElement(selectedNow);
                 if (mousedNow != null)
-                    mousedNow.OnPressed?.Invoke(mousedNow);
+                    this.System.OnElementPressed?.Invoke(mousedNow);
             } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
                 this.IsAutoNavMode = false;
                 if (mousedNow != null)
-                    mousedNow.OnSecondaryPressed?.Invoke(mousedNow);
+                    this.System.OnElementSecondaryPressed?.Invoke(mousedNow);
             }
 
             // KEYBOARD INPUT
@@ -73,10 +73,10 @@ namespace MLEM.Ui {
                 if (this.SelectedElement?.Root != null) {
                     if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                         // secondary action on element using space or enter
-                        this.SelectedElement.OnSecondaryPressed?.Invoke(this.SelectedElement);
+                        this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
                     } else {
                         // first action on element using space or enter
-                        this.SelectedElement.OnPressed?.Invoke(this.SelectedElement);
+                        this.System.OnElementPressed?.Invoke(this.SelectedElement);
                     }
                 }
             } else if (this.Input.IsKeyPressed(Keys.Tab)) {
@@ -95,24 +95,24 @@ namespace MLEM.Ui {
                 var tapped = this.GetElementUnderPos(tap.Position.ToPoint());
                 this.ActiveRoot.SelectElement(tapped);
                 if (tapped != null)
-                    tapped.OnPressed?.Invoke(tapped);
+                    this.System.OnElementPressed?.Invoke(tapped);
             } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                 this.IsAutoNavMode = false;
                 var held = this.GetElementUnderPos(hold.Position.ToPoint());
                 this.ActiveRoot.SelectElement(held);
                 if (held != null)
-                    held.OnSecondaryPressed?.Invoke(held);
+                    this.System.OnElementSecondaryPressed?.Invoke(held);
             }
 
             // GAMEPAD INPUT
             else if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
                 this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null)
-                    this.SelectedElement.OnPressed?.Invoke(this.SelectedElement);
+                    this.System.OnElementPressed?.Invoke(this.SelectedElement);
             } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
                 this.IsAutoNavMode = true;
                 if (this.SelectedElement?.Root != null)
-                    this.SelectedElement.OnSecondaryPressed?.Invoke(this.SelectedElement);
+                    this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
             } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
                 this.HandleGamepadNextElement(Direction2.Down);
             } else if (this.LeftButtons.Any(this.IsGamepadPressed)) {

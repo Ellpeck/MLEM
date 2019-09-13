@@ -298,7 +298,7 @@ namespace MLEM.Ui.Elements {
             }
 
             this.area = new Rectangle(pos, actualSize);
-            this.OnAreaUpdated?.Invoke(this);
+            this.System.OnElementAreaUpdated?.Invoke(this);
 
             foreach (var child in this.Children)
                 child.ForceUpdateArea();

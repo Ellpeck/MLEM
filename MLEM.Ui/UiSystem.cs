@@ -54,6 +54,15 @@ namespace MLEM.Ui {
 
         public Element.DrawCallback OnElementDrawn;
         public Element.DrawCallback OnSelectedElementDrawn;
+        public Element.GenericCallback OnElementPressed = e => e.OnPressed?.Invoke(e);
+        public Element.GenericCallback OnElementSecondaryPressed = e => e.OnSecondaryPressed?.Invoke(e);
+        public Element.GenericCallback OnElementSelected = e => e.OnSelected?.Invoke(e);
+        public Element.GenericCallback OnElementDeselected = e => e.OnDeselected?.Invoke(e);
+        public Element.GenericCallback OnElementMouseEnter = e => e.OnMouseEnter?.Invoke(e);
+        public Element.GenericCallback OnElementMouseExit = e => e.OnMouseExit?.Invoke(e);
+        public Element.GenericCallback OnElementAreaUpdated = e => e.OnAreaUpdated?.Invoke(e);
+        public Element.GenericCallback OnMousedElementChanged;
+        public Element.GenericCallback OnSelectedElementChanged;
 
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
@@ -74,6 +83,8 @@ namespace MLEM.Ui {
                     root.Element.AndChildren(e => e.OnTextInput?.Invoke(e, key, character));
             });
 
+            this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
+            this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
                 if (this.Controls.IsAutoNavMode && element.SelectionIndicator != null) {
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
@@ -190,11 +201,11 @@ namespace MLEM.Ui {
                 return;
 
             if (this.SelectedElement != null)
-                this.SelectedElement.OnDeselected?.Invoke(this.SelectedElement);
+                this.System.OnElementDeselected?.Invoke(this.SelectedElement);
             if (element != null)
-                element.OnSelected?.Invoke(element);
+                this.System.OnElementSelected?.Invoke(element);
             this.SelectedElement = element;
-            this.System.ApplyToAll(e => e.OnSelectedElementChanged?.Invoke(e, element));
+            this.System.OnSelectedElementChanged?.Invoke(element);
         }
 
         public void MoveToFront() {
