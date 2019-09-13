@@ -305,10 +305,12 @@ namespace MLEM.Ui.Elements {
 
             if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
                 var lowest = this.GetLowestChild(e => !e.IsHidden);
-                var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
-                if (newHeight != this.size.Y) {
-                    this.size.Y = newHeight;
-                    this.ForceUpdateArea();
+                if (lowest != null) {
+                    var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
+                    if (newHeight != this.size.Y) {
+                        this.size.Y = newHeight;
+                        this.ForceUpdateArea();
+                    }
                 }
             }
         }

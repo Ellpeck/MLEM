@@ -29,6 +29,7 @@ namespace MLEM.Ui.Elements {
             set {
                 if (this.text != value) {
                     this.text = value;
+                    this.IsHidden = string.IsNullOrWhiteSpace(this.text);
                     this.SetAreaDirty();
                 }
             }

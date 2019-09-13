@@ -14,6 +14,7 @@ namespace MLEM.Ui.Elements {
             set {
                 if (this.texture != value) {
                     this.texture = value;
+                    this.IsHidden = this.texture == null;
                     if (this.scaleToImage)
                         this.SetAreaDirty();
                 }
@@ -42,7 +43,7 @@ namespace MLEM.Ui.Elements {
         }
 
         protected override Point CalcActualSize(Rectangle parentArea) {
-            return this.scaleToImage ? this.texture.Size : base.CalcActualSize(parentArea);
+            return this.texture != null && this.scaleToImage ? this.texture.Size : base.CalcActualSize(parentArea);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
