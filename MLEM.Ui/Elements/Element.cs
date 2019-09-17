@@ -178,9 +178,12 @@ namespace MLEM.Ui.Elements {
             this.SetAreaDirty();
         }
 
-        public void RemoveChildren() {
+        public void RemoveChildren(Func<Element, bool> condition = null) {
             for (var i = this.Children.Count - 1; i >= 0; i--) {
-                this.RemoveChild(this.Children[i]);
+                var child = this.Children[i];
+                if (condition == null || condition(child)) {
+                    this.RemoveChild(child);
+                }
             }
         }
 
