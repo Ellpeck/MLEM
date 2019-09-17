@@ -17,7 +17,7 @@ namespace MLEM.Ui {
 
         public RootElement ActiveRoot { get; private set; }
         public Element MousedElement { get; private set; }
-        public Element SelectedElement => this.ActiveRoot.SelectedElement;
+        public Element SelectedElement => this.ActiveRoot?.SelectedElement;
 
         public Buttons[] GamepadButtons = {Buttons.A};
         public Buttons[] SecondaryGamepadButtons = {Buttons.X};
@@ -58,7 +58,7 @@ namespace MLEM.Ui {
             if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 this.IsAutoNavMode = false;
                 var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
-                this.ActiveRoot.SelectElement(selectedNow);
+                this.ActiveRoot?.SelectElement(selectedNow);
                 if (mousedNow != null)
                     this.System.OnElementPressed?.Invoke(mousedNow);
             } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
@@ -86,20 +86,20 @@ namespace MLEM.Ui {
                 var next = this.GetTabNextElement(backward);
                 if (this.SelectedElement?.Root != null)
                     next = this.SelectedElement.GetTabNextElement(backward, next);
-                this.ActiveRoot.SelectElement(next);
+                this.ActiveRoot?.SelectElement(next);
             }
 
             // TOUCH INPUT
             else if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
                 this.IsAutoNavMode = false;
                 var tapped = this.GetElementUnderPos(tap.Position.ToPoint());
-                this.ActiveRoot.SelectElement(tapped);
+                this.ActiveRoot?.SelectElement(tapped);
                 if (tapped != null)
                     this.System.OnElementPressed?.Invoke(tapped);
             } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                 this.IsAutoNavMode = false;
                 var held = this.GetElementUnderPos(hold.Position.ToPoint());
-                this.ActiveRoot.SelectElement(held);
+                this.ActiveRoot?.SelectElement(held);
                 if (held != null)
                     this.System.OnElementSecondaryPressed?.Invoke(held);
             }
