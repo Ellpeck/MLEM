@@ -37,7 +37,7 @@ namespace MLEM.Textures {
         }
 
         public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            batch.Draw(texture, position, color, rotation, origin, new Vector2(scale), SpriteEffects.None, 0);
+            batch.Draw(texture, position, color, rotation, origin, new Vector2(scale), SpriteEffects.None, layerDepth);
         }
 
         public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
