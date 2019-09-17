@@ -10,7 +10,7 @@
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
-        <Version>1.1.4</Version>
+        <Version>1.1.5</Version>
     </PropertyGroup>
 
     <ItemGroup>
