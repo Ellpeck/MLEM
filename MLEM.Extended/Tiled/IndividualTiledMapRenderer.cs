@@ -10,17 +10,17 @@ namespace MLEM.Extended.Tiled {
 
         private TiledMap map;
         private TileDrawInfo[,,] drawInfos;
-        public GetDepth DepthFunction = (tile, layer, layerIndex, position) => 0;
 
-        public IndividualTiledMapRenderer(TiledMap map = null) {
+        public IndividualTiledMapRenderer(TiledMap map = null, GetDepth depthFunction = null) {
             if (map != null)
-                this.SetMap(map);
+                this.SetMap(map, depthFunction);
         }
 
-        public void SetMap(TiledMap map) {
+        public void SetMap(TiledMap map, GetDepth depthFunction = null) {
             if (this.map == map)
                 return;
             this.map = map;
+            var depthFunc = depthFunction ?? ((tile, layer, layerIndex, position) => 0);
 
             this.drawInfos = new TileDrawInfo[map.TileLayers.Count, map.Width, map.Height];
             for (var i = 0; i < map.TileLayers.Count; i++) {
@@ -32,7 +32,9 @@ namespace MLEM.Extended.Tiled {
                             continue;
                         var tileset = tile.GetTileset(map);
                         var source = tileset.GetTileRegion(tile.GetLocalIdentifier(tileset, map));
-                        this.drawInfos[i, x, y] = new TileDrawInfo(this, tile, layer, i, tileset, new Point(x, y), source);
+                        var pos = new Point(x, y);
+                        var depth = depthFunc(tile, layer, i, pos);
+                        this.drawInfos[i, x, y] = new TileDrawInfo(this, tileset, pos, source, depth);
                     }
                 }
             }
@@ -64,27 +66,22 @@ namespace MLEM.Extended.Tiled {
         private class TileDrawInfo {
 
             private readonly IndividualTiledMapRenderer renderer;
-            private readonly TiledMapTile tile;
-            private readonly TiledMapTileLayer layer;
-            private readonly int layerIndex;
             private readonly TiledMapTileset tileset;
             private readonly Point position;
             private readonly Rectangle source;
+            private readonly float depth;
 
-            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTile tile, TiledMapTileLayer layer, int layerIndex, TiledMapTileset tileset, Point position, Rectangle source) {
+            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTileset tileset, Point position, Rectangle source, float depth) {
                 this.renderer = renderer;
-                this.tile = tile;
-                this.layer = layer;
-                this.layerIndex = layerIndex;
                 this.tileset = tileset;
                 this.position = position;
                 this.source = source;
+                this.depth = depth;
             }
 
             public void Draw(SpriteBatch batch) {
                 var drawPos = new Vector2(this.position.X * this.renderer.map.TileWidth, this.position.Y * this.renderer.map.TileHeight);
-                var depth = this.renderer.DepthFunction(this.tile, this.layer, this.layerIndex, this.position);
-                batch.Draw(this.tileset.Texture, drawPos, this.source, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, depth);
+                batch.Draw(this.tileset.Texture, drawPos, this.source, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, this.depth);
             }
 
         }
