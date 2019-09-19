@@ -10,6 +10,7 @@ namespace MLEM.Extended.Tiled {
 
         private TiledMap map;
         private TileDrawInfo[,,] drawInfos;
+        private GetDepth depthFunction;
 
         public IndividualTiledMapRenderer(TiledMap map = null, GetDepth depthFunction = null) {
             if (map != null)
@@ -17,27 +18,29 @@ namespace MLEM.Extended.Tiled {
         }
 
         public void SetMap(TiledMap map, GetDepth depthFunction = null) {
-            if (this.map == map)
-                return;
             this.map = map;
-            var depthFunc = depthFunction ?? ((tile, layer, layerIndex, position) => 0);
+            this.depthFunction = depthFunction ?? ((tile, layer, layerIndex, position) => 0);
 
             this.drawInfos = new TileDrawInfo[map.TileLayers.Count, map.Width, map.Height];
             for (var i = 0; i < map.TileLayers.Count; i++) {
-                var layer = map.TileLayers[i];
                 for (var x = 0; x < map.Width; x++) {
                     for (var y = 0; y < map.Height; y++) {
-                        var tile = layer.GetTile((ushort) x, (ushort) y);
-                        if (tile.IsBlank)
-                            continue;
-                        var tileset = tile.GetTileset(map);
-                        var source = tileset.GetTileRegion(tile.GetLocalIdentifier(tileset, map));
-                        var pos = new Point(x, y);
-                        var depth = depthFunc(tile, layer, i, pos);
-                        this.drawInfos[i, x, y] = new TileDrawInfo(this, tileset, pos, source, depth);
+                        this.UpdateDrawInfo(i, x, y);
                     }
                 }
             }
+        }
+
+        public void UpdateDrawInfo(int layerIndex, int x, int y) {
+            var layer = this.map.TileLayers[layerIndex];
+            var tile = layer.GetTile((ushort) x, (ushort) y);
+            if (tile.IsBlank)
+                return;
+            var tileset = tile.GetTileset(this.map);
+            var source = tileset.GetTileRegion(tile.GetLocalIdentifier(tileset, this.map));
+            var pos = new Point(x, y);
+            var depth = this.depthFunction(tile, layer, layerIndex, pos);
+            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tileset, pos, source, depth);
         }
 
         public void Draw(SpriteBatch batch, RectangleF? frustum = null) {

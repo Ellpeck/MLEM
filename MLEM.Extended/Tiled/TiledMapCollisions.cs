@@ -19,25 +19,26 @@ namespace MLEM.Extended.Tiled {
         }
 
         public void SetMap(TiledMap map) {
-            if (this.map == map)
-                return;
             this.map = map;
-
             this.collisionInfos = new TileCollisionInfo[map.Layers.Count, map.Width, map.Height];
             for (var i = 0; i < map.TileLayers.Count; i++) {
-                var layer = map.TileLayers[i];
                 for (var x = 0; x < map.Width; x++) {
                     for (var y = 0; y < map.Height; y++) {
-                        var tile = layer.GetTile((ushort) x, (ushort) y);
-                        if (tile.IsBlank)
-                            continue;
-                        var tilesetTile = tile.GetTilesetTile(map);
-                        if (tilesetTile == null)
-                            continue;
-                        this.collisionInfos[i, x, y] = new TileCollisionInfo(map, new Vector2(x, y), tile, tilesetTile);
+                        this.UpdateCollisionInfo(i, x, y);
                     }
                 }
             }
+        }
+
+        public void UpdateCollisionInfo(int layerIndex, int x, int y) {
+            var layer = this.map.TileLayers[layerIndex];
+            var tile = layer.GetTile((ushort) x, (ushort) y);
+            if (tile.IsBlank)
+                return;
+            var tilesetTile = tile.GetTilesetTile(this.map);
+            if (tilesetTile == null)
+                return;
+            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, tilesetTile);
         }
 
         public IEnumerable<TileCollisionInfo> GetCollidingTiles(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
