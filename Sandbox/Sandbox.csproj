@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net462</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MLEM.Extended\MLEM.Extended.csproj" />
+        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
+        <PackageReference Include="MonoGame.Extended.Content.Pipeline" Version="3.7.0" />
+        <PackageReference Include="MonoGame.Extended.Tiled" Version="3.7.0" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.0.1708" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <MonoGameContentReference Include="Content\Content.mgcb" />
+        <Content Include="Content\*\**" />
+    </ItemGroup>
+
+</Project>

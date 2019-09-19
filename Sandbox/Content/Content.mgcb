@@ -1,0 +1,26 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\bin\Debug\net462\MonoGame.Extended.Content.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Tiled/Map.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Tiled/Map.tmx
+
+#begin Tiled/Tileset.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:Tiled/Tileset.tsx
+

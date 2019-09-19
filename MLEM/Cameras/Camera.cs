@@ -7,7 +7,7 @@ namespace MLEM.Cameras {
     public class Camera {
 
         public Vector2 Position;
-        public float Scale;
+        public float Scale = 1;
         public bool AutoScaleWithScreen;
         public Point AutoScaleReferenceSize;
         public float ActualScale {
