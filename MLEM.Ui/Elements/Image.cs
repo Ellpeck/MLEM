@@ -46,7 +46,7 @@ namespace MLEM.Ui.Elements {
             return this.texture != null && this.scaleToImage ? this.texture.Size : base.CalcActualSize(parentArea);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var center = new Vector2(this.texture.Width / 2F, this.texture.Height / 2F);
             if (this.MaintainImageAspect) {
                 var scale = Math.Min(this.DisplayArea.Width / (float) this.texture.Width, this.DisplayArea.Height / (float) this.texture.Height);
@@ -56,7 +56,7 @@ namespace MLEM.Ui.Elements {
                 var scale = new Vector2(1F / this.texture.Width, 1F / this.texture.Height) * this.DisplayArea.Size.ToVector2();
                 batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale, this.Color * alpha, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             }
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
     }

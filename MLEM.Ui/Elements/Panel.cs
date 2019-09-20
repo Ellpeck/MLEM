@@ -92,11 +92,11 @@ namespace MLEM.Ui.Elements {
                 child.ScrollOffset = new Point(0, offset);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow) {
-                base.Draw(time, batch, alpha);
+                base.Draw(time, batch, alpha, blendState, samplerState, matrix);
             } else if (this.renderTarget != null) {
                 // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
                 batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
@@ -113,7 +113,7 @@ namespace MLEM.Ui.Elements {
                 var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
                 // do the usual draw, but within the render target
                 batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, trans);
-                base.Draw(time, batch, alpha);
+                base.Draw(time, batch, alpha, blendState, samplerState, trans);
                 batch.End();
                 // also draw any children early within the render target with the translation applied
                 base.DrawEarly(time, batch, alpha, blendState, samplerState, trans);

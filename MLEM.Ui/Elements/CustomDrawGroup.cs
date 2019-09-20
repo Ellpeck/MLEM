@@ -15,17 +15,17 @@ namespace MLEM.Ui.Elements {
 
         public delegate void BeginDelegate(CustomDrawGroup element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
-            // this is left empty because child components are drawn in DrawEarly
-        }
-
-        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+            // end the usual draw so that we can begin our own
+            batch.End();
             var mat = matrix * this.Transform;
             this.BeginImpl(this, time, batch, alpha, blendState, samplerState, mat);
             // draw child components in custom begin call
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, mat);
+            // end our draw
             batch.End();
-            base.DrawEarly(time, batch, alpha, blendState, samplerState, mat);
+            // begin the usual draw again for other elements
+            batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, matrix);
         }
 
     }

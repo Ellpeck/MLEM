@@ -32,7 +32,7 @@ namespace MLEM.Ui.Elements {
             this.CanBeSelected = false;
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Texture, this.DisplayArea, this.Color * alpha, this.Scale);
 
             var percentage = this.CurrentValue / this.MaxValue;
@@ -63,7 +63,7 @@ namespace MLEM.Ui.Elements {
             } else {
                 batch.Draw(batch.GetBlankTexture(), offsetArea, this.ProgressColor * alpha);
             }
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         protected override void InitStyle(UiStyle style) {

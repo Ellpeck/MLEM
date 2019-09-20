@@ -118,7 +118,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
 
             var scrollerPos = new Point(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
@@ -127,7 +127,7 @@ namespace MLEM.Ui.Elements {
                 this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale)).Floor());
             var scrollerRect = new Rectangle(scrollerPos + scrollerOffset, new Point((this.ScrollerSize.X * this.Scale).Ceil(), (this.ScrollerSize.Y * this.Scale).Ceil()));
             batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         protected override void InitStyle(UiStyle style) {

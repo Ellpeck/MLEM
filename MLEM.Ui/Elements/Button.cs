@@ -22,7 +22,7 @@ namespace MLEM.Ui.Elements {
                 this.Tooltip = new Tooltip(tooltipWidth, tooltipText, this);
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -31,7 +31,7 @@ namespace MLEM.Ui.Elements {
                 color = this.HoveredColor * alpha;
             }
             batch.Draw(tex, this.DisplayArea, color, this.Scale);
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         protected override void InitStyle(UiStyle style) {

@@ -132,7 +132,7 @@ namespace MLEM.Ui.Elements {
                 this.caretBlinkTimer = 0;
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -150,7 +150,7 @@ namespace MLEM.Ui.Elements {
             } else if (this.PlaceholderText != null) {
                 this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
             }
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         public void SetText(object text, bool removeMismatching = false) {

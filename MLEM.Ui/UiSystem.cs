@@ -111,7 +111,10 @@ namespace MLEM.Ui {
                 if (root.Element.IsHidden)
                     continue;
                 batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, null, null, null, root.Transform);
-                root.Element.Draw(time, batch, this.DrawAlpha * root.Element.DrawAlpha);
+                var alpha = this.DrawAlpha * root.Element.DrawAlpha;
+                root.Element.Draw(time, batch, alpha, this.BlendState, this.SamplerState, root.Transform);
+                if (root.SelectedElement != null)
+                    this.OnSelectedElementDrawn?.Invoke(root.SelectedElement, time, batch, alpha);
                 batch.End();
             }
         }

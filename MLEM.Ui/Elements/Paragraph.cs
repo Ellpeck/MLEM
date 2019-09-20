@@ -69,7 +69,7 @@ namespace MLEM.Ui.Elements {
             this.TimeIntoAnimation += time.ElapsedGameTime;
         }
 
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             if (this.Background != null)
                 batch.Draw(this.Background, this.Area, this.BackgroundColor * alpha);
 
@@ -83,7 +83,7 @@ namespace MLEM.Ui.Elements {
                 // if we have formatting codes, we should do it
                 this.regularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.boldFont, this.italicFont, 0, this.TimeIntoAnimation);
             }
-            base.Draw(time, batch, alpha);
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         protected override void InitStyle(UiStyle style) {
