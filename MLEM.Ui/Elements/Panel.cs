@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,8 @@ namespace MLEM.Ui.Elements {
         public readonly ScrollBar ScrollBar;
         private readonly bool scrollOverflow;
         private RenderTarget2D renderTarget;
+        private readonly List<Element> relevantChildren = new List<Element>();
+        private bool relevantChildrenDirty;
 
         public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null) : base(anchor, size) {
             this.PositionOffset = positionOffset;
@@ -26,7 +29,7 @@ namespace MLEM.Ui.Elements {
                 var scrollSize = scrollerSize ?? Point.Zero;
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(scrollSize.X, 1), scrollSize.Y, 0) {
                     StepPerScroll = 10,
-                    OnValueChanged = (element, value) => this.ForceChildrenScroll(),
+                    OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
                     AutoHideWhenEmpty = true
                 };
@@ -61,7 +64,7 @@ namespace MLEM.Ui.Elements {
             }
 
             base.ForceUpdateArea();
-            this.ForceChildrenScroll();
+            this.ScrollChildren();
 
             if (this.scrollOverflow) {
                 // if there is only one child, then we have just the scroll bar
@@ -84,12 +87,39 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        private void ForceChildrenScroll() {
+        private void ScrollChildren() {
             if (!this.scrollOverflow)
                 return;
             var offset = -this.ScrollBar.CurrentValue.Floor();
             foreach (var child in this.GetChildren(c => c != this.ScrollBar, true))
                 child.ScrollOffset = new Point(0, offset);
+            this.relevantChildrenDirty = true;
+        }
+
+        public override void Update(GameTime time) {
+            if (this.relevantChildrenDirty) {
+                this.relevantChildrenDirty = false;
+
+                var visible = this.GetRenderTargetArea();
+                this.relevantChildren.Clear();
+                foreach (var child in this.SortedChildren) {
+                    if (child.Area.Intersects(visible)) {
+                        this.relevantChildren.Add(child);
+                    } else {
+                        foreach (var c in child.GetChildren(regardGrandchildren: true)) {
+                            if (c.Area.Intersects(visible)) {
+                                this.relevantChildren.Add(child);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            base.Update(time);
+        }
+
+        protected override List<Element> GetRelevantChildren() {
+            return this.scrollOverflow ? this.relevantChildren : base.GetRelevantChildren();
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {

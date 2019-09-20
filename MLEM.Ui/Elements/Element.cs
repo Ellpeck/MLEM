@@ -415,22 +415,26 @@ namespace MLEM.Ui.Elements {
                 yield return parent;
         }
 
+        protected virtual List<Element> GetRelevantChildren() {
+            return this.SortedChildren;
+        }
+
         public virtual void Update(GameTime time) {
-            foreach (var child in this.SortedChildren)
+            foreach (var child in this.GetRelevantChildren())
                 child.Update(time);
         }
 
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             this.System.OnElementDrawn?.Invoke(this, time, batch, alpha);
 
-            foreach (var child in this.SortedChildren) {
+            foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
                     child.Draw(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
             }
         }
 
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            foreach (var child in this.SortedChildren) {
+            foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
                     child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
             }
@@ -439,8 +443,9 @@ namespace MLEM.Ui.Elements {
         public virtual Element GetElementUnderPos(Point position) {
             if (this.IsHidden)
                 return null;
-            for (var i = this.SortedChildren.Count - 1; i >= 0; i--) {
-                var element = this.SortedChildren[i].GetElementUnderPos(position);
+            var children = this.GetRelevantChildren();
+            for (var i = children.Count - 1; i >= 0; i--) {
+                var element = children[i].GetElementUnderPos(position);
                 if (element != null)
                     return element;
             }
