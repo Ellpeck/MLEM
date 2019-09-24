@@ -33,7 +33,7 @@ namespace MLEM.Extended.Tiled {
 
         public void UpdateDrawInfo(int layerIndex, int x, int y) {
             var layer = this.map.TileLayers[layerIndex];
-            var tile = layer.GetTile((ushort) x, (ushort) y);
+            var tile = layer.GetTile(x, y);
             if (tile.IsBlank)
                 return;
             var tileset = tile.GetTileset(this.map);

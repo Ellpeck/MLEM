@@ -54,7 +54,11 @@ namespace MLEM.Extended.Tiled {
 
         public static TiledMapTile GetTile(this TiledMap map, string layerName, int x, int y) {
             var layer = map.GetLayer<TiledMapTileLayer>(layerName);
-            return layer != null ? layer.GetTile((ushort) x, (ushort) y) : default;
+            return layer != null ? layer.GetTile(x, y) : default;
+        }
+
+        public static TiledMapTile GetTile(this TiledMapTileLayer layer, int x, int y) {
+            return layer.GetTile((ushort) x, (ushort) y);
         }
 
         public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2 position) {
