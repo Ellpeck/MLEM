@@ -6,11 +6,11 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>A mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types. Part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame</Description>
-        <PackageTags>monogame ellpeck mlem ui user interface graphical gui system</PackageTags>
+        <PackageTags>monogame ellpeck mlem ui user interface graphical gui system mouse keyboard gamepad touch</PackageTags>
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
-        <Version>1.2.0</Version>
+        <Version>1.2.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
