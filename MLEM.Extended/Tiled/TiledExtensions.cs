@@ -39,18 +39,22 @@ namespace MLEM.Extended.Tiled {
         }
 
         public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, TiledMapTile tile, TiledMap map) {
+            if (tile.IsBlank)
+                return null;
             var localId = tile.GetLocalIdentifier(tileset, map);
             return tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
         }
 
         public static TiledMapTilesetTile GetTilesetTile(this TiledMapTile tile, TiledMap map) {
+            if (tile.IsBlank)
+                return null;
             var tileset = tile.GetTileset(map);
-            return tileset.GetTilesetTile(tile, map);
+            return tileset?.GetTilesetTile(tile, map);
         }
 
         public static TiledMapTile GetTile(this TiledMap map, string layerName, int x, int y) {
             var layer = map.GetLayer<TiledMapTileLayer>(layerName);
-            return layer != null ? layer.GetTile((ushort) x, (ushort) y) : new TiledMapTile(0, (ushort) x, (ushort) y);
+            return layer != null ? layer.GetTile((ushort) x, (ushort) y) : default;
         }
 
         public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2 position) {
