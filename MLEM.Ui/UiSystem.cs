@@ -52,8 +52,9 @@ namespace MLEM.Ui {
         public SamplerState SamplerState = SamplerState.PointClamp;
         public UiControls Controls;
 
-        public Element.DrawCallback OnElementDrawn;
+        public Element.DrawCallback OnElementDrawn = (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
         public Element.DrawCallback OnSelectedElementDrawn;
+        public Element.TimeCallback OnElementUpdated = (e, time) => e.OnUpdated?.Invoke(e, time);
         public Element.GenericCallback OnElementPressed = e => e.OnPressed?.Invoke(e);
         public Element.GenericCallback OnElementSecondaryPressed = e => e.OnSecondaryPressed?.Invoke(e);
         public Element.GenericCallback OnElementSelected = e => e.OnSelected?.Invoke(e);
