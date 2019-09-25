@@ -61,9 +61,10 @@ namespace MLEM.Extended.Tiled {
             return layer.GetTile((ushort) x, (ushort) y);
         }
 
-        public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2 position) {
+        public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2? position = null) {
             var tileSize = map.GetTileSize();
-            return new RectangleF(obj.Position / tileSize + position, new Size2(obj.Size.Width, obj.Size.Height) / tileSize);
+            var pos = position ?? Vector2.Zero;
+            return new RectangleF(obj.Position / tileSize + pos, new Size2(obj.Size.Width, obj.Size.Height) / tileSize);
         }
 
         public static Vector2 GetTileSize(this TiledMap map) {
