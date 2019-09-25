@@ -36,8 +36,10 @@ namespace MLEM.Ui.Elements {
             batch.Draw(this.Texture, this.DisplayArea, this.Color * alpha, this.Scale);
 
             var percentage = this.CurrentValue / this.MaxValue;
-            var width = (percentage * this.DisplayArea.Width).Floor();
-            var height = (percentage * this.DisplayArea.Height).Floor();
+            var padHor = this.ProgressTexture != null ? (this.ProgressTexture.PaddingLeft + this.ProgressTexture.PaddingRight) * this.Scale : 0;
+            var padVer = this.ProgressTexture != null ? (this.ProgressTexture.PaddingTop + this.ProgressTexture.PaddingBottom) * this.Scale : 0;
+            var width = (percentage * (this.DisplayArea.Width - padHor) + padHor).Floor();
+            var height = (percentage * (this.DisplayArea.Height - padVer) + padVer).Floor();
             Rectangle progressArea;
             switch (this.Direction) {
                 case Direction2.Up:
