@@ -69,6 +69,8 @@ namespace MLEM.Ui.Elements {
         public Rectangle ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
         public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
 
+        public DrawCallback OnDrawn;
+        public TimeCallback OnUpdated;
         public GenericCallback OnPressed;
         public GenericCallback OnSecondaryPressed;
         public GenericCallback OnSelected;
@@ -420,6 +422,8 @@ namespace MLEM.Ui.Elements {
         }
 
         public virtual void Update(GameTime time) {
+            this.System.OnElementUpdated?.Invoke(this, time);
+
             foreach (var child in this.GetRelevantChildren())
                 child.Update(time);
         }
@@ -469,6 +473,8 @@ namespace MLEM.Ui.Elements {
         public delegate void OtherElementCallback(Element thisElement, Element otherElement);
 
         public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha);
+
+        public delegate void TimeCallback(Element element, GameTime time);
 
         public delegate Element TabNextElementCallback(bool backward, Element usualNext);
 
