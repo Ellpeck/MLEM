@@ -9,6 +9,7 @@ namespace MLEM.Ui.Elements {
 
         public Color Color = Color.White;
         private TextureRegion texture;
+        public TextureCallback GetTextureCallback;
         public TextureRegion Texture {
             get => this.texture;
             set {
@@ -36,7 +37,15 @@ namespace MLEM.Ui.Elements {
         public float ImageRotation;
 
         public Image(Anchor anchor, Vector2 size, TextureRegion texture, bool scaleToImage = false) : base(anchor, size) {
-            this.texture = texture;
+            this.Texture = texture;
+            this.scaleToImage = scaleToImage;
+            this.CanBeSelected = false;
+            this.CanBeMoused = false;
+        }
+
+        public Image(Anchor anchor, Vector2 size, TextureCallback getTextureCallback, bool scaleToImage = false) : base(anchor, size) {
+            this.GetTextureCallback = getTextureCallback;
+            this.Texture = getTextureCallback(this);
             this.scaleToImage = scaleToImage;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
@@ -46,7 +55,15 @@ namespace MLEM.Ui.Elements {
             return this.texture != null && this.scaleToImage ? this.texture.Size : base.CalcActualSize(parentArea);
         }
 
+        public override void Update(GameTime time) {
+            base.Update(time);
+            if (this.GetTextureCallback != null)
+                this.Texture = this.GetTextureCallback(this);
+        }
+
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+            if (this.texture == null)
+                return;
             var center = new Vector2(this.texture.Width / 2F, this.texture.Height / 2F);
             if (this.MaintainImageAspect) {
                 var scale = Math.Min(this.DisplayArea.Width / (float) this.texture.Width, this.DisplayArea.Height / (float) this.texture.Height);
@@ -58,6 +75,8 @@ namespace MLEM.Ui.Elements {
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
+
+        public delegate TextureRegion TextureCallback(Image image);
 
     }
 }
