@@ -289,7 +289,7 @@ namespace MLEM.Ui.Elements {
                             var newX = prevArea.Right + this.ScaledOffset.X;
                             if (newX + actualSize.X <= parentArea.Right) {
                                 pos.X = newX;
-                                pos.Y = prevArea.Y;
+                                pos.Y = prevArea.Y + this.ScaledOffset.Y;
                             } else {
                                 pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
                             }
