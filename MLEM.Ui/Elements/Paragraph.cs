@@ -16,9 +16,9 @@ namespace MLEM.Ui.Elements {
         private string text;
         private string splitText;
         private Dictionary<int, FormattingCode> codeLocations;
-        private IGenericFont regularFont;
-        private IGenericFont boldFont;
-        private IGenericFont italicFont;
+        public IGenericFont RegularFont;
+        public IGenericFont BoldFont;
+        public IGenericFont ItalicFont;
 
         public NinePatch Background;
         public Color BackgroundColor;
@@ -59,10 +59,10 @@ namespace MLEM.Ui.Elements {
             var size = base.CalcActualSize(parentArea);
 
             var sc = this.TextScale * this.Scale;
-            this.splitText = this.regularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
+            this.splitText = this.RegularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
             this.codeLocations = this.text.GetFormattingCodes();
 
-            var textDims = this.regularFont.MeasureString(this.splitText) * sc;
+            var textDims = this.RegularFont.MeasureString(this.splitText) * sc;
             return new Point(this.AutoAdjustWidth ? textDims.X.Ceil() + this.ScaledPadding.X * 2 : size.X, textDims.Y.Ceil() + this.ScaledPadding.Y * 2);
         }
 
@@ -82,10 +82,10 @@ namespace MLEM.Ui.Elements {
 
             // if we don't have any formatting codes, then we don't need to do complex drawing
             if (this.codeLocations.Count <= 0) {
-                this.regularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                this.RegularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we should do it
-                this.regularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.boldFont, this.italicFont, 0, this.TimeIntoAnimation);
+                this.RegularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.BoldFont, this.ItalicFont, 0, this.TimeIntoAnimation);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
@@ -93,9 +93,9 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.TextScale = style.TextScale;
-            this.regularFont = style.Font;
-            this.boldFont = style.BoldFont ?? style.Font;
-            this.italicFont = style.ItalicFont ?? style.Font;
+            this.RegularFont = style.Font;
+            this.BoldFont = style.BoldFont ?? style.Font;
+            this.ItalicFont = style.ItalicFont ?? style.Font;
         }
 
         public delegate string TextCallback(Paragraph paragraph);
