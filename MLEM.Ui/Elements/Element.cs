@@ -453,7 +453,7 @@ namespace MLEM.Ui.Elements {
                 if (element != null)
                     return element;
             }
-            return this.CanBeMoused && this.Area.Contains(position) ? this : null;
+            return this.CanBeMoused && this.DisplayArea.Contains(position) ? this : null;
         }
 
         public void AndChildren(Action<Element> action) {
