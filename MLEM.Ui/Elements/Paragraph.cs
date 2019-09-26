@@ -42,10 +42,14 @@ namespace MLEM.Ui.Elements {
             : this(anchor, width, "", centerText) {
             this.GetTextCallback = textCallback;
             this.Text = textCallback(this);
+            if (this.Text == null)
+                this.IsHidden = true;
         }
 
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false) : base(anchor, new Vector2(width, 0)) {
-            this.text = text;
+            this.Text = text;
+            if (this.Text == null)
+                this.IsHidden = true;
             this.AutoAdjustWidth = centerText;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
