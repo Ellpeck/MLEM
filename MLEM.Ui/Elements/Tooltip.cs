@@ -12,7 +12,7 @@ namespace MLEM.Ui.Elements {
         public Tooltip(float width, string text, Element elementToHover = null) :
             base(Anchor.TopLeft, width, text) {
             this.AutoAdjustWidth = true;
-            this.Padding = new Point(2);
+            this.Padding = new Vector2(2);
             this.CanBeSelected = false;
 
             if (elementToHover != null) {

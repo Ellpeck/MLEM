@@ -25,9 +25,9 @@ namespace MLEM.Ui.Elements {
         private Anchor anchor;
         private Vector2 size;
         private Vector2 offset;
-        public Point Padding;
-        public Point ScaledPadding => this.Padding.Multiply(this.Scale);
-        private Point childPadding;
+        public Vector2 Padding;
+        public Point ScaledPadding => (this.Padding * this.Scale).ToPoint();
+        private Vector2 childPadding;
         public Anchor Anchor {
             get => this.anchor;
             set {
@@ -57,7 +57,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Point ScaledOffset => (this.offset * this.Scale).ToPoint();
-        public Point ChildPadding {
+        public Vector2 ChildPadding {
             get => this.childPadding;
             set {
                 if (this.childPadding == value)
@@ -67,7 +67,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Rectangle ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
-        public Point ScaledChildPadding => this.childPadding.Multiply(this.Scale);
+        public Point ScaledChildPadding => (this.childPadding * this.Scale).ToPoint();
 
         public DrawCallback OnDrawn;
         public TimeCallback OnUpdated;
@@ -125,8 +125,8 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Rectangle Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
-        public Point ScrollOffset;
-        public Point ScaledScrollOffset => this.ScrollOffset.Multiply(this.Scale);
+        public Vector2 ScrollOffset;
+        public Point ScaledScrollOffset => (this.ScrollOffset * this.Scale).ToPoint();
         public Rectangle DisplayArea => this.Area.Shrink(this.ScaledPadding);
         private int priority;
         public int Priority {

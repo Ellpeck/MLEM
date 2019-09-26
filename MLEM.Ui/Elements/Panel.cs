@@ -22,7 +22,7 @@ namespace MLEM.Ui.Elements {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
             this.scrollOverflow = scrollOverflow;
-            this.ChildPadding = new Point(5);
+            this.ChildPadding = new Vector2(5);
             this.CanBeSelected = false;
 
             if (scrollOverflow) {
@@ -37,7 +37,7 @@ namespace MLEM.Ui.Elements {
 
                 // modify the padding so that the scroll bar isn't over top of something else
                 this.ScrollBar.PositionOffset -= new Vector2(scrollSize.X + 1, 0);
-                this.ChildPadding += new Point(scrollSize.X, 0);
+                this.ChildPadding += new Vector2(scrollSize.X, 0);
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {
@@ -92,7 +92,7 @@ namespace MLEM.Ui.Elements {
                 return;
             var offset = -this.ScrollBar.CurrentValue.Floor();
             foreach (var child in this.GetChildren(c => c != this.ScrollBar, true))
-                child.ScrollOffset = new Point(0, offset);
+                child.ScrollOffset = new Vector2(0, offset);
             this.relevantChildrenDirty = true;
         }
 
