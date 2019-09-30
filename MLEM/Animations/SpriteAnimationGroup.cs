@@ -8,21 +8,43 @@ namespace MLEM.Animations {
 
         private readonly List<ConditionedAnimation> animations = new List<ConditionedAnimation>();
         private ConditionedAnimation currAnimation;
-        public SpriteAnimation CurrentAnimation => this.currAnimation?.Animation;
+        private ConditionedAnimation CurrAnimation {
+            get {
+                if (this.isDirty) {
+                    this.isDirty = false;
+                    this.animations.Sort((a1, a2) => a1.Priority.CompareTo(a2.Priority));
+                    this.FindAnimationToPlay();
+                }
+                return this.currAnimation;
+            }
+            set => this.currAnimation = value;
+        }
+        public SpriteAnimation CurrentAnimation => this.CurrAnimation?.Animation;
         public AnimationFrame CurrentFrame => this.CurrentAnimation?.CurrentFrame;
         public TextureRegion CurrentRegion => this.CurrentAnimation?.CurrentRegion;
         public AnimationChanged OnAnimationChanged;
+        private bool isDirty;
 
         public SpriteAnimationGroup Add(SpriteAnimation anim, Func<bool> condition, int priority = 0) {
             this.animations.Add(new ConditionedAnimation(anim, condition, priority));
-            this.animations.Sort((a1, a2) => a1.Priority.CompareTo(a2.Priority));
+            this.isDirty = true;
             return this;
         }
 
         public void Update(GameTime time) {
+            this.FindAnimationToPlay();
+            if (this.CurrAnimation != null)
+                this.CurrAnimation.Animation.Update(time);
+        }
+
+        public SpriteAnimation ByName(string name) {
+            return this.animations.Find(anim => anim.Animation.Name == name)?.Animation;
+        }
+
+        private void FindAnimationToPlay() {
             ConditionedAnimation animToPlay = null;
-            if (this.currAnimation != null && this.currAnimation.ShouldPlay())
-                animToPlay = this.currAnimation;
+            if (this.CurrAnimation != null && this.CurrAnimation.ShouldPlay())
+                animToPlay = this.CurrAnimation;
             foreach (var anim in this.animations) {
                 // if we find an animation with a lower priority then it means we can break
                 // because the list is sorted by priority
@@ -31,19 +53,12 @@ namespace MLEM.Animations {
                 if (anim.ShouldPlay())
                     animToPlay = anim;
             }
-            if (animToPlay != this.currAnimation) {
-                this.OnAnimationChanged?.Invoke(this.currAnimation?.Animation, animToPlay?.Animation);
-                this.currAnimation = animToPlay;
+            if (animToPlay != this.CurrAnimation) {
+                this.OnAnimationChanged?.Invoke(this.CurrAnimation?.Animation, animToPlay?.Animation);
+                this.CurrAnimation = animToPlay;
                 if (animToPlay != null)
                     animToPlay.Animation.Restart();
             }
-
-            if (this.currAnimation != null)
-                this.currAnimation.Animation.Update(time);
-        }
-
-        public SpriteAnimation ByName(string name) {
-            return this.animations.Find(anim => anim.Animation.Name == name)?.Animation;
         }
 
         public delegate void AnimationChanged(SpriteAnimation oldAnim, SpriteAnimation newAnim);
