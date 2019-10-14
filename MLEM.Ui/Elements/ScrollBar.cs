@@ -11,8 +11,8 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public class ScrollBar : Element {
 
-        public NinePatch Background;
-        public NinePatch ScrollerTexture;
+        public StyleProp<NinePatch> Background;
+        public StyleProp<NinePatch> ScrollerTexture;
         public Point ScrollerOffset;
         public Point ScrollerSize;
         private float maxValue;
@@ -132,8 +132,8 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Background = style.ScrollBarBackground;
-            this.ScrollerTexture = style.ScrollBarScrollerTexture;
+            this.Background.SetFromStyle(style.ScrollBarBackground);
+            this.ScrollerTexture.SetFromStyle(style.ScrollBarScrollerTexture);
         }
 
         public delegate void ValueChanged(Element element, float value);

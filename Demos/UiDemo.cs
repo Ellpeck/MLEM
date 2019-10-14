@@ -81,16 +81,11 @@ namespace Demos {
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
+            var customButton = root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnPressed = element => this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle,
-                PositionOffset = new Vector2(0, 1),
-                // set HasCustomStyle to true before changing style information so that, when changing the style globally
-                // (like above), these custom values don't get undone
-                HasCustomStyle = true,
-                Texture = this.testPatch,
-                HoveredColor = Color.LightGray,
-                SelectionIndicator = style.SelectionIndicator
+                PositionOffset = new Vector2(0, 1)
             });
+            customButton.Texture.Set(this.testPatch);
 
             root.AddChild(new VerticalSpace(3));
 

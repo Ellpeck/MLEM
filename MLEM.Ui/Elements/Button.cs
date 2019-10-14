@@ -7,9 +7,9 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public class Button : Element {
 
-        public NinePatch Texture;
-        public NinePatch HoveredTexture;
-        public Color HoveredColor;
+        public StyleProp<NinePatch> Texture;
+        public StyleProp<NinePatch> HoveredTexture;
+        public StyleProp<Color> HoveredColor;
         public Paragraph Text;
         public Tooltip Tooltip;
 
@@ -26,9 +26,9 @@ namespace MLEM.Ui.Elements {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
-                if (this.HoveredTexture != null)
+                if (this.HoveredTexture.Value != null)
                     tex = this.HoveredTexture;
-                color = this.HoveredColor * alpha;
+                color = (Color) this.HoveredColor * alpha;
             }
             batch.Draw(tex, this.DisplayArea, color, this.Scale);
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
@@ -36,9 +36,9 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture = style.ButtonTexture;
-            this.HoveredTexture = style.ButtonHoveredTexture;
-            this.HoveredColor = style.ButtonHoveredColor;
+            this.Texture.SetFromStyle(style.ButtonTexture);
+            this.HoveredTexture.SetFromStyle(style.ButtonHoveredTexture);
+            this.HoveredColor.SetFromStyle(style.ButtonHoveredColor);
         }
 
     }

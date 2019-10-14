@@ -48,8 +48,8 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Background = style.TooltipBackground;
-            this.BackgroundColor = style.TooltipBackgroundColor;
+            this.Background.SetFromStyle(style.TooltipBackground);
+            this.BackgroundColor.SetFromStyle(style.TooltipBackgroundColor);
         }
 
     }

@@ -53,19 +53,15 @@ namespace Sandbox {
             var group = root.AddChild(new CustomDrawGroup(Anchor.AutoLeft, new Vector2(1, 10)));
             group.AddChild(new Button(Anchor.AutoLeft, Vector2.One, "Test text"));
 
-            this.progress = new ProgressBar(Anchor.Center, new Vector2(0.8F, 0.5F), Direction2.Down, 1) {
-                HasCustomStyle = true,
-                Texture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
-                Color = Color.White,
-                ProgressTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4),
-                ProgressColor = Color.White
-            };
+            this.progress = new ProgressBar(Anchor.Center, new Vector2(0.8F, 0.5F), Direction2.Down, 1);
+            this.progress.Texture.Set(new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8));
+            this.progress.ProgressTexture.Set(new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4));
             this.UiSystem.Add("Progress", this.progress);
         }
 
         protected override void Update(GameTime gameTime) {
             base.Update(gameTime);
-            this.progress.CurrentValue = (float) (Math.Sin(gameTime.TotalGameTime.TotalSeconds/2) + 1) / 2;
+            this.progress.CurrentValue = (float) (Math.Sin(gameTime.TotalGameTime.TotalSeconds / 2) + 1) / 2;
         }
 
         protected override void DoDraw(GameTime gameTime) {

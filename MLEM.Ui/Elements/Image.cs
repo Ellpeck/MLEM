@@ -1,13 +1,13 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Textures;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     public class Image : Element {
 
-        public Color Color = Color.White;
+        public StyleProp<Color> Color;
         private TextureRegion texture;
         public TextureCallback GetTextureCallback;
         public TextureRegion Texture {
@@ -65,13 +65,14 @@ namespace MLEM.Ui.Elements {
             if (this.texture == null)
                 return;
             var center = new Vector2(this.texture.Width / 2F, this.texture.Height / 2F);
+            var color = (this.Color.Value != default ? this.Color : Microsoft.Xna.Framework.Color.White) * alpha;
             if (this.MaintainImageAspect) {
                 var scale = Math.Min(this.DisplayArea.Width / (float) this.texture.Width, this.DisplayArea.Height / (float) this.texture.Height);
                 var imageOffset = new Vector2(this.DisplayArea.Width / 2F - this.texture.Width * scale / 2, this.DisplayArea.Height / 2F - this.texture.Height * scale / 2);
-                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale + imageOffset, this.Color * alpha, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
+                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale + imageOffset, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             } else {
                 var scale = new Vector2(1F / this.texture.Width, 1F / this.texture.Height) * this.DisplayArea.Size.ToVector2();
-                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale, this.Color * alpha, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
+                batch.Draw(this.texture, this.DisplayArea.Location.ToVector2() + center * scale, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }

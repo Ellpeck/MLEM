@@ -11,7 +11,7 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public class Panel : Element {
 
-        public NinePatch Texture;
+        public StyleProp<NinePatch> Texture;
         public readonly ScrollBar ScrollBar;
         private readonly bool scrollOverflow;
         private RenderTarget2D renderTarget;
@@ -169,7 +169,7 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture = style.PanelTexture;
+            this.Texture.SetFromStyle(style.PanelTexture);
         }
 
     }

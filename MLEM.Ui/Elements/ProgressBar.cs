@@ -9,11 +9,11 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public class ProgressBar : Element {
 
-        public NinePatch Texture;
-        public Color Color;
-        public Point ProgressPadding;
-        public NinePatch ProgressTexture;
-        public Color ProgressColor;
+        public StyleProp<NinePatch> Texture;
+        public StyleProp<Color> Color;
+        public StyleProp<Point> ProgressPadding;
+        public StyleProp<NinePatch> ProgressTexture;
+        public StyleProp<Color> ProgressColor;
 
         public Direction2 Direction;
         public float MaxValue;
@@ -33,11 +33,12 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            batch.Draw(this.Texture, this.DisplayArea, this.Color * alpha, this.Scale);
+            batch.Draw(this.Texture, this.DisplayArea, (Color) this.Color * alpha, this.Scale);
 
             var percentage = this.CurrentValue / this.MaxValue;
-            var padHor = this.ProgressTexture != null ? (this.ProgressTexture.PaddingLeft + this.ProgressTexture.PaddingRight) * this.Scale : 0;
-            var padVer = this.ProgressTexture != null ? (this.ProgressTexture.PaddingTop + this.ProgressTexture.PaddingBottom) * this.Scale : 0;
+            var tex = this.ProgressTexture.Value;
+            var padHor = tex != null ? (tex.PaddingLeft + tex.PaddingRight) * this.Scale : 0;
+            var padVer = tex != null ? (tex.PaddingTop + tex.PaddingBottom) * this.Scale : 0;
             var width = (percentage * (this.DisplayArea.Width - padHor) + padHor).Floor();
             var height = (percentage * (this.DisplayArea.Height - padVer) + padVer).Floor();
             Rectangle progressArea;
@@ -59,22 +60,22 @@ namespace MLEM.Ui.Elements {
                     progressArea = new Rectangle(this.DisplayArea.Location, new Point(width, this.DisplayArea.Height));
                     break;
             }
-            var offsetArea = progressArea.Shrink(this.ProgressPadding.Multiply(this.Scale));
-            if (this.ProgressTexture != null) {
-                batch.Draw(this.ProgressTexture, offsetArea, this.ProgressColor * alpha, this.Scale);
+            var offsetArea = progressArea.Shrink(this.ProgressPadding.Value.Multiply(this.Scale));
+            if (this.ProgressTexture.Value != null) {
+                batch.Draw(this.ProgressTexture, offsetArea, (Color) this.ProgressColor * alpha, this.Scale);
             } else {
-                batch.Draw(batch.GetBlankTexture(), offsetArea, this.ProgressColor * alpha);
+                batch.Draw(batch.GetBlankTexture(), offsetArea, (Color) this.ProgressColor * alpha);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture = style.ProgressBarTexture;
-            this.Color = style.ProgressBarColor;
-            this.ProgressPadding = style.ProgressBarProgressPadding;
-            this.ProgressTexture = style.ProgressBarProgressTexture;
-            this.ProgressColor = style.ProgressBarProgressColor;
+            this.Texture.SetFromStyle(style.ProgressBarTexture);
+            this.Color.SetFromStyle(style.ProgressBarColor);
+            this.ProgressPadding.SetFromStyle(style.ProgressBarProgressPadding);
+            this.ProgressTexture.SetFromStyle(style.ProgressBarProgressTexture);
+            this.ProgressColor.SetFromStyle(style.ProgressBarProgressColor);
         }
 
     }

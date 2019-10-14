@@ -18,16 +18,16 @@ namespace MLEM.Ui.Elements {
         public static readonly Rule OnlyNumbers = (field, add) => add.All(char.IsNumber);
         public static readonly Rule LettersNumbers = (field, add) => add.All(c => char.IsLetter(c) || char.IsNumber(c));
 
-        public NinePatch Texture;
-        public NinePatch HoveredTexture;
-        public Color HoveredColor;
-        public float TextScale;
+        public StyleProp<NinePatch> Texture;
+        public StyleProp<NinePatch> HoveredTexture;
+        public StyleProp<Color> HoveredColor;
+        public StyleProp<float> TextScale;
+        public StyleProp<IGenericFont> Font;
         private readonly StringBuilder text = new StringBuilder();
         public string Text => this.text.ToString();
         public string PlaceholderText;
         public TextChanged OnTextChange;
         public float TextOffsetX = 4;
-        private IGenericFont font;
         private double caretBlinkTimer;
         private string displayedText;
         private int textOffset;
@@ -50,7 +50,8 @@ namespace MLEM.Ui.Elements {
 
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, IGenericFont font = null) : base(anchor, size) {
             this.InputRule = rule ?? DefaultRule;
-            this.font = font;
+            if (font != null)
+                this.Font.Set(font);
 
             if (WindowExtensions.SupportsTextInput()) {
                 this.OnTextInput += (element, key, character) => {
@@ -83,9 +84,9 @@ namespace MLEM.Ui.Elements {
 
         private void HandleTextChange(bool textChanged = true) {
             // not initialized yet
-            if (this.font == null)
+            if (this.Font.Value == null)
                 return;
-            var length = this.font.MeasureString(this.text).X * this.TextScale;
+            var length = this.Font.Value.MeasureString(this.text).X * this.TextScale;
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
             if (length > maxWidth) {
                 // if we're moving the caret to the left
@@ -94,13 +95,13 @@ namespace MLEM.Ui.Elements {
                 } else {
                     // if we're moving the caret to the right
                     var importantArea = this.text.ToString(this.textOffset, Math.Min(this.CaretPos, this.text.Length) - this.textOffset);
-                    var bound = this.CaretPos - this.font.TruncateString(importantArea, maxWidth, this.TextScale, true).Length;
+                    var bound = this.CaretPos - this.Font.Value.TruncateString(importantArea, maxWidth, this.TextScale, true).Length;
                     if (this.textOffset < bound) {
                         this.textOffset = bound;
                     }
                 }
                 var visible = this.text.ToString(this.textOffset, this.text.Length - this.textOffset);
-                this.displayedText = this.font.TruncateString(visible, maxWidth, this.TextScale);
+                this.displayedText = this.Font.Value.TruncateString(visible, maxWidth, this.TextScale);
             } else {
                 this.displayedText = this.Text;
                 this.textOffset = 0;
@@ -136,9 +137,9 @@ namespace MLEM.Ui.Elements {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
-                if (this.HoveredTexture != null)
+                if (this.HoveredTexture.Value != null)
                     tex = this.HoveredTexture;
-                color = this.HoveredColor * alpha;
+                color = (Color) this.HoveredColor * alpha;
             }
             batch.Draw(tex, this.DisplayArea, color, this.Scale);
 
@@ -146,9 +147,9 @@ namespace MLEM.Ui.Elements {
             if (this.text.Length > 0 || this.IsSelected) {
                 var caret = this.IsSelected ? this.caretBlinkTimer >= 0.5F ? "|" : " " : "";
                 var display = this.displayedText.Insert(this.CaretPos - this.textOffset, caret);
-                this.font.DrawCenteredString(batch, display, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
+                this.Font.Value.DrawCenteredString(batch, display, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
             } else if (this.PlaceholderText != null) {
-                this.font.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
+                this.Font.Value.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
@@ -187,11 +188,11 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.TextScale = style.TextScale;
-            this.font = style.Font;
-            this.Texture = style.TextFieldTexture;
-            this.HoveredTexture = style.TextFieldHoveredTexture;
-            this.HoveredColor = style.TextFieldHoveredColor;
+            this.TextScale.SetFromStyle(style.TextScale);
+            this.Font.SetFromStyle(style.Font);
+            this.Texture.SetFromStyle(style.TextFieldTexture);
+            this.HoveredTexture.SetFromStyle(style.TextFieldHoveredTexture);
+            this.HoveredColor.SetFromStyle(style.TextFieldHoveredColor);
         }
 
         public delegate void TextChanged(TextField field, string text);

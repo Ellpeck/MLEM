@@ -16,14 +16,14 @@ namespace MLEM.Ui.Elements {
         private string text;
         private string splitText;
         private Dictionary<int, FormattingCode> codeLocations;
-        public IGenericFont RegularFont;
-        public IGenericFont BoldFont;
-        public IGenericFont ItalicFont;
+        public StyleProp<IGenericFont> RegularFont;
+        public StyleProp<IGenericFont> BoldFont;
+        public StyleProp<IGenericFont> ItalicFont;
 
-        public NinePatch Background;
-        public Color BackgroundColor;
-        public Color TextColor = Color.White;
-        public float TextScale;
+        public StyleProp<NinePatch> Background;
+        public StyleProp<Color> BackgroundColor;
+        public StyleProp<Color> TextColor;
+        public StyleProp<float> TextScale;
         public string Text {
             get => this.text;
             set {
@@ -59,10 +59,10 @@ namespace MLEM.Ui.Elements {
             var size = base.CalcActualSize(parentArea);
 
             var sc = this.TextScale * this.Scale;
-            this.splitText = this.RegularFont.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
+            this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
             this.codeLocations = this.text.GetFormattingCodes();
 
-            var textDims = this.RegularFont.MeasureString(this.splitText) * sc;
+            var textDims = this.RegularFont.Value.MeasureString(this.splitText) * sc;
             return new Point(this.AutoAdjustWidth ? textDims.X.Ceil() + this.ScaledPadding.X * 2 : size.X, textDims.Y.Ceil() + this.ScaledPadding.Y * 2);
         }
 
@@ -74,28 +74,29 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            if (this.Background != null)
-                batch.Draw(this.Background, this.Area, this.BackgroundColor * alpha);
+            if (this.Background.Value != null)
+                batch.Draw(this.Background, this.Area, (Color) this.BackgroundColor * alpha);
 
             var pos = this.DisplayArea.Location.ToVector2();
             var sc = this.TextScale * this.Scale;
 
+            var color = (this.TextColor.Value != default ? this.TextColor : Color.White) * alpha;
             // if we don't have any formatting codes, then we don't need to do complex drawing
             if (this.codeLocations.Count <= 0) {
-                this.RegularFont.DrawString(batch, this.splitText, pos, this.TextColor * alpha, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                this.RegularFont.Value.DrawString(batch, this.splitText, pos, color, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we should do it
-                this.RegularFont.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, this.TextColor * alpha, sc, this.BoldFont, this.ItalicFont, 0, this.TimeIntoAnimation);
+                this.RegularFont.Value.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.TextScale = style.TextScale;
-            this.RegularFont = style.Font;
-            this.BoldFont = style.BoldFont ?? style.Font;
-            this.ItalicFont = style.ItalicFont ?? style.Font;
+            this.TextScale.SetFromStyle(style.TextScale);
+            this.RegularFont.SetFromStyle(style.Font);
+            this.BoldFont.SetFromStyle(style.BoldFont ?? style.Font);
+            this.ItalicFont.SetFromStyle(style.ItalicFont ?? style.Font);
         }
 
         public delegate string TextCallback(Paragraph paragraph);

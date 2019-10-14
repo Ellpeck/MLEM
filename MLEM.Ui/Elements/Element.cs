@@ -89,7 +89,7 @@ namespace MLEM.Ui.Elements {
             get => this.system;
             internal set {
                 this.system = value;
-                if (this.system != null && !this.HasCustomStyle)
+                if (this.system != null)
                     this.InitStyle(this.system.Style);
             }
         }
@@ -113,7 +113,6 @@ namespace MLEM.Ui.Elements {
         public bool CanBeSelected = true;
         public bool CanBeMoused = true;
         public float DrawAlpha = 1;
-        public bool HasCustomStyle;
         public bool SetHeightBasedOnChildren;
         public bool CanAutoAnchorsAttach = true;
 
@@ -139,7 +138,7 @@ namespace MLEM.Ui.Elements {
         }
         private bool areaDirty;
         private bool sortedChildrenDirty;
-        public NinePatch SelectionIndicator;
+        public StyleProp<NinePatch> SelectionIndicator;
 
         public Element(Anchor anchor, Vector2 size) {
             this.anchor = anchor;
@@ -463,7 +462,7 @@ namespace MLEM.Ui.Elements {
         }
 
         protected virtual void InitStyle(UiStyle style) {
-            this.SelectionIndicator = style.SelectionIndicator;
+            this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
         }
 
         public delegate void TextInputCallback(Element element, Keys key, char character);

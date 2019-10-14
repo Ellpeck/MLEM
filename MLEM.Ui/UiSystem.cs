@@ -87,7 +87,7 @@ namespace MLEM.Ui {
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
-                if (this.Controls.IsAutoNavMode && element.SelectionIndicator != null) {
+                if (this.Controls.IsAutoNavMode && element.SelectionIndicator.Value != null) {
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
                 }
             };

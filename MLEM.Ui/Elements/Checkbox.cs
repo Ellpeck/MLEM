@@ -8,10 +8,10 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     public class Checkbox : Element {
 
-        public NinePatch Texture;
-        public NinePatch HoveredTexture;
-        public Color HoveredColor;
-        public TextureRegion Checkmark;
+        public StyleProp<NinePatch> Texture;
+        public StyleProp<NinePatch> HoveredTexture;
+        public StyleProp<Color> HoveredColor;
+        public StyleProp<TextureRegion> Checkmark;
         public Paragraph Label;
         public float TextOffsetX = 2;
 
@@ -50,9 +50,9 @@ namespace MLEM.Ui.Elements {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
-                if (this.HoveredTexture != null)
+                if (this.HoveredTexture.Value != null)
                     tex = this.HoveredTexture;
-                color = this.HoveredColor * alpha;
+                color = (Color) this.HoveredColor * alpha;
             }
 
             var boxDisplayArea = new Rectangle(this.DisplayArea.Location, new Point(this.DisplayArea.Height));
@@ -64,10 +64,10 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture = style.CheckboxTexture;
-            this.HoveredTexture = style.CheckboxHoveredTexture;
-            this.HoveredColor = style.CheckboxHoveredColor;
-            this.Checkmark = style.CheckboxCheckmark;
+            this.Texture.SetFromStyle(style.CheckboxTexture);
+            this.HoveredTexture.SetFromStyle(style.CheckboxHoveredTexture);
+            this.HoveredColor.SetFromStyle(style.CheckboxHoveredColor);
+            this.Checkmark.SetFromStyle(style.CheckboxCheckmark);
         }
 
         public delegate void CheckStateChange(Checkbox box, bool checced);

@@ -23,10 +23,10 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture = style.RadioTexture;
-            this.HoveredTexture = style.RadioHoveredTexture;
-            this.HoveredColor = style.RadioHoveredColor;
-            this.Checkmark = style.RadioCheckmark;
+            this.Texture.SetFromStyle(style.RadioTexture);
+            this.HoveredTexture.SetFromStyle(style.RadioHoveredTexture);
+            this.HoveredColor.SetFromStyle(style.RadioHoveredColor);
+            this.Checkmark.SetFromStyle(style.RadioCheckmark);
         }
 
     }
