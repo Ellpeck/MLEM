@@ -54,7 +54,7 @@ namespace Sandbox {
             var show = screen.IsHidden;
             screen.IsHidden = false;
             var time = 0;
-            const float total = 200;
+            const float total = 20;
             while (time <= total) {
                 yield return new WaitEvent(CoroutineEvents.Update);
                 var percent = show ? time / total : 1 - time / total;

@@ -27,7 +27,7 @@ namespace MLEM.Ui.Style {
         public Color TooltipBackgroundColor;
         public NinePatch ProgressBarTexture;
         public Color ProgressBarColor;
-        public Point ProgressBarProgressPadding;
+        public Vector2 ProgressBarProgressPadding;
         public NinePatch ProgressBarProgressTexture;
         public Color ProgressBarProgressColor;
         public IGenericFont Font;

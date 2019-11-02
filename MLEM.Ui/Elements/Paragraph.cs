@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -55,7 +56,7 @@ namespace MLEM.Ui.Elements {
             this.CanBeMoused = false;
         }
 
-        protected override Point CalcActualSize(Rectangle parentArea) {
+        protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
 
             var sc = this.TextScale * this.Scale;
@@ -63,7 +64,7 @@ namespace MLEM.Ui.Elements {
             this.codeLocations = this.text.GetFormattingCodes();
 
             var textDims = this.RegularFont.Value.MeasureString(this.splitText) * sc;
-            return new Point(this.AutoAdjustWidth ? textDims.X.Ceil() + this.ScaledPadding.X * 2 : size.X, textDims.Y.Ceil() + this.ScaledPadding.Y * 2);
+            return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.X * 2 : size.X, textDims.Y + this.ScaledPadding.Y * 2);
         }
 
         public override void Update(GameTime time) {
@@ -77,7 +78,7 @@ namespace MLEM.Ui.Elements {
             if (this.Background.Value != null)
                 batch.Draw(this.Background, this.Area, (Color) this.BackgroundColor * alpha);
 
-            var pos = this.DisplayArea.Location.ToVector2();
+            var pos = this.DisplayArea.Location;
             var sc = this.TextScale * this.Scale;
 
             var color = (this.TextColor.Value != default ? this.TextColor : Color.White) * alpha;

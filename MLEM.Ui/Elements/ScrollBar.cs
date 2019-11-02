@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -13,8 +14,8 @@ namespace MLEM.Ui.Elements {
 
         public StyleProp<NinePatch> Background;
         public StyleProp<NinePatch> ScrollerTexture;
-        public Point ScrollerOffset;
-        public Point ScrollerSize;
+        public Vector2 ScrollerOffset;
+        public Vector2 ScrollerSize;
         private float maxValue;
         public float MaxValue {
             get => this.maxValue;
@@ -52,7 +53,7 @@ namespace MLEM.Ui.Elements {
         public ScrollBar(Anchor anchor, Vector2 size, int scrollerSize, float maxValue, bool horizontal = false) : base(anchor, size) {
             this.maxValue = maxValue;
             this.Horizontal = horizontal;
-            this.ScrollerSize = new Point(horizontal ? scrollerSize : size.X.Floor(), !horizontal ? scrollerSize : size.Y.Floor());
+            this.ScrollerSize = new Vector2(horizontal ? scrollerSize : size.X, !horizontal ? scrollerSize : size.Y);
             this.CanBeSelected = false;
         }
 
@@ -79,7 +80,7 @@ namespace MLEM.Ui.Elements {
                 // are we dragging on top of the panel?
                 if (this.Input.GetGesture(GestureType.VerticalDrag, out var drag)) {
                     // if the element under the drag's start position is on top of the panel, start dragging
-                    var touched = this.Parent.GetElementUnderPos(drag.Position.ToPoint().Transform(this.Root.InvTransform));
+                    var touched = this.Parent.GetElementUnderPos(Vector2.Transform(drag.Position, this.Root.InvTransform));
                     if (touched != null && touched != this)
                         this.isDragging = true;
 
@@ -121,11 +122,11 @@ namespace MLEM.Ui.Elements {
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
 
-            var scrollerPos = new Point(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
-            var scrollerOffset = new Point(
-                !this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale)).Floor(),
-                this.Horizontal ? 0 : (this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale)).Floor());
-            var scrollerRect = new Rectangle(scrollerPos + scrollerOffset, new Point((this.ScrollerSize.X * this.Scale).Ceil(), (this.ScrollerSize.Y * this.Scale).Ceil()));
+            var scrollerPos = new Vector2(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
+            var scrollerOffset = new Vector2(
+                !this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
+                this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
+            var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, new Vector2((this.ScrollerSize.X * this.Scale).Ceil(), (this.ScrollerSize.Y * this.Scale).Ceil()));
             batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }

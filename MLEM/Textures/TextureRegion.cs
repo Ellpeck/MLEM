@@ -1,6 +1,8 @@
 using System.Diagnostics.Tracing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
+using MLEM.Misc;
 
 namespace MLEM.Textures {
     public class TextureRegion {
@@ -44,11 +46,19 @@ namespace MLEM.Textures {
             batch.Draw(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin, effects, layerDepth);
         }
 
+        public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+            batch.Draw(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin, effects, layerDepth);
+        }
+
         public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color) {
             batch.Draw(texture, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
 
         public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color) {
+            batch.Draw(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+        }
+
+        public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color) {
             batch.Draw(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
 

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Misc;
 
 namespace MLEM.Extensions {
     public static class SpriteBatchExtensions {
@@ -28,6 +29,20 @@ namespace MLEM.Extensions {
             batch.DrawString(font, text,
                 position + size * scale / 2 - center,
                 color, 0, size / 2, scale + addedScale, SpriteEffects.None, 0);
+        }
+
+        public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+            var source = sourceRectangle ?? new Rectangle(0, 0, texture.Width, texture.Height);
+            var scale = new Vector2(1F / source.Width, 1F / source.Height) * destinationRectangle.Size;
+            batch.Draw(texture, destinationRectangle.Location, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
+        }
+
+        public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color) {
+            batch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+        }
+
+        public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
+            batch.Draw(texture, destinationRectangle, null, color);
         }
 
     }

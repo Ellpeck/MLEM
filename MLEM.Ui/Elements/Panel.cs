@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -82,8 +83,7 @@ namespace MLEM.Ui.Elements {
                 if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
                     if (this.renderTarget != null)
                         this.renderTarget.Dispose();
-                    var empty = targetArea.Width <= 0 || targetArea.Height <= 0;
-                    this.renderTarget = empty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
+                    this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width.Ceil(), targetArea.Height.Ceil());
                 }
             }
         }
@@ -91,7 +91,7 @@ namespace MLEM.Ui.Elements {
         private void ScrollChildren() {
             if (!this.scrollOverflow)
                 return;
-            var offset = -this.ScrollBar.CurrentValue.Floor();
+            var offset = -this.ScrollBar.CurrentValue;
             foreach (var child in this.GetChildren(c => c != this.ScrollBar, true))
                 child.ScrollOffset = new Vector2(0, offset);
             this.relevantChildrenDirty = true;
@@ -154,14 +154,14 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public override Element GetElementUnderPos(Point position) {
+        public override Element GetElementUnderPos(Vector2 position) {
             // if overflow is handled, don't propagate mouse checks to hidden children
             if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(position))
                 return null;
             return base.GetElementUnderPos(position);
         }
 
-        private Rectangle GetRenderTargetArea() {
+        private RectangleF GetRenderTargetArea() {
             var area = this.ChildPaddedArea;
             area.X = this.DisplayArea.X;
             area.Width = this.DisplayArea.Width;

@@ -26,7 +26,7 @@ namespace MLEM.Ui.Elements {
         private Vector2 size;
         private Vector2 offset;
         public Vector2 Padding;
-        public Point ScaledPadding => (this.Padding * this.Scale).ToPoint();
+        public Vector2 ScaledPadding => this.Padding * this.Scale;
         private Vector2 childPadding;
         public Anchor Anchor {
             get => this.anchor;
@@ -56,7 +56,7 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public Point ScaledOffset => (this.offset * this.Scale).ToPoint();
+        public Vector2 ScaledOffset => (this.offset * this.Scale);
         public Vector2 ChildPadding {
             get => this.childPadding;
             set {
@@ -66,8 +66,8 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public Rectangle ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
-        public Point ScaledChildPadding => (this.childPadding * this.Scale).ToPoint();
+        public RectangleF ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
+        public Vector2 ScaledChildPadding => this.childPadding * this.Scale;
 
         public DrawCallback OnDrawn;
         public TimeCallback OnUpdated;
@@ -116,17 +116,17 @@ namespace MLEM.Ui.Elements {
         public bool SetHeightBasedOnChildren;
         public bool CanAutoAnchorsAttach = true;
 
-        private Rectangle area;
-        public Rectangle UnscrolledArea {
+        private RectangleF area;
+        public RectangleF UnscrolledArea {
             get {
                 this.UpdateAreaIfDirty();
                 return this.area;
             }
         }
-        public Rectangle Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
+        public RectangleF Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
         public Vector2 ScrollOffset;
-        public Point ScaledScrollOffset => (this.ScrollOffset * this.Scale).ToPoint();
-        public Rectangle DisplayArea => this.Area.Shrink(this.ScaledPadding);
+        public Vector2 ScaledScrollOffset => this.ScrollOffset * this.Scale;
+        public RectangleF DisplayArea => this.Area.Shrink(this.ScaledPadding);
         private int priority;
         public int Priority {
             get => this.priority;
@@ -218,12 +218,12 @@ namespace MLEM.Ui.Elements {
             if (this.IsHidden)
                 return;
 
-            var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : this.system.Viewport;
+            var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
 
             var actualSize = this.CalcActualSize(parentArea);
-            var pos = new Point();
+            var pos = new Vector2();
 
             switch (this.anchor) {
                 case Anchor.TopLeft:
@@ -301,7 +301,7 @@ namespace MLEM.Ui.Elements {
                 }
             }
 
-            this.area = new Rectangle(pos, actualSize);
+            this.area = new RectangleF(pos, actualSize);
             this.System.OnElementAreaUpdated?.Invoke(this);
 
             foreach (var child in this.Children)
@@ -319,13 +319,13 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        protected virtual Point CalcActualSize(Rectangle parentArea) {
-            return new Point(
-                (this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X).Ceil(),
-                (this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y).Ceil());
+        protected virtual Vector2 CalcActualSize(RectangleF parentArea) {
+            return new Vector2(
+                this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X,
+                this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y);
         }
 
-        protected virtual Rectangle GetAreaForAutoAnchors() {
+        protected virtual RectangleF GetAreaForAutoAnchors() {
             return this.UnscrolledArea;
         }
 
@@ -443,7 +443,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public virtual Element GetElementUnderPos(Point position) {
+        public virtual Element GetElementUnderPos(Vector2 position) {
             if (this.IsHidden)
                 return null;
             var children = this.GetRelevantChildren();

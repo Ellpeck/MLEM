@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using MLEM.Misc;
 
 namespace MLEM.Extensions {
     public static class NumberExtensions {
@@ -44,7 +45,21 @@ namespace MLEM.Extensions {
             return rect;
         }
 
+        public static RectangleF OffsetCopy(this RectangleF rect, Vector2 offset) {
+            rect.X += offset.X;
+            rect.Y += offset.Y;
+            return rect;
+        }
+
         public static Rectangle Shrink(this Rectangle rect, Point padding) {
+            rect.X += padding.X;
+            rect.Y += padding.Y;
+            rect.Width -= padding.X * 2;
+            rect.Height -= padding.Y * 2;
+            return rect;
+        }
+
+        public static RectangleF Shrink(this RectangleF rect, Vector2 padding) {
             rect.X += padding.X;
             rect.Y += padding.Y;
             rect.Width -= padding.X * 2;

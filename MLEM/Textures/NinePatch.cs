@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Misc;
 
 namespace MLEM.Textures {
     public class NinePatch {
@@ -35,6 +36,10 @@ namespace MLEM.Textures {
         }
 
         public IEnumerable<Rectangle> CreateRectangles(Rectangle area, float patchScale = 1) {
+            return this.CreateRectangles((RectangleF) area, patchScale).Select(r => (Rectangle) r);
+        }
+
+        public IEnumerable<RectangleF> CreateRectangles(RectangleF area, float patchScale = 1) {
             var pl = (int) (this.PaddingLeft * patchScale);
             var pr = (int) (this.PaddingRight * patchScale);
             var pt = (int) (this.PaddingTop * patchScale);
@@ -47,22 +52,22 @@ namespace MLEM.Textures {
             var topY = area.Y + pt;
             var bottomY = area.Y + area.Height - pb;
 
-            yield return new Rectangle(area.X, area.Y, pl, pt);
-            yield return new Rectangle(leftX, area.Y, centerW, pt);
-            yield return new Rectangle(rightX, area.Y, pr, pt);
-            yield return new Rectangle(area.X, topY, pl, centerH);
-            yield return new Rectangle(leftX, topY, centerW, centerH);
-            yield return new Rectangle(rightX, topY, pr, centerH);
-            yield return new Rectangle(area.X, bottomY, pl, pb);
-            yield return new Rectangle(leftX, bottomY, centerW, pb);
-            yield return new Rectangle(rightX, bottomY, pr, pb);
+            yield return new RectangleF(area.X, area.Y, pl, pt);
+            yield return new RectangleF(leftX, area.Y, centerW, pt);
+            yield return new RectangleF(rightX, area.Y, pr, pt);
+            yield return new RectangleF(area.X, topY, pl, centerH);
+            yield return new RectangleF(leftX, topY, centerW, centerH);
+            yield return new RectangleF(rightX, topY, pr, centerH);
+            yield return new RectangleF(area.X, bottomY, pl, pb);
+            yield return new RectangleF(leftX, bottomY, centerW, pb);
+            yield return new RectangleF(rightX, bottomY, pr, pb);
         }
 
     }
 
     public static class NinePatchExtensions {
 
-        public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1) {
+        public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1) {
             var dest = texture.CreateRectangles(destinationRectangle, patchScale);
             var count = 0;
             foreach (var rect in dest) {
@@ -70,6 +75,14 @@ namespace MLEM.Textures {
                     batch.Draw(texture.Region.Texture, rect, texture.SourceRectangles[count], color, rotation, origin, effects, layerDepth);
                 count++;
             }
+        }
+
+        public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1) {
+            batch.Draw(texture, (RectangleF) destinationRectangle, color, rotation, origin, effects, layerDepth, patchScale);
+        }
+
+        public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float patchScale = 1) {
+            batch.Draw(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0, patchScale);
         }
 
         public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float patchScale = 1) {

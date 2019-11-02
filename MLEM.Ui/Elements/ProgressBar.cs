@@ -11,7 +11,7 @@ namespace MLEM.Ui.Elements {
 
         public StyleProp<NinePatch> Texture;
         public StyleProp<Color> Color;
-        public StyleProp<Point> ProgressPadding;
+        public StyleProp<Vector2> ProgressPadding;
         public StyleProp<NinePatch> ProgressTexture;
         public StyleProp<Color> ProgressColor;
 
@@ -39,28 +39,28 @@ namespace MLEM.Ui.Elements {
             var tex = this.ProgressTexture.Value;
             var padHor = tex != null ? (tex.PaddingLeft + tex.PaddingRight) * this.Scale : 0;
             var padVer = tex != null ? (tex.PaddingTop + tex.PaddingBottom) * this.Scale : 0;
-            var width = (percentage * (this.DisplayArea.Width - padHor) + padHor).Floor();
-            var height = (percentage * (this.DisplayArea.Height - padVer) + padVer).Floor();
-            Rectangle progressArea;
+            var width = percentage * (this.DisplayArea.Width - padHor) + padHor;
+            var height = percentage * (this.DisplayArea.Height - padVer) + padVer;
+            RectangleF progressArea;
             switch (this.Direction) {
                 case Direction2.Up:
-                    progressArea = new Rectangle(this.DisplayArea.X,
+                    progressArea = new RectangleF(this.DisplayArea.X,
                         this.DisplayArea.Y + (this.DisplayArea.Height - height),
                         this.DisplayArea.Width, height);
                     break;
                 case Direction2.Down:
-                    progressArea = new Rectangle(this.DisplayArea.Location, new Point(this.DisplayArea.Width, height));
+                    progressArea = new RectangleF(this.DisplayArea.Location, new Vector2(this.DisplayArea.Width, height));
                     break;
                 case Direction2.Left:
-                    progressArea = new Rectangle(
+                    progressArea = new RectangleF(
                         this.DisplayArea.X + (this.DisplayArea.Width - width),
                         this.DisplayArea.Y, width, this.DisplayArea.Height);
                     break;
                 default: // Right
-                    progressArea = new Rectangle(this.DisplayArea.Location, new Point(width, this.DisplayArea.Height));
+                    progressArea = new RectangleF(this.DisplayArea.Location, new Vector2(width, this.DisplayArea.Height));
                     break;
             }
-            var offsetArea = progressArea.Shrink(this.ProgressPadding.Value.Multiply(this.Scale));
+            var offsetArea = progressArea.Shrink(this.ProgressPadding.Value * this.Scale);
             if (this.ProgressTexture.Value != null) {
                 batch.Draw(this.ProgressTexture, offsetArea, (Color) this.ProgressColor * alpha, this.Scale);
             } else {

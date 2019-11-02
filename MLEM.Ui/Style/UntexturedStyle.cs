@@ -27,7 +27,7 @@ namespace MLEM.Ui.Style {
             this.TooltipBackgroundColor = new Color(Color.Black, 0.65F);
             this.ProgressBarTexture = GenerateTexture(batch, Color.RoyalBlue);
             this.ProgressBarColor = Color.White;
-            this.ProgressBarProgressPadding = new Point(1);
+            this.ProgressBarProgressPadding = new Vector2(1);
             this.ProgressBarProgressColor = Color.Red;
             this.Font = new EmptyFont();
         }

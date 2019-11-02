@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -37,7 +38,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        protected override Point CalcActualSize(Rectangle parentArea) {
+        protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
             if (this.Label != null) {
                 this.Label.Size = new Vector2((size.X - size.Y) / this.Scale - this.TextOffsetX, 1);
@@ -55,7 +56,7 @@ namespace MLEM.Ui.Elements {
                 color = (Color) this.HoveredColor * alpha;
             }
 
-            var boxDisplayArea = new Rectangle(this.DisplayArea.Location, new Point(this.DisplayArea.Height));
+            var boxDisplayArea = new RectangleF(this.DisplayArea.Location, new Vector2(this.DisplayArea.Height));
             batch.Draw(tex, boxDisplayArea, color, this.Scale);
             if (this.Checked)
                 batch.Draw(this.Checkmark, boxDisplayArea, Color.White * alpha);
