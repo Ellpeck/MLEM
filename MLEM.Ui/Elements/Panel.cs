@@ -82,7 +82,8 @@ namespace MLEM.Ui.Elements {
                 if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
                     if (this.renderTarget != null)
                         this.renderTarget.Dispose();
-                    this.renderTarget = new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
+                    var empty = targetArea.Width <= 0 || targetArea.Height <= 0;
+                    this.renderTarget = empty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
                 }
             }
         }
@@ -97,6 +98,7 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Update(GameTime time) {
+            base.Update(time);
             if (this.relevantChildrenDirty) {
                 this.relevantChildrenDirty = false;
 
@@ -115,7 +117,6 @@ namespace MLEM.Ui.Elements {
                     }
                 }
             }
-            base.Update(time);
         }
 
         protected override List<Element> GetRelevantChildren() {
