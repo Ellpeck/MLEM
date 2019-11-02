@@ -126,7 +126,7 @@ namespace MLEM.Ui.Elements {
             var scrollerOffset = new Vector2(
                 !this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
                 this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
-            var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, new Vector2((this.ScrollerSize.X * this.Scale).Ceil(), (this.ScrollerSize.Y * this.Scale).Ceil()));
+            var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, this.ScrollerSize * this.Scale);
             batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }

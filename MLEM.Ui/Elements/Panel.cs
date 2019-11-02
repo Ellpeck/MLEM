@@ -76,7 +76,7 @@ namespace MLEM.Ui.Elements {
                 var lowestChild = this.GetLowestChild(e => !e.IsHidden);
                 // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
                 var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
-                this.ScrollBar.MaxValue = ((childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Y * 2).Ceil();
+                this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Y * 2;
 
                 // update the render target
                 var targetArea = this.GetRenderTargetArea();
