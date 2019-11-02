@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Misc;
 
 namespace MLEM.Cameras {
     public class Camera {
@@ -56,6 +57,11 @@ namespace MLEM.Cameras {
 
         public (Vector2 topLeft, Vector2 bottomRight) GetVisibleArea() {
             return (this.ToWorldPos(Vector2.Zero), this.ToWorldPos(new Vector2(this.Viewport.Width, this.Viewport.Height)));
+        }
+
+        public RectangleF GetVisibleRectangle() {
+            var start = this.ToWorldPos(Vector2.Zero);
+            return new RectangleF(start, this.ToWorldPos(new Vector2(this.Viewport.Width, this.Viewport.Height)) - start);
         }
 
         public void ConstrainWorldBounds(Vector2 min, Vector2 max) {
