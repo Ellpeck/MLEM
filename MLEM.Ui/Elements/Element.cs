@@ -311,7 +311,7 @@ namespace MLEM.Ui.Elements {
                 var lowest = this.GetLowestChild(e => !e.IsHidden);
                 if (lowest != null) {
                     var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
-                    if (newHeight != this.size.Y) {
+                    if ((int) newHeight != (int) this.size.Y) {
                         this.size.Y = newHeight;
                         this.ForceUpdateArea();
                     }
