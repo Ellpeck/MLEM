@@ -1,20 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MLEM.Cameras;
-using MLEM.Extended.Extensions;
-using MLEM.Extended.Tiled;
 using MLEM.Font;
-using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
-using MonoGame.Extended.Tiled;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {
@@ -37,32 +28,10 @@ namespace Sandbox {
             this.UiSystem.AutoScaleWithScreen = true;
             this.UiSystem.GlobalScale = 5;
 
-            var screen = new Panel(Anchor.Center, new Vector2(200, 100), Vector2.Zero, false, true, new Point(5, 10));
-            screen.IsHidden = false;
-            screen.OnUpdated += (element, time) => {
-                if (this.InputHandler.IsKeyPressed(Keys.Escape))
-                    CoroutineHandler.Start(PlayAnimation(screen));
-            };
-            this.UiSystem.Add("Screen", screen);
-
-            for (var i = 0; i < 100; i++) {
-                screen.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), i.ToString()));
-            }
-        }
-
-        private static IEnumerator<Wait> PlayAnimation(Panel screen) {
-            var show = screen.IsHidden;
-            screen.IsHidden = false;
-            var time = 0;
-            const float total = 20;
-            while (time <= total) {
-                yield return new WaitEvent(CoroutineEvents.Update);
-                var percent = show ? time / total : 1 - time / total;
-                screen.Root.Scale = percent;
-                time++;
-            }
-            if (!show)
-                screen.IsHidden = true;
+            var panel = new Panel(Anchor.Center, new Vector2(0, 100), Vector2.Zero) {SetWidthBasedOnChildren = true};
+            panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
+            panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
+            this.UiSystem.Add("Panel", panel);
         }
 
         protected override void DoDraw(GameTime gameTime) {

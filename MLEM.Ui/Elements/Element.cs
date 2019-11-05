@@ -114,6 +114,7 @@ namespace MLEM.Ui.Elements {
         public bool CanBeMoused = true;
         public float DrawAlpha = 1;
         public bool SetHeightBasedOnChildren;
+        public bool SetWidthBasedOnChildren;
         public bool CanAutoAnchorsAttach = true;
 
         private RectangleF area;
@@ -307,13 +308,24 @@ namespace MLEM.Ui.Elements {
             foreach (var child in this.Children)
                 child.ForceUpdateArea();
 
-            if (this.SetHeightBasedOnChildren && this.Children.Count > 0) {
-                var lowest = this.GetLowestChild(e => !e.IsHidden);
-                if (lowest != null) {
-                    var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
-                    if ((int) newHeight != (int) this.size.Y) {
-                        this.size.Y = newHeight;
-                        this.ForceUpdateArea();
+            if (this.Children.Count > 0) {
+                if (this.SetHeightBasedOnChildren) {
+                    var lowest = this.GetLowestChild(e => !e.IsHidden);
+                    if (lowest != null) {
+                        var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
+                        if ((int) newHeight != (int) this.size.Y) {
+                            this.size.Y = newHeight;
+                            this.ForceUpdateArea();
+                        }
+                    }
+                } else if (this.SetWidthBasedOnChildren) {
+                    var rightmost = this.GetRightmostChild(e => !e.IsHidden);
+                    if (rightmost != null) {
+                        var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.X) / this.Scale;
+                        if ((int) newWidth != (int) this.size.X) {
+                            this.size.X = newWidth;
+                            this.ForceUpdateArea();
+                        }
                     }
                 }
             }
@@ -342,6 +354,19 @@ namespace MLEM.Ui.Elements {
             return lowest;
         }
 
+        public Element GetRightmostChild(Func<Element, bool> condition = null) {
+            Element rightmost = null;
+            foreach (var child in this.Children) {
+                if (condition != null && !condition(child))
+                    continue;
+                if (child.Anchor < Anchor.BottomRight && child.Anchor != Anchor.TopRight && child.Anchor != Anchor.CenterRight)
+                    continue;
+                if (rightmost == null || child.UnscrolledArea.Right > rightmost.UnscrolledArea.Right)
+                    rightmost = child;
+            }
+            return rightmost;
+        }
+
         public Element GetLowestOlderSibling(Func<Element, bool> condition = null) {
             if (this.Parent == null)
                 return null;
@@ -351,7 +376,7 @@ namespace MLEM.Ui.Elements {
                     break;
                 if (condition != null && !condition(child))
                     continue;
-                if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
+                if (lowest == null || child.UnscrolledArea.Bottom > lowest.UnscrolledArea.Bottom)
                     lowest = child;
             }
             return lowest;
