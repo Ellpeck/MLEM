@@ -79,11 +79,11 @@ namespace MLEM.Ui.Elements {
                 this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Y * 2;
 
                 // update the render target
-                var targetArea = this.GetRenderTargetArea();
+                var targetArea = (Rectangle) this.GetRenderTargetArea();
                 if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
                     if (this.renderTarget != null)
                         this.renderTarget.Dispose();
-                    this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width.Ceil(), targetArea.Height.Ceil());
+                    this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
                 }
             }
         }
