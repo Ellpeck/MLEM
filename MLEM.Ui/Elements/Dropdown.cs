@@ -34,8 +34,8 @@ namespace MLEM.Ui.Elements {
             };
             if (pressed != null)
                 paragraph.OnPressed += pressed;
-            paragraph.OnMouseEnter += e => paragraph.TextColor.Set(Color.LightGray);
-            paragraph.OnMouseExit += e => paragraph.TextColor.Set(Color.White);
+            paragraph.OnMouseEnter += e => paragraph.TextColor = Color.LightGray;
+            paragraph.OnMouseExit += e => paragraph.TextColor = Color.White;
             this.AddElement(paragraph);
         }
 

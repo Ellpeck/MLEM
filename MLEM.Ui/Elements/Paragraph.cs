@@ -81,7 +81,7 @@ namespace MLEM.Ui.Elements {
             var pos = this.DisplayArea.Location;
             var sc = this.TextScale * this.Scale;
 
-            var color = (this.TextColor.Value != default ? this.TextColor : Color.White) * alpha;
+            var color = this.TextColor.OrDefault(Color.White) * alpha;
             // if we don't have any formatting codes, then we don't need to do complex drawing
             if (this.codeLocations.Count <= 0) {
                 this.RegularFont.Value.DrawString(batch, this.splitText, pos, color, 0, Vector2.Zero, sc, SpriteEffects.None, 0);

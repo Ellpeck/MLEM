@@ -51,8 +51,7 @@ namespace MLEM.Ui.Elements {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
-                if (this.HoveredTexture.Value != null)
-                    tex = this.HoveredTexture;
+                tex = this.HoveredTexture.OrDefault(tex);
                 color = (Color) this.HoveredColor * alpha;
             }
 

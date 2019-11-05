@@ -66,9 +66,9 @@ namespace MLEM.Ui.Elements {
             if (this.texture == null)
                 return;
             var center = new Vector2(this.texture.Width / 2F, this.texture.Height / 2F);
-            var color = (this.Color.Value != default ? this.Color : Microsoft.Xna.Framework.Color.White) * alpha;
+            var color = this.Color.OrDefault(Microsoft.Xna.Framework.Color.White) * alpha;
             if (this.MaintainImageAspect) {
-                var scale = Math.Min(this.DisplayArea.Width / (float) this.texture.Width, this.DisplayArea.Height / (float) this.texture.Height);
+                var scale = Math.Min(this.DisplayArea.Width / this.texture.Width, this.DisplayArea.Height / this.texture.Height);
                 var imageOffset = new Vector2(this.DisplayArea.Width / 2F - this.texture.Width * scale / 2, this.DisplayArea.Height / 2F - this.texture.Height * scale / 2);
                 batch.Draw(this.texture, this.DisplayArea.Location + center * scale + imageOffset, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             } else {

@@ -81,11 +81,11 @@ namespace Demos {
 
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
-            var customButton = root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
+            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnPressed = element => this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle,
-                PositionOffset = new Vector2(0, 1)
+                PositionOffset = new Vector2(0, 1),
+                Texture = this.testPatch
             });
-            customButton.Texture.Set(this.testPatch);
 
             root.AddChild(new VerticalSpace(3));
 
