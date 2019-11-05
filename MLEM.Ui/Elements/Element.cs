@@ -348,7 +348,7 @@ namespace MLEM.Ui.Elements {
                     continue;
                 if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
                     continue;
-                if (lowest == null || child.UnscrolledArea.Bottom > lowest.UnscrolledArea.Bottom)
+                if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
                     lowest = child;
             }
             return lowest;
@@ -361,7 +361,7 @@ namespace MLEM.Ui.Elements {
                     continue;
                 if (child.Anchor < Anchor.BottomRight && child.Anchor != Anchor.TopRight && child.Anchor != Anchor.CenterRight)
                     continue;
-                if (rightmost == null || child.UnscrolledArea.Right > rightmost.UnscrolledArea.Right)
+                if (rightmost == null || child.UnscrolledArea.Right >= rightmost.UnscrolledArea.Right)
                     rightmost = child;
             }
             return rightmost;
@@ -376,7 +376,7 @@ namespace MLEM.Ui.Elements {
                     break;
                 if (condition != null && !condition(child))
                     continue;
-                if (lowest == null || child.UnscrolledArea.Bottom > lowest.UnscrolledArea.Bottom)
+                if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
                     lowest = child;
             }
             return lowest;
