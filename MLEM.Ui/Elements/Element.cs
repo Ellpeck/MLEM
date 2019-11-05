@@ -331,9 +331,7 @@ namespace MLEM.Ui.Elements {
 
         public Element GetLowestChild(Func<Element, bool> condition = null) {
             Element lowest = null;
-            // the lowest child is expected to be towards the back, so search is usually faster if done backwards
-            for (var i = this.Children.Count - 1; i >= 0; i--) {
-                var child = this.Children[i];
+            foreach (var child in this.Children) {
                 if (condition != null && !condition(child))
                     continue;
                 if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
@@ -384,18 +382,6 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) {
-            foreach (var child in this.Children) {
-                var applies = condition == null || condition(child);
-                if (applies)
-                    yield return child;
-                if (regardGrandchildren && (!ignoreFalseGrandchildren || applies)) {
-                    foreach (var cc in child.GetChildren(condition, true, ignoreFalseGrandchildren))
-                        yield return cc;
-                }
-            }
-        }
-
         public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) where T : Element {
             foreach (var child in this.Children) {
                 var applies = child is T t && (condition == null || condition(t));
@@ -406,6 +392,10 @@ namespace MLEM.Ui.Elements {
                         yield return cc;
                 }
             }
+        }
+
+        public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) {
+            return this.GetChildren<Element>(condition, regardGrandchildren, ignoreFalseGrandchildren);
         }
 
         public IEnumerable<Element> GetParentTree() {
