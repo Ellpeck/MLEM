@@ -359,7 +359,7 @@ namespace MLEM.Ui.Elements {
             foreach (var child in this.Children) {
                 if (condition != null && !condition(child))
                     continue;
-                if (child.Anchor < Anchor.BottomRight && child.Anchor != Anchor.TopRight && child.Anchor != Anchor.CenterRight)
+                if (child.Anchor < Anchor.AutoLeft && child.Anchor != Anchor.TopLeft && child.Anchor != Anchor.CenterLeft && child.Anchor != Anchor.BottomLeft)
                     continue;
                 if (rightmost == null || child.UnscrolledArea.Right >= rightmost.UnscrolledArea.Right)
                     rightmost = child;
