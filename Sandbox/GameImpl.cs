@@ -1,5 +1,8 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -12,6 +15,9 @@ namespace Sandbox {
 
         public GameImpl() {
             this.IsMouseVisible = true;
+            this.Window.ClientSizeChanged += (o, args) => {
+                Console.WriteLine("Size changed");
+            };
         }
 
         protected override void LoadContent() {
@@ -32,6 +38,12 @@ namespace Sandbox {
             panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
             panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
             this.UiSystem.Add("Panel", panel);
+        }
+
+        protected override void Update(GameTime gameTime) {
+            base.Update(gameTime);
+            if (this.InputHandler.IsKeyPressed(Keys.F11))
+                this.GraphicsDeviceManager.SetFullscreen(!this.GraphicsDeviceManager.IsFullScreen);
         }
 
         protected override void DoDraw(GameTime gameTime) {
