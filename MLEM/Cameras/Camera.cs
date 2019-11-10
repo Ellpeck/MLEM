@@ -8,7 +8,13 @@ namespace MLEM.Cameras {
     public class Camera {
 
         public Vector2 Position;
-        public float Scale = 1;
+        public float Scale {
+            get => this.scale;
+            set => this.scale = MathHelper.Clamp(value, this.MinScale, this.MaxScale);
+        }
+        private float scale = 1;
+        public float MinScale = 0;
+        public float MaxScale = float.MaxValue;
         public bool AutoScaleWithScreen;
         public Point AutoScaleReferenceSize;
         public float ActualScale {
@@ -74,6 +80,13 @@ namespace MLEM.Cameras {
                 this.Max = new Vector2(max.X, this.Max.Y);
             if (this.Max.Y > max.Y)
                 this.Max = new Vector2(this.Max.X, max.Y);
+        }
+
+        public void Zoom(float delta, Vector2? zoomCenter = null) {
+            var center = (zoomCenter ?? this.Viewport.Size.ToVector2() / 2) / this.ActualScale;
+            var lastScale = this.Scale;
+            this.Scale += delta;
+            this.Position += center * ((this.Scale - lastScale) / this.Scale);
         }
 
     }
