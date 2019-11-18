@@ -97,30 +97,36 @@ namespace MLEM.Ui.Elements {
             this.relevantChildrenDirty = true;
         }
 
-        public override void Update(GameTime time) {
-            base.Update(time);
-            if (this.relevantChildrenDirty) {
-                this.relevantChildrenDirty = false;
+        public override void ForceUpdateSortedChildren() {
+            base.ForceUpdateSortedChildren();
+            if (this.scrollOverflow)
+                this.relevantChildrenDirty = true;
+        }
 
-                var visible = this.GetRenderTargetArea();
-                this.relevantChildren.Clear();
-                foreach (var child in this.SortedChildren) {
-                    if (child.Area.Intersects(visible)) {
-                        this.relevantChildren.Add(child);
-                    } else {
-                        foreach (var c in child.GetChildren(regardGrandchildren: true)) {
-                            if (c.Area.Intersects(visible)) {
-                                this.relevantChildren.Add(child);
-                                break;
+        protected override List<Element> GetRelevantChildren() {
+            var relevant = base.GetRelevantChildren();
+            if (this.scrollOverflow) {
+                if (this.relevantChildrenDirty) {
+                    this.relevantChildrenDirty = false;
+
+                    var visible = this.GetRenderTargetArea();
+                    this.relevantChildren.Clear();
+                    foreach (var child in this.SortedChildren) {
+                        if (child.Area.Intersects(visible)) {
+                            this.relevantChildren.Add(child);
+                        } else {
+                            foreach (var c in child.GetChildren(regardGrandchildren: true)) {
+                                if (c.Area.Intersects(visible)) {
+                                    this.relevantChildren.Add(child);
+                                    break;
+                                }
                             }
                         }
                     }
                 }
+                relevant = this.relevantChildren;
             }
-        }
-
-        protected override List<Element> GetRelevantChildren() {
-            return this.scrollOverflow ? this.relevantChildren : base.GetRelevantChildren();
+            return relevant;
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {

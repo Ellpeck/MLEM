@@ -6,15 +6,19 @@ namespace MLEM.Ui.Elements {
         public readonly Panel Panel;
         public bool IsOpen {
             get => !this.Panel.IsHidden;
-            set => this.Panel.IsHidden = !value;
+            set {
+                this.Panel.IsHidden = !value;
+                this.OnOpenedOrClosed?.Invoke(this);
+            }
         }
+        public GenericCallback OnOpenedOrClosed;
 
         public Dropdown(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float tooltipWidth = 50) : base(anchor, size, text, tooltipText, tooltipWidth) {
             this.Panel = this.AddChild(new Panel(Anchor.TopCenter, size, Vector2.Zero, true) {
                 IsHidden = true
             });
             this.OnAreaUpdated += e => this.Panel.PositionOffset = new Vector2(0, e.Area.Height / this.Scale);
-            this.Priority = 10000;
+            this.OnOpenedOrClosed += e => this.Priority = this.IsOpen ? 10000 : 0;
             this.OnPressed += e => this.IsOpen = !this.IsOpen;
         }
 

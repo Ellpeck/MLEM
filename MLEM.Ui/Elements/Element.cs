@@ -189,24 +189,27 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public void SetAreaDirty() {
-            this.areaDirty = true;
-            if (this.Anchor >= Anchor.AutoLeft && this.Parent != null)
-                this.Parent.SetAreaDirty();
-        }
-
         public void SetSortedChildrenDirty() {
             this.sortedChildrenDirty = true;
         }
 
         public void UpdateSortedChildrenIfDirty() {
-            if (this.sortedChildrenDirty) {
-                this.sortedChildrenDirty = false;
+            if (this.sortedChildrenDirty)
+                this.ForceUpdateSortedChildren();
+        }
 
-                this.sortedChildren.Clear();
-                this.sortedChildren.AddRange(this.Children);
-                this.sortedChildren.Sort((e1, e2) => e1.Priority.CompareTo(e2.Priority));
-            }
+        public virtual void ForceUpdateSortedChildren() {
+            this.sortedChildrenDirty = false;
+
+            this.sortedChildren.Clear();
+            this.sortedChildren.AddRange(this.Children);
+            this.sortedChildren.Sort((e1, e2) => e1.Priority.CompareTo(e2.Priority));
+        }
+
+        public void SetAreaDirty() {
+            this.areaDirty = true;
+            if (this.Anchor >= Anchor.AutoLeft && this.Parent != null)
+                this.Parent.SetAreaDirty();
         }
 
         public void UpdateAreaIfDirty() {
