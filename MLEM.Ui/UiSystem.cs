@@ -134,6 +134,7 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
+                e.SetAreaDirty();
             });
             return true;
         }
@@ -147,6 +148,7 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
+                e.SetAreaDirty();
             });
         }
 
