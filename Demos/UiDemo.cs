@@ -224,7 +224,7 @@ namespace Demos {
 
         // This method is used by the wobbling button (see above)
         // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
-        private IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
+        private IEnumerator<IWait> WobbleButton(CustomDrawGroup group) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
                 // A custom draw group allows the implementation of any sort of custom rendering for all of its child components
@@ -240,7 +240,7 @@ namespace Demos {
             group.Transform = Matrix.Identity;
         }
 
-        private IEnumerator<Wait> WobbleProgressBar(ProgressBar bar) {
+        private IEnumerator<IWait> WobbleProgressBar(ProgressBar bar) {
             var reducing = false;
             while (bar.Root != null) {
                 if (reducing) {
