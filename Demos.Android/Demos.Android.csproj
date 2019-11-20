@@ -46,8 +46,8 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Coroutine, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Coroutine.1.0.1\lib\netstandard2.0\Coroutine.dll</HintPath>
+    <Reference Include="Coroutine, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Coroutine.1.0.2\lib\netstandard2.0\Coroutine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
