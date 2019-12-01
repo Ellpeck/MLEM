@@ -34,8 +34,10 @@ namespace MLEM.Extended.Tiled {
         public void UpdateDrawInfo(int layerIndex, int x, int y) {
             var layer = this.map.TileLayers[layerIndex];
             var tile = layer.GetTile(x, y);
-            if (tile.IsBlank)
+            if (tile.IsBlank) {
+                this.drawInfos[layerIndex, x, y] = null;
                 return;
+            }
             var tileset = tile.GetTileset(this.map);
             var source = tileset.GetTileRegion(tile.GetLocalIdentifier(tileset, this.map));
             var pos = new Point(x, y);
