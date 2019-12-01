@@ -1,15 +1,21 @@
 using System;
+using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 using MLEM.Extensions;
 
 namespace MLEM.Misc {
+    [DataContract]
     public struct RectangleF : IEquatable<RectangleF> {
 
         public static RectangleF Empty => default;
 
+        [DataMember]
         public float X;
+        [DataMember]
         public float Y;
+        [DataMember]
         public float Width;
+        [DataMember]
         public float Height;
 
         public float Left => this.X;
