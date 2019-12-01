@@ -51,7 +51,7 @@ namespace MLEM.Startup {
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
         }
 
-        protected override void Draw(GameTime gameTime) {
+        protected sealed override void Draw(GameTime gameTime) {
             this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
