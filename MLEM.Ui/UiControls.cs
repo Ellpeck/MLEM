@@ -27,6 +27,10 @@ namespace MLEM.Ui {
         public object[] LeftButtons = {Buttons.DPadLeft, Buttons.LeftThumbstickLeft};
         public object[] RightButtons = {Buttons.DPadRight, Buttons.LeftThumbstickRight};
         public int GamepadIndex = -1;
+        public bool HandleMouse = true;
+        public bool HandleKeyboard = true;
+        public bool HandleTouch = true;
+        public bool HandleGamepad = true;
 
         public bool IsAutoNavMode { get; private set; }
 
@@ -45,82 +49,90 @@ namespace MLEM.Ui {
             this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
 
             // MOUSE INPUT
-            var mousedNow = this.GetElementUnderPos(this.Input.MousePosition.ToVector2());
-            if (mousedNow != this.MousedElement) {
-                if (this.MousedElement != null)
-                    this.System.OnElementMouseExit?.Invoke(this.MousedElement);
-                if (mousedNow != null)
-                    this.System.OnElementMouseEnter?.Invoke(mousedNow);
-                this.MousedElement = mousedNow;
-                this.System.OnMousedElementChanged?.Invoke(mousedNow);
-            }
+            if (this.HandleMouse) {
+                var mousedNow = this.GetElementUnderPos(this.Input.MousePosition.ToVector2());
+                if (mousedNow != this.MousedElement) {
+                    if (this.MousedElement != null)
+                        this.System.OnElementMouseExit?.Invoke(this.MousedElement);
+                    if (mousedNow != null)
+                        this.System.OnElementMouseEnter?.Invoke(mousedNow);
+                    this.MousedElement = mousedNow;
+                    this.System.OnMousedElementChanged?.Invoke(mousedNow);
+                }
 
-            if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
-                this.IsAutoNavMode = false;
-                var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
-                this.ActiveRoot?.SelectElement(selectedNow);
-                if (mousedNow != null)
-                    this.System.OnElementPressed?.Invoke(mousedNow);
-            } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
-                this.IsAutoNavMode = false;
-                if (mousedNow != null)
-                    this.System.OnElementSecondaryPressed?.Invoke(mousedNow);
+                if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
+                    this.IsAutoNavMode = false;
+                    var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
+                    this.ActiveRoot?.SelectElement(selectedNow);
+                    if (mousedNow != null)
+                        this.System.OnElementPressed?.Invoke(mousedNow);
+                } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
+                    this.IsAutoNavMode = false;
+                    if (mousedNow != null)
+                        this.System.OnElementSecondaryPressed?.Invoke(mousedNow);
+                }
             }
 
             // KEYBOARD INPUT
-            else if (this.KeyboardButtons.Any(this.Input.IsKeyPressed)) {
-                this.IsAutoNavMode = true;
-                if (this.SelectedElement?.Root != null) {
-                    if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
-                        // secondary action on element using space or enter
-                        this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
-                    } else {
-                        // first action on element using space or enter
-                        this.System.OnElementPressed?.Invoke(this.SelectedElement);
+            if (this.HandleKeyboard) {
+                if (this.KeyboardButtons.Any(this.Input.IsKeyPressed)) {
+                    this.IsAutoNavMode = true;
+                    if (this.SelectedElement?.Root != null) {
+                        if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
+                            // secondary action on element using space or enter
+                            this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
+                        } else {
+                            // first action on element using space or enter
+                            this.System.OnElementPressed?.Invoke(this.SelectedElement);
+                        }
                     }
+                } else if (this.Input.IsKeyPressed(Keys.Tab)) {
+                    this.IsAutoNavMode = true;
+                    // tab or shift-tab to next or previous element
+                    var backward = this.Input.IsModifierKeyDown(ModifierKey.Shift);
+                    var next = this.GetTabNextElement(backward);
+                    if (this.SelectedElement?.Root != null)
+                        next = this.SelectedElement.GetTabNextElement(backward, next);
+                    this.ActiveRoot?.SelectElement(next);
                 }
-            } else if (this.Input.IsKeyPressed(Keys.Tab)) {
-                this.IsAutoNavMode = true;
-                // tab or shift-tab to next or previous element
-                var backward = this.Input.IsModifierKeyDown(ModifierKey.Shift);
-                var next = this.GetTabNextElement(backward);
-                if (this.SelectedElement?.Root != null)
-                    next = this.SelectedElement.GetTabNextElement(backward, next);
-                this.ActiveRoot?.SelectElement(next);
             }
 
             // TOUCH INPUT
-            else if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
-                this.IsAutoNavMode = false;
-                var tapped = this.GetElementUnderPos(tap.Position);
-                this.ActiveRoot?.SelectElement(tapped);
-                if (tapped != null)
-                    this.System.OnElementPressed?.Invoke(tapped);
-            } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
-                this.IsAutoNavMode = false;
-                var held = this.GetElementUnderPos(hold.Position);
-                this.ActiveRoot?.SelectElement(held);
-                if (held != null)
-                    this.System.OnElementSecondaryPressed?.Invoke(held);
+            if (this.HandleTouch) {
+                if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
+                    this.IsAutoNavMode = false;
+                    var tapped = this.GetElementUnderPos(tap.Position);
+                    this.ActiveRoot?.SelectElement(tapped);
+                    if (tapped != null)
+                        this.System.OnElementPressed?.Invoke(tapped);
+                } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
+                    this.IsAutoNavMode = false;
+                    var held = this.GetElementUnderPos(hold.Position);
+                    this.ActiveRoot?.SelectElement(held);
+                    if (held != null)
+                        this.System.OnElementSecondaryPressed?.Invoke(held);
+                }
             }
 
             // GAMEPAD INPUT
-            else if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
-                this.IsAutoNavMode = true;
-                if (this.SelectedElement?.Root != null)
-                    this.System.OnElementPressed?.Invoke(this.SelectedElement);
-            } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
-                this.IsAutoNavMode = true;
-                if (this.SelectedElement?.Root != null)
-                    this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
-            } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
-                this.HandleGamepadNextElement(Direction2.Down);
-            } else if (this.LeftButtons.Any(this.IsGamepadPressed)) {
-                this.HandleGamepadNextElement(Direction2.Left);
-            } else if (this.RightButtons.Any(this.IsGamepadPressed)) {
-                this.HandleGamepadNextElement(Direction2.Right);
-            } else if (this.UpButtons.Any(this.IsGamepadPressed)) {
-                this.HandleGamepadNextElement(Direction2.Up);
+            if (this.HandleGamepad) {
+                if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
+                    this.IsAutoNavMode = true;
+                    if (this.SelectedElement?.Root != null)
+                        this.System.OnElementPressed?.Invoke(this.SelectedElement);
+                } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
+                    this.IsAutoNavMode = true;
+                    if (this.SelectedElement?.Root != null)
+                        this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
+                } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
+                    this.HandleGamepadNextElement(Direction2.Down);
+                } else if (this.LeftButtons.Any(this.IsGamepadPressed)) {
+                    this.HandleGamepadNextElement(Direction2.Left);
+                } else if (this.RightButtons.Any(this.IsGamepadPressed)) {
+                    this.HandleGamepadNextElement(Direction2.Right);
+                } else if (this.UpButtons.Any(this.IsGamepadPressed)) {
+                    this.HandleGamepadNextElement(Direction2.Up);
+                }
             }
         }
 
