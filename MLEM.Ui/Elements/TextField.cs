@@ -55,7 +55,7 @@ namespace MLEM.Ui.Elements {
 
             if (WindowExtensions.SupportsTextInput()) {
                 this.OnTextInput += (element, key, character) => {
-                    if (!this.IsSelected)
+                    if (!this.IsSelected || this.IsHidden)
                         return;
                     if (key == Keys.Back) {
                         if (this.CaretPos > 0) {
