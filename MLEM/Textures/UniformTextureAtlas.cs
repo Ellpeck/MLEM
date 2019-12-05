@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,23 +9,31 @@ namespace MLEM.Textures {
         public readonly Texture2D Texture;
         public readonly int RegionAmountX;
         public readonly int RegionAmountY;
-        public TextureRegion this[Point point] => this.regions.TryGetValue(point, out var region) ? region : null;
+        public readonly int RegionWidth;
+        public readonly int RegionHeight;
+        public TextureRegion this[Point point] => this[new Rectangle(point, new Point(1, 1))];
         public TextureRegion this[int x, int y] => this[new Point(x, y)];
+        public TextureRegion this[Rectangle rect] => this.GetOrAddRegion(rect);
+        public TextureRegion this[int x, int y, int width, int height] => this[new Rectangle(x, y, width, height)];
 
-        private readonly Dictionary<Point, TextureRegion> regions = new Dictionary<Point, TextureRegion>();
+        private readonly Dictionary<Rectangle, TextureRegion> regions = new Dictionary<Rectangle, TextureRegion>();
 
         public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY) {
             this.Texture = texture;
             this.RegionAmountX = regionAmountX;
             this.RegionAmountY = regionAmountY;
+            this.RegionWidth = texture.Width / regionAmountX;
+            this.RegionHeight = texture.Height / regionAmountY;
+        }
 
-            var regionWidth = texture.Width / regionAmountX;
-            var regionHeight = texture.Height / regionAmountY;
-            for (var x = 0; x < regionAmountX; x++) {
-                for (var y = 0; y < regionAmountY; y++) {
-                    this.regions.Add(new Point(x, y), new TextureRegion(texture, x * regionWidth, y * regionHeight, regionWidth, regionHeight));
-                }
-            }
+        private TextureRegion GetOrAddRegion(Rectangle rect) {
+            if (this.regions.TryGetValue(rect, out var region))
+                return region;
+            region = new TextureRegion(this.Texture,
+                rect.X * this.RegionWidth, rect.Y * this.RegionHeight,
+                rect.Width * this.RegionWidth, rect.Height * this.RegionHeight);
+            this.regions.Add(rect, region);
+            return region;
         }
 
     }
