@@ -64,6 +64,8 @@ namespace MLEM.Ui {
         public Element.GenericCallback OnElementAreaUpdated = e => e.OnAreaUpdated?.Invoke(e);
         public Element.GenericCallback OnMousedElementChanged;
         public Element.GenericCallback OnSelectedElementChanged;
+        public RootCallback OnRootAdded;
+        public RootCallback OnRootRemoved;
 
         public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
             this.Controls = new UiControls(this, inputHandler);
@@ -136,6 +138,7 @@ namespace MLEM.Ui {
                 e.System = this;
                 e.SetAreaDirty();
             });
+            this.OnRootAdded?.Invoke(root);
             return true;
         }
 
@@ -150,6 +153,7 @@ namespace MLEM.Ui {
                 e.System = null;
                 e.SetAreaDirty();
             });
+            this.OnRootRemoved?.Invoke(root);
         }
 
         public RootElement Get(string name) {
@@ -170,6 +174,8 @@ namespace MLEM.Ui {
             foreach (var root in this.rootElements)
                 root.Element.AndChildren(action);
         }
+
+        public delegate void RootCallback(RootElement root);
 
     }
 
