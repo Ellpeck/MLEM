@@ -98,8 +98,9 @@ namespace MLEM.Ui {
         public void Update(GameTime time) {
             this.Controls.Update();
 
-            foreach (var root in this.rootElements)
-                root.Element.Update(time);
+            for (var i = this.rootElements.Count - 1; i >= 0; i--) {
+                this.rootElements[i].Element.Update(time);
+            }
         }
 
         public void DrawEarly(GameTime time, SpriteBatch batch) {

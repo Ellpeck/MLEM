@@ -442,7 +442,8 @@ namespace MLEM.Ui.Elements {
             this.System.OnElementUpdated?.Invoke(this, time);
 
             foreach (var child in this.GetRelevantChildren())
-                child.Update(time);
+                if (child.System != null)
+                    child.Update(time);
         }
 
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
