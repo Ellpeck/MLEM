@@ -79,8 +79,8 @@ namespace Demos {
             base.DoDraw(gameTime);
         }
 
-        protected override void Update(GameTime gameTime) {
-            base.Update(gameTime);
+        protected override void DoUpdate(GameTime gameTime) {
+            base.DoUpdate(gameTime);
             if (this.activeDemo != null)
                 this.activeDemo.Update(gameTime);
         }

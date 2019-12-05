@@ -59,8 +59,8 @@ namespace Sandbox {
             this.UiSystem.Add("Panel", panel);*/
         }
 
-        protected override void Update(GameTime gameTime) {
-            base.Update(gameTime);
+        protected override void DoUpdate(GameTime gameTime) {
+            base.DoUpdate(gameTime);
             if (this.InputHandler.IsKeyPressed(Keys.F11))
                 this.GraphicsDeviceManager.SetFullscreen(!this.GraphicsDeviceManager.IsFullScreen);
 

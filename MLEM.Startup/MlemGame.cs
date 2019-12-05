@@ -40,12 +40,10 @@ namespace MLEM.Startup {
             this.OnLoadContent?.Invoke(this);
         }
 
-        protected override void Update(GameTime gameTime) {
-            base.Update(gameTime);
-
+        protected sealed override void Update(GameTime gameTime) {
             this.InputHandler.Update();
+            this.DoUpdate(gameTime);
             this.UiSystem.Update(gameTime);
-
             this.OnUpdate?.Invoke(this, gameTime);
             CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
@@ -61,6 +59,10 @@ namespace MLEM.Startup {
 
         protected virtual void DoDraw(GameTime gameTime) {
             base.Draw(gameTime);
+        }
+
+        protected virtual void DoUpdate(GameTime gameTime) {
+            base.Update(gameTime);
         }
 
         public static T LoadContent<T>(string name) {
