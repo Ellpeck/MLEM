@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AndroidDemos</RootNamespace>
-    <AssemblyName>AndroidDemos</AssemblyName>
+    <RootNamespace>Demos.Android</RootNamespace>
+    <AssemblyName>Demos.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -19,7 +19,7 @@
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions>.m4a</AndroidStoreUncompressedFileExtensions>
     <MandroidI18n />
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <MonoGamePlatform>Android</MonoGamePlatform>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
@@ -55,14 +55,6 @@
       <HintPath>..\packages\MonoGame.Extended.3.7.0\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MonoGame.Extended.Graphics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.3.7.0\lib\netstandard2.0\MonoGame.Extended.Graphics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Tiled, Version=3.7.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\MonoGame.Extended.Tiled.3.7.0\lib\netstandard2.0\MonoGame.Extended.Tiled.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
@@ -82,19 +74,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
-    <None Include="..\Demos\Content\*\**" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
     <AndroidResource Include="Resources\Drawable\Icon.png" />
     <AndroidResource Include="Resources\Drawable\Splash.png" />
     <AndroidResource Include="Resources\Values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
+    <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
+    <None Include="..\Demos\Content\*\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -102,17 +92,9 @@
       <Project>{1bc4682b-aa14-4937-b5c7-707e20fe88ff}</Project>
       <Name>Demos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MLEM.Extended\MLEM.Extended.csproj">
-      <Project>{232a6513-a28c-4d7f-ba5a-89281bfc1538}</Project>
-      <Name>MLEM.Extended</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj">
       <Project>{997f4739-7bec-4621-b9ca-68deb2d74412}</Project>
       <Name>MLEM.Startup</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj">
-      <Project>{6f00629a-8b87-4264-8896-19983285e32f}</Project>
-      <Name>MLEM.Ui</Name>
     </ProjectReference>
     <ProjectReference Include="..\MLEM\MLEM.csproj">
       <Project>{1d6ab762-43c4-4775-8924-707c7ec3f142}</Project>
