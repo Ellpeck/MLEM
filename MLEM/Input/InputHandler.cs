@@ -9,7 +9,7 @@ using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Input {
-    public class InputHandler {
+    public class InputHandler : GameComponent {
 
         public KeyboardState LastKeyboardState { get; private set; }
         public KeyboardState KeyboardState { get; private set; }
@@ -50,7 +50,7 @@ namespace MLEM.Input {
         private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
         private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
 
-        public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) {
+        public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(null) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
@@ -113,7 +113,7 @@ namespace MLEM.Input {
                 if (this.HandleGamepadRepeats) {
                     for (var i = 0; i < this.ConnectedGamepads; i++) {
                         this.triggerGamepadButtonRepeat[i] = false;
-                        
+
                         if (!this.heldGamepadButtons[i].HasValue) {
                             foreach (var b in EnumHelper.Buttons) {
                                 if (this.IsGamepadButtonDown(b, i)) {
@@ -149,6 +149,10 @@ namespace MLEM.Input {
                 while (TouchPanel.IsGestureAvailable)
                     this.gestures.Add(TouchPanel.ReadGesture());
             }
+        }
+
+        public override void Update(GameTime gameTime) {
+            this.Update();
         }
 
         public GamePadState GetLastGamepadState(int index) {

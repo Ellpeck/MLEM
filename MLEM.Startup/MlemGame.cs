@@ -36,14 +36,14 @@ namespace MLEM.Startup {
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler();
+            this.Components.Add(this.InputHandler);
             this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
+            this.Components.Add(this.UiSystem);
             this.OnLoadContent?.Invoke(this);
         }
 
         protected sealed override void Update(GameTime gameTime) {
-            this.InputHandler.Update();
             this.DoUpdate(gameTime);
-            this.UiSystem.Update(gameTime);
             this.OnUpdate?.Invoke(this, gameTime);
             CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);

@@ -76,7 +76,6 @@ namespace MLEM.Ui {
             // KEYBOARD INPUT
             if (this.HandleKeyboard) {
                 if (this.KeyboardButtons.Any(this.Input.IsKeyPressed)) {
-                    this.IsAutoNavMode = true;
                     if (this.SelectedElement?.Root != null) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
@@ -117,11 +116,9 @@ namespace MLEM.Ui {
             // GAMEPAD INPUT
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
-                    this.IsAutoNavMode = true;
                     if (this.SelectedElement?.Root != null)
                         this.System.OnElementPressed?.Invoke(this.SelectedElement);
                 } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
-                    this.IsAutoNavMode = true;
                     if (this.SelectedElement?.Root != null)
                         this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
                 } else if (this.DownButtons.Any(this.IsGamepadPressed)) {

@@ -13,7 +13,7 @@ using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui {
-    public class UiSystem {
+    public class UiSystem : GameComponent {
 
         public readonly GraphicsDevice GraphicsDevice;
         public readonly GameWindow Window;
@@ -67,7 +67,7 @@ namespace MLEM.Ui {
         public RootCallback OnRootAdded;
         public RootCallback OnRootRemoved;
 
-        public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) {
+        public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) : base(null) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
             this.Window = window;
@@ -95,7 +95,7 @@ namespace MLEM.Ui {
             };
         }
 
-        public void Update(GameTime time) {
+        public override void Update(GameTime time) {
             this.Controls.Update();
 
             for (var i = this.rootElements.Count - 1; i >= 0; i--) {
