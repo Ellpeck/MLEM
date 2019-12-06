@@ -71,15 +71,23 @@ namespace MLEM.Cameras {
         }
 
         public void ConstrainWorldBounds(Vector2 min, Vector2 max) {
-            if (this.Position.X < min.X)
-                this.Position.X = min.X;
-            if (this.Position.Y < min.Y)
-                this.Position.Y = min.Y;
+            if (this.Position.X < min.X && this.Max.X > max.X) {
+                this.LookingPosition = new Vector2((max.X - min.X) / 2, this.LookingPosition.Y);
+            } else {
+                if (this.Position.X < min.X)
+                    this.Position.X = min.X;
+                if (this.Max.X > max.X)
+                    this.Max = new Vector2(max.X, this.Max.Y);
+            }
 
-            if (this.Max.X > max.X)
-                this.Max = new Vector2(max.X, this.Max.Y);
-            if (this.Max.Y > max.Y)
-                this.Max = new Vector2(this.Max.X, max.Y);
+            if (this.Position.Y < min.Y && this.Max.Y > max.Y) {
+                this.LookingPosition = new Vector2(this.LookingPosition.X, (max.Y - min.Y) / 2);
+            } else {
+                if (this.Position.Y < min.Y)
+                    this.Position.Y = min.Y;
+                if (this.Max.Y > max.Y)
+                    this.Max = new Vector2(this.Max.X, max.Y);
+            }
         }
 
         public void Zoom(float delta, Vector2? zoomCenter = null) {
