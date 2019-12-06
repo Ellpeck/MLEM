@@ -58,7 +58,7 @@ namespace MLEM.Extended.Tiled {
         }
 
         public static TiledMapTile GetTile(this TiledMapTileLayer layer, int x, int y) {
-            return layer.GetTile((ushort) x, (ushort) y);
+            return !layer.IsInBounds(x, y) ? default : layer.GetTile((ushort) x, (ushort) y);
         }
 
         public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2? position = null) {
@@ -69,6 +69,10 @@ namespace MLEM.Extended.Tiled {
 
         public static Vector2 GetTileSize(this TiledMap map) {
             return new Vector2(map.TileWidth, map.TileHeight);
+        }
+
+        public static bool IsInBounds(this TiledMapTileLayer layer, int x, int y) {
+            return x >= 0 && y >= 0 && x < layer.Width && y < layer.Height;
         }
 
     }
