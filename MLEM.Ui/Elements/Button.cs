@@ -8,6 +8,7 @@ namespace MLEM.Ui.Elements {
     public class Button : Element {
 
         public StyleProp<NinePatch> Texture;
+        public StyleProp<Color> NormalColor = Color.White;
         public StyleProp<NinePatch> HoveredTexture;
         public StyleProp<Color> HoveredColor;
         public Paragraph Text;
@@ -24,7 +25,7 @@ namespace MLEM.Ui.Elements {
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var tex = this.Texture;
-            var color = Color.White * alpha;
+            var color = (Color) this.NormalColor * alpha;
             if (this.IsMouseOver) {
                 tex = this.HoveredTexture.OrDefault(tex);
                 color = (Color) this.HoveredColor * alpha;
