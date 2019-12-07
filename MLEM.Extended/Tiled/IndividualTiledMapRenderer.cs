@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -11,6 +12,7 @@ namespace MLEM.Extended.Tiled {
         private TiledMap map;
         private TileDrawInfo[,,] drawInfos;
         private GetDepth depthFunction;
+        private List<TiledMapTilesetAnimatedTile> animatedTiles;
 
         public IndividualTiledMapRenderer(TiledMap map = null, GetDepth depthFunction = null) {
             if (map != null)
@@ -29,6 +31,15 @@ namespace MLEM.Extended.Tiled {
                     }
                 }
             }
+
+            this.animatedTiles = new List<TiledMapTilesetAnimatedTile>();
+            foreach (var tileset in map.Tilesets) {
+                foreach (var tile in tileset.Tiles) {
+                    if (tile is TiledMapTilesetAnimatedTile animated) {
+                        this.animatedTiles.Add(animated);
+                    }
+                }
+            }
         }
 
         public void UpdateDrawInfo(int layerIndex, int x, int y) {
@@ -39,10 +50,10 @@ namespace MLEM.Extended.Tiled {
                 return;
             }
             var tileset = tile.GetTileset(this.map);
-            var source = tileset.GetTileRegion(tile.GetLocalIdentifier(tileset, this.map));
+            var tilesetTile = tileset.GetTilesetTile(tile, this.map);
             var pos = new Point(x, y);
             var depth = this.depthFunction(tile, layer, layerIndex, pos);
-            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tileset, pos, source, depth);
+            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tileset, tilesetTile, pos, depth);
         }
 
         public void Draw(SpriteBatch batch, RectangleF? frustum = null) {
@@ -66,27 +77,35 @@ namespace MLEM.Extended.Tiled {
             }
         }
 
+        public void UpdateAnimations(GameTime time) {
+            foreach (var animation in this.animatedTiles)
+                animation.Update(time);
+        }
+
         public delegate float GetDepth(TiledMapTile tile, TiledMapTileLayer layer, int layerIndex, Point position);
 
         private class TileDrawInfo {
 
             private readonly IndividualTiledMapRenderer renderer;
             private readonly TiledMapTileset tileset;
+            private readonly TiledMapTilesetTile tile;
             private readonly Point position;
-            private readonly Rectangle source;
             private readonly float depth;
 
-            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTileset tileset, Point position, Rectangle source, float depth) {
+            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTileset tileset, TiledMapTilesetTile tile, Point position, float depth) {
                 this.renderer = renderer;
                 this.tileset = tileset;
+                this.tile = tile;
                 this.position = position;
-                this.source = source;
                 this.depth = depth;
             }
 
             public void Draw(SpriteBatch batch) {
+                var id = this.tile.LocalTileIdentifier;
+                if (this.tile is TiledMapTilesetAnimatedTile animated)
+                    id = animated.CurrentAnimationFrame.LocalTileIdentifier;
                 var drawPos = new Vector2(this.position.X * this.renderer.map.TileWidth, this.position.Y * this.renderer.map.TileHeight);
-                batch.Draw(this.tileset.Texture, drawPos, this.source, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, this.depth);
+                batch.Draw(this.tileset.Texture, drawPos, this.tileset.GetTileRegion(id), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, this.depth);
             }
 
         }
