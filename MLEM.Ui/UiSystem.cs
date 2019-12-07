@@ -125,15 +125,17 @@ namespace MLEM.Ui {
 
         public RootElement Add(string name, Element element) {
             var root = new RootElement(name, element, this);
-            return !this.Add(root) ? null : root;
+            return !this.Add(root, true) ? null : root;
         }
 
-        internal bool Add(RootElement root, int index = -1) {
+        internal bool Add(RootElement root, bool notify, int index = -1) {
             if (this.IndexOf(root.Name) >= 0)
                 return false;
             if (index < 0 || index > this.rootElements.Count)
                 index = this.rootElements.Count;
             this.rootElements.Insert(index, root);
+            if (!notify)
+                return true;
             root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
@@ -144,10 +146,16 @@ namespace MLEM.Ui {
         }
 
         public void Remove(string name) {
+            this.Remove(name, true);
+        }
+
+        internal void Remove(string name, bool notify) {
             var root = this.Get(name);
             if (root == null)
                 return;
             this.rootElements.Remove(root);
+            if (!notify)
+                return;
             root.SelectElement(null);
             root.Element.AndChildren(e => {
                 e.Root = null;
@@ -222,13 +230,13 @@ namespace MLEM.Ui {
         }
 
         public void MoveToFront() {
-            this.System.Remove(this.Name);
-            this.System.Add(this);
+            this.System.Remove(this.Name, false);
+            this.System.Add(this, false);
         }
 
         public void MoveToBack() {
-            this.System.Remove(this.Name);
-            this.System.Add(this, 0);
+            this.System.Remove(this.Name, false);
+            this.System.Add(this, false, 0);
         }
 
     }
