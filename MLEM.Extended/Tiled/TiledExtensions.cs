@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
@@ -5,6 +7,8 @@ using MonoGame.Extended.Tiled;
 
 namespace MLEM.Extended.Tiled {
     public static class TiledExtensions {
+
+        private static readonly Dictionary<int, TiledMapTilesetTile> StubTilesetTiles = new Dictionary<int, TiledMapTilesetTile>();
 
         public static string Get(this TiledMapProperties properties, string key) {
             properties.TryGetValue(key, out var val);
@@ -38,18 +42,26 @@ namespace MLEM.Extended.Tiled {
             return tile.GlobalIdentifier - map.GetTilesetFirstGlobalIdentifier(tileset);
         }
 
-        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, TiledMapTile tile, TiledMap map) {
+        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, TiledMapTile tile, TiledMap map, bool createStub = true) {
             if (tile.IsBlank)
                 return null;
             var localId = tile.GetLocalIdentifier(tileset, map);
-            return tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
+            var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
+            if (tilesetTile == null && createStub) {
+                var id = tile.GetLocalIdentifier(tileset, map);
+                if (!StubTilesetTiles.TryGetValue(id, out tilesetTile)) {
+                    tilesetTile = new TiledMapTilesetTile(id);
+                    StubTilesetTiles.Add(id, tilesetTile);
+                }
+            }
+            return tilesetTile;
         }
 
-        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTile tile, TiledMap map) {
+        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTile tile, TiledMap map, bool createStub = true) {
             if (tile.IsBlank)
                 return null;
             var tileset = tile.GetTileset(map);
-            return tileset?.GetTilesetTile(tile, map);
+            return tileset.GetTilesetTile(tile, map, createStub);
         }
 
         public static int GetTileLayerIndex(this TiledMap map, string layerName) {

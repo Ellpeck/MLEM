@@ -38,10 +38,6 @@ namespace MLEM.Extended.Tiled {
                 return;
             }
             var tilesetTile = tile.GetTilesetTile(this.map);
-            if (tilesetTile == null) {
-                this.collisionInfos[layerIndex, x, y] = null;
-                return;
-            }
             this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, tilesetTile);
         }
 
