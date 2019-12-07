@@ -52,6 +52,11 @@ namespace MLEM.Extended.Tiled {
             return tileset?.GetTilesetTile(tile, map);
         }
 
+        public static int GetTileLayerIndex(this TiledMap map, string layerName) {
+            var layer = map.GetLayer<TiledMapTileLayer>(layerName);
+            return map.TileLayers.IndexOf(layer);
+        }
+
         public static TiledMapTile GetTile(this TiledMap map, string layerName, int x, int y) {
             var layer = map.GetLayer<TiledMapTileLayer>(layerName);
             return layer != null ? layer.GetTile(x, y) : default;
