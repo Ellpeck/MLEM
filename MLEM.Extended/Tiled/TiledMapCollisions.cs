@@ -33,11 +33,15 @@ namespace MLEM.Extended.Tiled {
         public void UpdateCollisionInfo(int layerIndex, int x, int y) {
             var layer = this.map.TileLayers[layerIndex];
             var tile = layer.GetTile(x, y);
-            if (tile.IsBlank)
+            if (tile.IsBlank) {
+                this.collisionInfos[layerIndex, x, y] = null;
                 return;
+            }
             var tilesetTile = tile.GetTilesetTile(this.map);
-            if (tilesetTile == null)
+            if (tilesetTile == null) {
+                this.collisionInfos[layerIndex, x, y] = null;
                 return;
+            }
             this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, tilesetTile);
         }
 
