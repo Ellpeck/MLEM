@@ -163,6 +163,8 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = this.Root;
                 e.System = this.System;
+                if (this.Root != null)
+                    this.Root.OnElementAdded(e);
             });
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();
@@ -175,6 +177,8 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
+                if (this.Root != null)
+                    this.Root.OnElementRemoved(e);
             });
             this.SetSortedChildrenDirty();
             this.SetAreaDirty();

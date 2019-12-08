@@ -16,7 +16,7 @@ namespace MLEM.Ui.Elements {
             this.CanBeSelected = false;
 
             if (elementToHover != null) {
-                elementToHover.OnMouseEnter += element => element.System.Add(element.GetType().Name + "Tooltip", this).CanSelectContent = false;
+                elementToHover.OnMouseEnter += element => element.System.Add(element.GetType().Name + "Tooltip", this);
                 elementToHover.OnMouseExit += element => {
                     if (this.System != null)
                         this.System.Remove(element.GetType().Name + "Tooltip");

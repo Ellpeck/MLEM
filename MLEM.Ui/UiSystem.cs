@@ -139,6 +139,7 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
+                root.OnElementAdded(e);
                 e.SetAreaDirty();
             });
             this.OnRootAdded?.Invoke(root);
@@ -160,6 +161,7 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
+                root.OnElementRemoved(e);
                 e.SetAreaDirty();
             });
             this.OnRootRemoved?.Invoke(root);
@@ -204,17 +206,29 @@ namespace MLEM.Ui {
             }
         }
         public float ActualScale => this.System.GlobalScale * this.Scale;
-        public bool CanSelectContent = true;
 
         public Matrix Transform = Matrix.Identity;
         public Matrix InvTransform => Matrix.Invert(this.Transform);
 
         public Element SelectedElement { get; private set; }
+        public bool CanSelectContent { get; private set; }
+
+        public Element.GenericCallback OnElementAdded;
+        public Element.GenericCallback OnElementRemoved;
 
         public RootElement(string name, Element element, UiSystem system) {
             this.Name = name;
             this.Element = element;
             this.System = system;
+
+            this.OnElementAdded += e => {
+                if (e.CanBeSelected)
+                    this.CanSelectContent = true;
+            };
+            this.OnElementRemoved += e => {
+                if (e.CanBeSelected && !this.Element.GetChildren(regardGrandchildren: true).Any(c => c.CanBeSelected))
+                    this.CanSelectContent = false;
+            };
         }
 
         public void SelectElement(Element element) {

@@ -140,7 +140,7 @@ namespace Demos {
             root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Vector2(0, 1)});
 
             var tooltip = new Tooltip(50, "This is a test tooltip to see the window bounding") {IsHidden = true};
-            this.UiSystem.Add("TestTooltip", tooltip).CanSelectContent = false;
+            this.UiSystem.Add("TestTooltip", tooltip);
             root.AddChild(new VerticalSpace(3));
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Test Tooltip") {
                 OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden
