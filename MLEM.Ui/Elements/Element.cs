@@ -484,6 +484,10 @@ namespace MLEM.Ui.Elements {
                 child.AndChildren(action);
         }
 
+        public void ReorderChildren(Comparison<Element> comparison) {
+            this.Children.Sort(comparison);
+        }
+
         protected virtual void InitStyle(UiStyle style) {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
         }
