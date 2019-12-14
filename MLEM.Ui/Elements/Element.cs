@@ -25,9 +25,8 @@ namespace MLEM.Ui.Elements {
         private Anchor anchor;
         private Vector2 size;
         private Vector2 offset;
-        public Vector2 Padding;
-        public Vector2 ScaledPadding => this.Padding * this.Scale;
-        private Vector2 childPadding;
+        public Padding Padding;
+        public Padding ScaledPadding => this.Padding * this.Scale;
         public Anchor Anchor {
             get => this.anchor;
             set {
@@ -56,8 +55,9 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public Vector2 ScaledOffset => (this.offset * this.Scale);
-        public Vector2 ChildPadding {
+        public Vector2 ScaledOffset => this.offset * this.Scale;
+        private Padding childPadding;
+        public Padding ChildPadding {
             get => this.childPadding;
             set {
                 if (this.childPadding == value)
@@ -67,7 +67,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         public RectangleF ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
-        public Vector2 ScaledChildPadding => this.childPadding * this.Scale;
+        public Padding ScaledChildPadding => this.childPadding * this.Scale;
 
         public DrawCallback OnDrawn;
         public TimeCallback OnUpdated;
@@ -319,7 +319,7 @@ namespace MLEM.Ui.Elements {
                 if (this.SetHeightBasedOnChildren) {
                     var lowest = this.GetLowestChild(e => !e.IsHidden);
                     if (lowest != null) {
-                        var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Y) / this.Scale;
+                        var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom) / this.Scale;
                         if ((int) newHeight != (int) this.size.Y) {
                             this.size.Y = newHeight;
                             this.ForceUpdateArea();
@@ -328,7 +328,7 @@ namespace MLEM.Ui.Elements {
                 } else if (this.SetWidthBasedOnChildren) {
                     var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                     if (rightmost != null) {
-                        var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.X) / this.Scale;
+                        var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right) / this.Scale;
                         if ((int) newWidth != (int) this.size.X) {
                             this.size.X = newWidth;
                             this.ForceUpdateArea();

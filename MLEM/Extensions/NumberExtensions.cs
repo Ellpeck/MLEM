@@ -67,5 +67,13 @@ namespace MLEM.Extensions {
             return rect;
         }
 
+        public static RectangleF Shrink(this RectangleF rect, Padding padding) {
+            rect.X += padding.Left;
+            rect.Y += padding.Left;
+            rect.Width -= padding.Width;
+            rect.Height -= padding.Height;
+            return rect;
+        }
+
     }
 }

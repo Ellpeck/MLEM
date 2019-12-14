@@ -9,20 +9,17 @@ namespace MLEM.Textures {
     public class NinePatch {
 
         public readonly TextureRegion Region;
-        public readonly int PaddingLeft;
-        public readonly int PaddingRight;
-        public readonly int PaddingTop;
-        public readonly int PaddingBottom;
-
+        public readonly Padding Padding;
         public readonly Rectangle[] SourceRectangles;
 
-        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) {
+        public NinePatch(TextureRegion texture, Padding padding) {
             this.Region = texture;
-            this.PaddingLeft = paddingLeft;
-            this.PaddingRight = paddingRight;
-            this.PaddingTop = paddingTop;
-            this.PaddingBottom = paddingBottom;
+            this.Padding = padding;
             this.SourceRectangles = this.CreateRectangles(this.Region.Area).ToArray();
+        }
+
+        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) :
+            this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom)) {
         }
 
         public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) :
@@ -40,10 +37,10 @@ namespace MLEM.Textures {
         }
 
         public IEnumerable<RectangleF> CreateRectangles(RectangleF area, float patchScale = 1) {
-            var pl = (int) (this.PaddingLeft * patchScale);
-            var pr = (int) (this.PaddingRight * patchScale);
-            var pt = (int) (this.PaddingTop * patchScale);
-            var pb = (int) (this.PaddingBottom * patchScale);
+            var pl = (int) (this.Padding.Left * patchScale);
+            var pr = (int) (this.Padding.Right * patchScale);
+            var pt = (int) (this.Padding.Top * patchScale);
+            var pb = (int) (this.Padding.Bottom * patchScale);
 
             var centerW = area.Width - pl - pr;
             var centerH = area.Height - pt - pb;

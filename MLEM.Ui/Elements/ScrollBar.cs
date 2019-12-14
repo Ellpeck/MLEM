@@ -23,8 +23,10 @@ namespace MLEM.Ui.Elements {
                 this.maxValue = Math.Max(0, value);
                 // force current value to be clamped
                 this.CurrentValue = this.currValue;
-                if (this.AutoHideWhenEmpty)
+                if (this.AutoHideWhenEmpty && this.IsHidden != this.maxValue <= 0) {
                     this.IsHidden = this.maxValue <= 0;
+                    this.OnAutoHide?.Invoke(this);
+                }
             }
         }
         private float currValue;
@@ -41,6 +43,7 @@ namespace MLEM.Ui.Elements {
         public readonly bool Horizontal;
         public float StepPerScroll = 1;
         public ValueChanged OnValueChanged;
+        public GenericCallback OnAutoHide;
         private bool isMouseHeld;
         private bool isDragging;
         private bool isTouchHeld;

@@ -37,8 +37,8 @@ namespace MLEM.Ui.Elements {
 
             var percentage = this.CurrentValue / this.MaxValue;
             var tex = this.ProgressTexture.Value;
-            var padHor = tex != null ? (tex.PaddingLeft + tex.PaddingRight) * this.Scale : 0;
-            var padVer = tex != null ? (tex.PaddingTop + tex.PaddingBottom) * this.Scale : 0;
+            var padHor = tex != null ? tex.Padding.Width * this.Scale : 0;
+            var padVer = tex != null ? tex.Padding.Height * this.Scale : 0;
             var width = percentage * (this.DisplayArea.Width - padHor) + padHor;
             var height = percentage * (this.DisplayArea.Height - padVer) + padVer;
             RectangleF progressArea;

@@ -1,3 +1,4 @@
+using MLEM.Extensions;
 using MLEM.Textures;
 using MonoGame.Extended.TextureAtlases;
 
@@ -5,7 +6,7 @@ namespace MLEM.Extended.Extensions {
     public static class TextureExtensions {
 
         public static NinePatchRegion2D ToExtended(this NinePatch patch) {
-            return new NinePatchRegion2D(patch.Region.ToExtended(), patch.PaddingLeft, patch.PaddingTop, patch.PaddingRight, patch.PaddingBottom);
+            return new NinePatchRegion2D(patch.Region.ToExtended(), patch.Padding.Left.Floor(), patch.Padding.Top.Floor(), patch.Padding.Right.Floor(), patch.Padding.Bottom.Floor());
         }
 
         public static TextureRegion2D ToExtended(this TextureRegion region) {

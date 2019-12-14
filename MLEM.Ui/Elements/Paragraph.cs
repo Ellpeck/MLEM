@@ -60,11 +60,11 @@ namespace MLEM.Ui.Elements {
             var size = base.CalcActualSize(parentArea);
 
             var sc = this.TextScale * this.Scale;
-            this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.X * 2, sc);
+            this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.Width, sc);
             this.codeLocations = this.text.GetFormattingCodes();
 
             var textDims = this.RegularFont.Value.MeasureString(this.splitText) * sc;
-            return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.X * 2 : size.X, textDims.Y + this.ScaledPadding.Y * 2);
+            return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
         }
 
         public override void Update(GameTime time) {
