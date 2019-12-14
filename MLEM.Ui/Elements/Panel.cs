@@ -19,7 +19,7 @@ namespace MLEM.Ui.Elements {
         private readonly List<Element> relevantChildren = new List<Element>();
         private bool relevantChildrenDirty;
 
-        public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null) : base(anchor, size) {
+        public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
             this.scrollOverflow = scrollOverflow;
@@ -32,13 +32,14 @@ namespace MLEM.Ui.Elements {
                     StepPerScroll = 10,
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
-                    AutoHideWhenEmpty = true,
-                    IsHidden = true
+                    AutoHideWhenEmpty = autoHideScrollbar,
+                    IsHidden = autoHideScrollbar
                 };
 
                 // modify the padding so that the scroll bar isn't over top of something else
                 this.ScrollBar.PositionOffset -= new Vector2(scrollSize.X + 1, 0);
-                this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, scrollSize.X, 0, 0) * (e.IsHidden ? -1 : 1);
+                if (autoHideScrollbar)
+                    this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, scrollSize.X, 0, 0) * (e.IsHidden ? -1 : 1);
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {
