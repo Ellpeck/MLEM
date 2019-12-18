@@ -97,5 +97,19 @@ namespace MLEM.Extended.Tiled {
             return x >= 0 && y >= 0 && x < layer.Width && y < layer.Height;
         }
 
+        public static IEnumerable<TiledMapObject> GetObjects(this TiledMapObjectLayer layer, string id, bool searchName = true, bool searchType = false) {
+            foreach (var obj in layer.Objects) {
+                if (searchName && obj.Name == id || searchType && obj.Type == id)
+                    yield return obj;
+            }
+        }
+
+        public static IEnumerable<TiledMapObject> GetObjects(this TiledMap map, string name, bool searchName = true, bool searchType = false) {
+            foreach (var layer in map.ObjectLayers) {
+                foreach (var obj in layer.GetObjects(name, searchName, searchType))
+                    yield return obj;
+            }
+        }
+
     }
 }
