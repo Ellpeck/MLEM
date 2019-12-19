@@ -56,6 +56,12 @@ namespace MLEM.Ui.Elements {
             return this.texture != null && this.scaleToImage ? this.texture.Size.ToVector2() : base.CalcActualSize(parentArea);
         }
 
+        public override void ForceUpdateArea() {
+            if (this.GetTextureCallback != null)
+                this.Texture = this.GetTextureCallback(this);
+            base.ForceUpdateArea();
+        }
+
         public override void Update(GameTime time) {
             base.Update(time);
             if (this.GetTextureCallback != null)

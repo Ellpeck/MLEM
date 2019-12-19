@@ -67,6 +67,12 @@ namespace MLEM.Ui.Elements {
             return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
         }
 
+        public override void ForceUpdateArea() {
+            if (this.GetTextCallback != null)
+                this.Text = this.GetTextCallback(this);
+            base.ForceUpdateArea();
+        }
+
         public override void Update(GameTime time) {
             base.Update(time);
             if (this.GetTextCallback != null)
@@ -103,5 +109,4 @@ namespace MLEM.Ui.Elements {
         public delegate string TextCallback(Paragraph paragraph);
 
     }
-
 }
