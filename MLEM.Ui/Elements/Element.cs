@@ -316,25 +316,29 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
 
             if (this.Children.Count > 0) {
+                var changed = false;
                 if (this.SetHeightBasedOnChildren) {
                     var lowest = this.GetLowestChild(e => !e.IsHidden);
                     if (lowest != null) {
                         var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom) / this.Scale;
                         if ((int) newHeight != (int) this.size.Y) {
                             this.size.Y = newHeight;
-                            this.ForceUpdateArea();
+                            changed = true;
                         }
                     }
-                } else if (this.SetWidthBasedOnChildren) {
+                }
+                if (this.SetWidthBasedOnChildren) {
                     var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                     if (rightmost != null) {
                         var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right) / this.Scale;
                         if ((int) newWidth != (int) this.size.X) {
                             this.size.X = newWidth;
-                            this.ForceUpdateArea();
+                            changed = true;
                         }
                     }
                 }
+                if (changed)
+                    this.ForceUpdateArea();
             }
         }
 
