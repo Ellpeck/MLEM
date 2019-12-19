@@ -492,6 +492,10 @@ namespace MLEM.Ui.Elements {
             this.Children.Sort(comparison);
         }
 
+        public void ReverseChildren(int index = 0, int? count = null) {
+            this.Children.Reverse(index, count ?? this.Children.Count);
+        }
+
         protected virtual void InitStyle(UiStyle style) {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
         }
