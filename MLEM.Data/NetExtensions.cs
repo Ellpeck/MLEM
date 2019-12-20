@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using Lidgren.Network;
@@ -36,6 +37,8 @@ namespace MLEM.Data {
         }
 
         public static void WriteObject<T>(this NetBuffer buffer, T obj, JsonSerializer serializer) {
+            if (EqualityComparer<T>.Default.Equals(obj, default))
+                buffer.Write(0);
             using (var memory = new MemoryStream()) {
                 using (var gzip = new DeflateStream(memory, CompressionLevel.Fastest, true))
                     serializer.Serialize(new BsonDataWriter(gzip), obj, typeof(T));
@@ -47,6 +50,8 @@ namespace MLEM.Data {
 
         public static T ReadObject<T>(this NetBuffer buffer, JsonSerializer serializer) {
             var length = buffer.ReadInt32();
+            if (length <= 0)
+                return default;
             var arr = buffer.ReadBytes(length);
             using (var memory = new MemoryStream(arr)) {
                 using (var gzip = new DeflateStream(memory, CompressionMode.Decompress, true))
