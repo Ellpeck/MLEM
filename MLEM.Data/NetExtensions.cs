@@ -37,7 +37,7 @@ namespace MLEM.Data {
 
         public static void WriteObject<T>(this NetBuffer buffer, T obj, JsonSerializer serializer) {
             using (var memory = new MemoryStream()) {
-                using (var gzip = new GZipStream(memory, CompressionLevel.Fastest, true))
+                using (var gzip = new DeflateStream(memory, CompressionLevel.Fastest, true))
                     serializer.Serialize(new BsonDataWriter(gzip), obj, typeof(T));
                 var arr = memory.ToArray();
                 buffer.Write(arr.Length);
@@ -49,7 +49,7 @@ namespace MLEM.Data {
             var length = buffer.ReadInt32();
             var arr = buffer.ReadBytes(length);
             using (var memory = new MemoryStream(arr)) {
-                using (var gzip = new GZipStream(memory, CompressionMode.Decompress, true))
+                using (var gzip = new DeflateStream(memory, CompressionMode.Decompress, true))
                     return serializer.Deserialize<T>(new BsonDataReader(gzip));
             }
         }
