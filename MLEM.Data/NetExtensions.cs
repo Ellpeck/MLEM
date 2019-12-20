@@ -39,12 +39,16 @@ namespace MLEM.Data {
             using (var memory = new MemoryStream()) {
                 using (var gzip = new GZipStream(memory, CompressionLevel.Fastest, true))
                     serializer.Serialize(new BsonDataWriter(gzip), obj, typeof(T));
-                buffer.Write(memory.ToArray());
+                var arr = memory.ToArray();
+                buffer.Write(arr.Length);
+                buffer.Write(arr);
             }
         }
 
         public static T ReadObject<T>(this NetBuffer buffer, JsonSerializer serializer) {
-            using (var memory = new MemoryStream(buffer.ReadBytes(buffer.LengthBytes))) {
+            var length = buffer.ReadInt32();
+            var arr = buffer.ReadBytes(length);
+            using (var memory = new MemoryStream(arr)) {
                 using (var gzip = new GZipStream(memory, CompressionMode.Decompress, true))
                     return serializer.Deserialize<T>(new BsonDataReader(gzip));
             }
