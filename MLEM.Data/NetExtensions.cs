@@ -37,8 +37,10 @@ namespace MLEM.Data {
         }
 
         public static void WriteObject<T>(this NetBuffer buffer, T obj, JsonSerializer serializer) {
-            if (EqualityComparer<T>.Default.Equals(obj, default))
+            if (EqualityComparer<T>.Default.Equals(obj, default)) {
                 buffer.Write(0);
+                return;
+            }
             using (var memory = new MemoryStream()) {
                 using (var gzip = new DeflateStream(memory, CompressionLevel.Fastest, true))
                     serializer.Serialize(new BsonDataWriter(gzip), obj, typeof(T));
