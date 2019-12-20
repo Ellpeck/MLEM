@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Lidgren.Network;
+using Newtonsoft.Json;
 
 namespace MLEM.Data {
     public class NetBufferSerializer {
@@ -55,6 +56,10 @@ namespace MLEM.Data {
         public void AddHandler<T>(Action<NetBuffer, T> write, Func<NetBuffer, T> read) {
             this.writeFunctions.Add(typeof(T), (buffer, o) => write(buffer, (T) o));
             this.readFunctions.Add(typeof(T), buffer => read(buffer));
+        }
+
+        public void AddHandler<T>(JsonSerializer serializer) {
+            this.AddHandler((buffer, o) => buffer.WriteObject(o, serializer), buffer => buffer.ReadObject<T>(serializer));
         }
 
     }
