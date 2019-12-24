@@ -46,7 +46,7 @@ namespace MLEM.Ui {
         public virtual void Update() {
             if (this.IsInputOurs)
                 this.Input.Update();
-            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanSelectContent);
+            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanSelectContent && !root.Element.IsHidden);
 
             // MOUSE INPUT
             if (this.HandleMouse) {
