@@ -137,14 +137,14 @@ namespace MLEM.Ui.Elements {
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow) {
                 base.Draw(time, batch, alpha, blendState, samplerState, matrix);
-            } else {
+            } else if (this.renderTarget != null) {
                 // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
                 batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
             }
         }
 
         public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            if (this.scrollOverflow) {
+            if (this.scrollOverflow && this.renderTarget != null) {
                 this.UpdateAreaIfDirty();
                 // draw children onto the render target
                 batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
