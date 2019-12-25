@@ -14,13 +14,14 @@ namespace MLEM.Ui.Elements {
         }
 
         public static Panel ShowInfoBox(UiSystem system, Anchor anchor, float width, string text, float buttonHeight = 10, string okText = "Okay") {
-            var box = new Panel(anchor, new Vector2(width, 1), Vector2.Zero, true);
+            var group = new Group(Anchor.TopLeft, Vector2.One, false);
+            var box = group.AddChild(new Panel(anchor, new Vector2(width, 1), Vector2.Zero, true));
             box.AddChild(new Paragraph(Anchor.AutoLeft, 1, text));
             var button = box.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, buttonHeight), okText) {
                 OnPressed = element => system.Remove("InfoBox"),
                 PositionOffset = new Vector2(0, 1)
             });
-            var root = system.Add("InfoBox", box);
+            var root = system.Add("InfoBox", group);
             root.SelectElement(button);
             return box;
         }
