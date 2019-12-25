@@ -180,7 +180,6 @@ namespace MLEM.Ui.Elements {
                 if (this.Root != null)
                     this.Root.OnElementRemoved(e);
             });
-            this.SetSortedChildrenDirty();
             this.SetAreaDirty();
         }
 

@@ -124,18 +124,10 @@ namespace MLEM.Ui {
         }
 
         public RootElement Add(string name, Element element) {
+            if (this.IndexOf(name) >= 0)
+                return null;
             var root = new RootElement(name, element, this);
-            return !this.Add(root, true) ? null : root;
-        }
-
-        internal bool Add(RootElement root, bool notify, int index = -1) {
-            if (this.IndexOf(root.Name) >= 0)
-                return false;
-            if (index < 0 || index > this.rootElements.Count)
-                index = this.rootElements.Count;
-            this.rootElements.Insert(index, root);
-            if (!notify)
-                return true;
+            this.rootElements.Add(root);
             root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
@@ -143,20 +135,15 @@ namespace MLEM.Ui {
                 e.SetAreaDirty();
             });
             this.OnRootAdded?.Invoke(root);
-            return true;
+            this.SortRoots();
+            return root;
         }
 
         public void Remove(string name) {
-            this.Remove(name, true);
-        }
-
-        internal void Remove(string name, bool notify) {
             var root = this.Get(name);
             if (root == null)
                 return;
             this.rootElements.Remove(root);
-            if (!notify)
-                return;
             root.SelectElement(null);
             root.Element.AndChildren(e => {
                 e.Root = null;
@@ -174,6 +161,13 @@ namespace MLEM.Ui {
 
         private int IndexOf(string name) {
             return this.rootElements.FindIndex(element => element.Name == name);
+        }
+
+        internal void SortRoots() {
+            // Normal list sorting isn't stable, but ordering is
+            var sorted = this.rootElements.OrderBy(root => root.Priority).ToArray();
+            this.rootElements.Clear();
+            this.rootElements.AddRange(sorted);
         }
 
         public IEnumerable<RootElement> GetRootElements() {
@@ -203,6 +197,14 @@ namespace MLEM.Ui {
                     return;
                 this.scale = value;
                 this.Element.ForceUpdateArea();
+            }
+        }
+        private int priority;
+        public int Priority {
+            get => this.priority;
+            set {
+                this.priority = value;
+                this.System.SortRoots();
             }
         }
         public float ActualScale => this.System.GlobalScale * this.Scale;
@@ -243,14 +245,14 @@ namespace MLEM.Ui {
             this.System.OnSelectedElementChanged?.Invoke(element);
         }
 
+        [Obsolete("Use the Priority property for greater control")]
         public void MoveToFront() {
-            this.System.Remove(this.Name, false);
-            this.System.Add(this, false);
+            this.Priority = 10000;
         }
 
+        [Obsolete("Use the Priority property for greater control")]
         public void MoveToBack() {
-            this.System.Remove(this.Name, false);
-            this.System.Add(this, false, 0);
+            this.Priority = -10000;
         }
 
     }
