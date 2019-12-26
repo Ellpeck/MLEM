@@ -125,12 +125,14 @@ namespace MLEM.Ui.Elements {
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
 
-            var scrollerPos = new Vector2(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
-            var scrollerOffset = new Vector2(
-                !this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
-                this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
-            var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, this.ScrollerSize * this.Scale);
-            batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
+            if (this.MaxValue > 0) {
+                var scrollerPos = new Vector2(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
+                var scrollerOffset = new Vector2(
+                    !this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
+                    this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
+                var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, this.ScrollerSize * this.Scale);
+                batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
+            }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
