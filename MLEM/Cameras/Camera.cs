@@ -61,10 +61,6 @@ namespace MLEM.Cameras {
             return Vector2.Transform(pos, this.ViewMatrix);
         }
 
-        public (Vector2 topLeft, Vector2 bottomRight) GetVisibleArea() {
-            return (this.ToWorldPos(Vector2.Zero), this.ToWorldPos(new Vector2(this.Viewport.Width, this.Viewport.Height)));
-        }
-
         public RectangleF GetVisibleRectangle() {
             var start = this.ToWorldPos(Vector2.Zero);
             return new RectangleF(start, this.ToWorldPos(new Vector2(this.Viewport.Width, this.Viewport.Height)) - start);
@@ -72,7 +68,8 @@ namespace MLEM.Cameras {
 
         public bool ConstrainWorldBounds(Vector2 min, Vector2 max) {
             var lastPos = this.Position;
-            if (this.Position.X < min.X && this.Max.X > max.X) {
+            var visible = this.GetVisibleRectangle();
+            if (max.X - min.X < visible.Width) {
                 this.LookingPosition = new Vector2((max.X - min.X) / 2, this.LookingPosition.Y);
             } else {
                 if (this.Position.X < min.X)
@@ -81,7 +78,7 @@ namespace MLEM.Cameras {
                     this.Max = new Vector2(max.X, this.Max.Y);
             }
 
-            if (this.Position.Y < min.Y && this.Max.Y > max.Y) {
+            if (max.Y - min.Y < visible.Height) {
                 this.LookingPosition = new Vector2(this.LookingPosition.X, (max.Y - min.Y) / 2);
             } else {
                 if (this.Position.Y < min.Y)
