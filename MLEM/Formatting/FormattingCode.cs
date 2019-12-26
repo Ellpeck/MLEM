@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using MLEM.Font;
 using MLEM.Textures;
 
 namespace MLEM.Formatting {
@@ -30,8 +31,8 @@ namespace MLEM.Formatting {
             this.CodeType = Type.Animation;
         }
 
-        public string GetReplacementString() {
-            return this.CodeType == Type.Icon ? TextFormatting.OneEmString : string.Empty;
+        public string GetReplacementString(IGenericFont font) {
+            return this.CodeType == Type.Icon ? TextFormatting.GetOneEmString(font) : string.Empty;
         }
 
         public enum Type {

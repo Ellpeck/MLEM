@@ -11,12 +11,8 @@ namespace MLEM.Formatting {
     public static class TextFormatting {
 
         public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>();
+        private static readonly Dictionary<IGenericFont, string> OneEmStrings = new Dictionary<IGenericFont, string>();
         private static Regex formatRegex;
-
-        // Unicode suggests that a space should be 1/4em in length, so this string should be
-        // 1em in length for most fonts. If it's not for the used font, the user can just
-        // change the value of this string to something that is in fact 1em long
-        public static string OneEmString = "    ";
 
         static TextFormatting() {
             SetFormatIndicators('[', ']');
@@ -47,14 +43,24 @@ namespace MLEM.Formatting {
             formatRegex = new Regex($"{op}[^{op}{cl}]*{cl}");
         }
 
-        public static string RemoveFormatting(this string s) {
+        public static string GetOneEmString(IGenericFont font) {
+            if (!OneEmStrings.TryGetValue(font, out var strg)) {
+                strg = " ";
+                while (font.MeasureString(strg + ' ').X < font.LineHeight)
+                    strg += ' ';
+                OneEmStrings[font] = strg;
+            }
+            return strg;
+        }
+
+        public static string RemoveFormatting(this string s, IGenericFont font) {
             return formatRegex.Replace(s, match => {
                 var code = FromMatch(match);
-                return code != null ? code.GetReplacementString() : string.Empty;
+                return code != null ? code.GetReplacementString(font) : string.Empty;
             });
         }
 
-        public static Dictionary<int, FormattingCode> GetFormattingCodes(this string s) {
+        public static Dictionary<int, FormattingCode> GetFormattingCodes(this string s, IGenericFont font) {
             var codes = new Dictionary<int, FormattingCode>();
             var codeLengths = 0;
             foreach (Match match in formatRegex.Matches(s)) {
@@ -62,7 +68,7 @@ namespace MLEM.Formatting {
                 if (code == null)
                     continue;
                 codes[match.Index - codeLengths] = code;
-                codeLengths += match.Length - code.GetReplacementString().Length;
+                codeLengths += match.Length - code.GetReplacementString(font).Length;
             }
             return codes;
         }

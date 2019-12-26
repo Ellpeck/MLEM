@@ -60,8 +60,8 @@ namespace MLEM.Ui.Elements {
             var size = base.CalcActualSize(parentArea);
 
             var sc = this.TextScale * this.Scale;
-            this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(), size.X - this.ScaledPadding.Width, sc);
-            this.codeLocations = this.text.GetFormattingCodes();
+            this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(this.RegularFont.Value), size.X - this.ScaledPadding.Width, sc);
+            this.codeLocations = this.text.GetFormattingCodes(this.RegularFont.Value);
 
             var textDims = this.RegularFont.Value.MeasureString(this.splitText) * sc;
             return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
