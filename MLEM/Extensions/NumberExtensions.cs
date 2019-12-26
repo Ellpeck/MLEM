@@ -13,6 +13,22 @@ namespace MLEM.Extensions {
             return (int) Math.Ceiling(f);
         }
 
+        public static bool Equals(this float first, float second, float tolerance) {
+            return Math.Abs(first- second) <= tolerance;
+        }
+
+        public static bool Equals(this Vector2 first, Vector2 second, float tolerance) {
+            return Math.Abs(first.X - second.X) <= tolerance && Math.Abs(first.Y - second.Y) <= tolerance;
+        }
+
+        public static bool Equals(this Vector3 first, Vector3 second, float tolerance) {
+            return Math.Abs(first.X - second.X) <= tolerance && Math.Abs(first.Y - second.Y) <= tolerance && Math.Abs(first.Z - second.Z) <= tolerance;
+        }
+
+        public static bool Equals(this Vector4 first, Vector4 second, float tolerance) {
+            return Math.Abs(first.X - second.X) <= tolerance && Math.Abs(first.Y - second.Y) <= tolerance && Math.Abs(first.Z - second.Z) <= tolerance && Math.Abs(first.W - second.W) <= tolerance;
+        }
+
         public static Vector2 Floor(this Vector2 vec) {
             return new Vector2(vec.X.Floor(), vec.Y.Floor());
         }

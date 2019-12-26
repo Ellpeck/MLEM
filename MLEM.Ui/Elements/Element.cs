@@ -321,7 +321,7 @@ namespace MLEM.Ui.Elements {
                     var lowest = this.GetLowestChild(e => !e.IsHidden);
                     if (lowest != null) {
                         var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom) / this.Scale;
-                        if ((int) newHeight != (int) this.size.Y) {
+                        if (!newHeight.Equals(this.size.Y, 0.01F)) {
                             this.size.Y = newHeight;
                             changed = true;
                         }
@@ -331,7 +331,7 @@ namespace MLEM.Ui.Elements {
                     var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                     if (rightmost != null) {
                         var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right) / this.Scale;
-                        if ((int) newWidth != (int) this.size.X) {
+                        if (!newWidth.Equals(this.size.X, 0.01F)) {
                             this.size.X = newWidth;
                             changed = true;
                         }
