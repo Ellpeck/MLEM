@@ -70,7 +70,8 @@ namespace MLEM.Cameras {
             return new RectangleF(start, this.ToWorldPos(new Vector2(this.Viewport.Width, this.Viewport.Height)) - start);
         }
 
-        public void ConstrainWorldBounds(Vector2 min, Vector2 max) {
+        public bool ConstrainWorldBounds(Vector2 min, Vector2 max) {
+            var lastPos = this.Position;
             if (this.Position.X < min.X && this.Max.X > max.X) {
                 this.LookingPosition = new Vector2((max.X - min.X) / 2, this.LookingPosition.Y);
             } else {
@@ -88,6 +89,7 @@ namespace MLEM.Cameras {
                 if (this.Max.Y > max.Y)
                     this.Max = new Vector2(this.Max.X, max.Y);
             }
+            return !this.Position.Equals(lastPos, 0.001F);
         }
 
         public void Zoom(float delta, Vector2? zoomCenter = null) {
