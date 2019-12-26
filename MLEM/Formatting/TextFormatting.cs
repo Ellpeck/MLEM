@@ -21,6 +21,7 @@ namespace MLEM.Formatting {
             FormattingCodes["regular"] = new FormattingCode(TextStyle.Regular);
             FormattingCodes["italic"] = new FormattingCode(TextStyle.Italic);
             FormattingCodes["bold"] = new FormattingCode(TextStyle.Bold);
+            FormattingCodes["shadow"] = new FormattingCode(TextStyle.Shadow);
 
             // color codes
             var colors = typeof(Color).GetProperties();
@@ -73,9 +74,11 @@ namespace MLEM.Formatting {
             return codes;
         }
 
-        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string text, Dictionary<int, FormattingCode> codeLocations, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default) {
+        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string text, Dictionary<int, FormattingCode> codeLocations, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default, FormatSettings formatSettings = null) {
+            var settings = formatSettings ?? FormatSettings.Default;
             var currColor = color;
             var currFont = regularFont;
+            var currStyle = TextStyle.Regular;
             var currAnim = TextAnimation.Default;
             var animStart = 0;
 
@@ -101,6 +104,7 @@ namespace MLEM.Formatting {
                                     currFont = italicFont ?? regularFont;
                                     break;
                             }
+                            currStyle = code.Style;
                             break;
                         case FormattingCode.Type.Icon:
                             var iconSc = new Vector2(1F / code.Icon.Width, 1F / code.Icon.Height) * regularFont.LineHeight * scale;
@@ -119,9 +123,9 @@ namespace MLEM.Formatting {
                     innerOffset.X = 0;
                     innerOffset.Y += regularFont.LineHeight * scale;
                 } else {
-                    currAnim(currFont, batch, text, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
-                    // we measure the string with the regular font here so that previously split
-                    // strings don't get too long with a bolder font. This shouldn't effect visuals too much
+                    if (currStyle == TextStyle.Shadow)
+                        currAnim(settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
+                    currAnim(settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
                     innerOffset.X += regularFont.MeasureString(cSt).X * scale;
                 }
             }

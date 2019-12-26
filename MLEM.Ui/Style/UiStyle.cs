@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using MLEM.Font;
+using MLEM.Formatting;
 using MLEM.Textures;
 
 namespace MLEM.Ui.Style {
@@ -33,6 +34,7 @@ namespace MLEM.Ui.Style {
         public IGenericFont Font;
         public IGenericFont BoldFont;
         public IGenericFont ItalicFont;
+        public FormatSettings FormatSettings;
         public float TextScale = 1;
 
     }

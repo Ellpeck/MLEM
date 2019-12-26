@@ -50,7 +50,8 @@ namespace MLEM.Formatting {
 
         Regular,
         Bold,
-        Italic
+        Italic,
+        Shadow
 
     }
 }

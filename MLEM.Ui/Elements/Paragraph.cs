@@ -20,6 +20,7 @@ namespace MLEM.Ui.Elements {
         public StyleProp<IGenericFont> RegularFont;
         public StyleProp<IGenericFont> BoldFont;
         public StyleProp<IGenericFont> ItalicFont;
+        public StyleProp<FormatSettings> FormatSettings;
 
         public StyleProp<NinePatch> Background;
         public StyleProp<Color> BackgroundColor;
@@ -93,7 +94,7 @@ namespace MLEM.Ui.Elements {
                 this.RegularFont.Value.DrawString(batch, this.splitText, pos, color, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we should do it
-                this.RegularFont.Value.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation);
+                this.RegularFont.Value.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation, this.FormatSettings);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
@@ -104,6 +105,7 @@ namespace MLEM.Ui.Elements {
             this.RegularFont.SetFromStyle(style.Font);
             this.BoldFont.SetFromStyle(style.BoldFont ?? style.Font);
             this.ItalicFont.SetFromStyle(style.ItalicFont ?? style.Font);
+            this.FormatSettings.SetFromStyle(style.FormatSettings ?? Formatting.FormatSettings.Default);
         }
 
         public delegate string TextCallback(Paragraph paragraph);
