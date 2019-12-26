@@ -105,7 +105,7 @@ namespace MLEM.Ui.Elements {
             this.RegularFont.SetFromStyle(style.Font);
             this.BoldFont.SetFromStyle(style.BoldFont ?? style.Font);
             this.ItalicFont.SetFromStyle(style.ItalicFont ?? style.Font);
-            this.FormatSettings.SetFromStyle(style.FormatSettings ?? Formatting.FormatSettings.Default);
+            this.FormatSettings.SetFromStyle(style.FormatSettings);
         }
 
         public delegate string TextCallback(Paragraph paragraph);
