@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
@@ -25,12 +26,12 @@ namespace MLEM.Extended.Tiled {
         }
 
         public static float GetFloat(this TiledMapProperties properties, string key) {
-            float.TryParse(properties.Get(key), out var val);
+            float.TryParse(properties.Get(key), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out var val);
             return val;
         }
 
         public static int GetInt(this TiledMapProperties properties, string key) {
-            int.TryParse(properties.Get(key), out var val);
+            int.TryParse(properties.Get(key), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out var val);
             return val;
         }
 
