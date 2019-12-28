@@ -144,8 +144,8 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+            this.UpdateAreaIfDirty();
             if (this.scrollOverflow && this.renderTarget != null) {
-                this.UpdateAreaIfDirty();
                 // draw children onto the render target
                 batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
                 batch.GraphicsDevice.Clear(Color.Transparent);
