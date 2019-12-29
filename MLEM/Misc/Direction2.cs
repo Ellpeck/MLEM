@@ -87,5 +87,28 @@ namespace MLEM.Misc {
             }
         }
 
+        public static float Angle(this Direction2 dir) {
+            switch (dir) {
+                case Direction2.Up:
+                    return MathHelper.PiOver2;
+                case Direction2.Right:
+                    return MathHelper.TwoPi;
+                case Direction2.Down:
+                    return 3 * MathHelper.PiOver2;
+                case Direction2.Left:
+                    return MathHelper.Pi;
+                case Direction2.UpRight:
+                    return MathHelper.PiOver4;
+                case Direction2.DownRight:
+                    return 7 * MathHelper.PiOver4;
+                case Direction2.DownLeft:
+                    return 5 * MathHelper.PiOver4;
+                case Direction2.UpLeft:
+                    return 3 * MathHelper.PiOver4;
+                default:
+                    return -1;
+            }
+        }
+
     }
 }
