@@ -212,7 +212,7 @@ namespace MLEM.Ui.Elements {
 
         public void SetAreaDirty() {
             this.areaDirty = true;
-            if (this.Anchor >= Anchor.AutoLeft && this.Parent != null)
+            if (this.Parent != null && (this.Anchor >= Anchor.AutoLeft || this.Parent.SetWidthBasedOnChildren || this.Parent.SetHeightBasedOnChildren))
                 this.Parent.SetAreaDirty();
         }
 

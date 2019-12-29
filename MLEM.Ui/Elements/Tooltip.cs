@@ -35,6 +35,7 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             base.Update(time);
             this.SnapPositionToMouse();
+            this.UpdateAreaIfDirty();
         }
 
         public override void ForceUpdateArea() {
@@ -64,5 +65,6 @@ namespace MLEM.Ui.Elements {
                 offset.Y = (viewport.Y - this.Area.Height) / this.Scale;
             this.PositionOffset = offset;
         }
+
     }
 }
