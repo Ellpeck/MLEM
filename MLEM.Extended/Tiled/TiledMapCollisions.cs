@@ -38,7 +38,7 @@ namespace MLEM.Extended.Tiled {
                 return;
             }
             var tilesetTile = tile.GetTilesetTile(this.map);
-            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, tilesetTile);
+            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, layer, tilesetTile);
         }
 
         public IEnumerable<TileCollisionInfo> GetCollidingTiles(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
@@ -67,11 +67,13 @@ namespace MLEM.Extended.Tiled {
         public class TileCollisionInfo {
 
             public readonly TiledMapTile Tile;
+            public readonly TiledMapTileLayer Layer;
             public readonly TiledMapTilesetTile TilesetTile;
             public readonly ReadOnlyCollection<RectangleF> Collisions;
 
-            public TileCollisionInfo(TiledMap map, Vector2 position, TiledMapTile tile, TiledMapTilesetTile tilesetTile) {
+            public TileCollisionInfo(TiledMap map, Vector2 position, TiledMapTile tile, TiledMapTileLayer layer, TiledMapTilesetTile tilesetTile) {
                 this.TilesetTile = tilesetTile;
+                this.Layer = layer;
                 this.Tile = tile;
 
                 var collisions = new List<RectangleF>();
