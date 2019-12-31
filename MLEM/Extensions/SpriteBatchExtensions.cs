@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Misc;
+using MLEM.Textures;
 
 namespace MLEM.Extensions {
     public static class SpriteBatchExtensions {
@@ -19,6 +20,23 @@ namespace MLEM.Extensions {
                 };
             }
             return blankTexture;
+        }
+
+        public static NinePatch GenerateTexture(this SpriteBatch batch, Color color, Color? outlineColor = null) {
+            var outli = outlineColor ?? Color.Black;
+            var tex = new Texture2D(batch.GraphicsDevice, 3, 3);
+            tex.SetData(new[] {
+                outli, outli, outli,
+                outli, color, outli,
+                outli, outli, outli
+            });
+            batch.Disposing += (sender, args) => {
+                if (tex != null) {
+                    tex.Dispose();
+                    tex = null;
+                }
+            };
+            return new NinePatch(tex, 1);
         }
 
         public static void DrawCenteredString(this SpriteBatch batch, SpriteFont font, string text, Vector2 position, float scale, Color color, bool horizontal = true, bool vertical = false, float addedScale = 0) {

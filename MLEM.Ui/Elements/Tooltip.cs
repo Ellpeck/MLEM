@@ -5,19 +5,20 @@ using MLEM.Font;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
-    public class Tooltip : Group {
+    public class Tooltip : Panel {
 
-        public Vector2 MouseOffset = new Vector2(2, 3);
+        public StyleProp<Vector2> MouseOffset;
         public Paragraph Paragraph;
 
         public Tooltip(float width, string text = null, Element elementToHover = null) :
-            base(Anchor.TopLeft, Vector2.One) {
+            base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
             if (text != null) {
                 this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, width, text));
                 this.Paragraph.AutoAdjustWidth = true;
-                this.Paragraph.Padding = new Vector2(2);
-                this.SetWidthBasedOnChildren = true;
             }
+            this.SetWidthBasedOnChildren = true;
+            this.SetHeightBasedOnChildren = true;
+            this.ChildPadding = new Vector2(2);
             this.CanBeMoused = false;
 
             if (elementToHover != null) {
@@ -27,7 +28,7 @@ namespace MLEM.Ui.Elements {
                 };
                 elementToHover.OnMouseExit += element => {
                     if (this.System != null)
-                        this.System.Remove(element.GetType().Name + "Tooltip");
+                        this.System.Remove(this.Root.Name);
                 };
             }
         }
@@ -45,10 +46,8 @@ namespace MLEM.Ui.Elements {
 
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            if (this.Paragraph != null) {
-                this.Paragraph.Background.SetFromStyle(style.TooltipBackground);
-                this.Paragraph.BackgroundColor.SetFromStyle(style.TooltipBackgroundColor);
-            }
+            this.Texture.SetFromStyle(style.TooltipBackground);
+            this.MouseOffset.SetFromStyle(style.TooltipOffset);
         }
 
         public void SnapPositionToMouse() {

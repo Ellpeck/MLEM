@@ -25,7 +25,7 @@ namespace MLEM.Ui.Style {
         public Color RadioHoveredColor;
         public TextureRegion RadioCheckmark;
         public NinePatch TooltipBackground;
-        public Color TooltipBackgroundColor;
+        public Vector2 TooltipOffset;
         public NinePatch ProgressBarTexture;
         public Color ProgressBarColor;
         public Vector2 ProgressBarProgressPadding;

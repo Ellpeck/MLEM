@@ -22,8 +22,6 @@ namespace MLEM.Ui.Elements {
         public StyleProp<IGenericFont> ItalicFont;
         public StyleProp<FormatSettings> FormatSettings;
 
-        public StyleProp<NinePatch> Background;
-        public StyleProp<Color> BackgroundColor;
         public StyleProp<Color> TextColor;
         public StyleProp<float> TextScale;
         public string Text {
@@ -82,9 +80,6 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            if (this.Background.Value != null)
-                batch.Draw(this.Background, this.Area, (Color) this.BackgroundColor * alpha);
-
             var pos = this.DisplayArea.Location;
             var sc = this.TextScale * this.Scale;
 

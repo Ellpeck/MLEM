@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Textures;
 
@@ -9,44 +10,27 @@ namespace MLEM.Ui.Style {
     public class UntexturedStyle : UiStyle {
 
         public UntexturedStyle(SpriteBatch batch) {
-            this.SelectionIndicator = GenerateTexture(batch, Color.Transparent, Color.Red);
-            this.ButtonTexture = GenerateTexture(batch, Color.CadetBlue);
+            this.SelectionIndicator = batch.GenerateTexture(Color.Transparent, Color.Red);
+            this.ButtonTexture = batch.GenerateTexture(Color.CadetBlue);
             this.ButtonHoveredColor = Color.LightGray;
-            this.PanelTexture = GenerateTexture(batch, Color.Gray);
-            this.TextFieldTexture = GenerateTexture(batch, Color.MediumBlue);
+            this.PanelTexture = batch.GenerateTexture(Color.Gray);
+            this.TextFieldTexture = batch.GenerateTexture(Color.MediumBlue);
             this.TextFieldHoveredColor = Color.LightGray;
-            this.ScrollBarBackground = GenerateTexture(batch, Color.LightBlue);
-            this.ScrollBarScrollerTexture = GenerateTexture(batch, Color.Blue);
-            this.CheckboxTexture = GenerateTexture(batch, Color.LightBlue);
+            this.ScrollBarBackground = batch.GenerateTexture(Color.LightBlue);
+            this.ScrollBarScrollerTexture = batch.GenerateTexture(Color.Blue);
+            this.CheckboxTexture = batch.GenerateTexture(Color.LightBlue);
             this.CheckboxHoveredColor = Color.LightGray;
-            this.CheckboxCheckmark = GenerateTexture(batch, Color.Blue).Region;
-            this.RadioTexture = GenerateTexture(batch, Color.AliceBlue);
+            this.CheckboxCheckmark = batch.GenerateTexture(Color.Blue).Region;
+            this.RadioTexture = batch.GenerateTexture(Color.AliceBlue);
             this.RadioHoveredColor = Color.LightGray;
-            this.RadioCheckmark = GenerateTexture(batch, Color.CornflowerBlue).Region;
-            this.TooltipBackground = GenerateTexture(batch, Color.DarkGray);
-            this.TooltipBackgroundColor = new Color(Color.Black, 0.65F);
-            this.ProgressBarTexture = GenerateTexture(batch, Color.RoyalBlue);
+            this.RadioCheckmark = batch.GenerateTexture(Color.CornflowerBlue).Region;
+            this.TooltipBackground = batch.GenerateTexture(Color.Black * 0.65F, Color.Black * 0.65F);
+            this.TooltipOffset = new Vector2(2, 3);
+            this.ProgressBarTexture = batch.GenerateTexture(Color.RoyalBlue);
             this.ProgressBarColor = Color.White;
             this.ProgressBarProgressPadding = new Vector2(1);
             this.ProgressBarProgressColor = Color.Red;
             this.Font = new EmptyFont();
-        }
-
-        private static NinePatch GenerateTexture(SpriteBatch batch, Color color, Color? outlineColor = null) {
-            var outli = outlineColor ?? Color.Black;
-            var tex = new Texture2D(batch.GraphicsDevice, 3, 3);
-            tex.SetData(new[] {
-                outli, outli, outli,
-                outli, color, outli,
-                outli, outli, outli
-            });
-            batch.Disposing += (sender, args) => {
-                if (tex != null) {
-                    tex.Dispose();
-                    tex = null;
-                }
-            };
-            return new NinePatch(tex, 1);
         }
 
         private class EmptyFont : IGenericFont {
