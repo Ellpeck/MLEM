@@ -53,7 +53,7 @@ namespace MLEM.Extended.Tiled {
             var tilesetTile = tileset.GetTilesetTile(tile, this.map);
             var pos = new Point(x, y);
             var depth = this.depthFunction(tile, layer, layerIndex, pos);
-            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tileset, tilesetTile, pos, depth);
+            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tile, tileset, tilesetTile, pos, depth);
         }
 
         public void Draw(SpriteBatch batch, RectangleF? frustum = null) {
@@ -88,24 +88,30 @@ namespace MLEM.Extended.Tiled {
 
             private readonly IndividualTiledMapRenderer renderer;
             private readonly TiledMapTileset tileset;
-            private readonly TiledMapTilesetTile tile;
+            private readonly TiledMapTilesetTile tilesetTile;
             private readonly Point position;
             private readonly float depth;
+            private readonly SpriteEffects flipping;
 
-            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTileset tileset, TiledMapTilesetTile tile, Point position, float depth) {
+            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTile tile, TiledMapTileset tileset, TiledMapTilesetTile tilesetTile, Point position, float depth) {
                 this.renderer = renderer;
                 this.tileset = tileset;
-                this.tile = tile;
+                this.tilesetTile = tilesetTile;
                 this.position = position;
                 this.depth = depth;
+
+                if (tile.IsFlippedHorizontally)
+                    this.flipping |= SpriteEffects.FlipHorizontally;
+                if (tile.IsFlippedVertically)
+                    this.flipping |= SpriteEffects.FlipVertically;
             }
 
             public void Draw(SpriteBatch batch) {
-                var id = this.tile.LocalTileIdentifier;
-                if (this.tile is TiledMapTilesetAnimatedTile animated)
+                var id = this.tilesetTile.LocalTileIdentifier;
+                if (this.tilesetTile is TiledMapTilesetAnimatedTile animated)
                     id = animated.CurrentAnimationFrame.LocalTileIdentifier;
                 var drawPos = new Vector2(this.position.X * this.renderer.map.TileWidth, this.position.Y * this.renderer.map.TileHeight);
-                batch.Draw(this.tileset.Texture, drawPos, this.tileset.GetTileRegion(id), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, this.depth);
+                batch.Draw(this.tileset.Texture, drawPos, this.tileset.GetTileRegion(id), Color.White, 0, Vector2.Zero, 1, this.flipping, this.depth);
             }
 
         }
