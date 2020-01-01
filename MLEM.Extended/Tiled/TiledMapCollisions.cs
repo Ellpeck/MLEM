@@ -12,14 +12,27 @@ namespace MLEM.Extended.Tiled {
 
         private TiledMap map;
         private TileCollisionInfo[,,] collisionInfos;
+        private CollectCollisions collisionFunction;
 
         public TiledMapCollisions(TiledMap map = null) {
             if (map != null)
                 this.SetMap(map);
         }
 
-        public void SetMap(TiledMap map) {
+        public void SetMap(TiledMap map, CollectCollisions collisionFunction = null) {
             this.map = map;
+            this.collisionFunction = collisionFunction ?? ((collisions, tile) => {
+                foreach (var obj in tile.TilesetTile.Objects) {
+                    var area = obj.GetArea(tile.Map);
+                    if (tile.Tile.IsFlippedHorizontally)
+                        area.X = 1 - area.X - area.Width;
+                    if (tile.Tile.IsFlippedVertically)
+                        area.Y = 1 - area.Y - area.Height;
+                    area.Offset(tile.Position);
+                    collisions.Add(area);
+                }
+            });
+
             this.collisionInfos = new TileCollisionInfo[map.Layers.Count, map.Width, map.Height];
             for (var i = 0; i < map.TileLayers.Count; i++) {
                 for (var x = 0; x < map.Width; x++) {
@@ -38,7 +51,7 @@ namespace MLEM.Extended.Tiled {
                 return;
             }
             var tilesetTile = tile.GetTilesetTile(this.map);
-            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, layer, tilesetTile);
+            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, layer, tilesetTile, this.collisionFunction);
         }
 
         public IEnumerable<TileCollisionInfo> GetCollidingTiles(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
@@ -64,22 +77,26 @@ namespace MLEM.Extended.Tiled {
             return this.GetCollidingTiles(area, included).Any();
         }
 
+        public delegate void CollectCollisions(List<RectangleF> collisions, TileCollisionInfo tile);
+
         public class TileCollisionInfo {
 
+            public readonly TiledMap Map;
+            public readonly Vector2 Position;
             public readonly TiledMapTile Tile;
             public readonly TiledMapTileLayer Layer;
             public readonly TiledMapTilesetTile TilesetTile;
-            public readonly ReadOnlyCollection<RectangleF> Collisions;
+            public readonly List<RectangleF> Collisions;
 
-            public TileCollisionInfo(TiledMap map, Vector2 position, TiledMapTile tile, TiledMapTileLayer layer, TiledMapTilesetTile tilesetTile) {
+            public TileCollisionInfo(TiledMap map, Vector2 position, TiledMapTile tile, TiledMapTileLayer layer, TiledMapTilesetTile tilesetTile, CollectCollisions collisionFunction) {
                 this.TilesetTile = tilesetTile;
                 this.Layer = layer;
                 this.Tile = tile;
+                this.Map = map;
+                this.Position = position;
 
-                var collisions = new List<RectangleF>();
-                foreach (var obj in tilesetTile.Objects)
-                    collisions.Add(obj.GetArea(map, position));
-                this.Collisions = collisions.AsReadOnly();
+                this.Collisions = new List<RectangleF>();
+                collisionFunction(this.Collisions, this);
             }
 
         }

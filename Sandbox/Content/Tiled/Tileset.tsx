@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.4" name="TownTiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
+<tileset version="1.2" tiledversion="1.3.1" name="TownTiles" tilewidth="16" tileheight="16" tilecount="512" columns="32">
  <image source="Tiles.png" width="512" height="256"/>
  <tile id="3">
   <properties>
@@ -15,6 +15,16 @@
   <properties>
    <property name="Walkability" type="int" value="30"/>
   </properties>
+ </tile>
+ <tile id="7">
+  <objectgroup draworder="index" id="5">
+   <object id="4" x="8" y="3" width="5" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="8">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="2" width="10" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="15">
   <animation>
@@ -71,6 +81,11 @@
   <properties>
    <property name="Walkability" type="int" value="30"/>
   </properties>
+ </tile>
+ <tile id="72">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="4"/>
+  </objectgroup>
  </tile>
  <tile id="132">
   <properties>

@@ -12,6 +12,7 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 
 namespace Sandbox {
@@ -20,6 +21,7 @@ namespace Sandbox {
         private Camera camera;
         private TiledMap map;
         private IndividualTiledMapRenderer mapRenderer;
+        private TiledMapCollisions collisions;
 
         public GameImpl() {
             this.IsMouseVisible = true;
@@ -33,6 +35,7 @@ namespace Sandbox {
 
             this.map = LoadContent<TiledMap>("Tiled/Map");
             this.mapRenderer = new IndividualTiledMapRenderer(this.map);
+            this.collisions = new TiledMapCollisions(this.map);
 
             this.camera = new Camera(this.GraphicsDevice) {
                 AutoScaleWithScreen = true,
@@ -74,6 +77,13 @@ namespace Sandbox {
             this.GraphicsDevice.Clear(Color.Black);
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, this.camera.ViewMatrix);
             this.mapRenderer.Draw(this.SpriteBatch, this.camera.GetVisibleRectangle().ToExtended());
+
+            foreach (var tile in this.collisions.GetCollidingTiles(new RectangleF(0, 0, this.map.Width, this.map.Height))) {
+                foreach (var area in tile.Collisions) {
+                    this.SpriteBatch.DrawRectangle(area.Position * this.map.GetTileSize(), area.Size * this.map.GetTileSize(), Color.Red);
+                }
+            }
+
             this.SpriteBatch.End();
             base.DoDraw(gameTime);
         }
