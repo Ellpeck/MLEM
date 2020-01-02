@@ -12,7 +12,7 @@ namespace MLEM.Animations {
             get {
                 if (this.isDirty) {
                     this.isDirty = false;
-                    this.animations.Sort((a1, a2) => a1.Priority.CompareTo(a2.Priority));
+                    this.animations.Sort((a1, a2) => a2.Priority.CompareTo(a1.Priority));
                     this.FindAnimationToPlay();
                 }
                 return this.currAnimation;
