@@ -11,6 +11,7 @@ namespace MLEM.Textures {
         public readonly int RegionAmountY;
         public readonly int RegionWidth;
         public readonly int RegionHeight;
+        public TextureRegion this[int index] => this[index % this.RegionAmountX, index / this.RegionAmountX];
         public TextureRegion this[Point point] => this[new Rectangle(point, new Point(1, 1))];
         public TextureRegion this[int x, int y] => this[new Point(x, y)];
         public TextureRegion this[Rectangle rect] => this.GetOrAddRegion(rect);
