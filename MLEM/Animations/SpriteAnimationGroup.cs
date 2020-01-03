@@ -41,7 +41,7 @@ namespace MLEM.Animations {
             return this.animations.Find(anim => anim.Animation.Name == name)?.Animation;
         }
 
-        private void FindAnimationToPlay() {
+        public void FindAnimationToPlay() {
             ConditionedAnimation animToPlay = null;
             if (this.CurrAnimation != null && this.CurrAnimation.ShouldPlay())
                 animToPlay = this.CurrAnimation;

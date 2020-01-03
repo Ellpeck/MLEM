@@ -39,19 +39,22 @@ namespace MLEM.Animations {
                 this.TotalTime += frame.Seconds;
         }
 
-        public SpriteAnimation(float timePerFrame, params TextureRegion[] regions)
+        public SpriteAnimation(double timePerFrame, params TextureRegion[] regions)
             : this(Array.ConvertAll(regions, region => new AnimationFrame(region, timePerFrame))) {
         }
 
-        public SpriteAnimation(float timePerFrame, Texture2D texture, params Rectangle[] regions)
+        public SpriteAnimation(double timePerFrame, Texture2D texture, params Rectangle[] regions)
             : this(timePerFrame, Array.ConvertAll(regions, region => new TextureRegion(texture, region))) {
         }
 
         public void Update(GameTime time) {
+            this.SetTime(this.TimeIntoAnimation + time.ElapsedGameTime.TotalSeconds);
+        }
+
+        public void SetTime(double totalTime) {
             if (this.IsFinished || this.IsPaused)
                 return;
-
-            this.TimeIntoAnimation += time.ElapsedGameTime.TotalSeconds;
+            this.TimeIntoAnimation = totalTime;
             if (this.TimeIntoAnimation >= this.TotalTime) {
                 if (!this.IsLooping) {
                     this.IsFinished = true;
@@ -75,9 +78,9 @@ namespace MLEM.Animations {
     public class AnimationFrame {
 
         public readonly TextureRegion Region;
-        public readonly float Seconds;
+        public readonly double Seconds;
 
-        public AnimationFrame(TextureRegion region, float seconds) {
+        public AnimationFrame(TextureRegion region, double seconds) {
             this.Region = region;
             this.Seconds = seconds;
         }

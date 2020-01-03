@@ -4,6 +4,7 @@ using System.Linq;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Animations;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
@@ -96,7 +97,11 @@ namespace Demos {
             // note that all added formatting codes need to be lowercase, while their casing doesn't matter when used
             TextFormatting.FormattingCodes["grass"] = new FormattingCode(image.Texture);
             TextFormatting.FormattingCodes["tree"] = new FormattingCode(tree);
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images! Note that these images have to be square, or [Tree] bad things happen."));
+            // formatting codes can also be sprite animations!
+            var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
+            TextFormatting.FormattingCodes["walk"] = new FormattingCode(new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
+
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations! Note that these images have to be square, or [Tree] bad things happen."));
 
             var animatedPar = root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esc typing effect by default. Of course, more animations can be added though."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {

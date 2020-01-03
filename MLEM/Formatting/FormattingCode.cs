@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using MLEM.Animations;
 using MLEM.Font;
 using MLEM.Textures;
 
@@ -8,7 +9,7 @@ namespace MLEM.Formatting {
         public readonly Type CodeType;
         public readonly Color Color;
         public readonly TextStyle Style;
-        public readonly TextureRegion Icon;
+        public readonly SpriteAnimation Icon;
         public readonly TextAnimation.DrawCharacter Animation;
 
         public FormattingCode(Color color) {
@@ -21,7 +22,11 @@ namespace MLEM.Formatting {
             this.CodeType = Type.Style;
         }
 
-        public FormattingCode(TextureRegion icon) {
+        public FormattingCode(TextureRegion icon) :
+            this(new SpriteAnimation(0, icon)) {
+        }
+
+        public FormattingCode(SpriteAnimation icon) {
             this.Icon = icon;
             this.CodeType = Type.Icon;
         }
@@ -31,7 +36,7 @@ namespace MLEM.Formatting {
             this.CodeType = Type.Animation;
         }
 
-        public string GetReplacementString(IGenericFont font) {
+        public virtual string GetReplacementString(IGenericFont font) {
             return this.CodeType == Type.Icon ? TextFormatting.GetOneEmString(font) : string.Empty;
         }
 

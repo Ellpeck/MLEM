@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Formatting {
@@ -107,8 +108,8 @@ namespace MLEM.Formatting {
                             currStyle = code.Style;
                             break;
                         case FormattingCode.Type.Icon:
-                            var iconSc = new Vector2(1F / code.Icon.Width, 1F / code.Icon.Height) * regularFont.LineHeight * scale;
-                            batch.Draw(code.Icon, pos + innerOffset, color, 0, Vector2.Zero, iconSc, SpriteEffects.None, depth);
+                            code.Icon.SetTime(timeIntoAnimation.TotalSeconds % code.Icon.TotalTime);
+                            batch.Draw(code.Icon.CurrentRegion, new RectangleF(pos + innerOffset, new Vector2(regularFont.LineHeight * scale)), color, 0, Vector2.Zero, SpriteEffects.None, depth);
                             break;
                         case FormattingCode.Type.Animation:
                             currAnim = code.Animation;
