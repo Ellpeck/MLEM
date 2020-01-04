@@ -13,7 +13,7 @@ namespace MLEM.Extended.Extensions {
             return random.NextSingle(range.Min, range.Max);
         }
 
-        public static Vector2 Vector2(this Random random, float min, float max) {
+        public static Vector2 NextVector2(this Random random, float min, float max) {
             return new Vector2(random.NextSingle(min, max), random.NextSingle(min, max));
         }
 
