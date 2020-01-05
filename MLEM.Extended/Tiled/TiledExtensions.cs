@@ -112,5 +112,39 @@ namespace MLEM.Extended.Tiled {
             }
         }
 
+        public static TiledMap Copy(this TiledMap map) {
+            var newMap = new TiledMap(map.Name, map.Width, map.Height, map.TileWidth, map.TileHeight, map.RenderOrder, map.Orientation, map.BackgroundColor);
+            foreach (var tileset in map.Tilesets)
+                newMap.AddTileset(tileset, map.GetTilesetFirstGlobalIdentifier(tileset));
+            foreach (var layer in map.Layers)
+                newMap.AddLayer(layer.Copy());
+            foreach (var prop in map.Properties)
+                newMap.Properties.Add(prop.Key, prop.Value);
+            return newMap;
+        }
+
+        public static TiledMapLayer Copy(this TiledMapLayer layer) {
+            TiledMapLayer newLayer;
+            if (layer is TiledMapTileLayer tile) {
+                var newTile = new TiledMapTileLayer(tile.Name, tile.Width, tile.Height, tile.TileWidth, tile.TileHeight, tile.Offset, tile.Opacity, tile.IsVisible);
+                for (ushort x = 0; x < tile.Width; x++) {
+                    for (ushort y = 0; y < tile.Height; y++)
+                        newTile.SetTile(x, y, tile.GetTile(x, y).GlobalTileIdentifierWithFlags);
+                }
+                newLayer = newTile;
+            } else if (layer is TiledMapObjectLayer obj) {
+                newLayer = new TiledMapObjectLayer(obj.Name, obj.Objects, obj.Color, obj.DrawOrder, obj.Offset, obj.Opacity, obj.IsVisible);
+            } else if (layer is TiledMapImageLayer img) {
+                newLayer = new TiledMapImageLayer(img.Name, img.Image, img.Position, img.Offset, img.Opacity, img.IsVisible);
+            } else if (layer is TiledMapGroupLayer group) {
+                newLayer = new TiledMapGroupLayer(group.Name, group.Layers.Select(l => l.Copy()).ToList(), group.Offset, group.Opacity, group.IsVisible);
+            } else {
+                return null;
+            }
+            foreach (var prop in layer.Properties)
+                newLayer.Properties.Add(prop.Key, prop.Value);
+            return newLayer;
+        }
+
     }
 }
