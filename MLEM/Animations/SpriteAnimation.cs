@@ -28,6 +28,7 @@ namespace MLEM.Animations {
         public double TimeIntoAnimation { get; private set; }
         public bool IsFinished { get; private set; }
         public string Name;
+        public float SpeedMultiplier = 1;
 
         public bool IsLooping = true;
         public Completed OnCompleted;
@@ -48,10 +49,10 @@ namespace MLEM.Animations {
         }
 
         public void Update(GameTime time) {
-            this.SetTime(this.TimeIntoAnimation + time.ElapsedGameTime.TotalSeconds);
+            this.SetTime(this.TimeIntoAnimation + time.ElapsedGameTime.TotalSeconds * this.SpeedMultiplier);
         }
 
-        public void SetTime(double totalTime) {
+        internal void SetTime(double totalTime) {
             if (this.IsFinished || this.IsPaused)
                 return;
             this.TimeIntoAnimation = totalTime;

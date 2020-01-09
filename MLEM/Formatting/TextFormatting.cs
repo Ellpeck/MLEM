@@ -108,7 +108,7 @@ namespace MLEM.Formatting {
                             currStyle = code.Style;
                             break;
                         case FormattingCode.Type.Icon:
-                            code.Icon.SetTime(timeIntoAnimation.TotalSeconds % code.Icon.TotalTime);
+                            code.Icon.SetTime(timeIntoAnimation.TotalSeconds * code.Icon.SpeedMultiplier % code.Icon.TotalTime);
                             batch.Draw(code.Icon.CurrentRegion, new RectangleF(pos + innerOffset, new Vector2(regularFont.LineHeight * scale)), color, 0, Vector2.Zero, SpriteEffects.None, depth);
                             break;
                         case FormattingCode.Type.Animation:

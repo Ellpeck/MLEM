@@ -24,6 +24,12 @@ namespace MLEM.Animations {
         public TextureRegion CurrentRegion => this.CurrentAnimation?.CurrentRegion;
         public AnimationChanged OnAnimationChanged;
         private bool isDirty;
+        public float SpeedMultiplier {
+            set {
+                foreach (var anim in this.animations)
+                    anim.Animation.SpeedMultiplier = value;
+            }
+        }
 
         public SpriteAnimationGroup Add(SpriteAnimation anim, Func<bool> condition, int priority = 0) {
             this.animations.Add(new ConditionedAnimation(anim, condition, priority));
