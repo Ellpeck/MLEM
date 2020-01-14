@@ -501,8 +501,8 @@ namespace MLEM.Ui.Elements {
 
         protected virtual void InitStyle(UiStyle style) {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
-            this.ActionSound.SetFromStyle(style.ActionSound);
-            this.SecondActionSound.SetFromStyle(style.ActionSound);
+            this.ActionSound.SetFromStyle(style.ActionSound?.CreateInstance());
+            this.SecondActionSound.SetFromStyle(style.ActionSound?.CreateInstance());
         }
 
         public delegate void TextInputCallback(Element element, Keys key, char character);

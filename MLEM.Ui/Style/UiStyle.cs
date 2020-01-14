@@ -37,7 +37,7 @@ namespace MLEM.Ui.Style {
         public IGenericFont ItalicFont;
         public FormatSettings FormatSettings;
         public float TextScale = 1;
-        public SoundEffectInstance ActionSound;
+        public SoundEffect ActionSound;
 
     }
 }
