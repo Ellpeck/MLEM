@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
@@ -140,6 +141,8 @@ namespace MLEM.Ui.Elements {
         private bool areaDirty;
         private bool sortedChildrenDirty;
         public StyleProp<NinePatch> SelectionIndicator;
+        public StyleProp<SoundEffectInstance> ActionSound;
+        public StyleProp<SoundEffectInstance> SecondActionSound;
 
         public Element(Anchor anchor, Vector2 size) {
             this.anchor = anchor;
@@ -498,6 +501,8 @@ namespace MLEM.Ui.Elements {
 
         protected virtual void InitStyle(UiStyle style) {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
+            this.ActionSound.SetFromStyle(style.ActionSound);
+            this.SecondActionSound.SetFromStyle(style.ActionSound);
         }
 
         public delegate void TextInputCallback(Element element, Keys key, char character);

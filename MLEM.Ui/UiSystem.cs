@@ -81,17 +81,21 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             };
 
-            window.AddTextInputListener((sender, key, character) => {
-                foreach (var root in this.rootElements)
-                    root.Element.AndChildren(e => e.OnTextInput?.Invoke(e, key, character));
-            });
-
+            window.AddTextInputListener((sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
                 if (this.Controls.IsAutoNavMode && element.SelectionIndicator.Value != null) {
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
                 }
+            };
+            this.OnElementPressed += e => {
+                if (e.OnPressed != null)
+                    e.ActionSound.Value?.Replay();
+            };
+            this.OnElementSecondaryPressed += e => {
+                if (e.OnSecondaryPressed != null)
+                    e.SecondActionSound.Value?.Replay();
             };
         }
 
