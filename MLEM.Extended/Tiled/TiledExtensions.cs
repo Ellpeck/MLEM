@@ -76,8 +76,11 @@ namespace MLEM.Extended.Tiled {
         }
 
         public static IEnumerable<TiledMapTile> GetTiles(this TiledMap map, int x, int y) {
-            foreach (var layer in map.TileLayers)
-                yield return layer.GetTile(x, y);
+            foreach (var layer in map.TileLayers) {
+                var tile = layer.GetTile(x, y);
+                if (!tile.IsBlank)
+                    yield return tile;
+            }
         }
 
         public static TiledMapTile GetTile(this TiledMapTileLayer layer, int x, int y) {
