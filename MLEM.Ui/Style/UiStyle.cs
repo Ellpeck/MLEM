@@ -11,6 +11,8 @@ namespace MLEM.Ui.Style {
         public NinePatch ButtonTexture;
         public NinePatch ButtonHoveredTexture;
         public Color ButtonHoveredColor;
+        public NinePatch ButtonDisabledTexture;
+        public Color ButtonDisabledColor;
         public NinePatch PanelTexture;
         public NinePatch TextFieldTexture;
         public NinePatch TextFieldHoveredTexture;

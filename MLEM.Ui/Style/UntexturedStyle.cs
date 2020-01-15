@@ -13,6 +13,7 @@ namespace MLEM.Ui.Style {
             this.SelectionIndicator = batch.GenerateTexture(Color.Transparent, Color.Red);
             this.ButtonTexture = batch.GenerateTexture(Color.CadetBlue);
             this.ButtonHoveredColor = Color.LightGray;
+            this.ButtonDisabledColor = Color.Gray;
             this.PanelTexture = batch.GenerateTexture(Color.Gray);
             this.TextFieldTexture = batch.GenerateTexture(Color.MediumBlue);
             this.TextFieldHoveredColor = Color.LightGray;

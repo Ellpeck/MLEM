@@ -208,6 +208,7 @@ namespace Demos {
             });
 
             root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), tree, "Button with image")).PositionOffset = new Vector2(0, 1);
+            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
 
             // Below are some querying examples that help you find certain elements easily
 

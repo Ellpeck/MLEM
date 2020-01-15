@@ -64,11 +64,11 @@ namespace MLEM.Ui {
                     this.IsAutoNavMode = false;
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.ActiveRoot?.SelectElement(selectedNow);
-                    if (mousedNow != null)
+                    if (mousedNow != null && mousedNow.CanBePressed)
                         this.System.OnElementPressed?.Invoke(mousedNow);
                 } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
-                    if (mousedNow != null)
+                    if (mousedNow != null && mousedNow.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(mousedNow);
                 }
             }
@@ -76,7 +76,7 @@ namespace MLEM.Ui {
             // KEYBOARD INPUT
             if (this.HandleKeyboard) {
                 if (this.KeyboardButtons.Any(this.Input.IsKeyPressed)) {
-                    if (this.SelectedElement?.Root != null) {
+                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
                             this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
@@ -102,13 +102,13 @@ namespace MLEM.Ui {
                     this.IsAutoNavMode = false;
                     var tapped = this.GetElementUnderPos(tap.Position);
                     this.ActiveRoot?.SelectElement(tapped);
-                    if (tapped != null)
+                    if (tapped != null && tapped.CanBePressed)
                         this.System.OnElementPressed?.Invoke(tapped);
                 } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
                     var held = this.GetElementUnderPos(hold.Position);
                     this.ActiveRoot?.SelectElement(held);
-                    if (held != null)
+                    if (held != null && held.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(held);
                 }
             }
@@ -116,10 +116,10 @@ namespace MLEM.Ui {
             // GAMEPAD INPUT
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
-                    if (this.SelectedElement?.Root != null)
+                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
                         this.System.OnElementPressed?.Invoke(this.SelectedElement);
                 } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
-                    if (this.SelectedElement?.Root != null)
+                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
                 } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
                     this.HandleGamepadNextElement(Direction2.Down);

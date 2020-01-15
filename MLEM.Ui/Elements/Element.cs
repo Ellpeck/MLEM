@@ -113,6 +113,7 @@ namespace MLEM.Ui.Elements {
         }
         public bool CanBeSelected = true;
         public bool CanBeMoused = true;
+        public bool CanBePressed = true;
         public float DrawAlpha = 1;
         public bool SetHeightBasedOnChildren;
         public bool SetWidthBasedOnChildren;

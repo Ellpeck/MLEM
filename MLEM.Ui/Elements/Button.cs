@@ -11,8 +11,20 @@ namespace MLEM.Ui.Elements {
         public StyleProp<Color> NormalColor = Color.White;
         public StyleProp<NinePatch> HoveredTexture;
         public StyleProp<Color> HoveredColor;
+        public StyleProp<NinePatch> DisabledTexture;
+        public StyleProp<Color> DisabledColor;
         public Paragraph Text;
         public Tooltip Tooltip;
+
+        private bool isDisabled;
+        public bool IsDisabled {
+            get => this.isDisabled;
+            set {
+                this.isDisabled = value;
+                this.CanBePressed = !value;
+                this.CanBeSelected = !value;
+            }
+        }
 
         public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float tooltipWidth = 50) : base(anchor, size) {
             if (text != null) {
@@ -26,7 +38,10 @@ namespace MLEM.Ui.Elements {
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var tex = this.Texture;
             var color = (Color) this.NormalColor * alpha;
-            if (this.IsMouseOver) {
+            if (this.IsDisabled) {
+                tex = this.DisabledTexture.OrDefault(tex);
+                color = (Color) this.DisabledColor * alpha;
+            } else if (this.IsMouseOver) {
                 tex = this.HoveredTexture.OrDefault(tex);
                 color = (Color) this.HoveredColor * alpha;
             }
@@ -39,6 +54,8 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.ButtonTexture);
             this.HoveredTexture.SetFromStyle(style.ButtonHoveredTexture);
             this.HoveredColor.SetFromStyle(style.ButtonHoveredColor);
+            this.DisabledTexture.SetFromStyle(style.ButtonDisabledTexture);
+            this.DisabledColor.SetFromStyle(style.ButtonDisabledColor);
         }
 
     }
