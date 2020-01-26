@@ -11,8 +11,9 @@ namespace MLEM.Extensions {
         public static void SetFullscreen(this GraphicsDeviceManager manager, bool fullscreen) {
             manager.IsFullScreen = fullscreen;
             if (fullscreen) {
-                lastWidth = manager.GraphicsDevice.Viewport.Width;
-                lastHeight = manager.GraphicsDevice.Viewport.Height;
+                var view = manager.GraphicsDevice.Viewport;
+                lastWidth = view.Width;
+                lastHeight = view.Height;
 
                 var curr = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
                 manager.PreferredBackBufferWidth = curr.Width;
@@ -24,6 +25,16 @@ namespace MLEM.Extensions {
                 manager.PreferredBackBufferWidth = lastWidth;
                 manager.PreferredBackBufferHeight = lastHeight;
             }
+            manager.ApplyChanges();
+        }
+
+        public static void ApplyChangesSafely(this GraphicsDeviceManager manager) {
+            // If we don't do this, then applying changes will cause the
+            // graphics device manager to reset the window size to the
+            // size set when starting the game :V
+            var view = manager.GraphicsDevice.Viewport;
+            manager.PreferredBackBufferWidth = view.Width;
+            manager.PreferredBackBufferHeight = view.Height;
             manager.ApplyChanges();
         }
 
