@@ -42,8 +42,8 @@ namespace MLEM.Data {
                 return;
             }
             using (var memory = new MemoryStream()) {
-                using (var gzip = new DeflateStream(memory, CompressionLevel.Fastest, true))
-                    serializer.Serialize(new BsonDataWriter(gzip), obj, typeof(T));
+                using (var stream = new DeflateStream(memory, CompressionLevel.Fastest, true))
+                    serializer.Serialize(new BsonDataWriter(stream), obj, typeof(T));
                 var arr = memory.ToArray();
                 buffer.Write(arr.Length);
                 buffer.Write(arr);
@@ -56,8 +56,8 @@ namespace MLEM.Data {
                 return default;
             var arr = buffer.ReadBytes(length);
             using (var memory = new MemoryStream(arr)) {
-                using (var gzip = new DeflateStream(memory, CompressionMode.Decompress, true))
-                    return serializer.Deserialize<T>(new BsonDataReader(gzip));
+                using (var stream = new DeflateStream(memory, CompressionMode.Decompress, true))
+                    return serializer.Deserialize<T>(new BsonDataReader(stream));
             }
         }
 
