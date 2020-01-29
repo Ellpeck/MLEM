@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Input;
 using MLEM.Ui;
 using MLEM.Ui.Style;
-using MonoGame.Extended;
 
 namespace MLEM.Startup {
     public class MlemGame : Game {
@@ -45,7 +44,7 @@ namespace MLEM.Startup {
         protected sealed override void Update(GameTime gameTime) {
             this.DoUpdate(gameTime);
             this.OnUpdate?.Invoke(this, gameTime);
-            CoroutineHandler.Tick(gameTime.GetElapsedSeconds());
+            CoroutineHandler.Tick(gameTime.ElapsedGameTime.TotalSeconds);
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
         }
 

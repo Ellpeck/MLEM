@@ -5,9 +5,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Pathfinding;
 using MLEM.Startup;
-using MonoGame.Extended;
+using MLEM.Textures;
 
 namespace Demos {
     public class PathfindingDemo : Demo {
@@ -17,9 +18,8 @@ namespace Demos {
         private List<Point> path;
 
         public PathfindingDemo(MlemGame game) : base(game) {
-            
         }
-        
+
         private void Init() {
             // generate a simple random world for testing, where true is walkable area, and false is a wall
             var random = new Random();
@@ -52,7 +52,7 @@ namespace Demos {
             this.path = foundPath != null ? foundPath.ToList() : null;
 
             // print out some info
-            Console.WriteLine("Pathfinding took " + this.pathfinder.LastTriesNeeded + " tries and "+this.pathfinder.LastTimeNeeded.TotalSeconds+" seconds");
+            Console.WriteLine("Pathfinding took " + this.pathfinder.LastTriesNeeded + " tries and " + this.pathfinder.LastTimeNeeded.TotalSeconds + " seconds");
             if (this.path == null)
                 Console.WriteLine("Couldn't find a path, press the left mouse button to try again");
         }
@@ -75,11 +75,12 @@ namespace Demos {
             this.GraphicsDevice.Clear(Color.White);
 
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(14));
+            var tex = this.SpriteBatch.GetBlankTexture();
             // draw the world with simple shapes
             for (var x = 0; x < 50; x++) {
                 for (var y = 0; y < 50; y++) {
                     if (!this.world[x, y]) {
-                        this.SpriteBatch.FillRectangle(new Vector2(x, y), new Size2(1, 1), Color.Black);
+                        this.SpriteBatch.Draw(tex, new Rectangle(x, y, 1, 1), Color.Black);
                     }
                 }
             }
@@ -89,7 +90,8 @@ namespace Demos {
                 for (var i = 1; i < this.path.Count; i++) {
                     var first = this.path[i - 1];
                     var second = this.path[i];
-                    this.SpriteBatch.DrawLine(new Vector2(first.X + 0.5F, first.Y + 0.5F), new Vector2(second.X + 0.5F, second.Y + 0.5F), Color.Blue, 0.25F);
+                    Vector2 firstPos = new Vector2(first.X + 0.25F, first.Y + 0.25F);
+                    this.SpriteBatch.Draw(tex, new RectangleF(firstPos, new Vector2(second.X + 0.75F, second.Y + 0.75F) - firstPos), Color.Blue);
                 }
             }
             this.SpriteBatch.End();

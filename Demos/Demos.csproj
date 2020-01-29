@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MLEM.Extended\MLEM.Extended.csproj" />
         <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />

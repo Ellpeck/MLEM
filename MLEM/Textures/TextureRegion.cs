@@ -1,4 +1,3 @@
-using System.Diagnostics.Tracing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
