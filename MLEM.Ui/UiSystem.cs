@@ -249,15 +249,5 @@ namespace MLEM.Ui {
             this.System.OnSelectedElementChanged?.Invoke(element);
         }
 
-        [Obsolete("Use the Priority property for greater control")]
-        public void MoveToFront() {
-            this.Priority = 10000;
-        }
-
-        [Obsolete("Use the Priority property for greater control")]
-        public void MoveToBack() {
-            this.Priority = -10000;
-        }
-
     }
 }
