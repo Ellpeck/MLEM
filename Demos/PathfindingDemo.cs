@@ -53,8 +53,10 @@ namespace Demos {
 
             // print out some info
             Console.WriteLine("Pathfinding took " + this.pathfinder.LastTriesNeeded + " tries and " + this.pathfinder.LastTimeNeeded.TotalSeconds + " seconds");
-            if (this.path == null)
-                Console.WriteLine("Couldn't find a path, press the left mouse button to try again");
+            if (this.path == null) {
+                Console.WriteLine("Couldn't find a path, trying again");
+                this.Init();
+            }
         }
 
         public override void LoadContent() {
@@ -88,10 +90,9 @@ namespace Demos {
             // in a real game, you'd obviously make your characters walk along the path instead of drawing it
             if (this.path != null) {
                 for (var i = 1; i < this.path.Count; i++) {
-                    var first = this.path[i - 1];
-                    var second = this.path[i];
-                    Vector2 firstPos = new Vector2(first.X + 0.25F, first.Y + 0.25F);
-                    this.SpriteBatch.Draw(tex, new RectangleF(firstPos, new Vector2(second.X + 0.75F, second.Y + 0.75F) - firstPos), Color.Blue);
+                    var (firstX, firstY) = this.path[i - 1];
+                    var (secondX, secondY) = this.path[i];
+                    this.SpriteBatch.Draw(tex, RectangleF.FromCorners(new Vector2(firstX + 0.25F, firstY + 0.25F), new Vector2(secondX + 0.75F, secondY + 0.75F)), Color.Blue);
                 }
             }
             this.SpriteBatch.End();

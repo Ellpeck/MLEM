@@ -54,6 +54,14 @@ namespace MLEM.Misc {
             this.Height = size.Y;
         }
 
+        public static RectangleF FromCorners(Vector2 corner1, Vector2 corner2) {
+            var minX = Math.Min(corner1.X, corner2.X);
+            var minY = Math.Min(corner1.Y, corner2.Y);
+            var maxX = Math.Max(corner1.X, corner2.X);
+            var maxY = Math.Max(corner1.Y, corner2.Y);
+            return new RectangleF(minX, minY, maxX - minX, maxY - minY);
+        }
+
         public static explicit operator Rectangle(RectangleF rect) {
             return new Rectangle(rect.X.Floor(), rect.Y.Floor(), rect.Width.Floor(), rect.Height.Floor());
         }
