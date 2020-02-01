@@ -67,21 +67,21 @@ namespace MLEM.Ui {
         public RootCallback OnRootAdded;
         public RootCallback OnRootRemoved;
 
-        public UiSystem(Game game, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) : base(game) {
+        public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) : base(null) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
-            this.Window = game.Window;
+            this.Window = window;
             this.style = style;
             this.Viewport = device.Viewport.Bounds;
             this.AutoScaleReferenceSize = this.Viewport.Size;
 
-            game.Window.ClientSizeChanged += (sender, args) => {
+            window.ClientSizeChanged += (sender, args) => {
                 this.Viewport = device.Viewport.Bounds;
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
 
-            this.Controls.Input.OnTextInput += (key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character));
+            window.AddTextInputListener((sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
