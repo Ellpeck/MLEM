@@ -36,7 +36,7 @@ namespace MLEM.Ui {
 
         public UiControls(UiSystem system, InputHandler inputHandler = null) {
             this.System = system;
-            this.Input = inputHandler ?? new InputHandler(system.Game, textInputStyle: new TextInputStyle.DesktopGl());
+            this.Input = inputHandler ?? new InputHandler();
             this.IsInputOurs = inputHandler == null;
 
             // enable all required gestures
