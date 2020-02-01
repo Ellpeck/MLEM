@@ -16,6 +16,16 @@ namespace MLEM.Input {
         public Keys[] PressedKeys { get; private set; }
         public bool HandleKeyboard;
 
+        private TextInputStyle textInputStyle;
+        public TextInputStyle TextInputStyle {
+            get => this.textInputStyle;
+            set {
+                this.textInputStyle = value;
+                value?.Initialize(this);
+            }
+        }
+        public Action<Keys, char> OnTextInput;
+
         public MouseState LastMouseState { get; private set; }
         public MouseState MouseState { get; private set; }
         public Point MousePosition => this.MouseState.Position;
@@ -50,11 +60,12 @@ namespace MLEM.Input {
         private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
         private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
 
-        public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(null) {
+        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true, TextInputStyle textInputStyle = null) : base(game) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
             this.HandleTouch = handleTouch;
+            this.TextInputStyle = textInputStyle;
             this.Gestures = this.gestures.AsReadOnly();
         }
 
@@ -95,6 +106,9 @@ namespace MLEM.Input {
                     }
                 }
             }
+
+            if (this.TextInputStyle != null)
+                this.TextInputStyle.Update();
 
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;

@@ -47,13 +47,27 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        private bool init;
 
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, IGenericFont font = null) : base(anchor, size) {
             this.InputRule = rule ?? DefaultRule;
             if (font != null)
                 this.Font.Set(font);
+        }
 
-            if (WindowExtensions.SupportsTextInput()) {
+        public override void ForceUpdateArea() {
+            if (!this.init) {
+                this.init = true;
+                if (this.Input.TextInputStyle.RequiresOnScreenKeyboard()) {
+                    this.OnPressed += async e => {
+                        if (!KeyboardInput.IsVisible) {
+                            var title = this.MobileTitle ?? this.PlaceholderText;
+                            var result = await KeyboardInput.Show(title, this.MobileDescription, this.Text);
+                            if (result != null)
+                                this.SetText(result.Replace('\n', ' '), true);
+                        }
+                    };
+                }
                 this.OnTextInput += (element, key, character) => {
                     if (!this.IsSelected || this.IsHidden)
                         return;
@@ -68,18 +82,10 @@ namespace MLEM.Ui.Elements {
                         this.InsertText(character);
                     }
                 };
-            } else {
-                this.OnPressed += async e => {
-                    if (!KeyboardInput.IsVisible) {
-                        var title = this.MobileTitle ?? this.PlaceholderText;
-                        var result = await KeyboardInput.Show(title, this.MobileDescription, this.Text);
-                        if (result != null)
-                            this.SetText(result.Replace('\n', ' '), true);
-                    }
-                };
+                this.OnDeselected += e => this.CaretPos = 0;
+                this.OnSelected += e => this.CaretPos = this.text.Length;
             }
-            this.OnDeselected += e => this.CaretPos = 0;
-            this.OnSelected += e => this.CaretPos = this.text.Length;
+            base.ForceUpdateArea();
         }
 
         private void HandleTextChange(bool textChanged = true) {

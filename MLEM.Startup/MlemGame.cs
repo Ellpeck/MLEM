@@ -34,9 +34,9 @@ namespace MLEM.Startup {
 
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
-            this.InputHandler = new InputHandler();
+            this.InputHandler = new InputHandler(this, textInputStyle: new TextInputStyle.DesktopGl());
             this.Components.Add(this.InputHandler);
-            this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
+            this.UiSystem = new UiSystem(this, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
             this.Components.Add(this.UiSystem);
             this.OnLoadContent?.Invoke(this);
         }
