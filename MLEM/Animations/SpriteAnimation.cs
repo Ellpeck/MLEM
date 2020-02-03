@@ -49,9 +49,13 @@ namespace MLEM.Animations {
         }
 
         public void Update(GameTime time) {
+            this.SetTime(this.TimeIntoAnimation + time.ElapsedGameTime.TotalSeconds * this.SpeedMultiplier);
+        }
+
+        internal void SetTime(double totalTime) {
             if (this.IsFinished || this.IsPaused)
                 return;
-            this.TimeIntoAnimation += time.ElapsedGameTime.TotalSeconds * this.SpeedMultiplier;
+            this.TimeIntoAnimation = totalTime;
             if (this.TimeIntoAnimation >= this.TotalTime) {
                 if (!this.IsLooping) {
                     this.IsFinished = true;

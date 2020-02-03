@@ -16,7 +16,7 @@ namespace MLEM.Ui.Elements {
 
         private string text;
         private string splitText;
-        public FormattingCodeCollection FormattingCodes { get; private set; }
+        private Dictionary<int, FormattingCode> codeLocations;
         public StyleProp<IGenericFont> RegularFont;
         public StyleProp<IGenericFont> BoldFont;
         public StyleProp<IGenericFont> ItalicFont;
@@ -36,6 +36,7 @@ namespace MLEM.Ui.Elements {
         }
         public bool AutoAdjustWidth;
         public TextCallback GetTextCallback;
+        public TimeSpan TimeIntoAnimation;
 
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
             : this(anchor, width, "", centerText) {
@@ -59,7 +60,7 @@ namespace MLEM.Ui.Elements {
 
             var sc = this.TextScale * this.Scale;
             this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(this.RegularFont.Value), size.X - this.ScaledPadding.Width, sc);
-            this.FormattingCodes = this.text.GetFormattingCodes(this.RegularFont.Value);
+            this.codeLocations = this.text.GetFormattingCodes(this.RegularFont.Value);
 
             var textDims = this.RegularFont.Value.MeasureString(this.splitText) * sc;
             return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
@@ -75,8 +76,7 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
             if (this.GetTextCallback != null)
                 this.Text = this.GetTextCallback(this);
-            if (this.FormattingCodes != null)
-                this.FormattingCodes.Update(time);
+            this.TimeIntoAnimation += time.ElapsedGameTime;
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
@@ -85,11 +85,11 @@ namespace MLEM.Ui.Elements {
 
             var color = this.TextColor.OrDefault(Color.White) * alpha;
             // if we don't have any formatting codes, then we don't need to do complex drawing
-            if (this.FormattingCodes.Count <= 0) {
+            if (this.codeLocations.Count <= 0) {
                 this.RegularFont.Value.DrawString(batch, this.splitText, pos, color, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we should do it
-                this.RegularFont.Value.DrawFormattedString(batch, pos, this.splitText, this.FormattingCodes, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.FormatSettings);
+                this.RegularFont.Value.DrawFormattedString(batch, pos, this.splitText, this.codeLocations, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation, this.FormatSettings);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
