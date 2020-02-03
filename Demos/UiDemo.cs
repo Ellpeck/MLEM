@@ -91,7 +91,7 @@ namespace Demos {
             root.AddChild(new VerticalSpace(3));
 
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular], [Bold]Bold[Regular] and [Shadow]Drop Shadow'd[Regular]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular], [Bold]Bold[Regular], [Shadow]Drop Shadow'd[Regular] and [Shadow][Pink]mixed formatting[Regular][White]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
 
             // adding some custom image formatting codes
             // note that all added formatting codes need to be lowercase, while their casing doesn't matter when used

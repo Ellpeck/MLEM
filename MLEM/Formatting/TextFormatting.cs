@@ -58,24 +58,29 @@ namespace MLEM.Formatting {
         public static string RemoveFormatting(this string s, IGenericFont font) {
             return formatRegex.Replace(s, match => {
                 var code = FromMatch(match);
-                return code != null ? code.GetReplacementString(font) : string.Empty;
+                return code != null ? code.GetReplacementString(font) : match.Value;
             });
         }
 
-        public static Dictionary<int, FormattingCode> GetFormattingCodes(this string s, IGenericFont font) {
-            var codes = new Dictionary<int, FormattingCode>();
+        public static FormattingCodeCollection GetFormattingCodes(this string s, IGenericFont font) {
+            var codes = new FormattingCodeCollection();
             var codeLengths = 0;
             foreach (Match match in formatRegex.Matches(s)) {
                 var code = FromMatch(match);
                 if (code == null)
                     continue;
-                codes[match.Index - codeLengths] = code;
+                var index = match.Index - codeLengths;
+                if (codes.TryGetValue(index, out var curr)) {
+                    curr.Add(code);
+                } else {
+                    codes.Add(index, new List<FormattingCode> {code});
+                }
                 codeLengths += match.Length - code.GetReplacementString(font).Length;
             }
             return codes;
         }
 
-        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string text, Dictionary<int, FormattingCode> codeLocations, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default, FormatSettings formatSettings = null) {
+        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string unformattedText, FormattingCodeCollection formatting, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default, FormatSettings formatSettings = null) {
             var settings = formatSettings ?? FormatSettings.Default;
             var currColor = color;
             var currFont = regularFont;
@@ -84,49 +89,50 @@ namespace MLEM.Formatting {
             var animStart = 0;
 
             var innerOffset = new Vector2();
-            for (var i = 0; i < text.Length; i++) {
+            for (var i = 0; i < unformattedText.Length; i++) {
                 // check if the current character's index has a formatting code
-                codeLocations.TryGetValue(i, out var code);
-                if (code != null) {
-                    // if so, apply it
-                    switch (code.CodeType) {
-                        case FormattingCode.Type.Color:
-                            currColor = code.Color.CopyAlpha(color);
-                            break;
-                        case FormattingCode.Type.Style:
-                            switch (code.Style) {
-                                case TextStyle.Regular:
-                                    currFont = regularFont;
-                                    break;
-                                case TextStyle.Bold:
-                                    currFont = boldFont ?? regularFont;
-                                    break;
-                                case TextStyle.Italic:
-                                    currFont = italicFont ?? regularFont;
-                                    break;
-                            }
-                            currStyle = code.Style;
-                            break;
-                        case FormattingCode.Type.Icon:
-                            code.Icon.SetTime(timeIntoAnimation.TotalSeconds * code.Icon.SpeedMultiplier % code.Icon.TotalTime);
-                            batch.Draw(code.Icon.CurrentRegion, new RectangleF(pos + innerOffset, new Vector2(regularFont.LineHeight * scale)), color, 0, Vector2.Zero, SpriteEffects.None, depth);
-                            break;
-                        case FormattingCode.Type.Animation:
-                            currAnim = code.Animation;
-                            animStart = i;
-                            break;
+                if (formatting.TryGetValue(i, out var codes)) {
+                    foreach (var code in codes) {
+                        // if so, apply it
+                        switch (code.CodeType) {
+                            case FormattingCode.Type.Color:
+                                currColor = code.Color.CopyAlpha(color);
+                                break;
+                            case FormattingCode.Type.Style:
+                                switch (code.Style) {
+                                    case TextStyle.Regular:
+                                        currFont = regularFont;
+                                        break;
+                                    case TextStyle.Bold:
+                                        currFont = boldFont ?? regularFont;
+                                        break;
+                                    case TextStyle.Italic:
+                                        currFont = italicFont ?? regularFont;
+                                        break;
+                                }
+                                currStyle = code.Style;
+                                break;
+                            case FormattingCode.Type.Icon:
+                                code.Icon.SetTime(timeIntoAnimation.TotalSeconds * code.Icon.SpeedMultiplier % code.Icon.TotalTime);
+                                batch.Draw(code.Icon.CurrentRegion, new RectangleF(pos + innerOffset, new Vector2(regularFont.LineHeight * scale)), color, 0, Vector2.Zero, SpriteEffects.None, depth);
+                                break;
+                            case FormattingCode.Type.Animation:
+                                currAnim = code.Animation;
+                                animStart = i;
+                                break;
+                        }
                     }
                 }
 
-                var c = text[i];
+                var c = unformattedText[i];
                 var cSt = c.ToString();
                 if (c == '\n') {
                     innerOffset.X = 0;
                     innerOffset.Y += regularFont.LineHeight * scale;
                 } else {
                     if (currStyle == TextStyle.Shadow)
-                        currAnim(settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
-                    currAnim(settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
+                        currAnim(settings, currFont, batch, unformattedText, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
+                    currAnim(settings, currFont, batch, unformattedText, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
                     innerOffset.X += regularFont.MeasureString(cSt).X * scale;
                 }
             }
