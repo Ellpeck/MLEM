@@ -36,6 +36,7 @@ namespace MLEM.Ui.Elements {
         }
         public bool AutoAdjustWidth;
         public TextCallback GetTextCallback;
+        public TextModifier RenderedTextModifier = text => text;
         public TimeSpan TimeIntoAnimation;
 
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
@@ -83,13 +84,14 @@ namespace MLEM.Ui.Elements {
             var pos = this.DisplayArea.Location;
             var sc = this.TextScale * this.Scale;
 
+            var toRender = this.RenderedTextModifier(this.splitText);
             var color = this.TextColor.OrDefault(Color.White) * alpha;
             // if we don't have any formatting codes, then we don't need to do complex drawing
             if (this.Formatting.Count <= 0) {
-                this.RegularFont.Value.DrawString(batch, this.splitText, pos, color, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                this.RegularFont.Value.DrawString(batch, toRender, pos, color, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
             } else {
                 // if we have formatting codes, we should do it
-                this.RegularFont.Value.DrawFormattedString(batch, pos, this.splitText, this.Formatting, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation, this.FormatSettings);
+                this.RegularFont.Value.DrawFormattedString(batch, pos, toRender, this.Formatting, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation, this.FormatSettings);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
@@ -104,6 +106,8 @@ namespace MLEM.Ui.Elements {
         }
 
         public delegate string TextCallback(Paragraph paragraph);
+
+        public delegate string TextModifier(string text);
 
     }
 }
