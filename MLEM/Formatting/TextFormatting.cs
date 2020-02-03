@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Animations;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Misc;
@@ -12,7 +11,7 @@ using MLEM.Textures;
 namespace MLEM.Formatting {
     public static class TextFormatting {
 
-        public static readonly Dictionary<Regex, Func<Match, int, FormattingCode>> FormattingCodes = new Dictionary<Regex, Func<Match, int, FormattingCode>>();
+        public static readonly Dictionary<Regex, Func<Match, FormattingCode>> FormattingCodes = new Dictionary<Regex, Func<Match, FormattingCode>>();
         private static readonly Dictionary<IGenericFont, string> OneEmStrings = new Dictionary<IGenericFont, string>();
         private static Regex formatRegex;
 
@@ -20,30 +19,22 @@ namespace MLEM.Formatting {
             SetFormatIndicators('[', ']');
 
             // style codes
-            FormattingCodes[new Regex("regular")] = (m, i) => new FormattingCode(i, TextStyle.Regular);
-            FormattingCodes[new Regex("italic")] = (m, i) => new FormattingCode(i, TextStyle.Italic);
-            FormattingCodes[new Regex("bold")] = (m, i) => new FormattingCode(i, TextStyle.Bold);
-            FormattingCodes[new Regex("shadow")] = (m, i) => new FormattingCode(i, TextStyle.Shadow);
+            FormattingCodes[new Regex("regular")] = m => new FormattingCode(TextStyle.Regular);
+            FormattingCodes[new Regex("italic")] = m => new FormattingCode(TextStyle.Italic);
+            FormattingCodes[new Regex("bold")] = m => new FormattingCode(TextStyle.Bold);
+            FormattingCodes[new Regex("shadow")] = m => new FormattingCode(TextStyle.Shadow);
 
             // color codes
             var colors = typeof(Color).GetProperties();
             foreach (var color in colors) {
                 if (color.GetGetMethod().IsStatic)
-                    FormattingCodes[new Regex(color.Name.ToLowerInvariant())] = (m, i) => new FormattingCode(i, (Color) color.GetValue(null));
+                    FormattingCodes[new Regex(color.Name.ToLowerInvariant())] = m => new FormattingCode((Color) color.GetValue(null));
             }
 
             // animations
-            FormattingCodes[new Regex("unanimated")] = (m, i) => new AnimationCode(i, FormatState.DefaultDrawBehavior);
-            FormattingCodes[new Regex("wobbly")] = (m, i) => new AnimationCode(i, (state, batch, totalText, index, charSt, position, scale, layerDepth) => {
-                var code = (AnimationCode) state.FormattingCodes[i];
-                var offset = new Vector2(0, (float) Math.Sin(index + code.Time.TotalSeconds * state.Settings.WobbleModifier) * state.Font.LineHeight * state.Settings.WobbleHeightModifier * scale);
-                state.Font.DrawString(batch, charSt, position + offset, state.Color, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
-            });
-            FormattingCodes[new Regex("typing")] = (m, i) => new AnimationCode(i, (state, batch, totalText, index, charSt, position, scale, layerDepth) => {
-                var code = (AnimationCode) state.FormattingCodes[i];
-                if (code.Time.TotalSeconds * state.Settings.TypingSpeed > index - i + 1)
-                    state.Font.DrawString(batch, charSt, position, state.Color, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
-            });
+            FormattingCodes[new Regex("unanimated")] = m => new AnimationCode(AnimationCode.Default);
+            FormattingCodes[new Regex("wobbly")] = m => new AnimationCode(AnimationCode.Wobbly);
+            FormattingCodes[new Regex("typing")] = m => new AnimationCode(AnimationCode.Typing);
         }
 
         public static void SetFormatIndicators(char opener, char closer) {
@@ -65,15 +56,9 @@ namespace MLEM.Formatting {
         }
 
         public static string RemoveFormatting(this string s, IGenericFont font) {
-            var codeLengths = 0;
             return formatRegex.Replace(s, match => {
-                var code = FromMatch(match, match.Index - codeLengths);
-                if (code != null) {
-                    var replace = code.GetReplacementString(font);
-                    codeLengths += match.Length - replace.Length;
-                    return replace;
-                }
-                return match.Value;
+                var code = FromMatch(match);
+                return code != null ? code.GetReplacementString(font) : string.Empty;
             });
         }
 
@@ -81,51 +66,77 @@ namespace MLEM.Formatting {
             var codes = new FormattingCodeCollection();
             var codeLengths = 0;
             foreach (Match match in formatRegex.Matches(s)) {
-                var index = match.Index - codeLengths;
-                var code = FromMatch(match, index);
+                var code = FromMatch(match);
                 if (code == null)
                     continue;
-                codes[index] = code;
+                codes[match.Index - codeLengths] = code;
                 codeLengths += match.Length - code.GetReplacementString(font).Length;
             }
             return codes;
         }
 
         public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string text, FormattingCodeCollection codes, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, FormatSettings formatSettings = null) {
-            var state = new FormatState {
-                FormattingCodes = codes,
-                RegularFont = regularFont,
-                ItalicFont = italicFont,
-                BoldFont = boldFont,
-                Settings = formatSettings ?? FormatSettings.Default,
+            var settings = formatSettings ?? FormatSettings.Default;
+            var currColor = color;
+            var currFont = regularFont;
+            var currStyle = TextStyle.Regular;
+            var currAnim = AnimationCode.DefaultCode;
+            var animStart = 0;
 
-                Color = color,
-                Font = regularFont,
-                DrawBehavior = FormatState.DefaultDrawBehavior
-            };
-
+            var innerOffset = new Vector2();
             for (var i = 0; i < text.Length; i++) {
-                state.CurrentIndex = i;
-                if (codes.TryGetValue(i, out var code))
-                    code.ModifyFormatting(ref state);
+                // check if the current character's index has a formatting code
+                codes.TryGetValue(i, out var code);
+                if (code != null) {
+                    // if so, apply it
+                    switch (code.CodeType) {
+                        case FormattingCode.Type.Color:
+                            currColor = code.Color.CopyAlpha(color);
+                            break;
+                        case FormattingCode.Type.Style:
+                            switch (code.Style) {
+                                case TextStyle.Regular:
+                                    currFont = regularFont;
+                                    break;
+                                case TextStyle.Bold:
+                                    currFont = boldFont ?? regularFont;
+                                    break;
+                                case TextStyle.Italic:
+                                    currFont = italicFont ?? regularFont;
+                                    break;
+                            }
+                            currStyle = code.Style;
+                            break;
+                        case FormattingCode.Type.Icon:
+                            batch.Draw(code.Icon.CurrentRegion, new RectangleF(pos + innerOffset, new Vector2(regularFont.LineHeight * scale)), color, 0, Vector2.Zero, SpriteEffects.None, depth);
+                            break;
+                        case FormattingCode.Type.Animation:
+                            currAnim = (AnimationCode) code;
+                            animStart = i;
+                            break;
+                    }
+                }
 
                 var c = text[i];
                 var cSt = c.ToString();
                 if (c == '\n') {
-                    state.InnerOffset = new Vector2(0, state.InnerOffset.Y + regularFont.LineHeight * scale);
+                    innerOffset.X = 0;
+                    innerOffset.Y += regularFont.LineHeight * scale;
                 } else {
-                    state.DrawBehavior(state, batch, text, i, cSt, pos + state.InnerOffset, scale, depth);
-                    state.InnerOffset += new Vector2(regularFont.MeasureString(cSt).X * scale, 0);
+                    if (currStyle == TextStyle.Shadow)
+                        currAnim.Draw(currAnim, settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth);
+                    currAnim.Draw(currAnim, settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset, currColor, scale, depth);
+                    innerOffset.X += regularFont.MeasureString(cSt).X * scale;
                 }
             }
         }
 
-        private static FormattingCode FromMatch(Capture match, int index) {
+        private static FormattingCode FromMatch(Capture match) {
             var rawCode = match.Value.Substring(1, match.Value.Length - 2).ToLowerInvariant();
             foreach (var code in FormattingCodes) {
                 var m = code.Key.Match(rawCode);
                 if (m.Success)
-                    return code.Value(m, index);
+                    return code.Value(m);
             }
             return null;
         }
