@@ -11,7 +11,7 @@ using MLEM.Textures;
 namespace MLEM.Formatting {
     public static class TextFormatting {
 
-        public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>();
+        public static readonly Dictionary<Regex, Func<Match, FormattingCode>> FormattingCodes = new Dictionary<Regex, Func<Match, FormattingCode>>();
         private static readonly Dictionary<IGenericFont, string> OneEmStrings = new Dictionary<IGenericFont, string>();
         private static Regex formatRegex;
 
@@ -19,22 +19,22 @@ namespace MLEM.Formatting {
             SetFormatIndicators('[', ']');
 
             // style codes
-            FormattingCodes["regular"] = new FormattingCode(TextStyle.Regular);
-            FormattingCodes["italic"] = new FormattingCode(TextStyle.Italic);
-            FormattingCodes["bold"] = new FormattingCode(TextStyle.Bold);
-            FormattingCodes["shadow"] = new FormattingCode(TextStyle.Shadow);
+            FormattingCodes[new Regex("regular")] = m => new FormattingCode(TextStyle.Regular);
+            FormattingCodes[new Regex("italic")] = m => new FormattingCode(TextStyle.Italic);
+            FormattingCodes[new Regex("bold")] = m => new FormattingCode(TextStyle.Bold);
+            FormattingCodes[new Regex("shadow")] = m => new FormattingCode(TextStyle.Shadow);
 
             // color codes
             var colors = typeof(Color).GetProperties();
             foreach (var color in colors) {
                 if (color.GetGetMethod().IsStatic)
-                    FormattingCodes[color.Name.ToLowerInvariant()] = new FormattingCode((Color) color.GetValue(null));
+                    FormattingCodes[new Regex(color.Name.ToLowerInvariant())] = m => new FormattingCode((Color) color.GetValue(null));
             }
 
             // animations
-            FormattingCodes["unanimated"] = new FormattingCode(TextAnimation.Default);
-            FormattingCodes["wobbly"] = new FormattingCode(TextAnimation.Wobbly);
-            FormattingCodes["typing"] = new FormattingCode(TextAnimation.Typing);
+            FormattingCodes[new Regex("unanimated")] = m => new AnimationCode(AnimationCode.Default);
+            FormattingCodes[new Regex("wobbly")] = m => new AnimationCode(AnimationCode.Wobbly);
+            FormattingCodes[new Regex("typing")] = m => new AnimationCode(AnimationCode.Typing);
         }
 
         public static void SetFormatIndicators(char opener, char closer) {
@@ -62,8 +62,8 @@ namespace MLEM.Formatting {
             });
         }
 
-        public static Dictionary<int, FormattingCode> GetFormattingCodes(this string s, IGenericFont font) {
-            var codes = new Dictionary<int, FormattingCode>();
+        public static FormattingCodeCollection GetFormattingCodes(this string s, IGenericFont font) {
+            var codes = new FormattingCodeCollection();
             var codeLengths = 0;
             foreach (Match match in formatRegex.Matches(s)) {
                 var code = FromMatch(match);
@@ -75,18 +75,18 @@ namespace MLEM.Formatting {
             return codes;
         }
 
-        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string text, Dictionary<int, FormattingCode> codeLocations, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default, FormatSettings formatSettings = null) {
+        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string text, FormattingCodeCollection codes, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, FormatSettings formatSettings = null) {
             var settings = formatSettings ?? FormatSettings.Default;
             var currColor = color;
             var currFont = regularFont;
             var currStyle = TextStyle.Regular;
-            var currAnim = TextAnimation.Default;
+            var currAnim = AnimationCode.DefaultCode;
             var animStart = 0;
 
             var innerOffset = new Vector2();
             for (var i = 0; i < text.Length; i++) {
                 // check if the current character's index has a formatting code
-                codeLocations.TryGetValue(i, out var code);
+                codes.TryGetValue(i, out var code);
                 if (code != null) {
                     // if so, apply it
                     switch (code.CodeType) {
@@ -108,11 +108,10 @@ namespace MLEM.Formatting {
                             currStyle = code.Style;
                             break;
                         case FormattingCode.Type.Icon:
-                            code.Icon.SetTime(timeIntoAnimation.TotalSeconds * code.Icon.SpeedMultiplier % code.Icon.TotalTime);
                             batch.Draw(code.Icon.CurrentRegion, new RectangleF(pos + innerOffset, new Vector2(regularFont.LineHeight * scale)), color, 0, Vector2.Zero, SpriteEffects.None, depth);
                             break;
                         case FormattingCode.Type.Animation:
-                            currAnim = code.Animation;
+                            currAnim = (AnimationCode) code;
                             animStart = i;
                             break;
                     }
@@ -125,8 +124,8 @@ namespace MLEM.Formatting {
                     innerOffset.Y += regularFont.LineHeight * scale;
                 } else {
                     if (currStyle == TextStyle.Shadow)
-                        currAnim(settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
-                    currAnim(settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
+                        currAnim.Draw(currAnim, settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth);
+                    currAnim.Draw(currAnim, settings, currFont, batch, text, i, animStart, cSt, pos + innerOffset, currColor, scale, depth);
                     innerOffset.X += regularFont.MeasureString(cSt).X * scale;
                 }
             }
@@ -134,8 +133,12 @@ namespace MLEM.Formatting {
 
         private static FormattingCode FromMatch(Capture match) {
             var rawCode = match.Value.Substring(1, match.Value.Length - 2).ToLowerInvariant();
-            FormattingCodes.TryGetValue(rawCode, out var val);
-            return val;
+            foreach (var code in FormattingCodes) {
+                var m = code.Key.Match(rawCode);
+                if (m.Success)
+                    return code.Value(m);
+            }
+            return null;
         }
 
     }

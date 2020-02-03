@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -95,18 +96,17 @@ namespace Demos {
 
             // adding some custom image formatting codes
             // note that all added formatting codes need to be lowercase, while their casing doesn't matter when used
-            TextFormatting.FormattingCodes["grass"] = new FormattingCode(image.Texture);
-            TextFormatting.FormattingCodes["tree"] = new FormattingCode(tree);
+            TextFormatting.FormattingCodes[new Regex("grass")] = m => new FormattingCode(image.Texture);
+            TextFormatting.FormattingCodes[new Regex("tree")] = m => new FormattingCode(tree);
             // formatting codes can also be sprite animations!
             var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
-            TextFormatting.FormattingCodes["walk"] = new FormattingCode(new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
+            TextFormatting.FormattingCodes[new Regex("walk")] = m => new FormattingCode(new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations! Note that these images have to be square, or [Tree] bad things happen."));
 
             var animatedPar = root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esc typing effect by default. Of course, more animations can be added though."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {
-                // to reset any animation, simply change the paragraph's TimeIntoAnimation
-                OnPressed = e => animatedPar.TimeIntoAnimation = TimeSpan.Zero
+                OnPressed = e => animatedPar.FormattingCodes.Reset()
             });
 
             root.AddChild(new VerticalSpace(3));

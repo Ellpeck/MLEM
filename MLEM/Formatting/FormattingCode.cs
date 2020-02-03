@@ -10,34 +10,39 @@ namespace MLEM.Formatting {
         public readonly Color Color;
         public readonly TextStyle Style;
         public readonly SpriteAnimation Icon;
-        public readonly TextAnimation.DrawCharacter Animation;
 
-        public FormattingCode(Color color) {
-            this.Color = color;
-            this.CodeType = Type.Color;
+        protected FormattingCode(Type type) {
+            this.CodeType = type;
         }
 
-        public FormattingCode(TextStyle style) {
+        public FormattingCode(Color color) : this(Type.Color) {
+            this.Color = color;
+        }
+
+        public FormattingCode(TextStyle style) : this(Type.Style) {
             this.Style = style;
-            this.CodeType = Type.Style;
         }
 
         public FormattingCode(TextureRegion icon) :
             this(new SpriteAnimation(0, icon)) {
         }
 
-        public FormattingCode(SpriteAnimation icon) {
+        public FormattingCode(SpriteAnimation icon) : this(Type.Icon) {
             this.Icon = icon;
-            this.CodeType = Type.Icon;
-        }
-
-        public FormattingCode(TextAnimation.DrawCharacter animation) {
-            this.Animation = animation;
-            this.CodeType = Type.Animation;
         }
 
         public virtual string GetReplacementString(IGenericFont font) {
             return this.CodeType == Type.Icon ? TextFormatting.GetOneEmString(font) : string.Empty;
+        }
+
+        public virtual void Update(GameTime time) {
+            if (this.CodeType == Type.Icon)
+                this.Icon.Update(time);
+        }
+
+        public virtual void Reset() {
+            if (this.CodeType == Type.Icon)
+                this.Icon.Restart();
         }
 
         public enum Type {
