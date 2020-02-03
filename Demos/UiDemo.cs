@@ -96,11 +96,11 @@ namespace Demos {
 
             // adding some custom image formatting codes
             // note that all added formatting codes need to be lowercase, while their casing doesn't matter when used
-            TextFormatting.FormattingCodes[new Regex("grass")] = m => new FormattingCode(image.Texture);
-            TextFormatting.FormattingCodes[new Regex("tree")] = m => new FormattingCode(tree);
+            TextFormatting.FormattingCodes[new Regex("grass")] = (m, i) => new FormattingCode(i, image.Texture);
+            TextFormatting.FormattingCodes[new Regex("tree")] = (m, i) => new FormattingCode(i, tree);
             // formatting codes can also be sprite animations!
             var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
-            TextFormatting.FormattingCodes[new Regex("walk")] = m => new FormattingCode(new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
+            TextFormatting.FormattingCodes[new Regex("walk")] = (m, i) => new FormattingCode(i, new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations! Note that these images have to be square, or [Tree] bad things happen."));
 
