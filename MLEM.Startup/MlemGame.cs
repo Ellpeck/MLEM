@@ -21,15 +21,16 @@ namespace MLEM.Startup {
         public TimeCallback OnUpdate;
         public TimeCallback OnDraw;
 
-        public MlemGame(int windowWidth = 1280, int windowHeight = 720, bool vsync = false, bool allowResizing = true, string contentDir = "Content") {
+        public MlemGame(int windowWidth = 1280, int windowHeight = 720) {
             instance = this;
+
             this.GraphicsDeviceManager = new GraphicsDeviceManager(this) {
                 PreferredBackBufferWidth = windowWidth,
                 PreferredBackBufferHeight = windowHeight,
-                SynchronizeWithVerticalRetrace = vsync
+                HardwareModeSwitch = false
             };
-            this.Content.RootDirectory = contentDir;
-            this.Window.AllowUserResizing = allowResizing;
+            this.Window.AllowUserResizing = true;
+            this.Content.RootDirectory = "Content";
         }
 
         protected override void LoadContent() {
