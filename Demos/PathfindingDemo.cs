@@ -20,7 +20,9 @@ namespace Demos {
         public PathfindingDemo(MlemGame game) : base(game) {
         }
 
-        private void Init() {
+        private async void Init() {
+            this.path = null;
+
             // generate a simple random world for testing, where true is walkable area, and false is a wall
             var random = new Random();
             this.world = new bool[50, 50];
@@ -48,7 +50,7 @@ namespace Demos {
 
             // Now find a path from the top left to the bottom right corner and store it in a variable
             // If no path can be found after the maximum amount of tries (10000 by default), the pathfinder will abort and return no path (null)
-            var foundPath = this.pathfinder.FindPath(Point.Zero, new Point(49, 49));
+            var foundPath = await this.pathfinder.FindPathAsync(Point.Zero, new Point(49, 49));
             this.path = foundPath != null ? foundPath.ToList() : null;
 
             // print out some info

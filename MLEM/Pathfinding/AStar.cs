@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MLEM.Pathfinding {
     public abstract class AStar<T> {
@@ -20,6 +21,10 @@ namespace MLEM.Pathfinding {
             this.DefaultCost = defaultCost;
             this.DefaultMaxTries = defaultMaxTries;
             this.DefaultAllowDiagonals = defaultAllowDiagonals;
+        }
+
+        public Task<Stack<T>> FindPathAsync(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
+            return Task.Run(() => this.FindPath(start, goal, costFunction, defaultCost, maxTries, allowDiagonals));
         }
 
         public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
@@ -80,7 +85,7 @@ namespace MLEM.Pathfinding {
                 if (count >= tries)
                     break;
             }
-            
+
             this.LastTriesNeeded = count;
             this.LastTimeNeeded = DateTime.UtcNow - startTime;
             return ret;
