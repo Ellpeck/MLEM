@@ -73,7 +73,7 @@ namespace MLEM.Ui.Elements {
             if (this.isMouseHeld)
                 this.ScrollToPos(this.Input.MousePosition.Transform(this.Root.InvTransform));
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
-                var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
+                double scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
                     this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
             }

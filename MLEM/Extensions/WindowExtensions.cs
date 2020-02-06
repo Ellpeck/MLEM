@@ -24,7 +24,9 @@ namespace MLEM.Extensions {
         private static class TextInputAdder {
 
             public static void Add(GameWindow window, TextInputCallback callback) {
+                #if !WEB
                 window.TextInput += (sender, args) => callback(sender, args.Key, args.Character);
+                #endif
             }
 
         }

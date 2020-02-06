@@ -85,16 +85,16 @@ namespace MLEM.Ui.Elements {
         public TabNextElementCallback GetTabNextElement;
         public GamepadNextElementCallback GetGamepadNextElement;
 
-        private UiSystem system;
-        public UiSystem System {
-            get => this.system;
+        private UiSystem uiSystem;
+        public UiSystem UiSystem {
+            get => this.uiSystem;
             internal set {
-                this.system = value;
-                if (this.system != null)
-                    this.InitStyle(this.system.Style);
+                this.uiSystem = value;
+                if (this.uiSystem != null)
+                    this.InitStyle(this.uiSystem.Style);
             }
         }
-        protected UiControls Controls => this.System.Controls;
+        protected UiControls Controls => this.UiSystem.Controls;
         protected InputHandler Input => this.Controls.Input;
         public RootElement Root { get; internal set; }
         public float Scale => this.Root.ActualScale;
@@ -166,7 +166,7 @@ namespace MLEM.Ui.Elements {
             element.Parent = this;
             element.AndChildren(e => {
                 e.Root = this.Root;
-                e.System = this.System;
+                e.UiSystem = this.UiSystem;
                 if (this.Root != null)
                     this.Root.OnElementAdded(e);
             });
@@ -180,7 +180,7 @@ namespace MLEM.Ui.Elements {
             element.Parent = null;
             element.AndChildren(e => {
                 e.Root = null;
-                e.System = null;
+                e.UiSystem = null;
                 if (this.Root != null)
                     this.Root.OnElementRemoved(e);
             });
@@ -230,7 +230,7 @@ namespace MLEM.Ui.Elements {
             if (this.IsHidden)
                 return;
 
-            var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
+            var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.uiSystem.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
 
@@ -314,7 +314,7 @@ namespace MLEM.Ui.Elements {
             }
 
             this.area = new RectangleF(pos, actualSize);
-            this.System.OnElementAreaUpdated?.Invoke(this);
+            this.UiSystem.OnElementAreaUpdated?.Invoke(this);
 
             foreach (var child in this.Children)
                 child.ForceUpdateArea();
@@ -451,15 +451,15 @@ namespace MLEM.Ui.Elements {
         }
 
         public virtual void Update(GameTime time) {
-            this.System.OnElementUpdated?.Invoke(this, time);
+            this.UiSystem.OnElementUpdated?.Invoke(this, time);
 
             foreach (var child in this.GetRelevantChildren())
-                if (child.System != null)
+                if (child.UiSystem != null)
                     child.Update(time);
         }
 
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            this.System.OnElementDrawn?.Invoke(this, time, batch, alpha);
+            this.UiSystem.OnElementDrawn?.Invoke(this, time, batch, alpha);
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)

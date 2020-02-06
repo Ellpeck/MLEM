@@ -270,6 +270,7 @@ namespace MLEM.Input {
                     return true;
                 }
             }
+            sample = default(GestureSample);
             return false;
         }
 

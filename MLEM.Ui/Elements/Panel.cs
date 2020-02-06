@@ -85,7 +85,7 @@ namespace MLEM.Ui.Elements {
                 if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
                     if (this.renderTarget != null)
                         this.renderTarget.Dispose();
-                    this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
+                    this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.UiSystem.GraphicsDevice, targetArea.Width, targetArea.Height);
                 }
             }
         }
@@ -132,8 +132,8 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            if (this.Texture.Value != null)
-                batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
+            if (this.Texture != null)
+                batch.Draw(this.Texture.Value, this.DisplayArea, Color.White * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow || this.renderTarget == null) {
                 base.Draw(time, batch, alpha, blendState, samplerState, matrix);

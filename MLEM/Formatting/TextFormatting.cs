@@ -27,8 +27,13 @@ namespace MLEM.Formatting {
             // color codes
             var colors = typeof(Color).GetProperties();
             foreach (var color in colors) {
+                #if !WEB
                 if (color.GetGetMethod().IsStatic)
                     FormattingCodes[color.Name.ToLowerInvariant()] = new FormattingCode((Color) color.GetValue(null));
+                #else
+                if (color.GetMethod.IsStatic)
+                    FormattingCodes[color.Name.ToLower()] = new FormattingCode((Color) color.GetValue(null));
+                #endif
             }
 
             // animations
@@ -139,7 +144,7 @@ namespace MLEM.Formatting {
         }
 
         private static FormattingCode FromMatch(Capture match) {
-            var rawCode = match.Value.Substring(1, match.Value.Length - 2).ToLowerInvariant();
+            var rawCode = match.Value.Substring(1, match.Value.Length - 2).ToLower();
             FormattingCodes.TryGetValue(rawCode, out var val);
             return val;
         }
