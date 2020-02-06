@@ -23,12 +23,12 @@ namespace MLEM.Ui.Elements {
 
             if (elementToHover != null) {
                 elementToHover.OnMouseEnter += element => {
-                    element.UiSystem.Add(element.GetType().Name + "Tooltip", this);
+                    element.System.Add(element.GetType().Name + "Tooltip", this);
                     this.SnapPositionToMouse();
                 };
                 elementToHover.OnMouseExit += element => {
-                    if (this.UiSystem != null)
-                        this.UiSystem.Remove(this.Root.Name);
+                    if (this.System != null)
+                        this.System.Remove(this.Root.Name);
                 };
             }
         }
@@ -51,7 +51,7 @@ namespace MLEM.Ui.Elements {
         }
 
         public void SnapPositionToMouse() {
-            var viewport = this.UiSystem.Viewport.Size;
+            var viewport = this.System.Viewport.Size;
             var offset = this.Input.MousePosition.ToVector2() / this.Scale + this.MouseOffset;
             if (offset.X < 0)
                 offset.X = 0;

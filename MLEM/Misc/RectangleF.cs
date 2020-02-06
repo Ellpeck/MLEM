@@ -7,7 +7,7 @@ namespace MLEM.Misc {
     [DataContract]
     public struct RectangleF : IEquatable<RectangleF> {
 
-        public static RectangleF Empty => default(RectangleF);
+        public static RectangleF Empty => default;
 
         [DataMember]
         public float X;

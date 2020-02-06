@@ -42,7 +42,7 @@ namespace MLEM.Ui {
             set {
                 this.style = value;
                 foreach (var root in this.rootElements) {
-                    root.Element.AndChildren(e => e.UiSystem = this);
+                    root.Element.AndChildren(e => e.System = this);
                     root.Element.SetAreaDirty();
                 }
             }
@@ -85,7 +85,7 @@ namespace MLEM.Ui {
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
-                if (this.Controls.IsAutoNavMode && element.SelectionIndicator != null) {
+                if (this.Controls.IsAutoNavMode && element.SelectionIndicator.Value != null) {
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
                 }
             };
@@ -134,7 +134,7 @@ namespace MLEM.Ui {
             this.rootElements.Add(root);
             root.Element.AndChildren(e => {
                 e.Root = root;
-                e.UiSystem = this;
+                e.System = this;
                 root.OnElementAdded(e);
                 e.SetAreaDirty();
             });
@@ -151,7 +151,7 @@ namespace MLEM.Ui {
             root.SelectElement(null);
             root.Element.AndChildren(e => {
                 e.Root = null;
-                e.UiSystem = null;
+                e.System = null;
                 root.OnElementRemoved(e);
                 e.SetAreaDirty();
             });
@@ -192,7 +192,7 @@ namespace MLEM.Ui {
 
         public readonly string Name;
         public readonly Element Element;
-        public readonly UiSystem UiSystem;
+        public readonly UiSystem System;
         private float scale = 1;
         public float Scale {
             get => this.scale;
@@ -208,10 +208,10 @@ namespace MLEM.Ui {
             get => this.priority;
             set {
                 this.priority = value;
-                this.UiSystem.SortRoots();
+                this.System.SortRoots();
             }
         }
-        public float ActualScale => this.UiSystem.GlobalScale * this.Scale;
+        public float ActualScale => this.System.GlobalScale * this.Scale;
 
         public Matrix Transform = Matrix.Identity;
         public Matrix InvTransform => Matrix.Invert(this.Transform);
@@ -222,10 +222,10 @@ namespace MLEM.Ui {
         public Element.GenericCallback OnElementAdded;
         public Element.GenericCallback OnElementRemoved;
 
-        public RootElement(string name, Element element, UiSystem uiSystem) {
+        public RootElement(string name, Element element, UiSystem system) {
             this.Name = name;
             this.Element = element;
-            this.UiSystem = uiSystem;
+            this.System = system;
 
             this.OnElementAdded += e => {
                 if (e.CanBeSelected)
@@ -242,11 +242,11 @@ namespace MLEM.Ui {
                 return;
 
             if (this.SelectedElement != null)
-                this.UiSystem.OnElementDeselected?.Invoke(this.SelectedElement);
+                this.System.OnElementDeselected?.Invoke(this.SelectedElement);
             if (element != null)
-                this.UiSystem.OnElementSelected?.Invoke(element);
+                this.System.OnElementSelected?.Invoke(element);
             this.SelectedElement = element;
-            this.UiSystem.OnSelectedElementChanged?.Invoke(element);
+            this.System.OnSelectedElementChanged?.Invoke(element);
         }
 
     }

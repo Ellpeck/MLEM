@@ -40,7 +40,7 @@ namespace MLEM.Pathfinding {
         }
 
         protected override float GetManhattanDistance(Vector3 first, Vector3 second) {
-            return (float)(Math.Abs(second.X - first.X) + Math.Abs(second.Y - first.Y) + Math.Abs(second.Z - first.Z));
+            return Math.Abs(second.X - first.X) + Math.Abs(second.Y - first.Y) + Math.Abs(second.Z - first.Z);
         }
 
     }

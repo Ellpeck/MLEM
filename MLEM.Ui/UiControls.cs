@@ -13,7 +13,7 @@ namespace MLEM.Ui {
 
         public readonly InputHandler Input;
         protected readonly bool IsInputOurs;
-        protected readonly UiSystem UiSystem;
+        protected readonly UiSystem System;
 
         public RootElement ActiveRoot { get; private set; }
         public Element MousedElement { get; private set; }
@@ -34,8 +34,8 @@ namespace MLEM.Ui {
 
         public bool IsAutoNavMode { get; private set; }
 
-        public UiControls(UiSystem uiSystem, InputHandler inputHandler = null) {
-            this.UiSystem = uiSystem;
+        public UiControls(UiSystem system, InputHandler inputHandler = null) {
+            this.System = system;
             this.Input = inputHandler ?? new InputHandler();
             this.IsInputOurs = inputHandler == null;
 
@@ -46,18 +46,18 @@ namespace MLEM.Ui {
         public virtual void Update() {
             if (this.IsInputOurs)
                 this.Input.Update();
-            this.ActiveRoot = this.UiSystem.GetRootElements().FirstOrDefault(root => root.CanSelectContent && !root.Element.IsHidden);
+            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanSelectContent && !root.Element.IsHidden);
 
             // MOUSE INPUT
             if (this.HandleMouse) {
                 var mousedNow = this.GetElementUnderPos(this.Input.MousePosition.ToVector2());
                 if (mousedNow != this.MousedElement) {
                     if (this.MousedElement != null)
-                        this.UiSystem.OnElementMouseExit?.Invoke(this.MousedElement);
+                        this.System.OnElementMouseExit?.Invoke(this.MousedElement);
                     if (mousedNow != null)
-                        this.UiSystem.OnElementMouseEnter?.Invoke(mousedNow);
+                        this.System.OnElementMouseEnter?.Invoke(mousedNow);
                     this.MousedElement = mousedNow;
-                    this.UiSystem.OnMousedElementChanged?.Invoke(mousedNow);
+                    this.System.OnMousedElementChanged?.Invoke(mousedNow);
                 }
 
                 if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
@@ -65,11 +65,11 @@ namespace MLEM.Ui {
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.ActiveRoot?.SelectElement(selectedNow);
                     if (mousedNow != null && mousedNow.CanBePressed)
-                        this.UiSystem.OnElementPressed?.Invoke(mousedNow);
+                        this.System.OnElementPressed?.Invoke(mousedNow);
                 } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
                     if (mousedNow != null && mousedNow.CanBePressed)
-                        this.UiSystem.OnElementSecondaryPressed?.Invoke(mousedNow);
+                        this.System.OnElementSecondaryPressed?.Invoke(mousedNow);
                 }
             }
 
@@ -79,10 +79,10 @@ namespace MLEM.Ui {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
-                            this.UiSystem.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
+                            this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
                         } else {
                             // first action on element using space or enter
-                            this.UiSystem.OnElementPressed?.Invoke(this.SelectedElement);
+                            this.System.OnElementPressed?.Invoke(this.SelectedElement);
                         }
                     }
                 } else if (this.Input.IsKeyPressed(Keys.Tab)) {
@@ -103,13 +103,13 @@ namespace MLEM.Ui {
                     var tapped = this.GetElementUnderPos(tap.Position);
                     this.ActiveRoot?.SelectElement(tapped);
                     if (tapped != null && tapped.CanBePressed)
-                        this.UiSystem.OnElementPressed?.Invoke(tapped);
+                        this.System.OnElementPressed?.Invoke(tapped);
                 } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
                     var held = this.GetElementUnderPos(hold.Position);
                     this.ActiveRoot?.SelectElement(held);
                     if (held != null && held.CanBePressed)
-                        this.UiSystem.OnElementSecondaryPressed?.Invoke(held);
+                        this.System.OnElementSecondaryPressed?.Invoke(held);
                 }
             }
 
@@ -117,10 +117,10 @@ namespace MLEM.Ui {
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
-                        this.UiSystem.OnElementPressed?.Invoke(this.SelectedElement);
+                        this.System.OnElementPressed?.Invoke(this.SelectedElement);
                 } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
-                        this.UiSystem.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
+                        this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
                 } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
                     this.HandleGamepadNextElement(Direction2.Down);
                 } else if (this.LeftButtons.Any(this.IsGamepadPressed)) {
@@ -134,7 +134,7 @@ namespace MLEM.Ui {
         }
 
         public virtual Element GetElementUnderPos(Vector2 position, bool transform = true) {
-            foreach (var root in this.UiSystem.GetRootElements()) {
+            foreach (var root in this.System.GetRootElements()) {
                 var pos = transform ? Vector2.Transform(position, root.InvTransform) : position;
                 var moused = root.Element.GetElementUnderPos(pos);
                 if (moused != null)
@@ -146,7 +146,7 @@ namespace MLEM.Ui {
         protected virtual Element GetTabNextElement(bool backward) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Concat(new[] {this.ActiveRoot.Element});
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
                 return backward ? children.LastOrDefault(c => c.CanBeSelected) : children.FirstOrDefault(c => c.CanBeSelected);
             } else {
@@ -174,7 +174,7 @@ namespace MLEM.Ui {
         protected virtual Element GetGamepadNextElement(RectangleF searchArea) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Concat(new[] {this.ActiveRoot.Element});
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
                 return children.FirstOrDefault(c => c.CanBeSelected);
             } else {
@@ -202,7 +202,7 @@ namespace MLEM.Ui {
             RectangleF searchArea = default;
             if (this.SelectedElement?.Root != null) {
                 searchArea = this.SelectedElement.Area;
-                var (_, _, width, height) = this.UiSystem.Viewport;
+                var (_, _, width, height) = this.System.Viewport;
                 switch (dir) {
                     case Direction2.Down:
                         searchArea.Height += height;

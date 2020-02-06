@@ -69,7 +69,6 @@ namespace MLEM.Ui.Elements {
                     }
                 };
             } else {
-                #if !WEB
                 this.OnPressed += async e => {
                     if (!KeyboardInput.IsVisible) {
                         var title = this.MobileTitle ?? this.PlaceholderText;
@@ -78,7 +77,6 @@ namespace MLEM.Ui.Elements {
                             this.SetText(result.Replace('\n', ' '), true);
                     }
                 };
-                #endif
             }
             this.OnDeselected += e => this.CaretPos = 0;
             this.OnSelected += e => this.CaretPos = this.text.Length;
@@ -86,7 +84,7 @@ namespace MLEM.Ui.Elements {
 
         private void HandleTextChange(bool textChanged = true) {
             // not initialized yet
-            if (this.Font == null)
+            if (this.Font.Value == null)
                 return;
             var length = this.Font.Value.MeasureString(this.text).X * this.TextScale;
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;

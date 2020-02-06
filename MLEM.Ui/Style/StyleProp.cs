@@ -12,8 +12,9 @@ namespace MLEM.Ui.Style {
         }
 
         public void SetFromStyle(T value) {
-            if (!this.isCustom)
+            if (!this.isCustom) {
                 this.Value = value;
+            }
         }
 
         public void Set(T value) {
@@ -22,7 +23,7 @@ namespace MLEM.Ui.Style {
         }
 
         public T OrDefault(T def) {
-            return EqualityComparer<T>.Default.Equals(this.Value, default(T)) ? def : this.Value;
+            return EqualityComparer<T>.Default.Equals(this.Value, default) ? def : this.Value;
         }
 
         public static implicit operator T(StyleProp<T> prop) {
@@ -31,14 +32,6 @@ namespace MLEM.Ui.Style {
 
         public static implicit operator StyleProp<T>(T prop) {
             return new StyleProp<T>(prop);
-        }
-
-        public static bool operator ==(StyleProp<T> left, StyleProp<T> right) {
-            return EqualityComparer<T>.Default.Equals(left.Value, right.Value);
-        }
-
-        public static bool operator !=(StyleProp<T> left, StyleProp<T> right) {
-            return !(left == right);
         }
 
     }
