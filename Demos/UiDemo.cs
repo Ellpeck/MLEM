@@ -209,6 +209,7 @@ namespace Demos {
 
             root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), tree, "Button with image")).PositionOffset = new Vector2(0, 1);
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
+            //root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This_is_a_really_long_line_to_see_if_splitting_without_spaces_works_properly._I_also_want_to_see_if_it_works_across_multiple_lines_or_just_on_the_first_one. But after this, I want the text to continue normally before changing_back_to_being_really_long_oh_yes"));
 
             // Below are some querying examples that help you find certain elements easily
 

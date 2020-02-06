@@ -29,17 +29,33 @@ namespace MLEM.Extensions {
             return total.ToString();
         }
 
-        public static string SplitString(Func<StringBuilder, float> widthFunc, string text, float width, float scale) {
+        public static string SplitString(Func<string, float> widthFunc, string text, float width, float scale) {
             var total = new StringBuilder();
             foreach (var line in text.Split('\n')) {
                 var curr = new StringBuilder();
                 foreach (var word in line.Split(' ')) {
-                    curr.Append(word).Append(' ');
-                    if (widthFunc(curr) * scale >= width) {
-                        var len = curr.Length - word.Length - 1;
-                        if (len > 0) {
-                            total.Append(curr.ToString(0, len - 1)).Append('\n');
-                            curr.Remove(0, len);
+                    if (widthFunc(word) * scale >= width) {
+                        if (curr.Length > 0) {
+                            total.Append(curr.ToString(0, curr.Length - 1)).Append('\n');
+                            curr.Clear();
+                        }
+                        var wordBuilder = new StringBuilder();
+                        for (var i = 0; i < word.Length; i++) {
+                            wordBuilder.Append(word[i]);
+                            if (widthFunc(wordBuilder.ToString()) * scale >= width) {
+                                total.Append(wordBuilder.ToString(0, wordBuilder.Length - 1)).Append('\n');
+                                wordBuilder.Remove(0, wordBuilder.Length - 1);
+                            }
+                        }
+                        curr.Append(wordBuilder).Append(' ');
+                    } else {
+                        curr.Append(word).Append(' ');
+                        if (widthFunc(curr.ToString()) * scale >= width) {
+                            var len = curr.Length - word.Length - 1;
+                            if (len > 0) {
+                                total.Append(curr.ToString(0, len - 1)).Append('\n');
+                                curr.Remove(0, len);
+                            }
                         }
                     }
                 }
