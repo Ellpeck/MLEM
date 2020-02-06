@@ -23,11 +23,24 @@ namespace MLEM.Ui.Elements {
                 return this.sortedChildren;
             }
         }
+        private bool sortedChildrenDirty;
+
+        private UiSystem system;
+        public UiSystem System {
+            get => this.system;
+            internal set {
+                this.system = value;
+                if (this.system != null)
+                    this.InitStyle(this.system.Style);
+            }
+        }
+        protected UiControls Controls => this.System.Controls;
+        protected InputHandler Input => this.Controls.Input;
+        public Element Parent { get; private set; }
+        public RootElement Root { get; internal set; }
+        public float Scale => this.Root.ActualScale;
+
         private Anchor anchor;
-        private Vector2 size;
-        private Vector2 offset;
-        public Padding Padding;
-        public Padding ScaledPadding => this.Padding * this.Scale;
         public Anchor Anchor {
             get => this.anchor;
             set {
@@ -37,6 +50,8 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
+
+        private Vector2 size;
         public Vector2 Size {
             get => this.size;
             set {
@@ -47,6 +62,8 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Vector2 ScaledSize => this.size * this.Scale;
+
+        private Vector2 offset;
         public Vector2 PositionOffset {
             get => this.offset;
             set {
@@ -57,6 +74,10 @@ namespace MLEM.Ui.Elements {
             }
         }
         public Vector2 ScaledOffset => this.offset * this.Scale;
+
+        public Padding Padding;
+        public Padding ScaledPadding => this.Padding * this.Scale;
+
         private Padding childPadding;
         public Padding ChildPadding {
             get => this.childPadding;
@@ -67,8 +88,54 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-        public RectangleF ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
         public Padding ScaledChildPadding => this.childPadding * this.Scale;
+        public RectangleF ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
+
+        private RectangleF area;
+        public RectangleF UnscrolledArea {
+            get {
+                this.UpdateAreaIfDirty();
+                return this.area;
+            }
+        }
+        private bool areaDirty;
+        public RectangleF Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
+        public RectangleF DisplayArea => this.Area.Shrink(this.ScaledPadding);
+
+        public Vector2 ScrollOffset;
+        public Vector2 ScaledScrollOffset => this.ScrollOffset * this.Scale;
+
+        private bool isHidden;
+        public bool IsHidden {
+            get => this.isHidden;
+            set {
+                if (this.isHidden == value)
+                    return;
+                this.isHidden = value;
+                this.SetAreaDirty();
+            }
+        }
+
+        private int priority;
+        public int Priority {
+            get => this.priority;
+            set {
+                this.priority = value;
+                if (this.Parent != null)
+                    this.Parent.SetSortedChildrenDirty();
+            }
+        }
+
+        public bool CanBeSelected = true;
+        public bool CanBeMoused = true;
+        public bool CanBePressed = true;
+        public bool CanAutoAnchorsAttach = true;
+        public bool SetHeightBasedOnChildren;
+        public bool SetWidthBasedOnChildren;
+        public float DrawAlpha = 1;
+
+        public bool IsMouseOver { get; private set; }
+        public bool IsSelected { get; private set; }
 
         public DrawCallback OnDrawn;
         public TimeCallback OnUpdated;
@@ -85,62 +152,6 @@ namespace MLEM.Ui.Elements {
         public TabNextElementCallback GetTabNextElement;
         public GamepadNextElementCallback GetGamepadNextElement;
 
-        private UiSystem system;
-        public UiSystem System {
-            get => this.system;
-            internal set {
-                this.system = value;
-                if (this.system != null)
-                    this.InitStyle(this.system.Style);
-            }
-        }
-        protected UiControls Controls => this.System.Controls;
-        protected InputHandler Input => this.Controls.Input;
-        public RootElement Root { get; internal set; }
-        public float Scale => this.Root.ActualScale;
-        public Element Parent { get; private set; }
-        public bool IsMouseOver { get; private set; }
-        public bool IsSelected { get; private set; }
-        private bool isHidden;
-        public bool IsHidden {
-            get => this.isHidden;
-            set {
-                if (this.isHidden == value)
-                    return;
-                this.isHidden = value;
-                this.SetAreaDirty();
-            }
-        }
-        public bool CanBeSelected = true;
-        public bool CanBeMoused = true;
-        public bool CanBePressed = true;
-        public float DrawAlpha = 1;
-        public bool SetHeightBasedOnChildren;
-        public bool SetWidthBasedOnChildren;
-        public bool CanAutoAnchorsAttach = true;
-
-        private RectangleF area;
-        public RectangleF UnscrolledArea {
-            get {
-                this.UpdateAreaIfDirty();
-                return this.area;
-            }
-        }
-        public RectangleF Area => this.UnscrolledArea.OffsetCopy(this.ScaledScrollOffset);
-        public Vector2 ScrollOffset;
-        public Vector2 ScaledScrollOffset => this.ScrollOffset * this.Scale;
-        public RectangleF DisplayArea => this.Area.Shrink(this.ScaledPadding);
-        private int priority;
-        public int Priority {
-            get => this.priority;
-            set {
-                this.priority = value;
-                if (this.Parent != null)
-                    this.Parent.SetSortedChildrenDirty();
-            }
-        }
-        private bool areaDirty;
-        private bool sortedChildrenDirty;
         public StyleProp<NinePatch> SelectionIndicator;
         public StyleProp<SoundEffectInstance> ActionSound;
         public StyleProp<SoundEffectInstance> SecondActionSound;
@@ -153,8 +164,8 @@ namespace MLEM.Ui.Elements {
             this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnSelected += element => this.IsSelected = true;
             this.OnDeselected += element => this.IsSelected = false;
-            this.GetTabNextElement = (backward, next) => next;
-            this.GetGamepadNextElement = (dir, next) => next;
+            this.GetTabNextElement += (backward, next) => next;
+            this.GetGamepadNextElement += (dir, next) => next;
 
             this.SetAreaDirty();
         }

@@ -17,12 +17,11 @@ namespace MLEM.Ui {
 
         public readonly GraphicsDevice GraphicsDevice;
         public readonly GameWindow Window;
-        public Rectangle Viewport { get; private set; }
         private readonly List<RootElement> rootElements = new List<RootElement>();
 
+        public Rectangle Viewport { get; private set; }
         public bool AutoScaleWithScreen;
         public Point AutoScaleReferenceSize;
-
         private float globalScale = 1;
         public float GlobalScale {
             get {
@@ -36,6 +35,7 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             }
         }
+        
         private UiStyle style;
         public UiStyle Style {
             get => this.style;
