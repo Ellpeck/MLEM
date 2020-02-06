@@ -84,7 +84,7 @@ namespace MLEM.Ui.Elements {
 
         private void HandleTextChange(bool textChanged = true) {
             // not initialized yet
-            if (this.Font.Value == null)
+            if (!this.Font.HasValue())
                 return;
             var length = this.Font.Value.MeasureString(this.text).X * this.TextScale;
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;

@@ -23,7 +23,11 @@ namespace MLEM.Ui.Style {
         }
 
         public T OrDefault(T def) {
-            return EqualityComparer<T>.Default.Equals(this.Value, default) ? def : this.Value;
+            return this.HasValue() ? this.Value : def;
+        }
+
+        public bool HasValue() {
+            return !EqualityComparer<T>.Default.Equals(this.Value, default);
         }
 
         public static implicit operator T(StyleProp<T> prop) {

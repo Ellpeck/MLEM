@@ -132,7 +132,7 @@ namespace MLEM.Ui.Elements {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            if (this.Texture.Value != null)
+            if (this.Texture.HasValue())
                 batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow || this.renderTarget == null) {

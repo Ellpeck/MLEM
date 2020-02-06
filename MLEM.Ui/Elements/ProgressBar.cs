@@ -36,9 +36,8 @@ namespace MLEM.Ui.Elements {
             batch.Draw(this.Texture, this.DisplayArea, (Color) this.Color * alpha, this.Scale);
 
             var percentage = this.CurrentValue / this.MaxValue;
-            var tex = this.ProgressTexture.Value;
-            var padHor = tex != null ? tex.Padding.Width * this.Scale : 0;
-            var padVer = tex != null ? tex.Padding.Height * this.Scale : 0;
+            var padHor = this.ProgressTexture.HasValue() ? this.ProgressTexture.Value.Padding.Width * this.Scale : 0;
+            var padVer = this.ProgressTexture.HasValue() ? this.ProgressTexture.Value.Padding.Height * this.Scale : 0;
             var width = percentage * (this.DisplayArea.Width - padHor) + padHor;
             var height = percentage * (this.DisplayArea.Height - padVer) + padVer;
             RectangleF progressArea;
@@ -61,7 +60,7 @@ namespace MLEM.Ui.Elements {
                     break;
             }
             var offsetArea = progressArea.Shrink(this.ProgressPadding.Value * this.Scale);
-            if (this.ProgressTexture.Value != null) {
+            if (this.ProgressTexture.HasValue()) {
                 batch.Draw(this.ProgressTexture, offsetArea, (Color) this.ProgressColor * alpha, this.Scale);
             } else {
                 batch.Draw(batch.GetBlankTexture(), offsetArea, (Color) this.ProgressColor * alpha);
