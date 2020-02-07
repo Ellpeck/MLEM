@@ -28,11 +28,3 @@ steps:
       **/MLEM*.csproj
       **/Demos.csproj
       **/Demos.DesktopGL.csproj
-
-- task: XamarinAndroid@1
-  inputs:
-    projectFile: '**/*Android.csproj'
-    target: 'Release'
-    jdkOption: 'JDKVersion'
-
-
