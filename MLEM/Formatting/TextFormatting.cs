@@ -89,9 +89,10 @@ namespace MLEM.Formatting {
             var animStart = 0;
 
             var innerOffset = new Vector2();
+            var formatIndex = 0;
             for (var i = 0; i < unformattedText.Length; i++) {
                 // check if the current character's index has a formatting code
-                if (formatting.TryGetValue(i, out var codes)) {
+                if (formatting.TryGetValue(formatIndex, out var codes)) {
                     foreach (var code in codes) {
                         // if so, apply it
                         switch (code.CodeType) {
@@ -134,6 +135,7 @@ namespace MLEM.Formatting {
                         currAnim(settings, currFont, batch, unformattedText, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
                     currAnim(settings, currFont, batch, unformattedText, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
                     innerOffset.X += regularFont.MeasureString(cSt).X * scale;
+                    formatIndex++;
                 }
             }
         }

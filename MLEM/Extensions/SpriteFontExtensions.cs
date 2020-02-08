@@ -36,7 +36,7 @@ namespace MLEM.Extensions {
                 foreach (var word in line.Split(' ')) {
                     if (widthFunc(word) * scale >= width) {
                         if (curr.Length > 0) {
-                            total.Append(curr.ToString(0, curr.Length - 1)).Append('\n');
+                            total.Append(curr.ToString(0, curr.Length)).Append('\n');
                             curr.Clear();
                         }
                         var wordBuilder = new StringBuilder();
@@ -53,13 +53,13 @@ namespace MLEM.Extensions {
                         if (widthFunc(curr.ToString()) * scale >= width) {
                             var len = curr.Length - word.Length - 1;
                             if (len > 0) {
-                                total.Append(curr.ToString(0, len - 1)).Append('\n');
+                                total.Append(curr.ToString(0, len)).Append('\n');
                                 curr.Remove(0, len);
                             }
                         }
                     }
                 }
-                total.Append(curr.ToString(0, curr.Length - 1)).Append('\n');
+                total.Append(curr).Append('\n');
             }
             return total.ToString(0, total.Length - 1);
         }

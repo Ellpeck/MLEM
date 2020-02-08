@@ -103,7 +103,7 @@ namespace Demos {
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations! Note that these images have to be square, or [Tree] bad things happen."));
 
-            var animatedPar = root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esc typing effect by default. Of course, more animations can be added though."));
+            var animatedPar = root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esque typing effect by default. Of course, more animations can be added though."));
             root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {
                 // to reset any animation, simply change the paragraph's TimeIntoAnimation
                 OnPressed = e => animatedPar.TimeIntoAnimation = TimeSpan.Zero
@@ -209,7 +209,7 @@ namespace Demos {
 
             root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), tree, "Button with image")).PositionOffset = new Vector2(0, 1);
             root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
-            //root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This_is_a_really_long_line_to_see_if_splitting_without_spaces_works_properly._I_also_want_to_see_if_it_works_across_multiple_lines_or_just_on_the_first_one. But after this, I want the text to continue normally before changing_back_to_being_really_long_oh_yes"));
+            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This_is_a_really_long_[Blue]line[White]_to_see_if_splitting_without_spaces_works_properly._I_also_want_to_see_if_it_works_[Blue]across[White]_multiple_lines_or_just_on_the_first_one. But after this, I want the text to [Blue]continue[White] normally before changing_back_to_being_really_long_[Blue]oh[White]_yes"));
 
             // Below are some querying examples that help you find certain elements easily
 
