@@ -36,7 +36,7 @@ namespace MLEM.Extensions {
                 foreach (var word in line.Split(' ')) {
                     if (widthFunc(word) * scale >= width) {
                         if (curr.Length > 0) {
-                            total.Append(curr.ToString(0, curr.Length)).Append('\n');
+                            total.Append(curr).Append('\n');
                             curr.Clear();
                         }
                         var wordBuilder = new StringBuilder();
