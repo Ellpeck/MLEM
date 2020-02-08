@@ -90,7 +90,7 @@ namespace MLEM.Formatting {
 
             var innerOffset = new Vector2();
             var formatIndex = 0;
-            for (var i = 0; i < unformattedText.Length; i++) {
+            foreach (var c in unformattedText) {
                 // check if the current character's index has a formatting code
                 if (formatting.TryGetValue(formatIndex, out var codes)) {
                     foreach (var code in codes) {
@@ -119,21 +119,20 @@ namespace MLEM.Formatting {
                                 break;
                             case FormattingCode.Type.Animation:
                                 currAnim = code.Animation;
-                                animStart = i;
+                                animStart = formatIndex;
                                 break;
                         }
                     }
                 }
 
-                var c = unformattedText[i];
                 var cSt = c.ToString();
                 if (c == '\n') {
                     innerOffset.X = 0;
                     innerOffset.Y += regularFont.LineHeight * scale;
                 } else {
                     if (currStyle == TextStyle.Shadow)
-                        currAnim(settings, currFont, batch, unformattedText, i, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
-                    currAnim(settings, currFont, batch, unformattedText, i, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
+                        currAnim(settings, currFont, batch, unformattedText, formatIndex, animStart, cSt, pos + innerOffset + settings.DropShadowOffset * scale, settings.DropShadowColor, scale, depth, timeIntoAnimation);
+                    currAnim(settings, currFont, batch, unformattedText, formatIndex, animStart, cSt, pos + innerOffset, currColor, scale, depth, timeIntoAnimation);
                     innerOffset.X += regularFont.MeasureString(cSt).X * scale;
                     formatIndex++;
                 }
