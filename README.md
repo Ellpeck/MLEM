@@ -1,6 +1,6 @@
 # MLEM
 (M)LEM (L)ibrary by (E)llpeck for (M)onoGame
 
-Get it at https://www.nuget.org/packages?q=mlem
+Get it at https://www.nuget.org/packages?q=mlem or use the prerelease feed at https://dev.azure.com/Ellpeck/Public/_packaging
 
 To talk about MLEM and suggest features or report issues, join the Discord at https://ellpeck.de/discord
