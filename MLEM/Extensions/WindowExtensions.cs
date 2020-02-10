@@ -6,25 +6,42 @@ using Microsoft.Xna.Framework.Input;
 namespace MLEM.Extensions {
     public static class WindowExtensions {
 
-        private static readonly bool TextInputSupported = typeof(GameWindow).GetEvent("TextInput") != null;
+        private static readonly EventInfo TextInput = typeof(GameWindow).GetEvent("TextInput");
 
         public static bool AddTextInputListener(this GameWindow window, TextInputCallback callback) {
-            if (!SupportsTextInput())
-                return false;
-            TextInputAdder.Add(window, callback);
-            return true;
+            return new TextInputReflector(callback).AddToWindow(window);
         }
 
         public static bool SupportsTextInput() {
-            return TextInputSupported;
+            return TextInput != null;
         }
 
         public delegate void TextInputCallback(object sender, Keys key, char character);
 
-        private static class TextInputAdder {
+        private class TextInputReflector {
 
-            public static void Add(GameWindow window, TextInputCallback callback) {
-                window.TextInput += (sender, args) => callback(sender, args.Key, args.Character);
+            private static readonly MethodInfo Callback = typeof(TextInputReflector).GetMethod(nameof(OnTextInput), BindingFlags.Instance | BindingFlags.NonPublic);
+            private static PropertyInfo key;
+            private static PropertyInfo character;
+            private readonly TextInputCallback callback;
+
+            public TextInputReflector(TextInputCallback callback) {
+                this.callback = callback;
+            }
+
+            public bool AddToWindow(GameWindow window) {
+                if (TextInput == null)
+                    return false;
+                TextInput.AddEventHandler(window, Delegate.CreateDelegate(TextInput.EventHandlerType, this, Callback));
+                return true;
+            }
+
+            private void OnTextInput(object sender, EventArgs args) {
+                if (key == null)
+                    key = args.GetType().GetProperty("Key");
+                if (character == null)
+                    character = args.GetType().GetProperty("Character");
+                this.callback.Invoke(sender, (Keys) key.GetValue(args), (char) character.GetValue(args));
             }
 
         }
