@@ -36,7 +36,7 @@ namespace MLEM.Extensions {
                 return true;
             }
 
-            private void OnTextInput(object sender, EventArgs args) {
+            private void OnTextInput(object sender, object args) {
                 if (key == null)
                     key = args.GetType().GetProperty("Key");
                 if (character == null)
