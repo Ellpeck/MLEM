@@ -7,7 +7,6 @@ pipeline {
     dotnet build $i
 done'''
         sh 'dotnet build **/Demos.csproj'
-        sh 'dotnet build **/Demos.DesktopGL.csproj'
       }
     }
 
