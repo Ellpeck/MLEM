@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('Build Projects') {
       steps {
-        sh 'dotnet build **/MLEM*.csproj'
+        sh '''for i in **/MLEM*.csproj; do
+    dotnet build $i
+done'''
         sh 'dotnet build **/Demos.csproj'
         sh 'dotnet build **/Demos.DesktopGL.csproj'
       }
