@@ -14,6 +14,9 @@ namespace Demos {
 
         private static readonly Dictionary<string, Func<MlemGame, Demo>> Demos = new Dictionary<string, Func<MlemGame, Demo>>();
         private Demo activeDemo;
+        private double fpsTime;
+        private int lastFps;
+        private int fpsCounter;
 
         static GameImpl() {
             Demos.Add("Ui", game => new UiDemo(game));
@@ -68,6 +71,8 @@ namespace Demos {
                     PositionOffset = new Vector2(0, 1)
                 });
             }
+            
+            this.UiSystem.Add("Fps", new Paragraph(Anchor.TopLeft, 1, p => "FPS: " + this.lastFps));
         }
 
         protected override void DoDraw(GameTime gameTime) {
@@ -77,6 +82,14 @@ namespace Demos {
                 this.GraphicsDevice.Clear(Color.CornflowerBlue);
             }
             base.DoDraw(gameTime);
+
+            this.fpsCounter++;
+            this.fpsTime += gameTime.ElapsedGameTime.TotalSeconds;
+            if (this.fpsTime >= 1) {
+                this.fpsTime -= 1;
+                this.lastFps = this.fpsCounter;
+                this.fpsCounter = 0;
+            }
         }
 
         protected override void DoUpdate(GameTime gameTime) {
