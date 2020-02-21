@@ -12,7 +12,7 @@ done'''
 
     stage('Pack') {
       steps {
-        sh 'rm **/*.nupkg'
+        sh 'find . -type f -name \'*.nupkg\' -delete'
         sh '''for i in **/MLEM*.csproj; do
     dotnet pack $i --version-suffix ${BUILD_NUMBER}
 done'''
