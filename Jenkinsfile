@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+      BAGET     = credentials('')
+  }
   stages {
     stage('Build Projects') {
       steps {
