@@ -22,7 +22,7 @@ done'''
     stage('Publish') {
       steps {
         sh '''for i in **/*.nupkg; do
-    nuget push $i -s https://nuget.ellpeck.de/v3/index.json
+    nuget push $i -Source https://nuget.ellpeck.de/v3/index.json
 done'''
       }
     }
