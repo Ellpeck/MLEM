@@ -25,7 +25,7 @@ done'''
     stage('Publish') {
       steps {
         sh '''for i in **/*.nupkg; do
-    dotnet nuget push -s http://localhost:5000/v3/index.json $i -k $BAGET
+    dotnet nuget push -s http://localhost:5000/v3/index.json $i -k $BAGET -n true
 done'''
       }
     }
