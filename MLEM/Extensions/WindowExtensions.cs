@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -13,7 +14,15 @@ namespace MLEM.Extensions {
         }
 
         public static bool SupportsTextInput() {
-            return TextInput != null;
+            if (TextInput == null)
+                return false;
+            // The newest version of DesktopGL.Core made a change where TextInputEventArgs doesn't extend EventArgs
+            // anymore, making this reflection system incompatible with it. For now, this just disables text input
+            // meaning that MLEM.Ui text boxes won't work, but at least it won't crash either.
+            // Let's hope there'll be one last update to DesktopGL that also introduces this change so we can fix this.
+            if (!typeof(EventArgs).IsAssignableFrom(TextInput.EventHandlerType.GenericTypeArguments.FirstOrDefault()))
+                return false;
+            return true;
         }
 
         public delegate void TextInputCallback(object sender, Keys key, char character);
@@ -30,7 +39,7 @@ namespace MLEM.Extensions {
             }
 
             public bool AddToWindow(GameWindow window) {
-                if (TextInput == null)
+                if (!SupportsTextInput())
                     return false;
                 TextInput.AddEventHandler(window, Delegate.CreateDelegate(TextInput.EventHandlerType, this, Callback));
                 return true;
