@@ -1,3 +1,6 @@
+using Microsoft.Xna.Framework;
+using MLEM.Misc;
+
 namespace TemplateNamespace {
     public static class Program {
 
