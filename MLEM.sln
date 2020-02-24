@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Android", "Demos.Andr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Data", "MLEM.Data\MLEM.Data.csproj", "{28938AAA-FB91-4E6F-8511-0DB99EC831F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Templates", "MLEM.Templates\MLEM.Templates.csproj", "{C2A2CFED-C9E8-4675-BD66-EFC3DB210977}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{28938AAA-FB91-4E6F-8511-0DB99EC831F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28938AAA-FB91-4E6F-8511-0DB99EC831F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28938AAA-FB91-4E6F-8511-0DB99EC831F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A2CFED-C9E8-4675-BD66-EFC3DB210977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A2CFED-C9E8-4675-BD66-EFC3DB210977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A2CFED-C9E8-4675-BD66-EFC3DB210977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A2CFED-C9E8-4675-BD66-EFC3DB210977}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

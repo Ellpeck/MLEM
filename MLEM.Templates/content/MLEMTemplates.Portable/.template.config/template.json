@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Ellpeck",
+    "classifications": ["MLEM", "MonoGame"],
+    "identity": "MLEMTemplates.Portable",
+    "name": "MLEM Portable",
+    "shortName": "mlemportable",
+    "sourceName": "TemplateNamespace",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "primaryOutputs": [
+        {
+            "path": "mlemportable.csproj"
+        }
+    ]
+}
