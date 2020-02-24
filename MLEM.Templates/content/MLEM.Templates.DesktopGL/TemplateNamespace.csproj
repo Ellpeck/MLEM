@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Contentless" Version="2.*" />
-        <PackageReference Include="MLEM.Startup" Version="3.*" />
+        <PackageReference Include="Contentless" Version="2.0.*" />
+        <PackageReference Include="MLEM.Startup" Version="3.2.*" />
         <PackageReference Include="MonoGame.Content.Builder" Version="3.7.*" />
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.*" />
     </ItemGroup>

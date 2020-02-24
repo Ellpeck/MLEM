@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MLEM.Startup" Version="3.*" />
+        <PackageReference Include="MLEM.Startup" Version="3.2.*" />
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.1.189">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
