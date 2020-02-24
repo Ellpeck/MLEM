@@ -2,7 +2,8 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Ellpeck",
     "classifications": ["MLEM", "MonoGame"],
-    "identity": "MLEMTemplates.DesktopGL",
+    "groupIdentity": "MLEM.Templates.DesktopGL",
+    "identity": "MLEM.Templates.DesktopGL",
     "name": "MLEM DesktopGL",
     "shortName": "mlemdesktopgl",
     "sourceName": "TemplateNamespace",
@@ -13,7 +14,14 @@
     },
     "primaryOutputs": [
         {
-            "path": "mlemdesktopgl.csproj"
+            "path": "TemplateNamespace.csproj"
         }
-    ]
+    ],
+    "symbols": {
+        "framework": {
+            "type": "parameter",
+            "defaultValue": "net462",
+            "replaces": "net462"
+        }
+    }
 }
