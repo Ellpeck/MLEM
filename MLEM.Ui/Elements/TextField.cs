@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Input;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -53,22 +54,7 @@ namespace MLEM.Ui.Elements {
             if (font != null)
                 this.Font.Set(font);
 
-            if (WindowExtensions.SupportsTextInput()) {
-                this.OnTextInput += (element, key, character) => {
-                    if (!this.IsSelected || this.IsHidden)
-                        return;
-                    if (key == Keys.Back) {
-                        if (this.CaretPos > 0) {
-                            this.CaretPos--;
-                            this.RemoveText(this.CaretPos, 1);
-                        }
-                    } else if (key == Keys.Delete) {
-                        this.RemoveText(this.CaretPos, 1);
-                    } else {
-                        this.InsertText(character);
-                    }
-                };
-            } else {
+            if (TextInputWrapper.Current.RequiresOnScreenKeyboard()) {
                 this.OnPressed += async e => {
                     if (!KeyboardInput.IsVisible) {
                         var title = this.MobileTitle ?? this.PlaceholderText;
@@ -78,6 +64,20 @@ namespace MLEM.Ui.Elements {
                     }
                 };
             }
+            this.OnTextInput += (element, key, character) => {
+                if (!this.IsSelected || this.IsHidden)
+                    return;
+                if (key == Keys.Back) {
+                    if (this.CaretPos > 0) {
+                        this.CaretPos--;
+                        this.RemoveText(this.CaretPos, 1);
+                    }
+                } else if (key == Keys.Delete) {
+                    this.RemoveText(this.CaretPos, 1);
+                } else {
+                    this.InsertText(character);
+                }
+            };
             this.OnDeselected += e => this.CaretPos = 0;
             this.OnSelected += e => this.CaretPos = this.text.Length;
         }

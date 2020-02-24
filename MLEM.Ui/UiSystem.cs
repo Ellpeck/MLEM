@@ -35,7 +35,7 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             }
         }
-        
+
         private UiStyle style;
         public UiStyle Style {
             get => this.style;
@@ -81,7 +81,7 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             };
 
-            window.AddTextInputListener((sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
+            TextInputWrapper.Current.AddListener(window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {

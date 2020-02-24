@@ -2,6 +2,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using MLEM.Misc;
 
 namespace Demos.Android {
     [Activity(Label = "Demos.Android"
@@ -16,6 +17,7 @@ namespace Demos.Android {
 
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
+            TextInputWrapper.Current = new TextInputWrapper.Mobile();
             var g = new GameImpl();
             // disable mouse handling for android to make emulator behavior more coherent
             g.OnLoadContent += game => game.InputHandler.HandleMouse = false;
