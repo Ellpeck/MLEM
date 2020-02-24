@@ -15,9 +15,9 @@ namespace MLEM.Misc {
                     throw new InvalidOperationException(
                         "The TextInputWrapper was not initialized yet. Please do so before running your game like so:\n" +
                         "DesktopGL: TextInputWrapper.Current = new TextInputWrapper.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);\n" +
-                        "Mobile and Consoles: TextInputWrapper.Current = new TextInputWrapper.Mobile();\n" +
-                        "Other Systems: TextInputWrapper.Current = new TextInputWrapper.Primitive();\n" +
-                        "Note that the primitive wrapper needs to have its Update() method called.");
+                        "Mobile and consoles: TextInputWrapper.Current = new TextInputWrapper.Mobile();\n" +
+                        "Other systems: TextInputWrapper.Current = new TextInputWrapper.Primitive(); (also call Update() every game tick for this one)\n" +
+                        "No text input: TextInputWrapper.Current = new TextInputWrapper.None();");
                 return current;
             }
             set => current = value;
@@ -59,6 +59,17 @@ namespace MLEM.Misc {
 
             public override bool RequiresOnScreenKeyboard() {
                 return true;
+            }
+
+            public override void AddListener(GameWindow window, TextInputCallback callback) {
+            }
+
+        }
+
+        public class None : TextInputWrapper {
+
+            public override bool RequiresOnScreenKeyboard() {
+                return false;
             }
 
             public override void AddListener(GameWindow window, TextInputCallback callback) {
