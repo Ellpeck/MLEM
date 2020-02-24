@@ -16,12 +16,5 @@
         {
             "path": "TemplateNamespace.csproj"
         }
-    ],
-    "symbols": {
-        "framework": {
-            "type": "parameter",
-            "defaultValue": "netstandard2.0",
-            "replaces": "netstandard2.0"
-        }
-    }
+    ]
 }
