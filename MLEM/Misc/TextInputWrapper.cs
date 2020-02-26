@@ -29,7 +29,7 @@ namespace MLEM.Misc {
 
         public delegate void TextInputCallback(object sender, Keys key, char character);
 
-        public class DesktopGl<T> : TextInputWrapper where T : EventArgs {
+        public class DesktopGl<T> : TextInputWrapper {
 
             private PropertyInfo key;
             private PropertyInfo character;

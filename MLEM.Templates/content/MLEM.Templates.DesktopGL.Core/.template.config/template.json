@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Ellpeck",
+    "classifications": ["MLEM", "MonoGame"],
+    "groupIdentity": "MLEM.Templates.DesktopGL.Core",
+    "identity": "MLEM.Templates.DesktopGL.Core",
+    "name": "MLEM DesktopGL Core",
+    "shortName": "mlemdesktopglcore",
+    "sourceName": "TemplateNamespace",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "primaryOutputs": [
+        {
+            "path": "TemplateNamespace.csproj"
+        }
+    ]
+}
