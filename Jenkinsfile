@@ -7,7 +7,7 @@ pipeline {
     dotnet build $i
 done'''
         sh 'dotnet build **/Demos.csproj'
-        sh '''for i in **/TemplateNamespace.csproj; do
+        sh '''for i in **/*/TemplateNamespace.csproj; do
     dotnet build $i
 done'''
       }
