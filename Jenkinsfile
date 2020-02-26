@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-      BAGET = credentials('3db850d0-e6b5-43d5-b607-d180f4eab676')
-  }
   stages {
     stage('Build Projects') {
       steps {
@@ -30,5 +27,8 @@ done'''
       }
     }
 
+  }
+  environment {
+    BAGET = credentials('3db850d0-e6b5-43d5-b607-d180f4eab676')
   }
 }
