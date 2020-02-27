@@ -21,7 +21,7 @@ namespace MLEM.Data {
             return serializer;
         }
 
-        public static void AddJsonConverter<T>(this ContentManager content, JsonConverter<T> converter) {
+        public static void AddJsonConverter(this ContentManager content, JsonConverter converter) {
             var serializer = GetJsonSerializer(content);
             serializer.Converters.Add(converter);
         }
