@@ -10,6 +10,7 @@ using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
+using TextCopy;
 
 namespace MLEM.Ui.Elements {
     public class TextField : Element {
@@ -117,7 +118,10 @@ namespace MLEM.Ui.Elements {
             // handle first initialization if not done
             if (this.displayedText == null)
                 this.HandleTextChange(false);
-
+            
+            if (!this.IsSelected || this.IsHidden)
+                return;
+            
             if (this.Input.IsKeyPressed(Keys.Left)) {
                 this.CaretPos--;
             } else if (this.Input.IsKeyPressed(Keys.Right)) {
@@ -126,6 +130,13 @@ namespace MLEM.Ui.Elements {
                 this.CaretPos = 0;
             } else if (this.Input.IsKeyPressed(Keys.End)) {
                 this.CaretPos = this.text.Length;
+            } else if (this.Input.IsModifierKeyDown(ModifierKey.Control)) {
+                if (this.Input.IsKeyPressed(Keys.V)) {
+                    this.InsertText(Clipboard.GetText());
+                } else if (this.Input.IsKeyPressed(Keys.C)) {
+                    // until there is text selection, just copy the whole content
+                    Clipboard.SetText(this.Text);
+                }
             }
 
             this.caretBlinkTimer += time.ElapsedGameTime.TotalSeconds;
