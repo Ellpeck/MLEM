@@ -92,5 +92,51 @@ namespace MLEM.Misc {
             return (float) Math.Atan2(offset.Y, offset.X);
         }
 
+        public static Direction2 RotateCw(this Direction2 dir, bool fortyFiveDegrees = false) {
+            switch (dir) {
+                case Direction2.Up:
+                    return fortyFiveDegrees ? Direction2.UpRight : Direction2.Right;
+                case Direction2.Right:
+                    return fortyFiveDegrees ? Direction2.DownRight : Direction2.Down;
+                case Direction2.Down:
+                    return fortyFiveDegrees ? Direction2.DownLeft : Direction2.Left;
+                case Direction2.Left:
+                    return fortyFiveDegrees ? Direction2.UpLeft : Direction2.Up;
+                case Direction2.UpRight:
+                    return fortyFiveDegrees ? Direction2.Right : Direction2.DownRight;
+                case Direction2.DownRight:
+                    return fortyFiveDegrees ? Direction2.Down : Direction2.DownLeft;
+                case Direction2.DownLeft:
+                    return fortyFiveDegrees ? Direction2.Left : Direction2.UpLeft;
+                case Direction2.UpLeft:
+                    return fortyFiveDegrees ? Direction2.Up : Direction2.UpRight;
+                default:
+                    return Direction2.None;
+            }
+        }
+
+        public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false) {
+            switch (dir) {
+                case Direction2.Up:
+                    return fortyFiveDegrees ? Direction2.UpLeft : Direction2.Left;
+                case Direction2.Right:
+                    return fortyFiveDegrees ? Direction2.UpRight : Direction2.Up;
+                case Direction2.Down:
+                    return fortyFiveDegrees ? Direction2.DownRight : Direction2.Right;
+                case Direction2.Left:
+                    return fortyFiveDegrees ? Direction2.DownLeft : Direction2.Down;
+                case Direction2.UpRight:
+                    return fortyFiveDegrees ? Direction2.Up : Direction2.UpLeft;
+                case Direction2.DownRight:
+                    return fortyFiveDegrees ? Direction2.Right : Direction2.UpRight;
+                case Direction2.DownLeft:
+                    return fortyFiveDegrees ? Direction2.Down : Direction2.DownRight;
+                case Direction2.UpLeft:
+                    return fortyFiveDegrees ? Direction2.Left : Direction2.DownLeft;
+                default:
+                    return Direction2.None;
+            }
+        }
+
     }
 }
