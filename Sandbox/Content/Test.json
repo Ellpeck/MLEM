@@ -1,0 +1,7 @@
+{
+    "Vec": "10 20",
+    "Point": "20 30",
+    "Rectangle": "1 2 3 4",
+    "RectangleF": "4 5 6 7",
+    "Dir": "Left"
+}

@@ -1,12 +1,15 @@
 using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
+using MLEM.Data;
 using MLEM.Extended.Extensions;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
@@ -14,6 +17,8 @@ using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
+using Newtonsoft.Json.Linq;
+using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {
@@ -60,6 +65,25 @@ namespace Sandbox {
             panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
             panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
             this.UiSystem.Add("Panel", panel);*/
+
+            var obj = new Test{
+                Vec = new Vector2(10, 20),
+                Point = new Point(20, 30),
+                Rectangle = new Rectangle(1, 2, 3, 4),
+                RectangleF = new RectangleF(4, 5, 6, 7).ToMlem(),
+                Dir = Direction2.Left
+            };
+
+            var writer = new StringWriter();
+            this.Content.GetJsonSerializer().Serialize(writer, obj);
+            Console.WriteLine(writer.ToString());
+            // {"Vec":"10 20","Point":"20 30","Rectangle":"1 2 3 4","RectangleF":"4 5 6 7"}
+
+            // Also:
+            //this.Content.AddJsonConverter(new CustomConverter());
+
+            var res = this.Content.LoadJson<Test>("Test");
+            Console.WriteLine(res);
         }
 
         protected override void DoUpdate(GameTime gameTime) {
@@ -86,6 +110,20 @@ namespace Sandbox {
 
             this.SpriteBatch.End();
             base.DoDraw(gameTime);
+        }
+
+        private class Test {
+
+            public Vector2 Vec;
+            public Point Point;
+            public Rectangle Rectangle;
+            public MLEM.Misc.RectangleF RectangleF;
+            public Direction2 Dir;
+
+            public override string ToString() {
+                return $"{nameof(this.Vec)}: {this.Vec}, {nameof(this.Point)}: {this.Point}, {nameof(this.Rectangle)}: {this.Rectangle}, {nameof(this.RectangleF)}: {this.RectangleF}, {nameof(this.Dir)}: {this.Dir}";
+            }
+
         }
 
     }

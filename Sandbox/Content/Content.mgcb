@@ -14,15 +14,15 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Tiled/Map.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Tiled/Map.tmx
+#begin Fonts/TestFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TestFont.spritefont
 
-#begin Tiled/Tileset.tsx
-/importer:TiledMapTilesetImporter
-/processor:TiledMapTilesetProcessor
-/build:Tiled/Tileset.tsx
+#begin Test.json
+/copy:Test.json
 
 #begin Textures/Test.png
 /importer:TextureImporter
@@ -36,10 +36,13 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Test.png
 
-#begin Fonts/TestFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/TestFont.spritefont
+#begin Tiled/Map.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Tiled/Map.tmx
+
+#begin Tiled/Tileset.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:Tiled/Tileset.tsx
 
