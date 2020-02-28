@@ -3,18 +3,20 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.0</TargetFramework>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <TieredCompilation>false</TieredCompilation>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Contentless" Version="2.0.*" />
-        <PackageReference Include="MLEM.Startup" Version="3.2.*" />
-        <PackageReference Include="MonoGame.Content.Builder" Version="3.7.*" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.8.*" />
+        <PackageReference Include="Contentless" Version="2.0.*"/>
+        <PackageReference Include="MLEM.Startup" Version="3.2.*"/>
+        <PackageReference Include="MonoGame.Content.Builder" Version="3.7.*"/>
+        <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.8.*"/>
     </ItemGroup>
 
     <ItemGroup>
-        <MonoGameContentReference Include="Content\Content.mgcb" />
-        <Content Include="Content\*\**" />
+        <MonoGameContentReference Include="Content\Content.mgcb"/>
+        <Content Include="Content\*\**"/>
     </ItemGroup>
 
 </Project>
