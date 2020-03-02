@@ -118,10 +118,10 @@ namespace MLEM.Ui.Elements {
             // handle first initialization if not done
             if (this.displayedText == null)
                 this.HandleTextChange(false);
-            
+
             if (!this.IsSelected || this.IsHidden)
                 return;
-            
+
             if (this.Input.IsKeyPressed(Keys.Left)) {
                 this.CaretPos--;
             } else if (this.Input.IsKeyPressed(Keys.Right)) {
@@ -132,7 +132,9 @@ namespace MLEM.Ui.Elements {
                 this.CaretPos = this.text.Length;
             } else if (this.Input.IsModifierKeyDown(ModifierKey.Control)) {
                 if (this.Input.IsKeyPressed(Keys.V)) {
-                    this.InsertText(Clipboard.GetText());
+                    var clip = Clipboard.GetText();
+                    if (clip != null)
+                        this.InsertText(clip);
                 } else if (this.Input.IsKeyPressed(Keys.C)) {
                     // until there is text selection, just copy the whole content
                     Clipboard.SetText(this.Text);
