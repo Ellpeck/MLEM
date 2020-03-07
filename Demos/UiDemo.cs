@@ -70,6 +70,7 @@ namespace Demos {
 
             // create the root panel that all the other components sit on and add it to the ui system
             var root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
+            root.ScrollBar.SmoothScrolling = true;
             this.UiSystem.Add("Test", root);
 
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));

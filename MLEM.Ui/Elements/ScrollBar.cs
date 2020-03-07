@@ -22,19 +22,22 @@ namespace MLEM.Ui.Elements {
             set {
                 this.maxValue = Math.Max(0, value);
                 // force current value to be clamped
-                this.CurrentValue = this.currValue;
+                this.CurrentValue = this.CurrentValue;
                 if (this.AutoHideWhenEmpty && this.IsHidden != this.maxValue <= 0) {
                     this.IsHidden = this.maxValue <= 0;
                     this.OnAutoHide?.Invoke(this);
                 }
             }
         }
+        private float scrollAdded;
         private float currValue;
         public float CurrentValue {
-            get => this.currValue;
+            get => this.currValue - this.scrollAdded;
             set {
                 var val = MathHelper.Clamp(value, 0, this.maxValue);
                 if (this.currValue != val) {
+                    if (this.SmoothScrolling)
+                        this.scrollAdded = val - this.currValue;
                     this.currValue = val;
                     this.OnValueChanged?.Invoke(this, val);
                 }
@@ -48,6 +51,8 @@ namespace MLEM.Ui.Elements {
         private bool isDragging;
         private bool isTouchHeld;
         public bool AutoHideWhenEmpty;
+        public bool SmoothScrolling;
+        public float SmoothScrollFactor = 0.75F;
 
         static ScrollBar() {
             InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);
@@ -110,6 +115,13 @@ namespace MLEM.Ui.Elements {
                         this.ScrollToPos(pos.ToPoint());
                 }
             }
+
+            if (this.SmoothScrolling && this.scrollAdded != 0) {
+                this.scrollAdded *= this.SmoothScrollFactor;
+                if (Math.Abs(this.scrollAdded) <= 0.1F)
+                    this.scrollAdded = 0;
+                this.OnValueChanged?.Invoke(this, this.CurrentValue);
+            }
         }
 
         private void ScrollToPos(Point position) {
@@ -128,8 +140,8 @@ namespace MLEM.Ui.Elements {
             if (this.MaxValue > 0) {
                 var scrollerPos = new Vector2(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
                 var scrollerOffset = new Vector2(
-                    !this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
-                    this.Horizontal ? 0 : this.currValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
+                    !this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
+                    this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
                 var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, this.ScrollerSize * this.Scale);
                 batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             }
