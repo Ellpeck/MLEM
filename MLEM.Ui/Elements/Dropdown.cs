@@ -1,4 +1,6 @@
+using System.Linq;
 using Microsoft.Xna.Framework;
+using MLEM.Misc;
 
 namespace MLEM.Ui.Elements {
     public class Dropdown : Button {
@@ -24,6 +26,20 @@ namespace MLEM.Ui.Elements {
 
         public void AddElement(Element element) {
             this.Panel.AddChild(element);
+            // Since the dropdown causes elements to be over each other,
+            // usual gamepad code doesn't apply
+            element.GetGamepadNextElement = (dir, usualNext) => {
+                if (dir == Direction2.Up) {
+                    var prev = element.GetOlderSibling();
+                    if (prev != null)
+                        return prev;
+                } else if (dir == Direction2.Down) {
+                    var next = element.GetSiblings(e => e.GetOlderSibling() == element).FirstOrDefault();
+                    if (next != null)
+                        return next;
+                }
+                return usualNext;
+            };
         }
 
         public void AddElement(string text, GenericCallback pressed = null) {
