@@ -471,6 +471,8 @@ namespace MLEM.Ui.Elements {
 
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             this.System.OnElementDrawn?.Invoke(this, time, batch, alpha);
+            if (this.Root.SelectedElement == this)
+                this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha);
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
