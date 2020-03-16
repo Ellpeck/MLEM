@@ -237,7 +237,7 @@ namespace MLEM.Ui {
             };
         }
 
-        public void SelectElement(Element element) {
+        public void SelectElement(Element element, bool? autoNav = null) {
             if (this.SelectedElement == element)
                 return;
 
@@ -247,6 +247,9 @@ namespace MLEM.Ui {
                 this.System.OnElementSelected?.Invoke(element);
             this.SelectedElement = element;
             this.System.OnSelectedElementChanged?.Invoke(element);
+
+            if (autoNav != null)
+                this.System.Controls.IsAutoNavMode = autoNav.Value;
         }
 
     }

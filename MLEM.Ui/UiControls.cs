@@ -31,8 +31,7 @@ namespace MLEM.Ui {
         public bool HandleKeyboard = true;
         public bool HandleTouch = true;
         public bool HandleGamepad = true;
-
-        public bool IsAutoNavMode { get; private set; }
+        public bool IsAutoNavMode;
 
         public UiControls(UiSystem system, InputHandler inputHandler = null) {
             this.System = system;
