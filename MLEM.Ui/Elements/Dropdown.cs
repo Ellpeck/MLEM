@@ -31,12 +31,9 @@ namespace MLEM.Ui.Elements {
             element.GetGamepadNextElement = (dir, usualNext) => {
                 if (dir == Direction2.Up) {
                     var prev = element.GetOlderSibling();
-                    if (prev != null)
-                        return prev;
+                    return prev ?? this;
                 } else if (dir == Direction2.Down) {
-                    var next = element.GetSiblings(e => e.GetOlderSibling() == element).FirstOrDefault();
-                    if (next != null)
-                        return next;
+                    return element.GetSiblings(e => e.GetOlderSibling() == element).FirstOrDefault();
                 }
                 return usualNext;
             };
