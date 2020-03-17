@@ -146,7 +146,7 @@ namespace MLEM.Ui {
             if (root == null)
                 return;
             this.rootElements.Remove(root);
-            root.SelectElement(null);
+            this.Controls.SelectElement(root, null);
             root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
@@ -214,7 +214,7 @@ namespace MLEM.Ui {
         public Matrix Transform = Matrix.Identity;
         public Matrix InvTransform => Matrix.Invert(this.Transform);
 
-        public Element SelectedElement { get; private set; }
+        public Element SelectedElement => this.System.Controls.GetSelectedElement(this);
         public bool CanSelectContent { get; private set; }
 
         public Element.GenericCallback OnElementAdded;
@@ -236,18 +236,7 @@ namespace MLEM.Ui {
         }
 
         public void SelectElement(Element element, bool? autoNav = null) {
-            if (this.SelectedElement == element)
-                return;
-
-            if (this.SelectedElement != null)
-                this.System.OnElementDeselected?.Invoke(this.SelectedElement);
-            if (element != null)
-                this.System.OnElementSelected?.Invoke(element);
-            this.SelectedElement = element;
-            this.System.OnSelectedElementChanged?.Invoke(element);
-
-            if (autoNav != null)
-                this.System.Controls.IsAutoNavMode = autoNav.Value;
+            this.System.Controls.SelectElement(this, element, autoNav);
         }
 
     }

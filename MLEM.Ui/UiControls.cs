@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -17,7 +18,8 @@ namespace MLEM.Ui {
 
         public RootElement ActiveRoot { get; private set; }
         public Element MousedElement { get; private set; }
-        public Element SelectedElement => this.ActiveRoot?.SelectedElement;
+        private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
+        public Element SelectedElement => this.GetSelectedElement(this.ActiveRoot);
 
         public Buttons[] GamepadButtons = {Buttons.A};
         public Buttons[] SecondaryGamepadButtons = {Buttons.X};
@@ -62,7 +64,7 @@ namespace MLEM.Ui {
                 if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                     this.IsAutoNavMode = false;
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
-                    this.ActiveRoot?.SelectElement(selectedNow);
+                    this.SelectElement(this.ActiveRoot, selectedNow);
                     if (mousedNow != null && mousedNow.CanBePressed)
                         this.System.OnElementPressed?.Invoke(mousedNow);
                 } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
@@ -91,7 +93,7 @@ namespace MLEM.Ui {
                     var next = this.GetTabNextElement(backward);
                     if (this.SelectedElement?.Root != null)
                         next = this.SelectedElement.GetTabNextElement(backward, next);
-                    this.ActiveRoot?.SelectElement(next);
+                    this.SelectElement(this.ActiveRoot, next);
                 }
             }
 
@@ -100,13 +102,13 @@ namespace MLEM.Ui {
                 if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
                     this.IsAutoNavMode = false;
                     var tapped = this.GetElementUnderPos(tap.Position);
-                    this.ActiveRoot?.SelectElement(tapped);
+                    this.SelectElement(this.ActiveRoot, tapped);
                     if (tapped != null && tapped.CanBePressed)
                         this.System.OnElementPressed?.Invoke(tapped);
                 } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
                     var held = this.GetElementUnderPos(hold.Position);
-                    this.ActiveRoot?.SelectElement(held);
+                    this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(held);
                 }
@@ -140,6 +142,32 @@ namespace MLEM.Ui {
                     return moused;
             }
             return null;
+        }
+
+        public void SelectElement(RootElement root, Element element, bool? autoNav = null) {
+            if (root == null)
+                return;
+            var selected = this.GetSelectedElement(root);
+            if (selected == element)
+                return;
+
+            if (selected != null)
+                this.System.OnElementDeselected?.Invoke(selected);
+            if (element != null) {
+                this.System.OnElementSelected?.Invoke(element);
+                this.selectedElements[root.Name] = element;
+            } else {
+                this.selectedElements.Remove(root.Name);
+            }
+            this.System.OnSelectedElementChanged?.Invoke(element);
+
+            if (autoNav != null)
+                this.IsAutoNavMode = autoNav.Value;
+        }
+
+        public Element GetSelectedElement(RootElement root) {
+            this.selectedElements.TryGetValue(root.Name, out var element);
+            return element;
         }
 
         protected virtual Element GetTabNextElement(bool backward) {
@@ -223,7 +251,7 @@ namespace MLEM.Ui {
             if (this.SelectedElement != null)
                 next = this.SelectedElement.GetGamepadNextElement(dir, next);
             if (next != null)
-                this.ActiveRoot.SelectElement(next);
+                this.SelectElement(this.ActiveRoot, next);
         }
 
     }
