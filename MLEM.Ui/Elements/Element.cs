@@ -30,11 +30,12 @@ namespace MLEM.Ui.Elements {
             get => this.system;
             internal set {
                 this.system = value;
+                this.Controls = value?.Controls;
                 if (this.system != null)
                     this.InitStyle(this.system.Style);
             }
         }
-        protected UiControls Controls => this.System.Controls;
+        protected UiControls Controls;
         protected InputHandler Input => this.Controls.Input;
         public Element Parent { get; private set; }
         public RootElement Root { get; internal set; }
