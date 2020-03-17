@@ -166,6 +166,8 @@ namespace MLEM.Ui {
         }
 
         public Element GetSelectedElement(RootElement root) {
+            if (root == null)
+                return null;
             this.selectedElements.TryGetValue(root.Name, out var element);
             return element;
         }
