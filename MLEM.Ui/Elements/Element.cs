@@ -35,7 +35,7 @@ namespace MLEM.Ui.Elements {
                     this.InitStyle(this.system.Style);
             }
         }
-        protected UiControls Controls;
+        public UiControls Controls;
         protected InputHandler Input => this.Controls.Input;
         public Element Parent { get; private set; }
         public RootElement Root { get; internal set; }
