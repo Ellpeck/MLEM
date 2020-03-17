@@ -21,9 +21,9 @@ namespace MLEM.Ui {
         private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
         public Element SelectedElement => this.GetSelectedElement(this.ActiveRoot);
 
-        public Buttons[] GamepadButtons = {Buttons.A};
-        public Buttons[] SecondaryGamepadButtons = {Buttons.X};
-        public Keys[] KeyboardButtons = {Keys.Space, Keys.Enter};
+        public object[] KeyboardButtons = {Keys.Space, Keys.Enter};
+        public object[] GamepadButtons = {Buttons.A};
+        public object[] SecondaryGamepadButtons = {Buttons.X};
         public object[] UpButtons = {Buttons.DPadUp, Buttons.LeftThumbstickUp};
         public object[] DownButtons = {Buttons.DPadDown, Buttons.LeftThumbstickDown};
         public object[] LeftButtons = {Buttons.DPadLeft, Buttons.LeftThumbstickLeft};
@@ -76,7 +76,7 @@ namespace MLEM.Ui {
 
             // KEYBOARD INPUT
             if (this.HandleKeyboard) {
-                if (this.KeyboardButtons.Any(this.Input.IsKeyPressed)) {
+                if (this.KeyboardButtons.Any(this.IsAnyPressed)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
@@ -116,19 +116,19 @@ namespace MLEM.Ui {
 
             // GAMEPAD INPUT
             if (this.HandleGamepad) {
-                if (this.GamepadButtons.Any(b => this.IsGamepadPressed(b))) {
+                if (this.GamepadButtons.Any(this.IsAnyPressed)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
                         this.System.OnElementPressed?.Invoke(this.SelectedElement);
-                } else if (this.SecondaryGamepadButtons.Any(b => this.IsGamepadPressed(b))) {
+                } else if (this.SecondaryGamepadButtons.Any(this.IsAnyPressed)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
-                } else if (this.DownButtons.Any(this.IsGamepadPressed)) {
+                } else if (this.DownButtons.Any(this.IsAnyPressed)) {
                     this.HandleGamepadNextElement(Direction2.Down);
-                } else if (this.LeftButtons.Any(this.IsGamepadPressed)) {
+                } else if (this.LeftButtons.Any(this.IsAnyPressed)) {
                     this.HandleGamepadNextElement(Direction2.Left);
-                } else if (this.RightButtons.Any(this.IsGamepadPressed)) {
+                } else if (this.RightButtons.Any(this.IsAnyPressed)) {
                     this.HandleGamepadNextElement(Direction2.Right);
-                } else if (this.UpButtons.Any(this.IsGamepadPressed)) {
+                } else if (this.UpButtons.Any(this.IsAnyPressed)) {
                     this.HandleGamepadNextElement(Direction2.Up);
                 }
             }
@@ -220,7 +220,7 @@ namespace MLEM.Ui {
             }
         }
 
-        private bool IsGamepadPressed(object button) {
+        private bool IsAnyPressed(object button) {
             return this.Input.IsPressed(button, this.GamepadIndex);
         }
 
