@@ -231,22 +231,21 @@ namespace MLEM.Ui {
             RectangleF searchArea = default;
             if (this.SelectedElement?.Root != null) {
                 searchArea = this.SelectedElement.Area;
-                var view = this.System.Viewport;
-                view.Inflate(view.Width, view.Height);
+                var (_, _, width, height) = this.System.Viewport;
                 switch (dir) {
                     case Direction2.Down:
-                        searchArea.Height += view.Height;
+                        searchArea.Height += height;
                         break;
                     case Direction2.Left:
-                        searchArea.X -= view.Width;
-                        searchArea.Width += view.Width;
+                        searchArea.X -= width;
+                        searchArea.Width += width;
                         break;
                     case Direction2.Right:
-                        searchArea.Width += view.Width;
+                        searchArea.Width += width;
                         break;
                     case Direction2.Up:
-                        searchArea.Y -= view.Height;
-                        searchArea.Height += view.Height;
+                        searchArea.Y -= height;
+                        searchArea.Height += height;
                         break;
                 }
             }
