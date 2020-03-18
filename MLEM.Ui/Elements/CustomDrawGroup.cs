@@ -42,6 +42,10 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        public void ScaleOrigin(float scale, Vector2? origin = null) {
+            this.Transform = Matrix.CreateScale(scale, scale, 0) * Matrix.CreateTranslation(new Vector3((1 - scale) * (origin ?? this.DisplayArea.Center), 0));
+        }
+
         public delegate void BeginDelegate(CustomDrawGroup element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
 
         public delegate Matrix TransformCallback(CustomDrawGroup element, GameTime time, Matrix matrix);
