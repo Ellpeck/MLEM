@@ -61,7 +61,7 @@ namespace MLEM.Extensions {
                 }
                 total.Append(curr).Append('\n');
             }
-            return total.ToString(0, total.Length - 1);
+            return total.ToString(0, total.Length - 2);
         }
 
     }
