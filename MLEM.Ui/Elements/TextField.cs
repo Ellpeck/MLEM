@@ -20,6 +20,8 @@ namespace MLEM.Ui.Elements {
         public static readonly Rule OnlyNumbers = (field, add) => add.All(char.IsNumber);
         public static readonly Rule LettersNumbers = (field, add) => add.All(c => char.IsLetter(c) || char.IsNumber(c));
 
+        public StyleProp<Color> TextColor;
+        public StyleProp<Color> PlaceholderColor;
         public StyleProp<NinePatch> Texture;
         public StyleProp<NinePatch> HoveredTexture;
         public StyleProp<Color> HoveredColor;
@@ -30,6 +32,7 @@ namespace MLEM.Ui.Elements {
         public string PlaceholderText;
         public TextChanged OnTextChange;
         public float TextOffsetX = 4;
+        public float CaretWidth = 0.5F;
         private double caretBlinkTimer;
         private string displayedText;
         private int textOffset;
@@ -158,11 +161,15 @@ namespace MLEM.Ui.Elements {
             if (this.displayedText != null) {
                 var textPos = this.DisplayArea.Location + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2);
                 if (this.text.Length > 0 || this.IsSelected) {
-                    var caret = this.IsSelected ? this.caretBlinkTimer >= 0.5F ? "|" : " " : "";
-                    var display = this.displayedText.Insert(this.CaretPos - this.textOffset, caret);
-                    this.Font.Value.DrawCenteredString(batch, display, textPos, this.TextScale * this.Scale, Color.White * alpha, false, true);
+                    var textColor = this.TextColor.OrDefault(Color.White);
+                    this.Font.Value.DrawCenteredString(batch, this.displayedText, textPos, this.TextScale * this.Scale, textColor * alpha, false, true);
+                    if (this.IsSelected && this.caretBlinkTimer >= 0.5F) {
+                        var textSize = this.Font.Value.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)) * this.TextScale * this.Scale;
+                        var caretHeight = this.Font.Value.LineHeight * this.TextScale * this.Scale;
+                        batch.Draw(batch.GetBlankTexture(), new RectangleF(textPos.X + textSize.X, textPos.Y - caretHeight / 2, this.CaretWidth * this.Scale, caretHeight), null, textColor * alpha);
+                    }
                 } else if (this.PlaceholderText != null) {
-                    this.Font.Value.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, Color.Gray * alpha, false, true);
+                    this.Font.Value.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, this.PlaceholderColor.OrDefault(Color.Gray) * alpha, false, true);
                 }
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
