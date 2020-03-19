@@ -17,6 +17,10 @@ namespace MLEM.Extended.Font {
         }
 
         public Vector2 MeasureString(string text) {
+            // For some reason, Extended's bitmap fonts don't take kerning into
+            // account when calculating the size of a single character
+            if (text.Length == 1)
+                text += ' ';
             return this.Font.MeasureString(text);
         }
 
