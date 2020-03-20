@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Font;
 
 namespace MLEM.Extensions {
     public static class SpriteFontExtensions {
@@ -62,6 +63,13 @@ namespace MLEM.Extensions {
                 total.Append(curr).Append('\n');
             }
             return total.ToString(0, total.Length - 2);
+        }
+
+        public static string GetWidthString(IGenericFont font, float width, char content = ' ') {
+            var strg = content.ToString();
+            while (font.MeasureString(strg).X < width)
+                strg += content;
+            return strg;
         }
 
     }

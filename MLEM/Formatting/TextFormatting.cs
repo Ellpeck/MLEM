@@ -12,7 +12,6 @@ namespace MLEM.Formatting {
     public static class TextFormatting {
 
         public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>();
-        private static readonly Dictionary<IGenericFont, string> OneEmStrings = new Dictionary<IGenericFont, string>();
         private static Regex formatRegex;
 
         static TextFormatting() {
@@ -43,16 +42,6 @@ namespace MLEM.Formatting {
             var cl = "\\" + closer;
             // find any text that is surrounded by the opener and closer
             formatRegex = new Regex($"{op}[^{op}{cl}]*{cl}");
-        }
-
-        public static string GetOneEmString(IGenericFont font) {
-            if (!OneEmStrings.TryGetValue(font, out var strg)) {
-                strg = " ";
-                while (font.MeasureString(strg + ' ').X < font.LineHeight)
-                    strg += ' ';
-                OneEmStrings[font] = strg;
-            }
-            return strg;
         }
 
         public static string RemoveFormatting(this string s, IGenericFont font) {

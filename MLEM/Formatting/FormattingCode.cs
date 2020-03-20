@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using MLEM.Animations;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Textures;
 
@@ -37,7 +38,7 @@ namespace MLEM.Formatting {
         }
 
         public virtual string GetReplacementString(IGenericFont font) {
-            return this.CodeType == Type.Icon ? TextFormatting.GetOneEmString(font) : string.Empty;
+            return this.CodeType == Type.Icon ? SpriteFontExtensions.GetWidthString(font, font.LineHeight) : string.Empty;
         }
 
         public enum Type {
