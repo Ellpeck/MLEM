@@ -6,7 +6,7 @@ using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Textures {
-    public class NinePatch {
+    public class NinePatch : GenericDataHolder {
 
         public readonly TextureRegion Region;
         public readonly Padding Padding;

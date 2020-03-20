@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using MLEM.Misc;
 
 namespace MLEM.Formatting {
     public class FormattingCodeCollection : Dictionary<int, List<FormattingCodeData>> {
 
     }
 
-    public class FormattingCodeData {
+    public class FormattingCodeData : GenericDataHolder {
 
         public readonly FormattingCode Code;
         public readonly Match Match;

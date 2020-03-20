@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Misc;
 
 namespace MLEM.Textures {
-    public class UniformTextureAtlas {
+    public class UniformTextureAtlas : GenericDataHolder {
 
         public readonly Texture2D Texture;
         public readonly int RegionAmountX;

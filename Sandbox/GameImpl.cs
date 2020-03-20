@@ -50,7 +50,7 @@ namespace Sandbox {
                 MaxScale = 4
             };
 
-            /*var tex = LoadContent<Texture2D>("Textures/Test");
+            var tex = LoadContent<Texture2D>("Textures/Test");
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
                 Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
                 TextScale = 0.1F,
@@ -64,9 +64,12 @@ namespace Sandbox {
             var panel = new Panel(Anchor.Center, new Vector2(0, 100), Vector2.Zero) {SetWidthBasedOnChildren = true};
             panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
             panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
-            this.UiSystem.Add("Panel", panel);*/
+            this.UiSystem.Add("Panel", panel);
 
-            var obj = new Test{
+            panel.SetData("TestKey", new Vector2(10, 2));
+            Console.WriteLine(panel.GetData<Vector2>("TestKey"));
+
+            var obj = new Test {
                 Vec = new Vector2(10, 20),
                 Point = new Point(20, 30),
                 Rectangle = new Rectangle(1, 2, 3, 4),

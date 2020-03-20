@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Extensions;
-using MonoGame.Extended;
+using MLEM.Misc;
 using MonoGame.Extended.Tiled;
+using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace MLEM.Extended.Tiled {
     public class TiledMapCollisions {
@@ -79,7 +80,7 @@ namespace MLEM.Extended.Tiled {
 
         public delegate void CollectCollisions(List<RectangleF> collisions, TileCollisionInfo tile);
 
-        public class TileCollisionInfo {
+        public class TileCollisionInfo : GenericDataHolder {
 
             public readonly TiledMap Map;
             public readonly Vector2 Position;

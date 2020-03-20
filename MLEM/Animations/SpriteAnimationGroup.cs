@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Animations {
-    public class SpriteAnimationGroup {
+    public class SpriteAnimationGroup : GenericDataHolder{
 
         private readonly List<ConditionedAnimation> animations = new List<ConditionedAnimation>();
         private ConditionedAnimation currAnimation;

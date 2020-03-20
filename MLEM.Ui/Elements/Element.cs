@@ -13,7 +13,7 @@ using MLEM.Textures;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
-    public abstract class Element {
+    public abstract class Element : GenericDataHolder {
 
         protected readonly List<Element> Children = new List<Element>();
         private readonly List<Element> sortedChildren = new List<Element>();

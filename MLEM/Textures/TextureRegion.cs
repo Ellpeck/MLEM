@@ -4,7 +4,7 @@ using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Textures {
-    public class TextureRegion {
+    public class TextureRegion : GenericDataHolder {
 
         public readonly Texture2D Texture;
         public readonly Rectangle Area;

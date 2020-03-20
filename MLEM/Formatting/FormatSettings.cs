@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
+using MLEM.Misc;
 
 namespace MLEM.Formatting {
-    public class FormatSettings {
+    public class FormatSettings : GenericDataHolder {
 
         public static readonly FormatSettings Default = new FormatSettings();
 

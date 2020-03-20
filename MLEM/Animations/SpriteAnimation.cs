@@ -1,10 +1,11 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Animations {
-    public class SpriteAnimation {
+    public class SpriteAnimation : GenericDataHolder {
 
         private AnimationFrame[] frames;
         public AnimationFrame this[int index] => this.frames[index];

@@ -2,10 +2,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using MLEM.Font;
 using MLEM.Formatting;
+using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Ui.Style {
-    public class UiStyle {
+    public class UiStyle : GenericDataHolder {
 
         public NinePatch SelectionIndicator;
         public NinePatch ButtonTexture;

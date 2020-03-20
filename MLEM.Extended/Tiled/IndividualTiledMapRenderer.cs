@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
-using MonoGame.Extended;
+using MLEM.Misc;
 using MonoGame.Extended.Tiled;
+using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace MLEM.Extended.Tiled {
     public class IndividualTiledMapRenderer {
@@ -84,7 +85,7 @@ namespace MLEM.Extended.Tiled {
 
         public delegate float GetDepth(TiledMapTile tile, TiledMapTileLayer layer, int layerIndex, Point position);
 
-        private class TileDrawInfo {
+        private class TileDrawInfo : GenericDataHolder {
 
             private readonly IndividualTiledMapRenderer renderer;
             private readonly TiledMapTileset tileset;
