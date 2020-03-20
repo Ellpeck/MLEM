@@ -70,10 +70,11 @@ namespace MLEM.Formatting {
                 if (code == null)
                     continue;
                 var index = match.Index - codeLengths;
+                var data = new FormattingCodeData(code, match, index);
                 if (codes.TryGetValue(index, out var curr)) {
-                    curr.Add(code);
+                    curr.Add(data);
                 } else {
-                    codes.Add(index, new List<FormattingCode> {code});
+                    codes.Add(index, new List<FormattingCodeData> {data});
                 }
                 codeLengths += match.Length - code.GetReplacementString(font).Length;
             }
@@ -93,7 +94,8 @@ namespace MLEM.Formatting {
             foreach (var c in unformattedText) {
                 // check if the current character's index has a formatting code
                 if (formatting.TryGetValue(formatIndex, out var codes)) {
-                    foreach (var code in codes) {
+                    foreach (var data in codes) {
+                        var code = data.Code;
                         // if so, apply it
                         switch (code.CodeType) {
                             case FormattingCode.Type.Color:
