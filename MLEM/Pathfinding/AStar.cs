@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MLEM.Pathfinding {
@@ -28,7 +29,7 @@ namespace MLEM.Pathfinding {
         }
 
         public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
-            var startTime = DateTime.UtcNow;
+            var stopwatch = Stopwatch.StartNew();
 
             var getCost = costFunction ?? this.DefaultCostFunction;
             var diags = allowDiagonals ?? this.DefaultAllowDiagonals;
@@ -86,8 +87,9 @@ namespace MLEM.Pathfinding {
                     break;
             }
 
+            stopwatch.Stop();
             this.LastTriesNeeded = count;
-            this.LastTimeNeeded = DateTime.UtcNow - startTime;
+            this.LastTimeNeeded = stopwatch.Elapsed;
             return ret;
         }
 
