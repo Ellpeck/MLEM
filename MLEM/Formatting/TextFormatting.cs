@@ -44,14 +44,14 @@ namespace MLEM.Formatting {
             formatRegex = new Regex($"{op}[^{op}{cl}]*{cl}");
         }
 
-        public static string RemoveFormatting(this string s, IGenericFont font) {
+        public static string RemoveFormatting(this string s, GenericFont font) {
             return formatRegex.Replace(s, match => {
                 var code = FromMatch(match);
                 return code != null ? code.GetReplacementString(font) : match.Value;
             });
         }
 
-        public static FormattingCodeCollection GetFormattingCodes(this string s, IGenericFont font) {
+        public static FormattingCodeCollection GetFormattingCodes(this string s, GenericFont font) {
             var codes = new FormattingCodeCollection();
             var codeLengths = 0;
             foreach (Match match in formatRegex.Matches(s)) {
@@ -70,7 +70,7 @@ namespace MLEM.Formatting {
             return codes;
         }
 
-        public static void DrawFormattedString(this IGenericFont regularFont, SpriteBatch batch, Vector2 pos, string unformattedText, FormattingCodeCollection formatting, Color color, float scale, IGenericFont boldFont = null, IGenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default, FormatSettings formatSettings = null) {
+        public static void DrawFormattedString(this GenericFont regularFont, SpriteBatch batch, Vector2 pos, string unformattedText, FormattingCodeCollection formatting, Color color, float scale, GenericFont boldFont = null, GenericFont italicFont = null, float depth = 0, TimeSpan timeIntoAnimation = default, FormatSettings formatSettings = null) {
             var settings = formatSettings ?? FormatSettings.Default;
             var currColor = color;
             var currFont = regularFont;

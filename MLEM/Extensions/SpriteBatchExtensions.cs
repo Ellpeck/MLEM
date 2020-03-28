@@ -39,16 +39,6 @@ namespace MLEM.Extensions {
             return new NinePatch(tex, 1);
         }
 
-        public static void DrawCenteredString(this SpriteBatch batch, SpriteFont font, string text, Vector2 position, float scale, Color color, bool horizontal = true, bool vertical = false, float addedScale = 0) {
-            var size = font.MeasureString(text);
-            var center = new Vector2(
-                horizontal ? size.X * scale / 2F : 0,
-                vertical ? size.Y * scale / 2F : 0);
-            batch.DrawString(font, text,
-                position + size * scale / 2 - center,
-                color, 0, size / 2, scale + addedScale, SpriteEffects.None, 0);
-        }
-
         public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             var source = sourceRectangle ?? new Rectangle(0, 0, texture.Width, texture.Height);
             var scale = new Vector2(1F / source.Width, 1F / source.Height) * destinationRectangle.Size;

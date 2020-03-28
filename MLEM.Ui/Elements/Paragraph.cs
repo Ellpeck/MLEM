@@ -17,9 +17,9 @@ namespace MLEM.Ui.Elements {
         private string text;
         private string splitText;
         public FormattingCodeCollection Formatting;
-        public StyleProp<IGenericFont> RegularFont;
-        public StyleProp<IGenericFont> BoldFont;
-        public StyleProp<IGenericFont> ItalicFont;
+        public StyleProp<GenericFont> RegularFont;
+        public StyleProp<GenericFont> BoldFont;
+        public StyleProp<GenericFont> ItalicFont;
         public StyleProp<FormatSettings> FormatSettings;
 
         public StyleProp<Color> TextColor;

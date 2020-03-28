@@ -35,9 +35,9 @@ namespace MLEM.Ui.Style {
         public Vector2 ProgressBarProgressPadding;
         public NinePatch ProgressBarProgressTexture;
         public Color ProgressBarProgressColor;
-        public IGenericFont Font;
-        public IGenericFont BoldFont;
-        public IGenericFont ItalicFont;
+        public GenericFont Font;
+        public GenericFont BoldFont;
+        public GenericFont ItalicFont;
         public FormatSettings FormatSettings;
         public float TextScale = 1;
         public SoundEffect ActionSound;

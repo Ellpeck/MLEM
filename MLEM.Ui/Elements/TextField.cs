@@ -26,7 +26,7 @@ namespace MLEM.Ui.Elements {
         public StyleProp<NinePatch> HoveredTexture;
         public StyleProp<Color> HoveredColor;
         public StyleProp<float> TextScale;
-        public StyleProp<IGenericFont> Font;
+        public StyleProp<GenericFont> Font;
         private readonly StringBuilder text = new StringBuilder();
         public string Text => this.text.ToString();
         public string PlaceholderText;
@@ -53,7 +53,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        public TextField(Anchor anchor, Vector2 size, Rule rule = null, IGenericFont font = null) : base(anchor, size) {
+        public TextField(Anchor anchor, Vector2 size, Rule rule = null, GenericFont font = null) : base(anchor, size) {
             this.InputRule = rule ?? DefaultRule;
             if (font != null)
                 this.Font.Set(font);
@@ -159,17 +159,17 @@ namespace MLEM.Ui.Elements {
             batch.Draw(tex, this.DisplayArea, color, this.Scale);
 
             if (this.displayedText != null) {
-                var textPos = this.DisplayArea.Location + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2);
+                var lineHeight = this.Font.Value.LineHeight * this.TextScale * this.Scale;
+                var textPos = this.DisplayArea.Location + new Vector2(this.TextOffsetX * this.Scale, this.DisplayArea.Height / 2 - lineHeight / 2);
                 if (this.text.Length > 0 || this.IsSelected) {
                     var textColor = this.TextColor.OrDefault(Color.White);
-                    this.Font.Value.DrawCenteredString(batch, this.displayedText, textPos, this.TextScale * this.Scale, textColor * alpha, false, true);
+                    this.Font.Value.DrawString(batch, this.displayedText, textPos, textColor * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
                     if (this.IsSelected && this.caretBlinkTimer >= 0.5F) {
                         var textSize = this.Font.Value.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)) * this.TextScale * this.Scale;
-                        var caretHeight = this.Font.Value.LineHeight * this.TextScale * this.Scale;
-                        batch.Draw(batch.GetBlankTexture(), new RectangleF(textPos.X + textSize.X, textPos.Y - caretHeight / 2, this.CaretWidth * this.Scale, caretHeight), null, textColor * alpha);
+                        batch.Draw(batch.GetBlankTexture(), new RectangleF(textPos.X + textSize.X, textPos.Y, this.CaretWidth * this.Scale, lineHeight), null, textColor * alpha);
                     }
                 } else if (this.PlaceholderText != null) {
-                    this.Font.Value.DrawCenteredString(batch, this.PlaceholderText, textPos, this.TextScale * this.Scale, this.PlaceholderColor.OrDefault(Color.Gray) * alpha, false, true);
+                    this.Font.Value.DrawString(batch, this.PlaceholderText, textPos, this.PlaceholderColor.OrDefault(Color.Gray) * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
                 }
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);

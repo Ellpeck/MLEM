@@ -34,45 +34,34 @@ namespace MLEM.Ui.Style {
             this.Font = new EmptyFont();
         }
 
-        private class EmptyFont : IGenericFont {
+        private class EmptyFont : GenericFont {
 
-            public float LineHeight => 1;
+            public override float LineHeight => 1;
 
-            public Vector2 MeasureString(string text) {
+            public override Vector2 MeasureString(string text) {
                 return Vector2.One;
             }
 
-            public Vector2 MeasureString(StringBuilder text) {
+            public override Vector2 MeasureString(StringBuilder text) {
                 return Vector2.One;
             }
 
-            public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
+            public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
             }
 
-            public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             }
 
-            public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             }
 
-            public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
+            public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
             }
 
-            public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             }
 
-            public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            }
-
-            public void DrawCenteredString(SpriteBatch batch, string text, Vector2 position, float scale, Color color, bool horizontal = true, bool vertical = false, float addedScale = 0) {
-            }
-
-            public string SplitString(string text, float width, float scale) {
-                return text;
-            }
-
-            public string TruncateString(string text, float width, float scale, bool fromBack = false) {
-                return text;
+            public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             }
 
         }

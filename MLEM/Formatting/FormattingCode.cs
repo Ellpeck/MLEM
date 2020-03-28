@@ -37,8 +37,8 @@ namespace MLEM.Formatting {
             this.CodeType = Type.Animation;
         }
 
-        public virtual string GetReplacementString(IGenericFont font) {
-            return this.CodeType == Type.Icon ? SpriteFontExtensions.GetWidthString(font, font.LineHeight) : string.Empty;
+        public virtual string GetReplacementString(GenericFont font) {
+            return this.CodeType == Type.Icon ? font.GetWidthString(font.LineHeight) : string.Empty;
         }
 
         public enum Type {

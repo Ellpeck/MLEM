@@ -20,7 +20,7 @@ namespace MLEM.Formatting {
                 font.DrawString(batch, charSt, position, color, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
         };
 
-        public delegate void DrawCharacter(FormatSettings settings, IGenericFont font, SpriteBatch batch, string totalText, int index, int effectStartIndex, string charSt, Vector2 position, Color color, float scale, float layerDepth, TimeSpan timeIntoAnimation);
+        public delegate void DrawCharacter(FormatSettings settings, GenericFont font, SpriteBatch batch, string totalText, int index, int effectStartIndex, string charSt, Vector2 position, Color color, float scale, float layerDepth, TimeSpan timeIntoAnimation);
 
     }
 }
