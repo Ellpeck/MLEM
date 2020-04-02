@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -36,6 +37,31 @@ namespace MLEM.Extensions {
             manager.PreferredBackBufferWidth = view.Width;
             manager.PreferredBackBufferHeight = view.Height;
             manager.ApplyChanges();
+        }
+
+        public static TargetContext WithRenderTarget(this GraphicsDevice device, RenderTarget2D target) {
+            return new TargetContext(device, target);
+        }
+
+        public struct TargetContext : IDisposable {
+
+            private readonly GraphicsDevice device;
+            private readonly RenderTargetBinding[] lastTargets;
+
+            public TargetContext(GraphicsDevice device, RenderTarget2D target) {
+                this.device = device;
+                this.lastTargets = device.RenderTargetCount <= 0 ? null : device.GetRenderTargets();
+                device.SetRenderTarget(target);
+            }
+
+            public void Dispose() {
+                if (this.lastTargets != null) {
+                    this.device.SetRenderTargets(this.lastTargets);
+                } else {
+                    this.device.SetRenderTarget(null);
+                }
+            }
+
         }
 
     }
