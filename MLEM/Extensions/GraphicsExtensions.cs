@@ -55,11 +55,7 @@ namespace MLEM.Extensions {
             }
 
             public void Dispose() {
-                if (this.lastTargets != null) {
-                    this.device.SetRenderTargets(this.lastTargets);
-                } else {
-                    this.device.SetRenderTarget(null);
-                }
+                this.device.SetRenderTargets(this.lastTargets);
             }
 
         }
