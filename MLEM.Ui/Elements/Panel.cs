@@ -147,18 +147,18 @@ namespace MLEM.Ui.Elements {
             this.UpdateAreaIfDirty();
             if (this.scrollOverflow && this.renderTarget != null) {
                 // draw children onto the render target
-                batch.GraphicsDevice.SetRenderTarget(this.renderTarget);
-                batch.GraphicsDevice.Clear(Color.Transparent);
-                // offset children by the render target's location
-                var area = this.GetRenderTargetArea();
-                var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
-                // do the usual draw, but within the render target
-                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, trans);
-                base.Draw(time, batch, alpha, blendState, samplerState, trans);
-                batch.End();
-                // also draw any children early within the render target with the translation applied
-                base.DrawEarly(time, batch, alpha, blendState, samplerState, trans);
-                batch.GraphicsDevice.SetRenderTarget(null);
+                using (batch.GraphicsDevice.WithRenderTarget(this.renderTarget)) {
+                    batch.GraphicsDevice.Clear(Color.Transparent);
+                    // offset children by the render target's location
+                    var area = this.GetRenderTargetArea();
+                    var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
+                    // do the usual draw, but within the render target
+                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, trans);
+                    base.Draw(time, batch, alpha, blendState, samplerState, trans);
+                    batch.End();
+                    // also draw any children early within the render target with the translation applied
+                    base.DrawEarly(time, batch, alpha, blendState, samplerState, trans);
+                }
             } else {
                 base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
             }
