@@ -1,4 +1,6 @@
-<img src="Logo.png" width="50%">
+<p align="center">
+    <img src="Logo.png" width="25%" >
+</p>
 
 (M)LEM (L)ibrary by (E)llpeck for (M)onoGame
 
