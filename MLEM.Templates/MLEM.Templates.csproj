@@ -15,6 +15,7 @@
         <PackageTags>dotnet-new templates monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
+        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Logo.png</PackageIconUrl>
         <VersionPrefix>3.2.5</VersionPrefix>
     </PropertyGroup>
 
