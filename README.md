@@ -1,7 +1,5 @@
-<p align="center">
-    <img src="Logo.png" width="25%" >
-</p>
-
+<img src="Logo.png" width="25%" >
+    
 (M)LEM (L)ibrary by (E)llpeck for (M)onoGame
 
 Get it at https://www.nuget.org/packages?q=mlem or get prerelease builds at https://nuget.ellpeck.de/
