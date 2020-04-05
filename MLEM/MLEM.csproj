@@ -5,7 +5,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame</Description>
+        <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame provides extension methods and additional features for MonoGame</Description>
         <PackageTags>monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

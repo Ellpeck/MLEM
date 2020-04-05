@@ -11,7 +11,7 @@
         <PackageType>Template</PackageType>
         <Title>MLEM Templates</Title>
         <Authors>Ellpeck</Authors>
-        <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame project templates</Description>
+        <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame cross-platform project templates</Description>
         <PackageTags>dotnet-new templates monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
