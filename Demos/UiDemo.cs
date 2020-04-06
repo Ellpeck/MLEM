@@ -95,8 +95,7 @@ namespace Demos {
             root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular], [Bold]Bold[Regular], [Shadow]Drop Shadow'd[Regular] and [Shadow][Pink]mixed formatting[Regular][White]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
 
             // adding some custom image formatting codes
-            // note that all added formatting codes need to be lowercase, while their casing doesn't matter when used
-            TextFormatting.FormattingCodes["grass"] = new FormattingCode(image.Texture);
+            TextFormatting.FormattingCodes["Grass"] = new FormattingCode(image.Texture);
             TextFormatting.FormattingCodes["tree"] = new FormattingCode(tree);
             // formatting codes can also be sprite animations!
             var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);

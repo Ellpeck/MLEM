@@ -11,7 +11,7 @@ using MLEM.Textures;
 namespace MLEM.Formatting {
     public static class TextFormatting {
 
-        public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>();
+        public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>(StringComparer.OrdinalIgnoreCase);
         private static Regex formatRegex;
 
         static TextFormatting() {
@@ -27,7 +27,7 @@ namespace MLEM.Formatting {
             var colors = typeof(Color).GetProperties();
             foreach (var color in colors) {
                 if (color.GetGetMethod().IsStatic)
-                    FormattingCodes[color.Name.ToLowerInvariant()] = new FormattingCode((Color) color.GetValue(null));
+                    FormattingCodes[color.Name] = new FormattingCode((Color) color.GetValue(null));
             }
 
             // animations
@@ -131,7 +131,7 @@ namespace MLEM.Formatting {
         }
 
         private static FormattingCode FromMatch(Capture match) {
-            var rawCode = match.Value.Substring(1, match.Value.Length - 2).ToLowerInvariant();
+            var rawCode = match.Value.Substring(1, match.Value.Length - 2);
             FormattingCodes.TryGetValue(rawCode, out var val);
             return val;
         }
