@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace MLEM.Pathfinding {
     public abstract class AStar<T> {
 
+        public static readonly float InfiniteCost = float.PositiveInfinity;
         public readonly T[] AllDirections;
         public readonly T[] AdjacentDirections;
         public GetCost DefaultCostFunction;
@@ -65,7 +66,7 @@ namespace MLEM.Pathfinding {
                 foreach (var dir in dirsUsed) {
                     var neighborPos = this.AddPositions(current.Pos, dir);
                     var cost = getCost(current.Pos, neighborPos);
-                    if (cost < float.MaxValue) {
+                    if (!float.IsInfinity(cost) && cost < float.MaxValue) {
                         var neighbor = new PathPoint<T>(neighborPos, this.GetManhattanDistance(neighborPos, goal), current, cost, defCost);
                         if (!closed.Contains(neighbor)) {
                             var alreadyIndex = open.IndexOf(neighbor);
