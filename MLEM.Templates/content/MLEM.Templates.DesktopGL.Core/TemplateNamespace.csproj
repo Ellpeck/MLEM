@@ -19,4 +19,7 @@
         <Content Include="Content\*\**"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false"/>
+    </ItemGroup>
 </Project>
