@@ -11,7 +11,7 @@
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
         <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Logo.png</PackageIconUrl>
-        <VersionPrefix>3.2.2</VersionPrefix>
+        <VersionPrefix>3.2.3</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>

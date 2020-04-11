@@ -16,7 +16,7 @@
         <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Logo.png</PackageIconUrl>
-        <VersionPrefix>3.2.6</VersionPrefix>
+        <VersionPrefix>3.2.7</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
