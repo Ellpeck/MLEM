@@ -59,8 +59,13 @@ namespace MLEM.Font {
                     total.Append(text[i]);
                 }
 
-                if (this.MeasureString(total).X * scale + ellipsisWidth >= width)
-                    return total.Remove(fromBack ? 0 : total.Length - 1, 1).Append(ellipsis).ToString();
+                if (this.MeasureString(total).X * scale + ellipsisWidth >= width) {
+                    if (fromBack) {
+                        return total.Remove(0, 1).Insert(0, ellipsis).ToString();
+                    } else {
+                        return total.Remove(total.Length - 1, 1).Append(ellipsis).ToString();
+                    }
+                }
             }
             return total.ToString();
         }
