@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -23,6 +24,30 @@ namespace MLEM.Font {
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth);
 
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color) {
+            this.DrawString(batch, text, position, align, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        }
+
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            this.DrawString(batch, text, position, align, color, rotation, origin, new Vector2(scale), effects, layerDepth);
+        }
+
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            switch (align) {
+                case TextAlign.Center:
+                case TextAlign.CenterBothAxes:
+                    var (w, h) = this.MeasureString(text);
+                    position.X -= w / 2;
+                    if (align == TextAlign.CenterBothAxes)
+                        position.Y -= h / 2;
+                    break;
+                case TextAlign.Right:
+                    position.X -= this.MeasureString(text).X;
+                    break;
+            }
+            this.DrawString(batch, text, position, color, rotation, origin, scale, effects, layerDepth);
+        }
 
         public string TruncateString(string text, float width, float scale, bool fromBack = false) {
             var total = new StringBuilder();
@@ -80,6 +105,15 @@ namespace MLEM.Font {
                 strg += content;
             return strg;
         }
+
+    }
+
+    public enum TextAlign {
+
+        Left,
+        Center,
+        Right,
+        CenterBothAxes
 
     }
 }

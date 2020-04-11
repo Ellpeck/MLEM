@@ -51,8 +51,9 @@ namespace Sandbox {
             };
 
             var tex = LoadContent<Texture2D>("Textures/Test");
+            var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
-                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
+                Font = font,
                 TextScale = 0.1F,
                 PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
                 ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4)
@@ -87,6 +88,16 @@ namespace Sandbox {
 
             var res = this.Content.LoadJson<Test>("Test");
             Console.WriteLine(res);
+
+            this.OnDraw += (game, time) => {
+                this.SpriteBatch.Begin();
+                font.DrawString(this.SpriteBatch, "Left Aligned\nover multiple lines", new Vector2(640, 0), TextAlign.Left, Color.White);
+                font.DrawString(this.SpriteBatch, "Center Aligned\nover multiple lines", new Vector2(640, 100), TextAlign.Center, Color.White);
+                font.DrawString(this.SpriteBatch, "Right Aligned\nover multiple lines", new Vector2(640, 200), TextAlign.Right, Color.White);
+                font.DrawString(this.SpriteBatch, "Center Aligned on both axes", new Vector2(640, 360), TextAlign.CenterBothAxes, Color.White);
+                this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Rectangle(640 - 4, 360 - 4, 8, 8), Color.Green);
+                this.SpriteBatch.End();
+            };
         }
 
         protected override void DoUpdate(GameTime gameTime) {
