@@ -49,8 +49,9 @@ namespace MLEM.Font {
             this.DrawString(batch, text, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
-        public string TruncateString(string text, float width, float scale, bool fromBack = false) {
+        public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
             var total = new StringBuilder();
+            var ellipsisWidth = this.MeasureString(ellipsis).X * scale;
             for (var i = 0; i < text.Length; i++) {
                 if (fromBack) {
                     total.Insert(0, text[text.Length - 1 - i]);
@@ -58,8 +59,8 @@ namespace MLEM.Font {
                     total.Append(text[i]);
                 }
 
-                if (this.MeasureString(total).X * scale >= width)
-                    return total.ToString(fromBack ? 1 : 0, total.Length - 1);
+                if (this.MeasureString(total).X * scale + ellipsisWidth >= width)
+                    return total.Remove(fromBack ? 0 : total.Length - 1, 1).Append(ellipsis).ToString();
             }
             return total.ToString();
         }
