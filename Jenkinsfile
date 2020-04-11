@@ -10,22 +10,32 @@ done'''
       }
     }
 
-    stage('Pack') {
+    stage('Pack and Publish') {
+      when { 
+        branch 'master' 
+      }
       steps {
         sh 'find . -type f -name \'*.nupkg\' -delete'
         sh '''for i in **/MLEM*.csproj; do
     dotnet pack $i --version-suffix ${BUILD_NUMBER}
 done'''
-      }
-    }
-
-    stage('Publish') {
-      when { 
-        branch 'master' 
-      }
-      steps {
         sh '''for i in **/*.nupkg; do
     dotnet nuget push -s http://localhost:5000/v3/index.json $i -k $BAGET -n true
+done'''
+      }
+    }
+    
+    stage('Pack and Publish') {
+      when { 
+        branch 'release' 
+      }
+      steps {
+        sh 'find . -type f -name \'*.nupkg\' -delete'
+        sh '''for i in **/MLEM*.csproj; do
+    dotnet pack $i
+done'''
+        sh '''for i in **/*.nupkg; do
+    dotnet nuget push -s https://api.nuget.org/v3/index.json $i -k $NUGET -n true
 done'''
       }
     }
@@ -33,5 +43,6 @@ done'''
   }
   environment {
     BAGET = credentials('3db850d0-e6b5-43d5-b607-d180f4eab676')
+    NUGET = credentials('e1bf7f6c-6047-4f7e-b639-15240a8f8351')
   }
 }
