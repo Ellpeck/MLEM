@@ -10,7 +10,7 @@ done'''
       }
     }
 
-    stage('Pack and Publish') {
+    stage('Pack and Publish (Master)') {
       when { 
         branch 'master' 
       }
@@ -25,7 +25,7 @@ done'''
       }
     }
     
-    stage('Pack and Publish') {
+    stage('Pack and Publish (Release)') {
       when { 
         branch 'release' 
       }
