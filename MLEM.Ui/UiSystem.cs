@@ -72,11 +72,11 @@ namespace MLEM.Ui {
             this.GraphicsDevice = device;
             this.Window = window;
             this.style = style;
-            this.Viewport = device.Viewport.Bounds;
+            this.Viewport = new Rectangle(Point.Zero, window.ClientBounds.Size);
             this.AutoScaleReferenceSize = this.Viewport.Size;
 
             window.ClientSizeChanged += (sender, args) => {
-                this.Viewport = device.Viewport.Bounds;
+                this.Viewport = new Rectangle(Point.Zero, window.ClientBounds.Size);
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
