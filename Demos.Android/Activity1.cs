@@ -27,7 +27,7 @@ namespace Demos.Android {
             TextInputWrapper.Current = new TextInputWrapper.Mobile();
             this.game = new GameImpl();
             // reset MlemGame width and height to use device's aspect ratio
-            this.game.GraphicsDeviceManager.ResetWidthAndHeight(this.game);
+            this.game.GraphicsDeviceManager.ResetWidthAndHeight(this.game.Window);
             // disable mouse handling for android to make emulator behavior more coherent
             this.game.OnLoadContent += game => game.InputHandler.HandleMouse = false;
             this.view = this.game.Services.GetService(typeof(View)) as View;
