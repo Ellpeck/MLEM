@@ -39,6 +39,13 @@ namespace MLEM.Extensions {
             manager.ApplyChanges();
         }
 
+        public static void ResetWidthAndHeight(this GraphicsDeviceManager manager, Game game) {
+            var (_, _, width, height) = game.Window.ClientBounds;
+            manager.PreferredBackBufferWidth = Math.Max(height, width);
+            manager.PreferredBackBufferHeight = Math.Min(height, width);
+            manager.ApplyChanges();
+        }
+
         public static TargetContext WithRenderTarget(this GraphicsDevice device, RenderTarget2D target) {
             return new TargetContext(device, target);
         }
