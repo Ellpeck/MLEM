@@ -50,7 +50,7 @@ namespace MLEM.Content {
                 if (!file.Exists)
                     continue;
                 using (var stream = file.OpenRead()) {
-                    var read = reader.Read(this, assetName, stream, existing);
+                    var read = reader.Read(this, assetName, stream, typeof(T), existing);
                     if (!(read is T t))
                         throw new ContentLoadException($"{reader} returned non-{typeof(T)} for asset {assetName}");
                     this.LoadedAssets[assetName] = t;

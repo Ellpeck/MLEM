@@ -6,7 +6,7 @@ namespace MLEM.Content {
 
         public abstract bool CanRead(Type t);
 
-        public abstract object Read(RawContentManager manager, string assetPath, Stream stream, object existing);
+        public abstract object Read(RawContentManager manager, string assetPath, Stream stream, Type t, object existing);
 
         public abstract string[] GetFileExtensions();
 
@@ -18,7 +18,7 @@ namespace MLEM.Content {
             return typeof(T).IsAssignableFrom(t);
         }
 
-        public override object Read(RawContentManager manager, string assetPath, Stream stream, object existing) {
+        public override object Read(RawContentManager manager, string assetPath, Stream stream, Type t, object existing) {
             return this.Read(manager, assetPath, stream, (T) existing);
         }
 
