@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
+using MLEM.Content;
 using MLEM.Data;
 using MLEM.Extended.Extensions;
 using MLEM.Extended.Tiled;
@@ -27,6 +28,7 @@ namespace Sandbox {
         private TiledMap map;
         private IndividualTiledMapRenderer mapRenderer;
         private TiledMapCollisions collisions;
+        private RawContentManager rawContent;
 
         public GameImpl() {
             this.IsMouseVisible = true;
@@ -37,6 +39,8 @@ namespace Sandbox {
 
         protected override void LoadContent() {
             base.LoadContent();
+
+            this.Components.Add(this.rawContent = new RawContentManager(this.Services));
 
             this.map = LoadContent<TiledMap>("Tiled/Map");
             this.mapRenderer = new IndividualTiledMapRenderer(this.map);
@@ -50,7 +54,7 @@ namespace Sandbox {
                 MaxScale = 4
             };
 
-            var tex = LoadContent<Texture2D>("Textures/Test");
+            var tex = this.rawContent.Load<Texture2D>("Textures/Test");
             var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
                 Font = font,
