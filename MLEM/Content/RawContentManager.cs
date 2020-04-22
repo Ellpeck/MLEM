@@ -54,7 +54,7 @@ namespace MLEM.Content {
                     if (!(read is T t))
                         throw new ContentLoadException($"{reader} returned non-{typeof(T)} for asset {assetName}");
                     this.LoadedAssets[assetName] = t;
-                    if (t is IDisposable d)
+                    if (t is IDisposable d && !this.disposableAssets.Contains(d))
                         this.disposableAssets.Add(d);
                     return t;
                 }
