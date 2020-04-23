@@ -12,12 +12,7 @@ namespace MLEM.Misc {
         public static TextInputWrapper Current {
             get {
                 if (current == null)
-                    throw new InvalidOperationException(
-                        "The TextInputWrapper was not initialized yet. Please do so before running your game like so:\n" +
-                        "DesktopGL: TextInputWrapper.Current = new TextInputWrapper.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);\n" +
-                        "Mobile and consoles: TextInputWrapper.Current = new TextInputWrapper.Mobile();\n" +
-                        "Other systems: TextInputWrapper.Current = new TextInputWrapper.Primitive(); (also call Update() every game tick for this one)\n" +
-                        "No text input: TextInputWrapper.Current = new TextInputWrapper.None();");
+                    throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://github.com/Ellpeck/MLEM/wiki/MLEM.Ui#text-input");
                 return current;
             }
             set => current = value;
