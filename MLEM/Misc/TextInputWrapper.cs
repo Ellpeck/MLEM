@@ -26,8 +26,8 @@ namespace MLEM.Misc {
 
         public class DesktopGl<T> : TextInputWrapper {
 
-            private PropertyInfo key;
-            private PropertyInfo character;
+            private MemberInfo key;
+            private MemberInfo character;
             private readonly Action<GameWindow, EventHandler<T>> addListener;
 
             public DesktopGl(Action<GameWindow, EventHandler<T>> addListener) {
@@ -40,12 +40,31 @@ namespace MLEM.Misc {
 
             public override void AddListener(GameWindow window, TextInputCallback callback) {
                 this.addListener(window, (sender, args) => {
+                    // the old versions of DesktopGL use a property here, while the 
+                    // core version uses a field. So much for "no breaking changes"
                     if (this.key == null)
-                        this.key = args.GetType().GetProperty("Key");
+                        this.key = GetMember(args, "Key");
                     if (this.character == null)
-                        this.character = args.GetType().GetProperty("Character");
-                    callback.Invoke(sender, (Keys) this.key.GetValue(args), (char) this.character.GetValue(args));
+                        this.character = GetMember(args, "Character");
+                    callback.Invoke(sender, GetValue<Keys>(this.key, args), GetValue<char>(this.character, args));
                 });
+            }
+
+            private static MemberInfo GetMember(object args, string name) {
+                var ret = args.GetType().GetProperty(name);
+                if (ret != null)
+                    return ret;
+                return args.GetType().GetField(name);
+            }
+
+            private static U GetValue<U>(MemberInfo member, object args) {
+                switch (member) {
+                    case PropertyInfo p:
+                        return (U) p.GetValue(args);
+                    case FieldInfo f:
+                        return (U) f.GetValue(args);
+                }
+                throw new ArgumentException();
             }
 
         }
