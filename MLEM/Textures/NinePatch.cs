@@ -37,10 +37,10 @@ namespace MLEM.Textures {
         }
 
         public IEnumerable<RectangleF> CreateRectangles(RectangleF area, float patchScale = 1) {
-            var pl = (int) (this.Padding.Left * patchScale);
-            var pr = (int) (this.Padding.Right * patchScale);
-            var pt = (int) (this.Padding.Top * patchScale);
-            var pb = (int) (this.Padding.Bottom * patchScale);
+            var pl = this.Padding.Left * patchScale;
+            var pr = this.Padding.Right * patchScale;
+            var pt = this.Padding.Top * patchScale;
+            var pb = this.Padding.Bottom * patchScale;
 
             var centerW = area.Width - pl - pr;
             var centerH = area.Height - pt - pb;
