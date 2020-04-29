@@ -57,13 +57,12 @@ namespace MLEM.Extended.Tiled {
             this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tile, tileset, tilesetTile, pos, depth);
         }
 
-        public void Draw(SpriteBatch batch, RectangleF? frustum = null) {
-            for (var i = 0; i < this.map.TileLayers.Count; i++) {
-                this.DrawLayer(batch, i, frustum);
-            }
+        public void Draw(SpriteBatch batch, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
+            for (var i = 0; i < this.map.TileLayers.Count; i++)
+                this.DrawLayer(batch, i, frustum, drawFunction);
         }
 
-        public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null) {
+        public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
             var frust = frustum ?? new RectangleF(0, 0, float.MaxValue, float.MaxValue);
             var minX = Math.Max(0, frust.Left / this.map.TileWidth).Floor();
             var minY = Math.Max(0, frust.Top / this.map.TileHeight).Floor();
@@ -73,7 +72,7 @@ namespace MLEM.Extended.Tiled {
                 for (var y = minY; y < maxY; y++) {
                     var info = this.drawInfos[layerIndex, x, y];
                     if (info != null)
-                        info.Draw(batch);
+                        info.Draw(batch, drawFunction);
                 }
             }
         }
@@ -85,34 +84,35 @@ namespace MLEM.Extended.Tiled {
 
         public delegate float GetDepth(TiledMapTile tile, TiledMapTileLayer layer, int layerIndex, Point position);
 
-        private class TileDrawInfo : GenericDataHolder {
+        public delegate void DrawDelegate(SpriteBatch batch, TileDrawInfo info);
 
-            private readonly IndividualTiledMapRenderer renderer;
-            private readonly TiledMapTileset tileset;
-            private readonly TiledMapTilesetTile tilesetTile;
-            private readonly Point position;
-            private readonly float depth;
-            private readonly SpriteEffects flipping;
+        public class TileDrawInfo : GenericDataHolder {
+
+            public readonly IndividualTiledMapRenderer Renderer;
+            public readonly TiledMapTile Tile;
+            public readonly TiledMapTileset Tileset;
+            public readonly TiledMapTilesetTile TilesetTile;
+            public readonly Point Position;
+            public readonly float Depth;
 
             public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTile tile, TiledMapTileset tileset, TiledMapTilesetTile tilesetTile, Point position, float depth) {
-                this.renderer = renderer;
-                this.tileset = tileset;
-                this.tilesetTile = tilesetTile;
-                this.position = position;
-                this.depth = depth;
-
-                if (tile.IsFlippedHorizontally)
-                    this.flipping |= SpriteEffects.FlipHorizontally;
-                if (tile.IsFlippedVertically)
-                    this.flipping |= SpriteEffects.FlipVertically;
+                this.Renderer = renderer;
+                this.Tile = tile;
+                this.Tileset = tileset;
+                this.TilesetTile = tilesetTile;
+                this.Position = position;
+                this.Depth = depth;
             }
 
-            public void Draw(SpriteBatch batch) {
-                var id = this.tilesetTile.LocalTileIdentifier;
-                if (this.tilesetTile is TiledMapTilesetAnimatedTile animated)
-                    id = animated.CurrentAnimationFrame.LocalTileIdentifier;
-                var drawPos = new Vector2(this.position.X * this.renderer.map.TileWidth, this.position.Y * this.renderer.map.TileHeight);
-                batch.Draw(this.tileset.Texture, drawPos, this.tileset.GetTileRegion(id), Color.White, 0, Vector2.Zero, 1, this.flipping, this.depth);
+            public void Draw(SpriteBatch batch, DrawDelegate drawFunction) {
+                if (drawFunction == null) {
+                    var region = this.Tileset.GetTextureRegion(this.TilesetTile);
+                    var effects = this.Tile.GetSpriteEffects();
+                    var drawPos = new Vector2(this.Position.X * this.Renderer.map.TileWidth, this.Position.Y * this.Renderer.map.TileHeight);
+                    batch.Draw(this.Tileset.Texture, drawPos, region, Color.White, 0, Vector2.Zero, 1, effects, this.Depth);
+                } else {
+                    drawFunction(batch, this);
+                }
             }
 
         }

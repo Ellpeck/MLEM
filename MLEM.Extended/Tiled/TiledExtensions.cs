@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 
@@ -43,6 +44,10 @@ namespace MLEM.Extended.Tiled {
             return tile.GlobalIdentifier - map.GetTilesetFirstGlobalIdentifier(tileset);
         }
 
+        public static int GetGlobalIdentifier(this TiledMapTilesetTile tile, TiledMapTileset tileset, TiledMap map) {
+            return map.GetTilesetFirstGlobalIdentifier(tileset) + tile.LocalTileIdentifier;
+        }
+
         public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, TiledMapTile tile, TiledMap map, bool createStub = true) {
             if (tile.IsBlank)
                 return null;
@@ -73,6 +78,12 @@ namespace MLEM.Extended.Tiled {
         public static TiledMapTile GetTile(this TiledMap map, string layerName, int x, int y) {
             var layer = map.GetLayer<TiledMapTileLayer>(layerName);
             return layer != null ? layer.GetTile(x, y) : default;
+        }
+
+        public static void SetTile(this TiledMap map, string layerName, int x, int y, int globalTile) {
+            var layer = map.GetLayer<TiledMapTileLayer>(layerName);
+            if (layer != null)
+                layer.SetTile((ushort) x, (ushort) y, (uint) globalTile);
         }
 
         public static IEnumerable<TiledMapTile> GetTiles(this TiledMap map, int x, int y) {
@@ -113,6 +124,22 @@ namespace MLEM.Extended.Tiled {
                 foreach (var obj in layer.GetObjects(name, searchName, searchType))
                     yield return obj;
             }
+        }
+
+        public static Rectangle GetTextureRegion(this TiledMapTileset tileset, TiledMapTilesetTile tile) {
+            var id = tile.LocalTileIdentifier;
+            if (tile is TiledMapTilesetAnimatedTile animated)
+                id = animated.CurrentAnimationFrame.LocalTileIdentifier;
+            return tileset.GetTileRegion(id);
+        }
+
+        public static SpriteEffects GetSpriteEffects(this TiledMapTile tile) {
+            var flipping = SpriteEffects.None;
+            if (tile.IsFlippedHorizontally)
+                flipping |= SpriteEffects.FlipHorizontally;
+            if (tile.IsFlippedVertically)
+                flipping |= SpriteEffects.FlipVertically;
+            return flipping;
         }
 
     }
