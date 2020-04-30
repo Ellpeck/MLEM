@@ -58,8 +58,10 @@ namespace MLEM.Extended.Tiled {
         }
 
         public void Draw(SpriteBatch batch, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
-            for (var i = 0; i < this.map.TileLayers.Count; i++)
-                this.DrawLayer(batch, i, frustum, drawFunction);
+            for (var i = 0; i < this.map.TileLayers.Count; i++) {
+                if (this.map.TileLayers[i].IsVisible)
+                    this.DrawLayer(batch, i, frustum, drawFunction);
+            }
         }
 
         public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
