@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Microsoft.Xna.Framework;
 
 namespace MLEM.Extensions {
@@ -10,6 +11,12 @@ namespace MLEM.Extensions {
 
         public static Color FromHex(uint value) {
             return new Color((int) (value >> 16 & 0xFF), (int) (value >> 8 & 0xFF), (int) (value >> 0 & 0xFF), (int) (value >> 24 & 0xFF));
+        }
+
+        public static Color FromHex(string value) {
+            if (value.StartsWith("#"))
+                value = value.Substring(1);
+            return FromHex(uint.Parse(value, NumberStyles.HexNumber));
         }
 
         public static Color CopyAlpha(this Color color, Color other) {
