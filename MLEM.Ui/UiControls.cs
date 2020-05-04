@@ -256,5 +256,9 @@ namespace MLEM.Ui {
                 this.SelectElement(this.ActiveRoot, next);
         }
 
+        public static void AddButtons(ref object[] controls, params object[] additional) {
+            controls = controls.Concat(additional).ToArray();
+        }
+
     }
 }

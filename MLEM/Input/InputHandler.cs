@@ -303,6 +303,18 @@ namespace MLEM.Input {
             throw new ArgumentException(nameof(control));
         }
 
+        public bool IsAnyDown(params object[] control) {
+            return control.Any(c => this.IsDown(c));
+        }
+
+        public bool IsAnyUp(params object[] control) {
+            return control.Any(c => this.IsUp(c));
+        }
+
+        public bool IsAnyPressed(params object[] control) {
+            return control.Any(c => this.IsPressed(c));
+        }
+
         public static void EnableGestures(params GestureType[] gestures) {
             foreach (var gesture in gestures)
                 TouchPanel.EnabledGestures |= gesture;
