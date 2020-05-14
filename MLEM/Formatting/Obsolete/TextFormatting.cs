@@ -9,6 +9,7 @@ using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Formatting {
+    [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
     public static class TextFormatting {
 
         public static readonly Dictionary<string, FormattingCode> FormattingCodes = new Dictionary<string, FormattingCode>(StringComparer.OrdinalIgnoreCase);

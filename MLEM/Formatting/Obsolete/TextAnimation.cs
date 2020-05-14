@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
 
 namespace MLEM.Formatting {
+    [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
     public static class TextAnimation {
 
         public static readonly DrawCharacter Default = (settings, font, batch, totalText, index, effectStartIndex, charSt, position, color, scale, layerDepth, timeIntoAnimation) => {

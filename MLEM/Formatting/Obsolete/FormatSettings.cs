@@ -1,7 +1,9 @@
+using System;
 using Microsoft.Xna.Framework;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {
+    [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
     public class FormatSettings : GenericDataHolder {
 
         public static readonly FormatSettings Default = new FormatSettings();

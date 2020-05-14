@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,6 +11,7 @@ using MLEM.Extended.Extensions;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Formatting;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -29,6 +31,7 @@ namespace Sandbox {
         private IndividualTiledMapRenderer mapRenderer;
         private TiledMapCollisions collisions;
         private RawContentManager rawContent;
+        private TokenizedString tokenized;
 
         public GameImpl() {
             this.IsMouseVisible = true;
@@ -72,7 +75,7 @@ namespace Sandbox {
             this.UiSystem.Add("Panel", panel);
 
             panel.SetData("TestKey", new Vector2(10, 2));
-            Console.WriteLine(panel.GetData<Vector2>("TestKey"));
+            //Console.WriteLine(panel.GetData<Vector2>("TestKey"));
 
             var obj = new Test {
                 Vec = new Vector2(10, 20),
@@ -84,16 +87,16 @@ namespace Sandbox {
 
             var writer = new StringWriter();
             this.Content.GetJsonSerializer().Serialize(writer, obj);
-            Console.WriteLine(writer.ToString());
+            //Console.WriteLine(writer.ToString());
             // {"Vec":"10 20","Point":"20 30","Rectangle":"1 2 3 4","RectangleF":"4 5 6 7"}
 
             // Also:
             //this.Content.AddJsonConverter(new CustomConverter());
 
             var res = this.Content.LoadJson<Test>("Test");
-            Console.WriteLine(res);
+            //Console.WriteLine(res);
 
-            this.OnDraw += (game, time) => {
+            /*this.OnDraw += (game, time) => {
                 this.SpriteBatch.Begin();
                 font.DrawString(this.SpriteBatch, "Left Aligned\nover multiple lines", new Vector2(640, 0), TextAlign.Left, Color.White);
                 font.DrawString(this.SpriteBatch, "Center Aligned\nover multiple lines", new Vector2(640, 100), TextAlign.Center, Color.White);
@@ -106,6 +109,17 @@ namespace Sandbox {
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, ellipsis: "..."), new Vector2(200, 450), Color.White);
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, true), new Vector2(200, 500), Color.White);
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, true, "..."), new Vector2(200, 550), Color.White);
+                this.SpriteBatch.End();
+            };*/
+
+            var formatter = new TextFormatter();
+            var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ff0000>two bits of formatting</c>!";
+            this.tokenized = formatter.Tokenize(strg);
+            this.tokenized.Split(font, 400, 1);
+
+            this.OnDraw += (g, time) => {
+                this.SpriteBatch.Begin();
+                this.tokenized.Draw(time, this.SpriteBatch, new Vector2(100, 20), font, Color.White, 1, 0);
                 this.SpriteBatch.End();
             };
         }
@@ -124,13 +138,13 @@ namespace Sandbox {
         protected override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.Black);
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, this.camera.ViewMatrix);
-            this.mapRenderer.Draw(this.SpriteBatch, this.camera.GetVisibleRectangle().ToExtended());
+            /*this.mapRenderer.Draw(this.SpriteBatch, this.camera.GetVisibleRectangle().ToExtended());
 
             foreach (var tile in this.collisions.GetCollidingTiles(new RectangleF(0, 0, this.map.Width, this.map.Height))) {
                 foreach (var area in tile.Collisions) {
                     this.SpriteBatch.DrawRectangle(area.Position * this.map.GetTileSize(), area.Size * this.map.GetTileSize(), Color.Red);
                 }
-            }
+            }*/
 
             this.SpriteBatch.End();
             base.DoDraw(gameTime);

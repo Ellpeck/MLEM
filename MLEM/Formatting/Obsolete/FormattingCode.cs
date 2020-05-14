@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using MLEM.Animations;
 using MLEM.Extensions;
@@ -5,6 +6,7 @@ using MLEM.Font;
 using MLEM.Textures;
 
 namespace MLEM.Formatting {
+    [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
     public class FormattingCode {
 
         public readonly Type CodeType;
