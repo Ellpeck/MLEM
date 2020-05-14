@@ -17,18 +17,11 @@ using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
 namespace Demos {
-    /// <remarks>
-    /// NOTE: This ui demo derives from <see cref="MlemGame"/>. To use MLEM.Ui, it's not required to use MLEM.Startup (which MlemGame is a part of).
-    /// If using your own game class that derives from <see cref="Game"/>, however, you will have to do a few additional things to get MLEM.Ui up and running:
-    /// - Create an instance of <see cref="UiSystem"/>
-    /// - Call the instance's Update method in your game's Update method
-    /// - Call the instance's DrawEarly method before clearing your <see cref="GraphicsDevice"/>
-    /// - Call the instance's Draw method in your game's Draw method
-    /// </remarks>
     public class UiDemo : Demo {
 
         private Texture2D testTexture;
         private NinePatch testPatch;
+        private Panel root;
 
         public UiDemo(MlemGame game) : base(game) {
         }
@@ -36,7 +29,6 @@ namespace Demos {
         public override void LoadContent() {
             this.testTexture = LoadContent<Texture2D>("Textures/Test");
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
-            var tree = new TextureRegion(LoadContent<Texture2D>("Textures/Tree"));
             base.LoadContent();
 
             // create a new style
@@ -69,66 +61,66 @@ namespace Demos {
             this.UiSystem.AutoScaleWithScreen = true;
 
             // create the root panel that all the other components sit on and add it to the ui system
-            var root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
-            root.ScrollBar.SmoothScrolling = true;
-            this.UiSystem.Add("Test", root);
+            this.root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
+            this.root.ScrollBar.SmoothScrolling = true;
+            // add the root to the demos' ui
+            this.UiSystem.Get("DemoUi").Element.AddChild(this.root);
 
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));
-            var image = root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Vector2(3)});
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of (M)LEM (L)ibrary by (E)llpeck for (M)onoGame."));
+            var image = this.root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Vector2(3)});
             // Setting the x or y coordinate of the size to 1 or a lower number causes the width or height to be a percentage of the parent's width or height
             // (for example, setting the size's x to 0.75 would make the element's width be 0.75*parentWidth)
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Test Image", "This button shows a grass tile as a test image to show the automatic anchoring of objects.") {
+            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Toggle Grass Image", "This button shows a grass tile above it to show the automatic anchoring of objects.") {
                 OnPressed = element => image.IsHidden = !image.IsHidden
             });
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override."));
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override, as can be seen in the code for this demo."));
+            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnPressed = element => this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle,
                 PositionOffset = new Vector2(0, 1),
                 Texture = this.testPatch
             });
 
-            root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new VerticalSpace(3));
 
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular], [Bold]Bold[Regular], [Shadow]Drop Shadow'd[Regular] and [Shadow][Pink]mixed formatting[Regular][White]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular], [Bold]Bold[Regular], [Shadow]Drop Shadow'd[Regular] and [Shadow][Pink]mixed formatting[Regular][White]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
 
             // adding some custom image formatting codes
             TextFormatting.FormattingCodes["Grass"] = new FormattingCode(image.Texture);
-            TextFormatting.FormattingCodes["tree"] = new FormattingCode(tree);
             // formatting codes can also be sprite animations!
             var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
             TextFormatting.FormattingCodes["walk"] = new FormattingCode(new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
 
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations! Note that these images have to be square, or [Tree] bad things happen."));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations!"));
 
-            var animatedPar = root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esque typing effect by default. Of course, more animations can be added though."));
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {
+            var animatedPar = this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esque typing effect by default. Of course, more animations can be added though."));
+            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {
                 // to reset any animation, simply change the paragraph's TimeIntoAnimation
                 OnPressed = e => animatedPar.TimeIntoAnimation = TimeSpan.Zero
             });
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
-            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
+            this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {
                 PositionOffset = new Vector2(0, 1),
                 PlaceholderText = "Click here to input text"
             });
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Numbers-only input:", true));
-            root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10), TextField.OnlyNumbers) {PositionOffset = new Vector2(0, 1)});
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Numbers-only input:", true));
+            this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10), TextField.OnlyNumbers) {PositionOffset = new Vector2(0, 1)});
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));
-            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(10), "+") {
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));
+            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(10), "+") {
                 OnPressed = element => {
                     if (element.Root.Scale < 2)
                         element.Root.Scale += 0.1F;
                 }
             });
-            root.AddChild(new Button(Anchor.AutoInline, new Vector2(10), "-") {
+            this.root.AddChild(new Button(Anchor.AutoInline, new Vector2(10), "-") {
                 OnPressed = element => {
                     if (element.Root.Scale > 0.5F)
                         element.Root.Scale -= 0.1F;
@@ -136,34 +128,34 @@ namespace Demos {
                 PositionOffset = new Vector2(1, 0)
             });
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 1!"));
-            root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 2!") {PositionOffset = new Vector2(0, 1)});
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 1!"));
+            this.root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Checkbox 2!") {PositionOffset = new Vector2(0, 1)});
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 1!"));
-            root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Vector2(0, 1)});
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 1!"));
+            this.root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Vector2(0, 1)});
 
-            var tooltip = new Tooltip(50, "This is a test tooltip to see the window bounding") {IsHidden = true};
+            var tooltip = new Tooltip(50, "I am tooltip!") {IsHidden = true};
             this.UiSystem.Add("TestTooltip", tooltip);
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Test Tooltip") {
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Mouse Tooltip") {
                 OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden
             });
 
             var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
                 StepPerScroll = 0.01F
             };
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
-            root.AddChild(slider);
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, paragraph => "Slider is at " + (slider.CurrentValue * 100).Floor() + "%") {PositionOffset = new Vector2(0, 1)});
+            this.root.AddChild(slider);
 
             // Check the WobbleButton method for an explanation of how this button works
-            var group = root.AddChild(new CustomDrawGroup(Anchor.AutoLeft, new Vector2(1, 0)));
+            var group = this.root.AddChild(new CustomDrawGroup(Anchor.AutoLeft, new Vector2(1, 0)));
             group.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
                 OnPressed = element => CoroutineHandler.Start(this.WobbleButton(group)),
                 PositionOffset = new Vector2(0, 1)
             });
-            root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale). As this is an easily pulled off operation, it can be used for animations and other gimmicks.") {
+            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale)") {
                 OnPressed = element => {
                     if (element.Root.Transform == Matrix.Identity) {
                         element.Root.Transform = Matrix.CreateScale(0.75F) * Matrix.CreateRotationZ(0.25F) * Matrix.CreateTranslation(50, -10, 0);
@@ -174,59 +166,48 @@ namespace Demos {
                 PositionOffset = new Vector2(0, 1)
             });
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Progress bars in multiple orientations:"));
-            var bar1 = root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Right, 10) {PositionOffset = new Vector2(0, 1)});
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Progress bars!"));
+            var bar1 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Right, 10) {PositionOffset = new Vector2(0, 1)});
             CoroutineHandler.Start(this.WobbleProgressBar(bar1));
-            var bar2 = root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Left, 10) {PositionOffset = new Vector2(0, 1)});
+            var bar2 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Left, 10) {PositionOffset = new Vector2(0, 1)});
             CoroutineHandler.Start(this.WobbleProgressBar(bar2));
-            var bar3 = root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(8, 30), Direction2.Down, 10) {PositionOffset = new Vector2(0, 1)});
+            var bar3 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(8, 30), Direction2.Down, 10) {PositionOffset = new Vector2(0, 1)});
             CoroutineHandler.Start(this.WobbleProgressBar(bar3));
-            var bar4 = root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 1)});
+            var bar4 = this.root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 1)});
             CoroutineHandler.Start(this.WobbleProgressBar(bar4));
 
-            root.AddChild(new VerticalSpace(3));
-            var dropdown = root.AddChild(new Dropdown(Anchor.AutoLeft, new Vector2(1, 10), "Dropdown Menu"));
+            this.root.AddChild(new VerticalSpace(3));
+            var dropdown = this.root.AddChild(new Dropdown(Anchor.AutoLeft, new Vector2(1, 10), "Dropdown Menu"));
             dropdown.AddElement("First Option");
             dropdown.AddElement("Second Option");
             dropdown.AddElement("Third Option");
-            dropdown.AddElement(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Button Option"));
+            dropdown.AddElement(new Paragraph(Anchor.AutoLeft, 1, "Dropdowns are basically just prioritized panels, so they can contain all controls, including paragraphs and"));
+            dropdown.AddElement(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Buttons"));
 
-            root.AddChild(new VerticalSpace(3));
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There are also some additional \"components\" which are created as combinations of other components. You can find all of them in the ElementHelper class. Here are some examples:"));
-            root.AddChild(ElementHelper.NumberField(Anchor.AutoLeft, new Vector2(1, 10))).PositionOffset = new Vector2(0, 1);
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button", "This button can't be clicked or moved to using automatic navigation") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
 
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "There is an easy helper method to make any amount of same-sized columns:") {PositionOffset = new Vector2(0, 1)});
-            var cols = ElementHelper.MakeColumns(root, new Vector2(1), 3);
-            cols[0].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the first column"));
-            cols[1].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the second column"));
-            cols[2].AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is the third column"));
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "The code for this demo contains some examples for how to query element data. This is the output of that:"));
 
-            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Show Info Box") {
-                OnPressed = element => ElementHelper.ShowInfoBox(this.UiSystem, Anchor.Center, 100, "This is an easy info box that you can open with just one line of code! It automatically closes when you press the button below as well."),
-                PositionOffset = new Vector2(0, 1)
-            });
+            var children = this.root.GetChildren();
+            var totalChildren = this.root.GetChildren(regardGrandchildren: true);
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{children.Count()}[Regular] children, but there are [Bold]{totalChildren.Count()}[Regular] when regarding children's children"));
 
-            root.AddChild(ElementHelper.ImageButton(Anchor.AutoLeft, new Vector2(1, 10), tree, "Button with image")).PositionOffset = new Vector2(0, 1);
-            root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
-            root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This_is_a_really_long_[Blue]line[White]_to_see_if_splitting_without_spaces_works_properly._I_also_want_to_see_if_it_works_[Blue]across[White]_multiple_lines_or_just_on_the_first_one. But after this, I want the text to [Blue]continue[White] normally before changing_back_to_being_really_long_[Blue]oh[White]_yes"));
+            var textFields = this.root.GetChildren<TextField>();
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{textFields.Count()}[Regular] text fields"));
 
-            // Below are some querying examples that help you find certain elements easily
+            var paragraphs = this.root.GetChildren<Paragraph>();
+            var totalParagraphs = this.root.GetChildren<Paragraph>(regardGrandchildren: true);
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{paragraphs.Count()}[Regular] paragraphs, but there are [Bold]{totalParagraphs.Count()}[Regular] when regarding children's children"));
 
-            var children = root.GetChildren();
-            var totalChildren = root.GetChildren(regardGrandchildren: true);
-            Console.WriteLine($"The root has {children.Count()} children, but there are {totalChildren.Count()} when regarding children's children");
+            var autoWidthChildren = this.root.GetChildren(e => e.Size.X == 1);
+            var autoWidthButtons = this.root.GetChildren<Button>(e => e.Size.X == 1);
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{autoWidthChildren.Count()}[Regular] auto-width children, [Bold]{autoWidthButtons.Count()}[Regular] of which are buttons"));
 
-            var textFields = root.GetChildren<TextField>();
-            Console.WriteLine($"The root has {textFields.Count()} text fields");
-
-            var paragraphs = root.GetChildren<Paragraph>();
-            var totalParagraphs = root.GetChildren<Paragraph>(regardGrandchildren: true);
-            Console.WriteLine($"The root has {paragraphs.Count()} paragraphs, but there are {totalParagraphs.Count()} when regarding children's children");
-
-            var autoWidthChildren = root.GetChildren(e => e.Size.X == 1);
-            var autoWidthButtons = root.GetChildren<Button>(e => e.Size.X == 1);
-            Console.WriteLine($"The root has {autoWidthChildren.Count()} auto-width children, {autoWidthButtons.Count()} of which are buttons");
+            // select the first element for auto-navigation
+            this.root.Root.SelectElement(this.root.GetChildren().First(c => c.CanBeSelected));
         }
 
         // This method is used by the wobbling button (see above)
@@ -264,7 +245,7 @@ namespace Demos {
         }
 
         public override void Clear() {
-            this.UiSystem.Remove("Test");
+            this.root.Root.Element.RemoveChild(this.root);
             this.UiSystem.Remove("TestTooltip");
         }
 

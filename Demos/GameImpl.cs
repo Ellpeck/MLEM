@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
@@ -12,17 +13,17 @@ using MLEM.Ui.Style;
 namespace Demos {
     public class GameImpl : MlemGame {
 
-        private static readonly Dictionary<string, Func<MlemGame, Demo>> Demos = new Dictionary<string, Func<MlemGame, Demo>>();
+        private static readonly Dictionary<string, (string, Func<MlemGame, Demo>)> Demos = new Dictionary<string, (string, Func<MlemGame, Demo>)>();
         private Demo activeDemo;
         private double fpsTime;
         private int lastFps;
         private int fpsCounter;
 
         static GameImpl() {
-            Demos.Add("Ui", game => new UiDemo(game));
-            Demos.Add("Animation and Texture Atlas", game => new AnimationDemo(game));
-            Demos.Add("Auto Tiling", game => new AutoTilingDemo(game));
-            Demos.Add("Pathfinding", game => new PathfindingDemo(game));
+            Demos.Add("Ui", ("An in-depth demonstration of the MLEM.Ui package and its abilities", game => new UiDemo(game)));
+            Demos.Add("Animation and Texture Atlas", ("An example of UniformTextureAtlases, SpriteAnimations and SpriteAnimationGroups", game => new AnimationDemo(game)));
+            Demos.Add("Auto Tiling", ("A demonstration of the AutoTiling class that MLEM provides", game => new AutoTilingDemo(game)));
+            Demos.Add("Pathfinding", ("An example of MLEM's A* pathfinding implementation in 2D", game => new PathfindingDemo(game)));
         }
 
         public GameImpl() {
@@ -45,34 +46,38 @@ namespace Demos {
             this.UiSystem.AutoScaleWithScreen = true;
             this.UiSystem.GlobalScale = 5;
 
-            var selection = new Panel(Anchor.Center, new Vector2(100, 80), Vector2.Zero, false, true, new Point(5, 10));
-            this.UiSystem.Add("DemoSelection", selection);
+            var ui = new Group(Anchor.TopLeft, Vector2.One, false);
+            this.UiSystem.Add("DemoUi", ui);
+            var selection = ui.AddChild(new Panel(Anchor.Center, new Vector2(100, 80), Vector2.Zero, true));
 
-            var backButton = new Button(Anchor.TopRight, new Vector2(30, 10), "Back") {
+            var backButton = ui.AddChild(new Button(Anchor.TopRight, new Vector2(30, 10), "Back") {
                 OnPressed = e => {
                     this.activeDemo.Clear();
                     this.activeDemo = null;
-                    this.UiSystem.Remove("BackButton");
-                    this.UiSystem.Add("DemoSelection", selection);
-                }
-            };
+                    selection.IsHidden = false;
+                    e.IsHidden = true;
+                    selection.Root.SelectElement(selection.GetChildren().First(c => c.CanBeSelected));
+                },
+                IsHidden = true
+            });
 
-            selection.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Select the demo you want to see below. Check the demos' source code for more in-depth explanations of their functionality."));
+            selection.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Select the demo you want to see below using your mouse, touch input, your keyboard or a controller. Check the demos' source code for more in-depth explanations of their functionality."));
             selection.AddChild(new VerticalSpace(5));
             foreach (var demo in Demos) {
-                selection.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), demo.Key) {
+                selection.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), demo.Key, demo.Value.Item1) {
                     OnPressed = e => {
-                        this.UiSystem.Remove("DemoSelection");
-                        this.UiSystem.Add("BackButton", backButton);
+                        selection.IsHidden = true;
+                        backButton.IsHidden = false;
+                        backButton.Root.SelectElement(backButton);
 
-                        this.activeDemo = demo.Value.Invoke(this);
+                        this.activeDemo = demo.Value.Item2.Invoke(this);
                         this.activeDemo.LoadContent();
                     },
                     PositionOffset = new Vector2(0, 1)
                 });
             }
-            
-            this.UiSystem.Add("Fps", new Paragraph(Anchor.TopLeft, 1, p => "FPS: " + this.lastFps));
+
+            ui.AddChild(new Paragraph(Anchor.TopLeft, 1, p => "FPS: " + this.lastFps));
         }
 
         protected override void DoDraw(GameTime gameTime) {
