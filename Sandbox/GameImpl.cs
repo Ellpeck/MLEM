@@ -113,7 +113,7 @@ namespace Sandbox {
             };*/
 
             var formatter = new TextFormatter();
-            var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ff0000>two bits of formatting</c>!";
+            var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ff0000>two bits of formatting</c>! It also includesavery<c Pink>long</c>wordthatis<c Blue>formatted</c>aswell.";
             this.tokenized = formatter.Tokenize(strg);
             this.tokenized.Split(font, 400, 1);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
@@ -18,11 +19,27 @@ namespace MLEM.Formatting {
         }
 
         public void Split(GenericFont font, float width, float scale) {
+            // a split string has the same character count as the input string
+            // but with newline characters added
             var split = font.SplitString(this.String, width, scale);
-            // remove spaces at the end of new lines since we want the same character count
-            split = split.Replace(" \n", "\n");
-            foreach (var token in this.Tokens)
-                token.Substring = split.Substring(token.Index, token.Substring.Length);
+            foreach (var token in this.Tokens) {
+                var index = 0;
+                var length = 0;
+                var ret = new StringBuilder();
+                // this is basically a substring function that ignores newlines for indexing
+                for (var i = 0; i < split.Length; i++) {
+                    // if we're within the bounds of the token's substring, append to the new substring
+                    if (index >= token.Index && length < token.Substring.Length)
+                        ret.Append(split[i]);
+                    // if the current char is not a newline, we simulate length increase
+                    if (split[i] != '\n') {
+                        if (index >= token.Index)
+                            length++;
+                        index++;
+                    }
+                }
+                token.Substring = ret.ToString();
+            }
         }
 
         public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
