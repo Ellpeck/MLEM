@@ -4,9 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Misc;
 
 namespace MLEM.Formatting {
-    public class Token {
+    public class Token : GenericDataHolder {
 
         public readonly Code[] AppliedCodes;
         public readonly int Index;
@@ -33,9 +34,9 @@ namespace MLEM.Formatting {
             return this.AppliedCodes.Select(c => c.GetFont()).FirstOrDefault();
         }
 
-        public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             foreach (var code in this.AppliedCodes) {
-                if (code.DrawCharacter(time, batch, c, cString, pos, font, color, scale, depth))
+                if (code.DrawCharacter(time, batch, c, cString, indexInToken, ref pos, font, ref color, ref scale, depth))
                     return;
             }
 

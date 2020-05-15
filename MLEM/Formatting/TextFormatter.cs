@@ -7,9 +7,10 @@ using Microsoft.Xna.Framework;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Misc;
 
 namespace MLEM.Formatting {
-    public class TextFormatter {
+    public class TextFormatter : GenericDataHolder {
 
         public readonly Dictionary<Regex, Code.Constructor> Codes = new Dictionary<Regex, Code.Constructor>();
 
@@ -17,7 +18,8 @@ namespace MLEM.Formatting {
             // font codes
             this.Codes.Add(new Regex("<b>"), (f, m) => new FontCode(m, boldFont?.Invoke()));
             this.Codes.Add(new Regex("<i>"), (f, m) => new FontCode(m, italicFont?.Invoke()));
-            this.Codes.Add(new Regex("</(b|i)>"), (f, m) => new FontCode(m, null));
+            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m) => new ShadowCode(m, m.Groups[1].Success ? ColorExtensions.FromHex(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
+            this.Codes.Add(new Regex("</(b|i|s)>"), (f, m) => new FontCode(m, null));
 
             // color codes
             foreach (var c in typeof(Color).GetProperties()) {
@@ -28,6 +30,10 @@ namespace MLEM.Formatting {
             }
             this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m) => new ColorCode(m, ColorExtensions.FromHex(m.Groups[1].Value)));
             this.Codes.Add(new Regex("</c>"), (f, m) => new ColorCode(m, null));
+
+            // animation codes
+            this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m) => new WobblyCode(m, float.TryParse(m.Groups[1].Value, out var mod) ? mod : 5, float.TryParse(m.Groups[2].Value, out var heightMod) ? heightMod : 1 / 8F));
+            this.Codes.Add(new Regex("</a>"), (f, m) => new AnimatedCode(m));
         }
 
         public TokenizedString Tokenize(string s) {

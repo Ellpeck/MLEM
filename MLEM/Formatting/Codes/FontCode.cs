@@ -14,5 +14,9 @@ namespace MLEM.Formatting.Codes {
             return this.font;
         }
 
+        public override bool EndsHere(Code other) {
+            return other is FontCode;
+        }
+
     }
 }

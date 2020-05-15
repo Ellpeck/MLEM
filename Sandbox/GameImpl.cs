@@ -113,15 +113,16 @@ namespace Sandbox {
             };*/
 
             var formatter = new TextFormatter();
-            var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ff0000>two bits of formatting</c>! It also includesavery<c Pink>long</c>wordthatis<c Blue>formatted</c>aswell.";
+            var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ff0000>two bits of formatting</c>! It also includesavery<c Pink>long</c>wordthatis<c Blue>formatted</c>aswell. Additionally, it <a wobbly>wobbles</a> and has a <s>shadow</s> or a <s #ff0000 4>weird shadow</s>";
             this.tokenized = formatter.Tokenize(strg);
             this.tokenized.Split(font, 400, 1);
 
             this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin();
-                this.tokenized.Draw(time, this.SpriteBatch, new Vector2(100, 20), font, Color.White, 1, 0);
+                this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, 1, 0);
                 this.SpriteBatch.End();
             };
+            this.OnUpdate += (g, time) => this.tokenized.Update(time);
         }
 
         protected override void DoUpdate(GameTime gameTime) {

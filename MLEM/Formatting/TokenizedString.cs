@@ -4,18 +4,23 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
+using MLEM.Formatting.Codes;
+using MLEM.Misc;
 
 namespace MLEM.Formatting {
-    public struct TokenizedString {
+    public class TokenizedString : GenericDataHolder {
 
         public readonly string RawString;
         public readonly string String;
         public readonly Token[] Tokens;
+        public readonly Code[] AllCodes;
 
         public TokenizedString(string rawString, string strg, Token[] tokens) {
             this.RawString = rawString;
             this.String = strg;
             this.Tokens = tokens;
+            // since a code can be present in multiple tokens, we use Distinct here
+            this.AllCodes = tokens.SelectMany(t => t.AppliedCodes).Distinct().ToArray();
         }
 
         public void Split(GenericFont font, float width, float scale) {
@@ -42,12 +47,18 @@ namespace MLEM.Formatting {
             }
         }
 
+        public void Update(GameTime time) {
+            foreach (var code in this.AllCodes)
+                code.Update(time);
+        }
+
         public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             var innerOffset = new Vector2();
             foreach (var token in this.Tokens) {
                 var drawFont = token.GetFont() ?? font;
                 var drawColor = token.GetColor() ?? color;
-                foreach (var c in token.Substring) {
+                for (var i = 0; i < token.Substring.Length; i++) {
+                    var c = token.Substring[i];
                     if (c == '\n') {
                         innerOffset.X = 0;
                         innerOffset.Y += font.LineHeight * scale;
@@ -55,7 +66,7 @@ namespace MLEM.Formatting {
                     }
 
                     var cString = c.ToString();
-                    token.DrawCharacter(time, batch, c, cString, pos + innerOffset, drawFont, drawColor, scale, depth);
+                    token.DrawCharacter(time, batch, c, cString, i, pos + innerOffset, drawFont, drawColor, scale, depth);
                     innerOffset.X += font.MeasureString(cString).X * scale;
                 }
             }

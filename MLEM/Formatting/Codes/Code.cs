@@ -2,9 +2,10 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
+using MLEM.Misc;
 
 namespace MLEM.Formatting.Codes {
-    public class Code {
+    public class Code : GenericDataHolder {
 
         public readonly Match Match;
         public Token Token { get; internal set; }
@@ -25,7 +26,10 @@ namespace MLEM.Formatting.Codes {
             return null;
         }
 
-        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public virtual void Update(GameTime time) {
+        }
+
+        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             return false;
         }
 
