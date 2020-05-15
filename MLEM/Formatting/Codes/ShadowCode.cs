@@ -10,7 +10,7 @@ namespace MLEM.Formatting.Codes {
         private readonly Color color;
         private readonly Vector2 offset;
 
-        public ShadowCode(Match match, Color color, Vector2 offset) : base(match, null) {
+        public ShadowCode(Match match, Regex regex, Color color, Vector2 offset) : base(match, regex, null) {
             this.color = color;
             this.offset = offset;
         }

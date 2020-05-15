@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 namespace MLEM.Formatting.Codes {
     public class AnimatedCode : Code {
 
-        public AnimatedCode(Match match) : base(match) {
+        public AnimatedCode(Match match, Regex regex) : base(match, regex) {
         }
 
         public override bool EndsHere(Code other) {

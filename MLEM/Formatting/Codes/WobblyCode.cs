@@ -11,7 +11,7 @@ namespace MLEM.Formatting.Codes {
         private readonly float heightModifier;
         public TimeSpan TimeIntoAnimation;
 
-        public WobblyCode(Match match, float modifier, float heightModifier) : base(match) {
+        public WobblyCode(Match match, Regex regex, float modifier, float heightModifier) : base(match, regex) {
             this.modifier = modifier;
             this.heightModifier = heightModifier;
         }
