@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
+using MLEM.Formatting.Codes;
+using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
@@ -25,6 +28,7 @@ namespace MLEM.Ui.Elements {
         public StyleProp<FormatSettings> FormatSettings;
         public readonly TextFormatter Formatter;
         public TokenizedString TokenizedText { get; private set; }
+        public Token HoveredToken { get; private set; }
 
         public StyleProp<Color> TextColor;
         public StyleProp<float> TextScale;
@@ -42,6 +46,7 @@ namespace MLEM.Ui.Elements {
         public TextCallback GetTextCallback;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public TextModifier RenderedTextModifier = text => text;
+        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public TimeSpan TimeIntoAnimation;
 
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
@@ -59,7 +64,17 @@ namespace MLEM.Ui.Elements {
             this.AutoAdjustWidth = centerText;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
+
             this.Formatter = new TextFormatter(() => this.BoldFont, () => this.ItalicFont);
+            this.Formatter.Codes.Add(new Regex("<l ([^>]+)>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => t == this.HoveredToken, l => {
+                if (!this.Input.IsPressed(MouseButton.Left))
+                    return;
+                try {
+                    Process.Start(l.Match.Groups[1].Value);
+                } catch (Exception) {
+                    // ignored
+                }
+            }));
         }
 
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
@@ -76,6 +91,8 @@ namespace MLEM.Ui.Elements {
 
             this.TokenizedText = this.Formatter.Tokenize(this.RegularFont, this.text);
             this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, sc);
+            this.CanBeMoused = this.TokenizedText.AllCodes.OfType<LinkCode>().Any();
+
             var dims = this.TokenizedText.Measure(this.RegularFont) * sc;
             return new Vector2(this.AutoAdjustWidth ? dims.X + this.ScaledPadding.Width : size.X, dims.Y + this.ScaledPadding.Height);
         }
@@ -91,7 +108,11 @@ namespace MLEM.Ui.Elements {
             if (this.GetTextCallback != null)
                 this.Text = this.GetTextCallback(this);
             this.TimeIntoAnimation += time.ElapsedGameTime;
-            this.TokenizedText?.Update(time);
+
+            if (this.TokenizedText != null) {
+                this.TokenizedText.Update(time);
+                this.HoveredToken = this.TokenizedText.GetTokenUnderPos(this.RegularFont, this.DisplayArea.Location, this.Input.MousePosition.ToVector2(), this.TextScale * this.Scale);
+            }
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {

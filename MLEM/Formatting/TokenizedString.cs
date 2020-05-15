@@ -61,6 +61,27 @@ namespace MLEM.Formatting {
                 code.Update(time);
         }
 
+        public Token GetTokenUnderPos(GenericFont font, Vector2 stringPos, Vector2 target, float scale) {
+            var innerOffset = new Vector2();
+            foreach (var token in this.Tokens) {
+                var split = token.Substring.Split('\n');
+                for (var i = 0; i < split.Length; i++) {
+                    var size = font.MeasureString(split[i]) * scale;
+                    var lineArea = new RectangleF(stringPos + innerOffset, size);
+                    if (lineArea.Contains(target))
+                        return token;
+
+                    if (i < split.Length - 1) {
+                        innerOffset.X = 0;
+                        innerOffset.Y += font.LineHeight * scale;
+                    } else {
+                        innerOffset.X += size.X;
+                    }
+                }
+            }
+            return null;
+        }
+
         public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             var innerOffset = new Vector2();
             foreach (var token in this.Tokens) {

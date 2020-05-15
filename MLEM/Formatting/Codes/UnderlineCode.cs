@@ -20,8 +20,9 @@ namespace MLEM.Formatting.Codes {
             // don't underline spaces at the end of lines
             if (c == ' ' && this.Token.Substring.Length > indexInToken + 1 && this.Token.Substring[indexInToken + 1] == '\n')
                 return false;
-            var width = font.MeasureString(cString).X * scale;
-            batch.Draw(batch.GetBlankTexture(), new RectangleF(pos.X, pos.Y + this.yOffset * font.LineHeight - this.thickness * scale, width, this.thickness * scale), color);
+            var size = font.MeasureString(cString) * scale;
+            var thicc = size.Y * this.thickness;
+            batch.Draw(batch.GetBlankTexture(), new RectangleF(pos.X, pos.Y + this.yOffset * size.Y - thicc, size.X, thicc), color);
             return false;
         }
 
