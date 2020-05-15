@@ -8,6 +8,7 @@ using MLEM.Animations;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
+using MLEM.Formatting.Codes;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
@@ -85,21 +86,12 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
 
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain [Blue]formatting codes[White], including colors and [Italic]text styles[Regular]. The names of all [Orange]MonoGame Colors[White] can be used, as well as the codes [Italic]Italic[Regular], [Bold]Bold[Regular], [Shadow]Drop Shadow'd[Regular] and [Shadow][Pink]mixed formatting[Regular][White]. \n[Italic]Even [CornflowerBlue]Cornflower Blue[White] works!"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. The names of all <c Orange>MonoGame Colors</c> can be used, as well as the codes <i>Italic</i>, <b>Bold</b>, <s>Drop Shadow'd</s> and <s><c Pink>mixed formatting</s></c>. \n<i>Even <c #ff611f82>inline custom colors</c> work!</i>"));
 
             // adding some custom image formatting codes
-            TextFormatting.FormattingCodes["Grass"] = new FormattingCode(image.Texture);
-            // formatting codes can also be sprite animations!
-            var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
-            TextFormatting.FormattingCodes["walk"] = new FormattingCode(new SpriteAnimation(0.2F, atlas[0, 0], atlas[0, 1], atlas[0, 2], atlas[0, 3]));
-
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain [Grass] images or [Walk] sprite animations!"));
-
-            var animatedPar = this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including [Wobbly]wobbly text[Unanimated] as well as a [Typing]dialogue-esque typing effect by default. Of course, more animations can be added though."));
-            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Reset Typing Animation") {
-                // to reset any animation, simply change the paragraph's TimeIntoAnimation
-                OnPressed = e => animatedPar.TimeIntoAnimation = TimeSpan.Zero
-            });
+            var p = this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain <i Grass> images and more!"));
+            p.Formatter.AddImage("Grass", image.Texture);
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including <a wobbly>wobbly text</a> at <a wobbly 8 0.25>different intensities</a>. Of course, more animations can be added though."));
 
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));

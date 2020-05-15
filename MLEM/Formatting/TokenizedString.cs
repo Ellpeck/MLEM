@@ -11,7 +11,7 @@ namespace MLEM.Formatting {
     public class TokenizedString : GenericDataHolder {
 
         public readonly string RawString;
-        public readonly string String;
+        public string String { get; private set; }
         public readonly Token[] Tokens;
         public readonly Code[] AllCodes;
 
@@ -26,18 +26,23 @@ namespace MLEM.Formatting {
         public void Split(GenericFont font, float width, float scale) {
             // a split string has the same character count as the input string
             // but with newline characters added
-            var split = font.SplitString(this.String, width, scale);
+            this.String = font.SplitString(this.String, width, scale);
+            // skip splitting logic for unformatted text
+            if (this.Tokens.Length == 1) {
+                this.Tokens[0].Substring = this.String;
+                return;
+            }
             foreach (var token in this.Tokens) {
                 var index = 0;
                 var length = 0;
                 var ret = new StringBuilder();
                 // this is basically a substring function that ignores newlines for indexing
-                for (var i = 0; i < split.Length; i++) {
+                for (var i = 0; i < this.String.Length; i++) {
                     // if we're within the bounds of the token's substring, append to the new substring
                     if (index >= token.Index && length < token.Substring.Length)
-                        ret.Append(split[i]);
+                        ret.Append(this.String[i]);
                     // if the current char is not a newline, we simulate length increase
-                    if (split[i] != '\n') {
+                    if (this.String[i] != '\n') {
                         if (index >= token.Index)
                             length++;
                         index++;
@@ -45,6 +50,10 @@ namespace MLEM.Formatting {
                 }
                 token.Substring = ret.ToString();
             }
+        }
+
+        public Vector2 Measure(GenericFont font) {
+            return font.MeasureString(this.String);
         }
 
         public void Update(GameTime time) {
@@ -62,8 +71,9 @@ namespace MLEM.Formatting {
                     if (c == '\n') {
                         innerOffset.X = 0;
                         innerOffset.Y += font.LineHeight * scale;
-                        continue;
                     }
+                    if (i == 0)
+                        token.DrawSelf(time, batch, pos + innerOffset, font, color, scale, depth);
 
                     var cString = c.ToString();
                     token.DrawCharacter(time, batch, c, cString, i, pos + innerOffset, drawFont, drawColor, scale, depth);

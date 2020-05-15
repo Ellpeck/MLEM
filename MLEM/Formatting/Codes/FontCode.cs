@@ -6,7 +6,7 @@ namespace MLEM.Formatting.Codes {
 
         private readonly GenericFont font;
 
-        public FontCode(Match match, GenericFont font) : base(match) {
+        public FontCode(Match match, Regex regex, GenericFont font) : base(match, regex) {
             this.font = font;
         }
 

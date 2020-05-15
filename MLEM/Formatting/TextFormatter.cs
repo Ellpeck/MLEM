@@ -16,43 +16,43 @@ namespace MLEM.Formatting {
 
         public TextFormatter(Func<GenericFont> boldFont = null, Func<GenericFont> italicFont = null) {
             // font codes
-            this.Codes.Add(new Regex("<b>"), (f, m) => new FontCode(m, boldFont?.Invoke()));
-            this.Codes.Add(new Regex("<i>"), (f, m) => new FontCode(m, italicFont?.Invoke()));
-            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m) => new ShadowCode(m, m.Groups[1].Success ? ColorExtensions.FromHex(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
-            this.Codes.Add(new Regex("</(b|i|s)>"), (f, m) => new FontCode(m, null));
+            this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, boldFont?.Invoke()));
+            this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, italicFont?.Invoke()));
+            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r, m.Groups[1].Success ? ColorExtensions.FromHex(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
+            this.Codes.Add(new Regex("</(b|i|s)>"), (f, m, r) => new FontCode(m, r, null));
 
             // color codes
             foreach (var c in typeof(Color).GetProperties()) {
                 if (c.GetGetMethod().IsStatic) {
                     var value = (Color) c.GetValue(null);
-                    this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m) => new ColorCode(m, value));
+                    this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m, r) => new ColorCode(m, r, value));
                 }
             }
-            this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m) => new ColorCode(m, ColorExtensions.FromHex(m.Groups[1].Value)));
-            this.Codes.Add(new Regex("</c>"), (f, m) => new ColorCode(m, null));
+            this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorExtensions.FromHex(m.Groups[1].Value)));
+            this.Codes.Add(new Regex("</c>"), (f, m, r) => new ColorCode(m, r, null));
 
             // animation codes
-            this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m) => new WobblyCode(m, float.TryParse(m.Groups[1].Value, out var mod) ? mod : 5, float.TryParse(m.Groups[2].Value, out var heightMod) ? heightMod : 1 / 8F));
-            this.Codes.Add(new Regex("</a>"), (f, m) => new AnimatedCode(m));
+            this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r, float.TryParse(m.Groups[1].Value, out var mod) ? mod : 5, float.TryParse(m.Groups[2].Value, out var heightMod) ? heightMod : 1 / 8F));
+            this.Codes.Add(new Regex("</a>"), (f, m, r) => new AnimatedCode(m, r));
         }
 
-        public TokenizedString Tokenize(string s) {
+        public TokenizedString Tokenize(GenericFont font, string s) {
             var tokens = new List<Token>();
             var codes = new List<Code>();
             var rawIndex = 0;
             while (rawIndex < s.Length) {
-                var index = this.StripFormatting(s.Substring(0, rawIndex)).Length;
+                var index = StripFormatting(font, s.Substring(0, rawIndex), tokens.SelectMany(t => t.AppliedCodes)).Length;
                 var next = this.GetNextCode(s, rawIndex + 1);
                 // if we've reached the end of the string
                 if (next == null) {
                     var sub = s.Substring(rawIndex, s.Length - rawIndex);
-                    tokens.Add(new Token(codes.ToArray(), index, rawIndex, this.StripFormatting(sub), sub));
+                    tokens.Add(new Token(codes.ToArray(), index, rawIndex, StripFormatting(font, sub, codes), sub));
                     break;
                 }
 
                 // create a new token for the content up to the next code
                 var ret = s.Substring(rawIndex, next.Match.Index - rawIndex);
-                tokens.Add(new Token(codes.ToArray(), index, rawIndex, this.StripFormatting(ret), ret));
+                tokens.Add(new Token(codes.ToArray(), index, rawIndex, StripFormatting(font, ret, codes), ret));
 
                 // move to the start of the next code
                 rawIndex = next.Match.Index;
@@ -61,22 +61,22 @@ namespace MLEM.Formatting {
                 codes.RemoveAll(c => c.EndsHere(next));
                 codes.Add(next);
             }
-            return new TokenizedString(s, this.StripFormatting(s), tokens.ToArray());
-        }
-
-        public string StripFormatting(string s) {
-            foreach (var regex in this.Codes.Keys)
-                s = regex.Replace(s, string.Empty);
-            return s;
+            return new TokenizedString(s, StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
         }
 
         private Code GetNextCode(string s, int index) {
-            var (c, m) = this.Codes
-                .Select(kv => (c: kv.Value, m: kv.Key.Match(s, index)))
+            var (c, m, r) = this.Codes
+                .Select(kv => (c: kv.Value, m: kv.Key.Match(s, index), r: kv.Key))
                 .Where(kv => kv.m.Success)
                 .OrderBy(kv => kv.m.Index)
                 .FirstOrDefault();
-            return c?.Invoke(this, m);
+            return c?.Invoke(this, m, r);
+        }
+
+        private static string StripFormatting(GenericFont font, string s, IEnumerable<Code> codes) {
+            foreach (var code in codes)
+                s = code.Regex.Replace(s, code.GetReplacementString(font));
+            return s;
         }
 
     }

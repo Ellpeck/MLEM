@@ -6,7 +6,7 @@ namespace MLEM.Formatting.Codes {
 
         private readonly Color? color;
 
-        public ColorCode(Match match, Color? color) : base(match) {
+        public ColorCode(Match match, Regex regex, Color? color) : base(match, regex) {
             this.color = color;
         }
 

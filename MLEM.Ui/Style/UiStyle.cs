@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using MLEM.Font;
@@ -38,6 +39,7 @@ namespace MLEM.Ui.Style {
         public GenericFont Font;
         public GenericFont BoldFont;
         public GenericFont ItalicFont;
+        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public FormatSettings FormatSettings;
         public float TextScale = 1;
         public SoundEffect ActionSound;

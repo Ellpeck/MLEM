@@ -12,6 +12,8 @@ using MLEM.Extended.Tiled;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
+using MLEM.Formatting.Codes;
+using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -113,16 +115,26 @@ namespace Sandbox {
             };*/
 
             var formatter = new TextFormatter();
-            var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ff0000>two bits of formatting</c>! It also includesavery<c Pink>long</c>wordthatis<c Blue>formatted</c>aswell. Additionally, it <a wobbly>wobbles</a> and has a <s>shadow</s> or a <s #ff0000 4>weird shadow</s>";
-            this.tokenized = formatter.Tokenize(strg);
+            formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
+            //var strg = "This <c CornflowerBlue>is a formatted string</c> with <c #ffff0000>two bits of formatting</c>! It also includesavery<c Pink>long</c>wordthatis<c Blue>formatted</c>aswell. Additionally, it <a wobbly>wobbles</a> and has a <s>shadow</s> or a <s #ffff0000 4>weird shadow</s>. We like icons too! <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test>";
+            var strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+            //var strg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+            this.tokenized = formatter.Tokenize(font, strg);
             this.tokenized.Split(font, 400, 1);
 
             this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin();
+                this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
                 this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, 1, 0);
                 this.SpriteBatch.End();
             };
-            this.OnUpdate += (g, time) => this.tokenized.Update(time);
+            this.OnUpdate += (g, time) => {
+                if (this.InputHandler.IsPressed(Keys.W)) {
+                    this.tokenized = formatter.Tokenize(font, strg);
+                    this.tokenized.Split(font, this.InputHandler.IsModifierKeyDown(ModifierKey.Shift) ? 400 : 500, 1);
+                }
+                this.tokenized.Update(time);
+            };
         }
 
         protected override void DoUpdate(GameTime gameTime) {
