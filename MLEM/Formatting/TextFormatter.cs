@@ -19,7 +19,8 @@ namespace MLEM.Formatting {
             this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, boldFont?.Invoke()));
             this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, italicFont?.Invoke()));
             this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r, m.Groups[1].Success ? ColorExtensions.FromHex(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
-            this.Codes.Add(new Regex("</(b|i|s)>"), (f, m, r) => new FontCode(m, r, null));
+            this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 2, 0.85F));
+            this.Codes.Add(new Regex("</(b|i|s|u)>"), (f, m, r) => new FontCode(m, r, null));
 
             // color codes
             foreach (var c in typeof(Color).GetProperties()) {
