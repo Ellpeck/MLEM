@@ -66,15 +66,18 @@ namespace MLEM.Ui.Elements {
             this.CanBeMoused = false;
 
             this.Formatter = new TextFormatter(() => this.BoldFont, () => this.ItalicFont);
-            this.Formatter.Codes.Add(new Regex("<l ([^>]+)>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => t == this.HoveredToken, l => {
-                if (!this.Input.IsPressed(MouseButton.Left))
+            this.Formatter.Codes.Add(new Regex("<l ([^>]+)>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => t == this.HoveredToken));
+            this.OnPressed += e => {
+                if (this.HoveredToken == null)
                     return;
-                try {
-                    Process.Start(l.Match.Groups[1].Value);
-                } catch (Exception) {
-                    // ignored
+                foreach (var code in this.HoveredToken.AppliedCodes.OfType<LinkCode>()) {
+                    try {
+                        Process.Start(code.Match.Groups[1].Value);
+                    } catch (Exception) {
+                        // ignored
+                    }
                 }
-            }));
+            };
         }
 
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
