@@ -8,10 +8,14 @@ namespace MLEM.Font {
     public class GenericSpriteFont : GenericFont {
 
         public readonly SpriteFont Font;
+        public override GenericFont Bold { get; }
+        public override GenericFont Italic { get; }
         public override float LineHeight => this.Font.LineSpacing;
 
-        public GenericSpriteFont(SpriteFont font) {
+        public GenericSpriteFont(SpriteFont font, SpriteFont bold = null, SpriteFont italic = null) {
             this.Font = font;
+            this.Bold = bold != null ? new GenericSpriteFont(bold) : this;
+            this.Italic = italic != null ? new GenericSpriteFont(italic) : this;
         }
 
         public override Vector2 MeasureString(string text) {

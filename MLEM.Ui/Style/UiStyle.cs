@@ -37,7 +37,9 @@ namespace MLEM.Ui.Style {
         public NinePatch ProgressBarProgressTexture;
         public Color ProgressBarProgressColor;
         public GenericFont Font;
+        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
         public GenericFont BoldFont;
+        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
         public GenericFont ItalicFont;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public FormatSettings FormatSettings;

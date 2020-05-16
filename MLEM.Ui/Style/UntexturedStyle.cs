@@ -36,6 +36,8 @@ namespace MLEM.Ui.Style {
 
         private class EmptyFont : GenericFont {
 
+            public override GenericFont Bold => this;
+            public override GenericFont Italic => this;
             public override float LineHeight => 1;
 
             public override Vector2 MeasureString(string text) {

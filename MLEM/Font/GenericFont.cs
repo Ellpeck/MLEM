@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 namespace MLEM.Font {
     public abstract class GenericFont {
 
+        public abstract GenericFont Bold { get; }
+
+        public abstract GenericFont Italic { get; }
+
         public abstract float LineHeight { get; }
 
         public abstract Vector2 MeasureString(string text);

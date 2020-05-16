@@ -10,10 +10,14 @@ namespace MLEM.Extended.Font {
     public class GenericBitmapFont : GenericFont {
 
         public readonly BitmapFont Font;
+        public override GenericFont Bold { get; }
+        public override GenericFont Italic { get; }
         public override float LineHeight => this.Font.LineHeight;
 
-        public GenericBitmapFont(BitmapFont font) {
+        public GenericBitmapFont(BitmapFont font, BitmapFont bold = null, BitmapFont italic = null) {
             this.Font = font;
+            this.Bold = bold != null ? new GenericBitmapFont(bold) : this;
+            this.Italic = italic != null ? new GenericBitmapFont(italic) : this;
         }
 
         public override Vector2 MeasureString(string text) {

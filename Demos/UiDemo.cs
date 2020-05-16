@@ -37,9 +37,8 @@ namespace Demos {
             var style = new UntexturedStyle(this.SpriteBatch) {
                 // when using a SpriteFont, use GenericSpriteFont. When using a MonoGame.Extended BitmapFont, use GenericBitmapFont.
                 // Wrapping fonts like this allows for both types to be usable within MLEM.Ui easily
-                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
-                BoldFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFontBold")),
-                ItalicFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFontItalic")),
+                // Supplying a bold and an italic version is optional
+                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"), LoadContent<SpriteFont>("Fonts/TestFontBold"), LoadContent<SpriteFont>("Fonts/TestFontItalic")),
                 TextScale = 0.1F,
                 PanelTexture = this.testPatch,
                 ButtonTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
@@ -89,8 +88,8 @@ namespace Demos {
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. The names of all <c Orange>MonoGame Colors</c> can be used, as well as the codes <i>Italic</i>, <b>Bold</b>, <s>Drop Shadow'd</s> and <s><c Pink>mixed formatting</s></c>. \n<i>Even <c #ff611f82>inline custom colors</c> work!</i>"));
 
             // adding some custom image formatting codes
-            var p = this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain <i Grass> images and more!"));
-            p.Formatter.AddImage("Grass", image.Texture);
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain <i Grass> images and more!"));
+            this.UiSystem.TextFormatter.AddImage("Grass", image.Texture);
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including <a wobbly>wobbly text</a> at <a wobbly 8 0.25>different intensities</a>. Of course, more animations can be added though."));
 
             this.root.AddChild(new VerticalSpace(3));

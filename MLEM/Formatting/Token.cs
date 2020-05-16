@@ -13,8 +13,11 @@ namespace MLEM.Formatting {
         public readonly Code[] AppliedCodes;
         public readonly int Index;
         public readonly int RawIndex;
-        public string Substring { get; internal set; }
+        public readonly string Substring;
+        public string DisplayString => this.SplitSubstring ?? this.Substring;
         public readonly string RawSubstring;
+        internal RectangleF[] Area;
+        internal string SplitSubstring;
 
         public Token(Code[] appliedCodes, int index, int rawIndex, string substring, string rawSubstring) {
             this.AppliedCodes = appliedCodes;
@@ -27,12 +30,12 @@ namespace MLEM.Formatting {
                 code.Token = this;
         }
 
-        public Color? GetColor() {
-            return this.AppliedCodes.Select(c => c.GetColor()).FirstOrDefault(c => c.HasValue);
+        public Color? GetColor(Color defaultPick) {
+            return this.AppliedCodes.Select(c => c.GetColor(defaultPick)).FirstOrDefault(c => c.HasValue);
         }
 
-        public GenericFont GetFont() {
-            return this.AppliedCodes.Select(c => c.GetFont()).FirstOrDefault();
+        public GenericFont GetFont(GenericFont defaultPick) {
+            return this.AppliedCodes.Select(c => c.GetFont(defaultPick)).FirstOrDefault();
         }
 
         public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
@@ -48,6 +51,10 @@ namespace MLEM.Formatting {
 
             // if no code drew, we have to do it ourselves
             font.DrawString(batch, cString, pos, color, 0, Vector2.Zero, scale, SpriteEffects.None, depth);
+        }
+
+        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, float scale) {
+            return this.Area.Select(a => new RectangleF(stringPos + a.Location * scale, a.Size * scale));
         }
 
     }

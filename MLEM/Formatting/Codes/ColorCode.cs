@@ -10,7 +10,7 @@ namespace MLEM.Formatting.Codes {
             this.color = color;
         }
 
-        public override Color? GetColor() {
+        public override Color? GetColor(Color defaultPick) {
             return this.color;
         }
 

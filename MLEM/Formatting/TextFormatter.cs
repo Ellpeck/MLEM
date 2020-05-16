@@ -14,10 +14,10 @@ namespace MLEM.Formatting {
 
         public readonly Dictionary<Regex, Code.Constructor> Codes = new Dictionary<Regex, Code.Constructor>();
 
-        public TextFormatter(Func<GenericFont> boldFont = null, Func<GenericFont> italicFont = null) {
+        public TextFormatter() {
             // font codes
-            this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, boldFont?.Invoke()));
-            this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, italicFont?.Invoke()));
+            this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
+            this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
             this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r, m.Groups[1].Success ? ColorExtensions.FromHex(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
             this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
             this.Codes.Add(new Regex("</(b|i|s|u|l)>"), (f, m, r) => new FontCode(m, r, null));
@@ -62,7 +62,7 @@ namespace MLEM.Formatting {
                 codes.RemoveAll(c => c.EndsHere(next));
                 codes.Add(next);
             }
-            return new TokenizedString(s, StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
+            return new TokenizedString(font, s, StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
         }
 
         private Code GetNextCode(string s, int index) {

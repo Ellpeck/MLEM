@@ -22,13 +22,13 @@ namespace MLEM.Ui.Elements {
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public FormattingCodeCollection Formatting;
         public StyleProp<GenericFont> RegularFont;
+        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
         public StyleProp<GenericFont> BoldFont;
+        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
         public StyleProp<GenericFont> ItalicFont;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public StyleProp<FormatSettings> FormatSettings;
-        public readonly TextFormatter Formatter;
         public TokenizedString TokenizedText { get; private set; }
-        public Token HoveredToken { get; private set; }
 
         public StyleProp<Color> TextColor;
         public StyleProp<float> TextScale;
@@ -39,6 +39,8 @@ namespace MLEM.Ui.Elements {
                     this.text = value;
                     this.IsHidden = string.IsNullOrWhiteSpace(this.text);
                     this.SetAreaDirty();
+                    // cause text to be re-tokenized
+                    this.TokenizedText = null;
                 }
             }
         }
@@ -64,20 +66,6 @@ namespace MLEM.Ui.Elements {
             this.AutoAdjustWidth = centerText;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
-
-            this.Formatter = new TextFormatter(() => this.BoldFont, () => this.ItalicFont);
-            this.Formatter.Codes.Add(new Regex("<l ([^>]+)>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => t == this.HoveredToken));
-            this.OnPressed += e => {
-                if (this.HoveredToken == null)
-                    return;
-                foreach (var code in this.HoveredToken.AppliedCodes.OfType<LinkCode>()) {
-                    try {
-                        Process.Start(code.Match.Groups[1].Value);
-                    } catch (Exception) {
-                        // ignored
-                    }
-                }
-            };
         }
 
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
@@ -92,9 +80,23 @@ namespace MLEM.Ui.Elements {
                 return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
             }
 
-            this.TokenizedText = this.Formatter.Tokenize(this.RegularFont, this.text);
             this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, sc);
-            this.CanBeMoused = this.TokenizedText.AllCodes.OfType<LinkCode>().Any();
+            var linkTokens = this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)).ToArray();
+            // this basically checks if there are any tokens that have an area that doesn't have a link element associated with it
+            if (linkTokens.Any(t => !t.GetArea(Vector2.Zero, this.TextScale).All(a => this.GetChildren<Link>(c => c.PositionOffset == a.Location && c.Size == a.Size).Any()))) {
+                this.RemoveChildren(c => c is Link);
+                foreach (var link in linkTokens) {
+                    var areas = link.GetArea(Vector2.Zero, this.TextScale).ToArray();
+                    for (var i = 0; i < areas.Length; i++) {
+                        var area = areas[i];
+                        this.AddChild(new Link(Anchor.TopLeft, link, area.Size) {
+                            PositionOffset = area.Location,
+                            // only allow selecting the first part of a link
+                            CanBeSelected = i == 0
+                        });
+                    }
+                }
+            }
 
             var dims = this.TokenizedText.Measure(this.RegularFont) * sc;
             return new Vector2(this.AutoAdjustWidth ? dims.X + this.ScaledPadding.Width : size.X, dims.Y + this.ScaledPadding.Height);
@@ -103,6 +105,9 @@ namespace MLEM.Ui.Elements {
         public override void ForceUpdateArea() {
             if (this.GetTextCallback != null)
                 this.Text = this.GetTextCallback(this);
+
+            if (this.TokenizedText == null)
+                this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.text);
             base.ForceUpdateArea();
         }
 
@@ -112,10 +117,8 @@ namespace MLEM.Ui.Elements {
                 this.Text = this.GetTextCallback(this);
             this.TimeIntoAnimation += time.ElapsedGameTime;
 
-            if (this.TokenizedText != null) {
+            if (this.TokenizedText != null)
                 this.TokenizedText.Update(time);
-                this.HoveredToken = this.TokenizedText.GetTokenUnderPos(this.RegularFont, this.DisplayArea.Location, this.Input.MousePosition.ToVector2(), this.TextScale * this.Scale);
-            }
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
@@ -146,6 +149,25 @@ namespace MLEM.Ui.Elements {
 
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public delegate string TextModifier(string text);
+
+        public class Link : Element {
+
+            public readonly Token Token;
+
+            public Link(Anchor anchor, Token token, Vector2 size) : base(anchor, size) {
+                this.Token = token;
+                this.OnPressed += e => {
+                    foreach (var code in token.AppliedCodes.OfType<LinkCode>()) {
+                        try {
+                            Process.Start(code.Match.Groups[1].Value);
+                        } catch (Exception) {
+                            // ignored
+                        }
+                    }
+                };
+            }
+
+        }
 
     }
 }

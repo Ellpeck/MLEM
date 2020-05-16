@@ -13,7 +13,7 @@ namespace MLEM.Formatting.Codes {
             this.isSelected = isSelected;
         }
 
-        public bool IsSelected() {
+        public virtual bool IsSelected() {
             return this.isSelected(this.Token);
         }
 

@@ -20,11 +20,11 @@ namespace MLEM.Formatting.Codes {
             return other.GetType() == this.GetType();
         }
 
-        public virtual Color? GetColor() {
+        public virtual Color? GetColor(Color defaultPick) {
             return null;
         }
 
-        public virtual GenericFont GetFont() {
+        public virtual GenericFont GetFont(GenericFont defaultPick) {
             return null;
         }
 

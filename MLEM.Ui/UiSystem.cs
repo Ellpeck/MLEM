@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Formatting;
+using MLEM.Formatting.Codes;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
@@ -50,6 +53,7 @@ namespace MLEM.Ui {
         public float DrawAlpha = 1;
         public BlendState BlendState;
         public SamplerState SamplerState = SamplerState.PointClamp;
+        public TextFormatter TextFormatter;
         public UiControls Controls;
 
         public Element.DrawCallback OnElementDrawn = (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
@@ -97,6 +101,9 @@ namespace MLEM.Ui {
                 if (e.OnSecondaryPressed != null)
                     e.SecondActionSound.Value?.Replay();
             };
+
+            this.TextFormatter = new TextFormatter();
+            this.TextFormatter.Codes.Add(new Regex("<l ([^>]+)>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => this.Controls.MousedElement is Paragraph.Link link && link.Token == t));
         }
 
         public override void Update(GameTime time) {
