@@ -67,27 +67,9 @@ namespace MLEM.Ui.Elements {
             }
 
             base.ForceUpdateArea();
+            
             this.ScrollChildren();
-
-            if (this.scrollOverflow) {
-                // if there is only one child, then we have just the scroll bar
-                if (this.Children.Count == 1)
-                    return;
-                // the "real" first child is the scroll bar, which we want to ignore
-                var firstChild = this.Children[1];
-                var lowestChild = this.GetLowestChild(e => !e.IsHidden);
-                // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
-                var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
-                this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Height;
-
-                // update the render target
-                var targetArea = (Rectangle) this.GetRenderTargetArea();
-                if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
-                    if (this.renderTarget != null)
-                        this.renderTarget.Dispose();
-                    this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
-                }
-            }
+            this.ScrollSetup();
         }
 
         private void ScrollChildren() {
@@ -181,6 +163,28 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture.SetFromStyle(style.PanelTexture);
+        }
+
+        protected virtual void ScrollSetup() {
+            if (!this.scrollOverflow)
+                return;
+            // if there is only one child, then we have just the scroll bar
+            if (this.Children.Count == 1)
+                return;
+            // the "real" first child is the scroll bar, which we want to ignore
+            var firstChild = this.Children[1];
+            var lowestChild = this.GetLowestChild(e => !e.IsHidden);
+            // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
+            var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
+            this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Height;
+
+            // update the render target
+            var targetArea = (Rectangle) this.GetRenderTargetArea();
+            if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
+                if (this.renderTarget != null)
+                    this.renderTarget.Dispose();
+                this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.GraphicsDevice, targetArea.Width, targetArea.Height);
+            }
         }
 
     }

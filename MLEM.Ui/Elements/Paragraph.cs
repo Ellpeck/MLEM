@@ -33,13 +33,16 @@ namespace MLEM.Ui.Elements {
         public StyleProp<Color> TextColor;
         public StyleProp<float> TextScale;
         public string Text {
-            get => this.text;
+            get {
+                this.QueryTextCallback();
+                return this.text;
+            }
             set {
                 if (this.text != value) {
                     this.text = value;
                     this.IsHidden = string.IsNullOrWhiteSpace(this.text);
                     this.SetAreaDirty();
-                    // cause text to be re-tokenized
+                    // force text to be re-tokenized
                     this.TokenizedText = null;
                 }
             }
@@ -70,51 +73,22 @@ namespace MLEM.Ui.Elements {
 
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
-            var sc = this.TextScale * this.Scale;
+            this.ParseText(size);
 
             // old formatting stuff
-            this.splitText = this.RegularFont.Value.SplitString(this.text.RemoveFormatting(this.RegularFont.Value), size.X - this.ScaledPadding.Width, sc);
-            this.Formatting = this.text.GetFormattingCodes(this.RegularFont.Value);
             if (this.Formatting.Count > 0) {
-                var textDims = this.RegularFont.Value.MeasureString(this.splitText) * sc;
+                var textDims = this.RegularFont.Value.MeasureString(this.splitText) * this.TextScale * this.Scale;
                 return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
             }
 
-            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, sc);
-            var linkTokens = this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)).ToArray();
-            // this basically checks if there are any tokens that have an area that doesn't have a link element associated with it
-            if (linkTokens.Any(t => !t.GetArea(Vector2.Zero, this.TextScale).All(a => this.GetChildren<Link>(c => c.PositionOffset == a.Location && c.Size == a.Size).Any()))) {
-                this.RemoveChildren(c => c is Link);
-                foreach (var link in linkTokens) {
-                    var areas = link.GetArea(Vector2.Zero, this.TextScale).ToArray();
-                    for (var i = 0; i < areas.Length; i++) {
-                        var area = areas[i];
-                        this.AddChild(new Link(Anchor.TopLeft, link, area.Size) {
-                            PositionOffset = area.Location,
-                            // only allow selecting the first part of a link
-                            CanBeSelected = i == 0
-                        });
-                    }
-                }
-            }
-
-            var dims = this.TokenizedText.Measure(this.RegularFont) * sc;
+            var dims = this.TokenizedText.Measure(this.RegularFont) * this.TextScale * this.Scale;
             return new Vector2(this.AutoAdjustWidth ? dims.X + this.ScaledPadding.Width : size.X, dims.Y + this.ScaledPadding.Height);
         }
 
-        public override void ForceUpdateArea() {
-            if (this.GetTextCallback != null)
-                this.Text = this.GetTextCallback(this);
-
-            if (this.TokenizedText == null)
-                this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.text);
-            base.ForceUpdateArea();
-        }
-
         public override void Update(GameTime time) {
+            this.QueryTextCallback();
             base.Update(time);
-            if (this.GetTextCallback != null)
-                this.Text = this.GetTextCallback(this);
+            
             this.TimeIntoAnimation += time.ElapsedGameTime;
 
             if (this.TokenizedText != null)
@@ -143,6 +117,38 @@ namespace MLEM.Ui.Elements {
             this.BoldFont.SetFromStyle(style.BoldFont ?? style.Font);
             this.ItalicFont.SetFromStyle(style.ItalicFont ?? style.Font);
             this.FormatSettings.SetFromStyle(style.FormatSettings);
+        }
+
+        protected virtual void ParseText(Vector2 size) {
+            // old formatting stuff
+            this.splitText = this.RegularFont.Value.SplitString(this.Text.RemoveFormatting(this.RegularFont.Value), size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
+            this.Formatting = this.Text.GetFormattingCodes(this.RegularFont.Value);
+
+            if (this.TokenizedText == null)
+                this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text);
+
+            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
+            var linkTokens = this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)).ToArray();
+            // this basically checks if there are any tokens that have an area that doesn't have a link element associated with it
+            if (linkTokens.Any(t => !t.GetArea(Vector2.Zero, this.TextScale).All(a => this.GetChildren<Link>(c => c.PositionOffset == a.Location && c.Size == a.Size).Any()))) {
+                this.RemoveChildren(c => c is Link);
+                foreach (var link in linkTokens) {
+                    var areas = link.GetArea(Vector2.Zero, this.TextScale).ToArray();
+                    for (var i = 0; i < areas.Length; i++) {
+                        var area = areas[i];
+                        this.AddChild(new Link(Anchor.TopLeft, link, area.Size) {
+                            PositionOffset = area.Location,
+                            // only allow selecting the first part of a link
+                            CanBeSelected = i == 0
+                        });
+                    }
+                }
+            }
+        }
+
+        private void QueryTextCallback() {
+            if (this.GetTextCallback != null)
+                this.Text = this.GetTextCallback(this);
         }
 
         public delegate string TextCallback(Paragraph paragraph);
