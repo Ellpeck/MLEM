@@ -183,12 +183,15 @@ namespace MLEM.Ui.Elements {
                     this.Root.OnElementAdded(e);
             });
             this.SetSortedChildrenDirty();
-            this.SetAreaDirty();
+            element.SetAreaDirty();
             return element;
         }
 
         public void RemoveChild(Element element) {
             this.Children.Remove(element);
+            // set area dirty here so that a dirty call is made
+            // upwards to us if the element is auto-positioned
+            element.SetAreaDirty();
             element.Parent = null;
             element.AndChildren(e => {
                 e.Root = null;
@@ -197,7 +200,6 @@ namespace MLEM.Ui.Elements {
                     this.Root.OnElementRemoved(e);
             });
             this.SetSortedChildrenDirty();
-            this.SetAreaDirty();
         }
 
         public void RemoveChildren(Func<Element, bool> condition = null) {
