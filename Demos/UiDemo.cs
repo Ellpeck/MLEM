@@ -184,18 +184,18 @@ namespace Demos {
 
             var children = this.root.GetChildren();
             var totalChildren = this.root.GetChildren(regardGrandchildren: true);
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{children.Count()}[Regular] children, but there are [Bold]{totalChildren.Count()}[Regular] when regarding children's children"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{children.Count()}</b> children, but there are <b>{totalChildren.Count()}</b> when regarding children's children"));
 
             var textFields = this.root.GetChildren<TextField>();
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{textFields.Count()}[Regular] text fields"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{textFields.Count()}</b> text fields"));
 
             var paragraphs = this.root.GetChildren<Paragraph>();
             var totalParagraphs = this.root.GetChildren<Paragraph>(regardGrandchildren: true);
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{paragraphs.Count()}[Regular] paragraphs, but there are [Bold]{totalParagraphs.Count()}[Regular] when regarding children's children"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{paragraphs.Count()}</b> paragraphs, but there are <b>{totalParagraphs.Count()}</b> when regarding children's children"));
 
             var autoWidthChildren = this.root.GetChildren(e => e.Size.X == 1);
             var autoWidthButtons = this.root.GetChildren<Button>(e => e.Size.X == 1);
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has [Bold]{autoWidthChildren.Count()}[Regular] auto-width children, [Bold]{autoWidthButtons.Count()}[Regular] of which are buttons"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{autoWidthChildren.Count()}</b> auto-width children, <b>{autoWidthButtons.Count()}</b> of which are buttons"));
 
             // select the first element for auto-navigation
             this.root.Root.SelectElement(this.root.GetChildren().First(c => c.CanBeSelected));

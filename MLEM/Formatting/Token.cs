@@ -35,7 +35,7 @@ namespace MLEM.Formatting {
         }
 
         public GenericFont GetFont(GenericFont defaultPick) {
-            return this.AppliedCodes.Select(c => c.GetFont(defaultPick)).FirstOrDefault();
+            return this.AppliedCodes.Select(c => c.GetFont(defaultPick)).FirstOrDefault(f => f != null);
         }
 
         public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
