@@ -14,6 +14,23 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/Regular.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:Fonts/Regular.fnt
+
+#begin Fonts/RegularTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Fonts/RegularTexture.png
+
 #begin Fonts/TestFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
