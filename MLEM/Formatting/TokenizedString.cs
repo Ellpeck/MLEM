@@ -98,7 +98,9 @@ namespace MLEM.Formatting {
                 var split = token.DisplayString.Split('\n');
                 for (var i = 0; i < split.Length; i++) {
                     var size = font.MeasureString(split[i]);
-                    area.Add(new RectangleF(innerOffset, size));
+                    var rect = new RectangleF(innerOffset, size);
+                    if (!rect.IsEmpty)
+                        area.Add(rect);
 
                     if (i < split.Length - 1) {
                         innerOffset.X = 0;

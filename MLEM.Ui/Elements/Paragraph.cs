@@ -88,7 +88,7 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             this.QueryTextCallback();
             base.Update(time);
-            
+
             this.TimeIntoAnimation += time.ElapsedGameTime;
 
             if (this.TokenizedText != null)
@@ -134,9 +134,10 @@ namespace MLEM.Ui.Elements {
                 this.RemoveChildren(c => c is Link);
                 foreach (var link in linkTokens) {
                     var areas = link.GetArea(Vector2.Zero, this.TextScale).ToArray();
+                    var cluster = new Link[areas.Length];
                     for (var i = 0; i < areas.Length; i++) {
                         var area = areas[i];
-                        this.AddChild(new Link(Anchor.TopLeft, link, area.Size) {
+                        cluster[i] = this.AddChild(new Link(Anchor.TopLeft, link, area.Size, cluster) {
                             PositionOffset = area.Location,
                             // only allow selecting the first part of a link
                             CanBeSelected = i == 0
@@ -159,9 +160,11 @@ namespace MLEM.Ui.Elements {
         public class Link : Element {
 
             public readonly Token Token;
+            public readonly Link[] LinkCluster;
 
-            public Link(Anchor anchor, Token token, Vector2 size) : base(anchor, size) {
+            public Link(Anchor anchor, Token token, Vector2 size, Link[] linkCluster) : base(anchor, size) {
                 this.Token = token;
+                this.LinkCluster = linkCluster;
                 this.OnPressed += e => {
                     foreach (var code in token.AppliedCodes.OfType<LinkCode>()) {
                         try {
@@ -171,6 +174,18 @@ namespace MLEM.Ui.Elements {
                         }
                     }
                 };
+            }
+
+            public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+                if (this.LinkCluster.Length > 1 && this.Controls.SelectedElement == this) {
+                    // also draw the selection box around all other links in the cluster
+                    foreach (var link in this.LinkCluster) {
+                        if (link == this)
+                            continue;
+                        this.System.OnSelectedElementDrawn?.Invoke(link, time, batch, alpha);
+                    }
+                }
+                base.Draw(time, batch, alpha, blendState, samplerState, matrix);
             }
 
         }
