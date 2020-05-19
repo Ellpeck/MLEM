@@ -103,7 +103,7 @@ namespace MLEM.Ui {
             };
 
             this.TextFormatter = new TextFormatter();
-            this.TextFormatter.Codes.Add(new Regex("<l ([^>]+)>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => this.Controls.MousedElement is Paragraph.Link link && link.Token == t));
+            this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => this.Controls.MousedElement is Paragraph.Link link && link.Token == t));
         }
 
         public override void Update(GameTime time) {
