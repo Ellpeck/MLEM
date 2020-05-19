@@ -152,6 +152,8 @@ namespace MLEM.Ui.Elements {
         public OtherElementCallback OnSelectedElementChanged;
         public TabNextElementCallback GetTabNextElement;
         public GamepadNextElementCallback GetGamepadNextElement;
+        public OtherElementCallback OnChildAdded;
+        public OtherElementCallback OnChildRemoved;
 
         public StyleProp<NinePatch> SelectionIndicator;
         public StyleProp<SoundEffectInstance> ActionSound;
@@ -179,8 +181,8 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = this.Root;
                 e.System = this.System;
-                if (this.Root != null)
-                    this.Root.OnElementAdded(e);
+                this.Root?.OnElementAdded(e);
+                this.OnChildAdded?.Invoke(this, e);
             });
             this.SetSortedChildrenDirty();
             element.SetAreaDirty();
@@ -196,8 +198,8 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
-                if (this.Root != null)
-                    this.Root.OnElementRemoved(e);
+                this.Root?.OnElementRemoved(e);
+                this.OnChildRemoved?.Invoke(this, e);
             });
             this.SetSortedChildrenDirty();
         }
