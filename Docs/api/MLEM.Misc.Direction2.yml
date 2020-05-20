@@ -1,0 +1,859 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Misc.Direction2
+  commentId: T:MLEM.Misc.Direction2
+  id: Direction2
+  parent: MLEM.Misc
+  children:
+  - MLEM.Misc.Direction2.Down
+  - MLEM.Misc.Direction2.DownLeft
+  - MLEM.Misc.Direction2.DownRight
+  - MLEM.Misc.Direction2.Left
+  - MLEM.Misc.Direction2.None
+  - MLEM.Misc.Direction2.Right
+  - MLEM.Misc.Direction2.Up
+  - MLEM.Misc.Direction2.UpLeft
+  - MLEM.Misc.Direction2.UpRight
+  langs:
+  - csharp
+  - vb
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Misc.Direction2
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Direction2
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 7
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: public enum Direction2
+    content.vb: Public Enum Direction2
+  extensionMethods:
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsAdjacent
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsDiagonal
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Offset
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Opposite
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Angle
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: MLEM.Misc.Direction2.Up
+  commentId: F:MLEM.Misc.Direction2.Up
+  id: Up
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Up
+  nameWithType: Direction2.Up
+  fullName: MLEM.Misc.Direction2.Up
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Up
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: Up = 0
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.Right
+  commentId: F:MLEM.Misc.Direction2.Right
+  id: Right
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: Direction2.Right
+  fullName: MLEM.Misc.Direction2.Right
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 10
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: Right = 1
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.Down
+  commentId: F:MLEM.Misc.Direction2.Down
+  id: Down
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Down
+  nameWithType: Direction2.Down
+  fullName: MLEM.Misc.Direction2.Down
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Down
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: Down = 2
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.Left
+  commentId: F:MLEM.Misc.Direction2.Left
+  id: Left
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: Direction2.Left
+  fullName: MLEM.Misc.Direction2.Left
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: Left = 3
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.UpRight
+  commentId: F:MLEM.Misc.Direction2.UpRight
+  id: UpRight
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: UpRight
+  nameWithType: Direction2.UpRight
+  fullName: MLEM.Misc.Direction2.UpRight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpRight
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 14
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: UpRight = 4
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.DownRight
+  commentId: F:MLEM.Misc.Direction2.DownRight
+  id: DownRight
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: DownRight
+  nameWithType: Direction2.DownRight
+  fullName: MLEM.Misc.Direction2.DownRight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownRight
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: DownRight = 5
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.DownLeft
+  commentId: F:MLEM.Misc.Direction2.DownLeft
+  id: DownLeft
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: DownLeft
+  nameWithType: Direction2.DownLeft
+  fullName: MLEM.Misc.Direction2.DownLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownLeft
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 16
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: DownLeft = 6
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.UpLeft
+  commentId: F:MLEM.Misc.Direction2.UpLeft
+  id: UpLeft
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: UpLeft
+  nameWithType: Direction2.UpLeft
+  fullName: MLEM.Misc.Direction2.UpLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpLeft
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 17
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: UpLeft = 7
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Misc.Direction2.None
+  commentId: F:MLEM.Misc.Direction2.None
+  id: None
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Direction2.None
+  fullName: MLEM.Misc.Direction2.None
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: None
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 19
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: None = 8
+    return:
+      type: MLEM.Misc.Direction2
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsAdjacent
+  commentId: M:MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  name: IsAdjacent()
+  nameWithType: Direction2Helper.IsAdjacent()
+  fullName: MLEM.Misc.Direction2Helper.IsAdjacent()
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent
+    name: IsAdjacent
+    nameWithType: Direction2Helper.IsAdjacent
+    fullName: MLEM.Misc.Direction2Helper.IsAdjacent
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent
+    name: IsAdjacent
+    nameWithType: Direction2Helper.IsAdjacent
+    fullName: MLEM.Misc.Direction2Helper.IsAdjacent
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsDiagonal
+  commentId: M:MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  name: IsDiagonal()
+  nameWithType: Direction2Helper.IsDiagonal()
+  fullName: MLEM.Misc.Direction2Helper.IsDiagonal()
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal
+    name: IsDiagonal
+    nameWithType: Direction2Helper.IsDiagonal
+    fullName: MLEM.Misc.Direction2Helper.IsDiagonal
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal
+    name: IsDiagonal
+    nameWithType: Direction2Helper.IsDiagonal
+    fullName: MLEM.Misc.Direction2Helper.IsDiagonal
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Offset
+  commentId: M:MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  name: Offset()
+  nameWithType: Direction2Helper.Offset()
+  fullName: MLEM.Misc.Direction2Helper.Offset()
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Offset
+    name: Offset
+    nameWithType: Direction2Helper.Offset
+    fullName: MLEM.Misc.Direction2Helper.Offset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Offset
+    name: Offset
+    nameWithType: Direction2Helper.Offset
+    fullName: MLEM.Misc.Direction2Helper.Offset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Opposite
+  commentId: M:MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  name: Opposite()
+  nameWithType: Direction2Helper.Opposite()
+  fullName: MLEM.Misc.Direction2Helper.Opposite()
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Opposite
+    name: Opposite
+    nameWithType: Direction2Helper.Opposite
+    fullName: MLEM.Misc.Direction2Helper.Opposite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Opposite
+    name: Opposite
+    nameWithType: Direction2Helper.Opposite
+    fullName: MLEM.Misc.Direction2Helper.Opposite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Angle
+  commentId: M:MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  name: Angle()
+  nameWithType: Direction2Helper.Angle()
+  fullName: MLEM.Misc.Direction2Helper.Angle()
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Angle
+    name: Angle
+    nameWithType: Direction2Helper.Angle
+    fullName: MLEM.Misc.Direction2Helper.Angle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Angle
+    name: Angle
+    nameWithType: Direction2Helper.Angle
+    fullName: MLEM.Misc.Direction2Helper.Angle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  name: RotateCw(Boolean)
+  nameWithType: Direction2Helper.RotateCw(Boolean)
+  fullName: MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+    name: RotateCw
+    nameWithType: Direction2Helper.RotateCw
+    fullName: MLEM.Misc.Direction2Helper.RotateCw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+    name: RotateCw
+    nameWithType: Direction2Helper.RotateCw
+    fullName: MLEM.Misc.Direction2Helper.RotateCw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  name: RotateCcw(Boolean)
+  nameWithType: Direction2Helper.RotateCcw(Boolean)
+  fullName: MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+    name: RotateCcw
+    nameWithType: Direction2Helper.RotateCcw
+    fullName: MLEM.Misc.Direction2Helper.RotateCcw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+    name: RotateCcw
+    nameWithType: Direction2Helper.RotateCcw
+    fullName: MLEM.Misc.Direction2Helper.RotateCcw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  name: IsAdjacent(Direction2)
+  nameWithType: Direction2Helper.IsAdjacent(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+    name: IsAdjacent
+    nameWithType: Direction2Helper.IsAdjacent
+    fullName: MLEM.Misc.Direction2Helper.IsAdjacent
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+    name: IsAdjacent
+    nameWithType: Direction2Helper.IsAdjacent
+    fullName: MLEM.Misc.Direction2Helper.IsAdjacent
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper
+  commentId: T:MLEM.Misc.Direction2Helper
+  parent: MLEM.Misc
+  name: Direction2Helper
+  nameWithType: Direction2Helper
+  fullName: MLEM.Misc.Direction2Helper
+- uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  name: IsDiagonal(Direction2)
+  nameWithType: Direction2Helper.IsDiagonal(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+    name: IsDiagonal
+    nameWithType: Direction2Helper.IsDiagonal
+    fullName: MLEM.Misc.Direction2Helper.IsDiagonal
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+    name: IsDiagonal
+    nameWithType: Direction2Helper.IsDiagonal
+    fullName: MLEM.Misc.Direction2Helper.IsDiagonal
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  name: Offset(Direction2)
+  nameWithType: Direction2Helper.Offset(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    nameWithType: Direction2Helper.Offset
+    fullName: MLEM.Misc.Direction2Helper.Offset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    nameWithType: Direction2Helper.Offset
+    fullName: MLEM.Misc.Direction2Helper.Offset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  name: Opposite(Direction2)
+  nameWithType: Direction2Helper.Opposite(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+    name: Opposite
+    nameWithType: Direction2Helper.Opposite
+    fullName: MLEM.Misc.Direction2Helper.Opposite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+    name: Opposite
+    nameWithType: Direction2Helper.Opposite
+    fullName: MLEM.Misc.Direction2Helper.Opposite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  name: Angle(Direction2)
+  nameWithType: Direction2Helper.Angle(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+    name: Angle
+    nameWithType: Direction2Helper.Angle
+    fullName: MLEM.Misc.Direction2Helper.Angle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+    name: Angle
+    nameWithType: Direction2Helper.Angle
+    fullName: MLEM.Misc.Direction2Helper.Angle
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  isExternal: true
+  name: RotateCw(Direction2, Boolean)
+  nameWithType: Direction2Helper.RotateCw(Direction2, Boolean)
+  fullName: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2, System.Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCw
+    nameWithType: Direction2Helper.RotateCw
+    fullName: MLEM.Misc.Direction2Helper.RotateCw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCw
+    nameWithType: Direction2Helper.RotateCw
+    fullName: MLEM.Misc.Direction2Helper.RotateCw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  isExternal: true
+  name: RotateCcw(Direction2, Boolean)
+  nameWithType: Direction2Helper.RotateCcw(Direction2, Boolean)
+  fullName: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2, System.Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCcw
+    nameWithType: Direction2Helper.RotateCcw
+    fullName: MLEM.Misc.Direction2Helper.RotateCcw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCcw
+    nameWithType: Direction2Helper.RotateCcw
+    fullName: MLEM.Misc.Direction2Helper.RotateCcw
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.Direction2
+  commentId: T:MLEM.Misc.Direction2
+  parent: MLEM.Misc
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Misc.Direction2

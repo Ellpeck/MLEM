@@ -1,0 +1,73 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.TextField.Rule
+  commentId: T:MLEM.Ui.Elements.TextField.Rule
+  id: TextField.Rule
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextField.Rule
+  nameWithType: TextField.Rule
+  fullName: MLEM.Ui.Elements.TextField.Rule
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/TextField.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Rule
+    path: ../MLEM.Ui/Elements/TextField.cs
+    startLine: 220
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate bool Rule(TextField field, string textToAdd);
+    parameters:
+    - id: field
+      type: MLEM.Ui.Elements.TextField
+    - id: textToAdd
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Delegate Function Rule(field As TextField, textToAdd As String) As Boolean
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.TextField
+  commentId: T:MLEM.Ui.Elements.TextField
+  parent: MLEM.Ui.Elements
+  name: TextField
+  nameWithType: TextField
+  fullName: MLEM.Ui.Elements.TextField
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

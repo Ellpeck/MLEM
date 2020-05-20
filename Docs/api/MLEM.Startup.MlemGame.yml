@@ -1,0 +1,1963 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Startup.MlemGame
+  commentId: T:MLEM.Startup.MlemGame
+  id: MlemGame
+  parent: MLEM.Startup
+  children:
+  - MLEM.Startup.MlemGame.#ctor(System.Int32,System.Int32)
+  - MLEM.Startup.MlemGame.DoDraw(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Startup.MlemGame.DoUpdate(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Startup.MlemGame.Draw(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Startup.MlemGame.GraphicsDeviceManager
+  - MLEM.Startup.MlemGame.Input
+  - MLEM.Startup.MlemGame.InputHandler
+  - MLEM.Startup.MlemGame.LoadContent
+  - MLEM.Startup.MlemGame.LoadContent``1(System.String)
+  - MLEM.Startup.MlemGame.OnDraw
+  - MLEM.Startup.MlemGame.OnLoadContent
+  - MLEM.Startup.MlemGame.OnUpdate
+  - MLEM.Startup.MlemGame.SpriteBatch
+  - MLEM.Startup.MlemGame.UiSystem
+  - MLEM.Startup.MlemGame.Update(Microsoft.Xna.Framework.GameTime)
+  langs:
+  - csharp
+  - vb
+  name: MlemGame
+  nameWithType: MlemGame
+  fullName: MLEM.Startup.MlemGame
+  type: Class
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MlemGame
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 9
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: 'public class MlemGame : Game, IDisposable'
+    content.vb: >-
+      Public Class MlemGame
+          Inherits Game
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - Microsoft.Xna.Framework.Game
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - Microsoft.Xna.Framework.Game.Dispose
+  - Microsoft.Xna.Framework.Game.Dispose(System.Boolean)
+  - Microsoft.Xna.Framework.Game.Exit
+  - Microsoft.Xna.Framework.Game.ResetElapsedTime
+  - Microsoft.Xna.Framework.Game.SuppressDraw
+  - Microsoft.Xna.Framework.Game.RunOneFrame
+  - Microsoft.Xna.Framework.Game.Run
+  - Microsoft.Xna.Framework.Game.Run(Microsoft.Xna.Framework.GameRunBehavior)
+  - Microsoft.Xna.Framework.Game.Tick
+  - Microsoft.Xna.Framework.Game.BeginDraw
+  - Microsoft.Xna.Framework.Game.EndDraw
+  - Microsoft.Xna.Framework.Game.BeginRun
+  - Microsoft.Xna.Framework.Game.EndRun
+  - Microsoft.Xna.Framework.Game.UnloadContent
+  - Microsoft.Xna.Framework.Game.Initialize
+  - Microsoft.Xna.Framework.Game.OnExiting(System.Object,System.EventArgs)
+  - Microsoft.Xna.Framework.Game.OnActivated(System.Object,System.EventArgs)
+  - Microsoft.Xna.Framework.Game.OnDeactivated(System.Object,System.EventArgs)
+  - Microsoft.Xna.Framework.Game.LaunchParameters
+  - Microsoft.Xna.Framework.Game.Components
+  - Microsoft.Xna.Framework.Game.InactiveSleepTime
+  - Microsoft.Xna.Framework.Game.MaxElapsedTime
+  - Microsoft.Xna.Framework.Game.IsActive
+  - Microsoft.Xna.Framework.Game.IsMouseVisible
+  - Microsoft.Xna.Framework.Game.TargetElapsedTime
+  - Microsoft.Xna.Framework.Game.IsFixedTimeStep
+  - Microsoft.Xna.Framework.Game.Services
+  - Microsoft.Xna.Framework.Game.Content
+  - Microsoft.Xna.Framework.Game.GraphicsDevice
+  - Microsoft.Xna.Framework.Game.Window
+  - Microsoft.Xna.Framework.Game.Activated
+  - Microsoft.Xna.Framework.Game.Deactivated
+  - Microsoft.Xna.Framework.Game.Disposed
+  - Microsoft.Xna.Framework.Game.Exiting
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Startup.MlemGame.Input
+  commentId: P:MLEM.Startup.MlemGame.Input
+  id: Input
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: Input
+  nameWithType: MlemGame.Input
+  fullName: MLEM.Startup.MlemGame.Input
+  type: Property
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Input
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 12
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public static InputHandler Input { get; }
+    parameters: []
+    return:
+      type: MLEM.Input.InputHandler
+    content.vb: Public Shared ReadOnly Property Input As InputHandler
+  overload: MLEM.Startup.MlemGame.Input*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: MLEM.Startup.MlemGame.GraphicsDeviceManager
+  commentId: F:MLEM.Startup.MlemGame.GraphicsDeviceManager
+  id: GraphicsDeviceManager
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: GraphicsDeviceManager
+  nameWithType: MlemGame.GraphicsDeviceManager
+  fullName: MLEM.Startup.MlemGame.GraphicsDeviceManager
+  type: Field
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GraphicsDeviceManager
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 14
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public readonly GraphicsDeviceManager GraphicsDeviceManager
+    return:
+      type: Microsoft.Xna.Framework.GraphicsDeviceManager
+    content.vb: Public ReadOnly GraphicsDeviceManager As GraphicsDeviceManager
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Startup.MlemGame.SpriteBatch
+  commentId: P:MLEM.Startup.MlemGame.SpriteBatch
+  id: SpriteBatch
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: SpriteBatch
+  nameWithType: MlemGame.SpriteBatch
+  fullName: MLEM.Startup.MlemGame.SpriteBatch
+  type: Property
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SpriteBatch
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 15
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public SpriteBatch SpriteBatch { get; protected set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    content.vb: Public Property SpriteBatch As SpriteBatch
+  overload: MLEM.Startup.MlemGame.SpriteBatch*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: MLEM.Startup.MlemGame.InputHandler
+  commentId: P:MLEM.Startup.MlemGame.InputHandler
+  id: InputHandler
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: InputHandler
+  nameWithType: MlemGame.InputHandler
+  fullName: MLEM.Startup.MlemGame.InputHandler
+  type: Property
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: InputHandler
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 16
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public InputHandler InputHandler { get; protected set; }
+    parameters: []
+    return:
+      type: MLEM.Input.InputHandler
+    content.vb: Public Property InputHandler As InputHandler
+  overload: MLEM.Startup.MlemGame.InputHandler*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: MLEM.Startup.MlemGame.UiSystem
+  commentId: P:MLEM.Startup.MlemGame.UiSystem
+  id: UiSystem
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: UiSystem
+  nameWithType: MlemGame.UiSystem
+  fullName: MLEM.Startup.MlemGame.UiSystem
+  type: Property
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: UiSystem
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 17
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public UiSystem UiSystem { get; protected set; }
+    parameters: []
+    return:
+      type: MLEM.Ui.UiSystem
+    content.vb: Public Property UiSystem As UiSystem
+  overload: MLEM.Startup.MlemGame.UiSystem*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: MLEM.Startup.MlemGame.OnLoadContent
+  commentId: F:MLEM.Startup.MlemGame.OnLoadContent
+  id: OnLoadContent
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: OnLoadContent
+  nameWithType: MlemGame.OnLoadContent
+  fullName: MLEM.Startup.MlemGame.OnLoadContent
+  type: Field
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnLoadContent
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 19
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public MlemGame.GenericCallback OnLoadContent
+    return:
+      type: MLEM.Startup.MlemGame.GenericCallback
+    content.vb: Public OnLoadContent As MlemGame.GenericCallback
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Startup.MlemGame.OnUpdate
+  commentId: F:MLEM.Startup.MlemGame.OnUpdate
+  id: OnUpdate
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: OnUpdate
+  nameWithType: MlemGame.OnUpdate
+  fullName: MLEM.Startup.MlemGame.OnUpdate
+  type: Field
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnUpdate
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 20
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public MlemGame.TimeCallback OnUpdate
+    return:
+      type: MLEM.Startup.MlemGame.TimeCallback
+    content.vb: Public OnUpdate As MlemGame.TimeCallback
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Startup.MlemGame.OnDraw
+  commentId: F:MLEM.Startup.MlemGame.OnDraw
+  id: OnDraw
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: OnDraw
+  nameWithType: MlemGame.OnDraw
+  fullName: MLEM.Startup.MlemGame.OnDraw
+  type: Field
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnDraw
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 21
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public MlemGame.TimeCallback OnDraw
+    return:
+      type: MLEM.Startup.MlemGame.TimeCallback
+    content.vb: Public OnDraw As MlemGame.TimeCallback
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Startup.MlemGame.#ctor(System.Int32,System.Int32)
+  commentId: M:MLEM.Startup.MlemGame.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: MlemGame(Int32, Int32)
+  nameWithType: MlemGame.MlemGame(Int32, Int32)
+  fullName: MLEM.Startup.MlemGame.MlemGame(System.Int32, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 23
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public MlemGame(int windowWidth = 1280, int windowHeight = 720)
+    parameters:
+    - id: windowWidth
+      type: System.Int32
+    - id: windowHeight
+      type: System.Int32
+    content.vb: Public Sub New(windowWidth As Integer = 1280, windowHeight As Integer = 720)
+  overload: MLEM.Startup.MlemGame.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Startup.MlemGame.LoadContent
+  commentId: M:MLEM.Startup.MlemGame.LoadContent
+  id: LoadContent
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: LoadContent()
+  nameWithType: MlemGame.LoadContent()
+  fullName: MLEM.Startup.MlemGame.LoadContent()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LoadContent
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 35
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: protected override void LoadContent()
+    content.vb: Protected Overrides Sub LoadContent
+  overridden: Microsoft.Xna.Framework.Game.LoadContent
+  overload: MLEM.Startup.MlemGame.LoadContent*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: MLEM.Startup.MlemGame.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Startup.MlemGame.Update(Microsoft.Xna.Framework.GameTime)
+  id: Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: Update(GameTime)
+  nameWithType: MlemGame.Update(GameTime)
+  fullName: MLEM.Startup.MlemGame.Update(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 44
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: protected override sealed void Update(GameTime gameTime)
+    parameters:
+    - id: gameTime
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Protected NotOverridable Overrides Sub Update(gameTime As GameTime)
+  overridden: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  overload: MLEM.Startup.MlemGame.Update*
+  modifiers.csharp:
+  - protected
+  - override
+  - sealed
+  modifiers.vb:
+  - Protected
+  - Overrides
+  - NotOverridable
+- uid: MLEM.Startup.MlemGame.Draw(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Startup.MlemGame.Draw(Microsoft.Xna.Framework.GameTime)
+  id: Draw(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: Draw(GameTime)
+  nameWithType: MlemGame.Draw(GameTime)
+  fullName: MLEM.Startup.MlemGame.Draw(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 51
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: protected override sealed void Draw(GameTime gameTime)
+    parameters:
+    - id: gameTime
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Protected NotOverridable Overrides Sub Draw(gameTime As GameTime)
+  overridden: Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)
+  overload: MLEM.Startup.MlemGame.Draw*
+  modifiers.csharp:
+  - protected
+  - override
+  - sealed
+  modifiers.vb:
+  - Protected
+  - Overrides
+  - NotOverridable
+- uid: MLEM.Startup.MlemGame.DoDraw(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Startup.MlemGame.DoDraw(Microsoft.Xna.Framework.GameTime)
+  id: DoDraw(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: DoDraw(GameTime)
+  nameWithType: MlemGame.DoDraw(GameTime)
+  fullName: MLEM.Startup.MlemGame.DoDraw(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DoDraw
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 59
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: protected virtual void DoDraw(GameTime gameTime)
+    parameters:
+    - id: gameTime
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Protected Overridable Sub DoDraw(gameTime As GameTime)
+  overload: MLEM.Startup.MlemGame.DoDraw*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: MLEM.Startup.MlemGame.DoUpdate(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Startup.MlemGame.DoUpdate(Microsoft.Xna.Framework.GameTime)
+  id: DoUpdate(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: DoUpdate(GameTime)
+  nameWithType: MlemGame.DoUpdate(GameTime)
+  fullName: MLEM.Startup.MlemGame.DoUpdate(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DoUpdate
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 63
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: protected virtual void DoUpdate(GameTime gameTime)
+    parameters:
+    - id: gameTime
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Protected Overridable Sub DoUpdate(gameTime As GameTime)
+  overload: MLEM.Startup.MlemGame.DoUpdate*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: MLEM.Startup.MlemGame.LoadContent``1(System.String)
+  commentId: M:MLEM.Startup.MlemGame.LoadContent``1(System.String)
+  id: LoadContent``1(System.String)
+  parent: MLEM.Startup.MlemGame
+  langs:
+  - csharp
+  - vb
+  name: LoadContent<T>(String)
+  nameWithType: MlemGame.LoadContent<T>(String)
+  fullName: MLEM.Startup.MlemGame.LoadContent<T>(System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LoadContent
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 67
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public static T LoadContent<T>(string name)
+    parameters:
+    - id: name
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function LoadContent(Of T)(name As String) As T
+  overload: MLEM.Startup.MlemGame.LoadContent*
+  nameWithType.vb: MlemGame.LoadContent(Of T)(String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: MLEM.Startup.MlemGame.LoadContent(Of T)(System.String)
+  name.vb: LoadContent(Of T)(String)
+references:
+- uid: MLEM.Startup
+  commentId: N:MLEM.Startup
+  name: MLEM.Startup
+  nameWithType: MLEM.Startup
+  fullName: MLEM.Startup
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Microsoft.Xna.Framework.Game
+  commentId: T:Microsoft.Xna.Framework.Game
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Game
+  nameWithType: Game
+  fullName: Microsoft.Xna.Framework.Game
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Microsoft.Xna.Framework.Game.Dispose
+  commentId: M:Microsoft.Xna.Framework.Game.Dispose
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Dispose()
+  nameWithType: Game.Dispose()
+  fullName: Microsoft.Xna.Framework.Game.Dispose()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Dispose
+    name: Dispose
+    nameWithType: Game.Dispose
+    fullName: Microsoft.Xna.Framework.Game.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Dispose
+    name: Dispose
+    nameWithType: Game.Dispose
+    fullName: Microsoft.Xna.Framework.Game.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.Dispose(System.Boolean)
+  commentId: M:Microsoft.Xna.Framework.Game.Dispose(System.Boolean)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Dispose(Boolean)
+  nameWithType: Game.Dispose(Boolean)
+  fullName: Microsoft.Xna.Framework.Game.Dispose(System.Boolean)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Dispose(System.Boolean)
+    name: Dispose
+    nameWithType: Game.Dispose
+    fullName: Microsoft.Xna.Framework.Game.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Dispose(System.Boolean)
+    name: Dispose
+    nameWithType: Game.Dispose
+    fullName: Microsoft.Xna.Framework.Game.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.Exit
+  commentId: M:Microsoft.Xna.Framework.Game.Exit
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Exit()
+  nameWithType: Game.Exit()
+  fullName: Microsoft.Xna.Framework.Game.Exit()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Exit
+    name: Exit
+    nameWithType: Game.Exit
+    fullName: Microsoft.Xna.Framework.Game.Exit
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Exit
+    name: Exit
+    nameWithType: Game.Exit
+    fullName: Microsoft.Xna.Framework.Game.Exit
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.ResetElapsedTime
+  commentId: M:Microsoft.Xna.Framework.Game.ResetElapsedTime
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: ResetElapsedTime()
+  nameWithType: Game.ResetElapsedTime()
+  fullName: Microsoft.Xna.Framework.Game.ResetElapsedTime()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.ResetElapsedTime
+    name: ResetElapsedTime
+    nameWithType: Game.ResetElapsedTime
+    fullName: Microsoft.Xna.Framework.Game.ResetElapsedTime
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.ResetElapsedTime
+    name: ResetElapsedTime
+    nameWithType: Game.ResetElapsedTime
+    fullName: Microsoft.Xna.Framework.Game.ResetElapsedTime
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.SuppressDraw
+  commentId: M:Microsoft.Xna.Framework.Game.SuppressDraw
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: SuppressDraw()
+  nameWithType: Game.SuppressDraw()
+  fullName: Microsoft.Xna.Framework.Game.SuppressDraw()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.SuppressDraw
+    name: SuppressDraw
+    nameWithType: Game.SuppressDraw
+    fullName: Microsoft.Xna.Framework.Game.SuppressDraw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.SuppressDraw
+    name: SuppressDraw
+    nameWithType: Game.SuppressDraw
+    fullName: Microsoft.Xna.Framework.Game.SuppressDraw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.RunOneFrame
+  commentId: M:Microsoft.Xna.Framework.Game.RunOneFrame
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: RunOneFrame()
+  nameWithType: Game.RunOneFrame()
+  fullName: Microsoft.Xna.Framework.Game.RunOneFrame()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.RunOneFrame
+    name: RunOneFrame
+    nameWithType: Game.RunOneFrame
+    fullName: Microsoft.Xna.Framework.Game.RunOneFrame
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.RunOneFrame
+    name: RunOneFrame
+    nameWithType: Game.RunOneFrame
+    fullName: Microsoft.Xna.Framework.Game.RunOneFrame
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.Run
+  commentId: M:Microsoft.Xna.Framework.Game.Run
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Run()
+  nameWithType: Game.Run()
+  fullName: Microsoft.Xna.Framework.Game.Run()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Run
+    name: Run
+    nameWithType: Game.Run
+    fullName: Microsoft.Xna.Framework.Game.Run
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Run
+    name: Run
+    nameWithType: Game.Run
+    fullName: Microsoft.Xna.Framework.Game.Run
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.Run(Microsoft.Xna.Framework.GameRunBehavior)
+  commentId: M:Microsoft.Xna.Framework.Game.Run(Microsoft.Xna.Framework.GameRunBehavior)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Run(GameRunBehavior)
+  nameWithType: Game.Run(GameRunBehavior)
+  fullName: Microsoft.Xna.Framework.Game.Run(Microsoft.Xna.Framework.GameRunBehavior)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Run(Microsoft.Xna.Framework.GameRunBehavior)
+    name: Run
+    nameWithType: Game.Run
+    fullName: Microsoft.Xna.Framework.Game.Run
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameRunBehavior
+    name: GameRunBehavior
+    nameWithType: GameRunBehavior
+    fullName: Microsoft.Xna.Framework.GameRunBehavior
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Run(Microsoft.Xna.Framework.GameRunBehavior)
+    name: Run
+    nameWithType: Game.Run
+    fullName: Microsoft.Xna.Framework.Game.Run
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameRunBehavior
+    name: GameRunBehavior
+    nameWithType: GameRunBehavior
+    fullName: Microsoft.Xna.Framework.GameRunBehavior
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.Tick
+  commentId: M:Microsoft.Xna.Framework.Game.Tick
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Tick()
+  nameWithType: Game.Tick()
+  fullName: Microsoft.Xna.Framework.Game.Tick()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Tick
+    name: Tick
+    nameWithType: Game.Tick
+    fullName: Microsoft.Xna.Framework.Game.Tick
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Tick
+    name: Tick
+    nameWithType: Game.Tick
+    fullName: Microsoft.Xna.Framework.Game.Tick
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.BeginDraw
+  commentId: M:Microsoft.Xna.Framework.Game.BeginDraw
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: BeginDraw()
+  nameWithType: Game.BeginDraw()
+  fullName: Microsoft.Xna.Framework.Game.BeginDraw()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.BeginDraw
+    name: BeginDraw
+    nameWithType: Game.BeginDraw
+    fullName: Microsoft.Xna.Framework.Game.BeginDraw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.BeginDraw
+    name: BeginDraw
+    nameWithType: Game.BeginDraw
+    fullName: Microsoft.Xna.Framework.Game.BeginDraw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.EndDraw
+  commentId: M:Microsoft.Xna.Framework.Game.EndDraw
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: EndDraw()
+  nameWithType: Game.EndDraw()
+  fullName: Microsoft.Xna.Framework.Game.EndDraw()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.EndDraw
+    name: EndDraw
+    nameWithType: Game.EndDraw
+    fullName: Microsoft.Xna.Framework.Game.EndDraw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.EndDraw
+    name: EndDraw
+    nameWithType: Game.EndDraw
+    fullName: Microsoft.Xna.Framework.Game.EndDraw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.BeginRun
+  commentId: M:Microsoft.Xna.Framework.Game.BeginRun
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: BeginRun()
+  nameWithType: Game.BeginRun()
+  fullName: Microsoft.Xna.Framework.Game.BeginRun()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.BeginRun
+    name: BeginRun
+    nameWithType: Game.BeginRun
+    fullName: Microsoft.Xna.Framework.Game.BeginRun
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.BeginRun
+    name: BeginRun
+    nameWithType: Game.BeginRun
+    fullName: Microsoft.Xna.Framework.Game.BeginRun
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.EndRun
+  commentId: M:Microsoft.Xna.Framework.Game.EndRun
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: EndRun()
+  nameWithType: Game.EndRun()
+  fullName: Microsoft.Xna.Framework.Game.EndRun()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.EndRun
+    name: EndRun
+    nameWithType: Game.EndRun
+    fullName: Microsoft.Xna.Framework.Game.EndRun
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.EndRun
+    name: EndRun
+    nameWithType: Game.EndRun
+    fullName: Microsoft.Xna.Framework.Game.EndRun
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.UnloadContent
+  commentId: M:Microsoft.Xna.Framework.Game.UnloadContent
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: UnloadContent()
+  nameWithType: Game.UnloadContent()
+  fullName: Microsoft.Xna.Framework.Game.UnloadContent()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.UnloadContent
+    name: UnloadContent
+    nameWithType: Game.UnloadContent
+    fullName: Microsoft.Xna.Framework.Game.UnloadContent
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.UnloadContent
+    name: UnloadContent
+    nameWithType: Game.UnloadContent
+    fullName: Microsoft.Xna.Framework.Game.UnloadContent
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.Initialize
+  commentId: M:Microsoft.Xna.Framework.Game.Initialize
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Initialize()
+  nameWithType: Game.Initialize()
+  fullName: Microsoft.Xna.Framework.Game.Initialize()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Initialize
+    name: Initialize
+    nameWithType: Game.Initialize
+    fullName: Microsoft.Xna.Framework.Game.Initialize
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Initialize
+    name: Initialize
+    nameWithType: Game.Initialize
+    fullName: Microsoft.Xna.Framework.Game.Initialize
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.OnExiting(System.Object,System.EventArgs)
+  commentId: M:Microsoft.Xna.Framework.Game.OnExiting(System.Object,System.EventArgs)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: OnExiting(Object, EventArgs)
+  nameWithType: Game.OnExiting(Object, EventArgs)
+  fullName: Microsoft.Xna.Framework.Game.OnExiting(System.Object, System.EventArgs)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.OnExiting(System.Object,System.EventArgs)
+    name: OnExiting
+    nameWithType: Game.OnExiting
+    fullName: Microsoft.Xna.Framework.Game.OnExiting
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.OnExiting(System.Object,System.EventArgs)
+    name: OnExiting
+    nameWithType: Game.OnExiting
+    fullName: Microsoft.Xna.Framework.Game.OnExiting
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.OnActivated(System.Object,System.EventArgs)
+  commentId: M:Microsoft.Xna.Framework.Game.OnActivated(System.Object,System.EventArgs)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: OnActivated(Object, EventArgs)
+  nameWithType: Game.OnActivated(Object, EventArgs)
+  fullName: Microsoft.Xna.Framework.Game.OnActivated(System.Object, System.EventArgs)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.OnActivated(System.Object,System.EventArgs)
+    name: OnActivated
+    nameWithType: Game.OnActivated
+    fullName: Microsoft.Xna.Framework.Game.OnActivated
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.OnActivated(System.Object,System.EventArgs)
+    name: OnActivated
+    nameWithType: Game.OnActivated
+    fullName: Microsoft.Xna.Framework.Game.OnActivated
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.OnDeactivated(System.Object,System.EventArgs)
+  commentId: M:Microsoft.Xna.Framework.Game.OnDeactivated(System.Object,System.EventArgs)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: OnDeactivated(Object, EventArgs)
+  nameWithType: Game.OnDeactivated(Object, EventArgs)
+  fullName: Microsoft.Xna.Framework.Game.OnDeactivated(System.Object, System.EventArgs)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.OnDeactivated(System.Object,System.EventArgs)
+    name: OnDeactivated
+    nameWithType: Game.OnDeactivated
+    fullName: Microsoft.Xna.Framework.Game.OnDeactivated
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.OnDeactivated(System.Object,System.EventArgs)
+    name: OnDeactivated
+    nameWithType: Game.OnDeactivated
+    fullName: Microsoft.Xna.Framework.Game.OnDeactivated
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Game.LaunchParameters
+  commentId: P:Microsoft.Xna.Framework.Game.LaunchParameters
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: LaunchParameters
+  nameWithType: Game.LaunchParameters
+  fullName: Microsoft.Xna.Framework.Game.LaunchParameters
+- uid: Microsoft.Xna.Framework.Game.Components
+  commentId: P:Microsoft.Xna.Framework.Game.Components
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Components
+  nameWithType: Game.Components
+  fullName: Microsoft.Xna.Framework.Game.Components
+- uid: Microsoft.Xna.Framework.Game.InactiveSleepTime
+  commentId: P:Microsoft.Xna.Framework.Game.InactiveSleepTime
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: InactiveSleepTime
+  nameWithType: Game.InactiveSleepTime
+  fullName: Microsoft.Xna.Framework.Game.InactiveSleepTime
+- uid: Microsoft.Xna.Framework.Game.MaxElapsedTime
+  commentId: P:Microsoft.Xna.Framework.Game.MaxElapsedTime
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: MaxElapsedTime
+  nameWithType: Game.MaxElapsedTime
+  fullName: Microsoft.Xna.Framework.Game.MaxElapsedTime
+- uid: Microsoft.Xna.Framework.Game.IsActive
+  commentId: P:Microsoft.Xna.Framework.Game.IsActive
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: IsActive
+  nameWithType: Game.IsActive
+  fullName: Microsoft.Xna.Framework.Game.IsActive
+- uid: Microsoft.Xna.Framework.Game.IsMouseVisible
+  commentId: P:Microsoft.Xna.Framework.Game.IsMouseVisible
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: IsMouseVisible
+  nameWithType: Game.IsMouseVisible
+  fullName: Microsoft.Xna.Framework.Game.IsMouseVisible
+- uid: Microsoft.Xna.Framework.Game.TargetElapsedTime
+  commentId: P:Microsoft.Xna.Framework.Game.TargetElapsedTime
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: TargetElapsedTime
+  nameWithType: Game.TargetElapsedTime
+  fullName: Microsoft.Xna.Framework.Game.TargetElapsedTime
+- uid: Microsoft.Xna.Framework.Game.IsFixedTimeStep
+  commentId: P:Microsoft.Xna.Framework.Game.IsFixedTimeStep
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: IsFixedTimeStep
+  nameWithType: Game.IsFixedTimeStep
+  fullName: Microsoft.Xna.Framework.Game.IsFixedTimeStep
+- uid: Microsoft.Xna.Framework.Game.Services
+  commentId: P:Microsoft.Xna.Framework.Game.Services
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Services
+  nameWithType: Game.Services
+  fullName: Microsoft.Xna.Framework.Game.Services
+- uid: Microsoft.Xna.Framework.Game.Content
+  commentId: P:Microsoft.Xna.Framework.Game.Content
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Content
+  nameWithType: Game.Content
+  fullName: Microsoft.Xna.Framework.Game.Content
+- uid: Microsoft.Xna.Framework.Game.GraphicsDevice
+  commentId: P:Microsoft.Xna.Framework.Game.GraphicsDevice
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: GraphicsDevice
+  nameWithType: Game.GraphicsDevice
+  fullName: Microsoft.Xna.Framework.Game.GraphicsDevice
+- uid: Microsoft.Xna.Framework.Game.Window
+  commentId: P:Microsoft.Xna.Framework.Game.Window
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Window
+  nameWithType: Game.Window
+  fullName: Microsoft.Xna.Framework.Game.Window
+- uid: Microsoft.Xna.Framework.Game.Activated
+  commentId: E:Microsoft.Xna.Framework.Game.Activated
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Activated
+  nameWithType: Game.Activated
+  fullName: Microsoft.Xna.Framework.Game.Activated
+- uid: Microsoft.Xna.Framework.Game.Deactivated
+  commentId: E:Microsoft.Xna.Framework.Game.Deactivated
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Deactivated
+  nameWithType: Game.Deactivated
+  fullName: Microsoft.Xna.Framework.Game.Deactivated
+- uid: Microsoft.Xna.Framework.Game.Disposed
+  commentId: E:Microsoft.Xna.Framework.Game.Disposed
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Disposed
+  nameWithType: Game.Disposed
+  fullName: Microsoft.Xna.Framework.Game.Disposed
+- uid: Microsoft.Xna.Framework.Game.Exiting
+  commentId: E:Microsoft.Xna.Framework.Game.Exiting
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Exiting
+  nameWithType: Game.Exiting
+  fullName: Microsoft.Xna.Framework.Game.Exiting
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Startup.MlemGame.Input*
+  commentId: Overload:MLEM.Startup.MlemGame.Input
+  name: Input
+  nameWithType: MlemGame.Input
+  fullName: MLEM.Startup.MlemGame.Input
+- uid: MLEM.Input.InputHandler
+  commentId: T:MLEM.Input.InputHandler
+  parent: MLEM.Input
+  name: InputHandler
+  nameWithType: InputHandler
+  fullName: MLEM.Input.InputHandler
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+- uid: Microsoft.Xna.Framework.GraphicsDeviceManager
+  commentId: T:Microsoft.Xna.Framework.GraphicsDeviceManager
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GraphicsDeviceManager
+  nameWithType: GraphicsDeviceManager
+  fullName: Microsoft.Xna.Framework.GraphicsDeviceManager
+- uid: MLEM.Startup.MlemGame.SpriteBatch*
+  commentId: Overload:MLEM.Startup.MlemGame.SpriteBatch
+  name: SpriteBatch
+  nameWithType: MlemGame.SpriteBatch
+  fullName: MLEM.Startup.MlemGame.SpriteBatch
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Startup.MlemGame.InputHandler*
+  commentId: Overload:MLEM.Startup.MlemGame.InputHandler
+  name: InputHandler
+  nameWithType: MlemGame.InputHandler
+  fullName: MLEM.Startup.MlemGame.InputHandler
+- uid: MLEM.Startup.MlemGame.UiSystem*
+  commentId: Overload:MLEM.Startup.MlemGame.UiSystem
+  name: UiSystem
+  nameWithType: MlemGame.UiSystem
+  fullName: MLEM.Startup.MlemGame.UiSystem
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+- uid: MLEM.Startup.MlemGame.GenericCallback
+  commentId: T:MLEM.Startup.MlemGame.GenericCallback
+  parent: MLEM.Startup
+  name: MlemGame.GenericCallback
+  nameWithType: MlemGame.GenericCallback
+  fullName: MLEM.Startup.MlemGame.GenericCallback
+- uid: MLEM.Startup.MlemGame.TimeCallback
+  commentId: T:MLEM.Startup.MlemGame.TimeCallback
+  parent: MLEM.Startup
+  name: MlemGame.TimeCallback
+  nameWithType: MlemGame.TimeCallback
+  fullName: MLEM.Startup.MlemGame.TimeCallback
+- uid: MLEM.Startup.MlemGame.#ctor*
+  commentId: Overload:MLEM.Startup.MlemGame.#ctor
+  name: MlemGame
+  nameWithType: MlemGame.MlemGame
+  fullName: MLEM.Startup.MlemGame.MlemGame
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Microsoft.Xna.Framework.Game.LoadContent
+  commentId: M:Microsoft.Xna.Framework.Game.LoadContent
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: LoadContent()
+  nameWithType: Game.LoadContent()
+  fullName: Microsoft.Xna.Framework.Game.LoadContent()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.LoadContent
+    name: LoadContent
+    nameWithType: Game.LoadContent
+    fullName: Microsoft.Xna.Framework.Game.LoadContent
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.LoadContent
+    name: LoadContent
+    nameWithType: Game.LoadContent
+    fullName: Microsoft.Xna.Framework.Game.LoadContent
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Startup.MlemGame.LoadContent*
+  commentId: Overload:MLEM.Startup.MlemGame.LoadContent
+  name: LoadContent
+  nameWithType: MlemGame.LoadContent
+  fullName: MLEM.Startup.MlemGame.LoadContent
+- uid: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Update(GameTime)
+  nameWithType: Game.Update(GameTime)
+  fullName: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    nameWithType: Game.Update
+    fullName: Microsoft.Xna.Framework.Game.Update
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    nameWithType: Game.Update
+    fullName: Microsoft.Xna.Framework.Game.Update
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Startup.MlemGame.Update*
+  commentId: Overload:MLEM.Startup.MlemGame.Update
+  name: Update
+  nameWithType: MlemGame.Update
+  fullName: MLEM.Startup.MlemGame.Update
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)
+  commentId: M:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Draw(GameTime)
+  nameWithType: Game.Draw(GameTime)
+  fullName: Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)
+    name: Draw
+    nameWithType: Game.Draw
+    fullName: Microsoft.Xna.Framework.Game.Draw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)
+    name: Draw
+    nameWithType: Game.Draw
+    fullName: Microsoft.Xna.Framework.Game.Draw
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Startup.MlemGame.Draw*
+  commentId: Overload:MLEM.Startup.MlemGame.Draw
+  name: Draw
+  nameWithType: MlemGame.Draw
+  fullName: MLEM.Startup.MlemGame.Draw
+- uid: MLEM.Startup.MlemGame.DoDraw*
+  commentId: Overload:MLEM.Startup.MlemGame.DoDraw
+  name: DoDraw
+  nameWithType: MlemGame.DoDraw
+  fullName: MLEM.Startup.MlemGame.DoDraw
+- uid: MLEM.Startup.MlemGame.DoUpdate*
+  commentId: Overload:MLEM.Startup.MlemGame.DoUpdate
+  name: DoUpdate
+  nameWithType: MlemGame.DoUpdate
+  fullName: MLEM.Startup.MlemGame.DoUpdate
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

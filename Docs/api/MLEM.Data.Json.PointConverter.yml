@@ -1,0 +1,1376 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.Json.PointConverter
+  commentId: T:MLEM.Data.Json.PointConverter
+  id: PointConverter
+  parent: MLEM.Data.Json
+  children:
+  - MLEM.Data.Json.PointConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  - MLEM.Data.Json.PointConverter.WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  langs:
+  - csharp
+  - vb
+  name: PointConverter
+  nameWithType: PointConverter
+  fullName: MLEM.Data.Json.PointConverter
+  type: Class
+  source:
+    remote:
+      path: MLEM.Data/Json/PointConverter.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: PointConverter
+    path: ../MLEM.Data/Json/PointConverter.cs
+    startLine: 6
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Json
+  syntax:
+    content: 'public class PointConverter : JsonConverter<Point>'
+    content.vb: >-
+      Public Class PointConverter
+          Inherits JsonConverter(Of Point)
+  inheritance:
+  - System.Object
+  - Newtonsoft.Json.JsonConverter
+  - Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  inheritedMembers:
+  - Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+  - Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+  - Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.CanConvert(System.Type)
+  - Newtonsoft.Json.JsonConverter.CanRead
+  - Newtonsoft.Json.JsonConverter.CanWrite
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Data.Json.PointConverter.WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  commentId: M:MLEM.Data.Json.PointConverter.WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  id: WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  parent: MLEM.Data.Json.PointConverter
+  langs:
+  - csharp
+  - vb
+  name: WriteJson(JsonWriter, Point, JsonSerializer)
+  nameWithType: PointConverter.WriteJson(JsonWriter, Point, JsonSerializer)
+  fullName: MLEM.Data.Json.PointConverter.WriteJson(Newtonsoft.Json.JsonWriter, Microsoft.Xna.Framework.Point, Newtonsoft.Json.JsonSerializer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/Json/PointConverter.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: WriteJson
+    path: ../MLEM.Data/Json/PointConverter.cs
+    startLine: 8
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Json
+  syntax:
+    content: public override void WriteJson(JsonWriter writer, Point value, JsonSerializer serializer)
+    parameters:
+    - id: writer
+      type: Newtonsoft.Json.JsonWriter
+    - id: value
+      type: Microsoft.Xna.Framework.Point
+    - id: serializer
+      type: Newtonsoft.Json.JsonSerializer
+    content.vb: Public Overrides Sub WriteJson(writer As JsonWriter, value As Point, serializer As JsonSerializer)
+  overridden: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  overload: MLEM.Data.Json.PointConverter.WriteJson*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Data.Json.PointConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  commentId: M:MLEM.Data.Json.PointConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  id: ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  parent: MLEM.Data.Json.PointConverter
+  langs:
+  - csharp
+  - vb
+  name: ReadJson(JsonReader, Type, Point, Boolean, JsonSerializer)
+  nameWithType: PointConverter.ReadJson(JsonReader, Type, Point, Boolean, JsonSerializer)
+  fullName: MLEM.Data.Json.PointConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, Microsoft.Xna.Framework.Point, System.Boolean, Newtonsoft.Json.JsonSerializer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/Json/PointConverter.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReadJson
+    path: ../MLEM.Data/Json/PointConverter.cs
+    startLine: 12
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Json
+  syntax:
+    content: public override Point ReadJson(JsonReader reader, Type objectType, Point existingValue, bool hasExistingValue, JsonSerializer serializer)
+    parameters:
+    - id: reader
+      type: Newtonsoft.Json.JsonReader
+    - id: objectType
+      type: System.Type
+    - id: existingValue
+      type: Microsoft.Xna.Framework.Point
+    - id: hasExistingValue
+      type: System.Boolean
+    - id: serializer
+      type: Newtonsoft.Json.JsonSerializer
+    return:
+      type: Microsoft.Xna.Framework.Point
+    content.vb: Public Overrides Function ReadJson(reader As JsonReader, objectType As Type, existingValue As Point, hasExistingValue As Boolean, serializer As JsonSerializer) As Point
+  overridden: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  overload: MLEM.Data.Json.PointConverter.ReadJson*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: MLEM.Data.Json
+  commentId: N:MLEM.Data.Json
+  name: MLEM.Data.Json
+  nameWithType: MLEM.Data.Json
+  fullName: MLEM.Data.Json
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Newtonsoft.Json.JsonConverter
+  commentId: T:Newtonsoft.Json.JsonConverter
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonConverter
+  nameWithType: JsonConverter
+  fullName: Newtonsoft.Json.JsonConverter
+- uid: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  commentId: T:Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  parent: Newtonsoft.Json
+  definition: Newtonsoft.Json.JsonConverter`1
+  name: JsonConverter<Point>
+  nameWithType: JsonConverter<Point>
+  fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>
+  nameWithType.vb: JsonConverter(Of Point)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point)
+  name.vb: JsonConverter(Of Point)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1
+    name: JsonConverter
+    nameWithType: JsonConverter
+    fullName: Newtonsoft.Json.JsonConverter
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1
+    name: JsonConverter
+    nameWithType: JsonConverter
+    fullName: Newtonsoft.Json.JsonConverter
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+  parent: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  definition: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+  name: WriteJson(JsonWriter, Object, JsonSerializer)
+  nameWithType: JsonConverter<Point>.WriteJson(JsonWriter, Object, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.WriteJson(Newtonsoft.Json.JsonWriter, System.Object, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of Point).WriteJson(JsonWriter, Object, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).WriteJson(Newtonsoft.Json.JsonWriter, System.Object, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter<Point>.WriteJson
+    fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter(Of Point).WriteJson
+    fullName: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+  parent: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  definition: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+  name: ReadJson(JsonReader, Type, Object, JsonSerializer)
+  nameWithType: JsonConverter<Point>.ReadJson(JsonReader, Type, Object, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.ReadJson(Newtonsoft.Json.JsonReader, System.Type, System.Object, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of Point).ReadJson(JsonReader, Type, Object, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).ReadJson(Newtonsoft.Json.JsonReader, System.Type, System.Object, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter<Point>.ReadJson
+    fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter(Of Point).ReadJson
+    fullName: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.CanConvert(System.Type)
+  commentId: M:Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.CanConvert(System.Type)
+  parent: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  definition: Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+  name: CanConvert(Type)
+  nameWithType: JsonConverter<Point>.CanConvert(Type)
+  fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.CanConvert(System.Type)
+  nameWithType.vb: JsonConverter(Of Point).CanConvert(Type)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).CanConvert(System.Type)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+    name: CanConvert
+    nameWithType: JsonConverter<Point>.CanConvert
+    fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.CanConvert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+    name: CanConvert
+    nameWithType: JsonConverter(Of Point).CanConvert
+    fullName: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).CanConvert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter.CanRead
+  commentId: P:Newtonsoft.Json.JsonConverter.CanRead
+  parent: Newtonsoft.Json.JsonConverter
+  isExternal: true
+  name: CanRead
+  nameWithType: JsonConverter.CanRead
+  fullName: Newtonsoft.Json.JsonConverter.CanRead
+- uid: Newtonsoft.Json.JsonConverter.CanWrite
+  commentId: P:Newtonsoft.Json.JsonConverter.CanWrite
+  parent: Newtonsoft.Json.JsonConverter
+  isExternal: true
+  name: CanWrite
+  nameWithType: JsonConverter.CanWrite
+  fullName: Newtonsoft.Json.JsonConverter.CanWrite
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Newtonsoft.Json
+  commentId: N:Newtonsoft.Json
+  isExternal: true
+  name: Newtonsoft.Json
+  nameWithType: Newtonsoft.Json
+  fullName: Newtonsoft.Json
+- uid: Newtonsoft.Json.JsonConverter`1
+  commentId: T:Newtonsoft.Json.JsonConverter`1
+  isExternal: true
+  name: JsonConverter<T>
+  nameWithType: JsonConverter<T>
+  fullName: Newtonsoft.Json.JsonConverter<T>
+  nameWithType.vb: JsonConverter(Of T)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of T)
+  name.vb: JsonConverter(Of T)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1
+    name: JsonConverter
+    nameWithType: JsonConverter
+    fullName: Newtonsoft.Json.JsonConverter
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1
+    name: JsonConverter
+    nameWithType: JsonConverter
+    fullName: Newtonsoft.Json.JsonConverter
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+  isExternal: true
+  name: WriteJson(JsonWriter, Object, JsonSerializer)
+  nameWithType: JsonConverter<T>.WriteJson(JsonWriter, Object, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<T>.WriteJson(Newtonsoft.Json.JsonWriter, System.Object, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of T).WriteJson(JsonWriter, Object, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of T).WriteJson(Newtonsoft.Json.JsonWriter, System.Object, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter<T>.WriteJson
+    fullName: Newtonsoft.Json.JsonConverter<T>.WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter(Of T).WriteJson
+    fullName: Newtonsoft.Json.JsonConverter(Of T).WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+  isExternal: true
+  name: ReadJson(JsonReader, Type, Object, JsonSerializer)
+  nameWithType: JsonConverter<T>.ReadJson(JsonReader, Type, Object, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<T>.ReadJson(Newtonsoft.Json.JsonReader, System.Type, System.Object, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of T).ReadJson(JsonReader, Type, Object, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of T).ReadJson(Newtonsoft.Json.JsonReader, System.Type, System.Object, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter<T>.ReadJson
+    fullName: Newtonsoft.Json.JsonConverter<T>.ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter(Of T).ReadJson
+    fullName: Newtonsoft.Json.JsonConverter(Of T).ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+  commentId: M:Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+  isExternal: true
+  name: CanConvert(Type)
+  nameWithType: JsonConverter<T>.CanConvert(Type)
+  fullName: Newtonsoft.Json.JsonConverter<T>.CanConvert(System.Type)
+  nameWithType.vb: JsonConverter(Of T).CanConvert(Type)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of T).CanConvert(System.Type)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+    name: CanConvert
+    nameWithType: JsonConverter<T>.CanConvert
+    fullName: Newtonsoft.Json.JsonConverter<T>.CanConvert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.CanConvert(System.Type)
+    name: CanConvert
+    nameWithType: JsonConverter(Of T).CanConvert
+    fullName: Newtonsoft.Json.JsonConverter(Of T).CanConvert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.WriteJson(Newtonsoft.Json.JsonWriter,Microsoft.Xna.Framework.Point,Newtonsoft.Json.JsonSerializer)
+  parent: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  definition: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+  name: WriteJson(JsonWriter, Point, JsonSerializer)
+  nameWithType: JsonConverter<Point>.WriteJson(JsonWriter, Point, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.WriteJson(Newtonsoft.Json.JsonWriter, Microsoft.Xna.Framework.Point, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of Point).WriteJson(JsonWriter, Point, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).WriteJson(Newtonsoft.Json.JsonWriter, Microsoft.Xna.Framework.Point, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter<Point>.WriteJson
+    fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter(Of Point).WriteJson
+    fullName: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Data.Json.PointConverter.WriteJson*
+  commentId: Overload:MLEM.Data.Json.PointConverter.WriteJson
+  name: WriteJson
+  nameWithType: PointConverter.WriteJson
+  fullName: MLEM.Data.Json.PointConverter.WriteJson
+- uid: Newtonsoft.Json.JsonWriter
+  commentId: T:Newtonsoft.Json.JsonWriter
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonWriter
+  nameWithType: JsonWriter
+  fullName: Newtonsoft.Json.JsonWriter
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: Newtonsoft.Json.JsonSerializer
+  commentId: T:Newtonsoft.Json.JsonSerializer
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonSerializer
+  nameWithType: JsonSerializer
+  fullName: Newtonsoft.Json.JsonSerializer
+- uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+  isExternal: true
+  name: WriteJson(JsonWriter, T, JsonSerializer)
+  nameWithType: JsonConverter<T>.WriteJson(JsonWriter, T, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<T>.WriteJson(Newtonsoft.Json.JsonWriter, T, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of T).WriteJson(JsonWriter, T, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of T).WriteJson(Newtonsoft.Json.JsonWriter, T, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter<T>.WriteJson
+    fullName: Newtonsoft.Json.JsonConverter<T>.WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,`0,Newtonsoft.Json.JsonSerializer)
+    name: WriteJson
+    nameWithType: JsonConverter(Of T).WriteJson
+    fullName: Newtonsoft.Json.JsonConverter(Of T).WriteJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonWriter
+    name: JsonWriter
+    nameWithType: JsonWriter
+    fullName: Newtonsoft.Json.JsonWriter
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}.ReadJson(Newtonsoft.Json.JsonReader,System.Type,Microsoft.Xna.Framework.Point,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  parent: Newtonsoft.Json.JsonConverter{Microsoft.Xna.Framework.Point}
+  definition: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  name: ReadJson(JsonReader, Type, Point, Boolean, JsonSerializer)
+  nameWithType: JsonConverter<Point>.ReadJson(JsonReader, Type, Point, Boolean, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.ReadJson(Newtonsoft.Json.JsonReader, System.Type, Microsoft.Xna.Framework.Point, System.Boolean, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of Point).ReadJson(JsonReader, Type, Point, Boolean, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).ReadJson(Newtonsoft.Json.JsonReader, System.Type, Microsoft.Xna.Framework.Point, System.Boolean, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter<Point>.ReadJson
+    fullName: Newtonsoft.Json.JsonConverter<Microsoft.Xna.Framework.Point>.ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter(Of Point).ReadJson
+    fullName: Newtonsoft.Json.JsonConverter(Of Microsoft.Xna.Framework.Point).ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Data.Json.PointConverter.ReadJson*
+  commentId: Overload:MLEM.Data.Json.PointConverter.ReadJson
+  name: ReadJson
+  nameWithType: PointConverter.ReadJson
+  fullName: MLEM.Data.Json.PointConverter.ReadJson
+- uid: Newtonsoft.Json.JsonReader
+  commentId: T:Newtonsoft.Json.JsonReader
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonReader
+  nameWithType: JsonReader
+  fullName: Newtonsoft.Json.JsonReader
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  commentId: M:Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  isExternal: true
+  name: ReadJson(JsonReader, Type, T, Boolean, JsonSerializer)
+  nameWithType: JsonConverter<T>.ReadJson(JsonReader, Type, T, Boolean, JsonSerializer)
+  fullName: Newtonsoft.Json.JsonConverter<T>.ReadJson(Newtonsoft.Json.JsonReader, System.Type, T, System.Boolean, Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: JsonConverter(Of T).ReadJson(JsonReader, Type, T, Boolean, JsonSerializer)
+  fullName.vb: Newtonsoft.Json.JsonConverter(Of T).ReadJson(Newtonsoft.Json.JsonReader, System.Type, T, System.Boolean, Newtonsoft.Json.JsonSerializer)
+  spec.csharp:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter<T>.ReadJson
+    fullName: Newtonsoft.Json.JsonConverter<T>.ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Newtonsoft.Json.JsonConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,`0,System.Boolean,Newtonsoft.Json.JsonSerializer)
+    name: ReadJson
+    nameWithType: JsonConverter(Of T).ReadJson
+    fullName: Newtonsoft.Json.JsonConverter(Of T).ReadJson
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Newtonsoft.Json.JsonReader
+    name: JsonReader
+    nameWithType: JsonReader
+    fullName: Newtonsoft.Json.JsonReader
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    nameWithType: JsonSerializer
+    fullName: Newtonsoft.Json.JsonSerializer
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

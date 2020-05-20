@@ -1,0 +1,702 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Pathfinding.PathPoint`1
+  commentId: T:MLEM.Pathfinding.PathPoint`1
+  id: PathPoint`1
+  parent: MLEM.Pathfinding
+  children:
+  - MLEM.Pathfinding.PathPoint`1.#ctor(`0,System.Single,MLEM.Pathfinding.PathPoint{`0},System.Single,System.Single)
+  - MLEM.Pathfinding.PathPoint`1.Equals(System.Object)
+  - MLEM.Pathfinding.PathPoint`1.F
+  - MLEM.Pathfinding.PathPoint`1.G
+  - MLEM.Pathfinding.PathPoint`1.GetHashCode
+  - MLEM.Pathfinding.PathPoint`1.Parent
+  - MLEM.Pathfinding.PathPoint`1.Pos
+  langs:
+  - csharp
+  - vb
+  name: PathPoint<T>
+  nameWithType: PathPoint<T>
+  fullName: MLEM.Pathfinding.PathPoint<T>
+  type: Class
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: PathPoint
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 113
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public class PathPoint<T>
+    typeParameters:
+    - id: T
+    content.vb: Public Class PathPoint(Of T)
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: PathPoint(Of T)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T)
+  name.vb: PathPoint(Of T)
+- uid: MLEM.Pathfinding.PathPoint`1.Parent
+  commentId: F:MLEM.Pathfinding.PathPoint`1.Parent
+  id: Parent
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: Parent
+  nameWithType: PathPoint<T>.Parent
+  fullName: MLEM.Pathfinding.PathPoint<T>.Parent
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Parent
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 115
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public readonly PathPoint<T> Parent
+    return:
+      type: MLEM.Pathfinding.PathPoint`1
+    content.vb: Public ReadOnly Parent As PathPoint(Of T)
+  nameWithType.vb: PathPoint(Of T).Parent
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).Parent
+- uid: MLEM.Pathfinding.PathPoint`1.Pos
+  commentId: F:MLEM.Pathfinding.PathPoint`1.Pos
+  id: Pos
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: Pos
+  nameWithType: PathPoint<T>.Pos
+  fullName: MLEM.Pathfinding.PathPoint<T>.Pos
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Pos
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 116
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public readonly T Pos
+    return:
+      type: '{T}'
+    content.vb: Public ReadOnly Pos As T
+  nameWithType.vb: PathPoint(Of T).Pos
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).Pos
+- uid: MLEM.Pathfinding.PathPoint`1.F
+  commentId: F:MLEM.Pathfinding.PathPoint`1.F
+  id: F
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: F
+  nameWithType: PathPoint<T>.F
+  fullName: MLEM.Pathfinding.PathPoint<T>.F
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: F
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 117
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public readonly float F
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly F As Single
+  nameWithType.vb: PathPoint(Of T).F
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).F
+- uid: MLEM.Pathfinding.PathPoint`1.G
+  commentId: F:MLEM.Pathfinding.PathPoint`1.G
+  id: G
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: G
+  nameWithType: PathPoint<T>.G
+  fullName: MLEM.Pathfinding.PathPoint<T>.G
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: G
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 118
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public readonly float G
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly G As Single
+  nameWithType.vb: PathPoint(Of T).G
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).G
+- uid: MLEM.Pathfinding.PathPoint`1.#ctor(`0,System.Single,MLEM.Pathfinding.PathPoint{`0},System.Single,System.Single)
+  commentId: M:MLEM.Pathfinding.PathPoint`1.#ctor(`0,System.Single,MLEM.Pathfinding.PathPoint{`0},System.Single,System.Single)
+  id: '#ctor(`0,System.Single,MLEM.Pathfinding.PathPoint{`0},System.Single,System.Single)'
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: PathPoint(T, Single, PathPoint<T>, Single, Single)
+  nameWithType: PathPoint<T>.PathPoint(T, Single, PathPoint<T>, Single, Single)
+  fullName: MLEM.Pathfinding.PathPoint<T>.PathPoint(T, System.Single, MLEM.Pathfinding.PathPoint<T>, System.Single, System.Single)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 120
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public PathPoint(T pos, float distance, PathPoint<T> parent, float terrainCostForThisPos, float defaultCost)
+    parameters:
+    - id: pos
+      type: '{T}'
+    - id: distance
+      type: System.Single
+    - id: parent
+      type: MLEM.Pathfinding.PathPoint`1
+    - id: terrainCostForThisPos
+      type: System.Single
+    - id: defaultCost
+      type: System.Single
+    content.vb: Public Sub New(pos As T, distance As Single, parent As PathPoint(Of T), terrainCostForThisPos As Single, defaultCost As Single)
+  overload: MLEM.Pathfinding.PathPoint`1.#ctor*
+  nameWithType.vb: PathPoint(Of T).PathPoint(T, Single, PathPoint(Of T), Single, Single)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).PathPoint(T, System.Single, MLEM.Pathfinding.PathPoint(Of T), System.Single, System.Single)
+  name.vb: PathPoint(T, Single, PathPoint(Of T), Single, Single)
+- uid: MLEM.Pathfinding.PathPoint`1.Equals(System.Object)
+  commentId: M:MLEM.Pathfinding.PathPoint`1.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: PathPoint<T>.Equals(Object)
+  fullName: MLEM.Pathfinding.PathPoint<T>.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 128
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: MLEM.Pathfinding.PathPoint`1.Equals*
+  nameWithType.vb: PathPoint(Of T).Equals(Object)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).Equals(System.Object)
+- uid: MLEM.Pathfinding.PathPoint`1.GetHashCode
+  commentId: M:MLEM.Pathfinding.PathPoint`1.GetHashCode
+  id: GetHashCode
+  parent: MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: PathPoint<T>.GetHashCode()
+  fullName: MLEM.Pathfinding.PathPoint<T>.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetHashCode
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 134
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.Object.GetHashCode
+  overload: MLEM.Pathfinding.PathPoint`1.GetHashCode*
+  nameWithType.vb: PathPoint(Of T).GetHashCode()
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).GetHashCode()
+references:
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Pathfinding.PathPoint`1
+  commentId: T:MLEM.Pathfinding.PathPoint`1
+  parent: MLEM.Pathfinding
+  name: PathPoint<T>
+  nameWithType: PathPoint<T>
+  fullName: MLEM.Pathfinding.PathPoint<T>
+  nameWithType.vb: PathPoint(Of T)
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T)
+  name.vb: PathPoint(Of T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.PathPoint`1
+    name: PathPoint
+    nameWithType: PathPoint
+    fullName: MLEM.Pathfinding.PathPoint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.PathPoint`1
+    name: PathPoint
+    nameWithType: PathPoint
+    fullName: MLEM.Pathfinding.PathPoint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: MLEM.Pathfinding.PathPoint`1.#ctor*
+  commentId: Overload:MLEM.Pathfinding.PathPoint`1.#ctor
+  name: PathPoint
+  nameWithType: PathPoint<T>.PathPoint
+  fullName: MLEM.Pathfinding.PathPoint<T>.PathPoint
+  nameWithType.vb: PathPoint(Of T).PathPoint
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).PathPoint
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.PathPoint`1.Equals*
+  commentId: Overload:MLEM.Pathfinding.PathPoint`1.Equals
+  name: Equals
+  nameWithType: PathPoint<T>.Equals
+  fullName: MLEM.Pathfinding.PathPoint<T>.Equals
+  nameWithType.vb: PathPoint(Of T).Equals
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).Equals
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.PathPoint`1.GetHashCode*
+  commentId: Overload:MLEM.Pathfinding.PathPoint`1.GetHashCode
+  name: GetHashCode
+  nameWithType: PathPoint<T>.GetHashCode
+  fullName: MLEM.Pathfinding.PathPoint<T>.GetHashCode
+  nameWithType.vb: PathPoint(Of T).GetHashCode
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T).GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Startup.MlemGame.GenericCallback
+  commentId: T:MLEM.Startup.MlemGame.GenericCallback
+  id: MlemGame.GenericCallback
+  parent: MLEM.Startup
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: MlemGame.GenericCallback
+  nameWithType: MlemGame.GenericCallback
+  fullName: MLEM.Startup.MlemGame.GenericCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Startup/MlemGame.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GenericCallback
+    path: ../MLEM.Startup/MlemGame.cs
+    startLine: 71
+  assemblies:
+  - MLEM.Startup
+  namespace: MLEM.Startup
+  syntax:
+    content: public delegate void GenericCallback(MlemGame game);
+    parameters:
+    - id: game
+      type: MLEM.Startup.MlemGame
+    content.vb: Public Delegate Sub GenericCallback(game As MlemGame)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Startup
+  commentId: N:MLEM.Startup
+  name: MLEM.Startup
+  nameWithType: MLEM.Startup
+  fullName: MLEM.Startup
+- uid: MLEM.Startup.MlemGame
+  commentId: T:MLEM.Startup.MlemGame
+  parent: MLEM.Startup
+  name: MlemGame
+  nameWithType: MlemGame
+  fullName: MLEM.Startup.MlemGame

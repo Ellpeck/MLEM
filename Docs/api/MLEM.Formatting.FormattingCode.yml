@@ -1,0 +1,813 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.FormattingCode
+  commentId: T:MLEM.Formatting.FormattingCode
+  id: FormattingCode
+  parent: MLEM.Formatting
+  children:
+  - MLEM.Formatting.FormattingCode.#ctor(Microsoft.Xna.Framework.Color)
+  - MLEM.Formatting.FormattingCode.#ctor(MLEM.Animations.SpriteAnimation)
+  - MLEM.Formatting.FormattingCode.#ctor(MLEM.Formatting.TextAnimation.DrawCharacter)
+  - MLEM.Formatting.FormattingCode.#ctor(MLEM.Formatting.TextStyle)
+  - MLEM.Formatting.FormattingCode.#ctor(MLEM.Textures.TextureRegion)
+  - MLEM.Formatting.FormattingCode.Animation
+  - MLEM.Formatting.FormattingCode.CodeType
+  - MLEM.Formatting.FormattingCode.Color
+  - MLEM.Formatting.FormattingCode.GetReplacementString(MLEM.Font.GenericFont)
+  - MLEM.Formatting.FormattingCode.Icon
+  - MLEM.Formatting.FormattingCode.Style
+  langs:
+  - csharp
+  - vb
+  name: FormattingCode
+  nameWithType: FormattingCode
+  fullName: MLEM.Formatting.FormattingCode
+  type: Class
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: FormattingCode
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: >-
+      [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
+
+      public class FormattingCode
+    content.vb: >-
+      <Obsolete("Use the new text formatting system in MLEM.Formatting instead")>
+
+      Public Class FormattingCode
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Use the new text formatting system in MLEM.Formatting instead
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Formatting.FormattingCode.CodeType
+  commentId: F:MLEM.Formatting.FormattingCode.CodeType
+  id: CodeType
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: CodeType
+  nameWithType: FormattingCode.CodeType
+  fullName: MLEM.Formatting.FormattingCode.CodeType
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: CodeType
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public readonly FormattingCode.Type CodeType
+    return:
+      type: MLEM.Formatting.FormattingCode.Type
+    content.vb: Public ReadOnly CodeType As FormattingCode.Type
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Formatting.FormattingCode.Color
+  commentId: F:MLEM.Formatting.FormattingCode.Color
+  id: Color
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: FormattingCode.Color
+  fullName: MLEM.Formatting.FormattingCode.Color
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Color
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public readonly Color Color
+    return:
+      type: Microsoft.Xna.Framework.Color
+    content.vb: Public ReadOnly Color As Color
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Formatting.FormattingCode.Style
+  commentId: F:MLEM.Formatting.FormattingCode.Style
+  id: Style
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: Style
+  nameWithType: FormattingCode.Style
+  fullName: MLEM.Formatting.FormattingCode.Style
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Style
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 13
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public readonly TextStyle Style
+    return:
+      type: MLEM.Formatting.TextStyle
+    content.vb: Public ReadOnly Style As TextStyle
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Formatting.FormattingCode.Icon
+  commentId: F:MLEM.Formatting.FormattingCode.Icon
+  id: Icon
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: Icon
+  nameWithType: FormattingCode.Icon
+  fullName: MLEM.Formatting.FormattingCode.Icon
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Icon
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 14
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public readonly SpriteAnimation Icon
+    return:
+      type: MLEM.Animations.SpriteAnimation
+    content.vb: Public ReadOnly Icon As SpriteAnimation
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Formatting.FormattingCode.Animation
+  commentId: F:MLEM.Formatting.FormattingCode.Animation
+  id: Animation
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: Animation
+  nameWithType: FormattingCode.Animation
+  fullName: MLEM.Formatting.FormattingCode.Animation
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Animation
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public readonly TextAnimation.DrawCharacter Animation
+    return:
+      type: MLEM.Formatting.TextAnimation.DrawCharacter
+    content.vb: Public ReadOnly Animation As TextAnimation.DrawCharacter
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Formatting.FormattingCode.#ctor(Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Formatting.FormattingCode.#ctor(Microsoft.Xna.Framework.Color)
+  id: '#ctor(Microsoft.Xna.Framework.Color)'
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: FormattingCode(Color)
+  nameWithType: FormattingCode.FormattingCode(Color)
+  fullName: MLEM.Formatting.FormattingCode.FormattingCode(Microsoft.Xna.Framework.Color)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 17
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public FormattingCode(Color color)
+    parameters:
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    content.vb: Public Sub New(color As Color)
+  overload: MLEM.Formatting.FormattingCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Formatting.FormattingCode.#ctor(MLEM.Formatting.TextStyle)
+  commentId: M:MLEM.Formatting.FormattingCode.#ctor(MLEM.Formatting.TextStyle)
+  id: '#ctor(MLEM.Formatting.TextStyle)'
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: FormattingCode(TextStyle)
+  nameWithType: FormattingCode.FormattingCode(TextStyle)
+  fullName: MLEM.Formatting.FormattingCode.FormattingCode(MLEM.Formatting.TextStyle)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 22
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public FormattingCode(TextStyle style)
+    parameters:
+    - id: style
+      type: MLEM.Formatting.TextStyle
+    content.vb: Public Sub New(style As TextStyle)
+  overload: MLEM.Formatting.FormattingCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Formatting.FormattingCode.#ctor(MLEM.Textures.TextureRegion)
+  commentId: M:MLEM.Formatting.FormattingCode.#ctor(MLEM.Textures.TextureRegion)
+  id: '#ctor(MLEM.Textures.TextureRegion)'
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: FormattingCode(TextureRegion)
+  nameWithType: FormattingCode.FormattingCode(TextureRegion)
+  fullName: MLEM.Formatting.FormattingCode.FormattingCode(MLEM.Textures.TextureRegion)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 27
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public FormattingCode(TextureRegion icon)
+    parameters:
+    - id: icon
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public Sub New(icon As TextureRegion)
+  overload: MLEM.Formatting.FormattingCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Formatting.FormattingCode.#ctor(MLEM.Animations.SpriteAnimation)
+  commentId: M:MLEM.Formatting.FormattingCode.#ctor(MLEM.Animations.SpriteAnimation)
+  id: '#ctor(MLEM.Animations.SpriteAnimation)'
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: FormattingCode(SpriteAnimation)
+  nameWithType: FormattingCode.FormattingCode(SpriteAnimation)
+  fullName: MLEM.Formatting.FormattingCode.FormattingCode(MLEM.Animations.SpriteAnimation)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 31
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public FormattingCode(SpriteAnimation icon)
+    parameters:
+    - id: icon
+      type: MLEM.Animations.SpriteAnimation
+    content.vb: Public Sub New(icon As SpriteAnimation)
+  overload: MLEM.Formatting.FormattingCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Formatting.FormattingCode.#ctor(MLEM.Formatting.TextAnimation.DrawCharacter)
+  commentId: M:MLEM.Formatting.FormattingCode.#ctor(MLEM.Formatting.TextAnimation.DrawCharacter)
+  id: '#ctor(MLEM.Formatting.TextAnimation.DrawCharacter)'
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: FormattingCode(TextAnimation.DrawCharacter)
+  nameWithType: FormattingCode.FormattingCode(TextAnimation.DrawCharacter)
+  fullName: MLEM.Formatting.FormattingCode.FormattingCode(MLEM.Formatting.TextAnimation.DrawCharacter)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 36
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public FormattingCode(TextAnimation.DrawCharacter animation)
+    parameters:
+    - id: animation
+      type: MLEM.Formatting.TextAnimation.DrawCharacter
+    content.vb: Public Sub New(animation As TextAnimation.DrawCharacter)
+  overload: MLEM.Formatting.FormattingCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Formatting.FormattingCode.GetReplacementString(MLEM.Font.GenericFont)
+  commentId: M:MLEM.Formatting.FormattingCode.GetReplacementString(MLEM.Font.GenericFont)
+  id: GetReplacementString(MLEM.Font.GenericFont)
+  parent: MLEM.Formatting.FormattingCode
+  langs:
+  - csharp
+  - vb
+  name: GetReplacementString(GenericFont)
+  nameWithType: FormattingCode.GetReplacementString(GenericFont)
+  fullName: MLEM.Formatting.FormattingCode.GetReplacementString(MLEM.Font.GenericFont)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/FormattingCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetReplacementString
+    path: ../MLEM/Formatting/Obsolete/FormattingCode.cs
+    startLine: 41
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public virtual string GetReplacementString(GenericFont font)
+    parameters:
+    - id: font
+      type: MLEM.Font.GenericFont
+    return:
+      type: System.String
+    content.vb: Public Overridable Function GetReplacementString(font As GenericFont) As String
+  overload: MLEM.Formatting.FormattingCode.GetReplacementString*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+references:
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Formatting.FormattingCode.Type
+  commentId: T:MLEM.Formatting.FormattingCode.Type
+  parent: MLEM.Formatting
+  name: FormattingCode.Type
+  nameWithType: FormattingCode.Type
+  fullName: MLEM.Formatting.FormattingCode.Type
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Formatting.TextStyle
+  commentId: T:MLEM.Formatting.TextStyle
+  parent: MLEM.Formatting
+  name: TextStyle
+  nameWithType: TextStyle
+  fullName: MLEM.Formatting.TextStyle
+- uid: MLEM.Animations.SpriteAnimation
+  commentId: T:MLEM.Animations.SpriteAnimation
+  parent: MLEM.Animations
+  name: SpriteAnimation
+  nameWithType: SpriteAnimation
+  fullName: MLEM.Animations.SpriteAnimation
+- uid: MLEM.Animations
+  commentId: N:MLEM.Animations
+  name: MLEM.Animations
+  nameWithType: MLEM.Animations
+  fullName: MLEM.Animations
+- uid: MLEM.Formatting.TextAnimation.DrawCharacter
+  commentId: T:MLEM.Formatting.TextAnimation.DrawCharacter
+  parent: MLEM.Formatting
+  name: TextAnimation.DrawCharacter
+  nameWithType: TextAnimation.DrawCharacter
+  fullName: MLEM.Formatting.TextAnimation.DrawCharacter
+- uid: MLEM.Formatting.FormattingCode.#ctor*
+  commentId: Overload:MLEM.Formatting.FormattingCode.#ctor
+  name: FormattingCode
+  nameWithType: FormattingCode.FormattingCode
+  fullName: MLEM.Formatting.FormattingCode.FormattingCode
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+- uid: MLEM.Formatting.FormattingCode.GetReplacementString*
+  commentId: Overload:MLEM.Formatting.FormattingCode.GetReplacementString
+  name: GetReplacementString
+  nameWithType: FormattingCode.GetReplacementString
+  fullName: MLEM.Formatting.FormattingCode.GetReplacementString
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font

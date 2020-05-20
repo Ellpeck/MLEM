@@ -1,0 +1,121 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.CustomDrawGroup.BeginDelegate
+  commentId: T:MLEM.Ui.Elements.CustomDrawGroup.BeginDelegate
+  id: CustomDrawGroup.BeginDelegate
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: CustomDrawGroup.BeginDelegate
+  nameWithType: CustomDrawGroup.BeginDelegate
+  fullName: MLEM.Ui.Elements.CustomDrawGroup.BeginDelegate
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/CustomDrawGroup.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: BeginDelegate
+    path: ../MLEM.Ui/Elements/CustomDrawGroup.cs
+    startLine: 48
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate void BeginDelegate(CustomDrawGroup element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.CustomDrawGroup
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: alpha
+      type: System.Single
+    - id: blendState
+      type: Microsoft.Xna.Framework.Graphics.BlendState
+    - id: samplerState
+      type: Microsoft.Xna.Framework.Graphics.SamplerState
+    - id: matrix
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public Delegate Sub BeginDelegate(element As CustomDrawGroup, time As GameTime, batch As SpriteBatch, alpha As Single, blendState As BlendState, samplerState As SamplerState, matrix As Matrix)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.CustomDrawGroup
+  commentId: T:MLEM.Ui.Elements.CustomDrawGroup
+  parent: MLEM.Ui.Elements
+  name: CustomDrawGroup
+  nameWithType: CustomDrawGroup
+  fullName: MLEM.Ui.Elements.CustomDrawGroup
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Microsoft.Xna.Framework.Graphics.BlendState
+  commentId: T:Microsoft.Xna.Framework.Graphics.BlendState
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: BlendState
+  nameWithType: BlendState
+  fullName: Microsoft.Xna.Framework.Graphics.BlendState
+- uid: Microsoft.Xna.Framework.Graphics.SamplerState
+  commentId: T:Microsoft.Xna.Framework.Graphics.SamplerState
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SamplerState
+  nameWithType: SamplerState
+  fullName: Microsoft.Xna.Framework.Graphics.SamplerState
+- uid: Microsoft.Xna.Framework.Matrix
+  commentId: T:Microsoft.Xna.Framework.Matrix
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Matrix
+  nameWithType: Matrix
+  fullName: Microsoft.Xna.Framework.Matrix
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

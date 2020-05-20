@@ -1,0 +1,73 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Pathfinding.AStar`1.GetCost
+  commentId: T:MLEM.Pathfinding.AStar`1.GetCost
+  id: AStar`1.GetCost
+  parent: MLEM.Pathfinding
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: AStar<T>.GetCost
+  nameWithType: AStar<T>.GetCost
+  fullName: MLEM.Pathfinding.AStar<T>.GetCost
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetCost
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 109
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public delegate float GetCost(T currPos, T nextPos);
+    parameters:
+    - id: currPos
+      type: '{T}'
+    - id: nextPos
+      type: '{T}'
+    return:
+      type: System.Single
+    content.vb: Public Delegate Function GetCost(currPos As T, nextPos As T) As Single
+  nameWithType.vb: AStar(Of T).GetCost
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).GetCost
+  name.vb: AStar(Of T).GetCost
+references:
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

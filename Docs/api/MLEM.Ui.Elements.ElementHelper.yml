@@ -1,0 +1,682 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.ElementHelper
+  commentId: T:MLEM.Ui.Elements.ElementHelper
+  id: ElementHelper
+  parent: MLEM.Ui.Elements
+  children:
+  - MLEM.Ui.Elements.ElementHelper.ImageButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,System.String,System.String,System.Single,System.Single)
+  - MLEM.Ui.Elements.ElementHelper.MakeColumns(MLEM.Ui.Elements.Element,Microsoft.Xna.Framework.Vector2,System.Int32,System.Boolean)
+  - MLEM.Ui.Elements.ElementHelper.NumberField(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,MLEM.Ui.Elements.TextField.Rule,MLEM.Ui.Elements.TextField.TextChanged)
+  - MLEM.Ui.Elements.ElementHelper.ShowInfoBox(MLEM.Ui.UiSystem,MLEM.Ui.Anchor,System.Single,System.String,System.Single,System.String)
+  langs:
+  - csharp
+  - vb
+  name: ElementHelper
+  nameWithType: ElementHelper
+  fullName: MLEM.Ui.Elements.ElementHelper
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ElementHelper.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ElementHelper
+    path: ../MLEM.Ui/Elements/ElementHelper.cs
+    startLine: 5
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public static class ElementHelper
+    content.vb: Public Module ElementHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: MLEM.Ui.Elements.ElementHelper.ImageButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,System.String,System.String,System.Single,System.Single)
+  commentId: M:MLEM.Ui.Elements.ElementHelper.ImageButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,System.String,System.String,System.Single,System.Single)
+  id: ImageButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,System.String,System.String,System.Single,System.Single)
+  parent: MLEM.Ui.Elements.ElementHelper
+  langs:
+  - csharp
+  - vb
+  name: ImageButton(Anchor, Vector2, TextureRegion, String, String, Single, Single)
+  nameWithType: ElementHelper.ImageButton(Anchor, Vector2, TextureRegion, String, String, Single, Single)
+  fullName: MLEM.Ui.Elements.ElementHelper.ImageButton(MLEM.Ui.Anchor, Microsoft.Xna.Framework.Vector2, MLEM.Textures.TextureRegion, System.String, System.String, System.Single, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ElementHelper.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ImageButton
+    path: ../MLEM.Ui/Elements/ElementHelper.cs
+    startLine: 7
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public static Button ImageButton(Anchor anchor, Vector2 size, TextureRegion texture, string text = null, string tooltipText = null, float tooltipWidth = 50F, float imagePadding = 2F)
+    parameters:
+    - id: anchor
+      type: MLEM.Ui.Anchor
+    - id: size
+      type: Microsoft.Xna.Framework.Vector2
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+    - id: text
+      type: System.String
+    - id: tooltipText
+      type: System.String
+    - id: tooltipWidth
+      type: System.Single
+    - id: imagePadding
+      type: System.Single
+    return:
+      type: MLEM.Ui.Elements.Button
+    content.vb: Public Shared Function ImageButton(anchor As Anchor, size As Vector2, texture As TextureRegion, text As String = Nothing, tooltipText As String = Nothing, tooltipWidth As Single = 50F, imagePadding As Single = 2F) As Button
+  overload: MLEM.Ui.Elements.ElementHelper.ImageButton*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Ui.Elements.ElementHelper.ShowInfoBox(MLEM.Ui.UiSystem,MLEM.Ui.Anchor,System.Single,System.String,System.Single,System.String)
+  commentId: M:MLEM.Ui.Elements.ElementHelper.ShowInfoBox(MLEM.Ui.UiSystem,MLEM.Ui.Anchor,System.Single,System.String,System.Single,System.String)
+  id: ShowInfoBox(MLEM.Ui.UiSystem,MLEM.Ui.Anchor,System.Single,System.String,System.Single,System.String)
+  parent: MLEM.Ui.Elements.ElementHelper
+  langs:
+  - csharp
+  - vb
+  name: ShowInfoBox(UiSystem, Anchor, Single, String, Single, String)
+  nameWithType: ElementHelper.ShowInfoBox(UiSystem, Anchor, Single, String, Single, String)
+  fullName: MLEM.Ui.Elements.ElementHelper.ShowInfoBox(MLEM.Ui.UiSystem, MLEM.Ui.Anchor, System.Single, System.String, System.Single, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ElementHelper.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ShowInfoBox
+    path: ../MLEM.Ui/Elements/ElementHelper.cs
+    startLine: 15
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public static Panel ShowInfoBox(UiSystem system, Anchor anchor, float width, string text, float buttonHeight = 10F, string okText = "Okay")
+    parameters:
+    - id: system
+      type: MLEM.Ui.UiSystem
+    - id: anchor
+      type: MLEM.Ui.Anchor
+    - id: width
+      type: System.Single
+    - id: text
+      type: System.String
+    - id: buttonHeight
+      type: System.Single
+    - id: okText
+      type: System.String
+    return:
+      type: MLEM.Ui.Elements.Panel
+    content.vb: Public Shared Function ShowInfoBox(system As UiSystem, anchor As Anchor, width As Single, text As String, buttonHeight As Single = 10F, okText As String = "Okay") As Panel
+  overload: MLEM.Ui.Elements.ElementHelper.ShowInfoBox*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Ui.Elements.ElementHelper.MakeColumns(MLEM.Ui.Elements.Element,Microsoft.Xna.Framework.Vector2,System.Int32,System.Boolean)
+  commentId: M:MLEM.Ui.Elements.ElementHelper.MakeColumns(MLEM.Ui.Elements.Element,Microsoft.Xna.Framework.Vector2,System.Int32,System.Boolean)
+  id: MakeColumns(MLEM.Ui.Elements.Element,Microsoft.Xna.Framework.Vector2,System.Int32,System.Boolean)
+  parent: MLEM.Ui.Elements.ElementHelper
+  langs:
+  - csharp
+  - vb
+  name: MakeColumns(Element, Vector2, Int32, Boolean)
+  nameWithType: ElementHelper.MakeColumns(Element, Vector2, Int32, Boolean)
+  fullName: MLEM.Ui.Elements.ElementHelper.MakeColumns(MLEM.Ui.Elements.Element, Microsoft.Xna.Framework.Vector2, System.Int32, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ElementHelper.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MakeColumns
+    path: ../MLEM.Ui/Elements/ElementHelper.cs
+    startLine: 28
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public static Group[] MakeColumns(Element parent, Vector2 totalSize, int amount, bool setHeightBasedOnChildren = true)
+    parameters:
+    - id: parent
+      type: MLEM.Ui.Elements.Element
+    - id: totalSize
+      type: Microsoft.Xna.Framework.Vector2
+    - id: amount
+      type: System.Int32
+    - id: setHeightBasedOnChildren
+      type: System.Boolean
+    return:
+      type: MLEM.Ui.Elements.Group[]
+    content.vb: Public Shared Function MakeColumns(parent As Element, totalSize As Vector2, amount As Integer, setHeightBasedOnChildren As Boolean = True) As Group()
+  overload: MLEM.Ui.Elements.ElementHelper.MakeColumns*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Ui.Elements.ElementHelper.NumberField(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,MLEM.Ui.Elements.TextField.Rule,MLEM.Ui.Elements.TextField.TextChanged)
+  commentId: M:MLEM.Ui.Elements.ElementHelper.NumberField(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,MLEM.Ui.Elements.TextField.Rule,MLEM.Ui.Elements.TextField.TextChanged)
+  id: NumberField(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,MLEM.Ui.Elements.TextField.Rule,MLEM.Ui.Elements.TextField.TextChanged)
+  parent: MLEM.Ui.Elements.ElementHelper
+  langs:
+  - csharp
+  - vb
+  name: NumberField(Anchor, Vector2, Int32, Int32, TextField.Rule, TextField.TextChanged)
+  nameWithType: ElementHelper.NumberField(Anchor, Vector2, Int32, Int32, TextField.Rule, TextField.TextChanged)
+  fullName: MLEM.Ui.Elements.ElementHelper.NumberField(MLEM.Ui.Anchor, Microsoft.Xna.Framework.Vector2, System.Int32, System.Int32, MLEM.Ui.Elements.TextField.Rule, MLEM.Ui.Elements.TextField.TextChanged)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ElementHelper.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: NumberField
+    path: ../MLEM.Ui/Elements/ElementHelper.cs
+    startLine: 39
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public static Group NumberField(Anchor anchor, Vector2 size, int defaultValue = 0, int stepPerClick = 1, TextField.Rule rule = null, TextField.TextChanged onTextChange = null)
+    parameters:
+    - id: anchor
+      type: MLEM.Ui.Anchor
+    - id: size
+      type: Microsoft.Xna.Framework.Vector2
+    - id: defaultValue
+      type: System.Int32
+    - id: stepPerClick
+      type: System.Int32
+    - id: rule
+      type: MLEM.Ui.Elements.TextField.Rule
+    - id: onTextChange
+      type: MLEM.Ui.Elements.TextField.TextChanged
+    return:
+      type: MLEM.Ui.Elements.Group
+    content.vb: Public Shared Function NumberField(anchor As Anchor, size As Vector2, defaultValue As Integer = 0, stepPerClick As Integer = 1, rule As TextField.Rule = Nothing, onTextChange As TextField.TextChanged = Nothing) As Group
+  overload: MLEM.Ui.Elements.ElementHelper.NumberField*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Ui.Elements.ElementHelper.ImageButton*
+  commentId: Overload:MLEM.Ui.Elements.ElementHelper.ImageButton
+  name: ImageButton
+  nameWithType: ElementHelper.ImageButton
+  fullName: MLEM.Ui.Elements.ElementHelper.ImageButton
+- uid: MLEM.Ui.Anchor
+  commentId: T:MLEM.Ui.Anchor
+  parent: MLEM.Ui
+  name: Anchor
+  nameWithType: Anchor
+  fullName: MLEM.Ui.Anchor
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: MLEM.Ui.Elements.Button
+  commentId: T:MLEM.Ui.Elements.Button
+  parent: MLEM.Ui.Elements
+  name: Button
+  nameWithType: Button
+  fullName: MLEM.Ui.Elements.Button
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+- uid: MLEM.Ui.Elements.ElementHelper.ShowInfoBox*
+  commentId: Overload:MLEM.Ui.Elements.ElementHelper.ShowInfoBox
+  name: ShowInfoBox
+  nameWithType: ElementHelper.ShowInfoBox
+  fullName: MLEM.Ui.Elements.ElementHelper.ShowInfoBox
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Ui.Elements.Panel
+  commentId: T:MLEM.Ui.Elements.Panel
+  parent: MLEM.Ui.Elements
+  name: Panel
+  nameWithType: Panel
+  fullName: MLEM.Ui.Elements.Panel
+- uid: MLEM.Ui.Elements.ElementHelper.MakeColumns*
+  commentId: Overload:MLEM.Ui.Elements.ElementHelper.MakeColumns
+  name: MakeColumns
+  nameWithType: ElementHelper.MakeColumns
+  fullName: MLEM.Ui.Elements.ElementHelper.MakeColumns
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: MLEM.Ui.Elements.Group[]
+  isExternal: true
+  name: Group[]
+  nameWithType: Group[]
+  fullName: MLEM.Ui.Elements.Group[]
+  nameWithType.vb: Group()
+  fullName.vb: MLEM.Ui.Elements.Group()
+  name.vb: Group()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Group
+    name: Group
+    nameWithType: Group
+    fullName: MLEM.Ui.Elements.Group
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Group
+    name: Group
+    nameWithType: Group
+    fullName: MLEM.Ui.Elements.Group
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: MLEM.Ui.Elements.ElementHelper.NumberField*
+  commentId: Overload:MLEM.Ui.Elements.ElementHelper.NumberField
+  name: NumberField
+  nameWithType: ElementHelper.NumberField
+  fullName: MLEM.Ui.Elements.ElementHelper.NumberField
+- uid: MLEM.Ui.Elements.TextField.Rule
+  commentId: T:MLEM.Ui.Elements.TextField.Rule
+  parent: MLEM.Ui.Elements
+  name: TextField.Rule
+  nameWithType: TextField.Rule
+  fullName: MLEM.Ui.Elements.TextField.Rule
+- uid: MLEM.Ui.Elements.TextField.TextChanged
+  commentId: T:MLEM.Ui.Elements.TextField.TextChanged
+  parent: MLEM.Ui.Elements
+  name: TextField.TextChanged
+  nameWithType: TextField.TextChanged
+  fullName: MLEM.Ui.Elements.TextField.TextChanged
+- uid: MLEM.Ui.Elements.Group
+  commentId: T:MLEM.Ui.Elements.Group
+  parent: MLEM.Ui.Elements
+  name: Group
+  nameWithType: Group
+  fullName: MLEM.Ui.Elements.Group

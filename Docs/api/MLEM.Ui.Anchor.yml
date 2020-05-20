@@ -1,0 +1,508 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Anchor
+  commentId: T:MLEM.Ui.Anchor
+  id: Anchor
+  parent: MLEM.Ui
+  children:
+  - MLEM.Ui.Anchor.AutoCenter
+  - MLEM.Ui.Anchor.AutoInline
+  - MLEM.Ui.Anchor.AutoInlineIgnoreOverflow
+  - MLEM.Ui.Anchor.AutoLeft
+  - MLEM.Ui.Anchor.AutoRight
+  - MLEM.Ui.Anchor.BottomCenter
+  - MLEM.Ui.Anchor.BottomLeft
+  - MLEM.Ui.Anchor.BottomRight
+  - MLEM.Ui.Anchor.Center
+  - MLEM.Ui.Anchor.CenterLeft
+  - MLEM.Ui.Anchor.CenterRight
+  - MLEM.Ui.Anchor.TopCenter
+  - MLEM.Ui.Anchor.TopLeft
+  - MLEM.Ui.Anchor.TopRight
+  langs:
+  - csharp
+  - vb
+  name: Anchor
+  nameWithType: Anchor
+  fullName: MLEM.Ui.Anchor
+  type: Enum
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Anchor
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 1
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public enum Anchor
+    content.vb: Public Enum Anchor
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: MLEM.Ui.Anchor.TopLeft
+  commentId: F:MLEM.Ui.Anchor.TopLeft
+  id: TopLeft
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: TopLeft
+  nameWithType: Anchor.TopLeft
+  fullName: MLEM.Ui.Anchor.TopLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TopLeft
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 3
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: TopLeft = 0
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.TopCenter
+  commentId: F:MLEM.Ui.Anchor.TopCenter
+  id: TopCenter
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: TopCenter
+  nameWithType: Anchor.TopCenter
+  fullName: MLEM.Ui.Anchor.TopCenter
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TopCenter
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 4
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: TopCenter = 1
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.TopRight
+  commentId: F:MLEM.Ui.Anchor.TopRight
+  id: TopRight
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: TopRight
+  nameWithType: Anchor.TopRight
+  fullName: MLEM.Ui.Anchor.TopRight
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TopRight
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 5
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: TopRight = 2
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.CenterLeft
+  commentId: F:MLEM.Ui.Anchor.CenterLeft
+  id: CenterLeft
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: CenterLeft
+  nameWithType: Anchor.CenterLeft
+  fullName: MLEM.Ui.Anchor.CenterLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: CenterLeft
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 6
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: CenterLeft = 3
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.Center
+  commentId: F:MLEM.Ui.Anchor.Center
+  id: Center
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: Anchor.Center
+  fullName: MLEM.Ui.Anchor.Center
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Center
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 7
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: Center = 4
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.CenterRight
+  commentId: F:MLEM.Ui.Anchor.CenterRight
+  id: CenterRight
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: CenterRight
+  nameWithType: Anchor.CenterRight
+  fullName: MLEM.Ui.Anchor.CenterRight
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: CenterRight
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 8
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: CenterRight = 5
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.BottomLeft
+  commentId: F:MLEM.Ui.Anchor.BottomLeft
+  id: BottomLeft
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: BottomLeft
+  nameWithType: Anchor.BottomLeft
+  fullName: MLEM.Ui.Anchor.BottomLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: BottomLeft
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 9
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: BottomLeft = 6
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.BottomCenter
+  commentId: F:MLEM.Ui.Anchor.BottomCenter
+  id: BottomCenter
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: BottomCenter
+  nameWithType: Anchor.BottomCenter
+  fullName: MLEM.Ui.Anchor.BottomCenter
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: BottomCenter
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 10
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: BottomCenter = 7
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.BottomRight
+  commentId: F:MLEM.Ui.Anchor.BottomRight
+  id: BottomRight
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: BottomRight
+  nameWithType: Anchor.BottomRight
+  fullName: MLEM.Ui.Anchor.BottomRight
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: BottomRight
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 11
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: BottomRight = 8
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.AutoLeft
+  commentId: F:MLEM.Ui.Anchor.AutoLeft
+  id: AutoLeft
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: AutoLeft
+  nameWithType: Anchor.AutoLeft
+  fullName: MLEM.Ui.Anchor.AutoLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoLeft
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 13
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: AutoLeft = 9
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.AutoCenter
+  commentId: F:MLEM.Ui.Anchor.AutoCenter
+  id: AutoCenter
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: AutoCenter
+  nameWithType: Anchor.AutoCenter
+  fullName: MLEM.Ui.Anchor.AutoCenter
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoCenter
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 14
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: AutoCenter = 10
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.AutoRight
+  commentId: F:MLEM.Ui.Anchor.AutoRight
+  id: AutoRight
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: AutoRight
+  nameWithType: Anchor.AutoRight
+  fullName: MLEM.Ui.Anchor.AutoRight
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoRight
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 15
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: AutoRight = 11
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.AutoInline
+  commentId: F:MLEM.Ui.Anchor.AutoInline
+  id: AutoInline
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: AutoInline
+  nameWithType: Anchor.AutoInline
+  fullName: MLEM.Ui.Anchor.AutoInline
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoInline
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 16
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: AutoInline = 12
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Ui.Anchor.AutoInlineIgnoreOverflow
+  commentId: F:MLEM.Ui.Anchor.AutoInlineIgnoreOverflow
+  id: AutoInlineIgnoreOverflow
+  parent: MLEM.Ui.Anchor
+  langs:
+  - csharp
+  - vb
+  name: AutoInlineIgnoreOverflow
+  nameWithType: Anchor.AutoInlineIgnoreOverflow
+  fullName: MLEM.Ui.Anchor.AutoInlineIgnoreOverflow
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Anchor.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoInlineIgnoreOverflow
+    path: ../MLEM.Ui/Anchor.cs
+    startLine: 17
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: AutoInlineIgnoreOverflow = 13
+    return:
+      type: MLEM.Ui.Anchor
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+- uid: MLEM.Ui.Anchor
+  commentId: T:MLEM.Ui.Anchor
+  parent: MLEM.Ui
+  name: Anchor
+  nameWithType: Anchor
+  fullName: MLEM.Ui.Anchor

@@ -1,0 +1,1406 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Pathfinding.AStar`1
+  commentId: T:MLEM.Pathfinding.AStar`1
+  id: AStar`1
+  parent: MLEM.Pathfinding
+  children:
+  - MLEM.Pathfinding.AStar`1.#ctor(`0[],`0[],MLEM.Pathfinding.AStar{`0}.GetCost,System.Boolean,System.Single,System.Int32)
+  - MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+  - MLEM.Pathfinding.AStar`1.AdjacentDirections
+  - MLEM.Pathfinding.AStar`1.AllDirections
+  - MLEM.Pathfinding.AStar`1.DefaultAllowDiagonals
+  - MLEM.Pathfinding.AStar`1.DefaultCost
+  - MLEM.Pathfinding.AStar`1.DefaultCostFunction
+  - MLEM.Pathfinding.AStar`1.DefaultMaxTries
+  - MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  - MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  - MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+  - MLEM.Pathfinding.AStar`1.InfiniteCost
+  - MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  - MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  langs:
+  - csharp
+  - vb
+  name: AStar<T>
+  nameWithType: AStar<T>
+  fullName: MLEM.Pathfinding.AStar<T>
+  type: Class
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AStar
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 6
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public abstract class AStar<T>
+    typeParameters:
+    - id: T
+    content.vb: Public MustInherit Class AStar(Of T)
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - MLEM.Pathfinding.AStar2
+  - MLEM.Pathfinding.AStar3
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: AStar(Of T)
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+  fullName.vb: MLEM.Pathfinding.AStar(Of T)
+  name.vb: AStar(Of T)
+- uid: MLEM.Pathfinding.AStar`1.InfiniteCost
+  commentId: F:MLEM.Pathfinding.AStar`1.InfiniteCost
+  id: InfiniteCost
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: InfiniteCost
+  nameWithType: AStar<T>.InfiniteCost
+  fullName: MLEM.Pathfinding.AStar<T>.InfiniteCost
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: InfiniteCost
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public static readonly float InfiniteCost
+    return:
+      type: System.Single
+    content.vb: Public Shared ReadOnly InfiniteCost As Single
+  nameWithType.vb: AStar(Of T).InfiniteCost
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).InfiniteCost
+- uid: MLEM.Pathfinding.AStar`1.AllDirections
+  commentId: F:MLEM.Pathfinding.AStar`1.AllDirections
+  id: AllDirections
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: AllDirections
+  nameWithType: AStar<T>.AllDirections
+  fullName: MLEM.Pathfinding.AStar<T>.AllDirections
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AllDirections
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public readonly T[] AllDirections
+    return:
+      type: '{T}[]'
+    content.vb: Public ReadOnly AllDirections As T()
+  nameWithType.vb: AStar(Of T).AllDirections
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AllDirections
+- uid: MLEM.Pathfinding.AStar`1.AdjacentDirections
+  commentId: F:MLEM.Pathfinding.AStar`1.AdjacentDirections
+  id: AdjacentDirections
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: AdjacentDirections
+  nameWithType: AStar<T>.AdjacentDirections
+  fullName: MLEM.Pathfinding.AStar<T>.AdjacentDirections
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AdjacentDirections
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 10
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public readonly T[] AdjacentDirections
+    return:
+      type: '{T}[]'
+    content.vb: Public ReadOnly AdjacentDirections As T()
+  nameWithType.vb: AStar(Of T).AdjacentDirections
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AdjacentDirections
+- uid: MLEM.Pathfinding.AStar`1.DefaultCostFunction
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultCostFunction
+  id: DefaultCostFunction
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: DefaultCostFunction
+  nameWithType: AStar<T>.DefaultCostFunction
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultCostFunction
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DefaultCostFunction
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public AStar<T>.GetCost DefaultCostFunction
+    return:
+      type: MLEM.Pathfinding.AStar`1.GetCost
+    content.vb: Public DefaultCostFunction As AStar(Of T).GetCost
+  nameWithType.vb: AStar(Of T).DefaultCostFunction
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultCostFunction
+- uid: MLEM.Pathfinding.AStar`1.DefaultCost
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultCost
+  id: DefaultCost
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: DefaultCost
+  nameWithType: AStar<T>.DefaultCost
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultCost
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DefaultCost
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public float DefaultCost
+    return:
+      type: System.Single
+    content.vb: Public DefaultCost As Single
+  nameWithType.vb: AStar(Of T).DefaultCost
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultCost
+- uid: MLEM.Pathfinding.AStar`1.DefaultMaxTries
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultMaxTries
+  id: DefaultMaxTries
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: DefaultMaxTries
+  nameWithType: AStar<T>.DefaultMaxTries
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultMaxTries
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DefaultMaxTries
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 13
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public int DefaultMaxTries
+    return:
+      type: System.Int32
+    content.vb: Public DefaultMaxTries As Integer
+  nameWithType.vb: AStar(Of T).DefaultMaxTries
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultMaxTries
+- uid: MLEM.Pathfinding.AStar`1.DefaultAllowDiagonals
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultAllowDiagonals
+  id: DefaultAllowDiagonals
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: DefaultAllowDiagonals
+  nameWithType: AStar<T>.DefaultAllowDiagonals
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultAllowDiagonals
+  type: Field
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DefaultAllowDiagonals
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 14
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public bool DefaultAllowDiagonals
+    return:
+      type: System.Boolean
+    content.vb: Public DefaultAllowDiagonals As Boolean
+  nameWithType.vb: AStar(Of T).DefaultAllowDiagonals
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultAllowDiagonals
+- uid: MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  commentId: P:MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  id: LastTriesNeeded
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: LastTriesNeeded
+  nameWithType: AStar<T>.LastTriesNeeded
+  fullName: MLEM.Pathfinding.AStar<T>.LastTriesNeeded
+  type: Property
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LastTriesNeeded
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public int LastTriesNeeded { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property LastTriesNeeded As Integer
+  overload: MLEM.Pathfinding.AStar`1.LastTriesNeeded*
+  nameWithType.vb: AStar(Of T).LastTriesNeeded
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).LastTriesNeeded
+- uid: MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  commentId: P:MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  id: LastTimeNeeded
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: LastTimeNeeded
+  nameWithType: AStar<T>.LastTimeNeeded
+  fullName: MLEM.Pathfinding.AStar<T>.LastTimeNeeded
+  type: Property
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LastTimeNeeded
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 16
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public TimeSpan LastTimeNeeded { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public ReadOnly Property LastTimeNeeded As TimeSpan
+  overload: MLEM.Pathfinding.AStar`1.LastTimeNeeded*
+  nameWithType.vb: AStar(Of T).LastTimeNeeded
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).LastTimeNeeded
+- uid: MLEM.Pathfinding.AStar`1.#ctor(`0[],`0[],MLEM.Pathfinding.AStar{`0}.GetCost,System.Boolean,System.Single,System.Int32)
+  commentId: M:MLEM.Pathfinding.AStar`1.#ctor(`0[],`0[],MLEM.Pathfinding.AStar{`0}.GetCost,System.Boolean,System.Single,System.Int32)
+  id: '#ctor(`0[],`0[],MLEM.Pathfinding.AStar{`0}.GetCost,System.Boolean,System.Single,System.Int32)'
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: AStar(T[], T[], AStar<T>.GetCost, Boolean, Single, Int32)
+  nameWithType: AStar<T>.AStar(T[], T[], AStar<T>.GetCost, Boolean, Single, Int32)
+  fullName: MLEM.Pathfinding.AStar<T>.AStar(T[], T[], MLEM.Pathfinding.AStar<T>.GetCost, System.Boolean, System.Single, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: protected AStar(T[] allDirections, T[] adjacentDirections, AStar<T>.GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1F, int defaultMaxTries = 10000)
+    parameters:
+    - id: allDirections
+      type: '{T}[]'
+    - id: adjacentDirections
+      type: '{T}[]'
+    - id: defaultCostFunction
+      type: MLEM.Pathfinding.AStar`1.GetCost
+    - id: defaultAllowDiagonals
+      type: System.Boolean
+    - id: defaultCost
+      type: System.Single
+    - id: defaultMaxTries
+      type: System.Int32
+    content.vb: Protected Sub New(allDirections As T(), adjacentDirections As T(), defaultCostFunction As AStar(Of T).GetCost, defaultAllowDiagonals As Boolean, defaultCost As Single = 1F, defaultMaxTries As Integer = 10000)
+  overload: MLEM.Pathfinding.AStar`1.#ctor*
+  nameWithType.vb: AStar(Of T).AStar(T(), T(), AStar(Of T).GetCost, Boolean, Single, Int32)
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AStar(T(), T(), MLEM.Pathfinding.AStar(Of T).GetCost, System.Boolean, System.Single, System.Int32)
+  name.vb: AStar(T(), T(), AStar(Of T).GetCost, Boolean, Single, Int32)
+- uid: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  commentId: M:MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  id: FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: FindPathAsync(T, T, AStar<T>.GetCost, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  nameWithType: AStar<T>.FindPathAsync(T, T, AStar<T>.GetCost, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  fullName: MLEM.Pathfinding.AStar<T>.FindPathAsync(T, T, MLEM.Pathfinding.AStar<T>.GetCost, System.Nullable<System.Single>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: FindPathAsync
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 27
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public Task<Stack<T>> FindPathAsync(T start, T goal, AStar<T>.GetCost costFunction = null, float? defaultCost = default(float? ), int? maxTries = default(int? ), bool? allowDiagonals = default(bool? ))
+    parameters:
+    - id: start
+      type: '{T}'
+    - id: goal
+      type: '{T}'
+    - id: costFunction
+      type: MLEM.Pathfinding.AStar`1.GetCost
+    - id: defaultCost
+      type: System.Nullable{System.Single}
+    - id: maxTries
+      type: System.Nullable{System.Int32}
+    - id: allowDiagonals
+      type: System.Nullable{System.Boolean}
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.Stack{{T}}}
+    content.vb: Public Function FindPathAsync(start As T, goal As T, costFunction As AStar(Of T).GetCost = Nothing, defaultCost As Single? = Nothing, maxTries As Integer? = Nothing, allowDiagonals As Boolean? = Nothing) As Task(Of Stack(Of T))
+  overload: MLEM.Pathfinding.AStar`1.FindPathAsync*
+  nameWithType.vb: AStar(Of T).FindPathAsync(T, T, AStar(Of T).GetCost, Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).FindPathAsync(T, T, MLEM.Pathfinding.AStar(Of T).GetCost, System.Nullable(Of System.Single), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean))
+  name.vb: FindPathAsync(T, T, AStar(Of T).GetCost, Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+- uid: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  commentId: M:MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  id: FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: FindPath(T, T, AStar<T>.GetCost, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  nameWithType: AStar<T>.FindPath(T, T, AStar<T>.GetCost, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  fullName: MLEM.Pathfinding.AStar<T>.FindPath(T, T, MLEM.Pathfinding.AStar<T>.GetCost, System.Nullable<System.Single>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: FindPath
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 31
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public Stack<T> FindPath(T start, T goal, AStar<T>.GetCost costFunction = null, float? defaultCost = default(float? ), int? maxTries = default(int? ), bool? allowDiagonals = default(bool? ))
+    parameters:
+    - id: start
+      type: '{T}'
+    - id: goal
+      type: '{T}'
+    - id: costFunction
+      type: MLEM.Pathfinding.AStar`1.GetCost
+    - id: defaultCost
+      type: System.Nullable{System.Single}
+    - id: maxTries
+      type: System.Nullable{System.Int32}
+    - id: allowDiagonals
+      type: System.Nullable{System.Boolean}
+    return:
+      type: System.Collections.Generic.Stack{{T}}
+    content.vb: Public Function FindPath(start As T, goal As T, costFunction As AStar(Of T).GetCost = Nothing, defaultCost As Single? = Nothing, maxTries As Integer? = Nothing, allowDiagonals As Boolean? = Nothing) As Stack(Of T)
+  overload: MLEM.Pathfinding.AStar`1.FindPath*
+  nameWithType.vb: AStar(Of T).FindPath(T, T, AStar(Of T).GetCost, Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).FindPath(T, T, MLEM.Pathfinding.AStar(Of T).GetCost, System.Nullable(Of System.Single), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean))
+  name.vb: FindPath(T, T, AStar(Of T).GetCost, Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+- uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+  commentId: M:MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+  id: AddPositions(`0,`0)
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: AddPositions(T, T)
+  nameWithType: AStar<T>.AddPositions(T, T)
+  fullName: MLEM.Pathfinding.AStar<T>.AddPositions(T, T)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AddPositions
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 96
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: protected abstract T AddPositions(T first, T second)
+    parameters:
+    - id: first
+      type: '{T}'
+    - id: second
+      type: '{T}'
+    return:
+      type: '{T}'
+    content.vb: Protected MustOverride Function AddPositions(first As T, second As T) As T
+  overload: MLEM.Pathfinding.AStar`1.AddPositions*
+  nameWithType.vb: AStar(Of T).AddPositions(T, T)
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AddPositions(T, T)
+- uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+  commentId: M:MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+  id: GetManhattanDistance(`0,`0)
+  parent: MLEM.Pathfinding.AStar`1
+  langs:
+  - csharp
+  - vb
+  name: GetManhattanDistance(T, T)
+  nameWithType: AStar<T>.GetManhattanDistance(T, T)
+  fullName: MLEM.Pathfinding.AStar<T>.GetManhattanDistance(T, T)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetManhattanDistance
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 98
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: protected abstract float GetManhattanDistance(T first, T second)
+    parameters:
+    - id: first
+      type: '{T}'
+    - id: second
+      type: '{T}'
+    return:
+      type: System.Single
+    content.vb: Protected MustOverride Function GetManhattanDistance(first As T, second As T) As Single
+  overload: MLEM.Pathfinding.AStar`1.GetManhattanDistance*
+  nameWithType.vb: AStar(Of T).GetManhattanDistance(T, T)
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).GetManhattanDistance(T, T)
+references:
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: '{T}[]'
+  isExternal: true
+  name: T[]
+  nameWithType: T[]
+  fullName: T[]
+  nameWithType.vb: T()
+  fullName.vb: T()
+  name.vb: T()
+  spec.csharp:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: MLEM.Pathfinding.AStar`1.GetCost
+  commentId: T:MLEM.Pathfinding.AStar`1.GetCost
+  parent: MLEM.Pathfinding
+  name: AStar.GetCost<>
+  nameWithType: AStar.GetCost<>
+  fullName: MLEM.Pathfinding.AStar.GetCost<>
+  nameWithType.vb: AStar.GetCost(Of )
+  fullName.vb: MLEM.Pathfinding.AStar.GetCost(Of )
+  name.vb: AStar.GetCost(Of )
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: MLEM.Pathfinding.AStar`1.LastTriesNeeded*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  name: LastTriesNeeded
+  nameWithType: AStar<T>.LastTriesNeeded
+  fullName: MLEM.Pathfinding.AStar<T>.LastTriesNeeded
+  nameWithType.vb: AStar(Of T).LastTriesNeeded
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).LastTriesNeeded
+- uid: MLEM.Pathfinding.AStar`1.LastTimeNeeded*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  name: LastTimeNeeded
+  nameWithType: AStar<T>.LastTimeNeeded
+  fullName: MLEM.Pathfinding.AStar<T>.LastTimeNeeded
+  nameWithType.vb: AStar(Of T).LastTimeNeeded
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).LastTimeNeeded
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: MLEM.Pathfinding.AStar`1.#ctor*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.#ctor
+  name: AStar
+  nameWithType: AStar<T>.AStar
+  fullName: MLEM.Pathfinding.AStar<T>.AStar
+  nameWithType.vb: AStar(Of T).AStar
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AStar
+- uid: MLEM.Pathfinding.AStar`1.FindPathAsync*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.FindPathAsync
+  name: FindPathAsync
+  nameWithType: AStar<T>.FindPathAsync
+  fullName: MLEM.Pathfinding.AStar<T>.FindPathAsync
+  nameWithType.vb: AStar(Of T).FindPathAsync
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).FindPathAsync
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Nullable{System.Single}
+  commentId: T:System.Nullable{System.Single}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Single>
+  nameWithType: Nullable<Single>
+  fullName: System.Nullable<System.Single>
+  nameWithType.vb: Nullable(Of Single)
+  fullName.vb: System.Nullable(Of System.Single)
+  name.vb: Nullable(Of Single)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Int32>
+  nameWithType: Nullable<Int32>
+  fullName: System.Nullable<System.Int32>
+  nameWithType.vb: Nullable(Of Int32)
+  fullName.vb: System.Nullable(Of System.Int32)
+  name.vb: Nullable(Of Int32)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.Stack{{T}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.Stack{`0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<Stack<T>>
+  nameWithType: Task<Stack<T>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.Stack<T>>
+  nameWithType.vb: Task(Of Stack(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.Stack(Of T))
+  name.vb: Task(Of Stack(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    nameWithType: Stack
+    fullName: System.Collections.Generic.Stack
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    nameWithType: Stack
+    fullName: System.Collections.Generic.Stack
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: MLEM.Pathfinding.AStar`1.FindPath*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.FindPath
+  name: FindPath
+  nameWithType: AStar<T>.FindPath
+  fullName: MLEM.Pathfinding.AStar<T>.FindPath
+  nameWithType.vb: AStar(Of T).FindPath
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).FindPath
+- uid: System.Collections.Generic.Stack{{T}}
+  commentId: T:System.Collections.Generic.Stack{`0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Stack`1
+  name: Stack<T>
+  nameWithType: Stack<T>
+  fullName: System.Collections.Generic.Stack<T>
+  nameWithType.vb: Stack(Of T)
+  fullName.vb: System.Collections.Generic.Stack(Of T)
+  name.vb: Stack(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    nameWithType: Stack
+    fullName: System.Collections.Generic.Stack
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    nameWithType: Stack
+    fullName: System.Collections.Generic.Stack
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Stack`1
+  commentId: T:System.Collections.Generic.Stack`1
+  isExternal: true
+  name: Stack<T>
+  nameWithType: Stack<T>
+  fullName: System.Collections.Generic.Stack<T>
+  nameWithType.vb: Stack(Of T)
+  fullName.vb: System.Collections.Generic.Stack(Of T)
+  name.vb: Stack(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    nameWithType: Stack
+    fullName: System.Collections.Generic.Stack
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    nameWithType: Stack
+    fullName: System.Collections.Generic.Stack
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: MLEM.Pathfinding.AStar`1.AddPositions*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.AddPositions
+  name: AddPositions
+  nameWithType: AStar<T>.AddPositions
+  fullName: MLEM.Pathfinding.AStar<T>.AddPositions
+  nameWithType.vb: AStar(Of T).AddPositions
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AddPositions
+- uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance*
+  commentId: Overload:MLEM.Pathfinding.AStar`1.GetManhattanDistance
+  name: GetManhattanDistance
+  nameWithType: AStar<T>.GetManhattanDistance
+  fullName: MLEM.Pathfinding.AStar<T>.GetManhattanDistance
+  nameWithType.vb: AStar(Of T).GetManhattanDistance
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).GetManhattanDistance

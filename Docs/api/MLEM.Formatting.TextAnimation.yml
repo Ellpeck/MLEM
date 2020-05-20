@@ -1,0 +1,469 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.TextAnimation
+  commentId: T:MLEM.Formatting.TextAnimation
+  id: TextAnimation
+  parent: MLEM.Formatting
+  children:
+  - MLEM.Formatting.TextAnimation.Default
+  - MLEM.Formatting.TextAnimation.Typing
+  - MLEM.Formatting.TextAnimation.Wobbly
+  langs:
+  - csharp
+  - vb
+  name: TextAnimation
+  nameWithType: TextAnimation
+  fullName: MLEM.Formatting.TextAnimation
+  type: Class
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/TextAnimation.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextAnimation
+    path: ../MLEM/Formatting/Obsolete/TextAnimation.cs
+    startLine: 6
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: >-
+      [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
+
+      public static class TextAnimation
+    content.vb: >-
+      <Obsolete("Use the new text formatting system in MLEM.Formatting instead")>
+
+      Public Module TextAnimation
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Use the new text formatting system in MLEM.Formatting instead
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: MLEM.Formatting.TextAnimation.Default
+  commentId: F:MLEM.Formatting.TextAnimation.Default
+  id: Default
+  parent: MLEM.Formatting.TextAnimation
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: TextAnimation.Default
+  fullName: MLEM.Formatting.TextAnimation.Default
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/TextAnimation.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Default
+    path: ../MLEM/Formatting/Obsolete/TextAnimation.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public static readonly TextAnimation.DrawCharacter Default
+    return:
+      type: MLEM.Formatting.TextAnimation.DrawCharacter
+    content.vb: Public Shared ReadOnly Default As TextAnimation.DrawCharacter
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: MLEM.Formatting.TextAnimation.Wobbly
+  commentId: F:MLEM.Formatting.TextAnimation.Wobbly
+  id: Wobbly
+  parent: MLEM.Formatting.TextAnimation
+  langs:
+  - csharp
+  - vb
+  name: Wobbly
+  nameWithType: TextAnimation.Wobbly
+  fullName: MLEM.Formatting.TextAnimation.Wobbly
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/TextAnimation.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Wobbly
+    path: ../MLEM/Formatting/Obsolete/TextAnimation.cs
+    startLine: 13
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public static readonly TextAnimation.DrawCharacter Wobbly
+    return:
+      type: MLEM.Formatting.TextAnimation.DrawCharacter
+    content.vb: Public Shared ReadOnly Wobbly As TextAnimation.DrawCharacter
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: MLEM.Formatting.TextAnimation.Typing
+  commentId: F:MLEM.Formatting.TextAnimation.Typing
+  id: Typing
+  parent: MLEM.Formatting.TextAnimation
+  langs:
+  - csharp
+  - vb
+  name: Typing
+  nameWithType: TextAnimation.Typing
+  fullName: MLEM.Formatting.TextAnimation.Typing
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/TextAnimation.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Typing
+    path: ../MLEM/Formatting/Obsolete/TextAnimation.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public static readonly TextAnimation.DrawCharacter Typing
+    return:
+      type: MLEM.Formatting.TextAnimation.DrawCharacter
+    content.vb: Public Shared ReadOnly Typing As TextAnimation.DrawCharacter
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Formatting.TextAnimation.DrawCharacter
+  commentId: T:MLEM.Formatting.TextAnimation.DrawCharacter
+  parent: MLEM.Formatting
+  name: TextAnimation.DrawCharacter
+  nameWithType: TextAnimation.DrawCharacter
+  fullName: MLEM.Formatting.TextAnimation.DrawCharacter

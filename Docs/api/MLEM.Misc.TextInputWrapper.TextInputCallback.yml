@@ -1,0 +1,80 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Misc.TextInputWrapper.TextInputCallback
+  commentId: T:MLEM.Misc.TextInputWrapper.TextInputCallback
+  id: TextInputWrapper.TextInputCallback
+  parent: MLEM.Misc
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextInputWrapper.TextInputCallback
+  nameWithType: TextInputWrapper.TextInputCallback
+  fullName: MLEM.Misc.TextInputWrapper.TextInputCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Misc/TextInputWrapper.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextInputCallback
+    path: ../MLEM/Misc/TextInputWrapper.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  syntax:
+    content: public delegate void TextInputCallback(object sender, Keys key, char character);
+    parameters:
+    - id: sender
+      type: System.Object
+    - id: key
+      type: Microsoft.Xna.Framework.Input.Keys
+    - id: character
+      type: System.Char
+    content.vb: Public Delegate Sub TextInputCallback(sender As Object, key As Keys, character As Char)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Microsoft.Xna.Framework.Input.Keys
+  commentId: T:Microsoft.Xna.Framework.Input.Keys
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Keys
+  nameWithType: Keys
+  fullName: Microsoft.Xna.Framework.Input.Keys
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input

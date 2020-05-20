@@ -1,0 +1,211 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  id: MouseButton
+  parent: MLEM.Input
+  children:
+  - MLEM.Input.MouseButton.Extra1
+  - MLEM.Input.MouseButton.Extra2
+  - MLEM.Input.MouseButton.Left
+  - MLEM.Input.MouseButton.Middle
+  - MLEM.Input.MouseButton.Right
+  langs:
+  - csharp
+  - vb
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MouseButton
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  syntax:
+    content: public enum MouseButton
+    content.vb: Public Enum MouseButton
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: MLEM.Input.MouseButton.Left
+  commentId: F:MLEM.Input.MouseButton.Left
+  id: Left
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: MouseButton.Left
+  fullName: MLEM.Input.MouseButton.Left
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 31
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  syntax:
+    content: Left = 0
+    return:
+      type: MLEM.Input.MouseButton
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Input.MouseButton.Middle
+  commentId: F:MLEM.Input.MouseButton.Middle
+  id: Middle
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Middle
+  nameWithType: MouseButton.Middle
+  fullName: MLEM.Input.MouseButton.Middle
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Middle
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 32
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  syntax:
+    content: Middle = 1
+    return:
+      type: MLEM.Input.MouseButton
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Input.MouseButton.Right
+  commentId: F:MLEM.Input.MouseButton.Right
+  id: Right
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: MouseButton.Right
+  fullName: MLEM.Input.MouseButton.Right
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 33
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  syntax:
+    content: Right = 2
+    return:
+      type: MLEM.Input.MouseButton
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Input.MouseButton.Extra1
+  commentId: F:MLEM.Input.MouseButton.Extra1
+  id: Extra1
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Extra1
+  nameWithType: MouseButton.Extra1
+  fullName: MLEM.Input.MouseButton.Extra1
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Extra1
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 34
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  syntax:
+    content: Extra1 = 3
+    return:
+      type: MLEM.Input.MouseButton
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: MLEM.Input.MouseButton.Extra2
+  commentId: F:MLEM.Input.MouseButton.Extra2
+  id: Extra2
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Extra2
+  nameWithType: MouseButton.Extra2
+  fullName: MLEM.Input.MouseButton.Extra2
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Extra2
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 35
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  syntax:
+    content: Extra2 = 4
+    return:
+      type: MLEM.Input.MouseButton
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  parent: MLEM.Input
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton

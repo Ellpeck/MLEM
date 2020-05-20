@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  id: MLEM.Textures
+  children:
+  - MLEM.Textures.NinePatch
+  - MLEM.Textures.NinePatchExtensions
+  - MLEM.Textures.TextureRegion
+  - MLEM.Textures.TextureRegionExtensions
+  - MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  parent: MLEM.Textures
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
+- uid: MLEM.Textures.NinePatchExtensions
+  commentId: T:MLEM.Textures.NinePatchExtensions
+  name: NinePatchExtensions
+  nameWithType: NinePatchExtensions
+  fullName: MLEM.Textures.NinePatchExtensions
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Textures.TextureRegionExtensions
+  commentId: T:MLEM.Textures.TextureRegionExtensions
+  name: TextureRegionExtensions
+  nameWithType: TextureRegionExtensions
+  fullName: MLEM.Textures.TextureRegionExtensions
+- uid: MLEM.Textures.UniformTextureAtlas
+  commentId: T:MLEM.Textures.UniformTextureAtlas
+  name: UniformTextureAtlas
+  nameWithType: UniformTextureAtlas
+  fullName: MLEM.Textures.UniformTextureAtlas
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures

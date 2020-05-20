@@ -1,0 +1,1156 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  id: NinePatch
+  parent: MLEM.Textures
+  children:
+  - MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32)
+  - MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32,System.Int32)
+  - MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,MLEM.Misc.Padding)
+  - MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Int32)
+  - MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32,System.Int32)
+  - MLEM.Textures.NinePatch.CreateRectangles(Microsoft.Xna.Framework.Rectangle,System.Single)
+  - MLEM.Textures.NinePatch.CreateRectangles(MLEM.Misc.RectangleF,System.Single)
+  - MLEM.Textures.NinePatch.Padding
+  - MLEM.Textures.NinePatch.Region
+  - MLEM.Textures.NinePatch.SourceRectangles
+  langs:
+  - csharp
+  - vb
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
+  type: Class
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: NinePatch
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: 'public class NinePatch : GenericDataHolder'
+    content.vb: >-
+      Public Class NinePatch
+          Inherits GenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  inheritedMembers:
+  - MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - MLEM.Textures.NinePatch.MLEM.Extended.Extensions.TextureExtensions.ToExtended
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Textures.NinePatch.Region
+  commentId: F:MLEM.Textures.NinePatch.Region
+  id: Region
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: Region
+  nameWithType: NinePatch.Region
+  fullName: MLEM.Textures.NinePatch.Region
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Region
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 10
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public readonly TextureRegion Region
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Region As TextureRegion
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Textures.NinePatch.Padding
+  commentId: F:MLEM.Textures.NinePatch.Padding
+  id: Padding
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: Padding
+  nameWithType: NinePatch.Padding
+  fullName: MLEM.Textures.NinePatch.Padding
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Padding
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public readonly Padding Padding
+    return:
+      type: MLEM.Misc.Padding
+    content.vb: Public ReadOnly Padding As Padding
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Textures.NinePatch.SourceRectangles
+  commentId: F:MLEM.Textures.NinePatch.SourceRectangles
+  id: SourceRectangles
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: SourceRectangles
+  nameWithType: NinePatch.SourceRectangles
+  fullName: MLEM.Textures.NinePatch.SourceRectangles
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SourceRectangles
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public readonly Rectangle[] SourceRectangles
+    return:
+      type: Microsoft.Xna.Framework.Rectangle[]
+    content.vb: Public ReadOnly SourceRectangles As Rectangle()
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,MLEM.Misc.Padding)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,MLEM.Misc.Padding)
+  id: '#ctor(MLEM.Textures.TextureRegion,MLEM.Misc.Padding)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(TextureRegion, Padding)
+  nameWithType: NinePatch.NinePatch(TextureRegion, Padding)
+  fullName: MLEM.Textures.NinePatch.NinePatch(MLEM.Textures.TextureRegion, MLEM.Misc.Padding)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 14
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public NinePatch(TextureRegion texture, Padding padding)
+    parameters:
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+    - id: padding
+      type: MLEM.Misc.Padding
+    content.vb: Public Sub New(texture As TextureRegion, padding As Padding)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: '#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32,System.Int32)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(TextureRegion, Int32, Int32, Int32, Int32)
+  nameWithType: NinePatch.NinePatch(TextureRegion, Int32, Int32, Int32, Int32)
+  fullName: MLEM.Textures.NinePatch.NinePatch(MLEM.Textures.TextureRegion, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 20
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom)
+    parameters:
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+    - id: paddingLeft
+      type: System.Int32
+    - id: paddingRight
+      type: System.Int32
+    - id: paddingTop
+      type: System.Int32
+    - id: paddingBottom
+      type: System.Int32
+    content.vb: Public Sub New(texture As TextureRegion, paddingLeft As Integer, paddingRight As Integer, paddingTop As Integer, paddingBottom As Integer)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32,System.Int32)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(Texture2D, Int32, Int32, Int32, Int32)
+  nameWithType: NinePatch.NinePatch(Texture2D, Int32, Int32, Int32, Int32)
+  fullName: MLEM.Textures.NinePatch.NinePatch(Microsoft.Xna.Framework.Graphics.Texture2D, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom)
+    parameters:
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+    - id: paddingLeft
+      type: System.Int32
+    - id: paddingRight
+      type: System.Int32
+    - id: paddingTop
+      type: System.Int32
+    - id: paddingBottom
+      type: System.Int32
+    content.vb: Public Sub New(texture As Texture2D, paddingLeft As Integer, paddingRight As Integer, paddingTop As Integer, paddingBottom As Integer)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(Texture2D, Int32)
+  nameWithType: NinePatch.NinePatch(Texture2D, Int32)
+  fullName: MLEM.Textures.NinePatch.NinePatch(Microsoft.Xna.Framework.Graphics.Texture2D, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 28
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public NinePatch(Texture2D texture, int padding)
+    parameters:
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+    - id: padding
+      type: System.Int32
+    content.vb: Public Sub New(texture As Texture2D, padding As Integer)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Int32)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Int32)
+  id: '#ctor(MLEM.Textures.TextureRegion,System.Int32)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(TextureRegion, Int32)
+  nameWithType: NinePatch.NinePatch(TextureRegion, Int32)
+  fullName: MLEM.Textures.NinePatch.NinePatch(MLEM.Textures.TextureRegion, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 31
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public NinePatch(TextureRegion texture, int padding)
+    parameters:
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+    - id: padding
+      type: System.Int32
+    content.vb: Public Sub New(texture As TextureRegion, padding As Integer)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Textures.NinePatch.CreateRectangles(Microsoft.Xna.Framework.Rectangle,System.Single)
+  commentId: M:MLEM.Textures.NinePatch.CreateRectangles(Microsoft.Xna.Framework.Rectangle,System.Single)
+  id: CreateRectangles(Microsoft.Xna.Framework.Rectangle,System.Single)
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: CreateRectangles(Rectangle, Single)
+  nameWithType: NinePatch.CreateRectangles(Rectangle, Single)
+  fullName: MLEM.Textures.NinePatch.CreateRectangles(Microsoft.Xna.Framework.Rectangle, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: CreateRectangles
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 34
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public IEnumerable<Rectangle> CreateRectangles(Rectangle area, float patchScale = 1F)
+    parameters:
+    - id: area
+      type: Microsoft.Xna.Framework.Rectangle
+    - id: patchScale
+      type: System.Single
+    return:
+      type: System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Rectangle}
+    content.vb: Public Function CreateRectangles(area As Rectangle, patchScale As Single = 1F) As IEnumerable(Of Rectangle)
+  overload: MLEM.Textures.NinePatch.CreateRectangles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Textures.NinePatch.CreateRectangles(MLEM.Misc.RectangleF,System.Single)
+  commentId: M:MLEM.Textures.NinePatch.CreateRectangles(MLEM.Misc.RectangleF,System.Single)
+  id: CreateRectangles(MLEM.Misc.RectangleF,System.Single)
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: CreateRectangles(RectangleF, Single)
+  nameWithType: NinePatch.CreateRectangles(RectangleF, Single)
+  fullName: MLEM.Textures.NinePatch.CreateRectangles(MLEM.Misc.RectangleF, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: CreateRectangles
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 38
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  syntax:
+    content: public IEnumerable<RectangleF> CreateRectangles(RectangleF area, float patchScale = 1F)
+    parameters:
+    - id: area
+      type: MLEM.Misc.RectangleF
+    - id: patchScale
+      type: System.Single
+    return:
+      type: System.Collections.Generic.IEnumerable{MLEM.Misc.RectangleF}
+    content.vb: Public Function CreateRectangles(area As RectangleF, patchScale As Single = 1F) As IEnumerable(Of RectangleF)
+  overload: MLEM.Textures.NinePatch.CreateRectangles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  name: SetData(String, Object)
+  nameWithType: GenericDataHolder.SetData(String, Object)
+  fullName: MLEM.Misc.GenericDataHolder.SetData(System.String, System.Object)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+    name: SetData
+    nameWithType: GenericDataHolder.SetData
+    fullName: MLEM.Misc.GenericDataHolder.SetData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+    name: SetData
+    nameWithType: GenericDataHolder.SetData
+    fullName: MLEM.Misc.GenericDataHolder.SetData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  name: GetData<T>(String)
+  nameWithType: GenericDataHolder.GetData<T>(String)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(System.String)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(System.String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData<T>
+    nameWithType: GenericDataHolder.GetData<T>
+    fullName: MLEM.Misc.GenericDataHolder.GetData<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData(Of T)
+    nameWithType: GenericDataHolder.GetData(Of T)
+    fullName: MLEM.Misc.GenericDataHolder.GetData(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    nameWithType: GenericDataHolder.GetDataKeys
+    fullName: MLEM.Misc.GenericDataHolder.GetDataKeys
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    nameWithType: GenericDataHolder.GetDataKeys
+    fullName: MLEM.Misc.GenericDataHolder.GetDataKeys
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Textures.NinePatch.MLEM.Extended.Extensions.TextureExtensions.ToExtended
+  commentId: M:MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+  parent: MLEM.Extended.Extensions.TextureExtensions
+  definition: MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+  name: ToExtended()
+  nameWithType: TextureExtensions.ToExtended()
+  fullName: MLEM.Extended.Extensions.TextureExtensions.ToExtended()
+  spec.csharp:
+  - uid: MLEM.Extended.Extensions.TextureExtensions.ToExtended
+    name: ToExtended
+    nameWithType: TextureExtensions.ToExtended
+    fullName: MLEM.Extended.Extensions.TextureExtensions.ToExtended
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Extended.Extensions.TextureExtensions.ToExtended
+    name: ToExtended
+    nameWithType: TextureExtensions.ToExtended
+    fullName: MLEM.Extended.Extensions.TextureExtensions.ToExtended
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+- uid: MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+  commentId: M:MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+  name: ToExtended(NinePatch)
+  nameWithType: TextureExtensions.ToExtended(NinePatch)
+  fullName: MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+  spec.csharp:
+  - uid: MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+    name: ToExtended
+    nameWithType: TextureExtensions.ToExtended
+    fullName: MLEM.Extended.Extensions.TextureExtensions.ToExtended
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Textures.NinePatch
+    name: NinePatch
+    nameWithType: NinePatch
+    fullName: MLEM.Textures.NinePatch
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Extended.Extensions.TextureExtensions.ToExtended(MLEM.Textures.NinePatch)
+    name: ToExtended
+    nameWithType: TextureExtensions.ToExtended
+    fullName: MLEM.Extended.Extensions.TextureExtensions.ToExtended
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Textures.NinePatch
+    name: NinePatch
+    nameWithType: NinePatch
+    fullName: MLEM.Textures.NinePatch
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Extended.Extensions.TextureExtensions
+  commentId: T:MLEM.Extended.Extensions.TextureExtensions
+  parent: MLEM.Extended.Extensions
+  name: TextureExtensions
+  nameWithType: TextureExtensions
+  fullName: MLEM.Extended.Extensions.TextureExtensions
+- uid: MLEM.Extended.Extensions
+  commentId: N:MLEM.Extended.Extensions
+  name: MLEM.Extended.Extensions
+  nameWithType: MLEM.Extended.Extensions
+  fullName: MLEM.Extended.Extensions
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Misc.Padding
+  commentId: T:MLEM.Misc.Padding
+  parent: MLEM.Misc
+  name: Padding
+  nameWithType: Padding
+  fullName: MLEM.Misc.Padding
+- uid: Microsoft.Xna.Framework.Rectangle[]
+  isExternal: true
+  name: Rectangle[]
+  nameWithType: Rectangle[]
+  fullName: Microsoft.Xna.Framework.Rectangle[]
+  nameWithType.vb: Rectangle()
+  fullName.vb: Microsoft.Xna.Framework.Rectangle()
+  name.vb: Rectangle()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    nameWithType: Rectangle
+    fullName: Microsoft.Xna.Framework.Rectangle
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    nameWithType: Rectangle
+    fullName: Microsoft.Xna.Framework.Rectangle
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: MLEM.Textures.NinePatch.#ctor*
+  commentId: Overload:MLEM.Textures.NinePatch.#ctor
+  name: NinePatch
+  nameWithType: NinePatch.NinePatch
+  fullName: MLEM.Textures.NinePatch.NinePatch
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Microsoft.Xna.Framework.Graphics.Texture2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.Texture2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Microsoft.Xna.Framework.Graphics.Texture2D
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Textures.NinePatch.CreateRectangles*
+  commentId: Overload:MLEM.Textures.NinePatch.CreateRectangles
+  name: CreateRectangles
+  nameWithType: NinePatch.CreateRectangles
+  fullName: MLEM.Textures.NinePatch.CreateRectangles
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Rectangle}
+  commentId: T:System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Rectangle}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Rectangle>
+  nameWithType: IEnumerable<Rectangle>
+  fullName: System.Collections.Generic.IEnumerable<Microsoft.Xna.Framework.Rectangle>
+  nameWithType.vb: IEnumerable(Of Rectangle)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Microsoft.Xna.Framework.Rectangle)
+  name.vb: IEnumerable(Of Rectangle)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    nameWithType: Rectangle
+    fullName: Microsoft.Xna.Framework.Rectangle
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    nameWithType: Rectangle
+    fullName: Microsoft.Xna.Framework.Rectangle
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: MLEM.Misc.RectangleF
+  commentId: T:MLEM.Misc.RectangleF
+  parent: MLEM.Misc
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Misc.RectangleF
+- uid: System.Collections.Generic.IEnumerable{MLEM.Misc.RectangleF}
+  commentId: T:System.Collections.Generic.IEnumerable{MLEM.Misc.RectangleF}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<RectangleF>
+  nameWithType: IEnumerable<RectangleF>
+  fullName: System.Collections.Generic.IEnumerable<MLEM.Misc.RectangleF>
+  nameWithType.vb: IEnumerable(Of RectangleF)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MLEM.Misc.RectangleF)
+  name.vb: IEnumerable(Of RectangleF)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    nameWithType: RectangleF
+    fullName: MLEM.Misc.RectangleF
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    nameWithType: RectangleF
+    fullName: MLEM.Misc.RectangleF
+  - name: )
+    nameWithType: )
+    fullName: )

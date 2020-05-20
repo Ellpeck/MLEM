@@ -1,0 +1,51 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Animations.SpriteAnimationGroup.AnimationChanged
+  commentId: T:MLEM.Animations.SpriteAnimationGroup.AnimationChanged
+  id: SpriteAnimationGroup.AnimationChanged
+  parent: MLEM.Animations
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimationGroup.AnimationChanged
+  nameWithType: SpriteAnimationGroup.AnimationChanged
+  fullName: MLEM.Animations.SpriteAnimationGroup.AnimationChanged
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimationGroup.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AnimationChanged
+    path: ../MLEM/Animations/SpriteAnimationGroup.cs
+    startLine: 100
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  syntax:
+    content: public delegate void AnimationChanged(SpriteAnimation oldAnim, SpriteAnimation newAnim);
+    parameters:
+    - id: oldAnim
+      type: MLEM.Animations.SpriteAnimation
+    - id: newAnim
+      type: MLEM.Animations.SpriteAnimation
+    content.vb: Public Delegate Sub AnimationChanged(oldAnim As SpriteAnimation, newAnim As SpriteAnimation)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Animations
+  commentId: N:MLEM.Animations
+  name: MLEM.Animations
+  nameWithType: MLEM.Animations
+  fullName: MLEM.Animations
+- uid: MLEM.Animations.SpriteAnimation
+  commentId: T:MLEM.Animations.SpriteAnimation
+  parent: MLEM.Animations
+  name: SpriteAnimation
+  nameWithType: SpriteAnimation
+  fullName: MLEM.Animations.SpriteAnimation

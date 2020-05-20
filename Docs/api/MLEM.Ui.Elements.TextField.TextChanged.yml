@@ -1,0 +1,64 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.TextField.TextChanged
+  commentId: T:MLEM.Ui.Elements.TextField.TextChanged
+  id: TextField.TextChanged
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextField.TextChanged
+  nameWithType: TextField.TextChanged
+  fullName: MLEM.Ui.Elements.TextField.TextChanged
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/TextField.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextChanged
+    path: ../MLEM.Ui/Elements/TextField.cs
+    startLine: 218
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate void TextChanged(TextField field, string text);
+    parameters:
+    - id: field
+      type: MLEM.Ui.Elements.TextField
+    - id: text
+      type: System.String
+    content.vb: Public Delegate Sub TextChanged(field As TextField, text As String)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.TextField
+  commentId: T:MLEM.Ui.Elements.TextField
+  parent: MLEM.Ui.Elements
+  name: TextField
+  nameWithType: TextField
+  fullName: MLEM.Ui.Elements.TextField
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

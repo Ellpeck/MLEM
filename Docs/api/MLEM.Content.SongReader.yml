@@ -1,0 +1,1071 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Content.SongReader
+  commentId: T:MLEM.Content.SongReader
+  id: SongReader
+  parent: MLEM.Content
+  children:
+  - MLEM.Content.SongReader.GetFileExtensions
+  - MLEM.Content.SongReader.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  langs:
+  - csharp
+  - vb
+  name: SongReader
+  nameWithType: SongReader
+  fullName: MLEM.Content.SongReader
+  type: Class
+  source:
+    remote:
+      path: MLEM/Content/SongReader.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SongReader
+    path: ../MLEM/Content/SongReader.cs
+    startLine: 5
+  assemblies:
+  - MLEM
+  namespace: MLEM.Content
+  syntax:
+    content: 'public class SongReader : RawContentReader<Song>'
+    content.vb: >-
+      Public Class SongReader
+          Inherits RawContentReader(Of Song)
+  inheritance:
+  - System.Object
+  - MLEM.Content.RawContentReader
+  - MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}
+  inheritedMembers:
+  - MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.CanRead(System.Type)
+  - MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Content.SongReader.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  commentId: M:MLEM.Content.SongReader.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  id: Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  parent: MLEM.Content.SongReader
+  langs:
+  - csharp
+  - vb
+  name: Read(RawContentManager, String, Stream, Song)
+  nameWithType: SongReader.Read(RawContentManager, String, Stream, Song)
+  fullName: MLEM.Content.SongReader.Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, Microsoft.Xna.Framework.Media.Song)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Content/SongReader.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Read
+    path: ../MLEM/Content/SongReader.cs
+    startLine: 7
+  assemblies:
+  - MLEM
+  namespace: MLEM.Content
+  syntax:
+    content: protected override Song Read(RawContentManager manager, string assetPath, Stream stream, Song existing)
+    parameters:
+    - id: manager
+      type: MLEM.Content.RawContentManager
+    - id: assetPath
+      type: System.String
+    - id: stream
+      type: System.IO.Stream
+    - id: existing
+      type: Microsoft.Xna.Framework.Media.Song
+    return:
+      type: Microsoft.Xna.Framework.Media.Song
+    content.vb: Protected Overrides Function Read(manager As RawContentManager, assetPath As String, stream As Stream, existing As Song) As Song
+  overridden: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  overload: MLEM.Content.SongReader.Read*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: MLEM.Content.SongReader.GetFileExtensions
+  commentId: M:MLEM.Content.SongReader.GetFileExtensions
+  id: GetFileExtensions
+  parent: MLEM.Content.SongReader
+  langs:
+  - csharp
+  - vb
+  name: GetFileExtensions()
+  nameWithType: SongReader.GetFileExtensions()
+  fullName: MLEM.Content.SongReader.GetFileExtensions()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Content/SongReader.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetFileExtensions
+    path: ../MLEM/Content/SongReader.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Content
+  syntax:
+    content: public override string[] GetFileExtensions()
+    return:
+      type: System.String[]
+    content.vb: Public Overrides Function GetFileExtensions As String()
+  overridden: MLEM.Content.RawContentReader.GetFileExtensions
+  overload: MLEM.Content.SongReader.GetFileExtensions*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: MLEM.Content
+  commentId: N:MLEM.Content
+  name: MLEM.Content
+  nameWithType: MLEM.Content
+  fullName: MLEM.Content
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: MLEM.Content.RawContentReader
+  commentId: T:MLEM.Content.RawContentReader
+  parent: MLEM.Content
+  name: RawContentReader
+  nameWithType: RawContentReader
+  fullName: MLEM.Content.RawContentReader
+- uid: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}
+  commentId: T:MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}
+  parent: MLEM.Content
+  definition: MLEM.Content.RawContentReader`1
+  name: RawContentReader<Song>
+  nameWithType: RawContentReader<Song>
+  fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>
+  nameWithType.vb: RawContentReader(Of Song)
+  fullName.vb: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song)
+  name.vb: RawContentReader(Of Song)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1
+    name: RawContentReader
+    nameWithType: RawContentReader
+    fullName: MLEM.Content.RawContentReader
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Media.Song
+    name: Song
+    nameWithType: Song
+    fullName: Microsoft.Xna.Framework.Media.Song
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1
+    name: RawContentReader
+    nameWithType: RawContentReader
+    fullName: MLEM.Content.RawContentReader
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Media.Song
+    name: Song
+    nameWithType: Song
+    fullName: Microsoft.Xna.Framework.Media.Song
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.CanRead(System.Type)
+  commentId: M:MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.CanRead(System.Type)
+  parent: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}
+  definition: MLEM.Content.RawContentReader`1.CanRead(System.Type)
+  name: CanRead(Type)
+  nameWithType: RawContentReader<Song>.CanRead(Type)
+  fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>.CanRead(System.Type)
+  nameWithType.vb: RawContentReader(Of Song).CanRead(Type)
+  fullName.vb: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song).CanRead(System.Type)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1.CanRead(System.Type)
+    name: CanRead
+    nameWithType: RawContentReader<Song>.CanRead
+    fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>.CanRead
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1.CanRead(System.Type)
+    name: CanRead
+    nameWithType: RawContentReader(Of Song).CanRead
+    fullName: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song).CanRead
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  commentId: M:MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  parent: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}
+  definition: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  name: Read(RawContentManager, String, Stream, Type, Object)
+  nameWithType: RawContentReader<Song>.Read(RawContentManager, String, Stream, Type, Object)
+  fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>.Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, System.Type, System.Object)
+  nameWithType.vb: RawContentReader(Of Song).Read(RawContentManager, String, Stream, Type, Object)
+  fullName.vb: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song).Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, System.Type, System.Object)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+    name: Read
+    nameWithType: RawContentReader<Song>.Read
+    fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>.Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+    name: Read
+    nameWithType: RawContentReader(Of Song).Read
+    fullName: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song).Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Content.RawContentReader`1
+  commentId: T:MLEM.Content.RawContentReader`1
+  name: RawContentReader<T>
+  nameWithType: RawContentReader<T>
+  fullName: MLEM.Content.RawContentReader<T>
+  nameWithType.vb: RawContentReader(Of T)
+  fullName.vb: MLEM.Content.RawContentReader(Of T)
+  name.vb: RawContentReader(Of T)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1
+    name: RawContentReader
+    nameWithType: RawContentReader
+    fullName: MLEM.Content.RawContentReader
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1
+    name: RawContentReader
+    nameWithType: RawContentReader
+    fullName: MLEM.Content.RawContentReader
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.RawContentReader`1.CanRead(System.Type)
+  commentId: M:MLEM.Content.RawContentReader`1.CanRead(System.Type)
+  isExternal: true
+  name: CanRead(Type)
+  nameWithType: RawContentReader<T>.CanRead(Type)
+  fullName: MLEM.Content.RawContentReader<T>.CanRead(System.Type)
+  nameWithType.vb: RawContentReader(Of T).CanRead(Type)
+  fullName.vb: MLEM.Content.RawContentReader(Of T).CanRead(System.Type)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1.CanRead(System.Type)
+    name: CanRead
+    nameWithType: RawContentReader<T>.CanRead
+    fullName: MLEM.Content.RawContentReader<T>.CanRead
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1.CanRead(System.Type)
+    name: CanRead
+    nameWithType: RawContentReader(Of T).CanRead
+    fullName: MLEM.Content.RawContentReader(Of T).CanRead
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  commentId: M:MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  isExternal: true
+  name: Read(RawContentManager, String, Stream, Type, Object)
+  nameWithType: RawContentReader<T>.Read(RawContentManager, String, Stream, Type, Object)
+  fullName: MLEM.Content.RawContentReader<T>.Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, System.Type, System.Object)
+  nameWithType.vb: RawContentReader(Of T).Read(RawContentManager, String, Stream, Type, Object)
+  fullName.vb: MLEM.Content.RawContentReader(Of T).Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, System.Type, System.Object)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+    name: Read
+    nameWithType: RawContentReader<T>.Read
+    fullName: MLEM.Content.RawContentReader<T>.Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+    name: Read
+    nameWithType: RawContentReader(Of T).Read
+    fullName: MLEM.Content.RawContentReader(Of T).Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  commentId: M:MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,Microsoft.Xna.Framework.Media.Song)
+  parent: MLEM.Content.RawContentReader{Microsoft.Xna.Framework.Media.Song}
+  definition: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+  name: Read(RawContentManager, String, Stream, Song)
+  nameWithType: RawContentReader<Song>.Read(RawContentManager, String, Stream, Song)
+  fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>.Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, Microsoft.Xna.Framework.Media.Song)
+  nameWithType.vb: RawContentReader(Of Song).Read(RawContentManager, String, Stream, Song)
+  fullName.vb: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song).Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, Microsoft.Xna.Framework.Media.Song)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+    name: Read
+    nameWithType: RawContentReader<Song>.Read
+    fullName: MLEM.Content.RawContentReader<Microsoft.Xna.Framework.Media.Song>.Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Media.Song
+    name: Song
+    nameWithType: Song
+    fullName: Microsoft.Xna.Framework.Media.Song
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+    name: Read
+    nameWithType: RawContentReader(Of Song).Read
+    fullName: MLEM.Content.RawContentReader(Of Microsoft.Xna.Framework.Media.Song).Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Media.Song
+    name: Song
+    nameWithType: Song
+    fullName: Microsoft.Xna.Framework.Media.Song
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.SongReader.Read*
+  commentId: Overload:MLEM.Content.SongReader.Read
+  name: Read
+  nameWithType: SongReader.Read
+  fullName: MLEM.Content.SongReader.Read
+- uid: MLEM.Content.RawContentManager
+  commentId: T:MLEM.Content.RawContentManager
+  parent: MLEM.Content
+  name: RawContentManager
+  nameWithType: RawContentManager
+  fullName: MLEM.Content.RawContentManager
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Microsoft.Xna.Framework.Media.Song
+  commentId: T:Microsoft.Xna.Framework.Media.Song
+  parent: Microsoft.Xna.Framework.Media
+  isExternal: true
+  name: Song
+  nameWithType: Song
+  fullName: Microsoft.Xna.Framework.Media.Song
+- uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+  commentId: M:MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+  isExternal: true
+  name: Read(RawContentManager, String, Stream, T)
+  nameWithType: RawContentReader<T>.Read(RawContentManager, String, Stream, T)
+  fullName: MLEM.Content.RawContentReader<T>.Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, T)
+  nameWithType.vb: RawContentReader(Of T).Read(RawContentManager, String, Stream, T)
+  fullName.vb: MLEM.Content.RawContentReader(Of T).Read(MLEM.Content.RawContentManager, System.String, System.IO.Stream, T)
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+    name: Read
+    nameWithType: RawContentReader<T>.Read
+    fullName: MLEM.Content.RawContentReader<T>.Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader`1.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,`0)
+    name: Read
+    nameWithType: RawContentReader(Of T).Read
+    fullName: MLEM.Content.RawContentReader(Of T).Read
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Content.RawContentManager
+    name: RawContentManager
+    nameWithType: RawContentManager
+    fullName: MLEM.Content.RawContentManager
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.Stream
+    name: Stream
+    nameWithType: Stream
+    fullName: System.IO.Stream
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: Microsoft.Xna.Framework.Media
+  commentId: N:Microsoft.Xna.Framework.Media
+  isExternal: true
+  name: Microsoft.Xna.Framework.Media
+  nameWithType: Microsoft.Xna.Framework.Media
+  fullName: Microsoft.Xna.Framework.Media
+- uid: MLEM.Content.RawContentReader.GetFileExtensions
+  commentId: M:MLEM.Content.RawContentReader.GetFileExtensions
+  parent: MLEM.Content.RawContentReader
+  name: GetFileExtensions()
+  nameWithType: RawContentReader.GetFileExtensions()
+  fullName: MLEM.Content.RawContentReader.GetFileExtensions()
+  spec.csharp:
+  - uid: MLEM.Content.RawContentReader.GetFileExtensions
+    name: GetFileExtensions
+    nameWithType: RawContentReader.GetFileExtensions
+    fullName: MLEM.Content.RawContentReader.GetFileExtensions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Content.RawContentReader.GetFileExtensions
+    name: GetFileExtensions
+    nameWithType: RawContentReader.GetFileExtensions
+    fullName: MLEM.Content.RawContentReader.GetFileExtensions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Content.SongReader.GetFileExtensions*
+  commentId: Overload:MLEM.Content.SongReader.GetFileExtensions
+  name: GetFileExtensions
+  nameWithType: SongReader.GetFileExtensions
+  fullName: MLEM.Content.SongReader.GetFileExtensions
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

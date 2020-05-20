@@ -1,0 +1,1243 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.Codes.UnderlineCode
+  commentId: T:MLEM.Formatting.Codes.UnderlineCode
+  id: UnderlineCode
+  parent: MLEM.Formatting.Codes
+  children:
+  - MLEM.Formatting.Codes.UnderlineCode.#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,System.Single,System.Single)
+  - MLEM.Formatting.Codes.UnderlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  langs:
+  - csharp
+  - vb
+  name: UnderlineCode
+  nameWithType: UnderlineCode
+  fullName: MLEM.Formatting.Codes.UnderlineCode
+  type: Class
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/UnderlineCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: UnderlineCode
+    path: ../MLEM/Formatting/Codes/UnderlineCode.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  syntax:
+    content: 'public class UnderlineCode : FontCode'
+    content.vb: >-
+      Public Class UnderlineCode
+          Inherits FontCode
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  - MLEM.Formatting.Codes.Code
+  - MLEM.Formatting.Codes.FontCode
+  derivedClasses:
+  - MLEM.Formatting.Codes.LinkCode
+  inheritedMembers:
+  - MLEM.Formatting.Codes.FontCode.GetFont(MLEM.Font.GenericFont)
+  - MLEM.Formatting.Codes.FontCode.EndsHere(MLEM.Formatting.Codes.Code)
+  - MLEM.Formatting.Codes.Code.Regex
+  - MLEM.Formatting.Codes.Code.Match
+  - MLEM.Formatting.Codes.Code.Token
+  - MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  - MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Formatting.Codes.Code.GetReplacementString(MLEM.Font.GenericFont)
+  - MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  - MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Formatting.Codes.UnderlineCode.#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,System.Single,System.Single)
+  commentId: M:MLEM.Formatting.Codes.UnderlineCode.#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,System.Single,System.Single)
+  id: '#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,System.Single,System.Single)'
+  parent: MLEM.Formatting.Codes.UnderlineCode
+  langs:
+  - csharp
+  - vb
+  name: UnderlineCode(Match, Regex, Single, Single)
+  nameWithType: UnderlineCode.UnderlineCode(Match, Regex, Single, Single)
+  fullName: MLEM.Formatting.Codes.UnderlineCode.UnderlineCode(System.Text.RegularExpressions.Match, System.Text.RegularExpressions.Regex, System.Single, System.Single)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/UnderlineCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Codes/UnderlineCode.cs
+    startLine: 13
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  syntax:
+    content: public UnderlineCode(Match match, Regex regex, float thickness, float yOffset)
+    parameters:
+    - id: match
+      type: System.Text.RegularExpressions.Match
+    - id: regex
+      type: System.Text.RegularExpressions.Regex
+    - id: thickness
+      type: System.Single
+    - id: yOffset
+      type: System.Single
+    content.vb: Public Sub New(match As Match, regex As Regex, thickness As Single, yOffset As Single)
+  overload: MLEM.Formatting.Codes.UnderlineCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Formatting.Codes.UnderlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  commentId: M:MLEM.Formatting.Codes.UnderlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  id: DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  parent: MLEM.Formatting.Codes.UnderlineCode
+  langs:
+  - csharp
+  - vb
+  name: DrawCharacter(GameTime, SpriteBatch, Char, String, Int32, ref Vector2, GenericFont, ref Color, ref Single, Single)
+  nameWithType: UnderlineCode.DrawCharacter(GameTime, SpriteBatch, Char, String, Int32, ref Vector2, GenericFont, ref Color, ref Single, Single)
+  fullName: MLEM.Formatting.Codes.UnderlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Char, System.String, System.Int32, ref Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, ref Microsoft.Xna.Framework.Color, ref System.Single, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/UnderlineCode.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawCharacter
+    path: ../MLEM/Formatting/Codes/UnderlineCode.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  syntax:
+    content: public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth)
+    parameters:
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: c
+      type: System.Char
+    - id: cString
+      type: System.String
+    - id: indexInToken
+      type: System.Int32
+    - id: pos
+      type: Microsoft.Xna.Framework.Vector2
+    - id: font
+      type: MLEM.Font.GenericFont
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: scale
+      type: System.Single
+    - id: depth
+      type: System.Single
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function DrawCharacter(time As GameTime, batch As SpriteBatch, c As Char, cString As String, indexInToken As Integer, ByRef pos As Vector2, font As GenericFont, ByRef color As Color, ByRef scale As Single, depth As Single) As Boolean
+  overridden: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  overload: MLEM.Formatting.Codes.UnderlineCode.DrawCharacter*
+  nameWithType.vb: UnderlineCode.DrawCharacter(GameTime, SpriteBatch, Char, String, Int32, ByRef Vector2, GenericFont, ByRef Color, ByRef Single, Single)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: MLEM.Formatting.Codes.UnderlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Char, System.String, System.Int32, ByRef Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, ByRef Microsoft.Xna.Framework.Color, ByRef System.Single, System.Single)
+  name.vb: DrawCharacter(GameTime, SpriteBatch, Char, String, Int32, ByRef Vector2, GenericFont, ByRef Color, ByRef Single, Single)
+references:
+- uid: MLEM.Formatting.Codes
+  commentId: N:MLEM.Formatting.Codes
+  name: MLEM.Formatting.Codes
+  nameWithType: MLEM.Formatting.Codes
+  fullName: MLEM.Formatting.Codes
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Formatting.Codes.Code
+  commentId: T:MLEM.Formatting.Codes.Code
+  parent: MLEM.Formatting.Codes
+  name: Code
+  nameWithType: Code
+  fullName: MLEM.Formatting.Codes.Code
+- uid: MLEM.Formatting.Codes.FontCode
+  commentId: T:MLEM.Formatting.Codes.FontCode
+  parent: MLEM.Formatting.Codes
+  name: FontCode
+  nameWithType: FontCode
+  fullName: MLEM.Formatting.Codes.FontCode
+- uid: MLEM.Formatting.Codes.FontCode.GetFont(MLEM.Font.GenericFont)
+  commentId: M:MLEM.Formatting.Codes.FontCode.GetFont(MLEM.Font.GenericFont)
+  parent: MLEM.Formatting.Codes.FontCode
+  name: GetFont(GenericFont)
+  nameWithType: FontCode.GetFont(GenericFont)
+  fullName: MLEM.Formatting.Codes.FontCode.GetFont(MLEM.Font.GenericFont)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.FontCode.GetFont(MLEM.Font.GenericFont)
+    name: GetFont
+    nameWithType: FontCode.GetFont
+    fullName: MLEM.Formatting.Codes.FontCode.GetFont
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.FontCode.GetFont(MLEM.Font.GenericFont)
+    name: GetFont
+    nameWithType: FontCode.GetFont
+    fullName: MLEM.Formatting.Codes.FontCode.GetFont
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.Codes.FontCode.EndsHere(MLEM.Formatting.Codes.Code)
+  commentId: M:MLEM.Formatting.Codes.FontCode.EndsHere(MLEM.Formatting.Codes.Code)
+  parent: MLEM.Formatting.Codes.FontCode
+  name: EndsHere(Code)
+  nameWithType: FontCode.EndsHere(Code)
+  fullName: MLEM.Formatting.Codes.FontCode.EndsHere(MLEM.Formatting.Codes.Code)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.FontCode.EndsHere(MLEM.Formatting.Codes.Code)
+    name: EndsHere
+    nameWithType: FontCode.EndsHere
+    fullName: MLEM.Formatting.Codes.FontCode.EndsHere
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Formatting.Codes.Code
+    name: Code
+    nameWithType: Code
+    fullName: MLEM.Formatting.Codes.Code
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.FontCode.EndsHere(MLEM.Formatting.Codes.Code)
+    name: EndsHere
+    nameWithType: FontCode.EndsHere
+    fullName: MLEM.Formatting.Codes.FontCode.EndsHere
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Formatting.Codes.Code
+    name: Code
+    nameWithType: Code
+    fullName: MLEM.Formatting.Codes.Code
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.Codes.Code.Regex
+  commentId: F:MLEM.Formatting.Codes.Code.Regex
+  parent: MLEM.Formatting.Codes.Code
+  name: Regex
+  nameWithType: Code.Regex
+  fullName: MLEM.Formatting.Codes.Code.Regex
+- uid: MLEM.Formatting.Codes.Code.Match
+  commentId: F:MLEM.Formatting.Codes.Code.Match
+  parent: MLEM.Formatting.Codes.Code
+  name: Match
+  nameWithType: Code.Match
+  fullName: MLEM.Formatting.Codes.Code.Match
+- uid: MLEM.Formatting.Codes.Code.Token
+  commentId: P:MLEM.Formatting.Codes.Code.Token
+  parent: MLEM.Formatting.Codes.Code
+  name: Token
+  nameWithType: Code.Token
+  fullName: MLEM.Formatting.Codes.Code.Token
+- uid: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  name: GetColor(Color)
+  nameWithType: Code.GetColor(Color)
+  fullName: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+    name: GetColor
+    nameWithType: Code.GetColor
+    fullName: MLEM.Formatting.Codes.Code.GetColor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+    name: GetColor
+    nameWithType: Code.GetColor
+    fullName: MLEM.Formatting.Codes.Code.GetColor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  name: Update(GameTime)
+  nameWithType: Code.Update(GameTime)
+  fullName: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    nameWithType: Code.Update
+    fullName: MLEM.Formatting.Codes.Code.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    nameWithType: Code.Update
+    fullName: MLEM.Formatting.Codes.Code.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.Codes.Code.GetReplacementString(MLEM.Font.GenericFont)
+  commentId: M:MLEM.Formatting.Codes.Code.GetReplacementString(MLEM.Font.GenericFont)
+  parent: MLEM.Formatting.Codes.Code
+  name: GetReplacementString(GenericFont)
+  nameWithType: Code.GetReplacementString(GenericFont)
+  fullName: MLEM.Formatting.Codes.Code.GetReplacementString(MLEM.Font.GenericFont)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.GetReplacementString(MLEM.Font.GenericFont)
+    name: GetReplacementString
+    nameWithType: Code.GetReplacementString
+    fullName: MLEM.Formatting.Codes.Code.GetReplacementString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.GetReplacementString(MLEM.Font.GenericFont)
+    name: GetReplacementString
+    nameWithType: Code.GetReplacementString
+    fullName: MLEM.Formatting.Codes.Code.GetReplacementString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  commentId: M:MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  name: DrawSelf(GameTime, SpriteBatch, Vector2, GenericFont, Color, Single, Single)
+  nameWithType: Code.DrawSelf(GameTime, SpriteBatch, Vector2, GenericFont, Color, Single, Single)
+  fullName: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, Microsoft.Xna.Framework.Color, System.Single, System.Single)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+    name: DrawSelf
+    nameWithType: Code.DrawSelf
+    fullName: MLEM.Formatting.Codes.Code.DrawSelf
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+    name: DrawSelf
+    nameWithType: Code.DrawSelf
+    fullName: MLEM.Formatting.Codes.Code.DrawSelf
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  name: SetData(String, Object)
+  nameWithType: GenericDataHolder.SetData(String, Object)
+  fullName: MLEM.Misc.GenericDataHolder.SetData(System.String, System.Object)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+    name: SetData
+    nameWithType: GenericDataHolder.SetData
+    fullName: MLEM.Misc.GenericDataHolder.SetData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData(System.String,System.Object)
+    name: SetData
+    nameWithType: GenericDataHolder.SetData
+    fullName: MLEM.Misc.GenericDataHolder.SetData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  name: GetData<T>(String)
+  nameWithType: GenericDataHolder.GetData<T>(String)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(System.String)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(System.String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData<T>
+    nameWithType: GenericDataHolder.GetData<T>
+    fullName: MLEM.Misc.GenericDataHolder.GetData<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData(Of T)
+    nameWithType: GenericDataHolder.GetData(Of T)
+    fullName: MLEM.Misc.GenericDataHolder.GetData(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    nameWithType: GenericDataHolder.GetDataKeys
+    fullName: MLEM.Misc.GenericDataHolder.GetDataKeys
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    nameWithType: GenericDataHolder.GetDataKeys
+    fullName: MLEM.Misc.GenericDataHolder.GetDataKeys
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+- uid: MLEM.Formatting.Codes.UnderlineCode.#ctor*
+  commentId: Overload:MLEM.Formatting.Codes.UnderlineCode.#ctor
+  name: UnderlineCode
+  nameWithType: UnderlineCode.UnderlineCode
+  fullName: MLEM.Formatting.Codes.UnderlineCode.UnderlineCode
+- uid: System.Text.RegularExpressions.Match
+  commentId: T:System.Text.RegularExpressions.Match
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  name: Match
+  nameWithType: Match
+  fullName: System.Text.RegularExpressions.Match
+- uid: System.Text.RegularExpressions.Regex
+  commentId: T:System.Text.RegularExpressions.Regex
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: System.Text.RegularExpressions.Regex
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Text.RegularExpressions
+  commentId: N:System.Text.RegularExpressions
+  isExternal: true
+  name: System.Text.RegularExpressions
+  nameWithType: System.Text.RegularExpressions
+  fullName: System.Text.RegularExpressions
+- uid: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  commentId: M:MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  name: DrawCharacter(GameTime, SpriteBatch, Char, String, Int32, Vector2, GenericFont, Color, Single, Single)
+  nameWithType: Code.DrawCharacter(GameTime, SpriteBatch, Char, String, Int32, Vector2, GenericFont, Color, Single, Single)
+  fullName: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Char, System.String, System.Int32, Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, Microsoft.Xna.Framework.Color, System.Single, System.Single)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+    name: DrawCharacter
+    nameWithType: Code.DrawCharacter
+    fullName: MLEM.Formatting.Codes.Code.DrawCharacter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,System.Single@,System.Single)
+    name: DrawCharacter
+    nameWithType: Code.DrawCharacter
+    fullName: MLEM.Formatting.Codes.Code.DrawCharacter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.Codes.UnderlineCode.DrawCharacter*
+  commentId: Overload:MLEM.Formatting.Codes.UnderlineCode.DrawCharacter
+  name: DrawCharacter
+  nameWithType: UnderlineCode.DrawCharacter
+  fullName: MLEM.Formatting.Codes.UnderlineCode.DrawCharacter
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font

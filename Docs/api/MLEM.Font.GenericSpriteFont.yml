@@ -1,0 +1,3084 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Font.GenericSpriteFont
+  commentId: T:MLEM.Font.GenericSpriteFont
+  id: GenericSpriteFont
+  parent: MLEM.Font
+  children:
+  - MLEM.Font.GenericSpriteFont.#ctor(Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont)
+  - MLEM.Font.GenericSpriteFont.Bold
+  - MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  - MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  - MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Font.GenericSpriteFont.Font
+  - MLEM.Font.GenericSpriteFont.Italic
+  - MLEM.Font.GenericSpriteFont.LineHeight
+  - MLEM.Font.GenericSpriteFont.MeasureString(System.String)
+  - MLEM.Font.GenericSpriteFont.MeasureString(System.Text.StringBuilder)
+  langs:
+  - csharp
+  - vb
+  name: GenericSpriteFont
+  nameWithType: GenericSpriteFont
+  fullName: MLEM.Font.GenericSpriteFont
+  type: Class
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GenericSpriteFont
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  summary: "\nRepresents a font with additional abilities.\n<xref href=\"MLEM.Font.GenericSpriteFont\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public class GenericSpriteFont : GenericFont'
+    content.vb: >-
+      Public Class GenericSpriteFont
+          Inherits GenericFont
+  inheritance:
+  - System.Object
+  - MLEM.Font.GenericFont
+  inheritedMembers:
+  - MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+  - MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Font.GenericFont.TruncateString(System.String,System.Single,System.Single,System.Boolean,System.String)
+  - MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+  - MLEM.Font.GenericFont.GetWidthString(System.Single,System.Char)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - MLEM.Font.GenericFont.MLEM.Formatting.TextFormatting.DrawFormattedString(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Font.GenericSpriteFont.Font
+  commentId: F:MLEM.Font.GenericSpriteFont.Font
+  id: Font
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: Font
+  nameWithType: GenericSpriteFont.Font
+  fullName: MLEM.Font.GenericSpriteFont.Font
+  type: Field
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Font
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 10
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  syntax:
+    content: public readonly SpriteFont Font
+    return:
+      type: Microsoft.Xna.Framework.Graphics.SpriteFont
+    content.vb: Public ReadOnly Font As SpriteFont
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Font.GenericSpriteFont.Bold
+  commentId: P:MLEM.Font.GenericSpriteFont.Bold
+  id: Bold
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: Bold
+  nameWithType: GenericSpriteFont.Bold
+  fullName: MLEM.Font.GenericSpriteFont.Bold
+  type: Property
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Bold
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  summary: "\nThe bold version of this font.\n"
+  example: []
+  syntax:
+    content: public override GenericFont Bold { get; }
+    parameters: []
+    return:
+      type: MLEM.Font.GenericFont
+    content.vb: Public Overrides ReadOnly Property Bold As GenericFont
+  overridden: MLEM.Font.GenericFont.Bold
+  overload: MLEM.Font.GenericSpriteFont.Bold*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: MLEM.Font.GenericSpriteFont.Italic
+  commentId: P:MLEM.Font.GenericSpriteFont.Italic
+  id: Italic
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: Italic
+  nameWithType: GenericSpriteFont.Italic
+  fullName: MLEM.Font.GenericSpriteFont.Italic
+  type: Property
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Italic
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 14
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  summary: "\nThe italic version of this font.\n"
+  example: []
+  syntax:
+    content: public override GenericFont Italic { get; }
+    parameters: []
+    return:
+      type: MLEM.Font.GenericFont
+    content.vb: Public Overrides ReadOnly Property Italic As GenericFont
+  overridden: MLEM.Font.GenericFont.Italic
+  overload: MLEM.Font.GenericSpriteFont.Italic*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: MLEM.Font.GenericSpriteFont.LineHeight
+  commentId: P:MLEM.Font.GenericSpriteFont.LineHeight
+  id: LineHeight
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: LineHeight
+  nameWithType: GenericSpriteFont.LineHeight
+  fullName: MLEM.Font.GenericSpriteFont.LineHeight
+  type: Property
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LineHeight
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 16
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override float LineHeight { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Overrides ReadOnly Property LineHeight As Single
+  overridden: MLEM.Font.GenericFont.LineHeight
+  overload: MLEM.Font.GenericSpriteFont.LineHeight*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: MLEM.Font.GenericSpriteFont.#ctor(Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont)
+  commentId: M:MLEM.Font.GenericSpriteFont.#ctor(Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont,Microsoft.Xna.Framework.Graphics.SpriteFont)'
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: GenericSpriteFont(SpriteFont, SpriteFont, SpriteFont)
+  nameWithType: GenericSpriteFont.GenericSpriteFont(SpriteFont, SpriteFont, SpriteFont)
+  fullName: MLEM.Font.GenericSpriteFont.GenericSpriteFont(Microsoft.Xna.Framework.Graphics.SpriteFont, Microsoft.Xna.Framework.Graphics.SpriteFont, Microsoft.Xna.Framework.Graphics.SpriteFont)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 25
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  summary: "\nCreates a new generic font using <xref href=\"Microsoft.Xna.Framework.Graphics.SpriteFont\" data-throw-if-not-resolved=\"false\"></xref>.\nOptionally, a bold and italic version of the font can be supplied.\n"
+  example: []
+  syntax:
+    content: public GenericSpriteFont(SpriteFont font, SpriteFont bold = null, SpriteFont italic = null)
+    parameters:
+    - id: font
+      type: Microsoft.Xna.Framework.Graphics.SpriteFont
+      description: The font to wrap
+    - id: bold
+      type: Microsoft.Xna.Framework.Graphics.SpriteFont
+      description: A bold version of the font
+    - id: italic
+      type: Microsoft.Xna.Framework.Graphics.SpriteFont
+      description: An italic version of the font
+    content.vb: Public Sub New(font As SpriteFont, bold As SpriteFont = Nothing, italic As SpriteFont = Nothing)
+  overload: MLEM.Font.GenericSpriteFont.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Font.GenericSpriteFont.MeasureString(System.String)
+  commentId: M:MLEM.Font.GenericSpriteFont.MeasureString(System.String)
+  id: MeasureString(System.String)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: MeasureString(String)
+  nameWithType: GenericSpriteFont.MeasureString(String)
+  fullName: MLEM.Font.GenericSpriteFont.MeasureString(System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MeasureString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 32
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override Vector2 MeasureString(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Overrides Function MeasureString(text As String) As Vector2
+  overridden: MLEM.Font.GenericFont.MeasureString(System.String)
+  overload: MLEM.Font.GenericSpriteFont.MeasureString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.MeasureString(System.Text.StringBuilder)
+  commentId: M:MLEM.Font.GenericSpriteFont.MeasureString(System.Text.StringBuilder)
+  id: MeasureString(System.Text.StringBuilder)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: MeasureString(StringBuilder)
+  nameWithType: GenericSpriteFont.MeasureString(StringBuilder)
+  fullName: MLEM.Font.GenericSpriteFont.MeasureString(System.Text.StringBuilder)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MeasureString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 37
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override Vector2 MeasureString(StringBuilder text)
+    parameters:
+    - id: text
+      type: System.Text.StringBuilder
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Overrides Function MeasureString(text As StringBuilder) As Vector2
+  overridden: MLEM.Font.GenericFont.MeasureString(System.Text.StringBuilder)
+  overload: MLEM.Font.GenericSpriteFont.MeasureString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  id: DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: DrawString(SpriteBatch, String, Vector2, Color)
+  nameWithType: GenericSpriteFont.DrawString(SpriteBatch, String, Vector2, Color)
+  fullName: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 42
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: text
+      type: System.String
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    content.vb: Public Overrides Sub DrawString(batch As SpriteBatch, text As String, position As Vector2, color As Color)
+  overridden: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  overload: MLEM.Font.GenericSpriteFont.DrawString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  nameWithType: GenericSpriteFont.DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, System.Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 47
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: text
+      type: System.String
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: rotation
+      type: System.Single
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: scale
+      type: System.Single
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    - id: layerDepth
+      type: System.Single
+    content.vb: Public Overrides Sub DrawString(batch As SpriteBatch, text As String, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Single, effects As SpriteEffects, layerDepth As Single)
+  overridden: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  overload: MLEM.Font.GenericSpriteFont.DrawString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  nameWithType: GenericSpriteFont.DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 52
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: text
+      type: System.String
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: rotation
+      type: System.Single
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: scale
+      type: Microsoft.Xna.Framework.Vector2
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    - id: layerDepth
+      type: System.Single
+    content.vb: Public Overrides Sub DrawString(batch As SpriteBatch, text As String, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Vector2, effects As SpriteEffects, layerDepth As Single)
+  overridden: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  overload: MLEM.Font.GenericSpriteFont.DrawString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  id: DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: DrawString(SpriteBatch, StringBuilder, Vector2, Color)
+  nameWithType: GenericSpriteFont.DrawString(SpriteBatch, StringBuilder, Vector2, Color)
+  fullName: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Text.StringBuilder, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 57
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: text
+      type: System.Text.StringBuilder
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    content.vb: Public Overrides Sub DrawString(batch As SpriteBatch, text As StringBuilder, position As Vector2, color As Color)
+  overridden: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  overload: MLEM.Font.GenericSpriteFont.DrawString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  nameWithType: GenericSpriteFont.DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Text.StringBuilder, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, System.Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 62
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: text
+      type: System.Text.StringBuilder
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: rotation
+      type: System.Single
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: scale
+      type: System.Single
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    - id: layerDepth
+      type: System.Single
+    content.vb: Public Overrides Sub DrawString(batch As SpriteBatch, text As StringBuilder, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Single, effects As SpriteEffects, layerDepth As Single)
+  overridden: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  overload: MLEM.Font.GenericSpriteFont.DrawString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  nameWithType: GenericSpriteFont.DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericSpriteFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Text.StringBuilder, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Font/GenericSpriteFont.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawString
+    path: ../MLEM/Font/GenericSpriteFont.cs
+    startLine: 67
+  assemblies:
+  - MLEM
+  namespace: MLEM.Font
+  example: []
+  syntax:
+    content: public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: text
+      type: System.Text.StringBuilder
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: rotation
+      type: System.Single
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: scale
+      type: Microsoft.Xna.Framework.Vector2
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    - id: layerDepth
+      type: System.Single
+    content.vb: Public Overrides Sub DrawString(batch As SpriteBatch, text As StringBuilder, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Vector2, effects As SpriteEffects, layerDepth As Single)
+  overridden: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  overload: MLEM.Font.GenericSpriteFont.DrawString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, TextAlign, Color)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, TextAlign, Color)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, MLEM.Font.TextAlign, Microsoft.Xna.Framework.Color)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, TextAlign, Color, Single, Vector2, Single, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, TextAlign, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, MLEM.Font.TextAlign, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, System.Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, TextAlign, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, TextAlign, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, MLEM.Font.TextAlign, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.TruncateString(System.String,System.Single,System.Single,System.Boolean,System.String)
+  commentId: M:MLEM.Font.GenericFont.TruncateString(System.String,System.Single,System.Single,System.Boolean,System.String)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: TruncateString(String, Single, Single, Boolean, String)
+  nameWithType: GenericFont.TruncateString(String, Single, Single, Boolean, String)
+  fullName: MLEM.Font.GenericFont.TruncateString(System.String, System.Single, System.Single, System.Boolean, System.String)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.TruncateString(System.String,System.Single,System.Single,System.Boolean,System.String)
+    name: TruncateString
+    nameWithType: GenericFont.TruncateString
+    fullName: MLEM.Font.GenericFont.TruncateString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.TruncateString(System.String,System.Single,System.Single,System.Boolean,System.String)
+    name: TruncateString
+    nameWithType: GenericFont.TruncateString
+    fullName: MLEM.Font.GenericFont.TruncateString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+  commentId: M:MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: SplitString(String, Single, Single)
+  nameWithType: GenericFont.SplitString(String, Single, Single)
+  fullName: MLEM.Font.GenericFont.SplitString(System.String, System.Single, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+    name: SplitString
+    nameWithType: GenericFont.SplitString
+    fullName: MLEM.Font.GenericFont.SplitString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+    name: SplitString
+    nameWithType: GenericFont.SplitString
+    fullName: MLEM.Font.GenericFont.SplitString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.GetWidthString(System.Single,System.Char)
+  commentId: M:MLEM.Font.GenericFont.GetWidthString(System.Single,System.Char)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: GetWidthString(Single, Char)
+  nameWithType: GenericFont.GetWidthString(Single, Char)
+  fullName: MLEM.Font.GenericFont.GetWidthString(System.Single, System.Char)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.GetWidthString(System.Single,System.Char)
+    name: GetWidthString
+    nameWithType: GenericFont.GetWidthString
+    fullName: MLEM.Font.GenericFont.GetWidthString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.GetWidthString(System.Single,System.Char)
+    name: GetWidthString
+    nameWithType: GenericFont.GetWidthString
+    fullName: MLEM.Font.GenericFont.GetWidthString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.MLEM.Formatting.TextFormatting.DrawFormattedString(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+  commentId: M:MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+  parent: MLEM.Formatting.TextFormatting
+  definition: MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+  name: DrawFormattedString(SpriteBatch, Vector2, String, FormattingCodeCollection, Color, Single, GenericFont, GenericFont, Single, TimeSpan, FormatSettings)
+  nameWithType: TextFormatting.DrawFormattedString(SpriteBatch, Vector2, String, FormattingCodeCollection, Color, Single, GenericFont, GenericFont, Single, TimeSpan, FormatSettings)
+  fullName: MLEM.Formatting.TextFormatting.DrawFormattedString(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Vector2, System.String, MLEM.Formatting.FormattingCodeCollection, Microsoft.Xna.Framework.Color, System.Single, MLEM.Font.GenericFont, MLEM.Font.GenericFont, System.Single, System.TimeSpan, MLEM.Formatting.FormatSettings)
+  spec.csharp:
+  - uid: MLEM.Formatting.TextFormatting.DrawFormattedString(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+    name: DrawFormattedString
+    nameWithType: TextFormatting.DrawFormattedString
+    fullName: MLEM.Formatting.TextFormatting.DrawFormattedString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormattingCodeCollection
+    name: FormattingCodeCollection
+    nameWithType: FormattingCodeCollection
+    fullName: MLEM.Formatting.FormattingCodeCollection
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormatSettings
+    name: FormatSettings
+    nameWithType: FormatSettings
+    fullName: MLEM.Formatting.FormatSettings
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.TextFormatting.DrawFormattedString(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+    name: DrawFormattedString
+    nameWithType: TextFormatting.DrawFormattedString
+    fullName: MLEM.Formatting.TextFormatting.DrawFormattedString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormattingCodeCollection
+    name: FormattingCodeCollection
+    nameWithType: FormattingCodeCollection
+    fullName: MLEM.Formatting.FormattingCodeCollection
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormatSettings
+    name: FormatSettings
+    nameWithType: FormatSettings
+    fullName: MLEM.Formatting.FormatSettings
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+  commentId: M:MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+  isExternal: true
+  name: DrawFormattedString(GenericFont, SpriteBatch, Vector2, String, FormattingCodeCollection, Color, Single, GenericFont, GenericFont, Single, TimeSpan, FormatSettings)
+  nameWithType: TextFormatting.DrawFormattedString(GenericFont, SpriteBatch, Vector2, String, FormattingCodeCollection, Color, Single, GenericFont, GenericFont, Single, TimeSpan, FormatSettings)
+  fullName: MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont, Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Vector2, System.String, MLEM.Formatting.FormattingCodeCollection, Microsoft.Xna.Framework.Color, System.Single, MLEM.Font.GenericFont, MLEM.Font.GenericFont, System.Single, System.TimeSpan, MLEM.Formatting.FormatSettings)
+  spec.csharp:
+  - uid: MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+    name: DrawFormattedString
+    nameWithType: TextFormatting.DrawFormattedString
+    fullName: MLEM.Formatting.TextFormatting.DrawFormattedString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormattingCodeCollection
+    name: FormattingCodeCollection
+    nameWithType: FormattingCodeCollection
+    fullName: MLEM.Formatting.FormattingCodeCollection
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormatSettings
+    name: FormatSettings
+    nameWithType: FormatSettings
+    fullName: MLEM.Formatting.FormatSettings
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.TextFormatting.DrawFormattedString(MLEM.Font.GenericFont,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.String,MLEM.Formatting.FormattingCodeCollection,Microsoft.Xna.Framework.Color,System.Single,MLEM.Font.GenericFont,MLEM.Font.GenericFont,System.Single,System.TimeSpan,MLEM.Formatting.FormatSettings)
+    name: DrawFormattedString
+    nameWithType: TextFormatting.DrawFormattedString
+    fullName: MLEM.Formatting.TextFormatting.DrawFormattedString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormattingCodeCollection
+    name: FormattingCodeCollection
+    nameWithType: FormattingCodeCollection
+    fullName: MLEM.Formatting.FormattingCodeCollection
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    nameWithType: GenericFont
+    fullName: MLEM.Font.GenericFont
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.TimeSpan
+    name: TimeSpan
+    nameWithType: TimeSpan
+    fullName: System.TimeSpan
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Formatting.FormatSettings
+    name: FormatSettings
+    nameWithType: FormatSettings
+    fullName: MLEM.Formatting.FormatSettings
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.TextFormatting
+  commentId: T:MLEM.Formatting.TextFormatting
+  parent: MLEM.Formatting
+  name: TextFormatting
+  nameWithType: TextFormatting
+  fullName: MLEM.Formatting.TextFormatting
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+- uid: Microsoft.Xna.Framework.Graphics.SpriteFont
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteFont
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteFont
+  nameWithType: SpriteFont
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteFont
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Font.GenericFont.Bold
+  commentId: P:MLEM.Font.GenericFont.Bold
+  parent: MLEM.Font.GenericFont
+  name: Bold
+  nameWithType: GenericFont.Bold
+  fullName: MLEM.Font.GenericFont.Bold
+- uid: MLEM.Font.GenericSpriteFont.Bold*
+  commentId: Overload:MLEM.Font.GenericSpriteFont.Bold
+  name: Bold
+  nameWithType: GenericSpriteFont.Bold
+  fullName: MLEM.Font.GenericSpriteFont.Bold
+- uid: MLEM.Font.GenericFont.Italic
+  commentId: P:MLEM.Font.GenericFont.Italic
+  parent: MLEM.Font.GenericFont
+  name: Italic
+  nameWithType: GenericFont.Italic
+  fullName: MLEM.Font.GenericFont.Italic
+- uid: MLEM.Font.GenericSpriteFont.Italic*
+  commentId: Overload:MLEM.Font.GenericSpriteFont.Italic
+  name: Italic
+  nameWithType: GenericSpriteFont.Italic
+  fullName: MLEM.Font.GenericSpriteFont.Italic
+- uid: MLEM.Font.GenericFont.LineHeight
+  commentId: P:MLEM.Font.GenericFont.LineHeight
+  parent: MLEM.Font.GenericFont
+  name: LineHeight
+  nameWithType: GenericFont.LineHeight
+  fullName: MLEM.Font.GenericFont.LineHeight
+- uid: MLEM.Font.GenericSpriteFont.LineHeight*
+  commentId: Overload:MLEM.Font.GenericSpriteFont.LineHeight
+  name: LineHeight
+  nameWithType: GenericSpriteFont.LineHeight
+  fullName: MLEM.Font.GenericSpriteFont.LineHeight
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: MLEM.Font.GenericSpriteFont.#ctor*
+  commentId: Overload:MLEM.Font.GenericSpriteFont.#ctor
+  name: GenericSpriteFont
+  nameWithType: GenericSpriteFont.GenericSpriteFont
+  fullName: MLEM.Font.GenericSpriteFont.GenericSpriteFont
+- uid: MLEM.Font.GenericFont.MeasureString(System.String)
+  commentId: M:MLEM.Font.GenericFont.MeasureString(System.String)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: MeasureString(String)
+  nameWithType: GenericFont.MeasureString(String)
+  fullName: MLEM.Font.GenericFont.MeasureString(System.String)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.MeasureString(System.String)
+    name: MeasureString
+    nameWithType: GenericFont.MeasureString
+    fullName: MLEM.Font.GenericFont.MeasureString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.MeasureString(System.String)
+    name: MeasureString
+    nameWithType: GenericFont.MeasureString
+    fullName: MLEM.Font.GenericFont.MeasureString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericSpriteFont.MeasureString*
+  commentId: Overload:MLEM.Font.GenericSpriteFont.MeasureString
+  name: MeasureString
+  nameWithType: GenericSpriteFont.MeasureString
+  fullName: MLEM.Font.GenericSpriteFont.MeasureString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Font.GenericFont.MeasureString(System.Text.StringBuilder)
+  commentId: M:MLEM.Font.GenericFont.MeasureString(System.Text.StringBuilder)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: MeasureString(StringBuilder)
+  nameWithType: GenericFont.MeasureString(StringBuilder)
+  fullName: MLEM.Font.GenericFont.MeasureString(System.Text.StringBuilder)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.MeasureString(System.Text.StringBuilder)
+    name: MeasureString
+    nameWithType: GenericFont.MeasureString
+    fullName: MLEM.Font.GenericFont.MeasureString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.MeasureString(System.Text.StringBuilder)
+    name: MeasureString
+    nameWithType: GenericFont.MeasureString
+    fullName: MLEM.Font.GenericFont.MeasureString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Text.StringBuilder
+  commentId: T:System.Text.StringBuilder
+  parent: System.Text
+  isExternal: true
+  name: StringBuilder
+  nameWithType: StringBuilder
+  fullName: System.Text.StringBuilder
+- uid: System.Text
+  commentId: N:System.Text
+  isExternal: true
+  name: System.Text
+  nameWithType: System.Text
+  fullName: System.Text
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, Color)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, Color)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericSpriteFont.DrawString*
+  commentId: Overload:MLEM.Font.GenericSpriteFont.DrawString
+  name: DrawString
+  nameWithType: GenericSpriteFont.DrawString
+  fullName: MLEM.Font.GenericSpriteFont.DrawString
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, System.Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteEffects
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteEffects
+  nameWithType: SpriteEffects
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, StringBuilder, Vector2, Color)
+  nameWithType: GenericFont.DrawString(SpriteBatch, StringBuilder, Vector2, Color)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Text.StringBuilder, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Text.StringBuilder, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, System.Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, StringBuilder, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Text.StringBuilder, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Text.StringBuilder
+    name: StringBuilder
+    nameWithType: StringBuilder
+    fullName: System.Text.StringBuilder
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

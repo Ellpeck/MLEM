@@ -1,0 +1,1170 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Cameras.Camera
+  commentId: T:MLEM.Cameras.Camera
+  id: Camera
+  parent: MLEM.Cameras
+  children:
+  - MLEM.Cameras.Camera.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Boolean)
+  - MLEM.Cameras.Camera.ActualScale
+  - MLEM.Cameras.Camera.AutoScaleReferenceSize
+  - MLEM.Cameras.Camera.AutoScaleWithScreen
+  - MLEM.Cameras.Camera.ConstrainWorldBounds(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  - MLEM.Cameras.Camera.GetVisibleRectangle
+  - MLEM.Cameras.Camera.LookingPosition
+  - MLEM.Cameras.Camera.Max
+  - MLEM.Cameras.Camera.MaxScale
+  - MLEM.Cameras.Camera.MinScale
+  - MLEM.Cameras.Camera.Position
+  - MLEM.Cameras.Camera.Scale
+  - MLEM.Cameras.Camera.ToCameraPos(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Cameras.Camera.ToWorldPos(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Cameras.Camera.ViewMatrix
+  - MLEM.Cameras.Camera.Zoom(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  langs:
+  - csharp
+  - vb
+  name: Camera
+  nameWithType: Camera
+  fullName: MLEM.Cameras.Camera
+  type: Class
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Camera
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nRepresents a simple, orthographic 2-dimensional camera that can be moved, scaled and that supports automatic viewport sizing.\nTo draw with the camera&apos;s positioning and scaling applied, use <xref href=\"MLEM.Cameras.Camera.ViewMatrix\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public class Camera
+    content.vb: Public Class Camera
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Cameras.Camera.Position
+  commentId: F:MLEM.Cameras.Camera.Position
+  id: Position
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: Camera.Position
+  fullName: MLEM.Cameras.Camera.Position
+  type: Field
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Position
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 17
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe top-left corner of the camera&apos;s viewport.\n<xref href=\"MLEM.Cameras.Camera.LookingPosition\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Vector2 Position
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Position As Vector2
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.Scale
+  commentId: P:MLEM.Cameras.Camera.Scale
+  id: Scale
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: Scale
+  nameWithType: Camera.Scale
+  fullName: MLEM.Cameras.Camera.Scale
+  type: Property
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Scale
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 21
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe scale that this camera&apos;s <xref href=\"MLEM.Cameras.Camera.ViewMatrix\" data-throw-if-not-resolved=\"false\"></xref> should have.\n"
+  example: []
+  syntax:
+    content: public float Scale { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Scale As Single
+  overload: MLEM.Cameras.Camera.Scale*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.MinScale
+  commentId: F:MLEM.Cameras.Camera.MinScale
+  id: MinScale
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: MinScale
+  nameWithType: Camera.MinScale
+  fullName: MLEM.Cameras.Camera.MinScale
+  type: Field
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MinScale
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe minimum <xref href=\"MLEM.Cameras.Camera.Scale\" data-throw-if-not-resolved=\"false\"></xref> that the camera can have\n"
+  example: []
+  syntax:
+    content: public float MinScale
+    return:
+      type: System.Single
+    content.vb: Public MinScale As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.MaxScale
+  commentId: F:MLEM.Cameras.Camera.MaxScale
+  id: MaxScale
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: MaxScale
+  nameWithType: Camera.MaxScale
+  fullName: MLEM.Cameras.Camera.MaxScale
+  type: Field
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: MaxScale
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 33
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe maximum <xref href=\"MLEM.Cameras.Camera.Scale\" data-throw-if-not-resolved=\"false\"></xref> that the camera can have\n"
+  example: []
+  syntax:
+    content: public float MaxScale
+    return:
+      type: System.Single
+    content.vb: Public MaxScale As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.AutoScaleWithScreen
+  commentId: F:MLEM.Cameras.Camera.AutoScaleWithScreen
+  id: AutoScaleWithScreen
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: AutoScaleWithScreen
+  nameWithType: Camera.AutoScaleWithScreen
+  fullName: MLEM.Cameras.Camera.AutoScaleWithScreen
+  type: Field
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoScaleWithScreen
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 38
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nIf this is true, the camera will automatically adapt to changed screen sizes.\nYou can use <xref href=\"MLEM.Cameras.Camera.AutoScaleReferenceSize\" data-throw-if-not-resolved=\"false\"></xref> to determine the initial screen size that this camera should base its calculations on.\n"
+  example: []
+  syntax:
+    content: public bool AutoScaleWithScreen
+    return:
+      type: System.Boolean
+    content.vb: Public AutoScaleWithScreen As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.AutoScaleReferenceSize
+  commentId: F:MLEM.Cameras.Camera.AutoScaleReferenceSize
+  id: AutoScaleReferenceSize
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: AutoScaleReferenceSize
+  nameWithType: Camera.AutoScaleReferenceSize
+  fullName: MLEM.Cameras.Camera.AutoScaleReferenceSize
+  type: Field
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoScaleReferenceSize
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 42
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\n<xref href=\"MLEM.Cameras.Camera.AutoScaleWithScreen\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Point AutoScaleReferenceSize
+    return:
+      type: Microsoft.Xna.Framework.Point
+    content.vb: Public AutoScaleReferenceSize As Point
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.ActualScale
+  commentId: P:MLEM.Cameras.Camera.ActualScale
+  id: ActualScale
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: ActualScale
+  nameWithType: Camera.ActualScale
+  fullName: MLEM.Cameras.Camera.ActualScale
+  type: Property
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ActualScale
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 46
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe scale that this camera currently has, based on <xref href=\"MLEM.Cameras.Camera.Scale\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"MLEM.Cameras.Camera.AutoScaleReferenceSize\" data-throw-if-not-resolved=\"false\"></xref> if <xref href=\"MLEM.Cameras.Camera.AutoScaleWithScreen\" data-throw-if-not-resolved=\"false\"></xref> is true.\n"
+  example: []
+  syntax:
+    content: public float ActualScale { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property ActualScale As Single
+  overload: MLEM.Cameras.Camera.ActualScale*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Cameras.Camera.ViewMatrix
+  commentId: P:MLEM.Cameras.Camera.ViewMatrix
+  id: ViewMatrix
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: ViewMatrix
+  nameWithType: Camera.ViewMatrix
+  fullName: MLEM.Cameras.Camera.ViewMatrix
+  type: Property
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ViewMatrix
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 57
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe matrix that this camera &quot;sees&quot;, based on its position and scale.\nUse this in your <xref href=\"Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode%2cMicrosoft.Xna.Framework.Graphics.BlendState%2cMicrosoft.Xna.Framework.Graphics.SamplerState%2cMicrosoft.Xna.Framework.Graphics.DepthStencilState%2cMicrosoft.Xna.Framework.Graphics.RasterizerState%2cMicrosoft.Xna.Framework.Graphics.Effect%2cSystem.Nullable%7bMicrosoft.Xna.Framework.Matrix%7d)\" data-throw-if-not-resolved=\"false\"></xref> calls to render based on the camera&apos;s viewport.\n"
+  example: []
+  syntax:
+    content: public Matrix ViewMatrix { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public ReadOnly Property ViewMatrix As Matrix
+  overload: MLEM.Cameras.Camera.ViewMatrix*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Cameras.Camera.Max
+  commentId: P:MLEM.Cameras.Camera.Max
+  id: Max
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: Max
+  nameWithType: Camera.Max
+  fullName: MLEM.Cameras.Camera.Max
+  type: Property
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Max
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 70
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe bottom-right corner of the camera&apos;s viewport\n<xref href=\"MLEM.Cameras.Camera.LookingPosition\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Vector2 Max { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Max As Vector2
+  overload: MLEM.Cameras.Camera.Max*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.LookingPosition
+  commentId: P:MLEM.Cameras.Camera.LookingPosition
+  id: LookingPosition
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: LookingPosition
+  nameWithType: Camera.LookingPosition
+  fullName: MLEM.Cameras.Camera.LookingPosition
+  type: Property
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LookingPosition
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 77
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nThe center of the camera&apos;s viewport, or the position that the camera is looking at.\n"
+  example: []
+  syntax:
+    content: public Vector2 LookingPosition { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property LookingPosition As Vector2
+  overload: MLEM.Cameras.Camera.LookingPosition*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Boolean)
+  commentId: M:MLEM.Cameras.Camera.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Boolean)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Boolean)'
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: Camera(GraphicsDevice, Boolean)
+  nameWithType: Camera.Camera(GraphicsDevice, Boolean)
+  fullName: MLEM.Cameras.Camera.Camera(Microsoft.Xna.Framework.Graphics.GraphicsDevice, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 92
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nCreates a new camera.\n"
+  example: []
+  syntax:
+    content: public Camera(GraphicsDevice graphicsDevice, bool roundPosition = true)
+    parameters:
+    - id: graphicsDevice
+      type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+      description: The game&apos;s graphics device
+    - id: roundPosition
+      type: System.Boolean
+      description: If this is true, the camera&apos;s <xref href="MLEM.Cameras.Camera.Position" data-throw-if-not-resolved="false"></xref> and related properties will be rounded to full integers.
+    content.vb: Public Sub New(graphicsDevice As GraphicsDevice, roundPosition As Boolean = True)
+  overload: MLEM.Cameras.Camera.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.ToWorldPos(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Cameras.Camera.ToWorldPos(Microsoft.Xna.Framework.Vector2)
+  id: ToWorldPos(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: ToWorldPos(Vector2)
+  nameWithType: Camera.ToWorldPos(Vector2)
+  fullName: MLEM.Cameras.Camera.ToWorldPos(Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToWorldPos
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 103
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nConverts a given position in screen space to world space\n"
+  example: []
+  syntax:
+    content: public Vector2 ToWorldPos(Vector2 pos)
+    parameters:
+    - id: pos
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position in screen space
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position in world space
+    content.vb: Public Function ToWorldPos(pos As Vector2) As Vector2
+  overload: MLEM.Cameras.Camera.ToWorldPos*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.ToCameraPos(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Cameras.Camera.ToCameraPos(Microsoft.Xna.Framework.Vector2)
+  id: ToCameraPos(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: ToCameraPos(Vector2)
+  nameWithType: Camera.ToCameraPos(Vector2)
+  fullName: MLEM.Cameras.Camera.ToCameraPos(Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToCameraPos
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 112
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nConverts a given position in world space to screen space\n"
+  example: []
+  syntax:
+    content: public Vector2 ToCameraPos(Vector2 pos)
+    parameters:
+    - id: pos
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position in world space
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position in camera space
+    content.vb: Public Function ToCameraPos(pos As Vector2) As Vector2
+  overload: MLEM.Cameras.Camera.ToCameraPos*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.GetVisibleRectangle
+  commentId: M:MLEM.Cameras.Camera.GetVisibleRectangle
+  id: GetVisibleRectangle
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: GetVisibleRectangle()
+  nameWithType: Camera.GetVisibleRectangle()
+  fullName: MLEM.Cameras.Camera.GetVisibleRectangle()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetVisibleRectangle
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 121
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nReturns the area that this camera can see, in world space.\nThis can be useful for culling of tile and other entity renderers.\n"
+  example: []
+  syntax:
+    content: public RectangleF GetVisibleRectangle()
+    return:
+      type: MLEM.Misc.RectangleF
+      description: A rectangle that represents the camera&apos;s visible area in world space
+    content.vb: Public Function GetVisibleRectangle As RectangleF
+  overload: MLEM.Cameras.Camera.GetVisibleRectangle*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.ConstrainWorldBounds(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Cameras.Camera.ConstrainWorldBounds(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  id: ConstrainWorldBounds(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: ConstrainWorldBounds(Vector2, Vector2)
+  nameWithType: Camera.ConstrainWorldBounds(Vector2, Vector2)
+  fullName: MLEM.Cameras.Camera.ConstrainWorldBounds(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ConstrainWorldBounds
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 133
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nForces the camera&apos;s bounds into the given min and max positions in world space.\nIf the space represented by the given values is smaller than what the camera can see, its position will be forced into the center of the area.\n"
+  example: []
+  syntax:
+    content: public bool ConstrainWorldBounds(Vector2 min, Vector2 max)
+    parameters:
+    - id: min
+      type: Microsoft.Xna.Framework.Vector2
+      description: The top left bound, in world space
+    - id: max
+      type: Microsoft.Xna.Framework.Vector2
+      description: The bottom right bound, in world space
+    return:
+      type: System.Boolean
+      description: Whether or not the camera&apos;s position changed as a result of the constraint
+    content.vb: Public Function ConstrainWorldBounds(min As Vector2, max As Vector2) As Boolean
+  overload: MLEM.Cameras.Camera.ConstrainWorldBounds*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Cameras.Camera.Zoom(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  commentId: M:MLEM.Cameras.Camera.Zoom(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  id: Zoom(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  parent: MLEM.Cameras.Camera
+  langs:
+  - csharp
+  - vb
+  name: Zoom(Single, Nullable<Vector2>)
+  nameWithType: Camera.Zoom(Single, Nullable<Vector2>)
+  fullName: MLEM.Cameras.Camera.Zoom(System.Single, System.Nullable<Microsoft.Xna.Framework.Vector2>)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Cameras/Camera.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Zoom
+    path: ../MLEM/Cameras/Camera.cs
+    startLine: 161
+  assemblies:
+  - MLEM
+  namespace: MLEM.Cameras
+  summary: "\nZoom in the camera&apos;s view by a given amount, optionally focusing on a given center point.\n"
+  example: []
+  syntax:
+    content: public void Zoom(float delta, Vector2? zoomCenter = default(Vector2? ))
+    parameters:
+    - id: delta
+      type: System.Single
+      description: The amount to zoom in or out by
+    - id: zoomCenter
+      type: System.Nullable{Microsoft.Xna.Framework.Vector2}
+      description: The position that should be regarded as the zoom&apos;s center, in screen space. The default value is the center.
+    content.vb: Public Sub Zoom(delta As Single, zoomCenter As Vector2? = Nothing)
+  overload: MLEM.Cameras.Camera.Zoom*
+  nameWithType.vb: Camera.Zoom(Single, Nullable(Of Vector2))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Cameras.Camera.Zoom(System.Single, System.Nullable(Of Microsoft.Xna.Framework.Vector2))
+  name.vb: Zoom(Single, Nullable(Of Vector2))
+references:
+- uid: MLEM.Cameras.Camera.ViewMatrix
+  commentId: P:MLEM.Cameras.Camera.ViewMatrix
+  isExternal: true
+- uid: MLEM.Cameras
+  commentId: N:MLEM.Cameras
+  name: MLEM.Cameras
+  nameWithType: MLEM.Cameras
+  fullName: MLEM.Cameras
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Cameras.Camera.LookingPosition
+  commentId: P:MLEM.Cameras.Camera.LookingPosition
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Cameras.Camera.Scale*
+  commentId: Overload:MLEM.Cameras.Camera.Scale
+  name: Scale
+  nameWithType: Camera.Scale
+  fullName: MLEM.Cameras.Camera.Scale
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: MLEM.Cameras.Camera.Scale
+  commentId: P:MLEM.Cameras.Camera.Scale
+  isExternal: true
+- uid: MLEM.Cameras.Camera.AutoScaleReferenceSize
+  commentId: F:MLEM.Cameras.Camera.AutoScaleReferenceSize
+  isExternal: true
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: MLEM.Cameras.Camera.AutoScaleWithScreen
+  commentId: F:MLEM.Cameras.Camera.AutoScaleWithScreen
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: MLEM.Cameras.Camera.ActualScale*
+  commentId: Overload:MLEM.Cameras.Camera.ActualScale
+  name: ActualScale
+  nameWithType: Camera.ActualScale
+  fullName: MLEM.Cameras.Camera.ActualScale
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})
+  commentId: M:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})
+  isExternal: true
+- uid: MLEM.Cameras.Camera.ViewMatrix*
+  commentId: Overload:MLEM.Cameras.Camera.ViewMatrix
+  name: ViewMatrix
+  nameWithType: Camera.ViewMatrix
+  fullName: MLEM.Cameras.Camera.ViewMatrix
+- uid: Microsoft.Xna.Framework.Matrix
+  commentId: T:Microsoft.Xna.Framework.Matrix
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Matrix
+  nameWithType: Matrix
+  fullName: Microsoft.Xna.Framework.Matrix
+- uid: MLEM.Cameras.Camera.Max*
+  commentId: Overload:MLEM.Cameras.Camera.Max
+  name: Max
+  nameWithType: Camera.Max
+  fullName: MLEM.Cameras.Camera.Max
+- uid: MLEM.Cameras.Camera.LookingPosition*
+  commentId: Overload:MLEM.Cameras.Camera.LookingPosition
+  name: LookingPosition
+  nameWithType: Camera.LookingPosition
+  fullName: MLEM.Cameras.Camera.LookingPosition
+- uid: MLEM.Cameras.Camera.Position
+  commentId: F:MLEM.Cameras.Camera.Position
+  isExternal: true
+- uid: MLEM.Cameras.Camera.#ctor*
+  commentId: Overload:MLEM.Cameras.Camera.#ctor
+  name: Camera
+  nameWithType: Camera.Camera
+  fullName: MLEM.Cameras.Camera.Camera
+- uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  commentId: T:Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: GraphicsDevice
+  nameWithType: GraphicsDevice
+  fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Cameras.Camera.ToWorldPos*
+  commentId: Overload:MLEM.Cameras.Camera.ToWorldPos
+  name: ToWorldPos
+  nameWithType: Camera.ToWorldPos
+  fullName: MLEM.Cameras.Camera.ToWorldPos
+- uid: MLEM.Cameras.Camera.ToCameraPos*
+  commentId: Overload:MLEM.Cameras.Camera.ToCameraPos
+  name: ToCameraPos
+  nameWithType: Camera.ToCameraPos
+  fullName: MLEM.Cameras.Camera.ToCameraPos
+- uid: MLEM.Cameras.Camera.GetVisibleRectangle*
+  commentId: Overload:MLEM.Cameras.Camera.GetVisibleRectangle
+  name: GetVisibleRectangle
+  nameWithType: Camera.GetVisibleRectangle
+  fullName: MLEM.Cameras.Camera.GetVisibleRectangle
+- uid: MLEM.Misc.RectangleF
+  commentId: T:MLEM.Misc.RectangleF
+  parent: MLEM.Misc
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Misc.RectangleF
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+- uid: MLEM.Cameras.Camera.ConstrainWorldBounds*
+  commentId: Overload:MLEM.Cameras.Camera.ConstrainWorldBounds
+  name: ConstrainWorldBounds
+  nameWithType: Camera.ConstrainWorldBounds
+  fullName: MLEM.Cameras.Camera.ConstrainWorldBounds
+- uid: MLEM.Cameras.Camera.Zoom*
+  commentId: Overload:MLEM.Cameras.Camera.Zoom
+  name: Zoom
+  nameWithType: Camera.Zoom
+  fullName: MLEM.Cameras.Camera.Zoom
+- uid: System.Nullable{Microsoft.Xna.Framework.Vector2}
+  commentId: T:System.Nullable{Microsoft.Xna.Framework.Vector2}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Vector2>
+  nameWithType: Nullable<Vector2>
+  fullName: System.Nullable<Microsoft.Xna.Framework.Vector2>
+  nameWithType.vb: Nullable(Of Vector2)
+  fullName.vb: System.Nullable(Of Microsoft.Xna.Framework.Vector2)
+  name.vb: Nullable(Of Vector2)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

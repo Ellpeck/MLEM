@@ -1,0 +1,64 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.Paragraph.TextCallback
+  commentId: T:MLEM.Ui.Elements.Paragraph.TextCallback
+  id: Paragraph.TextCallback
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Paragraph.TextCallback
+  nameWithType: Paragraph.TextCallback
+  fullName: MLEM.Ui.Elements.Paragraph.TextCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/Paragraph.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextCallback
+    path: ../MLEM.Ui/Elements/Paragraph.cs
+    startLine: 154
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate string TextCallback(Paragraph paragraph);
+    parameters:
+    - id: paragraph
+      type: MLEM.Ui.Elements.Paragraph
+    return:
+      type: System.String
+    content.vb: Public Delegate Function TextCallback(paragraph As Paragraph) As String
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.Paragraph
+  commentId: T:MLEM.Ui.Elements.Paragraph
+  parent: MLEM.Ui.Elements
+  name: Paragraph
+  nameWithType: Paragraph
+  fullName: MLEM.Ui.Elements.Paragraph
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

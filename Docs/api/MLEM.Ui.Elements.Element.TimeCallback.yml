@@ -1,0 +1,64 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.Element.TimeCallback
+  commentId: T:MLEM.Ui.Elements.Element.TimeCallback
+  id: Element.TimeCallback
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Element.TimeCallback
+  nameWithType: Element.TimeCallback
+  fullName: MLEM.Ui.Elements.Element.TimeCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/Element.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TimeCallback
+    path: ../MLEM.Ui/Elements/Element.cs
+    startLine: 534
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate void TimeCallback(Element element, GameTime time);
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Public Delegate Sub TimeCallback(element As Element, time As GameTime)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework

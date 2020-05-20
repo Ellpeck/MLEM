@@ -1,0 +1,1020 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.RootElement
+  commentId: T:MLEM.Ui.RootElement
+  id: RootElement
+  parent: MLEM.Ui
+  children:
+  - MLEM.Ui.RootElement.#ctor(System.String,MLEM.Ui.Elements.Element,MLEM.Ui.UiSystem)
+  - MLEM.Ui.RootElement.ActualScale
+  - MLEM.Ui.RootElement.CanSelectContent
+  - MLEM.Ui.RootElement.Element
+  - MLEM.Ui.RootElement.InvTransform
+  - MLEM.Ui.RootElement.Name
+  - MLEM.Ui.RootElement.OnElementAdded
+  - MLEM.Ui.RootElement.OnElementRemoved
+  - MLEM.Ui.RootElement.Priority
+  - MLEM.Ui.RootElement.Scale
+  - MLEM.Ui.RootElement.SelectedElement
+  - MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean})
+  - MLEM.Ui.RootElement.System
+  - MLEM.Ui.RootElement.Transform
+  langs:
+  - csharp
+  - vb
+  name: RootElement
+  nameWithType: RootElement
+  fullName: MLEM.Ui.RootElement
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: RootElement
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 195
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public class RootElement
+    content.vb: Public Class RootElement
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Ui.RootElement.Name
+  commentId: F:MLEM.Ui.RootElement.Name
+  id: Name
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: RootElement.Name
+  fullName: MLEM.Ui.RootElement.Name
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Name
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 197
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public readonly string Name
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Name As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.Element
+  commentId: F:MLEM.Ui.RootElement.Element
+  id: Element
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Element
+  nameWithType: RootElement.Element
+  fullName: MLEM.Ui.RootElement.Element
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Element
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 198
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public readonly Element Element
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public ReadOnly Element As Element
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.System
+  commentId: F:MLEM.Ui.RootElement.System
+  id: System
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: System
+  nameWithType: RootElement.System
+  fullName: MLEM.Ui.RootElement.System
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: System
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 199
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public readonly UiSystem System
+    return:
+      type: MLEM.Ui.UiSystem
+    content.vb: Public ReadOnly System As UiSystem
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.Scale
+  commentId: P:MLEM.Ui.RootElement.Scale
+  id: Scale
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Scale
+  nameWithType: RootElement.Scale
+  fullName: MLEM.Ui.RootElement.Scale
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Scale
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 201
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public float Scale { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Scale As Single
+  overload: MLEM.Ui.RootElement.Scale*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: MLEM.Ui.RootElement.Priority
+  commentId: P:MLEM.Ui.RootElement.Priority
+  id: Priority
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Priority
+  nameWithType: RootElement.Priority
+  fullName: MLEM.Ui.RootElement.Priority
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Priority
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 211
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public int Priority { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Priority As Integer
+  overload: MLEM.Ui.RootElement.Priority*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: MLEM.Ui.RootElement.ActualScale
+  commentId: P:MLEM.Ui.RootElement.ActualScale
+  id: ActualScale
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: ActualScale
+  nameWithType: RootElement.ActualScale
+  fullName: MLEM.Ui.RootElement.ActualScale
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ActualScale
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 218
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public float ActualScale { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property ActualScale As Single
+  overload: MLEM.Ui.RootElement.ActualScale*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.Transform
+  commentId: F:MLEM.Ui.RootElement.Transform
+  id: Transform
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Transform
+  nameWithType: RootElement.Transform
+  fullName: MLEM.Ui.RootElement.Transform
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Transform
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 220
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public Matrix Transform
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public Transform As Matrix
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Ui.RootElement.InvTransform
+  commentId: P:MLEM.Ui.RootElement.InvTransform
+  id: InvTransform
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: InvTransform
+  nameWithType: RootElement.InvTransform
+  fullName: MLEM.Ui.RootElement.InvTransform
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: InvTransform
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 221
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public Matrix InvTransform { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public ReadOnly Property InvTransform As Matrix
+  overload: MLEM.Ui.RootElement.InvTransform*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.SelectedElement
+  commentId: P:MLEM.Ui.RootElement.SelectedElement
+  id: SelectedElement
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: SelectedElement
+  nameWithType: RootElement.SelectedElement
+  fullName: MLEM.Ui.RootElement.SelectedElement
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SelectedElement
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 223
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public Element SelectedElement { get; }
+    parameters: []
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public ReadOnly Property SelectedElement As Element
+  overload: MLEM.Ui.RootElement.SelectedElement*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.CanSelectContent
+  commentId: P:MLEM.Ui.RootElement.CanSelectContent
+  id: CanSelectContent
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: CanSelectContent
+  nameWithType: RootElement.CanSelectContent
+  fullName: MLEM.Ui.RootElement.CanSelectContent
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: CanSelectContent
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 224
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public bool CanSelectContent { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property CanSelectContent As Boolean
+  overload: MLEM.Ui.RootElement.CanSelectContent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: MLEM.Ui.RootElement.OnElementAdded
+  commentId: F:MLEM.Ui.RootElement.OnElementAdded
+  id: OnElementAdded
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: OnElementAdded
+  nameWithType: RootElement.OnElementAdded
+  fullName: MLEM.Ui.RootElement.OnElementAdded
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnElementAdded
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 226
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public Element.GenericCallback OnElementAdded
+    return:
+      type: MLEM.Ui.Elements.Element.GenericCallback
+    content.vb: Public OnElementAdded As Element.GenericCallback
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Ui.RootElement.OnElementRemoved
+  commentId: F:MLEM.Ui.RootElement.OnElementRemoved
+  id: OnElementRemoved
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: OnElementRemoved
+  nameWithType: RootElement.OnElementRemoved
+  fullName: MLEM.Ui.RootElement.OnElementRemoved
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnElementRemoved
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 227
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public Element.GenericCallback OnElementRemoved
+    return:
+      type: MLEM.Ui.Elements.Element.GenericCallback
+    content.vb: Public OnElementRemoved As Element.GenericCallback
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Ui.RootElement.#ctor(System.String,MLEM.Ui.Elements.Element,MLEM.Ui.UiSystem)
+  commentId: M:MLEM.Ui.RootElement.#ctor(System.String,MLEM.Ui.Elements.Element,MLEM.Ui.UiSystem)
+  id: '#ctor(System.String,MLEM.Ui.Elements.Element,MLEM.Ui.UiSystem)'
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: RootElement(String, Element, UiSystem)
+  nameWithType: RootElement.RootElement(String, Element, UiSystem)
+  fullName: MLEM.Ui.RootElement.RootElement(System.String, MLEM.Ui.Elements.Element, MLEM.Ui.UiSystem)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 229
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public RootElement(string name, Element element, UiSystem system)
+    parameters:
+    - id: name
+      type: System.String
+    - id: element
+      type: MLEM.Ui.Elements.Element
+    - id: system
+      type: MLEM.Ui.UiSystem
+    content.vb: Public Sub New(name As String, element As Element, system As UiSystem)
+  overload: MLEM.Ui.RootElement.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean})
+  commentId: M:MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean})
+  id: SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean})
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: SelectElement(Element, Nullable<Boolean>)
+  nameWithType: RootElement.SelectElement(Element, Nullable<Boolean>)
+  fullName: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SelectElement
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 244
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  syntax:
+    content: public void SelectElement(Element element, bool? autoNav = default(bool? ))
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+    - id: autoNav
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Sub SelectElement(element As Element, autoNav As Boolean? = Nothing)
+  overload: MLEM.Ui.RootElement.SelectElement*
+  nameWithType.vb: RootElement.SelectElement(Element, Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element, System.Nullable(Of System.Boolean))
+  name.vb: SelectElement(Element, Nullable(Of Boolean))
+references:
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Ui.RootElement.Scale*
+  commentId: Overload:MLEM.Ui.RootElement.Scale
+  name: Scale
+  nameWithType: RootElement.Scale
+  fullName: MLEM.Ui.RootElement.Scale
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: MLEM.Ui.RootElement.Priority*
+  commentId: Overload:MLEM.Ui.RootElement.Priority
+  name: Priority
+  nameWithType: RootElement.Priority
+  fullName: MLEM.Ui.RootElement.Priority
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: MLEM.Ui.RootElement.ActualScale*
+  commentId: Overload:MLEM.Ui.RootElement.ActualScale
+  name: ActualScale
+  nameWithType: RootElement.ActualScale
+  fullName: MLEM.Ui.RootElement.ActualScale
+- uid: Microsoft.Xna.Framework.Matrix
+  commentId: T:Microsoft.Xna.Framework.Matrix
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Matrix
+  nameWithType: Matrix
+  fullName: Microsoft.Xna.Framework.Matrix
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Ui.RootElement.InvTransform*
+  commentId: Overload:MLEM.Ui.RootElement.InvTransform
+  name: InvTransform
+  nameWithType: RootElement.InvTransform
+  fullName: MLEM.Ui.RootElement.InvTransform
+- uid: MLEM.Ui.RootElement.SelectedElement*
+  commentId: Overload:MLEM.Ui.RootElement.SelectedElement
+  name: SelectedElement
+  nameWithType: RootElement.SelectedElement
+  fullName: MLEM.Ui.RootElement.SelectedElement
+- uid: MLEM.Ui.RootElement.CanSelectContent*
+  commentId: Overload:MLEM.Ui.RootElement.CanSelectContent
+  name: CanSelectContent
+  nameWithType: RootElement.CanSelectContent
+  fullName: MLEM.Ui.RootElement.CanSelectContent
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: MLEM.Ui.Elements.Element.GenericCallback
+  commentId: T:MLEM.Ui.Elements.Element.GenericCallback
+  parent: MLEM.Ui.Elements
+  name: Element.GenericCallback
+  nameWithType: Element.GenericCallback
+  fullName: MLEM.Ui.Elements.Element.GenericCallback
+- uid: MLEM.Ui.RootElement.#ctor*
+  commentId: Overload:MLEM.Ui.RootElement.#ctor
+  name: RootElement
+  nameWithType: RootElement.RootElement
+  fullName: MLEM.Ui.RootElement.RootElement
+- uid: MLEM.Ui.RootElement.SelectElement*
+  commentId: Overload:MLEM.Ui.RootElement.SelectElement
+  name: SelectElement
+  nameWithType: RootElement.SelectElement
+  fullName: MLEM.Ui.RootElement.SelectElement
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

@@ -1,0 +1,1797 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Pathfinding.AStar2
+  commentId: T:MLEM.Pathfinding.AStar2
+  id: AStar2
+  parent: MLEM.Pathfinding
+  children:
+  - MLEM.Pathfinding.AStar2.#ctor(MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Boolean,System.Single,System.Int32)
+  - MLEM.Pathfinding.AStar2.AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  - MLEM.Pathfinding.AStar2.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  langs:
+  - csharp
+  - vb
+  name: AStar2
+  nameWithType: AStar2
+  fullName: MLEM.Pathfinding.AStar2
+  type: Class
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AStar2
+    path: ../MLEM/Pathfinding/AStar2.cs
+    startLine: 6
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: 'public class AStar2 : AStar<Point>'
+    content.vb: >-
+      Public Class AStar2
+          Inherits AStar(Of Point)
+  inheritance:
+  - System.Object
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  inheritedMembers:
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.InfiniteCost
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AllDirections
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AdjacentDirections
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultCostFunction
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultCost
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultMaxTries
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultAllowDiagonals
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.LastTriesNeeded
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.LastTimeNeeded
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.FindPathAsync(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point,MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  - MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.FindPath(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point,MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Pathfinding.AStar2.#ctor(MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Boolean,System.Single,System.Int32)
+  commentId: M:MLEM.Pathfinding.AStar2.#ctor(MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Boolean,System.Single,System.Int32)
+  id: '#ctor(MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Boolean,System.Single,System.Int32)'
+  parent: MLEM.Pathfinding.AStar2
+  langs:
+  - csharp
+  - vb
+  name: AStar2(AStar<Point>.GetCost, Boolean, Single, Int32)
+  nameWithType: AStar2.AStar2(AStar<Point>.GetCost, Boolean, Single, Int32)
+  fullName: MLEM.Pathfinding.AStar2.AStar2(MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.GetCost, System.Boolean, System.Single, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Pathfinding/AStar2.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: public AStar2(AStar<Point>.GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1F, int defaultMaxTries = 10000)
+    parameters:
+    - id: defaultCostFunction
+      type: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost
+    - id: defaultAllowDiagonals
+      type: System.Boolean
+    - id: defaultCost
+      type: System.Single
+    - id: defaultMaxTries
+      type: System.Int32
+    content.vb: Public Sub New(defaultCostFunction As AStar(Of Point).GetCost, defaultAllowDiagonals As Boolean, defaultCost As Single = 1F, defaultMaxTries As Integer = 10000)
+  overload: MLEM.Pathfinding.AStar2.#ctor*
+  nameWithType.vb: AStar2.AStar2(AStar(Of Point).GetCost, Boolean, Single, Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Pathfinding.AStar2.AStar2(MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).GetCost, System.Boolean, System.Single, System.Int32)
+  name.vb: AStar2(AStar(Of Point).GetCost, Boolean, Single, Int32)
+- uid: MLEM.Pathfinding.AStar2.AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  commentId: M:MLEM.Pathfinding.AStar2.AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  id: AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  parent: MLEM.Pathfinding.AStar2
+  langs:
+  - csharp
+  - vb
+  name: AddPositions(Point, Point)
+  nameWithType: AStar2.AddPositions(Point, Point)
+  fullName: MLEM.Pathfinding.AStar2.AddPositions(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: AddPositions
+    path: ../MLEM/Pathfinding/AStar2.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: protected override Point AddPositions(Point first, Point second)
+    parameters:
+    - id: first
+      type: Microsoft.Xna.Framework.Point
+    - id: second
+      type: Microsoft.Xna.Framework.Point
+    return:
+      type: Microsoft.Xna.Framework.Point
+    content.vb: Protected Overrides Function AddPositions(first As Point, second As Point) As Point
+  overridden: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  overload: MLEM.Pathfinding.AStar2.AddPositions*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: MLEM.Pathfinding.AStar2.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  commentId: M:MLEM.Pathfinding.AStar2.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  id: GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  parent: MLEM.Pathfinding.AStar2
+  langs:
+  - csharp
+  - vb
+  name: GetManhattanDistance(Point, Point)
+  nameWithType: AStar2.GetManhattanDistance(Point, Point)
+  fullName: MLEM.Pathfinding.AStar2.GetManhattanDistance(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar2.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetManhattanDistance
+    path: ../MLEM/Pathfinding/AStar2.cs
+    startLine: 19
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  syntax:
+    content: protected override float GetManhattanDistance(Point first, Point second)
+    parameters:
+    - id: first
+      type: Microsoft.Xna.Framework.Point
+    - id: second
+      type: Microsoft.Xna.Framework.Point
+    return:
+      type: System.Single
+    content.vb: Protected Overrides Function GetManhattanDistance(first As Point, second As Point) As Single
+  overridden: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  overload: MLEM.Pathfinding.AStar2.GetManhattanDistance*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+references:
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  commentId: T:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  parent: MLEM.Pathfinding
+  definition: MLEM.Pathfinding.AStar`1
+  name: AStar<Point>
+  nameWithType: AStar<Point>
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>
+  nameWithType.vb: AStar(Of Point)
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point)
+  name.vb: AStar(Of Point)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.InfiniteCost
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.InfiniteCost
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.InfiniteCost
+  name: InfiniteCost
+  nameWithType: AStar<Point>.InfiniteCost
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.InfiniteCost
+  nameWithType.vb: AStar(Of Point).InfiniteCost
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).InfiniteCost
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AllDirections
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AllDirections
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.AllDirections
+  name: AllDirections
+  nameWithType: AStar<Point>.AllDirections
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.AllDirections
+  nameWithType.vb: AStar(Of Point).AllDirections
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).AllDirections
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AdjacentDirections
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AdjacentDirections
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.AdjacentDirections
+  name: AdjacentDirections
+  nameWithType: AStar<Point>.AdjacentDirections
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.AdjacentDirections
+  nameWithType.vb: AStar(Of Point).AdjacentDirections
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).AdjacentDirections
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultCostFunction
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultCostFunction
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.DefaultCostFunction
+  name: DefaultCostFunction
+  nameWithType: AStar<Point>.DefaultCostFunction
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.DefaultCostFunction
+  nameWithType.vb: AStar(Of Point).DefaultCostFunction
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).DefaultCostFunction
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultCost
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultCost
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.DefaultCost
+  name: DefaultCost
+  nameWithType: AStar<Point>.DefaultCost
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.DefaultCost
+  nameWithType.vb: AStar(Of Point).DefaultCost
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).DefaultCost
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultMaxTries
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultMaxTries
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.DefaultMaxTries
+  name: DefaultMaxTries
+  nameWithType: AStar<Point>.DefaultMaxTries
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.DefaultMaxTries
+  nameWithType.vb: AStar(Of Point).DefaultMaxTries
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).DefaultMaxTries
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultAllowDiagonals
+  commentId: F:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.DefaultAllowDiagonals
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.DefaultAllowDiagonals
+  name: DefaultAllowDiagonals
+  nameWithType: AStar<Point>.DefaultAllowDiagonals
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.DefaultAllowDiagonals
+  nameWithType.vb: AStar(Of Point).DefaultAllowDiagonals
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).DefaultAllowDiagonals
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.LastTriesNeeded
+  commentId: P:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.LastTriesNeeded
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  name: LastTriesNeeded
+  nameWithType: AStar<Point>.LastTriesNeeded
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.LastTriesNeeded
+  nameWithType.vb: AStar(Of Point).LastTriesNeeded
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).LastTriesNeeded
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.LastTimeNeeded
+  commentId: P:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.LastTimeNeeded
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  name: LastTimeNeeded
+  nameWithType: AStar<Point>.LastTimeNeeded
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.LastTimeNeeded
+  nameWithType.vb: AStar(Of Point).LastTimeNeeded
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).LastTimeNeeded
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.FindPathAsync(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point,MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  commentId: M:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.FindPathAsync(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point,MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  name: FindPathAsync(Point, Point, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  nameWithType: AStar<Point>.FindPathAsync(Point, Point, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.FindPathAsync(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point, MLEM.Pathfinding.AStar.GetCost<>, System.Nullable<System.Single>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>)
+  nameWithType.vb: AStar(Of Point).FindPathAsync(Point, Point, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).FindPathAsync(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point, MLEM.Pathfinding.AStar.GetCost(Of ), System.Nullable(Of System.Single), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean))
+  name.vb: FindPathAsync(Point, Point, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPathAsync
+    nameWithType: AStar<Point>.FindPathAsync
+    fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.FindPathAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPathAsync
+    nameWithType: AStar(Of Point).FindPathAsync
+    fullName: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).FindPathAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.FindPath(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point,MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  commentId: M:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.FindPath(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point,MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  name: FindPath(Point, Point, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  nameWithType: AStar<Point>.FindPath(Point, Point, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.FindPath(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point, MLEM.Pathfinding.AStar.GetCost<>, System.Nullable<System.Single>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>)
+  nameWithType.vb: AStar(Of Point).FindPath(Point, Point, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).FindPath(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point, MLEM.Pathfinding.AStar.GetCost(Of ), System.Nullable(Of System.Single), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean))
+  name.vb: FindPath(Point, Point, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPath
+    nameWithType: AStar<Point>.FindPath
+    fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.FindPath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPath
+    nameWithType: AStar(Of Point).FindPath
+    fullName: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).FindPath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Pathfinding.AStar`1
+  commentId: T:MLEM.Pathfinding.AStar`1
+  name: AStar<T>
+  nameWithType: AStar<T>
+  fullName: MLEM.Pathfinding.AStar<T>
+  nameWithType.vb: AStar(Of T)
+  fullName.vb: MLEM.Pathfinding.AStar(Of T)
+  name.vb: AStar(Of T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar`1.InfiniteCost
+  commentId: F:MLEM.Pathfinding.AStar`1.InfiniteCost
+  name: InfiniteCost
+  nameWithType: AStar<T>.InfiniteCost
+  fullName: MLEM.Pathfinding.AStar<T>.InfiniteCost
+  nameWithType.vb: AStar(Of T).InfiniteCost
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).InfiniteCost
+- uid: MLEM.Pathfinding.AStar`1.AllDirections
+  commentId: F:MLEM.Pathfinding.AStar`1.AllDirections
+  name: AllDirections
+  nameWithType: AStar<T>.AllDirections
+  fullName: MLEM.Pathfinding.AStar<T>.AllDirections
+  nameWithType.vb: AStar(Of T).AllDirections
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AllDirections
+- uid: MLEM.Pathfinding.AStar`1.AdjacentDirections
+  commentId: F:MLEM.Pathfinding.AStar`1.AdjacentDirections
+  name: AdjacentDirections
+  nameWithType: AStar<T>.AdjacentDirections
+  fullName: MLEM.Pathfinding.AStar<T>.AdjacentDirections
+  nameWithType.vb: AStar(Of T).AdjacentDirections
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AdjacentDirections
+- uid: MLEM.Pathfinding.AStar`1.DefaultCostFunction
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultCostFunction
+  name: DefaultCostFunction
+  nameWithType: AStar<T>.DefaultCostFunction
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultCostFunction
+  nameWithType.vb: AStar(Of T).DefaultCostFunction
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultCostFunction
+- uid: MLEM.Pathfinding.AStar`1.DefaultCost
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultCost
+  name: DefaultCost
+  nameWithType: AStar<T>.DefaultCost
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultCost
+  nameWithType.vb: AStar(Of T).DefaultCost
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultCost
+- uid: MLEM.Pathfinding.AStar`1.DefaultMaxTries
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultMaxTries
+  name: DefaultMaxTries
+  nameWithType: AStar<T>.DefaultMaxTries
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultMaxTries
+  nameWithType.vb: AStar(Of T).DefaultMaxTries
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultMaxTries
+- uid: MLEM.Pathfinding.AStar`1.DefaultAllowDiagonals
+  commentId: F:MLEM.Pathfinding.AStar`1.DefaultAllowDiagonals
+  name: DefaultAllowDiagonals
+  nameWithType: AStar<T>.DefaultAllowDiagonals
+  fullName: MLEM.Pathfinding.AStar<T>.DefaultAllowDiagonals
+  nameWithType.vb: AStar(Of T).DefaultAllowDiagonals
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).DefaultAllowDiagonals
+- uid: MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  commentId: P:MLEM.Pathfinding.AStar`1.LastTriesNeeded
+  name: LastTriesNeeded
+  nameWithType: AStar<T>.LastTriesNeeded
+  fullName: MLEM.Pathfinding.AStar<T>.LastTriesNeeded
+  nameWithType.vb: AStar(Of T).LastTriesNeeded
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).LastTriesNeeded
+- uid: MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  commentId: P:MLEM.Pathfinding.AStar`1.LastTimeNeeded
+  name: LastTimeNeeded
+  nameWithType: AStar<T>.LastTimeNeeded
+  fullName: MLEM.Pathfinding.AStar<T>.LastTimeNeeded
+  nameWithType.vb: AStar(Of T).LastTimeNeeded
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).LastTimeNeeded
+- uid: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  commentId: M:MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  isExternal: true
+  name: FindPathAsync(T, T, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  nameWithType: AStar<T>.FindPathAsync(T, T, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  fullName: MLEM.Pathfinding.AStar<T>.FindPathAsync(T, T, MLEM.Pathfinding.AStar.GetCost<>, System.Nullable<System.Single>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>)
+  nameWithType.vb: AStar(Of T).FindPathAsync(T, T, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).FindPathAsync(T, T, MLEM.Pathfinding.AStar.GetCost(Of ), System.Nullable(Of System.Single), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean))
+  name.vb: FindPathAsync(T, T, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPathAsync
+    nameWithType: AStar<T>.FindPathAsync
+    fullName: MLEM.Pathfinding.AStar<T>.FindPathAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.FindPathAsync(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPathAsync
+    nameWithType: AStar(Of T).FindPathAsync
+    fullName: MLEM.Pathfinding.AStar(Of T).FindPathAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  commentId: M:MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+  isExternal: true
+  name: FindPath(T, T, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  nameWithType: AStar<T>.FindPath(T, T, AStar.GetCost<>, Nullable<Single>, Nullable<Int32>, Nullable<Boolean>)
+  fullName: MLEM.Pathfinding.AStar<T>.FindPath(T, T, MLEM.Pathfinding.AStar.GetCost<>, System.Nullable<System.Single>, System.Nullable<System.Int32>, System.Nullable<System.Boolean>)
+  nameWithType.vb: AStar(Of T).FindPath(T, T, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).FindPath(T, T, MLEM.Pathfinding.AStar.GetCost(Of ), System.Nullable(Of System.Single), System.Nullable(Of System.Int32), System.Nullable(Of System.Boolean))
+  name.vb: FindPath(T, T, AStar.GetCost(Of ), Nullable(Of Single), Nullable(Of Int32), Nullable(Of Boolean))
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPath
+    nameWithType: AStar<T>.FindPath
+    fullName: MLEM.Pathfinding.AStar<T>.FindPath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.FindPath(`0,`0,MLEM.Pathfinding.AStar{`0}.GetCost,System.Nullable{System.Single},System.Nullable{System.Int32},System.Nullable{System.Boolean})
+    name: FindPath
+    nameWithType: AStar(Of T).FindPath
+    fullName: MLEM.Pathfinding.AStar(Of T).FindPath
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar2.#ctor*
+  commentId: Overload:MLEM.Pathfinding.AStar2.#ctor
+  name: AStar2
+  nameWithType: AStar2.AStar2
+  fullName: MLEM.Pathfinding.AStar2.AStar2
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost
+  commentId: T:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetCost
+  parent: MLEM.Pathfinding
+  definition: MLEM.Pathfinding.AStar`1.GetCost
+  name: AStar.GetCost<>
+  nameWithType: AStar.GetCost<>
+  fullName: MLEM.Pathfinding.AStar.GetCost<>
+  nameWithType.vb: AStar.GetCost(Of )
+  fullName.vb: MLEM.Pathfinding.AStar.GetCost(Of )
+  name.vb: AStar.GetCost(Of )
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: MLEM.Pathfinding.AStar`1.GetCost
+  commentId: T:MLEM.Pathfinding.AStar`1.GetCost
+  parent: MLEM.Pathfinding
+  name: AStar.GetCost<>
+  nameWithType: AStar.GetCost<>
+  fullName: MLEM.Pathfinding.AStar.GetCost<>
+  nameWithType.vb: AStar.GetCost(Of )
+  fullName.vb: MLEM.Pathfinding.AStar.GetCost(Of )
+  name.vb: AStar.GetCost(Of )
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  commentId: M:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.AddPositions(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+  name: AddPositions(Point, Point)
+  nameWithType: AStar<Point>.AddPositions(Point, Point)
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.AddPositions(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point)
+  nameWithType.vb: AStar(Of Point).AddPositions(Point, Point)
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).AddPositions(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+    name: AddPositions
+    nameWithType: AStar<Point>.AddPositions
+    fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.AddPositions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+    name: AddPositions
+    nameWithType: AStar(Of Point).AddPositions
+    fullName: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).AddPositions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar2.AddPositions*
+  commentId: Overload:MLEM.Pathfinding.AStar2.AddPositions
+  name: AddPositions
+  nameWithType: AStar2.AddPositions
+  fullName: MLEM.Pathfinding.AStar2.AddPositions
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+  commentId: M:MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+  name: AddPositions(T, T)
+  nameWithType: AStar<T>.AddPositions(T, T)
+  fullName: MLEM.Pathfinding.AStar<T>.AddPositions(T, T)
+  nameWithType.vb: AStar(Of T).AddPositions(T, T)
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).AddPositions(T, T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+    name: AddPositions
+    nameWithType: AStar<T>.AddPositions
+    fullName: MLEM.Pathfinding.AStar<T>.AddPositions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
+    name: AddPositions
+    nameWithType: AStar(Of T).AddPositions
+    fullName: MLEM.Pathfinding.AStar(Of T).AddPositions
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  commentId: M:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
+  parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}
+  definition: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+  name: GetManhattanDistance(Point, Point)
+  nameWithType: AStar<Point>.GetManhattanDistance(Point, Point)
+  fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.GetManhattanDistance(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point)
+  nameWithType.vb: AStar(Of Point).GetManhattanDistance(Point, Point)
+  fullName.vb: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).GetManhattanDistance(Microsoft.Xna.Framework.Point, Microsoft.Xna.Framework.Point)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+    name: GetManhattanDistance
+    nameWithType: AStar<Point>.GetManhattanDistance
+    fullName: MLEM.Pathfinding.AStar<Microsoft.Xna.Framework.Point>.GetManhattanDistance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+    name: GetManhattanDistance
+    nameWithType: AStar(Of Point).GetManhattanDistance
+    fullName: MLEM.Pathfinding.AStar(Of Microsoft.Xna.Framework.Point).GetManhattanDistance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    nameWithType: Point
+    fullName: Microsoft.Xna.Framework.Point
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar2.GetManhattanDistance*
+  commentId: Overload:MLEM.Pathfinding.AStar2.GetManhattanDistance
+  name: GetManhattanDistance
+  nameWithType: AStar2.GetManhattanDistance
+  fullName: MLEM.Pathfinding.AStar2.GetManhattanDistance
+- uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+  commentId: M:MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+  name: GetManhattanDistance(T, T)
+  nameWithType: AStar<T>.GetManhattanDistance(T, T)
+  fullName: MLEM.Pathfinding.AStar<T>.GetManhattanDistance(T, T)
+  nameWithType.vb: AStar(Of T).GetManhattanDistance(T, T)
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).GetManhattanDistance(T, T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+    name: GetManhattanDistance
+    nameWithType: AStar<T>.GetManhattanDistance
+    fullName: MLEM.Pathfinding.AStar<T>.GetManhattanDistance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetManhattanDistance(`0,`0)
+    name: GetManhattanDistance
+    nameWithType: AStar(Of T).GetManhattanDistance
+    fullName: MLEM.Pathfinding.AStar(Of T).GetManhattanDistance
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

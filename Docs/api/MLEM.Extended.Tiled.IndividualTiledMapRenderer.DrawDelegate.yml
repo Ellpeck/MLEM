@@ -1,0 +1,64 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  id: IndividualTiledMapRenderer.DrawDelegate
+  parent: MLEM.Extended.Tiled
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IndividualTiledMapRenderer.DrawDelegate
+  nameWithType: IndividualTiledMapRenderer.DrawDelegate
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawDelegate
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 88
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public delegate void DrawDelegate(SpriteBatch batch, IndividualTiledMapRenderer.TileDrawInfo info);
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: info
+      type: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+    content.vb: Public Delegate Sub DrawDelegate(batch As SpriteBatch, info As IndividualTiledMapRenderer.TileDrawInfo)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Extended.Tiled
+  commentId: N:MLEM.Extended.Tiled
+  name: MLEM.Extended.Tiled
+  nameWithType: MLEM.Extended.Tiled
+  fullName: MLEM.Extended.Tiled
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+  parent: MLEM.Extended.Tiled
+  name: IndividualTiledMapRenderer.TileDrawInfo
+  nameWithType: IndividualTiledMapRenderer.TileDrawInfo
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics

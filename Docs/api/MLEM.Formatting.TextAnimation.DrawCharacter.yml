@@ -1,0 +1,149 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.TextAnimation.DrawCharacter
+  commentId: T:MLEM.Formatting.TextAnimation.DrawCharacter
+  id: TextAnimation.DrawCharacter
+  parent: MLEM.Formatting
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextAnimation.DrawCharacter
+  nameWithType: TextAnimation.DrawCharacter
+  fullName: MLEM.Formatting.TextAnimation.DrawCharacter
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Formatting/Obsolete/TextAnimation.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawCharacter
+    path: ../MLEM/Formatting/Obsolete/TextAnimation.cs
+    startLine: 23
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  syntax:
+    content: public delegate void DrawCharacter(FormatSettings settings, GenericFont font, SpriteBatch batch, string totalText, int index, int effectStartIndex, string charSt, Vector2 position, Color color, float scale, float layerDepth, TimeSpan timeIntoAnimation);
+    parameters:
+    - id: settings
+      type: MLEM.Formatting.FormatSettings
+    - id: font
+      type: MLEM.Font.GenericFont
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: totalText
+      type: System.String
+    - id: index
+      type: System.Int32
+    - id: effectStartIndex
+      type: System.Int32
+    - id: charSt
+      type: System.String
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: scale
+      type: System.Single
+    - id: layerDepth
+      type: System.Single
+    - id: timeIntoAnimation
+      type: System.TimeSpan
+    content.vb: Public Delegate Sub DrawCharacter(settings As FormatSettings, font As GenericFont, batch As SpriteBatch, totalText As String, index As Integer, effectStartIndex As Integer, charSt As String, position As Vector2, color As Color, scale As Single, layerDepth As Single, timeIntoAnimation As TimeSpan)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+- uid: MLEM.Formatting.FormatSettings
+  commentId: T:MLEM.Formatting.FormatSettings
+  parent: MLEM.Formatting
+  name: FormatSettings
+  nameWithType: FormatSettings
+  fullName: MLEM.Formatting.FormatSettings
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework

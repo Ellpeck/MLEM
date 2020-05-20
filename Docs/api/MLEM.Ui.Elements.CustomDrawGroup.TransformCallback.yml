@@ -1,0 +1,75 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.CustomDrawGroup.TransformCallback
+  commentId: T:MLEM.Ui.Elements.CustomDrawGroup.TransformCallback
+  id: CustomDrawGroup.TransformCallback
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: CustomDrawGroup.TransformCallback
+  nameWithType: CustomDrawGroup.TransformCallback
+  fullName: MLEM.Ui.Elements.CustomDrawGroup.TransformCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/CustomDrawGroup.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TransformCallback
+    path: ../MLEM.Ui/Elements/CustomDrawGroup.cs
+    startLine: 50
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate Matrix TransformCallback(CustomDrawGroup element, GameTime time, Matrix matrix);
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.CustomDrawGroup
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+    - id: matrix
+      type: Microsoft.Xna.Framework.Matrix
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public Delegate Function TransformCallback(element As CustomDrawGroup, time As GameTime, matrix As Matrix) As Matrix
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.CustomDrawGroup
+  commentId: T:MLEM.Ui.Elements.CustomDrawGroup
+  parent: MLEM.Ui.Elements
+  name: CustomDrawGroup
+  nameWithType: CustomDrawGroup
+  fullName: MLEM.Ui.Elements.CustomDrawGroup
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework.Matrix
+  commentId: T:Microsoft.Xna.Framework.Matrix
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Matrix
+  nameWithType: Matrix
+  fullName: Microsoft.Xna.Framework.Matrix
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework

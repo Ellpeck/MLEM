@@ -1,0 +1,140 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  id: MLEM.Pathfinding
+  children:
+  - MLEM.Pathfinding.AStar`1
+  - MLEM.Pathfinding.AStar`1.GetCost
+  - MLEM.Pathfinding.AStar2
+  - MLEM.Pathfinding.AStar3
+  - MLEM.Pathfinding.PathPoint`1
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Pathfinding.AStar`1
+  commentId: T:MLEM.Pathfinding.AStar`1
+  name: AStar<T>
+  nameWithType: AStar<T>
+  fullName: MLEM.Pathfinding.AStar<T>
+  nameWithType.vb: AStar(Of T)
+  fullName.vb: MLEM.Pathfinding.AStar(Of T)
+  name.vb: AStar(Of T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar`1.GetCost
+  commentId: T:MLEM.Pathfinding.AStar`1.GetCost
+  parent: MLEM.Pathfinding
+  name: AStar.GetCost<>
+  nameWithType: AStar.GetCost<>
+  fullName: MLEM.Pathfinding.AStar.GetCost<>
+  nameWithType.vb: AStar.GetCost(Of )
+  fullName.vb: MLEM.Pathfinding.AStar.GetCost(Of )
+  name.vb: AStar.GetCost(Of )
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.PathPoint`1
+  commentId: T:MLEM.Pathfinding.PathPoint`1
+  parent: MLEM.Pathfinding
+  name: PathPoint<T>
+  nameWithType: PathPoint<T>
+  fullName: MLEM.Pathfinding.PathPoint<T>
+  nameWithType.vb: PathPoint(Of T)
+  fullName.vb: MLEM.Pathfinding.PathPoint(Of T)
+  name.vb: PathPoint(Of T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.PathPoint`1
+    name: PathPoint
+    nameWithType: PathPoint
+    fullName: MLEM.Pathfinding.PathPoint
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.PathPoint`1
+    name: PathPoint
+    nameWithType: PathPoint
+    fullName: MLEM.Pathfinding.PathPoint
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Pathfinding.AStar2
+  commentId: T:MLEM.Pathfinding.AStar2
+  name: AStar2
+  nameWithType: AStar2
+  fullName: MLEM.Pathfinding.AStar2
+- uid: MLEM.Pathfinding.AStar3
+  commentId: T:MLEM.Pathfinding.AStar3
+  name: AStar3
+  nameWithType: AStar3
+  fullName: MLEM.Pathfinding.AStar3
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding

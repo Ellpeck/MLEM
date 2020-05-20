@@ -1,0 +1,770 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Tiled.LayerPosition
+  commentId: T:MLEM.Extended.Tiled.LayerPosition
+  id: LayerPosition
+  parent: MLEM.Extended.Tiled
+  children:
+  - MLEM.Extended.Tiled.LayerPosition.#ctor(System.String,System.Int32,System.Int32)
+  - MLEM.Extended.Tiled.LayerPosition.Equals(MLEM.Extended.Tiled.LayerPosition)
+  - MLEM.Extended.Tiled.LayerPosition.Equals(System.Object)
+  - MLEM.Extended.Tiled.LayerPosition.GetHashCode
+  - MLEM.Extended.Tiled.LayerPosition.Layer
+  - MLEM.Extended.Tiled.LayerPosition.op_Equality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  - MLEM.Extended.Tiled.LayerPosition.op_Inequality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  - MLEM.Extended.Tiled.LayerPosition.ToString
+  - MLEM.Extended.Tiled.LayerPosition.X
+  - MLEM.Extended.Tiled.LayerPosition.Y
+  langs:
+  - csharp
+  - vb
+  name: LayerPosition
+  nameWithType: LayerPosition
+  fullName: MLEM.Extended.Tiled.LayerPosition
+  type: Struct
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: LayerPosition
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 3
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: >-
+      [DataContract]
+
+      public struct LayerPosition
+    content.vb: >-
+      <DataContract>
+
+      Public Structure LayerPosition
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: System.Runtime.Serialization.DataContractAttribute
+    ctor: System.Runtime.Serialization.DataContractAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+- uid: MLEM.Extended.Tiled.LayerPosition.Layer
+  commentId: F:MLEM.Extended.Tiled.LayerPosition.Layer
+  id: Layer
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: Layer
+  nameWithType: LayerPosition.Layer
+  fullName: MLEM.Extended.Tiled.LayerPosition.Layer
+  type: Field
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Layer
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 7
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: >-
+      [DataMember]
+
+      public string Layer
+    return:
+      type: System.String
+    content.vb: >-
+      <DataMember>
+
+      Public Layer As String
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.LayerPosition.X
+  commentId: F:MLEM.Extended.Tiled.LayerPosition.X
+  id: X
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: X
+  nameWithType: LayerPosition.X
+  fullName: MLEM.Extended.Tiled.LayerPosition.X
+  type: Field
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: X
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 9
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: >-
+      [DataMember]
+
+      public int X
+    return:
+      type: System.Int32
+    content.vb: >-
+      <DataMember>
+
+      Public X As Integer
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.LayerPosition.Y
+  commentId: F:MLEM.Extended.Tiled.LayerPosition.Y
+  id: Y
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: Y
+  nameWithType: LayerPosition.Y
+  fullName: MLEM.Extended.Tiled.LayerPosition.Y
+  type: Field
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Y
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 11
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: >-
+      [DataMember]
+
+      public int Y
+    return:
+      type: System.Int32
+    content.vb: >-
+      <DataMember>
+
+      Public Y As Integer
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.LayerPosition.#ctor(System.String,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.#ctor(System.String,System.Int32,System.Int32)
+  id: '#ctor(System.String,System.Int32,System.Int32)'
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: LayerPosition(String, Int32, Int32)
+  nameWithType: LayerPosition.LayerPosition(String, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.LayerPosition.LayerPosition(System.String, System.Int32, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 13
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public LayerPosition(string layerName, int x, int y)
+    parameters:
+    - id: layerName
+      type: System.String
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    content.vb: Public Sub New(layerName As String, x As Integer, y As Integer)
+  overload: MLEM.Extended.Tiled.LayerPosition.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.LayerPosition.op_Equality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.op_Equality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  id: op_Equality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: Equality(LayerPosition, LayerPosition)
+  nameWithType: LayerPosition.Equality(LayerPosition, LayerPosition)
+  fullName: MLEM.Extended.Tiled.LayerPosition.Equality(MLEM.Extended.Tiled.LayerPosition, MLEM.Extended.Tiled.LayerPosition)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Equality
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 19
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static bool operator ==(LayerPosition left, LayerPosition right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPosition
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPosition
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As LayerPosition, right As LayerPosition) As Boolean
+  overload: MLEM.Extended.Tiled.LayerPosition.op_Equality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.LayerPosition.op_Inequality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.op_Inequality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  id: op_Inequality(MLEM.Extended.Tiled.LayerPosition,MLEM.Extended.Tiled.LayerPosition)
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: Inequality(LayerPosition, LayerPosition)
+  nameWithType: LayerPosition.Inequality(LayerPosition, LayerPosition)
+  fullName: MLEM.Extended.Tiled.LayerPosition.Inequality(MLEM.Extended.Tiled.LayerPosition, MLEM.Extended.Tiled.LayerPosition)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Inequality
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 23
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static bool operator !=(LayerPosition left, LayerPosition right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPosition
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPosition
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As LayerPosition, right As LayerPosition) As Boolean
+  overload: MLEM.Extended.Tiled.LayerPosition.op_Inequality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.LayerPosition.Equals(MLEM.Extended.Tiled.LayerPosition)
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.Equals(MLEM.Extended.Tiled.LayerPosition)
+  id: Equals(MLEM.Extended.Tiled.LayerPosition)
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: Equals(LayerPosition)
+  nameWithType: LayerPosition.Equals(LayerPosition)
+  fullName: MLEM.Extended.Tiled.LayerPosition.Equals(MLEM.Extended.Tiled.LayerPosition)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 27
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public bool Equals(LayerPosition other)
+    parameters:
+    - id: other
+      type: MLEM.Extended.Tiled.LayerPosition
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As LayerPosition) As Boolean
+  overload: MLEM.Extended.Tiled.LayerPosition.Equals*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.LayerPosition.Equals(System.Object)
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: LayerPosition.Equals(Object)
+  fullName: MLEM.Extended.Tiled.LayerPosition.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 31
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: MLEM.Extended.Tiled.LayerPosition.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Extended.Tiled.LayerPosition.GetHashCode
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.GetHashCode
+  id: GetHashCode
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: LayerPosition.GetHashCode()
+  fullName: MLEM.Extended.Tiled.LayerPosition.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetHashCode
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 35
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: MLEM.Extended.Tiled.LayerPosition.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: MLEM.Extended.Tiled.LayerPosition.ToString
+  commentId: M:MLEM.Extended.Tiled.LayerPosition.ToString
+  id: ToString
+  parent: MLEM.Extended.Tiled.LayerPosition
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: LayerPosition.ToString()
+  fullName: MLEM.Extended.Tiled.LayerPosition.ToString()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPosition.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToString
+    path: ../MLEM.Extended/Tiled/LayerPosition.cs
+    startLine: 42
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.ValueType.ToString
+  overload: MLEM.Extended.Tiled.LayerPosition.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: MLEM.Extended.Tiled
+  commentId: N:MLEM.Extended.Tiled
+  name: MLEM.Extended.Tiled
+  nameWithType: MLEM.Extended.Tiled
+  fullName: MLEM.Extended.Tiled
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: MLEM.Extended.Tiled.LayerPosition.#ctor*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPosition.#ctor
+  name: LayerPosition
+  nameWithType: LayerPosition.LayerPosition
+  fullName: MLEM.Extended.Tiled.LayerPosition.LayerPosition
+- uid: MLEM.Extended.Tiled.LayerPosition.op_Equality*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPosition.op_Equality
+  name: Equality
+  nameWithType: LayerPosition.Equality
+  fullName: MLEM.Extended.Tiled.LayerPosition.Equality
+- uid: MLEM.Extended.Tiled.LayerPosition
+  commentId: T:MLEM.Extended.Tiled.LayerPosition
+  parent: MLEM.Extended.Tiled
+  name: LayerPosition
+  nameWithType: LayerPosition
+  fullName: MLEM.Extended.Tiled.LayerPosition
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: MLEM.Extended.Tiled.LayerPosition.op_Inequality*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPosition.op_Inequality
+  name: Inequality
+  nameWithType: LayerPosition.Inequality
+  fullName: MLEM.Extended.Tiled.LayerPosition.Inequality
+- uid: MLEM.Extended.Tiled.LayerPosition.Equals*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPosition.Equals
+  name: Equals
+  nameWithType: LayerPosition.Equals
+  fullName: MLEM.Extended.Tiled.LayerPosition.Equals
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: ValueType.Equals(Object)
+  fullName: System.ValueType.Equals(System.Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    nameWithType: ValueType.Equals
+    fullName: System.ValueType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    nameWithType: ValueType.GetHashCode
+    fullName: System.ValueType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Extended.Tiled.LayerPosition.GetHashCode*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPosition.GetHashCode
+  name: GetHashCode
+  nameWithType: LayerPosition.GetHashCode
+  fullName: MLEM.Extended.Tiled.LayerPosition.GetHashCode
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    nameWithType: ValueType.ToString
+    fullName: System.ValueType.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Extended.Tiled.LayerPosition.ToString*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPosition.ToString
+  name: ToString
+  nameWithType: LayerPosition.ToString
+  fullName: MLEM.Extended.Tiled.LayerPosition.ToString

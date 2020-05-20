@@ -1,0 +1,1798 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Tiled.TiledExtensions
+  commentId: T:MLEM.Extended.Tiled.TiledExtensions
+  id: TiledExtensions
+  parent: MLEM.Extended.Tiled
+  children:
+  - MLEM.Extended.Tiled.TiledExtensions.Get(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  - MLEM.Extended.Tiled.TiledExtensions.GetArea(MonoGame.Extended.Tiled.TiledMapObject,MonoGame.Extended.Tiled.TiledMap,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  - MLEM.Extended.Tiled.TiledExtensions.GetBool(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  - MLEM.Extended.Tiled.TiledExtensions.GetColor(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  - MLEM.Extended.Tiled.TiledExtensions.GetFloat(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  - MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier(MonoGame.Extended.Tiled.TiledMapTilesetTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  - MLEM.Extended.Tiled.TiledExtensions.GetInt(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  - MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  - MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMap,System.String,System.Boolean,System.Boolean)
+  - MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMapObjectLayer,System.String,System.Boolean,System.Boolean)
+  - MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects(MonoGame.Extended.Tiled.TiledMapTile)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTilesetTile)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex(MonoGame.Extended.Tiled.TiledMap,System.String)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTiles(MonoGame.Extended.Tiled.TiledMap,System.Int32,System.Int32)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTileset(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  - MLEM.Extended.Tiled.TiledExtensions.GetTileSize(MonoGame.Extended.Tiled.TiledMap)
+  - MLEM.Extended.Tiled.TiledExtensions.IsInBounds(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  - MLEM.Extended.Tiled.TiledExtensions.SetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: TiledExtensions
+  nameWithType: TiledExtensions
+  fullName: MLEM.Extended.Tiled.TiledExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TiledExtensions
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 11
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static class TiledExtensions
+    content.vb: Public Module TiledExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: MLEM.Extended.Tiled.TiledExtensions.Get(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.Get(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  id: Get(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: Get(TiledMapProperties, String)
+  nameWithType: TiledExtensions.Get(TiledMapProperties, String)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.Get(MonoGame.Extended.Tiled.TiledMapProperties, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Get
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 15
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static string Get(this TiledMapProperties properties, string key)
+    parameters:
+    - id: properties
+      type: MonoGame.Extended.Tiled.TiledMapProperties
+    - id: key
+      type: System.String
+    return:
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Get(properties As TiledMapProperties, key As String) As String
+  overload: MLEM.Extended.Tiled.TiledExtensions.Get*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetBool(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetBool(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  id: GetBool(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetBool(TiledMapProperties, String)
+  nameWithType: TiledExtensions.GetBool(TiledMapProperties, String)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetBool(MonoGame.Extended.Tiled.TiledMapProperties, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetBool
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 20
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static bool GetBool(this TiledMapProperties properties, string key)
+    parameters:
+    - id: properties
+      type: MonoGame.Extended.Tiled.TiledMapProperties
+    - id: key
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetBool(properties As TiledMapProperties, key As String) As Boolean
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetBool*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetColor(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetColor(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  id: GetColor(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetColor(TiledMapProperties, String)
+  nameWithType: TiledExtensions.GetColor(TiledMapProperties, String)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetColor(MonoGame.Extended.Tiled.TiledMapProperties, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetColor
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 25
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static Color GetColor(this TiledMapProperties properties, string key)
+    parameters:
+    - id: properties
+      type: MonoGame.Extended.Tiled.TiledMapProperties
+    - id: key
+      type: System.String
+    return:
+      type: Microsoft.Xna.Framework.Color
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetColor(properties As TiledMapProperties, key As String) As Color
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetColor*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetFloat(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetFloat(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  id: GetFloat(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetFloat(TiledMapProperties, String)
+  nameWithType: TiledExtensions.GetFloat(TiledMapProperties, String)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetFloat(MonoGame.Extended.Tiled.TiledMapProperties, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetFloat
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 29
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static float GetFloat(this TiledMapProperties properties, string key)
+    parameters:
+    - id: properties
+      type: MonoGame.Extended.Tiled.TiledMapProperties
+    - id: key
+      type: System.String
+    return:
+      type: System.Single
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetFloat(properties As TiledMapProperties, key As String) As Single
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetFloat*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetInt(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetInt(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  id: GetInt(MonoGame.Extended.Tiled.TiledMapProperties,System.String)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetInt(TiledMapProperties, String)
+  nameWithType: TiledExtensions.GetInt(TiledMapProperties, String)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetInt(MonoGame.Extended.Tiled.TiledMapProperties, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetInt
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 34
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static int GetInt(this TiledMapProperties properties, string key)
+    parameters:
+    - id: properties
+      type: MonoGame.Extended.Tiled.TiledMapProperties
+    - id: key
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetInt(properties As TiledMapProperties, key As String) As Integer
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetInt*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTileset(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTileset(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap)
+  id: GetTileset(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTileset(TiledMapTile, TiledMap)
+  nameWithType: TiledExtensions.GetTileset(TiledMapTile, TiledMap)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTileset(MonoGame.Extended.Tiled.TiledMapTile, MonoGame.Extended.Tiled.TiledMap)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTileset
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 39
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static TiledMapTileset GetTileset(this TiledMapTile tile, TiledMap map)
+    parameters:
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    return:
+      type: MonoGame.Extended.Tiled.TiledMapTileset
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTileset(tile As TiledMapTile, map As TiledMap) As TiledMapTileset
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTileset*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  id: GetLocalIdentifier(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetLocalIdentifier(TiledMapTile, TiledMapTileset, TiledMap)
+  nameWithType: TiledExtensions.GetLocalIdentifier(TiledMapTile, TiledMapTileset, TiledMap)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier(MonoGame.Extended.Tiled.TiledMapTile, MonoGame.Extended.Tiled.TiledMapTileset, MonoGame.Extended.Tiled.TiledMap)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetLocalIdentifier
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 43
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static int GetLocalIdentifier(this TiledMapTile tile, TiledMapTileset tileset, TiledMap map)
+    parameters:
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    - id: tileset
+      type: MonoGame.Extended.Tiled.TiledMapTileset
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetLocalIdentifier(tile As TiledMapTile, tileset As TiledMapTileset, map As TiledMap) As Integer
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier(MonoGame.Extended.Tiled.TiledMapTilesetTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier(MonoGame.Extended.Tiled.TiledMapTilesetTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  id: GetGlobalIdentifier(MonoGame.Extended.Tiled.TiledMapTilesetTile,MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMap)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetGlobalIdentifier(TiledMapTilesetTile, TiledMapTileset, TiledMap)
+  nameWithType: TiledExtensions.GetGlobalIdentifier(TiledMapTilesetTile, TiledMapTileset, TiledMap)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier(MonoGame.Extended.Tiled.TiledMapTilesetTile, MonoGame.Extended.Tiled.TiledMapTileset, MonoGame.Extended.Tiled.TiledMap)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetGlobalIdentifier
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 47
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static int GetGlobalIdentifier(this TiledMapTilesetTile tile, TiledMapTileset tileset, TiledMap map)
+    parameters:
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTilesetTile
+    - id: tileset
+      type: MonoGame.Extended.Tiled.TiledMapTileset
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetGlobalIdentifier(tile As TiledMapTilesetTile, tileset As TiledMapTileset, map As TiledMap) As Integer
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  id: GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTilesetTile(TiledMapTileset, TiledMapTile, TiledMap, Boolean)
+  nameWithType: TiledExtensions.GetTilesetTile(TiledMapTileset, TiledMapTile, TiledMap, Boolean)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTileset, MonoGame.Extended.Tiled.TiledMapTile, MonoGame.Extended.Tiled.TiledMap, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTilesetTile
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 51
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, TiledMapTile tile, TiledMap map, bool createStub = true)
+    parameters:
+    - id: tileset
+      type: MonoGame.Extended.Tiled.TiledMapTileset
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: createStub
+      type: System.Boolean
+    return:
+      type: MonoGame.Extended.Tiled.TiledMapTilesetTile
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTilesetTile(tileset As TiledMapTileset, tile As TiledMapTile, map As TiledMap, createStub As Boolean = True) As TiledMapTilesetTile
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  id: GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,System.Boolean)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTilesetTile(TiledMapTile, TiledMap, Boolean)
+  nameWithType: TiledExtensions.GetTilesetTile(TiledMapTile, TiledMap, Boolean)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTile, MonoGame.Extended.Tiled.TiledMap, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTilesetTile
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 66
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static TiledMapTilesetTile GetTilesetTile(this TiledMapTile tile, TiledMap map, bool createStub = true)
+    parameters:
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: createStub
+      type: System.Boolean
+    return:
+      type: MonoGame.Extended.Tiled.TiledMapTilesetTile
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTilesetTile(tile As TiledMapTile, map As TiledMap, createStub As Boolean = True) As TiledMapTilesetTile
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex(MonoGame.Extended.Tiled.TiledMap,System.String)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex(MonoGame.Extended.Tiled.TiledMap,System.String)
+  id: GetTileLayerIndex(MonoGame.Extended.Tiled.TiledMap,System.String)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTileLayerIndex(TiledMap, String)
+  nameWithType: TiledExtensions.GetTileLayerIndex(TiledMap, String)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex(MonoGame.Extended.Tiled.TiledMap, System.String)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTileLayerIndex
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 73
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static int GetTileLayerIndex(this TiledMap map, string layerName)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: layerName
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTileLayerIndex(map As TiledMap, layerName As String) As Integer
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32)
+  id: GetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTile(TiledMap, String, Int32, Int32)
+  nameWithType: TiledExtensions.GetTile(TiledMap, String, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMap, System.String, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTile
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 78
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static TiledMapTile GetTile(this TiledMap map, string layerName, int x, int y)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: layerName
+      type: System.String
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    return:
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTile(map As TiledMap, layerName As String, x As Integer, y As Integer) As TiledMapTile
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.SetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.SetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32,System.Int32)
+  id: SetTile(MonoGame.Extended.Tiled.TiledMap,System.String,System.Int32,System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: SetTile(TiledMap, String, Int32, Int32, Int32)
+  nameWithType: TiledExtensions.SetTile(TiledMap, String, Int32, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.SetTile(MonoGame.Extended.Tiled.TiledMap, System.String, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SetTile
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 83
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static void SetTile(this TiledMap map, string layerName, int x, int y, int globalTile)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: layerName
+      type: System.String
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    - id: globalTile
+      type: System.Int32
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub SetTile(map As TiledMap, layerName As String, x As Integer, y As Integer, globalTile As Integer)
+  overload: MLEM.Extended.Tiled.TiledExtensions.SetTile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTiles(MonoGame.Extended.Tiled.TiledMap,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTiles(MonoGame.Extended.Tiled.TiledMap,System.Int32,System.Int32)
+  id: GetTiles(MonoGame.Extended.Tiled.TiledMap,System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTiles(TiledMap, Int32, Int32)
+  nameWithType: TiledExtensions.GetTiles(TiledMap, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTiles(MonoGame.Extended.Tiled.TiledMap, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTiles
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 89
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static IEnumerable<TiledMapTile> GetTiles(this TiledMap map, int x, int y)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    return:
+      type: System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapTile}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTiles(map As TiledMap, x As Integer, y As Integer) As IEnumerable(Of TiledMapTile)
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTiles*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  id: GetTile(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTile(TiledMapTileLayer, Int32, Int32)
+  nameWithType: TiledExtensions.GetTile(TiledMapTileLayer, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTile(MonoGame.Extended.Tiled.TiledMapTileLayer, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTile
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 97
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static TiledMapTile GetTile(this TiledMapTileLayer layer, int x, int y)
+    parameters:
+    - id: layer
+      type: MonoGame.Extended.Tiled.TiledMapTileLayer
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    return:
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTile(layer As TiledMapTileLayer, x As Integer, y As Integer) As TiledMapTile
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetArea(MonoGame.Extended.Tiled.TiledMapObject,MonoGame.Extended.Tiled.TiledMap,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetArea(MonoGame.Extended.Tiled.TiledMapObject,MonoGame.Extended.Tiled.TiledMap,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  id: GetArea(MonoGame.Extended.Tiled.TiledMapObject,MonoGame.Extended.Tiled.TiledMap,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetArea(TiledMapObject, TiledMap, Nullable<Vector2>)
+  nameWithType: TiledExtensions.GetArea(TiledMapObject, TiledMap, Nullable<Vector2>)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetArea(MonoGame.Extended.Tiled.TiledMapObject, MonoGame.Extended.Tiled.TiledMap, System.Nullable<Microsoft.Xna.Framework.Vector2>)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetArea
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 101
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2? position = default(Vector2? ))
+    parameters:
+    - id: obj
+      type: MonoGame.Extended.Tiled.TiledMapObject
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: position
+      type: System.Nullable{Microsoft.Xna.Framework.Vector2}
+    return:
+      type: MonoGame.Extended.RectangleF
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetArea(obj As TiledMapObject, map As TiledMap, position As Vector2? = Nothing) As RectangleF
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetArea*
+  nameWithType.vb: TiledExtensions.GetArea(TiledMapObject, TiledMap, Nullable(Of Vector2))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: MLEM.Extended.Tiled.TiledExtensions.GetArea(MonoGame.Extended.Tiled.TiledMapObject, MonoGame.Extended.Tiled.TiledMap, System.Nullable(Of Microsoft.Xna.Framework.Vector2))
+  name.vb: GetArea(TiledMapObject, TiledMap, Nullable(Of Vector2))
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTileSize(MonoGame.Extended.Tiled.TiledMap)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTileSize(MonoGame.Extended.Tiled.TiledMap)
+  id: GetTileSize(MonoGame.Extended.Tiled.TiledMap)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTileSize(TiledMap)
+  nameWithType: TiledExtensions.GetTileSize(TiledMap)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTileSize(MonoGame.Extended.Tiled.TiledMap)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTileSize
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 107
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static Vector2 GetTileSize(this TiledMap map)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTileSize(map As TiledMap) As Vector2
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTileSize*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.IsInBounds(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.IsInBounds(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  id: IsInBounds(MonoGame.Extended.Tiled.TiledMapTileLayer,System.Int32,System.Int32)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsInBounds(TiledMapTileLayer, Int32, Int32)
+  nameWithType: TiledExtensions.IsInBounds(TiledMapTileLayer, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.IsInBounds(MonoGame.Extended.Tiled.TiledMapTileLayer, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsInBounds
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 111
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static bool IsInBounds(this TiledMapTileLayer layer, int x, int y)
+    parameters:
+    - id: layer
+      type: MonoGame.Extended.Tiled.TiledMapTileLayer
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsInBounds(layer As TiledMapTileLayer, x As Integer, y As Integer) As Boolean
+  overload: MLEM.Extended.Tiled.TiledExtensions.IsInBounds*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMapObjectLayer,System.String,System.Boolean,System.Boolean)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMapObjectLayer,System.String,System.Boolean,System.Boolean)
+  id: GetObjects(MonoGame.Extended.Tiled.TiledMapObjectLayer,System.String,System.Boolean,System.Boolean)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetObjects(TiledMapObjectLayer, String, Boolean, Boolean)
+  nameWithType: TiledExtensions.GetObjects(TiledMapObjectLayer, String, Boolean, Boolean)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMapObjectLayer, System.String, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetObjects
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 115
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static IEnumerable<TiledMapObject> GetObjects(this TiledMapObjectLayer layer, string id, bool searchName = true, bool searchType = false)
+    parameters:
+    - id: layer
+      type: MonoGame.Extended.Tiled.TiledMapObjectLayer
+    - id: id
+      type: System.String
+    - id: searchName
+      type: System.Boolean
+    - id: searchType
+      type: System.Boolean
+    return:
+      type: System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapObject}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetObjects(layer As TiledMapObjectLayer, id As String, searchName As Boolean = True, searchType As Boolean = False) As IEnumerable(Of TiledMapObject)
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetObjects*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMap,System.String,System.Boolean,System.Boolean)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMap,System.String,System.Boolean,System.Boolean)
+  id: GetObjects(MonoGame.Extended.Tiled.TiledMap,System.String,System.Boolean,System.Boolean)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetObjects(TiledMap, String, Boolean, Boolean)
+  nameWithType: TiledExtensions.GetObjects(TiledMap, String, Boolean, Boolean)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetObjects(MonoGame.Extended.Tiled.TiledMap, System.String, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetObjects
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 122
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static IEnumerable<TiledMapObject> GetObjects(this TiledMap map, string name, bool searchName = true, bool searchType = false)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: name
+      type: System.String
+    - id: searchName
+      type: System.Boolean
+    - id: searchType
+      type: System.Boolean
+    return:
+      type: System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapObject}
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetObjects(map As TiledMap, name As String, searchName As Boolean = True, searchType As Boolean = False) As IEnumerable(Of TiledMapObject)
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetObjects*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTilesetTile)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTilesetTile)
+  id: GetTextureRegion(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTilesetTile)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetTextureRegion(TiledMapTileset, TiledMapTilesetTile)
+  nameWithType: TiledExtensions.GetTextureRegion(TiledMapTileset, TiledMapTilesetTile)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion(MonoGame.Extended.Tiled.TiledMapTileset, MonoGame.Extended.Tiled.TiledMapTilesetTile)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTextureRegion
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 129
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static Rectangle GetTextureRegion(this TiledMapTileset tileset, TiledMapTilesetTile tile)
+    parameters:
+    - id: tileset
+      type: MonoGame.Extended.Tiled.TiledMapTileset
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTilesetTile
+    return:
+      type: Microsoft.Xna.Framework.Rectangle
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetTextureRegion(tileset As TiledMapTileset, tile As TiledMapTilesetTile) As Rectangle
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects(MonoGame.Extended.Tiled.TiledMapTile)
+  commentId: M:MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects(MonoGame.Extended.Tiled.TiledMapTile)
+  id: GetSpriteEffects(MonoGame.Extended.Tiled.TiledMapTile)
+  isExtensionMethod: true
+  parent: MLEM.Extended.Tiled.TiledExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetSpriteEffects(TiledMapTile)
+  nameWithType: TiledExtensions.GetSpriteEffects(TiledMapTile)
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects(MonoGame.Extended.Tiled.TiledMapTile)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/TiledExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetSpriteEffects
+    path: ../MLEM.Extended/Tiled/TiledExtensions.cs
+    startLine: 136
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public static SpriteEffects GetSpriteEffects(this TiledMapTile tile)
+    parameters:
+    - id: tile
+      type: MonoGame.Extended.Tiled.TiledMapTile
+    return:
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetSpriteEffects(tile As TiledMapTile) As SpriteEffects
+  overload: MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: MLEM.Extended.Tiled
+  commentId: N:MLEM.Extended.Tiled
+  name: MLEM.Extended.Tiled
+  nameWithType: MLEM.Extended.Tiled
+  fullName: MLEM.Extended.Tiled
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Extended.Tiled.TiledExtensions.Get*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.Get
+  name: Get
+  nameWithType: TiledExtensions.Get
+  fullName: MLEM.Extended.Tiled.TiledExtensions.Get
+- uid: MonoGame.Extended.Tiled.TiledMapProperties
+  commentId: T:MonoGame.Extended.Tiled.TiledMapProperties
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapProperties
+  nameWithType: TiledMapProperties
+  fullName: MonoGame.Extended.Tiled.TiledMapProperties
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: MonoGame.Extended.Tiled
+  commentId: N:MonoGame.Extended.Tiled
+  isExternal: true
+  name: MonoGame.Extended.Tiled
+  nameWithType: MonoGame.Extended.Tiled
+  fullName: MonoGame.Extended.Tiled
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetBool*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetBool
+  name: GetBool
+  nameWithType: TiledExtensions.GetBool
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetBool
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetColor*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetColor
+  name: GetColor
+  nameWithType: TiledExtensions.GetColor
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetColor
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetFloat*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetFloat
+  name: GetFloat
+  nameWithType: TiledExtensions.GetFloat
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetFloat
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetInt*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetInt
+  name: GetInt
+  nameWithType: TiledExtensions.GetInt
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetInt
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTileset*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTileset
+  name: GetTileset
+  nameWithType: TiledExtensions.GetTileset
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTileset
+- uid: MonoGame.Extended.Tiled.TiledMapTile
+  commentId: T:MonoGame.Extended.Tiled.TiledMapTile
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapTile
+  nameWithType: TiledMapTile
+  fullName: MonoGame.Extended.Tiled.TiledMapTile
+- uid: MonoGame.Extended.Tiled.TiledMap
+  commentId: T:MonoGame.Extended.Tiled.TiledMap
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMap
+  nameWithType: TiledMap
+  fullName: MonoGame.Extended.Tiled.TiledMap
+- uid: MonoGame.Extended.Tiled.TiledMapTileset
+  commentId: T:MonoGame.Extended.Tiled.TiledMapTileset
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapTileset
+  nameWithType: TiledMapTileset
+  fullName: MonoGame.Extended.Tiled.TiledMapTileset
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier
+  name: GetLocalIdentifier
+  nameWithType: TiledExtensions.GetLocalIdentifier
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetLocalIdentifier
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier
+  name: GetGlobalIdentifier
+  nameWithType: TiledExtensions.GetGlobalIdentifier
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetGlobalIdentifier
+- uid: MonoGame.Extended.Tiled.TiledMapTilesetTile
+  commentId: T:MonoGame.Extended.Tiled.TiledMapTilesetTile
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapTilesetTile
+  nameWithType: TiledMapTilesetTile
+  fullName: MonoGame.Extended.Tiled.TiledMapTilesetTile
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile
+  name: GetTilesetTile
+  nameWithType: TiledExtensions.GetTilesetTile
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTilesetTile
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex
+  name: GetTileLayerIndex
+  nameWithType: TiledExtensions.GetTileLayerIndex
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTileLayerIndex
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTile*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTile
+  name: GetTile
+  nameWithType: TiledExtensions.GetTile
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTile
+- uid: MLEM.Extended.Tiled.TiledExtensions.SetTile*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.SetTile
+  name: SetTile
+  nameWithType: TiledExtensions.SetTile
+  fullName: MLEM.Extended.Tiled.TiledExtensions.SetTile
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTiles*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTiles
+  name: GetTiles
+  nameWithType: TiledExtensions.GetTiles
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTiles
+- uid: System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapTile}
+  commentId: T:System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapTile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TiledMapTile>
+  nameWithType: IEnumerable<TiledMapTile>
+  fullName: System.Collections.Generic.IEnumerable<MonoGame.Extended.Tiled.TiledMapTile>
+  nameWithType.vb: IEnumerable(Of TiledMapTile)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MonoGame.Extended.Tiled.TiledMapTile)
+  name.vb: IEnumerable(Of TiledMapTile)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MonoGame.Extended.Tiled.TiledMapTile
+    name: TiledMapTile
+    nameWithType: TiledMapTile
+    fullName: MonoGame.Extended.Tiled.TiledMapTile
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MonoGame.Extended.Tiled.TiledMapTile
+    name: TiledMapTile
+    nameWithType: TiledMapTile
+    fullName: MonoGame.Extended.Tiled.TiledMapTile
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: MonoGame.Extended.Tiled.TiledMapTileLayer
+  commentId: T:MonoGame.Extended.Tiled.TiledMapTileLayer
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapTileLayer
+  nameWithType: TiledMapTileLayer
+  fullName: MonoGame.Extended.Tiled.TiledMapTileLayer
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetArea*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetArea
+  name: GetArea
+  nameWithType: TiledExtensions.GetArea
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetArea
+- uid: MonoGame.Extended.Tiled.TiledMapObject
+  commentId: T:MonoGame.Extended.Tiled.TiledMapObject
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapObject
+  nameWithType: TiledMapObject
+  fullName: MonoGame.Extended.Tiled.TiledMapObject
+- uid: System.Nullable{Microsoft.Xna.Framework.Vector2}
+  commentId: T:System.Nullable{Microsoft.Xna.Framework.Vector2}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Vector2>
+  nameWithType: Nullable<Vector2>
+  fullName: System.Nullable<Microsoft.Xna.Framework.Vector2>
+  nameWithType.vb: Nullable(Of Vector2)
+  fullName.vb: System.Nullable(Of Microsoft.Xna.Framework.Vector2)
+  name.vb: Nullable(Of Vector2)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MonoGame.Extended.RectangleF
+  commentId: T:MonoGame.Extended.RectangleF
+  parent: MonoGame.Extended
+  isExternal: true
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MonoGame.Extended.RectangleF
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MonoGame.Extended
+  commentId: N:MonoGame.Extended
+  isExternal: true
+  name: MonoGame.Extended
+  nameWithType: MonoGame.Extended
+  fullName: MonoGame.Extended
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTileSize*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTileSize
+  name: GetTileSize
+  nameWithType: TiledExtensions.GetTileSize
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTileSize
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: MLEM.Extended.Tiled.TiledExtensions.IsInBounds*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.IsInBounds
+  name: IsInBounds
+  nameWithType: TiledExtensions.IsInBounds
+  fullName: MLEM.Extended.Tiled.TiledExtensions.IsInBounds
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetObjects*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetObjects
+  name: GetObjects
+  nameWithType: TiledExtensions.GetObjects
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetObjects
+- uid: MonoGame.Extended.Tiled.TiledMapObjectLayer
+  commentId: T:MonoGame.Extended.Tiled.TiledMapObjectLayer
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMapObjectLayer
+  nameWithType: TiledMapObjectLayer
+  fullName: MonoGame.Extended.Tiled.TiledMapObjectLayer
+- uid: System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapObject}
+  commentId: T:System.Collections.Generic.IEnumerable{MonoGame.Extended.Tiled.TiledMapObject}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<TiledMapObject>
+  nameWithType: IEnumerable<TiledMapObject>
+  fullName: System.Collections.Generic.IEnumerable<MonoGame.Extended.Tiled.TiledMapObject>
+  nameWithType.vb: IEnumerable(Of TiledMapObject)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MonoGame.Extended.Tiled.TiledMapObject)
+  name.vb: IEnumerable(Of TiledMapObject)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MonoGame.Extended.Tiled.TiledMapObject
+    name: TiledMapObject
+    nameWithType: TiledMapObject
+    fullName: MonoGame.Extended.Tiled.TiledMapObject
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MonoGame.Extended.Tiled.TiledMapObject
+    name: TiledMapObject
+    nameWithType: TiledMapObject
+    fullName: MonoGame.Extended.Tiled.TiledMapObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion
+  name: GetTextureRegion
+  nameWithType: TiledExtensions.GetTextureRegion
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetTextureRegion
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
+- uid: MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects*
+  commentId: Overload:MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects
+  name: GetSpriteEffects
+  nameWithType: TiledExtensions.GetSpriteEffects
+  fullName: MLEM.Extended.Tiled.TiledExtensions.GetSpriteEffects
+- uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteEffects
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteEffects
+  nameWithType: SpriteEffects
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics

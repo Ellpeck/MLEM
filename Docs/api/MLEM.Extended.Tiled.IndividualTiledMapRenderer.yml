@@ -1,0 +1,741 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  id: IndividualTiledMapRenderer
+  parent: MLEM.Extended.Tiled
+  children:
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.#ctor(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo(System.Int32,System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: IndividualTiledMapRenderer
+  nameWithType: IndividualTiledMapRenderer
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  type: Class
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: IndividualTiledMapRenderer
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 10
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public class IndividualTiledMapRenderer
+    content.vb: Public Class IndividualTiledMapRenderer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.#ctor(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  commentId: M:MLEM.Extended.Tiled.IndividualTiledMapRenderer.#ctor(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  id: '#ctor(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)'
+  parent: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  langs:
+  - csharp
+  - vb
+  name: IndividualTiledMapRenderer(TiledMap, IndividualTiledMapRenderer.GetDepth)
+  nameWithType: IndividualTiledMapRenderer.IndividualTiledMapRenderer(TiledMap, IndividualTiledMapRenderer.GetDepth)
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.IndividualTiledMapRenderer(MonoGame.Extended.Tiled.TiledMap, MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 17
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public IndividualTiledMapRenderer(TiledMap map = null, IndividualTiledMapRenderer.GetDepth depthFunction = null)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: depthFunction
+      type: MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth
+    content.vb: Public Sub New(map As TiledMap = Nothing, depthFunction As IndividualTiledMapRenderer.GetDepth = Nothing)
+  overload: MLEM.Extended.Tiled.IndividualTiledMapRenderer.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  commentId: M:MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  id: SetMap(MonoGame.Extended.Tiled.TiledMap,MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  parent: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  langs:
+  - csharp
+  - vb
+  name: SetMap(TiledMap, IndividualTiledMapRenderer.GetDepth)
+  nameWithType: IndividualTiledMapRenderer.SetMap(TiledMap, IndividualTiledMapRenderer.GetDepth)
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap(MonoGame.Extended.Tiled.TiledMap, MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SetMap
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 22
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public void SetMap(TiledMap map, IndividualTiledMapRenderer.GetDepth depthFunction = null)
+    parameters:
+    - id: map
+      type: MonoGame.Extended.Tiled.TiledMap
+    - id: depthFunction
+      type: MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth
+    content.vb: Public Sub SetMap(map As TiledMap, depthFunction As IndividualTiledMapRenderer.GetDepth = Nothing)
+  overload: MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo(System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo(System.Int32,System.Int32,System.Int32)
+  id: UpdateDrawInfo(System.Int32,System.Int32,System.Int32)
+  parent: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  langs:
+  - csharp
+  - vb
+  name: UpdateDrawInfo(Int32, Int32, Int32)
+  nameWithType: IndividualTiledMapRenderer.UpdateDrawInfo(Int32, Int32, Int32)
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo(System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpdateDrawInfo
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 45
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public void UpdateDrawInfo(int layerIndex, int x, int y)
+    parameters:
+    - id: layerIndex
+      type: System.Int32
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    content.vb: Public Sub UpdateDrawInfo(layerIndex As Integer, x As Integer, y As Integer)
+  overload: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  commentId: M:MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  parent: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, Nullable<RectangleF>, IndividualTiledMapRenderer.DrawDelegate)
+  nameWithType: IndividualTiledMapRenderer.Draw(SpriteBatch, Nullable<RectangleF>, IndividualTiledMapRenderer.DrawDelegate)
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Nullable<MonoGame.Extended.RectangleF>, MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 59
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public void Draw(SpriteBatch batch, RectangleF? frustum = default(RectangleF? ), IndividualTiledMapRenderer.DrawDelegate drawFunction = null)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: frustum
+      type: System.Nullable{MonoGame.Extended.RectangleF}
+    - id: drawFunction
+      type: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    content.vb: Public Sub Draw(batch As SpriteBatch, frustum As RectangleF? = Nothing, drawFunction As IndividualTiledMapRenderer.DrawDelegate = Nothing)
+  overload: MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw*
+  nameWithType.vb: IndividualTiledMapRenderer.Draw(SpriteBatch, Nullable(Of RectangleF), IndividualTiledMapRenderer.DrawDelegate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Nullable(Of MonoGame.Extended.RectangleF), MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  name.vb: Draw(SpriteBatch, Nullable(Of RectangleF), IndividualTiledMapRenderer.DrawDelegate)
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  commentId: M:MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  id: DrawLayer(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.Nullable{MonoGame.Extended.RectangleF},MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  parent: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  langs:
+  - csharp
+  - vb
+  name: DrawLayer(SpriteBatch, Int32, Nullable<RectangleF>, IndividualTiledMapRenderer.DrawDelegate)
+  nameWithType: IndividualTiledMapRenderer.DrawLayer(SpriteBatch, Int32, Nullable<RectangleF>, IndividualTiledMapRenderer.DrawDelegate)
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Int32, System.Nullable<MonoGame.Extended.RectangleF>, MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawLayer
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 66
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = default(RectangleF? ), IndividualTiledMapRenderer.DrawDelegate drawFunction = null)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: layerIndex
+      type: System.Int32
+    - id: frustum
+      type: System.Nullable{MonoGame.Extended.RectangleF}
+    - id: drawFunction
+      type: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    content.vb: Public Sub DrawLayer(batch As SpriteBatch, layerIndex As Integer, frustum As RectangleF? = Nothing, drawFunction As IndividualTiledMapRenderer.DrawDelegate = Nothing)
+  overload: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer*
+  nameWithType.vb: IndividualTiledMapRenderer.DrawLayer(SpriteBatch, Int32, Nullable(Of RectangleF), IndividualTiledMapRenderer.DrawDelegate)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.Int32, System.Nullable(Of MonoGame.Extended.RectangleF), MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)
+  name.vb: DrawLayer(SpriteBatch, Int32, Nullable(Of RectangleF), IndividualTiledMapRenderer.DrawDelegate)
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations(Microsoft.Xna.Framework.GameTime)
+  id: UpdateAnimations(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  langs:
+  - csharp
+  - vb
+  name: UpdateAnimations(GameTime)
+  nameWithType: IndividualTiledMapRenderer.UpdateAnimations(GameTime)
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpdateAnimations
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 81
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  syntax:
+    content: public void UpdateAnimations(GameTime time)
+    parameters:
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Public Sub UpdateAnimations(time As GameTime)
+  overload: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: MLEM.Extended.Tiled
+  commentId: N:MLEM.Extended.Tiled
+  name: MLEM.Extended.Tiled
+  nameWithType: MLEM.Extended.Tiled
+  fullName: MLEM.Extended.Tiled
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.#ctor*
+  commentId: Overload:MLEM.Extended.Tiled.IndividualTiledMapRenderer.#ctor
+  name: IndividualTiledMapRenderer
+  nameWithType: IndividualTiledMapRenderer.IndividualTiledMapRenderer
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.IndividualTiledMapRenderer
+- uid: MonoGame.Extended.Tiled.TiledMap
+  commentId: T:MonoGame.Extended.Tiled.TiledMap
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMap
+  nameWithType: TiledMap
+  fullName: MonoGame.Extended.Tiled.TiledMap
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth
+  parent: MLEM.Extended.Tiled
+  name: IndividualTiledMapRenderer.GetDepth
+  nameWithType: IndividualTiledMapRenderer.GetDepth
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.GetDepth
+- uid: MonoGame.Extended.Tiled
+  commentId: N:MonoGame.Extended.Tiled
+  isExternal: true
+  name: MonoGame.Extended.Tiled
+  nameWithType: MonoGame.Extended.Tiled
+  fullName: MonoGame.Extended.Tiled
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap*
+  commentId: Overload:MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap
+  name: SetMap
+  nameWithType: IndividualTiledMapRenderer.SetMap
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.SetMap
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo*
+  commentId: Overload:MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo
+  name: UpdateDrawInfo
+  nameWithType: IndividualTiledMapRenderer.UpdateDrawInfo
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateDrawInfo
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw*
+  commentId: Overload:MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw
+  name: Draw
+  nameWithType: IndividualTiledMapRenderer.Draw
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.Draw
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: System.Nullable{MonoGame.Extended.RectangleF}
+  commentId: T:System.Nullable{MonoGame.Extended.RectangleF}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<RectangleF>
+  nameWithType: Nullable<RectangleF>
+  fullName: System.Nullable<MonoGame.Extended.RectangleF>
+  nameWithType.vb: Nullable(Of RectangleF)
+  fullName.vb: System.Nullable(Of MonoGame.Extended.RectangleF)
+  name.vb: Nullable(Of RectangleF)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MonoGame.Extended.RectangleF
+    name: RectangleF
+    nameWithType: RectangleF
+    fullName: MonoGame.Extended.RectangleF
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MonoGame.Extended.RectangleF
+    name: RectangleF
+    nameWithType: RectangleF
+    fullName: MonoGame.Extended.RectangleF
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  parent: MLEM.Extended.Tiled
+  name: IndividualTiledMapRenderer.DrawDelegate
+  nameWithType: IndividualTiledMapRenderer.DrawDelegate
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer*
+  commentId: Overload:MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer
+  name: DrawLayer
+  nameWithType: IndividualTiledMapRenderer.DrawLayer
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawLayer
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations*
+  commentId: Overload:MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations
+  name: UpdateAnimations
+  nameWithType: IndividualTiledMapRenderer.UpdateAnimations
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.UpdateAnimations
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework

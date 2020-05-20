@@ -1,0 +1,79 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.Element.TextInputCallback
+  commentId: T:MLEM.Ui.Elements.Element.TextInputCallback
+  id: Element.TextInputCallback
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Element.TextInputCallback
+  nameWithType: Element.TextInputCallback
+  fullName: MLEM.Ui.Elements.Element.TextInputCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/Element.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextInputCallback
+    path: ../MLEM.Ui/Elements/Element.cs
+    startLine: 526
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  syntax:
+    content: public delegate void TextInputCallback(Element element, Keys key, char character);
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+    - id: key
+      type: Microsoft.Xna.Framework.Input.Keys
+    - id: character
+      type: System.Char
+    content.vb: Public Delegate Sub TextInputCallback(element As Element, key As Keys, character As Char)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: Microsoft.Xna.Framework.Input.Keys
+  commentId: T:Microsoft.Xna.Framework.Input.Keys
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Keys
+  nameWithType: Keys
+  fullName: Microsoft.Xna.Framework.Input.Keys
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System

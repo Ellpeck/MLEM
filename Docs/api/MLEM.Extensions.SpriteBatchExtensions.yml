@@ -1,0 +1,830 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extensions.SpriteBatchExtensions
+  commentId: T:MLEM.Extensions.SpriteBatchExtensions
+  id: SpriteBatchExtensions
+  parent: MLEM.Extensions
+  children:
+  - MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color)
+  - MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color)
+  - MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Extensions.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+  - MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  langs:
+  - csharp
+  - vb
+  name: SpriteBatchExtensions
+  nameWithType: SpriteBatchExtensions
+  fullName: MLEM.Extensions.SpriteBatchExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM/Extensions/SpriteBatchExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: SpriteBatchExtensions
+    path: ../MLEM/Extensions/SpriteBatchExtensions.cs
+    startLine: 6
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  syntax:
+    content: public static class SpriteBatchExtensions
+    content.vb: Public Module SpriteBatchExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  commentId: M:MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  id: GetBlankTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.SpriteBatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetBlankTexture(SpriteBatch)
+  nameWithType: SpriteBatchExtensions.GetBlankTexture(SpriteBatch)
+  fullName: MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/SpriteBatchExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetBlankTexture
+    path: ../MLEM/Extensions/SpriteBatchExtensions.cs
+    startLine: 16
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: "\nReturns a 1x1 pixel white texture that can be used for drawing solid color shapes.\nThis texture is automatically disposed of when the batch is disposed.\n"
+  example: []
+  syntax:
+    content: public static Texture2D GetBlankTexture(this SpriteBatch batch)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch
+    return:
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: A 1x1 pixel white texture
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetBlankTexture(batch As SpriteBatch) As Texture2D
+  overload: MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: MLEM.Extensions.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+  commentId: M:MLEM.Extensions.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+  id: GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+  isExtensionMethod: true
+  parent: MLEM.Extensions.SpriteBatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: GenerateTexture(SpriteBatch, Color, Nullable<Color>)
+  nameWithType: SpriteBatchExtensions.GenerateTexture(SpriteBatch, Color, Nullable<Color>)
+  fullName: MLEM.Extensions.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Color, System.Nullable<Microsoft.Xna.Framework.Color>)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/SpriteBatchExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: GenerateTexture
+    path: ../MLEM/Extensions/SpriteBatchExtensions.cs
+    startLine: 37
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: "\nGenerates a <xref href=\"MLEM.Textures.NinePatch\" data-throw-if-not-resolved=\"false\"></xref> that has a texture with a given color and outline color\n"
+  example: []
+  syntax:
+    content: public static NinePatch GenerateTexture(this SpriteBatch batch, Color color, Color? outlineColor = default(Color? ))
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The fill color of the texture
+    - id: outlineColor
+      type: System.Nullable{Microsoft.Xna.Framework.Color}
+      description: The outline color of the texture
+    return:
+      type: MLEM.Textures.NinePatch
+      description: A <xref href="MLEM.Textures.NinePatch" data-throw-if-not-resolved="false"></xref> containing a 3x3 texture with an outline
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GenerateTexture(batch As SpriteBatch, color As Color, outlineColor As Color? = Nothing) As NinePatch
+  overload: MLEM.Extensions.SpriteBatchExtensions.GenerateTexture*
+  nameWithType.vb: SpriteBatchExtensions.GenerateTexture(SpriteBatch, Color, Nullable(Of Color))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: MLEM.Extensions.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Color, System.Nullable(Of Microsoft.Xna.Framework.Color))
+  name.vb: GenerateTexture(SpriteBatch, Color, Nullable(Of Color))
+- uid: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.SpriteBatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, Texture2D, RectangleF, Nullable<Rectangle>, Color, Single, Vector2, SpriteEffects, Single)
+  nameWithType: SpriteBatchExtensions.Draw(SpriteBatch, Texture2D, RectangleF, Nullable<Rectangle>, Color, Single, Vector2, SpriteEffects, Single)
+  fullName: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Graphics.Texture2D, MLEM.Misc.RectangleF, System.Nullable<Microsoft.Xna.Framework.Rectangle>, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/SpriteBatchExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Extensions/SpriteBatchExtensions.cs
+    startLine: 55
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+    - id: destinationRectangle
+      type: MLEM.Misc.RectangleF
+    - id: sourceRectangle
+      type: System.Nullable{Microsoft.Xna.Framework.Rectangle}
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: rotation
+      type: System.Single
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    - id: layerDepth
+      type: System.Single
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Draw(batch As SpriteBatch, texture As Texture2D, destinationRectangle As RectangleF, sourceRectangle As Rectangle?, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single)
+  overload: MLEM.Extensions.SpriteBatchExtensions.Draw*
+  nameWithType.vb: SpriteBatchExtensions.Draw(SpriteBatch, Texture2D, RectangleF, Nullable(Of Rectangle), Color, Single, Vector2, SpriteEffects, Single)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Graphics.Texture2D, MLEM.Misc.RectangleF, System.Nullable(Of Microsoft.Xna.Framework.Rectangle), Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  name.vb: Draw(SpriteBatch, Texture2D, RectangleF, Nullable(Of Rectangle), Color, Single, Vector2, SpriteEffects, Single)
+- uid: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.SpriteBatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, Texture2D, RectangleF, Nullable<Rectangle>, Color)
+  nameWithType: SpriteBatchExtensions.Draw(SpriteBatch, Texture2D, RectangleF, Nullable<Rectangle>, Color)
+  fullName: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Graphics.Texture2D, MLEM.Misc.RectangleF, System.Nullable<Microsoft.Xna.Framework.Rectangle>, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/SpriteBatchExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Extensions/SpriteBatchExtensions.cs
+    startLine: 62
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+    - id: destinationRectangle
+      type: MLEM.Misc.RectangleF
+    - id: sourceRectangle
+      type: System.Nullable{Microsoft.Xna.Framework.Rectangle}
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Draw(batch As SpriteBatch, texture As Texture2D, destinationRectangle As RectangleF, sourceRectangle As Rectangle?, color As Color)
+  overload: MLEM.Extensions.SpriteBatchExtensions.Draw*
+  nameWithType.vb: SpriteBatchExtensions.Draw(SpriteBatch, Texture2D, RectangleF, Nullable(Of Rectangle), Color)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Graphics.Texture2D, MLEM.Misc.RectangleF, System.Nullable(Of Microsoft.Xna.Framework.Rectangle), Microsoft.Xna.Framework.Color)
+  name.vb: Draw(SpriteBatch, Texture2D, RectangleF, Nullable(Of Rectangle), Color)
+- uid: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.SpriteBatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, Texture2D, RectangleF, Color)
+  nameWithType: SpriteBatchExtensions.Draw(SpriteBatch, Texture2D, RectangleF, Color)
+  fullName: MLEM.Extensions.SpriteBatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Graphics.Texture2D, MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/SpriteBatchExtensions.cs
+      branch: master
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Extensions/SpriteBatchExtensions.cs
+    startLine: 67
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+    - id: destinationRectangle
+      type: MLEM.Misc.RectangleF
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Draw(batch As SpriteBatch, texture As Texture2D, destinationRectangle As RectangleF, color As Color)
+  overload: MLEM.Extensions.SpriteBatchExtensions.Draw*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: MLEM.Extensions
+  commentId: N:MLEM.Extensions
+  name: MLEM.Extensions
+  nameWithType: MLEM.Extensions
+  fullName: MLEM.Extensions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture*
+  commentId: Overload:MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture
+  name: GetBlankTexture
+  nameWithType: SpriteBatchExtensions.GetBlankTexture
+  fullName: MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Microsoft.Xna.Framework.Graphics.Texture2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.Texture2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Microsoft.Xna.Framework.Graphics.Texture2D
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  parent: MLEM.Textures
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
+- uid: MLEM.Extensions.SpriteBatchExtensions.GenerateTexture*
+  commentId: Overload:MLEM.Extensions.SpriteBatchExtensions.GenerateTexture
+  name: GenerateTexture
+  nameWithType: SpriteBatchExtensions.GenerateTexture
+  fullName: MLEM.Extensions.SpriteBatchExtensions.GenerateTexture
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: System.Nullable{Microsoft.Xna.Framework.Color}
+  commentId: T:System.Nullable{Microsoft.Xna.Framework.Color}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Color>
+  nameWithType: Nullable<Color>
+  fullName: System.Nullable<Microsoft.Xna.Framework.Color>
+  nameWithType.vb: Nullable(Of Color)
+  fullName.vb: System.Nullable(Of Microsoft.Xna.Framework.Color)
+  name.vb: Nullable(Of Color)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExternal: true
+- uid: MLEM.Extensions.SpriteBatchExtensions.Draw*
+  commentId: Overload:MLEM.Extensions.SpriteBatchExtensions.Draw
+  name: Draw
+  nameWithType: SpriteBatchExtensions.Draw
+  fullName: MLEM.Extensions.SpriteBatchExtensions.Draw
+- uid: MLEM.Misc.RectangleF
+  commentId: T:MLEM.Misc.RectangleF
+  parent: MLEM.Misc
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Misc.RectangleF
+- uid: System.Nullable{Microsoft.Xna.Framework.Rectangle}
+  commentId: T:System.Nullable{Microsoft.Xna.Framework.Rectangle}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Rectangle>
+  nameWithType: Nullable<Rectangle>
+  fullName: System.Nullable<Microsoft.Xna.Framework.Rectangle>
+  nameWithType.vb: Nullable(Of Rectangle)
+  fullName.vb: System.Nullable(Of Microsoft.Xna.Framework.Rectangle)
+  name.vb: Nullable(Of Rectangle)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    nameWithType: Rectangle
+    fullName: Microsoft.Xna.Framework.Rectangle
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    nameWithType: Rectangle
+    fullName: Microsoft.Xna.Framework.Rectangle
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteEffects
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteEffects
+  nameWithType: SpriteEffects
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color)
+  commentId: M:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color)
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  commentId: M:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  isExternal: true
