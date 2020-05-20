@@ -46,7 +46,7 @@ namespace MLEM.Ui {
                 this.style = value;
                 foreach (var root in this.rootElements) {
                     root.Element.AndChildren(e => e.System = this);
-                    root.Element.SetAreaDirty();
+                    root.Element.ForceUpdateArea();
                 }
             }
         }
