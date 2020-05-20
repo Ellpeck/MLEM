@@ -22,7 +22,7 @@ done'''
         sh '''for i in **/*.nupkg; do
     dotnet nuget push -s http://localhost:5000/v3/index.json $i -k $BAGET -n true
 done'''
-        sh '''docfx.exe "Docs/docfx.json"
+        sh '''/opt/docfx/docfx.exe "Docs/docfx.json"
 cp Docs/_site /var/www/MLEM/Docs/_site'''
       }
     }
@@ -39,7 +39,7 @@ done'''
         sh '''for i in **/*.nupkg; do
     dotnet nuget push -s https://api.nuget.org/v3/index.json $i -k $NUGET -n true
 done'''
-        sh '''docfx.exe "Docs/docfx.json"
+        sh '''/opt/docfx/docfx.exe "Docs/docfx.json"
 cp Docs/_site /var/www/MLEM/Docs/_site'''
       }
     }
