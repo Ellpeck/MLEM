@@ -5,18 +5,45 @@ using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Cameras {
+    /// <summary>
+    /// Represents a simple, orthographic 2-dimensional camera that can be moved, scaled and that supports automatic viewport sizing.
+    /// To draw with the camera's positioning and scaling applied, use <see cref="ViewMatrix"/>.
+    /// </summary>
     public class Camera {
 
+        /// <summary>
+        /// The top-left corner of the camera's viewport.
+        /// <seealso cref="LookingPosition"/>
+        /// </summary>
         public Vector2 Position;
+        /// <summary>
+        /// The scale that this camera's <see cref="ViewMatrix"/> should have.
+        /// </summary>
         public float Scale {
             get => this.scale;
             set => this.scale = MathHelper.Clamp(value, this.MinScale, this.MaxScale);
         }
         private float scale = 1;
+        /// <summary>
+        /// The minimum <see cref="Scale"/> that the camera can have
+        /// </summary>
         public float MinScale = 0;
+        /// <summary>
+        /// The maximum <see cref="Scale"/> that the camera can have
+        /// </summary>
         public float MaxScale = float.MaxValue;
+        /// <summary>
+        /// If this is true, the camera will automatically adapt to changed screen sizes.
+        /// You can use <see cref="AutoScaleReferenceSize"/> to determine the initial screen size that this camera should base its calculations on.
+        /// </summary>
         public bool AutoScaleWithScreen;
+        /// <summary>
+        /// <seealso cref="AutoScaleWithScreen"/>
+        /// </summary>
         public Point AutoScaleReferenceSize;
+        /// <summary>
+        /// The scale that this camera currently has, based on <see cref="Scale"/> and <see cref="AutoScaleReferenceSize"/> if <see cref="AutoScaleWithScreen"/> is true.
+        /// </summary>
         public float ActualScale {
             get {
                 if (!this.AutoScaleWithScreen)
@@ -24,6 +51,10 @@ namespace MLEM.Cameras {
                 return Math.Min(this.Viewport.Width / (float) this.AutoScaleReferenceSize.X, this.Viewport.Height / (float) this.AutoScaleReferenceSize.Y) * this.Scale;
             }
         }
+        /// <summary>
+        /// The matrix that this camera "sees", based on its position and scale.
+        /// Use this in your <see cref="SpriteBatch.Begin"/> calls to render based on the camera's viewport.
+        /// </summary>
         public Matrix ViewMatrix {
             get {
                 var sc = this.ActualScale;
@@ -33,39 +64,73 @@ namespace MLEM.Cameras {
                 return Matrix.CreateScale(sc, sc, 1) * Matrix.CreateTranslation(new Vector3(pos, 0));
             }
         }
+        /// <summary>
+        /// The bottom-right corner of the camera's viewport
+        /// <seealso cref="LookingPosition"/>
+        /// </summary>
         public Vector2 Max {
             get => this.Position + this.ScaledViewport;
             set => this.Position = value - this.ScaledViewport;
         }
+        /// <summary>
+        /// The center of the camera's viewport, or the position that the camera is looking at.
+        /// </summary>
         public Vector2 LookingPosition {
             get => this.Position + this.ScaledViewport / 2;
             set => this.Position = value - this.ScaledViewport / 2;
         }
-        public Rectangle Viewport => this.graphicsDevice.Viewport.Bounds;
-        public Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.ActualScale;
+        private Rectangle Viewport => this.graphicsDevice.Viewport.Bounds;
+        private Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.ActualScale;
 
         private readonly bool roundPosition;
         private readonly GraphicsDevice graphicsDevice;
 
+        /// <summary>
+        /// Creates a new camera.
+        /// </summary>
+        /// <param name="graphicsDevice">The game's graphics device</param>
+        /// <param name="roundPosition">If this is true, the camera's <see cref="Position"/> and related properties will be rounded to full integers.</param>
         public Camera(GraphicsDevice graphicsDevice, bool roundPosition = true) {
             this.graphicsDevice = graphicsDevice;
             this.AutoScaleReferenceSize = this.Viewport.Size;
             this.roundPosition = roundPosition;
         }
 
+        /// <summary>
+        /// Converts a given position in screen space to world space
+        /// </summary>
+        /// <param name="pos">The position in screen space</param>
+        /// <returns>The position in world space</returns>
         public Vector2 ToWorldPos(Vector2 pos) {
             return Vector2.Transform(pos, Matrix.Invert(this.ViewMatrix));
         }
 
+        /// <summary>
+        /// Converts a given position in world space to screen space
+        /// </summary>
+        /// <param name="pos">The position in world space</param>
+        /// <returns>The position in camera space</returns>
         public Vector2 ToCameraPos(Vector2 pos) {
             return Vector2.Transform(pos, this.ViewMatrix);
         }
 
+        /// <summary>
+        /// Returns the area that this camera can see, in world space.
+        /// This can be useful for culling of tile and other entity renderers.
+        /// </summary>
+        /// <returns>A rectangle that represents the camera's visible area in world space</returns>
         public RectangleF GetVisibleRectangle() {
             var start = this.ToWorldPos(Vector2.Zero);
             return new RectangleF(start, this.ToWorldPos(new Vector2(this.Viewport.Width, this.Viewport.Height)) - start);
         }
 
+        /// <summary>
+        /// Forces the camera's bounds into the given min and max positions in world space.
+        /// If the space represented by the given values is smaller than what the camera can see, its position will be forced into the center of the area.
+        /// </summary>
+        /// <param name="min">The top left bound, in world space</param>
+        /// <param name="max">The bottom right bound, in world space</param>
+        /// <returns>Whether or not the camera's position changed as a result of the constraint</returns>
         public bool ConstrainWorldBounds(Vector2 min, Vector2 max) {
             var lastPos = this.Position;
             var visible = this.GetVisibleRectangle();
@@ -89,6 +154,11 @@ namespace MLEM.Cameras {
             return !this.Position.Equals(lastPos, 0.001F);
         }
 
+        /// <summary>
+        /// Zoom in the camera's view by a given amount, optionally focusing on a given center point.
+        /// </summary>
+        /// <param name="delta">The amount to zoom in or out by</param>
+        /// <param name="zoomCenter">The position that should be regarded as the zoom's center, in screen space. The default value is the center.</param>
         public void Zoom(float delta, Vector2? zoomCenter = null) {
             var center = (zoomCenter ?? this.Viewport.Size.ToVector2() / 2) / this.ActualScale;
             var lastScale = this.Scale;

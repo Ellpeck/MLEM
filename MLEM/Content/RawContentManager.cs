@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MLEM.Content {
+    /// <summary>
+    /// Represents a version of <see cref="ContentManager"/> that doesn't load content binary <c>xnb</c> files, but rather as their regular formats. 
+    /// </summary>
     public class RawContentManager : ContentManager, IGameComponent {
 
         private static readonly RawContentReader[] Readers = AppDomain.CurrentDomain.GetAssemblies()
@@ -18,14 +21,29 @@ namespace MLEM.Content {
 
         private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
 
+        /// <summary>
+        /// The graphics device that this content manager uses
+        /// </summary>
         public readonly GraphicsDevice GraphicsDevice;
 
+        /// <summary>
+        /// Creates a new content manager with an optionally specified root directory.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider of your game</param>
+        /// <param name="rootDirectory">The root directory. Defaults to "Content"</param>
         public RawContentManager(IServiceProvider serviceProvider, string rootDirectory = "Content") :
             base(serviceProvider, rootDirectory) {
             if (serviceProvider.GetService(typeof(IGraphicsDeviceService)) is IGraphicsDeviceService s)
                 this.GraphicsDevice = s.GraphicsDevice;
         }
 
+        /// <summary>
+        /// Loads a raw asset with the given name, based on the <see cref="ContentManager.RootDirectory"/>.
+        /// If the asset was previously loaded using this method, the cached asset is merely returned.
+        /// </summary>
+        /// <param name="assetName">The path and name of the asset to load, without extension.</param>
+        /// <typeparam name="T">The type of asset to load</typeparam>
+        /// <returns>The asset, either loaded from the cache, or from disk.</returns>
         public override T Load<T>(string assetName) {
             if (this.LoadedAssets.TryGetValue(assetName, out var ret) && ret is T t)
                 return t;
