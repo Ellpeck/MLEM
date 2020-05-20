@@ -42,7 +42,6 @@ done'''
 done'''
         sh '''docfx.exe "Docs/docfx.json"
 cp Docs/_site /var/www/MLEM/Docs/_site'''
-      }
     }
 
   }
