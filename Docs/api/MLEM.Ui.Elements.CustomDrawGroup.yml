@@ -33,6 +33,7 @@ items:
     content: 'public class CustomDrawGroup : Group'
     content.vb: >-
       Public Class CustomDrawGroup
+
           Inherits Group
   inheritance:
   - System.Object

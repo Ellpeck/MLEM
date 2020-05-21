@@ -53,7 +53,11 @@ Task("Push").IsDependentOn("Pack").Does(() => {
     NuGetPush(GetFiles("**/*.nupkg"), settings);
 });
 
-Task("Document").Does(() => DocFxBuild("Docs/docfx.json"));
+Task("Document").Does(() => {
+    var path = "Docs/docfx.json";
+    DocFxMetadata(path);
+    DocFxBuild(path);
+});
 
 Task("Default").IsDependentOn("Pack");
 

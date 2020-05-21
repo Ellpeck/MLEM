@@ -23,10 +23,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GraphicsExtensions
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nA set of extensions for dealing with <xref href=\"Microsoft.Xna.Framework.Graphics.GraphicsDevice\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Microsoft.Xna.Framework.GraphicsDeviceManager\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class GraphicsExtensions
     content.vb: Public Module GraphicsExtensions
@@ -66,7 +68,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: SetFullscreen
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 17
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -115,7 +117,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ApplyChangesSafely
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 41
+    startLine: 44
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -157,7 +159,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ResetWidthAndHeight
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 56
+    startLine: 59
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -202,7 +204,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WithRenderTarget
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 70
+    startLine: 73
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -232,6 +234,20 @@ items:
   - Public
   - Shared
 references:
+- uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  commentId: T:Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: GraphicsDevice
+  nameWithType: GraphicsDevice
+  fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+- uid: Microsoft.Xna.Framework.GraphicsDeviceManager
+  commentId: T:Microsoft.Xna.Framework.GraphicsDeviceManager
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GraphicsDeviceManager
+  nameWithType: GraphicsDeviceManager
+  fullName: Microsoft.Xna.Framework.GraphicsDeviceManager
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -523,6 +539,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
 - uid: System
   commentId: N:System
   isExternal: true
@@ -537,13 +565,6 @@ references:
   name: SetFullscreen
   nameWithType: GraphicsExtensions.SetFullscreen
   fullName: MLEM.Extensions.GraphicsExtensions.SetFullscreen
-- uid: Microsoft.Xna.Framework.GraphicsDeviceManager
-  commentId: T:Microsoft.Xna.Framework.GraphicsDeviceManager
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: GraphicsDeviceManager
-  nameWithType: GraphicsDeviceManager
-  fullName: Microsoft.Xna.Framework.GraphicsDeviceManager
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -551,12 +572,6 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: Microsoft.Xna.Framework
-  commentId: N:Microsoft.Xna.Framework
-  isExternal: true
-  name: Microsoft.Xna.Framework
-  nameWithType: Microsoft.Xna.Framework
-  fullName: Microsoft.Xna.Framework
 - uid: Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges
   commentId: M:Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges
   isExternal: true
@@ -588,13 +603,6 @@ references:
   name: WithRenderTarget
   nameWithType: GraphicsExtensions.WithRenderTarget
   fullName: MLEM.Extensions.GraphicsExtensions.WithRenderTarget
-- uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
-  commentId: T:Microsoft.Xna.Framework.Graphics.GraphicsDevice
-  parent: Microsoft.Xna.Framework.Graphics
-  isExternal: true
-  name: GraphicsDevice
-  nameWithType: GraphicsDevice
-  fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
 - uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
   commentId: T:Microsoft.Xna.Framework.Graphics.RenderTarget2D
   parent: Microsoft.Xna.Framework.Graphics
@@ -602,9 +610,3 @@ references:
   name: RenderTarget2D
   nameWithType: RenderTarget2D
   fullName: Microsoft.Xna.Framework.Graphics.RenderTarget2D
-- uid: Microsoft.Xna.Framework.Graphics
-  commentId: N:Microsoft.Xna.Framework.Graphics
-  isExternal: true
-  name: Microsoft.Xna.Framework.Graphics
-  nameWithType: Microsoft.Xna.Framework.Graphics
-  fullName: Microsoft.Xna.Framework.Graphics

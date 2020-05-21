@@ -21,14 +21,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TargetContext
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 74
+    startLine: 81
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nRepresents a context in which a <xref href=\"Microsoft.Xna.Framework.Graphics.RenderTarget2D\" data-throw-if-not-resolved=\"false\"></xref> is applied.\nThis class should be used with <xref href=\"MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice%2cMicrosoft.Xna.Framework.Graphics.RenderTarget2D)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: 'public struct TargetContext : IDisposable'
     content.vb: >-
       Public Structure TargetContext
+
           Implements IDisposable
   implements:
   - System.IDisposable
@@ -63,17 +66,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 79
+    startLine: 91
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nCreates a new target context with the given settings.\n"
+  example: []
   syntax:
     content: public TargetContext(GraphicsDevice device, RenderTarget2D target)
     parameters:
     - id: device
       type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+      description: The graphics device to apply the target on
     - id: target
       type: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+      description: The target to apply
     content.vb: Public Sub New(device As GraphicsDevice, target As RenderTarget2D)
   overload: MLEM.Extensions.GraphicsExtensions.TargetContext.#ctor*
   modifiers.csharp:
@@ -98,10 +105,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Dispose
     path: ../MLEM/Extensions/GraphicsExtensions.cs
-    startLine: 85
+    startLine: 100
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nDisposes this target context, which causes the graphics device&apos;s previous render targets to be re-applied.\n"
+  example: []
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -113,6 +122,16 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.RenderTarget2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: RenderTarget2D
+  nameWithType: RenderTarget2D
+  fullName: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+- uid: MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  commentId: M:MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  isExternal: true
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -373,6 +392,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
 - uid: System
   commentId: N:System
   isExternal: true
@@ -405,19 +430,6 @@ references:
   name: GraphicsDevice
   nameWithType: GraphicsDevice
   fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
-- uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
-  commentId: T:Microsoft.Xna.Framework.Graphics.RenderTarget2D
-  parent: Microsoft.Xna.Framework.Graphics
-  isExternal: true
-  name: RenderTarget2D
-  nameWithType: RenderTarget2D
-  fullName: Microsoft.Xna.Framework.Graphics.RenderTarget2D
-- uid: Microsoft.Xna.Framework.Graphics
-  commentId: N:Microsoft.Xna.Framework.Graphics
-  isExternal: true
-  name: Microsoft.Xna.Framework.Graphics
-  nameWithType: Microsoft.Xna.Framework.Graphics
-  fullName: Microsoft.Xna.Framework.Graphics
 - uid: MLEM.Extensions.GraphicsExtensions.TargetContext.Dispose*
   commentId: Overload:MLEM.Extensions.GraphicsExtensions.TargetContext.Dispose
   name: Dispose

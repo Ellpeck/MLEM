@@ -21,14 +21,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AnimatedCode
     path: ../MLEM/Formatting/Codes/AnimatedCode.cs
-    startLine: 3
+    startLine: 4
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class AnimatedCode : Code'
     content.vb: >-
       Public Class AnimatedCode
+
           Inherits Code
   inheritance:
   - System.Object
@@ -80,10 +82,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/AnimatedCode.cs
-    startLine: 5
+    startLine: 7
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public AnimatedCode(Match match, Regex regex)
     parameters:
@@ -115,10 +118,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: EndsHere
     path: ../MLEM/Formatting/Codes/AnimatedCode.cs
-    startLine: 8
+    startLine: 11
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool EndsHere(Code other)
     parameters:

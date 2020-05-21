@@ -21,10 +21,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ImageCodeExtensions
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 46
+    startLine: 55
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nA set of extensions that allow easily adding image formatting codes to a text formatter.\n"
+  example: []
   syntax:
     content: public static class ImageCodeExtensions
     content.vb: Public Module ImageCodeExtensions
@@ -64,19 +66,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddImage
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 48
+    startLine: 63
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nAdds a new image formatting code to the given text formatter\n"
+  example: []
   syntax:
     content: public static void AddImage(this TextFormatter formatter, string name, TextureRegion image)
     parameters:
     - id: formatter
       type: MLEM.Formatting.TextFormatter
+      description: The formatter to add the code to
     - id: name
       type: System.String
+      description: The name of the formatting code. The regex for this code will be between angle brackets.
     - id: image
       type: MLEM.Textures.TextureRegion
+      description: The image to render at the code&apos;s position
     content.vb: >-
       <ExtensionAttribute>
 
@@ -107,10 +114,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddImage
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 52
+    startLine: 68
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public static void AddImage(this TextFormatter formatter, string name, SpriteAnimation image)
     parameters:
@@ -463,6 +471,72 @@ references:
   name: MLEM.Textures
   nameWithType: MLEM.Textures
   fullName: MLEM.Textures
+- uid: MLEM.Formatting.Codes.ImageCodeExtensions.AddImage(MLEM.Formatting.TextFormatter,System.String,MLEM.Textures.TextureRegion)
+  commentId: M:MLEM.Formatting.Codes.ImageCodeExtensions.AddImage(MLEM.Formatting.TextFormatter,System.String,MLEM.Textures.TextureRegion)
+  isExternal: true
+  name: AddImage(TextFormatter, String, TextureRegion)
+  nameWithType: ImageCodeExtensions.AddImage(TextFormatter, String, TextureRegion)
+  fullName: MLEM.Formatting.Codes.ImageCodeExtensions.AddImage(MLEM.Formatting.TextFormatter, System.String, MLEM.Textures.TextureRegion)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.ImageCodeExtensions.AddImage(MLEM.Formatting.TextFormatter,System.String,MLEM.Textures.TextureRegion)
+    name: AddImage
+    nameWithType: ImageCodeExtensions.AddImage
+    fullName: MLEM.Formatting.Codes.ImageCodeExtensions.AddImage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Formatting.TextFormatter
+    name: TextFormatter
+    nameWithType: TextFormatter
+    fullName: MLEM.Formatting.TextFormatter
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    nameWithType: TextureRegion
+    fullName: MLEM.Textures.TextureRegion
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.ImageCodeExtensions.AddImage(MLEM.Formatting.TextFormatter,System.String,MLEM.Textures.TextureRegion)
+    name: AddImage
+    nameWithType: ImageCodeExtensions.AddImage
+    fullName: MLEM.Formatting.Codes.ImageCodeExtensions.AddImage
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Formatting.TextFormatter
+    name: TextFormatter
+    nameWithType: TextFormatter
+    fullName: MLEM.Formatting.TextFormatter
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    nameWithType: TextureRegion
+    fullName: MLEM.Textures.TextureRegion
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Animations.SpriteAnimation
   commentId: T:MLEM.Animations.SpriteAnimation
   parent: MLEM.Animations

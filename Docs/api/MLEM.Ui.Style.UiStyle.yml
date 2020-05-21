@@ -60,6 +60,7 @@ items:
     content: 'public class UiStyle : GenericDataHolder'
     content.vb: >-
       Public Class UiStyle
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object

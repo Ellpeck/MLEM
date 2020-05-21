@@ -24,14 +24,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ImageCode
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class ImageCode : Code'
     content.vb: >-
       Public Class ImageCode
+
           Inherits Code
   inheritance:
   - System.Object
@@ -78,10 +80,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 17
+    startLine: 19
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public ImageCode(Match match, Regex regex, SpriteAnimation image)
     parameters:
@@ -115,10 +118,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: EndsHere
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 21
+    startLine: 24
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool EndsHere(Code other)
     parameters:
@@ -153,10 +157,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetReplacementString
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 25
+    startLine: 29
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override string GetReplacementString(GenericFont font)
     parameters:
@@ -191,10 +196,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 35
+    startLine: 40
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override void Update(GameTime time)
     parameters:
@@ -227,10 +233,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawSelf
     path: ../MLEM/Formatting/Codes/ImageCode.cs
-    startLine: 39
+    startLine: 45
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth)
     parameters:

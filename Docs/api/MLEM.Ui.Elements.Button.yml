@@ -39,6 +39,7 @@ items:
     content: 'public class Button : Element'
     content.vb: >-
       Public Class Button
+
           Inherits Element
   inheritance:
   - System.Object

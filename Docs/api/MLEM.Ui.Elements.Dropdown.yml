@@ -34,6 +34,7 @@ items:
     content: 'public class Dropdown : Button'
     content.vb: >-
       Public Class Dropdown
+
           Inherits Button
   inheritance:
   - System.Object

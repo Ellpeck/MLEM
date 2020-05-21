@@ -22,14 +22,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TextFormatter
     path: ../MLEM/Formatting/TextFormatter.cs
-    startLine: 12
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nA text formatter is used for drawing text using <xref href=\"MLEM.Font.GenericFont\" data-throw-if-not-resolved=\"false\"></xref> that contains different colors, bold/italic sections and animations.\nTo format a string of text, use the codes as specified in the constructor. To tokenize and render a formatted string, use <xref href=\"MLEM.Formatting.TextFormatter.Tokenize(MLEM.Font.GenericFont%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: 'public class TextFormatter : GenericDataHolder'
     content.vb: >-
       Public Class TextFormatter
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -72,10 +75,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Codes
     path: ../MLEM/Formatting/TextFormatter.cs
-    startLine: 14
+    startLine: 22
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe formatting codes that this text formatter uses.\nThe <xref href=\"System.Text.RegularExpressions.Regex\" data-throw-if-not-resolved=\"false\"></xref> defines how the formatting code should be matched.\n"
+  example: []
   syntax:
     content: public readonly Dictionary<Regex, Code.Constructor> Codes
     return:
@@ -105,10 +110,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/TextFormatter.cs
-    startLine: 16
+    startLine: 27
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nCreates a new text formatter with a set of default formatting codes.\n"
+  example: []
   syntax:
     content: public TextFormatter()
     content.vb: Public Sub New
@@ -135,19 +142,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Tokenize
     path: ../MLEM/Formatting/TextFormatter.cs
-    startLine: 39
+    startLine: 56
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nTokenizes a string, returning a tokenized string that is ready for splitting, measuring and drawing.\n"
+  example: []
   syntax:
     content: public TokenizedString Tokenize(GenericFont font, string s)
     parameters:
     - id: font
       type: MLEM.Font.GenericFont
+      description: The font to use for tokenization. Note that this font needs to be the same that will later be used for splitting, measuring and/or drawing.
     - id: s
       type: System.String
+      description: The string to tokenize
     return:
       type: MLEM.Formatting.TokenizedString
+      description: ''
     content.vb: Public Function Tokenize(font As GenericFont, s As String) As TokenizedString
   overload: MLEM.Formatting.TextFormatter.Tokenize*
   modifiers.csharp:
@@ -155,6 +167,15 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: MLEM.Formatting.TextFormatter.Tokenize(MLEM.Font.GenericFont,System.String)
+  commentId: M:MLEM.Formatting.TextFormatter.Tokenize(MLEM.Font.GenericFont,System.String)
+  isExternal: true
 - uid: MLEM.Formatting
   commentId: N:MLEM.Formatting
   name: MLEM.Formatting
@@ -683,6 +704,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
 - uid: System
   commentId: N:System
   isExternal: true
@@ -837,6 +863,13 @@ references:
   name: MLEM.Formatting.Codes
   nameWithType: MLEM.Formatting.Codes
   fullName: MLEM.Formatting.Codes
+- uid: System.Text.RegularExpressions.Regex
+  commentId: T:System.Text.RegularExpressions.Regex
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: System.Text.RegularExpressions.Regex
 - uid: System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,MLEM.Formatting.Codes.Code.Constructor}
   commentId: T:System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,MLEM.Formatting.Codes.Code.Constructor}
   parent: System.Collections.Generic
@@ -895,6 +928,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Text.RegularExpressions
+  commentId: N:System.Text.RegularExpressions
+  isExternal: true
+  name: System.Text.RegularExpressions
+  nameWithType: System.Text.RegularExpressions
+  fullName: System.Text.RegularExpressions
 - uid: System.Collections.Generic.Dictionary`2
   commentId: T:System.Collections.Generic.Dictionary`2
   isExternal: true
@@ -962,12 +1001,6 @@ references:
   name: Tokenize
   nameWithType: TextFormatter.Tokenize
   fullName: MLEM.Formatting.TextFormatter.Tokenize
-- uid: MLEM.Font.GenericFont
-  commentId: T:MLEM.Font.GenericFont
-  parent: MLEM.Font
-  name: GenericFont
-  nameWithType: GenericFont
-  fullName: MLEM.Font.GenericFont
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -981,8 +1014,3 @@ references:
   name: TokenizedString
   nameWithType: TokenizedString
   fullName: MLEM.Formatting.TokenizedString
-- uid: MLEM.Font
-  commentId: N:MLEM.Font
-  name: MLEM.Font
-  nameWithType: MLEM.Font
-  fullName: MLEM.Font

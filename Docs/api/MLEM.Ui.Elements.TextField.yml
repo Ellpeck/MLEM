@@ -54,6 +54,7 @@ items:
     content: 'public class TextField : Element'
     content.vb: >-
       Public Class TextField
+
           Inherits Element
   inheritance:
   - System.Object

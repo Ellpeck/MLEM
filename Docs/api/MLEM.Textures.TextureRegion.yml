@@ -31,14 +31,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TextureRegion
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThis class represents a part of a texture.\n"
+  example: []
   syntax:
     content: 'public class TextureRegion : GenericDataHolder'
     content.vb: >-
       Public Class TextureRegion
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -80,10 +83,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Texture
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 8
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe texture that this region is a part of\n"
+  example: []
   syntax:
     content: public readonly Texture2D Texture
     return:
@@ -113,10 +118,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Area
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 9
+    startLine: 18
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe area that is covered by this texture region\n"
+  example: []
   syntax:
     content: public readonly Rectangle Area
     return:
@@ -146,10 +153,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Position
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 10
+    startLine: 22
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe top left corner of this texture region\n"
+  example: []
   syntax:
     content: public Point Position { get; }
     parameters: []
@@ -181,10 +190,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: U
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 11
+    startLine: 26
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe x coordinate of the top left corner of this texture region\n"
+  example: []
   syntax:
     content: public int U { get; }
     parameters: []
@@ -216,10 +227,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: V
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 12
+    startLine: 30
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe y coordinate of the top left corner of this texture region\n"
+  example: []
   syntax:
     content: public int V { get; }
     parameters: []
@@ -251,10 +264,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Size
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 13
+    startLine: 34
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe size of this texture region\n"
+  example: []
   syntax:
     content: public Point Size { get; }
     parameters: []
@@ -286,10 +301,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Width
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 14
+    startLine: 38
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe width of this texture region\n"
+  example: []
   syntax:
     content: public int Width { get; }
     parameters: []
@@ -321,10 +338,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Height
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 15
+    startLine: 42
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe height of this texture region\n"
+  example: []
   syntax:
     content: public int Height { get; }
     parameters: []
@@ -356,17 +375,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 17
+    startLine: 49
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nCreates a new texture region from a texture and a rectangle which defines the region&apos;s area\n"
+  example: []
   syntax:
     content: public TextureRegion(Texture2D texture, Rectangle area)
     parameters:
     - id: texture
       type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use
     - id: area
       type: Microsoft.Xna.Framework.Rectangle
+      description: The area that this texture region should cover
     content.vb: Public Sub New(texture As Texture2D, area As Rectangle)
   overload: MLEM.Textures.TextureRegion.#ctor*
   modifiers.csharp:
@@ -391,15 +414,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 22
+    startLine: 58
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nCreates a new texture region that spans the entire texture\n"
+  example: []
   syntax:
     content: public TextureRegion(Texture2D texture)
     parameters:
     - id: texture
       type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use
     content.vb: Public Sub New(texture As Texture2D)
   overload: MLEM.Textures.TextureRegion.#ctor*
   modifiers.csharp:
@@ -424,23 +450,30 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 25
+    startLine: 69
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nCreates a new texture region based on a texture and area coordinates\n"
+  example: []
   syntax:
     content: public TextureRegion(Texture2D texture, int u, int v, int width, int height)
     parameters:
     - id: texture
       type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use
     - id: u
       type: System.Int32
+      description: The x coordinate of the top left corner of this area
     - id: v
       type: System.Int32
+      description: The y coordinate of the top left corner of this area
     - id: width
       type: System.Int32
+      description: The width of this area
     - id: height
       type: System.Int32
+      description: The height of this area
     content.vb: Public Sub New(texture As Texture2D, u As Integer, v As Integer, width As Integer, height As Integer)
   overload: MLEM.Textures.TextureRegion.#ctor*
   modifiers.csharp:
@@ -465,19 +498,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 28
+    startLine: 78
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nCreates a new texture region based on a texture, a position and a size\n"
+  example: []
   syntax:
     content: public TextureRegion(Texture2D texture, Point uv, Point size)
     parameters:
     - id: texture
       type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use
     - id: uv
       type: Microsoft.Xna.Framework.Point
+      description: The top left corner of this area
     - id: size
       type: Microsoft.Xna.Framework.Point
+      description: The size of this area
     content.vb: Public Sub New(texture As Texture2D, uv As Point, size As Point)
   overload: MLEM.Textures.TextureRegion.#ctor*
   modifiers.csharp:

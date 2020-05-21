@@ -23,10 +23,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: KeysExtensions
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nA set of extension methods for dealing with <xref href=\"Microsoft.Xna.Framework.Input.Keys\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Microsoft.Xna.Framework.Input.Keyboard\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class KeysExtensions
     content.vb: Public Module KeysExtensions
@@ -65,10 +67,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ModifierKeys
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 8
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nAll enum values of <xref href=\"MLEM.Input.ModifierKey\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static readonly ModifierKey[] ModifierKeys
     return:
@@ -101,17 +105,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetKeys
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 10
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns all of the keys that the given modifier key represents\n"
+  example: []
   syntax:
     content: public static IEnumerable<Keys> GetKeys(this ModifierKey modifier)
     parameters:
     - id: modifier
       type: MLEM.Input.ModifierKey
+      description: The modifier key
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Input.Keys}
+      description: All of the keys the modifier key represents
     content.vb: >-
       <ExtensionAttribute>
 
@@ -142,17 +150,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetModifier
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 27
+    startLine: 44
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns the modifier key that the given key represents.\nIf there is no matching modifier key, <xref href=\"MLEM.Input.ModifierKey.None\" data-throw-if-not-resolved=\"false\"></xref> is returned.\n"
+  example: []
   syntax:
     content: public static ModifierKey GetModifier(this Keys key)
     parameters:
     - id: key
       type: Microsoft.Xna.Framework.Input.Keys
+      description: The key to convert to a modifier key
     return:
       type: MLEM.Input.ModifierKey
+      description: The modifier key, or <xref href="MLEM.Input.ModifierKey.None" data-throw-if-not-resolved="false"></xref>
     content.vb: >-
       <ExtensionAttribute>
 
@@ -183,17 +195,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsModifier
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 35
+    startLine: 57
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given key is a modifier key or not.\n"
+  example: []
   syntax:
     content: public static bool IsModifier(this Keys key)
     parameters:
     - id: key
       type: Microsoft.Xna.Framework.Input.Keys
+      description: The key
     return:
       type: System.Boolean
+      description: If the key is a modifier key
     content.vb: >-
       <ExtensionAttribute>
 
@@ -206,6 +222,16 @@ items:
   - Public
   - Shared
 references:
+- uid: Microsoft.Xna.Framework.Input.Keys
+  commentId: T:Microsoft.Xna.Framework.Input.Keys
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Keys
+  nameWithType: Keys
+  fullName: Microsoft.Xna.Framework.Input.Keys
+- uid: Microsoft.Xna.Framework.Input.Keyboard
+  commentId: T:Microsoft.Xna.Framework.Input.Keyboard
+  isExternal: true
 - uid: MLEM.Input
   commentId: N:MLEM.Input
   name: MLEM.Input
@@ -497,12 +523,24 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
+- uid: MLEM.Input.ModifierKey
+  commentId: T:MLEM.Input.ModifierKey
+  parent: MLEM.Input
+  name: ModifierKey
+  nameWithType: ModifierKey
+  fullName: MLEM.Input.ModifierKey
 - uid: MLEM.Input.ModifierKey[]
   isExternal: true
   name: ModifierKey[]
@@ -532,12 +570,6 @@ references:
   name: GetKeys
   nameWithType: KeysExtensions.GetKeys
   fullName: MLEM.Input.KeysExtensions.GetKeys
-- uid: MLEM.Input.ModifierKey
-  commentId: T:MLEM.Input.ModifierKey
-  parent: MLEM.Input
-  name: ModifierKey
-  nameWithType: ModifierKey
-  fullName: MLEM.Input.ModifierKey
 - uid: System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Input.Keys}
   commentId: T:System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Input.Keys}
   parent: System.Collections.Generic
@@ -627,24 +659,14 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: MLEM.Input.ModifierKey.None
+  commentId: F:MLEM.Input.ModifierKey.None
+  isExternal: true
 - uid: MLEM.Input.KeysExtensions.GetModifier*
   commentId: Overload:MLEM.Input.KeysExtensions.GetModifier
   name: GetModifier
   nameWithType: KeysExtensions.GetModifier
   fullName: MLEM.Input.KeysExtensions.GetModifier
-- uid: Microsoft.Xna.Framework.Input.Keys
-  commentId: T:Microsoft.Xna.Framework.Input.Keys
-  parent: Microsoft.Xna.Framework.Input
-  isExternal: true
-  name: Keys
-  nameWithType: Keys
-  fullName: Microsoft.Xna.Framework.Input.Keys
-- uid: Microsoft.Xna.Framework.Input
-  commentId: N:Microsoft.Xna.Framework.Input
-  isExternal: true
-  name: Microsoft.Xna.Framework.Input
-  nameWithType: Microsoft.Xna.Framework.Input
-  fullName: Microsoft.Xna.Framework.Input
 - uid: MLEM.Input.KeysExtensions.IsModifier*
   commentId: Overload:MLEM.Input.KeysExtensions.IsModifier
   name: IsModifier

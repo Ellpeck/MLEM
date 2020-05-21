@@ -29,6 +29,7 @@ items:
     content: 'public class Group : Element'
     content.vb: >-
       Public Class Group
+
           Inherits Element
   inheritance:
   - System.Object

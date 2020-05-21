@@ -22,10 +22,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TextInputWrapper
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 8
+    startLine: 13
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA text input wrapper is a wrapper around MonoGame&apos;s built-in text input event.\nSince said text input event does not exist on non-Desktop devices, we want to wrap it in a wrapper that is platform-independent for MLEM.\nSee subclasses of this wrapper or <a href=\"https://mlem.ellpeck.de/articles/ui.html#text-input\">https://mlem.ellpeck.de/articles/ui.html#text-input</a> for more info.\n"
+  example: []
   syntax:
     content: public abstract class TextInputWrapper
     content.vb: Public MustInherit Class TextInputWrapper
@@ -70,10 +72,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Current
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 11
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe current text input wrapper.\nSet this value before starting your game if you want to use text input wrapping.\n"
+  example: []
   syntax:
     content: public static TextInputWrapper Current { get; set; }
     parameters: []
@@ -81,6 +85,9 @@ items:
       type: MLEM.Misc.TextInputWrapper
     content.vb: Public Shared Property Current As TextInputWrapper
   overload: MLEM.Misc.TextInputWrapper.Current*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
   modifiers.csharp:
   - public
   - static
@@ -107,14 +114,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RequiresOnScreenKeyboard
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 20
+    startLine: 34
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nDetermines if this text input wrapper requires an on-screen keyboard.\n"
+  example: []
   syntax:
     content: public abstract bool RequiresOnScreenKeyboard()
     return:
       type: System.Boolean
+      description: If this text input wrapper requires an on-screen keyboard
     content.vb: Public MustOverride Function RequiresOnScreenKeyboard As Boolean
   overload: MLEM.Misc.TextInputWrapper.RequiresOnScreenKeyboard*
   modifiers.csharp:
@@ -141,17 +151,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddListener
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 22
+    startLine: 42
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAdds a text input listener to this text input wrapper.\nThe supplied listener will be called whenever a character is input.\n"
+  example: []
   syntax:
     content: public abstract void AddListener(GameWindow window, TextInputWrapper.TextInputCallback callback)
     parameters:
     - id: window
       type: Microsoft.Xna.Framework.GameWindow
+      description: The game&apos;s window
     - id: callback
       type: MLEM.Misc.TextInputWrapper.TextInputCallback
+      description: The callback that should be called whenever a character is pressed
     content.vb: Public MustOverride Sub AddListener(window As GameWindow, callback As TextInputWrapper.TextInputCallback)
   overload: MLEM.Misc.TextInputWrapper.AddListener*
   modifiers.csharp:
@@ -458,6 +472,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
 - uid: MLEM.Misc.TextInputWrapper.Current*
   commentId: Overload:MLEM.Misc.TextInputWrapper.Current
   name: Current

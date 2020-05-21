@@ -19,17 +19,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AnimationChanged
     path: ../MLEM/Animations/SpriteAnimationGroup.cs
-    startLine: 100
+    startLine: 105
   assemblies:
   - MLEM
   namespace: MLEM.Animations
+  summary: "\nA callback delegate for when a <xref href=\"MLEM.Animations.SpriteAnimationGroup\" data-throw-if-not-resolved=\"false\"></xref>&apos;s current animation changed.\n"
+  example: []
   syntax:
     content: public delegate void AnimationChanged(SpriteAnimation oldAnim, SpriteAnimation newAnim);
     parameters:
     - id: oldAnim
       type: MLEM.Animations.SpriteAnimation
+      description: The previous animation
     - id: newAnim
       type: MLEM.Animations.SpriteAnimation
+      description: The new animation
     content.vb: Public Delegate Sub AnimationChanged(oldAnim As SpriteAnimation, newAnim As SpriteAnimation)
   modifiers.csharp:
   - public
@@ -38,6 +42,12 @@ items:
   - Public
   - Delegate
 references:
+- uid: MLEM.Animations.SpriteAnimationGroup
+  commentId: T:MLEM.Animations.SpriteAnimationGroup
+  parent: MLEM.Animations
+  name: SpriteAnimationGroup
+  nameWithType: SpriteAnimationGroup
+  fullName: MLEM.Animations.SpriteAnimationGroup
 - uid: MLEM.Animations
   commentId: N:MLEM.Animations
   name: MLEM.Animations

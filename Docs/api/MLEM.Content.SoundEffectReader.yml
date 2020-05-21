@@ -21,14 +21,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: SoundEffectReader
     path: ../MLEM/Content/SoundEffectReader.cs
-    startLine: 5
+    startLine: 6
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: 'public class SoundEffectReader : RawContentReader<SoundEffect>'
     content.vb: >-
       Public Class SoundEffectReader
+
           Inherits RawContentReader(Of SoundEffect)
   inheritance:
   - System.Object
@@ -68,10 +70,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Read
     path: ../MLEM/Content/SoundEffectReader.cs
-    startLine: 7
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: protected override SoundEffect Read(RawContentManager manager, string assetPath, Stream stream, SoundEffect existing)
     parameters:
@@ -112,10 +115,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFileExtensions
     path: ../MLEM/Content/SoundEffectReader.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override string[] GetFileExtensions()
     return:

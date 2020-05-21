@@ -29,6 +29,7 @@ items:
     content: 'public class RectangleFConverter : JsonConverter<RectangleF>'
     content.vb: >-
       Public Class RectangleFConverter
+
           Inherits JsonConverter(Of RectangleF)
   inheritance:
   - System.Object

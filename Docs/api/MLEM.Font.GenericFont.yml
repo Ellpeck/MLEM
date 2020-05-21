@@ -622,7 +622,6 @@ items:
   assemblies:
   - MLEM
   namespace: MLEM.Font
-  summary: "\nDraws a string with the given text alignment.\n"
   example: []
   syntax:
     content: public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
@@ -675,7 +674,6 @@ items:
   assemblies:
   - MLEM
   namespace: MLEM.Font
-  summary: "\nDraws a string with the given text alignment.\n"
   example: []
   syntax:
     content: public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)

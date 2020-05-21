@@ -22,7 +22,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AnimationFrame
     path: ../MLEM/Animations/SpriteAnimation.cs
-    startLine: 147
+    startLine: 151
   assemblies:
   - MLEM
   namespace: MLEM.Animations
@@ -65,7 +65,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Region
     path: ../MLEM/Animations/SpriteAnimation.cs
-    startLine: 152
+    startLine: 156
   assemblies:
   - MLEM
   namespace: MLEM.Animations
@@ -100,7 +100,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Seconds
     path: ../MLEM/Animations/SpriteAnimation.cs
-    startLine: 156
+    startLine: 160
   assemblies:
   - MLEM
   namespace: MLEM.Animations
@@ -135,7 +135,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Animations/SpriteAnimation.cs
-    startLine: 163
+    startLine: 167
   assemblies:
   - MLEM
   namespace: MLEM.Animations

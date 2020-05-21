@@ -26,10 +26,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TextureRegionExtensions
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 33
+    startLine: 86
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThis class provides a set of extension methods for dealing with <xref href=\"MLEM.Textures.TextureRegion\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class TextureRegionExtensions
     content.vb: Public Module TextureRegionExtensions
@@ -69,10 +71,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 35
+    startLine: 89
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
     parameters:
@@ -124,10 +127,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 39
+    startLine: 94
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
     parameters:
@@ -179,10 +183,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 43
+    startLine: 99
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
     parameters:
@@ -232,10 +237,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 47
+    startLine: 104
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
     parameters:
@@ -285,10 +291,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 51
+    startLine: 109
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color)
     parameters:
@@ -330,10 +337,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 55
+    startLine: 114
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color)
     parameters:
@@ -375,10 +383,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/TextureRegion.cs
-    startLine: 59
+    startLine: 119
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color)
     parameters:
@@ -402,6 +411,12 @@ items:
   - Public
   - Shared
 references:
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
 - uid: MLEM.Textures
   commentId: N:MLEM.Textures
   name: MLEM.Textures
@@ -699,6 +714,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExternal: true
 - uid: MLEM.Textures.TextureRegionExtensions.Draw*
   commentId: Overload:MLEM.Textures.TextureRegionExtensions.Draw
   name: Draw
@@ -711,12 +729,6 @@ references:
   name: SpriteBatch
   nameWithType: SpriteBatch
   fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
-- uid: MLEM.Textures.TextureRegion
-  commentId: T:MLEM.Textures.TextureRegion
-  parent: MLEM.Textures
-  name: TextureRegion
-  nameWithType: TextureRegion
-  fullName: MLEM.Textures.TextureRegion
 - uid: Microsoft.Xna.Framework.Vector2
   commentId: T:Microsoft.Xna.Framework.Vector2
   parent: Microsoft.Xna.Framework

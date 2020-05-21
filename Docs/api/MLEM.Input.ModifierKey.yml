@@ -23,10 +23,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ModifierKey
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 41
+    startLine: 67
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nAn enum representing modifier keys.\nA modifier key is a key that is usually pressed as part of key combination to change the function of a regular key.\n"
+  example: []
   syntax:
     content: public enum ModifierKey
     content.vb: Public Enum ModifierKey
@@ -56,10 +58,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: None
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 43
+    startLine: 72
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nNo modifier key. Only used for <xref href=\"MLEM.Input.KeysExtensions.GetModifier(Microsoft.Xna.Framework.Input.Keys)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: None = 0
     return:
@@ -88,10 +92,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Shift
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 44
+    startLine: 76
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe shift modifier key. This represents Left Shift and Right Shift keys.\n"
+  example: []
   syntax:
     content: Shift = 1
     return:
@@ -120,10 +126,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Control
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 45
+    startLine: 80
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe control modifier key. This represents Left Control and Right Control.\n"
+  example: []
   syntax:
     content: Control = 2
     return:
@@ -152,10 +160,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Alt
     path: ../MLEM/Input/KeysExtensions.cs
-    startLine: 46
+    startLine: 84
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe alt modifier key. This represents Alt and Alt Graph.\n"
+  example: []
   syntax:
     content: Alt = 3
     return:
@@ -242,6 +252,9 @@ references:
   name: KeysExtensions
   nameWithType: KeysExtensions
   fullName: MLEM.Input.KeysExtensions
+- uid: MLEM.Input.KeysExtensions.GetModifier(Microsoft.Xna.Framework.Input.Keys)
+  commentId: M:MLEM.Input.KeysExtensions.GetModifier(Microsoft.Xna.Framework.Input.Keys)
+  isExternal: true
 - uid: MLEM.Input.ModifierKey
   commentId: T:MLEM.Input.ModifierKey
   parent: MLEM.Input

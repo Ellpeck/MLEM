@@ -31,6 +31,7 @@ items:
     content: 'public class SpriteAnimationImage : Image'
     content.vb: >-
       Public Class SpriteAnimationImage
+
           Inherits Image
   inheritance:
   - System.Object

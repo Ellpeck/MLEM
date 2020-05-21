@@ -62,7 +62,9 @@ items:
     content: 'public class UiSystem : GameComponent, IGameComponent, IUpdateable, IComparable<GameComponent>, IDisposable'
     content.vb: >-
       Public Class UiSystem
+
           Inherits GameComponent
+
           Implements IGameComponent, IUpdateable, IComparable(Of GameComponent), IDisposable
   inheritance:
   - System.Object

@@ -28,10 +28,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Direction2
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 7
+    startLine: 11
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAn enum that represents two-dimensional directions.\nBoth straight and diagonal directions are supported.\n"
+  example: []
   syntax:
     content: public enum Direction2
     content.vb: Public Enum Direction2
@@ -67,10 +69,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Up
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 9
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe up direction, or -y.\n"
+  example: []
   syntax:
     content: Up = 0
     return:
@@ -99,10 +103,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Right
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 10
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe right direction, or +x.\n"
+  example: []
   syntax:
     content: Right = 1
     return:
@@ -131,10 +137,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Down
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 11
+    startLine: 24
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe down direction, or +y.\n"
+  example: []
   syntax:
     content: Down = 2
     return:
@@ -163,10 +171,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Left
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 12
+    startLine: 28
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe left direction, or -x.\n"
+  example: []
   syntax:
     content: Left = 3
     return:
@@ -195,10 +205,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: UpRight
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 14
+    startLine: 33
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe up and right direction, or +x, -y.\n"
+  example: []
   syntax:
     content: UpRight = 4
     return:
@@ -227,10 +239,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DownRight
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 15
+    startLine: 37
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe down and right direction, or +x, +y.\n"
+  example: []
   syntax:
     content: DownRight = 5
     return:
@@ -259,10 +273,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DownLeft
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 16
+    startLine: 41
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe down and left direction, or -x, +y.\n"
+  example: []
   syntax:
     content: DownLeft = 6
     return:
@@ -291,10 +307,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: UpLeft
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 17
+    startLine: 45
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe up and left direction, or -x, -y.\n"
+  example: []
   syntax:
     content: UpLeft = 7
     return:
@@ -323,10 +341,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: None
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 19
+    startLine: 50
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nNo direction.\n"
+  example: []
   syntax:
     content: None = 8
     return:

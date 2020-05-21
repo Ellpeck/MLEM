@@ -22,10 +22,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: EnumHelper
     path: ../MLEM/Misc/EnumHelper.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA helper class that allows easier usage of <xref href=\"System.Enum\" data-throw-if-not-resolved=\"false\"></xref> values.\n"
+  example: []
   syntax:
     content: public static class EnumHelper
     content.vb: Public Module EnumHelper
@@ -64,10 +66,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Buttons
     path: ../MLEM/Misc/EnumHelper.cs
-    startLine: 8
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAll values of the <xref href=\"MLEM.Misc.EnumHelper.Buttons\" data-throw-if-not-resolved=\"false\"></xref> enum.\n"
+  example: []
   syntax:
     content: public static readonly Buttons[] Buttons
     return:
@@ -99,10 +103,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Keys
     path: ../MLEM/Misc/EnumHelper.cs
-    startLine: 9
+    startLine: 18
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAll values of the <xref href=\"MLEM.Misc.EnumHelper.Keys\" data-throw-if-not-resolved=\"false\"></xref> enum.\n"
+  example: []
   syntax:
     content: public static readonly Keys[] Keys
     return:
@@ -134,16 +140,20 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetValues
     path: ../MLEM/Misc/EnumHelper.cs
-    startLine: 11
+    startLine: 25
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns all of the values of the given enum type.\n"
+  example: []
   syntax:
     content: public static IEnumerable<T> GetValues<T>()
     typeParameters:
     - id: T
+      description: The type whose enum to get
     return:
       type: System.Collections.Generic.IEnumerable{{T}}
+      description: An enumerable of the values of the enum, in declaration order.
     content.vb: Public Shared Function GetValues(Of T) As IEnumerable(Of T)
   overload: MLEM.Misc.EnumHelper.GetValues*
   nameWithType.vb: EnumHelper.GetValues(Of T)()
@@ -156,6 +166,9 @@ items:
   fullName.vb: MLEM.Misc.EnumHelper.GetValues(Of T)()
   name.vb: GetValues(Of T)()
 references:
+- uid: System.Enum
+  commentId: T:System.Enum
+  isExternal: true
 - uid: MLEM.Misc
   commentId: N:MLEM.Misc
   name: MLEM.Misc
@@ -453,6 +466,9 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: MLEM.Misc.EnumHelper.Buttons
+  commentId: F:MLEM.Misc.EnumHelper.Buttons
+  isExternal: true
 - uid: Microsoft.Xna.Framework.Input.Buttons[]
   isExternal: true
   name: Buttons[]
@@ -479,6 +495,9 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: MLEM.Misc.EnumHelper.Keys
+  commentId: F:MLEM.Misc.EnumHelper.Keys
+  isExternal: true
 - uid: Microsoft.Xna.Framework.Input.Keys[]
   isExternal: true
   name: Keys[]

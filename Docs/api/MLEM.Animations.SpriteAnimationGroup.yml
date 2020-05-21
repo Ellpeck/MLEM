@@ -37,6 +37,7 @@ items:
     content: 'public class SpriteAnimationGroup : GenericDataHolder'
     content.vb: >-
       Public Class SpriteAnimationGroup
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -224,7 +225,6 @@ items:
   assemblies:
   - MLEM
   namespace: MLEM.Animations
-  summary: "\nThe speed multiplier that this animation should run with.\nNumbers higher than 1 will increase the speed.\n"
   example: []
   syntax:
     content: public float SpeedMultiplier { set; }
@@ -309,14 +309,12 @@ items:
   assemblies:
   - MLEM
   namespace: MLEM.Animations
-  summary: "\nUpdates this animation, causing <xref href=\"MLEM.Animations.SpriteAnimation.TimeIntoAnimation\" data-throw-if-not-resolved=\"false\"></xref> to be increased and the <xref href=\"MLEM.Animations.SpriteAnimation.CurrentFrame\" data-throw-if-not-resolved=\"false\"></xref> to be updated.\n"
   example: []
   syntax:
     content: public void Update(GameTime time)
     parameters:
     - id: time
       type: Microsoft.Xna.Framework.GameTime
-      description: The game&apos;s time
     content.vb: Public Sub Update(time As GameTime)
   overload: MLEM.Animations.SpriteAnimationGroup.Update*
   modifiers.csharp:

@@ -21,14 +21,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: UnderlineCode
     path: ../MLEM/Formatting/Codes/UnderlineCode.cs
-    startLine: 8
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class UnderlineCode : FontCode'
     content.vb: >-
       Public Class UnderlineCode
+
           Inherits FontCode
   inheritance:
   - System.Object
@@ -81,10 +83,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/UnderlineCode.cs
-    startLine: 13
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public UnderlineCode(Match match, Regex regex, float thickness, float yOffset)
     parameters:
@@ -120,10 +123,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawCharacter
     path: ../MLEM/Formatting/Codes/UnderlineCode.cs
-    startLine: 18
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth)
     parameters:

@@ -69,15 +69,19 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: InputHandler
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 11
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nAn input handler is a more advanced wrapper around MonoGame&apos;s default input system.\nIt includes keyboard, mouse, gamepad and touch states, as well as a new &quot;pressed&quot; state for keys and the ability for keyboard and gamepad repeat events.\n"
+  example: []
   syntax:
     content: 'public class InputHandler : GameComponent, IGameComponent, IUpdateable, IComparable<GameComponent>, IDisposable'
     content.vb: >-
       Public Class InputHandler
+
           Inherits GameComponent
+
           Implements IGameComponent, IUpdateable, IComparable(Of GameComponent), IDisposable
   inheritance:
   - System.Object
@@ -130,10 +134,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LastKeyboardState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 13
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the keyboard state from the last update call\n"
+  example: []
   syntax:
     content: public KeyboardState LastKeyboardState { get; }
     parameters: []
@@ -165,10 +171,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: KeyboardState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 14
+    startLine: 24
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the current keyboard state\n"
+  example: []
   syntax:
     content: public KeyboardState KeyboardState { get; }
     parameters: []
@@ -200,10 +208,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: PressedKeys
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 15
+    startLine: 28
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the keyboard keys that are currently being pressed\n"
+  example: []
   syntax:
     content: public Keys[] PressedKeys { get; }
     parameters: []
@@ -235,10 +245,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: HandleKeyboard
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 16
+    startLine: 32
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nSet this property to false to disable keyboard handling for this input handler.\n"
+  example: []
   syntax:
     content: public bool HandleKeyboard
     return:
@@ -266,10 +278,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LastMouseState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 18
+    startLine: 37
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the mouse state from the last update call\n"
+  example: []
   syntax:
     content: public MouseState LastMouseState { get; }
     parameters: []
@@ -301,10 +315,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MouseState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 19
+    startLine: 41
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the current mouse state\n"
+  example: []
   syntax:
     content: public MouseState MouseState { get; }
     parameters: []
@@ -336,10 +352,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MousePosition
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 20
+    startLine: 45
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the current position of the mouse, extracted from <xref href=\"MLEM.Input.InputHandler.MouseState\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public Point MousePosition { get; }
     parameters: []
@@ -371,10 +389,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LastMousePosition
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 21
+    startLine: 49
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the position of the mouse from the last update call, extracted from <xref href=\"MLEM.Input.InputHandler.LastMouseState\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public Point LastMousePosition { get; }
     parameters: []
@@ -406,10 +426,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ScrollWheel
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 22
+    startLine: 53
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the current scroll wheel value, in increments of 120\n"
+  example: []
   syntax:
     content: public int ScrollWheel { get; }
     parameters: []
@@ -441,10 +463,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LastScrollWheel
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 23
+    startLine: 57
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the scroll wheel value from the last update call, in increments of 120\n"
+  example: []
   syntax:
     content: public int LastScrollWheel { get; }
     parameters: []
@@ -476,10 +500,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: HandleMouse
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 24
+    startLine: 61
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nSet this property to false to disable mouse handling for this input handler.\n"
+  example: []
   syntax:
     content: public bool HandleMouse
     return:
@@ -507,10 +533,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ConnectedGamepads
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 28
+    startLine: 69
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the amount of gamepads that are currently connected.\nThis property is automatically updated in <xref href=\"MLEM.Input.InputHandler.Update\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public int ConnectedGamepads { get; }
     parameters: []
@@ -542,10 +570,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: HandleGamepads
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 29
+    startLine: 73
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nSet this property to false to disable keyboard handling for this input handler.\n"
+  example: []
   syntax:
     content: public bool HandleGamepads
     return:
@@ -573,10 +603,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LastTouchState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 31
+    startLine: 78
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the touch state from the last update call\n"
+  example: []
   syntax:
     content: public TouchCollection LastTouchState { get; }
     parameters: []
@@ -608,10 +640,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TouchState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 32
+    startLine: 82
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains the current touch state\n"
+  example: []
   syntax:
     content: public TouchCollection TouchState { get; }
     parameters: []
@@ -643,10 +677,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Gestures
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 33
+    startLine: 87
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nContains all of the gestures that have finished during the last update call.\nTo easily query these gestures, use <xref href=\"MLEM.Input.InputHandler.GetGesture(Microsoft.Xna.Framework.Input.Touch.GestureType%2cMicrosoft.Xna.Framework.Input.Touch.GestureSample%40)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public readonly ReadOnlyCollection<GestureSample> Gestures
     return:
@@ -676,10 +712,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: HandleTouch
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 35
+    startLine: 92
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nSet this property to false to disable touch handling for this input handler.\n"
+  example: []
   syntax:
     content: public bool HandleTouch
     return:
@@ -707,10 +745,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: KeyRepeatDelay
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 37
+    startLine: 98
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThis is the amount of time that has to pass before the first keyboard repeat event is triggered.\n<xref href=\"MLEM.Input.InputHandler.KeyRepeatRate\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public TimeSpan KeyRepeatDelay
     return:
@@ -738,10 +778,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: KeyRepeatRate
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 38
+    startLine: 103
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThis is the amount of time that has to pass between keyboard repeat events.\n<xref href=\"MLEM.Input.InputHandler.KeyRepeatDelay\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public TimeSpan KeyRepeatRate
     return:
@@ -769,10 +811,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: HandleKeyboardRepeats
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 40
+    startLine: 108
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nSet this property to false to disable keyboard repeat event handling.\n"
+  example: []
   syntax:
     content: public bool HandleKeyboardRepeats
     return:
@@ -800,10 +844,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: HandleGamepadRepeats
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 46
+    startLine: 117
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nSet this property to false to disable gamepad repeat event handling.\n"
+  example: []
   syntax:
     content: public bool HandleGamepadRepeats
     return:
@@ -831,21 +877,27 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 52
+    startLine: 130
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nCreates a new input handler with optional initial values.\n"
+  example: []
   syntax:
     content: public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true)
     parameters:
     - id: handleKeyboard
       type: System.Boolean
+      description: If keyboard input should be handled
     - id: handleMouse
       type: System.Boolean
+      description: If mouse input should be handled
     - id: handleGamepads
       type: System.Boolean
+      description: If gamepad input should be handled
     - id: handleTouch
       type: System.Boolean
+      description: If touch input should be handled
     content.vb: Public Sub New(handleKeyboard As Boolean = True, handleMouse As Boolean = True, handleGamepads As Boolean = True, handleTouch As Boolean = True)
   overload: MLEM.Input.InputHandler.#ctor*
   modifiers.csharp:
@@ -870,10 +922,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 60
+    startLine: 142
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nUpdates this input handler, querying pressed and released keys and calculating repeat events.\nCall this in your <xref href=\"Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)\" data-throw-if-not-resolved=\"false\"></xref> method.\n"
+  example: []
   syntax:
     content: public void Update()
     content.vb: Public Sub Update
@@ -900,10 +954,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 153
+    startLine: 236
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public override void Update(GameTime gameTime)
     parameters:
@@ -936,17 +991,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetLastGamepadState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 157
+    startLine: 245
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns the state of the <code>index</code>th gamepad from the last update call\n"
+  example: []
   syntax:
     content: public GamePadState GetLastGamepadState(int index)
     parameters:
     - id: index
       type: System.Int32
+      description: The zero-based gamepad index
     return:
       type: Microsoft.Xna.Framework.Input.GamePadState
+      description: The state of the gamepad last update
     content.vb: Public Function GetLastGamepadState(index As Integer) As GamePadState
   overload: MLEM.Input.InputHandler.GetLastGamepadState*
   modifiers.csharp:
@@ -971,17 +1030,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetGamepadState
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 161
+    startLine: 254
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns the current state of the <code>index</code>th gamepad\n"
+  example: []
   syntax:
     content: public GamePadState GetGamepadState(int index)
     parameters:
     - id: index
       type: System.Int32
+      description: The zero-based gamepad index
     return:
       type: Microsoft.Xna.Framework.Input.GamePadState
+      description: The current state of the gamepad
     content.vb: Public Function GetGamepadState(index As Integer) As GamePadState
   overload: MLEM.Input.InputHandler.GetGamepadState*
   modifiers.csharp:
@@ -1006,10 +1069,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsKeyDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 165
+    startLine: 259
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsKeyDown(Keys key)
     parameters:
@@ -1041,10 +1105,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsKeyUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 169
+    startLine: 264
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsKeyUp(Keys key)
     parameters:
@@ -1076,10 +1141,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WasKeyDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 173
+    startLine: 269
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool WasKeyDown(Keys key)
     parameters:
@@ -1111,10 +1177,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WasKeyUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 177
+    startLine: 274
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool WasKeyUp(Keys key)
     parameters:
@@ -1146,17 +1213,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsKeyPressed
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 181
+    startLine: 284
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given key is considered pressed.\nA key is considered pressed if it was not down the last update call, but is down the current update call.\n"
+  example: []
   syntax:
     content: public bool IsKeyPressed(Keys key)
     parameters:
     - id: key
       type: Microsoft.Xna.Framework.Input.Keys
+      description: The key to query
     return:
       type: System.Boolean
+      description: If the key is pressed
     content.vb: Public Function IsKeyPressed(key As Keys) As Boolean
   overload: MLEM.Input.InputHandler.IsKeyPressed*
   modifiers.csharp:
@@ -1181,17 +1252,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsModifierKeyDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 188
+    startLine: 296
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given modifier key is down.\n"
+  example: []
   syntax:
     content: public bool IsModifierKeyDown(ModifierKey modifier)
     parameters:
     - id: modifier
       type: MLEM.Input.ModifierKey
+      description: The modifier key
     return:
       type: System.Boolean
+      description: If the modifier key is down
     content.vb: Public Function IsModifierKeyDown(modifier As ModifierKey) As Boolean
   overload: MLEM.Input.InputHandler.IsModifierKeyDown*
   modifiers.csharp:
@@ -1216,17 +1291,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsMouseButtonDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 192
+    startLine: 305
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given mouse button is currently down.\n"
+  example: []
   syntax:
     content: public bool IsMouseButtonDown(MouseButton button)
     parameters:
     - id: button
       type: MLEM.Input.MouseButton
+      description: The button to query
     return:
       type: System.Boolean
+      description: Whether or not the queried button is down
     content.vb: Public Function IsMouseButtonDown(button As MouseButton) As Boolean
   overload: MLEM.Input.InputHandler.IsMouseButtonDown*
   modifiers.csharp:
@@ -1251,17 +1330,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsMouseButtonUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 196
+    startLine: 314
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given mouse button is currently up.\n"
+  example: []
   syntax:
     content: public bool IsMouseButtonUp(MouseButton button)
     parameters:
     - id: button
       type: MLEM.Input.MouseButton
+      description: The button to query
     return:
       type: System.Boolean
+      description: Whether or not the queried button is up
     content.vb: Public Function IsMouseButtonUp(button As MouseButton) As Boolean
   overload: MLEM.Input.InputHandler.IsMouseButtonUp*
   modifiers.csharp:
@@ -1286,17 +1369,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WasMouseButtonDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 200
+    startLine: 323
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given mouse button was down the last update call.\n"
+  example: []
   syntax:
     content: public bool WasMouseButtonDown(MouseButton button)
     parameters:
     - id: button
       type: MLEM.Input.MouseButton
+      description: The button to query
     return:
       type: System.Boolean
+      description: Whether or not the queried button was down
     content.vb: Public Function WasMouseButtonDown(button As MouseButton) As Boolean
   overload: MLEM.Input.InputHandler.WasMouseButtonDown*
   modifiers.csharp:
@@ -1321,17 +1408,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WasMouseButtonUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 204
+    startLine: 332
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given mouse button was up the last update call.\n"
+  example: []
   syntax:
     content: public bool WasMouseButtonUp(MouseButton button)
     parameters:
     - id: button
       type: MLEM.Input.MouseButton
+      description: The button to query
     return:
       type: System.Boolean
+      description: Whether or not the queried button was up
     content.vb: Public Function WasMouseButtonUp(button As MouseButton) As Boolean
   overload: MLEM.Input.InputHandler.WasMouseButtonUp*
   modifiers.csharp:
@@ -1356,17 +1447,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsMouseButtonPressed
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 208
+    startLine: 342
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given mouse button is considered pressed.\nA mouse button is considered pressed if it was up the last update call, and is down the current update call.\n"
+  example: []
   syntax:
     content: public bool IsMouseButtonPressed(MouseButton button)
     parameters:
     - id: button
       type: MLEM.Input.MouseButton
+      description: The button to query
     return:
       type: System.Boolean
+      description: Whether the button is pressed
     content.vb: Public Function IsMouseButtonPressed(button As MouseButton) As Boolean
   overload: MLEM.Input.InputHandler.IsMouseButtonPressed*
   modifiers.csharp:
@@ -1391,10 +1486,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsGamepadButtonDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 212
+    startLine: 347
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsGamepadButtonDown(Buttons button, int index = -1)
     parameters:
@@ -1428,10 +1524,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsGamepadButtonUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 222
+    startLine: 358
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsGamepadButtonUp(Buttons button, int index = -1)
     parameters:
@@ -1465,10 +1562,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WasGamepadButtonDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 232
+    startLine: 369
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool WasGamepadButtonDown(Buttons button, int index = -1)
     parameters:
@@ -1502,10 +1600,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WasGamepadButtonUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 242
+    startLine: 380
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool WasGamepadButtonUp(Buttons button, int index = -1)
     parameters:
@@ -1539,19 +1638,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsGamepadButtonPressed
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 252
+    startLine: 397
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns whether the given gamepad button on the given index is considered pressed.\nA gamepad button is considered pressed if it was down the last update call, and is up the current update call.\n"
+  example: []
   syntax:
     content: public bool IsGamepadButtonPressed(Buttons button, int index = -1)
     parameters:
     - id: button
       type: Microsoft.Xna.Framework.Input.Buttons
+      description: The button to query
     - id: index
       type: System.Int32
+      description: The zero-based index of the gamepad, or -1 for any gamepad
     return:
       type: System.Boolean
+      description: Whether the given button is pressed
     content.vb: Public Function IsGamepadButtonPressed(button As Buttons, index As Integer = -1) As Boolean
   overload: MLEM.Input.InputHandler.IsGamepadButtonPressed*
   modifiers.csharp:
@@ -1576,19 +1680,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetGesture
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 265
+    startLine: 416
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nQueries for a gesture of a given type that finished during the current update call.\n"
+  example: []
   syntax:
     content: public bool GetGesture(GestureType type, out GestureSample sample)
     parameters:
     - id: type
       type: Microsoft.Xna.Framework.Input.Touch.GestureType
+      description: The type of gesture to query for
     - id: sample
       type: Microsoft.Xna.Framework.Input.Touch.GestureSample
+      description: The resulting gesture sample, or default if there isn&apos;t one
     return:
       type: System.Boolean
+      description: True if a gesture of the type was found, otherwise false
     content.vb: Public Function GetGesture(type As GestureType, ByRef sample As GestureSample) As Boolean
   overload: MLEM.Input.InputHandler.GetGesture*
   nameWithType.vb: InputHandler.GetGesture(GestureType, ByRef GestureSample)
@@ -1616,21 +1725,30 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 275
+    startLine: 434
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns if a given control of any kind is down.\nThis is a helper function that can be passed a <xref href=\"Microsoft.Xna.Framework.Input.Keys\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Input.Buttons\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"MLEM.Input.MouseButton\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public bool IsDown(object control, int index = -1)
     parameters:
     - id: control
       type: System.Object
+      description: The control whose down state to query
     - id: index
       type: System.Int32
+      description: The index of the gamepad to query (if applicable), or -1 for any gamepad
     return:
       type: System.Boolean
+      description: Whether the given control is down
     content.vb: Public Function IsDown(control As Object, index As Integer = -1) As Boolean
   overload: MLEM.Input.InputHandler.IsDown*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If the passed control isn&apos;t of a supported type
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1653,21 +1771,30 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 285
+    startLine: 452
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns if a given control of any kind is up.\nThis is a helper function that can be passed a <xref href=\"Microsoft.Xna.Framework.Input.Keys\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Input.Buttons\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"MLEM.Input.MouseButton\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public bool IsUp(object control, int index = -1)
     parameters:
     - id: control
       type: System.Object
+      description: The control whose up state to query
     - id: index
       type: System.Int32
+      description: The index of the gamepad to query (if applicable), or -1 for any gamepad
     return:
       type: System.Boolean
+      description: Whether the given control is down
     content.vb: Public Function IsUp(control As Object, index As Integer = -1) As Boolean
   overload: MLEM.Input.InputHandler.IsUp*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If the passed control isn&apos;t of a supported type
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1690,21 +1817,30 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsPressed
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 295
+    startLine: 470
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns if a given control of any kind is pressed.\nThis is a helper function that can be passed a <xref href=\"Microsoft.Xna.Framework.Input.Keys\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Input.Buttons\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"MLEM.Input.MouseButton\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public bool IsPressed(object control, int index = -1)
     parameters:
     - id: control
       type: System.Object
+      description: The control whose pressed state to query
     - id: index
       type: System.Int32
+      description: The index of the gamepad to query (if applicable), or -1 for any gamepad
     return:
       type: System.Boolean
+      description: Whether the given control is down
     content.vb: Public Function IsPressed(control As Object, index As Integer = -1) As Boolean
   overload: MLEM.Input.InputHandler.IsPressed*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If the passed control isn&apos;t of a supported type
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1727,10 +1863,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsAnyDown
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 305
+    startLine: 481
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsAnyDown(params object[] control)
     parameters:
@@ -1765,10 +1902,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsAnyUp
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 309
+    startLine: 486
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsAnyUp(params object[] control)
     parameters:
@@ -1803,10 +1941,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsAnyPressed
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 313
+    startLine: 491
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  example: []
   syntax:
     content: public bool IsAnyPressed(params object[] control)
     parameters:
@@ -1841,15 +1980,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: EnableGestures
     path: ../MLEM/Input/InputHandler.cs
-    startLine: 317
+    startLine: 500
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nHelper function to enable gestures for a <xref href=\"Microsoft.Xna.Framework.Input.Touch.TouchPanel\" data-throw-if-not-resolved=\"false\"></xref> easily.\nNote that, if other gestures were previously enabled, they will not get overridden.\n"
+  example: []
   syntax:
     content: public static void EnableGestures(params GestureType[] gestures)
     parameters:
     - id: gestures
       type: Microsoft.Xna.Framework.Input.Touch.GestureType[]
+      description: The gestures to enable
     content.vb: Public Shared Sub EnableGestures(ParamArray gestures As GestureType())
   overload: MLEM.Input.InputHandler.EnableGestures*
   nameWithType.vb: InputHandler.EnableGestures(GestureType())
@@ -2647,6 +2789,9 @@ references:
   name: MouseState
   nameWithType: InputHandler.MouseState
   fullName: MLEM.Input.InputHandler.MouseState
+- uid: MLEM.Input.InputHandler.MouseState
+  commentId: P:MLEM.Input.InputHandler.MouseState
+  isExternal: true
 - uid: MLEM.Input.InputHandler.MousePosition*
   commentId: Overload:MLEM.Input.InputHandler.MousePosition
   name: MousePosition
@@ -2659,6 +2804,9 @@ references:
   name: Point
   nameWithType: Point
   fullName: Microsoft.Xna.Framework.Point
+- uid: MLEM.Input.InputHandler.LastMouseState
+  commentId: P:MLEM.Input.InputHandler.LastMouseState
+  isExternal: true
 - uid: MLEM.Input.InputHandler.LastMousePosition*
   commentId: Overload:MLEM.Input.InputHandler.LastMousePosition
   name: LastMousePosition
@@ -2681,6 +2829,9 @@ references:
   name: LastScrollWheel
   nameWithType: InputHandler.LastScrollWheel
   fullName: MLEM.Input.InputHandler.LastScrollWheel
+- uid: MLEM.Input.InputHandler.Update
+  commentId: M:MLEM.Input.InputHandler.Update
+  isExternal: true
 - uid: MLEM.Input.InputHandler.ConnectedGamepads*
   commentId: Overload:MLEM.Input.InputHandler.ConnectedGamepads
   name: ConnectedGamepads
@@ -2709,6 +2860,9 @@ references:
   name: TouchState
   nameWithType: InputHandler.TouchState
   fullName: MLEM.Input.InputHandler.TouchState
+- uid: MLEM.Input.InputHandler.GetGesture(Microsoft.Xna.Framework.Input.Touch.GestureType,Microsoft.Xna.Framework.Input.Touch.GestureSample@)
+  commentId: M:MLEM.Input.InputHandler.GetGesture(Microsoft.Xna.Framework.Input.Touch.GestureType,Microsoft.Xna.Framework.Input.Touch.GestureSample@)
+  isExternal: true
 - uid: System.Collections.ObjectModel.ReadOnlyCollection{Microsoft.Xna.Framework.Input.Touch.GestureSample}
   commentId: T:System.Collections.ObjectModel.ReadOnlyCollection{Microsoft.Xna.Framework.Input.Touch.GestureSample}
   parent: System.Collections.ObjectModel
@@ -2798,6 +2952,9 @@ references:
   name: System.Collections.ObjectModel
   nameWithType: System.Collections.ObjectModel
   fullName: System.Collections.ObjectModel
+- uid: MLEM.Input.InputHandler.KeyRepeatRate
+  commentId: F:MLEM.Input.InputHandler.KeyRepeatRate
+  isExternal: true
 - uid: System.TimeSpan
   commentId: T:System.TimeSpan
   parent: System
@@ -2805,16 +2962,67 @@ references:
   name: TimeSpan
   nameWithType: TimeSpan
   fullName: System.TimeSpan
+- uid: MLEM.Input.InputHandler.KeyRepeatDelay
+  commentId: F:MLEM.Input.InputHandler.KeyRepeatDelay
+  isExternal: true
 - uid: MLEM.Input.InputHandler.#ctor*
   commentId: Overload:MLEM.Input.InputHandler.#ctor
   name: InputHandler
   nameWithType: InputHandler.InputHandler
   fullName: MLEM.Input.InputHandler.InputHandler
+- uid: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  parent: Microsoft.Xna.Framework.Game
+  isExternal: true
+  name: Update(GameTime)
+  nameWithType: Game.Update(GameTime)
+  fullName: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    nameWithType: Game.Update
+    fullName: Microsoft.Xna.Framework.Game.Update
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    nameWithType: Game.Update
+    fullName: Microsoft.Xna.Framework.Game.Update
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    nameWithType: GameTime
+    fullName: Microsoft.Xna.Framework.GameTime
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Input.InputHandler.Update*
   commentId: Overload:MLEM.Input.InputHandler.Update
   name: Update
   nameWithType: InputHandler.Update
   fullName: MLEM.Input.InputHandler.Update
+- uid: Microsoft.Xna.Framework.Game
+  commentId: T:Microsoft.Xna.Framework.Game
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Game
+  nameWithType: Game
+  fullName: Microsoft.Xna.Framework.Game
 - uid: Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
   commentId: M:Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
   parent: Microsoft.Xna.Framework.GameComponent
@@ -2880,6 +3088,9 @@ references:
   name: GetGamepadState
   nameWithType: InputHandler.GetGamepadState
   fullName: MLEM.Input.InputHandler.GetGamepadState
+- uid: Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)
+  commentId: M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsKeyDown*
   commentId: Overload:MLEM.Input.InputHandler.IsKeyDown
   name: IsKeyDown
@@ -2892,6 +3103,9 @@ references:
   name: Keys
   nameWithType: Keys
   fullName: Microsoft.Xna.Framework.Input.Keys
+- uid: Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)
+  commentId: M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsKeyUp*
   commentId: Overload:MLEM.Input.InputHandler.IsKeyUp
   name: IsKeyUp
@@ -2954,6 +3168,9 @@ references:
   name: IsMouseButtonPressed
   nameWithType: InputHandler.IsMouseButtonPressed
   fullName: MLEM.Input.InputHandler.IsMouseButtonPressed
+- uid: Microsoft.Xna.Framework.Input.GamePadState.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons)
+  commentId: M:Microsoft.Xna.Framework.Input.GamePadState.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsGamepadButtonDown*
   commentId: Overload:MLEM.Input.InputHandler.IsGamepadButtonDown
   name: IsGamepadButtonDown
@@ -2966,6 +3183,9 @@ references:
   name: Buttons
   nameWithType: Buttons
   fullName: Microsoft.Xna.Framework.Input.Buttons
+- uid: Microsoft.Xna.Framework.Input.GamePadState.IsButtonUp(Microsoft.Xna.Framework.Input.Buttons)
+  commentId: M:Microsoft.Xna.Framework.Input.GamePadState.IsButtonUp(Microsoft.Xna.Framework.Input.Buttons)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsGamepadButtonUp*
   commentId: Overload:MLEM.Input.InputHandler.IsGamepadButtonUp
   name: IsGamepadButtonUp
@@ -3005,6 +3225,9 @@ references:
   name: GestureSample
   nameWithType: GestureSample
   fullName: Microsoft.Xna.Framework.Input.Touch.GestureSample
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsDown*
   commentId: Overload:MLEM.Input.InputHandler.IsDown
   name: IsDown
@@ -3020,6 +3243,9 @@ references:
   name: IsPressed
   nameWithType: InputHandler.IsPressed
   fullName: MLEM.Input.InputHandler.IsPressed
+- uid: MLEM.Input.InputHandler.IsDown(System.Object,System.Int32)
+  commentId: M:MLEM.Input.InputHandler.IsDown(System.Object,System.Int32)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsAnyDown*
   commentId: Overload:MLEM.Input.InputHandler.IsAnyDown
   name: IsAnyDown
@@ -3051,16 +3277,25 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: MLEM.Input.InputHandler.IsUp(System.Object,System.Int32)
+  commentId: M:MLEM.Input.InputHandler.IsUp(System.Object,System.Int32)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsAnyUp*
   commentId: Overload:MLEM.Input.InputHandler.IsAnyUp
   name: IsAnyUp
   nameWithType: InputHandler.IsAnyUp
   fullName: MLEM.Input.InputHandler.IsAnyUp
+- uid: MLEM.Input.InputHandler.IsPressed(System.Object,System.Int32)
+  commentId: M:MLEM.Input.InputHandler.IsPressed(System.Object,System.Int32)
+  isExternal: true
 - uid: MLEM.Input.InputHandler.IsAnyPressed*
   commentId: Overload:MLEM.Input.InputHandler.IsAnyPressed
   name: IsAnyPressed
   nameWithType: InputHandler.IsAnyPressed
   fullName: MLEM.Input.InputHandler.IsAnyPressed
+- uid: Microsoft.Xna.Framework.Input.Touch.TouchPanel
+  commentId: T:Microsoft.Xna.Framework.Input.Touch.TouchPanel
+  isExternal: true
 - uid: MLEM.Input.InputHandler.EnableGestures*
   commentId: Overload:MLEM.Input.InputHandler.EnableGestures
   name: EnableGestures

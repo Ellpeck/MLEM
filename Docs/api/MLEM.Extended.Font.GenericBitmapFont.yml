@@ -40,6 +40,7 @@ items:
     content: 'public class GenericBitmapFont : GenericFont'
     content.vb: >-
       Public Class GenericBitmapFont
+
           Inherits GenericFont
   inheritance:
   - System.Object

@@ -21,14 +21,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ShadowCode
     path: ../MLEM/Formatting/Codes/ShadowCode.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class ShadowCode : FontCode'
     content.vb: >-
       Public Class ShadowCode
+
           Inherits FontCode
   inheritance:
   - System.Object
@@ -79,10 +81,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/ShadowCode.cs
-    startLine: 12
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public ShadowCode(Match match, Regex regex, Color color, Vector2 offset)
     parameters:
@@ -118,10 +121,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawCharacter
     path: ../MLEM/Formatting/Codes/ShadowCode.cs
-    startLine: 17
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth)
     parameters:

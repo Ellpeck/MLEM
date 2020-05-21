@@ -29,6 +29,7 @@ items:
     content: 'public class PointConverter : JsonConverter<Point>'
     content.vb: >-
       Public Class PointConverter
+
           Inherits JsonConverter(Of Point)
   inheritance:
   - System.Object

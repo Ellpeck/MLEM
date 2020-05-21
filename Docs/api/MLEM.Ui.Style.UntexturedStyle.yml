@@ -28,6 +28,7 @@ items:
     content: 'public class UntexturedStyle : UiStyle'
     content.vb: >-
       Public Class UntexturedStyle
+
           Inherits UiStyle
   inheritance:
   - System.Object

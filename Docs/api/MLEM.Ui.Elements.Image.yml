@@ -39,6 +39,7 @@ items:
     content: 'public class Image : Element'
     content.vb: >-
       Public Class Image
+
           Inherits Element
   inheritance:
   - System.Object

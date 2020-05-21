@@ -22,7 +22,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RawContentReader
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Content
@@ -71,7 +71,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: CanRead
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Content
@@ -85,7 +85,7 @@ items:
       description: The type of asset
     return:
       type: System.Boolean
-      description: If <see cref="!:t"></see> can be loaded by this content reader
+      description: If the type can be loaded by this content reader
     content.vb: Public MustOverride Function CanRead(t As Type) As Boolean
   overload: MLEM.Content.RawContentReader.CanRead*
   modifiers.csharp:
@@ -112,7 +112,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Read
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 25
+    startLine: 26
   assemblies:
   - MLEM
   namespace: MLEM.Content
@@ -126,7 +126,7 @@ items:
       description: The <xref href="MLEM.Content.RawContentManager" data-throw-if-not-resolved="false"></xref> that is loading the asset
     - id: assetPath
       type: System.String
-      description: The full path to the asset, starting from the <see cref="!:RawContentManager.RootDirectory"></see>
+      description: The full path to the asset, starting from the <xref href="Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" data-throw-if-not-resolved="false"></xref>
     - id: stream
       type: System.IO.Stream
       description: A stream that leads to this asset
@@ -165,7 +165,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFileExtensions
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - MLEM
   namespace: MLEM.Content
@@ -507,6 +507,13 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+  commentId: P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+  parent: Microsoft.Xna.Framework.Content.ContentManager
+  isExternal: true
+  name: RootDirectory
+  nameWithType: ContentManager.RootDirectory
+  fullName: Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
 - uid: MLEM.Content.RawContentReader.Read*
   commentId: Overload:MLEM.Content.RawContentReader.Read
   name: Read
@@ -526,12 +533,25 @@ references:
   name: Stream
   nameWithType: Stream
   fullName: System.IO.Stream
+- uid: Microsoft.Xna.Framework.Content.ContentManager
+  commentId: T:Microsoft.Xna.Framework.Content.ContentManager
+  parent: Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: ContentManager
+  nameWithType: ContentManager
+  fullName: Microsoft.Xna.Framework.Content.ContentManager
 - uid: System.IO
   commentId: N:System.IO
   isExternal: true
   name: System.IO
   nameWithType: System.IO
   fullName: System.IO
+- uid: Microsoft.Xna.Framework.Content
+  commentId: N:Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: Microsoft.Xna.Framework.Content
+  nameWithType: Microsoft.Xna.Framework.Content
+  fullName: Microsoft.Xna.Framework.Content
 - uid: MLEM.Content.RawContentReader.GetFileExtensions*
   commentId: Overload:MLEM.Content.RawContentReader.GetFileExtensions
   name: GetFileExtensions

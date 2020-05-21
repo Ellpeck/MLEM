@@ -24,10 +24,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MouseButton
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 29
+    startLine: 46
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThis enum is a list of possible mouse buttons.\nIt serves as a wrapper around <xref href=\"Microsoft.Xna.Framework.Input.MouseState\" data-throw-if-not-resolved=\"false\"></xref>&apos;s button properties.\n"
+  example: []
   syntax:
     content: public enum MouseButton
     content.vb: Public Enum MouseButton
@@ -55,10 +57,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Left
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 31
+    startLine: 51
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe left mouse button, or <xref href=\"Microsoft.Xna.Framework.Input.MouseState.LeftButton\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: Left = 0
     return:
@@ -87,10 +91,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Middle
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 32
+    startLine: 55
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe middle mouse button, or <xref href=\"Microsoft.Xna.Framework.Input.MouseState.MiddleButton\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: Middle = 1
     return:
@@ -119,10 +125,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Right
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 33
+    startLine: 59
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe right mouse button, or <xref href=\"Microsoft.Xna.Framework.Input.MouseState.RightButton\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: Right = 2
     return:
@@ -151,10 +159,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Extra1
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 34
+    startLine: 63
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe first extra mouse button, or <xref href=\"Microsoft.Xna.Framework.Input.MouseState.XButton1\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: Extra1 = 3
     return:
@@ -183,10 +193,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Extra2
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 35
+    startLine: 67
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nThe second extra mouse button, or <xref href=\"Microsoft.Xna.Framework.Input.MouseState.XButton2\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: Extra2 = 4
     return:
@@ -198,14 +210,42 @@ items:
   - Public
   - Const
 references:
+- uid: Microsoft.Xna.Framework.Input.MouseState
+  commentId: T:Microsoft.Xna.Framework.Input.MouseState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: MouseState
+  nameWithType: MouseState
+  fullName: Microsoft.Xna.Framework.Input.MouseState
 - uid: MLEM.Input
   commentId: N:MLEM.Input
   name: MLEM.Input
   nameWithType: MLEM.Input
   fullName: MLEM.Input
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+- uid: Microsoft.Xna.Framework.Input.MouseState.LeftButton
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.LeftButton
+  isExternal: true
 - uid: MLEM.Input.MouseButton
   commentId: T:MLEM.Input.MouseButton
   parent: MLEM.Input
   name: MouseButton
   nameWithType: MouseButton
   fullName: MLEM.Input.MouseButton
+- uid: Microsoft.Xna.Framework.Input.MouseState.MiddleButton
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.MiddleButton
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Input.MouseState.RightButton
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.RightButton
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Input.MouseState.XButton1
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.XButton1
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Input.MouseState.XButton2
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.XButton2
+  isExternal: true

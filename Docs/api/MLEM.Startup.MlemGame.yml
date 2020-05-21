@@ -42,7 +42,9 @@ items:
     content: 'public class MlemGame : Game, IDisposable'
     content.vb: >-
       Public Class MlemGame
+
           Inherits Game
+
           Implements IDisposable
   inheritance:
   - System.Object

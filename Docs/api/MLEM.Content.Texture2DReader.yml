@@ -21,14 +21,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Texture2DReader
     path: ../MLEM/Content/Texture2DReader.cs
-    startLine: 4
+    startLine: 5
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: 'public class Texture2DReader : RawContentReader<Texture2D>'
     content.vb: >-
       Public Class Texture2DReader
+
           Inherits RawContentReader(Of Texture2D)
   inheritance:
   - System.Object
@@ -68,10 +70,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Read
     path: ../MLEM/Content/Texture2DReader.cs
-    startLine: 6
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: protected override Texture2D Read(RawContentManager manager, string assetPath, Stream stream, Texture2D existing)
     parameters:
@@ -112,10 +115,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFileExtensions
     path: ../MLEM/Content/Texture2DReader.cs
-    startLine: 15
+    startLine: 18
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override string[] GetFileExtensions()
     return:

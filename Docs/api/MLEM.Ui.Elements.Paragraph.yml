@@ -47,6 +47,7 @@ items:
     content: 'public class Paragraph : Element'
     content.vb: >-
       Public Class Paragraph
+
           Inherits Element
   inheritance:
   - System.Object

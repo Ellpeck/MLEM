@@ -20,10 +20,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AutoTiling
     path: ../MLEM/Misc/AutoTiling.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThis class contains a <xref href=\"MLEM.Misc.AutoTiling.DrawAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch%2cMicrosoft.Xna.Framework.Vector2%2cMicrosoft.Xna.Framework.Graphics.Texture2D%2cMicrosoft.Xna.Framework.Rectangle%2cMLEM.Misc.AutoTiling.ConnectsTo%2cMicrosoft.Xna.Framework.Color%2cSystem.Single%2cSystem.Nullable%7bMicrosoft.Xna.Framework.Vector2%7d%2cSystem.Nullable%7bMicrosoft.Xna.Framework.Vector2%7d%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref> method that allows users to easily draw a tile with automatic connections.\nFor auto-tiling in this manner to work, auto-tiled textures have to be laid out in a format described in <xref href=\"MLEM.Misc.AutoTiling.DrawAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch%2cMicrosoft.Xna.Framework.Vector2%2cMicrosoft.Xna.Framework.Graphics.Texture2D%2cMicrosoft.Xna.Framework.Rectangle%2cMLEM.Misc.AutoTiling.ConnectsTo%2cMicrosoft.Xna.Framework.Color%2cSystem.Single%2cSystem.Nullable%7bMicrosoft.Xna.Framework.Vector2%7d%2cSystem.Nullable%7bMicrosoft.Xna.Framework.Vector2%7d%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public class AutoTiling
     content.vb: Public Class AutoTiling
@@ -61,33 +63,45 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawAutoTile
     path: ../MLEM/Misc/AutoTiling.cs
-    startLine: 6
+    startLine: 27
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThis method allows for a tiled texture to be drawn in an auto-tiling mode.\nThis allows, for example, a grass patch on a tilemap to have nice looking edges that transfer over into a path without any hard edges between tiles.\n\nFor auto-tiling in this way to work, the tiles have to be laid out in a specific order. This order is shown in the auto-tiling demo&apos;s textures.\nFor more information and an example, see <a href=\"https://github.com/Ellpeck/MLEM/blob/master/Demos/AutoTilingDemo.cs#L20-L28\">https://github.com/Ellpeck/MLEM/blob/master/Demos/AutoTilingDemo.cs#L20-L28</a>\n"
+  example: []
   syntax:
     content: public static void DrawAutoTile(SpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle textureRegion, AutoTiling.ConnectsTo connectsTo, Color color, float rotation = 0F, Vector2? origin = default(Vector2? ), Vector2? scale = default(Vector2? ), float layerDepth = 0F)
     parameters:
     - id: batch
       type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: ''
     - id: pos
       type: Microsoft.Xna.Framework.Vector2
+      description: ''
     - id: texture
       type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: ''
     - id: textureRegion
       type: Microsoft.Xna.Framework.Rectangle
+      description: ''
     - id: connectsTo
       type: MLEM.Misc.AutoTiling.ConnectsTo
+      description: ''
     - id: color
       type: Microsoft.Xna.Framework.Color
+      description: ''
     - id: rotation
       type: System.Single
+      description: ''
     - id: origin
       type: System.Nullable{Microsoft.Xna.Framework.Vector2}
+      description: ''
     - id: scale
       type: System.Nullable{Microsoft.Xna.Framework.Vector2}
+      description: ''
     - id: layerDepth
       type: System.Single
+      description: ''
     content.vb: Public Shared Sub DrawAutoTile(batch As SpriteBatch, pos As Vector2, texture As Texture2D, textureRegion As Rectangle, connectsTo As AutoTiling.ConnectsTo, color As Color, rotation As Single = 0F, origin As Vector2? = Nothing, scale As Vector2? = Nothing, layerDepth As Single = 0F)
   overload: MLEM.Misc.AutoTiling.DrawAutoTile*
   nameWithType.vb: AutoTiling.DrawAutoTile(SpriteBatch, Vector2, Texture2D, Rectangle, AutoTiling.ConnectsTo, Color, Single, Nullable(Of Vector2), Nullable(Of Vector2), Single)
@@ -100,6 +114,9 @@ items:
   fullName.vb: MLEM.Misc.AutoTiling.DrawAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.Texture2D, Microsoft.Xna.Framework.Rectangle, MLEM.Misc.AutoTiling.ConnectsTo, Microsoft.Xna.Framework.Color, System.Single, System.Nullable(Of Microsoft.Xna.Framework.Vector2), System.Nullable(Of Microsoft.Xna.Framework.Vector2), System.Single)
   name.vb: DrawAutoTile(SpriteBatch, Vector2, Texture2D, Rectangle, AutoTiling.ConnectsTo, Color, Single, Nullable(Of Vector2), Nullable(Of Vector2), Single)
 references:
+- uid: MLEM.Misc.AutoTiling.DrawAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,MLEM.Misc.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},System.Single)
+  commentId: M:MLEM.Misc.AutoTiling.DrawAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,MLEM.Misc.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},System.Single)
+  isExternal: true
 - uid: MLEM.Misc
   commentId: N:MLEM.Misc
   name: MLEM.Misc

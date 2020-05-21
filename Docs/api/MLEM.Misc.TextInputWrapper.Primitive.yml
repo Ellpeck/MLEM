@@ -22,14 +22,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Primitive
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 93
+    startLine: 154
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA primitive text input wrapper that is locked to the American keyboard localization.\nOnly use this text input wrapper if <xref href=\"MLEM.Misc.TextInputWrapper.DesktopGl%601\" data-throw-if-not-resolved=\"false\"></xref> is unavailable for some reason.\n\nNote that, when using this text input wrapper, its <xref href=\"MLEM.Misc.TextInputWrapper.Primitive.Update(MLEM.Input.InputHandler)\" data-throw-if-not-resolved=\"false\"></xref> method has to be called periodically.\n"
+  example: []
   syntax:
     content: 'public class Primitive : TextInputWrapper'
     content.vb: >-
       Public Class Primitive
+
           Inherits TextInputWrapper
   inheritance:
   - System.Object
@@ -67,15 +70,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 97
+    startLine: 162
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nUpdates this text input wrapper by querying pressed keys and sending corresponding input events.\n"
+  example: []
   syntax:
     content: public void Update(InputHandler handler)
     parameters:
     - id: handler
       type: MLEM.Input.InputHandler
+      description: The input handler to use for text input querying
     content.vb: Public Sub Update(handler As InputHandler)
   overload: MLEM.Misc.TextInputWrapper.Primitive.Update*
   modifiers.csharp:
@@ -100,10 +106,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RequiresOnScreenKeyboard
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 107
+    startLine: 173
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override bool RequiresOnScreenKeyboard()
     return:
@@ -135,10 +142,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddListener
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 111
+    startLine: 178
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override void AddListener(GameWindow window, TextInputWrapper.TextInputCallback callback)
     parameters:
@@ -156,6 +164,45 @@ items:
   - Public
   - Overrides
 references:
+- uid: MLEM.Misc.TextInputWrapper.DesktopGl`1
+  commentId: T:MLEM.Misc.TextInputWrapper.DesktopGl`1
+  name: TextInputWrapper.DesktopGl<T>
+  nameWithType: TextInputWrapper.DesktopGl<T>
+  fullName: MLEM.Misc.TextInputWrapper.DesktopGl<T>
+  nameWithType.vb: TextInputWrapper.DesktopGl(Of T)
+  fullName.vb: MLEM.Misc.TextInputWrapper.DesktopGl(Of T)
+  name.vb: TextInputWrapper.DesktopGl(Of T)
+  spec.csharp:
+  - uid: MLEM.Misc.TextInputWrapper.DesktopGl`1
+    name: TextInputWrapper.DesktopGl
+    nameWithType: TextInputWrapper.DesktopGl
+    fullName: MLEM.Misc.TextInputWrapper.DesktopGl
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Misc.TextInputWrapper.DesktopGl`1
+    name: TextInputWrapper.DesktopGl
+    nameWithType: TextInputWrapper.DesktopGl
+    fullName: MLEM.Misc.TextInputWrapper.DesktopGl
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Misc.TextInputWrapper.Primitive.Update(MLEM.Input.InputHandler)
+  commentId: M:MLEM.Misc.TextInputWrapper.Primitive.Update(MLEM.Input.InputHandler)
+  isExternal: true
 - uid: MLEM.Misc
   commentId: N:MLEM.Misc
   name: MLEM.Misc

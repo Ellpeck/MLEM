@@ -23,10 +23,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TextAlign
     path: ../MLEM/Font/GenericFont.cs
-    startLine: 173
+    startLine: 176
   assemblies:
   - MLEM
   namespace: MLEM.Font
+  summary: "\nAn enum that represents the text alignment options for <xref href=\"MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch%2cSystem.String%2cMicrosoft.Xna.Framework.Vector2%2cMLEM.Font.TextAlign%2cMicrosoft.Xna.Framework.Color)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public enum TextAlign
     content.vb: Public Enum TextAlign
@@ -54,10 +56,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Left
     path: ../MLEM/Font/GenericFont.cs
-    startLine: 175
+    startLine: 181
   assemblies:
   - MLEM
   namespace: MLEM.Font
+  summary: "\nThe text is aligned as normal\n"
+  example: []
   syntax:
     content: Left = 0
     return:
@@ -86,10 +90,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Center
     path: ../MLEM/Font/GenericFont.cs
-    startLine: 176
+    startLine: 185
   assemblies:
   - MLEM
   namespace: MLEM.Font
+  summary: "\nThe position passed represents the center of the resulting string in the x axis\n"
+  example: []
   syntax:
     content: Center = 1
     return:
@@ -118,10 +124,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Right
     path: ../MLEM/Font/GenericFont.cs
-    startLine: 177
+    startLine: 189
   assemblies:
   - MLEM
   namespace: MLEM.Font
+  summary: "\nThe position passed represents the right edge of the resulting string\n"
+  example: []
   syntax:
     content: Right = 2
     return:
@@ -150,10 +158,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: CenterBothAxes
     path: ../MLEM/Font/GenericFont.cs
-    startLine: 178
+    startLine: 193
   assemblies:
   - MLEM
   namespace: MLEM.Font
+  summary: "\nThe position passed represents the center of the resulting string, both in the x and y axes\n"
+  example: []
   syntax:
     content: CenterBothAxes = 3
     return:
@@ -165,11 +175,118 @@ items:
   - Public
   - Const
 references:
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, TextAlign, Color)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, TextAlign, Color)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, MLEM.Font.TextAlign, Microsoft.Xna.Framework.Color)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,MLEM.Font.TextAlign,Microsoft.Xna.Framework.Color)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MLEM.Font.TextAlign
+    name: TextAlign
+    nameWithType: TextAlign
+    fullName: MLEM.Font.TextAlign
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Font
   commentId: N:MLEM.Font
   name: MLEM.Font
   nameWithType: MLEM.Font
   fullName: MLEM.Font
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
 - uid: MLEM.Font.TextAlign
   commentId: T:MLEM.Font.TextAlign
   parent: MLEM.Font

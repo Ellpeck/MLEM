@@ -22,14 +22,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: XmlReader
     path: ../MLEM/Content/XmlReader.cs
-    startLine: 5
+    startLine: 6
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: 'public class XmlReader : RawContentReader'
     content.vb: >-
       Public Class XmlReader
+
           Inherits RawContentReader
   inheritance:
   - System.Object
@@ -66,10 +68,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: CanRead
     path: ../MLEM/Content/XmlReader.cs
-    startLine: 7
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override bool CanRead(Type t)
     parameters:
@@ -104,10 +107,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Read
     path: ../MLEM/Content/XmlReader.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override object Read(RawContentManager manager, string assetPath, Stream stream, Type t, object existing)
     parameters:
@@ -150,10 +154,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFileExtensions
     path: ../MLEM/Content/XmlReader.cs
-    startLine: 15
+    startLine: 19
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override string[] GetFileExtensions()
     return:

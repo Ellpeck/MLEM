@@ -36,6 +36,7 @@ items:
       <Obsolete("Use the new text formatting system in MLEM.Formatting instead")>
 
       Public Class FormattingCodeData
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object

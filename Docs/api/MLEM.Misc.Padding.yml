@@ -35,10 +35,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Padding
     path: ../MLEM/Misc/Padding.cs
-    startLine: 3
+    startLine: 7
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nRepresents a generic padding.\nA padding is an object of data that stores an offset from each side of a rectangle or square.\n"
+  example: []
   syntax:
     content: public struct Padding
     content.vb: Public Structure Padding
@@ -71,10 +73,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Left
     path: ../MLEM/Misc/Padding.cs
-    startLine: 5
+    startLine: 12
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe amount of padding on the left side\n"
+  example: []
   syntax:
     content: public float Left
     return:
@@ -102,10 +106,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Right
     path: ../MLEM/Misc/Padding.cs
-    startLine: 6
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe amount of padding on the right side\n"
+  example: []
   syntax:
     content: public float Right
     return:
@@ -133,10 +139,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Top
     path: ../MLEM/Misc/Padding.cs
-    startLine: 7
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe amount of padding on the top side\n"
+  example: []
   syntax:
     content: public float Top
     return:
@@ -164,10 +172,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Bottom
     path: ../MLEM/Misc/Padding.cs
-    startLine: 8
+    startLine: 24
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe amount of padding on the bottom side\n"
+  example: []
   syntax:
     content: public float Bottom
     return:
@@ -195,10 +205,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Width
     path: ../MLEM/Misc/Padding.cs
-    startLine: 9
+    startLine: 28
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe total width of this padding, a sum of the left and right padding.\n"
+  example: []
   syntax:
     content: public float Width { get; }
     parameters: []
@@ -230,10 +242,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Height
     path: ../MLEM/Misc/Padding.cs
-    startLine: 10
+    startLine: 32
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe total height of this padding, a sum of the top and bottom padding.\n"
+  example: []
   syntax:
     content: public float Height { get; }
     parameters: []
@@ -265,21 +279,27 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Misc/Padding.cs
-    startLine: 12
+    startLine: 41
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nCreate a new padding with the specified borders.\n"
+  example: []
   syntax:
     content: public Padding(float left, float right, float top, float bottom)
     parameters:
     - id: left
       type: System.Single
+      description: The amount of padding on the left side
     - id: right
       type: System.Single
+      description: The amount of padding on the right side
     - id: top
       type: System.Single
+      description: The amount of padding on the top side
     - id: bottom
       type: System.Single
+      description: The amount of padding on the bottom side
     content.vb: Public Sub New(left As Single, right As Single, top As Single, bottom As Single)
   overload: MLEM.Misc.Padding.#ctor*
   modifiers.csharp:
@@ -304,17 +324,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Implicit
     path: ../MLEM/Misc/Padding.cs
-    startLine: 19
+    startLine: 54
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nImplicitly creates a padding from the given two-dimensional vector.\nThe left and right padding will both be the vector&apos;s x value, and the top and bottom padding will both be the vector&apos;s y value.\n"
+  example: []
   syntax:
     content: public static implicit operator Padding(Vector2 vec)
     parameters:
     - id: vec
       type: Microsoft.Xna.Framework.Vector2
+      description: The vector to convert
     return:
       type: MLEM.Misc.Padding
+      description: A padding based on the vector&apos;s values
     content.vb: Public Shared Widening Operator CType(vec As Vector2) As Padding
   overload: MLEM.Misc.Padding.op_Implicit*
   nameWithType.vb: Padding.Widening(Vector2 to Padding)
@@ -344,10 +368,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Multiply
     path: ../MLEM/Misc/Padding.cs
-    startLine: 23
+    startLine: 61
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nScales a padding by a scalar.\n"
+  example: []
   syntax:
     content: public static Padding operator *(Padding p, float scale)
     parameters:
@@ -383,10 +409,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Addition
     path: ../MLEM/Misc/Padding.cs
-    startLine: 27
+    startLine: 68
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAdds two paddings together in a memberwise fashion.\n"
+  example: []
   syntax:
     content: public static Padding operator +(Padding left, Padding right)
     parameters:
@@ -422,10 +450,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Subtraction
     path: ../MLEM/Misc/Padding.cs
-    startLine: 31
+    startLine: 75
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nSubtracts two paddings in a memberwise fashion.\n"
+  example: []
   syntax:
     content: public static Padding operator -(Padding left, Padding right)
     parameters:
@@ -461,10 +491,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Equality
     path: ../MLEM/Misc/Padding.cs
-    startLine: 35
+    startLine: 80
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public static bool operator ==(Padding left, Padding right)
     parameters:
@@ -500,10 +531,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Inequality
     path: ../MLEM/Misc/Padding.cs
-    startLine: 39
+    startLine: 85
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public static bool operator !=(Padding left, Padding right)
     parameters:
@@ -539,10 +571,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Misc/Padding.cs
-    startLine: 43
+    startLine: 90
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public bool Equals(Padding other)
     parameters:
@@ -574,10 +607,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Misc/Padding.cs
-    startLine: 47
+    startLine: 95
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override bool Equals(object obj)
     parameters:
@@ -612,10 +646,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetHashCode
     path: ../MLEM/Misc/Padding.cs
-    startLine: 51
+    startLine: 100
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override int GetHashCode()
     return:
@@ -895,6 +930,9 @@ references:
   name: Subtraction
   nameWithType: Padding.Subtraction
   fullName: MLEM.Misc.Padding.Subtraction
+- uid: MLEM.Misc.Padding.Equals(MLEM.Misc.Padding)
+  commentId: M:MLEM.Misc.Padding.Equals(MLEM.Misc.Padding)
+  isExternal: true
 - uid: MLEM.Misc.Padding.op_Equality*
   commentId: Overload:MLEM.Misc.Padding.op_Equality
   name: Equality
@@ -912,6 +950,9 @@ references:
   name: Inequality
   nameWithType: Padding.Inequality
   fullName: MLEM.Misc.Padding.Inequality
+- uid: MLEM.Misc.Padding.Equals(System.Object)
+  commentId: M:MLEM.Misc.Padding.Equals(System.Object)
+  isExternal: true
 - uid: MLEM.Misc.Padding.Equals*
   commentId: Overload:MLEM.Misc.Padding.Equals
   name: Equals

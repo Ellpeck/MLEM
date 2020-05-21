@@ -24,10 +24,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: SpriteBatchExtensions
     path: ../MLEM/Extensions/SpriteBatchExtensions.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nA set of extensions for dealing with <xref href=\"Microsoft.Xna.Framework.Graphics.SpriteBatch\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class SpriteBatchExtensions
     content.vb: Public Module SpriteBatchExtensions
@@ -67,7 +69,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetBlankTexture
     path: ../MLEM/Extensions/SpriteBatchExtensions.cs
-    startLine: 16
+    startLine: 19
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -112,7 +114,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GenerateTexture
     path: ../MLEM/Extensions/SpriteBatchExtensions.cs
-    startLine: 37
+    startLine: 40
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -166,7 +168,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Extensions/SpriteBatchExtensions.cs
-    startLine: 55
+    startLine: 58
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -225,7 +227,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Extensions/SpriteBatchExtensions.cs
-    startLine: 62
+    startLine: 65
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -276,7 +278,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Extensions/SpriteBatchExtensions.cs
-    startLine: 67
+    startLine: 70
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -304,6 +306,13 @@ items:
   - Public
   - Shared
 references:
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -595,6 +604,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
 - uid: System
   commentId: N:System
   isExternal: true
@@ -606,13 +621,6 @@ references:
   name: GetBlankTexture
   nameWithType: SpriteBatchExtensions.GetBlankTexture
   fullName: MLEM.Extensions.SpriteBatchExtensions.GetBlankTexture
-- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
-  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
-  parent: Microsoft.Xna.Framework.Graphics
-  isExternal: true
-  name: SpriteBatch
-  nameWithType: SpriteBatch
-  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
 - uid: Microsoft.Xna.Framework.Graphics.Texture2D
   commentId: T:Microsoft.Xna.Framework.Graphics.Texture2D
   parent: Microsoft.Xna.Framework.Graphics
@@ -620,12 +628,6 @@ references:
   name: Texture2D
   nameWithType: Texture2D
   fullName: Microsoft.Xna.Framework.Graphics.Texture2D
-- uid: Microsoft.Xna.Framework.Graphics
-  commentId: N:Microsoft.Xna.Framework.Graphics
-  isExternal: true
-  name: Microsoft.Xna.Framework.Graphics
-  nameWithType: Microsoft.Xna.Framework.Graphics
-  fullName: Microsoft.Xna.Framework.Graphics
 - uid: MLEM.Textures.NinePatch
   commentId: T:MLEM.Textures.NinePatch
   parent: MLEM.Textures

@@ -109,6 +109,7 @@ items:
     content: 'public abstract class Element : GenericDataHolder'
     content.vb: >-
       Public MustInherit Class Element
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -1941,6 +1942,7 @@ items:
   syntax:
     content: >-
       public T AddChild<T>(T element, int index = -1)
+
           where T : Element
     parameters:
     - id: element
@@ -2499,6 +2501,7 @@ items:
   syntax:
     content: >-
       public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false)
+
           where T : Element
     parameters:
     - id: condition

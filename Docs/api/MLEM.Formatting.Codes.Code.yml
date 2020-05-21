@@ -30,14 +30,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Code
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 7
+    startLine: 11
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nAn instance of a formatting code that can be used for a <xref href=\"MLEM.Formatting.TextFormatter\" data-throw-if-not-resolved=\"false\"></xref>.\nTo add a new formatting code, see <xref href=\"MLEM.Formatting.TextFormatter.Codes\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: 'public class Code : GenericDataHolder'
     content.vb: >-
       Public Class Code
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -82,10 +85,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Regex
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 9
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nThe regex that this code was created from\n"
+  example: []
   syntax:
     content: public readonly Regex Regex
     return:
@@ -115,10 +120,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Match
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 10
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nThe match that this code encompasses\n"
+  example: []
   syntax:
     content: public readonly Match Match
     return:
@@ -148,10 +155,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Token
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 11
+    startLine: 24
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nThe token that this formatting code is a part of\n"
+  example: []
   syntax:
     content: public Token Token { get; }
     parameters: []
@@ -183,17 +192,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 13
+    startLine: 31
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nCreates a new formatting code based on a formatting code regex and its match.\n"
+  example: []
   syntax:
     content: protected Code(Match match, Regex regex)
     parameters:
     - id: match
       type: System.Text.RegularExpressions.Match
+      description: The match
     - id: regex
       type: System.Text.RegularExpressions.Regex
+      description: The regex
     content.vb: Protected Sub New(match As Match, regex As Regex)
   overload: MLEM.Formatting.Codes.Code.#ctor*
   modifiers.csharp:
@@ -218,17 +231,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: EndsHere
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 18
+    startLine: 42
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nReturns whether this formatting code should end when the passed formatting code starts.\nIf this method returns true, a new <xref href=\"MLEM.Formatting.Codes.Code.Token\" data-throw-if-not-resolved=\"false\"></xref> is started at its position.\n"
+  example: []
   syntax:
     content: public virtual bool EndsHere(Code other)
     parameters:
     - id: other
       type: MLEM.Formatting.Codes.Code
+      description: The code that is started here
     return:
       type: System.Boolean
+      description: If this code should end
     content.vb: Public Overridable Function EndsHere(other As Code) As Boolean
   overload: MLEM.Formatting.Codes.Code.EndsHere*
   modifiers.csharp:
@@ -255,10 +272,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetColor
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 22
+    startLine: 47
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public virtual Color? GetColor(Color defaultPick)
     parameters:
@@ -292,10 +310,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFont
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 26
+    startLine: 52
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public virtual GenericFont GetFont(GenericFont defaultPick)
     parameters:
@@ -329,15 +348,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 30
+    startLine: 60
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nUpdate this formatting code&apos;s animations etc.\n"
+  example: []
   syntax:
     content: public virtual void Update(GameTime time)
     parameters:
     - id: time
       type: Microsoft.Xna.Framework.GameTime
+      description: The game&apos;s time
     content.vb: Public Overridable Sub Update(time As GameTime)
   overload: MLEM.Formatting.Codes.Code.Update*
   modifiers.csharp:
@@ -364,17 +386,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetReplacementString
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 33
+    startLine: 69
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nReturns the string that this formatting code should be replaced with.\nUsually, you&apos;ll just want an empty string here, but some formatting codes (like <xref href=\"MLEM.Formatting.Codes.ImageCode\" data-throw-if-not-resolved=\"false\"></xref>) require their space to be filled by spaces.\n"
+  example: []
   syntax:
     content: public virtual string GetReplacementString(GenericFont font)
     parameters:
     - id: font
       type: MLEM.Font.GenericFont
+      description: The font that is used
     return:
       type: System.String
+      description: The replacement string for this formatting code
     content.vb: Public Overridable Function GetReplacementString(font As GenericFont) As String
   overload: MLEM.Formatting.Codes.Code.GetReplacementString*
   modifiers.csharp:
@@ -401,10 +427,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawCharacter
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 37
+    startLine: 74
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth)
     parameters:
@@ -459,10 +486,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawSelf
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 41
+    startLine: 79
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public virtual void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth)
     parameters:
@@ -489,6 +517,15 @@ items:
   - Public
   - Overridable
 references:
+- uid: MLEM.Formatting.TextFormatter
+  commentId: T:MLEM.Formatting.TextFormatter
+  parent: MLEM.Formatting
+  name: TextFormatter
+  nameWithType: TextFormatter
+  fullName: MLEM.Formatting.TextFormatter
+- uid: MLEM.Formatting.TextFormatter.Codes
+  commentId: F:MLEM.Formatting.TextFormatter.Codes
+  isExternal: true
 - uid: MLEM.Formatting.Codes
   commentId: N:MLEM.Formatting.Codes
   name: MLEM.Formatting.Codes
@@ -911,6 +948,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
 - uid: System
   commentId: N:System
   isExternal: true
@@ -953,16 +995,17 @@ references:
   name: Token
   nameWithType: Token
   fullName: MLEM.Formatting.Token
-- uid: MLEM.Formatting
-  commentId: N:MLEM.Formatting
-  name: MLEM.Formatting
-  nameWithType: MLEM.Formatting
-  fullName: MLEM.Formatting
 - uid: MLEM.Formatting.Codes.Code.#ctor*
   commentId: Overload:MLEM.Formatting.Codes.Code.#ctor
   name: Code
   nameWithType: Code.Code
   fullName: MLEM.Formatting.Codes.Code.Code
+- uid: MLEM.Formatting.Codes.Code.Token
+  commentId: P:MLEM.Formatting.Codes.Code.Token
+  parent: MLEM.Formatting.Codes.Code
+  name: Token
+  nameWithType: Code.Token
+  fullName: MLEM.Formatting.Codes.Code.Token
 - uid: MLEM.Formatting.Codes.Code.EndsHere*
   commentId: Overload:MLEM.Formatting.Codes.Code.EndsHere
   name: EndsHere
@@ -981,6 +1024,9 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: MLEM.Formatting.Token.GetColor(Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Formatting.Token.GetColor(Microsoft.Xna.Framework.Color)
+  isExternal: true
 - uid: MLEM.Formatting.Codes.Code.GetColor*
   commentId: Overload:MLEM.Formatting.Codes.Code.GetColor
   name: GetColor
@@ -1082,6 +1128,9 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: MLEM.Formatting.Token.GetFont(MLEM.Font.GenericFont)
+  commentId: M:MLEM.Formatting.Token.GetFont(MLEM.Font.GenericFont)
+  isExternal: true
 - uid: MLEM.Formatting.Codes.Code.GetFont*
   commentId: Overload:MLEM.Formatting.Codes.Code.GetFont
   name: GetFont
@@ -1110,6 +1159,11 @@ references:
   name: GameTime
   nameWithType: GameTime
   fullName: Microsoft.Xna.Framework.GameTime
+- uid: MLEM.Formatting.Codes.ImageCode
+  commentId: T:MLEM.Formatting.Codes.ImageCode
+  name: ImageCode
+  nameWithType: ImageCode
+  fullName: MLEM.Formatting.Codes.ImageCode
 - uid: MLEM.Formatting.Codes.Code.GetReplacementString*
   commentId: Overload:MLEM.Formatting.Codes.Code.GetReplacementString
   name: GetReplacementString
@@ -1122,6 +1176,9 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: MLEM.Formatting.Token.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  commentId: M:MLEM.Formatting.Token.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Formatting.Codes.Code.DrawCharacter*
   commentId: Overload:MLEM.Formatting.Codes.Code.DrawCharacter
   name: DrawCharacter
@@ -1168,6 +1225,9 @@ references:
   name: Microsoft.Xna.Framework.Graphics
   nameWithType: Microsoft.Xna.Framework.Graphics
   fullName: Microsoft.Xna.Framework.Graphics
+- uid: MLEM.Formatting.Token.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  commentId: M:MLEM.Formatting.Token.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Formatting.Codes.Code.DrawSelf*
   commentId: Overload:MLEM.Formatting.Codes.Code.DrawSelf
   name: DrawSelf

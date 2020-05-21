@@ -19,19 +19,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Constructor
     path: ../MLEM/Formatting/Codes/Code.cs
-    startLine: 44
+    startLine: 89
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nCreates a new formatting code from the given regex and regex match.\n<xref href=\"MLEM.Formatting.TextFormatter.Codes\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public delegate Code Constructor(TextFormatter formatter, Match match, Regex regex);
     parameters:
     - id: formatter
       type: MLEM.Formatting.TextFormatter
+      description: The text formatter that created this code
     - id: match
       type: System.Text.RegularExpressions.Match
+      description: The match for the code&apos;s regex
     - id: regex
       type: System.Text.RegularExpressions.Regex
+      description: The regex used to create this code
     return:
       type: MLEM.Formatting.Codes.Code
     content.vb: Public Delegate Function Constructor(formatter As TextFormatter, match As Match, regex As Regex) As Code
@@ -42,6 +47,9 @@ items:
   - Public
   - Delegate
 references:
+- uid: MLEM.Formatting.TextFormatter.Codes
+  commentId: F:MLEM.Formatting.TextFormatter.Codes
+  isExternal: true
 - uid: MLEM.Formatting.Codes
   commentId: N:MLEM.Formatting.Codes
   name: MLEM.Formatting.Codes

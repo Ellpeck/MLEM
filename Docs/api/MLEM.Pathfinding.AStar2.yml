@@ -22,14 +22,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AStar2
     path: ../MLEM/Pathfinding/AStar2.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nA 2-dimensional implementation of <xref href=\"MLEM.Pathfinding.AStar%601\" data-throw-if-not-resolved=\"false\"></xref> that uses <xref href=\"Microsoft.Xna.Framework.Point\" data-throw-if-not-resolved=\"false\"></xref> for positions.\n"
+  example: []
   syntax:
     content: 'public class AStar2 : AStar<Point>'
     content.vb: >-
       Public Class AStar2
+
           Inherits AStar(Of Point)
   inheritance:
   - System.Object
@@ -77,10 +80,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Pathfinding/AStar2.cs
-    startLine: 11
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  example: []
   syntax:
     content: public AStar2(AStar<Point>.GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1F, int defaultMaxTries = 10000)
     parameters:
@@ -119,10 +123,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddPositions
     path: ../MLEM/Pathfinding/AStar2.cs
-    startLine: 15
+    startLine: 20
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  example: []
   syntax:
     content: protected override Point AddPositions(Point first, Point second)
     parameters:
@@ -159,10 +164,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetManhattanDistance
     path: ../MLEM/Pathfinding/AStar2.cs
-    startLine: 19
+    startLine: 25
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  example: []
   syntax:
     content: protected override float GetManhattanDistance(Point first, Point second)
     parameters:
@@ -182,6 +188,49 @@ items:
   - Protected
   - Overrides
 references:
+- uid: MLEM.Pathfinding.AStar`1
+  commentId: T:MLEM.Pathfinding.AStar`1
+  name: AStar<T>
+  nameWithType: AStar<T>
+  fullName: MLEM.Pathfinding.AStar<T>
+  nameWithType.vb: AStar(Of T)
+  fullName.vb: MLEM.Pathfinding.AStar(Of T)
+  name.vb: AStar(Of T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
 - uid: MLEM.Pathfinding
   commentId: N:MLEM.Pathfinding
   name: MLEM.Pathfinding
@@ -992,48 +1041,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
 - uid: System
   commentId: N:System
   isExternal: true
   name: System
   nameWithType: System
   fullName: System
-- uid: MLEM.Pathfinding.AStar`1
-  commentId: T:MLEM.Pathfinding.AStar`1
-  name: AStar<T>
-  nameWithType: AStar<T>
-  fullName: MLEM.Pathfinding.AStar<T>
-  nameWithType.vb: AStar(Of T)
-  fullName.vb: MLEM.Pathfinding.AStar(Of T)
-  name.vb: AStar(Of T)
-  spec.csharp:
-  - uid: MLEM.Pathfinding.AStar`1
-    name: AStar
-    nameWithType: AStar
-    fullName: MLEM.Pathfinding.AStar
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: MLEM.Pathfinding.AStar`1
-    name: AStar
-    nameWithType: AStar
-    fullName: MLEM.Pathfinding.AStar
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: MLEM.Pathfinding.AStar`1.InfiniteCost
   commentId: F:MLEM.Pathfinding.AStar`1.InfiniteCost
   name: InfiniteCost
@@ -1626,13 +1645,6 @@ references:
   name: AddPositions
   nameWithType: AStar2.AddPositions
   fullName: MLEM.Pathfinding.AStar2.AddPositions
-- uid: Microsoft.Xna.Framework.Point
-  commentId: T:Microsoft.Xna.Framework.Point
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Point
-  nameWithType: Point
-  fullName: Microsoft.Xna.Framework.Point
 - uid: MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
   commentId: M:MLEM.Pathfinding.AStar`1.AddPositions(`0,`0)
   name: AddPositions(T, T)
@@ -1680,12 +1692,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Microsoft.Xna.Framework
-  commentId: N:Microsoft.Xna.Framework
-  isExternal: true
-  name: Microsoft.Xna.Framework
-  nameWithType: Microsoft.Xna.Framework
-  fullName: Microsoft.Xna.Framework
 - uid: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
   commentId: M:MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}.GetManhattanDistance(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)
   parent: MLEM.Pathfinding.AStar{Microsoft.Xna.Framework.Point}

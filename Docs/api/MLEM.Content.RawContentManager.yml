@@ -35,7 +35,9 @@ items:
     content: 'public class RawContentManager : ContentManager, IDisposable, IGameComponent'
     content.vb: >-
       Public Class RawContentManager
+
           Inherits ContentManager
+
           Implements IDisposable, IGameComponent
   inheritance:
   - System.Object
@@ -211,10 +213,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ReloadAsset
     path: ../MLEM/Content/RawContentManager.cs
-    startLine: 59
+    startLine: 60
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: protected override void ReloadAsset<T>(string originalAssetName, T currentAsset)
     parameters:
@@ -254,10 +257,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Unload
     path: ../MLEM/Content/RawContentManager.cs
-    startLine: 82
+    startLine: 84
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override void Unload()
     content.vb: Public Overrides Sub Unload
@@ -287,10 +291,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Initialize
     path: ../MLEM/Content/RawContentManager.cs
-    startLine: 89
+    startLine: 92
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public void Initialize()
     content.vb: Public Sub Initialize

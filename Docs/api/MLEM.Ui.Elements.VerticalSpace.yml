@@ -28,6 +28,7 @@ items:
     content: 'public class VerticalSpace : Element'
     content.vb: >-
       Public Class VerticalSpace
+
           Inherits Element
   inheritance:
   - System.Object

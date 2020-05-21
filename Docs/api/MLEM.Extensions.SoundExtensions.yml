@@ -20,10 +20,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: SoundExtensions
     path: ../MLEM/Extensions/SoundExtensions.cs
-    startLine: 4
+    startLine: 7
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nA set of extensions for dealing wiht <xref href=\"Microsoft.Xna.Framework.Audio.SoundEffectInstance\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class SoundExtensions
     content.vb: Public Module SoundExtensions
@@ -63,10 +65,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Replay
     path: ../MLEM/Extensions/SoundExtensions.cs
-    startLine: 6
+    startLine: 13
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nStops and plays a sound effect instance in one call\n"
+  example: []
   syntax:
     content: >-
       [Obsolete("When using the .NET Core version of MonoGame, the replay issue has been fixed. Just call Play() instead.")]
@@ -75,6 +79,7 @@ items:
     parameters:
     - id: sound
       type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: The sound to stop and play
     content.vb: >-
       <Obsolete("When using the .NET Core version of MonoGame, the replay issue has been fixed. Just call Play() instead.")>
 
@@ -95,6 +100,13 @@ items:
   - Public
   - Shared
 references:
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffectInstance
+  nameWithType: SoundEffectInstance
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -386,6 +398,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework.Audio
+  commentId: N:Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: Microsoft.Xna.Framework.Audio
+  nameWithType: Microsoft.Xna.Framework.Audio
+  fullName: Microsoft.Xna.Framework.Audio
 - uid: System
   commentId: N:System
   isExternal: true
@@ -397,16 +415,3 @@ references:
   name: Replay
   nameWithType: SoundExtensions.Replay
   fullName: MLEM.Extensions.SoundExtensions.Replay
-- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
-  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffectInstance
-  parent: Microsoft.Xna.Framework.Audio
-  isExternal: true
-  name: SoundEffectInstance
-  nameWithType: SoundEffectInstance
-  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance
-- uid: Microsoft.Xna.Framework.Audio
-  commentId: N:Microsoft.Xna.Framework.Audio
-  isExternal: true
-  name: Microsoft.Xna.Framework.Audio
-  nameWithType: Microsoft.Xna.Framework.Audio
-  fullName: Microsoft.Xna.Framework.Audio

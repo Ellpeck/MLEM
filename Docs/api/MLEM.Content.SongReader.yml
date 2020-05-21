@@ -21,14 +21,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: SongReader
     path: ../MLEM/Content/SongReader.cs
-    startLine: 5
+    startLine: 6
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: 'public class SongReader : RawContentReader<Song>'
     content.vb: >-
       Public Class SongReader
+
           Inherits RawContentReader(Of Song)
   inheritance:
   - System.Object
@@ -68,10 +70,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Read
     path: ../MLEM/Content/SongReader.cs
-    startLine: 7
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: protected override Song Read(RawContentManager manager, string assetPath, Stream stream, Song existing)
     parameters:
@@ -112,10 +115,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFileExtensions
     path: ../MLEM/Content/SongReader.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Content
+  example: []
   syntax:
     content: public override string[] GetFileExtensions()
     return:

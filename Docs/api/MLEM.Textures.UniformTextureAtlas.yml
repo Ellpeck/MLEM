@@ -30,14 +30,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: UniformTextureAtlas
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 7
+    startLine: 12
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThis class represents an atlas of <xref href=\"MLEM.Textures.TextureRegion\" data-throw-if-not-resolved=\"false\"></xref> objects that is uniform.\nUniform, in this case, means that the texture atlas&apos; size is not determined by the width and height of the texture, but instead by the amount of sub-regions that the atlas has in the x and y direction.\nUsing a uniform texture atlas over a regular texture as an atlas allows for texture artists to create higher resolution textures without coordinates becoming off.\n"
+  example: []
   syntax:
     content: 'public class UniformTextureAtlas : GenericDataHolder'
     content.vb: >-
       Public Class UniformTextureAtlas
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -77,10 +80,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Texture
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 9
+    startLine: 17
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe texture to use for this atlas\n"
+  example: []
   syntax:
     content: public readonly Texture2D Texture
     return:
@@ -110,10 +115,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RegionAmountX
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 10
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe amount of sub-regions this atlas has in the x direction\n"
+  example: []
   syntax:
     content: public readonly int RegionAmountX
     return:
@@ -143,10 +150,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RegionAmountY
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 11
+    startLine: 25
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe amount of sub-regions this atlas has in the y direction\n"
+  example: []
   syntax:
     content: public readonly int RegionAmountY
     return:
@@ -176,10 +185,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RegionWidth
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 12
+    startLine: 29
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe width of each region, based on the texture&apos;s width and the amount of regions\n"
+  example: []
   syntax:
     content: public readonly int RegionWidth
     return:
@@ -209,10 +220,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RegionHeight
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 13
+    startLine: 33
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nThe height of reach region, based on the texture&apos;s height and the amount of regions\n"
+  example: []
   syntax:
     content: public readonly int RegionHeight
     return:
@@ -242,15 +255,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: this[]
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 14
+    startLine: 39
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nReturns the <xref href=\"MLEM.Textures.TextureRegion\" data-throw-if-not-resolved=\"false\"></xref> at this texture atlas&apos;s given index.\nThe index is zero-based, where rows come first and columns come second.\n"
+  example: []
   syntax:
     content: public TextureRegion this[int index] { get; }
     parameters:
     - id: index
       type: System.Int32
+      description: The zero-based texture index
     return:
       type: MLEM.Textures.TextureRegion
     content.vb: Public ReadOnly Property Item(index As Integer) As TextureRegion
@@ -282,15 +298,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: this[]
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 15
+    startLine: 44
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nReturns the <xref href=\"MLEM.Textures.TextureRegion\" data-throw-if-not-resolved=\"false\"></xref> at this texture atlas&apos; given region position\n"
+  example: []
   syntax:
     content: public TextureRegion this[Point point] { get; }
     parameters:
     - id: point
       type: Microsoft.Xna.Framework.Point
+      description: The region&apos;s x and y location
     return:
       type: MLEM.Textures.TextureRegion
     content.vb: Public ReadOnly Property Item(point As Point) As TextureRegion
@@ -322,10 +341,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: this[]
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 16
+    startLine: 46
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public TextureRegion this[int x, int y] { get; }
     parameters:
@@ -364,15 +384,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: this[]
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 17
+    startLine: 52
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nReturns the <xref href=\"MLEM.Textures.TextureRegion\" data-throw-if-not-resolved=\"false\"></xref> at this texture atlas&apos; given region position and size.\nNote that the region size is not in pixels, but in region units.\n"
+  example: []
   syntax:
     content: public TextureRegion this[Rectangle rect] { get; }
     parameters:
     - id: rect
       type: Microsoft.Xna.Framework.Rectangle
+      description: The region&apos;s area
     return:
       type: MLEM.Textures.TextureRegion
     content.vb: Public ReadOnly Property Item(rect As Rectangle) As TextureRegion
@@ -404,10 +427,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: this[]
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 18
+    startLine: 54
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public TextureRegion this[int x, int y, int width, int height] { get; }
     parameters:
@@ -450,19 +474,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Textures/UniformTextureAtlas.cs
-    startLine: 22
+    startLine: 64
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nCreates a new uniform texture atlas with the given texture and region amount.\n"
+  example: []
   syntax:
     content: public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY)
     parameters:
     - id: texture
       type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use for this atlas
     - id: regionAmountX
       type: System.Int32
+      description: The amount of texture regions in the x direction
     - id: regionAmountY
       type: System.Int32
+      description: The amount of texture regions in the y direction
     content.vb: Public Sub New(texture As Texture2D, regionAmountX As Integer, regionAmountY As Integer)
   overload: MLEM.Textures.UniformTextureAtlas.#ctor*
   modifiers.csharp:
@@ -470,6 +499,12 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
 - uid: MLEM.Textures
   commentId: N:MLEM.Textures
   name: MLEM.Textures
@@ -928,12 +963,6 @@ references:
   name: Item
   nameWithType: UniformTextureAtlas.Item
   fullName: MLEM.Textures.UniformTextureAtlas.Item
-- uid: MLEM.Textures.TextureRegion
-  commentId: T:MLEM.Textures.TextureRegion
-  parent: MLEM.Textures
-  name: TextureRegion
-  nameWithType: TextureRegion
-  fullName: MLEM.Textures.TextureRegion
 - uid: Microsoft.Xna.Framework.Point
   commentId: T:Microsoft.Xna.Framework.Point
   parent: Microsoft.Xna.Framework
@@ -947,6 +976,9 @@ references:
   name: Microsoft.Xna.Framework
   nameWithType: Microsoft.Xna.Framework
   fullName: Microsoft.Xna.Framework
+- uid: MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  isExternal: true
 - uid: Microsoft.Xna.Framework.Rectangle
   commentId: T:Microsoft.Xna.Framework.Rectangle
   parent: Microsoft.Xna.Framework
@@ -954,6 +986,9 @@ references:
   name: Rectangle
   nameWithType: Rectangle
   fullName: Microsoft.Xna.Framework.Rectangle
+- uid: MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Rectangle)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Rectangle)
+  isExternal: true
 - uid: MLEM.Textures.UniformTextureAtlas.#ctor*
   commentId: Overload:MLEM.Textures.UniformTextureAtlas.#ctor
   name: UniformTextureAtlas

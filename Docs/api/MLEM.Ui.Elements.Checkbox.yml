@@ -39,6 +39,7 @@ items:
     content: 'public class Checkbox : Element'
     content.vb: >-
       Public Class Checkbox
+
           Inherits Element
   inheritance:
   - System.Object

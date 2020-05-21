@@ -22,14 +22,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LinkCode
     path: ../MLEM/Formatting/Codes/LinkCode.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class LinkCode : UnderlineCode'
     content.vb: >-
       Public Class LinkCode
+
           Inherits UnderlineCode
   inheritance:
   - System.Object
@@ -81,10 +83,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/LinkCode.cs
-    startLine: 11
+    startLine: 13
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected)
     parameters:
@@ -125,14 +128,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsSelected
     path: ../MLEM/Formatting/Codes/LinkCode.cs
-    startLine: 15
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nReturns true if this link formatting code is currently selected or hovered over, based on the selection function.\n"
+  example: []
   syntax:
     content: public virtual bool IsSelected()
     return:
       type: System.Boolean
+      description: True if this code is currently selected
     content.vb: Public Overridable Function IsSelected As Boolean
   overload: MLEM.Formatting.Codes.LinkCode.IsSelected*
   modifiers.csharp:
@@ -159,10 +165,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawCharacter
     path: ../MLEM/Formatting/Codes/LinkCode.cs
-    startLine: 19
+    startLine: 26
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth)
     parameters:

@@ -36,12 +36,12 @@ items:
   assemblies:
   - MLEM
   namespace: MLEM.Font
-  summary: "\nRepresents a font with additional abilities.\n<xref href=\"MLEM.Font.GenericSpriteFont\" data-throw-if-not-resolved=\"false\"></xref>\n"
   example: []
   syntax:
     content: 'public class GenericSpriteFont : GenericFont'
     content.vb: >-
       Public Class GenericSpriteFont
+
           Inherits GenericFont
   inheritance:
   - System.Object
@@ -86,10 +86,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Font
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 10
+    startLine: 13
   assemblies:
   - MLEM
   namespace: MLEM.Font
+  summary: "\nThe <xref href=\"Microsoft.Xna.Framework.Graphics.SpriteFont\" data-throw-if-not-resolved=\"false\"></xref> that is being wrapped by this generic font\n"
+  example: []
   syntax:
     content: public readonly SpriteFont Font
     return:
@@ -119,11 +121,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Bold
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 12
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Font
-  summary: "\nThe bold version of this font.\n"
   example: []
   syntax:
     content: public override GenericFont Bold { get; }
@@ -159,11 +160,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Italic
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - MLEM
   namespace: MLEM.Font
-  summary: "\nThe italic version of this font.\n"
   example: []
   syntax:
     content: public override GenericFont Italic { get; }
@@ -199,7 +199,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: LineHeight
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 16
+    startLine: 19
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -238,7 +238,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 25
+    startLine: 28
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -280,7 +280,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MeasureString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 32
+    startLine: 35
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -319,7 +319,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MeasureString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 37
+    startLine: 40
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -358,7 +358,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 42
+    startLine: 45
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -401,7 +401,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 47
+    startLine: 50
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -454,7 +454,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 52
+    startLine: 55
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -507,7 +507,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 57
+    startLine: 60
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -550,7 +550,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 62
+    startLine: 65
   assemblies:
   - MLEM
   namespace: MLEM.Font
@@ -603,7 +603,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawString
     path: ../MLEM/Font/GenericSpriteFont.cs
-    startLine: 67
+    startLine: 70
   assemblies:
   - MLEM
   namespace: MLEM.Font

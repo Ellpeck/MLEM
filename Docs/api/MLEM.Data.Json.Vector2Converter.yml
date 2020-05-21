@@ -29,6 +29,7 @@ items:
     content: 'public class Vector2Converter : JsonConverter<Vector2>'
     content.vb: >-
       Public Class Vector2Converter
+
           Inherits JsonConverter(Of Vector2)
   inheritance:
   - System.Object

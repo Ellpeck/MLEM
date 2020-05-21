@@ -23,10 +23,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: NinePatchExtensions
     path: ../MLEM/Textures/NinePatch.cs
-    startLine: 64
+    startLine: 100
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nA set of extensions that allow for <xref href=\"MLEM.Textures.NinePatch\" data-throw-if-not-resolved=\"false\"></xref> rendering\n"
+  example: []
   syntax:
     content: public static class NinePatchExtensions
     content.vb: Public Module NinePatchExtensions
@@ -66,31 +68,42 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/NinePatch.cs
-    startLine: 66
+    startLine: 114
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  summary: "\nDraws a nine patch area using the given sprite batch\n"
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1F)
     parameters:
     - id: batch
       type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The batch to draw with
     - id: texture
       type: MLEM.Textures.NinePatch
+      description: The nine patch to draw
     - id: destinationRectangle
       type: MLEM.Misc.RectangleF
+      description: The area that should be covered by this nine patch
     - id: color
       type: Microsoft.Xna.Framework.Color
+      description: The color to use
     - id: rotation
       type: System.Single
+      description: The rotation
     - id: origin
       type: Microsoft.Xna.Framework.Vector2
+      description: The origin position
     - id: effects
       type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: The effects that the sprite should have
     - id: layerDepth
       type: System.Single
+      description: The depth
     - id: patchScale
       type: System.Single
+      description: The scale of each area of the nine patch
     content.vb: >-
       <ExtensionAttribute>
 
@@ -121,10 +134,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/NinePatch.cs
-    startLine: 76
+    startLine: 125
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1F)
     parameters:
@@ -176,10 +190,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/NinePatch.cs
-    startLine: 80
+    startLine: 130
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float patchScale = 1F)
     parameters:
@@ -223,10 +238,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Textures/NinePatch.cs
-    startLine: 84
+    startLine: 135
   assemblies:
   - MLEM
   namespace: MLEM.Textures
+  example: []
   syntax:
     content: public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float patchScale = 1F)
     parameters:
@@ -252,6 +268,12 @@ items:
   - Public
   - Shared
 references:
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  parent: MLEM.Textures
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
 - uid: MLEM.Textures
   commentId: N:MLEM.Textures
   name: MLEM.Textures
@@ -561,12 +583,6 @@ references:
   name: SpriteBatch
   nameWithType: SpriteBatch
   fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
-- uid: MLEM.Textures.NinePatch
-  commentId: T:MLEM.Textures.NinePatch
-  parent: MLEM.Textures
-  name: NinePatch
-  nameWithType: NinePatch
-  fullName: MLEM.Textures.NinePatch
 - uid: MLEM.Misc.RectangleF
   commentId: T:MLEM.Misc.RectangleF
   parent: MLEM.Misc
@@ -618,6 +634,9 @@ references:
   name: Microsoft.Xna.Framework
   nameWithType: Microsoft.Xna.Framework
   fullName: Microsoft.Xna.Framework
+- uid: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  commentId: M:MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  isExternal: true
 - uid: Microsoft.Xna.Framework.Rectangle
   commentId: T:Microsoft.Xna.Framework.Rectangle
   parent: Microsoft.Xna.Framework

@@ -36,10 +36,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: NumberExtensions
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nA set of extensions for dealing with <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Vector2\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Vector3\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Vector4\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Point\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Microsoft.Xna.Framework.Rectangle\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"MLEM.Misc.RectangleF\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class NumberExtensions
     content.vb: Public Module NumberExtensions
@@ -79,7 +81,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Floor
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 8
+    startLine: 11
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -121,7 +123,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Ceil
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -163,7 +165,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 24
+    startLine: 27
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -183,7 +185,7 @@ items:
       description: The equality tolerance
     return:
       type: System.Boolean
-      description: Whether or not <see cref="!:first"></see> and <see cref="!:second"></see> are different by at most <see cref="!:tolerance"></see>
+      description: Whether or not the two values are different by at most <code>tolerance</code>
     content.vb: >-
       <ExtensionAttribute>
 
@@ -214,11 +216,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 29
+    startLine: 32
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nChecks for decimal equality with a given tolerance.\n"
   example: []
   syntax:
     content: public static bool Equals(this Vector2 first, Vector2 second, float tolerance)
@@ -229,10 +230,8 @@ items:
       type: Microsoft.Xna.Framework.Vector2
     - id: tolerance
       type: System.Single
-      description: The equality tolerance
     return:
       type: System.Boolean
-      description: Whether or not <see cref="!:first"></see> and <see cref="!:second"></see> are different by at most <see cref="!:tolerance"></see>
     content.vb: >-
       <ExtensionAttribute>
 
@@ -263,11 +262,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 34
+    startLine: 37
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nChecks for decimal equality with a given tolerance.\n"
   example: []
   syntax:
     content: public static bool Equals(this Vector3 first, Vector3 second, float tolerance)
@@ -278,10 +276,8 @@ items:
       type: Microsoft.Xna.Framework.Vector3
     - id: tolerance
       type: System.Single
-      description: The equality tolerance
     return:
       type: System.Boolean
-      description: Whether or not <see cref="!:first"></see> and <see cref="!:second"></see> are different by at most <see cref="!:tolerance"></see>
     content.vb: >-
       <ExtensionAttribute>
 
@@ -312,11 +308,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 39
+    startLine: 42
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nChecks for decimal equality with a given tolerance.\n"
   example: []
   syntax:
     content: public static bool Equals(this Vector4 first, Vector4 second, float tolerance)
@@ -327,10 +322,8 @@ items:
       type: Microsoft.Xna.Framework.Vector4
     - id: tolerance
       type: System.Single
-      description: The equality tolerance
     return:
       type: System.Boolean
-      description: Whether or not <see cref="!:first"></see> and <see cref="!:second"></see> are different by at most <see cref="!:tolerance"></see>
     content.vb: >-
       <ExtensionAttribute>
 
@@ -361,7 +354,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Floor
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 44
+    startLine: 47
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -403,7 +396,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Floor
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 49
+    startLine: 52
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -445,7 +438,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Floor
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 54
+    startLine: 57
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -487,7 +480,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Multiply
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 64
+    startLine: 67
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -535,7 +528,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Divide
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 74
+    startLine: 77
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -583,7 +576,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Transform
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 84
+    startLine: 87
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -631,7 +624,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: OffsetCopy
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 97
+    startLine: 100
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -679,11 +672,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: OffsetCopy
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 104
+    startLine: 107
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nReturns a copy of the given rectangle, moved by the given point.\nThe rectangle&apos;s size remains unchanged.\n"
   example: []
   syntax:
     content: public static RectangleF OffsetCopy(this RectangleF rect, Vector2 offset)
@@ -694,7 +686,6 @@ items:
       type: Microsoft.Xna.Framework.Vector2
     return:
       type: MLEM.Misc.RectangleF
-      description: The moved rectangle
     content.vb: >-
       <ExtensionAttribute>
 
@@ -725,7 +716,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Shrink
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 116
+    startLine: 119
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -773,11 +764,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Shrink
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 125
+    startLine: 128
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nShrinks the rectangle by the given padding, causing its size to decrease by twice the amount and its position to be moved inwards by the amount.\n"
   example: []
   syntax:
     content: public static RectangleF Shrink(this RectangleF rect, Vector2 padding)
@@ -788,7 +778,6 @@ items:
       type: Microsoft.Xna.Framework.Vector2
     return:
       type: MLEM.Misc.RectangleF
-      description: The shrunk rectangle
     content.vb: >-
       <ExtensionAttribute>
 
@@ -819,11 +808,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Shrink
     path: ../MLEM/Extensions/NumberExtensions.cs
-    startLine: 134
+    startLine: 137
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nShrinks the rectangle by the given padding, causing its size to decrease by twice the amount and its position to be moved inwards by the amount.\n"
   example: []
   syntax:
     content: public static RectangleF Shrink(this RectangleF rect, Padding padding)
@@ -834,7 +822,6 @@ items:
       type: MLEM.Misc.Padding
     return:
       type: MLEM.Misc.RectangleF
-      description: The shrunk rectangle
     content.vb: >-
       <ExtensionAttribute>
 
@@ -847,6 +834,54 @@ items:
   - Public
   - Shared
 references:
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework.Vector3
+  commentId: T:Microsoft.Xna.Framework.Vector3
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector3
+  nameWithType: Vector3
+  fullName: Microsoft.Xna.Framework.Vector3
+- uid: Microsoft.Xna.Framework.Vector4
+  commentId: T:Microsoft.Xna.Framework.Vector4
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector4
+  nameWithType: Vector4
+  fullName: Microsoft.Xna.Framework.Vector4
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
+- uid: MLEM.Misc.RectangleF
+  commentId: T:MLEM.Misc.RectangleF
+  parent: MLEM.Misc
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Misc.RectangleF
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -1144,6 +1179,17 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
 - uid: System.Math.Floor(System.Decimal)
   commentId: M:System.Math.Floor(System.Decimal)
   isExternal: true
@@ -1152,13 +1198,6 @@ references:
   name: Floor
   nameWithType: NumberExtensions.Floor
   fullName: MLEM.Extensions.NumberExtensions.Floor
-- uid: System.Single
-  commentId: T:System.Single
-  parent: System
-  isExternal: true
-  name: Single
-  nameWithType: Single
-  fullName: System.Single
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -1189,45 +1228,11 @@ references:
 - uid: MLEM.Extensions.NumberExtensions.Equals(System.Single,System.Single,System.Single)
   commentId: M:MLEM.Extensions.NumberExtensions.Equals(System.Single,System.Single,System.Single)
   isExternal: true
-- uid: Microsoft.Xna.Framework.Vector2
-  commentId: T:Microsoft.Xna.Framework.Vector2
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Vector2
-  nameWithType: Vector2
-  fullName: Microsoft.Xna.Framework.Vector2
-- uid: Microsoft.Xna.Framework
-  commentId: N:Microsoft.Xna.Framework
-  isExternal: true
-  name: Microsoft.Xna.Framework
-  nameWithType: Microsoft.Xna.Framework
-  fullName: Microsoft.Xna.Framework
-- uid: Microsoft.Xna.Framework.Vector3
-  commentId: T:Microsoft.Xna.Framework.Vector3
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Vector3
-  nameWithType: Vector3
-  fullName: Microsoft.Xna.Framework.Vector3
-- uid: Microsoft.Xna.Framework.Vector4
-  commentId: T:Microsoft.Xna.Framework.Vector4
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Vector4
-  nameWithType: Vector4
-  fullName: Microsoft.Xna.Framework.Vector4
 - uid: MLEM.Extensions.NumberExtensions.Multiply*
   commentId: Overload:MLEM.Extensions.NumberExtensions.Multiply
   name: Multiply
   nameWithType: NumberExtensions.Multiply
   fullName: MLEM.Extensions.NumberExtensions.Multiply
-- uid: Microsoft.Xna.Framework.Point
-  commentId: T:Microsoft.Xna.Framework.Point
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Point
-  nameWithType: Point
-  fullName: Microsoft.Xna.Framework.Point
 - uid: MLEM.Extensions.NumberExtensions.Divide*
   commentId: Overload:MLEM.Extensions.NumberExtensions.Divide
   name: Divide
@@ -1250,27 +1255,9 @@ references:
   name: OffsetCopy
   nameWithType: NumberExtensions.OffsetCopy
   fullName: MLEM.Extensions.NumberExtensions.OffsetCopy
-- uid: Microsoft.Xna.Framework.Rectangle
-  commentId: T:Microsoft.Xna.Framework.Rectangle
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Rectangle
-  nameWithType: Rectangle
-  fullName: Microsoft.Xna.Framework.Rectangle
 - uid: MLEM.Extensions.NumberExtensions.OffsetCopy(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Point)
   commentId: M:MLEM.Extensions.NumberExtensions.OffsetCopy(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Point)
   isExternal: true
-- uid: MLEM.Misc.RectangleF
-  commentId: T:MLEM.Misc.RectangleF
-  parent: MLEM.Misc
-  name: RectangleF
-  nameWithType: RectangleF
-  fullName: MLEM.Misc.RectangleF
-- uid: MLEM.Misc
-  commentId: N:MLEM.Misc
-  name: MLEM.Misc
-  nameWithType: MLEM.Misc
-  fullName: MLEM.Misc
 - uid: MLEM.Extensions.NumberExtensions.Shrink*
   commentId: Overload:MLEM.Extensions.NumberExtensions.Shrink
   name: Shrink

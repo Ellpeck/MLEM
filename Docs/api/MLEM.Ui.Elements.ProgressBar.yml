@@ -38,6 +38,7 @@ items:
     content: 'public class ProgressBar : Element'
     content.vb: >-
       Public Class ProgressBar
+
           Inherits Element
   inheritance:
   - System.Object

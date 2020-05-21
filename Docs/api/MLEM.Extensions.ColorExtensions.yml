@@ -23,10 +23,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ColorExtensions
     path: ../MLEM/Extensions/ColorExtensions.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nA set of extensions for dealing with <xref href=\"Microsoft.Xna.Framework.Color\" data-throw-if-not-resolved=\"false\"></xref> objects\n"
+  example: []
   syntax:
     content: public static class ColorExtensions
     content.vb: Public Module ColorExtensions
@@ -66,7 +68,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Invert
     path: ../MLEM/Extensions/ColorExtensions.cs
-    startLine: 12
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -110,7 +112,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: FromHex
     path: ../MLEM/Extensions/ColorExtensions.cs
-    startLine: 22
+    startLine: 25
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -151,7 +153,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: FromHex
     path: ../MLEM/Extensions/ColorExtensions.cs
-    startLine: 32
+    startLine: 35
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -193,11 +195,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: CopyAlpha
     path: ../MLEM/Extensions/ColorExtensions.cs
-    startLine: 44
+    startLine: 47
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nCopies the alpha value from <see cref=\"!:other\"></see> into this color.\n"
+  summary: "\nCopies the alpha value from another color into this color.\n"
   example: []
   syntax:
     content: public static Color CopyAlpha(this Color color, Color other)
@@ -210,7 +212,7 @@ items:
       description: The color to copy the alpha from
     return:
       type: Microsoft.Xna.Framework.Color
-      description: The <see cref="!:color"></see> with <see cref="!:other"></see>&apos;s alpha value
+      description: The first color with the second color&apos;s alpha value
     content.vb: >-
       <ExtensionAttribute>
 
@@ -223,6 +225,13 @@ items:
   - Public
   - Shared
 references:
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -514,6 +523,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
 - uid: System
   commentId: N:System
   isExternal: true
@@ -525,19 +540,6 @@ references:
   name: Invert
   nameWithType: ColorExtensions.Invert
   fullName: MLEM.Extensions.ColorExtensions.Invert
-- uid: Microsoft.Xna.Framework.Color
-  commentId: T:Microsoft.Xna.Framework.Color
-  parent: Microsoft.Xna.Framework
-  isExternal: true
-  name: Color
-  nameWithType: Color
-  fullName: Microsoft.Xna.Framework.Color
-- uid: Microsoft.Xna.Framework
-  commentId: N:Microsoft.Xna.Framework
-  isExternal: true
-  name: Microsoft.Xna.Framework
-  nameWithType: Microsoft.Xna.Framework
-  fullName: Microsoft.Xna.Framework
 - uid: MLEM.Extensions.ColorExtensions.FromHex*
   commentId: Overload:MLEM.Extensions.ColorExtensions.FromHex
   name: FromHex

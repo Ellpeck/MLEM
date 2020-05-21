@@ -29,6 +29,7 @@ items:
     content: 'public class Direction2Converter : JsonConverter<Direction2>'
     content.vb: >-
       Public Class Direction2Converter
+
           Inherits JsonConverter(Of Direction2)
   inheritance:
   - System.Object

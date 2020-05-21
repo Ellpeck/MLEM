@@ -23,14 +23,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: WobblyCode
     path: ../MLEM/Formatting/Codes/WobblyCode.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class WobblyCode : AnimatedCode'
     content.vb: >-
       Public Class WobblyCode
+
           Inherits AnimatedCode
   inheritance:
   - System.Object
@@ -80,10 +82,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TimeIntoAnimation
     path: ../MLEM/Formatting/Codes/WobblyCode.cs
-    startLine: 11
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  summary: "\nThe time that this wobbly animation has been running for.\nTo reset its animation progress, reset this value.\n"
+  example: []
   syntax:
     content: public TimeSpan TimeIntoAnimation
     return:
@@ -111,10 +115,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/WobblyCode.cs
-    startLine: 13
+    startLine: 19
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public WobblyCode(Match match, Regex regex, float modifier, float heightModifier)
     parameters:
@@ -150,10 +155,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Formatting/Codes/WobblyCode.cs
-    startLine: 18
+    startLine: 25
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override void Update(GameTime time)
     parameters:
@@ -186,10 +192,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawCharacter
     path: ../MLEM/Formatting/Codes/WobblyCode.cs
-    startLine: 22
+    startLine: 30
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth)
     parameters:

@@ -45,6 +45,7 @@ items:
     content: 'public class SpriteAnimation : GenericDataHolder'
     content.vb: >-
       Public Class SpriteAnimation
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object

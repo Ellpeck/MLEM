@@ -32,7 +32,9 @@ items:
       <Obsolete("Use the new text formatting system in MLEM.Formatting instead")>
 
       Public Class FormattingCodeCollection
+
           Inherits Dictionary(Of Integer, List(Of FormattingCodeData))
+
           Implements IDictionary(Of Integer, List(Of FormattingCodeData)), ICollection(Of KeyValuePair(Of Integer, List(Of FormattingCodeData))), IReadOnlyDictionary(Of Integer, List(Of FormattingCodeData)), IReadOnlyCollection(Of KeyValuePair(Of Integer, List(Of FormattingCodeData))), IEnumerable(Of KeyValuePair(Of Integer, List(Of FormattingCodeData))), IDictionary, ICollection, IEnumerable, IDeserializationCallback, ISerializable
   inheritance:
   - System.Object

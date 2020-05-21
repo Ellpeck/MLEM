@@ -30,6 +30,7 @@ items:
     content: 'public class RadioButton : Checkbox'
     content.vb: >-
       Public Class RadioButton
+
           Inherits Checkbox
   inheritance:
   - System.Object

@@ -53,10 +53,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RectangleF
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nRepresents a float-based version of <xref href=\"Microsoft.Xna.Framework.Rectangle\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: >-
       [DataContract]
@@ -66,6 +68,7 @@ items:
       <DataContract>
 
       Public Structure RectangleF
+
           Implements IEquatable(Of RectangleF)
   implements:
   - System.IEquatable{MLEM.Misc.RectangleF}
@@ -106,10 +109,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Empty
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 9
+    startLine: 15
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe empty rectangle, with an x, y, width and height of 0.\n"
+  example: []
   syntax:
     content: public static RectangleF Empty { get; }
     parameters: []
@@ -143,10 +148,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: X
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 12
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe x position of the top left corner of this rectangle.\n"
+  example: []
   syntax:
     content: >-
       [DataMember]
@@ -184,10 +191,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Y
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 14
+    startLine: 26
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe y position of the top left corner of this rectangle.\n"
+  example: []
   syntax:
     content: >-
       [DataMember]
@@ -225,10 +234,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Width
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 16
+    startLine: 31
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe width of this rectangle.\n"
+  example: []
   syntax:
     content: >-
       [DataMember]
@@ -266,10 +277,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Height
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 18
+    startLine: 36
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe height of this rectangle.\n"
+  example: []
   syntax:
     content: >-
       [DataMember]
@@ -307,10 +320,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Left
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 20
+    startLine: 39
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public float Left { get; }
     parameters: []
@@ -342,10 +356,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Right
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 21
+    startLine: 43
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe x position of the bottom right corner of this rectangle.\n"
+  example: []
   syntax:
     content: public float Right { get; }
     parameters: []
@@ -377,10 +393,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Top
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 22
+    startLine: 45
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public float Top { get; }
     parameters: []
@@ -412,10 +429,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Bottom
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 23
+    startLine: 49
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe y position of the bottom right corner of this rectangle.\n"
+  example: []
   syntax:
     content: public float Bottom { get; }
     parameters: []
@@ -447,10 +466,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsEmpty
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 24
+    startLine: 54
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA boolean that is true if this rectangle is empty.\nA rectangle is considered empty if the width or height is 0.\n"
+  example: []
   syntax:
     content: public bool IsEmpty { get; }
     parameters: []
@@ -482,10 +503,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Location
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 26
+    startLine: 59
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe top left corner of this rectangle\n"
+  example: []
   syntax:
     content: public Vector2 Location { get; set; }
     parameters: []
@@ -517,10 +540,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Size
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 33
+    startLine: 69
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe size, that is, the width and height of this rectangle.\n"
+  example: []
   syntax:
     content: public Vector2 Size { get; set; }
     parameters: []
@@ -552,10 +577,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Center
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 40
+    startLine: 79
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe center of this rectangle, based on the top left corner and the size.\n"
+  example: []
   syntax:
     content: public Vector2 Center { get; }
     parameters: []
@@ -587,21 +614,27 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 42
+    startLine: 88
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nCreates a new rectangle with the specified location and size\n"
+  example: []
   syntax:
     content: public RectangleF(float x, float y, float width, float height)
     parameters:
     - id: x
       type: System.Single
+      description: The x coordinate of the top left corner of the rectangle
     - id: y
       type: System.Single
+      description: The y coordinate of the top left corner of the rectangle
     - id: width
       type: System.Single
+      description: The width of the rectangle
     - id: height
       type: System.Single
+      description: The height of the rectangle
     content.vb: Public Sub New(x As Single, y As Single, width As Single, height As Single)
   overload: MLEM.Misc.RectangleF.#ctor*
   modifiers.csharp:
@@ -626,17 +659,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 49
+    startLine: 100
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nCreates a new rectangle with the specified location and size vectors\n"
+  example: []
   syntax:
     content: public RectangleF(Vector2 location, Vector2 size)
     parameters:
     - id: location
       type: Microsoft.Xna.Framework.Vector2
+      description: The top left corner of the rectangle
     - id: size
       type: Microsoft.Xna.Framework.Vector2
+      description: The size of the rectangle, where x represents width and the y represents height
     content.vb: Public Sub New(location As Vector2, size As Vector2)
   overload: MLEM.Misc.RectangleF.#ctor*
   modifiers.csharp:
@@ -661,19 +698,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: FromCorners
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 56
+    startLine: 114
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nCreates a new rectangle based on two corners that form a bounding box.\nThe resulting rectangle will encompass both corners as well as all of the space between them.\n"
+  example: []
   syntax:
     content: public static RectangleF FromCorners(Vector2 corner1, Vector2 corner2)
     parameters:
     - id: corner1
       type: Microsoft.Xna.Framework.Vector2
+      description: The first corner to use
     - id: corner2
       type: Microsoft.Xna.Framework.Vector2
+      description: The second corner to use
     return:
       type: MLEM.Misc.RectangleF
+      description: ''
     content.vb: Public Shared Function FromCorners(corner1 As Vector2, corner2 As Vector2) As RectangleF
   overload: MLEM.Misc.RectangleF.FromCorners*
   modifiers.csharp:
@@ -700,17 +742,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Explicit
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 64
+    startLine: 127
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nConverts a float-based rectangle to an int-based rectangle, flooring each value in the process.\n"
+  example: []
   syntax:
     content: public static explicit operator Rectangle(RectangleF rect)
     parameters:
     - id: rect
       type: MLEM.Misc.RectangleF
+      description: The rectangle to convert
     return:
       type: Microsoft.Xna.Framework.Rectangle
+      description: The resulting rectangle
     content.vb: Public Shared Narrowing Operator CType(rect As RectangleF) As Rectangle
   overload: MLEM.Misc.RectangleF.op_Explicit*
   nameWithType.vb: RectangleF.Narrowing(RectangleF to Rectangle)
@@ -740,17 +786,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Explicit
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 68
+    startLine: 136
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nConverts an int-based rectangle to a float-based rectangle.\n"
+  example: []
   syntax:
     content: public static explicit operator RectangleF(Rectangle rect)
     parameters:
     - id: rect
       type: Microsoft.Xna.Framework.Rectangle
+      description: The rectangle to convert
     return:
       type: MLEM.Misc.RectangleF
+      description: The resulting rectangle
     content.vb: Public Shared Narrowing Operator CType(rect As Rectangle) As RectangleF
   overload: MLEM.Misc.RectangleF.op_Explicit*
   nameWithType.vb: RectangleF.Narrowing(Rectangle to RectangleF)
@@ -780,10 +830,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Equality
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 72
+    startLine: 141
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public static bool operator ==(RectangleF a, RectangleF b)
     parameters:
@@ -819,10 +870,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: op_Inequality
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 76
+    startLine: 146
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public static bool operator !=(RectangleF a, RectangleF b)
     parameters:
@@ -858,10 +910,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Contains
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 80
+    startLine: 151
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public bool Contains(float x, float y)
     parameters:
@@ -895,10 +948,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Contains
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 84
+    startLine: 156
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public bool Contains(Vector2 value)
     parameters:
@@ -930,10 +984,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Contains
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 88
+    startLine: 161
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public bool Contains(RectangleF value)
     parameters:
@@ -965,10 +1020,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 92
+    startLine: 166
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override bool Equals(object obj)
     parameters:
@@ -1003,10 +1059,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 96
+    startLine: 171
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public bool Equals(RectangleF other)
     parameters:
@@ -1040,10 +1097,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetHashCode
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 100
+    startLine: 176
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override int GetHashCode()
     return:
@@ -1075,10 +1133,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Inflate
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 104
+    startLine: 181
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public void Inflate(float horizontalAmount, float verticalAmount)
     parameters:
@@ -1110,10 +1169,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Intersects
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 111
+    startLine: 189
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public bool Intersects(RectangleF value)
     parameters:
@@ -1145,10 +1205,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Intersect
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 115
+    startLine: 194
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public static RectangleF Intersect(RectangleF value1, RectangleF value2)
     parameters:
@@ -1184,10 +1245,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Offset
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 127
+    startLine: 207
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public void Offset(float offsetX, float offsetY)
     parameters:
@@ -1219,10 +1281,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Offset
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 132
+    startLine: 213
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public void Offset(Vector2 amount)
     parameters:
@@ -1252,10 +1315,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ToString
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 137
+    startLine: 219
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override string ToString()
     return:
@@ -1287,10 +1351,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Union
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 141
+    startLine: 224
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public static RectangleF Union(RectangleF value1, RectangleF value2)
     parameters:
@@ -1326,10 +1391,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Deconstruct
     path: ../MLEM/Misc/RectangleF.cs
-    startLine: 147
+    startLine: 231
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public void Deconstruct(out float x, out float y, out float width, out float height)
     parameters:
@@ -1351,6 +1417,13 @@ items:
   fullName.vb: MLEM.Misc.RectangleF.Deconstruct(ByRef System.Single, ByRef System.Single, ByRef System.Single, ByRef System.Single)
   name.vb: Deconstruct(ByRef Single, ByRef Single, ByRef Single, ByRef Single)
 references:
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
 - uid: MLEM.Misc
   commentId: N:MLEM.Misc
   name: MLEM.Misc
@@ -1687,6 +1760,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
 - uid: System.IEquatable`1
   commentId: T:System.IEquatable`1
   isExternal: true
@@ -1967,6 +2046,9 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: MLEM.Misc.RectangleF.X
+  commentId: F:MLEM.Misc.RectangleF.X
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Left*
   commentId: Overload:MLEM.Misc.RectangleF.Left
   name: Left
@@ -1977,6 +2059,9 @@ references:
   name: Right
   nameWithType: RectangleF.Right
   fullName: MLEM.Misc.RectangleF.Right
+- uid: MLEM.Misc.RectangleF.Y
+  commentId: F:MLEM.Misc.RectangleF.Y
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Top*
   commentId: Overload:MLEM.Misc.RectangleF.Top
   name: Top
@@ -2011,12 +2096,6 @@ references:
   name: Vector2
   nameWithType: Vector2
   fullName: Microsoft.Xna.Framework.Vector2
-- uid: Microsoft.Xna.Framework
-  commentId: N:Microsoft.Xna.Framework
-  isExternal: true
-  name: Microsoft.Xna.Framework
-  nameWithType: Microsoft.Xna.Framework
-  fullName: Microsoft.Xna.Framework
 - uid: MLEM.Misc.RectangleF.Size*
   commentId: Overload:MLEM.Misc.RectangleF.Size
   name: Size
@@ -2045,13 +2124,9 @@ references:
   nameWithType.vb: RectangleF.Narrowing
   fullName.vb: MLEM.Misc.RectangleF.Narrowing
   name.vb: Narrowing
-- uid: Microsoft.Xna.Framework.Rectangle
-  commentId: T:Microsoft.Xna.Framework.Rectangle
-  parent: Microsoft.Xna.Framework
+- uid: MLEM.Misc.RectangleF.Equals(MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Equals(MLEM.Misc.RectangleF)
   isExternal: true
-  name: Rectangle
-  nameWithType: Rectangle
-  fullName: Microsoft.Xna.Framework.Rectangle
 - uid: MLEM.Misc.RectangleF.op_Equality*
   commentId: Overload:MLEM.Misc.RectangleF.op_Equality
   name: Equality
@@ -2062,11 +2137,20 @@ references:
   name: Inequality
   nameWithType: RectangleF.Inequality
   fullName: MLEM.Misc.RectangleF.Inequality
+- uid: Microsoft.Xna.Framework.Rectangle.Contains(System.Single,System.Single)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Contains(System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Contains*
   commentId: Overload:MLEM.Misc.RectangleF.Contains
   name: Contains
   nameWithType: RectangleF.Contains
   fullName: MLEM.Misc.RectangleF.Contains
+- uid: Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Vector2)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Vector2)
+  isExternal: true
+- uid: Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)
+  isExternal: true
 - uid: System.ValueType.Equals(System.Object)
   commentId: M:System.ValueType.Equals(System.Object)
   parent: System.ValueType
@@ -2242,26 +2326,41 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: Microsoft.Xna.Framework.Rectangle.Inflate(System.Single,System.Single)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Inflate(System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Inflate*
   commentId: Overload:MLEM.Misc.RectangleF.Inflate
   name: Inflate
   nameWithType: RectangleF.Inflate
   fullName: MLEM.Misc.RectangleF.Inflate
+- uid: Microsoft.Xna.Framework.Rectangle.Intersects(Microsoft.Xna.Framework.Rectangle)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Intersects(Microsoft.Xna.Framework.Rectangle)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Intersects*
   commentId: Overload:MLEM.Misc.RectangleF.Intersects
   name: Intersects
   nameWithType: RectangleF.Intersects
   fullName: MLEM.Misc.RectangleF.Intersects
+- uid: Microsoft.Xna.Framework.Rectangle.Intersect(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Rectangle)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Intersect(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Rectangle)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Intersect*
   commentId: Overload:MLEM.Misc.RectangleF.Intersect
   name: Intersect
   nameWithType: RectangleF.Intersect
   fullName: MLEM.Misc.RectangleF.Intersect
+- uid: Microsoft.Xna.Framework.Rectangle.Offset(System.Single,System.Single)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Offset(System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Offset*
   commentId: Overload:MLEM.Misc.RectangleF.Offset
   name: Offset
   nameWithType: RectangleF.Offset
   fullName: MLEM.Misc.RectangleF.Offset
+- uid: Microsoft.Xna.Framework.Rectangle.Offset(Microsoft.Xna.Framework.Vector2)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Offset(Microsoft.Xna.Framework.Vector2)
+  isExternal: true
 - uid: System.ValueType.ToString
   commentId: M:System.ValueType.ToString
   parent: System.ValueType
@@ -2305,11 +2404,17 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: Microsoft.Xna.Framework.Rectangle.Union(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Rectangle)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Union(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Rectangle)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Union*
   commentId: Overload:MLEM.Misc.RectangleF.Union
   name: Union
   nameWithType: RectangleF.Union
   fullName: MLEM.Misc.RectangleF.Union
+- uid: Microsoft.Xna.Framework.Rectangle.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  commentId: M:Microsoft.Xna.Framework.Rectangle.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  isExternal: true
 - uid: MLEM.Misc.RectangleF.Deconstruct*
   commentId: Overload:MLEM.Misc.RectangleF.Deconstruct
   name: Deconstruct

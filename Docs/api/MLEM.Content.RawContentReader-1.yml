@@ -22,11 +22,10 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RawContentReader
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - MLEM
   namespace: MLEM.Content
-  summary: "\nRepresents a way for any kind of raw content file to be read using a <xref href=\"MLEM.Content.RawContentManager\" data-throw-if-not-resolved=\"false\"></xref>\n"
   example: []
   syntax:
     content: 'public abstract class RawContentReader<T> : RawContentReader'
@@ -34,6 +33,7 @@ items:
     - id: T
     content.vb: >-
       Public MustInherit Class RawContentReader(Of T)
+
           Inherits RawContentReader
   inheritance:
   - System.Object
@@ -80,21 +80,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: CanRead
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - MLEM
   namespace: MLEM.Content
-  summary: "\nReturns if the given type can be loaded by this content reader\n"
   example: []
   syntax:
     content: public override bool CanRead(Type t)
     parameters:
     - id: t
       type: System.Type
-      description: The type of asset
     return:
       type: System.Boolean
-      description: If <see cref="!:t"></see> can be loaded by this content reader
     content.vb: Public Overrides Function CanRead(t As Type) As Boolean
   overridden: MLEM.Content.RawContentReader.CanRead(System.Type)
   overload: MLEM.Content.RawContentReader`1.CanRead*
@@ -124,33 +121,26 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Read
     path: ../MLEM/Content/RawContentReader.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - MLEM
   namespace: MLEM.Content
-  summary: "\nReads the content file from disk and returns it.\n"
   example: []
   syntax:
     content: public override object Read(RawContentManager manager, string assetPath, Stream stream, Type t, object existing)
     parameters:
     - id: manager
       type: MLEM.Content.RawContentManager
-      description: The <xref href="MLEM.Content.RawContentManager" data-throw-if-not-resolved="false"></xref> that is loading the asset
     - id: assetPath
       type: System.String
-      description: The full path to the asset, starting from the <see cref="!:RawContentManager.RootDirectory"></see>
     - id: stream
       type: System.IO.Stream
-      description: A stream that leads to this asset
     - id: t
       type: System.Type
-      description: The type of asset to load
     - id: existing
       type: System.Object
-      description: If this asset is being reloaded, this value contains the previous version of the asset.
     return:
       type: System.Object
-      description: The loaded asset
     content.vb: Public Overrides Function Read(manager As RawContentManager, assetPath As String, stream As Stream, t As Type, existing As Object) As Object
   overridden: MLEM.Content.RawContentReader.Read(MLEM.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
   overload: MLEM.Content.RawContentReader`1.Read*
@@ -194,7 +184,7 @@ items:
       description: The <xref href="MLEM.Content.RawContentManager" data-throw-if-not-resolved="false"></xref> that is loading the asset
     - id: assetPath
       type: System.String
-      description: The full path to the asset, starting from the <see cref="!:RawContentManager.RootDirectory"></see>
+      description: The full path to the asset, starting from the <xref href="Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" data-throw-if-not-resolved="false"></xref>
     - id: stream
       type: System.IO.Stream
       description: A stream that leads to this asset
@@ -740,13 +730,33 @@ references:
   name: System.IO
   nameWithType: System.IO
   fullName: System.IO
+- uid: Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+  commentId: P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+  parent: Microsoft.Xna.Framework.Content.ContentManager
+  isExternal: true
+  name: RootDirectory
+  nameWithType: ContentManager.RootDirectory
+  fullName: Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
 - uid: '{T}'
   commentId: '!:T'
   definition: T
   name: T
   nameWithType: T
   fullName: T
+- uid: Microsoft.Xna.Framework.Content.ContentManager
+  commentId: T:Microsoft.Xna.Framework.Content.ContentManager
+  parent: Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: ContentManager
+  nameWithType: ContentManager
+  fullName: Microsoft.Xna.Framework.Content.ContentManager
 - uid: T
   name: T
   nameWithType: T
   fullName: T
+- uid: Microsoft.Xna.Framework.Content
+  commentId: N:Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: Microsoft.Xna.Framework.Content
+  nameWithType: Microsoft.Xna.Framework.Content
+  fullName: Microsoft.Xna.Framework.Content

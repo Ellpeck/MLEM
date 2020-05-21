@@ -22,14 +22,16 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: FontCode
     path: ../MLEM/Formatting/Codes/FontCode.cs
-    startLine: 5
+    startLine: 6
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: 'public class FontCode : Code'
     content.vb: >-
       Public Class FontCode
+
           Inherits Code
   inheritance:
   - System.Object
@@ -81,10 +83,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Formatting/Codes/FontCode.cs
-    startLine: 9
+    startLine: 11
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public FontCode(Match match, Regex regex, Func<GenericFont, GenericFont> font)
     parameters:
@@ -121,10 +124,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFont
     path: ../MLEM/Formatting/Codes/FontCode.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override GenericFont GetFont(GenericFont defaultPick)
     parameters:
@@ -159,10 +163,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: EndsHere
     path: ../MLEM/Formatting/Codes/FontCode.cs
-    startLine: 17
+    startLine: 21
   assemblies:
   - MLEM
   namespace: MLEM.Formatting.Codes
+  example: []
   syntax:
     content: public override bool EndsHere(Code other)
     parameters:

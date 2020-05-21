@@ -5,7 +5,6 @@ items:
   id: Token
   parent: MLEM.Formatting
   children:
-  - MLEM.Formatting.Token.#ctor(MLEM.Formatting.Codes.Code[],System.Int32,System.Int32,System.String,System.String)
   - MLEM.Formatting.Token.AppliedCodes
   - MLEM.Formatting.Token.DisplayString
   - MLEM.Formatting.Token.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
@@ -31,14 +30,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Token
     path: ../MLEM/Formatting/Token.cs
-    startLine: 10
+    startLine: 13
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nA part of a <xref href=\"MLEM.Formatting.TokenizedString\" data-throw-if-not-resolved=\"false\"></xref> that has a certain list of formatting codes applied.\n"
+  example: []
   syntax:
     content: 'public class Token : GenericDataHolder'
     content.vb: >-
       Public Class Token
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -78,10 +80,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AppliedCodes
     path: ../MLEM/Formatting/Token.cs
-    startLine: 12
+    startLine: 18
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe formatting codes that are applied on this token.\n"
+  example: []
   syntax:
     content: public readonly Code[] AppliedCodes
     return:
@@ -111,10 +115,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Index
     path: ../MLEM/Formatting/Token.cs
-    startLine: 13
+    startLine: 22
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe index in the <xref href=\"MLEM.Formatting.Token.Substring\" data-throw-if-not-resolved=\"false\"></xref> that this token starts at.\n"
+  example: []
   syntax:
     content: public readonly int Index
     return:
@@ -144,10 +150,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RawIndex
     path: ../MLEM/Formatting/Token.cs
-    startLine: 14
+    startLine: 26
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe index in the <xref href=\"MLEM.Formatting.Token.RawSubstring\" data-throw-if-not-resolved=\"false\"></xref> that this token starts at.\n"
+  example: []
   syntax:
     content: public readonly int RawIndex
     return:
@@ -177,10 +185,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Substring
     path: ../MLEM/Formatting/Token.cs
-    startLine: 15
+    startLine: 30
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe substring that this token contains.\n"
+  example: []
   syntax:
     content: public readonly string Substring
     return:
@@ -210,10 +220,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DisplayString
     path: ../MLEM/Formatting/Token.cs
-    startLine: 16
+    startLine: 34
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe string that is displayed by this token. If the tokenized string has been split, this string will contain the newline characters.\n"
+  example: []
   syntax:
     content: public string DisplayString { get; }
     parameters: []
@@ -245,10 +257,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RawSubstring
     path: ../MLEM/Formatting/Token.cs
-    startLine: 17
+    startLine: 38
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe substring that this token contains, without the formatting codes removed.\n"
+  example: []
   syntax:
     content: public readonly string RawSubstring
     return:
@@ -260,50 +274,6 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: MLEM.Formatting.Token.#ctor(MLEM.Formatting.Codes.Code[],System.Int32,System.Int32,System.String,System.String)
-  commentId: M:MLEM.Formatting.Token.#ctor(MLEM.Formatting.Codes.Code[],System.Int32,System.Int32,System.String,System.String)
-  id: '#ctor(MLEM.Formatting.Codes.Code[],System.Int32,System.Int32,System.String,System.String)'
-  parent: MLEM.Formatting.Token
-  langs:
-  - csharp
-  - vb
-  name: Token(Code[], Int32, Int32, String, String)
-  nameWithType: Token.Token(Code[], Int32, Int32, String, String)
-  fullName: MLEM.Formatting.Token.Token(MLEM.Formatting.Codes.Code[], System.Int32, System.Int32, System.String, System.String)
-  type: Constructor
-  source:
-    remote:
-      path: MLEM/Formatting/Token.cs
-      branch: master
-      repo: https://github.com/Ellpeck/MLEM
-    id: .ctor
-    path: ../MLEM/Formatting/Token.cs
-    startLine: 21
-  assemblies:
-  - MLEM
-  namespace: MLEM.Formatting
-  syntax:
-    content: public Token(Code[] appliedCodes, int index, int rawIndex, string substring, string rawSubstring)
-    parameters:
-    - id: appliedCodes
-      type: MLEM.Formatting.Codes.Code[]
-    - id: index
-      type: System.Int32
-    - id: rawIndex
-      type: System.Int32
-    - id: substring
-      type: System.String
-    - id: rawSubstring
-      type: System.String
-    content.vb: Public Sub New(appliedCodes As Code(), index As Integer, rawIndex As Integer, substring As String, rawSubstring As String)
-  overload: MLEM.Formatting.Token.#ctor*
-  nameWithType.vb: Token.Token(Code(), Int32, Int32, String, String)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: MLEM.Formatting.Token.Token(MLEM.Formatting.Codes.Code(), System.Int32, System.Int32, System.String, System.String)
-  name.vb: Token(Code(), Int32, Int32, String, String)
 - uid: MLEM.Formatting.Token.GetColor(Microsoft.Xna.Framework.Color)
   commentId: M:MLEM.Formatting.Token.GetColor(Microsoft.Xna.Framework.Color)
   id: GetColor(Microsoft.Xna.Framework.Color)
@@ -322,17 +292,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetColor
     path: ../MLEM/Formatting/Token.cs
-    startLine: 32
+    startLine: 58
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nGet the color that this token will be rendered with\n"
+  example: []
   syntax:
     content: public Color? GetColor(Color defaultPick)
     parameters:
     - id: defaultPick
       type: Microsoft.Xna.Framework.Color
+      description: The default color, if none is specified
     return:
       type: System.Nullable{Microsoft.Xna.Framework.Color}
+      description: The color to render with
     content.vb: Public Function GetColor(defaultPick As Color) As Color?
   overload: MLEM.Formatting.Token.GetColor*
   modifiers.csharp:
@@ -357,17 +331,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetFont
     path: ../MLEM/Formatting/Token.cs
-    startLine: 36
+    startLine: 67
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nGet the font that this token will be rendered with\n"
+  example: []
   syntax:
     content: public GenericFont GetFont(GenericFont defaultPick)
     parameters:
     - id: defaultPick
       type: MLEM.Font.GenericFont
+      description: The default font, if none is specified
     return:
       type: MLEM.Font.GenericFont
+      description: The font to render with
     content.vb: Public Function GetFont(defaultPick As GenericFont) As GenericFont
   overload: MLEM.Formatting.Token.GetFont*
   modifiers.csharp:
@@ -392,27 +370,36 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawSelf
     path: ../MLEM/Formatting/Token.cs
-    startLine: 40
+    startLine: 82
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nDraws the token itself, including all of the <xref href=\"MLEM.Formatting.Codes.Code\" data-throw-if-not-resolved=\"false\"></xref> instances that this token contains.\nNote that, to draw the token&apos;s actual string, <xref href=\"MLEM.Formatting.Token.DrawCharacter(Microsoft.Xna.Framework.GameTime%2cMicrosoft.Xna.Framework.Graphics.SpriteBatch%2cSystem.Char%2cSystem.String%2cSystem.Int32%2cMicrosoft.Xna.Framework.Vector2%2cMLEM.Font.GenericFont%2cMicrosoft.Xna.Framework.Color%2cSystem.Single%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref> is used.\n"
+  example: []
   syntax:
     content: public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth)
     parameters:
     - id: time
       type: Microsoft.Xna.Framework.GameTime
+      description: The time
     - id: batch
       type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch to use
     - id: pos
       type: Microsoft.Xna.Framework.Vector2
+      description: The position to draw the token at
     - id: font
       type: MLEM.Font.GenericFont
+      description: The font to use to draw
     - id: color
       type: Microsoft.Xna.Framework.Color
+      description: The color to draw with
     - id: scale
       type: System.Single
+      description: The scale to draw at
     - id: depth
       type: System.Single
+      description: The depth to draw at
     content.vb: Public Sub DrawSelf(time As GameTime, batch As SpriteBatch, pos As Vector2, font As GenericFont, color As Color, scale As Single, depth As Single)
   overload: MLEM.Formatting.Token.DrawSelf*
   modifiers.csharp:
@@ -437,33 +424,45 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DrawCharacter
     path: ../MLEM/Formatting/Token.cs
-    startLine: 45
+    startLine: 100
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nDraws a given character using this token&apos;s formatting options.\n"
+  example: []
   syntax:
     content: public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth)
     parameters:
     - id: time
       type: Microsoft.Xna.Framework.GameTime
+      description: The time
     - id: batch
       type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch to use
     - id: c
       type: System.Char
+      description: The character to draw
     - id: cString
       type: System.String
+      description: A single-character string that contains the character to draw
     - id: indexInToken
       type: System.Int32
+      description: The index within this token that the character is at
     - id: pos
       type: Microsoft.Xna.Framework.Vector2
+      description: The position to draw the token at
     - id: font
       type: MLEM.Font.GenericFont
+      description: The font to use to draw
     - id: color
       type: Microsoft.Xna.Framework.Color
+      description: The color to draw with
     - id: scale
       type: System.Single
+      description: The scale to draw at
     - id: depth
       type: System.Single
+      description: The depth to draw at
     content.vb: Public Sub DrawCharacter(time As GameTime, batch As SpriteBatch, c As Char, cString As String, indexInToken As Integer, pos As Vector2, font As GenericFont, color As Color, scale As Single, depth As Single)
   overload: MLEM.Formatting.Token.DrawCharacter*
   modifiers.csharp:
@@ -488,19 +487,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetArea
     path: ../MLEM/Formatting/Token.cs
-    startLine: 55
+    startLine: 118
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nGets a list of rectangles that encompass this token&apos;s area.\nNote that more than one rectangle is only returned if the string has been split.\nThis can be used to invoke events when the mouse is hovered over the token, for example.\n"
+  example: []
   syntax:
     content: public IEnumerable<RectangleF> GetArea(Vector2 stringPos, float scale)
     parameters:
     - id: stringPos
       type: Microsoft.Xna.Framework.Vector2
+      description: The position that the string is drawn at
     - id: scale
       type: System.Single
+      description: The scale that the string is drawn at
     return:
       type: System.Collections.Generic.IEnumerable{MLEM.Misc.RectangleF}
+      description: A set of rectangles that this token contains
     content.vb: Public Function GetArea(stringPos As Vector2, scale As Single) As IEnumerable(Of RectangleF)
   overload: MLEM.Formatting.Token.GetArea*
   modifiers.csharp:
@@ -508,6 +512,12 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: MLEM.Formatting.TokenizedString
+  commentId: T:MLEM.Formatting.TokenizedString
+  parent: MLEM.Formatting
+  name: TokenizedString
+  nameWithType: TokenizedString
+  fullName: MLEM.Formatting.TokenizedString
 - uid: MLEM.Formatting
   commentId: N:MLEM.Formatting
   name: MLEM.Formatting
@@ -965,6 +975,9 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: MLEM.Formatting.Token.Substring
+  commentId: F:MLEM.Formatting.Token.Substring
+  isExternal: true
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -972,6 +985,9 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: MLEM.Formatting.Token.RawSubstring
+  commentId: F:MLEM.Formatting.Token.RawSubstring
+  isExternal: true
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -984,11 +1000,6 @@ references:
   name: DisplayString
   nameWithType: Token.DisplayString
   fullName: MLEM.Formatting.Token.DisplayString
-- uid: MLEM.Formatting.Token.#ctor*
-  commentId: Overload:MLEM.Formatting.Token.#ctor
-  name: Token
-  nameWithType: Token.Token
-  fullName: MLEM.Formatting.Token.Token
 - uid: MLEM.Formatting.Token.GetColor*
   commentId: Overload:MLEM.Formatting.Token.GetColor
   name: GetColor
@@ -1106,6 +1117,15 @@ references:
   name: MLEM.Font
   nameWithType: MLEM.Font
   fullName: MLEM.Font
+- uid: MLEM.Formatting.Codes.Code
+  commentId: T:MLEM.Formatting.Codes.Code
+  parent: MLEM.Formatting.Codes
+  name: Code
+  nameWithType: Code
+  fullName: MLEM.Formatting.Codes.Code
+- uid: MLEM.Formatting.Token.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  commentId: M:MLEM.Formatting.Token.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Char,System.String,System.Int32,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Formatting.Token.DrawSelf*
   commentId: Overload:MLEM.Formatting.Token.DrawSelf
   name: DrawSelf
@@ -1139,6 +1159,11 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: MLEM.Formatting.Codes
+  commentId: N:MLEM.Formatting.Codes
+  name: MLEM.Formatting.Codes
+  nameWithType: MLEM.Formatting.Codes
+  fullName: MLEM.Formatting.Codes
 - uid: Microsoft.Xna.Framework.Graphics
   commentId: N:Microsoft.Xna.Framework.Graphics
   isExternal: true

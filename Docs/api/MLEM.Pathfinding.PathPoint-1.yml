@@ -26,14 +26,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: PathPoint
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 113
+    startLine: 184
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nA point in a <xref href=\"MLEM.Pathfinding.AStar%601\" data-throw-if-not-resolved=\"false\"></xref> path\n"
+  example: []
   syntax:
     content: public class PathPoint<T>
     typeParameters:
     - id: T
+      description: The type of point used for this path
     content.vb: Public Class PathPoint(Of T)
   inheritance:
   - System.Object
@@ -70,10 +73,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Parent
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 115
+    startLine: 189
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nThe path point that this point originated from\n"
+  example: []
   syntax:
     content: public readonly PathPoint<T> Parent
     return:
@@ -105,10 +110,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Pos
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 116
+    startLine: 193
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nThe position of this path point\n"
+  example: []
   syntax:
     content: public readonly T Pos
     return:
@@ -140,10 +147,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: F
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 117
+    startLine: 197
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nThe F cost of this path point\n"
+  example: []
   syntax:
     content: public readonly float F
     return:
@@ -175,10 +184,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: G
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 118
+    startLine: 201
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nThe G cost of this path point\n"
+  example: []
   syntax:
     content: public readonly float G
     return:
@@ -210,23 +221,30 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 120
+    startLine: 211
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  summary: "\nCreates a new path point with the supplied settings.\n"
+  example: []
   syntax:
     content: public PathPoint(T pos, float distance, PathPoint<T> parent, float terrainCostForThisPos, float defaultCost)
     parameters:
     - id: pos
       type: '{T}'
+      description: The point&apos;s position
     - id: distance
       type: System.Single
+      description: The point&apos;s manhattan distance from the start point
     - id: parent
       type: MLEM.Pathfinding.PathPoint`1
+      description: The point&apos;s parent
     - id: terrainCostForThisPos
       type: System.Single
+      description: The point&apos;s terrain cost, based on <xref href="MLEM.Pathfinding.AStar%601.GetCost" data-throw-if-not-resolved="false"></xref>
     - id: defaultCost
       type: System.Single
+      description: The default cost for a path point
     content.vb: Public Sub New(pos As T, distance As Single, parent As PathPoint(Of T), terrainCostForThisPos As Single, defaultCost As Single)
   overload: MLEM.Pathfinding.PathPoint`1.#ctor*
   nameWithType.vb: PathPoint(Of T).PathPoint(T, Single, PathPoint(Of T), Single, Single)
@@ -254,10 +272,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Equals
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 128
+    startLine: 220
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  example: []
   syntax:
     content: public override bool Equals(object obj)
     parameters:
@@ -294,10 +313,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetHashCode
     path: ../MLEM/Pathfinding/AStar.cs
-    startLine: 134
+    startLine: 227
   assemblies:
   - MLEM
   namespace: MLEM.Pathfinding
+  example: []
   syntax:
     content: public override int GetHashCode()
     return:
@@ -314,6 +334,42 @@ items:
   - Overrides
   fullName.vb: MLEM.Pathfinding.PathPoint(Of T).GetHashCode()
 references:
+- uid: MLEM.Pathfinding.AStar`1
+  commentId: T:MLEM.Pathfinding.AStar`1
+  name: AStar<T>
+  nameWithType: AStar<T>
+  fullName: MLEM.Pathfinding.AStar<T>
+  nameWithType.vb: AStar(Of T)
+  fullName.vb: MLEM.Pathfinding.AStar(Of T)
+  name.vb: AStar(Of T)
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1
+    name: AStar
+    nameWithType: AStar
+    fullName: MLEM.Pathfinding.AStar
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Pathfinding
   commentId: N:MLEM.Pathfinding
   name: MLEM.Pathfinding
@@ -593,6 +649,37 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: MLEM.Pathfinding.AStar`1.GetCost
+  commentId: T:MLEM.Pathfinding.AStar`1.GetCost
+  parent: MLEM.Pathfinding
+  name: AStar.GetCost<>
+  nameWithType: AStar.GetCost<>
+  fullName: MLEM.Pathfinding.AStar.GetCost<>
+  nameWithType.vb: AStar.GetCost(Of )
+  fullName.vb: MLEM.Pathfinding.AStar.GetCost(Of )
+  name.vb: AStar.GetCost(Of )
+  spec.csharp:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MLEM.Pathfinding.AStar`1.GetCost
+    name: AStar.GetCost
+    nameWithType: AStar.GetCost
+    fullName: MLEM.Pathfinding.AStar.GetCost
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Pathfinding.PathPoint`1.#ctor*
   commentId: Overload:MLEM.Pathfinding.PathPoint`1.#ctor
   name: PathPoint

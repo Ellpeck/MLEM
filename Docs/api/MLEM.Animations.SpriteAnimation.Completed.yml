@@ -19,15 +19,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Completed
     path: ../MLEM/Animations/SpriteAnimation.cs
-    startLine: 140
+    startLine: 144
   assemblies:
   - MLEM
   namespace: MLEM.Animations
+  summary: "\nA callback for when a sprite animation is completed.\n"
+  example: []
   syntax:
     content: public delegate void Completed(SpriteAnimation animation);
     parameters:
     - id: animation
       type: MLEM.Animations.SpriteAnimation
+      description: The animation that has completed
     content.vb: Public Delegate Sub Completed(animation As SpriteAnimation)
   modifiers.csharp:
   - public

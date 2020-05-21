@@ -22,10 +22,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GenericDataHolder
     path: ../MLEM/Misc/GenericDataHolder.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nRepresents an object that can hold generic key-value based data.\nA lot of MLEM components extend this class to allow for users to add additional data to them easily.\n"
+  example: []
   syntax:
     content: public class GenericDataHolder
     content.vb: Public Class GenericDataHolder
@@ -79,17 +81,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: SetData
     path: ../MLEM/Misc/GenericDataHolder.cs
-    startLine: 8
+    startLine: 17
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nStore a piece of generic data on this object.\n"
+  example: []
   syntax:
     content: public void SetData(string key, object data)
     parameters:
     - id: key
       type: System.String
+      description: The key to store the data by
     - id: data
       type: System.Object
+      description: The data to store in the object
     content.vb: Public Sub SetData(key As String, data As Object)
   overload: MLEM.Misc.GenericDataHolder.SetData*
   modifiers.csharp:
@@ -114,19 +120,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetData
     path: ../MLEM/Misc/GenericDataHolder.cs
-    startLine: 19
+    startLine: 34
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns a piece of generic data of the given type on this object.\n"
+  example: []
   syntax:
     content: public T GetData<T>(string key)
     parameters:
     - id: key
       type: System.String
+      description: The key that the data is stored by
     typeParameters:
     - id: T
+      description: The type of the data stored
     return:
       type: '{T}'
+      description: The data, or default if it doesn&apos;t exist
     content.vb: Public Function GetData(Of T)(key As String) As T
   overload: MLEM.Misc.GenericDataHolder.GetData*
   nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
@@ -154,14 +165,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetDataKeys
     path: ../MLEM/Misc/GenericDataHolder.cs
-    startLine: 25
+    startLine: 44
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns all of the generic data that this object stores.\n"
+  example: []
   syntax:
     content: public IReadOnlyCollection<string> GetDataKeys()
     return:
       type: System.Collections.Generic.IReadOnlyCollection{System.String}
+      description: The generic data on this object
     content.vb: Public Function GetDataKeys As IReadOnlyCollection(Of String)
   overload: MLEM.Misc.GenericDataHolder.GetDataKeys*
   modifiers.csharp:

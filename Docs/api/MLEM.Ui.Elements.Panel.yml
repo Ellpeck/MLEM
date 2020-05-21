@@ -38,6 +38,7 @@ items:
     content: 'public class Panel : Element'
     content.vb: >-
       Public Class Panel
+
           Inherits Element
   inheritance:
   - System.Object

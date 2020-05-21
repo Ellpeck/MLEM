@@ -19,17 +19,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: ConnectsTo
     path: ../MLEM/Misc/AutoTiling.cs
-    startLine: 28
+    startLine: 54
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA delegate function that determines if a given offset position connects to an auto-tile location.\n"
+  example: []
   syntax:
     content: public delegate bool ConnectsTo(int xOff, int yOff);
     parameters:
     - id: xOff
       type: System.Int32
+      description: The x offset
     - id: yOff
       type: System.Int32
+      description: The y offset
     return:
       type: System.Boolean
     content.vb: Public Delegate Function ConnectsTo(xOff As Integer, yOff As Integer) As Boolean

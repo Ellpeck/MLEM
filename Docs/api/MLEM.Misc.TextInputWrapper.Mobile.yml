@@ -21,14 +21,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Mobile
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 71
+    startLine: 118
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA text input wrapper for mobile platforms as well as consoles.\nThis text input wrapper performs no actions itself, as it signals that an on-screen keyboard is required.\n"
+  example: []
   syntax:
     content: 'public class Mobile : TextInputWrapper'
     content.vb: >-
       Public Class Mobile
+
           Inherits TextInputWrapper
   inheritance:
   - System.Object
@@ -66,10 +69,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RequiresOnScreenKeyboard
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 73
+    startLine: 121
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override bool RequiresOnScreenKeyboard()
     return:
@@ -101,10 +105,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddListener
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 77
+    startLine: 126
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override void AddListener(GameWindow window, TextInputWrapper.TextInputCallback callback)
     parameters:

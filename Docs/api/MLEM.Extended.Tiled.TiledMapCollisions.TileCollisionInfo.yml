@@ -34,6 +34,7 @@ items:
     content: 'public class TileCollisionInfo : GenericDataHolder'
     content.vb: >-
       Public Class TileCollisionInfo
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object

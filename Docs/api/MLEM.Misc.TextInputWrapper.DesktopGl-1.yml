@@ -22,16 +22,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DesktopGl
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 26
+    startLine: 63
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA text input wrapper for DesktopGL devices.\nThis wrapper uses the built-in MonoGame TextInput event, which makes this listener work with any keyboard localization natively.\n"
+  example:
+  - "\nThis listener is initialized as follows:\n<pre><code>new TextInputWrapper.DesktopGl{TextInputEventArgs}((w, c) => w.TextInput += c);</code></pre>\n"
   syntax:
     content: 'public class DesktopGl<T> : TextInputWrapper'
     typeParameters:
     - id: T
+      description: ''
     content.vb: >-
       Public Class DesktopGl(Of T)
+
           Inherits TextInputWrapper
   inheritance:
   - System.Object
@@ -72,15 +77,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: .ctor
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 32
+    startLine: 73
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nCreates a new DesktopGL-based text input wrapper\n"
+  example: []
   syntax:
     content: public DesktopGl(Action<GameWindow, EventHandler<T>> addListener)
     parameters:
     - id: addListener
       type: System.Action{Microsoft.Xna.Framework.GameWindow,System.EventHandler{{T}}}
+      description: The function that is used to add a text input listener
     content.vb: Public Sub New(addListener As Action(Of GameWindow, EventHandler(Of T)))
   overload: MLEM.Misc.TextInputWrapper.DesktopGl`1.#ctor*
   nameWithType.vb: TextInputWrapper.DesktopGl(Of T).DesktopGl(Action(Of GameWindow, EventHandler(Of T)))
@@ -108,10 +116,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RequiresOnScreenKeyboard
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 36
+    startLine: 78
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override bool RequiresOnScreenKeyboard()
     return:
@@ -145,10 +154,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddListener
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 40
+    startLine: 83
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override void AddListener(GameWindow window, TextInputWrapper.TextInputCallback callback)
     parameters:

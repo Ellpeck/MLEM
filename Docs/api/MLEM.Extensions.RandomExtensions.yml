@@ -22,10 +22,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RandomExtensions
     path: ../MLEM/Extensions/RandomExtensions.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
+  summary: "\nA set of extensions for dealing with <xref href=\"System.Random\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class RandomExtensions
     content.vb: Public Module RandomExtensions
@@ -65,7 +67,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetRandomEntry
     path: ../MLEM/Extensions/RandomExtensions.cs
-    startLine: 14
+    startLine: 17
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -119,26 +121,22 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetRandomEntry
     path: ../MLEM/Extensions/RandomExtensions.cs
-    startLine: 19
+    startLine: 22
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
-  summary: "\nGets a random entry from the given list with uniform chance.\n"
   example: []
   syntax:
     content: public static T GetRandomEntry<T>(this Random random, IList<T> entries)
     parameters:
     - id: random
       type: System.Random
-      description: The random
     - id: entries
       type: System.Collections.Generic.IList{{T}}
     typeParameters:
     - id: T
-      description: The entries&apos; type
     return:
       type: '{T}'
-      description: A random entry
     content.vb: >-
       <ExtensionAttribute>
 
@@ -172,7 +170,7 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetRandomWeightedEntry
     path: ../MLEM/Extensions/RandomExtensions.cs
-    startLine: 33
+    startLine: 36
   assemblies:
   - MLEM
   namespace: MLEM.Extensions
@@ -215,6 +213,13 @@ items:
   fullName.vb: MLEM.Extensions.RandomExtensions.GetRandomWeightedEntry(Of T)(System.Random, System.Collections.Generic.IList(Of T), System.Func(Of T, System.Int32))
   name.vb: GetRandomWeightedEntry(Of T)(Random, IList(Of T), Func(Of T, Int32))
 references:
+- uid: System.Random
+  commentId: T:System.Random
+  parent: System
+  isExternal: true
+  name: Random
+  nameWithType: Random
+  fullName: System.Random
 - uid: MLEM.Extensions
   commentId: N:MLEM.Extensions
   name: MLEM.Extensions
@@ -517,13 +522,6 @@ references:
   name: GetRandomEntry
   nameWithType: RandomExtensions.GetRandomEntry
   fullName: MLEM.Extensions.RandomExtensions.GetRandomEntry
-- uid: System.Random
-  commentId: T:System.Random
-  parent: System
-  isExternal: true
-  name: Random
-  nameWithType: Random
-  fullName: System.Random
 - uid: '{T}[]'
   isExternal: true
   name: T[]

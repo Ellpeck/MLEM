@@ -29,6 +29,7 @@ items:
     content: 'public class Slider : ScrollBar'
     content.vb: >-
       Public Class Slider
+
           Inherits ScrollBar
   inheritance:
   - System.Object

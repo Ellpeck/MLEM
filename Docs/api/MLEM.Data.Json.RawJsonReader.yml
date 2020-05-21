@@ -30,6 +30,7 @@ items:
     content: 'public class RawJsonReader : RawContentReader'
     content.vb: >-
       Public Class RawJsonReader
+
           Inherits RawContentReader
   inheritance:
   - System.Object

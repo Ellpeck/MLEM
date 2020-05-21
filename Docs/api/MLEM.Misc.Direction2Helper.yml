@@ -31,10 +31,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Direction2Helper
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 23
+    startLine: 57
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA set of helper and extension methods for dealing with <xref href=\"MLEM.Misc.Direction2\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class Direction2Helper
     content.vb: Public Module Direction2Helper
@@ -73,10 +75,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: All
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 25
+    startLine: 62
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAll <xref href=\"MLEM.Misc.Direction2\" data-throw-if-not-resolved=\"false\"></xref> enum values\n"
+  example: []
   syntax:
     content: public static readonly Direction2[] All
     return:
@@ -108,10 +112,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Adjacent
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 26
+    startLine: 66
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe <xref href=\"MLEM.Misc.Direction2.Up\" data-throw-if-not-resolved=\"false\"></xref> through <xref href=\"MLEM.Misc.Direction2.Left\" data-throw-if-not-resolved=\"false\"></xref> directions\n"
+  example: []
   syntax:
     content: public static readonly Direction2[] Adjacent
     return:
@@ -143,10 +149,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Diagonals
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 27
+    startLine: 70
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nThe <xref href=\"MLEM.Misc.Direction2.UpRight\" data-throw-if-not-resolved=\"false\"></xref> through <xref href=\"MLEM.Misc.Direction2.UpLeft\" data-throw-if-not-resolved=\"false\"></xref> directions\n"
+  example: []
   syntax:
     content: public static readonly Direction2[] Diagonals
     return:
@@ -178,10 +186,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AllExceptNone
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 28
+    startLine: 74
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nAll directions except <xref href=\"MLEM.Misc.Direction2.None\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static readonly Direction2[] AllExceptNone
     return:
@@ -214,17 +224,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsAdjacent
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 30
+    startLine: 82
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns if the given direction is considered an &quot;adjacent&quot; direction.\nAn adjacent direction is one that is not a diagonal.\n"
+  example: []
   syntax:
     content: public static bool IsAdjacent(this Direction2 dir)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction to query
     return:
       type: System.Boolean
+      description: Whether the direction is adjacent
     content.vb: >-
       <ExtensionAttribute>
 
@@ -255,17 +269,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: IsDiagonal
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 34
+    startLine: 91
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns if the given direction is considered a diagonal direction.\n"
+  example: []
   syntax:
     content: public static bool IsDiagonal(this Direction2 dir)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction to query
     return:
       type: System.Boolean
+      description: Whether the direction is diagonal
     content.vb: >-
       <ExtensionAttribute>
 
@@ -296,17 +314,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Offset
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 38
+    startLine: 101
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns the directional offset of a given direction.\nThe offset direction will be exactly one unit in each axis that the direction represents.\n"
+  example: []
   syntax:
     content: public static Point Offset(this Direction2 dir)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction whose offset to query
     return:
       type: Microsoft.Xna.Framework.Point
+      description: The direction&apos;s offset
     content.vb: >-
       <ExtensionAttribute>
 
@@ -337,17 +359,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Offsets
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 61
+    startLine: 129
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nMaps each direction in the given enumerable of directions to its <xref href=\"MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
   syntax:
     content: public static IEnumerable<Point> Offsets(this IEnumerable<Direction2> directions)
     parameters:
     - id: directions
       type: System.Collections.Generic.IEnumerable{MLEM.Misc.Direction2}
+      description: The direction enumerable
     return:
       type: System.Collections.Generic.IEnumerable{Microsoft.Xna.Framework.Point}
+      description: The directions&apos; offsets, in the same order as the input directions.
     content.vb: >-
       <ExtensionAttribute>
 
@@ -381,17 +407,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Opposite
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 66
+    startLine: 141
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns the opposite of the given direction.\nFor &quot;adjacent&quot; directions, this is the direction that points into the same axis, but the opposite sign.\nFor diagonal directions, this is the direction that points into the opposite of both the x and y axis.\n"
+  example: []
   syntax:
     content: public static Direction2 Opposite(this Direction2 dir)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction whose opposite to get
     return:
       type: MLEM.Misc.Direction2
+      description: The opposite of the direction
     content.vb: >-
       <ExtensionAttribute>
 
@@ -422,17 +452,21 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Angle
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 89
+    startLine: 169
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nReturns the angle of the direction in radians, where <xref href=\"MLEM.Misc.Direction2.Right\" data-throw-if-not-resolved=\"false\"></xref> has an angle of 0.\n"
+  example: []
   syntax:
     content: public static float Angle(this Direction2 dir)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction whose angle to get
     return:
       type: System.Single
+      description: The direction&apos;s angle
     content.vb: >-
       <ExtensionAttribute>
 
@@ -463,19 +497,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RotateCw
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 94
+    startLine: 180
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nRotates the given direction clockwise and returns the resulting direction.\n"
+  example: []
   syntax:
     content: public static Direction2 RotateCw(this Direction2 dir, bool fortyFiveDegrees = false)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction to rotate
     - id: fortyFiveDegrees
       type: System.Boolean
+      description: Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.
     return:
       type: MLEM.Misc.Direction2
+      description: The rotated direction
     content.vb: >-
       <ExtensionAttribute>
 
@@ -506,19 +545,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RotateCcw
     path: ../MLEM/Misc/Direction2.cs
-    startLine: 117
+    startLine: 209
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nRotates the given direction counter-clockwise and returns the resulting direction.\n"
+  example: []
   syntax:
     content: public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false)
     parameters:
     - id: dir
       type: MLEM.Misc.Direction2
+      description: The direction to rotate counter-clockwise
     - id: fortyFiveDegrees
       type: System.Boolean
+      description: Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.
     return:
       type: MLEM.Misc.Direction2
+      description: The rotated direction
     content.vb: >-
       <ExtensionAttribute>
 
@@ -531,6 +575,12 @@ items:
   - Public
   - Shared
 references:
+- uid: MLEM.Misc.Direction2
+  commentId: T:MLEM.Misc.Direction2
+  parent: MLEM.Misc
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Misc.Direction2
 - uid: MLEM.Misc
   commentId: N:MLEM.Misc
   name: MLEM.Misc
@@ -852,17 +902,26 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: MLEM.Misc.Direction2.Up
+  commentId: F:MLEM.Misc.Direction2.Up
+  isExternal: true
+- uid: MLEM.Misc.Direction2.Left
+  commentId: F:MLEM.Misc.Direction2.Left
+  isExternal: true
+- uid: MLEM.Misc.Direction2.UpRight
+  commentId: F:MLEM.Misc.Direction2.UpRight
+  isExternal: true
+- uid: MLEM.Misc.Direction2.UpLeft
+  commentId: F:MLEM.Misc.Direction2.UpLeft
+  isExternal: true
+- uid: MLEM.Misc.Direction2.None
+  commentId: F:MLEM.Misc.Direction2.None
+  isExternal: true
 - uid: MLEM.Misc.Direction2Helper.IsAdjacent*
   commentId: Overload:MLEM.Misc.Direction2Helper.IsAdjacent
   name: IsAdjacent
   nameWithType: Direction2Helper.IsAdjacent
   fullName: MLEM.Misc.Direction2Helper.IsAdjacent
-- uid: MLEM.Misc.Direction2
-  commentId: T:MLEM.Misc.Direction2
-  parent: MLEM.Misc
-  name: Direction2
-  nameWithType: Direction2
-  fullName: MLEM.Misc.Direction2
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -893,6 +952,41 @@ references:
   name: Microsoft.Xna.Framework
   nameWithType: Microsoft.Xna.Framework
   fullName: Microsoft.Xna.Framework
+- uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  name: Offset(Direction2)
+  nameWithType: Direction2Helper.Offset(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    nameWithType: Direction2Helper.Offset
+    fullName: MLEM.Misc.Direction2Helper.Offset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    nameWithType: Direction2Helper.Offset
+    fullName: MLEM.Misc.Direction2Helper.Offset
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    nameWithType: Direction2
+    fullName: MLEM.Misc.Direction2
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Misc.Direction2Helper.Offsets*
   commentId: Overload:MLEM.Misc.Direction2Helper.Offsets
   name: Offsets
@@ -1034,6 +1128,9 @@ references:
   name: Opposite
   nameWithType: Direction2Helper.Opposite
   fullName: MLEM.Misc.Direction2Helper.Opposite
+- uid: MLEM.Misc.Direction2.Right
+  commentId: F:MLEM.Misc.Direction2.Right
+  isExternal: true
 - uid: MLEM.Misc.Direction2Helper.Angle*
   commentId: Overload:MLEM.Misc.Direction2Helper.Angle
   name: Angle

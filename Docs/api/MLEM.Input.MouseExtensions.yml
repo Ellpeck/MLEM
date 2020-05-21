@@ -21,10 +21,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MouseExtensions
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 6
+    startLine: 9
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nA set of extension methods for dealing with <xref href=\"MLEM.Input.MouseButton\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Microsoft.Xna.Framework.Input.Mouse\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static class MouseExtensions
     content.vb: Public Module MouseExtensions
@@ -63,10 +65,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: MouseButtons
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 8
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nAll enum values of <xref href=\"MLEM.Input.MouseButton\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public static readonly MouseButton[] MouseButtons
     return:
@@ -99,24 +103,33 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetState
     path: ../MLEM/Input/MouseExtensions.cs
-    startLine: 10
+    startLine: 23
   assemblies:
   - MLEM
   namespace: MLEM.Input
+  summary: "\nReturns the <xref href=\"Microsoft.Xna.Framework.Input.ButtonState\" data-throw-if-not-resolved=\"false\"></xref> of the given mouse button.\n"
+  example: []
   syntax:
     content: public static ButtonState GetState(this MouseState state, MouseButton button)
     parameters:
     - id: state
       type: Microsoft.Xna.Framework.Input.MouseState
+      description: The mouse&apos;s current state
     - id: button
       type: MLEM.Input.MouseButton
+      description: The button whose state to query
     return:
       type: Microsoft.Xna.Framework.Input.ButtonState
+      description: The state of the button
     content.vb: >-
       <ExtensionAttribute>
 
       Public Shared Function GetState(state As MouseState, button As MouseButton) As ButtonState
   overload: MLEM.Input.MouseExtensions.GetState*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If a mouse button out of range is passed
   modifiers.csharp:
   - public
   - static
@@ -124,6 +137,15 @@ items:
   - Public
   - Shared
 references:
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  parent: MLEM.Input
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+- uid: Microsoft.Xna.Framework.Input.Mouse
+  commentId: T:Microsoft.Xna.Framework.Input.Mouse
+  isExternal: true
 - uid: MLEM.Input
   commentId: N:MLEM.Input
   name: MLEM.Input
@@ -445,6 +467,16 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: Microsoft.Xna.Framework.Input.ButtonState
+  commentId: T:Microsoft.Xna.Framework.Input.ButtonState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: ButtonState
+  nameWithType: ButtonState
+  fullName: Microsoft.Xna.Framework.Input.ButtonState
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
 - uid: MLEM.Input.MouseExtensions.GetState*
   commentId: Overload:MLEM.Input.MouseExtensions.GetState
   name: GetState
@@ -457,19 +489,6 @@ references:
   name: MouseState
   nameWithType: MouseState
   fullName: Microsoft.Xna.Framework.Input.MouseState
-- uid: MLEM.Input.MouseButton
-  commentId: T:MLEM.Input.MouseButton
-  parent: MLEM.Input
-  name: MouseButton
-  nameWithType: MouseButton
-  fullName: MLEM.Input.MouseButton
-- uid: Microsoft.Xna.Framework.Input.ButtonState
-  commentId: T:Microsoft.Xna.Framework.Input.ButtonState
-  parent: Microsoft.Xna.Framework.Input
-  isExternal: true
-  name: ButtonState
-  nameWithType: ButtonState
-  fullName: Microsoft.Xna.Framework.Input.ButtonState
 - uid: Microsoft.Xna.Framework.Input
   commentId: N:Microsoft.Xna.Framework.Input
   isExternal: true

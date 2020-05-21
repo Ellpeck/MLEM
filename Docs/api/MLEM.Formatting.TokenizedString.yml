@@ -5,7 +5,6 @@ items:
   id: TokenizedString
   parent: MLEM.Formatting
   children:
-  - MLEM.Formatting.TokenizedString.#ctor(MLEM.Font.GenericFont,System.String,System.String,MLEM.Formatting.Token[])
   - MLEM.Formatting.TokenizedString.AllCodes
   - MLEM.Formatting.TokenizedString.DisplayString
   - MLEM.Formatting.TokenizedString.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,System.Single,System.Single)
@@ -30,14 +29,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: TokenizedString
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nA tokenized string that was created using a <xref href=\"MLEM.Formatting.TextFormatter\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: 'public class TokenizedString : GenericDataHolder'
     content.vb: >-
       Public Class TokenizedString
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object
@@ -77,10 +79,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RawString
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 13
+    startLine: 19
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe raw string that was used to create this tokenized string.\n"
+  example: []
   syntax:
     content: public readonly string RawString
     return:
@@ -110,10 +114,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: String
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 14
+    startLine: 23
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe <xref href=\"MLEM.Formatting.TokenizedString.RawString\" data-throw-if-not-resolved=\"false\"></xref>, but with formatting codes stripped out.\n"
+  example: []
   syntax:
     content: public readonly string String
     return:
@@ -143,10 +149,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: DisplayString
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 15
+    startLine: 28
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe string that is actually displayed by this tokenized string.\nIf this string has been <xref href=\"MLEM.Formatting.TokenizedString.Split(MLEM.Font.GenericFont%2cSystem.Single%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref>, this string will contain the newline characters.\n"
+  example: []
   syntax:
     content: public string DisplayString { get; }
     parameters: []
@@ -178,10 +186,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Tokens
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 16
+    startLine: 32
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nThe tokens that this tokenized string contains.\n"
+  example: []
   syntax:
     content: public readonly Token[] Tokens
     return:
@@ -211,10 +221,12 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AllCodes
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 17
+    startLine: 37
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nAll of the formatting codes that are applied over this tokenized string.\nNote that, to get a formatting code for a certain token, use <xref href=\"MLEM.Formatting.Token.AppliedCodes\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public readonly Code[] AllCodes
     return:
@@ -226,48 +238,6 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: MLEM.Formatting.TokenizedString.#ctor(MLEM.Font.GenericFont,System.String,System.String,MLEM.Formatting.Token[])
-  commentId: M:MLEM.Formatting.TokenizedString.#ctor(MLEM.Font.GenericFont,System.String,System.String,MLEM.Formatting.Token[])
-  id: '#ctor(MLEM.Font.GenericFont,System.String,System.String,MLEM.Formatting.Token[])'
-  parent: MLEM.Formatting.TokenizedString
-  langs:
-  - csharp
-  - vb
-  name: TokenizedString(GenericFont, String, String, Token[])
-  nameWithType: TokenizedString.TokenizedString(GenericFont, String, String, Token[])
-  fullName: MLEM.Formatting.TokenizedString.TokenizedString(MLEM.Font.GenericFont, System.String, System.String, MLEM.Formatting.Token[])
-  type: Constructor
-  source:
-    remote:
-      path: MLEM/Formatting/TokenizedString.cs
-      branch: master
-      repo: https://github.com/Ellpeck/MLEM
-    id: .ctor
-    path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 20
-  assemblies:
-  - MLEM
-  namespace: MLEM.Formatting
-  syntax:
-    content: public TokenizedString(GenericFont font, string rawString, string strg, Token[] tokens)
-    parameters:
-    - id: font
-      type: MLEM.Font.GenericFont
-    - id: rawString
-      type: System.String
-    - id: strg
-      type: System.String
-    - id: tokens
-      type: MLEM.Formatting.Token[]
-    content.vb: Public Sub New(font As GenericFont, rawString As String, strg As String, tokens As Token())
-  overload: MLEM.Formatting.TokenizedString.#ctor*
-  nameWithType.vb: TokenizedString.TokenizedString(GenericFont, String, String, Token())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: MLEM.Formatting.TokenizedString.TokenizedString(MLEM.Font.GenericFont, System.String, System.String, MLEM.Formatting.Token())
-  name.vb: TokenizedString(GenericFont, String, String, Token())
 - uid: MLEM.Formatting.TokenizedString.Split(MLEM.Font.GenericFont,System.Single,System.Single)
   commentId: M:MLEM.Formatting.TokenizedString.Split(MLEM.Font.GenericFont,System.Single,System.Single)
   id: Split(MLEM.Font.GenericFont,System.Single,System.Single)
@@ -286,19 +256,24 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Split
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 29
+    startLine: 56
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nSplits this tokenized string, inserting newline characters if the width of the string is bigger than the maximum width.\n<xref href=\"MLEM.Font.GenericFont.SplitString(System.String%2cSystem.Single%2cSystem.Single)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public void Split(GenericFont font, float width, float scale)
     parameters:
     - id: font
       type: MLEM.Font.GenericFont
+      description: The font to use for width calculations
     - id: width
       type: System.Single
+      description: The maximum width
     - id: scale
       type: System.Single
+      description: The scale to use fr width calculations
     content.vb: Public Sub Split(font As GenericFont, width As Single, scale As Single)
   overload: MLEM.Formatting.TokenizedString.Split*
   modifiers.csharp:
@@ -323,10 +298,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Measure
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 59
+    startLine: 87
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  example: []
   syntax:
     content: public Vector2 Measure(GenericFont font)
     parameters:
@@ -358,15 +334,18 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Update
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 63
+    startLine: 95
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nUpdates the formatting codes in this formatted string, causing animations to animate etc.\n"
+  example: []
   syntax:
     content: public void Update(GameTime time)
     parameters:
     - id: time
       type: Microsoft.Xna.Framework.GameTime
+      description: The game&apos;s time
     content.vb: Public Sub Update(time As GameTime)
   overload: MLEM.Formatting.TokenizedString.Update*
   modifiers.csharp:
@@ -391,21 +370,27 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: GetTokenUnderPos
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 68
+    startLine: 108
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  summary: "\nReturns the token under the given position.\nThis can be used for hovering effects when the mouse is over a token, etc.\n"
+  example: []
   syntax:
     content: public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, float scale)
     parameters:
     - id: stringPos
       type: Microsoft.Xna.Framework.Vector2
+      description: The position that the string is drawn at
     - id: target
       type: Microsoft.Xna.Framework.Vector2
+      description: The position to use for checking the token
     - id: scale
       type: System.Single
+      description: The scale that the string is drawn at
     return:
       type: MLEM.Formatting.Token
+      description: The token under the target position
     content.vb: Public Function GetTokenUnderPos(stringPos As Vector2, target As Vector2, scale As Single) As Token
   overload: MLEM.Formatting.TokenizedString.GetTokenUnderPos*
   modifiers.csharp:
@@ -430,10 +415,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: Draw
     path: ../MLEM/Formatting/TokenizedString.cs
-    startLine: 72
+    startLine: 113
   assemblies:
   - MLEM
   namespace: MLEM.Formatting
+  example: []
   syntax:
     content: public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth)
     parameters:
@@ -458,6 +444,12 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: MLEM.Formatting.TextFormatter
+  commentId: T:MLEM.Formatting.TextFormatter
+  parent: MLEM.Formatting
+  name: TextFormatter
+  nameWithType: TextFormatter
+  fullName: MLEM.Formatting.TextFormatter
 - uid: MLEM.Formatting
   commentId: N:MLEM.Formatting
   name: MLEM.Formatting
@@ -898,6 +890,12 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: MLEM.Formatting.TokenizedString.RawString
+  commentId: F:MLEM.Formatting.TokenizedString.RawString
+  isExternal: true
+- uid: MLEM.Formatting.TokenizedString.Split(MLEM.Font.GenericFont,System.Single,System.Single)
+  commentId: M:MLEM.Formatting.TokenizedString.Split(MLEM.Font.GenericFont,System.Single,System.Single)
+  isExternal: true
 - uid: MLEM.Formatting.TokenizedString.DisplayString*
   commentId: Overload:MLEM.Formatting.TokenizedString.DisplayString
   name: DisplayString
@@ -927,6 +925,9 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: MLEM.Formatting.Token.AppliedCodes
+  commentId: F:MLEM.Formatting.Token.AppliedCodes
+  isExternal: true
 - uid: MLEM.Formatting.Codes.Code[]
   isExternal: true
   name: Code[]
@@ -951,27 +952,88 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: MLEM.Formatting.TokenizedString.#ctor*
-  commentId: Overload:MLEM.Formatting.TokenizedString.#ctor
-  name: TokenizedString
-  nameWithType: TokenizedString.TokenizedString
-  fullName: MLEM.Formatting.TokenizedString.TokenizedString
+- uid: MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+  commentId: M:MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: SplitString(String, Single, Single)
+  nameWithType: GenericFont.SplitString(String, Single, Single)
+  fullName: MLEM.Font.GenericFont.SplitString(System.String, System.Single, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+    name: SplitString
+    nameWithType: GenericFont.SplitString
+    fullName: MLEM.Font.GenericFont.SplitString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.SplitString(System.String,System.Single,System.Single)
+    name: SplitString
+    nameWithType: GenericFont.SplitString
+    fullName: MLEM.Font.GenericFont.SplitString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MLEM.Formatting.TokenizedString.Split*
+  commentId: Overload:MLEM.Formatting.TokenizedString.Split
+  name: Split
+  nameWithType: TokenizedString.Split
+  fullName: MLEM.Formatting.TokenizedString.Split
 - uid: MLEM.Font.GenericFont
   commentId: T:MLEM.Font.GenericFont
   parent: MLEM.Font
   name: GenericFont
   nameWithType: GenericFont
   fullName: MLEM.Font.GenericFont
-- uid: MLEM.Font
-  commentId: N:MLEM.Font
-  name: MLEM.Font
-  nameWithType: MLEM.Font
-  fullName: MLEM.Font
-- uid: MLEM.Formatting.TokenizedString.Split*
-  commentId: Overload:MLEM.Formatting.TokenizedString.Split
-  name: Split
-  nameWithType: TokenizedString.Split
-  fullName: MLEM.Formatting.TokenizedString.Split
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -979,6 +1041,50 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
+- uid: MLEM.Font.GenericFont.MeasureString(System.String)
+  commentId: M:MLEM.Font.GenericFont.MeasureString(System.String)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: MeasureString(String)
+  nameWithType: GenericFont.MeasureString(String)
+  fullName: MLEM.Font.GenericFont.MeasureString(System.String)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.MeasureString(System.String)
+    name: MeasureString
+    nameWithType: GenericFont.MeasureString
+    fullName: MLEM.Font.GenericFont.MeasureString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.MeasureString(System.String)
+    name: MeasureString
+    nameWithType: GenericFont.MeasureString
+    fullName: MLEM.Font.GenericFont.MeasureString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Formatting.TokenizedString.Measure*
   commentId: Overload:MLEM.Formatting.TokenizedString.Measure
   name: Measure
@@ -1020,6 +1126,173 @@ references:
   name: Token
   nameWithType: Token
   fullName: MLEM.Formatting.Token
+- uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  parent: MLEM.Font.GenericFont
+  isExternal: true
+  name: DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  nameWithType: GenericFont.DrawString(SpriteBatch, String, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch, System.String, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, System.Single, Microsoft.Xna.Framework.Vector2, System.Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, System.Single)
+  spec.csharp:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: MLEM.Font.GenericFont.DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+    name: DrawString
+    nameWithType: GenericFont.DrawString
+    fullName: MLEM.Font.GenericFont.DrawString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    nameWithType: SpriteBatch
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    nameWithType: Color
+    fullName: Microsoft.Xna.Framework.Color
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    nameWithType: Vector2
+    fullName: Microsoft.Xna.Framework.Vector2
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    nameWithType: SpriteEffects
+    fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: MLEM.Formatting.TokenizedString.Draw*
   commentId: Overload:MLEM.Formatting.TokenizedString.Draw
   name: Draw

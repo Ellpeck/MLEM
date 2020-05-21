@@ -35,6 +35,7 @@ items:
     content: 'public class TileDrawInfo : GenericDataHolder'
     content.vb: >-
       Public Class TileDrawInfo
+
           Inherits GenericDataHolder
   inheritance:
   - System.Object

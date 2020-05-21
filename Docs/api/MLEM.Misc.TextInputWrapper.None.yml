@@ -21,14 +21,17 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: None
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 82
+    startLine: 135
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  summary: "\nA text input wrapper that does nothing.\nThis can be used if no text input is required for the game.\n"
+  example: []
   syntax:
     content: 'public class None : TextInputWrapper'
     content.vb: >-
       Public Class None
+
           Inherits TextInputWrapper
   inheritance:
   - System.Object
@@ -66,10 +69,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: RequiresOnScreenKeyboard
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 84
+    startLine: 138
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override bool RequiresOnScreenKeyboard()
     return:
@@ -101,10 +105,11 @@ items:
       repo: https://github.com/Ellpeck/MLEM
     id: AddListener
     path: ../MLEM/Misc/TextInputWrapper.cs
-    startLine: 88
+    startLine: 143
   assemblies:
   - MLEM
   namespace: MLEM.Misc
+  example: []
   syntax:
     content: public override void AddListener(GameWindow window, TextInputWrapper.TextInputCallback callback)
     parameters:
