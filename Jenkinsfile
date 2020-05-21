@@ -38,7 +38,7 @@ done'''
     dotnet nuget push -s https://api.nuget.org/v3/index.json $i -k $NUGET -n true
 done'''
         sh '''/opt/docfx/docfx.exe "Docs/docfx.json"
-cp Docs/_site /var/www/MLEM/ -r'''
+cp Docs/_site/** /var/www/MLEM/ -r'''
       }
     }
 
