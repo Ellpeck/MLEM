@@ -12,7 +12,7 @@ Task("Prepare").Does(() => {
     if (branch != "release") {
         var buildNum = EnvironmentVariable("BUILD_NUMBER");
         if (buildNum != null)
-            version += buildNum;
+            version += "-" + buildNum;
     }
         
     DeleteFiles("**/*.nupkg");
