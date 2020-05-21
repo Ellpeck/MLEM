@@ -17,7 +17,6 @@
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Logo.png</PackageIconUrl>
-        <VersionPrefix>3.3.0</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
