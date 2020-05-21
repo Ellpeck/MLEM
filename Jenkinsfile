@@ -12,7 +12,8 @@ pipeline {
         branch 'release' 
       }
       steps {
-        sh './build.sh -Target=Document'        
+        sh './build.sh -Target=Document'     
+        sh 'cp Docs/_site/** /var/www/MLEM/ -r'   
       }
     }
   }
