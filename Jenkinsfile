@@ -22,6 +22,7 @@ done'''
         sh '''for i in **/*.nupkg; do
     dotnet nuget push -s http://localhost:5000/v3/index.json $i -k $BAGET -n true
 done'''
+      }
     }
     
     stage('Pack and Publish (Release)') {
