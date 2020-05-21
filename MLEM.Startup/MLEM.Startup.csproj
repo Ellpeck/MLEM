@@ -8,7 +8,7 @@
         <Authors>Ellpeck</Authors>
         <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame combined with some other useful libraries into a quick Game startup class</Description>
         <PackageTags>monogame ellpeck mlem utility extensions</PackageTags>
-        <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
+        <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
         <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Logo.png</PackageIconUrl>

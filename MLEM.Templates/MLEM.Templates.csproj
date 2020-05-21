@@ -13,7 +13,7 @@
         <Authors>Ellpeck</Authors>
         <Description>(M)LEM (L)ibrary by (E)llpeck for (M)onoGame cross-platform project templates</Description>
         <PackageTags>dotnet-new templates monogame ellpeck mlem utility extensions</PackageTags>
-        <PackageProjectUrl>https://github.com/Ellpeck/MLEM</PackageProjectUrl>
+        <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Logo.png</PackageIconUrl>
         <VersionPrefix>3.3.0</VersionPrefix>
