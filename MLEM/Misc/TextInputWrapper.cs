@@ -12,7 +12,7 @@ namespace MLEM.Misc {
         public static TextInputWrapper Current {
             get {
                 if (current == null)
-                    throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://github.com/Ellpeck/MLEM/wiki/MLEM.Ui#text-input");
+                    throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://mlem.ellpeck.de/articles/ui.html#text-input");
                 return current;
             }
             set => current = value;

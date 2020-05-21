@@ -4,5 +4,5 @@
 
 - Get it [on NuGet](https://www.nuget.org/packages?q=mlem)
 - Get prerelease builds [on NuGet](https://nuget.ellpeck.de)
-- Read the docs [on the wiki](https://github.com/Ellpeck/MLEM/wiki)
+- See tutorials and API documentation [on the website](https://mlem.ellpeck.de/)
 - Check out [the demos](https://github.com/Ellpeck/MLEM/tree/master/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/master/Demos.DesktopGL) or [Android](https://github.com/Ellpeck/MLEM/tree/master/Demos.Android)
