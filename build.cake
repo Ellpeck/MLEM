@@ -38,6 +38,8 @@ Task("Pack").IsDependentOn("Build").Does(() => {
 });
 
 Task("Push").IsDependentOn("Pack").Does(() => {
+    if(branch != "master" && branch != "release")
+        return;
     NuGetPushSettings settings;
     if (branch == "release") {
         settings = new NuGetPushSettings {
