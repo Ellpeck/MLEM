@@ -1,5 +1,5 @@
 #addin Cake.DocFx&version=0.13.1
-#tool docfx.console&version=2.53.1
+#tool docfx.console&version=2.51.0
 
 var version = Argument("version", "3.3.1");
 var target = Argument("target", "Default");
