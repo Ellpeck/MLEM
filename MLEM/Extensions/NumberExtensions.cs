@@ -24,7 +24,7 @@ namespace MLEM.Extensions {
         /// <param name="first">The first number to equate</param>
         /// <param name="second">The second number to equate</param>
         /// <param name="tolerance">The equality tolerance</param>
-        /// <returns>Whether or not <see cref="first"/> and <see cref="second"/> are different by at most <see cref="tolerance"/></returns>
+        /// <returns>Whether or not the two values are different by at most <c>tolerance</c></returns>
         public static bool Equals(this float first, float second, float tolerance) {
             return Math.Abs(first - second) <= tolerance;
         }

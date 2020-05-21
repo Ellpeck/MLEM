@@ -40,11 +40,11 @@ namespace MLEM.Extensions {
         }
 
         /// <summary>
-        /// Copies the alpha value from <see cref="other"/> into this color.
+        /// Copies the alpha value from another color into this color.
         /// </summary>
         /// <param name="color">The color</param>
         /// <param name="other">The color to copy the alpha from</param>
-        /// <returns>The <see cref="color"/> with <see cref="other"/>'s alpha value</returns>
+        /// <returns>The first color with the second color's alpha value</returns>
         public static Color CopyAlpha(this Color color, Color other) {
             return color * (other.A / 255F);
         }

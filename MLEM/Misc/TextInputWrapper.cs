@@ -6,9 +6,19 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Input;
 
 namespace MLEM.Misc {
+    /// <summary>
+    /// A text input wrapper is a wrapper around MonoGame's built-in text input event.
+    /// Since said text input event does not exist on non-Desktop devices, we want to wrap it in a wrapper that is platform-independent for MLEM.
+    /// See subclasses of this wrapper or <see href="https://mlem.ellpeck.de/articles/ui.html#text-input"/> for more info.
+    /// </summary>
     public abstract class TextInputWrapper {
 
         private static TextInputWrapper current;
+        /// <summary>
+        /// The current text input wrapper.
+        /// Set this value before starting your game if you want to use text input wrapping.
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
         public static TextInputWrapper Current {
             get {
                 if (current == null)
@@ -18,26 +28,59 @@ namespace MLEM.Misc {
             set => current = value;
         }
 
+        /// <summary>
+        /// Determines if this text input wrapper requires an on-screen keyboard.
+        /// </summary>
+        /// <returns>If this text input wrapper requires an on-screen keyboard</returns>
         public abstract bool RequiresOnScreenKeyboard();
 
+        /// <summary>
+        /// Adds a text input listener to this text input wrapper.
+        /// The supplied listener will be called whenever a character is input.
+        /// </summary>
+        /// <param name="window">The game's window</param>
+        /// <param name="callback">The callback that should be called whenever a character is pressed</param>
         public abstract void AddListener(GameWindow window, TextInputCallback callback);
 
+        /// <summary>
+        /// A delegate method that can be used for <see cref="TextInputWrapper.AddListener"/>
+        /// </summary>
+        /// <param name="sender">The object that sent the event. The <see cref="TextInputWrapper"/> used in most cases.</param>
+        /// <param name="key">The key that was pressed</param>
+        /// <param name="character">The character that corresponds to that key</param>
         public delegate void TextInputCallback(object sender, Keys key, char character);
 
+        /// <summary>
+        /// A text input wrapper for DesktopGL devices.
+        /// This wrapper uses the built-in MonoGame TextInput event, which makes this listener work with any keyboard localization natively.
+        /// </summary>
+        /// <example>
+        /// This listener is initialized as follows:
+        /// <code>
+        /// new TextInputWrapper.DesktopGl{TextInputEventArgs}((w, c) => w.TextInput += c);
+        /// </code>
+        /// </example>
+        /// <typeparam name="T"></typeparam>
         public class DesktopGl<T> : TextInputWrapper {
 
             private MemberInfo key;
             private MemberInfo character;
             private readonly Action<GameWindow, EventHandler<T>> addListener;
 
+            /// <summary>
+            /// Creates a new DesktopGL-based text input wrapper
+            /// </summary>
+            /// <param name="addListener">The function that is used to add a text input listener</param>
             public DesktopGl(Action<GameWindow, EventHandler<T>> addListener) {
                 this.addListener = addListener;
             }
 
+            /// <inheritdoc />
             public override bool RequiresOnScreenKeyboard() {
                 return false;
             }
 
+            /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
                 this.addListener(window, (sender, args) => {
                     // the old versions of DesktopGL use a property here, while the 
@@ -69,32 +112,54 @@ namespace MLEM.Misc {
 
         }
 
+        /// <summary>
+        /// A text input wrapper for mobile platforms as well as consoles.
+        /// This text input wrapper performs no actions itself, as it signals that an on-screen keyboard is required.
+        /// </summary>
         public class Mobile : TextInputWrapper {
 
+            /// <inheritdoc />
             public override bool RequiresOnScreenKeyboard() {
                 return true;
             }
 
+            /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
             }
 
         }
 
+        /// <summary>
+        /// A text input wrapper that does nothing.
+        /// This can be used if no text input is required for the game.
+        /// </summary>
         public class None : TextInputWrapper {
 
+            /// <inheritdoc />
             public override bool RequiresOnScreenKeyboard() {
                 return false;
             }
 
+            /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
             }
 
         }
 
+        /// <summary>
+        /// A primitive text input wrapper that is locked to the American keyboard localization.
+        /// Only use this text input wrapper if <see cref="TextInputWrapper.DesktopGl{T}"/> is unavailable for some reason.
+        ///
+        /// Note that, when using this text input wrapper, its <see cref="Update"/> method has to be called periodically.
+        /// </summary>
         public class Primitive : TextInputWrapper {
 
             private TextInputCallback callback;
 
+            /// <summary>
+            /// Updates this text input wrapper by querying pressed keys and sending corresponding input events.
+            /// </summary>
+            /// <param name="handler">The input handler to use for text input querying</param>
             public void Update(InputHandler handler) {
                 var pressed = handler.KeyboardState.GetPressedKeys().Except(handler.LastKeyboardState.GetPressedKeys());
                 var shift = handler.IsModifierKeyDown(ModifierKey.Shift);
@@ -105,10 +170,12 @@ namespace MLEM.Misc {
                 }
             }
 
+            /// <inheritdoc />
             public override bool RequiresOnScreenKeyboard() {
                 return false;
             }
 
+            /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
                 this.callback += callback;
             }

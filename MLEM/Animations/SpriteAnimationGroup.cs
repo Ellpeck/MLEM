@@ -98,6 +98,11 @@ namespace MLEM.Animations {
             }
         }
 
+        /// <summary>
+        /// A callback delegate for when a <see cref="SpriteAnimationGroup"/>'s current animation changed.
+        /// </summary>
+        /// <param name="oldAnim">The previous animation</param>
+        /// <param name="newAnim">The new animation</param>
         public delegate void AnimationChanged(SpriteAnimation oldAnim, SpriteAnimation newAnim);
 
     }

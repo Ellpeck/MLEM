@@ -5,37 +5,100 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace MLEM.Misc {
+    /// <summary>
+    /// An enum that represents two-dimensional directions.
+    /// Both straight and diagonal directions are supported.
+    /// </summary>
     public enum Direction2 {
 
+        /// <summary>
+        /// The up direction, or -y.
+        /// </summary>
         Up,
+        /// <summary>
+        /// The right direction, or +x.
+        /// </summary>
         Right,
+        /// <summary>
+        /// The down direction, or +y.
+        /// </summary>
         Down,
+        /// <summary>
+        /// The left direction, or -x.
+        /// </summary>
         Left,
 
+        /// <summary>
+        /// The up and right direction, or +x, -y.
+        /// </summary>
         UpRight,
+        /// <summary>
+        /// The down and right direction, or +x, +y.
+        /// </summary>
         DownRight,
+        /// <summary>
+        /// The down and left direction, or -x, +y.
+        /// </summary>
         DownLeft,
+        /// <summary>
+        /// The up and left direction, or -x, -y.
+        /// </summary>
         UpLeft,
 
+        /// <summary>
+        /// No direction.
+        /// </summary>
         None
 
     }
 
+    /// <summary>
+    /// A set of helper and extension methods for dealing with <see cref="Direction2"/>
+    /// </summary>
     public static class Direction2Helper {
 
+        /// <summary>
+        /// All <see cref="Direction2"/> enum values
+        /// </summary>
         public static readonly Direction2[] All = EnumHelper.GetValues<Direction2>().ToArray();
+        /// <summary>
+        /// The <see cref="Direction2.Up"/> through <see cref="Direction2.Left"/> directions
+        /// </summary>
         public static readonly Direction2[] Adjacent = All.Where(IsAdjacent).ToArray();
+        /// <summary>
+        /// The <see cref="Direction2.UpRight"/> through <see cref="Direction2.UpLeft"/> directions
+        /// </summary>
         public static readonly Direction2[] Diagonals = All.Where(IsDiagonal).ToArray();
+        /// <summary>
+        /// All directions except <see cref="Direction2.None"/>
+        /// </summary>
         public static readonly Direction2[] AllExceptNone = All.Where(dir => dir != Direction2.None).ToArray();
 
+        /// <summary>
+        /// Returns if the given direction is considered an "adjacent" direction.
+        /// An adjacent direction is one that is not a diagonal.
+        /// </summary>
+        /// <param name="dir">The direction to query</param>
+        /// <returns>Whether the direction is adjacent</returns>
         public static bool IsAdjacent(this Direction2 dir) {
             return dir <= Direction2.Left;
         }
 
+        /// <summary>
+        /// Returns if the given direction is considered a diagonal direction.
+        /// </summary>
+        /// <param name="dir">The direction to query</param>
+        /// <returns>Whether the direction is diagonal</returns>
         public static bool IsDiagonal(this Direction2 dir) {
             return dir >= Direction2.UpRight && dir <= Direction2.UpLeft;
         }
 
+        /// <summary>
+        /// Returns the directional offset of a given direction.
+        /// The offset direction will be exactly one unit in each axis that the direction represents.
+        /// </summary>
+        /// <param name="dir">The direction whose offset to query</param>
+        /// <returns>The direction's offset</returns>
         public static Point Offset(this Direction2 dir) {
             switch (dir) {
                 case Direction2.Up:
@@ -59,11 +122,23 @@ namespace MLEM.Misc {
             }
         }
 
+        /// <summary>
+        /// Maps each direction in the given enumerable of directions to its <see cref="Offset"/>.
+        /// </summary>
+        /// <param name="directions">The direction enumerable</param>
+        /// <returns>The directions' offsets, in the same order as the input directions.</returns>
         public static IEnumerable<Point> Offsets(this IEnumerable<Direction2> directions) {
             foreach (var dir in directions)
                 yield return dir.Offset();
         }
 
+        /// <summary>
+        /// Returns the opposite of the given direction.
+        /// For "adjacent" directions, this is the direction that points into the same axis, but the opposite sign.
+        /// For diagonal directions, this is the direction that points into the opposite of both the x and y axis.
+        /// </summary>
+        /// <param name="dir">The direction whose opposite to get</param>
+        /// <returns>The opposite of the direction</returns>
         public static Direction2 Opposite(this Direction2 dir) {
             switch (dir) {
                 case Direction2.Up:
@@ -87,11 +162,22 @@ namespace MLEM.Misc {
             }
         }
 
+        /// <summary>
+        /// Returns the angle of the direction in radians, where <see cref="Direction2.Right"/> has an angle of 0.
+        /// </summary>
+        /// <param name="dir">The direction whose angle to get</param>
+        /// <returns>The direction's angle</returns>
         public static float Angle(this Direction2 dir) {
             var offset = dir.Offset();
             return (float) Math.Atan2(offset.Y, offset.X);
         }
 
+        /// <summary>
+        /// Rotates the given direction clockwise and returns the resulting direction.
+        /// </summary>
+        /// <param name="dir">The direction to rotate</param>
+        /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
+        /// <returns>The rotated direction</returns>
         public static Direction2 RotateCw(this Direction2 dir, bool fortyFiveDegrees = false) {
             switch (dir) {
                 case Direction2.Up:
@@ -115,6 +201,12 @@ namespace MLEM.Misc {
             }
         }
 
+        /// <summary>
+        /// Rotates the given direction counter-clockwise and returns the resulting direction.
+        /// </summary>
+        /// <param name="dir">The direction to rotate counter-clockwise</param>
+        /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
+        /// <returns>The rotated direction</returns>
         public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false) {
             switch (dir) {
                 case Direction2.Up:

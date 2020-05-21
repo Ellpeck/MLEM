@@ -138,6 +138,10 @@ namespace MLEM.Animations {
             this.IsPaused = false;
         }
 
+        /// <summary>
+        /// A callback for when a sprite animation is completed.
+        /// </summary>
+        /// <param name="animation">The animation that has completed</param>
         public delegate void Completed(SpriteAnimation animation);
 
     }

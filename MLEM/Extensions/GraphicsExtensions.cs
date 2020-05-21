@@ -75,17 +75,29 @@ namespace MLEM.Extensions {
             return new TargetContext(device, target);
         }
 
+        /// <summary>
+        /// Represents a context in which a <see cref="RenderTarget2D"/> is applied.
+        /// This class should be used with <see cref="GraphicsExtensions.WithRenderTarget"/>.
+        /// </summary>
         public struct TargetContext : IDisposable {
 
             private readonly GraphicsDevice device;
             private readonly RenderTargetBinding[] lastTargets;
 
+            /// <summary>
+            /// Creates a new target context with the given settings.
+            /// </summary>
+            /// <param name="device">The graphics device to apply the target on</param>
+            /// <param name="target">The target to apply</param>
             public TargetContext(GraphicsDevice device, RenderTarget2D target) {
                 this.device = device;
                 this.lastTargets = device.RenderTargetCount <= 0 ? null : device.GetRenderTargets();
                 device.SetRenderTarget(target);
             }
 
+            /// <summary>
+            /// Disposes this target context, which causes the graphics device's previous render targets to be re-applied.
+            /// </summary>
             public void Dispose() {
                 this.device.SetRenderTargets(this.lastTargets);
             }

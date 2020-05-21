@@ -4,6 +4,9 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace MLEM.Pathfinding {
+    /// <summary>
+    /// A 3-dimensional implementation of <see cref="AStar{T}"/> that uses <see cref="Vector3"/> for positions.
+    /// </summary>
     public class AStar3 : AStar<Vector3> {
 
         private static readonly Vector3[] AdjacentDirs = {
@@ -31,14 +34,17 @@ namespace MLEM.Pathfinding {
             AllDirs = dirs.ToArray();
         }
 
+        /// <inheritdoc />
         public AStar3(GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) :
             base(AllDirs, AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {
         }
 
+        /// <inheritdoc />
         protected override Vector3 AddPositions(Vector3 first, Vector3 second) {
             return first + second;
         }
 
+        /// <inheritdoc />
         protected override float GetManhattanDistance(Vector3 first, Vector3 second) {
             return Math.Abs(second.X - first.X) + Math.Abs(second.Y - first.Y) + Math.Abs(second.Z - first.Z);
         }
