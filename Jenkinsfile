@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Cake Build') {
       steps {
+        sh 'chmod +x ./build.sh'
         sh './build.sh -Target Push -Branch ' + env.BRANCH_NAME
       }
     }
