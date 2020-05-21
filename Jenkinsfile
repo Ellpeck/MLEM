@@ -4,7 +4,7 @@ pipeline {
     stage('Cake Build') {
       steps {
         sh 'chmod +x ./build.sh'
-        sh './build.sh -Target=Push -Branch=' + env.BRANCH_NAME
+        sh './build.sh -Target=Publish -Branch=' + env.BRANCH_NAME
       }
     }
     stage('Document') {

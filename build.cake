@@ -37,9 +37,7 @@ Task("Pack").IsDependentOn("Build").Does(() => {
         DotNetCorePack(project.FullPath, settings);
 });
 
-Task("Push").IsDependentOn("Pack").Does(() => {
-    if(branch != "master" && branch != "release")
-        return;
+Task("Push").WithCriteria(branch == "master" || branch == "release").IsDependentOn("Pack").Does(() => {
     NuGetPushSettings settings;
     if (branch == "release") {
         settings = new NuGetPushSettings {
@@ -62,5 +60,6 @@ Task("Document").Does(() => {
 });
 
 Task("Default").IsDependentOn("Pack");
+Task("Publish").IsDependentOn("Push");
 
 RunTarget(target);
