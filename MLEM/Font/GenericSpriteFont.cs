@@ -8,6 +8,9 @@ namespace MLEM.Font {
     /// <inheritdoc/>
     public class GenericSpriteFont : GenericFont {
 
+        /// <summary>
+        /// The <see cref="SpriteFont"/> that is being wrapped by this generic font
+        /// </summary>
         public readonly SpriteFont Font;
         /// <inheritdoc/>
         public override GenericFont Bold { get; }

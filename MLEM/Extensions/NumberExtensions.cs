@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework;
 using MLEM.Misc;
 
 namespace MLEM.Extensions {
+    /// <summary>
+    /// A set of extensions for dealing with <see cref="float"/>, <see cref="Vector2"/>, <see cref="Vector3"/>, <see cref="Vector4"/>, <see cref="Point"/>, <see cref="Rectangle"/> and <see cref="RectangleF"/>
+    /// </summary>
     public static class NumberExtensions {
 
         /// <inheritdoc cref="Math.Floor(decimal)"/>

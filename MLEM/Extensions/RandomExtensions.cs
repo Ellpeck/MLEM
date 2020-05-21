@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace MLEM.Extensions {
+    /// <summary>
+    /// A set of extensions for dealing with <see cref="Random"/>
+    /// </summary>
     public static class RandomExtensions {
 
         /// <summary>

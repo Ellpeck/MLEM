@@ -10,10 +10,21 @@ using MLEM.Formatting.Codes;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {
+    /// <summary>
+    /// A text formatter is used for drawing text using <see cref="GenericFont"/> that contains different colors, bold/italic sections and animations.
+    /// To format a string of text, use the codes as specified in the constructor. To tokenize and render a formatted string, use <see cref="Tokenize"/>.
+    /// </summary>
     public class TextFormatter : GenericDataHolder {
 
+        /// <summary>
+        /// The formatting codes that this text formatter uses.
+        /// The <see cref="Regex"/> defines how the formatting code should be matched.
+        /// </summary>
         public readonly Dictionary<Regex, Code.Constructor> Codes = new Dictionary<Regex, Code.Constructor>();
 
+        /// <summary>
+        /// Creates a new text formatter with a set of default formatting codes.
+        /// </summary>
         public TextFormatter() {
             // font codes
             this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
@@ -37,6 +48,12 @@ namespace MLEM.Formatting {
             this.Codes.Add(new Regex("</a>"), (f, m, r) => new AnimatedCode(m, r));
         }
 
+        /// <summary>
+        /// Tokenizes a string, returning a tokenized string that is ready for splitting, measuring and drawing.
+        /// </summary>
+        /// <param name="font">The font to use for tokenization. Note that this font needs to be the same that will later be used for splitting, measuring and/or drawing.</param>
+        /// <param name="s">The string to tokenize</param>
+        /// <returns></returns>
         public TokenizedString Tokenize(GenericFont font, string s) {
             var tokens = new List<Token>();
             var codes = new List<Code>();

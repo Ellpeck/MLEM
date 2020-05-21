@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MLEM.Extensions {
+    /// <summary>
+    /// A set of extensions for dealing with <see cref="GraphicsDevice"/> and <see cref="GraphicsDeviceManager"/>
+    /// </summary>
     public static class GraphicsExtensions {
 
         private static int lastWidth;

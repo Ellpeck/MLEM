@@ -171,11 +171,26 @@ namespace MLEM.Font {
 
     }
 
+    /// <summary>
+    /// An enum that represents the text alignment options for <see cref="GenericFont.DrawString(SpriteBatch,string,Vector2,TextAlign,Color)"/>
+    /// </summary>
     public enum TextAlign {
 
+        /// <summary>
+        /// The text is aligned as normal
+        /// </summary>
         Left,
+        /// <summary>
+        /// The position passed represents the center of the resulting string in the x axis
+        /// </summary>
         Center,
+        /// <summary>
+        /// The position passed represents the right edge of the resulting string
+        /// </summary>
         Right,
+        /// <summary>
+        /// The position passed represents the center of the resulting string, both in the x and y axes
+        /// </summary>
         CenterBothAxes
 
     }

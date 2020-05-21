@@ -3,6 +3,9 @@ using System.Globalization;
 using Microsoft.Xna.Framework;
 
 namespace MLEM.Extensions {
+    /// <summary>
+    /// A set of extensions for dealing with <see cref="Color"/> objects
+    /// </summary>
     public static class ColorExtensions {
 
         /// <summary>

@@ -5,16 +5,19 @@ using MLEM.Extensions;
 using MLEM.Font;
 
 namespace MLEM.Formatting.Codes {
+    /// <inheritdoc />
     public class ShadowCode : FontCode {
 
         private readonly Color color;
         private readonly Vector2 offset;
 
+        /// <inheritdoc />
         public ShadowCode(Match match, Regex regex, Color color, Vector2 offset) : base(match, regex, null) {
             this.color = color;
             this.offset = offset;
         }
 
+        /// <inheritdoc />
         public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             font.DrawString(batch, cString, pos + this.offset * scale, this.color.CopyAlpha(color), 0, Vector2.Zero, scale, SpriteEffects.None, depth);
             // we return false since we still want regular drawing to occur

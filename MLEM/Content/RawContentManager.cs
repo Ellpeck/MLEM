@@ -57,6 +57,7 @@ namespace MLEM.Content {
             return reader;
         }
 
+        /// <inheritdoc/>
         protected override void ReloadAsset<T>(string originalAssetName, T currentAsset) {
             this.Read(originalAssetName, currentAsset);
         }
@@ -80,6 +81,7 @@ namespace MLEM.Content {
             throw new ContentLoadException($"Asset {assetName} not found");
         }
 
+        /// <inheritdoc/>
         public override void Unload() {
             foreach (var d in this.disposableAssets)
                 d.Dispose();
@@ -87,6 +89,7 @@ namespace MLEM.Content {
             base.Unload();
         }
 
+        /// <inheritdoc/>
         public void Initialize() {
         }
 

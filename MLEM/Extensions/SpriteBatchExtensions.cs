@@ -4,6 +4,9 @@ using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Extensions {
+    /// <summary>
+    /// A set of extensions for dealing with <see cref="SpriteBatch"/>
+    /// </summary>
     public static class SpriteBatchExtensions {
 
         private static Texture2D blankTexture;
