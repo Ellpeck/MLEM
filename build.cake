@@ -50,6 +50,7 @@ Task("Push").WithCriteria(branch == "master" || branch == "release").IsDependent
             ApiKey = EnvironmentVariable("BAGET")
         };
     }
+    settings.SkipDuplicate = true;
     NuGetPush(GetFiles("**/*.nupkg"), settings);
 });
 
