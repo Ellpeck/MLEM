@@ -3,9 +3,19 @@ using Microsoft.Xna.Framework;
 using MLEM.Misc;
 
 namespace MLEM.Ui.Elements {
+    /// <summary>
+    /// A dropdown component to use inside of a <see cref="UiSystem"/>.
+    /// A dropdown is a component that contains a hidden panel which is displayed upon pressing the dropdown button.
+    /// </summary>
     public class Dropdown : Button {
 
+        /// <summary>
+        /// The panel that this dropdown contains. It will be displayed upon pressing the dropdown button.
+        /// </summary>
         public readonly Panel Panel;
+        /// <summary>
+        /// This property stores whether the dropdown is currently opened or not
+        /// </summary>
         public bool IsOpen {
             get => !this.Panel.IsHidden;
             set {
@@ -13,8 +23,19 @@ namespace MLEM.Ui.Elements {
                 this.OnOpenedOrClosed?.Invoke(this);
             }
         }
+        /// <summary>
+        /// An event that is invoked when <see cref="IsOpen"/> changes
+        /// </summary>
         public GenericCallback OnOpenedOrClosed;
 
+        /// <summary>
+        /// Creates a new dropdown with the given settings
+        /// </summary>
+        /// <param name="anchor">The dropdown's anchor</param>
+        /// <param name="size">The dropdown button's size</param>
+        /// <param name="text">The text displayed on the dropdown button</param>
+        /// <param name="tooltipText">The text displayed as a tooltip when hovering over the dropdown button</param>
+        /// <param name="tooltipWidth">The width of the dropdown button's tooltip</param>
         public Dropdown(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float tooltipWidth = 50) : base(anchor, size, text, tooltipText, tooltipWidth) {
             this.Panel = this.AddChild(new Panel(Anchor.TopCenter, size, Vector2.Zero, true) {
                 IsHidden = true
@@ -24,6 +45,10 @@ namespace MLEM.Ui.Elements {
             this.OnPressed += e => this.IsOpen = !this.IsOpen;
         }
 
+        /// <summary>
+        /// Adds an element to this dropdown's <see cref="Panel"/>
+        /// </summary>
+        /// <param name="element">The element to add</param>
         public void AddElement(Element element) {
             this.Panel.AddChild(element);
             // Since the dropdown causes elements to be over each other,
@@ -39,10 +64,21 @@ namespace MLEM.Ui.Elements {
             };
         }
 
+        /// <summary>
+        /// Adds a pressable <see cref="Paragraph"/> element to this dropdown's <see cref="Panel"/>
+        /// </summary>
+        /// <param name="text">The text to display</param>
+        /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
         public void AddElement(string text, GenericCallback pressed = null) {
             this.AddElement(p => text, pressed);
         }
 
+        /// <summary>
+        /// Adds a pressable <see cref="Paragraph"/> element to this dropdown's <see cref="Panel"/>.
+        /// By default, the paragraph's text color will change from <see cref="Color.White"/> to <see cref="Color.LightGray"/> when hovering over it.
+        /// </summary>
+        /// <param name="text">The text to display</param>
+        /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
         public void AddElement(Paragraph.TextCallback text, GenericCallback pressed = null) {
             var paragraph = new Paragraph(Anchor.AutoLeft, 1, text) {
                 CanBeMoused = true,

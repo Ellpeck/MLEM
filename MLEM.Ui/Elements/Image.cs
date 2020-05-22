@@ -6,11 +6,25 @@ using MLEM.Textures;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
+    /// <summary>
+    /// An image element to be used inside of a <see cref="UiSystem"/>.
+    /// An image is simply an element that displays a supplied <see cref="TextureRegion"/> and optionally allows for the texture region to remain at its original aspect ratio, regardless of the element's size.
+    /// </summary>
     public class Image : Element {
 
+        /// <summary>
+        /// The color to render the image at
+        /// </summary>
         public StyleProp<Color> Color;
         private TextureRegion texture;
+        /// <summary>
+        /// A callback to retrieve the <see cref="TextureRegion"/> that this image should render.
+        /// This can be used if the image changes frequently.
+        /// </summary>
         public TextureCallback GetTextureCallback;
+        /// <summary>
+        /// The texture that this <see cref="TextureRegion"/> should render
+        /// </summary>
         public TextureRegion Texture {
             get {
                 if (this.GetTextureCallback != null)
@@ -27,6 +41,9 @@ namespace MLEM.Ui.Elements {
             }
         }
         private bool scaleToImage;
+        /// <summary>
+        /// Whether this image element's <see cref="Element.Size"/> should be based on the size of the <see cref="TextureRegion"/> given.
+        /// </summary>
         public bool ScaleToImage {
             get => this.scaleToImage;
             set {
@@ -36,11 +53,32 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        /// <summary>
+        /// Whether to cause the <see cref="TextureRegion"/> to be rendered at its proper aspect ratio.
+        /// If this is false, the image will be stretched according to this component's size.
+        /// </summary>
         public bool MaintainImageAspect = true;
+        /// <summary>
+        /// The <see cref="SpriteEffects"/> that the texture should be rendered with
+        /// </summary>
         public SpriteEffects ImageEffects = SpriteEffects.None;
+        /// <summary>
+        /// The scale that the image should be rendered with
+        /// </summary>
         public Vector2 ImageScale = Vector2.One;
+        /// <summary>
+        /// The rotation that the image should be rendered with.
+        /// Note that increased rotation does not increase this component's size, even if the rotated texture would go out of bounds of this component.
+        /// </summary>
         public float ImageRotation;
 
+        /// <summary>
+        /// Creates a new image with the given settings
+        /// </summary>
+        /// <param name="anchor">The image's anchor</param>
+        /// <param name="size">The image's size</param>
+        /// <param name="texture">The texture the image should render</param>
+        /// <param name="scaleToImage">Whether this image's size should be based on the texture's size</param>
         public Image(Anchor anchor, Vector2 size, TextureRegion texture, bool scaleToImage = false) : base(anchor, size) {
             this.Texture = texture;
             this.scaleToImage = scaleToImage;
@@ -48,6 +86,7 @@ namespace MLEM.Ui.Elements {
             this.CanBeMoused = false;
         }
 
+        /// <inheritdoc cref="Image(Anchor,Vector2,TextureRegion,bool)"/>
         public Image(Anchor anchor, Vector2 size, TextureCallback getTextureCallback, bool scaleToImage = false) : base(anchor, size) {
             this.GetTextureCallback = getTextureCallback;
             this.Texture = getTextureCallback(this);
@@ -56,10 +95,12 @@ namespace MLEM.Ui.Elements {
             this.CanBeMoused = false;
         }
 
+        /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             return this.Texture != null && this.scaleToImage ? this.Texture.Size.ToVector2() : base.CalcActualSize(parentArea);
         }
 
+        /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             if (this.Texture == null)
                 return;
@@ -76,6 +117,10 @@ namespace MLEM.Ui.Elements {
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
+        /// <summary>
+        /// A delegate method used for <see cref="Image.GetTextureCallback"/>
+        /// </summary>
+        /// <param name="image">The current image element</param>
         public delegate TextureRegion TextureCallback(Image image);
 
     }

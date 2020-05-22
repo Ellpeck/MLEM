@@ -10,13 +10,34 @@ using MLEM.Textures;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
+    /// <summary>
+    /// A scroll bar element to be used inside of a <see cref="UiSystem"/>.
+    /// A scroll bar is an element that features a smaller scroller indicator inside of it that can move up and down.
+    /// A scroll bar can be scrolled using the mouse or by using the scroll wheel while hovering over its <see cref="Element.Parent"/> or any of its siblings.
+    /// </summary>
     public class ScrollBar : Element {
 
+        /// <summary>
+        /// The background texture for this scroll bar
+        /// </summary>
         public StyleProp<NinePatch> Background;
+        /// <summary>
+        /// The texture of this scroll bar's scroller indicator
+        /// </summary>
         public StyleProp<NinePatch> ScrollerTexture;
+        /// <summary>
+        /// The <see cref="ScrollerTexture"/>'s offset from the calculated position of the scroller. Use this to pad the scroller.
+        /// </summary>
         public Vector2 ScrollerOffset;
+        /// <summary>
+        /// The scroller's width and height
+        /// </summary>
         public Vector2 ScrollerSize;
         private float maxValue;
+        /// <summary>
+        /// The max value that this scroll bar should be able to scroll to.
+        /// Note that the maximum value does not change the height of the scroll bar.
+        /// </summary>
         public float MaxValue {
             get => this.maxValue;
             set {
@@ -31,6 +52,10 @@ namespace MLEM.Ui.Elements {
         }
         private float scrollAdded;
         private float currValue;
+        /// <summary>
+        /// The current value of the scroll bar.
+        /// This is between 0 and <see cref="MaxValue"/> at all times.
+        /// </summary>
         public float CurrentValue {
             get => this.currValue - this.scrollAdded;
             set {
@@ -43,21 +68,51 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        /// <summary>
+        /// Whether this scroll bar is horizontal
+        /// </summary>
         public readonly bool Horizontal;
+        /// <summary>
+        /// The amount added or removed from <see cref="CurrentValue"/> per single movement of the scroll wheel
+        /// </summary>
         public float StepPerScroll = 1;
+        /// <summary>
+        /// An event that is called when <see cref="CurrentValue"/> changes
+        /// </summary>
         public ValueChanged OnValueChanged;
+        /// <summary>
+        /// An event that is called when this scroll bar is automatically hidden from a <see cref="Panel"/>
+        /// </summary>
         public GenericCallback OnAutoHide;
         private bool isMouseHeld;
         private bool isDragging;
         private bool isTouchHeld;
+        /// <summary>
+        /// This field determines if this scroll bar should automatically be hidden from a <see cref="Panel"/> if there aren't enough children to allow for scrolling.
+        /// </summary>
         public bool AutoHideWhenEmpty;
+        /// <summary>
+        /// Whether smooth scrolling should be enabled for this scroll bar.
+        /// Smooth scrolling causes the <see cref="CurrentValue"/> to change gradually rather than instantly when scrolling.
+        /// </summary>
         public bool SmoothScrolling;
+        /// <summary>
+        /// The factor with which <see cref="SmoothScrolling"/> happens.
+        /// </summary>
         public float SmoothScrollFactor = 0.75F;
 
         static ScrollBar() {
             InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);
         }
 
+        /// <summary>
+        /// Creates a new scroll bar with the given settings
+        /// </summary>
+        /// <param name="anchor">The scroll bar's anchor</param>
+        /// <param name="size">The scroll bar's size</param>
+        /// <param name="scrollerSize"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="horizontal"></param>
         public ScrollBar(Anchor anchor, Vector2 size, int scrollerSize, float maxValue, bool horizontal = false) : base(anchor, size) {
             this.maxValue = maxValue;
             this.Horizontal = horizontal;
@@ -65,6 +120,7 @@ namespace MLEM.Ui.Elements {
             this.CanBeSelected = false;
         }
 
+        /// <inheritdoc />
         public override void Update(GameTime time) {
             base.Update(time);
 
@@ -134,6 +190,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
 
@@ -148,12 +205,18 @@ namespace MLEM.Ui.Elements {
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
+        /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Background.SetFromStyle(style.ScrollBarBackground);
             this.ScrollerTexture.SetFromStyle(style.ScrollBarScrollerTexture);
         }
 
+        /// <summary>
+        /// A delegate method used for <see cref="ScrollBar.OnValueChanged"/>
+        /// </summary>
+        /// <param name="element">The element whose current value changed</param>
+        /// <param name="value">The element's new <see cref="ScrollBar.CurrentValue"/></param>
         public delegate void ValueChanged(Element element, float value);
 
     }

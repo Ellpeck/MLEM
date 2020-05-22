@@ -15,12 +15,21 @@ using MLEM.Textures;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
+    /// <summary>
+    /// A paragraph element for use inside of a <see cref="UiSystem"/>.
+    /// A paragraph is an element that contains text.
+    /// A paragraph's text can be formatted using the ui system's <see cref="UiSystem.TextFormatter"/>.
+    /// </summary>
     public class Paragraph : Element {
 
         private string text;
         private string splitText;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public FormattingCodeCollection Formatting;
+        /// <summary>
+        /// The font that this paragraph draws text with.
+        /// To set its bold and italic font, use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.
+        /// </summary>
         public StyleProp<GenericFont> RegularFont;
         [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
         public StyleProp<GenericFont> BoldFont;
@@ -28,10 +37,23 @@ namespace MLEM.Ui.Elements {
         public StyleProp<GenericFont> ItalicFont;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public StyleProp<FormatSettings> FormatSettings;
+        /// <summary>
+        /// The tokenized version of the <see cref="Text"/>
+        /// </summary>
         public TokenizedString TokenizedText { get; private set; }
 
+        /// <summary>
+        /// The color that the text will be rendered with
+        /// </summary>
         public StyleProp<Color> TextColor;
+        /// <summary>
+        /// The scale that the text will be rendered with
+        /// </summary>
         public StyleProp<float> TextScale;
+        /// <summary>
+        /// The text to render inside of this paragraph.
+        /// Use <see cref="GetTextCallback"/> if the text changes frequently.
+        /// </summary>
         public string Text {
             get {
                 this.QueryTextCallback();
@@ -47,13 +69,27 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        /// <summary>
+        /// If this paragraph should automatically adjust its width based on the width of the text within it
+        /// </summary>
         public bool AutoAdjustWidth;
+        /// <summary>
+        /// An event that gets called when this paragraph's <see cref="Text"/> is queried.
+        /// Use this event for setting this paragraph's text if it changes frequently.
+        /// </summary>
         public TextCallback GetTextCallback;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public TextModifier RenderedTextModifier = text => text;
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public TimeSpan TimeIntoAnimation;
 
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="textCallback">The paragraph's text</param>
+        /// <param name="centerText">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
             : this(anchor, width, "", centerText) {
             this.GetTextCallback = textCallback;
@@ -62,6 +98,7 @@ namespace MLEM.Ui.Elements {
                 this.IsHidden = true;
         }
 
+        /// <inheritdoc cref="Paragraph(Anchor,float,TextCallback,bool)"/>
         public Paragraph(Anchor anchor, float width, string text, bool centerText = false) : base(anchor, new Vector2(width, 0)) {
             this.Text = text;
             if (this.Text == null)
@@ -71,6 +108,7 @@ namespace MLEM.Ui.Elements {
             this.CanBeMoused = false;
         }
 
+        /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
             this.ParseText(size);
@@ -85,6 +123,7 @@ namespace MLEM.Ui.Elements {
             return new Vector2(this.AutoAdjustWidth ? dims.X + this.ScaledPadding.Width : size.X, dims.Y + this.ScaledPadding.Height);
         }
 
+        /// <inheritdoc />
         public override void Update(GameTime time) {
             this.QueryTextCallback();
             base.Update(time);
@@ -95,6 +134,7 @@ namespace MLEM.Ui.Elements {
                 this.TokenizedText.Update(time);
         }
 
+        /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var pos = this.DisplayArea.Location;
             var sc = this.TextScale * this.Scale;
@@ -110,6 +150,7 @@ namespace MLEM.Ui.Elements {
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
+        /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.TextScale.SetFromStyle(style.TextScale);
@@ -119,6 +160,11 @@ namespace MLEM.Ui.Elements {
             this.FormatSettings.SetFromStyle(style.FormatSettings);
         }
 
+        /// <summary>
+        /// Parses this paragraph's <see cref="Text"/> into <see cref="TokenizedText"/>.
+        /// Additionally, this method adds any <see cref="Link"/> elements for tokenized links in the text.
+        /// </summary>
+        /// <param name="size">The paragraph's default size</param>
         protected virtual void ParseText(Vector2 size) {
             // old formatting stuff
             this.splitText = this.RegularFont.Value.SplitString(this.Text.RemoveFormatting(this.RegularFont.Value), size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
@@ -152,16 +198,37 @@ namespace MLEM.Ui.Elements {
                 this.Text = this.GetTextCallback(this);
         }
 
+        /// <summary>
+        /// A delegate method used for <see cref="Paragraph.GetTextCallback"/>
+        /// </summary>
+        /// <param name="paragraph">The current paragraph</param>
         public delegate string TextCallback(Paragraph paragraph);
 
         [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
         public delegate string TextModifier(string text);
 
+        /// <summary>
+        /// A link is a sub-element of the <see cref="Paragraph"/> that is added onto it as a child for any tokens that contain <see cref="LinkCode"/>, to make them selectable and clickable.
+        /// </summary>
         public class Link : Element {
 
+            /// <summary>
+            /// The token that this link represents
+            /// </summary>
             public readonly Token Token;
+            /// <summary>
+            /// The links that form a cluster for the given token.
+            /// This only contains more than one element if the tokenized string has previously been <see cref="TokenizedString.Split"/>.
+            /// </summary>
             public readonly Link[] LinkCluster;
 
+            /// <summary>
+            /// Creates a new link element with the given settings
+            /// </summary>
+            /// <param name="anchor">The link's anchor</param>
+            /// <param name="token">The token that this link represents</param>
+            /// <param name="size">The size of the token</param>
+            /// <param name="linkCluster">The links that form a cluster for the given token. This only contains more than one element if the tokenized string has previously been split.</param>
             public Link(Anchor anchor, Token token, Vector2 size, Link[] linkCluster) : base(anchor, size) {
                 this.Token = token;
                 this.LinkCluster = linkCluster;
@@ -176,6 +243,7 @@ namespace MLEM.Ui.Elements {
                 };
             }
 
+            /// <inheritdoc />
             public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
                 if (this.LinkCluster.Length > 1 && this.Controls.SelectedElement == this) {
                     // also draw the selection box around all other links in the cluster

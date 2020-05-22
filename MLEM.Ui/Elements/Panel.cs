@@ -10,15 +10,38 @@ using MLEM.Textures;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
+    /// <summary>
+    /// A panel element to be used inside of a <see cref="UiSystem"/>.
+    /// The panel is a complex element that displays a box as a background to all of its child elements.
+    /// Additionally, a panel can be set to <see cref="scrollOverflow"/> on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
+    /// As this behavior is accomplished using a <see cref="RenderTarget2D"/>, scrolling panels need to have their <see cref="DrawEarly"/> methods called using <see cref="UiSystem.DrawEarly"/>.
+    /// </summary>
     public class Panel : Element {
 
+        /// <summary>
+        /// The texture that this panel should have, or null if it should be invisible.
+        /// </summary>
         public StyleProp<NinePatch> Texture;
+        /// <summary>
+        /// The scroll bar that this panel contains.
+        /// This is only nonnull if <see cref="scrollOverflow"/> is true.
+        /// </summary>
         public readonly ScrollBar ScrollBar;
         private readonly bool scrollOverflow;
         private RenderTarget2D renderTarget;
         private readonly List<Element> relevantChildren = new List<Element>();
         private bool relevantChildrenDirty;
 
+        /// <summary>
+        /// Creates a new panel with the given settings.
+        /// </summary>
+        /// <param name="anchor">The panel's anchor</param>
+        /// <param name="size">The panel's default size</param>
+        /// <param name="positionOffset">The panel's offset from its anchor point</param>
+        /// <param name="setHeightBasedOnChildren">Whether the panel should automatically calculate its height based on its children's size</param>
+        /// <param name="scrollOverflow">Whether this panel should automatically add a scroll bar to scroll towards elements that are beyond the area this panel covers</param>
+        /// <param name="scrollerSize">The size of the <see cref="ScrollBar"/>'s scroller</param>
+        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling</param>
         public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
@@ -53,6 +76,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
         public override void ForceUpdateArea() {
             if (this.scrollOverflow) {
                 // sanity check
@@ -67,7 +91,7 @@ namespace MLEM.Ui.Elements {
             }
 
             base.ForceUpdateArea();
-            
+
             this.ScrollChildren();
             this.ScrollSetup();
         }
@@ -81,12 +105,14 @@ namespace MLEM.Ui.Elements {
             this.relevantChildrenDirty = true;
         }
 
+        /// <inheritdoc />
         public override void ForceUpdateSortedChildren() {
             base.ForceUpdateSortedChildren();
             if (this.scrollOverflow)
                 this.relevantChildrenDirty = true;
         }
 
+        /// <inheritdoc />
         protected override List<Element> GetRelevantChildren() {
             var relevant = base.GetRelevantChildren();
             if (this.scrollOverflow) {
@@ -113,6 +139,7 @@ namespace MLEM.Ui.Elements {
             return relevant;
         }
 
+        /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             if (this.Texture.HasValue())
                 batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
@@ -125,6 +152,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
         public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             this.UpdateAreaIfDirty();
             if (this.scrollOverflow && this.renderTarget != null) {
@@ -146,6 +174,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
         public override Element GetElementUnderPos(Vector2 position) {
             // if overflow is handled, don't propagate mouse checks to hidden children
             if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(position))
@@ -160,11 +189,15 @@ namespace MLEM.Ui.Elements {
             return area;
         }
 
+        /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture.SetFromStyle(style.PanelTexture);
         }
 
+        /// <summary>
+        /// Prepares the panel for auto-scrolling, creating the render target and setting up the scroll bar's maximum value.
+        /// </summary>
         protected virtual void ScrollSetup() {
             if (!this.scrollOverflow)
                 return;
