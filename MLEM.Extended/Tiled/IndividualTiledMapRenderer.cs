@@ -2,12 +2,17 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Cameras;
 using MLEM.Extensions;
 using MLEM.Misc;
 using MonoGame.Extended.Tiled;
 using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace MLEM.Extended.Tiled {
+    /// <summary>
+    /// A tiled map renderer that renders each tile individually, while optionally supplying a depth for each tile.
+    /// Rendering in this manner allows for entities to be behind or in front of buildings based on their y height.
+    /// </summary>
     public class IndividualTiledMapRenderer {
 
         private TiledMap map;
@@ -15,11 +20,21 @@ namespace MLEM.Extended.Tiled {
         private GetDepth depthFunction;
         private List<TiledMapTilesetAnimatedTile> animatedTiles;
 
+        /// <summary>
+        /// Creates a new individual tiled map renderer using the given map and depth function
+        /// </summary>
+        /// <param name="map">The map to use</param>
+        /// <param name="depthFunction">The depth function to use</param>
         public IndividualTiledMapRenderer(TiledMap map = null, GetDepth depthFunction = null) {
             if (map != null)
                 this.SetMap(map, depthFunction);
         }
 
+        /// <summary>
+        /// Sets this individual tiled map renderer's map and depth function
+        /// </summary>
+        /// <param name="map">The map to use</param>
+        /// <param name="depthFunction">The depth function to use</param>
         public void SetMap(TiledMap map, GetDepth depthFunction = null) {
             this.map = map;
             this.depthFunction = depthFunction ?? ((tile, layer, layerIndex, position) => 0);
@@ -43,6 +58,12 @@ namespace MLEM.Extended.Tiled {
             }
         }
 
+        /// <summary>
+        /// Updates the rendering information for the tile in the given layer, x and y.
+        /// </summary>
+        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="x">The x coordinate of the tile</param>
+        /// <param name="y">The y coordinate of the tile</param>
         public void UpdateDrawInfo(int layerIndex, int x, int y) {
             var layer = this.map.TileLayers[layerIndex];
             var tile = layer.GetTile(x, y);
@@ -57,6 +78,13 @@ namespace MLEM.Extended.Tiled {
             this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tile, tileset, tilesetTile, pos, depth);
         }
 
+        /// <summary>
+        /// Draws this individual tiled map renderer.
+        /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
+        /// </summary>
+        /// <param name="batch">The sprite batch to use</param>
+        /// <param name="frustum">The area that is visible, in pixel space.</param>
+        /// <param name="drawFunction">The draw function to use, or null for default</param>
         public void Draw(SpriteBatch batch, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
             for (var i = 0; i < this.map.TileLayers.Count; i++) {
                 if (this.map.TileLayers[i].IsVisible)
@@ -64,6 +92,14 @@ namespace MLEM.Extended.Tiled {
             }
         }
 
+        /// <summary>
+        /// Draws the given layer of this individual tiled map renderer.
+        /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
+        /// </summary>
+        /// <param name="batch">The sprite batch to use</param>
+        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="frustum">The area that is visible, in pixel space.</param>
+        /// <param name="drawFunction">The draw function to use, or null for default</param>
         public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
             var frust = frustum ?? new RectangleF(0, 0, float.MaxValue, float.MaxValue);
             var minX = Math.Max(0, frust.Left / this.map.TileWidth).Floor();
@@ -79,25 +115,65 @@ namespace MLEM.Extended.Tiled {
             }
         }
 
+        /// <summary>
+        /// Update all of the animated tiles in this individual tiled map renderer
+        /// </summary>
+        /// <param name="time">The game's time</param>
         public void UpdateAnimations(GameTime time) {
             foreach (var animation in this.animatedTiles)
                 animation.Update(time);
         }
 
+        /// <summary>
+        /// A delegate method used for <see cref="IndividualTiledMapRenderer.depthFunction"/>.
+        /// The idea is to return a depth (between 0 and 1) for the given tile that determines where in the sprite batch it should be rendererd.
+        /// Note that, for this depth function to take effect, the sprite batch needs to begin with <see cref="SpriteSortMode.FrontToBack"/> or <see cref="SpriteSortMode.BackToFront"/>.
+        /// </summary>
+        /// <param name="tile">The tile whose depth to get</param>
+        /// <param name="layer">The layer the tile is on</param>
+        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="position">The tile position of this tile</param>
         public delegate float GetDepth(TiledMapTile tile, TiledMapTileLayer layer, int layerIndex, Point position);
 
+        /// <summary>
+        /// A delegate method used for drawing an <see cref="IndividualTiledMapRenderer"/>.
+        /// </summary>
+        /// <param name="batch">The sprite batch to use for drawing</param>
+        /// <param name="info">The <see cref="TileDrawInfo"/> to draw</param>
         public delegate void DrawDelegate(SpriteBatch batch, TileDrawInfo info);
 
+        /// <summary>
+        /// A tile draw info contains information about a tile at a given map location.
+        /// It caches a lot of data that is required for drawing a tile efficiently.
+        /// </summary>
         public class TileDrawInfo : GenericDataHolder {
 
+            /// <summary>
+            /// The renderer used by this info
+            /// </summary>
             public readonly IndividualTiledMapRenderer Renderer;
+            /// <summary>
+            /// The tiled map tile to draw
+            /// </summary>
             public readonly TiledMapTile Tile;
+            /// <summary>
+            /// The tileset that <see cref="Tile"/> is on
+            /// </summary>
             public readonly TiledMapTileset Tileset;
+            /// <summary>
+            /// The tileset tile that corresponds to <see cref="Tile"/>
+            /// </summary>
             public readonly TiledMapTilesetTile TilesetTile;
+            /// <summary>
+            /// The position, in tile space, of <see cref="Tile"/>
+            /// </summary>
             public readonly Point Position;
+            /// <summary>
+            /// The depth calculated by the depth function
+            /// </summary>
             public readonly float Depth;
 
-            public TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTile tile, TiledMapTileset tileset, TiledMapTilesetTile tilesetTile, Point position, float depth) {
+            internal TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTile tile, TiledMapTileset tileset, TiledMapTilesetTile tilesetTile, Point position, float depth) {
                 this.Renderer = renderer;
                 this.Tile = tile;
                 this.Tileset = tileset;
@@ -106,6 +182,11 @@ namespace MLEM.Extended.Tiled {
                 this.Depth = depth;
             }
 
+            /// <summary>
+            /// Draws this tile draw info with the default settings.
+            /// </summary>
+            /// <param name="batch">The sprite batch to use for drawing</param>
+            /// <param name="drawFunction">The draw function used to draw, or null if there is no override</param>
             public void Draw(SpriteBatch batch, DrawDelegate drawFunction) {
                 if (drawFunction == null) {
                     var region = this.Tileset.GetTextureRegion(this.TilesetTile);
