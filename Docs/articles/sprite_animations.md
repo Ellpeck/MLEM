@@ -1,6 +1,8 @@
+# Sprite Animations
+
 The **MLEM** package contains a very simple sprite animation system that features different-length frames as well as animation grouping.
 
-# Using animations
+## Using animations
 You can create an animation like so:
 ```cs
 var texture = this.Content.Load<Texture2D>("Textures/TestSprite");
@@ -27,7 +29,7 @@ You can draw the animation's current frame as follows:
 this.SpriteBatch.Draw(anim1.CurrentRegion, new Vector2(10, 10), Color.White);
 ```
 
-# Using animation groups
+## Using animation groups
 Animation groups consist of multiple animations. Each animation in a group has a condition that determines if it should currently be playing.
 
 You can create an animation group and add animations to it like so:

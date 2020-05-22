@@ -1,3 +1,5 @@
+# MLEM.Startup
+
 **MLEM.Startup** is a simple package that contains a `MlemGame` class which extends MonoGame's `Game`. This class contains additional properties that most games created with MonoGame and MLEM will have:
 - An [InputHandler](https://github.com/Ellpeck/MLEM/wiki/Input-Handler)
 - A `SpriteBatch` and `GraphicsDeviceManager`

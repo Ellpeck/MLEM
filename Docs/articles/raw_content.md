@@ -1,13 +1,15 @@
+# Raw Content Manager
+
 Sometimes, there's a good reason for wanting to load game assets directly rather than using the MonoGame Content Pipeline, which packs files into a binary `xnb` format. Those reasons include, for example, making your game easily moddable or allowing for texture packs.
 
 The **MLEM** package contains a solution for this: `RawContentManager`.
 
-# What it does
+## What it does
 A raw content manager works very similarly to a regular `ContentManager`: You can load different types of assets through the `Load<T>` method, and they will automatically be managed and disposed when the game closes.
 
 However, the `RawContentManager` loads assets in their usual file type, rather than `xnb`, meaning that they don't have to be compiled using the Content Pipeline first. 
 
-# How to use it
+## How to use it
 To create a new raw content manager, simply call its constructor in your `LoadContent` method. Optionally, you can add it as a game component, which will automatically dispose it when the game closes.
 ```cs
 protected override void LoadContent() {
@@ -23,7 +25,7 @@ Then, you can simply load an asset in your `Content` directory like you would wi
 this.testTexture = this.rawContent.Load<Texture2D>("Textures/Test");
 ```
 
-# Adding more content types
+## Adding more content types
 By default, the raw content manager supports the following types, as long as their files are appended with one of the supported file extensions:
 - `Texture2D` (png, bmp, gif, jpg, tif, dds)
 - `SoundEffect` (ogg, wav, mp3)

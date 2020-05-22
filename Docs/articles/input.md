@@ -1,8 +1,10 @@
+# Input Handler
+
 The **MLEM** base package features an extended `InputHandler` class that allows for finer control over inputs, like the ability to query a new *pressed* state as well as a repeat events implementation for both keyboard and gamepad input.
 
 Rather than using an event-based structure, the MLEM input handler relies on the game's `Update` frames: To query input through the input handler, you have to query it every Update frame, and input information will only be available for a single update frame in most situations.
 
-# Setting it up
+## Setting it up
 To set it up, all you have to do is create a new instance. The constructor optionally accepts parameters to enable or disable certain kinds of input.
 ```cs
 this.InputHandler = new InputHandler();
@@ -12,7 +14,7 @@ Additionally, you will have to call the input handler's `Update` method each upd
 this.InputHandler.Update();
 ```
 
-# Querying pressed keys
+## Querying pressed keys
 A *pressed* key is a key that wasn't down the last update but is held down the current update. This behavior can be useful for things like ui buttons, where holding down the mouse button shouldn't constantly keep triggering the button.
 
 You can query if any key, mouse button or gamepad button is pressed as follows:
@@ -26,12 +28,12 @@ var gamepad = this.InputHandler.IsPressed(Buttons.A);
 var gamepad2 = this.InputHandler.IsPressed(Buttons.A, 2);
 ```
 
-## Repeat events
+### Repeat events
 Keyboard and gamepad repeat events can be enabled or disabled through the `HandleKeyboardRepeats` and `HandleGamepadRepeats` properties in the input handler. Additionally, you can configure the time that it takes until the first repeat is triggered through the `KeyRepeatDelay` property, and you can configure the delay between repeat events through the `KeyRepeatRate` property.
 
 When enabled, repeat events for *pressing* are automatically triggered. This means that calling `IsPressed` every update call would return `true` for a control that is being held down every `KeyRepeatRate` seconds after `KeyRepeatDelay` seconds have passed once.
 
-# Gesture handling
+## Gesture handling
 MonoGame's default touch handling can be a bit wonky to deal with, so the input handler also provides a much better user experience for touch gesture input.
 
 To enable touch input, the gestures you want to use first have to be enabled:
