@@ -26,5 +26,23 @@ namespace MLEM.Extended.Extensions {
             batch.Draw(texture, destinationRectangle, null, color);
         }
 
+        /// <summary>
+        /// Draws a grid of tile outlines reminiscent of graph paper.
+        /// </summary>
+        /// <param name="batch">The sprite batch to draw with</param>
+        /// <param name="start">The top left coordinate of the grid</param>
+        /// <param name="tileSize">The size of each tile</param>
+        /// <param name="tileCount">The amount of tiles in the x and y axes</param>
+        /// <param name="gridColor">The color to draw the grid outlines in</param>
+        /// <param name="gridThickness">The thickness of each grid line. Defaults to 1.</param>
+        public static void DrawGrid(this SpriteBatch batch, Vector2 start, Vector2 tileSize, Point tileCount, Color gridColor, float gridThickness = 1) {
+            for (var y = 0; y < tileCount.Y; y++) {
+                for (var x = 0; x < tileCount.X; x++)
+                    batch.DrawRectangle(start + new Vector2(x, y) * tileSize, tileSize, gridColor, gridThickness / 2);
+            }
+            var size = tileSize * tileCount.ToVector2() + new Vector2(gridThickness);
+            batch.DrawRectangle(start - new Vector2(gridThickness / 2), size, gridColor, gridThickness / 2);
+        }
+
     }
 }

@@ -131,6 +131,7 @@ namespace Sandbox {
                 this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
                 font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, 5, SpriteEffects.None, 0);
                 this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, 5, 0);
+                this.SpriteBatch.DrawGrid(new Vector2(30, 30), new Vector2(40, 60), new Point(10, 5), Color.Yellow, 3);
                 this.SpriteBatch.End();
             };
             this.OnUpdate += (g, time) => {
