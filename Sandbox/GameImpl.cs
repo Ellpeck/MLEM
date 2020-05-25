@@ -62,6 +62,11 @@ namespace Sandbox {
             };
 
             var tex = this.rawContent.Load<Texture2D>("Textures/Test");
+            var data = tex.GetTextureData();
+            data[1, 9] = Color.Pink;
+            data[data.FromIndex(data.ToIndex(25, 9))] = Color.Yellow;
+            data.Store();
+
             //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
@@ -126,14 +131,14 @@ namespace Sandbox {
             this.tokenized = formatter.Tokenize(font, strg);
             this.tokenized.Split(font, 400, 5);
 
-            this.OnDraw += (g, time) => {
+            /*this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
                 this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
                 font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, 5, SpriteEffects.None, 0);
                 this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, 5, 0);
                 this.SpriteBatch.DrawGrid(new Vector2(30, 30), new Vector2(40, 60), new Point(10, 5), Color.Yellow, 3);
                 this.SpriteBatch.End();
-            };
+            };*/
             this.OnUpdate += (g, time) => {
                 if (this.InputHandler.IsPressed(Keys.W)) {
                     this.tokenized = formatter.Tokenize(font, strg);
