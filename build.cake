@@ -1,7 +1,8 @@
 #addin Cake.DocFx&version=0.13.1
 #tool docfx.console&version=2.51.0
 
-var version = Argument("version", "3.3.2");
+// this is the upcoming version, for prereleases
+var version = Argument("version", "3.3.3");
 var target = Argument("target", "Default");
 var branch = Argument("branch", "master");
 var config = Argument("configuration", "Release");
