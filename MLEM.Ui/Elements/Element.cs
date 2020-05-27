@@ -250,11 +250,11 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Stores whether this element is currently being moused over.
         /// </summary>
-        public bool IsMouseOver { get; private set; }
+        public bool IsMouseOver { get; protected set; }
         /// <summary>
         /// Stores whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// </summary>
-        public bool IsSelected { get; private set; }
+        public bool IsSelected { get; protected set; }
 
         /// <summary>
         /// Event that is called after this element is drawn, but before its children are drawn
@@ -768,7 +768,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             this.System.OnElementDrawn?.Invoke(this, time, batch, alpha);
-            if (this.Controls.SelectedElement == this)
+            if (this.IsSelected)
                 this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha);
 
             foreach (var child in this.GetRelevantChildren()) {

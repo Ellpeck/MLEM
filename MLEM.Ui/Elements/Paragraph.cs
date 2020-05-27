@@ -232,6 +232,14 @@ namespace MLEM.Ui.Elements {
             public Link(Anchor anchor, Token token, Vector2 size, Link[] linkCluster) : base(anchor, size) {
                 this.Token = token;
                 this.LinkCluster = linkCluster;
+                this.OnSelected += e => {
+                    foreach (var link in this.LinkCluster)
+                        link.IsSelected = true;
+                };
+                this.OnDeselected += e => {
+                    foreach (var link in this.LinkCluster)
+                        link.IsSelected = false;
+                };
                 this.OnPressed += e => {
                     foreach (var code in token.AppliedCodes.OfType<LinkCode>()) {
                         try {
@@ -241,19 +249,6 @@ namespace MLEM.Ui.Elements {
                         }
                     }
                 };
-            }
-
-            /// <inheritdoc />
-            public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-                if (this.LinkCluster.Length > 1 && this.Controls.SelectedElement == this) {
-                    // also draw the selection box around all other links in the cluster
-                    foreach (var link in this.LinkCluster) {
-                        if (link == this)
-                            continue;
-                        this.System.OnSelectedElementDrawn?.Invoke(link, time, batch, alpha);
-                    }
-                }
-                base.Draw(time, batch, alpha, blendState, samplerState, matrix);
             }
 
         }
