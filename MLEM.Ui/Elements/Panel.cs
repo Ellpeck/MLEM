@@ -199,7 +199,7 @@ namespace MLEM.Ui.Elements {
         /// Prepares the panel for auto-scrolling, creating the render target and setting up the scroll bar's maximum value.
         /// </summary>
         protected virtual void ScrollSetup() {
-            if (!this.scrollOverflow)
+            if (!this.scrollOverflow || this.IsHidden)
                 return;
             // if there is only one child, then we have just the scroll bar
             if (this.Children.Count == 1)
