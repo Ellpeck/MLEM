@@ -2,14 +2,16 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net462</TargetFramework>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <TieredCompilation>false</TieredCompilation>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Contentless" Version="2.0.*" />
         <PackageReference Include="MLEM.Startup" Version="3.3.*" />
-        <PackageReference Include="MonoGame.Content.Builder" Version="3.7.*" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.*" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1375-develop" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1375-develop" />
     </ItemGroup>
 
     <ItemGroup>
