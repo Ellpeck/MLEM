@@ -57,6 +57,10 @@ namespace MLEM.Formatting {
         public TokenizedString Tokenize(GenericFont font, string s) {
             var tokens = new List<Token>();
             var codes = new List<Code>();
+            // add the formatting code right at the start of the string
+            var firstCode = this.GetNextCode(s, 0, 0);
+            if (firstCode != null)
+                codes.Add(firstCode);
             var rawIndex = 0;
             while (rawIndex < s.Length) {
                 var index = StripFormatting(font, s.Substring(0, rawIndex), tokens.SelectMany(t => t.AppliedCodes)).Length;
@@ -82,10 +86,10 @@ namespace MLEM.Formatting {
             return new TokenizedString(font, s, StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
         }
 
-        private Code GetNextCode(string s, int index) {
+        private Code GetNextCode(string s, int index, int maxIndex = int.MaxValue) {
             var (c, m, r) = this.Codes
                 .Select(kv => (c: kv.Value, m: kv.Key.Match(s, index), r: kv.Key))
-                .Where(kv => kv.m.Success)
+                .Where(kv => kv.m.Success && kv.m.Index <= maxIndex)
                 .OrderBy(kv => kv.m.Index)
                 .FirstOrDefault();
             return c?.Invoke(this, m, r);
