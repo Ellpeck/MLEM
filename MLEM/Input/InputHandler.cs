@@ -512,5 +512,20 @@ namespace MLEM.Input {
                 TouchPanel.EnabledGestures &= ~gesture;
         }
 
+        /// <summary>
+        /// Helper function to enable or disable the given gestures for a <see cref="TouchPanel"/> easily.
+        /// This method is equivalent to calling <see cref="EnableGestures"/> if the <c>enabled</c> value is true and calling <see cref="DisableGestures"/> if it is false.
+        /// Note that, if other gestures were previously enabled, they will not get overridden.
+        /// </summary>
+        /// <param name="enabled">Whether to enable or disable the gestures</param>
+        /// <param name="gestures">The gestures to enable or disable</param>
+        public static void SetGesturesEnabled(bool enabled, params GestureType[] gestures) {
+            if (enabled) {
+                EnableGestures(gestures);
+            } else {
+                DisableGestures(gestures);
+            }
+        }
+
     }
 }
