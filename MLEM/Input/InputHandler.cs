@@ -503,5 +503,14 @@ namespace MLEM.Input {
                 TouchPanel.EnabledGestures |= gesture;
         }
 
+        /// <summary>
+        /// Helper function to disable gestures for a <see cref="TouchPanel"/> easily.
+        /// </summary>
+        /// <param name="gestures">The gestures to disable</param>
+        public static void DisableGestures(params GestureType[] gestures) {
+            foreach (var gesture in gestures)
+                TouchPanel.EnabledGestures &= ~gesture;
+        }
+
     }
 }
