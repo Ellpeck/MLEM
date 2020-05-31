@@ -416,7 +416,7 @@ namespace MLEM.Input {
         /// <returns>True if a gesture of the type was found, otherwise false</returns>
         public bool GetGesture(GestureType type, out GestureSample sample) {
             foreach (var gesture in this.Gestures) {
-                if (gesture.GestureType == type) {
+                if ((gesture.GestureType & type) != 0) {
                     sample = gesture;
                     return true;
                 }
