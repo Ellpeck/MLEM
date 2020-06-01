@@ -135,7 +135,7 @@ namespace MLEM.Cameras {
             var lastPos = this.Position;
             var visible = this.GetVisibleRectangle();
             if (max.X - min.X < visible.Width) {
-                this.LookingPosition = new Vector2((max.X - min.X) / 2, this.LookingPosition.Y);
+                this.LookingPosition = new Vector2((max.X + min.X) / 2, this.LookingPosition.Y);
             } else {
                 if (this.Position.X < min.X)
                     this.Position.X = min.X;
@@ -144,7 +144,7 @@ namespace MLEM.Cameras {
             }
 
             if (max.Y - min.Y < visible.Height) {
-                this.LookingPosition = new Vector2(this.LookingPosition.X, (max.Y - min.Y) / 2);
+                this.LookingPosition = new Vector2(this.LookingPosition.X, (max.Y + min.Y) / 2);
             } else {
                 if (this.Position.Y < min.Y)
                     this.Position.Y = min.Y;
