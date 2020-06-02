@@ -210,6 +210,8 @@ namespace MLEM.Ui.Elements {
         public int Priority {
             get => this.priority;
             set {
+                if (this.priority == value)
+                    return;
                 this.priority = value;
                 if (this.Parent != null)
                     this.Parent.SetSortedChildrenDirty();
