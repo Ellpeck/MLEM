@@ -71,7 +71,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="scale">The scale to use</param>
         /// <param name="origin">The origin to use for scaling, or null to use this element's center point</param>
         public void ScaleOrigin(float scale, Vector2? origin = null) {
-            this.Transform = Matrix.CreateScale(scale, scale, 0) * Matrix.CreateTranslation(new Vector3((1 - scale) * (origin ?? this.DisplayArea.Center), 0));
+            this.Transform = Matrix.CreateScale(scale, scale, 1) * Matrix.CreateTranslation(new Vector3((1 - scale) * (origin ?? this.DisplayArea.Center), 0));
         }
 
         /// <summary>
