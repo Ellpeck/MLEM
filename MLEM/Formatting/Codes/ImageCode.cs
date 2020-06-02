@@ -29,9 +29,7 @@ namespace MLEM.Formatting.Codes {
         /// <inheritdoc />
         public override string GetReplacementString(GenericFont font) {
             if (this.replacement == null) {
-                // use non-breaking space so that the image won't be line-splitted
-                var strg = font.GetWidthString(font.LineHeight, '\u00A0');
-                this.replacement = strg.Remove(strg.Length - 1) + ' ';
+                this.replacement = font.GetWidthString(font.LineHeight);
                 this.gapSize = font.MeasureString(this.replacement).X;
             }
             return this.replacement;
