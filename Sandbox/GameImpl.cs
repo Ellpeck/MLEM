@@ -82,7 +82,7 @@ namespace Sandbox {
             var panel = new Panel(Anchor.Center, new Vector2(0, 100), Vector2.Zero) {SetWidthBasedOnChildren = true};
             panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
             panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
-            this.UiSystem.Add("Panel", panel);
+            //this.UiSystem.Add("Panel", panel);
 
             panel.SetData("TestKey", new Vector2(10, 2));
             //Console.WriteLine(panel.GetData<Vector2>("TestKey"));
@@ -131,14 +131,14 @@ namespace Sandbox {
             this.tokenized = formatter.Tokenize(font, strg);
             this.tokenized.Split(font, 400, 5);
 
-            this.OnDraw += (g, time) => {
+            /*this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
                 this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
                 font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, 5, SpriteEffects.None, 0);
                 this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, 5, 0);
                 this.SpriteBatch.DrawGrid(new Vector2(30, 30), new Vector2(40, 60), new Point(10, 5), Color.Yellow, 3);
                 this.SpriteBatch.End();
-            };
+            };*/
             this.OnUpdate += (g, time) => {
                 if (this.InputHandler.IsPressed(Keys.W)) {
                     this.tokenized = formatter.Tokenize(font, strg);
@@ -146,6 +146,12 @@ namespace Sandbox {
                 }
                 this.tokenized.Update(time);
             };
+
+            var testPanel = new Panel(Anchor.Center, new Vector2(0.5F, 100), Vector2.Zero);
+            testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -1)));
+            testPanel.AddChild(new Button(Anchor.AutoInline, new Vector2(0.25F, -1.5F)));
+            testPanel.AddChild(new Button(Anchor.AutoInline, new Vector2(0.5F, -1)));
+            this.UiSystem.Add("Test", testPanel);
         }
 
         protected override void DoUpdate(GameTime gameTime) {

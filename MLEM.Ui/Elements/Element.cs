@@ -87,9 +87,18 @@ namespace MLEM.Ui.Elements {
 
         private Vector2 size;
         /// <summary>
-        /// The size of this element.
-        /// If the x or y value of the size is lower than or equal to 1, the size will be seen as a percentage of its parent's size.
+        /// The size of this element, where X represents the width and Y represents the height.
+        /// If the x or y value of the size is between 0 and 1, the size will be seen as a percentage of its parent's size rather than as an absolute value.
+        /// If the x (or y) value of the size is negative, the width (or height) is seen as a percentage of the element's resulting height (or width). 
+        /// If <see cref="SetWidthBasedOnChildren"/> is true, this property's X value is ignored and overridden. If <see cref="SetHeightBasedOnChildren"/> is true, this property's Y value is ignored and overridden.
         /// </summary>
+        /// <example>
+        /// The following example combines both types of percentage-based sizing.
+        /// If this element is inside of a <see cref="Parent"/> whose width is 20, this element's width will be set to <c>0.5 * 20 = 10</c>, and its height will be set to <c>2.5 * 10 = 25</c>.
+        /// <code>
+        /// element.Size = new Vector2(0.5F, -2.5F);
+        /// </code>
+        /// </example>
         public Vector2 Size {
             get => this.size;
             set {
@@ -587,13 +596,19 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Calculates the actual size that this element should take up, based on the area that its parent encompasses.
+        /// By default, this is based on the information specified in <see cref="Size"/>'s documentation.
         /// </summary>
         /// <param name="parentArea">This parent's area, or the ui system's viewport if it has no parent</param>
         /// <returns>The actual size of this element, taking <see cref="Scale"/> into account</returns>
         protected virtual Vector2 CalcActualSize(RectangleF parentArea) {
-            return new Vector2(
+            var ret = new Vector2(
                 this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X,
                 this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y);
+            if (this.size.X < 0)
+                ret.X = -this.size.X * ret.Y;
+            if (this.size.Y < 0)
+                ret.Y = -this.size.Y * ret.X;
+            return ret;
         }
 
         /// <summary>
