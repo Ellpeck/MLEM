@@ -205,8 +205,7 @@ namespace MLEM.Ui {
                     if (held != null && held.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(held);
                 } else {
-                    // only count an element as being touched if no other gestures are active right now
-                    var held = !this.Input.Gestures.Any() ? this.Input.TouchState.Select(l => this.GetElementUnderPos(l.Position)).FirstOrDefault() : null;
+                    var held = this.Input.TouchState.Select(l => this.GetElementUnderPos(l.Position)).FirstOrDefault();
                     if (held != this.TouchedElement) {
                         if (this.TouchedElement != null)
                             this.System.OnElementTouchExit?.Invoke(this.TouchedElement);
