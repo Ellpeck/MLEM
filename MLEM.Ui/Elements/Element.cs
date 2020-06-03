@@ -259,7 +259,7 @@ namespace MLEM.Ui.Elements {
         public float DrawAlpha = 1;
 
         /// <summary>
-        /// Stores whether this element is currently being moused over.
+        /// Stores whether this element is currently being moused over or touched.
         /// </summary>
         public bool IsMouseOver { get; protected set; }
         /// <summary>
@@ -300,6 +300,14 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public GenericCallback OnMouseExit;
         /// <summary>
+        /// Event that is called when this element starts being touched
+        /// </summary>
+        public GenericCallback OnTouchEnter;
+        /// <summary>
+        /// Event that is called when this element stops being touched
+        /// </summary>
+        public GenericCallback OnTouchExit;
+        /// <summary>
         /// Event that is called when text input is made.
         /// Note that this event is called for every element, even if it is not selected.
         /// Also note that if <see cref="TextInputWrapper.RequiresOnScreenKeyboard"/> is true, this event is never called.
@@ -314,6 +322,11 @@ namespace MLEM.Ui.Elements {
         /// Note that the event fired doesn't necessarily correlate to this specific element.
         /// </summary>
         public OtherElementCallback OnMousedElementChanged;
+        /// <summary>
+        /// Event that is called when the element that is currently being touched changes within the ui system.
+        /// Note that the event fired doesn't necessarily correlate to this specific element.
+        /// </summary>
+        public OtherElementCallback OnTouchedElementChanged;
         /// <summary>
         /// Event that is called when the element that is currently selected changes within the ui system.
         /// Note that the event fired doesn't necessarily correlate to this specific element.
@@ -362,6 +375,8 @@ namespace MLEM.Ui.Elements {
 
             this.OnMouseEnter += element => this.IsMouseOver = true;
             this.OnMouseExit += element => this.IsMouseOver = false;
+            this.OnTouchEnter += element => this.IsMouseOver = true;
+            this.OnTouchExit += element => this.IsMouseOver = false;
             this.OnSelected += element => this.IsSelected = true;
             this.OnDeselected += element => this.IsSelected = false;
             this.GetTabNextElement += (backward, next) => next;
