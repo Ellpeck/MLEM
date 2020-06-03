@@ -40,10 +40,6 @@ namespace MLEM.Ui {
         /// The <see cref="Element"/> that the mouse is currently over.
         /// </summary>
         public Element MousedElement { get; private set; }
-        /// <summary>
-        /// The <see cref="Element"/> that is currently touched.
-        /// </summary>
-        public Element TouchedElement { get; private set; }
         private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
         /// <summary>
         /// The element that is currently selected.
@@ -204,16 +200,6 @@ namespace MLEM.Ui {
                     this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(held);
-                } else {
-                    var held = this.Input.TouchState.Select(l => this.GetElementUnderPos(l.Position)).FirstOrDefault();
-                    if (held != this.TouchedElement) {
-                        if (this.TouchedElement != null)
-                            this.System.OnElementTouchExit?.Invoke(this.TouchedElement);
-                        if (held != null)
-                            this.System.OnElementTouchEnter?.Invoke(held);
-                        this.TouchedElement = held;
-                        this.System.OnTouchedElementChanged?.Invoke(held);
-                    }
                 }
             }
 

@@ -141,14 +141,6 @@ namespace MLEM.Ui {
         /// </summary>
         public Element.GenericCallback OnElementMouseExit = e => e.OnMouseExit?.Invoke(e);
         /// <summary>
-        /// Event that is invoked when an <see cref="Element"/> starts being touched
-        /// </summary>
-        public Element.GenericCallback OnElementTouchEnter = e => e.OnTouchEnter?.Invoke(e);
-        /// <summary>
-        /// Event that is invoked when an <see cref="Element"/> stops being touched
-        /// </summary>
-        public Element.GenericCallback OnElementTouchExit = e => e.OnTouchExit?.Invoke(e);
-        /// <summary>
         /// Event that is invoked when an <see cref="Element"/>'s display area changes
         /// </summary>
         public Element.GenericCallback OnElementAreaUpdated = e => e.OnAreaUpdated?.Invoke(e);
@@ -156,10 +148,6 @@ namespace MLEM.Ui {
         /// Event that is invoked when the <see cref="Element"/> that the mouse is currently over changes
         /// </summary>
         public Element.GenericCallback OnMousedElementChanged;
-        /// <summary>
-        /// Event that is invoked when the <see cref="Element"/> that is being touched changes
-        /// </summary>
-        public Element.GenericCallback OnTouchedElementChanged;
         /// <summary>
         /// Event that is invoked when the selected <see cref="Element"/> changes, either through automatic navigation, or by pressing on an element with the mouse
         /// </summary>
@@ -196,7 +184,6 @@ namespace MLEM.Ui {
 
             TextInputWrapper.Current.AddListener(window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
-            this.OnTouchedElementChanged = e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
                 if (this.Controls.IsAutoNavMode && element.SelectionIndicator.HasValue()) {
