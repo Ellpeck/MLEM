@@ -35,11 +35,15 @@ namespace MLEM.Ui {
         /// The <see cref="RootElement"/> that is currently active.
         /// The active root element is the one with the highest <see cref="RootElement.Priority"/> that whose <see cref="RootElement.CanSelectContent"/> property is true.
         /// </summary>
-        public RootElement ActiveRoot { get; private set; }
+        public RootElement ActiveRoot { get; protected set; }
         /// <summary>
         /// The <see cref="Element"/> that the mouse is currently over.
         /// </summary>
-        public Element MousedElement { get; private set; }
+        public Element MousedElement { get; protected set; }
+        /// <summary>
+        /// The <see cref="Element"/> that is currently touched.
+        /// </summary>
+        public Element TouchedElement { get; protected set; }
         private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
         /// <summary>
         /// The element that is currently selected.
@@ -141,14 +145,7 @@ namespace MLEM.Ui {
             // MOUSE INPUT
             if (this.HandleMouse) {
                 var mousedNow = this.GetElementUnderPos(this.Input.MousePosition.ToVector2());
-                if (mousedNow != this.MousedElement) {
-                    if (this.MousedElement != null)
-                        this.System.OnElementMouseExit?.Invoke(this.MousedElement);
-                    if (mousedNow != null)
-                        this.System.OnElementMouseEnter?.Invoke(mousedNow);
-                    this.MousedElement = mousedNow;
-                    this.System.OnMousedElementChanged?.Invoke(mousedNow);
-                }
+                this.SetMousedElement(mousedNow);
 
                 if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                     this.IsAutoNavMode = false;
@@ -200,6 +197,19 @@ namespace MLEM.Ui {
                     this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(held);
+                } else if (this.Input.TouchState.Count <= 0) {
+                    this.SetTouchedElement(null);
+                } else {
+                    foreach (var location in this.Input.TouchState) {
+                        var element = this.GetElementUnderPos(location.Position);
+                        if (location.State == TouchLocationState.Pressed) {
+                            // start touching an element if we just touched down on it
+                            this.SetTouchedElement(element);
+                        } else if (element != this.TouchedElement) {
+                            // if we moved off of the touched element, we stop touching
+                            this.SetTouchedElement(null);
+                        }
+                    }
                 }
             }
 
@@ -267,6 +277,36 @@ namespace MLEM.Ui {
 
             if (autoNav != null)
                 this.IsAutoNavMode = autoNav.Value;
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MousedElement"/> to the given value, calling the appropriate events.
+        /// </summary>
+        /// <param name="element">The element to set as moused</param>
+        public void SetMousedElement(Element element) {
+            if (element != this.MousedElement) {
+                if (this.MousedElement != null)
+                    this.System.OnElementMouseExit?.Invoke(this.MousedElement);
+                if (element != null)
+                    this.System.OnElementMouseEnter?.Invoke(element);
+                this.MousedElement = element;
+                this.System.OnMousedElementChanged?.Invoke(element);
+            }
+        }
+
+        /// <summary>
+        /// Sets the <see cref="TouchedElement"/> to the given value, calling the appropriate events.
+        /// </summary>
+        /// <param name="element">The element to set as touched</param>
+        public void SetTouchedElement(Element element) {
+            if (element != this.TouchedElement) {
+                if (this.TouchedElement != null)
+                    this.System.OnElementTouchExit?.Invoke(this.TouchedElement);
+                if (element != null)
+                    this.System.OnElementTouchEnter?.Invoke(element);
+                this.TouchedElement = element;
+                this.System.OnTouchedElementChanged?.Invoke(element);
+            }
         }
 
         /// <summary>
