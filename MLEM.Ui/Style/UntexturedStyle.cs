@@ -74,6 +74,10 @@ namespace MLEM.Ui.Style {
             public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             }
 
+            public override bool HasCharacter(char c) {
+                return false;
+            }
+
         }
 
     }

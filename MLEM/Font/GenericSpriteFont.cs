@@ -72,5 +72,10 @@ namespace MLEM.Font {
             batch.DrawString(this.Font, text, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
+        /// <inheritdoc />
+        public override bool HasCharacter(char c) {
+            return this.Font.Characters.Contains(c);
+        }
+
     }
 }

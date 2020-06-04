@@ -49,6 +49,13 @@ namespace MLEM.Font {
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
         /// <summary>
+        /// Returns whether this generic font supports the given character 
+        /// </summary>
+        /// <param name="c">The character</param>
+        /// <returns>Whether this generic font supports the character</returns>
+        public abstract bool HasCharacter(char c);
+
+        /// <summary>
         /// Draws a string with the given text alignment.
         /// </summary>
         /// <param name="batch">The sprite batch to use</param>

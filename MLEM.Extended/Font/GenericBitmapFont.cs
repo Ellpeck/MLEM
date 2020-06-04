@@ -78,6 +78,11 @@ namespace MLEM.Extended.Font {
             batch.DrawString(this.Font, text, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
+        /// <inheritdoc />
+        public override bool HasCharacter(char c) {
+            return this.Font.GetCharacterRegion(c) != null;
+        }
+
         // this fixes an issue with BitmapFonts where, if only given a single character,
         // only the width of the character itself (disregarding spacing) is returned
         private bool SingleCharacterWidthFix(string text, out Vector2 size) {
