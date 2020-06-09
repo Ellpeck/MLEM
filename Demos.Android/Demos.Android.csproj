@@ -83,6 +83,10 @@
         <Project>{997f4739-7bec-4621-b9ca-68deb2d74412}</Project>
         <Name>MLEM.Startup</Name>
       </ProjectReference>
+      <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj">
+        <Project>{6f00629a-8b87-4264-8896-19983285e32f}</Project>
+        <Name>MLEM.Ui</Name>
+      </ProjectReference>
       <ProjectReference Include="..\MLEM\MLEM.csproj">
         <Project>{1d6ab762-43c4-4775-8924-707c7ec3f142}</Project>
         <Name>MLEM</Name>

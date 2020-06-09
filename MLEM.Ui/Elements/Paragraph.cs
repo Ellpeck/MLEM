@@ -241,13 +241,8 @@ namespace MLEM.Ui.Elements {
                         link.IsSelected = false;
                 };
                 this.OnPressed += e => {
-                    foreach (var code in token.AppliedCodes.OfType<LinkCode>()) {
-                        try {
-                            Process.Start(code.Match.Groups[1].Value);
-                        } catch (Exception) {
-                            // ignored
-                        }
-                    }
+                    foreach (var code in token.AppliedCodes.OfType<LinkCode>())
+                        this.System?.LinkBehavior?.Invoke(code);
                 };
             }
 

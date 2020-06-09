@@ -1,5 +1,7 @@
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
+using Android.Net;
 using Android.OS;
 using Android.Views;
 using Microsoft.Xna.Framework;
@@ -31,8 +33,12 @@ namespace Demos.Android {
             this.game = new GameImpl();
             // reset MlemGame width and height to use device's aspect ratio
             this.game.GraphicsDeviceManager.ResetWidthAndHeight(this.game.Window);
-            // disable mouse handling for android to make emulator behavior more coherent
-            this.game.OnLoadContent += game => game.InputHandler.HandleMouse = false;
+            this.game.OnLoadContent += game => {
+                // disable mouse handling for android to make emulator behavior more coherent
+                game.InputHandler.HandleMouse = false;
+                // make text links be opened properly
+                game.UiSystem.LinkBehavior = l => this.StartActivity(new Intent(Intent.ActionView, Uri.Parse(l.Match.Groups[1].Value)));
+            };
             // set the game to fullscreen to cause the status bar to be hidden
             this.game.GraphicsDeviceManager.IsFullScreen = true;
             this.view = this.game.Services.GetService(typeof(View)) as View;

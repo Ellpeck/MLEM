@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -98,6 +99,12 @@ namespace MLEM.Ui {
         /// To add new formatting codes to the ui system, add them to this formatter.
         /// </summary>
         public TextFormatter TextFormatter;
+        /// <summary>
+        /// The action that should be executed when a <see cref="LinkCode"/> in a paragraph's <see cref="Paragraph.TokenizedText"/> is pressed.
+        /// The actual link stored in the link code is stored in its <see cref="LinkCode.Match"/>'s 1st group.
+        /// By default, the browser is opened with the given link's address.
+        /// </summary>
+        public Action<LinkCode> LinkBehavior = l => Process.Start(l.Match.Groups[1].Value);
         /// <summary>
         /// The <see cref="UiControls"/> that this ui system is controlled by.
         /// The ui controls are also the place to change bindings for controller and keyboard input.
@@ -213,7 +220,8 @@ namespace MLEM.Ui {
             };
 
             this.TextFormatter = new TextFormatter();
-            this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F, t => this.Controls.MousedElement is Paragraph.Link link && link.Token == t));
+            this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
+                t => this.Controls.MousedElement is Paragraph.Link l1 && l1.Token == t || this.Controls.TouchedElement is Paragraph.Link l2 && l2.Token == t));
         }
 
         /// <summary>
