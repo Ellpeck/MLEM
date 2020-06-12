@@ -129,12 +129,6 @@ namespace MLEM.Ui.Style {
         /// Note that, to specify a bold and italic font for <see cref="TextFormatter"/>, you should use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.
         /// </summary>
         public GenericFont Font;
-        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
-        public GenericFont BoldFont;
-        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
-        public GenericFont ItalicFont;
-        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
-        public FormatSettings FormatSettings;
         /// <summary>
         /// The scale that text should be rendered with in <see cref="Paragraph"/> and other elements
         /// </summary>

@@ -23,20 +23,11 @@ namespace MLEM.Ui.Elements {
     public class Paragraph : Element {
 
         private string text;
-        private string splitText;
-        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
-        public FormattingCodeCollection Formatting;
         /// <summary>
         /// The font that this paragraph draws text with.
         /// To set its bold and italic font, use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.
         /// </summary>
         public StyleProp<GenericFont> RegularFont;
-        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
-        public StyleProp<GenericFont> BoldFont;
-        [Obsolete("Use the new GenericFont.Bold and GenericFont.Italic instead")]
-        public StyleProp<GenericFont> ItalicFont;
-        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
-        public StyleProp<FormatSettings> FormatSettings;
         /// <summary>
         /// The tokenized version of the <see cref="Text"/>
         /// </summary>
@@ -78,10 +69,6 @@ namespace MLEM.Ui.Elements {
         /// Use this event for setting this paragraph's text if it changes frequently.
         /// </summary>
         public TextCallback GetTextCallback;
-        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
-        public TextModifier RenderedTextModifier = text => text;
-        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
-        public TimeSpan TimeIntoAnimation;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -112,13 +99,6 @@ namespace MLEM.Ui.Elements {
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
             this.ParseText(size);
-
-            // old formatting stuff
-            if (this.Formatting.Count > 0) {
-                var textDims = this.RegularFont.Value.MeasureString(this.splitText) * this.TextScale * this.Scale;
-                return new Vector2(this.AutoAdjustWidth ? textDims.X + this.ScaledPadding.Width : size.X, textDims.Y + this.ScaledPadding.Height);
-            }
-
             var dims = this.TokenizedText.Measure(this.RegularFont) * this.TextScale * this.Scale;
             return new Vector2(this.AutoAdjustWidth ? dims.X + this.ScaledPadding.Width : size.X, dims.Y + this.ScaledPadding.Height);
         }
@@ -127,9 +107,6 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             this.QueryTextCallback();
             base.Update(time);
-
-            this.TimeIntoAnimation += time.ElapsedGameTime;
-
             if (this.TokenizedText != null)
                 this.TokenizedText.Update(time);
         }
@@ -138,15 +115,8 @@ namespace MLEM.Ui.Elements {
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var pos = this.DisplayArea.Location;
             var sc = this.TextScale * this.Scale;
-
             var color = this.TextColor.OrDefault(Color.White) * alpha;
-            // legacy formatting stuff
-            if (this.Formatting.Count > 0) {
-                var toRender = this.RenderedTextModifier(this.splitText);
-                this.RegularFont.Value.DrawFormattedString(batch, pos, toRender, this.Formatting, color, sc, this.BoldFont.Value, this.ItalicFont.Value, 0, this.TimeIntoAnimation, this.FormatSettings);
-            } else {
-                this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0);
-            }
+            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0);
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
@@ -154,10 +124,7 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.TextScale.SetFromStyle(style.TextScale);
-            this.RegularFont.SetFromStyle(style.Font);
-            this.BoldFont.SetFromStyle(style.BoldFont ?? style.Font);
-            this.ItalicFont.SetFromStyle(style.ItalicFont ?? style.Font);
-            this.FormatSettings.SetFromStyle(style.FormatSettings);
+            this.RegularFont.SetFromStyle(style.Font); 
         }
 
         /// <summary>
@@ -166,10 +133,6 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="size">The paragraph's default size</param>
         protected virtual void ParseText(Vector2 size) {
-            // old formatting stuff
-            this.splitText = this.RegularFont.Value.SplitString(this.Text.RemoveFormatting(this.RegularFont.Value), size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
-            this.Formatting = this.Text.GetFormattingCodes(this.RegularFont.Value);
-
             if (this.TokenizedText == null)
                 this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text);
 
@@ -203,9 +166,6 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="paragraph">The current paragraph</param>
         public delegate string TextCallback(Paragraph paragraph);
-
-        [Obsolete("Use the new text formatting system in MLEM.Formatting instead")]
-        public delegate string TextModifier(string text);
 
         /// <summary>
         /// A link is a sub-element of the <see cref="Paragraph"/> that is added onto it as a child for any tokens that contain <see cref="LinkCode"/>, to make them selectable and clickable.
