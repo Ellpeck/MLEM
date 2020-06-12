@@ -32,9 +32,9 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
 
             if (this.IsSelected) {
-                if (this.Controls.LeftButtons.Any(b => this.Input.IsPressed(b, this.Controls.GamepadIndex))) {
+                if (this.Controls.LeftButtons.IsPressed(this.Input, this.Controls.GamepadIndex)) {
                     this.CurrentValue -= this.StepPerScroll;
-                } else if (this.Controls.RightButtons.Any(b => this.Input.IsPressed(b, this.Controls.GamepadIndex))) {
+                } else if (this.Controls.RightButtons.IsPressed(this.Input, this.Controls.GamepadIndex)) {
                     this.CurrentValue += this.StepPerScroll;
                 }
             }

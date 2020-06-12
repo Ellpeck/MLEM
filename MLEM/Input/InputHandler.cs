@@ -432,13 +432,13 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is down</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
-        public bool IsDown(object control, int index = -1) {
-            if (control is Keys key)
-                return this.IsKeyDown(key);
-            if (control is Buttons button)
-                return this.IsGamepadButtonDown(button, index);
-            if (control is MouseButton mouse)
-                return this.IsMouseButtonDown(mouse);
+        public bool IsDown(GenericInput control, int index = -1) {
+            if (control.Type == GenericInput.InputType.Keyboard)
+                return this.IsKeyDown(control);
+            if (control.Type == GenericInput.InputType.Gamepad)
+                return this.IsGamepadButtonDown(control, index);
+            if (control.Type == GenericInput.InputType.Mouse)
+                return this.IsMouseButtonDown(control);
             throw new ArgumentException(nameof(control));
         }
 
@@ -450,13 +450,13 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is down</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
-        public bool IsUp(object control, int index = -1) {
-            if (control is Keys key)
-                return this.IsKeyUp(key);
-            if (control is Buttons button)
-                return this.IsGamepadButtonUp(button, index);
-            if (control is MouseButton mouse)
-                return this.IsMouseButtonUp(mouse);
+        public bool IsUp(GenericInput control, int index = -1) {
+            if (control.Type == GenericInput.InputType.Keyboard)
+                return this.IsKeyUp(control);
+            if (control.Type == GenericInput.InputType.Gamepad)
+                return this.IsGamepadButtonUp(control, index);
+            if (control.Type == GenericInput.InputType.Mouse)
+                return this.IsMouseButtonUp(control);
             throw new ArgumentException(nameof(control));
         }
 
@@ -468,28 +468,28 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is down</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
-        public bool IsPressed(object control, int index = -1) {
-            if (control is Keys key)
-                return this.IsKeyPressed(key);
-            if (control is Buttons button)
-                return this.IsGamepadButtonPressed(button, index);
-            if (control is MouseButton mouse)
-                return this.IsMouseButtonPressed(mouse);
+        public bool IsPressed(GenericInput control, int index = -1) {
+            if (control.Type == GenericInput.InputType.Keyboard)
+                return this.IsKeyPressed(control);
+            if (control.Type == GenericInput.InputType.Gamepad)
+                return this.IsGamepadButtonPressed(control, index);
+            if (control.Type == GenericInput.InputType.Mouse)
+                return this.IsMouseButtonPressed(control);
             throw new ArgumentException(nameof(control));
         }
 
         /// <inheritdoc cref="IsDown"/>
-        public bool IsAnyDown(params object[] control) {
+        public bool IsAnyDown(params GenericInput[] control) {
             return control.Any(c => this.IsDown(c));
         }
 
         /// <inheritdoc cref="IsUp"/>
-        public bool IsAnyUp(params object[] control) {
+        public bool IsAnyUp(params GenericInput[] control) {
             return control.Any(c => this.IsUp(c));
         }
 
         /// <inheritdoc cref="IsPressed"/>
-        public bool IsAnyPressed(params object[] control) {
+        public bool IsAnyPressed(params GenericInput[] control) {
             return control.Any(c => this.IsPressed(c));
         }
 

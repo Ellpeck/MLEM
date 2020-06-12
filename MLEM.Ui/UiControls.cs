@@ -54,39 +54,32 @@ namespace MLEM.Ui {
         /// <summary>
         /// A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons on the keyboard which perform the <see cref="Element.OnPressed"/> action.
         /// If the <see cref="ModifierKey.Shift"/> is held, these buttons perform <see cref="Element.OnSecondaryPressed"/>.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
         /// </summary>
-        public object[] KeyboardButtons = {Keys.Space, Keys.Enter};
+        public readonly Keybind KeyboardButtons = new Keybind().Add(Keys.Space).Add(Keys.Enter);
         /// <summary>
-        /// A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons on a gamepad that perform the <see cref="Element.OnPressed"/> action.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
+        /// AA <see cref="Keybind"/> that acts as the buttons on a gamepad that perform the <see cref="Element.OnPressed"/> action.
         /// </summary>
-        public object[] GamepadButtons = {Buttons.A};
+        public readonly Keybind GamepadButtons = new Keybind().Add(Buttons.A);
         /// <summary>
-        /// A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons on a gamepad that perform the <see cref="Element.OnSecondaryPressed"/> action.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
+        /// A <see cref="Keybind"/> that acts as the buttons on a gamepad that perform the <see cref="Element.OnSecondaryPressed"/> action.
         /// </summary>
-        public object[] SecondaryGamepadButtons = {Buttons.X};
+        public readonly Keybind SecondaryGamepadButtons = new Keybind().Add(Buttons.X);
         /// <summary>
-        /// A list of A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons that select a <see cref="Element"/> that is above the currently selected element.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
+        /// A <see cref="Keybind"/> that acts as the buttons that select a <see cref="Element"/> that is above the currently selected element.
         /// </summary>
-        public object[] UpButtons = {Buttons.DPadUp, Buttons.LeftThumbstickUp};
+        public readonly Keybind UpButtons = new Keybind().Add(Buttons.DPadUp).Add(Buttons.LeftThumbstickUp);
         /// <summary>
-        /// A list of A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons that select a <see cref="Element"/> that is below the currently selected element.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
+        /// A <see cref="Keybind"/> that acts as the buttons that select a <see cref="Element"/> that is below the currently selected element.
         /// </summary>
-        public object[] DownButtons = {Buttons.DPadDown, Buttons.LeftThumbstickDown};
+        public readonly Keybind DownButtons = new Keybind().Add(Buttons.DPadDown).Add(Buttons.LeftThumbstickDown);
         /// <summary>
-        /// A list of A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons that select a <see cref="Element"/> that is to the left of the currently selected element.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
+        /// A <see cref="Keybind"/> that acts as the buttons that select a <see cref="Element"/> that is to the left of the currently selected element.
         /// </summary>
-        public object[] LeftButtons = {Buttons.DPadLeft, Buttons.LeftThumbstickLeft};
+        public readonly Keybind LeftButtons = new Keybind().Add(Buttons.DPadLeft).Add(Buttons.LeftThumbstickLeft);
         /// <summary>
-        /// A list of A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons that select a <see cref="Element"/> that is to the right of the currently selected element.
-        /// To easily add more elements to this list, use <see cref="AddButtons"/>.
+        /// A <see cref="Keybind"/> that acts as the buttons that select a <see cref="Element"/> that is to the right of the currently selected element.
         /// </summary>
-        public object[] RightButtons = {Buttons.DPadRight, Buttons.LeftThumbstickRight};
+        public readonly Keybind RightButtons = new Keybind().Add(Buttons.DPadRight).Add(Buttons.LeftThumbstickRight);
         /// <summary>
         /// The zero-based index of the <see cref="GamePad"/> used for gamepad input.
         /// If this index is lower than 0, every connected gamepad will trigger input.
@@ -162,7 +155,7 @@ namespace MLEM.Ui {
 
             // KEYBOARD INPUT
             if (this.HandleKeyboard) {
-                if (this.KeyboardButtons.Any(this.IsAnyPressed)) {
+                if (this.KeyboardButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
@@ -215,19 +208,19 @@ namespace MLEM.Ui {
 
             // GAMEPAD INPUT
             if (this.HandleGamepad) {
-                if (this.GamepadButtons.Any(this.IsAnyPressed)) {
+                if (this.GamepadButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
                         this.System.OnElementPressed?.Invoke(this.SelectedElement);
-                } else if (this.SecondaryGamepadButtons.Any(this.IsAnyPressed)) {
+                } else if (this.SecondaryGamepadButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
                         this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
-                } else if (this.DownButtons.Any(this.IsAnyPressed)) {
+                } else if (this.DownButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     this.HandleGamepadNextElement(Direction2.Down);
-                } else if (this.LeftButtons.Any(this.IsAnyPressed)) {
+                } else if (this.LeftButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     this.HandleGamepadNextElement(Direction2.Left);
-                } else if (this.RightButtons.Any(this.IsAnyPressed)) {
+                } else if (this.RightButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     this.HandleGamepadNextElement(Direction2.Right);
-                } else if (this.UpButtons.Any(this.IsAnyPressed)) {
+                } else if (this.UpButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     this.HandleGamepadNextElement(Direction2.Up);
                 }
             }
@@ -383,10 +376,6 @@ namespace MLEM.Ui {
             }
         }
 
-        private bool IsAnyPressed(object button) {
-            return this.Input.IsPressed(button, this.GamepadIndex);
-        }
-
         private void HandleGamepadNextElement(Direction2 dir) {
             this.IsAutoNavMode = true;
             RectangleF searchArea = default;
@@ -415,15 +404,6 @@ namespace MLEM.Ui {
                 next = this.SelectedElement.GetGamepadNextElement(dir, next);
             if (next != null)
                 this.SelectElement(this.ActiveRoot, next);
-        }
-
-        /// <summary>
-        /// A helper function to add <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/> to an array of controls.
-        /// </summary>
-        /// <param name="controls">The controls to add to</param>
-        /// <param name="additional">The additional controls to add to the controls list</param>
-        public static void AddButtons(ref object[] controls, params object[] additional) {
-            controls = controls.Concat(additional).ToArray();
         }
 
     }
