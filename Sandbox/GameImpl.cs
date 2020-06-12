@@ -149,8 +149,7 @@ namespace Sandbox {
 
             var testPanel = new Panel(Anchor.Center, new Vector2(0.5F, 100), Vector2.Zero);
             testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -1)));
-            testPanel.AddChild(new Button(Anchor.AutoInline, new Vector2(0.25F, -1.5F)));
-            testPanel.AddChild(new Button(Anchor.AutoInline, new Vector2(0.5F, -1)));
+            testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(2500, 1)) {PreventParentSpill = true});
             this.UiSystem.Add("Test", testPanel);
         }
 

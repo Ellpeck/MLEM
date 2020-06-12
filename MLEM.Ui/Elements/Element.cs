@@ -253,6 +253,12 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public bool SetWidthBasedOnChildren;
         /// <summary>
+        /// Set this field to true to cause this element's final display area to never exceed that of its <see cref="Parent"/>.
+        /// If the resulting area is too large, the size of this element is shrunk to fit the target area.
+        /// This can be useful if an element should fill the remaining area of a parent exactly.
+        /// </summary>
+        public bool PreventParentSpill;
+        /// <summary>
         /// The transparency (alpha value) that this element is rendered with.
         /// Note that, when <see cref="Draw"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
         /// </summary>
@@ -574,6 +580,17 @@ namespace MLEM.Ui.Elements {
                             break;
                     }
                 }
+            }
+
+            if (this.PreventParentSpill) {
+                if (pos.X < parentArea.X)
+                    pos.X = parentArea.X;
+                if (pos.Y < parentArea.Y)
+                    pos.Y = parentArea.Y;
+                if (pos.X + actualSize.X > parentArea.Right)
+                    actualSize.X = parentArea.Right - pos.X;
+                if (pos.Y + actualSize.Y > parentArea.Bottom)
+                    actualSize.Y = parentArea.Bottom - pos.Y;
             }
 
             this.area = new RectangleF(pos, actualSize);
