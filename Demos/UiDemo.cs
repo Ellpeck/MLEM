@@ -203,7 +203,7 @@ namespace Demos {
 
         // This method is used by the wobbling button (see above)
         // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
-        private IEnumerator<IWait> WobbleButton(CustomDrawGroup group) {
+        private IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
                 // A custom draw group allows the implementation of any sort of custom rendering for all of its child components
@@ -214,12 +214,12 @@ namespace Demos {
                 // be a great way to accomplish feedback animations for buttons and so on.
                 group.Transform = Matrix.CreateTranslation((float) Math.Sin(counter / 2) * 10 * group.Scale, 0, 0);
                 counter += 0.1F;
-                yield return new WaitSeconds(0.01F);
+                yield return new Wait(0.01F);
             }
             group.Transform = Matrix.Identity;
         }
 
-        private IEnumerator<IWait> WobbleProgressBar(ProgressBar bar) {
+        private IEnumerator<Wait> WobbleProgressBar(ProgressBar bar) {
             var reducing = false;
             while (bar.Root != null) {
                 if (reducing) {
@@ -231,7 +231,7 @@ namespace Demos {
                     if (bar.CurrentValue >= bar.MaxValue)
                         reducing = true;
                 }
-                yield return new WaitSeconds(0.01F);
+                yield return new Wait(0.01F);
             }
         }
 

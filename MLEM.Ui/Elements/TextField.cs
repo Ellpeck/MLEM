@@ -210,12 +210,12 @@ namespace MLEM.Ui.Elements {
                 this.CaretPos = this.text.Length;
             } else if (this.Input.IsModifierKeyDown(ModifierKey.Control)) {
                 if (this.Input.IsKeyPressed(Keys.V)) {
-                    var clip = Clipboard.GetText();
+                    var clip = ClipboardService.GetText();
                     if (clip != null)
                         this.InsertText(clip);
                 } else if (this.Input.IsKeyPressed(Keys.C)) {
                     // until there is text selection, just copy the whole content
-                    Clipboard.SetText(this.Text);
+                    ClipboardService.SetText(this.Text);
                 }
             }
 
