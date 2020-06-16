@@ -70,7 +70,7 @@ namespace MLEM.Ui.Elements {
                         return;
                     if (otherElement == null || !otherElement.GetParentTree().Contains(this))
                         return;
-                    var firstChild = this.Children.First(c => !(c is ScrollBar));
+                    var firstChild = this.Children.First(c => c != this.ScrollBar);
                     this.ScrollBar.CurrentValue = (otherElement.Area.Bottom - firstChild.Area.Top - this.Area.Height / 2) / this.Scale;
                 };
                 this.AddChild(this.ScrollBar);
@@ -206,7 +206,7 @@ namespace MLEM.Ui.Elements {
             if (this.Children.Count == 1)
                 return;
             // the "real" first child is the scroll bar, which we want to ignore
-            var firstChild = this.Children.First(c => !(c is ScrollBar));
+            var firstChild = this.Children.First(c => c != this.ScrollBar);
             var lowestChild = this.GetLowestChild(e => !e.IsHidden);
             // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
