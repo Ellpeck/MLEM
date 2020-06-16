@@ -84,6 +84,10 @@ namespace MLEM.Ui.Elements {
         /// An event that is called when this scroll bar is automatically hidden from a <see cref="Panel"/>
         /// </summary>
         public GenericCallback OnAutoHide;
+        /// <summary>
+        /// This property is true while the user scrolls on the scroll bar using the mouse or touch input
+        /// </summary>
+        public bool IsBeingScrolled => this.isMouseHeld || this.isDragging || this.isTouchHeld;
         private bool isMouseHeld;
         private bool isDragging;
         private bool isTouchHeld;
