@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using MLEM.Animations;
-using MLEM.Textures;
 
 namespace MLEM.Ui.Elements {
     /// <summary>

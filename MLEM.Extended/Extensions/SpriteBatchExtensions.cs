@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
-using MLEM.Textures;
 using MonoGame.Extended;
-using MonoGame.Extended.BitmapFonts;
 
 namespace MLEM.Extended.Extensions {
     /// <summary>

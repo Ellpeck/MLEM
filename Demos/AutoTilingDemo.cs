@@ -55,17 +55,19 @@ namespace Demos {
 
                     var x1 = x;
                     var y1 = y;
+
                     // the connectsTo function determines for any given tile if it should connect to, that is, auto-tile with the
                     // neighbor in the supplied offset direction. In this example, the layout determines where grass tiles are (X)
                     // and where there are none ( ).
-                    AutoTiling.ConnectsTo connectsTo = (xOff, yOff) => {
+                    bool ConnectsTo(int xOff, int yOff) {
                         // don't auto-tile out of bounds
                         if (x1 + xOff < 0 || y1 + yOff < 0 || x1 + xOff >= 5 || y1 + yOff >= 5)
                             return false;
                         // check if the neighboring tile is also grass (X)
                         return this.layout[y1 + yOff][x1 + xOff] == 'X';
-                    };
-                    AutoTiling.DrawAutoTile(this.SpriteBatch, new Vector2(x, y) * tileSize, this.texture, region, connectsTo, Color.White);
+                    }
+
+                    AutoTiling.DrawAutoTile(this.SpriteBatch, new Vector2(x, y) * tileSize, this.texture, region, ConnectsTo, Color.White);
                 }
             }
             this.SpriteBatch.End();

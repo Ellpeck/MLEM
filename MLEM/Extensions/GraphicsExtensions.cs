@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -79,7 +78,7 @@ namespace MLEM.Extensions {
         /// Represents a context in which a <see cref="RenderTarget2D"/> is applied.
         /// This class should be used with <see cref="GraphicsExtensions.WithRenderTarget"/>.
         /// </summary>
-        public struct TargetContext : IDisposable {
+        public readonly struct TargetContext : IDisposable {
 
             private readonly GraphicsDevice device;
             private readonly RenderTargetBinding[] lastTargets;

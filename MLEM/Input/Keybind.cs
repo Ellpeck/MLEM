@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using Microsoft.Xna.Framework.Input;
 
 namespace MLEM.Input {
     /// <summary>

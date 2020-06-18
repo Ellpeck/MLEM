@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using MLEM.Input;
 using MLEM.Textures;
 
 namespace MLEM.Ui.Elements {
@@ -91,7 +90,7 @@ namespace MLEM.Ui.Elements {
 
             var upButton = new Button(Anchor.TopRight, Vector2.One, "+") {
                 OnPressed = element => {
-                    var text = field.Text.ToString();
+                    var text = field.Text;
                     if (int.TryParse(text, out var val))
                         field.SetText(val + stepPerClick);
                 }
@@ -101,7 +100,7 @@ namespace MLEM.Ui.Elements {
 
             var downButton = new Button(Anchor.BottomRight, Vector2.One, "-") {
                 OnPressed = element => {
-                    var text = field.Text.ToString();
+                    var text = field.Text;
                     if (int.TryParse(text, out var val))
                         field.SetText(val - stepPerClick);
                 }

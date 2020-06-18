@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extended.Extensions;
 using MLEM.Font;
 using MonoGame.Extended.BitmapFonts;
 

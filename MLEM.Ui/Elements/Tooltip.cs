@@ -1,7 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using MLEM.Extensions;
-using MLEM.Font;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {

@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Input {
@@ -433,13 +432,16 @@ namespace MLEM.Input {
         /// <returns>Whether the given control is down</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsDown(GenericInput control, int index = -1) {
-            if (control.Type == GenericInput.InputType.Keyboard)
-                return this.IsKeyDown(control);
-            if (control.Type == GenericInput.InputType.Gamepad)
-                return this.IsGamepadButtonDown(control, index);
-            if (control.Type == GenericInput.InputType.Mouse)
-                return this.IsMouseButtonDown(control);
-            throw new ArgumentException(nameof(control));
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.IsKeyDown(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.IsGamepadButtonDown(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.IsMouseButtonDown(control);
+                default:
+                    throw new ArgumentException(nameof(control));
+            }
         }
 
         /// <summary>
@@ -451,13 +453,16 @@ namespace MLEM.Input {
         /// <returns>Whether the given control is down</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsUp(GenericInput control, int index = -1) {
-            if (control.Type == GenericInput.InputType.Keyboard)
-                return this.IsKeyUp(control);
-            if (control.Type == GenericInput.InputType.Gamepad)
-                return this.IsGamepadButtonUp(control, index);
-            if (control.Type == GenericInput.InputType.Mouse)
-                return this.IsMouseButtonUp(control);
-            throw new ArgumentException(nameof(control));
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.IsKeyUp(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.IsGamepadButtonUp(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.IsMouseButtonUp(control);
+                default:
+                    throw new ArgumentException(nameof(control));
+            }
         }
 
         /// <summary>
@@ -469,13 +474,16 @@ namespace MLEM.Input {
         /// <returns>Whether the given control is down</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsPressed(GenericInput control, int index = -1) {
-            if (control.Type == GenericInput.InputType.Keyboard)
-                return this.IsKeyPressed(control);
-            if (control.Type == GenericInput.InputType.Gamepad)
-                return this.IsGamepadButtonPressed(control, index);
-            if (control.Type == GenericInput.InputType.Mouse)
-                return this.IsMouseButtonPressed(control);
-            throw new ArgumentException(nameof(control));
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.IsKeyPressed(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.IsGamepadButtonPressed(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.IsMouseButtonPressed(control);
+                default:
+                    throw new ArgumentException(nameof(control));
+            }
         }
 
         /// <inheritdoc cref="IsDown"/>

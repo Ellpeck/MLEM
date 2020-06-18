@@ -4,12 +4,9 @@ using System.Linq;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Animations;
 using MLEM.Extensions;
 using MLEM.Font;
-using MLEM.Formatting;
 using MLEM.Formatting.Codes;
-using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -143,7 +140,7 @@ namespace Demos {
             // Check the WobbleButton method for an explanation of how this button works
             var group = this.root.AddChild(new CustomDrawGroup(Anchor.AutoLeft, new Vector2(1, 0)));
             group.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
-                OnPressed = element => CoroutineHandler.Start(this.WobbleButton(group)),
+                OnPressed = element => CoroutineHandler.Start(WobbleButton(group)),
                 PositionOffset = new Vector2(0, 1)
             });
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale)") {
@@ -160,13 +157,13 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Progress bars!"));
             var bar1 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Right, 10) {PositionOffset = new Vector2(0, 1)});
-            CoroutineHandler.Start(this.WobbleProgressBar(bar1));
+            CoroutineHandler.Start(WobbleProgressBar(bar1));
             var bar2 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Left, 10) {PositionOffset = new Vector2(0, 1)});
-            CoroutineHandler.Start(this.WobbleProgressBar(bar2));
+            CoroutineHandler.Start(WobbleProgressBar(bar2));
             var bar3 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(8, 30), Direction2.Down, 10) {PositionOffset = new Vector2(0, 1)});
-            CoroutineHandler.Start(this.WobbleProgressBar(bar3));
+            CoroutineHandler.Start(WobbleProgressBar(bar3));
             var bar4 = this.root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 1)});
-            CoroutineHandler.Start(this.WobbleProgressBar(bar4));
+            CoroutineHandler.Start(WobbleProgressBar(bar4));
 
             this.root.AddChild(new VerticalSpace(3));
             var dropdown = this.root.AddChild(new Dropdown(Anchor.AutoLeft, new Vector2(1, 10), "Dropdown Menu"));
@@ -203,7 +200,7 @@ namespace Demos {
 
         // This method is used by the wobbling button (see above)
         // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
-        private IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
+        private static IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
                 // A custom draw group allows the implementation of any sort of custom rendering for all of its child components
@@ -219,7 +216,7 @@ namespace Demos {
             group.Transform = Matrix.Identity;
         }
 
-        private IEnumerator<Wait> WobbleProgressBar(ProgressBar bar) {
+        private static IEnumerator<Wait> WobbleProgressBar(ProgressBar bar) {
             var reducing = false;
             while (bar.Root != null) {
                 if (reducing) {

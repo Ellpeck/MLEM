@@ -10,7 +10,7 @@ namespace MLEM.Input {
     /// Note that this type is serializable using <see cref="DataContractAttribute"/>.
     /// </summary>
     [DataContract]
-    public struct GenericInput {
+    public readonly struct GenericInput {
 
         /// <summary>
         /// The <see cref="InputType"/> of this generic input's current <see cref="value"/>.

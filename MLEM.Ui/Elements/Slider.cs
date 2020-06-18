@@ -1,6 +1,4 @@
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using MLEM.Misc;
 
 namespace MLEM.Ui.Elements {

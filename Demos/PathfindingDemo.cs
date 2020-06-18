@@ -8,7 +8,6 @@ using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Pathfinding;
 using MLEM.Startup;
-using MLEM.Textures;
 
 namespace Demos {
     public class PathfindingDemo : Demo {
@@ -39,14 +38,15 @@ namespace Demos {
             // If your game contains harder-to-move-on areas like, say, a muddy pit, you can return a higher cost value for those
             // locations. If you want to scale your cost function differently, you can specify a different default cost in your 
             // pathfinder's constructor
-            AStar<Point>.GetCost cost = (pos, nextPos) => {
+            float Cost(Point pos, Point nextPos) {
                 if (nextPos.X < 0 || nextPos.Y < 0 || nextPos.X >= 50 || nextPos.Y >= 50)
                     return float.MaxValue;
                 return this.world[nextPos.X, nextPos.Y] ? 1 : float.MaxValue;
-            };
+            }
+
             // Actually initialize the pathfinder with the cost function, as well as specify if moving diagonally between tiles should be
             // allowed or not (in this case it's not)
-            this.pathfinder = new AStar2(cost, false);
+            this.pathfinder = new AStar2(Cost, false);
 
             // Now find a path from the top left to the bottom right corner and store it in a variable
             // If no path can be found after the maximum amount of tries (10000 by default), the pathfinder will abort and return no path (null)

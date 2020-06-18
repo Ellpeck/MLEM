@@ -10,7 +10,7 @@ namespace MLEM.Animations {
     /// </summary>
     public class SpriteAnimation : GenericDataHolder {
 
-        private AnimationFrame[] frames;
+        private readonly AnimationFrame[] frames;
         /// <summary>
         /// Returns the <see cref="AnimationFrame"/> at the given index.
         /// Index ordering is based on the order that animation frames were added in.
