@@ -164,7 +164,7 @@ namespace MLEM.Ui.Elements {
             // not initialized yet
             if (!this.Font.HasValue())
                 return;
-            var length = this.Font.Value.MeasureString(this.text).X * this.TextScale;
+            var length = this.Font.Value.MeasureString(this.text.ToString()).X * this.TextScale;
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
             if (length > maxWidth) {
                 // if we're moving the caret to the left

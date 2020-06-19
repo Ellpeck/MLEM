@@ -12,8 +12,6 @@ namespace MLEM.Formatting.Codes {
     public class ImageCode : Code {
 
         private readonly SpriteAnimation image;
-        private string replacement;
-        private float gapSize;
 
         /// <inheritdoc />
         public ImageCode(Match match, Regex regex, SpriteAnimation image) : base(match, regex) {
@@ -27,13 +25,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override string GetReplacementString(GenericFont font) {
-            if (this.replacement == null) {
-                // use non-breaking space so that the image won't be line-splitted
-                var strg = font.GetWidthString(font.LineHeight, font.HasCharacter('\u00A0') ? '\u00A0' : ' ');
-                this.replacement = strg.Remove(strg.Length - 1) + ' ';
-                this.gapSize = font.MeasureString(this.replacement).X;
-            }
-            return this.replacement;
+            return GenericFont.OneEmSpace.ToString();
         }
 
         /// <inheritdoc />
@@ -43,8 +35,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
-            var position = pos + new Vector2(this.gapSize - font.LineHeight, 0) / 2 * scale;
-            batch.Draw(this.image.CurrentRegion, new RectangleF(position, new Vector2(font.LineHeight * scale)), Color.White.CopyAlpha(color));
+            batch.Draw(this.image.CurrentRegion, new RectangleF(pos, new Vector2(font.LineHeight * scale)), Color.White.CopyAlpha(color));
         }
 
     }

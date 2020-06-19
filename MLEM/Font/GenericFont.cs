@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Formatting.Codes;
 
 namespace MLEM.Font {
     /// <summary>
@@ -8,6 +9,13 @@ namespace MLEM.Font {
     /// <seealso cref="GenericSpriteFont"/>
     /// </summary>
     public abstract class GenericFont {
+
+        /// <summary>
+        /// This field holds a special, private use area code point for a one em space.
+        /// This is a character that isn't drawn, but has the same width as <see cref="LineHeight"/>.
+        /// It is mainly used for <see cref="ImageCode"/>.
+        /// </summary>
+        public const char OneEmSpace = '\uF8FF';
 
         /// <summary>
         /// The bold version of this font.
@@ -21,12 +29,6 @@ namespace MLEM.Font {
 
         ///<inheritdoc cref="SpriteFont.LineSpacing"/>
         public abstract float LineHeight { get; }
-
-        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
-        public abstract Vector2 MeasureString(string text);
-
-        ///<inheritdoc cref="SpriteFont.MeasureString(StringBuilder)"/>
-        public abstract Vector2 MeasureString(StringBuilder text);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public abstract void DrawString(SpriteBatch batch, string text, Vector2 position, Color color);
@@ -46,12 +48,8 @@ namespace MLEM.Font {
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
-        /// <summary>
-        /// Returns whether this generic font supports the given character 
-        /// </summary>
-        /// <param name="c">The character</param>
-        /// <returns>Whether this generic font supports the character</returns>
-        public abstract bool HasCharacter(char c);
+        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
+        protected abstract Vector2 CalcCharSize(char c);
 
         /// <summary>
         /// Draws a string with the given text alignment.
@@ -87,6 +85,32 @@ namespace MLEM.Font {
             this.DrawString(batch, text, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
+        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
+        public Vector2 MeasureChar(char c) {
+            return c == OneEmSpace ? new Vector2(this.LineHeight) : this.CalcCharSize(c);
+        }
+
+        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
+        public Vector2 MeasureString(string text) {
+            var size = Vector2.Zero;
+            var xOffset = 0F;
+            foreach (var c in text) {
+                if (c == '\n') {
+                    xOffset = 0;
+                    size.Y += this.LineHeight;
+                    continue;
+                }
+
+                xOffset += this.MeasureChar(c).X;
+                // increase x size if this line is the longest
+                if (xOffset > size.X)
+                    size.X = xOffset;
+            }
+            // include the last line's height too!
+            size.Y += this.LineHeight;
+            return size;
+        }
+
         /// <summary>
         /// Truncates a string to a given width. If the string's displayed area is larger than the maximum width, the string is cut off.
         /// Optionally, the string can be cut off a bit sooner, adding the <see cref="ellipsis"/> at the end instead.
@@ -107,7 +131,7 @@ namespace MLEM.Font {
                     total.Append(text[i]);
                 }
 
-                if (this.MeasureString(total).X * scale + ellipsisWidth >= width) {
+                if (this.MeasureString(total.ToString()).X * scale + ellipsisWidth >= width) {
                     if (fromBack) {
                         return total.Remove(0, 1).Insert(0, ellipsis).ToString();
                     } else {
@@ -159,19 +183,6 @@ namespace MLEM.Font {
                 total.Append(curr).Append('\n');
             }
             return total.ToString(0, total.Length - 2);
-        }
-
-        /// <summary>
-        /// Returns a string made up of the given content characters that is the given length long when displayed.
-        /// </summary>
-        /// <param name="width">The width that the string should have if the scale is 1</param>
-        /// <param name="content">The content that the string should contain. Defaults to a space.</param>
-        /// <returns></returns>
-        public string GetWidthString(float width, char content = ' ') {
-            var strg = content.ToString();
-            while (this.MeasureString(strg).X < width)
-                strg += content;
-            return strg;
         }
 
     }

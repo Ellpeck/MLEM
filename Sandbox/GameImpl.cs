@@ -10,6 +10,7 @@ using MLEM.Extended.Extensions;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
+using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Input;
@@ -19,6 +20,7 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Tiled;
 using RectangleF = MonoGame.Extended.RectangleF;
@@ -118,27 +120,28 @@ namespace Sandbox {
                 this.SpriteBatch.End();
             };*/
 
+            var sc = 4;
             var formatter = new TextFormatter();
             formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
-            var strg = "<s>This</s> <c CornflowerBlue>is a formatted string</c> with <c #ffff0000>two bits of formatting</c>! It also includesavery<c Pink>long</c>wordthatis<c Blue>formatted</c>aswell. Additionally, it <a wobbly>wobbles</a> and has a <s>shadow</s> or a <s #ffff0000 4>weird shadow</s>. We like icons too! <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test>";
+            var strg = "Additionally, it <a wobbly>wobbles</a> and has a <s>shadow</s> or a <s #ffff0000 4>weird shadow</s>. We like icons too! <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test>";
             //var strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
             //var strg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
             //var strg = "This is <u>a test of the underlined formatting code</u>!";
             this.tokenized = formatter.Tokenize(font, strg);
-            this.tokenized.Split(font, 400, 5);
+            this.tokenized.Split(font, 400, sc);
 
-            /*this.OnDraw += (g, time) => {
+            this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
                 this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
-                font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, 5, SpriteEffects.None, 0);
-                this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, 5, 0);
+                font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, sc, 0);
                 this.SpriteBatch.DrawGrid(new Vector2(30, 30), new Vector2(40, 60), new Point(10, 5), Color.Yellow, 3);
                 this.SpriteBatch.End();
-            };*/
+            };
             this.OnUpdate += (g, time) => {
                 if (this.InputHandler.IsPressed(Keys.W)) {
                     this.tokenized = formatter.Tokenize(font, strg);
-                    this.tokenized.Split(font, this.InputHandler.IsModifierKeyDown(ModifierKey.Shift) ? 400 : 500, 5);
+                    this.tokenized.Split(font, this.InputHandler.IsModifierKeyDown(ModifierKey.Shift) ? 400 : 500, sc);
                 }
                 this.tokenized.Update(time);
             };

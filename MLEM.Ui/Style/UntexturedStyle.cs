@@ -46,12 +46,8 @@ namespace MLEM.Ui.Style {
             public override GenericFont Italic => this;
             public override float LineHeight => 1;
 
-            public override Vector2 MeasureString(string text) {
-                return Vector2.One;
-            }
-
-            public override Vector2 MeasureString(StringBuilder text) {
-                return Vector2.One;
+            protected override Vector2 CalcCharSize(char c) {
+                return Vector2.Zero;
             }
 
             public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
@@ -70,10 +66,6 @@ namespace MLEM.Ui.Style {
             }
 
             public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            }
-
-            public override bool HasCharacter(char c) {
-                return false;
             }
 
         }

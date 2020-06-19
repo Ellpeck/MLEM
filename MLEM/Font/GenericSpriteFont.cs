@@ -25,19 +25,14 @@ namespace MLEM.Font {
         /// <param name="bold">A bold version of the font</param>
         /// <param name="italic">An italic version of the font</param>
         public GenericSpriteFont(SpriteFont font, SpriteFont bold = null, SpriteFont italic = null) {
-            this.Font = font;
-            this.Bold = bold != null ? new GenericSpriteFont(bold) : this;
-            this.Italic = italic != null ? new GenericSpriteFont(italic) : this;
+            this.Font = SetDefaults(font);
+            this.Bold = bold != null ? new GenericSpriteFont(SetDefaults(bold)) : this;
+            this.Italic = italic != null ? new GenericSpriteFont(SetDefaults(italic)) : this;
         }
 
-        /// <inheritdoc/>
-        public override Vector2 MeasureString(string text) {
-            return this.Font.MeasureString(text);
-        }
-
-        /// <inheritdoc/>
-        public override Vector2 MeasureString(StringBuilder text) {
-            return this.Font.MeasureString(text);
+        /// <inheritdoc />
+        protected override Vector2 CalcCharSize(char c) {
+            return this.Font.MeasureString(c.ToString());
         }
 
         /// <inheritdoc/>
@@ -70,9 +65,11 @@ namespace MLEM.Font {
             batch.DrawString(this.Font, text, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
-        /// <inheritdoc />
-        public override bool HasCharacter(char c) {
-            return this.Font.Characters.Contains(c);
+        private static SpriteFont SetDefaults(SpriteFont font) {
+            // so that missing character behavior is in line with MG.Extended's
+            // bitmap fonts, we draw nothing as the default character
+            font.DefaultCharacter = ' ';
+            return font;
         }
 
     }
