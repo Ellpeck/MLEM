@@ -88,6 +88,8 @@ namespace MLEM.Font {
         ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
         public Vector2 MeasureString(string text) {
             var size = Vector2.Zero;
+            if (text.Length <= 0)
+                return size;
             var xOffset = 0F;
             foreach (var c in text) {
                 switch (c) {
