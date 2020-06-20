@@ -46,7 +46,7 @@ namespace MLEM.Ui.Style {
             public override GenericFont Italic => this;
             public override float LineHeight => 1;
 
-            protected override Vector2 CalcCharSize(char c) {
+            protected override Vector2 MeasureChar(char c) {
                 return Vector2.Zero;
             }
 

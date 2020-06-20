@@ -33,7 +33,7 @@ namespace MLEM.Extended.Font {
         }
 
         /// <inheritdoc />
-        protected override Vector2 CalcCharSize(char c) {
+        protected override Vector2 MeasureChar(char c) {
             var region = this.Font.GetCharacterRegion(c);
             return region != null ? new Vector2(region.XAdvance, region.Height) : Vector2.Zero;
         }

@@ -31,7 +31,7 @@ namespace MLEM.Font {
         }
 
         /// <inheritdoc />
-        protected override Vector2 CalcCharSize(char c) {
+        protected override Vector2 MeasureChar(char c) {
             return this.Font.MeasureString(c.ToString());
         }
 

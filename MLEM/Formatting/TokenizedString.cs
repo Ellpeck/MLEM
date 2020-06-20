@@ -124,8 +124,9 @@ namespace MLEM.Formatting {
                     if (i == 0)
                         token.DrawSelf(time, batch, pos + innerOffset, font, color, scale, depth);
 
-                    token.DrawCharacter(time, batch, c, c.ToString(), i, pos + innerOffset, drawFont, drawColor, scale, depth);
-                    innerOffset.X += font.MeasureChar(c).X * scale;
+                    var cString = c.ToString();
+                    token.DrawCharacter(time, batch, c, cString, i, pos + innerOffset, drawFont, drawColor, scale, depth);
+                    innerOffset.X += font.MeasureString(cString).X * scale;
                 }
             }
         }

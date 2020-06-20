@@ -49,7 +49,7 @@ namespace MLEM.Font {
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
         ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
-        protected abstract Vector2 CalcCharSize(char c);
+        protected abstract Vector2 MeasureChar(char c);
 
         /// <summary>
         /// Draws a string with the given text alignment.
@@ -86,22 +86,22 @@ namespace MLEM.Font {
         }
 
         ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
-        public Vector2 MeasureChar(char c) {
-            return c == OneEmSpace ? new Vector2(this.LineHeight) : this.CalcCharSize(c);
-        }
-
-        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
         public Vector2 MeasureString(string text) {
             var size = Vector2.Zero;
             var xOffset = 0F;
             foreach (var c in text) {
-                if (c == '\n') {
-                    xOffset = 0;
-                    size.Y += this.LineHeight;
-                    continue;
+                switch (c) {
+                    case '\n':
+                        xOffset = 0;
+                        size.Y += this.LineHeight;
+                        break;
+                    case OneEmSpace:
+                        xOffset += this.LineHeight;
+                        break;
+                    default:
+                        xOffset += this.MeasureChar(c).X;
+                        break;
                 }
-
-                xOffset += this.MeasureChar(c).X;
                 // increase x size if this line is the longest
                 if (xOffset > size.X)
                     size.X = xOffset;
