@@ -26,13 +26,19 @@
     ],
     "resource": [{
       "files": [
-        "Logo.svg",
         "favicon.ico"
       ]
+    }, {
+      "files": [
+        "Logo.svg",
+        "Formatting.png",
+        "Ui.gif"
+      ],
+      "src": "../Media"
     }],
     "globalMetadata": {
       "_appTitle": "MLEM Documentation",
-      "_appLogoPath": "../Logo.svg",
+      "_appLogoPath": "Logo.svg",
       "_appFooter": "<a href=\"https://github.com/Ellpeck/MLEM\">&copy; 2019-2020 Ellpeck</a> &ndash; <a href=\"https://ellpeck.de/#impressum\">Impressum</a> &ndash; <a href=\"https://ellpeck.de/#privacy\">Privacy</a>"
     },
     "overwrite": [{
