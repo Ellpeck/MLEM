@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
 using MLEM.Misc;
@@ -124,7 +125,7 @@ namespace MLEM.Formatting {
                     if (i == 0)
                         token.DrawSelf(time, batch, pos + innerOffset, font, color, scale, depth);
 
-                    var cString = c.ToString();
+                    var cString = c.ToCachedString();
                     token.DrawCharacter(time, batch, c, cString, i, pos + innerOffset, drawFont, drawColor, scale, depth);
                     innerOffset.X += font.MeasureString(cString).X * scale;
                 }

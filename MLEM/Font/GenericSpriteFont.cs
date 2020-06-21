@@ -1,6 +1,8 @@
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
+using MLEM.Misc;
 
 namespace MLEM.Font {
     /// <inheritdoc/>
@@ -32,7 +34,7 @@ namespace MLEM.Font {
 
         /// <inheritdoc />
         protected override Vector2 MeasureChar(char c) {
-            return this.Font.MeasureString(c.ToString());
+            return this.Font.MeasureString(c.ToCachedString());
         }
 
         /// <inheritdoc/>
