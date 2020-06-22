@@ -133,10 +133,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public float TextScale = 1;
         /// <summary>
-        /// The <see cref="SoundEffect"/> that should be played when an element's <see cref="Element.OnPressed"/> and <see cref="Element.OnSecondaryPressed"/> events are called.
+        /// The <see cref="SoundEffectInstance"/> that should be played when an element's <see cref="Element.OnPressed"/> and <see cref="Element.OnSecondaryPressed"/> events are called.
         /// Note that this sound is only played if the callbacks have any subscribers.
         /// </summary>
-        public SoundEffect ActionSound;
+        public SoundEffectInstance ActionSound;
 
     }
 }

@@ -892,8 +892,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="style">The new style</param>
         protected virtual void InitStyle(UiStyle style) {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
-            this.ActionSound.SetFromStyle(style.ActionSound?.CreateInstance());
-            this.SecondActionSound.SetFromStyle(style.ActionSound?.CreateInstance());
+            this.ActionSound.SetFromStyle(style.ActionSound);
+            this.SecondActionSound.SetFromStyle(style.ActionSound);
         }
 
         /// <summary>
