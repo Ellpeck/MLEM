@@ -362,11 +362,11 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// A style property that contains the sound effect that is played when this element's <see cref="OnPressed"/> is called
         /// </summary>
-        public StyleProp<SoundEffectInstance> ActionSound;
+        public StyleProp<SoundEffectInfo> ActionSound;
         /// <summary>
         /// A style property that contains the sound effect that is played when this element's <see cref="OnSecondaryPressed"/> is called
         /// </summary>
-        public StyleProp<SoundEffectInstance> SecondActionSound;
+        public StyleProp<SoundEffectInfo> SecondActionSound;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.

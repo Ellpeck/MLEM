@@ -210,11 +210,11 @@ namespace MLEM.Ui {
             };
             this.OnElementPressed += e => {
                 if (e.OnPressed != null)
-                    e.ActionSound.Value?.Replay();
+                    e.ActionSound.Value?.Play();
             };
             this.OnElementSecondaryPressed += e => {
                 if (e.OnSecondaryPressed != null)
-                    e.SecondActionSound.Value?.Replay();
+                    e.SecondActionSound.Value?.Play();
             };
 
             this.TextFormatter = new TextFormatter();
