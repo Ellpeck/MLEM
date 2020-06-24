@@ -199,7 +199,8 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             };
 
-            TextInputWrapper.Current.AddListener(window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
+            if (TextInputWrapper.Current != null)
+                TextInputWrapper.Current.AddListener(window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged = e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));

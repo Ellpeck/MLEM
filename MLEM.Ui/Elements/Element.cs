@@ -313,6 +313,8 @@ namespace MLEM.Ui.Elements {
         public GenericCallback OnTouchExit;
         /// <summary>
         /// Event that is called when text input is made.
+        /// When an element uses this event, it should call <see cref="TextInputWrapper.EnsureExists"/> on construction to ensure that a text input wrapper was set.
+        ///
         /// Note that this event is called for every element, even if it is not selected.
         /// Also note that if <see cref="TextInputWrapper.RequiresOnScreenKeyboard"/> is true, this event is never called.
         /// </summary>

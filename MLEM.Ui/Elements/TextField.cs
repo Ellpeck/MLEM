@@ -132,6 +132,7 @@ namespace MLEM.Ui.Elements {
             if (font != null)
                 this.Font.Set(font);
 
+            TextInputWrapper.EnsureExists();
             if (TextInputWrapper.Current.RequiresOnScreenKeyboard()) {
                 this.OnPressed += async e => {
                     if (!KeyboardInput.IsVisible) {

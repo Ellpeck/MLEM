@@ -13,19 +13,20 @@ namespace MLEM.Misc {
     /// </summary>
     public abstract class TextInputWrapper {
 
-        private static TextInputWrapper current;
         /// <summary>
         /// The current text input wrapper.
         /// Set this value before starting your game if you want to use text input wrapping.
         /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
-        public static TextInputWrapper Current {
-            get {
-                if (current == null)
-                    throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://mlem.ellpeck.de/articles/ui.html#text-input");
-                return current;
-            }
-            set => current = value;
+        public static TextInputWrapper Current;
+
+        /// <summary>
+        /// Ensures that <see cref="Current"/> is set to a valid <see cref="TextInputWrapper"/> value by throwing an <see cref="InvalidOperationException"/> exception if <see cref="Current"/> is null.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If <see cref="Current"/> is null</exception>
+        public static void EnsureExists() {
+            if (Current == null)
+                throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://mlem.ellpeck.de/articles/ui.html#text-input");
         }
 
         /// <summary>
