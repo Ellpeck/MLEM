@@ -117,7 +117,7 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.TextScale.SetFromStyle(style.TextScale);
-            this.RegularFont.SetFromStyle(style.Font); 
+            this.RegularFont.SetFromStyle(style.Font);
         }
 
         /// <summary>
@@ -126,27 +126,16 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="size">The paragraph's default size</param>
         protected virtual void ParseText(Vector2 size) {
-            if (this.TokenizedText == null)
+            if (this.TokenizedText == null) {
+                // tokenize the text
                 this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text);
 
-            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
-            var linkTokens = this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)).ToArray();
-            // this basically checks if there are any tokens that have an area that doesn't have a link element associated with it
-            if (linkTokens.Any(t => !t.GetArea(Vector2.Zero, this.TextScale).All(a => this.GetChildren<Link>(c => c.PositionOffset == a.Location && c.Size == a.Size).Any()))) {
+                // add links to the paragraph
                 this.RemoveChildren(c => c is Link);
-                foreach (var link in linkTokens) {
-                    var areas = link.GetArea(Vector2.Zero, this.TextScale).ToArray();
-                    var cluster = new Link[areas.Length];
-                    for (var i = 0; i < areas.Length; i++) {
-                        var area = areas[i];
-                        cluster[i] = this.AddChild(new Link(Anchor.TopLeft, link, area.Size, cluster) {
-                            PositionOffset = area.Location,
-                            // only allow selecting the first part of a link
-                            CanBeSelected = i == 0
-                        });
-                    }
-                }
+                foreach (var link in this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)))
+                    this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale));
             }
+            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
         }
 
         private void QueryTextCallback() {
@@ -169,34 +158,43 @@ namespace MLEM.Ui.Elements {
             /// The token that this link represents
             /// </summary>
             public readonly Token Token;
-            /// <summary>
-            /// The links that form a cluster for the given token.
-            /// This only contains more than one element if the tokenized string has previously been <see cref="TokenizedString.Split"/>.
-            /// </summary>
-            public readonly Link[] LinkCluster;
+            private readonly float textScale;
 
             /// <summary>
             /// Creates a new link element with the given settings
             /// </summary>
             /// <param name="anchor">The link's anchor</param>
             /// <param name="token">The token that this link represents</param>
-            /// <param name="size">The size of the token</param>
-            /// <param name="linkCluster">The links that form a cluster for the given token. This only contains more than one element if the tokenized string has previously been split.</param>
-            public Link(Anchor anchor, Token token, Vector2 size, Link[] linkCluster) : base(anchor, size) {
+            /// <param name="textScale">The scale that text is rendered with</param>
+            public Link(Anchor anchor, Token token, float textScale) : base(anchor, Vector2.Zero) {
                 this.Token = token;
-                this.LinkCluster = linkCluster;
-                this.OnSelected += e => {
-                    foreach (var link in this.LinkCluster)
-                        link.IsSelected = true;
-                };
-                this.OnDeselected += e => {
-                    foreach (var link in this.LinkCluster)
-                        link.IsSelected = false;
-                };
+                this.textScale = textScale;
                 this.OnPressed += e => {
                     foreach (var code in token.AppliedCodes.OfType<LinkCode>())
                         this.System?.LinkBehavior?.Invoke(code);
                 };
+            }
+
+            /// <inheritdoc />
+            public override void ForceUpdateArea() {
+                // set the position offset and size to the token's first area
+                var area = this.Token.GetArea(Vector2.Zero, this.textScale).First();
+                this.PositionOffset = area.Location;
+                this.Size = area.Size;
+                base.ForceUpdateArea();
+            }
+
+            /// <inheritdoc />
+            public override Element GetElementUnderPos(Vector2 position) {
+                var ret = base.GetElementUnderPos(position);
+                if (ret != null)
+                    return ret;
+                // check if any of our token's parts are hovered
+                foreach (var rect in this.Token.GetArea(this.Parent.DisplayArea.Location, this.Scale * this.textScale)) {
+                    if (rect.Contains(position))
+                        return this;
+                }
+                return null;
             }
 
         }
