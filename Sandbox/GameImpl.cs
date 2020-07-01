@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -123,7 +124,10 @@ namespace Sandbox {
             var sc = 4;
             var formatter = new TextFormatter();
             formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
-            var strg = "Additionally, it <a wobbly>wobbles</a> and has a <s>shadow</s> or a <s #ffff0000 4>weird shadow</s>. We like icons too! <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test> <i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test><i Test>";
+            formatter.Macros.Add(new Regex("<testmacro>"), (f, m, r) => "<test1>");
+            formatter.Macros.Add(new Regex("<test1>"), (f, m, r) => "<test2> blue");
+            formatter.Macros.Add(new Regex("<test2>"), (f, m, r) => "<c Blue>");
+            var strg = "This text uses a bunch of non-breaking~spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <testmacro> text</c>.";
             //var strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
             //var strg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
             //var strg = "This is <u>a test of the underlined formatting code</u>!";

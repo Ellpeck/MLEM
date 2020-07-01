@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -19,6 +20,12 @@ namespace MLEM.Formatting {
         /// The <see cref="Regex"/> defines how the formatting code should be matched.
         /// </summary>
         public readonly Dictionary<Regex, Code.Constructor> Codes = new Dictionary<Regex, Code.Constructor>();
+        /// <summary>
+        /// The macros that this text formatter uses.
+        /// A macro is a <see cref="Regex"/> that turns a snippet of text into another snippet of text.
+        /// Macros can resolve recursively and can resolve into formatting codes.
+        /// </summary>
+        public readonly Dictionary<Regex, Macro> Macros = new Dictionary<Regex, Macro>();
 
         /// <summary>
         /// Creates a new text formatter with a set of default formatting codes.
@@ -44,6 +51,9 @@ namespace MLEM.Formatting {
             // animation codes
             this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r, float.TryParse(m.Groups[1].Value, out var mod) ? mod : 5, float.TryParse(m.Groups[2].Value, out var heightMod) ? heightMod : 1 / 8F));
             this.Codes.Add(new Regex("</a>"), (f, m, r) => new AnimatedCode(m, r));
+
+            // macros
+            this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToCachedString());
         }
 
         /// <summary>
@@ -53,6 +63,8 @@ namespace MLEM.Formatting {
         /// <param name="s">The string to tokenize</param>
         /// <returns></returns>
         public TokenizedString Tokenize(GenericFont font, string s) {
+            // resolve macros
+            s = this.ResolveMacros(s);
             var tokens = new List<Token>();
             var codes = new List<Code>();
             // add the formatting code right at the start of the string
@@ -84,6 +96,28 @@ namespace MLEM.Formatting {
             return new TokenizedString(font, s, StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
         }
 
+        /// <summary>
+        /// Resolves the macros in the given string recursively, until no more macros can be resolved.
+        /// This method is used by <see cref="Tokenize"/>, meaning that it does not explicitly have to be called when using text formatting.
+        /// </summary>
+        /// <param name="s">The string to resolve macros for</param>
+        /// <returns>The final, recursively resolved string</returns>
+        public string ResolveMacros(string s) {
+            // resolve macros that resolve into macros
+            bool matched;
+            do {
+                matched = false;
+                foreach (var macro in this.Macros) {
+                    s = macro.Key.Replace(s, m => {
+                        // if the match evaluator was queried, then we know we matched something
+                        matched = true;
+                        return macro.Value(this, m, macro.Key);
+                    });
+                }
+            } while (matched);
+            return s;
+        }
+
         private Code GetNextCode(string s, int index, int maxIndex = int.MaxValue) {
             var (c, m, r) = this.Codes
                 .Select(kv => (c: kv.Value, m: kv.Key.Match(s, index), r: kv.Key))
@@ -98,6 +132,14 @@ namespace MLEM.Formatting {
                 s = code.Regex.Replace(s, code.GetReplacementString(font));
             return s;
         }
+
+        /// <summary>
+        /// Represents a text formatting macro. Used by <see cref="TextFormatter.Macros"/>.
+        /// </summary>
+        /// <param name="formatter">The text formatter that created this macro</param>
+        /// <param name="match">The match for the macro's regex</param>
+        /// <param name="regex">The regex used to create this macro</param>
+        public delegate string Macro(TextFormatter formatter, Match match, Regex regex);
 
     }
 }

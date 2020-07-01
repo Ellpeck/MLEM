@@ -51,3 +51,14 @@ You can then register your formatting code like this:
 ```cs
 formatter.Codes.Add(new Regex("<matchme>"), (form, match, regex) => new MyCustomCode(match, regex));
 ```
+
+## Macros
+The text formatting system additionally supports macros: Regular expressions that cause the matched text to expand into a different string. Macros can be resolved recursively, meaning that you can have macros that resolve into other macros, and so on.
+
+By default, the following macros are available:
+- `~` expands into a non-breaking space, much like in LaTeX.
+
+Adding custom macros is very similar to adding custom formatting codes:
+```cs
+formatter.Macros.Add(new Regex("matchme"), (form, match, regex) => "replacement string");
+```

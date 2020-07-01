@@ -16,6 +16,11 @@ namespace MLEM.Font {
         /// It is mainly used for <see cref="ImageCode"/>.
         /// </summary>
         public const char OneEmSpace = '\uF8FF';
+        /// <summary>
+        /// This field holds the unicode representation of a non-breaking space.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
+        /// </summary>
+        public const char Nbsp = '\u00A0';
 
         /// <summary>
         /// The bold version of this font.
@@ -99,6 +104,9 @@ namespace MLEM.Font {
                         break;
                     case OneEmSpace:
                         xOffset += this.LineHeight;
+                        break;
+                    case Nbsp:
+                        xOffset += this.MeasureChar(' ').X;
                         break;
                     default:
                         xOffset += this.MeasureChar(c).X;
