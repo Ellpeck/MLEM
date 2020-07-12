@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Misc;
@@ -21,18 +22,14 @@ namespace MLEM.Extensions {
             if (blankTexture == null) {
                 blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1);
                 blankTexture.SetData(new[] {Color.White});
-                batch.Disposing += (sender, args) => {
-                    if (blankTexture != null) {
-                        blankTexture.Dispose();
-                        blankTexture = null;
-                    }
-                };
+                AutoDispose(batch, blankTexture);
             }
             return blankTexture;
         }
 
         /// <summary>
-        /// Generates a <see cref="NinePatch"/> that has a texture with a given color and outline color
+        /// Generates a <see cref="NinePatch"/> that has a texture with a given color and outline color.
+        /// This texture is automatically disposed of when the batch is disposed.
         /// </summary>
         /// <param name="batch">The sprite batch</param>
         /// <param name="color">The fill color of the texture</param>
@@ -46,13 +43,45 @@ namespace MLEM.Extensions {
                 outli, color, outli,
                 outli, outli, outli
             });
-            batch.Disposing += (sender, args) => {
-                if (tex != null) {
-                    tex.Dispose();
-                    tex = null;
-                }
-            };
+            AutoDispose(batch, tex);
             return new NinePatch(tex, 1);
+        }
+
+        /// <summary>
+        /// Generates a 1x1 texture with the given color.
+        /// This texture is automatically disposed of when the batch is disposed.
+        /// </summary>
+        /// <param name="batch">The sprite batch</param>
+        /// <param name="color">The color of the texture</param>
+        /// <returns>A new texture with the given data</returns>
+        public static Texture2D GenerateSquareTexture(this SpriteBatch batch, Color color) {
+            var tex = new Texture2D(batch.GraphicsDevice, 1, 1);
+            tex.SetData(new[] {color});
+            AutoDispose(batch, tex);
+            return tex;
+        }
+
+        /// <summary>
+        /// Generates a texture with the given size that contains a circle.
+        /// The circle's center will be the center of the texture, and the circle will lead up to the edges of the texture.
+        /// This texture is automatically disposed of when the batch is disposed.
+        /// </summary>
+        /// <param name="batch">The sprite batch</param>
+        /// <param name="color">The color of the texture</param>
+        /// <param name="size">The width and height of the texture, and the diameter of the circle</param>
+        /// <returns>A new texture with the given data</returns>
+        public static Texture2D GenerateCircleTexture(this SpriteBatch batch, Color color, int size) {
+            var tex = new Texture2D(batch.GraphicsDevice, size, size);
+            using (var data = tex.GetTextureData()) {
+                for (var x = 0; x < tex.Width; x++) {
+                    for (var y = 0; y < tex.Height; y++) {
+                        var dist = Vector2.Distance(new Vector2(size / 2), new Vector2(x, y));
+                        data[x, y] = dist <= size / 2 ? color : Color.Transparent;
+                    }
+                }
+            }
+            AutoDispose(batch, tex);
+            return tex;
         }
 
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D,Rectangle,Rectangle?,Color,float,Vector2,SpriteEffects,float)"/>
@@ -70,6 +99,15 @@ namespace MLEM.Extensions {
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D,Rectangle,Color)"/>
         public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
             batch.Draw(texture, destinationRectangle, null, color);
+        }
+
+        private static void AutoDispose(SpriteBatch batch, Texture2D texture) {
+            batch.Disposing += (sender, ars) => {
+                if (texture != null) {
+                    texture.Dispose();
+                    texture = null;
+                }
+            };
         }
 
     }

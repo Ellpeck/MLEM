@@ -10,6 +10,7 @@ namespace MLEM.Extensions {
 
         /// <summary>
         /// Returns a new instance of <see cref="TextureData"/> which allows easily managing a texture's data with texture coordinates rather than indices.
+        /// When this is used in a using statement, the texture data is automatically stored back in the texture at the end.
         /// </summary>
         /// <param name="texture">The texture whose data to get</param>
         /// <returns>The texture's data</returns>
@@ -20,7 +21,7 @@ namespace MLEM.Extensions {
         /// <summary>
         /// A struct that represents the data of a texture, accessed through <see cref="TextureExtensions.GetTextureData"/>.
         /// </summary>
-        public struct TextureData {
+        public class TextureData : IDisposable {
 
             private readonly Texture2D texture;
             private readonly Color[] data;
@@ -90,6 +91,11 @@ namespace MLEM.Extensions {
             /// <returns>Whether the given coordinate is within bounds of the underlying texture</returns>
             public bool IsInBounds(int x, int y) {
                 return x >= 0 && y >= 0 && x < this.texture.Width && y < this.texture.Height;
+            }
+
+            /// <inheritdoc />
+            public void Dispose() {
+                this.Store();
             }
 
         }
