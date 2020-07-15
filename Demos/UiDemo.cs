@@ -138,9 +138,8 @@ namespace Demos {
             this.root.AddChild(slider);
 
             // Check the WobbleButton method for an explanation of how this button works
-            var group = this.root.AddChild(new CustomDrawGroup(Anchor.AutoLeft, new Vector2(1, 0)));
-            group.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
-                OnPressed = element => CoroutineHandler.Start(WobbleButton(group)),
+            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
+                OnPressed = element => CoroutineHandler.Start(WobbleButton(element)),
                 PositionOffset = new Vector2(0, 1)
             });
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale)") {
@@ -200,20 +199,20 @@ namespace Demos {
 
         // This method is used by the wobbling button (see above)
         // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
-        private static IEnumerator<Wait> WobbleButton(CustomDrawGroup group) {
+        private static IEnumerator<Wait> WobbleButton(Element button) {
             var counter = 0F;
             while (counter < 4 * Math.PI) {
-                // A custom draw group allows the implementation of any sort of custom rendering for all of its child components
+                // Every element allows the implementation of any sort of custom rendering for itself and all of its child components
                 // This includes simply changing the transform matrix like here, but also applying custom effects and doing
                 // anything else that can be done in the SpriteBatch's Begin call.
                 // Note that changing visual features like this
                 // has no effect on the ui's actual interaction behavior (mouse position interpretation, for example), but it can
                 // be a great way to accomplish feedback animations for buttons and so on.
-                group.Transform = Matrix.CreateTranslation((float) Math.Sin(counter / 2) * 10 * group.Scale, 0, 0);
+                button.Transform = Matrix.CreateTranslation((float) Math.Sin(counter / 2) * 10 * button.Scale, 0, 0);
                 counter += 0.1F;
                 yield return new Wait(0.01F);
             }
-            group.Transform = Matrix.Identity;
+            button.Transform = Matrix.Identity;
         }
 
         private static IEnumerator<Wait> WobbleProgressBar(ProgressBar bar) {

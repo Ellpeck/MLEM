@@ -226,6 +226,22 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
+        /// This element's transform matrix.
+        /// Can easily be scaled using <see cref="ScaleTransform"/>.
+        /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
+        /// </summary>
+        public Matrix? Transform;
+        /// <summary>
+        /// A callback for retrieving this element's <see cref="Transform"/> automatically.
+        /// </summary>
+        public TransformCallback TransformGetter = (e, time, m) => Matrix.Identity;
+        /// <summary>
+        /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
+        /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
+        /// </summary>
+        public BeginDelegate BeginImpl;
+
+        /// <summary>
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
         /// </summary>
@@ -379,6 +395,8 @@ namespace MLEM.Ui.Elements {
             this.anchor = anchor;
             this.size = size;
 
+            // force BeginImpl to be reset to the default
+            this.BeginImpl = null;
             this.OnMouseEnter += element => this.IsMouseOver = true;
             this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnTouchEnter += element => this.IsMouseOver = true;
@@ -806,8 +824,42 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Draws this element and all of its <see cref="GetRelevantChildren"/>
-        /// Note that, when this is called, <see cref="SpriteBatch.Begin"/> has already been called.
+        /// Draws this element by calling <see cref="Draw"/> internally.
+        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <see cref="SpriteBatch.Begin"/> call is also started.
+        /// </summary>
+        /// <param name="time">The game's time</param>
+        /// <param name="batch">The sprite batch to use for drawing</param>
+        /// <param name="alpha">The alpha to draw this element and its children with</param>
+        /// <param name="blendState">The blend state that is used for drawing</param>
+        /// <param name="samplerState">The sampler state that is used for drawing</param>
+        /// <param name="matrix">The transformation matrix that is used for drawing</param>
+        public void DrawAll(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+            var transform = this.Transform ?? this.TransformGetter(this, time, matrix);
+            var customDraw = this.BeginImpl != null || transform != Matrix.Identity;
+            var mat = matrix * transform;
+            if (customDraw) {
+                // end the usual draw so that we can begin our own
+                batch.End();
+                // begin our own draw call
+                if (this.BeginImpl != null) {
+                    this.BeginImpl(this, time, batch, alpha, blendState, samplerState, mat);
+                } else {
+                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, mat);
+                }
+            }
+            // draw content in custom begin call
+            this.Draw(time, batch, alpha, blendState, samplerState, mat);
+            if (customDraw) {
+                // end our draw
+                batch.End();
+                // begin the usual draw again for other elements
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, matrix);
+            }
+        }
+
+        /// <summary>
+        /// Draws this element and all of its children. Override this method to draw the content of custom elements.
+        /// Note that, when this is called, <see cref="SpriteBatch.Begin"/> has already been called with custom <see cref="Transform"/> etc. applied.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
@@ -822,7 +874,7 @@ namespace MLEM.Ui.Elements {
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
-                    child.Draw(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
+                    child.DrawAll(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
             }
         }
 
@@ -889,6 +941,15 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
+        /// Scales this element's <see cref="Transform"/> matrix based on the given scale and origin.
+        /// </summary>
+        /// <param name="scale">The scale to use</param>
+        /// <param name="origin">The origin to use for scaling, or null to use this element's center point</param>
+        public void ScaleTransform(float scale, Vector2? origin = null) {
+            this.Transform = Matrix.CreateScale(scale, scale, 1) * Matrix.CreateTranslation(new Vector3((1 - scale) * (origin ?? this.DisplayArea.Center), 0));
+        }
+
+        /// <summary>
         /// Initializes this element's <see cref="StyleProp{T}"/> instances using the ui system's <see cref="UiStyle"/>.
         /// </summary>
         /// <param name="style">The new style</param>
@@ -948,6 +1009,26 @@ namespace MLEM.Ui.Elements {
         /// <param name="dir">The direction of the gamepad button that was pressed</param>
         /// <param name="usualNext">The element that is considered to be the next element by default</param>
         public delegate Element GamepadNextElementCallback(Direction2 dir, Element usualNext);
+
+        /// <summary>
+        /// A delegate method used for <see cref="CustomDrawGroup.BeginImpl"/>
+        /// </summary>
+        /// <param name="element">The custom draw group</param>
+        /// <param name="time">The game's time</param>
+        /// <param name="batch">The sprite batch used for drawing</param>
+        /// <param name="alpha">This element's draw alpha</param>
+        /// <param name="blendState">The blend state used for drawing</param>
+        /// <param name="samplerState">The sampler state used for drawing</param>
+        /// <param name="matrix">The transform matrix used for drawing</param>
+        public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
+
+        /// <summary>
+        /// A delegate method used for <see cref="CustomDrawGroup.TransformGetter"/>
+        /// </summary>
+        /// <param name="element">The element whose transform to get</param>
+        /// <param name="time">The game's time</param>
+        /// <param name="matrix">The regular transform matrix</param>
+        public delegate Matrix TransformCallback(Element element, GameTime time, Matrix matrix);
 
     }
 }
