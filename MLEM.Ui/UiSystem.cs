@@ -260,7 +260,7 @@ namespace MLEM.Ui {
                     continue;
                 batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, null, null, null, root.Transform);
                 var alpha = this.DrawAlpha * root.Element.DrawAlpha;
-                root.Element.DrawAll(time, batch, alpha, this.BlendState, this.SamplerState, root.Transform);
+                root.Element.DrawTransformed(time, batch, alpha, this.BlendState, this.SamplerState, root.Transform);
                 batch.End();
             }
         }

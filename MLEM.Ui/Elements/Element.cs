@@ -395,8 +395,6 @@ namespace MLEM.Ui.Elements {
             this.anchor = anchor;
             this.size = size;
 
-            // force BeginImpl to be reset to the default
-            this.BeginImpl = null;
             this.OnMouseEnter += element => this.IsMouseOver = true;
             this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnTouchEnter += element => this.IsMouseOver = true;
@@ -833,7 +831,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="blendState">The blend state that is used for drawing</param>
         /// <param name="samplerState">The sampler state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        public void DrawAll(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var transform = this.Transform ?? this.TransformGetter(this, time, matrix);
             var customDraw = this.BeginImpl != null || transform != Matrix.Identity;
             var mat = matrix * transform;
@@ -874,7 +872,7 @@ namespace MLEM.Ui.Elements {
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
-                    child.DrawAll(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
+                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
             }
         }
 
@@ -1011,7 +1009,7 @@ namespace MLEM.Ui.Elements {
         public delegate Element GamepadNextElementCallback(Direction2 dir, Element usualNext);
 
         /// <summary>
-        /// A delegate method used for <see cref="CustomDrawGroup.BeginImpl"/>
+        /// A delegate method used for <see cref="BeginImpl"/>
         /// </summary>
         /// <param name="element">The custom draw group</param>
         /// <param name="time">The game's time</param>
@@ -1023,7 +1021,7 @@ namespace MLEM.Ui.Elements {
         public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
 
         /// <summary>
-        /// A delegate method used for <see cref="CustomDrawGroup.TransformGetter"/>
+        /// A delegate method used for <see cref="TransformGetter"/>
         /// </summary>
         /// <param name="element">The element whose transform to get</param>
         /// <param name="time">The game's time</param>
