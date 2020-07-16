@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -79,6 +81,11 @@ namespace MLEM.Ui {
         /// </summary>
         public readonly Keybind RightButtons = new Keybind().Add(Buttons.DPadRight).Add(Buttons.LeftThumbstickRight);
         /// <summary>
+        /// All <see cref="Keybind"/> instances used by these ui controls.
+        /// This can be used to easily serialize and deserialize all ui keybinds.
+        /// </summary>
+        public readonly Keybind[] Keybinds;
+        /// <summary>
         /// The zero-based index of the <see cref="GamePad"/> used for gamepad input.
         /// If this index is lower than 0, every connected gamepad will trigger input.
         /// </summary>
@@ -120,6 +127,9 @@ namespace MLEM.Ui {
             this.System = system;
             this.Input = inputHandler ?? new InputHandler();
             this.IsInputOurs = inputHandler == null;
+            this.Keybinds = typeof(UiControls).GetFields()
+                .Where(f => f.FieldType == typeof(Keybind))
+                .Select(f => (Keybind) f.GetValue(this)).ToArray();
 
             // enable all required gestures
             InputHandler.EnableGestures(GestureType.Tap, GestureType.Hold);
