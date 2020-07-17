@@ -21,10 +21,10 @@ namespace Demos {
 
         static GameImpl() {
             Demos.Add("Ui", ("An in-depth demonstration of the MLEM.Ui package and its abilities", game => new UiDemo(game)));
+            Demos.Add("Easings", ("An example of MLEM's Easings class, an adaptation of easings.net", game => new EasingsDemo(game)));
+            Demos.Add("Pathfinding", ("An example of MLEM's A* pathfinding implementation in 2D", game => new PathfindingDemo(game)));
             Demos.Add("Animation and Texture Atlas", ("An example of UniformTextureAtlases, SpriteAnimations and SpriteAnimationGroups", game => new AnimationDemo(game)));
             Demos.Add("Auto Tiling", ("A demonstration of the AutoTiling class that MLEM provides", game => new AutoTilingDemo(game)));
-            Demos.Add("Pathfinding", ("An example of MLEM's A* pathfinding implementation in 2D", game => new PathfindingDemo(game)));
-            Demos.Add("Easings", ("An example of MLEM's Easings class, an adaptation of easings.net", game => new EasingsDemo(game)));
         }
 
         public GameImpl() {

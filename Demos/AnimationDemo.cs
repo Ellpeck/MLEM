@@ -6,12 +6,16 @@ using MLEM.Animations;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
+using MLEM.Ui;
+using MLEM.Ui.Elements;
 
 namespace Demos {
     public class AnimationDemo : Demo {
 
         private SpriteAnimationGroup group;
         private Direction2 facing = Direction2.Down;
+        private Group buttons;
+        private bool stop;
 
         public AnimationDemo(MlemGame game) : base(game) {
         }
@@ -48,26 +52,38 @@ namespace Demos {
             // you can also add a priority to an animation in the group (10 in this case, which is higher than the default of 0)
             // if two animations' playing conditions are both true, then the one with the higher priority will be picked to play
             // in this instance, a standing "animation" is displayed when we're facing down and also holding the space key
-            this.group.Add(new SpriteAnimation(1F, atlas[0, 0]) {Name = "DownStanding"}, () => this.facing == Direction2.Down && this.InputHandler.IsKeyDown(Keys.Space), 10);
+            this.group.Add(new SpriteAnimation(1F, atlas[0, 0]) {Name = "DownStanding"}, () => this.facing == Direction2.Down && this.stop, 10);
+            this.group.Add(new SpriteAnimation(1F, atlas[1, 0]) {Name = "UpStanding"}, () => this.facing == Direction2.Up && this.stop, 10);
+            this.group.Add(new SpriteAnimation(1F, atlas[2, 0]) {Name = "LeftStanding"}, () => this.facing == Direction2.Left && this.stop, 10);
+            this.group.Add(new SpriteAnimation(1F, atlas[3, 0]) {Name = "RightStanding"}, () => this.facing == Direction2.Right && this.stop, 10);
 
             // you can also add a callback to see when the animation used changes
             this.group.OnAnimationChanged += (anim, newAnim) => {
                 Console.WriteLine("Changing anim from " + (anim?.Name ?? "None") + " to " + (newAnim?.Name ?? "None"));
             };
+
+            // some ui elements to interact with the character
+            this.buttons = new Group(Anchor.TopCenter, Vector2.One) {SetWidthBasedOnChildren = true};
+            this.UiRoot.AddChild(this.buttons);
+            this.buttons.AddChild(new Button(Anchor.AutoInlineIgnoreOverflow, new Vector2(10), "^") {
+                OnPressed = e => this.facing = Direction2.Up
+            });
+            this.buttons.AddChild(new Button(Anchor.AutoInlineIgnoreOverflow, new Vector2(10), "v") {
+                OnPressed = e => this.facing = Direction2.Down
+            });
+            this.buttons.AddChild(new Button(Anchor.AutoInlineIgnoreOverflow, new Vector2(10), "<") {
+                OnPressed = e => this.facing = Direction2.Left
+            });
+            this.buttons.AddChild(new Button(Anchor.AutoInlineIgnoreOverflow, new Vector2(10), ">") {
+                OnPressed = e => this.facing = Direction2.Right
+            });
+            this.buttons.AddChild(new Button(Anchor.AutoCenter, new Vector2(30, 10), "Stand/Walk") {
+                OnPressed = e => this.stop = !this.stop
+            });
         }
 
         public override void Update(GameTime gameTime) {
             base.Update(gameTime);
-
-            if (this.InputHandler.IsKeyDown(Keys.Down))
-                this.facing = Direction2.Down;
-            else if (this.InputHandler.IsKeyDown(Keys.Up))
-                this.facing = Direction2.Up;
-            else if (this.InputHandler.IsKeyDown(Keys.Left))
-                this.facing = Direction2.Left;
-            else if (this.InputHandler.IsKeyDown(Keys.Right))
-                this.facing = Direction2.Right;
-
             // update the animation group
             // if not using a group, just update the animation itself here
             this.group.Update(gameTime);
@@ -83,6 +99,10 @@ namespace Demos {
             this.SpriteBatch.End();
 
             base.DoDraw(gameTime);
+        }
+
+        public override void Clear() {
+            this.UiRoot.RemoveChild(this.buttons);
         }
 
     }

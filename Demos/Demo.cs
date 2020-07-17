@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Input;
 using MLEM.Startup;
 using MLEM.Ui;
+using MLEM.Ui.Elements;
 
 namespace Demos {
     public class Demo {
@@ -12,6 +13,7 @@ namespace Demos {
         public GraphicsDevice GraphicsDevice => this.Game.GraphicsDevice;
         public InputHandler InputHandler => this.Game.InputHandler;
         public UiSystem UiSystem => this.Game.UiSystem;
+        public Element UiRoot => this.UiSystem.Get("DemoUi").Element;
 
         public Demo(MlemGame game) {
             this.Game = game;

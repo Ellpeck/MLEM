@@ -29,7 +29,7 @@ namespace Demos {
                 OnPressed = e => this.current = (this.current + 1) % Easings.Length
             });
             this.group.AddChild(new Paragraph(Anchor.AutoCenter, 1, p => EasingFields[this.current].Name, true));
-            this.UiSystem.Get("DemoUi").Element.AddChild(this.group);
+            this.UiRoot.AddChild(this.group);
         }
 
         public override void Clear() {

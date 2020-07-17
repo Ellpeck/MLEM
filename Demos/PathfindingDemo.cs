@@ -8,6 +8,8 @@ using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Pathfinding;
 using MLEM.Startup;
+using MLEM.Ui;
+using MLEM.Ui.Elements;
 
 namespace Demos {
     public class PathfindingDemo : Demo {
@@ -15,6 +17,7 @@ namespace Demos {
         private bool[,] world;
         private AStar2 pathfinder;
         private List<Point> path;
+        private Button regenerateButton;
 
         public PathfindingDemo(MlemGame game) : base(game) {
         }
@@ -62,17 +65,11 @@ namespace Demos {
         }
 
         public override void LoadContent() {
-            base.LoadContent();
+            this.regenerateButton = new Button(Anchor.TopCenter, new Vector2(30, 10), "Regenerate") {
+                OnPressed = e => this.Init()
+            };
+            this.UiRoot.AddChild(this.regenerateButton);
             this.Init();
-        }
-
-        public override void Update(GameTime gameTime) {
-            base.Update(gameTime);
-
-            // when pressing the left mouse button, generate a new world and find a new path
-            if (this.InputHandler.IsMouseButtonPressed(MouseButton.Left)) {
-                this.Init();
-            }
         }
 
         public override void DoDraw(GameTime gameTime) {
@@ -100,6 +97,10 @@ namespace Demos {
             this.SpriteBatch.End();
 
             base.DoDraw(gameTime);
+        }
+
+        public override void Clear() {
+            this.UiRoot.RemoveChild(this.regenerateButton);
         }
 
     }

@@ -61,7 +61,7 @@ namespace Demos {
             this.root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
             this.root.ScrollBar.SmoothScrolling = true;
             // add the root to the demos' ui
-            this.UiSystem.Get("DemoUi").Element.AddChild(this.root);
+            this.UiRoot.AddChild(this.root);
 
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a small demo for MLEM.Ui, a user interface library that is part of the MLEM Library by Ellpeck for MonoGame."));
             var image = this.root.AddChild(new Image(Anchor.AutoCenter, new Vector2(50, 50), new TextureRegion(this.testTexture, 0, 0, 8, 8)) {IsHidden = true, Padding = new Vector2(3)});
