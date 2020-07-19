@@ -4,7 +4,7 @@ using MLEM.Misc;
 
 namespace MLEM.Extensions {
     /// <summary>
-    /// A set of extensions for dealing with <see cref="float"/>, <see cref="Vector2"/>, <see cref="Vector3"/>, <see cref="Vector4"/>, <see cref="Point"/>, <see cref="Rectangle"/> and <see cref="RectangleF"/>
+    /// A set of extensions for dealing with <see cref="float"/>, <see cref="Vector2"/>, <see cref="Vector3"/>, <see cref="Vector4"/>, <see cref="Point"/>, <see cref="Matrix"/>, <see cref="Rectangle"/> and <see cref="RectangleF"/>
     /// </summary>
     public static class NumberExtensions {
 
@@ -141,6 +141,57 @@ namespace MLEM.Extensions {
             rect.Width -= padding.Width;
             rect.Height -= padding.Height;
             return rect;
+        }
+
+        /// <summary>
+        /// Turns the given 3-dimensional vector into a 2-dimensional vector by chopping off the z coordinate.
+        /// </summary>
+        /// <param name="vector">The vector to convert</param>
+        /// <returns>The resulting 2-dimensional vector</returns>
+        public static Vector2 ToVector2(this Vector3 vector) {
+            return new Vector2(vector.X, vector.Y);
+        }
+
+        /// <summary>
+        /// Returns the 3-dimensional translation of the given matrix.
+        /// </summary>
+        /// <param name="matrix">The matrix</param>
+        /// <returns>The translation of the matrix</returns>
+        public static Vector3 Translation(this Matrix matrix) {
+            return new Vector3(matrix.M41, matrix.M42, matrix.M43);
+        }
+
+        /// <summary>
+        /// Returns the 3-dimensional scale of the given matrix.
+        /// </summary>
+        /// <param name="matrix">The matrix</param>
+        /// <returns>The scale of the matrix</returns>
+        public static Vector3 Scale(this Matrix matrix) {
+            float xs = Math.Sign(matrix.M11 * matrix.M12 * matrix.M13 * matrix.M14) < 0 ? -1 : 1;
+            float ys = Math.Sign(matrix.M21 * matrix.M22 * matrix.M23 * matrix.M24) < 0 ? -1 : 1;
+            float zs = Math.Sign(matrix.M31 * matrix.M32 * matrix.M33 * matrix.M34) < 0 ? -1 : 1;
+            Vector3 scale;
+            scale.X = xs * (float) Math.Sqrt(matrix.M11 * matrix.M11 + matrix.M12 * matrix.M12 + matrix.M13 * matrix.M13);
+            scale.Y = ys * (float) Math.Sqrt(matrix.M21 * matrix.M21 + matrix.M22 * matrix.M22 + matrix.M23 * matrix.M23);
+            scale.Z = zs * (float) Math.Sqrt(matrix.M31 * matrix.M31 + matrix.M32 * matrix.M32 + matrix.M33 * matrix.M33);
+            return scale;
+        }
+
+        /// <summary>
+        /// Returns the rotation that the given matrix represents, as a <see cref="Quaternion"/>.
+        /// Returns <see cref="Quaternion.Identity"/> if the matrix does not contain valid rotation information.
+        /// </summary>
+        /// <param name="matrix">The matrix</param>
+        /// <returns>The rotation of the matrix</returns>
+        public static Quaternion Rotation(this Matrix matrix) {
+            var (scX, scY, scZ) = matrix.Scale();
+            if (scX == 0.0 || scY == 0.0 || scZ == 0.0)
+                return Quaternion.Identity;
+            return Quaternion.CreateFromRotationMatrix(new Matrix(
+                matrix.M11 / scX, matrix.M12 / scX, matrix.M13 / scX, 0,
+                matrix.M21 / scY, matrix.M22 / scY, matrix.M23 / scY, 0,
+                matrix.M31 / scZ, matrix.M32 / scZ, matrix.M33 / scZ, 0,
+                0, 0, 0, 1));
         }
 
     }
