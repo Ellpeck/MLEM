@@ -834,7 +834,7 @@ namespace MLEM.Ui.Elements {
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var transform = this.Transform ?? this.TransformGetter(this, time, matrix);
             var customDraw = this.BeginImpl != null || transform != Matrix.Identity;
-            var mat = matrix * transform;
+            var mat = transform * matrix;
             if (customDraw) {
                 // end the usual draw so that we can begin our own
                 batch.End();

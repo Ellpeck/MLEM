@@ -142,6 +142,22 @@ namespace Demos {
                 OnPressed = element => CoroutineHandler.Start(WobbleButton(element)),
                 PositionOffset = new Vector2(0, 1)
             });
+            // Another button that shows animations!
+            var fancyHoverTimer = 0D;
+            var fancyButton = this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Fancy Hover") {
+                PositionOffset = new Vector2(0, 1),
+                OnUpdated = (e, time) => {
+                    if (e.IsMouseOver && fancyHoverTimer <= 0.5F)
+                        return;
+                    if (fancyHoverTimer > 0) {
+                        fancyHoverTimer -= time.ElapsedGameTime.TotalSeconds * 3;
+                        e.ScaleTransform(1 + (float) Math.Sin(fancyHoverTimer * MathHelper.Pi) * 0.05F);
+                    } else {
+                        e.Transform = Matrix.Identity;
+                    }
+                }
+            });
+            fancyButton.OnMouseEnter += e => fancyHoverTimer = 1;
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale)") {
                 OnPressed = element => {
                     if (element.Root.Transform == Matrix.Identity) {
