@@ -230,11 +230,7 @@ namespace MLEM.Ui.Elements {
         /// Can easily be scaled using <see cref="ScaleTransform"/>.
         /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
         /// </summary>
-        public Matrix? Transform;
-        /// <summary>
-        /// A callback for retrieving this element's <see cref="Transform"/> automatically.
-        /// </summary>
-        public TransformCallback TransformGetter = (e, time, m) => Matrix.Identity;
+        public Matrix Transform = Matrix.Identity;
         /// <summary>
         /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
         /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
@@ -832,9 +828,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="samplerState">The sampler state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            var transform = this.Transform ?? this.TransformGetter(this, time, matrix);
-            var customDraw = this.BeginImpl != null || transform != Matrix.Identity;
-            var mat = transform * matrix;
+            var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
+            var mat = this.Transform * matrix;
             if (customDraw) {
                 // end the usual draw so that we can begin our own
                 batch.End();
@@ -902,6 +897,8 @@ namespace MLEM.Ui.Elements {
         public virtual Element GetElementUnderPos(Vector2 position) {
             if (this.IsHidden)
                 return null;
+            if (this.Transform != Matrix.Identity)
+                position = Vector2.Transform(position, Matrix.Invert(this.Transform));
             var children = this.GetRelevantChildren();
             for (var i = children.Count - 1; i >= 0; i--) {
                 var element = children[i].GetElementUnderPos(position);
@@ -1019,14 +1016,6 @@ namespace MLEM.Ui.Elements {
         /// <param name="samplerState">The sampler state used for drawing</param>
         /// <param name="matrix">The transform matrix used for drawing</param>
         public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
-
-        /// <summary>
-        /// A delegate method used for <see cref="TransformGetter"/>
-        /// </summary>
-        /// <param name="element">The element whose transform to get</param>
-        /// <param name="time">The game's time</param>
-        /// <param name="matrix">The regular transform matrix</param>
-        public delegate Matrix TransformCallback(Element element, GameTime time, Matrix matrix);
 
     }
 }
