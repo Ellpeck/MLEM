@@ -19,10 +19,15 @@ namespace MLEM.Textures {
         /// </summary>
         public readonly Texture2D Texture;
         /// <summary>
-        /// Returns the texture region with the given name.
+        /// Returns the texture region with the given name, or null if it does not exist.
         /// </summary>
         /// <param name="name">The region's name</param>
-        public TextureRegion this[string name] => this.regions[name];
+        public TextureRegion this[string name] {
+            get {
+                this.regions.TryGetValue(name, out var ret);
+                return ret;
+            }
+        }
         /// <summary>
         /// Returns an enumerable of all of the <see cref="TextureRegion"/>s in this atlas.
         /// </summary>
