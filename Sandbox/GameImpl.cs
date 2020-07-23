@@ -143,6 +143,11 @@ namespace Sandbox {
             var region = new TextureRegion(round) {Pivot = new Vector2(0.5F)};
             var region2 = new TextureRegion(round);
 
+            var atlas = this.Content.LoadTextureAtlas("Textures/Furniture");
+            foreach (var r in atlas.Regions) {
+                Console.WriteLine(r.Name + ": " + r.U + " " + r.V + " " + r.Width + " " + r.Height + " " + r.PivotPixels);
+            }
+
             this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
                 //this.SpriteBatch.Draw(square, new Rectangle(10, 10, 400, 400), Color.White);
