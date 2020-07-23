@@ -41,6 +41,22 @@ namespace MLEM.Textures {
         /// The height of this texture region
         /// </summary>
         public int Height => this.Area.Height;
+        /// <summary>
+        /// The pivot point of this texture region, where 0, 0 is the top left and 1, 1 is the bottom right of the texture.
+        /// When drawing, this will be seen as the origin from where to start drawing.
+        /// </summary>
+        public Vector2 Pivot = Vector2.Zero;
+        /// <summary>
+        /// The <see cref="Pivot"/> of this texture region, but in absolute pixels rather than percentage.
+        /// </summary>
+        public Vector2 PivotPixels {
+            get => this.Pivot * this.Size.ToVector2();
+            set => this.Pivot = value / this.Size.ToVector2();
+        }
+        /// <summary>
+        /// The name of this texture region. By default, this name is <see cref="string.Empty"/>.
+        /// </summary>
+        public string Name = string.Empty;
 
         /// <summary>
         /// Creates a new texture region from a texture and a rectangle which defines the region's area
@@ -88,7 +104,7 @@ namespace MLEM.Textures {
 
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
         public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            batch.Draw(texture.Texture, position, texture.Area, color, rotation, origin, scale, effects, layerDepth);
+            batch.Draw(texture.Texture, position, texture.Area, color, rotation, origin + texture.PivotPixels, scale, effects, layerDepth);
         }
 
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
@@ -98,12 +114,12 @@ namespace MLEM.Textures {
 
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
         public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
-            batch.Draw(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin, effects, layerDepth);
+            batch.Draw(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin + texture.PivotPixels, effects, layerDepth);
         }
 
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
         public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
-            batch.Draw(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin, effects, layerDepth);
+            batch.Draw(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin + texture.PivotPixels, effects, layerDepth);
         }
 
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>

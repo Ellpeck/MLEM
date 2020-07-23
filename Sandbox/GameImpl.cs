@@ -23,6 +23,8 @@ using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
+using MonoGame.Extended.Sprites;
+using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tiled;
 using RectangleF = MonoGame.Extended.RectangleF;
 
@@ -136,12 +138,18 @@ namespace Sandbox {
             this.tokenized.Split(font, 400, sc);
 
             var square = this.SpriteBatch.GenerateSquareTexture(Color.Yellow);
-            var round = this.SpriteBatch.GenerateCircleTexture(Color.Green, 1024);
+            var round = this.SpriteBatch.GenerateCircleTexture(Color.Green, 128);
+
+            var region = new TextureRegion(round) {Pivot = new Vector2(0.5F)};
+            var region2 = new TextureRegion(round);
 
             this.OnDraw += (g, time) => {
                 this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
-                this.SpriteBatch.Draw(square, new Rectangle(10, 10, 400, 400), Color.White);
-                this.SpriteBatch.Draw(round, new Rectangle(10, 10, 400, 400), Color.White);
+                //this.SpriteBatch.Draw(square, new Rectangle(10, 10, 400, 400), Color.White);
+                //this.SpriteBatch.Draw(round, new Rectangle(10, 10, 400, 400), Color.White);
+                this.SpriteBatch.Draw(region, new Vector2(50, 50), Color.White, 0, Vector2.Zero, 0.5F, SpriteEffects.None, 0);
+                this.SpriteBatch.Draw(region2, new Vector2(50, 50), Color.Yellow * 0.5F, 0, Vector2.Zero, 0.5F, SpriteEffects.None, 0);
+                this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Vector2(50, 50), Color.Pink);
 
                 //this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
                 //font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
