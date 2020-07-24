@@ -11,6 +11,8 @@ namespace MLEM.Textures {
     /// <summary>
     /// This class represents an atlas of <see cref="TextureRegion"/> objects which are loaded from a special texture atlas file. 
     /// To load a data texture atlas, you can use <see cref="DataTextureAtlasExtensions.LoadTextureAtlas"/>.
+    /// To see the structure of a Data Texture Atlas, you can check out the sandbox project: <see href="https://github.com/Ellpeck/MLEM/blob/master/Sandbox/Content/Textures/Furniture.atlas"/>.
+    /// Additionally, if you are using Aseprite, there is a script to automatically populate it: <see href="https://github.com/Ellpeck/MLEM/blob/master/Utilities/Populate%20Data%20Texture%20Atlas.lua"/>
     /// </summary>
     public class DataTextureAtlas {
 
