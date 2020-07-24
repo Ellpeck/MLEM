@@ -56,6 +56,9 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Furniture.png
 
+#begin Textures/Test.png
+/copy:Textures/Test.png
+
 #begin Tiled/Map.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
