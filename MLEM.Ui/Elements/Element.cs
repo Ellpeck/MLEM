@@ -588,7 +588,7 @@ namespace MLEM.Ui.Elements {
                             break;
                         case Anchor.AutoInlineIgnoreOverflow:
                             pos.X = prevArea.Right + this.ScaledOffset.X;
-                            pos.Y = prevArea.Y;
+                            pos.Y = prevArea.Y + this.ScaledOffset.Y;
                             break;
                     }
                 }
