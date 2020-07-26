@@ -60,7 +60,7 @@ namespace MLEM.Cameras {
                 var sc = this.ActualScale;
                 var pos = -this.Position * sc;
                 if (this.roundPosition)
-                    pos = pos.Floor();
+                    pos = pos.FloorCopy();
                 return Matrix.CreateScale(sc, sc, 1) * Matrix.CreateTranslation(new Vector3(pos, 0));
             }
         }

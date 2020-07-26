@@ -45,17 +45,17 @@ namespace MLEM.Extensions {
         }
 
         /// <inheritdoc cref="Math.Floor(decimal)"/>
-        public static Vector2 Floor(this Vector2 vec) {
+        public static Vector2 FloorCopy(this Vector2 vec) {
             return new Vector2(vec.X.Floor(), vec.Y.Floor());
         }
 
         /// <inheritdoc cref="Math.Floor(decimal)"/>
-        public static Vector3 Floor(this Vector3 vec) {
+        public static Vector3 FloorCopy(this Vector3 vec) {
             return new Vector3(vec.X.Floor(), vec.Y.Floor(), vec.Z.Floor());
         }
 
         /// <inheritdoc cref="Math.Floor(decimal)"/>
-        public static Vector4 Floor(this Vector4 vec) {
+        public static Vector4 FloorCopy(this Vector4 vec) {
             return new Vector4(vec.X.Floor(), vec.Y.Floor(), vec.Z.Floor(), vec.W.Floor());
         }
 
