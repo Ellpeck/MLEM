@@ -8,7 +8,7 @@ namespace Tests.Stub {
 
         private readonly Dictionary<string, object> assets;
 
-        public StubContent(Dictionary<string, object> assets) : base(new StubServices()) {
+        public StubContent(StubGame game, Dictionary<string, object> assets) : base(game.Services) {
             this.RootDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "Content");
             this.assets = assets;
         }

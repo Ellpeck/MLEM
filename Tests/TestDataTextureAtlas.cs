@@ -12,8 +12,9 @@ namespace Tests {
 
         [Test]
         public void Test() {
-            var content = new StubContent(new Dictionary<string, object> {
-                {"Texture", new Texture2D(new StubGraphics(), 1, 1)}
+            var game = new StubGame();
+            var content = new StubContent(game, new Dictionary<string, object> {
+                {"Texture", new Texture2D(game.GraphicsDevice, 1, 1)}
             });
             var atlas = content.LoadTextureAtlas("Texture");
             Assert.AreEqual(atlas.Regions.Count(), 5);

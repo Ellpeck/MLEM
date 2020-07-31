@@ -24,7 +24,7 @@ namespace Tests {
         [Test]
         public void TestFormatting() {
             var formatter = new TextFormatter();
-            formatter.AddImage("Test", new TextureRegion(new Texture2D(new StubGraphics(), 1, 1), 0, 8, 24, 24));
+            formatter.AddImage("Test", new TextureRegion(new Texture2D(new StubGame().GraphicsDevice, 1, 1), 0, 8, 24, 24));
             const string strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book.";
             var ret = formatter.Tokenize(new StubFont(), strg);
             Assert.AreEqual(ret.Tokens.Length, 13);
