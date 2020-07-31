@@ -30,14 +30,7 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
     DotNetCoreBuild("Demos/Demos.csproj", settings);
 });
 
-Task("Test").IsDependentOn("Build").Does(() => {
-    DotNetCoreTest("Tests/Tests.csproj", new DotNetCoreTestSettings {
-        NoWorkingDirectory = true,
-        Configuration = config,
-    });
-});
-
-Task("Pack").IsDependentOn("Test").Does(() => {
+Task("Pack").IsDependentOn("Build").Does(() => {
     var settings = new DotNetCorePackSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
