@@ -74,7 +74,10 @@ namespace MLEM.Data {
         }
 
         private static object Construct(Type t, BindingFlags flags) {
-            return t.GetConstructor(flags, null, Type.EmptyTypes, null).Invoke(null);
+            var constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
+            if (constructor == null)
+                throw new NullReferenceException($"Type {t} does not have a parameterless constructor with the required visibility");
+            return constructor.Invoke(null);
         }
 
     }
