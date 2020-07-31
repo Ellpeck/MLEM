@@ -58,10 +58,10 @@ namespace MLEM.Data {
         public static void DeepCopyInto<T>(this T obj, T otherObj, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) {
             foreach (var field in obj.GetType().GetFields(flags)) {
                 var val = field.GetValue(obj);
-                if (field.FieldType.IsValueType) {
-                    // if we're a value type (struct or primitive), we can just set the value
+                if (val == null || field.FieldType.IsValueType) {
+                    // if we're a value type (struct or primitive) or null, we can just set the value
                     field.SetValue(otherObj, val);
-                } else if (val != null) {
+                } else {
                     var otherVal = field.GetValue(otherObj);
                     // if the object we want to copy into doesn't have a value yet, we create one
                     if (otherVal == null) {
@@ -69,9 +69,6 @@ namespace MLEM.Data {
                         field.SetValue(otherObj, otherVal);
                     }
                     val.DeepCopyInto(otherVal, flags);
-                } else {
-                    // if the value is null, we ensure that the value of the resulting object is also reset
-                    field.SetValue(otherObj, null);
                 }
             }
         }
