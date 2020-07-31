@@ -153,15 +153,6 @@ namespace MLEM.Extensions {
         }
 
         /// <summary>
-        /// Returns the 3-dimensional translation of the given matrix.
-        /// </summary>
-        /// <param name="matrix">The matrix</param>
-        /// <returns>The translation of the matrix</returns>
-        public static Vector3 Translation(this Matrix matrix) {
-            return new Vector3(matrix.M41, matrix.M42, matrix.M43);
-        }
-
-        /// <summary>
         /// Returns the 3-dimensional scale of the given matrix.
         /// </summary>
         /// <param name="matrix">The matrix</param>
@@ -185,7 +176,7 @@ namespace MLEM.Extensions {
         /// <returns>The rotation of the matrix</returns>
         public static Quaternion Rotation(this Matrix matrix) {
             var (scX, scY, scZ) = matrix.Scale();
-            if (scX == 0.0 || scY == 0.0 || scZ == 0.0)
+            if (scX == 0 || scY == 0 || scZ == 0)
                 return Quaternion.Identity;
             return Quaternion.CreateFromRotationMatrix(new Matrix(
                 matrix.M11 / scX, matrix.M12 / scX, matrix.M13 / scX, 0,
@@ -193,6 +184,5 @@ namespace MLEM.Extensions {
                 matrix.M31 / scZ, matrix.M32 / scZ, matrix.M33 / scZ, 0,
                 0, 0, 0, 1));
         }
-
     }
 }

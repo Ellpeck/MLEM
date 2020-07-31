@@ -1,5 +1,6 @@
 #addin Cake.DocFx&version=0.13.1
 #tool docfx.console&version=2.51.0
+#tool NUnit.ConsoleRunner&version=3.11.1
 
 // this is the upcoming version, for prereleases
 var version = Argument("version", "4.1.0");
@@ -29,7 +30,14 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
     DotNetCoreBuild("Demos/Demos.csproj", settings);
 });
 
-Task("Pack").IsDependentOn("Build").Does(() => {
+Task("Test").IsDependentOn("Build").Does(() => {
+    DotNetCoreTest("Tests/Tests.csproj", new DotNetCoreTestSettings {
+        NoWorkingDirectory = true,
+        Configuration = config,
+    });
+});
+
+Task("Pack").IsDependentOn("Test").Does(() => {
     var settings = new DotNetCorePackSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
