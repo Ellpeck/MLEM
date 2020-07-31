@@ -92,17 +92,19 @@ namespace Sandbox {
             var obj = new Test {
                 Vec = new Vector2(10, 20),
                 Point = new Point(20, 30),
-                Rectangle = new Rectangle(1, 2, 3, 4),
-                RectangleF = new RectangleF(4, 5, 6, 7).ToMlem(),
-                Dir = Direction2.Left
+                Dir = Direction2.Left,
+                OtherTest = new Test {
+                    Vec = new Vector2(70, 30),
+                    Dir = Direction2.Right
+                }
             };
             Console.WriteLine(obj);
 
-            var copy = obj.Copy();
+            var copy = obj.DeepCopy();
             Console.WriteLine(copy);
 
-            var intoCopy = new Test();
-            obj.CopyInto(intoCopy);
+            var intoCopy = new Test {OtherTest = new Test()};
+            obj.DeepCopyInto(intoCopy);
             Console.WriteLine(intoCopy);
 
             var writer = new StringWriter();
@@ -214,12 +216,11 @@ namespace Sandbox {
 
             public Vector2 Vec;
             public Point Point;
-            public Rectangle Rectangle;
-            public MLEM.Misc.RectangleF RectangleF;
             public Direction2 Dir { get; set; }
+            public Test OtherTest;
 
             public override string ToString() {
-                return $"{nameof(this.Vec)}: {this.Vec}, {nameof(this.Point)}: {this.Point}, {nameof(this.Rectangle)}: {this.Rectangle}, {nameof(this.RectangleF)}: {this.RectangleF}, {nameof(this.Dir)}: {this.Dir}";
+                return $"{this.GetHashCode()}: {nameof(this.Vec)}: {this.Vec}, {nameof(this.Point)}: {this.Point}, {nameof(this.OtherTest)}: {this.OtherTest}, {nameof(this.Dir)}: {this.Dir}";
             }
 
         }

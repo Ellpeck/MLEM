@@ -16,13 +16,27 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the object to copy</typeparam>
         /// <returns>A shallow copy of the object</returns>
         public static T Copy<T>(this T obj, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) {
-            var copy = (T) typeof(T).GetConstructor(Type.EmptyTypes).Invoke(null);
+            var copy = (T) Construct(typeof(T), flags);
             obj.CopyInto(copy, flags);
             return copy;
         }
 
         /// <summary>
-        /// Copies the given object <paramref name="obj"/> into the given object <see cref="otherObj"/>.
+        /// Creates a deep copy of the object and returns it.
+        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor.
+        /// </summary>
+        /// <param name="obj">The object to create a deep copy of</param>
+        /// <param name="flags">The binding flags for field searching</param>
+        /// <typeparam name="T">The type of the object to copy</typeparam>
+        /// <returns>A deep copy of the object</returns>
+        public static T DeepCopy<T>(this T obj, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) {
+            var copy = (T) Construct(typeof(T), flags);
+            obj.DeepCopyInto(copy, flags);
+            return copy;
+        }
+
+        /// <summary>
+        /// Copies the given object <paramref name="obj"/> into the given object <see cref="otherObj"/> in a shallow manner.
         /// </summary>
         /// <param name="obj">The object to create a shallow copy of</param>
         /// <param name="otherObj">The object to copy into</param>
@@ -31,6 +45,39 @@ namespace MLEM.Data {
         public static void CopyInto<T>(this T obj, T otherObj, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) {
             foreach (var field in typeof(T).GetFields(flags))
                 field.SetValue(otherObj, field.GetValue(obj));
+        }
+
+        /// <summary>
+        /// Copies the given object <paramref name="obj"/> into the given object <see cref="otherObj"/> in a deep manner.
+        /// Note that, for this to work correctly, each type that should be constructed below the topmost level needs to contanin a parameterless constructor.
+        /// </summary>
+        /// <param name="obj">The object to create a deep copy of</param>
+        /// <param name="otherObj">The object to copy into</param>
+        /// <param name="flags">The binding flags for field searching</param>
+        /// <typeparam name="T">The type of the object to copy</typeparam>
+        public static void DeepCopyInto<T>(this T obj, T otherObj, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) {
+            foreach (var field in obj.GetType().GetFields(flags)) {
+                var val = field.GetValue(obj);
+                if (field.FieldType.IsValueType) {
+                    // if we're a value type (struct or primitive), we can just set the value
+                    field.SetValue(otherObj, val);
+                } else if (val != null) {
+                    var otherVal = field.GetValue(otherObj);
+                    // if the object we want to copy into doesn't have a value yet, we create one
+                    if (otherVal == null) {
+                        otherVal = Construct(field.FieldType, flags);
+                        field.SetValue(otherObj, otherVal);
+                    }
+                    val.DeepCopyInto(otherVal, flags);
+                } else {
+                    // if the value is null, we ensure that the value of the resulting object is also reset
+                    field.SetValue(otherObj, null);
+                }
+            }
+        }
+
+        private static object Construct(Type t, BindingFlags flags) {
+            return t.GetConstructor(flags, null, Type.EmptyTypes, null).Invoke(null);
         }
 
     }
