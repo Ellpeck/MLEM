@@ -96,6 +96,14 @@ namespace Sandbox {
                 RectangleF = new RectangleF(4, 5, 6, 7).ToMlem(),
                 Dir = Direction2.Left
             };
+            Console.WriteLine(obj);
+
+            var copy = obj.Copy();
+            Console.WriteLine(copy);
+
+            var intoCopy = new Test();
+            obj.CopyInto(intoCopy);
+            Console.WriteLine(intoCopy);
 
             var writer = new StringWriter();
             this.Content.GetJsonSerializer().Serialize(writer, obj);
@@ -208,7 +216,7 @@ namespace Sandbox {
             public Point Point;
             public Rectangle Rectangle;
             public MLEM.Misc.RectangleF RectangleF;
-            public Direction2 Dir;
+            public Direction2 Dir { get; set; }
 
             public override string ToString() {
                 return $"{nameof(this.Vec)}: {this.Vec}, {nameof(this.Point)}: {this.Point}, {nameof(this.Rectangle)}: {this.Rectangle}, {nameof(this.RectangleF)}: {this.RectangleF}, {nameof(this.Dir)}: {this.Dir}";
