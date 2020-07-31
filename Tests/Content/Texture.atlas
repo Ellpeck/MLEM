@@ -1,0 +1,16 @@
+SimpleDeskUp
+loc 0 0 48 32
+piv 16 16
+SimpleDeskRight
+loc 48 0 48 32
+piv 80 16
+
+Plant
+loc 96 0 16 32
+
+LongTableUp
+loc 0 32 64 48
+piv 16 48
+LongTableRight
+loc 64 32 64 48
+piv 112 48
