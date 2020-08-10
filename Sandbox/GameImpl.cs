@@ -100,6 +100,13 @@ namespace Sandbox {
             };
             Console.WriteLine(obj);
 
+            for (var i = 0; i < 360; i += 45) {
+                var rad = MathHelper.ToRadians(i);
+                var vec = new Vector2((float) Math.Sin(rad), (float) Math.Cos(rad));
+                var dir = vec.ToDirection();
+                Console.WriteLine(vec + " -> " + dir);
+            }
+
             var copy = obj.DeepCopy();
             Console.WriteLine(copy);
 

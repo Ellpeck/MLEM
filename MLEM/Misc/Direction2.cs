@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MLEM.Extensions;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -227,6 +228,20 @@ namespace MLEM.Misc {
                 default:
                     return Direction2.None;
             }
+        }
+
+        /// <summary>
+        /// Returns the <see cref="Direction2"/> that is closest to the given position's facing direction.
+        /// </summary>
+        /// <param name="offset">The vector whose corresponding direction to get</param>
+        /// <returns>The vector's direction</returns>
+        public static Direction2 ToDirection(this Vector2 offset) {
+            var offsetAngle = (float) Math.Atan2(offset.Y, offset.X);
+            foreach (var dir in AllExceptNone) {
+                if (Math.Abs(dir.Angle() - offsetAngle) <= MathHelper.PiOver4 / 2)
+                    return dir;
+            }
+            return Direction2.None;
         }
 
     }

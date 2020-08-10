@@ -59,6 +59,21 @@ namespace MLEM.Extensions {
             return new Vector4(vec.X.Floor(), vec.Y.Floor(), vec.Z.Floor(), vec.W.Floor());
         }
 
+        /// <inheritdoc cref="Math.Ceiling(decimal)"/>
+        public static Vector2 CeilCopy(this Vector2 vec) {
+            return new Vector2(vec.X.Ceil(), vec.Y.Ceil());
+        }
+
+        /// <inheritdoc cref="Math.Ceiling(decimal)"/>
+        public static Vector3 CeilCopy(this Vector3 vec) {
+            return new Vector3(vec.X.Ceil(), vec.Y.Ceil(), vec.Z.Ceil());
+        }
+
+        /// <inheritdoc cref="Math.Ceiling(decimal)"/>
+        public static Vector4 CeilCopy(this Vector4 vec) {
+            return new Vector4(vec.X.Ceil(), vec.Y.Ceil(), vec.Z.Ceil(), vec.W.Ceil());
+        }
+
         /// <summary>
         /// Multiplies a point by a given scalar.
         /// </summary>
@@ -184,5 +199,6 @@ namespace MLEM.Extensions {
                 matrix.M31 / scZ, matrix.M32 / scZ, matrix.M33 / scZ, 0,
                 0, 0, 0, 1));
         }
+
     }
 }
