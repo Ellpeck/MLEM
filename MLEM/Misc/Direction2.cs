@@ -244,5 +244,19 @@ namespace MLEM.Misc {
             return Direction2.None;
         }
 
+        /// <summary>
+        /// Returns the <see cref="Direction2"/> that is closest to the given position's facing direction, only taking <see cref="Adjacent"/> directions into account.
+        /// Diagonal directions will be rounded to the nearest vertical direction.
+        /// </summary>
+        /// <param name="offset">The vector whose corresponding direction to get</param>
+        /// <returns>The vector's direction</returns>
+        public static Direction2 To90Direction(this Vector2 offset) {
+            if (offset.X == 0 && offset.Y == 0)
+                return Direction2.None;
+            if (Math.Abs(offset.X) > Math.Abs(offset.Y))
+                return offset.X > 0 ? Direction2.Right : Direction2.Left;
+            return offset.Y > 0 ? Direction2.Down : Direction2.Up;
+        }
+
     }
 }
