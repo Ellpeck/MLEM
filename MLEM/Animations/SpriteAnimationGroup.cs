@@ -62,11 +62,16 @@ namespace MLEM.Animations {
             return this;
         }
 
-        /// <inheritdoc cref="SpriteAnimation.Update"/>
+        /// <inheritdoc cref="SpriteAnimation.Update(GameTime)"/>
         public void Update(GameTime time) {
+            this.Update(time.ElapsedGameTime);
+        }
+
+        /// <inheritdoc cref="SpriteAnimation.Update(TimeSpan)"/>
+        public void Update(TimeSpan elapsed) {
             this.FindAnimationToPlay();
             if (this.CurrAnimation != null)
-                this.CurrAnimation.Animation.Update(time);
+                this.CurrAnimation.Animation.Update(elapsed);
         }
 
         /// <summary>

@@ -112,13 +112,17 @@ namespace MLEM.Animations {
         /// </summary>
         /// <param name="time">The game's time</param>
         public void Update(GameTime time) {
-            this.SetTime(this.TimeIntoAnimation + time.ElapsedGameTime.TotalSeconds * this.SpeedMultiplier);
+            this.Update(time.ElapsedGameTime);
         }
-        
-        internal void SetTime(double totalTime) {
+
+        /// <summary>
+        /// Updates this animation, causing <see cref="TimeIntoAnimation"/> to be increased and the <see cref="CurrentFrame"/> to be updated.
+        /// </summary>
+        /// <param name="elapsed">The amount of time that has passed</param>
+        public void Update(TimeSpan elapsed) {
             if (this.IsFinished || this.IsPaused)
                 return;
-            this.TimeIntoAnimation = totalTime;
+            this.TimeIntoAnimation += elapsed.TotalSeconds * this.SpeedMultiplier;
             if (this.TimeIntoAnimation >= this.TotalTime) {
                 if (!this.IsLooping) {
                     this.IsFinished = true;
