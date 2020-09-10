@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MLEM.Pathfinding {
@@ -91,25 +92,23 @@ namespace MLEM.Pathfinding {
             var tries = maxTries ?? this.DefaultMaxTries;
             var defCost = defaultCost ?? this.DefaultCost;
 
-            var open = new List<PathPoint<T>>();
-            var closed = new List<PathPoint<T>>();
-            open.Add(new PathPoint<T>(start, this.GetManhattanDistance(start, goal), null, 0, defCost));
+            var open = new Dictionary<T, PathPoint<T>>();
+            var closed = new Dictionary<T, PathPoint<T>>();
+            open.Add(start, new PathPoint<T>(start, this.GetManhattanDistance(start, goal), null, 0, defCost));
 
             var count = 0;
             Stack<T> ret = null;
             while (open.Count > 0) {
                 PathPoint<T> current = null;
-                var lowestF = float.MaxValue;
-                foreach (var point in open)
-                    if (point.F < lowestF) {
+                foreach (var point in open.Values) {
+                    if (current == null || point.F < current.F)
                         current = point;
-                        lowestF = point.F;
-                    }
+                }
                 if (current == null)
                     break;
 
-                open.Remove(current);
-                closed.Add(current);
+                open.Remove(current.Pos);
+                closed.Add(current.Pos, current);
 
                 if (current.Pos.Equals(goal)) {
                     ret = CompilePath(current);
@@ -120,20 +119,19 @@ namespace MLEM.Pathfinding {
                 foreach (var dir in dirsUsed) {
                     var neighborPos = this.AddPositions(current.Pos, dir);
                     var cost = getCost(current.Pos, neighborPos);
-                    if (!float.IsInfinity(cost) && cost < float.MaxValue) {
+                    if (!float.IsInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
                         var neighbor = new PathPoint<T>(neighborPos, this.GetManhattanDistance(neighborPos, goal), current, cost, defCost);
-                        if (!closed.Contains(neighbor)) {
-                            var alreadyIndex = open.IndexOf(neighbor);
-                            if (alreadyIndex < 0) {
-                                open.Add(neighbor);
+                        // check if we already have a waypoint at this location with a worse path
+                        if (open.TryGetValue(neighborPos, out var alreadyNeighbor)) {
+                            if (neighbor.G < alreadyNeighbor.G) {
+                                open.Remove(neighborPos);
                             } else {
-                                var alreadyNeighbor = open[alreadyIndex];
-                                if (neighbor.G < alreadyNeighbor.G) {
-                                    open.Remove(alreadyNeighbor);
-                                    open.Add(neighbor);
-                                }
+                                // if the old waypoint is better, we don't add ours
+                                continue;
                             }
                         }
+                        // add the new neighbor as a possible waypoint
+                        open.Add(neighborPos, neighbor);
                     }
                 }
 
