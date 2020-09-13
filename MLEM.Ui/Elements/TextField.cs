@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -36,6 +37,14 @@ namespace MLEM.Ui.Elements {
         /// A <see cref="Rule"/> that only allows letters and numerals
         /// </summary>
         public static readonly Rule LettersNumbers = (field, add) => add.All(c => char.IsLetter(c) || char.IsNumber(c));
+        /// <summary>
+        /// A <see cref="Rule"/> that only allows characters not contained in <see cref="Path.GetInvalidPathChars"/>
+        /// </summary>
+        public static readonly Rule PathNames = (field, add) => add.IndexOfAny(Path.GetInvalidPathChars()) < 0;
+        /// <summary>
+        /// A <see cref="Rule"/> that only allows characters not contained in <see cref="Path.GetInvalidFileNameChars"/>
+        /// </summary>
+        public static readonly Rule FileNames = (field, add) => add.IndexOfAny(Path.GetInvalidFileNameChars()) < 0;
 
         /// <summary>
         /// The color that this text field's text should display with
