@@ -118,6 +118,7 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.TextScale.SetFromStyle(style.TextScale);
             this.RegularFont.SetFromStyle(style.Font);
+            this.TextColor.SetFromStyle(style.TextColor);
         }
 
         /// <summary>
