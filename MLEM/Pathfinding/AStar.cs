@@ -15,7 +15,7 @@ namespace MLEM.Pathfinding {
         /// <summary>
         /// A value that represents an infinite path cost, or a cost for a location that cannot possibly be reached.
         /// </summary>
-        public static readonly float InfiniteCost = float.PositiveInfinity;
+        public const float InfiniteCost = float.PositiveInfinity;
         /// <summary>
         /// The array of all directions that will be checked for path finding.
         /// Note that this array is only used if <see cref="DefaultAllowDiagonals"/> is true.
