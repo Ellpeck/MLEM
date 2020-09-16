@@ -20,7 +20,7 @@ namespace MLEM.Data.Json {
 
         /// <inheritdoc />
         public override string[] GetFileExtensions() {
-            return new[] {"json"};
+            return new[] {"json", "json5", "jsonc"};
         }
 
     }

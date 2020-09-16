@@ -123,7 +123,7 @@ namespace Sandbox {
             //this.Content.AddJsonConverter(new CustomConverter());
 
             var res = this.Content.LoadJson<Test>("Test");
-            //Console.WriteLine(res);
+            Console.WriteLine("The res is " + res);
 
             /*this.OnDraw += (game, time) => {
                 this.SpriteBatch.Begin();
