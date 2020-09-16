@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Microsoft.Xna.Framework.Media;
 
-namespace MLEM.Content {
+namespace MLEM.Data.Content {
     /// <inheritdoc />
     public class SongReader : RawContentReader<Song> {
 

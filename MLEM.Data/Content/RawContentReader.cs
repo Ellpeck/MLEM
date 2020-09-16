@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Microsoft.Xna.Framework.Content;
 
-namespace MLEM.Content {
+namespace MLEM.Data.Content {
     /// <summary>
     /// Represents a way for any kind of raw content file to be read using a <see cref="RawContentManager"/>
     /// </summary>

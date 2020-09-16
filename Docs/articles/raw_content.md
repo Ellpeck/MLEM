@@ -2,7 +2,7 @@
 
 Sometimes, there's a good reason for wanting to load game assets directly rather than using the MonoGame Content Pipeline, which packs files into a binary `xnb` format. Those reasons include, for example, making your game easily moddable or allowing for texture packs.
 
-The **MLEM** package contains a solution for this: `RawContentManager`.
+The **MLEM.Data** package contains a solution for this: `RawContentManager`.
 
 ## What it does
 A raw content manager works very similarly to a regular `ContentManager`: You can load different types of assets through the `Load<T>` method, and they will automatically be managed and disposed when the game closes.
@@ -31,12 +31,12 @@ By default, the raw content manager supports the following types, as long as the
 - `SoundEffect` (ogg, wav, mp3)
 - `Song` (gg, wav, mp3)
 - Any XML files (xml)
-- Any JSON files (json) if `MLEM.Data` is used
+- Any JSON files (json)
 
 To add more content types that can be loaded by the raw content manager, you simply have to extend either `RawContentReader` or the generic version, `RawContentReader<T>`. For example, this is a content reader that loads a `txt` file as a string:
 ```cs
 using System.IO;
-using MLEM.Content;
+using MLEM.Data.Content;
 
 namespace Test {
     public class StringReader : RawContentReader<string> {

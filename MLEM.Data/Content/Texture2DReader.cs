@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MLEM.Content {
+namespace MLEM.Data.Content {
     /// <inheritdoc />
     public class Texture2DReader : RawContentReader<Texture2D> {
 

@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.Xna.Framework.Audio;
 
-namespace MLEM.Content {
+namespace MLEM.Data.Content {
     /// <inheritdoc />
     public class SoundEffectReader : RawContentReader<SoundEffect> {
 

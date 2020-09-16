@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
-namespace MLEM.Content {
+namespace MLEM.Data.Content {
     /// <inheritdoc />
-    public class XmlReader : RawContentReader {
+    public class RawJsonReader : RawContentReader {
 
         /// <inheritdoc />
         public override bool CanRead(Type t) {
@@ -13,12 +13,13 @@ namespace MLEM.Content {
 
         /// <inheritdoc />
         public override object Read(RawContentManager manager, string assetPath, Stream stream, Type t, object existing) {
-            return new XmlSerializer(t).Deserialize(stream);
+            using (var reader = new JsonTextReader(new StreamReader(stream)))
+                return manager.GetJsonSerializer().Deserialize(reader);
         }
 
         /// <inheritdoc />
         public override string[] GetFileExtensions() {
-            return new[] {"xml"};
+            return new[] {"json", "json5", "jsonc"};
         }
 
     }
