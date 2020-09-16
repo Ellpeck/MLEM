@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MLEM.Data.Content {
     /// <inheritdoc />
-    public class RawJsonReader : RawContentReader {
+    public class JsonReader : RawContentReader {
 
         /// <inheritdoc />
         public override bool CanRead(Type t) {
