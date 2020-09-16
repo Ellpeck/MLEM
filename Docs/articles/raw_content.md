@@ -31,7 +31,7 @@ By default, the raw content manager supports the following types, as long as the
 - `SoundEffect` (ogg, wav, mp3)
 - `Song` (gg, wav, mp3)
 - Any XML files (xml)
-- Any JSON files (json)
+- Any JSON files (json, json5, jsonc)
 
 To add more content types that can be loaded by the raw content manager, you simply have to extend either `RawContentReader` or the generic version, `RawContentReader<T>`. For example, this is a content reader that loads a `txt` file as a string:
 ```cs
