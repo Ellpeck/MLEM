@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Ui.Style;
 
@@ -38,6 +39,9 @@ namespace MLEM.Ui.Elements {
 
             if (elementToHover != null) {
                 elementToHover.OnMouseEnter += element => {
+                    // only display the tooltip if there is anything in it
+                    if (!this.Children.Any())
+                        return;
                     element.System.Add(element.GetType().Name + "Tooltip", this);
                     this.SnapPositionToMouse();
                 };
