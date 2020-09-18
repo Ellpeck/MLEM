@@ -40,7 +40,7 @@ namespace MLEM.Ui.Elements {
             if (elementToHover != null) {
                 elementToHover.OnMouseEnter += element => {
                     // only display the tooltip if there is anything in it
-                    if (!this.Children.Any())
+                    if (this.Children.All(c => c.IsHidden))
                         return;
                     element.System.Add(element.GetType().Name + "Tooltip", this);
                     this.SnapPositionToMouse();
