@@ -175,6 +175,7 @@ namespace MLEM.Ui.Elements {
             }
         }
         private bool areaDirty;
+        private int areaUpdateRecursionCount;
         /// <summary>
         /// The <see cref="UnscrolledArea"/> of this element, but with <see cref="ScaledScrollOffset"/> applied.
         /// </summary>
@@ -612,14 +613,14 @@ namespace MLEM.Ui.Elements {
                 child.ForceUpdateArea();
 
             if (this.Children.Count > 0) {
-                var changed = false;
+                Element foundChild = null;
                 if (this.SetHeightBasedOnChildren) {
                     var lowest = this.GetLowestChild(e => !e.IsHidden);
                     if (lowest != null) {
                         var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom) / this.Scale;
                         if (!newHeight.Equals(this.size.Y, 0.01F)) {
                             this.size.Y = newHeight;
-                            changed = true;
+                            foundChild = lowest;
                         }
                     }
                 }
@@ -629,12 +630,20 @@ namespace MLEM.Ui.Elements {
                         var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right) / this.Scale;
                         if (!newWidth.Equals(this.size.X, 0.01F)) {
                             this.size.X = newWidth;
-                            changed = true;
+                            foundChild = rightmost;
                         }
                     }
                 }
-                if (changed)
-                    this.ForceUpdateArea();
+                if (foundChild != null) {
+                    this.areaUpdateRecursionCount++;
+                    if (this.areaUpdateRecursionCount >= 16) {
+                        throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
+                    } else {
+                        this.ForceUpdateArea();
+                    }
+                } else {
+                    this.areaUpdateRecursionCount = 0;
+                }
             }
         }
 
