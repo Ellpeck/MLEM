@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -68,10 +69,16 @@ namespace MLEM.Font {
         }
 
         private static SpriteFont SetDefaults(SpriteFont font) {
-            // so that missing character behavior is in line with MG.Extended's
-            // bitmap fonts, we draw nothing as the default character
-            font.DefaultCharacter = ' ';
-            return font;
+            // we copy the font here to set the default character to a space
+            return new SpriteFont(
+                font.Texture,
+                font.Glyphs.Select(g => g.BoundsInTexture).ToList(),
+                font.Glyphs.Select(g => g.Cropping).ToList(),
+                font.Characters.ToList(),
+                font.LineSpacing,
+                font.Spacing,
+                font.Glyphs.Select(g => new Vector3(g.LeftSideBearing, g.Width, g.RightSideBearing)).ToList(),
+                ' ');
         }
 
     }
