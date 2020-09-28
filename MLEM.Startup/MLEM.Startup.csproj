@@ -7,7 +7,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>MLEM Library by Ellpeck for MonoGame combined with some other useful libraries into a quick Game startup class</Description>
+        <Description>MLEM Library for Extending MonoGame combined with some other useful libraries into a quick Game startup class</Description>
         <PackageTags>monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

@@ -6,7 +6,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>Simple data and network handling for MLEM Library by Ellpeck for MonoGame</Description>
+        <Description>Simple data and network handling for MLEM Library for Extending MonoGame</Description>
         <PackageTags>monogame ellpeck mlem utility extensions data network serialize</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
