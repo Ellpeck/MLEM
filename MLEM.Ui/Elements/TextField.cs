@@ -270,7 +270,7 @@ namespace MLEM.Ui.Elements {
             if (removeMismatching) {
                 var result = new StringBuilder();
                 foreach (var c in text.ToString()) {
-                    if (this.InputRule(this, c.ToString()))
+                    if (this.InputRule(this, c.ToCachedString()))
                         result.Append(c);
                 }
                 text = result.ToString();
