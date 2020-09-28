@@ -2,13 +2,14 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Formatting.Codes;
+using MLEM.Misc;
 
 namespace MLEM.Font {
     /// <summary>
     /// Represents a font with additional abilities.
     /// <seealso cref="GenericSpriteFont"/>
     /// </summary>
-    public abstract class GenericFont {
+    public abstract class GenericFont : GenericDataHolder {
 
         /// <summary>
         /// This field holds a special, private use area code point for a one em space.
