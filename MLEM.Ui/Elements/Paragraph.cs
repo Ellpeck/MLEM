@@ -69,9 +69,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="anchor">The paragraph's anchor</param>
         /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
         /// <param name="textCallback">The paragraph's text</param>
-        /// <param name="centerText">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
-        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool centerText = false)
-            : this(anchor, width, "", centerText) {
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
+        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false)
+            : this(anchor, width, "", autoAdjustWidth) {
             this.GetTextCallback = textCallback;
             this.Text = textCallback(this);
             if (this.Text == null)
@@ -79,11 +79,11 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc cref="Paragraph(Anchor,float,TextCallback,bool)"/>
-        public Paragraph(Anchor anchor, float width, string text, bool centerText = false) : base(anchor, new Vector2(width, 0)) {
+        public Paragraph(Anchor anchor, float width, string text, bool autoAdjustWidth = false) : base(anchor, new Vector2(width, 0)) {
             this.Text = text;
             if (this.Text == null)
                 this.IsHidden = true;
-            this.AutoAdjustWidth = centerText;
+            this.AutoAdjustWidth = autoAdjustWidth;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
         }
