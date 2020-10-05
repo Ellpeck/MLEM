@@ -200,5 +200,24 @@ namespace MLEM.Extensions {
                 0, 0, 0, 1));
         }
 
+        /// <summary>
+        /// Returns the amount that the rectangle <paramref name="rect"/> is penetrating the rectangle <paramref name="other"/> by.
+        /// If a penetration on both axes is occuring, the one with the lower value is returned.
+        /// This is useful for collision detection, as it can be used to push colliding objects out of each other.
+        /// </summary>
+        /// <param name="rect">The rectangle to do the penetration</param>
+        /// <param name="other">The rectangle that should be penetrated</param>
+        /// <returns>A penetration vector, or <see cref="Vector2.Zero"/> if the rectangles don't intersect</returns>
+        public static Vector2 Penetrate(this RectangleF rect, RectangleF other) {
+            var intersection = RectangleF.Intersect(rect, other);
+            if (intersection.IsEmpty)
+                return Vector2.Zero;
+            if (intersection.Width < intersection.Height) {
+                return new Vector2(rect.Center.X < other.Center.X ? intersection.Width : -intersection.Width, 0);
+            } else {
+                return new Vector2(0, rect.Center.Y < other.Center.Y ? intersection.Height : -intersection.Height);
+            }
+        }
+
     }
 }
