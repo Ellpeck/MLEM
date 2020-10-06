@@ -92,7 +92,7 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Color RadioHoveredColor;
         /// <summary>
-        /// The texture that the <see cref="RadioButton"/> renders on top of its regular texture when it is <see cref="RadioButton.Checked"/>
+        /// The texture that the <see cref="RadioButton"/> renders on top of its regular texture when it is <see cref="Checkbox.Checked"/>
         /// </summary>
         public TextureRegion RadioCheckmark;
         /// <summary>

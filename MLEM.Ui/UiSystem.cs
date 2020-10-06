@@ -99,7 +99,7 @@ namespace MLEM.Ui {
         public TextFormatter TextFormatter;
         /// <summary>
         /// The action that should be executed when a <see cref="LinkCode"/> in a paragraph's <see cref="Paragraph.TokenizedText"/> is pressed.
-        /// The actual link stored in the link code is stored in its <see cref="LinkCode.Match"/>'s 1st group.
+        /// The actual link stored in the link code is stored in its <see cref="Code.Match"/>'s 1st group.
         /// By default, the browser is opened with the given link's address.
         /// </summary>
         public Action<LinkCode> LinkBehavior = l => Process.Start(l.Match.Groups[1].Value);

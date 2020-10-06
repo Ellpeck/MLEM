@@ -124,7 +124,7 @@ namespace MLEM.Font {
 
         /// <summary>
         /// Truncates a string to a given width. If the string's displayed area is larger than the maximum width, the string is cut off.
-        /// Optionally, the string can be cut off a bit sooner, adding the <see cref="ellipsis"/> at the end instead.
+        /// Optionally, the string can be cut off a bit sooner, adding the <paramref name="ellipsis"/> at the end instead.
         /// </summary>
         /// <param name="text">The text to truncate</param>
         /// <param name="width">The maximum width, in display pixels based on the font and scale</param>

@@ -40,7 +40,7 @@ namespace MLEM.Data {
         }
 
         /// <summary>
-        /// Copies the given object <paramref name="obj"/> into the given object <see cref="otherObj"/> in a shallow manner.
+        /// Copies the given object <paramref name="obj"/> into the given object <paramref name="otherObj"/> in a shallow manner.
         /// </summary>
         /// <param name="obj">The object to create a shallow copy of</param>
         /// <param name="otherObj">The object to copy into</param>
@@ -55,7 +55,7 @@ namespace MLEM.Data {
         }
 
         /// <summary>
-        /// Copies the given object <paramref name="obj"/> into the given object <see cref="otherObj"/> in a deep manner.
+        /// Copies the given object <paramref name="obj"/> into the given object <paramref name="otherObj"/> in a deep manner.
         /// Note that, for this to work correctly, each type that should be constructed below the topmost level needs to contanin a parameterless constructor.
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
