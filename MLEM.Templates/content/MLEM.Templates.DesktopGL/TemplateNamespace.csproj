@@ -10,8 +10,8 @@
     <ItemGroup>
         <PackageReference Include="Contentless" Version="3.0.*" />
         <PackageReference Include="MLEM.Startup" Version="4.0.*" />
-        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1375-develop" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1375-develop" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     </ItemGroup>
 
     <ItemGroup>
