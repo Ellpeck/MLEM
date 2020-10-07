@@ -15,7 +15,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
+        <PackageReference Include="MonoGame.Extended" Version="3.8.0">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
         <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
