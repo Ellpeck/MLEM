@@ -201,22 +201,34 @@ namespace MLEM.Extensions {
         }
 
         /// <summary>
-        /// Returns the amount that the rectangle <paramref name="rect"/> is penetrating the rectangle <paramref name="other"/> by.
+        /// Calculates the amount that the rectangle <paramref name="rect"/> is penetrating the rectangle <paramref name="other"/> by.
         /// If a penetration on both axes is occuring, the one with the lower value is returned.
         /// This is useful for collision detection, as it can be used to push colliding objects out of each other.
         /// </summary>
         /// <param name="rect">The rectangle to do the penetration</param>
         /// <param name="other">The rectangle that should be penetrated</param>
-        /// <returns>A penetration vector, or <see cref="Vector2.Zero"/> if the rectangles don't intersect</returns>
-        public static Vector2 Penetrate(this RectangleF rect, RectangleF other) {
-            var intersection = RectangleF.Intersect(rect, other);
-            if (intersection.IsEmpty)
-                return Vector2.Zero;
-            if (intersection.Width < intersection.Height) {
-                return new Vector2(rect.Center.X < other.Center.X ? intersection.Width : -intersection.Width, 0);
-            } else {
-                return new Vector2(0, rect.Center.Y < other.Center.Y ? intersection.Height : -intersection.Height);
+        /// <param name="normal">The direction that the penetration occured in</param>
+        /// <param name="penetration">The amount that the penetration occured by, in the direction of <paramref name="normal"/></param>
+        /// <returns>Whether or not a penetration occured</returns>
+        public static bool Penetrate(this RectangleF rect, RectangleF other, out Vector2 normal, out float penetration) {
+            var (offsetX, offsetY) = other.Center - rect.Center;
+            var overlapX = rect.Width / 2 + other.Width / 2 - Math.Abs(offsetX);
+            if (overlapX > 0) {
+                var overlapY = rect.Height / 2 + other.Height / 2 - Math.Abs(offsetY);
+                if (overlapY > 0) {
+                    if (overlapX < overlapY) {
+                        normal = new Vector2(offsetX < 0 ? -1 : 1, 0);
+                        penetration = overlapX;
+                    } else {
+                        normal = new Vector2(0, offsetY < 0 ? -1 : 1);
+                        penetration = overlapY;
+                    }
+                    return true;
+                }
             }
+            normal = Vector2.Zero;
+            penetration = 0;
+            return false;
         }
 
     }
