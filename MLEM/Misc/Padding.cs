@@ -47,6 +47,24 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Creates a new padding with the specified x and y values, applying them to both edges.
+        /// </summary>
+        /// <param name="x">The x padding, which will turn into the left and right padding</param>
+        /// <param name="y">The y padding, which till turn into the top and bottom padding</param>
+        public Padding(float x, float y) :
+            this(x, x, y, y) {
+        }
+
+        /// <summary>
+        /// Creates a new padding from an existing padding, modifying it by growing or shrinking it.
+        /// </summary>
+        /// <param name="padding">The padding whose initial values to use</param>
+        /// <param name="growth">The amount to grow each border by. Negative values will shrink the padding.</param>
+        public Padding(Padding padding, float growth) :
+            this(padding.Left + growth, padding.Right + growth, padding.Top + growth, padding.Bottom + growth) {
+        }
+
+        /// <summary>
         /// Implicitly creates a padding from the given two-dimensional vector.
         /// The left and right padding will both be the vector's x value, and the top and bottom padding will both be the vector's y value.
         /// </summary>
