@@ -101,6 +101,16 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Causes the easing functino to play fully, and then play fully in reverse, in the span between an input of 0 and 1.
+        /// In some places, this behavior is also called "auto-reversing".
+        /// </summary>
+        /// <param name="easing">The easing function to play in reverse as well</param>
+        /// <returns>An auto-reversing version of the easing function</returns>
+        public static Easing AndReverse(this Easing easing) {
+            return p => p <= 0.5F ? easing(p * 2) : easing(1 - (p - 0.5F) * 2);
+        }
+
+        /// <summary>
         /// A delegate method used by <see cref="Easings"/>.
         /// </summary>
         /// <param name="percentage">The percentage into the easing function. Either between 0 and 1, or, if <see cref="Easings.ScaleInput"/> was used, between an arbitary set of values.</param>
