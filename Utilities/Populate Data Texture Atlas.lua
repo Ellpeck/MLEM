@@ -1,4 +1,4 @@
--- This is a lua script for Aseprite that allows automatically populating a MLEM Data Texture Atlas.
+-- This is a lua script for Aseprite that allows automatically populating a MLEM.Data Data Texture Atlas.
 -- To use this script, you need to select a rectangular area that should be your texture region.
 -- If you want a custom pivot point, you also need to un-select exactly one pixel, the pivot point.
 -- When you then execute the script and input the name of the texture region, it gets appended to the "SpriteName.atlas" file.
@@ -23,7 +23,7 @@ end
 ::foundPivot:: 
 
 -- open the name dialog
-local dialog = Dialog("Copy Texture Atlas Data")
+local dialog = Dialog("Populate Data Texture Atlas")
     :entry{ id = "name", label = "Region Name", focus = true }
     :button{ id = "ok", text="&OK" }
     :button{ text = "&Cancel" }

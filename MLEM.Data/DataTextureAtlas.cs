@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,8 +5,9 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Textures;
 
-namespace MLEM.Textures {
+namespace MLEM.Data {
     /// <summary>
     /// This class represents an atlas of <see cref="TextureRegion"/> objects which are loaded from a special texture atlas file. 
     /// To load a data texture atlas, you can use <see cref="DataTextureAtlasExtensions.LoadTextureAtlas"/>.
