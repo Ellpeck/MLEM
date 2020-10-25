@@ -86,12 +86,12 @@ namespace MLEM.Data {
 
         private static object Construct(Type t, BindingFlags flags) {
             // find a contructor with the correct attribute
-            var constructor = t.GetConstructors().FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
+            var constructor = t.GetConstructors(flags).FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
             // fall back to a parameterless constructor
             if (constructor == null)
                 constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
             if (constructor == null)
-                throw new NullReferenceException($"Type {t} does not have a parameterless constructor with the required visibility or a constructor with the CopyConstructorAttribute");
+                throw new NullReferenceException($"Type {t} does not have a parameterless constructor or a constructor with the CopyConstructorAttribute with the required visibility");
             return constructor.Invoke(new object[constructor.GetParameters().Length]);
         }
 
