@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 
 namespace MLEM.Data {
@@ -11,7 +12,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Creates a shallow copy of the object and returns it.
-        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor.
+        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor or a constructor with the <see cref="CopyConstructorAttribute"/>.
         /// </summary>
         /// <param name="obj">The object to create a shallow copy of</param>
         /// <param name="flags">The binding flags for field searching</param>
@@ -26,7 +27,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Creates a deep copy of the object and returns it.
-        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor.
+        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor or a constructor with the <see cref="CopyConstructorAttribute"/>.
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
         /// <param name="flags">The binding flags for field searching</param>
@@ -56,7 +57,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Copies the given object <paramref name="obj"/> into the given object <paramref name="otherObj"/> in a deep manner.
-        /// Note that, for this to work correctly, each type that should be constructed below the topmost level needs to contanin a parameterless constructor.
+        /// Note that, for this to work correctly, each type that should be constructed below the topmost level needs to contanin a parameterless constructor or a constructor with the <see cref="CopyConstructorAttribute"/>.
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
         /// <param name="otherObj">The object to copy into</param>
@@ -84,11 +85,23 @@ namespace MLEM.Data {
         }
 
         private static object Construct(Type t, BindingFlags flags) {
-            var constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
+            // find a contructor with the correct attribute
+            var constructor = t.GetConstructors().FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
+            // fall back to a parameterless constructor
             if (constructor == null)
-                throw new NullReferenceException($"Type {t} does not have a parameterless constructor with the required visibility");
-            return constructor.Invoke(null);
+                constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
+            if (constructor == null)
+                throw new NullReferenceException($"Type {t} does not have a parameterless constructor with the required visibility or a constructor with the CopyConstructorAttribute");
+            return constructor.Invoke(new object[constructor.GetParameters().Length]);
         }
+
+    }
+
+    /// <summary>
+    /// An attribute that, when added to a constructor, will make that constructor the one used by <see cref="CopyExtensions.Copy{T}"/>, <see cref="CopyExtensions.DeepCopy{T}"/> and <see cref="CopyExtensions.DeepCopyInto{T}"/>.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Constructor)]
+    public class CopyConstructorAttribute : Attribute {
 
     }
 }

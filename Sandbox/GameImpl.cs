@@ -89,11 +89,11 @@ namespace Sandbox {
             panel.SetData("TestKey", new Vector2(10, 2));
             //Console.WriteLine(panel.GetData<Vector2>("TestKey"));
 
-            var obj = new Test {
+            var obj = new Test(Vector2.One, "test") {
                 Vec = new Vector2(10, 20),
                 Point = new Point(20, 30),
                 Dir = Direction2.Left,
-                OtherTest = new Test {
+                OtherTest = new Test(Vector2.One, "other") {
                     Vec = new Vector2(70, 30),
                     Dir = Direction2.Right
                 }
@@ -110,7 +110,7 @@ namespace Sandbox {
             var copy = obj.DeepCopy();
             Console.WriteLine(copy);
 
-            var intoCopy = new Test {OtherTest = new Test()};
+            var intoCopy = new Test(Vector2.One, "test") {OtherTest = new Test(Vector2.One, "other")};
             obj.DeepCopyInto(intoCopy);
             Console.WriteLine(intoCopy);
 
@@ -233,6 +233,11 @@ namespace Sandbox {
             public Point Point;
             public Direction2 Dir { get; set; }
             public Test OtherTest;
+
+            [CopyConstructor]
+            public Test(Vector2 test, string test2) {
+                Console.WriteLine("Constructed with " + test + ", " + test2);
+            }
 
             public override string ToString() {
                 return $"{this.GetHashCode()}: {nameof(this.Vec)}: {this.Vec}, {nameof(this.Point)}: {this.Point}, {nameof(this.OtherTest)}: {this.OtherTest}, {nameof(this.Dir)}: {this.Dir}";
