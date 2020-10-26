@@ -11,4 +11,9 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+        <TrimmerRootAssembly Include="MonoGame.Framework" Visible="false" />
+        <TrimmerRootAssembly Include="MLEM" Visible="false" />
+        <TrimmerRootAssembly Include="MLEM.Ui" Visible="false" />
+    </ItemGroup>
 </Project>
