@@ -106,7 +106,7 @@ namespace MLEM.Ui.Style {
         /// <summary>
         /// The color that the text of a <see cref="Tooltip"/> should have
         /// </summary>
-        public Color TooltipTextColor;
+        public Color TooltipTextColor = Color.White;
         /// <summary>
         /// The texture that the <see cref="ProgressBar"/> element uses for its background
         /// </summary>

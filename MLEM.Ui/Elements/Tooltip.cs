@@ -70,7 +70,8 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.Texture.SetFromStyle(style.TooltipBackground);
             this.MouseOffset.SetFromStyle(style.TooltipOffset);
-            this.Paragraph?.TextColor.SetFromStyle(style.TooltipTextColor);
+            // we can't set from style here since it's a different element
+            this.Paragraph?.TextColor.Set(style.TooltipTextColor);
         }
 
         /// <summary>
