@@ -104,6 +104,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Vector2 TooltipOffset;
         /// <summary>
+        /// The color that the text of a <see cref="Tooltip"/> should have
+        /// </summary>
+        public Color TooltipTextColor;
+        /// <summary>
         /// The texture that the <see cref="ProgressBar"/> element uses for its background
         /// </summary>
         public NinePatch ProgressBarTexture;
