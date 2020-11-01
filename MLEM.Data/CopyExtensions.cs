@@ -12,7 +12,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Creates a shallow copy of the object and returns it.
-        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor or a constructor with the <see cref="CopyConstructorAttribute"/>.
+        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>. 
         /// </summary>
         /// <param name="obj">The object to create a shallow copy of</param>
         /// <param name="flags">The binding flags for field searching</param>
@@ -27,7 +27,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Creates a deep copy of the object and returns it.
-        /// Note that, for this to work correctly, <typeparamref name="T"/> needs to contain a parameterless constructor or a constructor with the <see cref="CopyConstructorAttribute"/>.
+        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>. 
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
         /// <param name="flags">The binding flags for field searching</param>
@@ -57,7 +57,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Copies the given object <paramref name="obj"/> into the given object <paramref name="otherObj"/> in a deep manner.
-        /// Note that, for this to work correctly, each type that should be constructed below the topmost level needs to contanin a parameterless constructor or a constructor with the <see cref="CopyConstructorAttribute"/>.
+        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>. 
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
         /// <param name="otherObj">The object to copy into</param>
@@ -85,13 +85,17 @@ namespace MLEM.Data {
         }
 
         private static object Construct(Type t, BindingFlags flags) {
+            var constructors = t.GetConstructors(flags);
             // find a contructor with the correct attribute
-            var constructor = t.GetConstructors(flags).FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
-            // fall back to a parameterless constructor
+            var constructor = constructors.FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
+            // find a parameterless construcotr
             if (constructor == null)
                 constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
+            // fall back to the first constructor
             if (constructor == null)
-                throw new NullReferenceException($"Type {t} does not have a parameterless constructor or a constructor with the CopyConstructorAttribute with the required visibility");
+                constructor = constructors.FirstOrDefault();
+            if (constructor == null)
+                throw new NullReferenceException($"Type {t} does not have a constructor with the required visibility");
             return constructor.Invoke(new object[constructor.GetParameters().Length]);
         }
 
