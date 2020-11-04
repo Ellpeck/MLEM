@@ -34,7 +34,7 @@ namespace MLEM.Formatting {
             // font codes
             this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
             this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
-            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r, m.Groups[1].Success ? ColorExtensions.FromHex(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
+            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r, m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
             this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
             this.Codes.Add(new Regex("</(b|i|s|u|l)>"), (f, m, r) => new FontCode(m, r, null));
 
@@ -45,7 +45,7 @@ namespace MLEM.Formatting {
                     this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m, r) => new ColorCode(m, r, value));
                 }
             }
-            this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorExtensions.FromHex(m.Groups[1].Value)));
+            this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorHelper.FromHexString(m.Groups[1].Value)));
             this.Codes.Add(new Regex("</c>"), (f, m, r) => new ColorCode(m, r, null));
 
             // animation codes

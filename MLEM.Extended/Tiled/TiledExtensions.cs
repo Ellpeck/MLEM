@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using ColorExtensions = MLEM.Extensions.ColorExtensions;
+using ColorHelper = MLEM.Extensions.ColorHelper;
 
 namespace MLEM.Extended.Tiled {
     /// <summary>
@@ -44,7 +44,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The color property</returns>
         public static Color GetColor(this TiledMapProperties properties, string key) {
-            return ColorExtensions.FromHex(properties.Get(key));
+            return ColorHelper.FromHexString(properties.Get(key));
         }
 
         /// <summary>
