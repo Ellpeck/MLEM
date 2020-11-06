@@ -8,7 +8,7 @@ There are several extensions to tiled maps, tilesets and tiles, including, but n
 - The ability to get tile and tile map properties easily
 - Getting multiple tiles and objects at a location or in an area
 
-All of these extension methods can be found in the [TiledExtensions](https://github.com/Ellpeck/MLEM/blob/master/MLEM.Extended/Tiled/TiledExtensions.cs) class.
+All of these extension methods can be found in the [TiledExtensions](https://github.com/Ellpeck/MLEM/blob/main/MLEM.Extended/Tiled/TiledExtensions.cs) class.
 
 ## Tiled map collisions
 MLEM.Extended includes a very easy way to set up collisions within your tiled maps through the use of [tile collisions](https://doc.mapeditor.org/en/stable/manual/editing-tilesets/#tile-collision-editor).

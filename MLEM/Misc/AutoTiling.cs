@@ -13,7 +13,7 @@ namespace MLEM.Misc {
         /// This allows, for example, a grass patch on a tilemap to have nice looking edges that transfer over into a path without any hard edges between tiles.
         ///
         /// For auto-tiling in this way to work, the tiles have to be laid out in a specific order. This order is shown in the auto-tiling demo's textures.
-        /// For more information and an example, see <see href="https://github.com/Ellpeck/MLEM/blob/master/Demos/AutoTilingDemo.cs#L20-L28"/>
+        /// For more information and an example, see <see href="https://github.com/Ellpeck/MLEM/blob/main/Demos/AutoTilingDemo.cs#L20-L28"/>
         /// </summary>
         /// <param name="batch"></param>
         /// <param name="pos"></param>

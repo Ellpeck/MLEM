@@ -10,8 +10,8 @@
         <PackageTags>monogame ellpeck mlem utility extensions monogame.extended extended</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/master/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/master/Media/Logo.png</PackageIconUrl>
+        <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Logo.png</PackageIconUrl>
     </PropertyGroup>
 
     <ItemGroup>
