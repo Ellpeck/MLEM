@@ -4,7 +4,7 @@
 // this is the upcoming version, for prereleases
 var version = Argument("version", "4.2.0");
 var target = Argument("target", "Default");
-var branch = Argument("branch", "master");
+var branch = Argument("branch", "main");
 var config = Argument("configuration", "Release");
 
 Task("Prepare").Does(() => {
@@ -38,7 +38,7 @@ Task("Pack").IsDependentOn("Build").Does(() => {
         DotNetCorePack(project.FullPath, settings);
 });
 
-Task("Push").WithCriteria(branch == "master" || branch == "release").IsDependentOn("Pack").Does(() => {
+Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn("Pack").Does(() => {
     NuGetPushSettings settings;
     if (branch == "release") {
         settings = new NuGetPushSettings {
