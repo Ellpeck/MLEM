@@ -69,8 +69,8 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
-        public void AddElement(string text, GenericCallback pressed = null) {
-            this.AddElement(p => text, pressed);
+        public Element AddElement(string text, GenericCallback pressed = null) {
+            return this.AddElement(p => text, pressed);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
-        public void AddElement(Paragraph.TextCallback text, GenericCallback pressed = null) {
+        public Element AddElement(Paragraph.TextCallback text, GenericCallback pressed = null) {
             var paragraph = new Paragraph(Anchor.AutoLeft, 1, text) {
                 CanBeMoused = true,
                 CanBeSelected = true,
@@ -90,6 +90,7 @@ namespace MLEM.Ui.Elements {
             paragraph.OnMouseEnter += e => paragraph.TextColor = Color.LightGray;
             paragraph.OnMouseExit += e => paragraph.TextColor = Color.White;
             this.AddElement(paragraph);
+            return paragraph;
         }
 
     }
