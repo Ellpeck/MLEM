@@ -56,8 +56,10 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of asset to load</typeparam>
         /// <returns>The loaded asset</returns>
         public static T LoadJson<T>(this ContentManager content, string name, string[] extensions = null) {
+            var triedFiles = new List<string>();
             foreach (var extension in extensions ?? JsonExtensions) {
                 var file = Path.Combine(content.RootDirectory, name + extension);
+                triedFiles.Add(file);
                 if (!File.Exists(file))
                     continue;
                 using (var stream = File.OpenText(file)) {
@@ -66,7 +68,7 @@ namespace MLEM.Data {
                     }
                 }
             }
-            return default;
+            throw new ContentLoadException($"Asset {name} not found. Tried files {string.Join(", ", triedFiles)}");
         }
 
     }
