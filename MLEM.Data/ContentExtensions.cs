@@ -53,10 +53,12 @@ namespace MLEM.Data {
         /// <param name="content">The content manager to load content with</param>
         /// <param name="name">The name of the file to load</param>
         /// <param name="extensions">The file extensions that should be appended, or ".json", ".json5" and ".jsonc" by default.</param>
+        /// <param name="serializer">The json serializer to use, or <see cref="GetJsonSerializer"/> by default.</param>
         /// <typeparam name="T">The type of asset to load</typeparam>
         /// <returns>The loaded asset</returns>
-        public static T LoadJson<T>(this ContentManager content, string name, string[] extensions = null) {
+        public static T LoadJson<T>(this ContentManager content, string name, string[] extensions = null, JsonSerializer serializer = null) {
             var triedFiles = new List<string>();
+            var serializerToUse = serializer ?? content.GetJsonSerializer();
             foreach (var extension in extensions ?? JsonExtensions) {
                 var file = Path.Combine(content.RootDirectory, name + extension);
                 triedFiles.Add(file);
@@ -64,7 +66,7 @@ namespace MLEM.Data {
                     continue;
                 using (var stream = File.OpenText(file)) {
                     using (var reader = new JsonTextReader(stream)) {
-                        return GetJsonSerializer(content).Deserialize<T>(reader);
+                        return serializerToUse.Deserialize<T>(reader);
                     }
                 }
             }
