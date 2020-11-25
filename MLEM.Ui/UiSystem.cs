@@ -102,7 +102,7 @@ namespace MLEM.Ui {
         /// The actual link stored in the link code is stored in its <see cref="Code.Match"/>'s 1st group.
         /// By default, the browser is opened with the given link's address.
         /// </summary>
-        public Action<LinkCode> LinkBehavior = l => Process.Start(l.Match.Groups[1].Value);
+        public Action<LinkCode> LinkBehavior = l => Process.Start(new ProcessStartInfo(l.Match.Groups[1].Value) {UseShellExecute = true});
         /// <summary>
         /// The <see cref="UiControls"/> that this ui system is controlled by.
         /// The ui controls are also the place to change bindings for controller and keyboard input.
