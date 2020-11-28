@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace MLEM.Misc {
     /// <summary>
     /// Represents an object that can hold generic key-value based data.
     /// A lot of MLEM components extend this class to allow for users to add additional data to them easily.
     /// </summary>
+    [DataContract]
     public class GenericDataHolder {
 
+        [DataMember]
         private Dictionary<string, object> data;
 
         /// <summary>
