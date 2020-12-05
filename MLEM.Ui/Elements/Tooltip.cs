@@ -46,22 +46,10 @@ namespace MLEM.Ui.Elements {
             if (elementToHover != null) {
                 elementToHover.OnMouseEnter += element => {
                     // only display the tooltip if there is anything in it
-                    if (this.Children.All(c => c.IsHidden))
-                        return;
-                    element.System.Add(element.GetType().Name + "Tooltip", this);
-                    if (this.Delay <= TimeSpan.Zero) {
-                        this.IsHidden = false;
-                        this.SnapPositionToMouse();
-                    } else {
-                        this.IsHidden = true;
-                        this.delayCountdown = this.Delay;
-                    }
+                    if (this.Children.Any(c => !c.IsHidden))
+                        this.Display(element.System, element.GetType().Name + "Tooltip");
                 };
-                elementToHover.OnMouseExit += element => {
-                    this.delayCountdown = TimeSpan.Zero;
-                    if (this.System != null)
-                        this.System.Remove(this.Root.Name);
-                };
+                elementToHover.OnMouseExit += element => this.Remove();
             }
         }
 
@@ -109,6 +97,31 @@ namespace MLEM.Ui.Elements {
             if (offset.Y * this.Scale + this.Area.Height >= viewport.Y)
                 offset.Y = (viewport.Y - this.Area.Height) / this.Scale;
             this.PositionOffset = offset;
+        }
+
+        /// <summary>
+        /// Adds this tooltip to the given <see cref="UiSystem"/> and either displays it directly or starts the <see cref="Delay"/> timer.
+        /// </summary>
+        /// <param name="system">The system to add this tooltip to</param>
+        /// <param name="name">The name that this tooltip should use</param>
+        public void Display(UiSystem system, string name) {
+            system.Add(name, this);
+            if (this.Delay <= TimeSpan.Zero) {
+                this.IsHidden = false;
+                this.SnapPositionToMouse();
+            } else {
+                this.IsHidden = true;
+                this.delayCountdown = this.Delay;
+            }
+        }
+
+        /// <summary>
+        /// Removes this tooltip from its <see cref="UiSystem"/> and resets the <see cref="Delay"/> timer, if there is one.
+        /// </summary>
+        public void Remove() {
+            this.delayCountdown = TimeSpan.Zero;
+            if (this.System != null)
+                this.System.Remove(this.Root.Name);
         }
 
     }
