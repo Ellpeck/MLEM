@@ -16,9 +16,15 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<Vector2> MouseOffset;
         /// <summary>
+        /// The amount of time that the mouse has to be over an element before it appears
+        /// </summary>
+        public StyleProp<TimeSpan> Delay;
+        /// <summary>
         /// The paragraph of text that this tooltip displays
         /// </summary>
         public Paragraph Paragraph;
+
+        private TimeSpan delayCountdown;
 
         /// <summary>
         /// Creates a new tooltip with the given settings
@@ -43,9 +49,16 @@ namespace MLEM.Ui.Elements {
                     if (this.Children.All(c => c.IsHidden))
                         return;
                     element.System.Add(element.GetType().Name + "Tooltip", this);
-                    this.SnapPositionToMouse();
+                    if (this.Delay <= TimeSpan.Zero) {
+                        this.IsHidden = false;
+                        this.SnapPositionToMouse();
+                    } else {
+                        this.IsHidden = true;
+                        this.delayCountdown = this.Delay;
+                    }
                 };
                 elementToHover.OnMouseExit += element => {
+                    this.delayCountdown = TimeSpan.Zero;
                     if (this.System != null)
                         this.System.Remove(this.Root.Name);
                 };
@@ -56,6 +69,12 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             base.Update(time);
             this.SnapPositionToMouse();
+
+            if (this.IsHidden && this.delayCountdown > TimeSpan.Zero) {
+                this.delayCountdown -= time.ElapsedGameTime;
+                if (this.delayCountdown <= TimeSpan.Zero)
+                    this.IsHidden = false;
+            }
         }
 
         /// <inheritdoc />
@@ -70,6 +89,7 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.Texture.SetFromStyle(style.TooltipBackground);
             this.MouseOffset.SetFromStyle(style.TooltipOffset);
+            this.Delay.SetFromStyle(style.TooltipDelay);
             // we can't set from style here since it's a different element
             this.Paragraph?.TextColor.Set(style.TooltipTextColor);
         }

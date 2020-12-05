@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using MLEM.Font;
@@ -107,6 +108,10 @@ namespace MLEM.Ui.Style {
         /// The color that the text of a <see cref="Tooltip"/> should have
         /// </summary>
         public Color TooltipTextColor = Color.White;
+        /// <summary>
+        /// The amount of time that the mouse has to be over an element with a <see cref="Tooltip"/> for the tooltip to appear
+        /// </summary>
+        public TimeSpan TooltipDelay = TimeSpan.Zero;
         /// <summary>
         /// The texture that the <see cref="ProgressBar"/> element uses for its background
         /// </summary>
