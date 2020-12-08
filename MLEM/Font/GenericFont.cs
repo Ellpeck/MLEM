@@ -1,7 +1,6 @@
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Formatting.Codes;
 using MLEM.Misc;
 
 namespace MLEM.Font {
@@ -12,11 +11,11 @@ namespace MLEM.Font {
     public abstract class GenericFont : GenericDataHolder {
 
         /// <summary>
-        /// This field holds a special, private use area code point for a one em space.
+        /// This field holds the unicode representation of a one em space.
         /// This is a character that isn't drawn, but has the same width as <see cref="LineHeight"/>.
-        /// It is mainly used for <see cref="ImageCode"/>.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
         /// </summary>
-        public const char OneEmSpace = '\uF8FF';
+        public const char OneEmSpace = '\u2003';
         /// <summary>
         /// This field holds the unicode representation of a non-breaking space.
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
