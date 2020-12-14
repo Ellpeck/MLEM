@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Misc;
