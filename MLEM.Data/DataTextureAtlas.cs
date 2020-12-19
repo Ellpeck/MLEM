@@ -70,7 +70,7 @@ namespace MLEM.Data {
                         float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
                         float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
                 }
-                atlas.regions.Add(name, new TextureRegion(texture, loc.OffsetCopy(texture.Position)) {
+                atlas.regions.Add(name, new TextureRegion(texture, loc) {
                     PivotPixels = piv,
                     Name = name
                 });
