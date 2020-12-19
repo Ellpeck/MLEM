@@ -72,7 +72,8 @@ namespace MLEM.Textures {
         /// Creates a new texture region that spans the entire texture
         /// </summary>
         /// <param name="texture">The texture to use</param>
-        public TextureRegion(Texture2D texture) : this(texture, new Rectangle(0, 0, texture.Width, texture.Height)) {
+        public TextureRegion(Texture2D texture) :
+            this(texture, new Rectangle(0, 0, texture.Width, texture.Height)) {
         }
 
         /// <summary>
@@ -83,7 +84,8 @@ namespace MLEM.Textures {
         /// <param name="v">The y coordinate of the top left corner of this area</param>
         /// <param name="width">The width of this area</param>
         /// <param name="height">The height of this area</param>
-        public TextureRegion(Texture2D texture, int u, int v, int width, int height) : this(texture, new Rectangle(u, v, width, height)) {
+        public TextureRegion(Texture2D texture, int u, int v, int width, int height) :
+            this(texture, new Rectangle(u, v, width, height)) {
         }
 
         /// <summary>
@@ -92,7 +94,39 @@ namespace MLEM.Textures {
         /// <param name="texture">The texture to use</param>
         /// <param name="uv">The top left corner of this area</param>
         /// <param name="size">The size of this area</param>
-        public TextureRegion(Texture2D texture, Point uv, Point size) : this(texture, new Rectangle(uv, size)) {
+        public TextureRegion(Texture2D texture, Point uv, Point size) :
+            this(texture, new Rectangle(uv, size)) {
+        }
+
+        /// <summary>
+        /// Creates a new texture region which is a sub-region of the given texture region
+        /// </summary>
+        /// <param name="region">The texture region to create a sub-region of</param>
+        /// <param name="area">The new texture region area</param>
+        public TextureRegion(TextureRegion region, Rectangle area) :
+            this(region, area.Location, area.Size) {
+        }
+
+        /// <summary>
+        /// Creates a new texture region which is a sub-region of the given texture region
+        /// </summary>
+        /// <param name="region">The texture region to create a sub-region of</param>
+        /// <param name="u">The x coordinate of the top left corner of this area</param>
+        /// <param name="v">The y coordinate of the top left corner of this area</param>
+        /// <param name="width">The width of this area</param>
+        /// <param name="height">The height of this area</param>
+        public TextureRegion(TextureRegion region, int u, int v, int width, int height) :
+            this(region, new Point(u, v), new Point(width, height)) {
+        }
+
+        /// <summary>
+        /// Creates a new texture region which is a sub-region of the given texture region
+        /// </summary>
+        /// <param name="region">The texture region to create a sub-region of</param>
+        /// <param name="uv">The top left corner of this area</param>
+        /// <param name="size">The size of this area</param>
+        public TextureRegion(TextureRegion region, Point uv, Point size) :
+            this(region.Texture, region.Position + uv, size) {
         }
 
     }

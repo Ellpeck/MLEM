@@ -12,9 +12,10 @@ namespace MLEM.Textures {
     public class UniformTextureAtlas : GenericDataHolder {
 
         /// <summary>
-        /// The texture to use for this atlas
+        /// The <see cref="TextureRegion"/> that this uniform texture atlas uses as its basis.
+        /// In most cases, <see cref="Region"/> has the full area of the underlying <see cref="Texture"/>.
         /// </summary>
-        public readonly Texture2D Texture;
+        public readonly TextureRegion Region;
         /// <summary>
         /// The amount of sub-regions this atlas has in the x direction
         /// </summary>
@@ -31,6 +32,11 @@ namespace MLEM.Textures {
         /// The height of reach region, based on the texture's height and the amount of regions
         /// </summary>
         public readonly int RegionHeight;
+        /// <summary>
+        /// The texture to use for this atlas.
+        /// Note that <see cref="Region"/> stores the actual area that we depend on.
+        /// </summary>
+        public Texture2D Texture => this.Region.Texture;
         /// <summary>
         /// Returns the <see cref="TextureRegion"/> at this texture atlas's given index.
         /// The index is zero-based, where rows come first and columns come second.
@@ -56,23 +62,34 @@ namespace MLEM.Textures {
         private readonly Dictionary<Rectangle, TextureRegion> regions = new Dictionary<Rectangle, TextureRegion>();
 
         /// <summary>
+        /// Creates a new uniform texture atlas with the given texture region and region amount.
+        /// This atlas will only ever pull information from the given <see cref="TextureRegion"/> and never exit the region's bounds.
+        /// </summary>
+        /// <param name="region">The texture region to use for this atlas</param>
+        /// <param name="regionAmountX">The amount of texture regions in the x direction</param>
+        /// <param name="regionAmountY">The amount of texture regions in the y direction</param>
+        public UniformTextureAtlas(TextureRegion region, int regionAmountX, int regionAmountY) {
+            this.Region = region;
+            this.RegionAmountX = regionAmountX;
+            this.RegionAmountY = regionAmountY;
+            this.RegionWidth = region.Width / regionAmountX;
+            this.RegionHeight = region.Height / regionAmountY;
+        }
+
+        /// <summary>
         /// Creates a new uniform texture atlas with the given texture and region amount.
         /// </summary>
         /// <param name="texture">The texture to use for this atlas</param>
         /// <param name="regionAmountX">The amount of texture regions in the x direction</param>
         /// <param name="regionAmountY">The amount of texture regions in the y direction</param>
-        public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY) {
-            this.Texture = texture;
-            this.RegionAmountX = regionAmountX;
-            this.RegionAmountY = regionAmountY;
-            this.RegionWidth = texture.Width / regionAmountX;
-            this.RegionHeight = texture.Height / regionAmountY;
+        public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY) :
+            this(new TextureRegion(texture), regionAmountX, regionAmountY) {
         }
 
         private TextureRegion GetOrAddRegion(Rectangle rect) {
             if (this.regions.TryGetValue(rect, out var region))
                 return region;
-            region = new TextureRegion(this.Texture,
+            region = new TextureRegion(this.Region,
                 rect.X * this.RegionWidth, rect.Y * this.RegionHeight,
                 rect.Width * this.RegionWidth, rect.Height * this.RegionHeight);
             this.regions.Add(rect, region);
