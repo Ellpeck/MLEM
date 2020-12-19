@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Textures;
 
 namespace MLEM.Data {
@@ -61,7 +62,7 @@ namespace MLEM.Data {
             foreach (Match match in Regex.Matches(text, regex)) {
                 var name = match.Groups[1].Value.Trim();
                 var loc = new Rectangle(
-                    int.Parse(match.Groups[2].Value) + texture.U, int.Parse(match.Groups[3].Value) + texture.V,
+                    int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value),
                     int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
                 var piv = Vector2.Zero;
                 if (match.Groups[6].Success) {
@@ -69,7 +70,7 @@ namespace MLEM.Data {
                         float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
                         float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
                 }
-                atlas.regions.Add(name, new TextureRegion(texture, loc) {
+                atlas.regions.Add(name, new TextureRegion(texture, loc.OffsetCopy(texture.Position)) {
                     PivotPixels = piv,
                     Name = name
                 });
