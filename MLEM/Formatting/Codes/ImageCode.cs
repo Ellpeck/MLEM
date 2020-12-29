@@ -12,10 +12,12 @@ namespace MLEM.Formatting.Codes {
     public class ImageCode : Code {
 
         private readonly SpriteAnimation image;
+        private readonly bool copyTextColor;
 
         /// <inheritdoc />
-        public ImageCode(Match match, Regex regex, SpriteAnimation image) : base(match, regex) {
+        public ImageCode(Match match, Regex regex, SpriteAnimation image, bool copyTextColor) : base(match, regex) {
             this.image = image;
+            this.copyTextColor = copyTextColor;
         }
 
         /// <inheritdoc />
@@ -35,7 +37,8 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
-            batch.Draw(this.image.CurrentRegion, new RectangleF(pos, new Vector2(font.LineHeight * scale)), Color.White.CopyAlpha(color));
+            var actualColor = this.copyTextColor ? color : Color.White.CopyAlpha(color);
+            batch.Draw(this.image.CurrentRegion, new RectangleF(pos, new Vector2(font.LineHeight * scale)), actualColor);
         }
 
     }
@@ -51,13 +54,14 @@ namespace MLEM.Formatting.Codes {
         /// <param name="formatter">The formatter to add the code to</param>
         /// <param name="name">The name of the formatting code. The regex for this code will be between angle brackets.</param>
         /// <param name="image">The image to render at the code's position</param>
-        public static void AddImage(this TextFormatter formatter, string name, TextureRegion image) {
-            formatter.AddImage(name, new SpriteAnimation(1, image));
+        /// <param name="copyTextColor">Whether or not the image code should use the text's color instead of White</param>
+        public static void AddImage(this TextFormatter formatter, string name, TextureRegion image, bool copyTextColor = false) {
+            formatter.AddImage(name, new SpriteAnimation(1, image), copyTextColor);
         }
 
-        /// <inheritdoc cref="AddImage(MLEM.Formatting.TextFormatter,string,MLEM.Textures.TextureRegion)"/>
-        public static void AddImage(this TextFormatter formatter, string name, SpriteAnimation image) {
-            formatter.Codes.Add(new Regex($"<i {name}>"), (f, m, r) => new ImageCode(m, r, image));
+        /// <inheritdoc cref="AddImage(MLEM.Formatting.TextFormatter,string,MLEM.Textures.TextureRegion,bool)"/>
+        public static void AddImage(this TextFormatter formatter, string name, SpriteAnimation image, bool copyTextColor = false) {
+            formatter.Codes.Add(new Regex($"<i {name}>"), (f, m, r) => new ImageCode(m, r, image, copyTextColor));
         }
 
     }
