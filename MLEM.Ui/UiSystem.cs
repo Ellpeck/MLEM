@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Input;

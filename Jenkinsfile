@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Cake Build') {
       steps {
-        sh 'chmod +x ./build.sh'
-        sh './build.sh -Target=Publish -Branch=' + env.BRANCH_NAME
+        sh 'dotnet tool restore'
+        sh 'dotnet dotnet-cake -Target=Publish -Branch=' + env.BRANCH_NAME
       }
     }
     stage('Document') {
@@ -12,7 +12,7 @@ pipeline {
         branch 'release' 
       }
       steps {
-        sh './build.sh -Target=Document'     
+        sh 'dotnet dotnet-cake -Target=Document'     
         sh 'cp Docs/_site/** /var/www/MLEM/ -r'   
       }
     }

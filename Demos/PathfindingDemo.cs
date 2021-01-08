@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
-using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Pathfinding;
 using MLEM.Startup;

@@ -7,11 +7,9 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
-using MLEM.Extended.Extensions;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
-using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Input;
@@ -21,12 +19,8 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
-using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
-using MonoGame.Extended.Sprites;
-using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tiled;
-using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {

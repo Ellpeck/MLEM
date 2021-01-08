@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Textures;
 
 namespace MLEM.Data {
@@ -19,7 +20,7 @@ namespace MLEM.Data {
         /// <summary>
         /// The texture to use for this atlas
         /// </summary>
-        public readonly Texture2D Texture;
+        public readonly TextureRegion Texture;
         /// <summary>
         /// Returns the texture region with the given name, or null if it does not exist.
         /// </summary>
@@ -37,21 +38,23 @@ namespace MLEM.Data {
 
         private readonly Dictionary<string, TextureRegion> regions = new Dictionary<string, TextureRegion>();
 
-        /// <summary>
-        /// Creates a new data texture atlas with the given texture and region amount.
-        /// </summary>
-        /// <param name="texture">The texture to use for this atlas</param>
-        public DataTextureAtlas(Texture2D texture) {
+        private DataTextureAtlas(TextureRegion texture) {
             this.Texture = texture;
         }
 
-        internal static DataTextureAtlas Load(ContentManager content, string texturePath, string infoPath, bool pivotRelative) {
-            var info = new FileInfo(Path.Combine(content.RootDirectory, infoPath ?? $"{texturePath}.atlas"));
+        /// <summary>
+        /// Loads a <see cref="DataTextureAtlas"/> from the given loaded texture and texture data file.
+        /// </summary>
+        /// <param name="texture">The texture to use for this data texture atlas</param>
+        /// <param name="content">The content manager to use for loading</param>
+        /// <param name="infoPath">The path, including extension, to the atlas info file</param>
+        /// <param name="pivotRelative">If this value is true, then the pivot points passed in the info file will be relative to the coordinates of the texture region, not relative to the entire texture's origin.</param>
+        /// <returns>A new data texture atlas with the given settings</returns>
+        public static DataTextureAtlas LoadAtlasData(TextureRegion texture, ContentManager content, string infoPath, bool pivotRelative = false) {
+            var info = new FileInfo(Path.Combine(content.RootDirectory, infoPath));
             string text;
             using (var reader = info.OpenText())
                 text = reader.ReadToEnd();
-
-            var texture = content.Load<Texture2D>(texturePath);
             var atlas = new DataTextureAtlas(texture);
 
             // parse each texture region: "<name> loc <u> <v> <w> <h> piv <px> <py>"
@@ -92,7 +95,8 @@ namespace MLEM.Data {
         /// <param name="pivotRelative">If this value is true, then the pivot points passed in the info file will be relative to the coordinates of the texture region, not relative to the entire texture's origin.</param>
         /// <returns>A new data texture atlas with the given settings</returns>
         public static DataTextureAtlas LoadTextureAtlas(this ContentManager content, string texturePath, string infoPath = null, bool pivotRelative = false) {
-            return DataTextureAtlas.Load(content, texturePath, infoPath, pivotRelative);
+            var texture = new TextureRegion(content.Load<Texture2D>(texturePath));
+            return DataTextureAtlas.LoadAtlasData(texture, content, infoPath ?? $"{texturePath}.atlas", pivotRelative);
         }
 
     }
