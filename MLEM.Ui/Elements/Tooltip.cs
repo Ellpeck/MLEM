@@ -34,23 +34,21 @@ namespace MLEM.Ui.Elements {
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public Tooltip(float width, string text = null, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-            if (text != null) {
+            if (text != null)
                 this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, width, text));
-                this.Paragraph.AutoAdjustWidth = true;
-            }
-            this.SetWidthBasedOnChildren = true;
-            this.SetHeightBasedOnChildren = true;
-            this.ChildPadding = new Vector2(2);
-            this.CanBeMoused = false;
+            this.Init(elementToHover);
+        }
 
-            if (elementToHover != null) {
-                elementToHover.OnMouseEnter += element => {
-                    // only display the tooltip if there is anything in it
-                    if (this.Children.Any(c => !c.IsHidden))
-                        this.Display(element.System, element.GetType().Name + "Tooltip");
-                };
-                elementToHover.OnMouseExit += element => this.Remove();
-            }
+        /// <summary>
+        /// Creates a new tooltip with the given settings
+        /// </summary>
+        /// <param name="width">The width of the tooltip</param>
+        /// <param name="textCallback">The text to display on the tooltip</param>
+        /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
+        public Tooltip(float width, Paragraph.TextCallback textCallback, Element elementToHover = null) :
+            base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
+            this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, width, textCallback));
+            this.Init(elementToHover);
         }
 
         /// <inheritdoc />
@@ -122,6 +120,24 @@ namespace MLEM.Ui.Elements {
             this.delayCountdown = TimeSpan.Zero;
             if (this.System != null)
                 this.System.Remove(this.Root.Name);
+        }
+
+        private void Init(Element elementToHover) {
+            this.Paragraph.AutoAdjustWidth = true;
+
+            this.SetWidthBasedOnChildren = true;
+            this.SetHeightBasedOnChildren = true;
+            this.ChildPadding = new Vector2(2);
+            this.CanBeMoused = false;
+
+            if (elementToHover != null) {
+                elementToHover.OnMouseEnter += element => {
+                    // only display the tooltip if there is anything in it
+                    if (this.Children.Any(c => !c.IsHidden))
+                        this.Display(element.System, element.GetType().Name + "Tooltip");
+                };
+                elementToHover.OnMouseExit += element => this.Remove();
+            }
         }
 
     }
