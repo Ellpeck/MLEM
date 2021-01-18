@@ -16,6 +16,7 @@ namespace MLEM.Data {
     public class RuntimeTexturePacker {
 
         private readonly List<Request> textures = new List<Request>();
+        private readonly bool autoIncreaseMaxWidth;
 
         /// <summary>
         /// The generated packed texture.
@@ -34,14 +35,16 @@ namespace MLEM.Data {
         /// The time that <see cref="Pack"/> took the last time it was called
         /// </summary>
         public TimeSpan LastTotalTime => this.LastCalculationTime + this.LastPackTime;
-        private readonly int maxWidth;
+        private int maxWidth;
 
         /// <summary>
         /// Creates a new runtime texture packer with the given settings
         /// </summary>
         /// <param name="maxWidth">The maximum width that the packed texture can have. Defaults to 2048.</param>
-        public RuntimeTexturePacker(int maxWidth = 2048) {
+        /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than <see cref="maxWidth"/>. Defaults to false.</param>
+        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false) {
             this.maxWidth = maxWidth;
+            this.autoIncreaseMaxWidth = autoIncreaseMaxWidth;
         }
 
         /// <summary>
@@ -64,8 +67,13 @@ namespace MLEM.Data {
         public void Add(TextureRegion texture, Action<TextureRegion> result) {
             if (this.PackedTexture != null)
                 throw new InvalidOperationException("Cannot add texture to a texture packer that is already packed");
-            if (texture.Width > this.maxWidth)
-                throw new InvalidOperationException($"Cannot add texture with width {texture.Width} to a texture packer with max width {this.maxWidth}");
+            if (texture.Width > this.maxWidth) {
+                if (this.autoIncreaseMaxWidth) {
+                    this.maxWidth = texture.Width;
+                } else {
+                    throw new InvalidOperationException($"Cannot add texture with width {texture.Width} to a texture packer with max width {this.maxWidth}");
+                }
+            }
             this.textures.Add(new Request(texture, result));
         }
 
