@@ -123,7 +123,8 @@ namespace MLEM.Ui.Elements {
         }
 
         private void Init(Element elementToHover) {
-            this.Paragraph.AutoAdjustWidth = true;
+            if (this.Paragraph != null)
+                this.Paragraph.AutoAdjustWidth = true;
 
             this.SetWidthBasedOnChildren = true;
             this.SetHeightBasedOnChildren = true;
