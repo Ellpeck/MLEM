@@ -25,6 +25,8 @@ namespace MLEM.Extensions {
 
             private readonly Texture2D texture;
             private readonly Color[] data;
+            private bool dirty;
+
             /// <summary>
             /// Returns the color at the given x,y position of the texture, where 0,0 represents the bottom left.
             /// </summary>
@@ -32,7 +34,13 @@ namespace MLEM.Extensions {
             /// <param name="y">The y coordinate of the texture location</param>
             public Color this[int x, int y] {
                 get => this.data[this.ToIndex(x, y)];
-                set => this.data[this.ToIndex(x, y)] = value;
+                set {
+                    var index = this.ToIndex(x, y);
+                    if (this.data[index] != value) {
+                        this.data[index] = value;
+                        this.dirty = true;
+                    }
+                }
             }
             /// <inheritdoc cref="this[int,int]"/>
             public Color this[Point point] {
@@ -55,7 +63,10 @@ namespace MLEM.Extensions {
             /// Stores this texture data back into the underlying texture
             /// </summary>
             public void Store() {
-                this.texture.SetData(this.data);
+                if (this.dirty) {
+                    this.texture.SetData(this.data);
+                    this.dirty = false;
+                }
             }
 
             /// <summary>
