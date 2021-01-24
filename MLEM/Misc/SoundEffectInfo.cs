@@ -55,11 +55,12 @@ namespace MLEM.Misc {
         /// </summary>
         /// <param name="listener">Data about the listener</param>
         /// <param name="pos">The position to play the sound at</param>
+        /// <param name="loop">Whether to loop the sound effect instance</param>
         /// <param name="dopplerScale">The emitter's doppler scale, defaults to 1</param>
         /// <param name="forward">The emitter's forward vector, defaults to <see cref="Vector3.Forward"/></param>
         /// <param name="up">The emitter's up vector, defaults to <see cref="Vector3.Up"/></param>
         /// <param name="velocity">The emitter's velocity, defaults to <see cref="Vector3.Zero"/></param>
-        public void Play3D(AudioListener listener, Vector3 pos, float? dopplerScale = null, Vector3? forward = null, Vector3? up = null, Vector3? velocity = null) {
+        public SoundEffectInstance Play3D(AudioListener listener, Vector3 pos, bool loop = false, float? dopplerScale = null, Vector3? forward = null, Vector3? up = null, Vector3? velocity = null) {
             if (this.emitter == null)
                 this.emitter = new AudioEmitter();
             this.emitter.Position = pos;
@@ -69,8 +70,10 @@ namespace MLEM.Misc {
             this.emitter.Velocity = velocity ?? Vector3.Zero;
 
             var inst = this.CreateInstance();
+            inst.IsLooped = loop;
             inst.Apply3D(listener, this.emitter);
             inst.Play();
+            return inst;
         }
 
         /// <summary>
