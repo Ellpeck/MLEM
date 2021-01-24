@@ -1,9 +1,10 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
 namespace MLEM.Misc {
     /// <summary>
     /// A sound effect info is a wrapper around <see cref="SoundEffect"/> that additionally stores <see cref="Volume"/>, <see cref="Pitch"/> and <see cref="Pan"/> information.
-    /// Additionally, a <see cref="SoundEffectInstance"/> can be created using <see cref="CreateInstance"/>.
+    /// Additionally, a <see cref="SoundEffectInstance"/> can be created using <see cref="CreateInstance"/> and a 3D sound can be played using <see cref="Play3D"/>.
     /// </summary>
     public class SoundEffectInfo {
 
@@ -23,6 +24,8 @@ namespace MLEM.Misc {
         /// Pan value ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).
         /// </summary>
         public float Pan;
+
+        private AudioEmitter emitter;
 
         /// <summary>
         /// Creates a new sound effect info with the given values.
@@ -44,6 +47,30 @@ namespace MLEM.Misc {
         /// <returns>False if more sounds are currently playing than the platform allows</returns>
         public bool Play() {
             return this.Sound.Play(this.Volume, this.Pitch, this.Pan);
+        }
+
+        /// <summary>
+        /// Plays this info's <see cref="Sound"/> once, with 3d positioning applied, to the given <see cref="listener"/>.
+        /// The required <see cref="AudioEmitter"/> is automatically created and cached for future use.
+        /// </summary>
+        /// <param name="listener">Data about the listener</param>
+        /// <param name="pos">The position to play the sound at</param>
+        /// <param name="dopplerScale">The emitter's doppler scale, defaults to 1</param>
+        /// <param name="forward">The emitter's forward vector, defaults to <see cref="Vector3.Forward"/></param>
+        /// <param name="up">The emitter's up vector, defaults to <see cref="Vector3.Up"/></param>
+        /// <param name="velocity">The emitter's velocity, defaults to <see cref="Vector3.Zero"/></param>
+        public void Play3D(AudioListener listener, Vector3 pos, float? dopplerScale = null, Vector3? forward = null, Vector3? up = null, Vector3? velocity = null) {
+            if (this.emitter == null)
+                this.emitter = new AudioEmitter();
+            this.emitter.Position = pos;
+            this.emitter.DopplerScale = dopplerScale ?? 1;
+            this.emitter.Forward = forward ?? Vector3.Forward;
+            this.emitter.Up = up ?? Vector3.Up;
+            this.emitter.Velocity = velocity ?? Vector3.Zero;
+
+            var inst = this.CreateInstance();
+            inst.Apply3D(listener, this.emitter);
+            inst.Play();
         }
 
         /// <summary>
