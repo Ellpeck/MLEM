@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
@@ -25,8 +29,6 @@ namespace MLEM.Misc {
         /// </summary>
         public float Pan;
 
-        private AudioEmitter emitter;
-
         /// <summary>
         /// Creates a new sound effect info with the given values.
         /// </summary>
@@ -50,33 +52,6 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
-        /// Plays this info's <see cref="Sound"/> once, with 3d positioning applied, to the given <see cref="listener"/>.
-        /// The required <see cref="AudioEmitter"/> is automatically created and cached for future use.
-        /// </summary>
-        /// <param name="listener">Data about the listener</param>
-        /// <param name="pos">The position to play the sound at</param>
-        /// <param name="loop">Whether to loop the sound effect instance</param>
-        /// <param name="dopplerScale">The emitter's doppler scale, defaults to 1</param>
-        /// <param name="forward">The emitter's forward vector, defaults to <see cref="Vector3.Forward"/></param>
-        /// <param name="up">The emitter's up vector, defaults to <see cref="Vector3.Up"/></param>
-        /// <param name="velocity">The emitter's velocity, defaults to <see cref="Vector3.Zero"/></param>
-        public SoundEffectInstance Play3D(AudioListener listener, Vector3 pos, bool loop = false, float? dopplerScale = null, Vector3? forward = null, Vector3? up = null, Vector3? velocity = null) {
-            if (this.emitter == null)
-                this.emitter = new AudioEmitter();
-            this.emitter.Position = pos;
-            this.emitter.DopplerScale = dopplerScale ?? 1;
-            this.emitter.Forward = forward ?? Vector3.Forward;
-            this.emitter.Up = up ?? Vector3.Up;
-            this.emitter.Velocity = velocity ?? Vector3.Zero;
-
-            var inst = this.CreateInstance();
-            inst.IsLooped = loop;
-            inst.Apply3D(listener, this.emitter);
-            inst.Play();
-            return inst;
-        }
-
-        /// <summary>
         /// Creates a new <see cref="SoundEffectInstance"/> with this sound effect info's data.
         /// </summary>
         /// <returns>A new sound effect instance, with this info's data applied</returns>
@@ -86,6 +61,101 @@ namespace MLEM.Misc {
             instance.Pitch = this.Pitch;
             instance.Pan = this.Pan;
             return instance;
+        }
+
+    }
+
+    /// <summary>
+    /// A simple class that handles automatically removing and disposing <see cref="SoundEffectInstance"/> objects once they are done playing to free up the audio source for new sounds.
+    /// Additionally, a callback can be registered that is invoked when the <see cref="SoundEffectInstance"/> finishes playing.
+    /// Note that an object of this class can be added to a <see cref="Game"/> using <see cref="GameComponentCollection.Add"/>.
+    /// </summary>
+    public class SoundEffectInstanceHandler : GameComponent, IEnumerable<SoundEffectInstance> {
+
+        private readonly List<Entry> playingSounds = new List<Entry>();
+
+        /// <summary>
+        /// Creates a new sound effect instance handler with the given settings
+        /// </summary>
+        /// <param name="game">The game instance</param>
+        public SoundEffectInstanceHandler(Game game) : base(game) {
+        }
+
+        /// <inheritdoc />
+        public override void Update(GameTime gameTime) {
+            this.Update();
+        }
+
+        /// <summary>
+        /// Updates this sound effect handler and manages all of the <see cref="SoundEffectInstance"/> objects in it.
+        /// This should be called each update frame.
+        /// </summary>
+        public void Update() {
+            for (var i = this.playingSounds.Count - 1; i >= 0; i--) {
+                var entry = this.playingSounds[i];
+                if (entry.Instance.IsDisposed || entry.Instance.State == SoundState.Stopped) {
+                    entry.Instance.Stop(true);
+                    entry.OnStopped?.Invoke(entry.Instance);
+                    this.playingSounds.RemoveAt(i);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a new <see cref="SoundEffectInstance"/> to this handler.
+        /// This also starts playing the instance.
+        /// </summary>
+        /// <param name="instance">The instance to add</param>
+        /// <param name="onStopped">The function that should be invoked when this instance stops playing, defaults to null</param>
+        /// <returns>The passed instance, for chaining</returns>
+        public SoundEffectInstance Add(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped = null) {
+            this.playingSounds.Add(new Entry(instance, onStopped));
+            instance.Play();
+            return instance;
+        }
+
+        /// <summary>
+        /// Adds a new <see cref="SoundEffectInfo"/> to this handler.
+        /// This also starts playing the created instance.
+        /// </summary>
+        /// <param name="info">The info for which to add a <see cref="SoundEffectInstance"/></param>
+        /// <param name="onStopped">The function that should be invoked when this instance stops playing, defaults to null</param>
+        /// <returns>The newly created <see cref="SoundEffectInstance"/></returns>
+        public SoundEffectInstance Add(SoundEffectInfo info, Action<SoundEffectInstance> onStopped = null) {
+            return this.Add(info.CreateInstance(), onStopped);
+        }
+
+        /// <summary>
+        /// Adds a new <see cref="SoundEffect"/> to this handler.
+        /// This also starts playing the created instance.
+        /// </summary>
+        /// <param name="effect">The sound for which to add a <see cref="SoundEffectInstance"/></param>
+        /// <param name="onStopped">The function that should be invoked when this instance stops playing, defaults to null</param>
+        /// <returns>The newly created <see cref="SoundEffectInstance"/></returns>
+        public SoundEffectInstance Add(SoundEffect effect, Action<SoundEffectInstance> onStopped = null) {
+            return this.Add(effect.CreateInstance(), onStopped);
+        }
+
+        /// <inheritdoc />
+        public IEnumerator<SoundEffectInstance> GetEnumerator() {
+            foreach (var sound in this.playingSounds)
+                yield return sound.Instance;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return this.GetEnumerator();
+        }
+
+        private readonly struct Entry {
+
+            public readonly SoundEffectInstance Instance;
+            public readonly Action<SoundEffectInstance> OnStopped;
+
+            public Entry(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped) {
+                this.Instance = instance;
+                this.OnStopped = onStopped;
+            }
+
         }
 
     }
