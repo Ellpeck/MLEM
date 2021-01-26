@@ -13,6 +13,7 @@ namespace MLEM.Misc {
     public class SoundEffectInstanceHandler : GameComponent, IEnumerable<SoundEffectInstance> {
 
         private readonly List<Entry> playingSounds = new List<Entry>();
+        private AudioListener[] listeners;
 
         /// <summary>
         /// Creates a new sound effect instance handler with the given settings
@@ -21,13 +22,14 @@ namespace MLEM.Misc {
         public SoundEffectInstanceHandler(Game game) : base(game) {
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="Update()"/>
         public override void Update(GameTime gameTime) {
             this.Update();
         }
 
         /// <summary>
         /// Updates this sound effect handler and manages all of the <see cref="SoundEffectInstance"/> objects in it.
+        /// If <see cref="SetListeners"/> has been called, all sounds will additionally be updated in 3D space.
         /// This should be called each update frame.
         /// </summary>
         public void Update() {
@@ -37,8 +39,18 @@ namespace MLEM.Misc {
                     entry.Instance.Stop(true);
                     entry.OnStopped?.Invoke(entry.Instance);
                     this.playingSounds.RemoveAt(i);
+                } else {
+                    entry.TryApply3D(this.listeners);
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the collection <see cref="AudioListener"/> objects that should be listening to the sounds in this handler in 3D space.
+        /// If there are one or more listeners, this handler applies 3d effects to all sound effect instances that have been added to this handler along with an <see cref="AudioEmitter"/> in <see cref="Update(Microsoft.Xna.Framework.GameTime)"/> automatically.
+        /// </summary>
+        public void SetListeners(params AudioListener[] listeners) {
+            this.listeners = listeners;
         }
 
         /// <summary>
@@ -58,17 +70,6 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
-        /// Applies 3d effects to all sound effect instances that have been added to this handler along with an <see cref="AudioEmitter"/> 
-        /// </summary>
-        /// <param name="listener">The audio listener that 3d sound should be applied for</param>
-        public void Apply3D(AudioListener listener) {
-            foreach (var entry in this.playingSounds) {
-                if (entry.Emitter != null)
-                    entry.Instance.Apply3D(listener, entry.Emitter);
-            }
-        }
-
-        /// <summary>
         /// Adds a new <see cref="SoundEffectInstance"/> to this handler.
         /// This also starts playing the instance.
         /// </summary>
@@ -77,7 +78,9 @@ namespace MLEM.Misc {
         /// <param name="emitter">An optional audio emitter with which 3d sound can be applied</param>
         /// <returns>The passed instance, for chaining</returns>
         public SoundEffectInstance Add(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped = null, AudioEmitter emitter = null) {
-            this.playingSounds.Add(new Entry(instance, onStopped, emitter));
+            var entry = new Entry(instance, onStopped, emitter);
+            entry.TryApply3D(this.listeners);
+            this.playingSounds.Add(entry);
             instance.Play();
             return instance;
         }
@@ -126,6 +129,11 @@ namespace MLEM.Misc {
                 this.Instance = instance;
                 this.OnStopped = onStopped;
                 this.Emitter = emitter;
+            }
+
+            public void TryApply3D(AudioListener[] listeners) {
+                if (listeners != null && listeners.Length > 0)
+                    this.Instance.Apply3D(listeners, this.Emitter);
             }
 
         }
