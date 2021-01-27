@@ -132,7 +132,7 @@ namespace MLEM.Misc {
             }
 
             public void TryApply3D(AudioListener[] listeners) {
-                if (listeners != null && listeners.Length > 0)
+                if (listeners != null && listeners.Length > 0 && this.Emitter != null)
                     this.Instance.Apply3D(listeners, this.Emitter);
             }
 
