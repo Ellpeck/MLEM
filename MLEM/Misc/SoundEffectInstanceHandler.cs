@@ -79,9 +79,9 @@ namespace MLEM.Misc {
         /// <returns>The passed instance, for chaining</returns>
         public SoundEffectInstance Add(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped = null, AudioEmitter emitter = null) {
             var entry = new Entry(instance, onStopped, emitter);
-            entry.TryApply3D(this.listeners);
             this.playingSounds.Add(entry);
             instance.Play();
+            entry.TryApply3D(this.listeners);
             return instance;
         }
 
