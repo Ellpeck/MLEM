@@ -24,8 +24,8 @@ namespace MLEM.Misc {
 
         /// <inheritdoc />
         public T GetData<T>(string key) {
-            if (this.data != null && this.data.TryGetValue(key, out var val) && val is T t)
-                return t;
+            if (this.data != null && this.data.TryGetValue(key, out var val))
+                return (T) val;
             return default;
         }
 
