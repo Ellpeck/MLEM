@@ -108,8 +108,11 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void ForceUpdateSortedChildren() {
             base.ForceUpdateSortedChildren();
-            if (this.scrollOverflow)
+            if (this.scrollOverflow) {
+                if (this.ScrollBar.Parent != this)
+                    throw new NotSupportedException("A panel that scrolls overflow cannot have its scroll bar removed from its list of children");
                 this.relevantChildrenDirty = true;
+            }
         }
 
         /// <inheritdoc />
