@@ -13,7 +13,7 @@ namespace MLEM.Data {
     /// Packing textures in this manner allows for faster rendering, as fewer texture swaps are required.
     /// The resulting texture segments are returned as <see cref="TextureRegion"/> instances.
     /// </summary>
-    public class RuntimeTexturePacker {
+    public class RuntimeTexturePacker : IDisposable {
 
         private readonly List<Request> textures = new List<Request>();
         private readonly bool autoIncreaseMaxWidth;
@@ -129,6 +129,23 @@ namespace MLEM.Data {
             // invoke callbacks
             foreach (var request in this.textures)
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, request.PackedArea));
+            this.textures.Clear();
+        }
+
+        /// <summary>
+        /// Resets this texture packer, disposing its <see cref="PackedTexture"/> and readying it to be re-used
+        /// </summary>
+        public void Reset() {
+            this.PackedTexture?.Dispose();
+            this.PackedTexture = null;
+            this.textures.Clear();
+            this.LastCalculationTime = TimeSpan.Zero;
+            this.LastPackTime = TimeSpan.Zero;
+        }
+
+        /// <inheritdoc />
+        public void Dispose() {
+            this.Reset();
         }
 
         private Rectangle FindFreeArea(Point size) {
