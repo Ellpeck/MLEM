@@ -103,7 +103,7 @@ namespace MLEM.Data {
             stopwatch.Stop();
             this.LastCalculationTime = stopwatch.Elapsed;
 
-            // figure out texture size
+            // figure out texture size and generate texture
             var width = this.textures.Max(t => t.PackedArea.Right);
             var height = this.textures.Max(t => t.PackedArea.Bottom);
             if (this.forcePowerOfTwo) {
@@ -112,11 +112,8 @@ namespace MLEM.Data {
             }
             if (this.forceSquare)
                 width = height = Math.Max(width, height);
-
-            // generate texture
             this.PackedTexture = new Texture2D(device, width, height);
-            device.Disposing += (o, a) => this.PackedTexture.Dispose();
-
+            
             // copy texture data onto the packed texture
             stopwatch.Restart();
             using (var data = this.PackedTexture.GetTextureData()) {
