@@ -17,6 +17,8 @@ namespace MLEM.Data {
 
         private readonly List<Request> textures = new List<Request>();
         private readonly bool autoIncreaseMaxWidth;
+        private readonly bool forcePowerOfTwo;
+        private readonly bool forceSquare;
 
         /// <summary>
         /// The generated packed texture.
@@ -42,9 +44,13 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="maxWidth">The maximum width that the packed texture can have. Defaults to 2048.</param>
         /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than <see cref="maxWidth"/>. Defaults to false.</param>
-        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false) {
+        /// <param name="forcePowerOfTwo">Whether the resulting <see cref="PackedTexture"/> should have a width and height that is a power of two</param>
+        /// <param name="forceSquare">Whether the resulting <see cref="PackedTexture"/> should be square regardless of required size</param>
+        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false, bool forcePowerOfTwo = false, bool forceSquare = false) {
             this.maxWidth = maxWidth;
             this.autoIncreaseMaxWidth = autoIncreaseMaxWidth;
+            this.forcePowerOfTwo = forcePowerOfTwo;
+            this.forceSquare = forceSquare;
         }
 
         /// <summary>
@@ -97,9 +103,17 @@ namespace MLEM.Data {
             stopwatch.Stop();
             this.LastCalculationTime = stopwatch.Elapsed;
 
-            // generate texture based on required size
+            // figure out texture size
             var width = this.textures.Max(t => t.PackedArea.Right);
             var height = this.textures.Max(t => t.PackedArea.Bottom);
+            if (this.forcePowerOfTwo) {
+                width = ToPowerOfTwo(width);
+                height = ToPowerOfTwo(height);
+            }
+            if (this.forceSquare)
+                width = height = Math.Max(width, height);
+
+            // generate texture
             this.PackedTexture = new Texture2D(device, width, height);
             device.Disposing += (o, a) => this.PackedTexture.Dispose();
 
@@ -153,6 +167,13 @@ namespace MLEM.Data {
                     }
                 }
             }
+        }
+
+        private static int ToPowerOfTwo(int value) {
+            var ret = 1;
+            while (ret < value)
+                ret <<= 1;
+            return ret;
         }
 
         private class Request {
