@@ -78,8 +78,8 @@ namespace MLEM.Data {
                 if (match.Groups[8].Success) {
                     for (var i = 0; i < match.Groups[8].Captures.Count; i++) {
                         region.SetData(match.Groups[8].Captures[i].Value, new Vector2(
-                            float.Parse(match.Groups[9].Captures[i].Value),
-                            float.Parse(match.Groups[10].Captures[i].Value)));
+                            float.Parse(match.Groups[9].Captures[i].Value) - (pivotRelative ? 0 : loc.X),
+                            float.Parse(match.Groups[10].Captures[i].Value) - (pivotRelative ? 0 : loc.Y)));
                     }
                 }
                 atlas.regions.Add(name, region);
