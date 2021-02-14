@@ -56,23 +56,33 @@ namespace MLEM.Data {
                 text = reader.ReadToEnd();
             var atlas = new DataTextureAtlas(texture);
 
-            // parse each texture region: "<name> loc <u> <v> <w> <h> piv <px> <py>"
-            const string regex = @"(.+)\W+loc\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W+(?:piv\W+([0-9.]+)\W+([0-9.]+))?";
-            foreach (Match match in Regex.Matches(text, regex)) {
+            // parse each texture region: "<name> loc <u> <v> <w> <h> piv <px> <py>" followed by extra data in the form "key <x> <y>"
+            foreach (Match match in Regex.Matches(text, @"(.+)\W+loc\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)(?:\W+piv\W+([0-9.]+)\W+([0-9.]+))?(?:\W+(\w+)\W+([0-9.]+)\W+([0-9.]+))*")) {
                 var name = match.Groups[1].Value.Trim();
+                // location
                 var loc = new Rectangle(
                     int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value),
                     int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
+                // pivot
                 var piv = Vector2.Zero;
                 if (match.Groups[6].Success) {
                     piv = new Vector2(
                         float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
                         float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
                 }
-                atlas.regions.Add(name, new TextureRegion(texture, loc) {
+                var region = new TextureRegion(texture, loc) {
                     PivotPixels = piv,
                     Name = name
-                });
+                };
+                // additional data
+                if (match.Groups[8].Success) {
+                    for (var i = 0; i < match.Groups[8].Captures.Count; i++) {
+                        region.SetData(match.Groups[8].Captures[i].Value, new Vector2(
+                            float.Parse(match.Groups[9].Captures[i].Value),
+                            float.Parse(match.Groups[10].Captures[i].Value)));
+                    }
+                }
+                atlas.regions.Add(name, region);
             }
 
             return atlas;

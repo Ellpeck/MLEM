@@ -157,6 +157,8 @@ namespace Sandbox {
             var atlas = this.Content.LoadTextureAtlas("Textures/Furniture");
             foreach (var r in atlas.Regions) {
                 Console.WriteLine(r.Name + ": " + r.U + " " + r.V + " " + r.Width + " " + r.Height + " " + r.PivotPixels);
+                foreach (var key in r.GetDataKeys())
+                    Console.WriteLine(key + " " + r.GetData<Vector2>(key));
             }
 
             this.OnDraw += (g, time) => {
@@ -181,7 +183,7 @@ namespace Sandbox {
                 this.tokenized.Update(time);
             };
 
-            var testPanel = new Panel(Anchor.Center, new Vector2(0.5F, 100), Vector2.Zero);
+            /*var testPanel = new Panel(Anchor.Center, new Vector2(0.5F, 100), Vector2.Zero);
             testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -1)));
             testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(2500, 1)) {PreventParentSpill = true});
             this.UiSystem.Add("Test", testPanel);
@@ -192,7 +194,7 @@ namespace Sandbox {
             };
             invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
             invalidPanel.AddChild(new VerticalSpace(1));
-            this.UiSystem.Add("Invalid", invalidPanel);
+            this.UiSystem.Add("Invalid", invalidPanel);*/
         }
 
         protected override void DoUpdate(GameTime gameTime) {
