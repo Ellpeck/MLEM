@@ -40,6 +40,11 @@ namespace Sandbox {
         }
 
         protected override void LoadContent() {
+            // TODO remove with MonoGame 3.8.1 https://github.com/MonoGame/MonoGame/issues/7298
+            this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
+            this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
+            this.GraphicsDeviceManager.ApplyChanges();
+
             base.LoadContent();
 
             this.Components.Add(this.rawContent = new RawContentManager(this.Services));
