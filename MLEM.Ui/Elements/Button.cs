@@ -75,7 +75,7 @@ namespace MLEM.Ui.Elements {
                 this.AddChild(this.Text);
             }
             if (tooltipText != null)
-                this.Tooltip = new Tooltip(tooltipWidth, tooltipText, this);
+                this.Tooltip = this.AddTooltip(tooltipWidth, tooltipText);
         }
 
         /// <inheritdoc />

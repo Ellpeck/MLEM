@@ -122,6 +122,19 @@ namespace MLEM.Ui.Elements {
                 this.System.Remove(this.Root.Name);
         }
 
+        /// <summary>
+        /// Adds this tooltip instance to the given <see cref="Element"/>, making it display when it is moused over
+        /// </summary>
+        /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
+        public void AddToElement(Element elementToHover) {
+            elementToHover.OnMouseEnter += element => {
+                // only display the tooltip if there is anything in it
+                if (this.Children.Any(c => !c.IsHidden))
+                    this.Display(element.System, element.GetType().Name + "Tooltip");
+            };
+            elementToHover.OnMouseExit += element => this.Remove();
+        }
+
         private void Init(Element elementToHover) {
             if (this.Paragraph != null)
                 this.Paragraph.AutoAdjustWidth = true;
@@ -131,14 +144,8 @@ namespace MLEM.Ui.Elements {
             this.ChildPadding = new Vector2(2);
             this.CanBeMoused = false;
 
-            if (elementToHover != null) {
-                elementToHover.OnMouseEnter += element => {
-                    // only display the tooltip if there is anything in it
-                    if (this.Children.Any(c => !c.IsHidden))
-                        this.Display(element.System, element.GetType().Name + "Tooltip");
-                };
-                elementToHover.OnMouseExit += element => this.Remove();
-            }
+            if (elementToHover != null)
+                this.AddToElement(elementToHover);
         }
 
     }

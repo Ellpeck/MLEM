@@ -8,7 +8,7 @@ namespace MLEM.Misc {
     /// <summary>
     /// A simple class that handles automatically removing and disposing <see cref="SoundEffectInstance"/> objects once they are done playing to free up the audio source for new sounds.
     /// Additionally, a callback can be registered that is invoked when the <see cref="SoundEffectInstance"/> finishes playing.
-    /// Note that an object of this class can be added to a <see cref="Game"/> using <see cref="GameComponentCollection.Add"/>.
+    /// Note that an object of this class can be added to a <see cref="Game"/> using its <see cref="GameComponentCollection"/>.
     /// </summary>
     public class SoundEffectInstanceHandler : GameComponent, IEnumerable<SoundEffectInstance> {
 
