@@ -70,9 +70,9 @@ namespace MLEM.Startup {
         /// <inheritdoc />
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
-            this.InputHandler = new InputHandler();
+            this.InputHandler = new InputHandler(this);
             this.Components.Add(this.InputHandler);
-            this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
+            this.UiSystem = new UiSystem(this, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
             this.Components.Add(this.UiSystem);
             this.OnLoadContent?.Invoke(this);
         }

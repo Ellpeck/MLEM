@@ -123,11 +123,12 @@ namespace MLEM.Input {
         /// <summary>
         /// Creates a new input handler with optional initial values.
         /// </summary>
+        /// <param name="game">The game instance that this input handler belongs to</param>
         /// <param name="handleKeyboard">If keyboard input should be handled</param>
         /// <param name="handleMouse">If mouse input should be handled</param>
         /// <param name="handleGamepads">If gamepad input should be handled</param>
         /// <param name="handleTouch">If touch input should be handled</param>
-        public InputHandler(bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(null) {
+        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(game) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
@@ -140,9 +141,10 @@ namespace MLEM.Input {
         /// Call this in your <see cref="Game.Update"/> method.
         /// </summary>
         public void Update() {
+            var active = this.Game.IsActive;
             if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
-                this.KeyboardState = Keyboard.GetState();
+                this.KeyboardState = active ? Keyboard.GetState() : default;
                 this.PressedKeys = this.KeyboardState.GetPressedKeys();
 
                 if (this.HandleKeyboardRepeats) {
@@ -179,15 +181,15 @@ namespace MLEM.Input {
 
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
-                this.MouseState = Mouse.GetState();
+                this.MouseState = active ? Mouse.GetState() : default;
             }
 
             if (this.HandleGamepads) {
                 this.ConnectedGamepads = GamePad.MaximumGamePadCount;
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
-                    this.gamepads[i] = GamePad.GetState(i);
-                    if (this.ConnectedGamepads > i && !this.gamepads[i].IsConnected)
+                    this.gamepads[i] = active ? GamePad.GetState(i) : default;
+                    if (this.ConnectedGamepads > i && !GamePad.GetCapabilities(i).IsConnected)
                         this.ConnectedGamepads = i;
                 }
 
@@ -224,10 +226,10 @@ namespace MLEM.Input {
 
             if (this.HandleTouch) {
                 this.LastTouchState = this.TouchState;
-                this.TouchState = TouchPanel.GetState();
+                this.TouchState = active ? TouchPanel.GetState() : default;
 
                 this.gestures.Clear();
-                while (TouchPanel.IsGestureAvailable)
+                while (active && TouchPanel.IsGestureAvailable)
                     this.gestures.Add(TouchPanel.ReadGesture());
             }
         }

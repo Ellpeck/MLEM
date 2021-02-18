@@ -123,7 +123,7 @@ namespace MLEM.Ui {
         /// <param name="inputHandler">The input handler to use for controlling, or null to create a new one.</param>
         public UiControls(UiSystem system, InputHandler inputHandler = null) {
             this.System = system;
-            this.Input = inputHandler ?? new InputHandler();
+            this.Input = inputHandler ?? new InputHandler(system.Game);
             this.IsInputOurs = inputHandler == null;
             this.Keybinds = typeof(UiControls).GetFields()
                 .Where(f => f.FieldType == typeof(Keybind))

@@ -180,26 +180,26 @@ namespace MLEM.Ui {
         /// <summary>
         /// Creates a new ui system with the given settings.
         /// </summary>
-        /// <param name="window">The game's window</param>
+        /// <param name="game">The game</param>
         /// <param name="device">The graphics device that should be used for viewport calculations</param>
         /// <param name="style">The style settings that this ui should have. Use <see cref="UntexturedStyle"/> for the default, untextured style.</param>
         /// <param name="inputHandler">The input handler that this ui's <see cref="UiControls"/> should use. If none is supplied, a new input handler is created for this ui.</param>
-        public UiSystem(GameWindow window, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) : base(null) {
+        public UiSystem(Game game, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) : base(game) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
-            this.Window = window;
+            this.Window = game.Window;
             this.style = style;
-            this.Viewport = new Rectangle(Point.Zero, window.ClientBounds.Size);
+            this.Viewport = new Rectangle(Point.Zero, this.Window.ClientBounds.Size);
             this.AutoScaleReferenceSize = this.Viewport.Size;
 
-            window.ClientSizeChanged += (sender, args) => {
-                this.Viewport = new Rectangle(Point.Zero, window.ClientBounds.Size);
+            this.Window.ClientSizeChanged += (sender, args) => {
+                this.Viewport = new Rectangle(Point.Zero, this.Window.ClientBounds.Size);
                 foreach (var root in this.rootElements)
                     root.Element.ForceUpdateArea();
             };
 
             if (TextInputWrapper.Current != null)
-                TextInputWrapper.Current.AddListener(window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
+                TextInputWrapper.Current.AddListener(this.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged = e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
