@@ -181,7 +181,12 @@ namespace MLEM.Input {
 
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
-                this.MouseState = active ? Mouse.GetState() : default;
+                this.MouseState = default;
+                if (active) {
+                    var state = Mouse.GetState();
+                    if (this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.Position))
+                        this.MouseState = state;
+                }
             }
 
             if (this.HandleGamepads) {
