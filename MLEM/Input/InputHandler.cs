@@ -181,11 +181,12 @@ namespace MLEM.Input {
 
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
-                this.MouseState = default;
-                if (active) {
-                    var state = Mouse.GetState();
-                    if (this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.Position))
-                        this.MouseState = state;
+                var state = Mouse.GetState();
+                if (active && this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.Position)) {
+                    this.MouseState = state;
+                } else {
+                    // mouse position and scroll wheel value should be preserved when the mouse is out of bounds
+                    this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0, state.HorizontalScrollWheelValue);
                 }
             }
 
