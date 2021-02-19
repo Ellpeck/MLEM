@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -8,7 +9,8 @@ using MLEM.Misc;
 namespace MLEM.Textures {
     /// <summary>
     /// This class represents a texture with nine areas.
-    /// A nine patch texture is useful if a big area should be covered by a small texture that has a specific outline, like a gui panel texture. The center of the texture will be stretched, while the outline of the texture will remain at its original size, keeping aspect ratios alive.
+    /// A nine patch texture is useful if a big area should be covered by a small texture that has a specific outline, like a gui panel texture. The center of the texture will be stretched or tiled, while the outline of the texture will remain at its original size, keeping aspect ratios alive.
+    /// The nine patch can then be drawn using <see cref="NinePatchExtensions"/>.
     /// </summary>
     public class NinePatch : GenericDataHolder {
 
@@ -21,6 +23,10 @@ namespace MLEM.Textures {
         /// </summary>
         public readonly Padding Padding;
         /// <summary>
+        /// The <see cref="NinePatchMode"/> that this nine patch should use for drawing
+        /// </summary>
+        public readonly NinePatchMode Mode;
+        /// <summary>
         /// The nine patches that result from the <see cref="Padding"/>
         /// </summary>
         public readonly Rectangle[] SourceRectangles;
@@ -30,9 +36,11 @@ namespace MLEM.Textures {
         /// </summary>
         /// <param name="texture">The texture to use</param>
         /// <param name="padding">The padding that marks where the outline area stops</param>
-        public NinePatch(TextureRegion texture, Padding padding) {
+        /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
+        public NinePatch(TextureRegion texture, Padding padding, NinePatchMode mode = NinePatchMode.Stretch) {
             this.Region = texture;
             this.Padding = padding;
+            this.Mode = mode;
             this.SourceRectangles = this.CreateRectangles(this.Region.Area).ToArray();
         }
 
@@ -44,13 +52,14 @@ namespace MLEM.Textures {
         /// <param name="paddingRight">The padding on the right edge</param>
         /// <param name="paddingTop">The padding on the top edge</param>
         /// <param name="paddingBottom">The padding on the bottom edge</param>
-        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) :
-            this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom)) {
+        /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
+        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) :
+            this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom), mode) {
         }
 
-        /// <inheritdoc cref="NinePatch(TextureRegion, int, int, int, int)"/>
-        public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom) :
-            this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom) {
+        /// <inheritdoc cref="NinePatch(TextureRegion, int, int, int, int, NinePatchMode)"/>
+        public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) :
+            this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom, mode) {
         }
 
         /// <summary>
@@ -58,15 +67,14 @@ namespace MLEM.Textures {
         /// </summary>
         /// <param name="texture">The texture to use</param>
         /// <param name="padding">The padding that each edge should have</param>
-        public NinePatch(Texture2D texture, int padding) : this(new TextureRegion(texture), padding) {
+        /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
+        public NinePatch(Texture2D texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) :
+            this(new TextureRegion(texture), padding, mode) {
         }
 
-        /// <inheritdoc cref="NinePatch(TextureRegion, int)"/>
-        public NinePatch(TextureRegion texture, int padding) : this(texture, padding, padding, padding, padding) {
-        }
-
-        private IEnumerable<Rectangle> CreateRectangles(Rectangle area, float patchScale = 1) {
-            return this.CreateRectangles((RectangleF) area, patchScale).Select(r => (Rectangle) r);
+        /// <inheritdoc cref="NinePatch(TextureRegion, int, NinePatchMode)"/>
+        public NinePatch(TextureRegion texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) :
+            this(texture, padding, padding, padding, padding, mode) {
         }
 
         internal IEnumerable<RectangleF> CreateRectangles(RectangleF area, float patchScale = 1) {
@@ -93,6 +101,28 @@ namespace MLEM.Textures {
             yield return new RectangleF(rightX, bottomY, pr, pb);
         }
 
+        private IEnumerable<Rectangle> CreateRectangles(Rectangle area, float patchScale = 1) {
+            return this.CreateRectangles((RectangleF) area, patchScale).Select(r => (Rectangle) r);
+        }
+
+    }
+
+    /// <summary>
+    /// An enumeration that represents the modes that a <see cref="NinePatch"/> uses to be drawn
+    /// </summary>
+    public enum NinePatchMode {
+
+        /// <summary>
+        /// The nine resulting patches will each be stretched.
+        /// This mode is fitting for textures that don't have an intricate design on their edges.
+        /// </summary>
+        Stretch,
+        /// <summary>
+        /// The nine resulting paches will be tiled, repeating the texture multiple times.
+        /// This mode is fitting for textures that have a more complex design on their edges.
+        /// </summary>
+        Tile
+
     }
 
     /// <summary>
@@ -113,11 +143,27 @@ namespace MLEM.Textures {
         /// <param name="layerDepth">The depth</param>
         /// <param name="patchScale">The scale of each area of the nine patch</param>
         public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1) {
-            var dest = texture.CreateRectangles(destinationRectangle, patchScale);
+            var destinations = texture.CreateRectangles(destinationRectangle, patchScale);
             var count = 0;
-            foreach (var rect in dest) {
-                if (!rect.IsEmpty)
-                    batch.Draw(texture.Region.Texture, rect, texture.SourceRectangles[count], color, rotation, origin, effects, layerDepth);
+            foreach (var rect in destinations) {
+                if (!rect.IsEmpty) {
+                    var src = texture.SourceRectangles[count];
+                    switch (texture.Mode) {
+                        case NinePatchMode.Stretch:
+                            batch.Draw(texture.Region.Texture, rect, src, color, rotation, origin, effects, layerDepth);
+                            break;
+                        case NinePatchMode.Tile:
+                            var width = src.Width * patchScale;
+                            var height = src.Height * patchScale;
+                            for (var x = 0F; x < rect.Width; x += width) {
+                                for (var y = 0F; y < rect.Height; y += height) {
+                                    var size = new Vector2(Math.Min(rect.Width - x, width), Math.Min(rect.Height - y, height));
+                                    batch.Draw(texture.Region.Texture, new RectangleF(rect.Location + new Vector2(x, y), size), new Rectangle(src.Location, (size / patchScale).ToPoint()), color, rotation, origin, effects, layerDepth);
+                                }
+                            }
+                            break;
+                    }
+                }
                 count++;
             }
         }
