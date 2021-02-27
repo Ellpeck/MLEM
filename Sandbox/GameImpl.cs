@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,6 +11,7 @@ using MLEM.Data.Content;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
+using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Input;
@@ -68,8 +70,11 @@ namespace Sandbox {
                 textureData[textureData.FromIndex(textureData.ToIndex(25, 9))] = Color.Yellow;
             }
 
+            var system = new FontSystem(this.GraphicsDevice, 1024, 1024);
+            system.AddFont(File.ReadAllBytes("Content/Fonts/Cadman_Roman.otf"));
             //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
-            var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
+            //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
+            var font = new GenericStashFont(system.GetFont(32));
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
                 Font = font,
                 TextScale = 0.1F,
@@ -124,8 +129,9 @@ namespace Sandbox {
             var res = this.Content.LoadJson<Test>("Test");
             Console.WriteLine("The res is " + res);
 
-            /*this.OnDraw += (game, time) => {
+            this.OnDraw += (game, time) => {
                 this.SpriteBatch.Begin();
+                system.GetFont(32).DrawText(this.SpriteBatch, "Left Aligned\nover multiple lines", new Vector2(640, 0), Color.White);
                 font.DrawString(this.SpriteBatch, "Left Aligned\nover multiple lines", new Vector2(640, 0), TextAlign.Left, Color.White);
                 font.DrawString(this.SpriteBatch, "Center Aligned\nover multiple lines", new Vector2(640, 100), TextAlign.Center, Color.White);
                 font.DrawString(this.SpriteBatch, "Right Aligned\nover multiple lines", new Vector2(640, 200), TextAlign.Right, Color.White);
@@ -138,7 +144,7 @@ namespace Sandbox {
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, true), new Vector2(200, 500), Color.White);
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, true, "..."), new Vector2(200, 550), Color.White);
                 this.SpriteBatch.End();
-            };*/
+            };
 
             var sc = 4;
             var formatter = new TextFormatter();

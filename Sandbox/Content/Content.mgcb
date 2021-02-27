@@ -14,6 +14,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/Cadman_Roman.otf
+/copy:Fonts/Cadman_Roman.otf
+
 #begin Fonts/Regular.fnt
 /importer:BitmapFontImporter
 /processor:BitmapFontProcessor

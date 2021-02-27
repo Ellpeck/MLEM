@@ -6,7 +6,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>MLEM Library for Extending MonoGame extension that ties in with MonoGame.Extended</Description>
+        <Description>MLEM Library for Extending MonoGame extension that ties in with MonoGame.Extended and other MonoGame libraries</Description>
         <PackageTags>monogame ellpeck mlem utility extensions monogame.extended extended</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
@@ -19,6 +19,9 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="FontStashSharp.MonoGame" Version="0.9.2">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.1.189">
