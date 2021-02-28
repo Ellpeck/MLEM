@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 
 namespace MLEM.Misc {
@@ -10,45 +11,55 @@ namespace MLEM.Misc {
     /// There are several extension methods and arrays available in <see cref="Direction2Helper"/>.
     /// </summary>
     [Flags]
+    [DataContract]
     public enum Direction2 {
 
         /// <summary>
         /// No direction.
         /// </summary>
+        [EnumMember]
         None = 0,
 
         /// <summary>
         /// The up direction, or -y.
         /// </summary>
+        [EnumMember]
         Up = 1,
         /// <summary>
         /// The right direction, or +x.
         /// </summary>
+        [EnumMember]
         Right = 2,
         /// <summary>
         /// The down direction, or +y.
         /// </summary>
+        [EnumMember]
         Down = 4,
         /// <summary>
         /// The left direction, or -x.
         /// </summary>
+        [EnumMember]
         Left = 8,
 
         /// <summary>
         /// The up and right direction, or +x, -y.
         /// </summary>
+        [EnumMember]
         UpRight = Up | Right,
         /// <summary>
         /// The down and right direction, or +x, +y.
         /// </summary>
+        [EnumMember]
         DownRight = Down | Right,
         /// <summary>
         /// The up and left direction, or -x, -y.
         /// </summary>
+        [EnumMember]
         UpLeft = Up | Left,
         /// <summary>
         /// The down and left direction, or -x, +y.
         /// </summary>
+        [EnumMember]
         DownLeft = Down | Left
 
     }

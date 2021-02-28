@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 
 namespace MLEM.Misc {
@@ -5,23 +6,28 @@ namespace MLEM.Misc {
     /// Represents a generic padding.
     /// A padding is an object of data that stores an offset from each side of a rectangle or square.
     /// </summary>
+    [DataContract]
     public struct Padding {
 
         /// <summary>
         /// The amount of padding on the left side
         /// </summary>
+        [DataMember]
         public float Left;
         /// <summary>
         /// The amount of padding on the right side
         /// </summary>
+        [DataMember]
         public float Right;
         /// <summary>
         /// The amount of padding on the top side
         /// </summary>
+        [DataMember]
         public float Top;
         /// <summary>
         /// The amount of padding on the bottom side
         /// </summary>
+        [DataMember]
         public float Bottom;
         /// <summary>
         /// The total width of this padding, a sum of the left and right padding.
