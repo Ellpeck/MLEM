@@ -10,8 +10,7 @@ namespace MLEM.Misc {
     /// Both straight and diagonal directions are supported.
     /// There are several extension methods and arrays available in <see cref="Direction2Helper"/>.
     /// </summary>
-    [Flags]
-    [DataContract]
+    [Flags, DataContract]
     public enum Direction2 {
 
         /// <summary>
