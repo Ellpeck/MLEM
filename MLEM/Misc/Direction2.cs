@@ -7,47 +7,49 @@ namespace MLEM.Misc {
     /// <summary>
     /// An enum that represents two-dimensional directions.
     /// Both straight and diagonal directions are supported.
+    /// There are several extension methods and arrays available in <see cref="Direction2Helper"/>.
     /// </summary>
+    [Flags]
     public enum Direction2 {
-
-        /// <summary>
-        /// The up direction, or -y.
-        /// </summary>
-        Up,
-        /// <summary>
-        /// The right direction, or +x.
-        /// </summary>
-        Right,
-        /// <summary>
-        /// The down direction, or +y.
-        /// </summary>
-        Down,
-        /// <summary>
-        /// The left direction, or -x.
-        /// </summary>
-        Left,
-
-        /// <summary>
-        /// The up and right direction, or +x, -y.
-        /// </summary>
-        UpRight,
-        /// <summary>
-        /// The down and right direction, or +x, +y.
-        /// </summary>
-        DownRight,
-        /// <summary>
-        /// The down and left direction, or -x, +y.
-        /// </summary>
-        DownLeft,
-        /// <summary>
-        /// The up and left direction, or -x, -y.
-        /// </summary>
-        UpLeft,
 
         /// <summary>
         /// No direction.
         /// </summary>
-        None
+        None = 0,
+
+        /// <summary>
+        /// The up direction, or -y.
+        /// </summary>
+        Up = 1,
+        /// <summary>
+        /// The right direction, or +x.
+        /// </summary>
+        Right = 2,
+        /// <summary>
+        /// The down direction, or +y.
+        /// </summary>
+        Down = 4,
+        /// <summary>
+        /// The left direction, or -x.
+        /// </summary>
+        Left = 8,
+
+        /// <summary>
+        /// The up and right direction, or +x, -y.
+        /// </summary>
+        UpRight = Up | Right,
+        /// <summary>
+        /// The down and right direction, or +x, +y.
+        /// </summary>
+        DownRight = Down | Right,
+        /// <summary>
+        /// The up and left direction, or -x, -y.
+        /// </summary>
+        UpLeft = Up | Left,
+        /// <summary>
+        /// The down and left direction, or -x, +y.
+        /// </summary>
+        DownLeft = Down | Left
 
     }
 
@@ -80,7 +82,7 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction to query</param>
         /// <returns>Whether the direction is adjacent</returns>
         public static bool IsAdjacent(this Direction2 dir) {
-            return dir <= Direction2.Left;
+            return dir == Direction2.Up || dir == Direction2.Right || dir == Direction2.Down || dir == Direction2.Left;
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction to query</param>
         /// <returns>Whether the direction is diagonal</returns>
         public static bool IsDiagonal(this Direction2 dir) {
-            return dir >= Direction2.UpRight && dir <= Direction2.UpLeft;
+            return dir == Direction2.UpRight || dir == Direction2.DownRight || dir == Direction2.UpLeft || dir == Direction2.DownLeft;
         }
 
         /// <summary>
