@@ -31,9 +31,15 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<Color> TextColor;
         /// <summary>
-        /// The scale that the text will be rendered with
+        /// The scale that the text will be rendered with.
+        /// To add a multiplier rather than changing the scale directly, use <see cref="TextScaleMultiplier"/>.
         /// </summary>
         public StyleProp<float> TextScale;
+        /// <summary>
+        /// A multiplier that will be applied to <see cref="TextScale"/>.
+        /// To change the text scale itself, use <see cref="TextScale"/>.
+        /// </summary>
+        public float TextScaleMultiplier = 1;
         /// <summary>
         /// The text to render inside of this paragraph.
         /// Use <see cref="GetTextCallback"/> if the text changes frequently.
@@ -92,7 +98,7 @@ namespace MLEM.Ui.Elements {
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
             this.ParseText(size);
-            var dims = this.TokenizedText.Measure(this.RegularFont) * this.TextScale * this.Scale;
+            var dims = this.TokenizedText.Measure(this.RegularFont) * this.TextScale * this.TextScaleMultiplier * this.Scale;
             return new Vector2(this.AutoAdjustWidth ? dims.X + this.ScaledPadding.Width : size.X, dims.Y + this.ScaledPadding.Height);
         }
 
@@ -107,7 +113,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             var pos = this.DisplayArea.Location;
-            var sc = this.TextScale * this.Scale;
+            var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
             this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0);
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
@@ -134,9 +140,9 @@ namespace MLEM.Ui.Elements {
                 // add links to the paragraph
                 this.RemoveChildren(c => c is Link);
                 foreach (var link in this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)))
-                    this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale));
+                    this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale * this.TextScaleMultiplier));
             }
-            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, this.TextScale * this.Scale);
+            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, this.TextScale * this.TextScaleMultiplier * this.Scale);
         }
 
         private void QueryTextCallback() {
