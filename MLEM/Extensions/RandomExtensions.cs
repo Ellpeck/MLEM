@@ -15,11 +15,6 @@ namespace MLEM.Extensions {
         /// <param name="entries">The entries to choose from</param>
         /// <typeparam name="T">The entries' type</typeparam>
         /// <returns>A random entry</returns>
-        public static T GetRandomEntry<T>(this Random random, params T[] entries) {
-            return entries[random.Next(entries.Length)];
-        }
-
-        /// <inheritdoc cref="GetRandomEntry{T}(System.Random,T[])"/>
         public static T GetRandomEntry<T>(this Random random, IList<T> entries) {
             return entries[random.Next(entries.Count)];
         }
