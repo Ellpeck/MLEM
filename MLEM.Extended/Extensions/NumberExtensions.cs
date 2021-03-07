@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using MLEM.Extensions;
 using MonoGame.Extended;
 
 namespace MLEM.Extended.Extensions {
@@ -22,6 +24,11 @@ namespace MLEM.Extended.Extensions {
         /// <returns>The converted rectangle</returns>
         public static Misc.RectangleF ToMlem(this RectangleF rect) {
             return new Misc.RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        /// <inheritdoc cref="MLEM.Extensions.NumberExtensions.Penetrate"/>
+        public static bool Penetrate(this RectangleF rect, RectangleF other, out Vector2 normal, out float penetration) {
+            return rect.ToMlem().Penetrate(other.ToMlem(), out normal, out penetration);
         }
 
     }

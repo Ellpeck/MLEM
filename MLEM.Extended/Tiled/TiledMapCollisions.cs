@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MLEM.Extended.Extensions;
 using MLEM.Extensions;
 using MLEM.Misc;
 using MonoGame.Extended.Tiled;
@@ -108,6 +109,31 @@ namespace MLEM.Extended.Tiled {
         /// <returns>True if there are any colliders in the area, false otherwise</returns>
         public bool IsColliding(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
             return this.GetCollidingTiles(area, included).Any();
+        }
+
+        /// <summary>
+        /// Returns a set of normals and penetration amounts for each <see cref="TileCollisionInfo"/> that intersects with the given <see cref="RectangleF"/> area.
+        /// The normals and penetration amounts are based on <see cref="MLEM.Extensions.NumberExtensions.Penetrate"/>.
+        /// Note that all x penetrations are returned before all y penetrations, which improves collision detection in sidescrolling games with gravity.
+        /// </summary>
+        /// <param name="getArea">The area to penetrate</param>
+        /// <returns>A set of normals and penetration amounts</returns>
+        public IEnumerable<(Vector2, float)> GetPenetrations(Func<RectangleF> getArea) {
+            foreach (var col in this.GetCollidingAreas(getArea())) {
+                if (getArea().Penetrate(col, out var normal, out var penetration) && normal.X != 0)
+                    yield return (normal, penetration);
+            }
+            foreach (var col in this.GetCollidingAreas(getArea())) {
+                if (getArea().Penetrate(col, out var normal, out var penetration) && normal.Y != 0)
+                    yield return (normal, penetration);
+            }
+        }
+
+        private IEnumerable<RectangleF> GetCollidingAreas(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
+            foreach (var tile in this.GetCollidingTiles(area, included)) {
+                foreach (var col in tile.Collisions)
+                    yield return col;
+            }
         }
 
         /// <summary>
