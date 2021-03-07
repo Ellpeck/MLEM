@@ -87,8 +87,8 @@ namespace MLEM.Extended.Tiled {
             var minY = Math.Max(0, area.Top.Floor());
             var maxY = Math.Min(this.map.Height - 1, area.Bottom.Floor());
             for (var i = 0; i < this.map.TileLayers.Count; i++) {
-                for (var x = minX; x <= maxX; x++) {
-                    for (var y = maxY; y >= minY; y--) {
+                for (var y = maxY; y >= minY; y--) {
+                    for (var x = minX; x <= maxX; x++) {
                         var tile = this.collisionInfos[i, x, y];
                         if (tile == null)
                             continue;
