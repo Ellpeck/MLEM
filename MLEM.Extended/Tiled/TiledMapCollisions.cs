@@ -112,27 +112,35 @@ namespace MLEM.Extended.Tiled {
         }
 
         /// <summary>
-        /// Returns a set of normals and penetration amounts for each <see cref="TileCollisionInfo"/> that intersects with the given <see cref="RectangleF"/> area.
+        /// Returns an enumerable of all of the <see cref="TileCollisionInfo.Collisions"/> of the colliding tiles in the given area.
+        /// This method is a convenience method based on <see cref="GetCollidingTiles"/>.
+        /// </summary>
+        /// <param name="area">The area to check for collisions in</param>
+        /// <param name="included">A function that determines if a certain info should be included or not</param>
+        /// <returns>An enumerable of collision rectangles for that area</returns>
+        public IEnumerable<RectangleF> GetCollidingAreas(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
+            foreach (var tile in this.GetCollidingTiles(area, included)) {
+                foreach (var col in tile.Collisions)
+                    yield return col;
+            }
+        }
+
+        /// <summary>
+        /// Returns an enumerable of normals and penetration amounts for each <see cref="TileCollisionInfo"/> that intersects with the given <see cref="RectangleF"/> area.
         /// The normals and penetration amounts are based on <see cref="MLEM.Extensions.NumberExtensions.Penetrate"/>.
         /// Note that all x penetrations are returned before all y penetrations, which improves collision detection in sidescrolling games with gravity.
         /// </summary>
         /// <param name="getArea">The area to penetrate</param>
+        /// <param name="included">A function that determines if a certain info should be included or not</param>
         /// <returns>A set of normals and penetration amounts</returns>
-        public IEnumerable<(Vector2, float)> GetPenetrations(Func<RectangleF> getArea) {
-            foreach (var col in this.GetCollidingAreas(getArea())) {
+        public IEnumerable<(Vector2, float)> GetPenetrations(Func<RectangleF> getArea, Func<TileCollisionInfo, bool> included = null) {
+            foreach (var col in this.GetCollidingAreas(getArea(), included)) {
                 if (getArea().Penetrate(col, out var normal, out var penetration) && normal.X != 0)
                     yield return (normal, penetration);
             }
-            foreach (var col in this.GetCollidingAreas(getArea())) {
+            foreach (var col in this.GetCollidingAreas(getArea(), included)) {
                 if (getArea().Penetrate(col, out var normal, out var penetration) && normal.Y != 0)
                     yield return (normal, penetration);
-            }
-        }
-
-        private IEnumerable<RectangleF> GetCollidingAreas(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
-            foreach (var tile in this.GetCollidingTiles(area, included)) {
-                foreach (var col in tile.Collisions)
-                    yield return col;
             }
         }
 
