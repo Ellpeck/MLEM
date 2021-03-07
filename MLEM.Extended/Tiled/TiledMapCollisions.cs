@@ -83,12 +83,12 @@ namespace MLEM.Extended.Tiled {
         public IEnumerable<TileCollisionInfo> GetCollidingTiles(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
             var inclusionFunc = included ?? (tile => tile.Collisions.Any(c => c.Intersects(area)));
             var minX = Math.Max(0, area.Left.Floor());
-            var maxX = Math.Min(this.map.Width - 1, area.Right);
+            var maxX = Math.Min(this.map.Width - 1, area.Right.Floor());
             var minY = Math.Max(0, area.Top.Floor());
-            var maxY = Math.Min(this.map.Height - 1, area.Bottom);
+            var maxY = Math.Min(this.map.Height - 1, area.Bottom.Floor());
             for (var i = 0; i < this.map.TileLayers.Count; i++) {
                 for (var x = minX; x <= maxX; x++) {
-                    for (var y = minY; y <= maxY; y++) {
+                    for (var y = maxY; y >= minY; y--) {
                         var tile = this.collisionInfos[i, x, y];
                         if (tile == null)
                             continue;
