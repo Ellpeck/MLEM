@@ -6,7 +6,7 @@ namespace MLEM.Misc {
     /// This class contains a <see cref="DrawAutoTile"/> method that allows users to easily draw a tile with automatic connections.
     /// For auto-tiling in this manner to work, auto-tiled textures have to be laid out in a format described in <see cref="DrawAutoTile"/>.
     /// </summary>
-    public class AutoTiling {
+    public static class AutoTiling {
 
         /// <summary>
         /// This method allows for a tiled texture to be drawn in an auto-tiling mode.

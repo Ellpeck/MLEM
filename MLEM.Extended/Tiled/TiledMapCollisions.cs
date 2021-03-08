@@ -128,18 +128,19 @@ namespace MLEM.Extended.Tiled {
         /// <summary>
         /// Returns an enumerable of normals and penetration amounts for each <see cref="TileCollisionInfo"/> that intersects with the given <see cref="RectangleF"/> area.
         /// The normals and penetration amounts are based on <see cref="MLEM.Extensions.NumberExtensions.Penetrate"/>.
-        /// Note that all x penetrations are returned before all y penetrations, which improves collision detection in sidescrolling games with gravity.
+        /// Note that all x penetrations are returned before all y penetrations, which improves collision detection in sidescrolling games with gravity. Note that this behavior can be inverted using <paramref name="prioritizeX"/>.
         /// </summary>
         /// <param name="getArea">The area to penetrate</param>
         /// <param name="included">A function that determines if a certain info should be included or not</param>
+        /// <param name="prioritizeX">Whether all x penetrations should be prioritized (returned first). If this is false, all y penetrations are prioritized instead.</param>
         /// <returns>A set of normals and penetration amounts</returns>
-        public IEnumerable<(Vector2, float)> GetPenetrations(Func<RectangleF> getArea, Func<TileCollisionInfo, bool> included = null) {
+        public IEnumerable<(Vector2, float)> GetPenetrations(Func<RectangleF> getArea, Func<TileCollisionInfo, bool> included = null, bool prioritizeX = true) {
             foreach (var col in this.GetCollidingAreas(getArea(), included)) {
-                if (getArea().Penetrate(col, out var normal, out var penetration) && normal.X != 0)
+                if (getArea().Penetrate(col, out var normal, out var penetration) && normal.X != 0 == prioritizeX)
                     yield return (normal, penetration);
             }
             foreach (var col in this.GetCollidingAreas(getArea(), included)) {
-                if (getArea().Penetrate(col, out var normal, out var penetration) && normal.Y != 0)
+                if (getArea().Penetrate(col, out var normal, out var penetration) && normal.X == 0 == prioritizeX)
                     yield return (normal, penetration);
             }
         }

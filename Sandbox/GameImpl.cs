@@ -21,7 +21,6 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
-using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Tiled;
 
 namespace Sandbox {
