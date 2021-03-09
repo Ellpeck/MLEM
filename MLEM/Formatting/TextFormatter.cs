@@ -53,6 +53,7 @@ namespace MLEM.Formatting {
 
             // macros
             this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToCachedString());
+            this.Macros.Add(new Regex("<n>"), (f, m, r) => '\n'.ToCachedString());
         }
 
         /// <summary>
