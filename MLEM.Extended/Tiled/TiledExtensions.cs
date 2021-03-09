@@ -115,15 +115,7 @@ namespace MLEM.Extended.Tiled {
             if (tile.IsBlank)
                 return null;
             var localId = tile.GetLocalIdentifier(tileset, map);
-            var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
-            if (tilesetTile == null && createStub) {
-                var id = tile.GetLocalIdentifier(tileset, map);
-                if (!StubTilesetTiles.TryGetValue(id, out tilesetTile)) {
-                    tilesetTile = new TiledMapTilesetTile(id);
-                    StubTilesetTiles.Add(id, tilesetTile);
-                }
-            }
-            return tilesetTile;
+            return tileset.GetTilesetTile(localId, createStub);
         }
 
         /// <summary>
@@ -139,6 +131,24 @@ namespace MLEM.Extended.Tiled {
                 return null;
             var tileset = tile.GetTileset(map);
             return tileset.GetTilesetTile(tile, map, createStub);
+        }
+
+        /// <summary>
+        /// Gets the tileset tile on the given tileset for the given local id.
+        /// </summary>
+        /// <param name="tileset">The tileset</param>
+        /// <param name="localId">The tile's local id</param>
+        /// <param name="createStub">If a tileset tile has no special properties, there is no pre-made object for it. If this boolean is true, a stub object with no extra data will be created instead of returning null.</param>
+        /// <returns>null if the tile is blank or the tileset tile if there is one or createStub is true</returns>
+        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, int localId, bool createStub = true) {
+            var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
+            if (tilesetTile == null && createStub) {
+                if (!StubTilesetTiles.TryGetValue(localId, out tilesetTile)) {
+                    tilesetTile = new TiledMapTilesetTile(localId);
+                    StubTilesetTiles.Add(localId, tilesetTile);
+                }
+            }
+            return tilesetTile;
         }
 
         /// <summary>
@@ -177,6 +187,19 @@ namespace MLEM.Extended.Tiled {
             var layer = map.GetLayer<TiledMapTileLayer>(layerName);
             if (layer != null)
                 layer.SetTile((ushort) x, (ushort) y, (uint) globalTile);
+        }
+
+        /// <summary>
+        /// Sets the tiled map tile at the given location to the given tile from the given tileset
+        /// </summary>
+        /// <param name="map">The map</param>
+        /// <param name="layerName">The name of the layer</param>
+        /// <param name="x">The x coordinate</param>
+        /// <param name="y">The y coordinate</param>
+        /// <param name="tileset">The tileset to use</param>R
+        /// <param name="tile">The tile to place, from the given tileset</param>
+        public static void SetTile(this TiledMap map, string layerName, int x, int y, TiledMapTileset tileset, TiledMapTilesetTile tile) {
+            map.SetTile(layerName, x, y, tile.GetGlobalIdentifier(tileset, map));
         }
 
         /// <summary>
