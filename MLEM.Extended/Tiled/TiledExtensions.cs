@@ -190,16 +190,17 @@ namespace MLEM.Extended.Tiled {
         }
 
         /// <summary>
-        /// Sets the tiled map tile at the given location to the given tile from the given tileset
+        /// Sets the tiled map tile at the given location to the given tile from the given tileset.
+        /// If the passed <paramref name="tileset"/> or <paramref name="tile"/> is null, the tile at the location is removed instead.
         /// </summary>
         /// <param name="map">The map</param>
         /// <param name="layerName">The name of the layer</param>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
-        /// <param name="tileset">The tileset to use</param>R
-        /// <param name="tile">The tile to place, from the given tileset</param>
+        /// <param name="tileset">The tileset to use, or null to remove the tile</param>
+        /// <param name="tile">The tile to place, from the given tileset, or null to remove the tile</param>
         public static void SetTile(this TiledMap map, string layerName, int x, int y, TiledMapTileset tileset, TiledMapTilesetTile tile) {
-            map.SetTile(layerName, x, y, tile.GetGlobalIdentifier(tileset, map));
+            map.SetTile(layerName, x, y, tileset != null && tile != null ? tile.GetGlobalIdentifier(tileset, map) : 0);
         }
 
         /// <summary>
