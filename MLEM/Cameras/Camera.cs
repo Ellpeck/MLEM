@@ -23,7 +23,6 @@ namespace MLEM.Cameras {
             get => this.scale;
             set => this.scale = MathHelper.Clamp(value, this.MinScale, this.MaxScale);
         }
-        private float scale = 1;
         /// <summary>
         /// The minimum <see cref="Scale"/> that the camera can have
         /// </summary>
@@ -79,11 +78,15 @@ namespace MLEM.Cameras {
             get => this.Position + this.ScaledViewport / 2;
             set => this.Position = value - this.ScaledViewport / 2;
         }
-        private Rectangle Viewport => this.graphicsDevice.Viewport.Bounds;
-        private Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.ActualScale;
+        /// <summary>
+        /// The viewport of this camera, based on the game's <see cref="GraphicsDevice.Viewport"/> and this camera's <see cref="ActualScale"/>
+        /// </summary>
+        public Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.ActualScale;
 
+        private Rectangle Viewport => this.graphicsDevice.Viewport.Bounds;
         private readonly bool roundPosition;
         private readonly GraphicsDevice graphicsDevice;
+        private float scale = 1;
 
         /// <summary>
         /// Creates a new camera.
