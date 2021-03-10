@@ -24,7 +24,7 @@ namespace MLEM.Extended.Tiled {
         /// Creates a new individual tiled map renderer using the given map and depth function
         /// </summary>
         /// <param name="map">The map to use</param>
-        /// <param name="depthFunction">The depth function to use</param>
+        /// <param name="depthFunction">The depth function to use. Defaults to a function that assigns a depth of 0 to every tile.</param>
         public IndividualTiledMapRenderer(TiledMap map = null, GetDepth depthFunction = null) {
             if (map != null)
                 this.SetMap(map, depthFunction);
@@ -34,7 +34,7 @@ namespace MLEM.Extended.Tiled {
         /// Sets this individual tiled map renderer's map and depth function
         /// </summary>
         /// <param name="map">The map to use</param>
-        /// <param name="depthFunction">The depth function to use</param>
+        /// <param name="depthFunction">The depth function to use. Defaults to a function that assigns a depth of 0 to every tile.</param>
         public void SetMap(TiledMap map, GetDepth depthFunction = null) {
             this.map = map;
             this.depthFunction = depthFunction ?? ((tile, layer, layerIndex, position) => 0);
@@ -84,7 +84,7 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="batch">The sprite batch to use</param>
         /// <param name="frustum">The area that is visible, in pixel space.</param>
-        /// <param name="drawFunction">The draw function to use, or null for default</param>
+        /// <param name="drawFunction">The draw function to use, or null to use <see cref="DefaultDraw"/></param>
         public void Draw(SpriteBatch batch, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
             for (var i = 0; i < this.map.TileLayers.Count; i++) {
                 if (this.map.TileLayers[i].IsVisible)
@@ -99,8 +99,9 @@ namespace MLEM.Extended.Tiled {
         /// <param name="batch">The sprite batch to use</param>
         /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
         /// <param name="frustum">The area that is visible, in pixel space.</param>
-        /// <param name="drawFunction">The draw function to use, or null for default</param>
+        /// <param name="drawFunction">The draw function to use, or null to use <see cref="DefaultDraw"/></param>
         public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
+            var draw = drawFunction ?? DefaultDraw;
             var frust = frustum ?? new RectangleF(0, 0, float.MaxValue, float.MaxValue);
             var minX = Math.Max(0, frust.Left / this.map.TileWidth).Floor();
             var minY = Math.Max(0, frust.Top / this.map.TileHeight).Floor();
@@ -110,7 +111,7 @@ namespace MLEM.Extended.Tiled {
                 for (var y = minY; y < maxY; y++) {
                     var info = this.drawInfos[layerIndex, x, y];
                     if (info != null)
-                        info.Draw(batch, drawFunction);
+                        draw(batch, info);
                 }
             }
         }
@@ -122,6 +123,18 @@ namespace MLEM.Extended.Tiled {
         public void UpdateAnimations(GameTime time) {
             foreach (var animation in this.animatedTiles)
                 animation.Update(time);
+        }
+
+        /// <summary>
+        /// The default implementation of <see cref="DrawDelegate"/> that is used by <see cref="SetMap"/> if no custom draw function is passed
+        /// </summary>
+        /// <param name="batch">The sprite batch to use for drawing</param>
+        /// <param name="info">The <see cref="TileDrawInfo"/> to draw</param>
+        public static void DefaultDraw(SpriteBatch batch, TileDrawInfo info) {
+            var region = info.Tileset.GetTextureRegion(info.TilesetTile);
+            var effects = info.Tile.GetSpriteEffects();
+            var drawPos = new Vector2(info.Position.X * info.Renderer.map.TileWidth, info.Position.Y * info.Renderer.map.TileHeight);
+            batch.Draw(info.Tileset.Texture, drawPos, region, Color.White, 0, Vector2.Zero, 1, effects, info.Depth);
         }
 
         /// <summary>
@@ -180,22 +193,6 @@ namespace MLEM.Extended.Tiled {
                 this.TilesetTile = tilesetTile;
                 this.Position = position;
                 this.Depth = depth;
-            }
-
-            /// <summary>
-            /// Draws this tile draw info with the default settings.
-            /// </summary>
-            /// <param name="batch">The sprite batch to use for drawing</param>
-            /// <param name="drawFunction">The draw function used to draw, or null if there is no override</param>
-            public void Draw(SpriteBatch batch, DrawDelegate drawFunction) {
-                if (drawFunction == null) {
-                    var region = this.Tileset.GetTextureRegion(this.TilesetTile);
-                    var effects = this.Tile.GetSpriteEffects();
-                    var drawPos = new Vector2(this.Position.X * this.Renderer.map.TileWidth, this.Position.Y * this.Renderer.map.TileHeight);
-                    batch.Draw(this.Tileset.Texture, drawPos, region, Color.White, 0, Vector2.Zero, 1, effects, this.Depth);
-                } else {
-                    drawFunction(batch, this);
-                }
             }
 
         }

@@ -176,6 +176,16 @@ namespace MLEM.Extended.Tiled {
         }
 
         /// <summary>
+        /// Returns the tiled map tile at the given location on the layer with the given name.
+        /// </summary>
+        /// <param name="map">The map</param>
+        /// <param name="pos">The layer position to get the tile at</param>
+        /// <returns>The tile at the given location, or default if the layer does not exist</returns>
+        public static TiledMapTile GetTile(this TiledMap map, LayerPosition pos) {
+            return map.GetTile(pos.Layer, pos.X, pos.Y);
+        }
+
+        /// <summary>
         /// Sets the tiled map tile at the given location to the given global tile identifier.
         /// </summary>
         /// <param name="map">The map</param>
@@ -201,6 +211,28 @@ namespace MLEM.Extended.Tiled {
         /// <param name="tile">The tile to place, from the given tileset, or null to remove the tile</param>
         public static void SetTile(this TiledMap map, string layerName, int x, int y, TiledMapTileset tileset, TiledMapTilesetTile tile) {
             map.SetTile(layerName, x, y, tileset != null && tile != null ? tile.GetGlobalIdentifier(tileset, map) : 0);
+        }
+
+        /// <summary>
+        /// Sets the tiled map tile at the given location to the given global tile identifier.
+        /// </summary>
+        /// <param name="map">The map</param>
+        /// <param name="pos">The layer position</param>
+        /// <param name="globalTile">The tile's global identifier to set</param>
+        public static void SetTile(this TiledMap map, LayerPosition pos, int globalTile) {
+            map.SetTile(pos.Layer, pos.X, pos.Y, globalTile);
+        }
+
+        /// <summary>
+        /// Sets the tiled map tile at the given location to the given tile from the given tileset.
+        /// If the passed <paramref name="tileset"/> or <paramref name="tile"/> is null, the tile at the location is removed instead.
+        /// </summary>
+        /// <param name="map">The map</param>
+        /// <param name="pos">The layer position</param>
+        /// <param name="tileset">The tileset to use, or null to remove the tile</param>
+        /// <param name="tile">The tile to place, from the given tileset, or null to remove the tile</param>
+        public static void SetTile(this TiledMap map, LayerPosition pos, TiledMapTileset tileset, TiledMapTilesetTile tile) {
+            map.SetTile(pos.Layer, pos.X, pos.Y, tileset, tile);
         }
 
         /// <summary>

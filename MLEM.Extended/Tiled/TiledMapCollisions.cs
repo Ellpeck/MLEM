@@ -23,30 +23,20 @@ namespace MLEM.Extended.Tiled {
         /// Creates a new tiled map collision handler for the given map
         /// </summary>
         /// <param name="map">The map</param>
-        public TiledMapCollisions(TiledMap map = null) {
+        /// <param name="collisionFunction">The function used to collect the collision info of a tile, or null to use <see cref="DefaultCollectCollisions"/></param>
+        public TiledMapCollisions(TiledMap map = null, CollectCollisions collisionFunction = null) {
             if (map != null)
-                this.SetMap(map);
+                this.SetMap(map, collisionFunction);
         }
 
         /// <summary>
         /// Sets this collision handler's handled map
         /// </summary>
         /// <param name="map">The map</param>
-        /// <param name="collisionFunction">The function used to collect the collision info of a tile, or null for the default handling</param>
+        /// <param name="collisionFunction">The function used to collect the collision info of a tile, or null to use <see cref="DefaultCollectCollisions"/></param>
         public void SetMap(TiledMap map, CollectCollisions collisionFunction = null) {
             this.map = map;
-            this.collisionFunction = collisionFunction ?? ((collisions, tile) => {
-                foreach (var obj in tile.TilesetTile.Objects) {
-                    var area = obj.GetArea(tile.Map);
-                    if (tile.Tile.IsFlippedHorizontally)
-                        area.X = 1 - area.X - area.Width;
-                    if (tile.Tile.IsFlippedVertically)
-                        area.Y = 1 - area.Y - area.Height;
-                    area.Offset(tile.Position);
-                    collisions.Add(area);
-                }
-            });
-
+            this.collisionFunction = collisionFunction ?? DefaultCollectCollisions;
             this.collisionInfos = new TileCollisionInfo[map.Layers.Count, map.Width, map.Height];
             for (var i = 0; i < map.TileLayers.Count; i++) {
                 for (var x = 0; x < map.Width; x++) {
@@ -142,6 +132,23 @@ namespace MLEM.Extended.Tiled {
             foreach (var col in this.GetCollidingAreas(getArea(), included)) {
                 if (getArea().Penetrate(col, out var normal, out var penetration) && normal.X == 0 == prioritizeX)
                     yield return (normal, penetration);
+            }
+        }
+
+        /// <summary>
+        /// The default implementation of <see cref="CollectCollisions"/> which is used by <see cref="SetMap"/> if no custom collision collection function is passed
+        /// </summary>
+        /// <param name="collisions">The list of collisions to add to</param>
+        /// <param name="tile">The tile's collision information</param>
+        public static void DefaultCollectCollisions(List<RectangleF> collisions, TileCollisionInfo tile) {
+            foreach (var obj in tile.TilesetTile.Objects) {
+                var area = obj.GetArea(tile.Map);
+                if (tile.Tile.IsFlippedHorizontally)
+                    area.X = 1 - area.X - area.Width;
+                if (tile.Tile.IsFlippedVertically)
+                    area.Y = 1 - area.Y - area.Height;
+                area.Offset(tile.Position);
+                collisions.Add(area);
             }
         }
 
