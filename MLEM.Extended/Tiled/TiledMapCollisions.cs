@@ -141,15 +141,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="collisions">The list of collisions to add to</param>
         /// <param name="tile">The tile's collision information</param>
         public static void DefaultCollectCollisions(List<RectangleF> collisions, TileCollisionInfo tile) {
-            foreach (var obj in tile.TilesetTile.Objects) {
-                var area = obj.GetArea(tile.Map);
-                if (tile.Tile.IsFlippedHorizontally)
-                    area.X = 1 - area.X - area.Width;
-                if (tile.Tile.IsFlippedVertically)
-                    area.Y = 1 - area.Y - area.Height;
-                area.Offset(tile.Position);
-                collisions.Add(area);
-            }
+            foreach (var obj in tile.TilesetTile.Objects)
+                collisions.Add(obj.GetArea(tile.Map, tile.Position, tile.Tile.Flags));
         }
 
         /// <summary>
