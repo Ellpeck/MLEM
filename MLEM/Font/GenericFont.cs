@@ -83,13 +83,13 @@ namespace MLEM.Font {
             switch (align) {
                 case TextAlign.Center:
                 case TextAlign.CenterBothAxes:
-                    var (w, h) = this.MeasureString(text);
+                    var (w, h) = this.MeasureString(text) * scale;
                     position.X -= w / 2;
                     if (align == TextAlign.CenterBothAxes)
                         position.Y -= h / 2;
                     break;
                 case TextAlign.Right:
-                    position.X -= this.MeasureString(text).X;
+                    position.X -= this.MeasureString(text).X * scale.X;
                     break;
             }
             this.DrawString(batch, text, position, color, rotation, origin, scale, effects, layerDepth);
