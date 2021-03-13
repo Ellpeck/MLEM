@@ -9,32 +9,6 @@ namespace MLEM.Extensions {
     public static class ColorExtensions {
 
         /// <summary>
-        /// Returns an inverted version of the color.
-        /// </summary>
-        /// <param name="color">The color to invert</param>
-        /// <returns>The inverted color</returns>
-        [Obsolete("Use ColorHelper.Invert instead")]
-        public static Color Invert(this Color color) => ColorHelper.Invert(color);
-
-        /// <summary>
-        /// Parses a hexadecimal number into a color.
-        /// The number should be in the format <c>0xaarrggbb</c>.
-        /// </summary>
-        /// <param name="value">The number to parse</param>
-        /// <returns>The resulting color</returns>
-        [Obsolete("Use ColorHelper.FromHexRgba instead")]
-        public static Color FromHex(uint value) => ColorHelper.FromHexRgba((int) value);
-
-        /// <summary>
-        /// Parses a hexadecimal string into a color.
-        /// The string can optionally start with a <c>#</c>.
-        /// </summary>
-        /// <param name="value">The string to parse</param>
-        /// <returns>The resulting color</returns>
-        [Obsolete("Use ColorHelper.FromHexString instead")]
-        public static Color FromHex(string value) => ColorHelper.FromHexString(value);
-
-        /// <summary>
         /// Copies the alpha value from another color into this color.
         /// </summary>
         /// <param name="color">The color</param>
