@@ -12,7 +12,7 @@ namespace MLEM.Data.Json {
         /// An array of all of the <see cref="JsonConverter"/>s that are part of MLEM.Data
         /// </summary>
         public static readonly JsonConverter[] Converters = typeof(JsonConverters).Assembly.GetExportedTypes()
-            .Where(t => t.IsSubclassOf(typeof(JsonConverter)))
+            .Where(t => t.IsSubclassOf(typeof(JsonConverter)) && !t.IsGenericType)
             .Select(t => t.GetConstructor(Type.EmptyTypes).Invoke(null)).Cast<JsonConverter>().ToArray();
 
         /// <summary>
