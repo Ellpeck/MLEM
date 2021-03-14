@@ -286,6 +286,7 @@ namespace MLEM.Input {
         /// <summary>
         /// Returns whether the given key is considered pressed.
         /// A key is considered pressed if it was not down the last update call, but is down the current update call.
+        /// If <see cref="HandleKeyboardRepeats"/> is true, this method will also return true to signify a key repeat.
         /// </summary>
         /// <param name="key">The key to query</param>
         /// <returns>If the key is pressed</returns>
@@ -293,6 +294,17 @@ namespace MLEM.Input {
             // if the queried key is the held key and a repeat should be triggered, return true
             if (this.HandleKeyboardRepeats && key == this.heldKey && this.triggerKeyRepeat)
                 return true;
+            return this.IsKeyPressedIgnoreRepeats(key);
+        }
+
+        /// <summary>
+        /// Returns whether the given key is considered pressed.
+        /// This has the same behavior as <see cref="IsKeyPressed"/>, but ignores keyboard repeat events.
+        /// If <see cref="HandleKeyboardRepeats"/> is false, this method does the same as <see cref="IsKeyPressed"/>.
+        /// </summary>
+        /// <param name="key">The key to query</param>
+        /// <returns>If the key is pressed</returns>
+        public bool IsKeyPressedIgnoreRepeats(Keys key) {
             return this.WasKeyUp(key) && this.IsKeyDown(key);
         }
 
@@ -398,6 +410,7 @@ namespace MLEM.Input {
         /// <summary>
         /// Returns whether the given gamepad button on the given index is considered pressed.
         /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call.
+        /// If <see cref="HandleGamepadRepeats"/> is true, this method will also return true to signify a gamepad button repeat.
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad</param>
@@ -412,6 +425,18 @@ namespace MLEM.Input {
                     return true;
                 }
             }
+            return this.IsGamepadButtonPressedIgnoreRepeats(button, index);
+        }
+
+        /// <summary>
+        /// Returns whether the given key is considered pressed.
+        /// This has the same behavior as <see cref="IsGamepadButtonPressed"/>, but ignores gamepad repeat events.
+        /// If <see cref="HandleGamepadRepeats"/> is false, this method does the same as <see cref="IsGamepadButtonPressed"/>.
+        /// </summary>
+        /// <param name="button">The button to query</param>
+        /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad</param>
+        /// <returns>Whether the given button is pressed</returns>
+        public bool IsGamepadButtonPressedIgnoreRepeats(Buttons button, int index = -1) {
             return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
         }
 
