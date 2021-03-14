@@ -18,7 +18,7 @@
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.1.189">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="TextCopy" Version="3.0.2" />
+        <PackageReference Include="TextCopy" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>

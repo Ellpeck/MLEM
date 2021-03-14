@@ -3,6 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <ApplicationIcon>Icon.ico</ApplicationIcon>
+        <AssemblyName>MLEM Desktop Demos</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,9 +19,11 @@
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     </ItemGroup>
 
-    <ItemGroup>
+    <ItemGroup>    
         <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
         <Content Include="..\Demos\Content\*\**" />
+        <EmbeddedResource Include="Icon.ico" />
+        <EmbeddedResource Include="Icon.bmp" />
     </ItemGroup>
 
 </Project>
