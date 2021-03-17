@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework.Audio;
+using MLEM.Extensions;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -49,13 +50,10 @@ namespace MLEM.Misc {
         /// <summary>
         /// Creates a new <see cref="SoundEffectInstance"/> with this sound effect info's data.
         /// </summary>
+        /// <param name="isLooped">The value to set the returned instance's <see cref="SoundEffectInstance.IsLooped"/> to. Defaults to false.</param>
         /// <returns>A new sound effect instance, with this info's data applied</returns>
-        public SoundEffectInstance CreateInstance() {
-            var instance = this.Sound.CreateInstance();
-            instance.Volume = this.Volume;
-            instance.Pitch = this.Pitch;
-            instance.Pan = this.Pan;
-            return instance;
+        public SoundEffectInstance CreateInstance(bool isLooped = false) {
+            return this.Sound.CreateInstance(this.Volume, this.Pitch, this.Pan, isLooped);
         }
 
     }
