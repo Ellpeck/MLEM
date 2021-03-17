@@ -69,7 +69,7 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Coroutine" Version="2.0.1" />
+        <PackageReference Include="Coroutine" Version="2.0.2" />
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
         <PackageReference Include="MonoGame.Framework.Android" Version="3.8.0.1641" />
         <PackageReference Include="TextCopy" Version="4.3.0" />
