@@ -126,7 +126,7 @@ namespace MLEM.Textures {
         /// <param name="uv">The top left corner of this area</param>
         /// <param name="size">The size of this area</param>
         public TextureRegion(TextureRegion region, Point uv, Point size) :
-            this(region.Texture, region.Position + uv, size) {
+            this(region?.Texture, (region?.Position ?? Point.Zero) + uv, size) {
         }
 
     }

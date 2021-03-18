@@ -29,7 +29,14 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
     DotNetCoreBuild("Demos/Demos.csproj", settings);
 });
 
-Task("Pack").IsDependentOn("Build").Does(() => {
+Task("Test").IsDependentOn("Build").Does(() => {
+    DotNetCoreTest("Tests/Tests.csproj", new DotNetCoreTestSettings {
+        Configuration = config,
+        Collectors = {"XPlat Code Coverage"}
+    });
+});
+
+Task("Pack").IsDependentOn("Test").Does(() => {
     var settings = new DotNetCorePackSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
