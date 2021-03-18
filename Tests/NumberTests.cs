@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using MLEM.Extensions;
+using MLEM.Misc;
 using NUnit.Framework;
 
 namespace Tests {
@@ -23,13 +24,40 @@ namespace Tests {
         public void TestEquals() {
             Assert.IsTrue(0.25F.Equals(0.26F, 0.01F));
             Assert.IsFalse(0.25F.Equals(0.26F, 0.009F));
+
+            Assert.IsTrue(new Vector2(0.25F, 0).Equals(new Vector2(0.3F, 0), 0.1F));
+            Assert.IsFalse(new Vector2(0.25F, 0.5F).Equals(new Vector2(0.3F, 0.25F), 0.1F));
+
+            Assert.IsTrue(new Vector3(0.25F, 0, 3.5F).Equals(new Vector3(0.3F, 0, 3.45F), 0.1F));
+            Assert.IsFalse(new Vector3(0.25F, 0.5F, 0).Equals(new Vector3(0.3F, 0.25F, 0), 0.1F));
+
+            Assert.IsTrue(new Vector4(0.25F, 0, 3.5F, 0.75F).Equals(new Vector4(0.3F, 0, 3.45F, 0.7F), 0.1F));
+            Assert.IsFalse(new Vector4(0.25F, 0.5F, 0, 1).Equals(new Vector4(0.3F, 0.25F, 0, 0.9F), 0.1F));
         }
 
         [Test]
-        public void TestMatrixOps() {
-            var matrix = Matrix.CreateRotationX(2) * Matrix.CreateScale(2.5F);
-            Assert.AreEqual(matrix.Scale(), new Vector3(2.5F));
-            Assert.AreEqual(matrix.Rotation(), Quaternion.CreateFromAxisAngle(Vector3.UnitX, 2));
+        public void TestPointExtensions() {
+            Assert.AreEqual(new Point(4, 3).Multiply(3), new Point(12, 9));
+            Assert.AreEqual(new Point(17, 12).Divide(3), new Point(5, 4));
+            Assert.AreEqual(new Point(4, 12).Transform(Matrix.CreateTranslation(2, 0, 0) * Matrix.CreateScale(2, 2, 2)), new Point(12, 24));
+        }
+
+        [Test]
+        public void TestMatrixOps([Range(0.5F, 2, 0.5F)] float scale, [Range(-1, 1, 1F)] float rotationX) {
+            var matrix = Matrix.CreateRotationX(rotationX) * Matrix.CreateScale(scale, scale, scale);
+            Assert.IsTrue(matrix.Scale().Equals(new Vector3(scale), 0.001F), $"{matrix.Scale()} does not equal {new Vector2(scale)}");
+            Assert.AreEqual(matrix.Rotation(), Quaternion.CreateFromAxisAngle(Vector3.UnitX, rotationX));
+        }
+
+        [Test]
+        public void TestPenetrate() {
+            new RectangleF(2, 2, 4, 4).Penetrate(new RectangleF(3, 2, 4, 4), out var normal, out var penetration);
+            Assert.AreEqual(normal, new Vector2(1, 0));
+            Assert.AreEqual(penetration, 3);
+
+            new RectangleF(-10, 10, 5, 5).Penetrate(new RectangleF(25, 25, 10, 10), out normal, out penetration);
+            Assert.AreEqual(normal, Vector2.Zero);
+            Assert.AreEqual(penetration, 0);
         }
 
     }
