@@ -4,7 +4,7 @@ pipeline {
     stage('Cake Build') {
       steps {
         sh 'dotnet tool restore'
-        sh 'dotnet dotnet-cake --Target=Publish -Branch=' + env.BRANCH_NAME
+        sh 'dotnet dotnet-cake --Target=Publish --Branch=' + env.BRANCH_NAME
       }
     }
     stage('Publish Test Results') {
