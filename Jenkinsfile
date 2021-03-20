@@ -7,12 +7,6 @@ pipeline {
         sh 'dotnet dotnet-cake --Target=Publish --Branch=' + env.BRANCH_NAME
       }
     }
-    stage('Publish Test Results') {
-      steps {
-        nunit testResultsPattern: '**/TestResults.xml'
-        cobertura coberturaReportFile: '**/coverage.cobertura.xml'
-      }
-    }
     stage('Document') {
       when {
         branch 'release' 
@@ -21,6 +15,12 @@ pipeline {
         sh 'dotnet dotnet-cake --Target=Document'     
         sh 'cp Docs/_site/** /var/www/MLEM/ -r'   
       }
+    }
+  }
+  post {
+    always {
+      nunit testResultsPattern: '**/TestResults.xml'
+      cobertura coberturaReportFile: '**/coverage.cobertura.xml'
     }
   }
   environment {
