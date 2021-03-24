@@ -21,7 +21,7 @@
         <PackageReference Include="MonoGame.Framework.Portable" Version="3.7.1.189">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>

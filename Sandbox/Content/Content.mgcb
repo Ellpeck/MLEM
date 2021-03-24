@@ -3,14 +3,14 @@
 
 /outputDir:bin
 /intermediateDir:obj
-/platform:Windows
+/platform:DesktopGL
 /config:
 /profile:Reach
 /compress:False
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\bin\Debug\netcoreapp3.1\MonoGame.Extended.Content.Pipeline.dll
+/reference:..\..\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
