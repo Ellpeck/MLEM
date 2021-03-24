@@ -39,12 +39,12 @@ namespace MLEM.Misc {
             var xDl = down && left ? connectsTo(-1, 1) ? 0 : 4 : left ? 1 : down ? 3 : 2;
             var xDr = down && right ? connectsTo(1, 1) ? 0 : 4 : right ? 1 : down ? 3 : 2;
 
-            var size = textureRegion.Size;
-            var halfSize = new Point(size.X / 2, size.Y / 2);
-            batch.Draw(texture, new Vector2(pos.X, pos.Y), new Rectangle(textureRegion.X + 0 + xUl * size.X, textureRegion.Y + 0, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, new Vector2(pos.X + 0.5F * size.X * sc.X, pos.Y), new Rectangle(textureRegion.X + halfSize.X + xUr * size.X, textureRegion.Y + 0, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, new Vector2(pos.X, pos.Y + 0.5F * size.Y * sc.Y), new Rectangle(textureRegion.X + xDl * size.X, textureRegion.Y + halfSize.Y, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, new Vector2(pos.X + 0.5F * size.X * sc.X, pos.Y + 0.5F * size.Y * sc.Y), new Rectangle(textureRegion.X + halfSize.X + xDr * size.X, textureRegion.Y + halfSize.Y, halfSize.X, halfSize.Y), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            var (w, h) = textureRegion.Size;
+            var (w2, h2) = new Point(w / 2, h / 2);
+            batch.Draw(texture, new Vector2(pos.X, pos.Y), new Rectangle(textureRegion.X + 0 + xUl * w, textureRegion.Y + 0, w2, h2), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture, new Vector2(pos.X + 0.5F * w * sc.X, pos.Y), new Rectangle(textureRegion.X + w2 + xUr * w, textureRegion.Y + 0, w2, h2), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture, new Vector2(pos.X, pos.Y + 0.5F * h * sc.Y), new Rectangle(textureRegion.X + xDl * w, textureRegion.Y + h2, w2, h2), color, rotation, org, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture, new Vector2(pos.X + 0.5F * w * sc.X, pos.Y + 0.5F * h * sc.Y), new Rectangle(textureRegion.X + w2 + xDr * w, textureRegion.Y + h2, w2, h2), color, rotation, org, sc, SpriteEffects.None, layerDepth);
         }
 
         /// <summary>

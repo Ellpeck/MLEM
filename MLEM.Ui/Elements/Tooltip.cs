@@ -84,16 +84,16 @@ namespace MLEM.Ui.Elements {
         /// Causes this tooltip's position to be snapped to the mouse position.
         /// </summary>
         public void SnapPositionToMouse() {
-            var viewport = this.System.Viewport.Size;
+            var (w, h) = this.System.Viewport.Size;
             var offset = (this.Input.MousePosition.ToVector2() + this.MouseOffset.Value) / this.Scale;
             if (offset.X < 0)
                 offset.X = 0;
             if (offset.Y < 0)
                 offset.Y = 0;
-            if (offset.X * this.Scale + this.Area.Width >= viewport.X)
-                offset.X = (viewport.X - this.Area.Width) / this.Scale;
-            if (offset.Y * this.Scale + this.Area.Height >= viewport.Y)
-                offset.Y = (viewport.Y - this.Area.Height) / this.Scale;
+            if (offset.X * this.Scale + this.Area.Width >= w)
+                offset.X = (w - this.Area.Width) / this.Scale;
+            if (offset.Y * this.Scale + this.Area.Height >= h)
+                offset.Y = (h - this.Area.Height) / this.Scale;
             this.PositionOffset = offset;
         }
 

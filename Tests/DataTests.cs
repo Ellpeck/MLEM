@@ -64,7 +64,7 @@ namespace Tests {
             }
 
             public override bool Equals(object obj) {
-                return ReferenceEquals(this, obj) || obj is TestObject other && Equals(other);
+                return ReferenceEquals(this, obj) || obj is TestObject other && this.Equals(other);
             }
 
             public override int GetHashCode() {

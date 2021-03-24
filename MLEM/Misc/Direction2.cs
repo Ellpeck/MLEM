@@ -179,8 +179,8 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction whose angle to get</param>
         /// <returns>The direction's angle</returns>
         public static float Angle(this Direction2 dir) {
-            var offset = dir.Offset();
-            return (float) Math.Atan2(offset.Y, offset.X);
+            var (x, y) = dir.Offset();
+            return (float) Math.Atan2(y, x);
         }
 
         /// <summary>

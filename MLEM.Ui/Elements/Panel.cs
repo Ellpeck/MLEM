@@ -49,8 +49,8 @@ namespace MLEM.Ui.Elements {
             this.CanBeSelected = false;
 
             if (scrollOverflow) {
-                var scrollSize = scrollerSize ?? Point.Zero;
-                this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(scrollSize.X, 1), scrollSize.Y, 0) {
+                var (w, h) = scrollerSize ?? Point.Zero;
+                this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(w, 1), h, 0) {
                     StepPerScroll = 10,
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
@@ -59,9 +59,9 @@ namespace MLEM.Ui.Elements {
                 };
 
                 // modify the padding so that the scroll bar isn't over top of something else
-                this.ScrollBar.PositionOffset -= new Vector2(scrollSize.X + 1, 0);
+                this.ScrollBar.PositionOffset -= new Vector2(w + 1, 0);
                 if (autoHideScrollbar)
-                    this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, scrollSize.X, 0, 0) * (e.IsHidden ? -1 : 1);
+                    this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, w, 0, 0) * (e.IsHidden ? -1 : 1);
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {

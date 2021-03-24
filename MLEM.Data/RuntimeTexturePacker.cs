@@ -113,7 +113,7 @@ namespace MLEM.Data {
             if (this.forceSquare)
                 width = height = Math.Max(width, height);
             this.PackedTexture = new Texture2D(device, width, height);
-            
+
             // copy texture data onto the packed texture
             stopwatch.Restart();
             using (var data = this.PackedTexture.GetTextureData()) {

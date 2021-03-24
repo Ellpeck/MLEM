@@ -11,14 +11,14 @@ namespace Tests {
                 new[] {'A', 'B'},
                 new[] {'+', '-'}
             };
-            
+
             var expected = new[] {
                 new[] {'1', 'A', '+'}, new[] {'1', 'A', '-'}, new[] {'1', 'B', '+'}, new[] {'1', 'B', '-'},
                 new[] {'2', 'A', '+'}, new[] {'2', 'A', '-'}, new[] {'2', 'B', '+'}, new[] {'2', 'B', '-'},
                 new[] {'3', 'A', '+'}, new[] {'3', 'A', '-'}, new[] {'3', 'B', '+'}, new[] {'3', 'B', '-'}
             };
             Assert.AreEqual(things.Combinations(), expected);
-            
+
             var indices = new[] {
                 new[] {0, 0, 0}, new[] {0, 0, 1}, new[] {0, 1, 0}, new[] {0, 1, 1},
                 new[] {1, 0, 0}, new[] {1, 0, 1}, new[] {1, 1, 0}, new[] {1, 1, 1},
