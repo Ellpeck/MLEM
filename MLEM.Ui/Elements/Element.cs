@@ -174,7 +174,6 @@ namespace MLEM.Ui.Elements {
             }
         }
         private bool areaDirty;
-        private int areaUpdateRecursionCount;
         /// <summary>
         /// The <see cref="UnscrolledArea"/> of this element, but with <see cref="ScaledScrollOffset"/> applied.
         /// </summary>
@@ -514,135 +513,118 @@ namespace MLEM.Ui.Elements {
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
-
-            var actualSize = this.CalcActualSize(parentArea);
-            var pos = new Vector2();
-
-            switch (this.anchor) {
-                case Anchor.TopLeft:
-                case Anchor.AutoLeft:
-                case Anchor.AutoInline:
-                case Anchor.AutoInlineIgnoreOverflow:
-                    pos.X = parentArea.X + this.ScaledOffset.X;
-                    pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                    break;
-                case Anchor.TopCenter:
-                case Anchor.AutoCenter:
-                    pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
-                    pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                    break;
-                case Anchor.TopRight:
-                case Anchor.AutoRight:
-                    pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
-                    pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                    break;
-                case Anchor.CenterLeft:
-                    pos.X = parentArea.X + this.ScaledOffset.X;
-                    pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
-                    break;
-                case Anchor.Center:
-                    pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
-                    pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
-                    break;
-                case Anchor.CenterRight:
-                    pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
-                    pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
-                    break;
-                case Anchor.BottomLeft:
-                    pos.X = parentArea.X + this.ScaledOffset.X;
-                    pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
-                    break;
-                case Anchor.BottomCenter:
-                    pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
-                    pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
-                    break;
-                case Anchor.BottomRight:
-                    pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
-                    pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
-                    break;
-            }
-
-            if (this.Anchor >= Anchor.AutoLeft) {
-                Element previousChild;
-                if (this.Anchor == Anchor.AutoInline || this.Anchor == Anchor.AutoInlineIgnoreOverflow) {
-                    previousChild = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                } else {
-                    previousChild = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                }
-                if (previousChild != null) {
-                    var prevArea = previousChild.GetAreaForAutoAnchors();
-                    switch (this.Anchor) {
-                        case Anchor.AutoLeft:
-                        case Anchor.AutoCenter:
-                        case Anchor.AutoRight:
-                            pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
-                            break;
-                        case Anchor.AutoInline:
-                            var newX = prevArea.Right + this.ScaledOffset.X;
-                            if (newX + actualSize.X <= parentArea.Right) {
-                                pos.X = newX;
-                                pos.Y = prevArea.Y + this.ScaledOffset.Y;
-                            } else {
-                                pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
-                            }
-                            break;
-                        case Anchor.AutoInlineIgnoreOverflow:
-                            pos.X = prevArea.Right + this.ScaledOffset.X;
-                            pos.Y = prevArea.Y + this.ScaledOffset.Y;
-                            break;
-                    }
-                }
-            }
-
-            if (this.PreventParentSpill) {
-                if (pos.X < parentArea.X)
-                    pos.X = parentArea.X;
-                if (pos.Y < parentArea.Y)
-                    pos.Y = parentArea.Y;
-                if (pos.X + actualSize.X > parentArea.Right)
-                    actualSize.X = parentArea.Right - pos.X;
-                if (pos.Y + actualSize.Y > parentArea.Bottom)
-                    actualSize.Y = parentArea.Bottom - pos.Y;
-            }
-
-            this.area = new RectangleF(pos, actualSize);
-            this.System.OnElementAreaUpdated?.Invoke(this);
-
-            foreach (var child in this.Children)
-                child.ForceUpdateArea();
+            UpdateDisplayArea(this.CalcActualSize(parentArea));
 
             if (this.Children.Count > 0) {
-                Element foundChild = null;
+                var autoSize = this.DisplayArea.Size;
                 if (this.SetHeightBasedOnChildren) {
                     var lowest = this.GetLowestChild(e => !e.IsHidden);
-                    if (lowest != null) {
-                        var newHeight = (lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom) / this.Scale;
-                        if (!newHeight.Equals(this.size.Y, 0.01F)) {
-                            this.size.Y = newHeight;
-                            foundChild = lowest;
-                        }
-                    }
+                    if (lowest != null)
+                        autoSize.Y = lowest.UnscrolledArea.Bottom - this.DisplayArea.Y + this.ScaledChildPadding.Bottom;
                 }
                 if (this.SetWidthBasedOnChildren) {
                     var rightmost = this.GetRightmostChild(e => !e.IsHidden);
-                    if (rightmost != null) {
-                        var newWidth = (rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right) / this.Scale;
-                        if (!newWidth.Equals(this.size.X, 0.01F)) {
-                            this.size.X = newWidth;
-                            foundChild = rightmost;
+                    if (rightmost != null)
+                        autoSize.X = rightmost.UnscrolledArea.Right - this.DisplayArea.X + this.ScaledChildPadding.Right;
+                }
+                if (autoSize != this.DisplayArea.Size)
+                    UpdateDisplayArea(autoSize);
+            }
+
+            void UpdateDisplayArea(Vector2 actualSize) {
+                var pos = new Vector2();
+                switch (this.anchor) {
+                    case Anchor.TopLeft:
+                    case Anchor.AutoLeft:
+                    case Anchor.AutoInline:
+                    case Anchor.AutoInlineIgnoreOverflow:
+                        pos.X = parentArea.X + this.ScaledOffset.X;
+                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
+                        break;
+                    case Anchor.TopCenter:
+                    case Anchor.AutoCenter:
+                        pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
+                        break;
+                    case Anchor.TopRight:
+                    case Anchor.AutoRight:
+                        pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
+                        break;
+                    case Anchor.CenterLeft:
+                        pos.X = parentArea.X + this.ScaledOffset.X;
+                        pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
+                        break;
+                    case Anchor.Center:
+                        pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                        pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
+                        break;
+                    case Anchor.CenterRight:
+                        pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                        pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
+                        break;
+                    case Anchor.BottomLeft:
+                        pos.X = parentArea.X + this.ScaledOffset.X;
+                        pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
+                        break;
+                    case Anchor.BottomCenter:
+                        pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                        pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
+                        break;
+                    case Anchor.BottomRight:
+                        pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                        pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
+                        break;
+                }
+
+                if (this.Anchor >= Anchor.AutoLeft) {
+                    Element previousChild;
+                    if (this.Anchor == Anchor.AutoInline || this.Anchor == Anchor.AutoInlineIgnoreOverflow) {
+                        previousChild = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
+                    } else {
+                        previousChild = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
+                    }
+                    if (previousChild != null) {
+                        var prevArea = previousChild.GetAreaForAutoAnchors();
+                        switch (this.Anchor) {
+                            case Anchor.AutoLeft:
+                            case Anchor.AutoCenter:
+                            case Anchor.AutoRight:
+                                pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
+                                break;
+                            case Anchor.AutoInline:
+                                var newX = prevArea.Right + this.ScaledOffset.X;
+                                if (newX + actualSize.X <= parentArea.Right) {
+                                    pos.X = newX;
+                                    pos.Y = prevArea.Y + this.ScaledOffset.Y;
+                                } else {
+                                    pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
+                                }
+                                break;
+                            case Anchor.AutoInlineIgnoreOverflow:
+                                pos.X = prevArea.Right + this.ScaledOffset.X;
+                                pos.Y = prevArea.Y + this.ScaledOffset.Y;
+                                break;
                         }
                     }
                 }
-                if (foundChild != null) {
-                    this.areaUpdateRecursionCount++;
-                    if (this.areaUpdateRecursionCount >= 16) {
-                        throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
-                    } else {
-                        this.ForceUpdateArea();
-                    }
-                } else {
-                    this.areaUpdateRecursionCount = 0;
+
+                if (this.PreventParentSpill) {
+                    if (pos.X < parentArea.X)
+                        pos.X = parentArea.X;
+                    if (pos.Y < parentArea.Y)
+                        pos.Y = parentArea.Y;
+                    if (pos.X + actualSize.X > parentArea.Right)
+                        actualSize.X = parentArea.Right - pos.X;
+                    if (pos.Y + actualSize.Y > parentArea.Bottom)
+                        actualSize.Y = parentArea.Bottom - pos.Y;
                 }
+
+                this.area = new RectangleF(pos, actualSize);
+                this.System.OnElementAreaUpdated?.Invoke(this);
+
+                foreach (var child in this.Children)
+                    child.ForceUpdateArea();
             }
         }
 
