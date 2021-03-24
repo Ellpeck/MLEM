@@ -423,7 +423,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Children"/> list</param>
         /// <typeparam name="T">The type of child to add</typeparam>
         /// <returns>This element, for chaining</returns>
-        public T AddChild<T>(T element, int index = -1) where T : Element {
+        public virtual T AddChild<T>(T element, int index = -1) where T : Element {
             if (index < 0 || index > this.children.Count)
                 index = this.children.Count;
             this.children.Insert(index, element);
@@ -443,7 +443,7 @@ namespace MLEM.Ui.Elements {
         /// Removes the given child from this element.
         /// </summary>
         /// <param name="element">The child element to remove</param>
-        public void RemoveChild(Element element) {
+        public virtual void RemoveChild(Element element) {
             this.children.Remove(element);
             // set area dirty here so that a dirty call is made
             // upwards to us if the element is auto-positioned
@@ -462,7 +462,7 @@ namespace MLEM.Ui.Elements {
         /// Removes all children from this element that match the given condition.
         /// </summary>
         /// <param name="condition">The condition that determines if a child should be removed</param>
-        public void RemoveChildren(Func<Element, bool> condition = null) {
+        public virtual void RemoveChildren(Func<Element, bool> condition = null) {
             for (var i = this.Children.Count - 1; i >= 0; i--) {
                 var child = this.Children[i];
                 if (condition == null || condition(child)) {
