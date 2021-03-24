@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,18 +21,19 @@ namespace MLEM.Ui.Elements {
         /// A list of all of this element's direct children.
         /// Use <see cref="AddChild{T}"/> or <see cref="RemoveChild"/> to manipulate this list while calling all of the necessary callbacks.
         /// </summary>
-        protected readonly List<Element> Children = new List<Element>();
-        private readonly List<Element> sortedChildren = new List<Element>();
+        protected readonly IList<Element> Children;
+        private readonly List<Element> children = new List<Element>();
         /// <summary>
         /// A sorted version of <see cref="Children"/>. The children are sorted by their <see cref="Priority"/>.
         /// </summary>
-        protected List<Element> SortedChildren {
+        protected IList<Element> SortedChildren {
             get {
                 this.UpdateSortedChildrenIfDirty();
                 return this.sortedChildren;
             }
         }
         private bool sortedChildrenDirty;
+        private IList<Element> sortedChildren;
 
         private UiSystem system;
         /// <summary>
@@ -398,6 +401,8 @@ namespace MLEM.Ui.Elements {
             this.anchor = anchor;
             this.size = size;
 
+            this.Children = new ReadOnlyCollection<Element>(this.children);
+
             this.OnMouseEnter += element => this.IsMouseOver = true;
             this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnTouchEnter += element => this.IsMouseOver = true;
@@ -408,6 +413,7 @@ namespace MLEM.Ui.Elements {
             this.GetGamepadNextElement += (dir, next) => next;
 
             this.SetAreaDirty();
+            this.SetSortedChildrenDirty();
         }
 
         /// <summary>
@@ -418,9 +424,9 @@ namespace MLEM.Ui.Elements {
         /// <typeparam name="T">The type of child to add</typeparam>
         /// <returns>This element, for chaining</returns>
         public T AddChild<T>(T element, int index = -1) where T : Element {
-            if (index < 0 || index > this.Children.Count)
-                index = this.Children.Count;
-            this.Children.Insert(index, element);
+            if (index < 0 || index > this.children.Count)
+                index = this.children.Count;
+            this.children.Insert(index, element);
             element.Parent = this;
             element.AndChildren(e => {
                 e.Root = this.Root;
@@ -438,7 +444,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="element">The child element to remove</param>
         public void RemoveChild(Element element) {
-            this.Children.Remove(element);
+            this.children.Remove(element);
             // set area dirty here so that a dirty call is made
             // upwards to us if the element is auto-positioned
             element.SetAreaDirty();
@@ -485,10 +491,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public virtual void ForceUpdateSortedChildren() {
             this.sortedChildrenDirty = false;
-
-            this.sortedChildren.Clear();
-            this.sortedChildren.AddRange(this.Children);
-            this.sortedChildren.Sort((e1, e2) => e1.Priority.CompareTo(e2.Priority));
+            this.sortedChildren = new ReadOnlyCollection<Element>(this.Children.OrderBy(e => e.Priority).ToArray());
         }
 
         /// <summary>
@@ -803,7 +806,7 @@ namespace MLEM.Ui.Elements {
         /// A <see cref="Panel"/> only returns elements that are currently in view here.
         /// </summary>
         /// <returns>This element's relevant children</returns>
-        protected virtual List<Element> GetRelevantChildren() {
+        protected virtual IList<Element> GetRelevantChildren() {
             return this.SortedChildren;
         }
 
@@ -901,9 +904,9 @@ namespace MLEM.Ui.Elements {
                 return null;
             if (this.Transform != Matrix.Identity)
                 position = Vector2.Transform(position, Matrix.Invert(this.Transform));
-            var children = this.GetRelevantChildren();
-            for (var i = children.Count - 1; i >= 0; i--) {
-                var element = children[i].GetElementUnderPos(position);
+            var relevant = this.GetRelevantChildren();
+            for (var i = relevant.Count - 1; i >= 0; i--) {
+                var element = relevant[i].GetElementUnderPos(position);
                 if (element != null)
                     return element;
             }
@@ -925,7 +928,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="comparison">The comparison to sort by</param>
         public void ReorderChildren(Comparison<Element> comparison) {
-            this.Children.Sort(comparison);
+            this.children.Sort(comparison);
         }
 
         /// <summary>
@@ -934,7 +937,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="index">The index to start reversing at</param>
         /// <param name="count">The amount of elements to reverse</param>
         public void ReverseChildren(int index = 0, int? count = null) {
-            this.Children.Reverse(index, count ?? this.Children.Count);
+            this.children.Reverse(index, count ?? this.Children.Count);
         }
 
         /// <summary>

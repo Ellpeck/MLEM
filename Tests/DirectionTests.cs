@@ -1,4 +1,3 @@
-using System.Drawing;
 using Microsoft.Xna.Framework;
 using MLEM.Misc;
 using NUnit.Framework;

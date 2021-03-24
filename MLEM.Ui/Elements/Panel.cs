@@ -116,7 +116,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        protected override List<Element> GetRelevantChildren() {
+        protected override IList<Element> GetRelevantChildren() {
             var relevant = base.GetRelevantChildren();
             if (this.scrollOverflow) {
                 if (this.relevantChildrenDirty) {
