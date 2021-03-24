@@ -254,13 +254,21 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public bool CanAutoAnchorsAttach = true;
         /// <summary>
+        /// Set this field to true to cause this element's width to be automatically calculated based on the area that its <see cref="Children"/> take up.
+        /// To use this element's <see cref="Size"/>'s X coordinate as a minimum width rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> to true.
+        /// </summary>
+        public bool SetWidthBasedOnChildren;
+        /// <summary>
         /// Set this field to true to cause this element's height to be automatically calculated based on the area that its <see cref="Children"/> take up.
+        /// To use this element's <see cref="Size"/>'s Y coordinate as a minimum height rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> to true.
         /// </summary>
         public bool SetHeightBasedOnChildren;
         /// <summary>
-        /// Set this field to true to cause this element's width to be automatically calculated based on the area that is <see cref="Children"/> take up.
+        /// If this field is set to true, and <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled, the resulting width or height will always be greather than or equal to this element's <see cref="Size"/>.
+        /// For example, if an element's <see cref="Size"/>'s Y coordinate is set to 20, but there is only one child with a height of 10 in it, the element's height would be shrunk to 10 if this value was false, but would remain at 20 if it was true.
+        /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
         /// </summary>
-        public bool SetWidthBasedOnChildren;
+        public bool TreatSizeAsMinimum;
         /// <summary>
         /// Set this field to true to cause this element's final display area to never exceed that of its <see cref="Parent"/>.
         /// If the resulting area is too large, the size of this element is shrunk to fit the target area.
@@ -513,7 +521,9 @@ namespace MLEM.Ui.Elements {
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
-            UpdateDisplayArea(this.CalcActualSize(parentArea));
+
+            var actualSize = this.CalcActualSize(parentArea);
+            UpdateDisplayArea(actualSize);
 
             if (this.Children.Count > 0) {
                 var autoSize = this.DisplayArea.Size;
@@ -527,11 +537,13 @@ namespace MLEM.Ui.Elements {
                     if (rightmost != null)
                         autoSize.X = rightmost.UnscrolledArea.Right - this.DisplayArea.X + this.ScaledChildPadding.Right;
                 }
+                if (this.TreatSizeAsMinimum)
+                    autoSize = Vector2.Max(autoSize, actualSize);
                 if (autoSize != this.DisplayArea.Size)
                     UpdateDisplayArea(autoSize);
             }
 
-            void UpdateDisplayArea(Vector2 actualSize) {
+            void UpdateDisplayArea(Vector2 newSize) {
                 var pos = new Vector2();
                 switch (this.anchor) {
                     case Anchor.TopLeft:
@@ -543,37 +555,37 @@ namespace MLEM.Ui.Elements {
                         break;
                     case Anchor.TopCenter:
                     case Anchor.AutoCenter:
-                        pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
+                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
                         pos.Y = parentArea.Y + this.ScaledOffset.Y;
                         break;
                     case Anchor.TopRight:
                     case Anchor.AutoRight:
-                        pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
+                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
                         pos.Y = parentArea.Y + this.ScaledOffset.Y;
                         break;
                     case Anchor.CenterLeft:
                         pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
+                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
                         break;
                     case Anchor.Center:
-                        pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
+                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
+                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
                         break;
                     case Anchor.CenterRight:
-                        pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
-                        pos.Y = parentCenterY - actualSize.Y / 2 + this.ScaledOffset.Y;
+                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
+                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
                         break;
                     case Anchor.BottomLeft:
                         pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
+                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
                         break;
                     case Anchor.BottomCenter:
-                        pos.X = parentCenterX - actualSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
+                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
+                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
                         break;
                     case Anchor.BottomRight:
-                        pos.X = parentArea.Right - actualSize.X - this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - actualSize.Y - this.ScaledOffset.Y;
+                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
+                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
                         break;
                 }
 
@@ -594,7 +606,7 @@ namespace MLEM.Ui.Elements {
                                 break;
                             case Anchor.AutoInline:
                                 var newX = prevArea.Right + this.ScaledOffset.X;
-                                if (newX + actualSize.X <= parentArea.Right) {
+                                if (newX + newSize.X <= parentArea.Right) {
                                     pos.X = newX;
                                     pos.Y = prevArea.Y + this.ScaledOffset.Y;
                                 } else {
@@ -614,13 +626,13 @@ namespace MLEM.Ui.Elements {
                         pos.X = parentArea.X;
                     if (pos.Y < parentArea.Y)
                         pos.Y = parentArea.Y;
-                    if (pos.X + actualSize.X > parentArea.Right)
-                        actualSize.X = parentArea.Right - pos.X;
-                    if (pos.Y + actualSize.Y > parentArea.Bottom)
-                        actualSize.Y = parentArea.Bottom - pos.Y;
+                    if (pos.X + newSize.X > parentArea.Right)
+                        newSize.X = parentArea.Right - pos.X;
+                    if (pos.Y + newSize.Y > parentArea.Bottom)
+                        newSize.Y = parentArea.Bottom - pos.Y;
                 }
 
-                this.area = new RectangleF(pos, actualSize);
+                this.area = new RectangleF(pos, newSize);
                 this.System.OnElementAreaUpdated?.Invoke(this);
 
                 foreach (var child in this.Children)
