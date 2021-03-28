@@ -55,7 +55,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The float property, or 0 if there is none</returns>
         public static float GetFloat(this TiledMapProperties properties, string key) {
-            float.TryParse(properties.Get(key), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out var val);
+            float.TryParse(properties.Get(key), NumberStyles.Number, CultureInfo.InvariantCulture, out var val);
             return val;
         }
 
@@ -66,7 +66,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The int property, or 0 if there is none</returns>
         public static int GetInt(this TiledMapProperties properties, string key) {
-            int.TryParse(properties.Get(key), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out var val);
+            int.TryParse(properties.Get(key), NumberStyles.Number, CultureInfo.InvariantCulture, out var val);
             return val;
         }
 

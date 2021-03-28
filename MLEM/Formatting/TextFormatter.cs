@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -33,7 +34,9 @@ namespace MLEM.Formatting {
             // font codes
             this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
             this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
-            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r, m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black, new Vector2(float.TryParse(m.Groups[2].Value, out var offset) ? offset : 2)));
+            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r,
+                m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black,
+                new Vector2(float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? offset : 2)));
             this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
             this.Codes.Add(new Regex("</(b|i|s|u|l)>"), (f, m, r) => new FontCode(m, r, null));
 
@@ -48,7 +51,9 @@ namespace MLEM.Formatting {
             this.Codes.Add(new Regex("</c>"), (f, m, r) => new ColorCode(m, r, null));
 
             // animation codes
-            this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r, float.TryParse(m.Groups[1].Value, out var mod) ? mod : 5, float.TryParse(m.Groups[2].Value, out var heightMod) ? heightMod : 1 / 8F));
+            this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
+                float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : 5,
+                float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : 1 / 8F));
             this.Codes.Add(new Regex("</a>"), (f, m, r) => new AnimatedCode(m, r));
 
             // macros
