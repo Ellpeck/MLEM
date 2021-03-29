@@ -44,8 +44,10 @@ namespace MLEM.Ui.Elements {
                 this.maxValue = Math.Max(0, value);
                 // force current value to be clamped
                 this.CurrentValue = this.CurrentValue;
-                if (this.AutoHideWhenEmpty && this.IsHidden != this.maxValue <= 0) {
-                    this.IsHidden = this.maxValue <= 0;
+                // auto-hide if necessary
+                var shouldHide = this.maxValue <= 0.01F;
+                if (this.AutoHideWhenEmpty && this.IsHidden != shouldHide) {
+                    this.IsHidden = shouldHide;
                     this.OnAutoHide?.Invoke(this);
                 }
             }

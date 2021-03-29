@@ -626,26 +626,30 @@ namespace MLEM.Ui.Elements {
 
                 if (this.Children.Count > 0) {
                     Element foundChild = null;
-                    var autoSize = this.Area.Size;
+                    var autoSize = this.UnscrolledArea.Size;
                     if (this.SetHeightBasedOnChildren) {
                         var lowest = this.GetLowestChild(e => !e.IsHidden);
-                        var newY = lowest?.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
-                        if (newY != null && autoSize.Y != newY) {
-                            autoSize.Y = newY.Value;
-                            foundChild = lowest;
+                        if (lowest != null) {
+                            var newHeight = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
+                            if (!newHeight.Equals(autoSize.Y, 0.01F)) {
+                                autoSize.Y = newHeight;
+                                foundChild = lowest;
+                            }
                         }
                     }
                     if (this.SetWidthBasedOnChildren) {
                         var rightmost = this.GetRightmostChild(e => !e.IsHidden);
-                        var newX = rightmost?.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
-                        if (newX != null && autoSize.X != newX) {
-                            autoSize.X = newX.Value;
-                            foundChild = rightmost;
+                        if (rightmost != null) {
+                            var newWidth = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
+                            if (!newWidth.Equals(autoSize.X, 0.01F)) {
+                                autoSize.X = newWidth;
+                                foundChild = rightmost;
+                            }
                         }
                     }
                     if (this.TreatSizeAsMinimum)
                         autoSize = Vector2.Max(autoSize, actualSize);
-                    if (!this.Area.Size.Equals(autoSize, 0.01F)) {
+                    if (foundChild != null) {
                         recursion++;
                         if (recursion >= 16) {
                             throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
