@@ -21,10 +21,6 @@ namespace MLEM.Ui {
     /// </summary>
     public class UiSystem : GameComponent {
 
-        /// <summary>
-        /// The graphics device that this ui system uses for its size calculations
-        /// </summary>
-        public readonly GraphicsDevice GraphicsDevice;
         private readonly List<RootElement> rootElements = new List<RootElement>();
 
         /// <summary>
@@ -177,13 +173,11 @@ namespace MLEM.Ui {
         /// Creates a new ui system with the given settings.
         /// </summary>
         /// <param name="game">The game</param>
-        /// <param name="device">The graphics device that should be used for viewport calculations</param>
         /// <param name="style">The style settings that this ui should have. Use <see cref="UntexturedStyle"/> for the default, untextured style.</param>
         /// <param name="inputHandler">The input handler that this ui's <see cref="UiControls"/> should use. If none is supplied, a new input handler is created for this ui.</param>
         /// <param name="automaticViewport">If this value is set to true, the ui system's <see cref="Viewport"/> will be set automatically based on the <see cref="GameWindow"/>'s size. Defaults to true.</param>
-        public UiSystem(Game game, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true) : base(game) {
+        public UiSystem(Game game, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true) : base(game) {
             this.Controls = new UiControls(this, inputHandler);
-            this.GraphicsDevice = device;
             this.style = style;
 
             if (automaticViewport) {

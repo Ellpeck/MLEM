@@ -72,7 +72,7 @@ namespace MLEM.Startup {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler(this);
             this.Components.Add(this.InputHandler);
-            this.UiSystem = new UiSystem(this, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
+            this.UiSystem = new UiSystem(this, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
             this.Components.Add(this.UiSystem);
             this.OnLoadContent?.Invoke(this);
         }
