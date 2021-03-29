@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -524,27 +525,10 @@ namespace MLEM.Ui.Elements {
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
-
             var actualSize = this.CalcActualSize(parentArea);
-            UpdateDisplayArea(actualSize);
 
-            if (this.Children.Count > 0) {
-                var autoSize = this.DisplayArea.Size;
-                if (this.SetHeightBasedOnChildren) {
-                    var lowest = this.GetLowestChild(e => !e.IsHidden);
-                    if (lowest != null)
-                        autoSize.Y = lowest.UnscrolledArea.Bottom - this.DisplayArea.Y + this.ScaledChildPadding.Bottom;
-                }
-                if (this.SetWidthBasedOnChildren) {
-                    var rightmost = this.GetRightmostChild(e => !e.IsHidden);
-                    if (rightmost != null)
-                        autoSize.X = rightmost.UnscrolledArea.Right - this.DisplayArea.X + this.ScaledChildPadding.Right;
-                }
-                if (this.TreatSizeAsMinimum)
-                    autoSize = Vector2.Max(autoSize, actualSize);
-                if (autoSize != this.DisplayArea.Size)
-                    UpdateDisplayArea(autoSize);
-            }
+            var recursion = 0;
+            UpdateDisplayArea(actualSize);
 
             void UpdateDisplayArea(Vector2 newSize) {
                 var pos = new Vector2();
@@ -639,9 +623,38 @@ namespace MLEM.Ui.Elements {
                 this.System.OnElementAreaUpdated?.Invoke(this);
 
                 foreach (var child in this.Children)
-                    child.SetAreaDirty();
-                // clear the dirty flag again in case our children just set us dirty
-                this.areaDirty = false;
+                    child.ForceUpdateArea();
+
+                if (this.Children.Count > 0) {
+                    Element foundChild = null;
+                    var autoSize = this.Area.Size;
+                    if (this.SetHeightBasedOnChildren) {
+                        var lowest = this.GetLowestChild(e => !e.IsHidden);
+                        var newY = lowest?.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
+                        if (newY != null && autoSize.Y != newY) {
+                            autoSize.Y = newY.Value;
+                            foundChild = lowest;
+                        }
+                    }
+                    if (this.SetWidthBasedOnChildren) {
+                        var rightmost = this.GetRightmostChild(e => !e.IsHidden);
+                        var newX = rightmost?.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
+                        if (newX != null && autoSize.X != newX) {
+                            autoSize.X = newX.Value;
+                            foundChild = rightmost;
+                        }
+                    }
+                    if (this.TreatSizeAsMinimum)
+                        autoSize = Vector2.Max(autoSize, actualSize);
+                    if (autoSize != this.Area.Size) {
+                        recursion++;
+                        if (recursion >= 16) {
+                            throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
+                        } else {
+                            UpdateDisplayArea(autoSize);
+                        }
+                    }
+                }
             }
         }
 

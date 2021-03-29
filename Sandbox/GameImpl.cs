@@ -22,6 +22,7 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using MonoGame.Extended.Tiled;
+using Group = MLEM.Ui.Elements.Group;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {
@@ -205,6 +206,22 @@ namespace Sandbox {
             invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
             invalidPanel.AddChild(new VerticalSpace(1));
             this.UiSystem.Add("Invalid", invalidPanel);*/
+
+            var loadGroup = new Group(Anchor.TopLeft, Vector2.One, false);
+            var loadPanel = loadGroup.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, new Point(5, 10), false) {
+                ChildPadding = new Padding(5, 10, 5, 5)
+            });
+            for (var i = 0; i < 1; i++) {
+                var button = loadPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1)) {
+                    SetHeightBasedOnChildren = true,
+                    Padding = new Padding(0, 0, 0, 1),
+                    ChildPadding = new Vector2(3)
+                });
+                button.AddChild(new Group(Anchor.AutoLeft, new Vector2(0.5F, 30), false) {
+                    CanBeMoused = false
+                });
+            }
+            this.UiSystem.Add("Load", loadGroup);
         }
 
         protected override void DoUpdate(GameTime gameTime) {
