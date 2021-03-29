@@ -639,7 +639,9 @@ namespace MLEM.Ui.Elements {
                 this.System.OnElementAreaUpdated?.Invoke(this);
 
                 foreach (var child in this.Children)
-                    child.ForceUpdateArea();
+                    child.SetAreaDirty();
+                // clear the dirty flag again in case our children just set us dirty
+                this.areaDirty = false;
             }
         }
 
