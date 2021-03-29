@@ -25,17 +25,13 @@ namespace MLEM.Ui {
         /// The graphics device that this ui system uses for its size calculations
         /// </summary>
         public readonly GraphicsDevice GraphicsDevice;
-        /// <summary>
-        /// The game window that this ui system renders within
-        /// </summary>
-        public readonly GameWindow Window;
         private readonly List<RootElement> rootElements = new List<RootElement>();
 
         /// <summary>
         /// The viewport that this ui system is rendering inside of.
         /// This is automatically updated during <see cref="GameWindow.ClientSizeChanged"/>
         /// </summary>
-        public Rectangle Viewport { get; private set; }
+        public Rectangle Viewport;
         /// <summary>
         /// Set this field to true to cause the ui system and all of its elements to automatically scale up or down with greater and lower resolution, respectively.
         /// If this field is true, <see cref="AutoScaleReferenceSize"/> is used as the size that uses default <see cref="GlobalScale"/>
@@ -184,22 +180,24 @@ namespace MLEM.Ui {
         /// <param name="device">The graphics device that should be used for viewport calculations</param>
         /// <param name="style">The style settings that this ui should have. Use <see cref="UntexturedStyle"/> for the default, untextured style.</param>
         /// <param name="inputHandler">The input handler that this ui's <see cref="UiControls"/> should use. If none is supplied, a new input handler is created for this ui.</param>
-        public UiSystem(Game game, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null) : base(game) {
+        /// <param name="automaticViewport">If this value is set to true, the ui system's <see cref="Viewport"/> will be set automatically based on the <see cref="GameWindow"/>'s size. Defaults to true.</param>
+        public UiSystem(Game game, GraphicsDevice device, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true) : base(game) {
             this.Controls = new UiControls(this, inputHandler);
             this.GraphicsDevice = device;
-            this.Window = game.Window;
             this.style = style;
-            this.Viewport = new Rectangle(Point.Zero, this.Window.ClientBounds.Size);
-            this.AutoScaleReferenceSize = this.Viewport.Size;
 
-            this.Window.ClientSizeChanged += (sender, args) => {
-                this.Viewport = new Rectangle(Point.Zero, this.Window.ClientBounds.Size);
-                foreach (var root in this.rootElements)
-                    root.Element.ForceUpdateArea();
-            };
+            if (automaticViewport) {
+                this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
+                this.AutoScaleReferenceSize = this.Viewport.Size;
+                game.Window.ClientSizeChanged += (sender, args) => {
+                    this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
+                    foreach (var root in this.rootElements)
+                        root.Element.ForceUpdateArea();
+                };
+            }
 
             if (TextInputWrapper.Current != null)
-                TextInputWrapper.Current.AddListener(this.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
+                TextInputWrapper.Current.AddListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged = e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
