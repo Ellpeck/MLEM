@@ -29,8 +29,9 @@ namespace MLEM.Extended.Font {
         /// <param name="italic">An italic version of the font</param>
         public GenericStashFont(SpriteFontBase font, SpriteFontBase bold = null, SpriteFontBase italic = null) {
             this.Font = font;
-            // SpriteFontBase provides no line height, so we measure the height of a new line
-            this.LineHeight = font.MeasureString("\n").Y;
+            // SpriteFontBase provides no line height, so we measure the height of a new line for most fonts
+            // This doesn't work with static sprite fonts, but their size is always the one we calculate here
+            this.LineHeight = font is StaticSpriteFont s ? s.FontSize + s.LineSpacing : font.MeasureString("\n").Y;
             this.Bold = bold != null ? new GenericStashFont(bold) : this;
             this.Italic = italic != null ? new GenericStashFont(italic) : this;
         }
