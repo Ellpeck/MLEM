@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -646,7 +645,7 @@ namespace MLEM.Ui.Elements {
                     }
                     if (this.TreatSizeAsMinimum)
                         autoSize = Vector2.Max(autoSize, actualSize);
-                    if (autoSize != this.Area.Size) {
+                    if (!this.Area.Size.Equals(autoSize, 0.01F)) {
                         recursion++;
                         if (recursion >= 16) {
                             throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
