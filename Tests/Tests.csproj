@@ -3,7 +3,6 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <DefineConstants>TEST</DefineConstants>
         <VSTestLogger>nunit</VSTestLogger>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
 
     <ItemGroup>
