@@ -1,16 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <DefineConstants>TEST</DefineConstants>
         <VSTestLogger>nunit</VSTestLogger>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
-        <ProjectReference Include="..\MLEM.Data\MLEM.Data.csproj" />
-        <ProjectReference Include="..\MLEM\MLEM.csproj" />
+        <!-- TODO switch to project references with test framework (https://github.com/MonoGame/MonoGame/issues/7474) -->
+        <!-- right now, we have to do it like this to allow for the TEST constant to go through -->
+        <Compile Include="..\MLEM\**\*.cs">
+            <Link>MLEM\%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Remove="..\MLEM\obj\**\*.cs" />
+        <Compile Include="..\MLEM.Ui\**\*.cs">
+            <Link>MLEM.Ui\%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Remove="..\MLEM.Ui\obj\**\*.cs" />
+        <Compile Include="..\MLEM.Data\**\*.cs">
+            <Link>MLEM.Data\%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </Compile>
+        <Compile Remove="..\MLEM.Data\obj\**\*.cs" />
     </ItemGroup>
     
     <ItemGroup>
+        <!-- "transitive" dependencies -->
+        <PackageReference Include="Lidgren.Network" Version="1.0.2" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+        <PackageReference Include="TextCopy" Version="4.3.0" />
+
+        <!-- regular dependencies -->
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
         <PackageReference Include="coverlet.collector" Version="3.0.3" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />

@@ -90,7 +90,6 @@ namespace MLEM.Ui.Elements {
         /// The size of this element, where X represents the width and Y represents the height.
         /// If the x or y value of the size is between 0 and 1, the size will be seen as a percentage of its parent's size rather than as an absolute value.
         /// If the x (or y) value of the size is negative, the width (or height) is seen as a percentage of the element's resulting height (or width). 
-        /// If <see cref="SetWidthBasedOnChildren"/> is true, this property's X value is ignored and overridden. If <see cref="SetHeightBasedOnChildren"/> is true, this property's Y value is ignored and overridden.
         /// </summary>
         /// <example>
         /// The following example combines both types of percentage-based sizing.

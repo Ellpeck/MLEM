@@ -144,12 +144,14 @@ namespace MLEM.Ui.Elements {
             TextInputWrapper.EnsureExists();
             if (TextInputWrapper.Current.RequiresOnScreenKeyboard()) {
                 this.OnPressed += async e => {
+                    #if !TEST
                     if (!KeyboardInput.IsVisible) {
                         var title = this.MobileTitle ?? this.PlaceholderText;
                         var result = await KeyboardInput.Show(title, this.MobileDescription, this.Text);
                         if (result != null)
                             this.SetText(result.Replace('\n', ' '), true);
                     }
+                    #endif
                 };
             }
             this.OnTextInput += (element, key, character) => {

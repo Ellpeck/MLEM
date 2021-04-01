@@ -453,6 +453,7 @@ namespace MLEM.Input {
                     return true;
                 }
             }
+            sample = default;
             return false;
         }
 
@@ -540,8 +541,10 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="gestures">The gestures to enable</param>
         public static void EnableGestures(params GestureType[] gestures) {
+            #if !TEST
             foreach (var gesture in gestures)
                 TouchPanel.EnabledGestures |= gesture;
+            #endif
         }
 
         /// <summary>
@@ -549,8 +552,10 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="gestures">The gestures to disable</param>
         public static void DisableGestures(params GestureType[] gestures) {
+            #if !TEST
             foreach (var gesture in gestures)
                 TouchPanel.EnabledGestures &= ~gesture;
+            #endif
         }
 
         /// <summary>
