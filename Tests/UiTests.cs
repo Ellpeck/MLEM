@@ -6,10 +6,21 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using NUnit.Framework;
-using Tests.Stub;
 
 namespace Tests {
     public class UiTests {
+
+        private TestGame game;
+
+        [SetUp]
+        public void SetUp() {
+            this.game = TestGame.Create();
+        }
+
+        [TearDown]
+        public void TearDown() {
+            this.game?.Dispose();
+        }
 
         [Test]
         public void TestInvalidPanel() {
@@ -55,12 +66,12 @@ namespace Tests {
             Assert.AreEqual(testBtn.GetChildren<Group>().Single().DisplayArea.Width, (150 - 5 - 10 - 3 - 3) * 0.5F);
         }
 
-        private static void AddAndUpdate(Element element) {
-            var ui = new UiSystem(null, new StubStyle(), null, false);
-            ui.Viewport = new Rectangle(0, 0, 1280, 720);
-            ui.Add("Test", element);
+        private void AddAndUpdate(Element element) {
+            foreach (var root in this.game.UiSystem.GetRootElements())
+                this.game.UiSystem.Remove(root.Name);
+            
+            this.game.UiSystem.Add("Test", element);
             element.ForceUpdateArea();
         }
-
     }
 }

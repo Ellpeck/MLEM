@@ -1,16 +1,19 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MLEM.Data;
 using MLEM.Data.Content;
+using MLEM.Textures;
 using NUnit.Framework;
-using Tests.Stub;
 
 namespace Tests {
     public class TestDataTextureAtlas {
 
         [Test]
         public void Test() {
-            var atlas = DataTextureAtlas.LoadAtlasData(null, new RawContentManager(new StubServices()), "Texture.atlas");
+            using var game = TestGame.Create();
+            using var texture = new Texture2D(game.GraphicsDevice, 1, 1);
+            var atlas = DataTextureAtlas.LoadAtlasData(new TextureRegion(texture), game.RawContent, "Texture.atlas");
             Assert.AreEqual(atlas.Regions.Count(), 5);
 
             var table = atlas["LongTableUp"];

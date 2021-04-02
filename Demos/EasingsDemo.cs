@@ -25,7 +25,7 @@ namespace Demos {
         public override void LoadContent() {
             base.LoadContent();
 
-            this.group = new Group(Anchor.TopCenter, Vector2.One) {SetWidthBasedOnChildren = true};
+            this.group = new Group(Anchor.TopCenter, Vector2.One) {CanBeMoused = false};
             this.group.AddChild(new Button(Anchor.AutoCenter, new Vector2(30, 10), "Next") {
                 OnPressed = e => {
                     this.current = (this.current + 1) % Easings.Length;

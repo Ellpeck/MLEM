@@ -227,13 +227,11 @@ namespace MLEM.Ui.Elements {
             var targetArea = (Rectangle) this.GetRenderTargetArea();
             if (targetArea.Width <= 0 || targetArea.Height <= 0)
                 return;
-            #if !TEST
             if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
                 if (this.renderTarget != null)
                     this.renderTarget.Dispose();
                 this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height);
             }
-            #endif
         }
 
     }
