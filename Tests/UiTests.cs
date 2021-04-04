@@ -30,7 +30,7 @@ namespace Tests {
             };
             invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
             invalidPanel.AddChild(new VerticalSpace(1));
-            Assert.Throws<ArithmeticException>(() => AddAndUpdate(invalidPanel));
+            Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel));
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Tests {
                     CanBeMoused = false
                 });
             }
-            AddAndUpdate(group);
+            this.AddAndUpdate(group);
 
             // group has 1 panel with 1 scroll bar, and the panel's 10 children
             Assert.AreEqual(1, group.GetChildren().Count());
@@ -66,12 +66,25 @@ namespace Tests {
             Assert.AreEqual(testBtn.GetChildren<Group>().Single().DisplayArea.Width, (150 - 5 - 10 - 3 - 3) * 0.5F);
         }
 
+        [Test]
+        public void TestStyle() {
+            var style = new StyleProp<string>();
+            Assert.AreEqual(null, style.Value);
+            style.SetFromStyle("from style");
+            Assert.AreEqual("from style", style.Value);
+            style.Set("custom");
+            Assert.AreEqual("custom", style.Value);
+            style.SetFromStyle("from style again");
+            Assert.AreEqual("custom", style.Value);
+        }
+
         private void AddAndUpdate(Element element) {
             foreach (var root in this.game.UiSystem.GetRootElements())
                 this.game.UiSystem.Remove(root.Name);
-            
+
             this.game.UiSystem.Add("Test", element);
             element.ForceUpdateArea();
         }
+
     }
 }
