@@ -21,11 +21,6 @@ namespace MLEM.Font {
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
         /// </summary>
         public const char Nbsp = '\u00A0';
-        /// <summary>
-        /// This field holds the unicode representation of a zero-width space.
-        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations and string splitting, generic fonts implicitly support it in <see cref="MeasureString"/> and <see cref="SplitString"/>.
-        /// </summary>
-        public const char Zwsp = '\u8203';
 
         /// <summary>
         /// The bold version of this font.
@@ -113,9 +108,6 @@ namespace MLEM.Font {
                     case Nbsp:
                         xOffset += this.MeasureChar(' ').X;
                         break;
-                    case Zwsp:
-                        // don't add width for a zero-width space
-                        break;
                     default:
                         xOffset += this.MeasureChar(c).X;
                         break;
@@ -172,7 +164,7 @@ namespace MLEM.Font {
             var total = new StringBuilder();
             foreach (var line in text.Split('\n')) {
                 var curr = new StringBuilder();
-                foreach (var word in line.Split(' ', Zwsp)) {
+                foreach (var word in line.Split(' ')) {
                     if (this.MeasureString(word).X * scale >= width) {
                         if (curr.Length > 0) {
                             total.Append(curr).Append('\n');
