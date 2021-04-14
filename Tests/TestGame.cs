@@ -1,4 +1,6 @@
-﻿using MLEM.Data.Content;
+﻿using Microsoft.Xna.Framework.Graphics;
+using MLEM.Data.Content;
+using MLEM.Font;
 using MLEM.Startup;
 
 namespace Tests {
@@ -12,6 +14,7 @@ namespace Tests {
         protected override void LoadContent() {
             base.LoadContent();
             this.RawContent = new RawContentManager(this.Services, this.Content.RootDirectory);
+            this.UiSystem.Style.Font = new GenericSpriteFont(LoadContent<SpriteFont>("TestFont"));
         }
 
         public static TestGame Create() {
