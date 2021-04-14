@@ -80,6 +80,24 @@ namespace Tests {
         }
 
         [Test]
+        public void TestNewlineSplit() {
+            var formatted = this.formatter.Tokenize(this.font,
+                "This is a pretty long line with regular <c Blue>content</c> that will be split.\nNow this is a new line with additional regular <c Blue>content</c> that is forced into a new line.");
+            formatted.Split(this.font, 65, 0.1F);
+            Assert.AreEqual(formatted.DisplayString, "This is a pretty long line with \nregular content that will be \nsplit.\nNow this is a new line with \nadditional regular content that \nis forced into a new line.");
+
+            var tokens = new[] {
+                "This is a pretty long line with \nregular ",
+                "content",
+                " that will be \nsplit.\nNow this is a new line with \nadditional regular ",
+                "content",
+                " that \nis forced into a new line."
+            };
+            for (var i = 0; i < tokens.Length; i++)
+                Assert.AreEqual(formatted.Tokens[i].DisplayString, tokens[i]);
+        }
+
+        [Test]
         public void TestMacros() {
             this.formatter.Macros.Add(new Regex("<testmacro>"), (f, m, r) => "<test1>");
             this.formatter.Macros.Add(new Regex("<test1>"), (f, m, r) => "<test2>blue");

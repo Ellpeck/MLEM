@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,8 +73,8 @@ namespace MLEM.Formatting {
                     // if we're within the bounds of the token's substring, append to the new substring
                     if (index >= token.Index)
                         ret.Append(this.splitString[i]);
-                    // if the current char is not a newline, we simulate length increase
-                    if (this.splitString[i] != '\n') {
+                    // if the current char is not an added newline, we simulate length increase
+                    if (this.splitString[i] != '\n' || this.String[index] == '\n') {
                         if (index >= token.Index)
                             length++;
                         index++;

@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +22,11 @@ namespace MLEM.Font {
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
         /// </summary>
         public const char Nbsp = '\u00A0';
+        /// <summary>
+        /// This field holds the unicode representation of a zero-width space.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations and string splitting, generic fonts implicitly support it in <see cref="MeasureString"/> and <see cref="SplitString"/>.
+        /// </summary>
+        public const char Zwsp = '\u200B';
 
         /// <summary>
         /// The bold version of this font.
@@ -108,6 +114,9 @@ namespace MLEM.Font {
                     case Nbsp:
                         xOffset += this.MeasureChar(' ').X;
                         break;
+                    case Zwsp:
+                        // don't add width for a zero-width space
+                        break;
                     default:
                         xOffset += this.MeasureChar(c).X;
                         break;
@@ -161,38 +170,47 @@ namespace MLEM.Font {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string, containing newline characters at each new line</returns>
         public string SplitString(string text, float width, float scale) {
-            var total = new StringBuilder();
-            foreach (var line in text.Split('\n')) {
-                var curr = new StringBuilder();
-                foreach (var word in line.Split(' ')) {
-                    if (this.MeasureString(word).X * scale >= width) {
-                        if (curr.Length > 0) {
-                            total.Append(curr).Append('\n');
-                            curr.Clear();
+            var ret = new StringBuilder();
+            var currWidth = 0F;
+            var lastSpaceIndex = -1;
+            var widthSinceLastSpace = 0F;
+            for (var i = 0; i < text.Length; i++) {
+                var c = text[i];
+                if (c == '\n') {
+                    // split at pre-defined new lines
+                    ret.Append(c);
+                    lastSpaceIndex = -1;
+                    widthSinceLastSpace = 0;
+                    currWidth = 0;
+                } else {
+                    var cWidth = this.MeasureChar(c).X * scale;
+                    if (c == ' ' || c == OneEmSpace || c == Zwsp) {
+                        // remember the location of this space
+                        lastSpaceIndex = ret.Length;
+                        widthSinceLastSpace = 0;
+                    } else if (currWidth + cWidth >= width) {
+                        // check if this line contains a space
+                        if (lastSpaceIndex < 0) {
+                            // if there is no last space, the word is longer than a line so we split here
+                            ret.Append('\n');
+                            currWidth = 0;
+                        } else {
+                            // split after the last space
+                            ret.Insert(lastSpaceIndex + 1, '\n');
+                            // we need to restore the width accumulated since the last space for the new line
+                            currWidth = widthSinceLastSpace;
                         }
-                        var wordBuilder = new StringBuilder();
-                        for (var i = 0; i < word.Length; i++) {
-                            wordBuilder.Append(word[i]);
-                            if (this.MeasureString(wordBuilder.ToString()).X * scale >= width) {
-                                total.Append(wordBuilder.ToString(0, wordBuilder.Length - 1)).Append('\n');
-                                wordBuilder.Remove(0, wordBuilder.Length - 1);
-                            }
-                        }
-                        curr.Append(wordBuilder).Append(' ');
-                    } else {
-                        curr.Append(word).Append(' ');
-                        if (this.MeasureString(curr.ToString()).X * scale >= width) {
-                            var len = curr.Length - word.Length - 1;
-                            if (len > 0) {
-                                total.Append(curr.ToString(0, len)).Append('\n');
-                                curr.Remove(0, len);
-                            }
-                        }
+                        widthSinceLastSpace = 0;
+                        lastSpaceIndex = -1;
                     }
+
+                    // add current character
+                    currWidth += cWidth;
+                    widthSinceLastSpace += cWidth;
+                    ret.Append(c);
                 }
-                total.Append(curr).Append('\n');
             }
-            return total.ToString(0, total.Length - 2);
+            return ret.ToString();
         }
 
     }
