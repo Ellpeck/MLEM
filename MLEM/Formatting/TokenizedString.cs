@@ -68,9 +68,9 @@ namespace MLEM.Formatting {
                 var length = 0;
                 var ret = new StringBuilder();
                 // this is basically a substring function that ignores newlines for indexing
-                for (var i = 0; i < this.splitString.Length; i++) {
+                for (var i = 0; i < this.splitString.Length && length < token.Substring.Length; i++) {
                     // if we're within the bounds of the token's substring, append to the new substring
-                    if (index >= token.Index && length < token.Substring.Length)
+                    if (index >= token.Index)
                         ret.Append(this.splitString[i]);
                     // if the current char is not a newline, we simulate length increase
                     if (this.splitString[i] != '\n') {
