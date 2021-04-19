@@ -1,5 +1,7 @@
 using System.Text.RegularExpressions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
@@ -115,6 +117,35 @@ namespace Tests {
             Assert.AreEqual(ret.Tokens.Length, 13);
             Assert.AreEqual(ret.DisplayString, "Lorem Ipsum \u2003 is simply dummy text of the \u2003 printing and typesetting \u2003 industry. Lorem Ipsum has been the industry's standard dummy text \u2003 ever since the \u2003 1500s, when \u2003\u2003\u2003\u2003\u2003\u2003\u2003 an unknown printer took a galley of type and scrambled it to make a type specimen book.");
             Assert.AreEqual(ret.AllCodes.Length, 12);
+        }
+
+        [Test]
+        public void TestConsistency() {
+            void CompareSizes(string s) {
+                var spriteFont = ((GenericSpriteFont) this.font).Font;
+                Assert.AreEqual(spriteFont.MeasureString(s), this.font.MeasureString(s));
+            }
+
+            CompareSizes("This is a very simple test string");
+            CompareSizes("This\n is a very\nsimple test string");
+            CompareSizes("\nThis is a very simple test string");
+            CompareSizes("This is a very simple test string\n");
+            CompareSizes("This is a very simple test string\n\n\n\n\n");
+        }
+
+        [Test]
+        public void TestSpecialCharacters() {
+            void CompareSizes(string s) {
+                var spriteFont = ((GenericSpriteFont) this.font).Font;
+                Assert.AreNotEqual(spriteFont.MeasureString(s), this.font.MeasureString(s));
+            }
+
+            CompareSizes($"This is a very simple{GenericFont.Nbsp}test string");
+            CompareSizes($"This is a very simple{GenericFont.OneEmSpace}test string");
+            CompareSizes($"This is a very simple{GenericFont.Zwsp}test string");
+
+            Assert.AreEqual(new Vector2(this.font.LineHeight, this.font.LineHeight), this.font.MeasureString(GenericFont.OneEmSpace.ToCachedString()));
+            Assert.AreEqual(new Vector2(0, this.font.LineHeight), this.font.MeasureString(GenericFont.Zwsp.ToCachedString()));
         }
 
     }
