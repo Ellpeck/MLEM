@@ -50,19 +50,7 @@ namespace MLEM.Ui.Style {
                 return Vector2.Zero;
             }
 
-            public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
-            }
-
-            public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            }
-
             public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            }
-
-            public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
-            }
-
-            public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             }
 
             public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {

@@ -37,28 +37,8 @@ namespace MLEM.Extended.Font {
         }
 
         /// <inheritdoc />
-        public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
-            this.Font.DrawText(batch, text, position, color);
-        }
-
-        /// <inheritdoc />
-        public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            this.Font.DrawText(batch, text, position, color, new Vector2(scale), rotation, origin, layerDepth);
-        }
-
-        /// <inheritdoc />
         public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             this.Font.DrawText(batch, text, position, color, scale, rotation, origin, layerDepth);
-        }
-
-        /// <inheritdoc />
-        public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
-            this.Font.DrawText(batch, text, position, color);
-        }
-
-        /// <inheritdoc />
-        public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            this.Font.DrawText(batch, text, position, color, new Vector2(scale), rotation, origin, layerDepth);
         }
 
         /// <inheritdoc />

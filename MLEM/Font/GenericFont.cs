@@ -41,59 +41,33 @@ namespace MLEM.Font {
         ///<inheritdoc cref="SpriteFont.LineSpacing"/>
         public abstract float LineHeight { get; }
 
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public abstract void DrawString(SpriteBatch batch, string text, Vector2 position, Color color);
-
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public abstract void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth);
+        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
+        protected abstract Vector2 MeasureChar(char c);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public abstract void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color);
-
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth);
-
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
-        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
-        protected abstract Vector2 MeasureChar(char c);
-
-        /// <summary>
-        /// Draws a string with the given text alignment.
-        /// </summary>
-        /// <param name="batch">The sprite batch to use</param>
-        /// <param name="text">The string to draw</param>
-        /// <param name="position">The position of the top left corner of the string</param>
-        /// <param name="align">The alignment to use</param>
-        /// <param name="color">The color to use</param>
-        public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color) {
-            this.DrawString(batch, text, position, align, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
+            this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
 
-        ///<inheritdoc cref="DrawString(SpriteBatch,string,Vector2,TextAlign,Color)"/>
-        public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            this.DrawString(batch, text, position, align, color, rotation, origin, new Vector2(scale), effects, layerDepth);
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            this.DrawString(batch, text, position, color, rotation, origin, new Vector2(scale), effects, layerDepth);
         }
 
-        ///<inheritdoc cref="DrawString(SpriteBatch,string,Vector2,TextAlign,Color)"/>
-        public void DrawString(SpriteBatch batch, string text, Vector2 position, TextAlign align, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            switch (align) {
-                case TextAlign.Center:
-                case TextAlign.CenterBothAxes:
-                    var (w, h) = this.MeasureString(text) * scale;
-                    position.X -= w / 2;
-                    if (align == TextAlign.CenterBothAxes)
-                        position.Y -= h / 2;
-                    break;
-                case TextAlign.Right:
-                    position.X -= this.MeasureString(text).X * scale.X;
-                    break;
-            }
-            this.DrawString(batch, text, position, color, rotation, origin, scale, effects, layerDepth);
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
+            this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        }
+
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            this.DrawString(batch, text, position, color, rotation, origin, new Vector2(scale), effects, layerDepth);
         }
 
         ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
@@ -212,30 +186,6 @@ namespace MLEM.Font {
             }
             return ret.ToString();
         }
-
-    }
-
-    /// <summary>
-    /// An enum that represents the text alignment options for <see cref="GenericFont.DrawString(SpriteBatch,string,Vector2,TextAlign,Color)"/>
-    /// </summary>
-    public enum TextAlign {
-
-        /// <summary>
-        /// The text is aligned as normal
-        /// </summary>
-        Left,
-        /// <summary>
-        /// The position passed represents the center of the resulting string in the x axis
-        /// </summary>
-        Center,
-        /// <summary>
-        /// The position passed represents the right edge of the resulting string
-        /// </summary>
-        Right,
-        /// <summary>
-        /// The position passed represents the center of the resulting string, both in the x and y axes
-        /// </summary>
-        CenterBothAxes
 
     }
 }

@@ -131,11 +131,6 @@ namespace Sandbox {
 
             this.OnDraw += (game, time) => {
                 this.SpriteBatch.Begin();
-                system.GetFont(32).DrawText(this.SpriteBatch, "Left Aligned\nover multiple lines", new Vector2(640, 0), Color.White);
-                font.DrawString(this.SpriteBatch, "Left Aligned\nover multiple lines", new Vector2(640, 0), TextAlign.Left, Color.White);
-                font.DrawString(this.SpriteBatch, "Center Aligned\nover multiple lines", new Vector2(640, 100), TextAlign.Center, Color.White);
-                font.DrawString(this.SpriteBatch, "Right Aligned\nover multiple lines", new Vector2(640, 200), TextAlign.Right, Color.White);
-                font.DrawString(this.SpriteBatch, "Center Aligned on both axes", new Vector2(640, 360), TextAlign.CenterBothAxes, Color.White);
                 this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Rectangle(640 - 4, 360 - 4, 8, 8), Color.Green);
 
                 this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Rectangle(200, 400, 200, 400), Color.Green);
