@@ -64,24 +64,29 @@ namespace MLEM.Formatting {
                 this.Tokens[0].SplitSubstring = this.splitString;
                 return;
             }
-            foreach (var token in this.Tokens) {
-                var index = 0;
-                var length = 0;
-                var ret = new StringBuilder();
-                // this is basically a substring function that ignores newlines for indexing
-                for (var i = 0; i < this.splitString.Length && length < token.Substring.Length; i++) {
-                    // if we're within the bounds of the token's substring, append to the new substring
-                    if (index >= token.Index)
-                        ret.Append(this.splitString[i]);
+
+            // this is basically a substring function that ignores newlines for indexing
+            var index = 0;
+            var currToken = 0;
+            var splitIndex = 0;
+            var ret = new StringBuilder();
+            while (splitIndex < this.splitString.Length) {
+                var token = this.Tokens[currToken];
+                if (token.Substring.Length > 0) {
+                    ret.Append(this.splitString[splitIndex]);
                     // if the current char is not an added newline, we simulate length increase
-                    if (this.splitString[i] != '\n' || this.String[index] == '\n') {
-                        if (index >= token.Index)
-                            length++;
+                    if (this.splitString[splitIndex] != '\n' || this.String[index] == '\n')
                         index++;
-                    }
+                    splitIndex++;
                 }
-                token.SplitSubstring = ret.ToString();
+                // move on to the next token if we reached its end
+                if (index >= token.Index + token.Substring.Length) {
+                    token.SplitSubstring = ret.ToString();
+                    ret.Clear();
+                    currToken++;
+                }
             }
+            
             this.CalculateTokenAreas(font);
         }
 
