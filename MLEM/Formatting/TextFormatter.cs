@@ -76,9 +76,9 @@ namespace MLEM.Formatting {
             var firstCode = this.GetNextCode(s, 0, 0);
             if (firstCode != null)
                 codes.Add(firstCode);
+            var index = 0;
             var rawIndex = 0;
             while (rawIndex < s.Length) {
-                var index = StripFormatting(font, s.Substring(0, rawIndex), tokens.SelectMany(t => t.AppliedCodes)).Length;
                 var next = this.GetNextCode(s, rawIndex + 1);
                 // if we've reached the end of the string
                 if (next == null) {
@@ -89,10 +89,12 @@ namespace MLEM.Formatting {
 
                 // create a new token for the content up to the next code
                 var ret = s.Substring(rawIndex, next.Match.Index - rawIndex);
-                tokens.Add(new Token(codes.ToArray(), index, rawIndex, StripFormatting(font, ret, codes), ret));
+                var strippedRet = StripFormatting(font, ret, codes);
+                tokens.Add(new Token(codes.ToArray(), index, rawIndex, strippedRet, ret));
 
                 // move to the start of the next code
                 rawIndex = next.Match.Index;
+                index += strippedRet.Length;
 
                 // remove all codes that are incompatible with the next one and apply it
                 codes.RemoveAll(c => c.EndsHere(next));
