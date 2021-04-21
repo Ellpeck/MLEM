@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh 'dotnet tool restore'
         // we use xvfb to allow for graphics-dependent tests
-        sh 'xvfb-run -a /usr/bin/dotnet dotnet-cake --Target=Publish --Branch=' + env.BRANCH_NAME
+        sh 'xvfb-run -a dotnet dotnet-cake --Target=Publish --Branch=' + env.BRANCH_NAME
       }
     }
     stage('Document') {
