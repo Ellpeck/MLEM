@@ -10,12 +10,13 @@
         <PackageTags>monogame ellpeck mlem utility extensions data network serialize</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/main/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Logo.png</PackageIconUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>Logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <ProjectReference Include="..\MLEM\MLEM.csproj" />
 
         <PackageReference Include="Lidgren.Network" Version="1.0.2">
             <PrivateAssets>all</PrivateAssets>
@@ -29,6 +30,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MLEM\MLEM.csproj" />
+        <None Include="../Media/Logo.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 </Project>

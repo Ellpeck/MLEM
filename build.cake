@@ -1,4 +1,4 @@
-#addin Cake.DocFx&version=0.13.1
+#addin Cake.DocFx&version=1.0.0
 #tool docfx.console&version=2.51.0
 
 // this is the upcoming version, for prereleases

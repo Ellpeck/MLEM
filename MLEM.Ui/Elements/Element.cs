@@ -337,7 +337,7 @@ namespace MLEM.Ui.Elements {
         /// When an element uses this event, it should call <see cref="TextInputWrapper.EnsureExists"/> on construction to ensure that a text input wrapper was set.
         ///
         /// Note that this event is called for every element, even if it is not selected.
-        /// Also note that if <see cref="TextInputWrapper.RequiresOnScreenKeyboard"/> is true, this event is never called.
+        /// Also note that if the active <see cref="TextInputWrapper"/> uses an on-screen keyboard, this event is never called.
         /// </summary>
         public TextInputCallback OnTextInput;
         /// <summary>

@@ -6,6 +6,7 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ContentTargetFolders>content</ContentTargetFolders>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>NU5128</NoWarn>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -16,12 +17,13 @@
         <PackageTags>dotnet-new templates monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
-        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Logo.png</PackageIconUrl>
+        <PackageIcon>Logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
         <Content Include="content\**\*" Exclude="content\**\.DS_Store;content\**\bin;content\**\obj" />
         <Compile Remove="**\*" />
+        <None Include="../Media/Logo.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>

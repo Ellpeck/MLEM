@@ -10,11 +10,13 @@
         <PackageTags>monogame ellpeck mlem utility extensions monogame.extended extended</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/main/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Logo.png</PackageIconUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>Logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\MLEM\MLEM.csproj" />
+
         <PackageReference Include="MonoGame.Extended" Version="3.8.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
@@ -30,6 +32,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MLEM\MLEM.csproj" />
+        <None Include="../Media/Logo.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 </Project>

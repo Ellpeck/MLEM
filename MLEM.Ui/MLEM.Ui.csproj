@@ -10,12 +10,13 @@
         <PackageTags>monogame ellpeck mlem ui user interface graphical gui system mouse keyboard gamepad touch</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/Ellpeck/MLEM/blob/main/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Logo.png</PackageIconUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>Logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="TextCopy" Version="4.3.0" />
+        <ProjectReference Include="..\MLEM\MLEM.csproj" />
 
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
             <PrivateAssets>all</PrivateAssets>
@@ -23,6 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MLEM\MLEM.csproj" />
+        <None Include="../Media/Logo.png" Pack="true" PackagePath=""/>
     </ItemGroup>
 </Project>
