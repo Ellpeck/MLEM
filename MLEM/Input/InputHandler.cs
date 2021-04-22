@@ -453,6 +453,7 @@ namespace MLEM.Input {
                     return true;
                 }
             }
+            sample = default;
             return false;
         }
 

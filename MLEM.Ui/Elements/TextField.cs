@@ -17,7 +17,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// A text field element for use inside of a <see cref="UiSystem"/>.
     /// A text field is a selectable element that can be typed in, as well as copied and pasted from.
-    /// If <see cref="TextInputWrapper.RequiresOnScreenKeyboard"/> is enabled, then this text field will automatically open an on-screen keyboard when pressed using <see cref="KeyboardInput"/>.
+    /// If <see cref="TextInputWrapper.RequiresOnScreenKeyboard"/> is enabled, then this text field will automatically open an on-screen keyboard when pressed using MonoGame's <c>KeyboardInput</c> class.
     /// </summary>
     public class TextField : Element {
 
@@ -104,11 +104,11 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public Rule InputRule;
         /// <summary>
-        /// The title of the <see cref="KeyboardInput"/> field on mobile devices and consoles
+        /// The title of the <c>KeyboardInput</c> field on mobile devices and consoles
         /// </summary>
         public string MobileTitle;
         /// <summary>
-        /// The description of the <see cref="KeyboardInput"/> field on mobile devices and consoles
+        /// The description of the <c>KeyboardInput</c> field on mobile devices and consoles
         /// </summary>
         public string MobileDescription;
         private int caretPos;
@@ -142,14 +142,12 @@ namespace MLEM.Ui.Elements {
                 this.Font.Set(font);
 
             TextInputWrapper.EnsureExists();
-            if (TextInputWrapper.Current.RequiresOnScreenKeyboard()) {
+            if (TextInputWrapper.Current.RequiresOnScreenKeyboard) {
                 this.OnPressed += async e => {
-                    if (!KeyboardInput.IsVisible) {
-                        var title = this.MobileTitle ?? this.PlaceholderText;
-                        var result = await KeyboardInput.Show(title, this.MobileDescription, this.Text);
-                        if (result != null)
-                            this.SetText(result.Replace('\n', ' '), true);
-                    }
+                    var title = this.MobileTitle ?? this.PlaceholderText;
+                    var result = await TextInputWrapper.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
+                    if (result != null)
+                        this.SetText(result.Replace('\n', ' '), true);
                 };
             }
             this.OnTextInput += (element, key, character) => {

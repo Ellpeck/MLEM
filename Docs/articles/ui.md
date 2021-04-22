@@ -34,7 +34,9 @@ protected override void Draw(GameTime gameTime) {
 ```
 
 ### Text Input
-Text input is a bit weird in MonoGame. On Desktop devices, you have the `Window.TextInput` event that gets called automatically with the correct characters for the keys that you're pressing, even for non-American keyboards. However, this function doesn't just *not work* on other devices, it doesn't exist there at all. So, to make MLEM.Ui compatible with all devices without publishing a separate version for each MonoGame system, you have to set up the text input wrapper yourself, based on the system you're using MLEM.Ui with. This has to be done *before* initializing your `UiSystem`.
+On desktop devices, MonoGame provides the `Window.TextInput` event that gets called automatically with the correct characters for the keys that you're pressing, even for non-American keyboards. However, this function doesn't exist on other devices. Similarly, MonoGame provides the `KeyboardInput` class for showing an on-screen keyboard on mobile devices and consoles, but not on desktop. 
+
+To make MLEM.Ui compatible with all devices without publishing a separate version for each MonoGame platform, you have to set up the text input wrapper yourself, based on the system you're using MLEM.Ui with. This has to be done *before* initializing your `UiSystem`.
 
 DesktopGL:
 ```cs
@@ -42,7 +44,7 @@ TextInputWrapper.Current = new TextInputWrapper.DesktopGl<TextInputEventArgs>((w
 ```
 Mobile devices and consoles:
 ```cs
-TextInputWrapper.Current = new TextInputWrapper.Mobile();
+TextInputWrapper.Current = new TextInputWrapper.Mobile(KeyboardInput.Show);
 ```
 Other systems. Note that, for this implementation, its `Update()` method also has to be called every game update tick. It only supports an American keyboard layout due to the way that it is implemented:
 ```cs

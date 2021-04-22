@@ -5,6 +5,7 @@ using Android.Net;
 using Android.OS;
 using Android.Views;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Misc;
 
@@ -29,7 +30,7 @@ namespace Demos.Android {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
                 this.Window.Attributes.LayoutInDisplayCutoutMode = LayoutInDisplayCutoutMode.ShortEdges;
 
-            TextInputWrapper.Current = new TextInputWrapper.Mobile();
+            TextInputWrapper.Current = new TextInputWrapper.Mobile(KeyboardInput.Show);
             this.game = new GameImpl();
             // reset MlemGame width and height to use device's aspect ratio
             this.game.GraphicsDeviceManager.ResetWidthAndHeight(this.game.Window);

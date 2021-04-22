@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Input;
@@ -21,19 +22,23 @@ namespace MLEM.Misc {
         public static TextInputWrapper Current;
 
         /// <summary>
-        /// Ensures that <see cref="Current"/> is set to a valid <see cref="TextInputWrapper"/> value by throwing an <see cref="InvalidOperationException"/> exception if <see cref="Current"/> is null.
-        /// </summary>
-        /// <exception cref="InvalidOperationException">If <see cref="Current"/> is null</exception>
-        public static void EnsureExists() {
-            if (Current == null)
-                throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://mlem.ellpeck.de/articles/ui.html#text-input");
-        }
-
-        /// <summary>
         /// Determines if this text input wrapper requires an on-screen keyboard.
         /// </summary>
-        /// <returns>If this text input wrapper requires an on-screen keyboard</returns>
-        public abstract bool RequiresOnScreenKeyboard();
+        public abstract bool RequiresOnScreenKeyboard { get; }
+
+        /// <summary>
+        /// Opens the on-screen keyboard for this text input wrapper.
+        /// Note that, if <see cref="RequiresOnScreenKeyboard"/> is false, this method should not be called.
+        /// </summary>
+        /// <param name="title">Title of the dialog box.</param>
+        /// <param name="description">Description of the dialog box.</param>
+        /// <param name="defaultText">Default text displayed in the input area.</param>
+        /// <param name="usePasswordMode">If password mode is enabled, the characters entered are not displayed.</param>
+        /// <returns>Text entered by the player. Null if back was used.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if there is no on-screen keyboard to open, or when <see cref="RequiresOnScreenKeyboard"/> is false</exception>
+        public virtual Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
+            throw new InvalidOperationException();
+        }
 
         /// <summary>
         /// Adds a text input listener to this text input wrapper.
@@ -42,6 +47,15 @@ namespace MLEM.Misc {
         /// <param name="window">The game's window</param>
         /// <param name="callback">The callback that should be called whenever a character is pressed</param>
         public abstract void AddListener(GameWindow window, TextInputCallback callback);
+
+        /// <summary>
+        /// Ensures that <see cref="Current"/> is set to a valid <see cref="TextInputWrapper"/> value by throwing an <see cref="InvalidOperationException"/> exception if <see cref="Current"/> is null.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If <see cref="Current"/> is null</exception>
+        public static void EnsureExists() {
+            if (Current == null)
+                throw new InvalidOperationException("The TextInputWrapper was not initialized. For more information, see https://mlem.ellpeck.de/articles/ui.html#text-input");
+        }
 
         /// <summary>
         /// A delegate method that can be used for <see cref="TextInputWrapper.AddListener"/>
@@ -58,11 +72,14 @@ namespace MLEM.Misc {
         /// <example>
         /// This listener is initialized as follows:
         /// <code>
-        /// new TextInputWrapper.DesktopGl{TextInputEventArgs}((w, c) => w.TextInput += c);
+        /// new TextInputWrapper.DesktopGl{TextInputEventArgs}((w, c) => w.TextInput += c)
         /// </code>
         /// </example>
         /// <typeparam name="T"></typeparam>
         public class DesktopGl<T> : TextInputWrapper {
+
+            /// <inheritdoc />
+            public override bool RequiresOnScreenKeyboard => false;
 
             private FieldInfo key;
             private FieldInfo character;
@@ -74,11 +91,6 @@ namespace MLEM.Misc {
             /// <param name="addListener">The function that is used to add a text input listener</param>
             public DesktopGl(Action<GameWindow, EventHandler<T>> addListener) {
                 this.addListener = addListener;
-            }
-
-            /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard() {
-                return false;
             }
 
             /// <inheritdoc />
@@ -96,18 +108,47 @@ namespace MLEM.Misc {
 
         /// <summary>
         /// A text input wrapper for mobile platforms as well as consoles.
-        /// This text input wrapper performs no actions itself, as it signals that an on-screen keyboard is required.
+        /// This text input wrapper opens an on-screen keyboard using the <see cref="Microsoft.Xna.Framework.Input"/> <c>KeyboardInput</c>  class on mobile devices.
         /// </summary>
+        /// <example>
+        /// This listener is initialized as follows:
+        /// <code>
+        /// new TextInputWrapper.Mobile(Microsoft.Xna.Framework.Input.KeyboardInput.Show)
+        /// </code>
+        /// </example>
         public class Mobile : TextInputWrapper {
 
             /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard() {
-                return true;
+            public override bool RequiresOnScreenKeyboard => true;
+
+            private readonly OpenOnScreenKeyboardDelegate openOnScreenKeyboard;
+
+            /// <summary>
+            /// Creates a new mobile- and console-based text input wrapper
+            /// </summary>
+            /// <param name="openOnScreenKeyboard">The function that is used to display the on-screen keyboard</param>
+            public Mobile(OpenOnScreenKeyboardDelegate openOnScreenKeyboard) {
+                this.openOnScreenKeyboard = openOnScreenKeyboard;
+            }
+
+            /// <inheritdoc />
+            public override Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
+                return this.openOnScreenKeyboard(title, description, defaultText, usePasswordMode);
             }
 
             /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
             }
+
+            /// <summary>
+            /// A delegate method used for <see cref="Mobile.OpenOnScreenKeyboard"/>
+            /// </summary>
+            /// <param name="title">Title of the dialog box.</param>
+            /// <param name="description">Description of the dialog box.</param>
+            /// <param name="defaultText">Default text displayed in the input area.</param>
+            /// <param name="usePasswordMode">If password mode is enabled, the characters entered are not displayed.</param>
+            /// <returns>Text entered by the player. Null if back was used.</returns>
+            public delegate Task<string> OpenOnScreenKeyboardDelegate(string title, string description, string defaultText, bool usePasswordMode);
 
         }
 
@@ -118,9 +159,7 @@ namespace MLEM.Misc {
         public class None : TextInputWrapper {
 
             /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard() {
-                return false;
-            }
+            public override bool RequiresOnScreenKeyboard => false;
 
             /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
@@ -136,6 +175,9 @@ namespace MLEM.Misc {
         /// </summary>
         public class Primitive : TextInputWrapper {
 
+            /// <inheritdoc />
+            public override bool RequiresOnScreenKeyboard => false;
+
             private TextInputCallback callback;
 
             /// <summary>
@@ -150,11 +192,6 @@ namespace MLEM.Misc {
                     if (c.HasValue)
                         this.callback?.Invoke(this, key, c.Value);
                 }
-            }
-
-            /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard() {
-                return false;
             }
 
             /// <inheritdoc />
