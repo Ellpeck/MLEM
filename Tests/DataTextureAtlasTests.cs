@@ -2,7 +2,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Data;
-using MLEM.Data.Content;
 using MLEM.Textures;
 using NUnit.Framework;
 

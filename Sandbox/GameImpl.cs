@@ -11,7 +11,6 @@ using MLEM.Data.Content;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
-using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Input;
