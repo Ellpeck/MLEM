@@ -17,7 +17,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// A text field element for use inside of a <see cref="UiSystem"/>.
     /// A text field is a selectable element that can be typed in, as well as copied and pasted from.
-    /// If <see cref="TextInputWrapper.RequiresOnScreenKeyboard"/> is enabled, then this text field will automatically open an on-screen keyboard when pressed using MonoGame's <c>KeyboardInput</c> class.
+    /// If an on-screen keyboard is required, then this text field will automatically open an on-screen keyboard using <see cref="TextInputWrapper.OpenOnScreenKeyboard"/>
     /// </summary>
     public class TextField : Element {
 
@@ -142,14 +142,12 @@ namespace MLEM.Ui.Elements {
                 this.Font.Set(font);
 
             TextInputWrapper.EnsureExists();
-            if (TextInputWrapper.Current.RequiresOnScreenKeyboard) {
-                this.OnPressed += async e => {
-                    var title = this.MobileTitle ?? this.PlaceholderText;
-                    var result = await TextInputWrapper.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
-                    if (result != null)
-                        this.SetText(result.Replace('\n', ' '), true);
-                };
-            }
+            this.OnPressed += async e => {
+                var title = this.MobileTitle ?? this.PlaceholderText;
+                var result = await TextInputWrapper.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
+                if (result != null)
+                    this.SetText(result.Replace('\n', ' '), true);
+            };
             this.OnTextInput += (element, key, character) => {
                 if (!this.IsSelected || this.IsHidden)
                     return;

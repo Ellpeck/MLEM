@@ -22,23 +22,15 @@ namespace MLEM.Misc {
         public static TextInputWrapper Current;
 
         /// <summary>
-        /// Determines if this text input wrapper requires an on-screen keyboard.
-        /// </summary>
-        public abstract bool RequiresOnScreenKeyboard { get; }
-
-        /// <summary>
         /// Opens the on-screen keyboard for this text input wrapper.
-        /// Note that, if <see cref="RequiresOnScreenKeyboard"/> is false, this method should not be called.
+        /// Note that, if no on-screen keyboard is required, a null string should be returned.
         /// </summary>
         /// <param name="title">Title of the dialog box.</param>
         /// <param name="description">Description of the dialog box.</param>
         /// <param name="defaultText">Default text displayed in the input area.</param>
         /// <param name="usePasswordMode">If password mode is enabled, the characters entered are not displayed.</param>
         /// <returns>Text entered by the player. Null if back was used.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if there is no on-screen keyboard to open, or when <see cref="RequiresOnScreenKeyboard"/> is false</exception>
-        public virtual Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
-            throw new InvalidOperationException();
-        }
+        public abstract Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode);
 
         /// <summary>
         /// Adds a text input listener to this text input wrapper.
@@ -78,9 +70,6 @@ namespace MLEM.Misc {
         /// <typeparam name="T"></typeparam>
         public class DesktopGl<T> : TextInputWrapper {
 
-            /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard => false;
-
             private FieldInfo key;
             private FieldInfo character;
             private readonly Action<GameWindow, EventHandler<T>> addListener;
@@ -91,6 +80,11 @@ namespace MLEM.Misc {
             /// <param name="addListener">The function that is used to add a text input listener</param>
             public DesktopGl(Action<GameWindow, EventHandler<T>> addListener) {
                 this.addListener = addListener;
+            }
+
+            /// <inheritdoc />
+            public override Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
+                return Task.FromResult<string>(null);
             }
 
             /// <inheritdoc />
@@ -117,9 +111,6 @@ namespace MLEM.Misc {
         /// </code>
         /// </example>
         public class Mobile : TextInputWrapper {
-
-            /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard => true;
 
             private readonly OpenOnScreenKeyboardDelegate openOnScreenKeyboard;
 
@@ -159,7 +150,9 @@ namespace MLEM.Misc {
         public class None : TextInputWrapper {
 
             /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard => false;
+            public override Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
+                return Task.FromResult<string>(null);
+            }
 
             /// <inheritdoc />
             public override void AddListener(GameWindow window, TextInputCallback callback) {
@@ -175,9 +168,6 @@ namespace MLEM.Misc {
         /// </summary>
         public class Primitive : TextInputWrapper {
 
-            /// <inheritdoc />
-            public override bool RequiresOnScreenKeyboard => false;
-
             private TextInputCallback callback;
 
             /// <summary>
@@ -192,6 +182,11 @@ namespace MLEM.Misc {
                     if (c.HasValue)
                         this.callback?.Invoke(this, key, c.Value);
                 }
+            }
+
+            /// <inheritdoc />
+            public override Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
+                return Task.FromResult<string>(null);
             }
 
             /// <inheritdoc />
