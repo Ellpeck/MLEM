@@ -36,24 +36,23 @@ protected override void Draw(GameTime gameTime) {
 ### Text Input
 On desktop devices, MonoGame provides the `Window.TextInput` event that gets called automatically with the correct characters for the keys that you're pressing, even for non-American keyboards. However, this function doesn't exist on other devices. Similarly, MonoGame provides the `KeyboardInput` class for showing an on-screen keyboard on mobile devices and consoles, but not on desktop. 
 
-To make MLEM.Ui compatible with all devices without publishing a separate version for each MonoGame platform, you have to set up the text input wrapper yourself, based on the system you're using MLEM.Ui with. This has to be done *before* initializing your `UiSystem`.
+To make MLEM compatible with all devices without publishing a separate version for each MonoGame platform, you have to set up the `MlemPlatform` class based on the system you're using MLEM.Ui with. This has to be done *before* initializing your `UiSystem`.
 
 DesktopGL:
 ```cs
-TextInputWrapper.Current = new TextInputWrapper.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);
+MlemPlatform.Current = new MlemPlatform.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);
 ```
 Mobile devices and consoles:
 ```cs
-TextInputWrapper.Current = new TextInputWrapper.Mobile(KeyboardInput.Show);
+MlemPlatform.Current = new MlemPlatform.Mobile(KeyboardInput.Show, l => this.StartActivity(new Intent(Intent.ActionView, Uri.Parse(l))));
 ```
-Other systems. Note that, for this implementation, its `Update()` method also has to be called every game update tick. It only supports an American keyboard layout due to the way that it is implemented:
+If you're not using text input, you can just set the platform to a stub one like so:
 ```cs
-TextInputWrapper.Current = new TextInputWrapper.Primitive();
+MlemPlatform.Current = new MlemPlatform.None();
 ```
-If you're not using text input, you can just set the wrapper to a stub one like so:
-```cs
-TextInputWrapper.Current = new TextInputWrapper.None();
-```
+Initializing the platform in this way also allows for links in paragraphs to be clickable, causing a browser or explorer window to be opened on desktop or mobile devices.
+
+For more info on MLEM's platform-related code, you can also check out MlemPlatform's [documentation](https://mlem.ellpeck.de/api/MLEM.Misc.MlemPlatform).
 
 ## Setting the style
 By default, MLEM.Ui's controls look pretty bland, since it doesn't ship with any fonts or textures for any of its controls. To change the style of your ui, simply expand your `new UntexturedStyle(this.SpriteBatch)` call to include fonts and textures of your choosing, for example:

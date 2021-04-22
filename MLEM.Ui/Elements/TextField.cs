@@ -17,7 +17,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// A text field element for use inside of a <see cref="UiSystem"/>.
     /// A text field is a selectable element that can be typed in, as well as copied and pasted from.
-    /// If an on-screen keyboard is required, then this text field will automatically open an on-screen keyboard using <see cref="TextInputWrapper.OpenOnScreenKeyboard"/>
+    /// If an on-screen keyboard is required, then this text field will automatically open an on-screen keyboard using <see cref="MlemPlatform.OpenOnScreenKeyboard"/>.
     /// </summary>
     public class TextField : Element {
 
@@ -141,10 +141,10 @@ namespace MLEM.Ui.Elements {
             if (font != null)
                 this.Font.Set(font);
 
-            TextInputWrapper.EnsureExists();
+            MlemPlatform.EnsureExists();
             this.OnPressed += async e => {
                 var title = this.MobileTitle ?? this.PlaceholderText;
-                var result = await TextInputWrapper.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
+                var result = await MlemPlatform.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
                 if (result != null)
                     this.SetText(result.Replace('\n', ' '), true);
             };

@@ -178,7 +178,7 @@ namespace MLEM.Ui.Elements {
                 this.textScale = textScale;
                 this.OnPressed += e => {
                     foreach (var code in token.AppliedCodes.OfType<LinkCode>())
-                        this.System?.LinkBehavior?.Invoke(code);
+                        MlemPlatform.Current.OpenLinkOrFile(code.Match.Groups[1].Value);
                 };
             }
 

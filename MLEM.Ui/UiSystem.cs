@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -88,12 +87,6 @@ namespace MLEM.Ui {
         /// To add new formatting codes to the ui system, add them to this formatter.
         /// </summary>
         public TextFormatter TextFormatter;
-        /// <summary>
-        /// The action that should be executed when a <see cref="LinkCode"/> in a paragraph's <see cref="Paragraph.TokenizedText"/> is pressed.
-        /// The actual link stored in the link code is stored in its <see cref="Code.Match"/>'s 1st group.
-        /// By default, the browser is opened with the given link's address.
-        /// </summary>
-        public Action<LinkCode> LinkBehavior = l => Process.Start(new ProcessStartInfo(l.Match.Groups[1].Value) {UseShellExecute = true});
         /// <summary>
         /// The <see cref="UiControls"/> that this ui system is controlled by.
         /// The ui controls are also the place to change bindings for controller and keyboard input.
@@ -190,8 +183,8 @@ namespace MLEM.Ui {
                 };
             }
 
-            if (TextInputWrapper.Current != null)
-                TextInputWrapper.Current.AddListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
+            if (MlemPlatform.Current != null)
+                MlemPlatform.Current.AddTextInputListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
             this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged = e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
