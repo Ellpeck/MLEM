@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Formatting.Codes;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -40,7 +41,8 @@ namespace MLEM.Misc {
         public abstract void AddTextInputListener(GameWindow window, TextInputCallback callback);
 
         /// <summary>
-        /// A method that should be executed to open a link in the browser or a file explorer
+        /// A method that should be executed to open a link in the browser or a file explorer.
+        /// This method is currently used only by MLEM.Ui's implementation of the <see cref="LinkCode"/> formatting code.
         /// </summary>
         public abstract void OpenLinkOrFile(string link);
 
@@ -131,8 +133,8 @@ namespace MLEM.Misc {
             /// See <see cref="MlemPlatform.Mobile"/> class documentation for more detailed information.
             /// </summary>
             /// <param name="openOnScreenKeyboard">The function that is used to display the on-screen keyboard</param>
-            /// <param name="openLink">The action that is invoked to open the </param>
-            public Mobile(OpenOnScreenKeyboardDelegate openOnScreenKeyboard, Action<string> openLink) {
+            /// <param name="openLink">The action that is invoked to open a link in the browser, which is used for <see cref="LinkCode"/></param>
+            public Mobile(OpenOnScreenKeyboardDelegate openOnScreenKeyboard, Action<string> openLink = null) {
                 this.openOnScreenKeyboard = openOnScreenKeyboard;
                 this.openLink = openLink;
             }
@@ -148,7 +150,7 @@ namespace MLEM.Misc {
 
             /// <inheritdoc />
             public override void OpenLinkOrFile(string link) {
-                this.openLink(link);
+                this.openLink?.Invoke(link);
             }
 
             /// <summary>
