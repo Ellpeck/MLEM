@@ -634,6 +634,8 @@ namespace MLEM.Ui.Elements {
                                 autoSize.Y = newHeight;
                                 foundChild = lowest;
                             }
+                        } else {
+                            autoSize.Y = 0;
                         }
                     }
                     if (this.SetWidthBasedOnChildren) {
@@ -644,11 +646,13 @@ namespace MLEM.Ui.Elements {
                                 autoSize.X = newWidth;
                                 foundChild = rightmost;
                             }
+                        } else {
+                            autoSize.X = 0;
                         }
                     }
                     if (this.TreatSizeAsMinimum)
                         autoSize = Vector2.Max(autoSize, actualSize);
-                    if (foundChild != null) {
+                    if (autoSize != this.UnscrolledArea.Size) {
                         recursion++;
                         if (recursion >= 16) {
                             throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
