@@ -623,7 +623,7 @@ namespace MLEM.Ui.Elements {
                 foreach (var child in this.Children)
                     child.ForceUpdateArea();
 
-                if (this.Children.Count > 0) {
+                if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
                     Element foundChild = null;
                     var autoSize = this.UnscrolledArea.Size;
                     if (this.SetHeightBasedOnChildren) {
