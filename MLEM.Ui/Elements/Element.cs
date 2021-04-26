@@ -629,11 +629,8 @@ namespace MLEM.Ui.Elements {
                     if (this.SetHeightBasedOnChildren) {
                         var lowest = this.GetLowestChild(e => !e.IsHidden);
                         if (lowest != null) {
-                            var newHeight = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
-                            if (!newHeight.Equals(autoSize.Y, 0.01F)) {
-                                autoSize.Y = newHeight;
-                                foundChild = lowest;
-                            }
+                            autoSize.Y = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
+                            foundChild = lowest;
                         } else {
                             autoSize.Y = 0;
                         }
@@ -641,18 +638,15 @@ namespace MLEM.Ui.Elements {
                     if (this.SetWidthBasedOnChildren) {
                         var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                         if (rightmost != null) {
-                            var newWidth = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
-                            if (!newWidth.Equals(autoSize.X, 0.01F)) {
-                                autoSize.X = newWidth;
-                                foundChild = rightmost;
-                            }
+                            autoSize.X = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
+                            foundChild = rightmost;
                         } else {
                             autoSize.X = 0;
                         }
                     }
                     if (this.TreatSizeAsMinimum)
                         autoSize = Vector2.Max(autoSize, actualSize);
-                    if (autoSize != this.UnscrolledArea.Size) {
+                    if (!autoSize.Equals(this.UnscrolledArea.Size, 0.01F)) {
                         recursion++;
                         if (recursion >= 16) {
                             throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
