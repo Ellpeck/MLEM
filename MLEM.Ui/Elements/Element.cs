@@ -626,30 +626,37 @@ namespace MLEM.Ui.Elements {
                 if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
                     Element foundChild = null;
                     var autoSize = this.UnscrolledArea.Size;
+                    
                     if (this.SetHeightBasedOnChildren) {
                         var lowest = this.GetLowestChild(e => !e.IsHidden);
                         if (lowest != null) {
                             autoSize.Y = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
                             foundChild = lowest;
                         } else {
+                            if (this.Children.Count > 0)
+                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its height based on children but it only has children anchored too low ({string.Join(", ", this.Children.Select(c => c.Anchor))})");
                             autoSize.Y = 0;
                         }
                     }
+                    
                     if (this.SetWidthBasedOnChildren) {
                         var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                         if (rightmost != null) {
                             autoSize.X = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
                             foundChild = rightmost;
                         } else {
+                            if (this.Children.Count > 0)
+                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its width based on children but it only has children anchored too far right ({string.Join(", ", this.Children.Select(c => c.Anchor))})");
                             autoSize.X = 0;
                         }
                     }
+                    
                     if (this.TreatSizeAsMinimum)
                         autoSize = Vector2.Max(autoSize, actualSize);
                     if (!autoSize.Equals(this.UnscrolledArea.Size, 0.01F)) {
                         recursion++;
                         if (recursion >= 16) {
-                            throw new ArithmeticException($"The area of {this} with root {this.Root?.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
+                            throw new ArithmeticException($"The area of {this} with root {this.Root.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
                         } else {
                             UpdateDisplayArea(autoSize);
                         }

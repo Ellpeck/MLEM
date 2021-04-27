@@ -31,6 +31,11 @@ namespace Tests {
             invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
             invalidPanel.AddChild(new VerticalSpace(1));
             Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel));
+
+            invalidPanel = new Panel(Anchor.Center, Vector2.Zero, Vector2.Zero, true);
+            invalidPanel.AddChild(new Group(Anchor.CenterRight, new Vector2(10), false));
+            invalidPanel.AddChild(new Group(Anchor.BottomLeft, new Vector2(10), false));
+            Assert.Throws<InvalidOperationException>(() => this.AddAndUpdate(invalidPanel));
         }
 
         [Test]
