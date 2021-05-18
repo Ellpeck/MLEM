@@ -29,5 +29,10 @@ namespace MLEM.Formatting.Codes {
             return false;
         }
 
+        /// <inheritdoc />
+        public override bool EndsHere(Code other) {
+            return base.EndsHere(other) || other is ResetFormattingCode;
+        }
+
     }
 }

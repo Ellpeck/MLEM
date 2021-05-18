@@ -6,13 +6,13 @@ using MLEM.Font;
 
 namespace MLEM.Formatting.Codes {
     /// <inheritdoc />
-    public class ShadowCode : FontCode {
+    public class ShadowCode : Code {
 
         private readonly Color color;
         private readonly Vector2 offset;
 
         /// <inheritdoc />
-        public ShadowCode(Match match, Regex regex, Color color, Vector2 offset) : base(match, regex, null) {
+        public ShadowCode(Match match, Regex regex, Color color, Vector2 offset) : base(match, regex) {
             this.color = color;
             this.offset = offset;
         }
@@ -22,6 +22,11 @@ namespace MLEM.Formatting.Codes {
             font.DrawString(batch, cString, pos + this.offset * scale, this.color.CopyAlpha(color), 0, Vector2.Zero, scale, SpriteEffects.None, depth);
             // we return false since we still want regular drawing to occur
             return false;
+        }
+
+        /// <inheritdoc />
+        public override bool EndsHere(Code other) {
+            return base.EndsHere(other) || other is ResetFormattingCode;
         }
 
     }
