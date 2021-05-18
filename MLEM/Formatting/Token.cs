@@ -29,15 +29,15 @@ namespace MLEM.Formatting {
         /// </summary>
         public readonly string Substring;
         /// <summary>
-        /// The string that is displayed by this token. If the tokenized string has been split, this string will contain the newline characters.
+        /// The string that is displayed by this token. If the tokenized string has been <see cref="TokenizedString.Split"/> or <see cref="TokenizedString.Truncate"/> has been used, this string will contain the newline characters.
         /// </summary>
-        public string DisplayString => this.SplitSubstring ?? this.Substring;
+        public string DisplayString => this.ModifiedSubstring ?? this.Substring;
         /// <summary>
         /// The substring that this token contains, without the formatting codes removed.
         /// </summary>
         public readonly string RawSubstring;
         internal RectangleF[] Area;
-        internal string SplitSubstring;
+        internal string ModifiedSubstring;
 
         internal Token(Code[] appliedCodes, int index, int rawIndex, string substring, string rawSubstring) {
             this.AppliedCodes = appliedCodes;

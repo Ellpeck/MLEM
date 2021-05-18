@@ -60,6 +60,17 @@ namespace MLEM.Ui.Elements {
                 this.CanBeSelected = !value;
             }
         }
+        /// <summary>
+        /// Whether this button's <see cref="Text"/> should be truncated if it exceeds this button's width.
+        /// Defaults to false.
+        /// </summary>
+        public bool TruncateTextIfLong {
+            get => this.Text?.TruncateIfLong ?? false;
+            set {
+                if (this.Text != null)
+                    this.Text.TruncateIfLong = value;
+            }
+        }
 
         /// <summary>
         /// Creates a new button with the given settings
@@ -71,7 +82,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="tooltipWidth">The width of this button's <see cref="Tooltip"/>, or 50 by default</param>
         public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float tooltipWidth = 50) : base(anchor, size) {
             if (text != null) {
-                this.Text = new Paragraph(Anchor.Center, 1, text, true);
+                this.Text = new Paragraph(Anchor.Center, 1, text, true) {Padding = new Vector2(1)};
                 this.AddChild(this.Text);
             }
             if (tooltipText != null)

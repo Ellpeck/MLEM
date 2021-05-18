@@ -64,6 +64,16 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public bool AutoAdjustWidth;
         /// <summary>
+        /// Whether this paragraph should be truncated instead of split if the displayed <see cref="Text"/>'s width exceeds the provided width.
+        /// When the string is truncated, the <see cref="Ellipsis"/> is added to its end.
+        /// </summary>
+        public bool TruncateIfLong;
+        /// <summary>
+        /// The ellipsis characters to use if <see cref="TruncateIfLong"/> is enabled and the string is truncated.
+        /// If this is set to an empty string, no ellipsis will be attached to the truncated string.
+        /// </summary>
+        public string Ellipsis = "...";
+        /// <summary>
         /// An event that gets called when this paragraph's <see cref="Text"/> is queried.
         /// Use this event for setting this paragraph's text if it changes frequently.
         /// </summary>
@@ -142,7 +152,14 @@ namespace MLEM.Ui.Elements {
                 foreach (var link in this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)))
                     this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale * this.TextScaleMultiplier));
             }
-            this.TokenizedText.Split(this.RegularFont, size.X - this.ScaledPadding.Width, this.TextScale * this.TextScaleMultiplier * this.Scale);
+
+            var width = size.X - this.ScaledPadding.Width;
+            var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
+            if (this.TruncateIfLong) {
+                this.TokenizedText.Truncate(this.RegularFont, width, scale, this.Ellipsis);
+            } else {
+                this.TokenizedText.Split(this.RegularFont, width, scale);
+            }
         }
 
         private void QueryTextCallback() {

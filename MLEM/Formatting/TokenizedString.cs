@@ -24,9 +24,9 @@ namespace MLEM.Formatting {
         public readonly string String;
         /// <summary>
         /// The string that is actually displayed by this tokenized string.
-        /// If this string has been <see cref="Split"/>, this string will contain the newline characters.
+        /// If this string has been <see cref="Split"/> or <see cref="Truncate"/> has been used, this string will contain the newline characters.
         /// </summary>
-        public string DisplayString => this.splitString ?? this.String;
+        public string DisplayString => this.modifiedString ?? this.String;
         /// <summary>
         /// The tokens that this tokenized string contains.
         /// </summary>
@@ -36,7 +36,7 @@ namespace MLEM.Formatting {
         /// Note that, to get a formatting code for a certain token, use <see cref="Token.AppliedCodes"/>
         /// </summary>
         public readonly Code[] AllCodes;
-        private string splitString;
+        private string modifiedString;
 
         internal TokenizedString(GenericFont font, string rawString, string strg, Token[] tokens) {
             this.RawString = rawString;
@@ -49,44 +49,30 @@ namespace MLEM.Formatting {
 
         /// <summary>
         /// Splits this tokenized string, inserting newline characters if the width of the string is bigger than the maximum width.
+        /// Note that a tokenized string can be re-split without losing any of its actual data, as this operation merely modifies the <see cref="DisplayString"/>.
         /// <seealso cref="GenericFont.SplitString"/>
         /// </summary>
         /// <param name="font">The font to use for width calculations</param>
-        /// <param name="width">The maximum width</param>
-        /// <param name="scale">The scale to use fr width calculations</param>
+        /// <param name="width">The maximum width, in display pixels based on the font and scale</param>
+        /// <param name="scale">The scale to use for width measurements</param>
         public void Split(GenericFont font, float width, float scale) {
-            // a split string has the same character count as the input string
-            // but with newline characters added
-            this.splitString = font.SplitString(this.String, width, scale);
-            // skip splitting logic for unformatted text
-            if (this.Tokens.Length == 1) {
-                this.Tokens[0].SplitSubstring = this.splitString;
-                return;
-            }
+            // a split string has the same character count as the input string but with newline characters added
+            this.modifiedString = font.SplitString(this.String, width, scale);
+            this.StoreModifiedSubstrings(font);
+        }
 
-            // this is basically a substring function that ignores newlines for indexing
-            var index = 0;
-            var currToken = 0;
-            var splitIndex = 0;
-            var ret = new StringBuilder();
-            while (splitIndex < this.splitString.Length) {
-                var token = this.Tokens[currToken];
-                if (token.Substring.Length > 0) {
-                    ret.Append(this.splitString[splitIndex]);
-                    // if the current char is not an added newline, we simulate length increase
-                    if (this.splitString[splitIndex] != '\n' || this.String[index] == '\n')
-                        index++;
-                    splitIndex++;
-                }
-                // move on to the next token if we reached its end
-                if (index >= token.Index + token.Substring.Length) {
-                    token.SplitSubstring = ret.ToString();
-                    ret.Clear();
-                    currToken++;
-                }
-            }
-            
-            this.CalculateTokenAreas(font);
+        /// <summary>
+        /// Truncates this tokenized string, removing any additional characters that exceed the length from the displayed string.
+        /// Note that a tokenized string can be re-truncated without losing any of its actual data, as this operation merely modifies the <see cref="DisplayString"/>.
+        /// <seealso cref="GenericFont.TruncateString"/>
+        /// </summary>
+        /// <param name="font">The font to use for width calculations</param>
+        /// <param name="width">The maximum width, in display pixels based on the font and scale</param>
+        /// <param name="scale">The scale to use for width measurements</param>
+        /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
+        public void Truncate(GenericFont font, float width, float scale, string ellipsis = "") {
+            this.modifiedString = font.TruncateString(this.String, width, scale, false, ellipsis);
+            this.StoreModifiedSubstrings(font);
         }
 
         /// <inheritdoc cref="GenericFont.MeasureString(string)"/>
@@ -135,6 +121,43 @@ namespace MLEM.Formatting {
                     innerOffset.X += font.MeasureString(cString).X * scale;
                 }
             }
+        }
+
+        private void StoreModifiedSubstrings(GenericFont font) {
+            // skip substring logic for unformatted text
+            if (this.Tokens.Length == 1) {
+                this.Tokens[0].ModifiedSubstring = this.modifiedString;
+                return;
+            }
+
+            // this is basically a substring function that ignores added newlines for indexing
+            var index = 0;
+            var currToken = 0;
+            var splitIndex = 0;
+            var ret = new StringBuilder();
+            while (splitIndex < this.modifiedString.Length) {
+                var token = this.Tokens[currToken];
+                if (token.Substring.Length > 0) {
+                    ret.Append(this.modifiedString[splitIndex]);
+                    // if the current char is not an added newline, we simulate length increase
+                    if (this.modifiedString[splitIndex] != '\n' || this.String[index] == '\n')
+                        index++;
+                    splitIndex++;
+                }
+                // move on to the next token if we reached its end
+                if (index >= token.Index + token.Substring.Length) {
+                    token.ModifiedSubstring = ret.ToString();
+                    ret.Clear();
+                    currToken++;
+                }
+            }
+            // set additional token contents beyond our string in case we truncated
+            if (ret.Length > 0)
+                this.Tokens[currToken - 1].ModifiedSubstring += ret.ToString();
+            while (currToken < this.Tokens.Length)
+                this.Tokens[currToken++].ModifiedSubstring = string.Empty;
+
+            this.CalculateTokenAreas(font);
         }
 
         private void CalculateTokenAreas(GenericFont font) {
