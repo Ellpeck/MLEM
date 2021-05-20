@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -135,7 +136,7 @@ namespace MLEM.Formatting {
             var currToken = 0;
             var splitIndex = 0;
             var ret = new StringBuilder();
-            while (splitIndex < this.modifiedString.Length) {
+            while (splitIndex < this.modifiedString.Length && currToken < this.Tokens.Length) {
                 var token = this.Tokens[currToken];
                 if (token.Substring.Length > 0) {
                     ret.Append(this.modifiedString[splitIndex]);
@@ -153,7 +154,7 @@ namespace MLEM.Formatting {
             }
             // set additional token contents beyond our string in case we truncated
             if (ret.Length > 0)
-                this.Tokens[currToken - 1].ModifiedSubstring += ret.ToString();
+                this.Tokens[currToken++].ModifiedSubstring = ret.ToString();
             while (currToken < this.Tokens.Length)
                 this.Tokens[currToken++].ModifiedSubstring = string.Empty;
 
