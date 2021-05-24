@@ -7,13 +7,13 @@ using MLEM.Misc;
 
 namespace MLEM.Formatting.Codes {
     /// <inheritdoc />
-    public class UnderlineCode : FontCode {
+    public class UnderlineCode : Code {
 
         private readonly float thickness;
         private readonly float yOffset;
 
         /// <inheritdoc />
-        public UnderlineCode(Match match, Regex regex, float thickness, float yOffset) : base(match, regex, null) {
+        public UnderlineCode(Match match, Regex regex, float thickness, float yOffset) : base(match, regex) {
             this.thickness = thickness;
             this.yOffset = yOffset;
         }
@@ -31,7 +31,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override bool EndsHere(Code other) {
-            return base.EndsHere(other) || other is ResetFormattingCode;
+            return other is UnderlineCode || other is ResetFormattingCode;
         }
 
     }

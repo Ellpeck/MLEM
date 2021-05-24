@@ -26,7 +26,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override bool EndsHere(Code other) {
-            return base.EndsHere(other) || other is ResetFormattingCode;
+            return other is ShadowCode || other is ResetFormattingCode;
         }
 
     }
