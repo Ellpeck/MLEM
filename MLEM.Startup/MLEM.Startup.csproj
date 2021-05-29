@@ -16,7 +16,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Coroutine" Version="2.1.0" />
+        <PackageReference Include="Coroutine" Version="2.1.1" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
         
@@ -26,6 +26,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../Media/Logo.png" Pack="true" PackagePath=""/>
+        <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
     </ItemGroup>
 </Project>

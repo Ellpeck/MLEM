@@ -14,10 +14,10 @@
     <ItemGroup>
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
         <PackageReference Include="coverlet.collector" Version="3.0.3" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
-        <PackageReference Include="NUnit" Version="3.13.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-        <PackageReference Include="NunitXml.TestLogger" Version="3.0.97" />
+        <PackageReference Include="NunitXml.TestLogger" Version="3.0.107" />
     </ItemGroup>
     
     <ItemGroup>
