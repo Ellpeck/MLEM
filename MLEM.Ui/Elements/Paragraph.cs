@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -78,6 +79,11 @@ namespace MLEM.Ui.Elements {
         /// Use this event for setting this paragraph's text if it changes frequently.
         /// </summary>
         public TextCallback GetTextCallback;
+        /// <summary>
+        /// The action that is executed if <see cref="Link"/> objects inside of this paragraph are pressed.
+        /// By default, <see cref="MlemPlatform.OpenLinkOrFile"/> is executed.
+        /// </summary>
+        public Action<Link, LinkCode> LinkAction;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -194,8 +200,13 @@ namespace MLEM.Ui.Elements {
                 this.Token = token;
                 this.textScale = textScale;
                 this.OnPressed += e => {
-                    foreach (var code in token.AppliedCodes.OfType<LinkCode>())
-                        MlemPlatform.Current.OpenLinkOrFile(code.Match.Groups[1].Value);
+                    foreach (var code in token.AppliedCodes.OfType<LinkCode>()) {
+                        if (this.Parent is Paragraph p && p.LinkAction != null) {
+                            p.LinkAction.Invoke(this, code);
+                        } else {
+                            MlemPlatform.Current.OpenLinkOrFile(code.Match.Groups[1].Value);
+                        }
+                    }
                 };
             }
 
