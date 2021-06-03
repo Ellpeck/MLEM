@@ -83,6 +83,33 @@ namespace MLEM.Extensions {
             return tex;
         }
 
+        /// <summary>
+        /// Generates a texture with the given size that contains a gradient between the four specified corner colors.
+        /// If the same color is specified for two pairs of corners, a horizontal, vertical or diagonal gradient can be achieved.
+        /// This texture is automatically disposed of when the batch is disposed.
+        /// </summary>
+        /// <param name="batch">The sprite batch</param>
+        /// <param name="topLeft">The color of the texture's top left corner</param>
+        /// <param name="topRight">The color of the texture's top right corner</param>
+        /// <param name="bottomLeft">The color of the texture's bottom left corner</param>
+        /// <param name="bottomRight">The color of the texture's bottom right corner</param>
+        /// <param name="width">The width of the resulting texture, or 256 by default</param>
+        /// <param name="height">The height of the resulting texture, or 256 by default</param>
+        /// <returns>A new texture with the given data</returns>
+        public static Texture2D GenerateGradientTexture(this SpriteBatch batch, Color topLeft, Color topRight, Color bottomLeft, Color bottomRight, int width = 256, int height = 256) {
+            var tex = new Texture2D(batch.GraphicsDevice, width, height);
+            using (var data = tex.GetTextureData()) {
+                for (var x = 0; x < width; x++) {
+                    var top = Color.Lerp(topLeft, topRight, x / (float) width);
+                    var btm = Color.Lerp(bottomLeft, bottomRight, x / (float) width);
+                    for (var y = 0; y < height; y++)
+                        data[x, y] = Color.Lerp(top, btm, y / (float) height);
+                }
+            }
+            AutoDispose(batch, tex);
+            return tex;
+        }
+
         /// <inheritdoc cref="SpriteBatch.Draw(Texture2D,Rectangle,Rectangle?,Color,float,Vector2,SpriteEffects,float)"/>
         public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             var source = sourceRectangle ?? new Rectangle(0, 0, texture.Width, texture.Height);

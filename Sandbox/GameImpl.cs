@@ -128,6 +128,7 @@ namespace Sandbox {
             var res = this.Content.LoadJson<Test>("Test");
             Console.WriteLine("The res is " + res);
 
+            var gradient = this.SpriteBatch.GenerateGradientTexture(Color.Green, Color.Red, Color.Blue, Color.Yellow);
             this.OnDraw += (game, time) => {
                 this.SpriteBatch.Begin();
                 this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Rectangle(640 - 4, 360 - 4, 8, 8), Color.Green);
@@ -137,6 +138,8 @@ namespace Sandbox {
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, ellipsis: "..."), new Vector2(200, 450), Color.White);
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, true), new Vector2(200, 500), Color.White);
                 font.DrawString(this.SpriteBatch, font.TruncateString("This is a very long string", 200, 1, true, "..."), new Vector2(200, 550), Color.White);
+
+                this.SpriteBatch.Draw(gradient, new Rectangle(300, 100, 200, 200), Color.White);
                 this.SpriteBatch.End();
             };
 
