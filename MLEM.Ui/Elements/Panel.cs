@@ -178,12 +178,9 @@ namespace MLEM.Ui.Elements {
                     batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, trans);
                     base.Draw(time, batch, alpha, blendState, samplerState, trans);
                     batch.End();
-                    // also draw any children early within the render target with the translation applied
-                    base.DrawEarly(time, batch, alpha, blendState, samplerState, trans);
                 }
-            } else {
-                base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
             }
+            base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
         }
 
         /// <inheritdoc />
