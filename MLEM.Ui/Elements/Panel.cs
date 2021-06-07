@@ -241,6 +241,7 @@ namespace MLEM.Ui.Elements {
                 this.renderTarget.Dispose();
                 this.renderTarget = null;
             }
+            GC.SuppressFinalize(this);
         }
 
     }
