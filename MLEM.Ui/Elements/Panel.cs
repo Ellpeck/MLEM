@@ -15,7 +15,7 @@ namespace MLEM.Ui.Elements {
     /// Additionally, a panel can be set to <see cref="scrollOverflow"/> on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
     /// As this behavior is accomplished using a <see cref="RenderTarget2D"/>, scrolling panels need to have their <see cref="DrawEarly"/> methods called using <see cref="UiSystem.DrawEarly"/>.
     /// </summary>
-    public class Panel : Element, IDisposable {
+    public class Panel : Element {
 
         /// <summary>
         /// The texture that this panel should have, or null if it should be invisible.
@@ -74,11 +74,6 @@ namespace MLEM.Ui.Elements {
                 };
                 this.AddChild(this.ScrollBar);
             }
-        }
-
-        /// <inheritdoc />
-        ~Panel() {
-            this.Dispose();
         }
 
         /// <inheritdoc />
@@ -237,12 +232,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public void Dispose() {
+        public override void Dispose() {
             if (this.renderTarget != null) {
                 this.renderTarget.Dispose();
                 this.renderTarget = null;
             }
-            GC.SuppressFinalize(this);
+            base.Dispose();
         }
 
     }

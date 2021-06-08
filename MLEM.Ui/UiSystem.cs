@@ -96,71 +96,71 @@ namespace MLEM.Ui {
         /// <summary>
         /// Event that is invoked after an <see cref="Element"/> is drawn, but before its children are drawn.
         /// </summary>
-        public Element.DrawCallback OnElementDrawn = (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
+        public event Element.DrawCallback OnElementDrawn;
         /// <summary>
         /// Event that is invoked after the <see cref="RootElement.SelectedElement"/> for each root element is drawn, but before its children are drawn.
         /// </summary>
-        public Element.DrawCallback OnSelectedElementDrawn;
+        public event Element.DrawCallback OnSelectedElementDrawn;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> is updated
         /// </summary>
-        public Element.TimeCallback OnElementUpdated = (e, time) => e.OnUpdated?.Invoke(e, time);
+        public event Element.TimeCallback OnElementUpdated;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> is pressed with the primary action key
         /// </summary>
-        public Element.GenericCallback OnElementPressed = e => e.OnPressed?.Invoke(e);
+        public event Element.GenericCallback OnElementPressed;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> is pressed with the secondary action key
         /// </summary>
-        public Element.GenericCallback OnElementSecondaryPressed = e => e.OnSecondaryPressed?.Invoke(e);
+        public event Element.GenericCallback OnElementSecondaryPressed;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> is newly selected using automatic navigation, or after it has been pressed with the mouse.
         /// </summary>
-        public Element.GenericCallback OnElementSelected = e => e.OnSelected?.Invoke(e);
+        public event Element.GenericCallback OnElementSelected;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> is deselected during the selection of a new element.
         /// </summary>
-        public Element.GenericCallback OnElementDeselected = e => e.OnDeselected?.Invoke(e);
+        public event Element.GenericCallback OnElementDeselected;
         /// <summary>
         /// Event that is invoked when the mouse enters an <see cref="Element"/>
         /// </summary>
-        public Element.GenericCallback OnElementMouseEnter = e => e.OnMouseEnter?.Invoke(e);
+        public event Element.GenericCallback OnElementMouseEnter;
         /// <summary>
         /// Event that is invoked when the mouse exits an <see cref="Element"/>
         /// </summary>
-        public Element.GenericCallback OnElementMouseExit = e => e.OnMouseExit?.Invoke(e);
+        public event Element.GenericCallback OnElementMouseExit;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> starts being touched
         /// </summary>
-        public Element.GenericCallback OnElementTouchEnter = e => e.OnTouchEnter?.Invoke(e);
+        public event Element.GenericCallback OnElementTouchEnter;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/> stops being touched
         /// </summary>
-        public Element.GenericCallback OnElementTouchExit = e => e.OnTouchExit?.Invoke(e);
+        public event Element.GenericCallback OnElementTouchExit;
         /// <summary>
         /// Event that is invoked when an <see cref="Element"/>'s display area changes
         /// </summary>
-        public Element.GenericCallback OnElementAreaUpdated = e => e.OnAreaUpdated?.Invoke(e);
+        public event Element.GenericCallback OnElementAreaUpdated;
         /// <summary>
         /// Event that is invoked when the <see cref="Element"/> that the mouse is currently over changes
         /// </summary>
-        public Element.GenericCallback OnMousedElementChanged;
+        public event Element.GenericCallback OnMousedElementChanged;
         /// <summary>
         /// Event that is invoked when the <see cref="Element"/> that is being touched changes
         /// </summary>
-        public Element.GenericCallback OnTouchedElementChanged;
+        public event Element.GenericCallback OnTouchedElementChanged;
         /// <summary>
         /// Event that is invoked when the selected <see cref="Element"/> changes, either through automatic navigation, or by pressing on an element with the mouse
         /// </summary>
-        public Element.GenericCallback OnSelectedElementChanged;
+        public event Element.GenericCallback OnSelectedElementChanged;
         /// <summary>
         /// Event that is invoked when a new <see cref="RootElement"/> is added to this ui system
         /// </summary>
-        public RootCallback OnRootAdded;
+        public event RootCallback OnRootAdded;
         /// <summary>
         /// Event that is invoked when a <see cref="RootElement"/> is removed from this ui system
         /// </summary>
-        public RootCallback OnRootRemoved;
+        public event RootCallback OnRootRemoved;
 
         /// <summary>
         /// Creates a new ui system with the given settings.
@@ -172,6 +172,17 @@ namespace MLEM.Ui {
         public UiSystem(Game game, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true) : base(game) {
             this.Controls = new UiControls(this, inputHandler);
             this.style = style;
+            this.OnElementDrawn += (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
+            this.OnElementUpdated += (e, time) => e.OnUpdated?.Invoke(e, time);
+            this.OnElementPressed += e => e.OnPressed?.Invoke(e);
+            this.OnElementSecondaryPressed += e => e.OnSecondaryPressed?.Invoke(e);
+            this.OnElementSelected += e => e.OnSelected?.Invoke(e);
+            this.OnElementDeselected += e => e.OnDeselected?.Invoke(e);
+            this.OnElementMouseEnter += e => e.OnMouseEnter?.Invoke(e);
+            this.OnElementMouseExit += e => e.OnMouseExit?.Invoke(e);
+            this.OnElementTouchEnter += e => e.OnTouchEnter?.Invoke(e);
+            this.OnElementTouchExit += e => e.OnTouchExit?.Invoke(e);
+            this.OnElementAreaUpdated += e => e.OnAreaUpdated?.Invoke(e);
 
             if (automaticViewport) {
                 this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
@@ -264,11 +275,11 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
-                root.OnElementAdded(e);
+                root.InvokeOnElementAdded(e);
                 e.SetAreaDirty();
             });
             this.OnRootAdded?.Invoke(root);
-            root.OnAddedToUi?.Invoke(this);
+            root.InvokeOnAddedToUi(this);
             this.SortRoots();
             return root;
         }
@@ -286,11 +297,11 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
-                root.OnElementRemoved(e);
+                root.InvokeOnElementRemoved(e);
                 e.SetAreaDirty();
             });
             this.OnRootRemoved?.Invoke(root);
-            root.OnRemovedFromUi?.Invoke(this);
+            root.InvokeOnRemovedFromUi(this);
         }
 
         /// <summary>
@@ -333,6 +344,22 @@ namespace MLEM.Ui {
                 root.Element.AndChildren(action);
         }
 
+        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) => this.OnElementDrawn?.Invoke(element, time, batch, alpha);
+        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) => this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha);
+        internal void InvokeOnElementUpdated(Element element, GameTime time) => this.OnElementUpdated?.Invoke(element, time);
+        internal void InvokeOnElementAreaUpdated(Element element) => this.OnElementAreaUpdated?.Invoke(element);
+        internal void InvokeOnElementPressed(Element element) => this.OnElementPressed?.Invoke(element);
+        internal void InvokeOnElementSecondaryPressed(Element element) => this.OnElementSecondaryPressed?.Invoke(element);
+        internal void InvokeOnElementSelected(Element element) => this.OnElementSelected?.Invoke(element);
+        internal void InvokeOnElementDeselected(Element element) => this.OnElementDeselected?.Invoke(element);
+        internal void InvokeOnSelectedElementChanged(Element element) => this.OnSelectedElementChanged?.Invoke(element);
+        internal void InvokeOnElementMouseExit(Element element) => this.OnElementMouseExit?.Invoke(element);
+        internal void InvokeOnElementMouseEnter(Element element) => this.OnElementMouseEnter?.Invoke(element);
+        internal void InvokeOnMousedElementChanged(Element element) => this.OnMousedElementChanged?.Invoke(element);
+        internal void InvokeOnElementTouchExit(Element element) => this.OnElementTouchExit?.Invoke(element);
+        internal void InvokeOnElementTouchEnter(Element element) => this.OnElementTouchEnter?.Invoke(element);
+        internal void InvokeOnTouchedElementChanged(Element element) => this.OnTouchedElementChanged?.Invoke(element);
+
         /// <summary>
         /// A delegate used for callbacks that involve a <see cref="RootElement"/>
         /// </summary>
@@ -346,7 +373,7 @@ namespace MLEM.Ui {
     /// Root elements are only used for the element in each element tree that doesn't have a <see cref="MLEM.Ui.Elements.Element.Parent"/>
     /// To create a new root element, use <see cref="UiSystem.Add"/>
     /// </summary>
-    public class RootElement {
+    public class RootElement : GenericDataHolder {
 
         /// <summary>
         /// The name of this root element
@@ -417,19 +444,19 @@ namespace MLEM.Ui {
         /// <summary>
         /// Event that is invoked when a <see cref="Element"/> is added to this root element or any of its children.
         /// </summary>
-        public Element.GenericCallback OnElementAdded;
+        public event Element.GenericCallback OnElementAdded;
         /// <summary>
         /// Event that is invoked when a <see cref="Element"/> is removed rom this root element of any of its children.
         /// </summary>
-        public Element.GenericCallback OnElementRemoved;
+        public event Element.GenericCallback OnElementRemoved;
         /// <summary>
         /// Event that is invoked when this <see cref="RootElement"/> gets added to a <see cref="UiSystem"/> in <see cref="UiSystem.Add"/> 
         /// </summary>
-        public Action<UiSystem> OnAddedToUi;
+        public event Action<UiSystem> OnAddedToUi;
         /// <summary>
         /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/> 
         /// </summary>
-        public Action<UiSystem> OnRemovedFromUi;
+        public event Action<UiSystem> OnRemovedFromUi;
 
         internal RootElement(string name, Element element, UiSystem system) {
             this.Name = name;
@@ -464,6 +491,11 @@ namespace MLEM.Ui {
         public void ScaleOrigin(float scale, Vector2? origin = null) {
             this.Transform = Matrix.CreateScale(scale, scale, 1) * Matrix.CreateTranslation(new Vector3((1 - scale) * (origin ?? this.Element.DisplayArea.Center), 0));
         }
+
+        internal void InvokeOnElementAdded(Element element) => this.OnElementAdded?.Invoke(element);
+        internal void InvokeOnElementRemoved(Element element) => this.OnElementRemoved?.Invoke(element);
+        internal void InvokeOnAddedToUi(UiSystem system) => this.OnAddedToUi?.Invoke(system);
+        internal void InvokeOnRemovedFromUi(UiSystem system) => this.OnRemovedFromUi?.Invoke(system);
 
     }
 }

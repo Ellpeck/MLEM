@@ -40,15 +40,15 @@ namespace MLEM.Startup {
         /// <summary>
         /// An event that is invoked in <see cref="LoadContent"/>
         /// </summary>
-        public GenericCallback OnLoadContent;
+        public event GenericCallback OnLoadContent;
         /// <summary>
         /// An event that is invoked in <see cref="Update"/>
         /// </summary>
-        public TimeCallback OnUpdate;
+        public event TimeCallback OnUpdate;
         /// <summary>
         /// An event that is invoked in <see cref="Draw"/>
         /// </summary>
-        public TimeCallback OnDraw;
+        public event TimeCallback OnDraw;
 
         /// <summary>
         /// Creates a new MlemGame instance with some default settings

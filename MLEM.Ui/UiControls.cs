@@ -151,11 +151,11 @@ namespace MLEM.Ui {
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.SelectElement(this.ActiveRoot, selectedNow);
                     if (mousedNow != null && mousedNow.CanBePressed)
-                        this.System.OnElementPressed?.Invoke(mousedNow);
+                        this.System.InvokeOnElementPressed(mousedNow);
                 } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
                     if (mousedNow != null && mousedNow.CanBePressed)
-                        this.System.OnElementSecondaryPressed?.Invoke(mousedNow);
+                        this.System.InvokeOnElementSecondaryPressed(mousedNow);
                 }
             }
 
@@ -165,10 +165,10 @@ namespace MLEM.Ui {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
-                            this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
+                            this.System.InvokeOnElementSecondaryPressed(this.SelectedElement);
                         } else {
                             // first action on element using space or enter
-                            this.System.OnElementPressed?.Invoke(this.SelectedElement);
+                            this.System.InvokeOnElementPressed(this.SelectedElement);
                         }
                     }
                 } else if (this.Input.IsKeyPressed(Keys.Tab)) {
@@ -189,13 +189,13 @@ namespace MLEM.Ui {
                     var tapped = this.GetElementUnderPos(tap.Position);
                     this.SelectElement(this.ActiveRoot, tapped);
                     if (tapped != null && tapped.CanBePressed)
-                        this.System.OnElementPressed?.Invoke(tapped);
+                        this.System.InvokeOnElementPressed(tapped);
                 } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
                     var held = this.GetElementUnderPos(hold.Position);
                     this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
-                        this.System.OnElementSecondaryPressed?.Invoke(held);
+                        this.System.InvokeOnElementSecondaryPressed(held);
                 } else if (this.Input.TouchState.Count <= 0) {
                     this.SetTouchedElement(null);
                 } else {
@@ -216,10 +216,10 @@ namespace MLEM.Ui {
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
-                        this.System.OnElementPressed?.Invoke(this.SelectedElement);
+                        this.System.InvokeOnElementPressed(this.SelectedElement);
                 } else if (this.SecondaryGamepadButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
-                        this.System.OnElementSecondaryPressed?.Invoke(this.SelectedElement);
+                        this.System.InvokeOnElementSecondaryPressed(this.SelectedElement);
                 } else if (this.DownButtons.IsPressed(this.Input, this.GamepadIndex)) {
                     this.HandleGamepadNextElement(Direction2.Down);
                 } else if (this.LeftButtons.IsPressed(this.Input, this.GamepadIndex)) {
@@ -265,14 +265,14 @@ namespace MLEM.Ui {
                 return;
 
             if (selected != null)
-                this.System.OnElementDeselected?.Invoke(selected);
+                this.System.InvokeOnElementDeselected(selected);
             if (element != null) {
-                this.System.OnElementSelected?.Invoke(element);
+                this.System.InvokeOnElementSelected(element);
                 this.selectedElements[root.Name] = element;
             } else {
                 this.selectedElements.Remove(root.Name);
             }
-            this.System.OnSelectedElementChanged?.Invoke(element);
+            this.System.InvokeOnSelectedElementChanged(element);
 
             if (autoNav != null)
                 this.IsAutoNavMode = autoNav.Value;
@@ -285,11 +285,11 @@ namespace MLEM.Ui {
         public void SetMousedElement(Element element) {
             if (element != this.MousedElement) {
                 if (this.MousedElement != null)
-                    this.System.OnElementMouseExit?.Invoke(this.MousedElement);
+                    this.System.InvokeOnElementMouseExit(this.MousedElement);
                 if (element != null)
-                    this.System.OnElementMouseEnter?.Invoke(element);
+                    this.System.InvokeOnElementMouseEnter(element);
                 this.MousedElement = element;
-                this.System.OnMousedElementChanged?.Invoke(element);
+                this.System.InvokeOnMousedElementChanged(element);
             }
         }
 
@@ -300,11 +300,11 @@ namespace MLEM.Ui {
         public void SetTouchedElement(Element element) {
             if (element != this.TouchedElement) {
                 if (this.TouchedElement != null)
-                    this.System.OnElementTouchExit?.Invoke(this.TouchedElement);
+                    this.System.InvokeOnElementTouchExit(this.TouchedElement);
                 if (element != null)
-                    this.System.OnElementTouchEnter?.Invoke(element);
+                    this.System.InvokeOnElementTouchEnter(element);
                 this.TouchedElement = element;
-                this.System.OnTouchedElementChanged?.Invoke(element);
+                this.System.InvokeOnTouchedElementChanged(element);
             }
         }
 

@@ -15,7 +15,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// This class represents a generic base class for ui elements of a <see cref="UiSystem"/>.
     /// </summary>
-    public abstract class Element : GenericDataHolder {
+    public abstract class Element : GenericDataHolder, IDisposable {
 
         /// <summary>
         /// A list of all of this element's direct children.
@@ -377,6 +377,11 @@ namespace MLEM.Ui.Elements {
         /// Event that is called when a child is removed from this element using <see cref="RemoveChild"/>
         /// </summary>
         public OtherElementCallback OnChildRemoved;
+        /// <summary>
+        /// Event that is called when this element's <see cref="Dispose"/> method is called, which also happens in <see cref="Finalize"/>.
+        /// This event is useful for unregistering global event handlers when this object should be destroyed.
+        /// </summary>
+        public GenericCallback OnDisposed;
 
         /// <summary>
         /// A style property that contains the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
@@ -415,6 +420,11 @@ namespace MLEM.Ui.Elements {
             this.SetSortedChildrenDirty();
         }
 
+        /// <inheritdoc />
+        ~Element() {
+            this.Dispose();
+        }
+
         /// <summary>
         /// Adds a child to this element.
         /// </summary>
@@ -430,7 +440,7 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = this.Root;
                 e.System = this.System;
-                this.Root?.OnElementAdded(e);
+                this.Root?.InvokeOnElementAdded(e);
                 this.OnChildAdded?.Invoke(this, e);
             });
             this.SetSortedChildrenDirty();
@@ -451,7 +461,7 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
-                this.Root?.OnElementRemoved(e);
+                this.Root?.InvokeOnElementRemoved(e);
                 this.OnChildRemoved?.Invoke(this, e);
             });
             this.SetSortedChildrenDirty();
@@ -618,7 +628,7 @@ namespace MLEM.Ui.Elements {
                 }
 
                 this.area = new RectangleF(pos, newSize);
-                this.System.OnElementAreaUpdated?.Invoke(this);
+                this.System.InvokeOnElementAreaUpdated(this);
 
                 foreach (var child in this.Children)
                     child.ForceUpdateArea();
@@ -626,7 +636,7 @@ namespace MLEM.Ui.Elements {
                 if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
                     Element foundChild = null;
                     var autoSize = this.UnscrolledArea.Size;
-                    
+
                     if (this.SetHeightBasedOnChildren) {
                         var lowest = this.GetLowestChild(e => !e.IsHidden);
                         if (lowest != null) {
@@ -638,7 +648,7 @@ namespace MLEM.Ui.Elements {
                             autoSize.Y = 0;
                         }
                     }
-                    
+
                     if (this.SetWidthBasedOnChildren) {
                         var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                         if (rightmost != null) {
@@ -650,7 +660,7 @@ namespace MLEM.Ui.Elements {
                             autoSize.X = 0;
                         }
                     }
-                    
+
                     if (this.TreatSizeAsMinimum)
                         autoSize = Vector2.Max(autoSize, actualSize);
                     if (!autoSize.Equals(this.UnscrolledArea.Size, 0.01F)) {
@@ -837,7 +847,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="time">The game's time</param>
         public virtual void Update(GameTime time) {
-            this.System.OnElementUpdated?.Invoke(this, time);
+            this.System.InvokeOnElementUpdated(this, time);
 
             foreach (var child in this.GetRelevantChildren())
                 if (child.System != null)
@@ -888,9 +898,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="samplerState">The sampler state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            this.System.OnElementDrawn?.Invoke(this, time, batch, alpha);
+            this.System.InvokeOnElementDrawn(this, time, batch, alpha);
             if (this.IsSelected)
-                this.System.OnSelectedElementDrawn?.Invoke(this, time, batch, alpha);
+                this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha);
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
@@ -933,6 +943,12 @@ namespace MLEM.Ui.Elements {
                     return element;
             }
             return this.CanBeMoused && this.DisplayArea.Contains(position) ? this : null;
+        }
+
+        /// <inheritdoc />
+        public virtual void Dispose() {
+            this.OnDisposed?.Invoke(this);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
