@@ -268,6 +268,7 @@ namespace MLEM.Ui {
                 e.SetAreaDirty();
             });
             this.OnRootAdded?.Invoke(root);
+            root.OnAddedToUi?.Invoke(this);
             this.SortRoots();
             return root;
         }
@@ -289,6 +290,7 @@ namespace MLEM.Ui {
                 e.SetAreaDirty();
             });
             this.OnRootRemoved?.Invoke(root);
+            root.OnRemovedFromUi?.Invoke(this);
         }
 
         /// <summary>
@@ -417,9 +419,17 @@ namespace MLEM.Ui {
         /// </summary>
         public Element.GenericCallback OnElementAdded;
         /// <summary>
-        /// Even that is invoked when a <see cref="Element"/> is removed rom this root element of any of its children.
+        /// Event that is invoked when a <see cref="Element"/> is removed rom this root element of any of its children.
         /// </summary>
         public Element.GenericCallback OnElementRemoved;
+        /// <summary>
+        /// Event that is invoked when this <see cref="RootElement"/> gets added to a <see cref="UiSystem"/> in <see cref="UiSystem.Add"/> 
+        /// </summary>
+        public Action<UiSystem> OnAddedToUi;
+        /// <summary>
+        /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/> 
+        /// </summary>
+        public Action<UiSystem> OnRemovedFromUi;
 
         internal RootElement(string name, Element element, UiSystem system) {
             this.Name = name;
