@@ -76,6 +76,7 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
         ~Panel() {
             this.Dispose();
         }
