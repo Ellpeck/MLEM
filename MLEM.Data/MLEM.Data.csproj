@@ -30,6 +30,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../Media/Logo.png" Pack="true" PackagePath=""/>
+        <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
     </ItemGroup>
 </Project>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
+using MLEM.Data.Json;
 using MLEM.Misc;
+using Newtonsoft.Json;
 
 namespace MLEM.Data {
     /// <summary>
@@ -23,6 +25,7 @@ namespace MLEM.Data {
     /// public static MyEnum operator ~(MyEnum value) => Neg(value);
     /// </code>
     /// </remarks>
+    [JsonConverter(typeof(DynamicEnumConverter))]
     public abstract class DynamicEnum : GenericDataHolder {
 
         private static readonly Dictionary<Type, Dictionary<BigInteger, DynamicEnum>> Values = new Dictionary<Type, Dictionary<BigInteger, DynamicEnum>>();
