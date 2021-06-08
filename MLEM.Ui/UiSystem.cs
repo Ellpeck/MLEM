@@ -183,6 +183,22 @@ namespace MLEM.Ui {
             this.OnElementTouchEnter += e => e.OnTouchEnter?.Invoke(e);
             this.OnElementTouchExit += e => e.OnTouchExit?.Invoke(e);
             this.OnElementAreaUpdated += e => e.OnAreaUpdated?.Invoke(e);
+            this.OnMousedElementChanged += e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
+            this.OnTouchedElementChanged += e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
+            this.OnSelectedElementChanged += e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
+            this.OnSelectedElementDrawn += (element, time, batch, alpha) => {
+                if (this.Controls.IsAutoNavMode && element.SelectionIndicator.HasValue())
+                    batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
+            };
+            this.OnElementPressed += e => {
+                if (e.OnPressed != null)
+                    e.ActionSound.Value?.Play();
+            };
+            this.OnElementSecondaryPressed += e => {
+                if (e.OnSecondaryPressed != null)
+                    e.SecondActionSound.Value?.Play();
+            };
+            MlemPlatform.Current?.AddTextInputListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
 
             if (automaticViewport) {
                 this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
@@ -193,25 +209,6 @@ namespace MLEM.Ui {
                         root.Element.ForceUpdateArea();
                 };
             }
-
-            if (MlemPlatform.Current != null)
-                MlemPlatform.Current.AddTextInputListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
-            this.OnMousedElementChanged = e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
-            this.OnTouchedElementChanged = e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
-            this.OnSelectedElementChanged = e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
-            this.OnSelectedElementDrawn = (element, time, batch, alpha) => {
-                if (this.Controls.IsAutoNavMode && element.SelectionIndicator.HasValue()) {
-                    batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
-                }
-            };
-            this.OnElementPressed += e => {
-                if (e.OnPressed != null)
-                    e.ActionSound.Value?.Play();
-            };
-            this.OnElementSecondaryPressed += e => {
-                if (e.OnSecondaryPressed != null)
-                    e.SecondActionSound.Value?.Play();
-            };
 
             this.TextFormatter = new TextFormatter();
             this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
