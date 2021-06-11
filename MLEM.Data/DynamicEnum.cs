@@ -32,6 +32,9 @@ namespace MLEM.Data {
         private static readonly Dictionary<Type, Dictionary<string, DynamicEnum>> ParseCache = new Dictionary<Type, Dictionary<string, DynamicEnum>>();
 
         private readonly BigInteger value;
+
+        private Dictionary<DynamicEnum, bool> allFlagsCache;
+        private Dictionary<DynamicEnum, bool> anyFlagsCache;
         private string name;
 
         /// <summary>
@@ -46,13 +49,38 @@ namespace MLEM.Data {
         }
 
         /// <summary>
-        /// Returns true if this enum value has the given <see cref="DynamicEnum"/> flag on it.
+        /// Returns true if this enum value has ALL of the given <see cref="DynamicEnum"/> flags on it.
         /// This operation is equivalent to <see cref="Enum.HasFlag"/>.
         /// </summary>
-        /// <param name="flag">The flag to query</param>
-        /// <returns>True if the flag is present, false otherwise</returns>
-        public bool HasFlag(DynamicEnum flag) {
-            return (GetValue(this) & GetValue(flag)) == GetValue(flag);
+        /// <seealso cref="HasAnyFlag"/>
+        /// <param name="flags">The flags to query</param>
+        /// <returns>True if all of the flags are present, false otherwise</returns>
+        public bool HasFlag(DynamicEnum flags) {
+            if (this.allFlagsCache == null)
+                this.allFlagsCache = new Dictionary<DynamicEnum, bool>();
+            if (!this.allFlagsCache.TryGetValue(flags, out var ret)) {
+                // & is very memory-intensive, so we cache the return value
+                ret = (GetValue(this) & GetValue(flags)) == GetValue(flags);
+                this.allFlagsCache.Add(flags, ret);
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns true if this enum value has ANY of the given <see cref="DynamicEnum"/> flags on it
+        /// </summary>
+        /// <seealso cref="HasFlag"/>
+        /// <param name="flags">The flags to query</param>
+        /// <returns>True if one of the flags is present, false otherwise</returns>
+        public bool HasAnyFlag(DynamicEnum flags) {
+            if (this.anyFlagsCache == null)
+                this.anyFlagsCache = new Dictionary<DynamicEnum, bool>();
+            if (!this.anyFlagsCache.TryGetValue(flags, out var ret)) {
+                // & is very memory-intensive, so we cache the return value
+                ret = (GetValue(this) & GetValue(flags)) != 0;
+                this.anyFlagsCache.Add(flags, ret);
+            }
+            return ret;
         }
 
         /// <inheritdoc />
