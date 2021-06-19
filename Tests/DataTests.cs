@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Xna.Framework;
 using MLEM.Data;
@@ -10,7 +11,7 @@ using NUnit.Framework;
 namespace Tests {
     public class DataTests {
 
-        private readonly TestObject testObject = new TestObject(Vector2.One, "test") {
+        private readonly TestObject testObject = new(Vector2.One, "test") {
             Vec = new Vector2(10, 20),
             Point = new Point(20, 30),
             Dir = Direction2.Left,
@@ -45,6 +46,22 @@ namespace Tests {
             Assert.AreNotSame(this.testObject.OtherTest, deepCopy.OtherTest);
         }
 
+        [Test]
+        public void TestCopySpeed() {
+            const int count = 1000000;
+            var stopwatch = Stopwatch.StartNew();
+            for (var i = 0; i < count; i++)
+                this.testObject.Copy();
+            stopwatch.Stop();
+            TestContext.WriteLine($"Copy took {stopwatch.Elapsed.TotalMilliseconds / count * 1000000}ns on average");
+
+            stopwatch.Restart();
+            for (var i = 0; i < count; i++)
+                this.testObject.DeepCopy();
+            stopwatch.Stop();
+            TestContext.WriteLine($"DeepCopy took {stopwatch.Elapsed.TotalMilliseconds / count * 1000000}ns on average");
+        }
+
         private class TestObject {
 
             public Vector2 Vec;
@@ -53,10 +70,6 @@ namespace Tests {
             public TestObject OtherTest;
 
             public TestObject(Vector2 test, string test2) {
-            }
-
-            public override string ToString() {
-                return $"{nameof(this.Vec)}: {this.Vec}, {nameof(this.Point)}: {this.Point}, {nameof(this.OtherTest)}: {this.OtherTest}, {nameof(this.Dir)}: {this.Dir}";
             }
 
             protected bool Equals(TestObject other) {
