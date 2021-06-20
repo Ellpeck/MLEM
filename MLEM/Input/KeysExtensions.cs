@@ -52,7 +52,7 @@ namespace MLEM.Input {
 
         /// <inheritdoc cref="GetModifier(Microsoft.Xna.Framework.Input.Keys)"/>
         public static ModifierKey GetModifier(this GenericInput input) {
-            return input.Type == GenericInput.InputType.Keyboard ? GetModifier(input) : ModifierKey.None;
+            return input.Type == GenericInput.InputType.Keyboard ? GetModifier((Keys) input) : ModifierKey.None;
         }
 
         /// <summary>
