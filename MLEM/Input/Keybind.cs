@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,7 +13,27 @@ namespace MLEM.Input {
     public class Keybind {
 
         [DataMember]
-        private readonly List<Combination> combinations = new List<Combination>();
+        private Combination[] combinations = Array.Empty<Combination>();
+
+        /// <summary>
+        /// Creates a new keybind and adds the given key and modifiers using <see cref="Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>
+        /// </summary>
+        /// <param name="key">The key to be pressed.</param>
+        /// <param name="modifiers">The modifier keys that have to be held down.</param>
+        public Keybind(GenericInput key, params GenericInput[] modifiers) {
+            this.Add(key, modifiers);
+        }
+
+        /// <inheritdoc cref="Keybind(GenericInput, GenericInput[])"/>
+        public Keybind(GenericInput key, ModifierKey modifier) {
+            this.Add(key, modifier);
+        }
+
+        /// <summary>
+        /// Creates a new keybind with no default combinations
+        /// </summary>
+        public Keybind() {
+        }
 
         /// <summary>
         /// Adds a new key combination to this keybind that can optionally be pressed for the keybind to trigger.
@@ -21,7 +42,7 @@ namespace MLEM.Input {
         /// <param name="modifiers">The modifier keys that have to be held down.</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Add(GenericInput key, params GenericInput[] modifiers) {
-            this.combinations.Add(new Combination(key, modifiers));
+            this.combinations = this.combinations.Append(new Combination(key, modifiers)).ToArray();
             return this;
         }
 
@@ -35,7 +56,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Clear() {
-            this.combinations.Clear();
+            this.combinations = Array.Empty<Combination>();
             return this;
         }
 
@@ -46,7 +67,7 @@ namespace MLEM.Input {
         /// <param name="other">The keybind to copy from</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind CopyFrom(Keybind other) {
-            this.combinations.AddRange(other.combinations);
+            this.combinations = this.combinations.Concat(other.combinations).ToArray();
             return this;
         }
 

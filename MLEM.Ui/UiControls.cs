@@ -57,11 +57,11 @@ namespace MLEM.Ui {
         /// <summary>
         /// AA <see cref="Keybind"/> that acts as the buttons on a gamepad that perform the <see cref="Element.OnPressed"/> action.
         /// </summary>
-        public readonly Keybind GamepadButtons = new Keybind().Add(Buttons.A);
+        public readonly Keybind GamepadButtons = new Keybind(Buttons.A);
         /// <summary>
         /// A <see cref="Keybind"/> that acts as the buttons on a gamepad that perform the <see cref="Element.OnSecondaryPressed"/> action.
         /// </summary>
-        public readonly Keybind SecondaryGamepadButtons = new Keybind().Add(Buttons.X);
+        public readonly Keybind SecondaryGamepadButtons = new Keybind(Buttons.X);
         /// <summary>
         /// A <see cref="Keybind"/> that acts as the buttons that select a <see cref="Element"/> that is above the currently selected element.
         /// </summary>
