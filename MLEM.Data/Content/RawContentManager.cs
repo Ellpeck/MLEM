@@ -13,6 +13,7 @@ namespace MLEM.Data.Content {
     public class RawContentManager : ContentManager, IGameComponent {
 
         private static readonly RawContentReader[] Readers = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => !a.IsDynamic)
             .SelectMany(a => a.GetExportedTypes())
             .Where(t => t.IsSubclassOf(typeof(RawContentReader)) && !t.IsAbstract)
             .Select(t => t.GetConstructor(Type.EmptyTypes).Invoke(null))
