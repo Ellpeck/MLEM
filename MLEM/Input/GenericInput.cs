@@ -39,6 +39,36 @@ namespace MLEM.Input {
             }
         }
 
+        /// <inheritdoc />
+        public override bool Equals(object obj) {
+            return obj is GenericInput o && this.Type == o.Type && this.value == o.value;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() {
+            return ((int) this.Type * 397) ^ this.value;
+        }
+
+        /// <summary>
+        /// Compares the two generic input instances for equality using <see cref="Equals"/>
+        /// </summary>
+        /// <param name="left">The left input</param>
+        /// <param name="right">The right input</param>
+        /// <returns>Whether the two generic inputs are equal</returns>
+        public static bool operator ==(GenericInput left, GenericInput right) {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Compares the two generic input instances for inequality using <see cref="Equals"/>
+        /// </summary>
+        /// <param name="left">The left input</param>
+        /// <param name="right">The right input</param>
+        /// <returns>Whether the two generic inputs are not equal</returns>
+        public static bool operator !=(GenericInput left, GenericInput right) {
+            return !left.Equals(right);
+        }
+
         /// <summary>
         /// Converts a <see cref="Keys"/> to a generic input.
         /// </summary>

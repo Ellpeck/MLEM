@@ -101,7 +101,13 @@ namespace MLEM.Input {
             [DataMember]
             public readonly GenericInput Key;
 
-            internal Combination(GenericInput key, GenericInput[] modifiers) {
+            /// <summary>
+            /// Creates a new combination with the given settings.
+            /// To add a combination to a <see cref="Keybind"/>, use <see cref="Keybind.Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/> instead.
+            /// </summary>
+            /// <param name="key">The key</param>
+            /// <param name="modifiers">The modifiers</param>
+            public Combination(GenericInput key, GenericInput[] modifiers) {
                 this.Modifiers = modifiers;
                 this.Key = key;
             }
