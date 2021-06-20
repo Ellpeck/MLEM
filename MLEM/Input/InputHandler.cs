@@ -23,11 +23,7 @@ namespace MLEM.Input {
         /// </summary>
         public KeyboardState KeyboardState { get; private set; }
         /// <summary>
-        /// Contains the keyboard keys that are currently being pressed
-        /// </summary>
-        public Keys[] PressedKeys { get; private set; }
-        /// <summary>
-        /// Set this property to false to disable keyboard handling for this input handler.
+        /// Set this field to false to disable keyboard handling for this input handler.
         /// </summary>
         public bool HandleKeyboard;
 
@@ -56,7 +52,7 @@ namespace MLEM.Input {
         /// </summary>
         public int LastScrollWheel => this.LastMouseState.ScrollWheelValue;
         /// <summary>
-        /// Set this property to false to disable mouse handling for this input handler.
+        /// Set this field to false to disable mouse handling for this input handler.
         /// </summary>
         public bool HandleMouse;
 
@@ -64,11 +60,11 @@ namespace MLEM.Input {
         private readonly GamePadState[] gamepads = new GamePadState[GamePad.MaximumGamePadCount];
         /// <summary>
         /// Contains the amount of gamepads that are currently connected.
-        /// This property is automatically updated in <see cref="Update()"/>
+        /// This field is automatically updated in <see cref="Update()"/>
         /// </summary>
         public int ConnectedGamepads { get; private set; }
         /// <summary>
-        /// Set this property to false to disable keyboard handling for this input handler.
+        /// Set this field to false to disable keyboard handling for this input handler.
         /// </summary>
         public bool HandleGamepads;
 
@@ -87,7 +83,7 @@ namespace MLEM.Input {
         public readonly ReadOnlyCollection<GestureSample> Gestures;
         private readonly List<GestureSample> gestures = new List<GestureSample>();
         /// <summary>
-        /// Set this property to false to disable touch handling for this input handler.
+        /// Set this field to false to disable touch handling for this input handler.
         /// </summary>
         public bool HandleTouch;
 
@@ -103,7 +99,7 @@ namespace MLEM.Input {
         public TimeSpan KeyRepeatRate = TimeSpan.FromSeconds(0.05);
 
         /// <summary>
-        /// Set this property to false to disable keyboard repeat event handling.
+        /// Set this field to false to disable keyboard repeat event handling.
         /// </summary>
         public bool HandleKeyboardRepeats = true;
         private DateTime heldKeyStart;
@@ -112,13 +108,30 @@ namespace MLEM.Input {
         private Keys heldKey;
 
         /// <summary>
-        /// Set this property to false to disable gamepad repeat event handling.
+        /// Set this field to false to disable gamepad repeat event handling.
         /// </summary>
         public bool HandleGamepadRepeats = true;
         private readonly DateTime[] heldGamepadButtonStarts = new DateTime[GamePad.MaximumGamePadCount];
         private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
         private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
         private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
+
+        /// <summary>
+        /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
+        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
+        /// </summary>
+        public GenericInput[] InputsDown { get; private set; }
+        /// <summary>
+        /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> that are currently considered pressed.
+        /// An input is considered pressed if it was up in the last update, and is up in the current one.
+        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
+        /// </summary>
+        public GenericInput[] InputsPressed { get; private set; }
+        private readonly List<GenericInput> inputsDownAccum = new List<GenericInput>();
+        /// <summary>
+        /// Set this field to false to enable <see cref="InputsDown"/> and <see cref="InputsPressed"/> being calculated.
+        /// </summary>
+        public bool StoreAllActiveInputs;
 
         /// <summary>
         /// Creates a new input handler with optional initial values.
@@ -128,11 +141,13 @@ namespace MLEM.Input {
         /// <param name="handleMouse">If mouse input should be handled</param>
         /// <param name="handleGamepads">If gamepad input should be handled</param>
         /// <param name="handleTouch">If touch input should be handled</param>
-        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(game) {
+        /// <param name="storeAllActiveInputs">Whether all inputs that are currently down and pressed should be calculated each update</param>
+        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true, bool storeAllActiveInputs = true) : base(game) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
             this.HandleTouch = handleTouch;
+            this.StoreAllActiveInputs = storeAllActiveInputs;
             this.Gestures = this.gestures.AsReadOnly();
         }
 
@@ -145,14 +160,18 @@ namespace MLEM.Input {
             if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = active ? Keyboard.GetState() : default;
-                this.PressedKeys = this.KeyboardState.GetPressedKeys();
+                var pressedKeys = this.KeyboardState.GetPressedKeys();
+                if (this.StoreAllActiveInputs) {
+                    foreach (var pressed in pressedKeys)
+                        this.inputsDownAccum.Add(pressed);
+                }
 
                 if (this.HandleKeyboardRepeats) {
                     this.triggerKeyRepeat = false;
                     if (this.heldKey == Keys.None) {
                         // if we're not repeating a key, set the first key being held to the repeat key
                         // note that modifier keys don't count as that wouldn't really make sense
-                        var key = this.PressedKeys.FirstOrDefault(k => !k.IsModifier());
+                        var key = pressedKeys.FirstOrDefault(k => !k.IsModifier());
                         if (key != Keys.None) {
                             this.heldKey = key;
                             this.heldKeyStart = DateTime.UtcNow;
@@ -184,6 +203,12 @@ namespace MLEM.Input {
                 var state = Mouse.GetState();
                 if (active && this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.Position)) {
                     this.MouseState = state;
+                    if (this.StoreAllActiveInputs) {
+                        foreach (var button in MouseExtensions.MouseButtons) {
+                            if (state.GetState(button) == ButtonState.Pressed)
+                                this.inputsDownAccum.Add(button);
+                        }
+                    }
                 } else {
                     // mouse position and scroll wheel value should be preserved when the mouse is out of bounds
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0, state.HorizontalScrollWheelValue);
@@ -194,9 +219,22 @@ namespace MLEM.Input {
                 this.ConnectedGamepads = GamePad.MaximumGamePadCount;
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
-                    this.gamepads[i] = active ? GamePad.GetState(i) : default;
-                    if (this.ConnectedGamepads > i && !GamePad.GetCapabilities(i).IsConnected)
-                        this.ConnectedGamepads = i;
+                    var state = GamePadState.Default;
+                    if (GamePad.GetCapabilities(i).IsConnected) {
+                        if (active) {
+                            state = GamePad.GetState(i);
+                            if (this.StoreAllActiveInputs) {
+                                foreach (var button in EnumHelper.Buttons) {
+                                    if (state.IsButtonDown(button))
+                                        this.inputsDownAccum.Add(button);
+                                }
+                            }
+                        }
+                    } else {
+                        if (this.ConnectedGamepads > i)
+                            this.ConnectedGamepads = i;
+                    }
+                    this.gamepads[i] = state;
                 }
 
                 if (this.HandleGamepadRepeats) {
@@ -237,6 +275,17 @@ namespace MLEM.Input {
                 this.gestures.Clear();
                 while (active && TouchPanel.IsGestureAvailable)
                     this.gestures.Add(TouchPanel.ReadGesture());
+            }
+
+            if (this.StoreAllActiveInputs) {
+                if (this.inputsDownAccum.Count <= 0) {
+                    this.InputsPressed = Array.Empty<GenericInput>();
+                    this.InputsDown = Array.Empty<GenericInput>();
+                } else {
+                    this.InputsPressed = this.inputsDownAccum.Where(i => !this.InputsDown.Contains(i)).ToArray();
+                    this.InputsDown = this.inputsDownAccum.ToArray();
+                    this.inputsDownAccum.Clear();
+                }
             }
         }
 

@@ -25,6 +25,20 @@ namespace MLEM.Input {
             this.value = value;
         }
 
+        /// <inheritdoc />
+        public override string ToString() {
+            switch (this.Type) {
+                case InputType.Mouse:
+                    return ((MouseButton) this).ToString();
+                case InputType.Keyboard:
+                    return ((Keys) this).ToString();
+                case InputType.Gamepad:
+                    return ((Buttons) this).ToString();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(this.Type));
+            }
+        }
+
         /// <summary>
         /// Converts a <see cref="Keys"/> to a generic input.
         /// </summary>

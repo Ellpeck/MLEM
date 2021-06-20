@@ -230,6 +230,11 @@ namespace Sandbox {
             if (delta != 0) {
                 this.camera.Zoom(0.1F * Math.Sign(delta), this.InputHandler.MousePosition.ToVector2());
             }
+
+            if (Input.InputsDown.Length > 0)
+                Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));
+            if (Input.InputsPressed.Length > 0)
+                Console.WriteLine("Pressed: " + string.Join(", ", Input.InputsPressed));
         }
 
         protected override void DoDraw(GameTime gameTime) {
