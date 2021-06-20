@@ -61,6 +61,16 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Removes all combinations that match the given predicate
+        /// </summary>
+        /// <param name="predicate">The predicate to match against</param>
+        /// <returns>This keybind, for chaining</returns>
+        public Keybind Remove(Func<Combination, int, bool> predicate) {
+            this.combinations = this.combinations.Where((c, i) => !predicate(c, i)).ToArray();
+            return this;
+        }
+
+        /// <summary>
         /// Copies all of the combinations from the given keybind into this keybind.
         /// Note that this doesn't <see cref="Clear"/> this keybind, so combinations will be merged rather than replaced.
         /// </summary>
@@ -91,6 +101,17 @@ namespace MLEM.Input {
         /// <returns>Whether this keybind is considered to be pressed</returns>
         public bool IsPressed(InputHandler handler, int gamepadIndex = -1) {
             return this.combinations.Any(c => c.IsPressed(handler, gamepadIndex));
+        }
+
+        /// <summary>
+        /// Returns whether any of this keybind's modifier keys are currently down.
+        /// See <see cref="InputHandler.IsDown"/> for more information.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>Whether any of this keyboard's modifier keys are down</returns>
+        public bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
+            return this.combinations.Any(c => c.IsModifierDown(handler, gamepadIndex));
         }
 
         /// <summary>
@@ -133,15 +154,33 @@ namespace MLEM.Input {
                 this.Key = key;
             }
 
-            internal bool IsDown(InputHandler handler, int gamepadIndex = -1) {
+            /// <summary>
+            /// Returns whether this combination is currently down
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination is down</returns>
+            public bool IsDown(InputHandler handler, int gamepadIndex = -1) {
                 return this.IsModifierDown(handler, gamepadIndex) && handler.IsDown(this.Key, gamepadIndex);
             }
 
-            internal bool IsPressed(InputHandler handler, int gamepadIndex = -1) {
+            /// <summary>
+            /// Returns whether this combination is currently pressed
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination is pressed</returns>
+            public bool IsPressed(InputHandler handler, int gamepadIndex = -1) {
                 return this.IsModifierDown(handler, gamepadIndex) && handler.IsPressed(this.Key, gamepadIndex);
             }
 
-            private bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
+            /// <summary>
+            /// Returns whether this combination's modifier keys are currently down
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination's modifiers are down</returns>
+            public bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
                 return this.Modifiers.Length <= 0 || this.Modifiers.Any(m => handler.IsDown(m, gamepadIndex));
             }
 

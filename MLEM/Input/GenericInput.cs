@@ -29,13 +29,13 @@ namespace MLEM.Input {
         public override string ToString() {
             switch (this.Type) {
                 case InputType.Mouse:
-                    return ((MouseButton) this).ToString();
+                    return this.Type.ToString() + (MouseButton) this;
                 case InputType.Keyboard:
-                    return ((Keys) this).ToString();
+                    return this.Type.ToString() + (Keys) this;
                 case InputType.Gamepad:
-                    return ((Buttons) this).ToString();
+                    return this.Type.ToString() + (Buttons) this;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(this.Type));
+                    return this.Type.ToString();
             }
         }
 
@@ -101,11 +101,11 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="input">The input to convert</param>
         /// <returns>The resulting keys</returns>
-        /// <exception cref="ArgumentException">If the given generic input's <see cref="Type"/> is not <see cref="InputType.Keyboard"/></exception>
+        /// <exception cref="ArgumentException">If the given generic input's <see cref="Type"/> is not <see cref="InputType.Keyboard"/> or <see cref="InputType.None"/></exception>
         public static implicit operator Keys(GenericInput input) {
-            if (input.Type != InputType.Keyboard)
-                throw new ArgumentException();
-            return (Keys) input.value;
+            if (input.Type == InputType.None)
+                return Keys.None;
+            return input.Type == InputType.Keyboard ? (Keys) input.value : throw new ArgumentException();
         }
 
         /// <summary>
@@ -115,9 +115,7 @@ namespace MLEM.Input {
         /// <returns>The resulting button</returns>
         /// <exception cref="ArgumentException">If the given generic input's <see cref="Type"/> is not <see cref="InputType.Mouse"/></exception>
         public static implicit operator MouseButton(GenericInput input) {
-            if (input.Type != InputType.Mouse)
-                throw new ArgumentException();
-            return (MouseButton) input.value;
+            return input.Type == InputType.Mouse ? (MouseButton) input.value : throw new ArgumentException();
         }
 
         /// <summary>
@@ -127,9 +125,7 @@ namespace MLEM.Input {
         /// <returns>The resulting buttons</returns>
         /// <exception cref="ArgumentException">If the given generic input's <see cref="Type"/> is not <see cref="InputType.Gamepad"/></exception>
         public static implicit operator Buttons(GenericInput input) {
-            if (input.Type != InputType.Gamepad)
-                throw new ArgumentException();
-            return (Buttons) input.value;
+            return input.Type == InputType.Gamepad ? (Buttons) input.value : throw new ArgumentException();
         }
 
         /// <summary>
@@ -138,6 +134,11 @@ namespace MLEM.Input {
         [DataContract]
         public enum InputType {
 
+            /// <summary>
+            /// A type representing no value
+            /// </summary>
+            [EnumMember]
+            None,
             /// <summary>
             /// A type representing <see cref="MouseButton"/>
             /// </summary>

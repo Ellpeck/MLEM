@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using MLEM.Input;
 using MLEM.Textures;
 
 namespace MLEM.Ui.Elements {
@@ -109,6 +112,60 @@ namespace MLEM.Ui.Elements {
             group.OnAreaUpdated += e => downButton.Size = new Vector2(e.Area.Height / 2 / e.Scale);
 
             return group;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="Button"/> that acts as a way to input a custom value for a <see cref="Keybind"/>.
+        /// Note that only the first <see cref="Keybind.Combination"/> of the given keybind is displayed and edited, all others are ignored. The exception is that, if <paramref name="unbindKey"/> is set, unbinding the keybind clears all combinations.
+        /// Inputting custom keybinds using this element supports <see cref="ModifierKey"/>-based modifiers and any <see cref="GenericInput"/>-based keys.
+        /// </summary>
+        /// <param name="anchor">The button's anchor</param>
+        /// <param name="size">The button's size</param>
+        /// <param name="keybind">The keybind that this button should represent</param>
+        /// <param name="inputHandler">The input handler to query inputs with</param>
+        /// <param name="activePlaceholder">A placeholder text that is displayed while the keybind is being edited</param>
+        /// <param name="unbindKey">An optional generic input that allows the keybind value to be unbound, clearing all combinations</param>
+        /// <param name="unboundPlaceholder">A placeholder text that is displayed if the keybind is unbound</param>
+        /// <param name="inputName">An optional function to give each input a display name that is easier to read. If this is null, <see cref="GenericInput.ToString"/> is used.</param>
+        /// <returns>A keybind button with the given settings</returns>
+        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null) {
+            string GetCurrentName() {
+                var combination = keybind.GetCombinations().FirstOrDefault();
+                if (combination == null)
+                    return unboundPlaceholder;
+                return string.Join(" + ", combination.Modifiers
+                    .Append(combination.Key)
+                    .Select(i => inputName?.Invoke(i) ?? i.ToString()));
+            }
+
+            var button = new Button(anchor, size, GetCurrentName());
+            var active = false;
+            var activeNext = false;
+            button.OnPressed = e => {
+                button.Text.Text = activePlaceholder;
+                activeNext = true;
+            };
+            button.OnUpdated = (e, time) => {
+                if (activeNext) {
+                    active = true;
+                    activeNext = false;
+                } else if (active) {
+                    if (unbindKey != default && inputHandler.IsPressed(unbindKey)) {
+                        keybind.Clear();
+                        button.Text.Text = unboundPlaceholder;
+                        active = false;
+                    } else if (inputHandler.InputsPressed.Length > 0) {
+                        var key = inputHandler.InputsPressed.FirstOrDefault(i => !i.IsModifier());
+                        if (key != default) {
+                            var mods = inputHandler.InputsDown.Where(i => i.IsModifier());
+                            keybind.Remove((c, i) => i == 0).Add(key, mods.ToArray());
+                            button.Text.Text = GetCurrentName();
+                            active = false;
+                        }
+                    }
+                }
+            };
+            return button;
         }
 
     }

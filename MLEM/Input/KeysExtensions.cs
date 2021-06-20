@@ -50,6 +50,11 @@ namespace MLEM.Input {
             return ModifierKey.None;
         }
 
+        /// <inheritdoc cref="GetModifier(Microsoft.Xna.Framework.Input.Keys)"/>
+        public static ModifierKey GetModifier(this GenericInput input) {
+            return input.Type == GenericInput.InputType.Keyboard ? GetModifier(input) : ModifierKey.None;
+        }
+
         /// <summary>
         /// Returns whether the given key is a modifier key or not.
         /// </summary>
@@ -57,6 +62,11 @@ namespace MLEM.Input {
         /// <returns>If the key is a modifier key</returns>
         public static bool IsModifier(this Keys key) {
             return GetModifier(key) != ModifierKey.None;
+        }
+
+        /// <inheritdoc cref="IsModifier(Microsoft.Xna.Framework.Input.Keys)"/>
+        public static bool IsModifier(this GenericInput input) {
+            return GetModifier(input) != ModifierKey.None;
         }
 
     }
@@ -68,7 +78,7 @@ namespace MLEM.Input {
     public enum ModifierKey {
 
         /// <summary>
-        /// No modifier key. Only used for <see cref="KeysExtensions.GetModifier"/>
+        /// No modifier key. Only used for <see cref="KeysExtensions.GetModifier(Keys)"/>
         /// </summary>
         None,
         /// <summary>

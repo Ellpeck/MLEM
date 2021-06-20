@@ -523,7 +523,7 @@ namespace MLEM.Input {
                 case GenericInput.InputType.Mouse:
                     return this.IsMouseButtonDown(control);
                 default:
-                    throw new ArgumentException(nameof(control));
+                    return false;
             }
         }
 
@@ -544,7 +544,7 @@ namespace MLEM.Input {
                 case GenericInput.InputType.Mouse:
                     return this.IsMouseButtonUp(control);
                 default:
-                    throw new ArgumentException(nameof(control));
+                    return false;
             }
         }
 
@@ -565,7 +565,7 @@ namespace MLEM.Input {
                 case GenericInput.InputType.Mouse:
                     return this.IsMouseButtonPressed(control);
                 default:
-                    throw new ArgumentException(nameof(control));
+                    return false;
             }
         }
 
