@@ -544,7 +544,7 @@ namespace MLEM.Input {
                 case GenericInput.InputType.Mouse:
                     return this.IsMouseButtonUp(control);
                 default:
-                    return false;
+                    return true;
             }
         }
 
