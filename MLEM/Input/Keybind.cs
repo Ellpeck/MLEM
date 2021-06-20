@@ -72,29 +72,50 @@ namespace MLEM.Input {
             return this.combinations.Any(c => c.IsPressed(handler, gamepadIndex));
         }
 
+        /// <summary>
+        /// Returns an enumerable of all of the combinations that this keybind currently contains
+        /// </summary>
+        /// <returns>This keybind's combinations</returns>
+        public IEnumerable<Combination> GetCombinations() {
+            foreach (var combination in this.combinations)
+                yield return combination;
+        }
+
+        /// <summary>
+        /// A key combination is a combination of a set of modifier keys and a key.
+        /// All of the keys are <see cref="GenericInput"/> instances, so they can be keyboard-, mouse- or gamepad-based.
+        /// </summary>
         [DataContract]
-        private class Combination {
+        public class Combination {
 
+            /// <summary>
+            /// The inputs that have to be held down for this combination to be valid.
+            /// If this collection is empty, there are no required modifier keys.
+            /// </summary>
             [DataMember]
-            private readonly GenericInput[] modifiers;
+            public readonly GenericInput[] Modifiers;
+            /// <summary>
+            /// The input that has to be down (or pressed) for this combination to be considered down (or pressed).
+            /// Note that <see cref="Modifiers"/> needs to be empty, or all of its values need to be down, as well.
+            /// </summary>
             [DataMember]
-            private readonly GenericInput key;
+            public readonly GenericInput Key;
 
-            public Combination(GenericInput key, GenericInput[] modifiers) {
-                this.modifiers = modifiers;
-                this.key = key;
+            internal Combination(GenericInput key, GenericInput[] modifiers) {
+                this.Modifiers = modifiers;
+                this.Key = key;
             }
 
             internal bool IsDown(InputHandler handler, int gamepadIndex = -1) {
-                return this.IsModifierDown(handler, gamepadIndex) && handler.IsDown(this.key, gamepadIndex);
+                return this.IsModifierDown(handler, gamepadIndex) && handler.IsDown(this.Key, gamepadIndex);
             }
 
             internal bool IsPressed(InputHandler handler, int gamepadIndex = -1) {
-                return this.IsModifierDown(handler, gamepadIndex) && handler.IsPressed(this.key, gamepadIndex);
+                return this.IsModifierDown(handler, gamepadIndex) && handler.IsPressed(this.Key, gamepadIndex);
             }
 
             private bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
-                return this.modifiers.Length <= 0 || this.modifiers.Any(m => handler.IsDown(m, gamepadIndex));
+                return this.Modifiers.Length <= 0 || this.Modifiers.Any(m => handler.IsDown(m, gamepadIndex));
             }
 
         }
