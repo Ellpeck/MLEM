@@ -22,6 +22,11 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> Texture;
         /// <summary>
+        /// The color that this panel's <see cref="Texture"/> should be drawn with.
+        /// If this style property has no value, <see cref="Color.White"/> is used.
+        /// </summary>
+        public StyleProp<Color> DrawColor;
+        /// <summary>
         /// The scroll bar that this panel contains.
         /// This is only nonnull if <see cref="scrollOverflow"/> is true.
         /// </summary>
@@ -154,7 +159,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             if (this.Texture.HasValue())
-                batch.Draw(this.Texture, this.DisplayArea, Color.White * alpha, this.Scale);
+                batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow || this.renderTarget == null) {
                 base.Draw(time, batch, alpha, blendState, samplerState, matrix);
