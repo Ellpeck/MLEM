@@ -257,12 +257,12 @@ namespace MLEM.Ui.Elements {
         public bool CanAutoAnchorsAttach = true;
         /// <summary>
         /// Set this field to true to cause this element's width to be automatically calculated based on the area that its <see cref="Children"/> take up.
-        /// To use this element's <see cref="Size"/>'s X coordinate as a minimum width rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> to true.
+        /// To use this element's <see cref="Size"/>'s X coordinate as a minimum or maximum width rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> or <see cref="TreatSizeAsMaximum"/> to true.
         /// </summary>
         public bool SetWidthBasedOnChildren;
         /// <summary>
         /// Set this field to true to cause this element's height to be automatically calculated based on the area that its <see cref="Children"/> take up.
-        /// To use this element's <see cref="Size"/>'s Y coordinate as a minimum height rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> to true.
+        /// To use this element's <see cref="Size"/>'s Y coordinate as a minimum or maximum height rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> or <see cref="TreatSizeAsMaximum"/> to true.
         /// </summary>
         public bool SetHeightBasedOnChildren;
         /// <summary>
@@ -271,6 +271,11 @@ namespace MLEM.Ui.Elements {
         /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
         /// </summary>
         public bool TreatSizeAsMinimum;
+        /// <summary>
+        /// If this field is set to true, and <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/>are enabled, the resulting width or height weill always be less than or equal to this element's <see cref="Size"/>.
+        /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
+        /// </summary>
+        public bool TreatSizeAsMaximum;
         /// <summary>
         /// Set this field to true to cause this element's final display area to never exceed that of its <see cref="Parent"/>.
         /// If the resulting area is too large, the size of this element is shrunk to fit the target area.
@@ -661,8 +666,12 @@ namespace MLEM.Ui.Elements {
                         }
                     }
 
-                    if (this.TreatSizeAsMinimum)
+                    if (this.TreatSizeAsMinimum) {
                         autoSize = Vector2.Max(autoSize, actualSize);
+                    } else if (this.TreatSizeAsMaximum) {
+                        autoSize = Vector2.Min(autoSize, actualSize);
+                    }
+
                     if (!autoSize.Equals(this.UnscrolledArea.Size, 0.01F)) {
                         recursion++;
                         if (recursion >= 16) {
