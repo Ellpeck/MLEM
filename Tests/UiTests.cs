@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Misc;
@@ -81,6 +82,28 @@ namespace Tests {
             Assert.AreEqual("custom", style.Value);
             style.SetFromStyle("from style again");
             Assert.AreEqual("custom", style.Value);
+        }
+
+        [Test]
+        public void TestAutoAreaPerformance() {
+            var stopwatch = new Stopwatch();
+            for (var i = 1; i <= 100; i++) {
+                var totalUpdates = 0;
+                var main = new Group(Anchor.TopLeft, new Vector2(50)) {
+                    OnAreaUpdated = e => totalUpdates++
+                };
+                var group = main;
+                for (var g = 0; g < i; g++) {
+                    group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One) {
+                        OnAreaUpdated = e => totalUpdates++
+                    });
+                }
+                stopwatch.Restart();
+                this.AddAndUpdate(main);
+                stopwatch.Stop();
+                var allChildren = main.GetChildren(regardGrandchildren: true);
+                TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {stopwatch.Elapsed.TotalMilliseconds * 1000000}ns");
+            }
         }
 
         private void AddAndUpdate(Element element) {
