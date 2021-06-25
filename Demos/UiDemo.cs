@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Misc;
 using MLEM.Startup;
@@ -190,6 +191,14 @@ namespace Demos {
 
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button", "This button can't be clicked or moved to using automatic navigation") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
+
+            const string alignText = "Paragraphs can have <c CornflowerBlue><l Left>left</l></c> aligned text, <c CornflowerBlue><l Right>right</l></c> aligned text and <c CornflowerBlue><l Center>center</l></c> aligned text.";
+            this.root.AddChild(new VerticalSpace(3));
+            var alignPar = this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, alignText));
+            alignPar.LinkAction = (l, c) => {
+                if (Enum.TryParse<TextAlignment>(c.Match.Groups[1].Value, out var alignment))
+                    alignPar.Alignment = alignment;
+            };
 
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "The code for this demo contains some examples for how to query element data. This is the output of that:"));

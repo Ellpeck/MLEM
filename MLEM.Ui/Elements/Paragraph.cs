@@ -16,7 +16,6 @@ namespace MLEM.Ui.Elements {
     /// </summary>
     public class Paragraph : Element {
 
-        private string text;
         /// <summary>
         /// The font that this paragraph draws text with.
         /// To set its bold and italic font, use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.
@@ -84,6 +83,20 @@ namespace MLEM.Ui.Elements {
         /// By default, <see cref="MlemPlatform.OpenLinkOrFile"/> is executed.
         /// </summary>
         public Action<Link, LinkCode> LinkAction;
+        /// <summary>
+        /// The <see cref="TextAlignment"/> that this paragraph's text should be rendered with
+        /// </summary>
+        public TextAlignment Alignment {
+            get => this.alignment;
+            set {
+                this.alignment = value;
+                this.SetAreaDirty();
+                this.TokenizedText = null;
+            }
+        }
+
+        private string text;
+        private TextAlignment alignment;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -128,10 +141,10 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            var pos = this.DisplayArea.Location;
+            var pos = this.DisplayArea.Location + new Vector2(GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
-            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0);
+            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, this.Alignment);
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
         }
 
@@ -151,7 +164,7 @@ namespace MLEM.Ui.Elements {
         protected virtual void ParseText(Vector2 size) {
             if (this.TokenizedText == null) {
                 // tokenize the text
-                this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text);
+                this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text, this.Alignment);
 
                 // add links to the paragraph
                 this.RemoveChildren(c => c is Link);
@@ -162,15 +175,25 @@ namespace MLEM.Ui.Elements {
             var width = size.X - this.ScaledPadding.Width;
             var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
             if (this.TruncateIfLong) {
-                this.TokenizedText.Truncate(this.RegularFont, width, scale, this.Ellipsis);
+                this.TokenizedText.Truncate(this.RegularFont, width, scale, this.Ellipsis, this.Alignment);
             } else {
-                this.TokenizedText.Split(this.RegularFont, width, scale);
+                this.TokenizedText.Split(this.RegularFont, width, scale, this.Alignment);
             }
         }
 
         private void QueryTextCallback() {
             if (this.GetTextCallback != null)
                 this.Text = this.GetTextCallback(this);
+        }
+
+        private float GetAlignmentOffset() {
+            switch (this.Alignment) {
+                case TextAlignment.Center:
+                    return this.DisplayArea.Width / 2;
+                case TextAlignment.Right:
+                    return this.DisplayArea.Width;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -214,7 +237,7 @@ namespace MLEM.Ui.Elements {
             public override void ForceUpdateArea() {
                 // set the position offset and size to the token's first area
                 var area = this.Token.GetArea(Vector2.Zero, this.textScale).First();
-                this.PositionOffset = area.Location;
+                this.PositionOffset = area.Location + new Vector2(((Paragraph) this.Parent).GetAlignmentOffset() / this.Parent.Scale, 0);
                 this.Size = area.Size;
                 base.ForceUpdateArea();
             }

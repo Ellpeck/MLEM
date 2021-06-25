@@ -70,13 +70,13 @@ namespace MLEM.Font {
         }
 
         ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
-        public Vector2 MeasureString(string text) {
+        public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
                 return size;
             var xOffset = 0F;
-            foreach (var c in text) {
-                switch (c) {
+            for (var i = 0; i < text.Length; i++) {
+                switch (text[i]) {
                     case '\n':
                         xOffset = 0;
                         size.Y += this.LineHeight;
@@ -90,8 +90,16 @@ namespace MLEM.Font {
                     case Zwsp:
                         // don't add width for a zero-width space
                         break;
+                    case ' ':
+                        if (ignoreTrailingSpaces && IsTrailingSpace(text, i)) {
+                            // if this is a trailing space, we can skip remaining spaces too
+                            i = text.Length - 1;
+                            break;
+                        }
+                        xOffset += this.MeasureChar(' ').X;
+                        break;
                     default:
-                        xOffset += this.MeasureChar(c).X;
+                        xOffset += this.MeasureChar(text[i]).X;
                         break;
                 }
                 // increase x size if this line is the longest
@@ -184,6 +192,14 @@ namespace MLEM.Font {
                 }
             }
             return ret.ToString();
+        }
+
+        private static bool IsTrailingSpace(string s, int index) {
+            for (var i = index + 1; i < s.Length; i++) {
+                if (s[i] != ' ')
+                    return false;
+            }
+            return true;
         }
 
     }

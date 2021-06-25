@@ -33,6 +33,10 @@ namespace MLEM.Formatting {
         /// </summary>
         public string DisplayString => this.ModifiedSubstring ?? this.Substring;
         /// <summary>
+        /// The <see cref="DisplayString"/>, but split at newline characters
+        /// </summary>
+        public string[] SplitDisplayString { get; internal set; }
+        /// <summary>
         /// The substring that this token contains, without the formatting codes removed.
         /// </summary>
         public readonly string RawSubstring;

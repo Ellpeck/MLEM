@@ -38,13 +38,13 @@ namespace MLEM.Formatting {
         public readonly Code[] AllCodes;
         private string modifiedString;
 
-        internal TokenizedString(GenericFont font, string rawString, string strg, Token[] tokens) {
+        internal TokenizedString(GenericFont font, TextAlignment alignment, string rawString, string strg, Token[] tokens) {
             this.RawString = rawString;
             this.String = strg;
             this.Tokens = tokens;
             // since a code can be present in multiple tokens, we use Distinct here
             this.AllCodes = tokens.SelectMany(t => t.AppliedCodes).Distinct().ToArray();
-            this.CalculateTokenAreas(font);
+            this.RecalculateTokenData(font, alignment);
         }
 
         /// <summary>
@@ -55,10 +55,11 @@ namespace MLEM.Formatting {
         /// <param name="font">The font to use for width calculations</param>
         /// <param name="width">The maximum width, in display pixels based on the font and scale</param>
         /// <param name="scale">The scale to use for width measurements</param>
-        public void Split(GenericFont font, float width, float scale) {
+        /// <param name="alignment">The text alignment that should be used for width calculations</param>
+        public void Split(GenericFont font, float width, float scale, TextAlignment alignment = TextAlignment.Left) {
             // a split string has the same character count as the input string but with newline characters added
             this.modifiedString = font.SplitString(this.String, width, scale);
-            this.StoreModifiedSubstrings(font);
+            this.StoreModifiedSubstrings(font, alignment);
         }
 
         /// <summary>
@@ -70,12 +71,13 @@ namespace MLEM.Formatting {
         /// <param name="width">The maximum width, in display pixels based on the font and scale</param>
         /// <param name="scale">The scale to use for width measurements</param>
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
-        public void Truncate(GenericFont font, float width, float scale, string ellipsis = "") {
+        /// <param name="alignment">The text alignment that should be used for width calculations</param>
+        public void Truncate(GenericFont font, float width, float scale, string ellipsis = "", TextAlignment alignment = TextAlignment.Left) {
             this.modifiedString = font.TruncateString(this.String, width, scale, false, ellipsis);
-            this.StoreModifiedSubstrings(font);
+            this.StoreModifiedSubstrings(font, alignment);
         }
 
-        /// <inheritdoc cref="GenericFont.MeasureString(string)"/>
+        /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
         public Vector2 Measure(GenericFont font) {
             return font.MeasureString(this.DisplayString);
         }
@@ -102,77 +104,116 @@ namespace MLEM.Formatting {
         }
 
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
-            var innerOffset = new Vector2();
-            foreach (var token in this.Tokens) {
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, TextAlignment alignment = TextAlignment.Left) {
+            var innerOffset = new Vector2(this.GetInnerOffsetX(font, 0, 0, scale, alignment), 0);
+            for (var t = 0; t < this.Tokens.Length; t++) {
+                var token = this.Tokens[t];
                 var drawFont = token.GetFont(font) ?? font;
                 var drawColor = token.GetColor(color) ?? color;
-                for (var i = 0; i < token.DisplayString.Length; i++) {
-                    var c = token.DisplayString[i];
-                    if (c == '\n') {
-                        innerOffset.X = 0;
+                for (var l = 0; l < token.SplitDisplayString.Length; l++) {
+                    var line = token.SplitDisplayString[l];
+                    for (var i = 0; i < line.Length; i++) {
+                        var c = line[i];
+                        if (i == 0)
+                            token.DrawSelf(time, batch, pos + innerOffset, font, color, scale, depth);
+
+                        var cString = c.ToCachedString();
+                        token.DrawCharacter(time, batch, c, cString, i, pos + innerOffset, drawFont, drawColor, scale, depth);
+                        innerOffset.X += font.MeasureString(cString).X * scale;
+                    }
+                    // only split at a new line, not between tokens!
+                    if (l < token.SplitDisplayString.Length - 1) {
+                        innerOffset.X = this.GetInnerOffsetX(font, t, l + 1, scale, alignment);
                         innerOffset.Y += font.LineHeight * scale;
                     }
-                    if (i == 0)
-                        token.DrawSelf(time, batch, pos + innerOffset, font, color, scale, depth);
-
-                    var cString = c.ToCachedString();
-                    token.DrawCharacter(time, batch, c, cString, i, pos + innerOffset, drawFont, drawColor, scale, depth);
-                    innerOffset.X += font.MeasureString(cString).X * scale;
                 }
             }
         }
 
-        private void StoreModifiedSubstrings(GenericFont font) {
-            // skip substring logic for unformatted text
+        private void StoreModifiedSubstrings(GenericFont font, TextAlignment alignment) {
             if (this.Tokens.Length == 1) {
+                // skip substring logic for unformatted text
                 this.Tokens[0].ModifiedSubstring = this.modifiedString;
-                return;
+            } else {
+                // this is basically a substring function that ignores added newlines for indexing
+                var index = 0;
+                var currToken = 0;
+                var splitIndex = 0;
+                var ret = new StringBuilder();
+                while (splitIndex < this.modifiedString.Length && currToken < this.Tokens.Length) {
+                    var token = this.Tokens[currToken];
+                    if (token.Substring.Length > 0) {
+                        ret.Append(this.modifiedString[splitIndex]);
+                        // if the current char is not an added newline, we simulate length increase
+                        if (this.modifiedString[splitIndex] != '\n' || this.String[index] == '\n')
+                            index++;
+                        splitIndex++;
+                    }
+                    // move on to the next token if we reached its end
+                    if (index >= token.Index + token.Substring.Length) {
+                        token.ModifiedSubstring = ret.ToString();
+                        ret.Clear();
+                        currToken++;
+                    }
+                }
+                // set additional token contents beyond our string in case we truncated
+                if (ret.Length > 0)
+                    this.Tokens[currToken++].ModifiedSubstring = ret.ToString();
+                while (currToken < this.Tokens.Length)
+                    this.Tokens[currToken++].ModifiedSubstring = string.Empty;
             }
 
-            // this is basically a substring function that ignores added newlines for indexing
-            var index = 0;
-            var currToken = 0;
-            var splitIndex = 0;
-            var ret = new StringBuilder();
-            while (splitIndex < this.modifiedString.Length && currToken < this.Tokens.Length) {
-                var token = this.Tokens[currToken];
-                if (token.Substring.Length > 0) {
-                    ret.Append(this.modifiedString[splitIndex]);
-                    // if the current char is not an added newline, we simulate length increase
-                    if (this.modifiedString[splitIndex] != '\n' || this.String[index] == '\n')
-                        index++;
-                    splitIndex++;
-                }
-                // move on to the next token if we reached its end
-                if (index >= token.Index + token.Substring.Length) {
-                    token.ModifiedSubstring = ret.ToString();
-                    ret.Clear();
-                    currToken++;
-                }
-            }
-            // set additional token contents beyond our string in case we truncated
-            if (ret.Length > 0)
-                this.Tokens[currToken++].ModifiedSubstring = ret.ToString();
-            while (currToken < this.Tokens.Length)
-                this.Tokens[currToken++].ModifiedSubstring = string.Empty;
-
-            this.CalculateTokenAreas(font);
+            this.RecalculateTokenData(font, alignment);
         }
 
-        private void CalculateTokenAreas(GenericFont font) {
-            var innerOffset = new Vector2();
-            foreach (var token in this.Tokens) {
+        private float GetInnerOffsetX(GenericFont font, int tokenIndex, int lineIndex, float scale, TextAlignment alignment) {
+            if (alignment > TextAlignment.Left) {
+                var rest = this.GetRestOfLineLength(font, tokenIndex, lineIndex) * scale;
+                if (alignment == TextAlignment.Center)
+                    rest /= 2;
+                return -rest;
+            }
+            return 0;
+        }
+
+        private float GetRestOfLineLength(GenericFont font, int tokenIndex, int lineIndex) {
+            var token = this.Tokens[tokenIndex];
+            var ret = font.MeasureString(token.SplitDisplayString[lineIndex], true).X;
+            if (lineIndex >= token.SplitDisplayString.Length - 1) {
+                // the line ends somewhere in or after the next token
+                for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
+                    var other = this.Tokens[i];
+                    if (other.SplitDisplayString.Length > 1) {
+                        // the line ends in this token
+                        ret += font.MeasureString(other.SplitDisplayString[0]).X;
+                        break;
+                    } else {
+                        // the line doesn't end in this token, so add it fully
+                        ret += font.MeasureString(other.DisplayString).X;
+                    }
+                }
+            }
+            return ret;
+        }
+
+        private void RecalculateTokenData(GenericFont font, TextAlignment alignment) {
+            // split display strings
+            foreach (var token in this.Tokens)
+                token.SplitDisplayString = token.DisplayString.Split('\n');
+
+            // token areas
+            var innerOffset = new Vector2(this.GetInnerOffsetX(font, 0, 0, 1, alignment), 0);
+            for (var t = 0; t < this.Tokens.Length; t++) {
+                var token = this.Tokens[t];
                 var area = new List<RectangleF>();
-                var split = token.DisplayString.Split('\n');
-                for (var i = 0; i < split.Length; i++) {
-                    var size = font.MeasureString(split[i]);
+                for (var l = 0; l < token.SplitDisplayString.Length; l++) {
+                    var size = font.MeasureString(token.SplitDisplayString[l]);
                     var rect = new RectangleF(innerOffset, size);
                     if (!rect.IsEmpty)
                         area.Add(rect);
 
-                    if (i < split.Length - 1) {
-                        innerOffset.X = 0;
+                    if (l < token.SplitDisplayString.Length - 1) {
+                        innerOffset.X = this.GetInnerOffsetX(font, t, l + 1, 1, alignment);
                         innerOffset.Y += font.LineHeight;
                     } else {
                         innerOffset.X += size.X;
