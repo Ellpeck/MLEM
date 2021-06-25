@@ -114,7 +114,7 @@ namespace MLEM.Formatting {
                     var line = token.SplitDisplayString[l];
                     for (var i = 0; i < line.Length; i++) {
                         var c = line[i];
-                        if (i == 0)
+                        if (l == 0 && i == 0)
                             token.DrawSelf(time, batch, pos + innerOffset, font, color, scale, depth);
 
                         var cString = c.ToCachedString();
