@@ -14,6 +14,7 @@
         <Title>MLEM Templates</Title>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending MonoGame cross-platform project templates</Description>
+        <PackageReleaseNotes>See the full changelog at https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md</PackageReleaseNotes>
         <PackageTags>dotnet-new templates monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

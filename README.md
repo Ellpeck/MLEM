@@ -8,6 +8,7 @@
 - See the source code in this repository
 - See tutorials and API documentation on [the website](https://mlem.ellpeck.de/)
 - Check out [the demos](https://github.com/Ellpeck/MLEM/tree/main/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/main/Demos.DesktopGL) or [Android](https://github.com/Ellpeck/MLEM/tree/main/Demos.Android)
+- See [the changelog](https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md) for information on updates
 
 # Made with MLEM
 - [A Breath of Spring Air](https://ellpeck.itch.io/a-breath-of-spring-air), a short platformer ([Source](https://git.ellpeck.de/Ellpeck/GreatSpringGameJam))
