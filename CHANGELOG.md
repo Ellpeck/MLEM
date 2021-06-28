@@ -3,6 +3,9 @@ MLEM uses [semantic versioning](https://semver.org/).
 
 The newest version in this changelog is the one that is currently in development. The changelog for unreleased versions might be edited over time as new features get added, changed or removed. To see the newest released version, check out the [release branch](https://github.com/Ellpeck/MLEM/tree/release).
 
+Jump to version:
+- [5.0.0 (Unreleased)](#500-unreleased)
+
 ## 5.0.0 (Unreleased)
 ### MLEM
 Additions
@@ -14,7 +17,7 @@ Additions
 - Added InputsDown and InputsPressed properties to InputHandler
 - Added text alignment options to tokenized strings
 
-  Improvements
+Improvements
 - Allow NinePatches to be drawn tiled rather than stretched
 - Added the ability for Direction2 to be used as flags
 - Made Padding and Direction2 DataContracts
