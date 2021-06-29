@@ -4,7 +4,10 @@ MLEM uses [semantic versioning](https://semver.org/).
 This changelog also contains information on versions that have yet to be released. The changelog for unreleased versions might be edited over time as new features get added, changed or removed. To see the newest released version's code, check out the [release branch](https://github.com/Ellpeck/MLEM/tree/release).
 
 Jump to version:
+- [5.1.0 (Unreleased)](#510-unreleased)
 - [5.0.0](#500)
+
+## 5.1.0 (Unreleased)
 
 ## 5.0.0
 ### MLEM
