@@ -1,13 +1,18 @@
 # Changelog
 MLEM uses [semantic versioning](https://semver.org/).
 
-This changelog also contains information on versions that have yet to be released. The changelog for unreleased versions might be edited over time as new features get added, changed or removed. To see the newest released version's code, check out the [release branch](https://github.com/Ellpeck/MLEM/tree/release).
+This changelog also contains information on versions that have yet to be released. The changelog for unreleased versions might be edited over time as new features get added, changed or removed.
+
+You can get prerelease builds of unreleased versions on [BaGet](https://nuget.ellpeck.de). To see the newest released version's code, check out the [release branch](https://github.com/Ellpeck/MLEM/tree/release).
 
 Jump to version:
 - [5.1.0 (Unreleased)](#510-unreleased)
 - [5.0.0](#500)
 
 ## 5.1.0 (Unreleased)
+### MLEM
+Fixes
+- Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame
 
 ## 5.0.0
 ### MLEM

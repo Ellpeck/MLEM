@@ -120,13 +120,13 @@ namespace MLEM.Input {
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
         /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
         /// </summary>
-        public GenericInput[] InputsDown { get; private set; }
+        public GenericInput[] InputsDown { get; private set; } = Array.Empty<GenericInput>();
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> that are currently considered pressed.
         /// An input is considered pressed if it was up in the last update, and is up in the current one.
         /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
         /// </summary>
-        public GenericInput[] InputsPressed { get; private set; }
+        public GenericInput[] InputsPressed { get; private set; } = Array.Empty<GenericInput>();
         private readonly List<GenericInput> inputsDownAccum = new List<GenericInput>();
         /// <summary>
         /// Set this field to false to enable <see cref="InputsDown"/> and <see cref="InputsPressed"/> being calculated.
