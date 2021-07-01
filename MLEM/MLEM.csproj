@@ -7,7 +7,7 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending MonoGame provides extension methods and additional features for MonoGame</Description>
-        <PackageReleaseNotes>See the full changelog at https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
         <PackageTags>monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
