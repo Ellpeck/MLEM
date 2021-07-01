@@ -1,4 +1,4 @@
-<img src="Logo.svg" width="25%" >
+<img src="../Media/Logo.svg" width="25%" >
 
 **MLEM Library for Extending MonoGame** is an addition to the game framework [MonoGame](https://www.monogame.net/) that provides extension methods, quality of life improvements and additional features like a ui system and easy input handling.
 
@@ -8,7 +8,7 @@
 - See the source code on [GitHub](https://github.com/Ellpeck/MLEM)
 - See tutorials and API documentation on this website
 - Check out [the demos](https://github.com/Ellpeck/MLEM/tree/main/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/main/Demos.DesktopGL) or [Android](https://github.com/Ellpeck/MLEM/tree/main/Demos.Android)
-- See [the changelog](https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md) for information on updates
+- See [the changelog](../CHANGELOG.md) for information on updates
 
 # Made with MLEM
 - [A Breath of Spring Air](https://ellpeck.itch.io/a-breath-of-spring-air), a short platformer ([Source](https://git.ellpeck.de/Ellpeck/GreatSpringGameJam))
@@ -21,10 +21,10 @@ If you created a game with the help of MLEM, you can get it added to this list b
 Here are some images that show a couple of MLEM's features.
 
 MLEM.Ui in action:  
-<img src="Ui.gif">
+<img src="../Media/Ui.gif">
 
 MLEM's text formatting system:  
-<img src="Formatting.png">
+<img src="../Media/Formatting.png">
 
 # Friends of MLEM
 There are several other NuGet packages and tools that work well in combination with MonoGame and MLEM. Here are some of them:
