@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -41,7 +39,9 @@ namespace MLEM.Textures {
             this.Region = texture;
             this.Padding = padding;
             this.Mode = mode;
-            this.SourceRectangles = this.CreateRectangles(this.Region.Area).ToArray();
+            this.SourceRectangles = new Rectangle[9];
+            for (var i = 0; i < this.SourceRectangles.Length; i++)
+                this.SourceRectangles[i] = (Rectangle) this.GetRectangleForIndex((RectangleF) this.Region.Area, i);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace MLEM.Textures {
             this(texture, padding, padding, padding, padding, mode) {
         }
 
-        internal IEnumerable<RectangleF> CreateRectangles(RectangleF area, float patchScale = 1) {
+        internal RectangleF GetRectangleForIndex(RectangleF area, int index, float patchScale = 1) {
             var pl = this.Padding.Left * patchScale;
             var pr = this.Padding.Right * patchScale;
             var pt = this.Padding.Top * patchScale;
@@ -90,19 +90,28 @@ namespace MLEM.Textures {
             var topY = area.Y + pt;
             var bottomY = area.Y + area.Height - pb;
 
-            yield return new RectangleF(area.X, area.Y, pl, pt);
-            yield return new RectangleF(leftX, area.Y, centerW, pt);
-            yield return new RectangleF(rightX, area.Y, pr, pt);
-            yield return new RectangleF(area.X, topY, pl, centerH);
-            yield return new RectangleF(leftX, topY, centerW, centerH);
-            yield return new RectangleF(rightX, topY, pr, centerH);
-            yield return new RectangleF(area.X, bottomY, pl, pb);
-            yield return new RectangleF(leftX, bottomY, centerW, pb);
-            yield return new RectangleF(rightX, bottomY, pr, pb);
-        }
-
-        private IEnumerable<Rectangle> CreateRectangles(Rectangle area, float patchScale = 1) {
-            return this.CreateRectangles((RectangleF) area, patchScale).Select(r => (Rectangle) r);
+            switch (index) {
+                case 0:
+                    return new RectangleF(area.X, area.Y, pl, pt);
+                case 1:
+                    return new RectangleF(leftX, area.Y, centerW, pt);
+                case 2:
+                    return new RectangleF(rightX, area.Y, pr, pt);
+                case 3:
+                    return new RectangleF(area.X, topY, pl, centerH);
+                case 4:
+                    return new RectangleF(leftX, topY, centerW, centerH);
+                case 5:
+                    return new RectangleF(rightX, topY, pr, centerH);
+                case 6:
+                    return new RectangleF(area.X, bottomY, pl, pb);
+                case 7:
+                    return new RectangleF(leftX, bottomY, centerW, pb);
+                case 8:
+                    return new RectangleF(rightX, bottomY, pr, pb);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(index));
+            }
         }
 
     }
@@ -143,11 +152,10 @@ namespace MLEM.Textures {
         /// <param name="layerDepth">The depth</param>
         /// <param name="patchScale">The scale of each area of the nine patch</param>
         public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1) {
-            var destinations = texture.CreateRectangles(destinationRectangle, patchScale);
-            var count = 0;
-            foreach (var rect in destinations) {
+            for (var i = 0; i < texture.SourceRectangles.Length; i++) {
+                var rect = texture.GetRectangleForIndex(destinationRectangle, i, patchScale);
                 if (!rect.IsEmpty) {
-                    var src = texture.SourceRectangles[count];
+                    var src = texture.SourceRectangles[i];
                     switch (texture.Mode) {
                         case NinePatchMode.Stretch:
                             batch.Draw(texture.Region.Texture, rect, src, color, rotation, origin, effects, layerDepth);
@@ -164,7 +172,6 @@ namespace MLEM.Textures {
                             break;
                     }
                 }
-                count++;
             }
         }
 

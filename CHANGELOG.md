@@ -10,6 +10,9 @@ Jump to version:
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame
 
+Improvements
+- Improved NinePatch memory performance
+
 ## 5.0.0
 ### MLEM
 Additions
