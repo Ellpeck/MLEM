@@ -13,6 +13,10 @@ Fixes
 Improvements
 - Improved NinePatch memory performance
 
+### MLEM.Ui
+Fixes
+- Fixed a crash if a paragraph has a link formatting code, but no font
+
 ## 5.0.0
 ### MLEM
 Additions
