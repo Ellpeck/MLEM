@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
+using static MLEM.Misc.Direction2;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -83,9 +84,9 @@ namespace MLEM.Misc {
         /// <summary>
         /// All directions except <see cref="Direction2.None"/>
         /// </summary>
-        public static readonly Direction2[] AllExceptNone = All.Where(dir => dir != Direction2.None).ToArray();
+        public static readonly Direction2[] AllExceptNone = All.Where(dir => dir != None).ToArray();
 
-        private static readonly Direction2[] Clockwise = {Direction2.Up, Direction2.UpRight, Direction2.Right, Direction2.DownRight, Direction2.Down, Direction2.DownLeft, Direction2.Left, Direction2.UpLeft};
+        private static readonly Direction2[] Clockwise = {Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft};
         private static readonly Dictionary<Direction2, int> ClockwiseLookup = Clockwise.Select((d, i) => (d, i)).ToDictionary(kv => kv.d, kv => kv.i);
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction to query</param>
         /// <returns>Whether the direction is adjacent</returns>
         public static bool IsAdjacent(this Direction2 dir) {
-            return dir == Direction2.Up || dir == Direction2.Right || dir == Direction2.Down || dir == Direction2.Left;
+            return dir == Up || dir == Right || dir == Down || dir == Left;
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction to query</param>
         /// <returns>Whether the direction is diagonal</returns>
         public static bool IsDiagonal(this Direction2 dir) {
-            return dir == Direction2.UpRight || dir == Direction2.DownRight || dir == Direction2.UpLeft || dir == Direction2.DownLeft;
+            return dir == UpRight || dir == DownRight || dir == UpLeft || dir == DownLeft;
         }
 
         /// <summary>
@@ -115,21 +116,21 @@ namespace MLEM.Misc {
         /// <returns>The direction's offset</returns>
         public static Point Offset(this Direction2 dir) {
             switch (dir) {
-                case Direction2.Up:
+                case Up:
                     return new Point(0, -1);
-                case Direction2.Right:
+                case Right:
                     return new Point(1, 0);
-                case Direction2.Down:
+                case Down:
                     return new Point(0, 1);
-                case Direction2.Left:
+                case Left:
                     return new Point(-1, 0);
-                case Direction2.UpRight:
+                case UpRight:
                     return new Point(1, -1);
-                case Direction2.DownRight:
+                case DownRight:
                     return new Point(1, 1);
-                case Direction2.DownLeft:
+                case DownLeft:
                     return new Point(-1, 1);
-                case Direction2.UpLeft:
+                case UpLeft:
                     return new Point(-1, -1);
                 default:
                     return Point.Zero;
@@ -155,24 +156,24 @@ namespace MLEM.Misc {
         /// <returns>The opposite of the direction</returns>
         public static Direction2 Opposite(this Direction2 dir) {
             switch (dir) {
-                case Direction2.Up:
-                    return Direction2.Down;
-                case Direction2.Right:
-                    return Direction2.Left;
-                case Direction2.Down:
-                    return Direction2.Up;
-                case Direction2.Left:
-                    return Direction2.Right;
-                case Direction2.UpRight:
-                    return Direction2.DownLeft;
-                case Direction2.DownRight:
-                    return Direction2.UpLeft;
-                case Direction2.DownLeft:
-                    return Direction2.UpRight;
-                case Direction2.UpLeft:
-                    return Direction2.DownRight;
+                case Up:
+                    return Down;
+                case Right:
+                    return Left;
+                case Down:
+                    return Up;
+                case Left:
+                    return Right;
+                case UpRight:
+                    return DownLeft;
+                case DownRight:
+                    return UpLeft;
+                case DownLeft:
+                    return UpRight;
+                case UpLeft:
+                    return DownRight;
                 default:
-                    return Direction2.None;
+                    return None;
             }
         }
 
@@ -204,9 +205,7 @@ namespace MLEM.Misc {
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false) {
             var index = ClockwiseLookup[dir] - (fortyFiveDegrees ? 1 : 2);
-            if (index < 0)
-                index += Clockwise.Length;
-            return Clockwise[index % Clockwise.Length];
+            return Clockwise[index < 0 ? index + Clockwise.Length : index];
         }
 
         /// <summary>
@@ -220,7 +219,7 @@ namespace MLEM.Misc {
                 if (Math.Abs(dir.Angle() - offsetAngle) <= MathHelper.PiOver4 / 2)
                     return dir;
             }
-            return Direction2.None;
+            return None;
         }
 
         /// <summary>
@@ -231,10 +230,10 @@ namespace MLEM.Misc {
         /// <returns>The vector's direction</returns>
         public static Direction2 To90Direction(this Vector2 offset) {
             if (offset.X == 0 && offset.Y == 0)
-                return Direction2.None;
+                return None;
             if (Math.Abs(offset.X) > Math.Abs(offset.Y))
-                return offset.X > 0 ? Direction2.Right : Direction2.Left;
-            return offset.Y > 0 ? Direction2.Down : Direction2.Up;
+                return offset.X > 0 ? Right : Left;
+            return offset.Y > 0 ? Down : Up;
         }
 
         /// <summary>
@@ -244,7 +243,7 @@ namespace MLEM.Misc {
         /// <param name="reference">The direction to rotate by</param>
         /// <param name="start">The direction to use as the default direction</param>
         /// <returns>The direction, rotated by the reference direction</returns>
-        public static Direction2 RotateBy(this Direction2 dir, Direction2 reference, Direction2 start = Direction2.Up) {
+        public static Direction2 RotateBy(this Direction2 dir, Direction2 reference, Direction2 start = Up) {
             var diff = ClockwiseLookup[reference] - ClockwiseLookup[start];
             if (diff < 0)
                 diff += Clockwise.Length;
