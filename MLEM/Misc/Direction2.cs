@@ -85,6 +85,9 @@ namespace MLEM.Misc {
         /// </summary>
         public static readonly Direction2[] AllExceptNone = All.Where(dir => dir != Direction2.None).ToArray();
 
+        private static readonly Direction2[] Clockwise = {Direction2.Up, Direction2.UpRight, Direction2.Right, Direction2.DownRight, Direction2.Down, Direction2.DownLeft, Direction2.Left, Direction2.UpLeft};
+        private static readonly Dictionary<Direction2, int> ClockwiseLookup = Clockwise.Select((d, i) => (d, i)).ToDictionary(kv => kv.d, kv => kv.i);
+
         /// <summary>
         /// Returns if the given direction is considered an "adjacent" direction.
         /// An adjacent direction is one that is not a diagonal.
@@ -190,26 +193,7 @@ namespace MLEM.Misc {
         /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCw(this Direction2 dir, bool fortyFiveDegrees = false) {
-            switch (dir) {
-                case Direction2.Up:
-                    return fortyFiveDegrees ? Direction2.UpRight : Direction2.Right;
-                case Direction2.Right:
-                    return fortyFiveDegrees ? Direction2.DownRight : Direction2.Down;
-                case Direction2.Down:
-                    return fortyFiveDegrees ? Direction2.DownLeft : Direction2.Left;
-                case Direction2.Left:
-                    return fortyFiveDegrees ? Direction2.UpLeft : Direction2.Up;
-                case Direction2.UpRight:
-                    return fortyFiveDegrees ? Direction2.Right : Direction2.DownRight;
-                case Direction2.DownRight:
-                    return fortyFiveDegrees ? Direction2.Down : Direction2.DownLeft;
-                case Direction2.DownLeft:
-                    return fortyFiveDegrees ? Direction2.Left : Direction2.UpLeft;
-                case Direction2.UpLeft:
-                    return fortyFiveDegrees ? Direction2.Up : Direction2.UpRight;
-                default:
-                    return Direction2.None;
-            }
+            return Clockwise[(ClockwiseLookup[dir] + (fortyFiveDegrees ? 1 : 2)) % Clockwise.Length];
         }
 
         /// <summary>
@@ -219,26 +203,10 @@ namespace MLEM.Misc {
         /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false) {
-            switch (dir) {
-                case Direction2.Up:
-                    return fortyFiveDegrees ? Direction2.UpLeft : Direction2.Left;
-                case Direction2.Right:
-                    return fortyFiveDegrees ? Direction2.UpRight : Direction2.Up;
-                case Direction2.Down:
-                    return fortyFiveDegrees ? Direction2.DownRight : Direction2.Right;
-                case Direction2.Left:
-                    return fortyFiveDegrees ? Direction2.DownLeft : Direction2.Down;
-                case Direction2.UpRight:
-                    return fortyFiveDegrees ? Direction2.Up : Direction2.UpLeft;
-                case Direction2.DownRight:
-                    return fortyFiveDegrees ? Direction2.Right : Direction2.UpRight;
-                case Direction2.DownLeft:
-                    return fortyFiveDegrees ? Direction2.Down : Direction2.DownRight;
-                case Direction2.UpLeft:
-                    return fortyFiveDegrees ? Direction2.Left : Direction2.DownLeft;
-                default:
-                    return Direction2.None;
-            }
+            var index = ClockwiseLookup[dir] - (fortyFiveDegrees ? 1 : 2);
+            if (index < 0)
+                index += Clockwise.Length;
+            return Clockwise[index % Clockwise.Length];
         }
 
         /// <summary>
@@ -267,6 +235,20 @@ namespace MLEM.Misc {
             if (Math.Abs(offset.X) > Math.Abs(offset.Y))
                 return offset.X > 0 ? Direction2.Right : Direction2.Left;
             return offset.Y > 0 ? Direction2.Down : Direction2.Up;
+        }
+
+        /// <summary>
+        /// Rotates the given direction by a given reference direction
+        /// </summary>
+        /// <param name="dir">The direction to rotate</param>
+        /// <param name="reference">The direction to rotate by</param>
+        /// <param name="start">The direction to use as the default direction</param>
+        /// <returns>The direction, rotated by the reference direction</returns>
+        public static Direction2 RotateBy(this Direction2 dir, Direction2 reference, Direction2 start = Direction2.Up) {
+            var diff = ClockwiseLookup[reference] - ClockwiseLookup[start];
+            if (diff < 0)
+                diff += Clockwise.Length;
+            return Clockwise[(ClockwiseLookup[dir] + diff) % Clockwise.Length];
         }
 
     }

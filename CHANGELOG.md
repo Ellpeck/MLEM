@@ -7,11 +7,15 @@ Jump to version:
 
 ## 5.1.0 (Unreleased)
 ### MLEM
+Additions
+- Added RotateBy to Direction2Helper
+
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame
 
 Improvements
 - Improved NinePatch memory performance
+- Moved sound-related classes into Sound namespace
 
 ### MLEM.Ui
 Fixes
