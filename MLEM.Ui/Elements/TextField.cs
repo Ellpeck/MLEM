@@ -74,7 +74,6 @@ namespace MLEM.Ui.Elements {
         /// The font that this text field should display text with
         /// </summary>
         public StyleProp<GenericFont> Font;
-        private readonly StringBuilder text = new StringBuilder();
         /// <summary>
         /// This text field's current text
         /// </summary>
@@ -95,9 +94,6 @@ namespace MLEM.Ui.Elements {
         /// The width that the caret should render with.
         /// </summary>
         public float CaretWidth = 0.5F;
-        private double caretBlinkTimer;
-        private string displayedText;
-        private int textOffset;
         /// <summary>
         /// The rule used for text input.
         /// Rules allow only certain characters to be allowed inside of a text field.
@@ -111,7 +107,6 @@ namespace MLEM.Ui.Elements {
         /// The description of the <c>KeyboardInput</c> field on mobile devices and consoles
         /// </summary>
         public string MobileDescription;
-        private int caretPos;
         /// <summary>
         /// The position of the caret within the text.
         /// This is always between 0 and the <see cref="string.Length"/> of <see cref="Text"/>
@@ -128,6 +123,26 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        /// <summary>
+        /// A character that should be displayed instead of this text field's <see cref="Text"/> content.
+        /// The amount of masking characters displayed will be equal to the <see cref="Text"/>'s length.
+        /// This behavior is useful for password fields or similar.
+        /// </summary>
+        public char? MaskingCharacter {
+            get => this.maskingCharacter;
+            set {
+                this.maskingCharacter = value;
+                this.HandleTextChange(false);
+            }
+        }
+
+        private readonly StringBuilder text = new StringBuilder();
+
+        private char? maskingCharacter;
+        private double caretBlinkTimer;
+        private string displayedText;
+        private int textOffset;
+        private int caretPos;
 
         /// <summary>
         /// Creates a new text field with the given settings
@@ -136,10 +151,13 @@ namespace MLEM.Ui.Elements {
         /// <param name="size">The text field's size</param>
         /// <param name="rule">The text field's input rule</param>
         /// <param name="font">The font to use for drawing text</param>
-        public TextField(Anchor anchor, Vector2 size, Rule rule = null, GenericFont font = null) : base(anchor, size) {
+        /// <param name="text">The text that the text field should contain by default</param>
+        public TextField(Anchor anchor, Vector2 size, Rule rule = null, GenericFont font = null, string text = null) : base(anchor, size) {
             this.InputRule = rule ?? DefaultRule;
             if (font != null)
                 this.Font.Set(font);
+            if (text != null)
+                this.SetText(text, true);
 
             MlemPlatform.EnsureExists();
             this.OnPressed += async e => {
@@ -190,6 +208,8 @@ namespace MLEM.Ui.Elements {
                 this.displayedText = this.Text;
                 this.textOffset = 0;
             }
+            if (this.MaskingCharacter != null)
+                this.displayedText = new string(this.MaskingCharacter.Value, this.displayedText.Length);
 
             if (textChanged)
                 this.OnTextChange?.Invoke(this, this.Text);

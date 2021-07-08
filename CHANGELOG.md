@@ -18,6 +18,9 @@ Improvements
 - Moved sound-related classes into Sound namespace
 
 ### MLEM.Ui
+Additions
+- Added a masking character to TextField to allow for password-style text fields
+
 Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font
 

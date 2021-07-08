@@ -102,6 +102,13 @@ namespace Demos {
             this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10), TextField.OnlyNumbers) {PositionOffset = new Vector2(0, 1)});
 
             this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Password-style input:", true));
+            this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10), text: "secret") {
+                PositionOffset = new Vector2(0, 1),
+                MaskingCharacter = '*'
+            });
+
+            this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Zoom in or out:"));
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(10), "+") {
                 OnPressed = element => {
