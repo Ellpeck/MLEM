@@ -194,7 +194,9 @@ namespace MLEM.Misc {
         /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCw(this Direction2 dir, bool fortyFiveDegrees = false) {
-            return Clockwise[(ClockwiseLookup[dir] + (fortyFiveDegrees ? 1 : 2)) % Clockwise.Length];
+            if (!ClockwiseLookup.TryGetValue(dir, out var dirIndex))
+                return None;
+            return Clockwise[(dirIndex + (fortyFiveDegrees ? 1 : 2)) % Clockwise.Length];
         }
 
         /// <summary>
@@ -204,7 +206,9 @@ namespace MLEM.Misc {
         /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false) {
-            var index = ClockwiseLookup[dir] - (fortyFiveDegrees ? 1 : 2);
+            if (!ClockwiseLookup.TryGetValue(dir, out var dirIndex))
+                return None;
+            var index = dirIndex - (fortyFiveDegrees ? 1 : 2);
             return Clockwise[index < 0 ? index + Clockwise.Length : index];
         }
 
@@ -244,10 +248,16 @@ namespace MLEM.Misc {
         /// <param name="start">The direction to use as the default direction</param>
         /// <returns>The direction, rotated by the reference direction</returns>
         public static Direction2 RotateBy(this Direction2 dir, Direction2 reference, Direction2 start = Up) {
-            var diff = ClockwiseLookup[reference] - ClockwiseLookup[start];
+            if (!ClockwiseLookup.TryGetValue(reference, out var refIndex))
+                return None;
+            if (!ClockwiseLookup.TryGetValue(start, out var startIndex))
+                return None;
+            if (!ClockwiseLookup.TryGetValue(dir, out var dirIndex))
+                return None;
+            var diff = refIndex - startIndex;
             if (diff < 0)
                 diff += Clockwise.Length;
-            return Clockwise[(ClockwiseLookup[dir] + diff) % Clockwise.Length];
+            return Clockwise[(dirIndex + diff) % Clockwise.Length];
         }
 
     }
