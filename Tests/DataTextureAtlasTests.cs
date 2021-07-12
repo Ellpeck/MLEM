@@ -15,9 +15,15 @@ namespace Tests {
             var atlas = DataTextureAtlas.LoadAtlasData(new TextureRegion(texture), game.RawContent, "Texture.atlas");
             Assert.AreEqual(atlas.Regions.Count(), 5);
 
+            // no added offset
             var table = atlas["LongTableUp"];
             Assert.AreEqual(table.Area, new Rectangle(0, 32, 64, 48));
             Assert.AreEqual(table.PivotPixels, new Vector2(16, 48 - 32));
+
+            // added offset
+            var table2 = atlas["LongTableRight"];
+            Assert.AreEqual(table2.Area, new Rectangle(64, 32, 64, 48));
+            Assert.AreEqual(table2.PivotPixels, new Vector2(112 - 64, 48 - 32));
         }
 
     }

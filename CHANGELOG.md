@@ -24,6 +24,10 @@ Additions
 Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font
 
+### MLEM.Data
+Additions
+- Added the ability to specify a coordinate offset in data texture atlases
+
 ## 5.0.0
 ### MLEM
 Additions
