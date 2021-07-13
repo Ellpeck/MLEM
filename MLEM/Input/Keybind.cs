@@ -124,6 +124,23 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Converts this keybind into an easily human-readable string.
+        /// When using <see cref="ToString()"/>, this method is used with <paramref name="joiner"/> set to ", ".
+        /// </summary>
+        /// <param name="joiner">The string to use to join combinations</param>
+        /// <param name="combinationJoiner">The string to use for combination-internal joining, see <see cref="Combination.ToString(string,System.Func{MLEM.Input.GenericInput,string})"/></param>
+        /// <param name="inputName">The function to use for determining the display name of generic inputs, see <see cref="Combination.ToString(string,System.Func{MLEM.Input.GenericInput,string})"/></param>
+        /// <returns>A human-readable string representing this keybind</returns>
+        public string ToString(string joiner, string combinationJoiner = " + ", Func<GenericInput, string> inputName = null) {
+            return string.Join(joiner, this.combinations.Select(c => c.ToString(combinationJoiner, inputName)));
+        }
+
+        /// <inheritdoc />
+        public override string ToString() {
+            return this.ToString(", ");
+        }
+
+        /// <summary>
         /// A key combination is a combination of a set of modifier keys and a key.
         /// All of the keys are <see cref="GenericInput"/> instances, so they can be keyboard-, mouse- or gamepad-based.
         /// </summary>
@@ -182,6 +199,22 @@ namespace MLEM.Input {
             /// <returns>Whether this combination's modifiers are down</returns>
             public bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
                 return this.Modifiers.Length <= 0 || this.Modifiers.Any(m => handler.IsDown(m, gamepadIndex));
+            }
+
+            /// <summary>
+            /// Converts this combination into an easily human-readable string.
+            /// When using <see cref="ToString()"/>, this method is used with <paramref name="joiner"/> set to " + ".
+            /// </summary>
+            /// <param name="joiner">The string to use to join this combination's <see cref="Modifiers"/> and <see cref="Key"/> together</param>
+            /// <param name="inputName">The function to use for determining the display name of a <see cref="GenericInput"/>. If this is null, the generic input's default <see cref="GenericInput.ToString"/> method is used.</param>
+            /// <returns>A human-readable string representing this combination</returns>
+            public string ToString(string joiner, Func<GenericInput, string> inputName = null) {
+                return string.Join(joiner, this.Modifiers.Append(this.Key).Select(i => inputName?.Invoke(i) ?? i.ToString()));
+            }
+
+            /// <inheritdoc />
+            public override string ToString() {
+                return this.ToString(" + ");
             }
 
         }

@@ -131,11 +131,7 @@ namespace MLEM.Ui.Elements {
         public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null) {
             string GetCurrentName() {
                 var combination = keybind.GetCombinations().FirstOrDefault();
-                if (combination == null)
-                    return unboundPlaceholder;
-                return string.Join(" + ", combination.Modifiers
-                    .Append(combination.Key)
-                    .Select(i => inputName?.Invoke(i) ?? i.ToString()));
+                return combination?.ToString(" + ", inputName) ?? unboundPlaceholder;
             }
 
             var button = new Button(anchor, size, GetCurrentName());

@@ -27,19 +27,16 @@ namespace MLEM.Input {
 
         /// <inheritdoc />
         public override string ToString() {
-            var ret = this.Type.ToString();
             switch (this.Type) {
                 case InputType.Mouse:
-                    ret += ((MouseButton) this).ToString();
-                    break;
+                    return $"Mouse{(MouseButton) this}";
                 case InputType.Keyboard:
-                    ret += ((Keys) this).ToString();
-                    break;
+                    return ((Keys) this).ToString();
                 case InputType.Gamepad:
-                    ret += ((Buttons) this).ToString();
-                    break;
+                    return $"Gamepad{(Buttons) this}";
+                default:
+                    return this.Type.ToString();
             }
-            return ret;
         }
 
         /// <inheritdoc />
