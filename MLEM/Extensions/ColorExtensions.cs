@@ -35,7 +35,7 @@ namespace MLEM.Extensions {
     public static class ColorHelper {
 
         /// <inheritdoc cref="ColorExtensions.Invert"/>
-        [Obsolete("This method has been moved to ColorExtensions.Invert")]
+        [Obsolete("This method has been moved to ColorExtensions.Invert in 5.1.0")]
         public static Color Invert(this Color color) {
             return ColorExtensions.Invert(color);
         }
