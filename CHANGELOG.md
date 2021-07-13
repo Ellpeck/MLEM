@@ -14,6 +14,7 @@ Improvements
 - Improved NinePatch memory performance
 - Moved sound-related classes into Sound namespace
 - Added customizable overloads for Keybind, Combination and GenericInput ToString methods 
+- Added ColorExtensions.Invert and made ColorHelper.Invert obsolete
 
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame

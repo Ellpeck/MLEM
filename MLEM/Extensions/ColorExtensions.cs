@@ -18,6 +18,15 @@ namespace MLEM.Extensions {
             return color * (other.A / 255F);
         }
 
+        /// <summary>
+        /// Returns an inverted version of this color.
+        /// </summary>
+        /// <param name="color">The color to invert</param>
+        /// <returns>The inverted color</returns>
+        public static Color Invert(this Color color) {
+            return new Color(Math.Abs(255 - color.R), Math.Abs(255 - color.G), Math.Abs(255 - color.B), color.A);
+        }
+
     }
 
     /// <summary>
@@ -25,13 +34,10 @@ namespace MLEM.Extensions {
     /// </summary>
     public static class ColorHelper {
 
-        /// <summary>
-        /// Returns an inverted version of the color.
-        /// </summary>
-        /// <param name="color">The color to invert</param>
-        /// <returns>The inverted color</returns>
+        /// <inheritdoc cref="ColorExtensions.Invert"/>
+        [Obsolete("This method has been moved to ColorExtensions.Invert")]
         public static Color Invert(this Color color) {
-            return new Color(Math.Abs(255 - color.R), Math.Abs(255 - color.G), Math.Abs(255 - color.B), color.A);
+            return ColorExtensions.Invert(color);
         }
 
         /// <summary>
