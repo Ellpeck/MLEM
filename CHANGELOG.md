@@ -13,8 +13,9 @@ Additions
 Improvements
 - Improved NinePatch memory performance
 - Moved sound-related classes into Sound namespace
-- Added customizable overloads for Keybind, Combination and GenericInput ToString methods 
+- Added customizable overloads for Keybind, Combination and GenericInput ToString methods
 - Added ColorExtensions.Invert and made ColorHelper.Invert obsolete
+- Removed LINQ Any and All usage in various methods to improve memory usage
 
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame
@@ -22,6 +23,9 @@ Fixes
 ### MLEM.Ui
 Additions
 - Added a masking character to TextField to allow for password-style text fields
+
+Improvements
+- Removed LINQ Any and All usage in various methods to improve memory usage
 
 Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font

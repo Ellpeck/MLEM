@@ -72,7 +72,15 @@ namespace MLEM.Extended.Tiled {
         /// <param name="included">A function that determines if a certain info should be included or not</param>
         /// <returns>An enumerable of collision infos for that area</returns>
         public IEnumerable<TileCollisionInfo> GetCollidingTiles(RectangleF area, Func<TileCollisionInfo, bool> included = null) {
-            var inclusionFunc = included ?? (tile => tile.Collisions.Any(c => c.Intersects(area)));
+            bool DefaultInclusion(TileCollisionInfo tile) {
+                foreach (var c in tile.Collisions) {
+                    if (c.Intersects(area))
+                        return true;
+                }
+                return false;
+            }
+
+            var inclusionFunc = included ?? DefaultInclusion;
             var minX = Math.Max(0, area.Left.Floor());
             var maxX = Math.Min(this.map.Width - 1, area.Right.Floor());
             var minY = Math.Max(0, area.Top.Floor());

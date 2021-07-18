@@ -363,7 +363,11 @@ namespace MLEM.Input {
         /// <param name="modifier">The modifier key</param>
         /// <returns>If the modifier key is down</returns>
         public bool IsModifierKeyDown(ModifierKey modifier) {
-            return modifier.GetKeys().Any(this.IsKeyDown);
+            foreach (var key in modifier.GetKeys()) {
+                if (this.IsKeyDown(key))
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -570,18 +574,30 @@ namespace MLEM.Input {
         }
 
         /// <inheritdoc cref="IsDown"/>
-        public bool IsAnyDown(params GenericInput[] control) {
-            return control.Any(c => this.IsDown(c));
+        public bool IsAnyDown(params GenericInput[] controls) {
+            foreach (var control in controls) {
+                if (this.IsDown(control))
+                    return true;
+            }
+            return false;
         }
 
         /// <inheritdoc cref="IsUp"/>
-        public bool IsAnyUp(params GenericInput[] control) {
-            return control.Any(c => this.IsUp(c));
+        public bool IsAnyUp(params GenericInput[] controls) {
+            foreach (var control in controls) {
+                if (this.IsUp(control))
+                    return true;
+            }
+            return false;
         }
 
         /// <inheritdoc cref="IsPressed"/>
-        public bool IsAnyPressed(params GenericInput[] control) {
-            return control.Any(c => this.IsPressed(c));
+        public bool IsAnyPressed(params GenericInput[] controls) {
+            foreach (var control in controls) {
+                if (this.IsPressed(control))
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>

@@ -129,8 +129,12 @@ namespace MLEM.Ui.Elements {
         public void AddToElement(Element elementToHover) {
             elementToHover.OnMouseEnter += element => {
                 // only display the tooltip if there is anything in it
-                if (this.Children.Any(c => !c.IsHidden))
-                    this.Display(element.System, element.GetType().Name + "Tooltip");
+                foreach (var c in this.Children) {
+                    if (!c.IsHidden) {
+                        this.Display(element.System, element.GetType().Name + "Tooltip");
+                        break;
+                    }
+                }
             };
             elementToHover.OnMouseExit += element => this.Remove();
         }

@@ -465,8 +465,14 @@ namespace MLEM.Ui {
                     this.CanSelectContent = true;
             };
             this.OnElementRemoved += e => {
-                if (e.CanBeSelected && !this.Element.GetChildren(regardGrandchildren: true).Any(c => c.CanBeSelected))
+                if (e.CanBeSelected) {
+                    // check if removing this element removed all other selectable elements
+                    foreach (var c in this.Element.GetChildren(regardGrandchildren: true)) {
+                        if (c.CanBeSelected)
+                            return;
+                    }
                     this.CanSelectContent = false;
+                }
             };
         }
 

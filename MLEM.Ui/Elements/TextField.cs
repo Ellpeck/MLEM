@@ -24,19 +24,43 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// A <see cref="Rule"/> that allows any visible character and spaces
         /// </summary>
-        public static readonly Rule DefaultRule = (field, add) => !add.Any(char.IsControl);
+        public static readonly Rule DefaultRule = (field, add) => {
+            foreach (var c in add) {
+                if (char.IsControl(c))
+                    return false;
+            }
+            return true;
+        };
         /// <summary>
         /// A <see cref="Rule"/> that only allows letters
         /// </summary>
-        public static readonly Rule OnlyLetters = (field, add) => add.All(char.IsLetter);
+        public static readonly Rule OnlyLetters = (field, add) => {
+            foreach (var c in add) {
+                if (!char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        };
         /// <summary>
         /// A <see cref="Rule"/> that only allows numerals
         /// </summary>
-        public static readonly Rule OnlyNumbers = (field, add) => add.All(char.IsNumber);
+        public static readonly Rule OnlyNumbers = (field, add) => {
+            foreach (var c in add) {
+                if (!char.IsNumber(c))
+                    return false;
+            }
+            return true;
+        };
         /// <summary>
         /// A <see cref="Rule"/> that only allows letters and numerals
         /// </summary>
-        public static readonly Rule LettersNumbers = (field, add) => add.All(c => char.IsLetter(c) || char.IsNumber(c));
+        public static readonly Rule LettersNumbers = (field, add) => {
+            foreach (var c in add) {
+                if (!char.IsLetter(c) || !char.IsNumber(c))
+                    return false;
+            }
+            return true;
+        };
         /// <summary>
         /// A <see cref="Rule"/> that only allows characters not contained in <see cref="Path.GetInvalidPathChars"/>
         /// </summary>

@@ -100,7 +100,13 @@ namespace MLEM.Formatting {
         /// <param name="scale">The scale that the string is drawn at</param>
         /// <returns>The token under the target position</returns>
         public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, float scale) {
-            return this.Tokens.FirstOrDefault(t => t.GetArea(stringPos, scale).Any(r => r.Contains(target)));
+            foreach (var token in this.Tokens) {
+                foreach (var rect in token.GetArea(stringPos, scale)) {
+                    if (rect.Contains(target))
+                        return token;
+                }
+            }
+            return null;
         }
 
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>

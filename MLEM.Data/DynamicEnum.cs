@@ -118,8 +118,10 @@ namespace MLEM.Data {
 
             if (dict.ContainsKey(value))
                 throw new ArgumentException($"Duplicate value {value}", nameof(value));
-            if (dict.Values.Any(v => v.name == name))
-                throw new ArgumentException($"Duplicate name {name}", nameof(name));
+            foreach (var v in dict.Values) {
+                if (v.name == name)
+                    throw new ArgumentException($"Duplicate name {name}", nameof(name));
+            }
 
             var ret = Construct(typeof(T), name, value);
             dict.Add(value, ret);
