@@ -30,6 +30,10 @@ Improvements
 Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font
 
+### MLEM.Extended
+Improvements
+- Adjusted GenericStashFont line height calculations to result in the same values as GenericSpriteFont
+
 ### MLEM.Data
 Additions
 - Added the ability to specify a coordinate offset in data texture atlases

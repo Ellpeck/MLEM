@@ -8,9 +8,11 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
+using MLEM.Extended.Extensions;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
+using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Input;
@@ -20,6 +22,7 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using Group = MLEM.Ui.Elements.Group;
 
@@ -74,15 +77,24 @@ namespace Sandbox {
             //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
             var font = new GenericStashFont(system.GetFont(32));
+            var spriteFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
                 Font = font,
-                TextScale = 0.1F,
+                TextScale = 0.5F,
                 PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
                 ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4)
             };
             this.UiSystem.AutoScaleReferenceSize = new Point(1280, 720);
             this.UiSystem.AutoScaleWithScreen = true;
             this.UiSystem.GlobalScale = 5;
+
+            /*this.OnDraw += (g, time) => {
+                const string strg = "This is a test string\nto test things\n\nMany things are being tested, like the ability\nfor this font to agree\n\nwith newlines";
+                this.SpriteBatch.Begin();
+                spriteFont.DrawString(this.SpriteBatch, strg, new Vector2(600, 100), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                font.DrawString(this.SpriteBatch, strg, new Vector2(600, 100), Color.White, 0, Vector2.Zero, 2, SpriteEffects.None, 0);
+                this.SpriteBatch.End();
+            };*/
 
             var panel = new Panel(Anchor.Center, new Vector2(0, 100), Vector2.Zero) {SetWidthBasedOnChildren = true};
             panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
@@ -129,7 +141,7 @@ namespace Sandbox {
             Console.WriteLine("The res is " + res);
 
             var gradient = this.SpriteBatch.GenerateGradientTexture(Color.Green, Color.Red, Color.Blue, Color.Yellow);
-            this.OnDraw += (game, time) => {
+            /*this.OnDraw += (game, time) => {
                 this.SpriteBatch.Begin();
                 this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Rectangle(640 - 4, 360 - 4, 8, 8), Color.Green);
 
@@ -141,7 +153,7 @@ namespace Sandbox {
 
                 this.SpriteBatch.Draw(gradient, new Rectangle(300, 100, 200, 200), Color.White);
                 this.SpriteBatch.End();
-            };
+            };*/
 
             var sc = 4;
             var formatter = new TextFormatter();
@@ -218,6 +230,16 @@ namespace Sandbox {
                     CanBeMoused = false
                 });
             }
+            var par = loadPanel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is another\ntest string\n\nwith many lines\nand many more!"));
+            par.OnUpdated = (e, time) => {
+                GenericFont newFont = Input.IsModifierKeyDown(ModifierKey.Shift) ? spriteFont : font;
+                if (newFont != par.RegularFont.Value) {
+                    par.TextScaleMultiplier = newFont == font ? 1 : 0.5F;
+                    par.RegularFont = newFont;
+                    par.ForceUpdateArea();
+                }
+            };
+            par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
             this.UiSystem.Add("Load", loadGroup);
         }
 

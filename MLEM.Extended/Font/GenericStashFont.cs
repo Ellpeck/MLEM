@@ -29,9 +29,7 @@ namespace MLEM.Extended.Font {
         /// <param name="italic">An italic version of the font</param>
         public GenericStashFont(SpriteFontBase font, SpriteFontBase bold = null, SpriteFontBase italic = null) {
             this.Font = font;
-            // SpriteFontBase provides no line height, so we measure the height of a new line for most fonts
-            // This doesn't work with static sprite fonts, but their size is always the one we calculate here
-            this.LineHeight = font is StaticSpriteFont s ? s.FontSize + s.LineSpacing : font.MeasureString("\n").Y;
+            this.LineHeight = CalculateLineHeight(font);
             this.Bold = bold != null ? new GenericStashFont(bold) : this;
             this.Italic = italic != null ? new GenericStashFont(italic) : this;
         }
@@ -49,6 +47,19 @@ namespace MLEM.Extended.Font {
         /// <inheritdoc />
         protected override Vector2 MeasureChar(char c) {
             return this.Font.MeasureString(c.ToCachedString());
+        }
+
+        private static float CalculateLineHeight(SpriteFontBase font) {
+            if (font is StaticSpriteFont s) {
+                // this is the same calculation used internally by StaticSpriteFont
+                return s.FontSize + s.LineSpacing;
+            } else {
+                // Y (min y) just stores the glyph's Y offset, whereas Y2 (max y) stores the glyph's height
+                // since we technically want line spacing rather than line height, we calculate it like this
+                var bounds = new Bounds();
+                font.TextBounds(" ", Vector2.Zero, ref bounds);
+                return bounds.Y2 + (bounds.Y2 - bounds.Y);
+            }
         }
 
     }
