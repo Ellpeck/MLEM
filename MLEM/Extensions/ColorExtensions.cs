@@ -34,12 +34,6 @@ namespace MLEM.Extensions {
     /// </summary>
     public static class ColorHelper {
 
-        /// <inheritdoc cref="ColorExtensions.Invert"/>
-        [Obsolete("This method has been moved to ColorExtensions.Invert in 5.1.0")]
-        public static Color Invert(this Color color) {
-            return ColorExtensions.Invert(color);
-        }
-
         /// <summary>
         /// Parses a hexadecimal number into an rgba color.
         /// The number should be in the format <c>0xaarrggbb</c>.

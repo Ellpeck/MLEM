@@ -14,7 +14,7 @@ Improvements
 - Improved NinePatch memory performance
 - Moved sound-related classes into Sound namespace
 - Added customizable overloads for Keybind, Combination and GenericInput ToString methods
-- Added ColorExtensions.Invert and made ColorHelper.Invert obsolete
+- Moved ColorHelper.Invert to ColorExtensions.Invert
 - Removed LINQ Any and All usage in various methods to improve memory usage
 
 Fixes

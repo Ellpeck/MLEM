@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -184,12 +183,8 @@ namespace MLEM.Ui.Elements {
                 this.SetText(text, true);
 
             MlemPlatform.EnsureExists();
-            this.OnPressed += async e => {
-                var title = this.MobileTitle ?? this.PlaceholderText;
-                var result = await MlemPlatform.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
-                if (result != null)
-                    this.SetText(result.Replace('\n', ' '), true);
-            };
+
+            this.OnPressed += OnPressed;
             this.OnTextInput += (element, key, character) => {
                 if (!this.IsSelected || this.IsHidden)
                     return;
@@ -206,6 +201,13 @@ namespace MLEM.Ui.Elements {
             };
             this.OnDeselected += e => this.CaretPos = 0;
             this.OnSelected += e => this.CaretPos = this.text.Length;
+
+            async void OnPressed(Element e) {
+                var title = this.MobileTitle ?? this.PlaceholderText;
+                var result = await MlemPlatform.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
+                if (result != null)
+                    this.SetText(result.Replace('\n', ' '), true);
+            }
         }
 
         private void HandleTextChange(bool textChanged = true) {
