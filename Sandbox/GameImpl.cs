@@ -72,7 +72,7 @@ namespace Sandbox {
                 textureData[textureData.FromIndex(textureData.ToIndex(25, 9))] = Color.Yellow;
             }
 
-            var system = new FontSystem(this.GraphicsDevice, 1024, 1024);
+            var system = new FontSystem();
             system.AddFont(File.ReadAllBytes("Content/Fonts/Cadman_Roman.otf"));
             //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
