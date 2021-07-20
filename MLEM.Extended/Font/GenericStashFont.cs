@@ -38,8 +38,8 @@ namespace MLEM.Extended.Font {
         public GenericStashFont(SpriteFontBase font, SpriteFontBase bold = null, SpriteFontBase italic = null, float? lineHeight = null) {
             this.Font = font;
             this.LineHeight = lineHeight ?? CalculateLineHeight(font);
-            this.Bold = bold != null ? new GenericStashFont(bold) : this;
-            this.Italic = italic != null ? new GenericStashFont(italic) : this;
+            this.Bold = bold != null ? new GenericStashFont(bold, null, null, lineHeight) : this;
+            this.Italic = italic != null ? new GenericStashFont(italic, null, null, lineHeight) : this;
         }
 
         /// <inheritdoc />
