@@ -67,6 +67,7 @@ namespace MLEM.Ui.Elements {
             if (this.Parent != null)
                 throw new NotSupportedException($"A tooltip shouldn't be the child of another element ({this.Parent})");
             base.ForceUpdateArea();
+            this.SnapPositionToMouse();
         }
 
         /// <inheritdoc />
