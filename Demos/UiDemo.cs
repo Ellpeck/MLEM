@@ -48,7 +48,10 @@ namespace Demos {
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8)
             };
-            var untexturedStyle = new UntexturedStyle(this.SpriteBatch);
+            var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
+                TextScale = style.TextScale,
+                Font = style.Font
+            };
             // set the defined style as the current one
             this.UiSystem.Style = style;
             // scale every ui up by 5
@@ -73,7 +76,7 @@ namespace Demos {
             });
 
             this.root.AddChild(new VerticalSpace(3));
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override, as can be seen in the code for this demo."));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Note that the default style does not contain any textures and, as such, is quite bland. However, the default style is quite easy to override, as can be seen in the code for this demo."));
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnPressed = element => this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle,
                 PositionOffset = new Vector2(0, 1),
