@@ -1,4 +1,4 @@
-<img src="../Media/Logo.svg" width="25%" >
+<img src="../Media/Logo.svg" width="25%"  alt="The MLEM logo">
 
 **MLEM Library for Extending MonoGame** is an addition to the game framework [MonoGame](https://www.monogame.net/) that provides extension methods, quality of life improvements and additional features like a ui system and easy input handling.
 
@@ -20,16 +20,17 @@ If you created a game with the help of MLEM, you can get it added to this list b
 # Gallery
 Here are some images that show a couple of MLEM's features.
 
-MLEM.Ui in action:  
-<img src="../Media/Ui.gif">
+The [MLEM.Ui](https://mlem.ellpeck.de/articles/ui) demo in action:
 
-MLEM's text formatting system:  
-<img src="../Media/Formatting.png">
+<img src="../Media/Ui.gif" alt="A gif showing various user interface elements from the MLEM.Ui demo">
+
+MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting), which is compatible with both MLEM.Ui and regular sprite batch rendering:
+
+<img src="../Media/Formatting.png" alt="An image showing text with various colors and other formatting">
 
 # Friends of MLEM
 There are several other NuGet packages and tools that work well in combination with MonoGame and MLEM. Here are some of them:
 - [Contentless](https://github.com/Ellpeck/Contentless), a tool that removes the need to add assets to the MonoGame Content Pipeline manually
 - [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET Core applications into several distributable formats
-- [ButlerDotNet](https://github.com/Ellpeck/ButlerDotNet), a tool that automatically downloads and invokes itch.io's butler
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended), a package that also provides several additional features for MonoGame
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project

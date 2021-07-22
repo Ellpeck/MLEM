@@ -185,7 +185,7 @@ namespace Demos {
             CoroutineHandler.Start(WobbleProgressBar(bar2));
             var bar3 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(8, 30), Direction2.Down, 10) {PositionOffset = new Vector2(0, 1)});
             CoroutineHandler.Start(WobbleProgressBar(bar3));
-            var bar4 = this.root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 1)});
+            var bar4 = this.root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 0)});
             CoroutineHandler.Start(WobbleProgressBar(bar4));
 
             this.root.AddChild(new VerticalSpace(3));
