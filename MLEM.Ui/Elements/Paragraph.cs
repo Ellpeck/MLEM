@@ -237,7 +237,9 @@ namespace MLEM.Ui.Elements {
             public override void ForceUpdateArea() {
                 // set the position offset and size to the token's first area
                 var area = this.Token.GetArea(Vector2.Zero, this.textScale).FirstOrDefault();
-                this.PositionOffset = area.Location + new Vector2(((Paragraph) this.Parent).GetAlignmentOffset() / this.Parent.Scale, 0);
+                if (this.Parent is Paragraph p)
+                    area.Location += new Vector2(p.GetAlignmentOffset() / p.Scale, 0);
+                this.PositionOffset = area.Location;
                 this.IsHidden = area.IsEmpty;
                 this.Size = area.Size;
                 base.ForceUpdateArea();

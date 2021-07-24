@@ -27,6 +27,7 @@ Additions
 Improvements
 - Removed LINQ Any and All usage in various methods to improve memory usage
 - Explicitly disallow creating Paragraphs without fonts to make starting out with MLEM.Ui less confusing
+- Allow adding Link children to non-Paragraph elements
 
 Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font
