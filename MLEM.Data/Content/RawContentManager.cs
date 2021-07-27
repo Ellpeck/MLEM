@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,12 +11,7 @@ namespace MLEM.Data.Content {
     /// </summary>
     public class RawContentManager : ContentManager, IGameComponent {
 
-        private static readonly RawContentReader[] Readers = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(a => !a.IsDynamic)
-            .SelectMany(a => a.GetExportedTypes())
-            .Where(t => t.IsSubclassOf(typeof(RawContentReader)) && !t.IsAbstract)
-            .Select(t => t.GetConstructor(Type.EmptyTypes).Invoke(null))
-            .Cast<RawContentReader>().ToArray();
+        private static List<RawContentReader> readers;
 
         private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
 
@@ -57,7 +51,11 @@ namespace MLEM.Data.Content {
 
         private T Read<T>(string assetName, T existing) {
             var triedFiles = new List<string>();
-            foreach (var reader in Readers.Where(r => r.CanRead(typeof(T)))) {
+            if (readers == null)
+                readers = CollectContentReaders();
+            foreach (var reader in readers) {
+                if (!reader.CanRead(typeof(T)))
+                    continue;
                 foreach (var ext in reader.GetFileExtensions()) {
                     var file = Path.Combine(this.RootDirectory, $"{assetName}.{ext}");
                     triedFiles.Add(file);
@@ -87,6 +85,31 @@ namespace MLEM.Data.Content {
 
         /// <inheritdoc/>
         public void Initialize() {
+        }
+
+        private static List<RawContentReader> CollectContentReaders() {
+            var ret = new List<RawContentReader>();
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
+                try {
+                    if (assembly.IsDynamic)
+                        continue;
+                    foreach (var type in assembly.GetExportedTypes()) {
+                        try {
+                            if (type.IsAbstract)
+                                continue;
+                            if (!type.IsSubclassOf(typeof(RawContentReader)))
+                                continue;
+                            var inst = type.GetConstructor(Type.EmptyTypes).Invoke(null);
+                            ret.Add((RawContentReader) inst);
+                        } catch (Exception e) {
+                            throw new NotSupportedException($"The type {type} cannot be constructed by a RawContentManager. Does it have a visible parameterless constructor?", e);
+                        }
+                    }
+                } catch {
+                    // ignored
+                }
+            }
+            return ret;
         }
 
     }

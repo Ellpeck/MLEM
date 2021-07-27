@@ -41,6 +41,9 @@ Improvements
 Additions
 - Added the ability to specify a coordinate offset in data texture atlases
 
+Improvements
+- Improved RawContentManager's reader loading and added better exception handling
+
 ## 5.0.0
 ### MLEM
 Additions
