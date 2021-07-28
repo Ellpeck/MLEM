@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Font {
@@ -37,11 +38,19 @@ namespace MLEM.Font {
         /// </summary>
         public abstract GenericFont Italic { get; }
 
-        ///<inheritdoc cref="SpriteFont.LineSpacing"/>
+        /// <summary>
+        /// The height of each line of text of this font.
+        /// This is the value that the text's draw position is offset by every time a newline character is reached.
+        /// </summary>
         public abstract float LineHeight { get; }
 
-        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
-        protected abstract Vector2 MeasureChar(char c);
+        /// <summary>
+        /// Measures the width of the given character with the default scale for use in <see cref="MeasureString"/>.
+        /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/> for most generic fonts, which is why <see cref="MeasureString"/> should be used even for single characters.
+        /// </summary>
+        /// <param name="c">The character whose width to calculate</param>
+        /// <returns>The width of the given character with the default scale</returns>
+        protected abstract float MeasureChar(char c);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public abstract void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
@@ -50,18 +59,8 @@ namespace MLEM.Font {
         public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
-            this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
-        }
-
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             this.DrawString(batch, text, position, color, rotation, origin, new Vector2(scale), effects, layerDepth);
-        }
-
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
-            this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
@@ -69,7 +68,24 @@ namespace MLEM.Font {
             this.DrawString(batch, text, position, color, rotation, origin, new Vector2(scale), effects, layerDepth);
         }
 
-        ///<inheritdoc cref="SpriteFont.MeasureString(string)"/>
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color) {
+            this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        }
+
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
+            this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        }
+
+        /// <summary>
+        /// Measures the width of the given string when drawn with this font's underlying font.
+        /// This method uses <see cref="MeasureChar"/> internally to calculate the size of known characters and calculates additional characters like <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/>.
+        /// If the text contains newline characters (\n), the size returned will represent a rectangle that encompasses the width of the longest line and the string's full height.
+        /// </summary>
+        /// <param name="text">The text whose size to calculate</param>
+        /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
+        /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
@@ -85,7 +101,7 @@ namespace MLEM.Font {
                         xOffset += this.LineHeight;
                         break;
                     case Nbsp:
-                        xOffset += this.MeasureChar(' ').X;
+                        xOffset += this.MeasureChar(' ');
                         break;
                     case Zwsp:
                         // don't add width for a zero-width space
@@ -96,10 +112,10 @@ namespace MLEM.Font {
                             i = text.Length - 1;
                             break;
                         }
-                        xOffset += this.MeasureChar(' ').X;
+                        xOffset += this.MeasureChar(' ');
                         break;
                     default:
-                        xOffset += this.MeasureChar(text[i]).X;
+                        xOffset += this.MeasureChar(text[i]);
                         break;
                 }
                 // increase x size if this line is the longest
@@ -164,9 +180,9 @@ namespace MLEM.Font {
                     widthSinceLastSpace = 0;
                     currWidth = 0;
                 } else {
-                    var cWidth = this.MeasureChar(c).X * scale;
+                    var cWidth = this.MeasureString(c.ToCachedString()).X * scale;
                     if (c == ' ' || c == OneEmSpace || c == Zwsp) {
-                        // remember the location of this space
+                        // remember the location of this (breaking!) space
                         lastSpaceIndex = ret.Length;
                         widthSinceLastSpace = 0;
                     } else if (currWidth + cWidth >= width) {

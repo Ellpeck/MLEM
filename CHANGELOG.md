@@ -19,6 +19,7 @@ Improvements
 
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame
+- Fixed GenericFont MeasureString using incorrect width for Zwsp and OneEmSpace
 
 ### MLEM.Ui
 Additions

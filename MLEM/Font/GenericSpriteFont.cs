@@ -33,8 +33,8 @@ namespace MLEM.Font {
         }
 
         /// <inheritdoc />
-        protected override Vector2 MeasureChar(char c) {
-            return this.Font.MeasureString(c.ToCachedString());
+        protected override float MeasureChar(char c) {
+            return this.Font.MeasureString(c.ToCachedString()).X;
         }
 
         /// <inheritdoc/>
