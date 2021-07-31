@@ -71,10 +71,9 @@ namespace MLEM.Data {
                 loc.Offset(off);
 
                 // pivot
-                var piv = !match.Groups[6].Success ? Vector2.Zero : new Vector2(
+                var piv = !match.Groups[6].Success ? Vector2.Zero : off + new Vector2(
                     float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
                     float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
-                piv += off;
 
                 var region = new TextureRegion(texture, loc) {
                     PivotPixels = piv,
