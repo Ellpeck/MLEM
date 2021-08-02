@@ -9,11 +9,30 @@ using MLEM.Textures;
 
 namespace MLEM.Data {
     /// <summary>
+    /// <para>
     /// This class represents an atlas of <see cref="TextureRegion"/> objects which are loaded from a special texture atlas file. 
     /// To load a data texture atlas, you can use <see cref="DataTextureAtlasExtensions.LoadTextureAtlas"/>.
-    /// To see the structure of a Data Texture Atlas, you can check out the sandbox project: <see href="https://github.com/Ellpeck/MLEM/blob/main/Sandbox/Content/Textures/Furniture.atlas"/>.
-    /// Additionally, if you are using Aseprite, there is a script to automatically populate it: <see href="https://github.com/Ellpeck/MLEM/blob/main/Utilities/Populate%20Data%20Texture%20Atlas.lua"/>
+    /// </para>
+    /// <para>
+    /// Data texture atlases are designed to be easy to write by hand. Because of this, their structure is very simple.
+    /// Each texture region defined in the atlas consists of its name, followed by a set of possible keywords and their arguments, separated by spaces.
+    /// The <c>loc</c> keyword defines the <see cref="TextureRegion.Area"/> of the texture region as a rectangle whose origin is its top-left corner. It requires four arguments: x, y, width and height of the rectangle.
+    /// The (optional) <c>piv</c> keyword defines the <see cref="TextureRegion.PivotPixels"/> of the texture region. It requires two arguments: x and y. If it is not supplied, the pivot defaults to the top-left corner of the texture region.
+    /// The (optional) <c>off</c> keyword defines an offset that is added onto the location and pivot of this texture region. This is useful when copying and pasting a previously defined texture region to create a second region that has a constant offset. It requires two arguments: The x and y offset.
+    /// </para>
+    /// <example>
+    /// The following entry defines a texture region with the name <c>LongTableRight</c>, whose <see cref="TextureRegion.Area"/> will be a rectangle with X=32, Y=30, Width=64, Height=48, and whose <see cref="TextureRegion.PivotPixels"/> will be a vector with X=80, Y=46.
+    /// <code>
+    /// LongTableRight
+    /// loc 32 30 64 48
+    /// piv 80 46
+    /// </code>
+    /// </example>
     /// </summary>
+    /// <remarks>
+    /// To see a Data Texture Atlas in action, you can check out the sandbox project: <see href="https://github.com/Ellpeck/MLEM/blob/main/Sandbox/Content/Textures/Furniture.atlas"/>.
+    /// Additionally, if you are using Aseprite, there is a script to automatically populate it: <see href="https://github.com/Ellpeck/MLEM/blob/main/Utilities/Populate%20Data%20Texture%20Atlas.lua"/>.
+    /// </remarks>
     public class DataTextureAtlas {
 
         /// <summary>
