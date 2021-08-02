@@ -10,7 +10,7 @@ namespace MLEM.Sound {
     /// Additionally, a callback can be registered that is invoked when the <see cref="SoundEffectInstance"/> finishes playing.
     /// Note that an object of this class can be added to a <see cref="Game"/> using its <see cref="GameComponentCollection"/>.
     /// </summary>
-    public class SoundEffectInstanceHandler : GameComponent, IEnumerable<SoundEffectInstance> {
+    public class SoundEffectInstanceHandler : GameComponent, IEnumerable<SoundEffectInstanceHandler.Entry> {
 
         private readonly List<Entry> playingSounds = new List<Entry>();
         private AudioListener[] listeners;
@@ -110,28 +110,42 @@ namespace MLEM.Sound {
         }
 
         /// <inheritdoc />
-        public IEnumerator<SoundEffectInstance> GetEnumerator() {
-            foreach (var sound in this.playingSounds)
-                yield return sound.Instance;
+        public IEnumerator<Entry> GetEnumerator() {
+            return this.playingSounds.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
 
-        private readonly struct Entry {
+        /// <summary>
+        /// An entry in a <see cref="SoundEffectInstanceHandler"/>.
+        /// Each entry stores the <see cref="SoundEffectInstance"/> that is being played, as well as the additional data passed through <see cref="SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)"/>.
+        /// </summary>
+        public readonly struct Entry {
 
+            /// <summary>
+            /// The sound effect instance that this entry is playing
+            /// </summary>
             public readonly SoundEffectInstance Instance;
+            /// <summary>
+            /// An action that is invoked when this entry's <see cref="Instance"/> is stopped.
+            /// This action is invoked in <see cref="SoundEffectInstanceHandler.Update()"/>.
+            /// </summary>
             public readonly Action<SoundEffectInstance> OnStopped;
+            /// <summary>
+            /// The <see cref="AudioEmitter"/> that this sound effect instance is linked to.
+            /// If the underlying handler's <see cref="SoundEffectInstanceHandler.SetListeners"/> method has been called, 3D sound will be applied.
+            /// </summary>
             public readonly AudioEmitter Emitter;
 
-            public Entry(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped, AudioEmitter emitter) {
+            internal Entry(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped, AudioEmitter emitter) {
                 this.Instance = instance;
                 this.OnStopped = onStopped;
                 this.Emitter = emitter;
             }
 
-            public void TryApply3D(AudioListener[] listeners) {
+            internal void TryApply3D(AudioListener[] listeners) {
                 if (listeners != null && listeners.Length > 0 && this.Emitter != null)
                     this.Instance.Apply3D(listeners, this.Emitter);
             }

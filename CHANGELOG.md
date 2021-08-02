@@ -16,6 +16,7 @@ Improvements
 - Added customizable overloads for Keybind, Combination and GenericInput ToString methods
 - Moved ColorHelper.Invert to ColorExtensions.Invert
 - Removed LINQ Any and All usage in various methods to improve memory usage
+- Allow enumerating SoundEffectInstanceHandler entries
 
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame
