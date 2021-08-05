@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -9,6 +10,7 @@ namespace MLEM.Data {
     public static class CopyExtensions {
 
         private const BindingFlags DefaultFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        private static readonly Dictionary<Type, ConstructorInfo> ConstructorCache = new Dictionary<Type, ConstructorInfo>();
 
         /// <summary>
         /// Creates a shallow copy of the object and returns it.
@@ -85,17 +87,20 @@ namespace MLEM.Data {
         }
 
         private static object Construct(Type t, BindingFlags flags) {
-            var constructors = t.GetConstructors(flags);
-            // find a contructor with the correct attribute
-            var constructor = constructors.FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
-            // find a parameterless construcotr
-            if (constructor == null)
-                constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
-            // fall back to the first constructor
-            if (constructor == null)
-                constructor = constructors.FirstOrDefault();
-            if (constructor == null)
-                throw new NullReferenceException($"Type {t} does not have a constructor with the required visibility");
+            if (!ConstructorCache.TryGetValue(t, out var constructor)) {
+                var constructors = t.GetConstructors(flags);
+                // find a contructor with the correct attribute
+                constructor = constructors.FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
+                // find a parameterless construcotr
+                if (constructor == null)
+                    constructor = t.GetConstructor(flags, null, Type.EmptyTypes, null);
+                // fall back to the first constructor
+                if (constructor == null)
+                    constructor = constructors.FirstOrDefault();
+                if (constructor == null)
+                    throw new NullReferenceException($"Type {t} does not have a constructor with the required visibility");
+                ConstructorCache.Add(t, constructor);
+            }
             return constructor.Invoke(new object[constructor.GetParameters().Length]);
         }
 
