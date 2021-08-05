@@ -693,11 +693,11 @@ namespace MLEM.Ui.Elements {
         /// <returns>The actual size of this element, taking <see cref="Scale"/> into account</returns>
         protected virtual Vector2 CalcActualSize(RectangleF parentArea) {
             var ret = new Vector2(
-                this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X,
-                this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y);
-            if (this.size.X < 0)
+                this.size.X > 1 && !this.SetWidthBasedOnChildren ? this.ScaledSize.X : parentArea.Width * this.size.X,
+                this.size.Y > 1 && !this.SetHeightBasedOnChildren ? this.ScaledSize.Y : parentArea.Height * this.size.Y);
+            if (this.size.X < 0 && !this.SetWidthBasedOnChildren)
                 ret.X = -this.size.X * ret.Y;
-            if (this.size.Y < 0)
+            if (this.size.Y < 0 && !this.SetHeightBasedOnChildren)
                 ret.Y = -this.size.Y * ret.X;
             return ret;
         }
