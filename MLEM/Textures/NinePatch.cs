@@ -166,7 +166,7 @@ namespace MLEM.Textures {
                             for (var x = 0F; x < rect.Width; x += width) {
                                 for (var y = 0F; y < rect.Height; y += height) {
                                     var size = new Vector2(Math.Min(rect.Width - x, width), Math.Min(rect.Height - y, height));
-                                    batch.Draw(texture.Region.Texture, new RectangleF(rect.Location + new Vector2(x, y), size), new Rectangle(src.Location, (size / patchScale).ToPoint()), color, rotation, origin, effects, layerDepth);
+                                    batch.Draw(texture.Region.Texture, new RectangleF(rect.Location + new Vector2(x, y), size), new Rectangle(src.Location, (size / patchScale).CeilCopy().ToPoint()), color, rotation, origin, effects, layerDepth);
                                 }
                             }
                             break;
