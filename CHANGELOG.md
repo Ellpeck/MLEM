@@ -38,7 +38,7 @@ Fixes
 
 ### MLEM.Extended
 Improvements
-- Adjusted GenericStashFont line height calculations to result in values closer to GenericSpriteFont and added a constructor parameter to set a custom line height
+- Use FontStashSharp's built-in LineHeight property for GenericStashFont
 
 ### MLEM.Data
 Additions
