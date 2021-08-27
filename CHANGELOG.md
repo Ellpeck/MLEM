@@ -11,12 +11,13 @@ Additions
 - Added RotateBy to Direction2Helper
 
 Improvements
-- Improved NinePatch memory performance
+- Improved NinePatch memory usage
 - Moved sound-related classes into Sound namespace
 - Added customizable overloads for Keybind, Combination and GenericInput ToString methods
 - Moved ColorHelper.Invert to ColorExtensions.Invert
 - Removed LINQ Any and All usage in various methods to improve memory usage
 - Allow enumerating SoundEffectInstanceHandler entries
+- Improved KeysExtensions memory usage
 
 Fixes
 - Set default values for InputHandler held and pressed keys to avoid an exception if buttons are held in the very first frame

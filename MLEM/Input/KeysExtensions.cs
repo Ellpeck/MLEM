@@ -13,6 +13,14 @@ namespace MLEM.Input {
         /// All enum values of <see cref="ModifierKey"/>
         /// </summary>
         public static readonly ModifierKey[] ModifierKeys = EnumHelper.GetValues<ModifierKey>().ToArray();
+        private static readonly Dictionary<ModifierKey, Keys[]> KeysLookup = new Dictionary<ModifierKey, Keys[]> {
+            {ModifierKey.Shift, new[] {Keys.LeftShift, Keys.RightShift}},
+            {ModifierKey.Control, new[] {Keys.LeftControl, Keys.RightControl}},
+            {ModifierKey.Alt, new[] {Keys.LeftAlt, Keys.RightAlt}}
+        };
+        private static readonly Dictionary<Keys, ModifierKey> ModifiersLookup = KeysLookup
+            .SelectMany(kv => kv.Value.Select(v => (kv.Key, v)))
+            .ToDictionary(kv => kv.Item2, kv => kv.Item1);
 
         /// <summary>
         /// Returns all of the keys that the given modifier key represents
@@ -20,20 +28,7 @@ namespace MLEM.Input {
         /// <param name="modifier">The modifier key</param>
         /// <returns>All of the keys the modifier key represents</returns>
         public static IEnumerable<Keys> GetKeys(this ModifierKey modifier) {
-            switch (modifier) {
-                case ModifierKey.Shift:
-                    yield return Keys.LeftShift;
-                    yield return Keys.RightShift;
-                    break;
-                case ModifierKey.Control:
-                    yield return Keys.LeftControl;
-                    yield return Keys.RightControl;
-                    break;
-                case ModifierKey.Alt:
-                    yield return Keys.LeftAlt;
-                    yield return Keys.RightAlt;
-                    break;
-            }
+            return KeysLookup.TryGetValue(modifier, out var keys) ? keys : Enumerable.Empty<Keys>();
         }
 
         /// <summary>
@@ -43,11 +38,7 @@ namespace MLEM.Input {
         /// <param name="key">The key to convert to a modifier key</param>
         /// <returns>The modifier key, or <see cref="ModifierKey.None"/></returns>
         public static ModifierKey GetModifier(this Keys key) {
-            foreach (var mod in ModifierKeys) {
-                if (GetKeys(mod).Contains(key))
-                    return mod;
-            }
-            return ModifierKey.None;
+            return ModifiersLookup.TryGetValue(key, out var mod) ? mod : ModifierKey.None;
         }
 
         /// <inheritdoc cref="GetModifier(Microsoft.Xna.Framework.Input.Keys)"/>
