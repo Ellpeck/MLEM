@@ -48,6 +48,7 @@ Additions
 Improvements
 - Improved RawContentManager's reader loading and added better exception handling
 - Improved CopyExtensions construction speed
+- Improved DynamicEnum caching
 
 ## 5.0.0
 ### MLEM

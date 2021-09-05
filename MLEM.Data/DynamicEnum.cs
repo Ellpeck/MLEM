@@ -12,6 +12,9 @@ namespace MLEM.Data {
     /// A dynamic enum uses <see cref="BigInteger"/> as its underlying type, allowing for an arbitrary number of enum values to be created, even when a <see cref="FlagsAttribute"/>-like structure is used that would only allow for up to 64 values in a regular enum.
     /// All enum operations including <see cref="And{T}"/>, <see cref="Or{T}"/>, <see cref="Xor{T}"/> and <see cref="Neg{T}"/> are supported and can be implemented in derived classes using operator overloads.
     /// To create a custom dynamic enum, simply create a class that extends <see cref="DynamicEnum"/>. New values can then be added using <see cref="Add{T}"/>, <see cref="AddValue{T}"/> or <see cref="AddFlag{T}"/>.
+    ///
+    /// This class, and its entire concept, are extremely terrible. If you intend on using this, there's probably at least one better solution available.
+    /// Though if, for some weird reason, you need a way to have more than 64 distinct flags, this is a pretty good solution.
     /// </summary>
     /// <remarks>
     /// To include enum-like operator overloads in a dynamic enum named MyEnum, the following code can be used:
@@ -27,10 +30,7 @@ namespace MLEM.Data {
     [JsonConverter(typeof(DynamicEnumConverter))]
     public abstract class DynamicEnum {
 
-        private static readonly Dictionary<Type, Dictionary<BigInteger, DynamicEnum>> Values = new Dictionary<Type, Dictionary<BigInteger, DynamicEnum>>();
-        private static readonly Dictionary<Type, Dictionary<BigInteger, DynamicEnum>> FlagCache = new Dictionary<Type, Dictionary<BigInteger, DynamicEnum>>();
-        private static readonly Dictionary<Type, Dictionary<string, DynamicEnum>> ParseCache = new Dictionary<Type, Dictionary<string, DynamicEnum>>();
-
+        private static readonly Dictionary<Type, Storage> Storages = new Dictionary<Type, Storage>();
         private readonly BigInteger value;
 
         private Dictionary<DynamicEnum, bool> allFlagsCache;
@@ -59,8 +59,7 @@ namespace MLEM.Data {
             if (this.allFlagsCache == null)
                 this.allFlagsCache = new Dictionary<DynamicEnum, bool>();
             if (!this.allFlagsCache.TryGetValue(flags, out var ret)) {
-                // & is very memory-intensive, so we cache the return value
-                ret = (GetValue(this) & GetValue(flags)) == GetValue(flags);
+                ret = And(this, flags) == flags;
                 this.allFlagsCache.Add(flags, ret);
             }
             return ret;
@@ -76,8 +75,7 @@ namespace MLEM.Data {
             if (this.anyFlagsCache == null)
                 this.anyFlagsCache = new Dictionary<DynamicEnum, bool>();
             if (!this.anyFlagsCache.TryGetValue(flags, out var ret)) {
-                // & is very memory-intensive, so we cache the return value
-                ret = (GetValue(this) & GetValue(flags)) != 0;
+                ret = GetValue(And(this, flags)) != 0;
                 this.anyFlagsCache.Add(flags, ret);
             }
             return ret;
@@ -107,24 +105,20 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         /// <exception cref="ArgumentException">Thrown if the name or value passed are already present</exception>
         public static T Add<T>(string name, BigInteger value) where T : DynamicEnum {
-            if (!Values.TryGetValue(typeof(T), out var dict)) {
-                dict = new Dictionary<BigInteger, DynamicEnum>();
-                Values.Add(typeof(T), dict);
-            }
+            var storage = GetStorage(typeof(T));
 
             // cached parsed values and names might be incomplete with new values
-            FlagCache.Remove(typeof(T));
-            ParseCache.Remove(typeof(T));
+            storage.ClearCaches();
 
-            if (dict.ContainsKey(value))
+            if (storage.Values.ContainsKey(value))
                 throw new ArgumentException($"Duplicate value {value}", nameof(value));
-            foreach (var v in dict.Values) {
+            foreach (var v in storage.Values.Values) {
                 if (v.name == name)
                     throw new ArgumentException($"Duplicate name {name}", nameof(name));
             }
 
             var ret = Construct(typeof(T), name, value);
-            dict.Add(value, ret);
+            storage.Values.Add(value, ret);
             return (T) ret;
         }
 
@@ -138,10 +132,8 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         public static T AddValue<T>(string name) where T : DynamicEnum {
             BigInteger value = 0;
-            if (Values.TryGetValue(typeof(T), out var defined)) {
-                while (defined.ContainsKey(value))
-                    value++;
-            }
+            while (GetStorage(typeof(T)).Values.ContainsKey(value))
+                value++;
             return Add<T>(name, value);
         }
 
@@ -155,10 +147,8 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         public static T AddFlag<T>(string name) where T : DynamicEnum {
             BigInteger value = 0;
-            if (Values.TryGetValue(typeof(T), out var defined)) {
-                while (defined.ContainsKey(value))
-                    value <<= 1;
-            }
+            while (GetStorage(typeof(T)).Values.ContainsKey(value))
+                value <<= 1;
             return Add<T>(name, value);
         }
 
@@ -179,7 +169,7 @@ namespace MLEM.Data {
         /// <param name="type">The type whose values to get</param>
         /// <returns>The defined values for the given type</returns>
         public static IEnumerable<DynamicEnum> GetValues(Type type) {
-            return Values.TryGetValue(type, out var ret) ? ret.Values : Enumerable.Empty<DynamicEnum>();
+            return GetStorage(type).Values.Values;
         }
 
         /// <summary>
@@ -190,7 +180,12 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise OR (|) combination</returns>
         public static T Or<T>(T left, T right) where T : DynamicEnum {
-            return GetEnumValue<T>(GetValue(left) | GetValue(right));
+            var cache = GetStorage(typeof(T)).OrCache;
+            if (!cache.TryGetValue((left, right), out var ret)) {
+                ret = GetEnumValue<T>(GetValue(left) | GetValue(right));
+                cache.Add((left, right), ret);
+            }
+            return (T) ret;
         }
 
         /// <summary>
@@ -201,7 +196,12 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise AND (&amp;) combination</returns>
         public static T And<T>(T left, T right) where T : DynamicEnum {
-            return GetEnumValue<T>(GetValue(left) & GetValue(right));
+            var cache = GetStorage(typeof(T)).AndCache;
+            if (!cache.TryGetValue((left, right), out var ret)) {
+                ret = GetEnumValue<T>(GetValue(left) & GetValue(right));
+                cache.Add((left, right), ret);
+            }
+            return (T) ret;
         }
 
         /// <summary>
@@ -212,7 +212,12 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise XOR (^) combination</returns>
         public static T Xor<T>(T left, T right) where T : DynamicEnum {
-            return GetEnumValue<T>(GetValue(left) ^ GetValue(right));
+            var cache = GetStorage(typeof(T)).XorCache;
+            if (!cache.TryGetValue((left, right), out var ret)) {
+                ret = GetEnumValue<T>(GetValue(left) ^ GetValue(right));
+                cache.Add((left, right), ret);
+            }
+            return (T) ret;
         }
 
         /// <summary>
@@ -222,7 +227,12 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise NEG (~) value</returns>
         public static T Neg<T>(T value) where T : DynamicEnum {
-            return GetEnumValue<T>(~GetValue(value));
+            var cache = GetStorage(typeof(T)).NegCache;
+            if (!cache.TryGetValue(value, out var ret)) {
+                ret = GetEnumValue<T>(~GetValue(value));
+                cache.Add(value, ret);
+            }
+            return (T) ret;
         }
 
         /// <summary>
@@ -251,18 +261,16 @@ namespace MLEM.Data {
         /// <param name="value">The value whose dynamic enum value to get</param>
         /// <returns>The defined or combined dynamic enum value</returns>
         public static DynamicEnum GetEnumValue(Type type, BigInteger value) {
+            var storage = GetStorage(type);
+
             // get the defined value if it exists
-            if (Values.TryGetValue(type, out var values) && values.TryGetValue(value, out var defined))
+            if (storage.Values.TryGetValue(value, out var defined))
                 return defined;
 
             // otherwise, cache the combined value
-            if (!FlagCache.TryGetValue(type, out var cache)) {
-                cache = new Dictionary<BigInteger, DynamicEnum>();
-                FlagCache.Add(type, cache);
-            }
-            if (!cache.TryGetValue(value, out var combined)) {
+            if (!storage.FlagCache.TryGetValue(value, out var combined)) {
                 combined = Construct(type, null, value);
-                cache.Add(value, combined);
+                storage.FlagCache.Add(value, combined);
             }
             return combined;
         }
@@ -287,10 +295,7 @@ namespace MLEM.Data {
         /// <param name="strg">The string to parse into a dynamic enum value</param>
         /// <returns>The parsed enum value, or null if parsing fails</returns>
         public static DynamicEnum Parse(Type type, string strg) {
-            if (!ParseCache.TryGetValue(type, out var cache)) {
-                cache = new Dictionary<string, DynamicEnum>();
-                ParseCache.Add(type, cache);
-            }
+            var cache = GetStorage(type).ParseCache;
             if (!cache.TryGetValue(strg, out var cached)) {
                 BigInteger? accum = null;
                 foreach (var val in strg.Split('|')) {
@@ -308,9 +313,38 @@ namespace MLEM.Data {
             return cached;
         }
 
+        private static Storage GetStorage(Type type) {
+            if (!Storages.TryGetValue(type, out var storage)) {
+                storage = new Storage();
+                Storages.Add(type, storage);
+            }
+            return storage;
+        }
+
         private static DynamicEnum Construct(Type type, string name, BigInteger value) {
             var constructor = type.GetConstructor(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new[] {typeof(string), typeof(BigInteger)}, null);
             return (DynamicEnum) constructor.Invoke(new object[] {name, value});
+        }
+
+        private class Storage {
+
+            public readonly Dictionary<BigInteger, DynamicEnum> Values = new Dictionary<BigInteger, DynamicEnum>();
+            public readonly Dictionary<BigInteger, DynamicEnum> FlagCache = new Dictionary<BigInteger, DynamicEnum>();
+            public readonly Dictionary<string, DynamicEnum> ParseCache = new Dictionary<string, DynamicEnum>();
+            public readonly Dictionary<(DynamicEnum, DynamicEnum), DynamicEnum> OrCache = new Dictionary<(DynamicEnum, DynamicEnum), DynamicEnum>();
+            public readonly Dictionary<(DynamicEnum, DynamicEnum), DynamicEnum> AndCache = new Dictionary<(DynamicEnum, DynamicEnum), DynamicEnum>();
+            public readonly Dictionary<(DynamicEnum, DynamicEnum), DynamicEnum> XorCache = new Dictionary<(DynamicEnum, DynamicEnum), DynamicEnum>();
+            public readonly Dictionary<DynamicEnum, DynamicEnum> NegCache = new Dictionary<DynamicEnum, DynamicEnum>();
+
+            public void ClearCaches() {
+                this.FlagCache.Clear();
+                this.ParseCache.Clear();
+                this.OrCache.Clear();
+                this.AndCache.Clear();
+                this.XorCache.Clear();
+                this.NegCache.Clear();
+            }
+
         }
 
     }
