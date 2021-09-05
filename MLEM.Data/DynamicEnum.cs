@@ -59,7 +59,7 @@ namespace MLEM.Data {
             if (this.allFlagsCache == null)
                 this.allFlagsCache = new Dictionary<DynamicEnum, bool>();
             if (!this.allFlagsCache.TryGetValue(flags, out var ret)) {
-                ret = And(this, flags) == flags;
+                ret = (GetValue(this) & GetValue(flags)) == GetValue(flags);
                 this.allFlagsCache.Add(flags, ret);
             }
             return ret;
@@ -75,7 +75,7 @@ namespace MLEM.Data {
             if (this.anyFlagsCache == null)
                 this.anyFlagsCache = new Dictionary<DynamicEnum, bool>();
             if (!this.anyFlagsCache.TryGetValue(flags, out var ret)) {
-                ret = GetValue(And(this, flags)) != 0;
+                ret = (GetValue(this) & GetValue(flags)) != 0;
                 this.anyFlagsCache.Add(flags, ret);
             }
             return ret;
