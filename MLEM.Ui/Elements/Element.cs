@@ -650,7 +650,7 @@ namespace MLEM.Ui.Elements {
                             foundChild = lowest;
                         } else {
                             if (this.Children.Any(e => !e.IsHidden))
-                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its height based on children but it only has children anchored too low ({string.Join(", ", this.Children.Select(c => c.Anchor))})");
+                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its height based on children but it only has visible children anchored too low ({string.Join(", ", this.Children.Where(c => !c.IsHidden).Select(c => c.Anchor))})");
                             autoSize.Y = 0;
                         }
                     }
@@ -662,7 +662,7 @@ namespace MLEM.Ui.Elements {
                             foundChild = rightmost;
                         } else {
                             if (this.Children.Any(e => !e.IsHidden))
-                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its width based on children but it only has children anchored too far right ({string.Join(", ", this.Children.Select(c => c.Anchor))})");
+                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its width based on children but it only has visible children anchored too far right ({string.Join(", ", this.Children.Where(c => !c.IsHidden).Select(c => c.Anchor))})");
                             autoSize.X = 0;
                         }
                     }
