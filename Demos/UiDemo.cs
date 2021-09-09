@@ -8,6 +8,7 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
+using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -141,6 +142,10 @@ namespace Demos {
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Mouse Tooltip") {
                 OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden
             });
+            var delayed = this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Delayed Tooltip") {PositionOffset = new Vector2(0, 1)});
+            delayed.AddTooltip(50, "This tooltip appears with a half second delay!").Delay = TimeSpan.FromSeconds(0.5);
+            var condition = this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Hold Ctrl for Tooltip") {PositionOffset = new Vector2(0, 1)});
+            condition.AddTooltip(50, p => this.InputHandler.IsModifierKeyDown(ModifierKey.Control) ? "This tooltip only appears when holding control!" : string.Empty);
 
             var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
                 StepPerScroll = 0.01F

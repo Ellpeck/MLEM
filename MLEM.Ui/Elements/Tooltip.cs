@@ -24,6 +24,7 @@ namespace MLEM.Ui.Elements {
         public Paragraph Paragraph;
 
         private TimeSpan delayCountdown;
+        private bool autoHidden;
 
         /// <summary>
         /// Creates a new tooltip with the given settings
@@ -55,10 +56,14 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
             this.SnapPositionToMouse();
 
-            if (this.IsHidden && this.delayCountdown > TimeSpan.Zero) {
+            if (this.delayCountdown > TimeSpan.Zero) {
                 this.delayCountdown -= time.ElapsedGameTime;
-                if (this.delayCountdown <= TimeSpan.Zero)
+                if (this.delayCountdown <= TimeSpan.Zero) {
                     this.IsHidden = false;
+                    this.UpdateAutoHidden();
+                }
+            } else {
+                this.UpdateAutoHidden();
             }
         }
 
@@ -111,6 +116,7 @@ namespace MLEM.Ui.Elements {
                 this.IsHidden = true;
                 this.delayCountdown = this.Delay;
             }
+            this.autoHidden = false;
         }
 
         /// <summary>
@@ -127,15 +133,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public void AddToElement(Element elementToHover) {
-            elementToHover.OnMouseEnter += element => {
-                // only display the tooltip if there is anything in it
-                foreach (var c in this.Children) {
-                    if (!c.IsHidden) {
-                        this.Display(element.System, element.GetType().Name + "Tooltip");
-                        break;
-                    }
-                }
-            };
+            elementToHover.OnMouseEnter += element => this.Display(element.System, element.GetType().Name + "Tooltip");
             elementToHover.OnMouseExit += element => this.Remove();
         }
 
@@ -150,6 +148,22 @@ namespace MLEM.Ui.Elements {
 
             if (elementToHover != null)
                 this.AddToElement(elementToHover);
+        }
+
+        private void UpdateAutoHidden() {
+            var shouldBeHidden = true;
+            foreach (var child in this.Children) {
+                if (!child.IsHidden) {
+                    shouldBeHidden = false;
+                    break;
+                }
+            }
+            if (this.autoHidden != shouldBeHidden) {
+                // only auto-hide if IsHidden wasn't changed manually
+                if (this.IsHidden == this.autoHidden)
+                    this.IsHidden = shouldBeHidden;
+                this.autoHidden = shouldBeHidden;
+            }
         }
 
     }

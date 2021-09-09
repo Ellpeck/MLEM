@@ -36,6 +36,7 @@ Improvements
 Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font
 - Fixed tooltips with custom text scale not snapping to the mouse correctly in their first displayed frame
+- Fixed tooltips not displaying correctly with auto-hiding paragraphs
 
 ### MLEM.Extended
 Improvements
