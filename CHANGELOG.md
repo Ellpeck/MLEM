@@ -51,6 +51,9 @@ Improvements
 - Improved CopyExtensions construction speed
 - Improved DynamicEnum caching
 
+Fixes
+- Fixed DynamicEnum AddFlag going into an infinite loop
+
 ## 5.0.0
 ### MLEM
 Additions

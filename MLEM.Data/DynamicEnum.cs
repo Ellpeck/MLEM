@@ -148,7 +148,7 @@ namespace MLEM.Data {
         public static T AddFlag<T>(string name) where T : DynamicEnum {
             BigInteger value = 0;
             while (GetStorage(typeof(T)).Values.ContainsKey(value))
-                value <<= 1;
+                value = value != 0 ? value << 1 : 1;
             return Add<T>(name, value);
         }
 
