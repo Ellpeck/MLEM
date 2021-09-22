@@ -146,9 +146,9 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type to add this value to</typeparam>
         /// <returns>The newly created enum value</returns>
         public static T AddFlag<T>(string name) where T : DynamicEnum {
-            BigInteger value = 0;
+            BigInteger value = 1;
             while (GetStorage(typeof(T)).Values.ContainsKey(value))
-                value = value != 0 ? value << 1 : 1;
+                value <<= 1;
             return Add<T>(name, value);
         }
 
