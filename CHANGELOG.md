@@ -37,6 +37,7 @@ Fixes
 - Fixed a crash if a paragraph has a link formatting code, but no font
 - Fixed tooltips with custom text scale not snapping to the mouse correctly in their first displayed frame
 - Fixed tooltips not displaying correctly with auto-hiding paragraphs
+- Fixed rounding errors causing AutoInline elements to be pushed into the next line with some ui scales
 
 ### MLEM.Extended
 Improvements

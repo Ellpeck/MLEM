@@ -607,7 +607,9 @@ namespace MLEM.Ui.Elements {
                                 break;
                             case Anchor.AutoInline:
                                 var newX = prevArea.Right + this.ScaledOffset.X;
-                                if (newX + newSize.X <= parentArea.Right) {
+                                // with awkward ui scale values, floating point rounding can cause an element that would usually be
+                                // positioned correctly to be pushed into the next line due to a very small deviation, so we add 0.01 here
+                                if (newX + newSize.X <= parentArea.Right + 0.01F) {
                                     pos.X = newX;
                                     pos.Y = prevArea.Y + this.ScaledOffset.Y;
                                 } else {
@@ -673,6 +675,7 @@ namespace MLEM.Ui.Elements {
                         autoSize = Vector2.Min(autoSize, actualSize);
                     }
 
+                    // we want to leave some leeway to prevent float rounding causing an infinite loop
                     if (!autoSize.Equals(this.UnscrolledArea.Size, 0.01F)) {
                         recursion++;
                         if (recursion >= 16) {
