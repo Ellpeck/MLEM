@@ -13,6 +13,7 @@
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>Logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,5 +24,6 @@
 
     <ItemGroup>
         <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
+        <None Include="../docs/index.md" Pack="true" PackagePath="README.md" />
     </ItemGroup>
 </Project>
