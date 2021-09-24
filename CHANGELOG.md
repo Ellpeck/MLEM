@@ -1,11 +1,11 @@
 # Changelog
-MLEM uses [semantic versioning](https://semver.org/).
+MLEM tries to adhere to [semantic versioning](https://semver.org/).
 
 Jump to version:
-- [5.1.0 (Unreleased)](#510-unreleased)
+- [5.1.0](#510)
 - [5.0.0](#500)
 
-## 5.1.0 (Unreleased)
+## 5.1.0
 ### MLEM
 Additions
 - Added RotateBy to Direction2Helper
