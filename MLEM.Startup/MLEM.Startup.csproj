@@ -29,6 +29,6 @@
 
     <ItemGroup>
         <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
-        <None Include="../docs/index.md" Pack="true" PackagePath="README.md" />
+        <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />
     </ItemGroup>
 </Project>
