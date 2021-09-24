@@ -2,8 +2,11 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/).
 
 Jump to version:
+- [5.2.0 (Unreleased)](#520-unreleased)
 - [5.1.0](#510)
 - [5.0.0](#500)
+
+## 5.2.0 (Unreleased)
 
 ## 5.1.0
 ### MLEM
