@@ -7,6 +7,9 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 5.2.0 (Unreleased)
+### MLEM.Ui
+Fixes
+- Fixed VerticalSpace height parameter being an integer
 
 ## 5.1.0
 ### MLEM

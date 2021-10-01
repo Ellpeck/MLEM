@@ -11,7 +11,7 @@ namespace MLEM.Ui.Elements {
         /// Creates a new vertical space with the given settings
         /// </summary>
         /// <param name="height">The height of the vertical space</param>
-        public VerticalSpace(int height) : base(Anchor.AutoCenter, new Vector2(1, height)) {
+        public VerticalSpace(float height) : base(Anchor.AutoCenter, new Vector2(1, height)) {
             this.CanBeSelected = false;
         }
 
