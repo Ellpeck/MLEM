@@ -42,6 +42,7 @@ namespace MLEM.Formatting {
         public readonly string RawSubstring;
         internal RectangleF[] Area;
         internal string ModifiedSubstring;
+        internal float[] InnerOffsets;
 
         internal Token(Code[] appliedCodes, int index, int rawIndex, string substring, string rawSubstring) {
             this.AppliedCodes = appliedCodes;

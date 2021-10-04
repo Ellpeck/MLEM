@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,7 @@ namespace MLEM.Formatting {
         /// </summary>
         public readonly Code[] AllCodes;
         private string modifiedString;
+        private float initialInnerOffset;
 
         internal TokenizedString(GenericFont font, TextAlignment alignment, string rawString, string strg, Token[] tokens) {
             this.RawString = rawString;
@@ -111,7 +113,7 @@ namespace MLEM.Formatting {
 
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, TextAlignment alignment = TextAlignment.Left) {
-            var innerOffset = new Vector2(this.GetInnerOffsetX(font, 0, 0, scale, alignment), 0);
+            var innerOffset = new Vector2(this.initialInnerOffset * scale, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
                 var drawFont = token.GetFont(font) ?? font;
@@ -129,7 +131,7 @@ namespace MLEM.Formatting {
                     }
                     // only split at a new line, not between tokens!
                     if (l < token.SplitDisplayString.Length - 1) {
-                        innerOffset.X = this.GetInnerOffsetX(font, t, l + 1, scale, alignment);
+                        innerOffset.X = token.InnerOffsets[l] * scale;
                         innerOffset.Y += font.LineHeight * scale;
                     }
                 }
@@ -172,45 +174,17 @@ namespace MLEM.Formatting {
             this.RecalculateTokenData(font, alignment);
         }
 
-        private float GetInnerOffsetX(GenericFont font, int tokenIndex, int lineIndex, float scale, TextAlignment alignment) {
-            if (alignment > TextAlignment.Left) {
-                var rest = this.GetRestOfLineLength(font, tokenIndex, lineIndex) * scale;
-                if (alignment == TextAlignment.Center)
-                    rest /= 2;
-                return -rest;
-            }
-            return 0;
-        }
-
-        private float GetRestOfLineLength(GenericFont font, int tokenIndex, int lineIndex) {
-            var token = this.Tokens[tokenIndex];
-            var ret = font.MeasureString(token.SplitDisplayString[lineIndex], true).X;
-            if (lineIndex >= token.SplitDisplayString.Length - 1) {
-                // the line ends somewhere in or after the next token
-                for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
-                    var other = this.Tokens[i];
-                    if (other.SplitDisplayString.Length > 1) {
-                        // the line ends in this token
-                        ret += font.MeasureString(other.SplitDisplayString[0]).X;
-                        break;
-                    } else {
-                        // the line doesn't end in this token, so add it fully
-                        ret += font.MeasureString(other.DisplayString).X;
-                    }
-                }
-            }
-            return ret;
-        }
-
         private void RecalculateTokenData(GenericFont font, TextAlignment alignment) {
             // split display strings
             foreach (var token in this.Tokens)
                 token.SplitDisplayString = token.DisplayString.Split('\n');
 
             // token areas
-            var innerOffset = new Vector2(this.GetInnerOffsetX(font, 0, 0, 1, alignment), 0);
+            this.initialInnerOffset = this.GetInnerOffsetX(font, 0, 0, alignment);
+            var innerOffset = new Vector2(this.initialInnerOffset, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
+                token.InnerOffsets = new float[token.SplitDisplayString.Length - 1];
                 var area = new List<RectangleF>();
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
                     var size = font.MeasureString(token.SplitDisplayString[l]);
@@ -219,7 +193,7 @@ namespace MLEM.Formatting {
                         area.Add(rect);
 
                     if (l < token.SplitDisplayString.Length - 1) {
-                        innerOffset.X = this.GetInnerOffsetX(font, t, l + 1, 1, alignment);
+                        innerOffset.X = token.InnerOffsets[l] = this.GetInnerOffsetX(font, t, l + 1, alignment);
                         innerOffset.Y += font.LineHeight;
                     } else {
                         innerOffset.X += size.X;
@@ -227,6 +201,31 @@ namespace MLEM.Formatting {
                 }
                 token.Area = area.ToArray();
             }
+        }
+
+        private float GetInnerOffsetX(GenericFont font, int tokenIndex, int lineIndex, TextAlignment alignment) {
+            if (alignment > TextAlignment.Left) {
+                var token = this.Tokens[tokenIndex];
+                var restOfLine = font.MeasureString(token.SplitDisplayString[lineIndex], true).X;
+                if (lineIndex >= token.SplitDisplayString.Length - 1) {
+                    // the line ends somewhere in or after the next token
+                    for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
+                        var other = this.Tokens[i];
+                        if (other.SplitDisplayString.Length > 1) {
+                            // the line ends in this token
+                            restOfLine += font.MeasureString(other.SplitDisplayString[0]).X;
+                            break;
+                        } else {
+                            // the line doesn't end in this token, so add it fully
+                            restOfLine += font.MeasureString(other.DisplayString).X;
+                        }
+                    }
+                }
+                if (alignment == TextAlignment.Center)
+                    restOfLine /= 2;
+                return -restOfLine;
+            }
+            return 0;
         }
 
     }

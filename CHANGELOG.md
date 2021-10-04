@@ -8,6 +8,9 @@ Jump to version:
 
 ## 5.2.0 (Unreleased)
 ### MLEM.Ui
+Improvements
+- Cache TokenizedString inner offsets for non-Left text alignments to improve performance
+
 Fixes
 - Fixed VerticalSpace height parameter being an integer
 
