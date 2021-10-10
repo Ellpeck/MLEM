@@ -7,6 +7,10 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 5.2.0 (Unreleased)
+### MLEM
+Additions
+- Added a strikethrough formatting code
+
 ### MLEM.Ui
 Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance

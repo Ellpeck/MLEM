@@ -38,7 +38,8 @@ namespace MLEM.Formatting {
                 m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black,
                 new Vector2(float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? offset : 2)));
             this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
-            this.Codes.Add(new Regex("</(s|u|l)>"), (f, m, r) => new ResetFormattingCode(m, r));
+            this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.55F));
+            this.Codes.Add(new Regex("</(s|u|st|l)>"), (f, m, r) => new ResetFormattingCode(m, r));
             this.Codes.Add(new Regex("</(b|i)>"), (f, m, r) => new FontCode(m, r, null));
 
             // color codes
