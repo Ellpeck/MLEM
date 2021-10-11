@@ -158,6 +158,11 @@ namespace MLEM.Ui.Elements {
                 this.HandleTextChange(false);
             }
         }
+        /// <summary>
+        /// The maximum amount of characters that can be input into this text field.
+        /// If this is set, the length of <see cref="Text"/> will never exceed this value.
+        /// </summary>
+        public int? MaximumCharacters;
 
         private readonly StringBuilder text = new StringBuilder();
 
@@ -305,33 +310,40 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Replaces this text field's text with the given text.
+        /// If the resulting <see cref="Text"/> exceeds <see cref="MaximumCharacters"/>, the end will be cropped to fit.
         /// </summary>
         /// <param name="text">The new text</param>
         /// <param name="removeMismatching">If any characters that don't match the <see cref="InputRule"/> should be left out</param>
         public void SetText(object text, bool removeMismatching = false) {
+            var strg = text?.ToString() ?? string.Empty;
             if (removeMismatching) {
                 var result = new StringBuilder();
-                foreach (var c in text.ToString()) {
+                foreach (var c in strg) {
                     if (this.InputRule(this, c.ToCachedString()))
                         result.Append(c);
                 }
-                text = result.ToString();
-            } else if (!this.InputRule(this, text.ToString()))
+                strg = result.ToString();
+            } else if (!this.InputRule(this, strg))
                 return;
+            if (this.MaximumCharacters != null && strg.Length > this.MaximumCharacters)
+                strg = strg.Substring(0, this.MaximumCharacters.Value);
             this.text.Clear();
-            this.text.Append(text);
+            this.text.Append(strg);
             this.CaretPos = this.text.Length;
             this.HandleTextChange();
         }
 
         /// <summary>
-        /// Inserts the given text at the <see cref="CaretPos"/>
+        /// Inserts the given text at the <see cref="CaretPos"/>.
+        /// If the resulting <see cref="Text"/> exceeds <see cref="MaximumCharacters"/>, the end will be cropped to fit.
         /// </summary>
         /// <param name="text">The text to insert</param>
         public void InsertText(object text) {
             var strg = text.ToString();
             if (!this.InputRule(this, strg))
                 return;
+            if (this.MaximumCharacters != null && this.text.Length + strg.Length > this.MaximumCharacters)
+                strg = strg.Substring(0, this.MaximumCharacters.Value - this.text.Length);
             this.text.Insert(this.CaretPos, strg);
             this.CaretPos += strg.Length;
             this.HandleTextChange();

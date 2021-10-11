@@ -12,6 +12,9 @@ Additions
 - Added a strikethrough formatting code
 
 ### MLEM.Ui
+Additions
+- Allow specifying a maximum amount of characters for a TextField
+
 Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 
