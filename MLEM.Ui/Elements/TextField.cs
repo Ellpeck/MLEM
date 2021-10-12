@@ -167,9 +167,6 @@ namespace MLEM.Ui.Elements {
         /// If this is true, pressing <see cref="Keys.Enter"/> will insert a new line into the <see cref="Text"/> if the <see cref="InputRule"/> allows it.
         /// Additionally, text will be rendered with horizontal soft wraps, and lines that are outside of the text field's bounds will be hidden.
         /// </summary>
-        /// <remarks>
-        /// Moving up and down through the text field, and clicking on text to start editing at the mouse's position, are currently not supported.
-        /// </remarks>
         public bool Multiline {
             get => this.multiline;
             set {
@@ -250,7 +247,7 @@ namespace MLEM.Ui.Elements {
                     var caretLine = 0;
                     var originalIndex = 0;
                     var addedLineBreaks = 0;
-                    for (var i = 0; i <= this.CaretPos + addedLineBreaks && i < this.displayedText.Length; i++) {
+                    for (var i = 0; i <= this.CaretPos + addedLineBreaks - 1 && i < this.displayedText.Length; i++) {
                         if (this.displayedText[i] == '\n') {
                             caretLine++;
                             if (this.text[originalIndex] != '\n') {
@@ -385,7 +382,7 @@ namespace MLEM.Ui.Elements {
                             var lastLineBreak = 0;
                             var originalIndex = 0;
                             var addedLineBreaks = 0;
-                            for (var i = 0; i <= this.CaretPos - this.textOffset + addedLineBreaks && i < this.displayedText.Length; i++) {
+                            for (var i = 0; i <= this.CaretPos - this.textOffset + addedLineBreaks - 1 && i < this.displayedText.Length; i++) {
                                 if (this.displayedText[i] == '\n') {
                                     lines++;
                                     lastLineBreak = i;
@@ -460,7 +457,8 @@ namespace MLEM.Ui.Elements {
             if (index < 0 || index >= this.text.Length)
                 return;
             this.text.Remove(index, length);
-            this.CaretPos = this.text.Length;
+            // ensure that caret pos is still in bounds
+            this.CaretPos = this.CaretPos;
             this.HandleTextChange();
         }
 
