@@ -95,8 +95,8 @@ namespace Demos {
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including <a wobbly>wobbly text</a> at <a wobbly 8 0.25>different intensities</a>. Of course, more animations can be added though."));
 
             this.root.AddChild(new VerticalSpace(3));
-            this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
-            this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {
+            this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Multiline text input:", true));
+            this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 50), multiline: true) {
                 PositionOffset = new Vector2(0, 1),
                 PlaceholderText = "Click here to input text"
             });

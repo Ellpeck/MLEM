@@ -14,6 +14,7 @@ Additions
 ### MLEM.Ui
 Additions
 - Allow specifying a maximum amount of characters for a TextField
+- Added a multiline editing mode to TextField
 
 Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
