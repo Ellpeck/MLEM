@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -146,6 +147,16 @@ namespace MLEM.Ui.Elements {
             }
         }
         /// <summary>
+        /// The line of text that the caret is currently on.
+        /// This can only be only non-0 if <see cref="Multiline"/> is true.
+        /// </summary>
+        public int CaretLine { get; private set; }
+        /// <summary>
+        /// The position in the current <see cref="CaretLine"/> that the caret is currently on.
+        /// If <see cref="Multiline"/> is false, this value is always equal to <see cref="CaretPos"/>.
+        /// </summary>
+        public int CaretPosInLine { get; private set; }
+        /// <summary>
         /// A character that should be displayed instead of this text field's <see cref="Text"/> content.
         /// The amount of masking characters displayed will be equal to the <see cref="Text"/>'s length.
         /// This behavior is useful for password fields or similar.
@@ -167,6 +178,9 @@ namespace MLEM.Ui.Elements {
         /// If this is true, pressing <see cref="Keys.Enter"/> will insert a new line into the <see cref="Text"/> if the <see cref="InputRule"/> allows it.
         /// Additionally, text will be rendered with horizontal soft wraps, and lines that are outside of the text field's bounds will be hidden.
         /// </summary>
+        /// <remarks>
+        /// Moving up and down through the text field, and clicking on text to start editing at the mouse's position, are currently not supported.
+        /// </remarks>
         public bool Multiline {
             get => this.multiline;
             set {
@@ -180,9 +194,11 @@ namespace MLEM.Ui.Elements {
         private char? maskingCharacter;
         private double caretBlinkTimer;
         private string displayedText;
+        private string[] splitText;
         private int textOffset;
         private int lineOffset;
         private int caretPos;
+        private float caretDrawOffset;
         private bool multiline;
 
         /// <summary>
@@ -239,38 +255,26 @@ namespace MLEM.Ui.Elements {
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
             if (this.Multiline) {
                 // soft wrap if we're multiline
-                this.displayedText = this.Font.Value.SplitString(this.text.ToString(), maxWidth, this.TextScale);
+                this.splitText = this.Font.Value.SplitStringSeparate(this.text.ToString(), maxWidth, this.TextScale).ToArray();
+                this.displayedText = string.Join("\n", this.splitText);
+                this.UpdateCaretData();
+
                 var maxHeight = this.DisplayArea.Height / this.Scale - this.TextOffsetX * 2;
                 if (this.Font.Value.MeasureString(this.displayedText).Y * this.TextScale > maxHeight) {
                     var maxLines = (maxHeight / (this.Font.Value.LineHeight * this.TextScale)).Floor();
-                    // calculate what line the caret is on
-                    var caretLine = 0;
-                    var originalIndex = 0;
-                    var addedLineBreaks = 0;
-                    for (var i = 0; i <= this.CaretPos + addedLineBreaks - 1 && i < this.displayedText.Length; i++) {
-                        if (this.displayedText[i] == '\n') {
-                            caretLine++;
-                            if (this.text[originalIndex] != '\n') {
-                                addedLineBreaks++;
-                                continue;
-                            }
-                        }
-                        originalIndex++;
-                    }
-                    // when we're multiline, the text offset is measured in lines
-                    if (this.lineOffset > caretLine) {
+                    if (this.lineOffset > this.CaretLine) {
                         // if we're moving up
-                        this.lineOffset = caretLine;
-                    } else if (caretLine >= maxLines) {
+                        this.lineOffset = this.CaretLine;
+                    } else if (this.CaretLine >= maxLines) {
                         // if we're moving down
-                        var limit = caretLine - (maxLines - 1);
+                        var limit = this.CaretLine - (maxLines - 1);
                         if (limit > this.lineOffset)
                             this.lineOffset = limit;
                     }
                     // calculate resulting string
                     var ret = new StringBuilder();
                     var lines = 0;
-                    originalIndex = 0;
+                    var originalIndex = 0;
                     for (var i = 0; i < this.displayedText.Length; i++) {
                         if (lines >= this.lineOffset) {
                             if (ret.Length <= 0)
@@ -311,6 +315,7 @@ namespace MLEM.Ui.Elements {
                     this.displayedText = this.Text;
                     this.textOffset = 0;
                 }
+                this.UpdateCaretData();
             }
 
             if (this.MaskingCharacter != null)
@@ -318,6 +323,39 @@ namespace MLEM.Ui.Elements {
 
             if (textChanged)
                 this.OnTextChange?.Invoke(this, this.Text);
+        }
+
+        private void UpdateCaretData() {
+            if (this.splitText != null) {
+                var line = 0;
+                var index = 0;
+                for (var d = 0; d < this.splitText.Length; d++) {
+                    var startOfLine = 0;
+                    var split = this.splitText[d];
+                    for (var i = 0; i <= split.Length; i++) {
+                        if (index == this.CaretPos) {
+                            this.CaretLine = line;
+                            this.CaretPosInLine = i - startOfLine;
+                            this.caretDrawOffset = this.Font.Value.MeasureString(split.Substring(startOfLine, this.CaretPosInLine)).X;
+                            return;
+                        }
+                        if (i < split.Length) {
+                            // manual splits
+                            if (split[i] == '\n') {
+                                startOfLine = i + 1;
+                                line++;
+                            }
+                            index++;
+                        }
+                    }
+                    // max width splits
+                    line++;
+                }
+            } else if (this.displayedText != null) {
+                this.CaretLine = 0;
+                this.CaretPosInLine = this.CaretPos;
+                this.caretDrawOffset = this.Font.Value.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)).X;
+            }
         }
 
         /// <inheritdoc />
@@ -376,28 +414,9 @@ namespace MLEM.Ui.Elements {
                     this.Font.Value.DrawString(batch, this.displayedText, textPos, textColor * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
 
                     if (this.IsSelected && this.caretBlinkTimer < 0.5F) {
-                        var caretDrawPos = textPos;
-                        if (this.Multiline) {
-                            var lines = 0;
-                            var lastLineBreak = 0;
-                            var originalIndex = 0;
-                            var addedLineBreaks = 0;
-                            for (var i = 0; i <= this.CaretPos - this.textOffset + addedLineBreaks - 1 && i < this.displayedText.Length; i++) {
-                                if (this.displayedText[i] == '\n') {
-                                    lines++;
-                                    lastLineBreak = i;
-                                    if (this.text[originalIndex] != '\n') {
-                                        addedLineBreaks++;
-                                        continue;
-                                    }
-                                }
-                                originalIndex++;
-                            }
-                            var sub = this.displayedText.Substring(lastLineBreak, this.CaretPos - this.textOffset + addedLineBreaks - lastLineBreak);
-                            caretDrawPos += new Vector2(this.Font.Value.MeasureString(sub).X * this.TextScale * this.Scale, lineHeight * lines);
-                        } else {
-                            caretDrawPos.X += this.Font.Value.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)).X * this.TextScale * this.Scale;
-                        }
+                        var caretDrawPos = textPos + new Vector2(this.caretDrawOffset * this.TextScale * this.Scale, 0);
+                        if (this.Multiline)
+                            caretDrawPos.Y += this.Font.Value.LineHeight * (this.CaretLine - this.lineOffset) * this.TextScale * this.Scale;
                         batch.Draw(batch.GetBlankTexture(), new RectangleF(caretDrawPos, new Vector2(this.CaretWidth * this.Scale, lineHeight)), null, textColor * alpha);
                     }
                 } else if (this.PlaceholderText != null) {
