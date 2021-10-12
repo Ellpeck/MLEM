@@ -22,6 +22,7 @@ Improvements
 
 Fixes
 - Fixed VerticalSpace height parameter being an integer
+- Fixed text not being pasted into a text field at all if it contains characters that don't match the input rule
 
 ## 5.1.0
 ### MLEM

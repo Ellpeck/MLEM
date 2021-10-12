@@ -248,6 +248,146 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
+        public override void Update(GameTime time) {
+            base.Update(time);
+
+            // handle first initialization if not done
+            if (this.displayedText == null)
+                this.HandleTextChange(false);
+
+            if (!this.IsSelected || this.IsHidden)
+                return;
+
+            if (this.Input.IsKeyPressed(Keys.Left)) {
+                this.CaretPos--;
+            } else if (this.Input.IsKeyPressed(Keys.Right)) {
+                this.CaretPos++;
+            } else if (this.Input.IsKeyPressed(Keys.Home)) {
+                this.CaretPos = 0;
+            } else if (this.Input.IsKeyPressed(Keys.End)) {
+                this.CaretPos = this.text.Length;
+            } else if (this.Input.IsModifierKeyDown(ModifierKey.Control)) {
+                if (this.Input.IsKeyPressed(Keys.V)) {
+                    var clip = ClipboardService.GetText();
+                    if (clip != null)
+                        this.InsertText(clip, true);
+                } else if (this.Input.IsKeyPressed(Keys.C)) {
+                    // until there is text selection, just copy the whole content
+                    ClipboardService.SetText(this.Text);
+                }
+            }
+
+            this.caretBlinkTimer += time.ElapsedGameTime.TotalSeconds;
+            if (this.caretBlinkTimer >= 1)
+                this.caretBlinkTimer = 0;
+        }
+
+        /// <inheritdoc />
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+            var tex = this.Texture;
+            var color = Color.White * alpha;
+            if (this.IsMouseOver) {
+                tex = this.HoveredTexture.OrDefault(tex);
+                color = (Color) this.HoveredColor * alpha;
+            }
+            batch.Draw(tex, this.DisplayArea, color, this.Scale);
+
+            if (this.displayedText != null) {
+                var lineHeight = this.Font.Value.LineHeight * this.TextScale * this.Scale;
+                var offset = new Vector2(
+                    this.TextOffsetX * this.Scale,
+                    this.Multiline ? this.TextOffsetX * this.Scale : this.DisplayArea.Height / 2 - lineHeight / 2);
+                var textPos = this.DisplayArea.Location + offset;
+                if (this.text.Length > 0 || this.IsSelected) {
+                    var textColor = this.TextColor.OrDefault(Color.White);
+                    this.Font.Value.DrawString(batch, this.displayedText, textPos, textColor * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
+
+                    if (this.IsSelected && this.caretBlinkTimer < 0.5F) {
+                        var caretDrawPos = textPos + new Vector2(this.caretDrawOffset * this.TextScale * this.Scale, 0);
+                        if (this.Multiline)
+                            caretDrawPos.Y += this.Font.Value.LineHeight * (this.CaretLine - this.lineOffset) * this.TextScale * this.Scale;
+                        batch.Draw(batch.GetBlankTexture(), new RectangleF(caretDrawPos, new Vector2(this.CaretWidth * this.Scale, lineHeight)), null, textColor * alpha);
+                    }
+                } else if (this.PlaceholderText != null) {
+                    this.Font.Value.DrawString(batch, this.PlaceholderText, textPos, this.PlaceholderColor.OrDefault(Color.Gray) * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
+                }
+            }
+            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
+        }
+
+        /// <summary>
+        /// Replaces this text field's text with the given text.
+        /// If the resulting <see cref="Text"/> exceeds <see cref="MaximumCharacters"/>, the end will be cropped to fit.
+        /// </summary>
+        /// <param name="text">The new text</param>
+        /// <param name="removeMismatching">If any characters that don't match the <see cref="InputRule"/> should be left out</param>
+        public void SetText(object text, bool removeMismatching = false) {
+            var strg = text?.ToString() ?? string.Empty;
+            if (!this.FilterText(ref strg, removeMismatching))
+                return;
+            if (this.MaximumCharacters != null && strg.Length > this.MaximumCharacters)
+                strg = strg.Substring(0, this.MaximumCharacters.Value);
+            this.text.Clear();
+            this.text.Append(strg);
+            this.CaretPos = this.text.Length;
+            this.HandleTextChange();
+        }
+
+        /// <summary>
+        /// Inserts the given text at the <see cref="CaretPos"/>.
+        /// If the resulting <see cref="Text"/> exceeds <see cref="MaximumCharacters"/>, the end will be cropped to fit.
+        /// </summary>
+        /// <param name="text">The text to insert</param>
+        /// <param name="removeMismatching">If any characters that don't match the <see cref="InputRule"/> should be left out</param>
+        public void InsertText(object text, bool removeMismatching = false) {
+            var strg = text?.ToString() ?? string.Empty;
+            if (!this.FilterText(ref strg, removeMismatching))
+                return;
+            if (this.MaximumCharacters != null && this.text.Length + strg.Length > this.MaximumCharacters)
+                strg = strg.Substring(0, this.MaximumCharacters.Value - this.text.Length);
+            this.text.Insert(this.CaretPos, strg);
+            this.CaretPos += strg.Length;
+            this.HandleTextChange();
+        }
+
+        /// <summary>
+        /// Removes the given amount of text at the given index
+        /// </summary>
+        /// <param name="index">The index</param>
+        /// <param name="length">The amount of text to remove</param>
+        public void RemoveText(int index, int length) {
+            if (index < 0 || index >= this.text.Length)
+                return;
+            this.text.Remove(index, length);
+            // ensure that caret pos is still in bounds
+            this.CaretPos = this.CaretPos;
+            this.HandleTextChange();
+        }
+
+        /// <inheritdoc />
+        protected override void InitStyle(UiStyle style) {
+            base.InitStyle(style);
+            this.TextScale.SetFromStyle(style.TextScale);
+            this.Font.SetFromStyle(style.Font);
+            this.Texture.SetFromStyle(style.TextFieldTexture);
+            this.HoveredTexture.SetFromStyle(style.TextFieldHoveredTexture);
+            this.HoveredColor.SetFromStyle(style.TextFieldHoveredColor);
+        }
+
+        private bool FilterText(ref string text, bool removeMismatching) {
+            if (removeMismatching) {
+                var result = new StringBuilder();
+                foreach (var c in text) {
+                    if (this.InputRule(this, c.ToCachedString()))
+                        result.Append(c);
+                }
+                text = result.ToString();
+            } else if (!this.InputRule(this, text))
+                return false;
+            return true;
+        }
+
         private void HandleTextChange(bool textChanged = true) {
             // not initialized yet
             if (!this.Font.HasValue())
@@ -356,139 +496,6 @@ namespace MLEM.Ui.Elements {
                 this.CaretPosInLine = this.CaretPos;
                 this.caretDrawOffset = this.Font.Value.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)).X;
             }
-        }
-
-        /// <inheritdoc />
-        public override void Update(GameTime time) {
-            base.Update(time);
-
-            // handle first initialization if not done
-            if (this.displayedText == null)
-                this.HandleTextChange(false);
-
-            if (!this.IsSelected || this.IsHidden)
-                return;
-
-            if (this.Input.IsKeyPressed(Keys.Left)) {
-                this.CaretPos--;
-            } else if (this.Input.IsKeyPressed(Keys.Right)) {
-                this.CaretPos++;
-            } else if (this.Input.IsKeyPressed(Keys.Home)) {
-                this.CaretPos = 0;
-            } else if (this.Input.IsKeyPressed(Keys.End)) {
-                this.CaretPos = this.text.Length;
-            } else if (this.Input.IsModifierKeyDown(ModifierKey.Control)) {
-                if (this.Input.IsKeyPressed(Keys.V)) {
-                    var clip = ClipboardService.GetText();
-                    if (clip != null)
-                        this.InsertText(clip);
-                } else if (this.Input.IsKeyPressed(Keys.C)) {
-                    // until there is text selection, just copy the whole content
-                    ClipboardService.SetText(this.Text);
-                }
-            }
-
-            this.caretBlinkTimer += time.ElapsedGameTime.TotalSeconds;
-            if (this.caretBlinkTimer >= 1)
-                this.caretBlinkTimer = 0;
-        }
-
-        /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
-            var tex = this.Texture;
-            var color = Color.White * alpha;
-            if (this.IsMouseOver) {
-                tex = this.HoveredTexture.OrDefault(tex);
-                color = (Color) this.HoveredColor * alpha;
-            }
-            batch.Draw(tex, this.DisplayArea, color, this.Scale);
-
-            if (this.displayedText != null) {
-                var lineHeight = this.Font.Value.LineHeight * this.TextScale * this.Scale;
-                var offset = new Vector2(
-                    this.TextOffsetX * this.Scale,
-                    this.Multiline ? this.TextOffsetX * this.Scale : this.DisplayArea.Height / 2 - lineHeight / 2);
-                var textPos = this.DisplayArea.Location + offset;
-                if (this.text.Length > 0 || this.IsSelected) {
-                    var textColor = this.TextColor.OrDefault(Color.White);
-                    this.Font.Value.DrawString(batch, this.displayedText, textPos, textColor * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
-
-                    if (this.IsSelected && this.caretBlinkTimer < 0.5F) {
-                        var caretDrawPos = textPos + new Vector2(this.caretDrawOffset * this.TextScale * this.Scale, 0);
-                        if (this.Multiline)
-                            caretDrawPos.Y += this.Font.Value.LineHeight * (this.CaretLine - this.lineOffset) * this.TextScale * this.Scale;
-                        batch.Draw(batch.GetBlankTexture(), new RectangleF(caretDrawPos, new Vector2(this.CaretWidth * this.Scale, lineHeight)), null, textColor * alpha);
-                    }
-                } else if (this.PlaceholderText != null) {
-                    this.Font.Value.DrawString(batch, this.PlaceholderText, textPos, this.PlaceholderColor.OrDefault(Color.Gray) * alpha, 0, Vector2.Zero, this.TextScale * this.Scale, SpriteEffects.None, 0);
-                }
-            }
-            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
-        }
-
-        /// <summary>
-        /// Replaces this text field's text with the given text.
-        /// If the resulting <see cref="Text"/> exceeds <see cref="MaximumCharacters"/>, the end will be cropped to fit.
-        /// </summary>
-        /// <param name="text">The new text</param>
-        /// <param name="removeMismatching">If any characters that don't match the <see cref="InputRule"/> should be left out</param>
-        public void SetText(object text, bool removeMismatching = false) {
-            var strg = text?.ToString() ?? string.Empty;
-            if (removeMismatching) {
-                var result = new StringBuilder();
-                foreach (var c in strg) {
-                    if (this.InputRule(this, c.ToCachedString()))
-                        result.Append(c);
-                }
-                strg = result.ToString();
-            } else if (!this.InputRule(this, strg))
-                return;
-            if (this.MaximumCharacters != null && strg.Length > this.MaximumCharacters)
-                strg = strg.Substring(0, this.MaximumCharacters.Value);
-            this.text.Clear();
-            this.text.Append(strg);
-            this.CaretPos = this.text.Length;
-            this.HandleTextChange();
-        }
-
-        /// <summary>
-        /// Inserts the given text at the <see cref="CaretPos"/>.
-        /// If the resulting <see cref="Text"/> exceeds <see cref="MaximumCharacters"/>, the end will be cropped to fit.
-        /// </summary>
-        /// <param name="text">The text to insert</param>
-        public void InsertText(object text) {
-            var strg = text.ToString();
-            if (!this.InputRule(this, strg))
-                return;
-            if (this.MaximumCharacters != null && this.text.Length + strg.Length > this.MaximumCharacters)
-                strg = strg.Substring(0, this.MaximumCharacters.Value - this.text.Length);
-            this.text.Insert(this.CaretPos, strg);
-            this.CaretPos += strg.Length;
-            this.HandleTextChange();
-        }
-
-        /// <summary>
-        /// Removes the given amount of text at the given index
-        /// </summary>
-        /// <param name="index">The index</param>
-        /// <param name="length">The amount of text to remove</param>
-        public void RemoveText(int index, int length) {
-            if (index < 0 || index >= this.text.Length)
-                return;
-            this.text.Remove(index, length);
-            // ensure that caret pos is still in bounds
-            this.CaretPos = this.CaretPos;
-            this.HandleTextChange();
-        }
-
-        /// <inheritdoc />
-        protected override void InitStyle(UiStyle style) {
-            base.InitStyle(style);
-            this.TextScale.SetFromStyle(style.TextScale);
-            this.Font.SetFromStyle(style.Font);
-            this.Texture.SetFromStyle(style.TextFieldTexture);
-            this.HoveredTexture.SetFromStyle(style.TextFieldHoveredTexture);
-            this.HoveredColor.SetFromStyle(style.TextFieldHoveredColor);
         }
 
         /// <summary>
