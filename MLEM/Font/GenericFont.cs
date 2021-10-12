@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -160,22 +161,36 @@ namespace MLEM.Font {
 
         /// <summary>
         /// Splits a string to a given maximum width, adding newline characters between each line.
-        /// Also splits long words and supports zero-width spaces.
+        /// Also splits long words and supports zero-width spaces and takes into account existing newline characters in the passed <paramref name="text"/>.
+        /// See <see cref="SplitStringSeparate"/> for a method that differentiates between existing newline characters and splits due to maximum width.
         /// </summary>
         /// <param name="text">The text to split into multiple lines</param>
         /// <param name="width">The maximum width that each line should have</param>
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string, containing newline characters at each new line</returns>
         public string SplitString(string text, float width, float scale) {
-            var ret = new StringBuilder();
+            return string.Join("\n", this.SplitStringSeparate(text, width, scale));
+        }
+
+        /// <summary>
+        /// Splits a string to a given maximum width and returns each split section as a separate string.
+        /// Note that existing new lines are taken into account for line length, but not split in the resulting strings.
+        /// This method differs from <see cref="SplitString"/> in that it differentiates between pre-existing newline characters and splits due to maximum width.
+        /// </summary>
+        /// <param name="text">The text to split into multiple lines</param>
+        /// <param name="width">The maximum width that each line should have</param>
+        /// <param name="scale">The scale to use for width measurements</param>
+        /// <returns>The split string as an enumerable of split sections</returns>
+        public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
             var currWidth = 0F;
             var lastSpaceIndex = -1;
             var widthSinceLastSpace = 0F;
+            var curr = new StringBuilder();
             for (var i = 0; i < text.Length; i++) {
                 var c = text[i];
                 if (c == '\n') {
-                    // split at pre-defined new lines
-                    ret.Append(c);
+                    // fake split at pre-defined new lines
+                    curr.Append(c);
                     lastSpaceIndex = -1;
                     widthSinceLastSpace = 0;
                     currWidth = 0;
@@ -183,17 +198,19 @@ namespace MLEM.Font {
                     var cWidth = this.MeasureString(c.ToCachedString()).X * scale;
                     if (c == ' ' || c == OneEmSpace || c == Zwsp) {
                         // remember the location of this (breaking!) space
-                        lastSpaceIndex = ret.Length;
+                        lastSpaceIndex = curr.Length;
                         widthSinceLastSpace = 0;
                     } else if (currWidth + cWidth >= width) {
                         // check if this line contains a space
                         if (lastSpaceIndex < 0) {
                             // if there is no last space, the word is longer than a line so we split here
-                            ret.Append('\n');
+                            yield return curr.ToString();
                             currWidth = 0;
+                            curr.Clear();
                         } else {
                             // split after the last space
-                            ret.Insert(lastSpaceIndex + 1, '\n');
+                            yield return curr.ToString().Substring(0, lastSpaceIndex + 1);
+                            curr.Remove(0, lastSpaceIndex + 1);
                             // we need to restore the width accumulated since the last space for the new line
                             currWidth = widthSinceLastSpace;
                         }
@@ -204,10 +221,11 @@ namespace MLEM.Font {
                     // add current character
                     currWidth += cWidth;
                     widthSinceLastSpace += cWidth;
-                    ret.Append(c);
+                    curr.Append(c);
                 }
             }
-            return ret.ToString();
+            if (curr.Length > 0)
+                yield return curr.ToString();
         }
 
         private static bool IsTrailingSpace(string s, int index) {

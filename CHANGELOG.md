@@ -10,6 +10,7 @@ Jump to version:
 ### MLEM
 Additions
 - Added a strikethrough formatting code
+- Added GenericFont SplitStringSeparate which differentiates between existing newline characters and splits due to maximum width
 
 ### MLEM.Ui
 Additions

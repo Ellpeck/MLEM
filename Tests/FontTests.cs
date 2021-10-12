@@ -29,9 +29,9 @@ namespace Tests {
 
         [Test]
         public void TestRegularSplit() {
-            Assert.AreEqual(this.font.SplitString(
+            Assert.AreEqual(this.font.SplitStringSeparate(
                 "Note that the default style does not contain any textures or font files and, as such, is quite bland. However, the default style is quite easy to override, as can be seen in the code for this demo.",
-                65, 0.1F), "Note that the default style does \nnot contain any textures or font \nfiles and, as such, is quite \nbland. However, the default \nstyle is quite easy to override, \nas can be seen in the code for \nthis demo.");
+                65, 0.1F), new[] {"Note that the default style does ", "not contain any textures or font ", "files and, as such, is quite ", "bland. However, the default ", "style is quite easy to override, ", "as can be seen in the code for ", "this demo."});
 
             var formatted = this.formatter.Tokenize(this.font,
                 "Select the demo you want to see below using your mouse, touch input, your keyboard or a controller. Check the demos' <c CornflowerBlue><l https://github.com/Ellpeck/MLEM/tree/main/Demos>source code</l></c> for more in-depth explanations of their functionality or the <c CornflowerBlue><l https://mlem.ellpeck.de/>website</l></c> for tutorials and API documentation.");
@@ -55,16 +55,16 @@ namespace Tests {
 
         [Test]
         public void TestLongLineSplit() {
-            const string expectedDisplay = "This_is_a_really_long_line_to_s\nee_if_splitting_without_spaces_\nworks_properly._I_also_want_to_\nsee_if_it_works_across_multiple\n_lines_or_just_on_the_first_one. \nBut after this, I want the text to \ncontinue normally before \nchanging_back_to_being_really_\nlong_oh_yes";
+            var expectedDisplay = new[] {"This_is_a_really_long_line_to_s", "ee_if_splitting_without_spaces_", "works_properly._I_also_want_to_", "see_if_it_works_across_multiple", "_lines_or_just_on_the_first_one. ", "But after this, I want the text to ", "continue normally before ", "changing_back_to_being_really_", "long_oh_yes"};
 
-            Assert.AreEqual(this.font.SplitString(
+            Assert.AreEqual(this.font.SplitStringSeparate(
                 "This_is_a_really_long_line_to_see_if_splitting_without_spaces_works_properly._I_also_want_to_see_if_it_works_across_multiple_lines_or_just_on_the_first_one. But after this, I want the text to continue normally before changing_back_to_being_really_long_oh_yes",
                 65, 0.1F), expectedDisplay);
 
             var formatted = this.formatter.Tokenize(this.font,
                 "This_is_a_really_long_line_to_see_if_<c Blue>splitting</c>_without_spaces_works_properly._I_also_want_to_see_if_it_works_across_multiple_<c Yellow>lines</c>_or_just_on_the_first_one. But after this, I want the <b>text</b> to continue normally before changing_back_<i>to</i>_being_really_long_oh_yes");
             formatted.Split(this.font, 65, 0.1F);
-            Assert.AreEqual(formatted.DisplayString, expectedDisplay);
+            Assert.AreEqual(formatted.DisplayString, string.Join('\n', expectedDisplay));
 
             var tokens = new[] {
                 "This_is_a_really_long_line_to_s\nee_if_",
