@@ -178,9 +178,6 @@ namespace MLEM.Ui.Elements {
         /// If this is true, pressing <see cref="Keys.Enter"/> will insert a new line into the <see cref="Text"/> if the <see cref="InputRule"/> allows it.
         /// Additionally, text will be rendered with horizontal soft wraps, and lines that are outside of the text field's bounds will be hidden.
         /// </summary>
-        /// <remarks>
-        /// Moving up and down through the text field, and clicking on text to start editing at the mouse's position, are currently not supported.
-        /// </remarks>
         public bool Multiline {
             get => this.multiline;
             set {
@@ -263,6 +260,10 @@ namespace MLEM.Ui.Elements {
                 this.CaretPos--;
             } else if (this.Input.IsKeyPressed(Keys.Right)) {
                 this.CaretPos++;
+            } else if (this.Multiline && this.Input.IsKeyPressed(Keys.Up)) {
+                this.MoveCaretToLine(this.CaretLine - 1);
+            } else if (this.Multiline && this.Input.IsKeyPressed(Keys.Down)) {
+                this.MoveCaretToLine(this.CaretLine + 1);
             } else if (this.Input.IsKeyPressed(Keys.Home)) {
                 this.CaretPos = 0;
             } else if (this.Input.IsKeyPressed(Keys.End)) {
@@ -363,6 +364,31 @@ namespace MLEM.Ui.Elements {
             // ensure that caret pos is still in bounds
             this.CaretPos = this.CaretPos;
             this.HandleTextChange();
+        }
+
+        /// <summary>
+        /// Moves the <see cref="CaretPos"/> to the given line, if it exists.
+        /// Additionally maintains the <see cref="CaretPosInLine"/> roughly based on the visual distance that the caret has from the left border of the current <see cref="CaretLine"/>.
+        /// </summary>
+        /// <param name="line">The line to move the caret to</param>
+        /// <returns>True if the caret was moved, false if it was not (which indicates that the line with the given <paramref name="line"/> index does not exist)</returns>
+        public bool MoveCaretToLine(int line) {
+            var (destStart, destEnd) = this.GetLineBounds(line);
+            if (destEnd > 0) {
+                // find the position whose distance from the start is closest to the current distance from the start
+                var destAccum = "";
+                while (destAccum.Length < destEnd - destStart) {
+                    if (this.Font.Value.MeasureString(destAccum).X >= this.caretDrawOffset) {
+                        this.CaretPos = destStart + destAccum.Length;
+                        return true;
+                    }
+                    destAccum += this.text[destStart + destAccum.Length];
+                }
+                // if we don't find a proper position, just move to the end of the destination line
+                this.CaretPos = destEnd;
+                return true;
+            }
+            return false;
         }
 
         /// <inheritdoc />
@@ -496,6 +522,31 @@ namespace MLEM.Ui.Elements {
                 this.CaretPosInLine = this.CaretPos;
                 this.caretDrawOffset = this.Font.Value.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)).X;
             }
+        }
+
+        private (int, int) GetLineBounds(int boundLine) {
+            if (this.splitText != null) {
+                var line = 0;
+                var index = 0;
+                var startOfLineIndex = 0;
+                for (var d = 0; d < this.splitText.Length; d++) {
+                    var split = this.splitText[d];
+                    for (var i = 0; i < split.Length; i++) {
+                        index++;
+                        if (split[i] == '\n') {
+                            if (boundLine == line)
+                                return (startOfLineIndex, index - 1);
+                            line++;
+                            startOfLineIndex = index;
+                        }
+                    }
+                    if (boundLine == line)
+                        return (startOfLineIndex, index - 1);
+                    line++;
+                    startOfLineIndex = index;
+                }
+            }
+            return default;
         }
 
         /// <summary>
