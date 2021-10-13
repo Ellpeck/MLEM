@@ -10,6 +10,14 @@
 - Check out [the demos](https://github.com/Ellpeck/MLEM/tree/main/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/main/Demos.DesktopGL) or [Android](https://github.com/Ellpeck/MLEM/tree/main/Demos.Android)
 - See [the changelog](https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md) for information on updates
 
+# Packages
+- **MLEM** is the base package, which provides extension methods and additional features for MonoGame
+- **MLEM.Ui** features a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types.
+- **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame libraries
+- **MLEM.Data** provides simple data and network handling
+- **MLEM.Startup** combines MLEM with some other useful libraries into a quick Game startup class
+- **MLEM.Templates** contains cross-platform project templates
+
 # Made with MLEM
 - [A Breath of Spring Air](https://ellpeck.itch.io/a-breath-of-spring-air), a short platformer ([Source](https://git.ellpeck.de/Ellpeck/GreatSpringGameJam))
 - [Don't Wake Up](https://ellpeck.itch.io/dont-wake-up), a short puzzle game ([Source](https://github.com/Ellpeck/DontLetGo))
