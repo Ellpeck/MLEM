@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using MLEM.Data.Json;
 using Newtonsoft.Json;
@@ -62,12 +63,12 @@ namespace MLEM.Data {
             foreach (var extension in extensions ?? JsonExtensions) {
                 var file = Path.Combine(content.RootDirectory, name + extension);
                 triedFiles.Add(file);
-                if (!File.Exists(file))
-                    continue;
-                using (var stream = File.OpenText(file)) {
-                    using (var reader = new JsonTextReader(stream)) {
-                        return serializerToUse.Deserialize<T>(reader);
+                try {
+                    using (var stream = Path.IsPathRooted(file) ? File.OpenText(file) : new StreamReader(TitleContainer.OpenStream(file))) {
+                        using (var reader = new JsonTextReader(stream))
+                            return serializerToUse.Deserialize<T>(reader);
                     }
+                } catch (FileNotFoundException) {
                 }
             }
             throw new ContentLoadException($"Asset {name} not found. Tried files {string.Join(", ", triedFiles)}");

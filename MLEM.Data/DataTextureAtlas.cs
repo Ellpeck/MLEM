@@ -69,10 +69,14 @@ namespace MLEM.Data {
         /// <param name="pivotRelative">If this value is true, then the pivot points passed in the info file will be relative to the coordinates of the texture region, not relative to the entire texture's origin.</param>
         /// <returns>A new data texture atlas with the given settings</returns>
         public static DataTextureAtlas LoadAtlasData(TextureRegion texture, ContentManager content, string infoPath, bool pivotRelative = false) {
-            var info = new FileInfo(Path.Combine(content.RootDirectory, infoPath));
+            var info = Path.Combine(content.RootDirectory, infoPath);
             string text;
-            using (var reader = info.OpenText())
-                text = reader.ReadToEnd();
+            if (Path.IsPathRooted(info)) {
+                text = File.ReadAllText(info);
+            } else {
+                using (var reader = new StreamReader(TitleContainer.OpenStream(info)))
+                    text = reader.ReadToEnd();
+            }
             var atlas = new DataTextureAtlas(texture);
 
             // parse each texture region: "<name> loc <u> <v> <w> <h> [piv <px> <py>] [off <ox> <oy>]"

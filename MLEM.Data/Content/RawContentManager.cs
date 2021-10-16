@@ -59,16 +59,17 @@ namespace MLEM.Data.Content {
                 foreach (var ext in reader.GetFileExtensions()) {
                     var file = Path.Combine(this.RootDirectory, $"{assetName}.{ext}");
                     triedFiles.Add(file);
-                    if (!File.Exists(file))
-                        continue;
-                    using (var stream = File.OpenRead(file)) {
-                        var read = reader.Read(this, assetName, stream, typeof(T), existing);
-                        if (!(read is T t))
-                            throw new ContentLoadException($"{reader} returned non-{typeof(T)} for asset {assetName}");
-                        this.LoadedAssets[assetName] = t;
-                        if (t is IDisposable d && !this.disposableAssets.Contains(d))
-                            this.disposableAssets.Add(d);
-                        return t;
+                    try {
+                        using (var stream = Path.IsPathRooted(file) ? File.OpenRead(file) : TitleContainer.OpenStream(file)) {
+                            var read = reader.Read(this, assetName, stream, typeof(T), existing);
+                            if (!(read is T t))
+                                throw new ContentLoadException($"{reader} returned non-{typeof(T)} for asset {assetName}");
+                            this.LoadedAssets[assetName] = t;
+                            if (t is IDisposable d && !this.disposableAssets.Contains(d))
+                                this.disposableAssets.Add(d);
+                            return t;
+                        }
+                    } catch (FileNotFoundException) {
                     }
                 }
             }
