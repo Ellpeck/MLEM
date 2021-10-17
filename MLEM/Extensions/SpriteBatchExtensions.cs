@@ -140,7 +140,7 @@ namespace MLEM.Extensions {
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D,Rectangle,Color)"/>
-        public static void Draw(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
+        public static void Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
             batch.Add(texture, destinationRectangle, null, color);
         }
 
