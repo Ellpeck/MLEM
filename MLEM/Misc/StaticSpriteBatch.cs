@@ -6,7 +6,7 @@ using MLEM.Extensions;
 
 namespace MLEM.Misc {
     /// <summary>
-    /// A static sprite batch is a variation of <see cref="SpriteBatch"/> that keeps all batched items in memory, allowing for them to be drawn multiple times.
+    /// A static sprite batch is a variation of <see cref="SpriteBatch"/> that keeps all batched items in a <see cref="VertexBuffer"/>, allowing for them to be drawn multiple times.
     /// To add items to a static sprite batch, use <see cref="ClearBatch"/> to clear currently batched items, <see cref="BeginBatch"/> to begin batching, <c>Add</c> and its various overloads to add batch items and <see cref="EndBatch"/> to end batching.
     /// To draw the batched items, call <see cref="Draw"/>.
     /// </summary>
@@ -20,9 +20,9 @@ namespace MLEM.Misc {
         private readonly GraphicsDevice graphicsDevice;
         private readonly SpriteEffect spriteEffect;
 
-        private readonly List<VertexPositionColorTexture[]> vertexArrays = new List<VertexPositionColorTexture[]>();
+        private readonly List<VertexBuffer> vertexBuffers = new List<VertexBuffer>();
         private readonly List<VertexPositionColorTexture> vertices = new List<VertexPositionColorTexture>();
-        private short[] indices;
+        private IndexBuffer indices;
         private Texture2D texture;
         private bool batching;
         private bool batchChanged;
@@ -66,28 +66,28 @@ namespace MLEM.Misc {
             // this maximum is limited by indices being a short
             const int maxBatchItems = short.MaxValue / 6;
 
-            // ensure we have enough vertex arrays
-            var arraysRequired = (this.vertices.Count / (maxBatchItems * 4F)).Ceil();
-            while (this.vertexArrays.Count < arraysRequired)
-                this.vertexArrays.Add(new VertexPositionColorTexture[maxBatchItems * 4]);
+            // ensure we have enough vertex buffers
+            var requiredBuffers = (this.vertices.Count / (maxBatchItems * 4F)).Ceil();
+            while (this.vertexBuffers.Count < requiredBuffers)
+                this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, maxBatchItems * 4, BufferUsage.WriteOnly));
 
-            // fill vertex arrays
+            // fill vertex buffers
             var arrayIndex = 0;
             var totalIndex = 0;
+            var data = new VertexPositionColorTexture[maxBatchItems * 4];
             while (totalIndex < this.vertices.Count) {
-                var array = this.vertexArrays[arrayIndex];
-                var now = Math.Min(this.vertices.Count - totalIndex, array.Length);
+                var now = Math.Min(this.vertices.Count - totalIndex, data.Length);
                 for (var i = 0; i < now; i++)
-                    array[i] = this.vertices[totalIndex + i];
+                    data[i] = this.vertices[totalIndex + i];
+                this.vertexBuffers[arrayIndex++].SetData(data);
                 totalIndex += now;
-                arrayIndex++;
             }
 
             // ensure we have enough indices
             var maxItems = Math.Min(this.vertices.Count / 4, maxBatchItems);
             // each item has 2 triangles which each have 3 indices
-            if (this.indices == null || this.indices.Length < 6 * maxItems) {
-                this.indices = new short[6 * maxItems];
+            if (this.indices == null || this.indices.IndexCount < 6 * maxItems) {
+                var newIndices = new short[6 * maxItems];
                 var index = 0;
                 for (var item = 0; item < maxItems; item++) {
                     // a square is made up of two triangles
@@ -96,14 +96,16 @@ namespace MLEM.Misc {
                     // |/ |
                     // 2--3
                     // top left triangle (0 -> 1 -> 2)
-                    this.indices[index++] = (short) (item * 4 + 0);
-                    this.indices[index++] = (short) (item * 4 + 1);
-                    this.indices[index++] = (short) (item * 4 + 2);
+                    newIndices[index++] = (short) (item * 4 + 0);
+                    newIndices[index++] = (short) (item * 4 + 1);
+                    newIndices[index++] = (short) (item * 4 + 2);
                     // bottom right triangle (1 -> 3 -> 2)
-                    this.indices[index++] = (short) (item * 4 + 1);
-                    this.indices[index++] = (short) (item * 4 + 3);
-                    this.indices[index++] = (short) (item * 4 + 2);
+                    newIndices[index++] = (short) (item * 4 + 1);
+                    newIndices[index++] = (short) (item * 4 + 3);
+                    newIndices[index++] = (short) (item * 4 + 2);
                 }
+                this.indices = new IndexBuffer(this.graphicsDevice, IndexElementSize.SixteenBits, newIndices.Length, BufferUsage.WriteOnly);
+                this.indices.SetData(newIndices);
             }
         }
 
@@ -139,24 +141,26 @@ namespace MLEM.Misc {
             this.graphicsDevice.SamplerStates[0] = samplerState ?? SamplerState.LinearClamp;
             this.graphicsDevice.DepthStencilState = depthStencilState ?? DepthStencilState.None;
             this.graphicsDevice.RasterizerState = rasterizerState ?? RasterizerState.CullCounterClockwise;
+            this.graphicsDevice.Indices = this.indices;
 
             this.spriteEffect.TransformMatrix = transformMatrix;
             this.spriteEffect.CurrentTechnique.Passes[0].Apply();
 
             var totalIndex = 0;
-            foreach (var array in this.vertexArrays) {
-                var tris = Math.Min(this.vertices.Count - totalIndex, array.Length) / 4 * 2;
+            foreach (var buffer in this.vertexBuffers) {
+                var tris = Math.Min(this.vertices.Count - totalIndex, buffer.VertexCount) / 4 * 2;
+                this.graphicsDevice.SetVertexBuffer(buffer);
                 if (effect != null) {
                     foreach (var pass in effect.CurrentTechnique.Passes) {
                         pass.Apply();
                         this.graphicsDevice.Textures[0] = this.texture;
-                        this.graphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, array, 0, array.Length, this.indices, 0, tris, VertexPositionColorTexture.VertexDeclaration);
+                        this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, tris);
                     }
                 } else {
                     this.graphicsDevice.Textures[0] = this.texture;
-                    this.graphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, array, 0, array.Length, this.indices, 0, tris, VertexPositionColorTexture.VertexDeclaration);
+                    this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, tris);
                 }
-                totalIndex += array.Length;
+                totalIndex += buffer.VertexCount;
             }
         }
 
