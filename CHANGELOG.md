@@ -11,6 +11,7 @@ Jump to version:
 Additions
 - Added a strikethrough formatting code
 - Added GenericFont SplitStringSeparate which differentiates between existing newline characters and splits due to maximum width
+- Added StaticSpriteBatch class
 
 ### MLEM.Ui
 Additions
