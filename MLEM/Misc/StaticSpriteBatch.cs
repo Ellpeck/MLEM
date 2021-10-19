@@ -149,6 +149,8 @@ namespace MLEM.Misc {
             var totalIndex = 0;
             foreach (var buffer in this.vertexBuffers) {
                 var tris = Math.Min(this.vertices.Count - totalIndex, buffer.VertexCount) / 4 * 2;
+                if (tris <= 0)
+                    break;
                 this.graphicsDevice.SetVertexBuffer(buffer);
                 if (effect != null) {
                     foreach (var pass in effect.CurrentTechnique.Passes) {
