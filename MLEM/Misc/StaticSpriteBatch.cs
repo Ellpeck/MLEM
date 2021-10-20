@@ -77,8 +77,7 @@ namespace MLEM.Misc {
             var totalIndex = 0;
             while (totalIndex < this.vertices.Count) {
                 var now = Math.Min(this.vertices.Count - totalIndex, Data.Length);
-                for (var i = 0; i < now; i++)
-                    Data[i] = this.vertices[totalIndex + i];
+                this.vertices.CopyTo(totalIndex, Data, 0, now);
                 this.vertexBuffers[arrayIndex++].SetData(Data);
                 totalIndex += now;
             }
