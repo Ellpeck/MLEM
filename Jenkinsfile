@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh 'dotnet tool restore'
         // we use xvfb to allow for graphics-dependent tests
-        sh 'xvfb-run -a dotnet dotnet-cake --Target=Publish --Branch=' + env.BRANCH_NAME
+        sh 'xvfb-run -a dotnet cake --target Publish --branch ' + env.BRANCH_NAME
       }
     }
     stage('Document') {
@@ -13,7 +13,7 @@ pipeline {
         branch 'release' 
       }
       steps {
-        sh 'dotnet dotnet-cake --Target=Document'     
+        sh 'dotnet cake --target Document'     
         sh 'cp Docs/_site/** /var/www/MLEM/ -r'   
       }
     }

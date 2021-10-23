@@ -4,7 +4,7 @@ The **MLEM** package contains a simple text formatting system that supports colo
 
 Text formatting makes use of [generic fonts](font_extensions.md).
 
-It should also be noted that [MLEM.Ui](https://github.com/Ellpeck/MLEM/wiki/MLEM.Ui)'s `Paragraph`s support text formatting out of the box.
+It should also be noted that [MLEM.Ui](ui.md)'s `Paragraph`s support text formatting out of the box.
 
 *This documentation is about the new text formatting that was introduced in MLEM 3.3.1. You can see the documentation for the legacy text formatting system [here](text_formatting_legacy.md).*
 
