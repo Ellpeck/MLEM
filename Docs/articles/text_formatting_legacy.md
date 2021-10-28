@@ -4,7 +4,7 @@ The **MLEM** package contains a simple text formatting system that supports colo
 
 Text formatting makes use of [generic fonts](font_extensions.md).
 
-It should also be noted that [MLEM.Ui](https://github.com/Ellpeck/MLEM/wiki/MLEM.Ui)'s `Paragraph`s support text formatting out of the box.
+It should also be noted that [MLEM.Ui](ui.md)'s `Paragraph`s support text formatting out of the box.
 
 ## Formatting codes
 To format your text, you can insert *formatting codes* into it. These codes are surrounded by `[]` by default, however these delimiters can be changed like so:
@@ -23,7 +23,7 @@ By default, the following formatting options are available:
 ## Getting your text ready
 To actually display the text with formatting, you first need to gather the formatting data from the text. For performance reasons, this is best done when the text changes, and not every render frame.
 
-To gather formatting data, you will need a [generic font](https://github.com/Ellpeck/MLEM/wiki/Font-Extensions). With it, you can gather the data in the form of a `FormattingCodeCollection` like so:
+To gather formatting data, you will need a [generic font](font_extensions.md). With it, you can gather the data in the form of a `FormattingCodeCollection` like so:
 ```cs
 var font = new GenericSpriteFont(this.Content.Load<SpriteFont>("Fonts/ExampleFont"));
 var text = "This is the [Blue]text[White] that should be [Wobbly]formatted[Unanimated].";

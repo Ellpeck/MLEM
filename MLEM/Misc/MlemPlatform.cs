@@ -66,13 +66,11 @@ namespace MLEM.Misc {
         /// <summary>
         /// The MLEM DesktopGL platform.
         /// This platform uses the built-in MonoGame TextInput event, which makes this listener work with any keyboard localization natively.
-        /// </summary>
-        /// <example>
         /// This platform is initialized as follows:
         /// <code>
-        /// new MlemPlatform.DesktopGl{TextInputEventArgs}((w, c) => w.TextInput += c)
+        /// MlemPlatform.Current = new MlemPlatform.DesktopGl&lt;TextInputEventArgs&gt;((w, c) => w.TextInput += c);
         /// </code>
-        /// </example>
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         public class DesktopGl<T> : MlemPlatform {
 
@@ -116,13 +114,11 @@ namespace MLEM.Misc {
         /// The MLEM platform for mobile platforms as well as consoles.
         /// This platform opens an on-screen keyboard using the <see cref="Microsoft.Xna.Framework.Input"/> <c>KeyboardInput</c>  class on mobile devices.
         /// Additionally, it starts a new activity whenever <see cref="OpenLinkOrFile"/> is called.
-        /// </summary>
-        /// <example>
         /// This listener is initialized as follows in the game's <c>Activity</c> class:
         /// <code>
-        /// new MlemPlatform.Mobile(KeyboardInput.Show, l =&gt; this.StartActivity(new Intent(Intent.ActionView, Uri.Parse(l))))
+        /// MlemPlatform.Current = new MlemPlatform.Mobile(KeyboardInput.Show, l =&gt; this.StartActivity(new Intent(Intent.ActionView, Uri.Parse(l))));
         /// </code>
-        /// </example>
+        /// </summary>
         public class Mobile : MlemPlatform {
 
             private readonly OpenOnScreenKeyboardDelegate openOnScreenKeyboard;

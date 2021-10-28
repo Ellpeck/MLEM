@@ -13,6 +13,9 @@ Additions
 - Added GenericFont SplitStringSeparate which differentiates between existing newline characters and splits due to maximum width
 - Added StaticSpriteBatch class
 
+Improvements
+- Exposed Camera's RoundPosition
+
 ### MLEM.Ui
 Additions
 - Allow specifying a maximum amount of characters for a TextField

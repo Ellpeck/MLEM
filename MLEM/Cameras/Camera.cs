@@ -58,7 +58,7 @@ namespace MLEM.Cameras {
             get {
                 var sc = this.ActualScale;
                 var pos = -this.Position * sc;
-                if (this.roundPosition)
+                if (this.RoundPosition)
                     pos = pos.FloorCopy();
                 return Matrix.CreateScale(sc, sc, 1) * Matrix.CreateTranslation(new Vector3(pos, 0));
             }
@@ -82,9 +82,13 @@ namespace MLEM.Cameras {
         /// The viewport of this camera, based on the game's <see cref="GraphicsDevice.Viewport"/> and this camera's <see cref="ActualScale"/>
         /// </summary>
         public Vector2 ScaledViewport => new Vector2(this.Viewport.Width, this.Viewport.Height) / this.ActualScale;
+        /// <summary>
+        /// Whether the camera's <see cref="Position"/> should be rounded to full integers when calculating the <see cref="ViewMatrix"/>.
+        /// If this value is true, the occurence of rendering fragments due to floating point rounding might be reduced.
+        /// </summary>
+        public bool RoundPosition;
 
         private Rectangle Viewport => this.graphicsDevice.Viewport.Bounds;
-        private readonly bool roundPosition;
         private readonly GraphicsDevice graphicsDevice;
         private float scale = 1;
 
@@ -92,11 +96,11 @@ namespace MLEM.Cameras {
         /// Creates a new camera.
         /// </summary>
         /// <param name="graphicsDevice">The game's graphics device</param>
-        /// <param name="roundPosition">If this is true, the camera's <see cref="Position"/> and related properties will be rounded to full integers.</param>
+        /// <param name="roundPosition">Whether the camera's <see cref="Position"/> should be rounded to full integers when calculating the <see cref="ViewMatrix"/></param>
         public Camera(GraphicsDevice graphicsDevice, bool roundPosition = true) {
             this.graphicsDevice = graphicsDevice;
             this.AutoScaleReferenceSize = this.Viewport.Size;
-            this.roundPosition = roundPosition;
+            this.RoundPosition = roundPosition;
         }
 
         /// <summary>
