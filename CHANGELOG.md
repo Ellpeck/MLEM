@@ -15,6 +15,7 @@ Additions
 
 Improvements
 - Exposed Camera's RoundPosition
+- Exposed the epsilon value used by Camera
 
 ### MLEM.Ui
 Additions
@@ -23,6 +24,7 @@ Additions
 
 Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
+- Exposed the epsilon value used by Element calculations
 
 Fixes
 - Fixed VerticalSpace height parameter being an integer

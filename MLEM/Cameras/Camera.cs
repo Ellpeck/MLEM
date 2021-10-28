@@ -12,6 +12,12 @@ namespace MLEM.Cameras {
     public class Camera {
 
         /// <summary>
+        /// This field holds an epsilon value used in some camera calculations to mitigate floating point rounding inaccuracies.
+        /// If camera <see cref="Position"/> or <see cref="Viewport"/> size are extremely small or extremely big, this value can be reduced or increased.
+        /// </summary>
+        public static float Epsilon = 0.01F;
+
+        /// <summary>
         /// The top-left corner of the camera's viewport.
         /// <seealso cref="LookingPosition"/>
         /// </summary>
@@ -158,7 +164,7 @@ namespace MLEM.Cameras {
                 if (this.Max.Y > max.Y)
                     this.Max = new Vector2(this.Max.X, max.Y);
             }
-            return !this.Position.Equals(lastPos, 0.001F);
+            return !this.Position.Equals(lastPos, Epsilon);
         }
 
         /// <summary>

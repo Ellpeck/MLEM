@@ -19,6 +19,12 @@ namespace MLEM.Ui.Elements {
     public abstract class Element : GenericDataHolder, IDisposable {
 
         /// <summary>
+        /// This field holds an epsilon value used in element <see cref="Size"/>, position and resulting <see cref="Area"/> calculations to mitigate floating point rounding inaccuracies.
+        /// If ui elements used are extremely small or extremely large, this value can be reduced or increased.
+        /// </summary>
+        public static float Epsilon = 0.01F;
+
+        /// <summary>
         /// A list of all of this element's direct children.
         /// Use <see cref="AddChild{T}"/> or <see cref="RemoveChild"/> to manipulate this list while calling all of the necessary callbacks.
         /// </summary>
@@ -607,9 +613,9 @@ namespace MLEM.Ui.Elements {
                                 break;
                             case Anchor.AutoInline:
                                 var newX = prevArea.Right + this.ScaledOffset.X;
-                                // with awkward ui scale values, floating point rounding can cause an element that would usually be
-                                // positioned correctly to be pushed into the next line due to a very small deviation, so we add 0.01 here
-                                if (newX + newSize.X <= parentArea.Right + 0.01F) {
+                                // with awkward ui scale values, floating point rounding can cause an element that would usually
+                                // be positioned correctly to be pushed into the next line due to a very small deviation
+                                if (newX + newSize.X <= parentArea.Right + Epsilon) {
                                     pos.X = newX;
                                     pos.Y = prevArea.Y + this.ScaledOffset.Y;
                                 } else {
@@ -676,7 +682,7 @@ namespace MLEM.Ui.Elements {
                     }
 
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
-                    if (!autoSize.Equals(this.UnscrolledArea.Size, 0.01F)) {
+                    if (!autoSize.Equals(this.UnscrolledArea.Size, Epsilon)) {
                         recursion++;
                         if (recursion >= 16) {
                             throw new ArithmeticException($"The area of {this} with root {this.Root.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
