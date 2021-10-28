@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
@@ -322,8 +323,7 @@ namespace MLEM.Data {
         }
 
         private static DynamicEnum Construct(Type type, string name, BigInteger value) {
-            var constructor = type.GetConstructor(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new[] {typeof(string), typeof(BigInteger)}, null);
-            return (DynamicEnum) constructor.Invoke(new object[] {name, value});
+            return (DynamicEnum) Activator.CreateInstance(type, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] {name, value}, CultureInfo.InvariantCulture);
         }
 
         private class Storage {

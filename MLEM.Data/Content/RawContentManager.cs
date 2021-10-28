@@ -100,8 +100,7 @@ namespace MLEM.Data.Content {
                                 continue;
                             if (!type.IsSubclassOf(typeof(RawContentReader)))
                                 continue;
-                            var inst = type.GetConstructor(Type.EmptyTypes).Invoke(null);
-                            ret.Add((RawContentReader) inst);
+                            ret.Add((RawContentReader) Activator.CreateInstance(type));
                         } catch (Exception e) {
                             throw new NotSupportedException($"The type {type} cannot be constructed by a RawContentManager. Does it have a visible parameterless constructor?", e);
                         }

@@ -13,7 +13,7 @@ namespace MLEM.Data.Json {
         /// </summary>
         public static readonly JsonConverter[] Converters = typeof(JsonConverters).Assembly.GetExportedTypes()
             .Where(t => t.IsSubclassOf(typeof(JsonConverter)) && !t.IsGenericType)
-            .Select(t => t.GetConstructor(Type.EmptyTypes).Invoke(null)).Cast<JsonConverter>().ToArray();
+            .Select(Activator.CreateInstance).Cast<JsonConverter>().ToArray();
 
         /// <summary>
         /// Adds all of the <see cref="JsonConverter"/> objects that are part of MLEM.Data to the given <see cref="JsonSerializer"/>

@@ -1,12 +1,15 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Numerics;
 using Microsoft.Xna.Framework;
 using MLEM.Data;
 using MLEM.Data.Json;
 using MLEM.Misc;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using static MLEM.Data.DynamicEnum;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Tests {
     public class DataTests {
@@ -62,6 +65,33 @@ namespace Tests {
             TestContext.WriteLine($"DeepCopy took {stopwatch.Elapsed.TotalMilliseconds / count * 1000000}ns on average");
         }
 
+        [Test]
+        public void TestDynamicEnum() {
+            var flags = new TestEnum[100];
+            for (var i = 0; i < flags.Length; i++)
+                flags[i] = AddFlag<TestEnum>("Flag" + i);
+
+            Assert.AreEqual(GetValue(flags[7]), BigInteger.One << 7);
+            Assert.AreEqual(GetEnumValue<TestEnum>(BigInteger.One << 75), flags[75]);
+
+            Assert.AreEqual(GetValue(Or(flags[2], flags[17])), (BigInteger.One << 2) | (BigInteger.One << 17));
+            Assert.AreEqual(GetValue(And(flags[2], flags[3])), BigInteger.Zero);
+            Assert.AreEqual(And(Or(flags[24], flags[52]), Or(flags[52], flags[75])), flags[52]);
+            Assert.AreEqual(Xor(Or(flags[85], flags[73]), flags[73]), flags[85]);
+            Assert.AreEqual(Xor(Or(flags[85], Or(flags[73], flags[12])), flags[73]), Or(flags[85], flags[12]));
+            Assert.AreEqual(GetValue(Neg(flags[74])), ~(BigInteger.One << 74));
+
+            Assert.AreEqual(Or(flags[24], flags[52]).HasFlag(flags[24]), true);
+            Assert.AreEqual(Or(flags[24], flags[52]).HasAnyFlag(flags[24]), true);
+            Assert.AreEqual(Or(flags[24], flags[52]).HasFlag(Or(flags[24], flags[26])), false);
+            Assert.AreEqual(Or(flags[24], flags[52]).HasAnyFlag(Or(flags[24], flags[26])), true);
+
+            Assert.AreEqual(Parse<TestEnum>("Flag24"), flags[24]);
+            Assert.AreEqual(Parse<TestEnum>("Flag24 | Flag43"), Or(flags[24], flags[43]));
+            Assert.AreEqual(flags[24].ToString(), "Flag24");
+            Assert.AreEqual(Or(flags[24], flags[43]).ToString(), "Flag24 | Flag43");
+        }
+
         private class TestObject {
 
             public Vector2 Vec;
@@ -82,6 +112,13 @@ namespace Tests {
 
             public override int GetHashCode() {
                 return HashCode.Combine(this.Vec, this.Point, this.OtherTest, (int) this.Dir);
+            }
+
+        }
+
+        private class TestEnum : DynamicEnum {
+
+            public TestEnum(string name, BigInteger value) : base(name, value) {
             }
 
         }
