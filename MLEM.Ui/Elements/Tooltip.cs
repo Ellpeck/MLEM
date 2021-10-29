@@ -29,25 +29,23 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Creates a new tooltip with the given settings
         /// </summary>
-        /// <param name="width">The width of the tooltip</param>
         /// <param name="text">The text to display on the tooltip</param>
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
-        public Tooltip(float width, string text = null, Element elementToHover = null) :
+        public Tooltip(string text = null, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
             if (text != null)
-                this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, width, text));
+                this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, 0, text));
             this.Init(elementToHover);
         }
 
         /// <summary>
         /// Creates a new tooltip with the given settings
         /// </summary>
-        /// <param name="width">The width of the tooltip</param>
         /// <param name="textCallback">The text to display on the tooltip</param>
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
-        public Tooltip(float width, Paragraph.TextCallback textCallback, Element elementToHover = null) :
+        public Tooltip(Paragraph.TextCallback textCallback, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-            this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, width, textCallback));
+            this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, 0, textCallback));
             this.Init(elementToHover);
         }
 
@@ -81,8 +79,12 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.TooltipBackground);
             this.MouseOffset.SetFromStyle(style.TooltipOffset);
             this.Delay.SetFromStyle(style.TooltipDelay);
-            // we can't set from style here since it's a different element
-            this.Paragraph?.TextColor.Set(style.TooltipTextColor);
+            this.ChildPadding = style.TooltipChildPadding;
+            if (this.Paragraph != null) {
+                // we can't set from style here since it's a different element
+                this.Paragraph.TextColor.Set(style.TooltipTextColor);
+                this.Paragraph.Size = new Vector2(style.TooltipTextWidth, 0);
+            }
         }
 
         /// <summary>
@@ -143,7 +145,6 @@ namespace MLEM.Ui.Elements {
 
             this.SetWidthBasedOnChildren = true;
             this.SetHeightBasedOnChildren = true;
-            this.ChildPadding = new Vector2(2);
             this.CanBeMoused = false;
 
             if (elementToHover != null)

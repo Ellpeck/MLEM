@@ -42,7 +42,7 @@ namespace Tests {
         [Test]
         public void TestComplexPanel() {
             var group = new Group(Anchor.TopLeft, Vector2.One, false);
-            var panel = group.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, new Point(5, 10), false) {
+            var panel = group.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, false) {
                 ChildPadding = new Padding(5, 10, 5, 5)
             });
             for (var i = 0; i < 5; i++) {

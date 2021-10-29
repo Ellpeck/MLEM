@@ -63,7 +63,7 @@ namespace Demos {
             this.UiSystem.AutoScaleWithScreen = true;
 
             // create the root panel that all the other components sit on and add it to the ui system
-            this.root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true, new Point(5, 10));
+            this.root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true);
             this.root.ScrollBar.SmoothScrolling = true;
             // add the root to the demos' ui
             this.UiRoot.AddChild(this.root);
@@ -136,16 +136,16 @@ namespace Demos {
             this.root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 1!"));
             this.root.AddChild(new RadioButton(Anchor.AutoLeft, new Vector2(1, 10), "Radio button 2!") {PositionOffset = new Vector2(0, 1)});
 
-            var tooltip = new Tooltip(50, "I am tooltip!") {IsHidden = true};
+            var tooltip = new Tooltip("I am tooltip!") {IsHidden = true};
             this.UiSystem.Add("TestTooltip", tooltip);
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Toggle Mouse Tooltip") {
                 OnPressed = element => tooltip.IsHidden = !tooltip.IsHidden
             });
             var delayed = this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Delayed Tooltip") {PositionOffset = new Vector2(0, 1)});
-            delayed.AddTooltip(50, "This tooltip appears with a half second delay!").Delay = TimeSpan.FromSeconds(0.5);
+            delayed.AddTooltip("This tooltip appears with a half second delay!").Delay = TimeSpan.FromSeconds(0.5);
             var condition = this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Hold Ctrl for Tooltip") {PositionOffset = new Vector2(0, 1)});
-            condition.AddTooltip(50, p => this.InputHandler.IsModifierKeyDown(ModifierKey.Control) ? "This tooltip only appears when holding control!" : string.Empty);
+            condition.AddTooltip(p => this.InputHandler.IsModifierKeyDown(ModifierKey.Control) ? "This tooltip only appears when holding control!" : string.Empty);
 
             var slider = new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
                 StepPerScroll = 0.01F

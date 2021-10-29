@@ -36,7 +36,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The width of the space between this checkbox and its <see cref="Label"/>
         /// </summary>
-        public float TextOffsetX = 2;
+        public StyleProp<float> TextOffsetX;
 
         private bool checced;
         /// <summary>
@@ -106,6 +106,7 @@ namespace MLEM.Ui.Elements {
             this.HoveredTexture.SetFromStyle(style.CheckboxHoveredTexture);
             this.HoveredColor.SetFromStyle(style.CheckboxHoveredColor);
             this.Checkmark.SetFromStyle(style.CheckboxCheckmark);
+            this.TextOffsetX.SetFromStyle(style.CheckboxTextOffsetX);
         }
 
         /// <summary>

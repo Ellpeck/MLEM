@@ -27,8 +27,18 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<Color> DrawColor;
         /// <summary>
+        /// The amount that the scrollable area is moved per single movement of the scroll wheel
+        /// This value is passed to the <see cref="ScrollBar"/>'s <see cref="Elements.ScrollBar.StepPerScroll"/>
+        /// </summary>
+        public StyleProp<float> StepPerScroll;
+        /// <summary>
+        /// The size that the <see cref="ScrollBar"/>'s scroller should have, in pixels
+        /// </summary>
+        public StyleProp<Vector2> ScrollerSize;
+        /// <summary>
         /// The scroll bar that this panel contains.
         /// This is only nonnull if <see cref="scrollOverflow"/> is true.
+        /// Note that some scroll bar styling is controlled by this panel, namely <see cref="StepPerScroll"/> and <see cref="ScrollerSize"/>.
         /// </summary>
         public readonly ScrollBar ScrollBar;
         private readonly bool scrollOverflow;
@@ -44,29 +54,22 @@ namespace MLEM.Ui.Elements {
         /// <param name="positionOffset">The panel's offset from its anchor point</param>
         /// <param name="setHeightBasedOnChildren">Whether the panel should automatically calculate its height based on its children's size</param>
         /// <param name="scrollOverflow">Whether this panel should automatically add a scroll bar to scroll towards elements that are beyond the area this panel covers</param>
-        /// <param name="scrollerSize">The size of the <see cref="ScrollBar"/>'s scroller</param>
         /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling</param>
-        public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, Point? scrollerSize = null, bool autoHideScrollbar = true) : base(anchor, size) {
+        public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
             this.scrollOverflow = scrollOverflow;
-            this.ChildPadding = new Vector2(5);
             this.CanBeSelected = false;
 
             if (scrollOverflow) {
-                var (w, h) = scrollerSize ?? Point.Zero;
-                this.ScrollBar = new ScrollBar(Anchor.TopRight, new Vector2(w, 1), h, 0) {
-                    StepPerScroll = 10,
+                this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
                     AutoHideWhenEmpty = autoHideScrollbar,
                     IsHidden = autoHideScrollbar
                 };
-
-                // modify the padding so that the scroll bar isn't over top of something else
-                this.ScrollBar.PositionOffset -= new Vector2(w + 1, 0);
                 if (autoHideScrollbar)
-                    this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, w, 0, 0) * (e.IsHidden ? -1 : 1);
+                    this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X, 0, 0) * (e.IsHidden ? -1 : 1);
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {
@@ -99,6 +102,7 @@ namespace MLEM.Ui.Elements {
 
             this.ScrollChildren();
             this.ScrollSetup();
+            this.SetScrollBarStyle();
         }
 
         private void ScrollChildren() {
@@ -207,6 +211,11 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture.SetFromStyle(style.PanelTexture);
+            this.StepPerScroll.SetFromStyle(style.PanelStepPerScroll);
+            this.ScrollerSize.SetFromStyle(style.PanelScrollerSize);
+            if (this.ChildPadding == default)
+                this.ChildPadding = style.PanelChildPadding;
+            this.SetScrollBarStyle();
         }
 
         /// <summary>
@@ -243,6 +252,15 @@ namespace MLEM.Ui.Elements {
                 this.renderTarget = null;
             }
             base.Dispose();
+        }
+
+        private void SetScrollBarStyle() {
+            if (this.ScrollBar == null)
+                return;
+            this.ScrollBar.StepPerScroll = this.StepPerScroll;
+            this.ScrollBar.Size = new Vector2(this.ScrollerSize.Value.X, 1);
+            this.ScrollBar.ScrollerSize = this.ScrollerSize;
+            this.ScrollBar.PositionOffset = new Vector2(-this.ScrollerSize.Value.X - 1, 0);
         }
 
     }

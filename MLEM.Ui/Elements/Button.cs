@@ -79,14 +79,13 @@ namespace MLEM.Ui.Elements {
         /// <param name="size">The button's size</param>
         /// <param name="text">The text that should be displayed on the button</param>
         /// <param name="tooltipText">The text that should be displayed in a <see cref="Tooltip"/> when hovering over this button</param>
-        /// <param name="tooltipWidth">The width of this button's <see cref="Tooltip"/>, or 50 by default</param>
-        public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float tooltipWidth = 50) : base(anchor, size) {
+        public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : base(anchor, size) {
             if (text != null) {
                 this.Text = new Paragraph(Anchor.Center, 1, text, true) {Padding = new Vector2(1)};
                 this.AddChild(this.Text);
             }
             if (tooltipText != null)
-                this.Tooltip = this.AddTooltip(tooltipWidth, tooltipText);
+                this.Tooltip = this.AddTooltip(tooltipText);
         }
 
         /// <inheritdoc />

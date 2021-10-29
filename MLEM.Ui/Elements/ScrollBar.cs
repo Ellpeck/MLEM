@@ -101,11 +101,11 @@ namespace MLEM.Ui.Elements {
         /// Whether smooth scrolling should be enabled for this scroll bar.
         /// Smooth scrolling causes the <see cref="CurrentValue"/> to change gradually rather than instantly when scrolling.
         /// </summary>
-        public bool SmoothScrolling;
+        public StyleProp<bool> SmoothScrolling;
         /// <summary>
         /// The factor with which <see cref="SmoothScrolling"/> happens.
         /// </summary>
-        public float SmoothScrollFactor = 0.75F;
+        public StyleProp<float> SmoothScrollFactor;
 
         static ScrollBar() {
             InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);
@@ -180,7 +180,7 @@ namespace MLEM.Ui.Elements {
 
             if (this.SmoothScrolling && this.scrollAdded != 0) {
                 this.scrollAdded *= this.SmoothScrollFactor;
-                if (Math.Abs(this.scrollAdded) <= 0.1F)
+                if (Math.Abs(this.scrollAdded) <= Epsilon)
                     this.scrollAdded = 0;
                 this.OnValueChanged?.Invoke(this, this.CurrentValue);
             }
@@ -216,6 +216,8 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.Background.SetFromStyle(style.ScrollBarBackground);
             this.ScrollerTexture.SetFromStyle(style.ScrollBarScrollerTexture);
+            this.SmoothScrolling.SetFromStyle(style.ScrollBarSmoothScrolling);
+            this.SmoothScrollFactor.SetFromStyle(style.ScrollBarSmoothScrollFactor);
         }
 
         /// <summary>

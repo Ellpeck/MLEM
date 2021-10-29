@@ -26,6 +26,7 @@ Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 - Exposed the epsilon value used by Element calculations
 - Made Image ScaleToImage take ui scale into account
+- Added style properties for a lot of hardcoded default element styles
 
 Fixes
 - Fixed VerticalSpace height parameter being an integer

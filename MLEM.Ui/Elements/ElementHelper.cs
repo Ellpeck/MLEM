@@ -18,11 +18,10 @@ namespace MLEM.Ui.Elements {
         /// <param name="texture">The texture of the image to render on the button</param>
         /// <param name="text">The text to display on the button</param>
         /// <param name="tooltipText">The text of the button's tooltip</param>
-        /// <param name="tooltipWidth">The width of the button's tooltip</param>
         /// <param name="imagePadding">The <see cref="Element.Padding"/> of the button's image</param>
         /// <returns>An image button</returns>
-        public static Button ImageButton(Anchor anchor, Vector2 size, TextureRegion texture, string text = null, string tooltipText = null, float tooltipWidth = 50, float imagePadding = 2) {
-            var button = new Button(anchor, size, text, tooltipText, tooltipWidth);
+        public static Button ImageButton(Anchor anchor, Vector2 size, TextureRegion texture, string text = null, string tooltipText = null, float imagePadding = 2) {
+            var button = new Button(anchor, size, text, tooltipText);
             var image = new Image(Anchor.CenterLeft, Vector2.One, texture) {Padding = new Vector2(imagePadding)};
             button.OnAreaUpdated += e => image.Size = new Vector2(e.Area.Height, e.Area.Height) / e.Scale;
             button.AddChild(image, 0);
@@ -172,25 +171,23 @@ namespace MLEM.Ui.Elements {
     public static class ElementExtensions {
 
         /// <summary>
-        /// Adds a new <see cref="Tooltip"/> to the given element using the <see cref="Tooltip(float,Paragraph.TextCallback,Element)"/> constructor
+        /// Adds a new <see cref="Tooltip"/> to the given element using the <see cref="Tooltip(Paragraph.TextCallback,Element)"/> constructor
         /// </summary>
-        /// <param name="element"></param>
-        /// <param name="width">The width of the tooltip</param>
+        /// <param name="element">The element to add the tooltip to</param>
         /// <param name="textCallback">The text to display on the tooltip</param>
         /// <returns>The created tooltip instance</returns>
-        public static Tooltip AddTooltip(this Element element, float width, Paragraph.TextCallback textCallback) {
-            return new Tooltip(width, textCallback, element);
+        public static Tooltip AddTooltip(this Element element, Paragraph.TextCallback textCallback) {
+            return new Tooltip(textCallback, element);
         }
 
         /// <summary>
-        /// Adds a new <see cref="Tooltip"/> to the given element using the <see cref="Tooltip(float,string,Element)"/> constructor
+        /// Adds a new <see cref="Tooltip"/> to the given element using the <see cref="Tooltip(string,Element)"/> constructor
         /// </summary>
-        /// <param name="element"></param>
-        /// <param name="width">The width of the tooltip</param>
+        /// <param name="element">The element to add the tooltip to</param>
         /// <param name="text">The text to display on the tooltip</param>
         /// <returns>The created tooltip instance</returns>
-        public static Tooltip AddTooltip(this Element element, float width, string text) {
-            return new Tooltip(width, text, element);
+        public static Tooltip AddTooltip(this Element element, string text) {
+            return new Tooltip(text, element);
         }
 
     }

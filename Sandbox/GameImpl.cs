@@ -217,7 +217,7 @@ namespace Sandbox {
             this.UiSystem.Add("Invalid", invalidPanel);*/
 
             var loadGroup = new Group(Anchor.TopLeft, Vector2.One, false);
-            var loadPanel = loadGroup.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, new Point(5, 10), false) {
+            var loadPanel = loadGroup.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, false) {
                 ChildPadding = new Padding(5, 10, 5, 5)
             });
             for (var i = 0; i < 1; i++) {

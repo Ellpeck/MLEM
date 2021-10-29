@@ -16,25 +16,16 @@ namespace MLEM.Ui.Style {
         public UntexturedStyle(SpriteBatch batch) {
             this.SelectionIndicator = batch.GenerateTexture(Color.Transparent, Color.Red);
             this.ButtonTexture = batch.GenerateTexture(Color.CadetBlue);
-            this.ButtonHoveredColor = Color.LightGray;
-            this.ButtonDisabledColor = Color.Gray;
             this.PanelTexture = batch.GenerateTexture(Color.Gray);
             this.TextFieldTexture = batch.GenerateTexture(Color.MediumBlue);
-            this.TextFieldHoveredColor = Color.LightGray;
             this.ScrollBarBackground = batch.GenerateTexture(Color.LightBlue);
             this.ScrollBarScrollerTexture = batch.GenerateTexture(Color.Blue);
             this.CheckboxTexture = batch.GenerateTexture(Color.LightBlue);
-            this.CheckboxHoveredColor = Color.LightGray;
             this.CheckboxCheckmark = batch.GenerateTexture(Color.Blue).Region;
             this.RadioTexture = batch.GenerateTexture(Color.AliceBlue);
-            this.RadioHoveredColor = Color.LightGray;
             this.RadioCheckmark = batch.GenerateTexture(Color.CornflowerBlue).Region;
             this.TooltipBackground = batch.GenerateTexture(Color.Black * 0.65F, Color.Black * 0.65F);
-            this.TooltipOffset = new Vector2(8, 16);
             this.ProgressBarTexture = batch.GenerateTexture(Color.RoyalBlue);
-            this.ProgressBarColor = Color.White;
-            this.ProgressBarProgressPadding = new Vector2(1);
-            this.ProgressBarProgressColor = Color.Red;
         }
 
     }

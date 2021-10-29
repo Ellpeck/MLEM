@@ -31,9 +31,8 @@ namespace MLEM.Ui.Style {
         /// </summary>
         /// <param name="value">The style to apply</param>
         public void SetFromStyle(T value) {
-            if (!this.isCustom) {
+            if (!this.isCustom)
                 this.Value = value;
-            }
         }
 
         /// <summary>
@@ -61,6 +60,11 @@ namespace MLEM.Ui.Style {
         /// <returns>Whether this style property has a value</returns>
         public bool HasValue() {
             return !EqualityComparer<T>.Default.Equals(this.Value, default);
+        }
+
+        /// <inheritdoc />
+        public override string ToString() {
+            return $"{this.Value} (Custom: {this.isCustom})";
         }
 
         /// <summary>

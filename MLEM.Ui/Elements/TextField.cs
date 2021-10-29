@@ -113,11 +113,11 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The x position that text should start rendering at, based on the x position of this text field.
         /// </summary>
-        public float TextOffsetX = 4;
+        public StyleProp<float> TextOffsetX;
         /// <summary>
-        /// The width that the caret should render with.
+        /// The width that the caret should render with, in pixels
         /// </summary>
-        public float CaretWidth = 0.5F;
+        public StyleProp<float> CaretWidth;
         /// <summary>
         /// The rule used for text input.
         /// Rules allow only certain characters to be allowed inside of a text field.
@@ -399,6 +399,8 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.TextFieldTexture);
             this.HoveredTexture.SetFromStyle(style.TextFieldHoveredTexture);
             this.HoveredColor.SetFromStyle(style.TextFieldHoveredColor);
+            this.TextOffsetX.SetFromStyle(style.TextFieldTextOffsetX);
+            this.CaretWidth.SetFromStyle(style.TextFieldCaretWidth);
         }
 
         private bool FilterText(ref string text, bool removeMismatching) {
