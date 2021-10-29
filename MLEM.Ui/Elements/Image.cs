@@ -43,6 +43,7 @@ namespace MLEM.Ui.Elements {
         private bool scaleToImage;
         /// <summary>
         /// Whether this image element's <see cref="Element.Size"/> should be based on the size of the <see cref="TextureRegion"/> given.
+        /// Note that, when scaling to the image's size, the <see cref="Element.Scale"/> is also taken into account.
         /// </summary>
         public bool ScaleToImage {
             get => this.scaleToImage;
@@ -97,7 +98,7 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
-            return this.Texture != null && this.scaleToImage ? this.Texture.Size.ToVector2() : base.CalcActualSize(parentArea);
+            return this.Texture != null && this.scaleToImage ? this.Texture.Size.ToVector2() * this.Scale : base.CalcActualSize(parentArea);
         }
 
         /// <inheritdoc />
