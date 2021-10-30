@@ -16,7 +16,6 @@ namespace MLEM.Ui.Elements {
         /// The color to render the image at
         /// </summary>
         public StyleProp<Color> Color;
-        private TextureRegion texture;
         /// <summary>
         /// A callback to retrieve the <see cref="TextureRegion"/> that this image should render.
         /// This can be used if the image changes frequently.
@@ -40,7 +39,6 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
-        private bool scaleToImage;
         /// <summary>
         /// Whether this image element's <see cref="Element.Size"/> should be based on the size of the <see cref="TextureRegion"/> given.
         /// Note that, when scaling to the image's size, the <see cref="Element.Scale"/> is also taken into account.
@@ -72,6 +70,9 @@ namespace MLEM.Ui.Elements {
         /// Note that increased rotation does not increase this component's size, even if the rotated texture would go out of bounds of this component.
         /// </summary>
         public float ImageRotation;
+
+        private bool scaleToImage;
+        private TextureRegion texture;
 
         /// <summary>
         /// Creates a new image with the given settings

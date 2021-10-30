@@ -37,8 +37,6 @@ namespace MLEM.Ui.Elements {
         /// The width of the space between this checkbox and its <see cref="Label"/>
         /// </summary>
         public StyleProp<float> TextOffsetX;
-
-        private bool checced;
         /// <summary>
         /// Whether or not this checkbox is currently checked.
         /// </summary>
@@ -55,6 +53,8 @@ namespace MLEM.Ui.Elements {
         /// An event that is invoked when this checkbox's <see cref="Checked"/> property changes
         /// </summary>
         public CheckStateChange OnCheckStateChange;
+
+        private bool checced;
 
         /// <summary>
         /// Creates a new checkbox with the given settings

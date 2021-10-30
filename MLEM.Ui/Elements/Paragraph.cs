@@ -25,7 +25,6 @@ namespace MLEM.Ui.Elements {
         /// The tokenized version of the <see cref="Text"/>
         /// </summary>
         public TokenizedString TokenizedText { get; private set; }
-
         /// <summary>
         /// The color that the text will be rendered with
         /// </summary>

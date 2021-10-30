@@ -25,25 +25,6 @@ namespace MLEM.Ui.Elements {
         public static float Epsilon = 0.01F;
 
         /// <summary>
-        /// A list of all of this element's direct children.
-        /// Use <see cref="AddChild{T}"/> or <see cref="RemoveChild"/> to manipulate this list while calling all of the necessary callbacks.
-        /// </summary>
-        protected readonly IList<Element> Children;
-        private readonly List<Element> children = new List<Element>();
-        /// <summary>
-        /// A sorted version of <see cref="Children"/>. The children are sorted by their <see cref="Priority"/>.
-        /// </summary>
-        protected IList<Element> SortedChildren {
-            get {
-                this.UpdateSortedChildrenIfDirty();
-                return this.sortedChildren;
-            }
-        }
-        private bool sortedChildrenDirty;
-        private IList<Element> sortedChildren;
-
-        private UiSystem system;
-        /// <summary>
         /// The ui system that this element is currently a part of
         /// </summary>
         public UiSystem System {
@@ -60,10 +41,6 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public UiControls Controls;
         /// <summary>
-        /// The input handler that this element's <see cref="Controls"/> use
-        /// </summary>
-        protected InputHandler Input => this.Controls.Input;
-        /// <summary>
         /// This element's parent element.
         /// If this element has no parent (it is the <see cref="RootElement"/> of a ui system), this value is <c>null</c>.
         /// </summary>
@@ -77,8 +54,6 @@ namespace MLEM.Ui.Elements {
         /// The scale that this ui element renders with
         /// </summary>
         public float Scale => this.Root.ActualScale;
-
-        private Anchor anchor;
         /// <summary>
         /// The <see cref="Anchor"/> that this element uses for positioning within its parent
         /// </summary>
@@ -91,8 +66,6 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-
-        private Vector2 size;
         /// <summary>
         /// The size of this element, where X represents the width and Y represents the height.
         /// If the x or y value of the size is between 0 and 1, the size will be seen as a percentage of its parent's size rather than as an absolute value.
@@ -118,8 +91,6 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="Size"/>, but with <see cref="Scale"/> applied.
         /// </summary>
         public Vector2 ScaledSize => this.size * this.Scale;
-
-        private Vector2 offset;
         /// <summary>
         /// This element's offset from its default position, which is dictated by its <see cref="Anchor"/>.
         /// Note that, depending on the side that the element is anchored to, this offset moves it in a different direction.
@@ -137,7 +108,6 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="PositionOffset"/>, but with <see cref="Scale"/> applied.
         /// </summary>
         public Vector2 ScaledOffset => this.offset * this.Scale;
-
         /// <summary>
         /// The padding that this element has.
         /// The padding is subtracted from the element's <see cref="Size"/>, and it is an area that the element does not extend into. This means that this element's resulting <see cref="DisplayArea"/> does not include this padding.
@@ -147,8 +117,6 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="Padding"/>, but with <see cref="Scale"/> applied.
         /// </summary>
         public Padding ScaledPadding => this.Padding * this.Scale;
-
-        private Padding childPadding;
         /// <summary>
         /// The child padding that this element has.
         /// The child padding moves any <see cref="Children"/> added to this element inwards by the given amount in each direction.
@@ -170,8 +138,6 @@ namespace MLEM.Ui.Elements {
         /// This element's current <see cref="Area"/>, but with <see cref="ScaledChildPadding"/> applied.
         /// </summary>
         public RectangleF ChildPaddedArea => this.UnscrolledArea.Shrink(this.ScaledChildPadding);
-
-        private RectangleF area;
         /// <summary>
         /// This element's area, without respecting its <see cref="ScrollOffset"/>.
         /// This area is updated automatically to fit this element's sizing and positioning properties.
@@ -182,7 +148,6 @@ namespace MLEM.Ui.Elements {
                 return this.area;
             }
         }
-        private bool areaDirty;
         /// <summary>
         /// The <see cref="UnscrolledArea"/> of this element, but with <see cref="ScaledScrollOffset"/> applied.
         /// </summary>
@@ -192,7 +157,6 @@ namespace MLEM.Ui.Elements {
         /// This is the property that should be used for drawing this element, as well as mouse input handling and culling.
         /// </summary>
         public RectangleF DisplayArea => this.Area.Shrink(this.ScaledPadding);
-
         /// <summary>
         /// The offset that this element has as a result of <see cref="Panel"/> scrolling.
         /// </summary>
@@ -201,8 +165,6 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="ScrollOffset"/>, but with <see cref="Scale"/> applied.
         /// </summary>
         public Vector2 ScaledScrollOffset => this.ScrollOffset * this.Scale;
-
-        private bool isHidden;
         /// <summary>
         /// Set this property to <c>true</c> to cause this element to be hidden.
         /// Hidden elements don't receive input events, aren't rendered and don't factor into auto-anchoring.
@@ -216,8 +178,6 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
-
-        private int priority;
         /// <summary>
         /// The priority of this element as part of its <see cref="Parent"/> element.
         /// A higher priority means the element will be drawn first and, if auto-anchoring is used, anchored higher up within its parent.
@@ -232,7 +192,6 @@ namespace MLEM.Ui.Elements {
                     this.Parent.SetSortedChildrenDirty();
             }
         }
-
         /// <summary>
         /// This element's transform matrix.
         /// Can easily be scaled using <see cref="ScaleTransform"/>.
@@ -244,7 +203,6 @@ namespace MLEM.Ui.Elements {
         /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
         /// </summary>
         public BeginDelegate BeginImpl;
-
         /// <summary>
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
@@ -294,7 +252,6 @@ namespace MLEM.Ui.Elements {
         /// Note that, when <see cref="Draw"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
         /// </summary>
         public float DrawAlpha = 1;
-
         /// <summary>
         /// Stores whether this element is currently being moused over or touched.
         /// </summary>
@@ -303,6 +260,18 @@ namespace MLEM.Ui.Elements {
         /// Stores whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// </summary>
         public bool IsSelected { get; protected set; }
+        /// <summary>
+        /// A style property that contains the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
+        /// </summary>
+        public StyleProp<NinePatch> SelectionIndicator;
+        /// <summary>
+        /// A style property that contains the sound effect that is played when this element's <see cref="OnPressed"/> is called
+        /// </summary>
+        public StyleProp<SoundEffectInfo> ActionSound;
+        /// <summary>
+        /// A style property that contains the sound effect that is played when this element's <see cref="OnSecondaryPressed"/> is called
+        /// </summary>
+        public StyleProp<SoundEffectInfo> SecondActionSound;
 
         /// <summary>
         /// Event that is called after this element is drawn, but before its children are drawn
@@ -347,7 +316,6 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Event that is called when text input is made.
         /// When an element uses this event, it should call <see cref="MlemPlatform.EnsureExists"/> on construction to ensure that the MLEM platform is initialized.
-        ///
         /// Note that this event is called for every element, even if it is not selected.
         /// Also note that if the active <see cref="MlemPlatform"/> uses an on-screen keyboard, this event is never called.
         /// </summary>
@@ -396,17 +364,36 @@ namespace MLEM.Ui.Elements {
         public GenericCallback OnDisposed;
 
         /// <summary>
-        /// A style property that contains the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
+        /// A list of all of this element's direct children.
+        /// Use <see cref="AddChild{T}"/> or <see cref="RemoveChild"/> to manipulate this list while calling all of the necessary callbacks.
         /// </summary>
-        public StyleProp<NinePatch> SelectionIndicator;
+        protected readonly IList<Element> Children;
         /// <summary>
-        /// A style property that contains the sound effect that is played when this element's <see cref="OnPressed"/> is called
+        /// A sorted version of <see cref="Children"/>. The children are sorted by their <see cref="Priority"/>.
         /// </summary>
-        public StyleProp<SoundEffectInfo> ActionSound;
+        protected IList<Element> SortedChildren {
+            get {
+                this.UpdateSortedChildrenIfDirty();
+                return this.sortedChildren;
+            }
+        }
         /// <summary>
-        /// A style property that contains the sound effect that is played when this element's <see cref="OnSecondaryPressed"/> is called
+        /// The input handler that this element's <see cref="Controls"/> use
         /// </summary>
-        public StyleProp<SoundEffectInfo> SecondActionSound;
+        protected InputHandler Input => this.Controls.Input;
+
+        private readonly List<Element> children = new List<Element>();
+        private bool sortedChildrenDirty;
+        private IList<Element> sortedChildren;
+        private UiSystem system;
+        private Anchor anchor;
+        private Vector2 size;
+        private Vector2 offset;
+        private Padding childPadding;
+        private RectangleF area;
+        private bool areaDirty;
+        private bool isHidden;
+        private int priority;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.

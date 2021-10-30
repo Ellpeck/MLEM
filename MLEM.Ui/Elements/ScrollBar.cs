@@ -18,6 +18,11 @@ namespace MLEM.Ui.Elements {
     public class ScrollBar : Element {
 
         /// <summary>
+        /// Whether this scroll bar is horizontal
+        /// </summary>
+        public readonly bool Horizontal;
+
+        /// <summary>
         /// The background texture for this scroll bar
         /// </summary>
         public StyleProp<NinePatch> Background;
@@ -33,7 +38,6 @@ namespace MLEM.Ui.Elements {
         /// The scroller's width and height
         /// </summary>
         public Vector2 ScrollerSize;
-        private float maxValue;
         /// <summary>
         /// The max value that this scroll bar should be able to scroll to.
         /// Note that the maximum value does not change the height of the scroll bar.
@@ -52,8 +56,6 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
-        private float scrollAdded;
-        private float currValue;
         /// <summary>
         /// The current value of the scroll bar.
         /// This is between 0 and <see cref="MaxValue"/> at all times.
@@ -71,10 +73,6 @@ namespace MLEM.Ui.Elements {
             }
         }
         /// <summary>
-        /// Whether this scroll bar is horizontal
-        /// </summary>
-        public readonly bool Horizontal;
-        /// <summary>
         /// The amount added or removed from <see cref="CurrentValue"/> per single movement of the scroll wheel
         /// </summary>
         public float StepPerScroll = 1;
@@ -90,9 +88,6 @@ namespace MLEM.Ui.Elements {
         /// This property is true while the user scrolls on the scroll bar using the mouse or touch input
         /// </summary>
         public bool IsBeingScrolled => this.isMouseHeld || this.isDragging || this.isTouchHeld;
-        private bool isMouseHeld;
-        private bool isDragging;
-        private bool isTouchHeld;
         /// <summary>
         /// This field determines if this scroll bar should automatically be hidden from a <see cref="Panel"/> if there aren't enough children to allow for scrolling.
         /// </summary>
@@ -106,6 +101,13 @@ namespace MLEM.Ui.Elements {
         /// The factor with which <see cref="SmoothScrolling"/> happens.
         /// </summary>
         public StyleProp<float> SmoothScrollFactor;
+
+        private bool isMouseHeld;
+        private bool isDragging;
+        private bool isTouchHeld;
+        private float maxValue;
+        private float scrollAdded;
+        private float currValue;
 
         static ScrollBar() {
             InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);

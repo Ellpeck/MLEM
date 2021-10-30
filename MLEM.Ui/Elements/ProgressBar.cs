@@ -34,7 +34,6 @@ namespace MLEM.Ui.Elements {
         /// The color that this progress bar's <see cref="ProgressTexture"/> is rendered with.
         /// </summary>
         public StyleProp<Color> ProgressColor;
-
         /// <summary>
         /// The direction that this progress bar goes in.
         /// Note that only <see cref="Direction2Helper.Adjacent"/> directions are supported.
@@ -44,7 +43,6 @@ namespace MLEM.Ui.Elements {
         /// The maximum value that this progress bar should be able to have.
         /// </summary>
         public float MaxValue;
-        private float currentValue;
         /// <summary>
         /// The current value that this progress bar has.
         /// This value is always between 0 and <see cref="MaxValue"/>.
@@ -53,6 +51,8 @@ namespace MLEM.Ui.Elements {
             get => this.currentValue;
             set => this.currentValue = MathHelper.Clamp(value, 0, this.MaxValue);
         }
+
+        private float currentValue;
 
         /// <summary>
         /// Creates a new progress bar with the given settings

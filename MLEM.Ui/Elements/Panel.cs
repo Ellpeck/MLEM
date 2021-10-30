@@ -18,6 +18,13 @@ namespace MLEM.Ui.Elements {
     public class Panel : Element {
 
         /// <summary>
+        /// The scroll bar that this panel contains.
+        /// This is only nonnull if <see cref="scrollOverflow"/> is true.
+        /// Note that some scroll bar styling is controlled by this panel, namely <see cref="StepPerScroll"/> and <see cref="ScrollerSize"/>.
+        /// </summary>
+        public readonly ScrollBar ScrollBar;
+
+        /// <summary>
         /// The texture that this panel should have, or null if it should be invisible.
         /// </summary>
         public StyleProp<NinePatch> Texture;
@@ -35,15 +42,11 @@ namespace MLEM.Ui.Elements {
         /// The size that the <see cref="ScrollBar"/>'s scroller should have, in pixels
         /// </summary>
         public StyleProp<Vector2> ScrollerSize;
-        /// <summary>
-        /// The scroll bar that this panel contains.
-        /// This is only nonnull if <see cref="scrollOverflow"/> is true.
-        /// Note that some scroll bar styling is controlled by this panel, namely <see cref="StepPerScroll"/> and <see cref="ScrollerSize"/>.
-        /// </summary>
-        public readonly ScrollBar ScrollBar;
-        private readonly bool scrollOverflow;
-        private RenderTarget2D renderTarget;
+
         private readonly List<Element> relevantChildren = new List<Element>();
+        private readonly bool scrollOverflow;
+
+        private RenderTarget2D renderTarget;
         private bool relevantChildrenDirty;
 
         /// <summary>

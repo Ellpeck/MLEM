@@ -46,8 +46,6 @@ namespace MLEM.Ui.Elements {
         /// Note that this is only nonnull by default if the constructor was passed a nonnull tooltip text.
         /// </summary>
         public Tooltip Tooltip;
-
-        private bool isDisabled;
         /// <summary>
         /// Set this property to true to mark the button as disabled.
         /// A disabled button cannot be moused over, selected or pressed.
@@ -71,6 +69,8 @@ namespace MLEM.Ui.Elements {
                     this.Text.TruncateIfLong = value;
             }
         }
+
+        private bool isDisabled;
 
         /// <summary>
         /// Creates a new button with the given settings

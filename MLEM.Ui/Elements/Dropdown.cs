@@ -13,6 +13,7 @@ namespace MLEM.Ui.Elements {
         /// The panel that this dropdown contains. It will be displayed upon pressing the dropdown button.
         /// </summary>
         public readonly Panel Panel;
+        
         /// <summary>
         /// This property stores whether the dropdown is currently opened or not
         /// </summary>
