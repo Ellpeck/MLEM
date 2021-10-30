@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
 
@@ -81,7 +82,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="tooltipText">The text that should be displayed in a <see cref="Tooltip"/> when hovering over this button</param>
         public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : base(anchor, size) {
             if (text != null) {
-                this.Text = new Paragraph(Anchor.Center, 1, text, true) {Padding = new Vector2(1)};
+                this.Text = new Paragraph(Anchor.Center, 1, text, true);
+                this.Text.Padding.SetFromStyle(new Padding(1), 1);
                 this.AddChild(this.Text);
             }
             if (tooltipText != null)

@@ -79,10 +79,9 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.TooltipBackground);
             this.MouseOffset.SetFromStyle(style.TooltipOffset);
             this.Delay.SetFromStyle(style.TooltipDelay);
-            this.ChildPadding = style.TooltipChildPadding;
+            this.ChildPadding.SetFromStyle(style.TooltipChildPadding);
             if (this.Paragraph != null) {
-                // we can't set from style here since it's a different element
-                this.Paragraph.TextColor.Set(style.TooltipTextColor);
+                this.Paragraph.TextColor.SetFromStyle(style.TooltipTextColor, 1);
                 this.Paragraph.Size = new Vector2(style.TooltipTextWidth, 0);
             }
         }

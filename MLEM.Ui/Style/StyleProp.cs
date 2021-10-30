@@ -14,14 +14,14 @@ namespace MLEM.Ui.Style {
         /// The currently applied style
         /// </summary>
         public T Value { get; private set; }
-        private bool isCustom;
+        private byte lastSetPriority;
 
         /// <summary>
         /// Creates a new style property with the given custom style.
         /// </summary>
         /// <param name="value">The custom style to apply</param>
         public StyleProp(T value) {
-            this.isCustom = true;
+            this.lastSetPriority = byte.MaxValue;
             this.Value = value;
         }
 
@@ -30,9 +30,12 @@ namespace MLEM.Ui.Style {
         /// This allows this property to be overridden by custom style settings using <see cref="Set"/>.
         /// </summary>
         /// <param name="value">The style to apply</param>
-        public void SetFromStyle(T value) {
-            if (!this.isCustom)
+        /// <param name="priority">The priority that this style value has. Higher priority style values will override lower priority style values.</param>
+        public void SetFromStyle(T value, byte priority = 0) {
+            if (priority >= this.lastSetPriority) {
                 this.Value = value;
+                this.lastSetPriority = priority;
+            }
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace MLEM.Ui.Style {
         /// </summary>
         /// <param name="value"></param>
         public void Set(T value) {
-            this.isCustom = true;
+            this.lastSetPriority = byte.MaxValue;
             this.Value = value;
         }
 
@@ -64,7 +67,7 @@ namespace MLEM.Ui.Style {
 
         /// <inheritdoc />
         public override string ToString() {
-            return $"{this.Value} (Custom: {this.isCustom})";
+            return this.Value?.ToString();
         }
 
         /// <summary>

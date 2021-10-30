@@ -53,6 +53,14 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Creates a new padding with the specified value, which will be applied to each edge.
+        /// </summary>
+        /// <param name="value">The padding to apply to each edge</param>
+        public Padding(float value) :
+            this(value, value) {
+        }
+
+        /// <summary>
         /// Creates a new padding with the specified x and y values, applying them to both edges.
         /// </summary>
         /// <param name="x">The x padding, which will turn into the left and right padding</param>

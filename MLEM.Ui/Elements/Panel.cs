@@ -71,8 +71,12 @@ namespace MLEM.Ui.Elements {
                     AutoHideWhenEmpty = autoHideScrollbar,
                     IsHidden = autoHideScrollbar
                 };
-                if (autoHideScrollbar)
-                    this.ScrollBar.OnAutoHide += e => this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X, 0, 0) * (e.IsHidden ? -1 : 1);
+                if (autoHideScrollbar) {
+                    this.ScrollBar.OnAutoHide += e => {
+                        this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X, 0, 0) * (e.IsHidden ? -1 : 1);
+                        this.SetAreaDirty();
+                    };
+                }
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {
@@ -216,8 +220,7 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.PanelTexture);
             this.StepPerScroll.SetFromStyle(style.PanelStepPerScroll);
             this.ScrollerSize.SetFromStyle(style.PanelScrollerSize);
-            if (this.ChildPadding == default)
-                this.ChildPadding = style.PanelChildPadding;
+            this.ChildPadding.SetFromStyle(style.PanelChildPadding);
             this.SetScrollBarStyle();
         }
 
@@ -235,7 +238,7 @@ namespace MLEM.Ui.Elements {
             var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden);
             // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
-            this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Height;
+            this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Value.Height;
 
             // update the render target
             var targetArea = (Rectangle) this.GetRenderTargetArea();

@@ -27,6 +27,8 @@ Improvements
 - Exposed the epsilon value used by Element calculations
 - Made Image ScaleToImage take ui scale into account
 - Added style properties for a lot of hardcoded default element styles
+- Allow style properties to set style values with a higher priority, which allows elements to style their default children
+- Allow changing the entire ui style for a single element
 
 Fixes
 - Fixed VerticalSpace height parameter being an integer

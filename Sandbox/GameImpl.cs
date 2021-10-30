@@ -224,7 +224,7 @@ namespace Sandbox {
                 var button = loadPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1)) {
                     SetHeightBasedOnChildren = true,
                     Padding = new Padding(0, 0, 0, 1),
-                    ChildPadding = new Vector2(3)
+                    ChildPadding = new Padding(3)
                 });
                 button.AddChild(new Group(Anchor.AutoLeft, new Vector2(0.5F, 30), false) {
                     CanBeMoused = false

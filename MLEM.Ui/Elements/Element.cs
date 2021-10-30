@@ -32,8 +32,17 @@ namespace MLEM.Ui.Elements {
             internal set {
                 this.system = value;
                 this.Controls = value?.Controls;
-                if (this.system != null)
-                    this.InitStyle(this.system.Style);
+                this.Style = value?.Style;
+            }
+        }
+        public UiStyle Style {
+            get => this.style;
+            set {
+                if (this.style != value) {
+                    this.style = value;
+                    if (value != null)
+                        this.InitStyle(value);
+                }
             }
         }
         /// <summary>
@@ -109,31 +118,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public Vector2 ScaledOffset => this.offset * this.Scale;
         /// <summary>
-        /// The padding that this element has.
-        /// The padding is subtracted from the element's <see cref="Size"/>, and it is an area that the element does not extend into. This means that this element's resulting <see cref="DisplayArea"/> does not include this padding.
-        /// </summary>
-        public Padding Padding;
-        /// <summary>
         /// The <see cref="Padding"/>, but with <see cref="Scale"/> applied.
         /// </summary>
-        public Padding ScaledPadding => this.Padding * this.Scale;
-        /// <summary>
-        /// The child padding that this element has.
-        /// The child padding moves any <see cref="Children"/> added to this element inwards by the given amount in each direction.
-        /// </summary>
-        public Padding ChildPadding {
-            get => this.childPadding;
-            set {
-                if (this.childPadding == value)
-                    return;
-                this.childPadding = value;
-                this.SetAreaDirty();
-            }
-        }
+        public Padding ScaledPadding => this.Padding.Value * this.Scale;
         /// <summary>
         /// The <see cref="ChildPadding"/>, but with <see cref="Scale"/> applied.
         /// </summary>
-        public Padding ScaledChildPadding => this.childPadding * this.Scale;
+        public Padding ScaledChildPadding => this.ChildPadding.Value * this.Scale;
         /// <summary>
         /// This element's current <see cref="Area"/>, but with <see cref="ScaledChildPadding"/> applied.
         /// </summary>
@@ -260,6 +251,7 @@ namespace MLEM.Ui.Elements {
         /// Stores whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// </summary>
         public bool IsSelected { get; protected set; }
+
         /// <summary>
         /// A style property that contains the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
         /// </summary>
@@ -272,6 +264,17 @@ namespace MLEM.Ui.Elements {
         /// A style property that contains the sound effect that is played when this element's <see cref="OnSecondaryPressed"/> is called
         /// </summary>
         public StyleProp<SoundEffectInfo> SecondActionSound;
+        /// <summary>
+        /// The padding that this element has.
+        /// The padding is subtracted from the element's <see cref="Size"/>, and it is an area that the element does not extend into. This means that this element's resulting <see cref="DisplayArea"/> does not include this padding.
+        /// </summary>
+        public StyleProp<Padding> Padding;
+        /// <summary>
+        /// The child padding that this element has.
+        /// The child padding moves any <see cref="Children"/> added to this element inwards by the given amount in each direction.
+        /// When setting this style after this element has already been added to a ui, <see cref="SetAreaDirty"/> should be called.
+        /// </summary>
+        public StyleProp<Padding> ChildPadding;
 
         /// <summary>
         /// Event that is called after this element is drawn, but before its children are drawn
@@ -389,11 +392,11 @@ namespace MLEM.Ui.Elements {
         private Anchor anchor;
         private Vector2 size;
         private Vector2 offset;
-        private Padding childPadding;
         private RectangleF area;
         private bool areaDirty;
         private bool isHidden;
         private int priority;
+        private UiStyle style;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.
