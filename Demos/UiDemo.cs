@@ -241,7 +241,7 @@ namespace Demos {
         // Note that this particular example makes use of the Coroutine package, which is not required but makes demonstration easier
         private static IEnumerator<Wait> WobbleButton(Element button) {
             var counter = 0F;
-            while (counter < 4 * Math.PI) {
+            while (counter < 4 * Math.PI && button.Root != null) {
                 // Every element allows the implementation of any sort of custom rendering for itself and all of its child components
                 // This includes simply changing the transform matrix like here, but also applying custom effects and doing
                 // anything else that can be done in the SpriteBatch's Begin call.
