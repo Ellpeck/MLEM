@@ -103,6 +103,7 @@ namespace MLEM.Misc {
                     newIndices[index++] = (short) (item * 4 + 3);
                     newIndices[index++] = (short) (item * 4 + 2);
                 }
+                this.indices?.Dispose();
                 this.indices = new IndexBuffer(this.graphicsDevice, IndexElementSize.SixteenBits, newIndices.Length, BufferUsage.WriteOnly);
                 this.indices.SetData(newIndices);
             }
@@ -316,6 +317,9 @@ namespace MLEM.Misc {
         /// <inheritdoc />
         public void Dispose() {
             this.spriteEffect.Dispose();
+            this.indices?.Dispose();
+            foreach (var buffer in this.vertexBuffers)
+                buffer.Dispose();
             GC.SuppressFinalize(this);
         }
 
