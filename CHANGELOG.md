@@ -36,6 +36,9 @@ Fixes
 - Fixed text not being pasted into a text field at all if it contains characters that don't match the input rule
 
 ### MLEM.Data
+Additions
+- Allow RuntimeTexturePacker to automatically dispose submitted textures when packing
+
 Improvements
 - Use TitleContainer for opening streams where possible
 

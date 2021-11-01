@@ -8,18 +8,21 @@ namespace Tests {
     public class TexturePackerTests {
 
         private Texture2D testTexture;
+        private Texture2D disposedTestTexture;
         private TestGame game;
 
         [SetUp]
         public void SetUp() {
             this.game = TestGame.Create();
             this.testTexture = new Texture2D(this.game.GraphicsDevice, 256, 256);
+            this.disposedTestTexture = new Texture2D(this.game.GraphicsDevice, 16, 16);
         }
 
         [TearDown]
         public void TearDown() {
             this.game?.Dispose();
             this.testTexture?.Dispose();
+            this.disposedTestTexture?.Dispose();
         }
 
         [Test]
@@ -35,6 +38,16 @@ namespace Tests {
             packer.Pack(this.game.GraphicsDevice);
             Assert.AreEqual(packer.PackedTexture.Width, 16 + 32 + 48 + 64 + 80);
             Assert.AreEqual(packer.PackedTexture.Height, 64);
+        }
+
+        [Test]
+        public void TestDisposal() {
+            using var packer = new RuntimeTexturePacker(128, disposeTextures: true);
+            packer.Add(new TextureRegion(this.disposedTestTexture), StubResult);
+            packer.Add(new TextureRegion(this.disposedTestTexture, 0, 0, 8, 8), StubResult);
+            packer.Pack(this.game.GraphicsDevice);
+            Assert.True(this.disposedTestTexture.IsDisposed);
+            Assert.False(packer.PackedTexture.IsDisposed);
         }
 
         [Test]

@@ -15,11 +15,6 @@ namespace MLEM.Data {
     /// </summary>
     public class RuntimeTexturePacker : IDisposable {
 
-        private readonly List<Request> textures = new List<Request>();
-        private readonly bool autoIncreaseMaxWidth;
-        private readonly bool forcePowerOfTwo;
-        private readonly bool forceSquare;
-
         /// <summary>
         /// The generated packed texture.
         /// This value is null before <see cref="Pack"/> is called.
@@ -37,6 +32,13 @@ namespace MLEM.Data {
         /// The time that <see cref="Pack"/> took the last time it was called
         /// </summary>
         public TimeSpan LastTotalTime => this.LastCalculationTime + this.LastPackTime;
+
+        private readonly List<Request> textures = new List<Request>();
+        private readonly bool autoIncreaseMaxWidth;
+        private readonly bool forcePowerOfTwo;
+        private readonly bool forceSquare;
+        private readonly bool disposeTextures;
+
         private int maxWidth;
 
         /// <summary>
@@ -46,11 +48,13 @@ namespace MLEM.Data {
         /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than <see cref="maxWidth"/>. Defaults to false.</param>
         /// <param name="forcePowerOfTwo">Whether the resulting <see cref="PackedTexture"/> should have a width and height that is a power of two</param>
         /// <param name="forceSquare">Whether the resulting <see cref="PackedTexture"/> should be square regardless of required size</param>
-        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false, bool forcePowerOfTwo = false, bool forceSquare = false) {
+        /// <param name="disposeTextures">Whether the original textures submitted to this texture packer should be disposed after packing</param>
+        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false, bool forcePowerOfTwo = false, bool forceSquare = false, bool disposeTextures = false) {
             this.maxWidth = maxWidth;
             this.autoIncreaseMaxWidth = autoIncreaseMaxWidth;
             this.forcePowerOfTwo = forcePowerOfTwo;
             this.forceSquare = forceSquare;
+            this.disposeTextures = disposeTextures;
         }
 
         /// <summary>
@@ -124,8 +128,12 @@ namespace MLEM.Data {
             this.LastPackTime = stopwatch.Elapsed;
 
             // invoke callbacks
-            foreach (var request in this.textures)
+            foreach (var request in this.textures) {
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, request.PackedArea));
+                if (this.disposeTextures)
+                    request.Texture.Texture.Dispose();
+            }
+
             this.textures.Clear();
         }
 
