@@ -115,10 +115,13 @@ namespace MLEM.Ui.Elements {
         private void ScrollChildren() {
             if (!this.scrollOverflow)
                 return;
-            var offset = -this.ScrollBar.CurrentValue;
-            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true))
-                child.ScrollOffset = new Vector2(0, offset);
-            this.relevantChildrenDirty = true;
+            var offset = new Vector2(0, -this.ScrollBar.CurrentValue);
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true)) {
+                if (child.ScrollOffset != offset) {
+                    child.ScrollOffset = offset;
+                    this.relevantChildrenDirty = true;
+                }
+            }
         }
 
         /// <inheritdoc />
