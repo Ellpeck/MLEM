@@ -531,6 +531,12 @@ namespace MLEM.Ui.Elements {
             this.areaDirty = false;
             if (this.IsHidden)
                 return;
+            // if the parent's area is dirty, it would get updated anyway when querying its ChildPaddedArea,
+            // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead
+            if (this.Parent != null && this.Parent.areaDirty) {
+                this.Parent.ForceUpdateArea();
+                return;
+            }
 
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;

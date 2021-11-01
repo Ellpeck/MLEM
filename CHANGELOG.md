@@ -29,6 +29,7 @@ Improvements
 - Added style properties for a lot of hardcoded default element styles
 - Allow style properties to set style values with a higher priority, which allows elements to style their default children
 - Allow changing the entire ui style for a single element
+- Skip unnecessary area updates for elements with dirty parents
 
 Fixes
 - Fixed VerticalSpace height parameter being an integer
