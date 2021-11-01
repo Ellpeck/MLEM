@@ -6,7 +6,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>A mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types.</Description>
+        <Description>A mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types</Description>
         <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
         <PackageTags>monogame ellpeck mlem ui user interface graphical gui system mouse keyboard gamepad touch</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
