@@ -35,6 +35,11 @@ namespace MLEM.Ui.Elements {
                 this.Style = value?.Style;
             }
         }
+        /// <summary>
+        /// This Element's current <see cref="UiStyle"/>.
+        /// When this value is changed, <see cref="InitStyle"/> is called.
+        /// Note that this value is automatically set to the <see cref="UiSystem"/>'s ui style when it is changed.
+        /// </summary>
         public UiStyle Style {
             get => this.style;
             set {
@@ -516,11 +521,15 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Updates this element's <see cref="Area"/> list if <see cref="areaDirty"/> is true.
+        /// Updates this element's <see cref="Area"/> and all of its <see cref="Children"/> by calling <see cref="ForceUpdateArea"/> if <see cref="areaDirty"/> is true.
         /// </summary>
-        public void UpdateAreaIfDirty() {
-            if (this.areaDirty)
+        /// <returns>Whether <see cref="areaDirty"/> was true and <see cref="ForceUpdateArea"/> was called</returns>
+        public bool UpdateAreaIfDirty() {
+            if (this.areaDirty) {
                 this.ForceUpdateArea();
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -533,10 +542,8 @@ namespace MLEM.Ui.Elements {
                 return;
             // if the parent's area is dirty, it would get updated anyway when querying its ChildPaddedArea,
             // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead
-            if (this.Parent != null && this.Parent.areaDirty) {
-                this.Parent.ForceUpdateArea();
+            if (this.Parent != null && this.Parent.UpdateAreaIfDirty())
                 return;
-            }
 
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
