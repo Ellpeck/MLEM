@@ -128,7 +128,7 @@ namespace MLEM.Ui.Elements {
         public override void ForceUpdateSortedChildren() {
             base.ForceUpdateSortedChildren();
             if (this.scrollOverflow)
-                this.relevantChildrenDirty = true;
+                this.ForceUpdateRelevantChildren();
         }
 
         /// <inheritdoc />
@@ -147,24 +147,8 @@ namespace MLEM.Ui.Elements {
         protected override IList<Element> GetRelevantChildren() {
             var relevant = base.GetRelevantChildren();
             if (this.scrollOverflow) {
-                if (this.relevantChildrenDirty) {
-                    this.relevantChildrenDirty = false;
-
-                    var visible = this.GetRenderTargetArea();
-                    this.relevantChildren.Clear();
-                    foreach (var child in this.SortedChildren) {
-                        if (child.Area.Intersects(visible)) {
-                            this.relevantChildren.Add(child);
-                        } else {
-                            foreach (var c in child.GetChildren(regardGrandchildren: true)) {
-                                if (c.Area.Intersects(visible)) {
-                                    this.relevantChildren.Add(child);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                if (this.relevantChildrenDirty)
+                    this.ForceUpdateRelevantChildren();
                 relevant = this.relevantChildren;
             }
             return relevant;
@@ -270,6 +254,24 @@ namespace MLEM.Ui.Elements {
             this.ScrollBar.Size = new Vector2(this.ScrollerSize.Value.X, 1);
             this.ScrollBar.ScrollerSize = this.ScrollerSize;
             this.ScrollBar.PositionOffset = new Vector2(-this.ScrollerSize.Value.X - 1, 0);
+        }
+
+        private void ForceUpdateRelevantChildren() {
+            this.relevantChildrenDirty = false;
+            this.relevantChildren.Clear();
+            var visible = this.GetRenderTargetArea();
+            foreach (var child in this.SortedChildren) {
+                if (child.Area.Intersects(visible)) {
+                    this.relevantChildren.Add(child);
+                } else {
+                    foreach (var c in child.GetChildren(regardGrandchildren: true)) {
+                        if (c.Area.Intersects(visible)) {
+                            this.relevantChildren.Add(child);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
     }
