@@ -235,6 +235,7 @@ namespace MLEM.Ui.Elements {
                 if (this.renderTarget != null)
                     this.renderTarget.Dispose();
                 this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height);
+                this.relevantChildrenDirty = true;
             }
         }
 
