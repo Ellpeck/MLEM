@@ -16,21 +16,21 @@ namespace MLEM.Data.Json {
         private Dictionary<string, JsonTypeSafeWrapper> data;
 
         /// <inheritdoc />
-        public void SetData<T>(string key, T data) {
-            if (EqualityComparer<T>.Default.Equals(data, default)) {
+        public void SetData(string key, object data) {
+            if (data == default) {
                 if (this.data != null)
                     this.data.Remove(key);
             } else {
                 if (this.data == null)
                     this.data = new Dictionary<string, JsonTypeSafeWrapper>();
-                this.data[key] = new JsonTypeSafeWrapper<T>(data);
+                this.data[key] = JsonTypeSafeWrapper.Of(data);
             }
         }
 
         /// <inheritdoc />
         public T GetData<T>(string key) {
             if (this.data != null && this.data.TryGetValue(key, out var val))
-                return (T) val.Value;
+                return val.GetValue<T>();
             return default;
         }
 

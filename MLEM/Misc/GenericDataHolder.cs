@@ -11,8 +11,8 @@ namespace MLEM.Misc {
         private Dictionary<string, object> data;
 
         /// <inheritdoc />
-        public void SetData<T>(string key, T data) {
-            if (EqualityComparer<T>.Default.Equals(data, default)) {
+        public void SetData(string key, object data) {
+            if (data == default) {
                 if (this.data != null)
                     this.data.Remove(key);
             } else {
@@ -49,8 +49,7 @@ namespace MLEM.Misc {
         /// </summary>
         /// <param name="key">The key to store the data by</param>
         /// <param name="data">The data to store in the object</param>
-        /// <typeparam name="T">The type of the data to store</typeparam>
-        void SetData<T>(string key, T data);
+        void SetData(string key, object data);
 
         /// <summary>
         /// Returns a piece of generic data of the given type on this object.
