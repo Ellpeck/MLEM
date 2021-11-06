@@ -30,8 +30,8 @@ namespace MLEM.Data {
     /// </example>
     /// </summary>
     /// <remarks>
-    /// To see a Data Texture Atlas in action, you can check out the sandbox project: <see href="https://github.com/Ellpeck/MLEM/blob/main/Sandbox/Content/Textures/Furniture.atlas"/>.
-    /// Additionally, if you are using Aseprite, there is a script to automatically populate it: <see href="https://github.com/Ellpeck/MLEM/blob/main/Utilities/Populate%20Data%20Texture%20Atlas.lua"/>.
+    /// To see a Data Texture Atlas in action, you can check out the sandbox project: https://github.com/Ellpeck/MLEM/blob/main/Sandbox/Content/Textures/Furniture.atlas.
+    /// Additionally, if you are using Aseprite, there is a script to automatically populate it: https://github.com/Ellpeck/MLEM/blob/main/Utilities/Populate%20Data%20Texture%20Atlas.lua.
     /// </remarks>
     public class DataTextureAtlas {
 

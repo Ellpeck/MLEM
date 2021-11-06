@@ -16,7 +16,7 @@ namespace MLEM.Ui {
     /// <summary>
     /// A ui system is the central location for the updating and rendering of all ui <see cref="Element"/>s.
     /// Each element added to the root of the ui system is assigned a <see cref="RootElement"/> that has additional data like a transformation matrix.
-    /// For more information on how ui systems work, check out <see href="https://mlem.ellpeck.de/articles/ui.html"/>
+    /// For more information on how ui systems work, check out https://mlem.ellpeck.de/articles/ui.html.
     /// </summary>
     public class UiSystem : GameComponent {
 

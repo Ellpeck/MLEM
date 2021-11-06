@@ -10,7 +10,7 @@ namespace MLEM.Misc {
     /// <summary>
     /// MlemPlatform is a wrapper around some of MonoGame's platform-dependent behavior to allow for MLEM to stay platform-independent.
     /// See <see cref="DesktopGl{T}"/>, <see cref="Mobile"/> and <see cref="None"/> for information on the specific platforms.
-    /// The MLEM demos' main classes also make use of this functionality: <see href="https://github.com/Ellpeck/MLEM/blob/main/Demos.DesktopGL/Program.cs#L8"/> and <see href="https://github.com/Ellpeck/MLEM/blob/main/Demos.Android/Activity1.cs#L33"/>.
+    /// The MLEM demos' main classes also make use of this functionality: https://github.com/Ellpeck/MLEM/blob/main/Demos.DesktopGL/Program.cs#L8 and https://github.com/Ellpeck/MLEM/blob/main/Demos.Android/Activity1.cs#L33.
     /// </summary>
     public abstract class MlemPlatform {
 
