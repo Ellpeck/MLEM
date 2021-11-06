@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 
 namespace MLEM.Data.Json {
     /// <summary>
-    /// A json type-safe wrapper can be used to wrap any objects of any type before submitting them to a non-specifically typed <see cref="List{T}"/> or <see cref="Dictionary{T,T}"/> that will be serialized using a <see cref="JsonSerializer"/> in cases where <see cref="JsonSerializer.TypeNameHandling"/> is not set to <see cref="TypeNameHandling.None"/>.
-    /// If any object is not wrapped in this manner, and it has a custom <see cref="JsonConverter"/>, the value deserialized from it might not have the same type as the originally serialized object. This behavior can be observed, for example, when serializing a <see cref="List{T}"/> of <see cref="object"/> entries, one of which is a <see cref="TimeSpan"/>: The <see cref="TimeSpan"/> will be serialized as a <see cref="string"/> and, upon deserialization, will remain a <see cref="string"/>.
+    /// A json type-safe wrapper can be used to wrap any objects that have a custom <see cref="JsonConverter"/> which stores them as a primitive type and that are serialized using a <see cref="JsonSerializer"/> in cases where <see cref="JsonSerializer.TypeNameHandling"/> is not set to <see cref="TypeNameHandling.None"/>.
+    /// If these objects are not wrapped in this manner, the value deserialized from it might not have the same type as the originally serialized object. This behavior can be observed, for example, when serializing a <see cref="List{T}"/> of <see cref="object"/> entries, one of which is a <see cref="TimeSpan"/>: The <see cref="TimeSpan"/> will be serialized as a <see cref="string"/> and, upon deserialization, will remain a <see cref="string"/>.
     /// In general, wrapping objects in this manner is only useful in rare cases, where custom data of an unexpected or unknown type is stored.
     /// See <see cref="JsonTypeSafeGenericDataHolder"/> for an example of how this class can be used, and see this stackoverflow answer for more information on the problem that this class solves: https://stackoverflow.com/a/38798114.
     /// </summary>

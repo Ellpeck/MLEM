@@ -30,12 +30,12 @@ namespace MLEM.Data.Json {
         /// <inheritdoc />
         public T GetData<T>(string key) {
             if (this.data != null && this.data.TryGetValue(key, out var val))
-                return val.GetValue<T>();
+                return (T) val.Value;
             return default;
         }
 
         /// <inheritdoc />
-        public IEnumerable<string> GetDataKeys() {
+        public IReadOnlyCollection<string> GetDataKeys() {
             if (this.data == null)
                 return Array.Empty<string>();
             return this.data.Keys;

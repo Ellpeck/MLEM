@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace MLEM.Misc {
-    /// <inheritdoc />
+    /// <summary>
+    /// Represents an object that can hold generic key-value based data.
+    /// A lot of MLEM components extend this class to allow for users to add additional data to them easily.
+    /// This <see cref="IGenericDataHolder"/> implemention uses an underlying <see cref="Dictionary{String,Object}"/> that only keeps track of non-default values.
+    /// </summary>
     [DataContract]
     public class GenericDataHolder : IGenericDataHolder {
 
@@ -30,7 +34,7 @@ namespace MLEM.Misc {
         }
 
         /// <inheritdoc />
-        public IEnumerable<string> GetDataKeys() {
+        public IReadOnlyCollection<string> GetDataKeys() {
             if (this.data == null)
                 return Array.Empty<string>();
             return this.data.Keys;
@@ -63,7 +67,7 @@ namespace MLEM.Misc {
         /// Returns all of the generic data that this object stores.
         /// </summary>
         /// <returns>The generic data on this object</returns>
-        IEnumerable<string> GetDataKeys();
+        IReadOnlyCollection<string> GetDataKeys();
 
     }
 }
