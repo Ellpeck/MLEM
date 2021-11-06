@@ -11,7 +11,7 @@ namespace MLEM.Ui.Style {
     /// <summary>
     /// The style settings for a <see cref="UiSystem"/>.
     /// Each <see cref="Element"/> uses these style settings by default, however you can also change these settings per element using the elements' individual style settings.
-    /// Note that this class is a <see cref="GenericDataHolder"/>, meaning additional styles for custom components can easily be added using <see cref="GenericDataHolder.SetData"/>
+    /// Note that this class is a <see cref="GenericDataHolder"/>, meaning additional styles for custom components can easily be added using <see cref="GenericDataHolder.SetData{T}"/>
     /// </summary>
     public class UiStyle : GenericDataHolder {
 

@@ -38,6 +38,7 @@ Fixes
 ### MLEM.Data
 Additions
 - Allow RuntimeTexturePacker to automatically dispose submitted textures when packing
+- Added JsonTypeSafeWrapper and JsonTypeSafeGenericDataHolder
 
 Improvements
 - Use TitleContainer for opening streams where possible

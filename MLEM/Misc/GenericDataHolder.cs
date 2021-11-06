@@ -11,8 +11,8 @@ namespace MLEM.Misc {
         private Dictionary<string, object> data;
 
         /// <inheritdoc />
-        public void SetData(string key, object data) {
-            if (data == default) {
+        public void SetData<T>(string key, T data) {
+            if (EqualityComparer<T>.Default.Equals(data, default)) {
                 if (this.data != null)
                     this.data.Remove(key);
             } else {
@@ -30,7 +30,7 @@ namespace MLEM.Misc {
         }
 
         /// <inheritdoc />
-        public IReadOnlyCollection<string> GetDataKeys() {
+        public IEnumerable<string> GetDataKeys() {
             if (this.data == null)
                 return Array.Empty<string>();
             return this.data.Keys;
@@ -49,7 +49,8 @@ namespace MLEM.Misc {
         /// </summary>
         /// <param name="key">The key to store the data by</param>
         /// <param name="data">The data to store in the object</param>
-        void SetData(string key, object data);
+        /// <typeparam name="T">The type of the data to store</typeparam>
+        void SetData<T>(string key, T data);
 
         /// <summary>
         /// Returns a piece of generic data of the given type on this object.
@@ -63,7 +64,7 @@ namespace MLEM.Misc {
         /// Returns all of the generic data that this object stores.
         /// </summary>
         /// <returns>The generic data on this object</returns>
-        IReadOnlyCollection<string> GetDataKeys();
+        IEnumerable<string> GetDataKeys();
 
     }
 }
