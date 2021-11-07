@@ -9,12 +9,16 @@ pipeline {
       }
     }
     stage('Document') {
+      steps {
+        sh 'dotnet cake --target Document --branch ' + env.BRANCH_NAME
+      }
+    }
+    stage('Publish Docs') {
       when {
-        branch 'release' 
+        branch 'release'
       }
       steps {
-        sh 'dotnet cake --target Document'     
-        sh 'cp Docs/_site/** /var/www/MLEM/ -r'   
+        sh 'cp Docs/_site/** /var/www/MLEM/ -r'
       }
     }
   }
