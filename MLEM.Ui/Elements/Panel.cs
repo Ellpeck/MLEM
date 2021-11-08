@@ -221,12 +221,19 @@ namespace MLEM.Ui.Elements {
             // if there is only one child, then we have just the scroll bar
             if (this.Children.Count == 1)
                 return;
+         
             // the "real" first child is the scroll bar, which we want to ignore
             var firstChild = this.Children.First(c => c != this.ScrollBar);
             var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden);
-            // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
-            this.ScrollBar.MaxValue = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
+         
+            // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
+            var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
+            if (this.ScrollBar.MaxValue != scrollBarMax) {
+                this.ScrollBar.MaxValue = scrollBarMax;
+                this.relevantChildrenDirty = true;
+            }
+           
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
             var scrollerHeight = this.ChildPaddedArea.Height / childrenHeight / this.Scale * this.ScrollBar.Area.Height;
             this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
