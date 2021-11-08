@@ -39,7 +39,8 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<float> StepPerScroll;
         /// <summary>
-        /// The size that the <see cref="ScrollBar"/>'s scroller should have, in pixels
+        /// The size that the <see cref="ScrollBar"/>'s scroller should have, in pixels.
+        /// The scroller size's height specified here is the minimum height, otherwise, it is automatically calculated based on panel content.
         /// </summary>
         public StyleProp<Vector2> ScrollerSize;
 
@@ -225,7 +226,10 @@ namespace MLEM.Ui.Elements {
             var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden);
             // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
-            this.ScrollBar.MaxValue = (childrenHeight - this.Area.Height) / this.Scale + this.ChildPadding.Value.Height;
+            this.ScrollBar.MaxValue = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
+            // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
+            var scrollerHeight = this.ChildPaddedArea.Height / childrenHeight / this.Scale * this.ScrollBar.Area.Height;
+            this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
 
             // update the render target
             var targetArea = (Rectangle) this.GetRenderTargetArea();
@@ -253,7 +257,6 @@ namespace MLEM.Ui.Elements {
                 return;
             this.ScrollBar.StepPerScroll = this.StepPerScroll;
             this.ScrollBar.Size = new Vector2(this.ScrollerSize.Value.X, 1);
-            this.ScrollBar.ScrollerSize = this.ScrollerSize;
             this.ScrollBar.PositionOffset = new Vector2(-this.ScrollerSize.Value.X - 1, 0);
         }
 
