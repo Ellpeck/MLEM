@@ -6,16 +6,14 @@ Text formatting makes use of [generic fonts](font_extensions.md).
 
 It should also be noted that [MLEM.Ui](ui.md)'s `Paragraph`s support text formatting out of the box.
 
-*This documentation is about the new text formatting that was introduced in MLEM 3.3.1. You can see the documentation for the legacy text formatting system [here](text_formatting_legacy.md).*
-
 ## Formatting codes
 To format your text, you can insert *formatting codes* into it. Almost all of these codes are single letters surrounded by `<>`, and some formatting codes can accept additional parameters after their letter representation.
 
 By default, the following formatting options are available:
 - Colors using `<c ColorName>`. All default MonoGame colors are supported, for example `<c CornflowerBlue>`. Reset using `</c>`.
 - Bold and italic text using `<b>` and `<i>`, respectively. Reset using `</b>` and `</i>`.
-- Drop shadows using `<s>`. Optional parameters for the shadow's color and positional offset are accepted: `<s #AARRGGBB 2.5>`. Reset using `</c>`.
-- Underlined text using `<u>`. Reset using `</u>`.
+- Drop shadows using `<s>`. Optional parameters for the shadow's color and positional offset are accepted: `<s #AARRGGBB 2.5>`. Reset using `</s>`.
+- Underlined and strikethrough text using `<u>` and `<st>`, respectively. Reset using `</u>` and `</st>`.
 - A wobbly sine wave animation using `<a wobbly>`. Optional parameters for the wobble's intensity and height are accepted: `<a wobbly 10 0.25>`. Reset using `</a>`.
 
 ## Getting your text ready
@@ -52,8 +50,14 @@ You can then register your formatting code like this:
 formatter.Codes.Add(new Regex("<matchme>"), (form, match, regex) => new MyCustomCode(match, regex));
 ```
 
+To add an in-text image formatting code, you can use the `ImageCodeExtensions.AddImage` extension. All you have to do is supply the texture region and a name:
+```cs
+formatter.AddImage("ImageName", new TextureRegion(texture, 0, 0, 8, 8));
+```
+After doing so, the image can be displayed using the code `<i ImageName>`.
+
 ## Macros
-The text formatting system additionally supports macros: Regular expressions that cause the matched text to expand into a different string. Macros can be resolved recursively, meaning that you can have macros that resolve into other macros, and so on.
+The text formatting system additionally supports macros: Regular expressions that cause the matched text to expand into a different string. Macros are resolved recursively, meaning that you can have macros that resolve into other macros, and so on.
 
 By default, the following macros are available:
 - `~` expands into a non-breaking space, much like in LaTeX.

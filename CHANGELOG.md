@@ -14,6 +14,7 @@ Additions
 - Added StaticSpriteBatch class
 
 Improvements
+- Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 - Exposed Camera's RoundPosition
 - Exposed the epsilon value used by Camera
 
@@ -23,7 +24,6 @@ Additions
 - Added a multiline editing mode to TextField
 
 Improvements
-- Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 - Exposed the epsilon value used by Element calculations
 - Made Image ScaleToImage take ui scale into account
 - Added style properties for a lot of hardcoded default element styles

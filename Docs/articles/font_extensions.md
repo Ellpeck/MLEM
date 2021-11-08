@@ -3,18 +3,17 @@
 The **MLEM** base package features several additional font manipulation methods, including line splitting and text truncating. These abilities can be accessed through generic fonts.
 
 ## Generic fonts
-MLEM features the `GenericFont` class along with a `GenericSpriteFont` implementation. This is used by the MLEM.Ui package, but it can also be used separately to have more control over font rendering.
+MLEM features the `GenericFont` class along with a `GenericSpriteFont` implementation. This is used by the **MLEM.Ui** package, but it can also be used separately to have more control over font rendering.
 
-The reason generic fonts exist is to provide the ability to use both MonoGame `SpriteFonts` and [MonoGame.Extended](http://www.monogameextended.net/) `BitmapFonts` for the additionally provided behavior. To access the latter, the **MLEM.Extended** package needs to be installed as well.
+Additionally, the **MLEM.Extended** package provides the following generic fonts:
+- `GenericBitmapFont`, which uses [MonoGame.Extended](http://www.monogameextended.net/)'s `SpriteFont`
+- `GenericStashFont`, which uses [FontStashSharp](https://github.com/rds1983/FontStashSharp)'s fonts
 
 ### Creating a generic font
-To create a generic font, simply create an instance of `GenericSpriteFont` or `GenericBitmapFont` when loading your game:
+To create a generic font, simply create an instance of the desired generic font class when loading your game:
 ```cs
 // Using MonoGame SpriteFonts
 var spriteFont = new GenericSpriteFont(this.Content.Load<SpriteFont>("Fonts/ExampleFont"));
-
-// Using MonoGame.Extended BitmapFonts
-var bitmapFont = new GenericBitmapFont(this.Content.Load<BitmapFont>("Fonts/ExampleBitmapFont"));
 ```
 
 ## Line splitting

@@ -62,7 +62,7 @@ var style = new UntexturedStyle(this.SpriteBatch) {
     ButtonTexture = new NinePatch(this.Content.Load<Texture2D>("Textures/ExampleTexture"), padding: 1)
 };
 ```
-Note that MLEM.Ui is also compatible with [MonoGame.Extended](http://www.monogameextended.net/)'s Bitmap Fonts by installing MLEM.Extended and using `GenericBitmapFont` instead.
+Note that MLEM.Ui is also compatible with [MonoGame.Extended](http://www.monogameextended.net/)'s Bitmap Fonts by installing **MLEM.Extended** and using `GenericBitmapFont` instead.
 
 ### Scaling
 To change the scaling of your ui, you can use the `UiSystem`'s `Scale` property. Additionally, you can enable `AutoScaleWithScreen` to cause the entire ui to scale automatically when resizing the game window.
