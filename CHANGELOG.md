@@ -43,6 +43,7 @@ Additions
 
 Improvements
 - Use TitleContainer for opening streams where possible
+- Set GraphicsResource Name when loading assets using RawContentManager
 
 ## 5.1.0
 ### MLEM

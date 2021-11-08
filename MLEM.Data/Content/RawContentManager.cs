@@ -67,6 +67,8 @@ namespace MLEM.Data.Content {
                             this.LoadedAssets[assetName] = t;
                             if (t is IDisposable d && !this.disposableAssets.Contains(d))
                                 this.disposableAssets.Add(d);
+                            if (t is GraphicsResource r)
+                                r.Name = assetName;
                             return t;
                         }
                     } catch (FileNotFoundException) {
