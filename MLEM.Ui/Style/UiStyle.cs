@@ -11,7 +11,7 @@ namespace MLEM.Ui.Style {
     /// <summary>
     /// The style settings for a <see cref="UiSystem"/>.
     /// Each <see cref="Element"/> uses these style settings by default, however you can also change these settings per element using the elements' individual style settings.
-    /// Note that this class is a <see cref="GenericDataHolder"/>, meaning additional styles for custom components can easily be added using <see cref="GenericDataHolder.SetData{T}"/>
+    /// Note that this class is a <see cref="GenericDataHolder"/>, meaning additional styles for custom components can easily be added using <see cref="GenericDataHolder.SetData"/>
     /// </summary>
     public class UiStyle : GenericDataHolder {
 
@@ -56,6 +56,10 @@ namespace MLEM.Ui.Style {
         /// The size of the scroller of a <see cref="Panel"/>'s scroll bar
         /// </summary>
         public Vector2 PanelScrollerSize = new Vector2(5, 10);
+        /// <summary>
+        /// The amount of pixels of room there should be between a <see cref="Panel"/>'s scroll bar and the rest of its content
+        /// </summary>
+        public float PanelScrollBarOffset = 1;
         /// <summary>
         /// The texture that the <see cref="TextField"/> element uses
         /// </summary>

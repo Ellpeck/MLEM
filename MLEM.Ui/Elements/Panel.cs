@@ -43,6 +43,10 @@ namespace MLEM.Ui.Elements {
         /// The scroller size's height specified here is the minimum height, otherwise, it is automatically calculated based on panel content.
         /// </summary>
         public StyleProp<Vector2> ScrollerSize;
+        /// <summary>
+        /// The amount of pixels of room there should be between the <see cref="ScrollBar"/> and the rest of the content
+        /// </summary>
+        public StyleProp<float> ScrollBarOffset;
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly bool scrollOverflow;
@@ -74,7 +78,7 @@ namespace MLEM.Ui.Elements {
                 };
                 if (autoHideScrollbar) {
                     this.ScrollBar.OnAutoHide += e => {
-                        this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X, 0, 0) * (e.IsHidden ? -1 : 1);
+                        this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X + this.ScrollBarOffset, 0, 0) * (e.IsHidden ? -1 : 1);
                         this.SetAreaDirty();
                     };
                 }
@@ -209,6 +213,7 @@ namespace MLEM.Ui.Elements {
             this.StepPerScroll.SetFromStyle(style.PanelStepPerScroll);
             this.ScrollerSize.SetFromStyle(style.PanelScrollerSize);
             this.ChildPadding.SetFromStyle(style.PanelChildPadding);
+            this.ScrollBarOffset.SetFromStyle(style.PanelScrollBarOffset);
             this.SetScrollBarStyle();
         }
 
@@ -264,7 +269,7 @@ namespace MLEM.Ui.Elements {
                 return;
             this.ScrollBar.StepPerScroll = this.StepPerScroll;
             this.ScrollBar.Size = new Vector2(this.ScrollerSize.Value.X, 1);
-            this.ScrollBar.PositionOffset = new Vector2(-this.ScrollerSize.Value.X - 1, 0);
+            this.ScrollBar.PositionOffset = new Vector2(-this.ScrollerSize.Value.X - this.ScrollBarOffset, 0);
         }
 
         private void ForceUpdateRelevantChildren() {
