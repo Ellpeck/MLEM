@@ -7,7 +7,7 @@ using MLEM.Extensions;
 namespace MLEM.Misc {
     /// <summary>
     /// A static sprite batch is a variation of <see cref="SpriteBatch"/> that keeps all batched items in a <see cref="VertexBuffer"/>, allowing for them to be drawn multiple times.
-    /// To add items to a static sprite batch, use <see cref="ClearBatch"/> to clear currently batched items, <see cref="BeginBatch"/> to begin batching, <c>Add</c> and its various overloads to add batch items, <see cref="Remove"/> to remove them again, and <see cref="EndBatch"/> to end batching.
+    /// To add items to a static sprite batch, use <see cref="BeginBatch"/> to begin batching, <see cref="ClearBatch"/> to clear currently batched items, <c>Add</c> and its various overloads to add batch items, <see cref="Remove"/> to remove them again, and <see cref="EndBatch"/> to end batching.
     /// To draw the batched items, call <see cref="Draw"/>.
     /// </summary>
     public class StaticSpriteBatch : IDisposable {
@@ -43,7 +43,6 @@ namespace MLEM.Misc {
         /// <summary>
         /// Begins batching.
         /// Call this method before calling <c>Add</c> or any of its overloads.
-        /// Note that, if <see cref="ClearBatch"/> was not called, items that are batched will be appended to the existing batch.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if this batch is currently batching already</exception>
         public void BeginBatch() {
@@ -107,19 +106,6 @@ namespace MLEM.Misc {
                 this.indices = new IndexBuffer(this.graphicsDevice, IndexElementSize.SixteenBits, newIndices.Length, BufferUsage.WriteOnly);
                 this.indices.SetData(newIndices);
             }
-        }
-
-        /// <summary>
-        /// Clears the batch, removing all currently batched vertices.
-        /// After this operation, <see cref="Vertices"/> will return 0.
-        /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown if this batch is currently batching</exception>
-        public void ClearBatch() {
-            if (this.batching)
-                throw new InvalidOperationException("Cannot clear while batching");
-            this.vertices.Clear();
-            this.texture = null;
-            this.batchChanged = true;
         }
 
         /// <summary>
@@ -338,6 +324,19 @@ namespace MLEM.Misc {
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Clears the batch, removing all currently batched vertices.
+        /// After this operation, <see cref="Vertices"/> will return 0.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown if this method is called before <see cref="BeginBatch"/> was called</exception>
+        public void ClearBatch() {
+            if (!this.batching)
+                throw new InvalidOperationException("Not batching");
+            this.vertices.Clear();
+            this.texture = null;
+            this.batchChanged = true;
         }
 
         /// <inheritdoc />
