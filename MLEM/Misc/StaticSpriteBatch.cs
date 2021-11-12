@@ -7,7 +7,7 @@ using MLEM.Extensions;
 namespace MLEM.Misc {
     /// <summary>
     /// A static sprite batch is a variation of <see cref="SpriteBatch"/> that keeps all batched items in a <see cref="VertexBuffer"/>, allowing for them to be drawn multiple times.
-    /// To add items to a static sprite batch, use <see cref="ClearBatch"/> to clear currently batched items, <see cref="BeginBatch"/> to begin batching, <c>Add</c> and its various overloads to add batch items and <see cref="EndBatch"/> to end batching.
+    /// To add items to a static sprite batch, use <see cref="ClearBatch"/> to clear currently batched items, <see cref="BeginBatch"/> to begin batching, <c>Add</c> and its various overloads to add batch items, <see cref="Remove"/> to remove them again, and <see cref="EndBatch"/> to end batching.
     /// To draw the batched items, call <see cref="Draw"/>.
     /// </summary>
     public class StaticSpriteBatch : IDisposable {
@@ -62,7 +62,7 @@ namespace MLEM.Misc {
                 throw new InvalidOperationException("Not batching");
             this.batching = false;
 
-            // if we didn't add any batch items, we don't have to recalculate anything
+            // if we didn't add or remove any batch items, we don't have to recalculate anything
             if (!this.batchChanged)
                 return;
             this.batchChanged = false;
@@ -179,7 +179,8 @@ namespace MLEM.Misc {
         /// <param name="scale">A scaling of this sprite.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
         /// <param name="layerDepth">A depth of the layer of this sprite.</param>
-        public void Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             origin *= scale;
 
             Vector2 size, texTl, texBr;
@@ -204,9 +205,9 @@ namespace MLEM.Misc {
                 (texBr.X, texTl.X) = (texTl.X, texBr.X);
 
             if (rotation == 0) {
-                this.Add(texture, position - origin, size, color, texTl, texBr, layerDepth);
+                return this.Add(texture, position - origin, size, color, texTl, texBr, layerDepth);
             } else {
-                this.Add(texture, position, -origin, size, (float) Math.Sin(rotation), (float) Math.Cos(rotation), color, texTl, texBr, layerDepth);
+                return this.Add(texture, position, -origin, size, (float) Math.Sin(rotation), (float) Math.Cos(rotation), color, texTl, texBr, layerDepth);
             }
         }
 
@@ -223,8 +224,9 @@ namespace MLEM.Misc {
         /// <param name="scale">A scaling of this sprite.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
         /// <param name="layerDepth">A depth of the layer of this sprite.</param>
-        public void Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            this.Add(texture, position, sourceRectangle, color, rotation, origin, new Vector2(scale), effects, layerDepth);
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            return this.Add(texture, position, sourceRectangle, color, rotation, origin, new Vector2(scale), effects, layerDepth);
         }
 
         /// <summary>
@@ -239,7 +241,8 @@ namespace MLEM.Misc {
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
         /// <param name="layerDepth">A depth of the layer of this sprite.</param>
-        public void Add(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             Vector2 texTl, texBr;
             if (sourceRectangle.HasValue) {
                 var src = sourceRectangle.Value;
@@ -262,9 +265,9 @@ namespace MLEM.Misc {
                 (texBr.X, texTl.X) = (texTl.X, texBr.X);
 
             if (rotation == 0) {
-                this.Add(texture, destinationRectangle.Location.ToVector2() - origin, destinationRectangle.Size.ToVector2(), color, texTl, texBr, layerDepth);
+                return this.Add(texture, destinationRectangle.Location.ToVector2() - origin, destinationRectangle.Size.ToVector2(), color, texTl, texBr, layerDepth);
             } else {
-                this.Add(texture, destinationRectangle.Location.ToVector2(), -origin, destinationRectangle.Size.ToVector2(), (float) Math.Sin(rotation), (float) Math.Cos(rotation), color, texTl, texBr, layerDepth);
+                return this.Add(texture, destinationRectangle.Location.ToVector2(), -origin, destinationRectangle.Size.ToVector2(), (float) Math.Sin(rotation), (float) Math.Cos(rotation), color, texTl, texBr, layerDepth);
             }
         }
 
@@ -276,8 +279,9 @@ namespace MLEM.Misc {
         /// <param name="position">The drawing location on screen.</param>
         /// <param name="sourceRectangle">An optional region on the texture which will be rendered. If null - draws full texture.</param>
         /// <param name="color">A color mask.</param>
-        public void Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color) {
-            this.Add(texture, position, sourceRectangle, color, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color) {
+            return this.Add(texture, position, sourceRectangle, color, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
 
         /// <summary>
@@ -288,8 +292,9 @@ namespace MLEM.Misc {
         /// <param name="destinationRectangle">The drawing bounds on screen.</param>
         /// <param name="sourceRectangle">An optional region on the texture which will be rendered. If null - draws full texture.</param>
         /// <param name="color">A color mask.</param>
-        public void Add(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color) {
-            this.Add(texture, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color) {
+            return this.Add(texture, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
 
         /// <summary>
@@ -299,8 +304,9 @@ namespace MLEM.Misc {
         /// <param name="texture">A texture.</param>
         /// <param name="position">The drawing location on screen.</param>
         /// <param name="color">A color mask.</param>
-        public void Add(Texture2D texture, Vector2 position, Color color) {
-            this.Add(texture, position, null, color);
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Vector2 position, Color color) {
+            return this.Add(texture, position, null, color);
         }
 
         /// <summary>
@@ -310,8 +316,28 @@ namespace MLEM.Misc {
         /// <param name="texture">A texture.</param>
         /// <param name="destinationRectangle">The drawing bounds on screen.</param>
         /// <param name="color">A color mask.</param>
-        public void Add(Texture2D texture, Rectangle destinationRectangle, Color color) {
-            this.Add(texture, destinationRectangle, null, color);
+        /// <returns>The <see cref="ItemInfo"/> that was created from the added data</returns>
+        public ItemInfo Add(Texture2D texture, Rectangle destinationRectangle, Color color) {
+            return this.Add(texture, destinationRectangle, null, color);
+        }
+
+        /// <summary>
+        /// Removes the given item from this batch.
+        /// Note that this batch needs to currently be batching, meaning <see cref="BeginBatch"/> has to have been called previously.
+        /// </summary>
+        /// <param name="item">The item to remove</param>
+        /// <returns>Whether the item was successfully removed</returns>
+        /// <exception cref="InvalidOperationException">Thrown if this method is called before <see cref="BeginBatch"/> was called</exception>
+        public bool Remove(ItemInfo item) {
+            if (!this.batching)
+                throw new InvalidOperationException("Not batching");
+            var firstIndex = this.vertices.IndexOf(item.First);
+            if (firstIndex >= 0 && firstIndex + item.Count <= this.vertices.Count) {
+                this.vertices.RemoveRange(firstIndex, item.Count);
+                this.batchChanged = true;
+                return true;
+            }
+            return false;
         }
 
         /// <inheritdoc />
@@ -323,23 +349,23 @@ namespace MLEM.Misc {
             GC.SuppressFinalize(this);
         }
 
-        private void Add(Texture2D texture, Vector2 pos, Vector2 offset, Vector2 size, float sin, float cos, Color color, Vector2 texTl, Vector2 texBr, float depth) {
-            this.Add(texture,
+        private ItemInfo Add(Texture2D texture, Vector2 pos, Vector2 offset, Vector2 size, float sin, float cos, Color color, Vector2 texTl, Vector2 texBr, float depth) {
+            return this.Add(texture,
                 new VertexPositionColorTexture(new Vector3(pos.X + offset.X * cos - offset.Y * sin, pos.Y + offset.X * sin + offset.Y * cos, depth), color, texTl),
                 new VertexPositionColorTexture(new Vector3(pos.X + (offset.X + size.X) * cos - offset.Y * sin, pos.Y + (offset.X + size.X) + offset.Y * cos, depth), color, new Vector2(texBr.X, texTl.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X + offset.X * cos - (offset.Y + size.Y) * sin, pos.Y + offset.X * sin + (offset.Y + size.Y) * cos, depth), color, new Vector2(texTl.X, texBr.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X + (offset.X + size.X) * cos - (offset.Y + size.Y) * sin, pos.Y + (offset.X + size.X) * sin + (offset.Y + size.Y) * cos, depth), color, texBr));
         }
 
-        private void Add(Texture2D texture, Vector2 pos, Vector2 size, Color color, Vector2 texTl, Vector2 texBr, float depth) {
-            this.Add(texture,
+        private ItemInfo Add(Texture2D texture, Vector2 pos, Vector2 size, Color color, Vector2 texTl, Vector2 texBr, float depth) {
+            return this.Add(texture,
                 new VertexPositionColorTexture(new Vector3(pos, depth), color, texTl),
                 new VertexPositionColorTexture(new Vector3(pos.X + size.X, pos.Y, depth), color, new Vector2(texBr.X, texTl.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X, pos.Y + size.Y, depth), color, new Vector2(texTl.X, texBr.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X + size.X, pos.Y + size.Y, depth), color, texBr));
         }
 
-        private void Add(Texture2D texture, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
+        private ItemInfo Add(Texture2D texture, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
             if (this.texture != null && this.texture != texture)
@@ -350,6 +376,23 @@ namespace MLEM.Misc {
             this.vertices.Add(bl);
             this.vertices.Add(br);
             this.batchChanged = true;
+            return new ItemInfo(tl, 4);
+        }
+
+        /// <summary>
+        /// A struct that represents an item added to a <see cref="StaticSpriteBatch"/> using <c>Add</c> or any of its overloads.
+        /// A returned <see cref="ItemInfo"/> can be removed using <see cref="Remove"/>.
+        /// </summary>
+        public readonly struct ItemInfo {
+
+            internal readonly VertexPositionColorTexture First;
+            internal readonly int Count;
+
+            internal ItemInfo(VertexPositionColorTexture first, int count) {
+                this.First = first;
+                this.Count = count;
+            }
+
         }
 
     }
