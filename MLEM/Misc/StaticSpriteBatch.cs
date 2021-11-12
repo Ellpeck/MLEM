@@ -9,7 +9,7 @@ namespace MLEM.Misc {
     /// A static sprite batch is a variation of <see cref="SpriteBatch"/> that keeps all batched items in a <see cref="VertexBuffer"/>, allowing for them to be drawn multiple times.
     /// To add items to a static sprite batch, use <see cref="BeginBatch"/> to begin batching, <see cref="ClearBatch"/> to clear currently batched items, <c>Add</c> and its various overloads to add batch items, <see cref="Remove"/> to remove them again, and <see cref="EndBatch"/> to end batching.
     /// To draw the batched items, call <see cref="Draw"/>.
-    /// Unlike a <see cref="SpriteBatch"/>, items added to a static sprite batch will be drawn in an arbitrary order. If depth sorting is desired, the <see cref="GraphicsDeviceManager"/>'s <see cref="GraphicsDeviceManager.PreferredDepthStencilFormat"/> should be modified to include depth. 
+    /// Unlike a <see cref="SpriteBatch"/>, items added to a static sprite batch will be drawn in an arbitrary order. If depth sorting is desired, the <see cref="GraphicsDeviceManager"/>'s <see cref="GraphicsDeviceManager.PreferredDepthStencilFormat"/> should be modified to include depth, and a <see cref="DepthStencilState"/> that takes depth into account should be passed to <see cref="Draw"/>.
     /// </summary>
     public class StaticSpriteBatch : IDisposable {
 
@@ -171,7 +171,7 @@ namespace MLEM.Misc {
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="scale">A scaling of this sprite.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
-        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite. See <see cref="StaticSpriteBatch"/> documentation for information on enabling depth support.</param>
         /// <returns>The <see cref="Item"/> that was created from the added data</returns>
         public Item Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             origin *= scale;
@@ -216,7 +216,7 @@ namespace MLEM.Misc {
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="scale">A scaling of this sprite.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
-        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite. See <see cref="StaticSpriteBatch"/> documentation for information on enabling depth support.</param>
         /// <returns>The <see cref="Item"/> that was created from the added data</returns>
         public Item Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             return this.Add(texture, position, sourceRectangle, color, rotation, origin, new Vector2(scale), effects, layerDepth);
@@ -233,7 +233,7 @@ namespace MLEM.Misc {
         /// <param name="rotation">A rotation of this sprite.</param>
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
-        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite. See <see cref="StaticSpriteBatch"/> documentation for information on enabling depth support.</param>
         /// <returns>The <see cref="Item"/> that was created from the added data</returns>
         public Item Add(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             Vector2 texTl, texBr;
