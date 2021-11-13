@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -9,7 +10,6 @@ namespace MLEM.Misc {
     /// A static sprite batch is a variation of <see cref="SpriteBatch"/> that keeps all batched items in a <see cref="VertexBuffer"/>, allowing for them to be drawn multiple times.
     /// To add items to a static sprite batch, use <see cref="BeginBatch"/> to begin batching, <see cref="ClearBatch"/> to clear currently batched items, <c>Add</c> and its various overloads to add batch items, <see cref="Remove"/> to remove them again, and <see cref="EndBatch"/> to end batching.
     /// To draw the batched items, call <see cref="Draw"/>.
-    /// Unlike a <see cref="SpriteBatch"/>, items added to a static sprite batch will be drawn in an arbitrary order. If depth sorting is desired, the <see cref="GraphicsDeviceManager"/>'s <see cref="GraphicsDeviceManager.PreferredDepthStencilFormat"/> should be modified to include depth, and a <see cref="DepthStencilState"/> that takes depth into account should be passed to <see cref="Draw"/>.
     /// </summary>
     public class StaticSpriteBatch : IDisposable {
 
@@ -56,10 +56,14 @@ namespace MLEM.Misc {
         /// Ends batching.
         /// Call this method after calling <c>Add</c> or any of its overloads the desired number of times to add batched items.
         /// </summary>
+        /// <param name="sortMode">The drawing order for sprite drawing. <see cref="SpriteSortMode.Deferred" /> by default. Note that <see cref="SpriteSortMode.Immediate"/> and <see cref="SpriteSortMode.Texture"/> are not supported.</param>
         /// <exception cref="InvalidOperationException">Thrown if this method is called before <see cref="BeginBatch"/> was called</exception>
-        public void EndBatch() {
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <paramref name="sortMode"/> is <see cref="SpriteSortMode.Immediate"/> or <see cref="SpriteSortMode.Texture"/>, which are not supported</exception>
+        public void EndBatch(SpriteSortMode sortMode = SpriteSortMode.Deferred) {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
+            if (sortMode == SpriteSortMode.Immediate || sortMode == SpriteSortMode.Texture)
+                throw new ArgumentOutOfRangeException(nameof(sortMode), "Cannot use sprite sort modes Immediate or Texture for static batching");
             this.batching = false;
 
             // if we didn't add or remove any batch items, we don't have to recalculate anything
@@ -72,10 +76,18 @@ namespace MLEM.Misc {
             while (this.vertexBuffers.Count < requiredBuffers)
                 this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, MaxBatchItems * 4, BufferUsage.WriteOnly));
 
+            // order items according to the sort mode
+            IEnumerable<Item> ordered = this.items;
+            if (sortMode == SpriteSortMode.BackToFront) {
+                ordered = ordered.OrderBy(i => -i.Depth);
+            } else if (sortMode == SpriteSortMode.FrontToBack) {
+                ordered = ordered.OrderBy(i => i.Depth);
+            }
+
             // fill vertex buffers
             var dataIndex = 0;
             var arrayIndex = 0;
-            foreach (var item in this.items) {
+            foreach (var item in ordered) {
                 Data[dataIndex++] = item.TopLeft;
                 Data[dataIndex++] = item.TopRight;
                 Data[dataIndex++] = item.BottomLeft;
@@ -171,7 +183,7 @@ namespace MLEM.Misc {
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="scale">A scaling of this sprite.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
-        /// <param name="layerDepth">A depth of the layer of this sprite. See <see cref="StaticSpriteBatch"/> documentation for information on enabling depth support.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
         /// <returns>The <see cref="Item"/> that was created from the added data</returns>
         public Item Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             origin *= scale;
@@ -216,7 +228,7 @@ namespace MLEM.Misc {
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="scale">A scaling of this sprite.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
-        /// <param name="layerDepth">A depth of the layer of this sprite. See <see cref="StaticSpriteBatch"/> documentation for information on enabling depth support.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
         /// <returns>The <see cref="Item"/> that was created from the added data</returns>
         public Item Add(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             return this.Add(texture, position, sourceRectangle, color, rotation, origin, new Vector2(scale), effects, layerDepth);
@@ -233,7 +245,7 @@ namespace MLEM.Misc {
         /// <param name="rotation">A rotation of this sprite.</param>
         /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
-        /// <param name="layerDepth">A depth of the layer of this sprite. See <see cref="StaticSpriteBatch"/> documentation for information on enabling depth support.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
         /// <returns>The <see cref="Item"/> that was created from the added data</returns>
         public Item Add(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             Vector2 texTl, texBr;
@@ -354,7 +366,7 @@ namespace MLEM.Misc {
         }
 
         private Item Add(Texture2D texture, Vector2 pos, Vector2 offset, Vector2 size, float sin, float cos, Color color, Vector2 texTl, Vector2 texBr, float depth) {
-            return this.Add(texture,
+            return this.Add(texture, depth,
                 new VertexPositionColorTexture(new Vector3(pos.X + offset.X * cos - offset.Y * sin, pos.Y + offset.X * sin + offset.Y * cos, depth), color, texTl),
                 new VertexPositionColorTexture(new Vector3(pos.X + (offset.X + size.X) * cos - offset.Y * sin, pos.Y + (offset.X + size.X) + offset.Y * cos, depth), color, new Vector2(texBr.X, texTl.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X + offset.X * cos - (offset.Y + size.Y) * sin, pos.Y + offset.X * sin + (offset.Y + size.Y) * cos, depth), color, new Vector2(texTl.X, texBr.Y)),
@@ -362,19 +374,19 @@ namespace MLEM.Misc {
         }
 
         private Item Add(Texture2D texture, Vector2 pos, Vector2 size, Color color, Vector2 texTl, Vector2 texBr, float depth) {
-            return this.Add(texture,
+            return this.Add(texture, depth,
                 new VertexPositionColorTexture(new Vector3(pos, depth), color, texTl),
                 new VertexPositionColorTexture(new Vector3(pos.X + size.X, pos.Y, depth), color, new Vector2(texBr.X, texTl.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X, pos.Y + size.Y, depth), color, new Vector2(texTl.X, texBr.Y)),
                 new VertexPositionColorTexture(new Vector3(pos.X + size.X, pos.Y + size.Y, depth), color, texBr));
         }
 
-        private Item Add(Texture2D texture, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
+        private Item Add(Texture2D texture, float depth, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
             if (this.texture != null && this.texture != texture)
-                throw new ArgumentException("Cannot use multiple textures in one batch");
-            var item = new Item(tl, tr, bl, br);
+                throw new ArgumentException("Cannot use multiple textures in one batch", nameof(texture));
+            var item = new Item(tl, tr, bl, br, depth);
             this.items.Add(item);
             this.texture = texture;
             this.batchChanged = true;
@@ -391,12 +403,14 @@ namespace MLEM.Misc {
             internal readonly VertexPositionColorTexture TopRight;
             internal readonly VertexPositionColorTexture BottomLeft;
             internal readonly VertexPositionColorTexture BottomRight;
+            internal readonly float Depth;
 
-            internal Item(VertexPositionColorTexture topLeft, VertexPositionColorTexture topRight, VertexPositionColorTexture bottomLeft, VertexPositionColorTexture bottomRight) {
+            internal Item(VertexPositionColorTexture topLeft, VertexPositionColorTexture topRight, VertexPositionColorTexture bottomLeft, VertexPositionColorTexture bottomRight, float depth) {
                 this.TopLeft = topLeft;
                 this.TopRight = topRight;
                 this.BottomLeft = bottomLeft;
                 this.BottomRight = bottomRight;
+                this.Depth = depth;
             }
 
         }
