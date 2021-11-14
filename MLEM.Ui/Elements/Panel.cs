@@ -53,6 +53,7 @@ namespace MLEM.Ui.Elements {
 
         private RenderTarget2D renderTarget;
         private bool relevantChildrenDirty;
+        private float scrollBarChildOffset;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -229,14 +230,16 @@ namespace MLEM.Ui.Elements {
             // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Epsilon)) {
-                var wasZero = this.ScrollBar.MaxValue <= Epsilon;
                 this.ScrollBar.MaxValue = scrollBarMax;
-                if (this.ScrollBar.MaxValue <= Epsilon != wasZero) {
-                    // update child padding based on whether the scroll bar is visible
-                    this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X + this.ScrollBarOffset, 0, 0) * (this.ScrollBar.IsHidden ? -1 : 1);
+                this.relevantChildrenDirty = true;
+
+                // update child padding based on whether the scroll bar is visible
+                var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
+                if (!this.scrollBarChildOffset.Equals(childOffset, Epsilon)) {
+                    this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
+                    this.scrollBarChildOffset = childOffset;
                     this.SetAreaDirty();
                 }
-                this.relevantChildrenDirty = true;
             }
 
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
