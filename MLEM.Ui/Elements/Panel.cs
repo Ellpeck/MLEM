@@ -76,12 +76,6 @@ namespace MLEM.Ui.Elements {
                     AutoHideWhenEmpty = autoHideScrollbar,
                     IsHidden = autoHideScrollbar
                 };
-                if (autoHideScrollbar) {
-                    this.ScrollBar.OnAutoHide += e => {
-                        this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X + this.ScrollBarOffset, 0, 0) * (e.IsHidden ? -1 : 1);
-                        this.SetAreaDirty();
-                    };
-                }
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
                 this.OnSelectedElementChanged += (element, otherElement) => {
@@ -235,7 +229,13 @@ namespace MLEM.Ui.Elements {
             // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Epsilon)) {
+                var wasZero = this.ScrollBar.MaxValue <= Epsilon;
                 this.ScrollBar.MaxValue = scrollBarMax;
+                if (this.ScrollBar.MaxValue <= Epsilon != wasZero) {
+                    // update child padding based on whether the scroll bar is visible
+                    this.ChildPadding += new Padding(0, this.ScrollerSize.Value.X + this.ScrollBarOffset, 0, 0) * (this.ScrollBar.IsHidden ? -1 : 1);
+                    this.SetAreaDirty();
+                }
                 this.relevantChildrenDirty = true;
             }
 

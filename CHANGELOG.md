@@ -35,6 +35,7 @@ Improvements
 Fixes
 - Fixed VerticalSpace height parameter being an integer
 - Fixed text not being pasted into a text field at all if it contains characters that don't match the input rule
+- Fixed panels that don't auto-hide their scroll bars ignoring their width for child padding
 
 ### MLEM.Data
 Additions
