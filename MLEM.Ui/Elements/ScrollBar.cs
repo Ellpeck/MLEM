@@ -31,10 +31,6 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> ScrollerTexture;
         /// <summary>
-        /// The <see cref="ScrollerTexture"/>'s offset from the calculated position of the scroller. Use this to pad the scroller.
-        /// </summary>
-        public Vector2 ScrollerOffset;
-        /// <summary>
         /// The scroller's width and height
         /// </summary>
         public Vector2 ScrollerSize;
@@ -203,11 +199,10 @@ namespace MLEM.Ui.Elements {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
 
             if (this.MaxValue > 0) {
-                var scrollerPos = new Vector2(this.DisplayArea.X + this.ScrollerOffset.X, this.DisplayArea.Y + this.ScrollerOffset.Y);
                 var scrollerOffset = new Vector2(
                     !this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
                     this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
-                var scrollerRect = new RectangleF(scrollerPos + scrollerOffset, this.ScrollerSize * this.Scale);
+                var scrollerRect = new RectangleF(this.DisplayArea.Location + scrollerOffset, this.ScrollerSize * this.Scale);
                 batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);

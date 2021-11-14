@@ -37,6 +37,9 @@ Fixes
 - Fixed text not being pasted into a text field at all if it contains characters that don't match the input rule
 - Fixed panels that don't auto-hide their scroll bars ignoring their width for child padding
 
+Removals
+- Removed ScrollBar ScrollerOffset (which didn't actually work)
+
 ### MLEM.Data
 Additions
 - Allow RuntimeTexturePacker to automatically dispose submitted textures when packing
