@@ -43,7 +43,7 @@ namespace Tests {
         public void TestComplexPanel() {
             var group = new Group(Anchor.TopLeft, Vector2.One, false);
             var panel = group.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, false) {
-                ChildPadding = new Padding(5, 10, 5, 5)
+                ChildPadding = new Padding(5, 5, 5, 5)
             });
             for (var i = 0; i < 5; i++) {
                 var button = panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1)) {
@@ -66,10 +66,11 @@ namespace Tests {
             Assert.AreEqual(11, panel.GetChildren(regardGrandchildren: true).Count());
 
             var testBtn = panel.GetChildren<Button>().First();
-            // panel's width is 150, minus child padding of 5 left and 10 right
-            Assert.AreEqual(testBtn.DisplayArea.Width, 150 - 5 - 10);
+            // panel's width is 150, minus child padding of 5 on each side, and scroll bar's width of 5 and gap of 1 
+            const int panelContentWidth = 150 - 5 - 5 - 5 - 1;
+            Assert.AreEqual(testBtn.DisplayArea.Width, panelContentWidth);
             // button's width, minus child padding of 3 left and 3 right, divided by 2 because of group's width
-            Assert.AreEqual(testBtn.GetChildren<Group>().Single().DisplayArea.Width, (150 - 5 - 10 - 3 - 3) * 0.5F);
+            Assert.AreEqual(testBtn.GetChildren<Group>().Single().DisplayArea.Width, (panelContentWidth - 3 - 3) * 0.5F);
         }
 
         [Test]
