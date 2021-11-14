@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
-using MLEM.Extensions;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
@@ -89,6 +88,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public bool AutoHideWhenEmpty;
         /// <summary>
+        /// The position that this scroll bar's scroller is currently at.
+        /// This value takes the <see cref="Element.DisplayArea"/>, as well as the <see cref="Element.Scale"/> into account.
+        /// </summary>
+        public Vector2 ScrollerPosition => this.DisplayArea.Location + new Vector2(
+            !this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
+            this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
+        /// <summary>
         /// Whether smooth scrolling should be enabled for this scroll bar.
         /// Smooth scrolling causes the <see cref="CurrentValue"/> to change gradually rather than instantly when scrolling.
         /// </summary>
@@ -104,6 +110,7 @@ namespace MLEM.Ui.Elements {
         private float maxValue;
         private float scrollAdded;
         private float currValue;
+        private Vector2 scrollStartOffset;
 
         static ScrollBar() {
             InputHandler.EnableGestures(GestureType.HorizontalDrag, GestureType.VerticalDrag);
@@ -130,13 +137,15 @@ namespace MLEM.Ui.Elements {
 
             // MOUSE INPUT
             var moused = this.Controls.MousedElement;
+            var mousedPos = Vector2.Transform(this.Input.MousePosition.ToVector2(), this.Root.InvTransform);
             if (moused == this && this.Controls.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 this.isMouseHeld = true;
+                this.scrollStartOffset = mousedPos - this.ScrollerPosition;
             } else if (this.isMouseHeld && !this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = false;
             }
             if (this.isMouseHeld)
-                this.ScrollToPos(this.Input.MousePosition.Transform(this.Root.InvTransform));
+                this.ScrollToPos(mousedPos);
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
@@ -168,11 +177,12 @@ namespace MLEM.Ui.Elements {
                     // if we just started touching and are on top of the scroller, then we should start scrolling
                     if (this.DisplayArea.Contains(pos) && !loc.TryGetPreviousLocation(out _)) {
                         this.isTouchHeld = true;
+                        this.scrollStartOffset = pos - this.ScrollerPosition;
                         break;
                     }
                     // scroll no matter if we're on the scroller right now
                     if (this.isTouchHeld)
-                        this.ScrollToPos(pos.ToPoint());
+                        this.ScrollToPos(pos);
                 }
             }
 
@@ -184,25 +194,22 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        private void ScrollToPos(Point position) {
+        private void ScrollToPos(Vector2 position) {
+            var (width, height) = this.ScrollerSize * this.Scale;
             if (this.Horizontal) {
-                var internalX = position.X - this.Area.X - this.ScrollerSize.X * this.Scale / 2;
-                this.CurrentValue = internalX / (this.Area.Width - this.ScrollerSize.X * this.Scale) * this.MaxValue;
+                var offset = this.scrollStartOffset.X >= 0 && this.scrollStartOffset.X <= width ? this.scrollStartOffset.X : width / 2;
+                this.CurrentValue = (position.X - this.Area.X - offset) / (this.Area.Width - width) * this.MaxValue;
             } else {
-                var internalY = position.Y - this.Area.Y - this.ScrollerSize.Y * this.Scale / 2;
-                this.CurrentValue = internalY / (this.Area.Height - this.ScrollerSize.Y * this.Scale) * this.MaxValue;
+                var offset = this.scrollStartOffset.Y >= 0 && this.scrollStartOffset.Y <= height ? this.scrollStartOffset.Y : height / 2;
+                this.CurrentValue = (position.Y - this.Area.Y - offset) / (this.Area.Height - height) * this.MaxValue;
             }
         }
 
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
-
             if (this.MaxValue > 0) {
-                var scrollerOffset = new Vector2(
-                    !this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
-                    this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
-                var scrollerRect = new RectangleF(this.DisplayArea.Location + scrollerOffset, this.ScrollerSize * this.Scale);
+                var scrollerRect = new RectangleF(this.ScrollerPosition, this.ScrollerSize * this.Scale);
                 batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             }
             base.Draw(time, batch, alpha, blendState, samplerState, matrix);
