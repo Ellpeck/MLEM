@@ -29,6 +29,20 @@ namespace MLEM.Misc {
         /// <summary>https://easings.net/#easeInOutCubic</summary>
         public static readonly Easing InOutCubic = p => p < 0.5F ? 4 * p * p * p : 1 - (-2 * p + 2) * (-2 * p + 2) * (-2 * p + 2) / 2;
 
+        /// <summary>https://easings.net/#easeInQuart</summary>
+        public static readonly Easing InQuart = p => p * p * p * p;
+        /// <summary>https://easings.net/#easeOutQuart</summary>
+        public static readonly Easing OutQuart = p => 1 - (1 - p) * (1 - p) * (1 - p) * (1 - p);
+        /// <summary>https://easings.net/#easeInOutQuart</summary>
+        public static readonly Easing InOutQuart = p => p < 0.5F ? 8 * p * p * p * p : 1 - (-2 * p + 2) * (-2 * p + 2) * (-2 * p + 2) * (-2 * p + 2) / 2;
+
+        /// <summary>https://easings.net/#easeInQuint</summary>
+        public static readonly Easing InQuint = p => p * p * p * p * p;
+        /// <summary>https://easings.net/#easeOutQuint</summary>
+        public static readonly Easing OutQuint = p => 1 - (1 - p) * (1 - p) * (1 - p) * (1 - p) * (1 - p);
+        /// <summary>https://easings.net/#easeInOutQuint</summary>
+        public static readonly Easing InOutQuint = p => p < 0.5F ? 16 * p * p * p * p * p : 1 - (-2 * p + 2) * (-2 * p + 2) * (-2 * p + 2) * (-2 * p + 2) * (-2 * p + 2) / 2;
+
         /// <summary>https://easings.net/#easeInExpo</summary>
         public static readonly Easing InExpo = p => p == 0 ? 0 : (float) Math.Pow(2, 10 * p - 10);
         /// <summary>https://easings.net/#easeOutExpo</summary>

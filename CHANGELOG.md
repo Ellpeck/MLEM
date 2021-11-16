@@ -12,6 +12,7 @@ Additions
 - Added a strikethrough formatting code
 - Added GenericFont SplitStringSeparate which differentiates between existing newline characters and splits due to maximum width
 - Added StaticSpriteBatch class
+- Added missing easing functions Quart and Quint to Easings
 
 Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
