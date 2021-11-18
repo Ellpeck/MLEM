@@ -1,5 +1,5 @@
 # Changelog
-MLEM tries to adhere to [semantic versioning](https://semver.org/).
+MLEM tries to adhere to [semantic versioning](https://semver.org/). Breaking changes are written in *italics*.
 
 Jump to version:
 - [5.2.0 (Unreleased)](#520-unreleased)
@@ -25,9 +25,9 @@ Additions
 - Added a multiline editing mode to TextField
 
 Improvements
+- *Made Image ScaleToImage take ui scale into account*
+- *Added style properties for a lot of hardcoded default element styles*
 - Exposed the epsilon value used by Element calculations
-- Made Image ScaleToImage take ui scale into account
-- Added style properties for a lot of hardcoded default element styles
 - Allow style properties to set style values with a higher priority, which allows elements to style their default children
 - Allow changing the entire ui style for a single element
 - Skip unnecessary area updates for elements with dirty parents
@@ -40,7 +40,7 @@ Fixes
 - Fixed panels that don't auto-hide their scroll bars ignoring their width for child padding
 
 Removals
-- Removed ScrollBar ScrollerOffset (which didn't actually work)
+- *Removed ScrollBar ScrollerOffset*
 
 ### MLEM.Data
 Additions
@@ -48,7 +48,7 @@ Additions
 - Added JsonTypeSafeWrapper and JsonTypeSafeGenericDataHolder
 
 Improvements
-- Use TitleContainer for opening streams where possible
+- *Use TitleContainer for opening streams where possible*
 - Set GraphicsResource Name when loading assets using RawContentManager
 
 ## 5.1.0
@@ -57,12 +57,12 @@ Additions
 - Added RotateBy to Direction2Helper
 
 Improvements
+- *Moved ColorHelper.Invert to ColorExtensions.Invert*
+- *Allow enumerating SoundEffectInstanceHandler entries*
 - Improved NinePatch memory usage
 - Moved sound-related classes into Sound namespace
 - Added customizable overloads for Keybind, Combination and GenericInput ToString methods
-- Moved ColorHelper.Invert to ColorExtensions.Invert
 - Removed LINQ Any and All usage in various methods to improve memory usage
-- Allow enumerating SoundEffectInstanceHandler entries
 - Improved KeysExtensions memory usage
 
 Fixes
@@ -75,8 +75,8 @@ Additions
 - Added a masking character to TextField to allow for password-style text fields
 
 Improvements
+- *Explicitly disallow creating Paragraphs without fonts to make starting out with MLEM.Ui less confusing*
 - Removed LINQ Any and All usage in various methods to improve memory usage
-- Explicitly disallow creating Paragraphs without fonts to make starting out with MLEM.Ui less confusing
 - Allow adding Link children to non-Paragraph elements
 
 Fixes
@@ -113,13 +113,13 @@ Additions
 - Added text alignment options to tokenized strings
 
 Improvements
+- *Replaced TextInputWrapper with a more refined MlemPlatform that includes the ability to open links on various platforms*
 - Allow NinePatches to be drawn tiled rather than stretched
 - Added the ability for Direction2 to be used as flags
 - Made Padding and Direction2 DataContracts
 - Expose the viewport of cameras
 - Greatly improved the efficiency of line splitting for GenericFont and TokenizedString
 - Improved performance of TextFormatter tokenization
-- Replaced TextInputWrapper with a more refined MlemPlatform that includes the ability to open links on various platforms
 - Allow for underline and shadow formatting codes to be mixed with font changing codes
 - Exposed Keybind Combinations
 
@@ -128,8 +128,8 @@ Fixes
 - Fixed UnderlineCode ending in the wrong places because it was marked as a font-changing code
 
 Removals
-- Removed the array-based GetRandomEntry method
-- Removed obsolete ColorExtension methods
+- *Removed the array-based GetRandomEntry method*
+- *Removed obsolete ColorExtension methods*
 
 ### MLEM.Ui
 Additions
@@ -143,8 +143,8 @@ Additions
 - Added text alignment options to paragraphs
 
 Improvements
+- *Removed unnecessary GraphicsDevice references from UiSystem*
 - Stop a panel's scroll bar from being removed from its children list automatically
-- Removed unnecessary GraphicsDevice references from UiSystem
 - Dispose of panels' render targets to avoid memory leaks
 - Allow changing the color that a panel renders its texture with
 
