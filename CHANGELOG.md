@@ -18,6 +18,7 @@ Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 - Exposed Camera's RoundPosition
 - Exposed the epsilon value used by Camera
+- Added Padding.Empty
 
 ### MLEM.Ui
 Additions

@@ -10,6 +10,11 @@ namespace MLEM.Misc {
     public struct Padding {
 
         /// <summary>
+        /// The empty padding, with all borders set to 0
+        /// </summary>
+        public static Padding Empty => default;
+
+        /// <summary>
         /// The amount of padding on the left side
         /// </summary>
         [DataMember]
