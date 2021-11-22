@@ -20,6 +20,7 @@ Improvements
 - Exposed Camera's RoundPosition
 - Exposed the epsilon value used by Camera
 - Added Padding.Empty
+- Throw an exception when text formatter macros resolve recursively too many times
 
 ### MLEM.Ui
 Additions

@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -107,6 +108,11 @@ namespace Tests {
             const string strg = "This text uses a bunch of non-breaking~spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <testmacro> text</c>.";
             const string goal = "This text uses a bunch of non-breaking\u00A0spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <c Blue>blue text</c>.";
             Assert.AreEqual(this.formatter.ResolveMacros(strg), goal);
+
+            // test recursive macros
+            this.formatter.Macros.Add(new Regex("<rec1>"), (f, m, r) => "<rec2>");
+            this.formatter.Macros.Add(new Regex("<rec2>"), (f, m, r) => "<rec1>");
+            Assert.Throws<ArithmeticException>(() => this.formatter.ResolveMacros("Test <rec1> string"));
         }
 
         [Test]

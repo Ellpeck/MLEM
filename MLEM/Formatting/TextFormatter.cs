@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -114,6 +115,7 @@ namespace MLEM.Formatting {
         /// <returns>The final, recursively resolved string</returns>
         public string ResolveMacros(string s) {
             // resolve macros that resolve into macros
+            var rec = 0;
             bool matched;
             do {
                 matched = false;
@@ -124,6 +126,9 @@ namespace MLEM.Formatting {
                         return macro.Value(this, m, macro.Key);
                     });
                 }
+                rec++;
+                if (rec >= 16)
+                    throw new ArithmeticException($"A string resolved macros recursively too many times. Does it contain any conflicting macros?\n{s}");
             } while (matched);
             return s;
         }
