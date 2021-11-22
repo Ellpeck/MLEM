@@ -22,6 +22,9 @@ Improvements
 - Added Padding.Empty
 - Throw an exception when text formatter macros resolve recursively too many times
 
+Fixes
+- Fixed some end-of-line inconsistencies when using the Right text alignment
+
 ### MLEM.Ui
 Additions
 - Allow specifying a maximum amount of characters for a TextField

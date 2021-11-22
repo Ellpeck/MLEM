@@ -111,7 +111,7 @@ namespace MLEM.Formatting {
         }
 
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, TextAlignment alignment = TextAlignment.Left) {
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             var innerOffset = new Vector2(this.initialInnerOffset * scale, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
@@ -178,7 +178,7 @@ namespace MLEM.Formatting {
             foreach (var token in this.Tokens)
                 token.SplitDisplayString = token.DisplayString.Split('\n');
 
-            // token areas
+            // token areas and inner offsets
             this.initialInnerOffset = this.GetInnerOffsetX(font, 0, 0, alignment);
             var innerOffset = new Vector2(this.initialInnerOffset, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
@@ -205,18 +205,21 @@ namespace MLEM.Formatting {
         private float GetInnerOffsetX(GenericFont font, int tokenIndex, int lineIndex, TextAlignment alignment) {
             if (alignment > TextAlignment.Left) {
                 var token = this.Tokens[tokenIndex];
-                var restOfLine = font.MeasureString(token.SplitDisplayString[lineIndex], true).X;
-                if (lineIndex >= token.SplitDisplayString.Length - 1) {
-                    // the line ends somewhere in or after the next token
+                // if we're the last line in our line array, then we don't contain a line split, so the line ends in a later token
+                var endsLater = lineIndex >= token.SplitDisplayString.Length - 1;
+                // if the line ends in our token, we should ignore trailing white space
+                var restOfLine = font.MeasureString(token.SplitDisplayString[lineIndex], !endsLater).X;
+                if (endsLater) {
                     for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
                         var other = this.Tokens[i];
                         if (other.SplitDisplayString.Length > 1) {
-                            // the line ends in this token
-                            restOfLine += font.MeasureString(other.SplitDisplayString[0]).X;
+                            // the line ends in this token (so we also ignore trailing whitespaces)
+                            restOfLine += font.MeasureString(other.SplitDisplayString[0], true).X;
                             break;
                         } else {
-                            // the line doesn't end in this token, so add it fully
-                            restOfLine += font.MeasureString(other.DisplayString).X;
+                            // the line doesn't end in this token (or it's the last token), so add it fully
+                            var lastToken = i >= this.Tokens.Length - 1;
+                            restOfLine += font.MeasureString(other.DisplayString, lastToken).X;
                         }
                     }
                 }
