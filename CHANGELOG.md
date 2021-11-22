@@ -29,6 +29,7 @@ Additions
 Improvements
 - *Made Image ScaleToImage take ui scale into account*
 - *Added style properties for a lot of hardcoded default element styles*
+- *Allow setting a custom effect and depth stencil state for ui drawing*
 - Exposed the epsilon value used by Element calculations
 - Allow style properties to set style values with a higher priority, which allows elements to style their default children
 - Allow changing the entire ui style for a single element

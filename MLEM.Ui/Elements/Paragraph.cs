@@ -139,12 +139,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             var pos = this.DisplayArea.Location + new Vector2(GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
             this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, this.Alignment);
-            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
+            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
         }
 
         /// <inheritdoc />

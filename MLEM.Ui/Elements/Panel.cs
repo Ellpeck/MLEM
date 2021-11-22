@@ -155,12 +155,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             if (this.Texture.HasValue())
                 batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow || this.renderTarget == null) {
-                base.Draw(time, batch, alpha, blendState, samplerState, matrix);
+                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
             } else {
                 // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
                 batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
@@ -168,7 +168,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             this.UpdateAreaIfDirty();
             if (this.scrollOverflow && this.renderTarget != null) {
                 // draw children onto the render target
@@ -178,12 +178,12 @@ namespace MLEM.Ui.Elements {
                     var area = this.GetRenderTargetArea();
                     var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
                     // do the usual draw, but within the render target
-                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, trans);
-                    base.Draw(time, batch, alpha, blendState, samplerState, trans);
+                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, trans);
+                    base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, trans);
                     batch.End();
                 }
             }
-            base.DrawEarly(time, batch, alpha, blendState, samplerState, matrix);
+            base.DrawEarly(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
         }
 
         /// <inheritdoc />

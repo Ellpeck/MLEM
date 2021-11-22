@@ -84,7 +84,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsMouseOver) {
@@ -96,7 +96,7 @@ namespace MLEM.Ui.Elements {
             batch.Draw(tex, boxDisplayArea, color, this.Scale);
             if (this.Checked)
                 batch.Draw(this.Checkmark, boxDisplayArea, Color.White * alpha);
-            base.Draw(time, batch, alpha, blendState, samplerState, matrix);
+            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
         }
 
         /// <inheritdoc />

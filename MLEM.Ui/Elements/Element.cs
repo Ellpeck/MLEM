@@ -885,8 +885,10 @@ namespace MLEM.Ui.Elements {
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="blendState">The blend state that is used for drawing</param>
         /// <param name="samplerState">The sampler state that is used for drawing</param>
+        /// <param name="effect">The effect that is used for drawing</param>
+        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
             var mat = this.Transform * matrix;
             if (customDraw) {
@@ -894,18 +896,18 @@ namespace MLEM.Ui.Elements {
                 batch.End();
                 // begin our own draw call
                 if (this.BeginImpl != null) {
-                    this.BeginImpl(this, time, batch, alpha, blendState, samplerState, mat);
+                    this.BeginImpl(this, time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
                 } else {
-                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, mat);
+                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, mat);
                 }
             }
             // draw content in custom begin call
-            this.Draw(time, batch, alpha, blendState, samplerState, mat);
+            this.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
             if (customDraw) {
                 // end our draw
                 batch.End();
                 // begin the usual draw again for other elements
-                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, null, null, null, matrix);
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix);
             }
         }
 
@@ -918,15 +920,17 @@ namespace MLEM.Ui.Elements {
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="blendState">The blend state that is used for drawing</param>
         /// <param name="samplerState">The sampler state that is used for drawing</param>
+        /// <param name="effect">The effect that is used for drawing</param>
+        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             this.System.InvokeOnElementDrawn(this, time, batch, alpha);
             if (this.IsSelected)
                 this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha);
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
-                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
+                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, blendState, samplerState, depthStencilState, effect, matrix);
             }
         }
 
@@ -940,11 +944,13 @@ namespace MLEM.Ui.Elements {
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="blendState">The blend state that is used for drawing</param>
         /// <param name="samplerState">The sampler state that is used for drawing</param>
+        /// <param name="effect">The effect that is used for drawing</param>
+        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix) {
+        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
-                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState, matrix);
+                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState, depthStencilState, effect, matrix);
             }
         }
 
@@ -1100,8 +1106,10 @@ namespace MLEM.Ui.Elements {
         /// <param name="alpha">This element's draw alpha</param>
         /// <param name="blendState">The blend state used for drawing</param>
         /// <param name="samplerState">The sampler state used for drawing</param>
+        /// <param name="effect">The effect used for drawing</param>
+        /// <param name="depthStencilState">The depth stencil state used for drawing</param>
         /// <param name="matrix">The transform matrix used for drawing</param>
-        public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Matrix matrix);
+        public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix);
 
     }
 }

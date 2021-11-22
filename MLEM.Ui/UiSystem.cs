@@ -83,6 +83,16 @@ namespace MLEM.Ui {
         /// </summary>
         public SamplerState SamplerState = SamplerState.PointClamp;
         /// <summary>
+        /// The depth stencil state that this ui system and all of its elements draw with.
+        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.DepthStencilState.None"/>, which is also the default for <see cref="SpriteBatch.Begin"/>.
+        /// </summary>
+        public DepthStencilState DepthStencilState = DepthStencilState.None;
+        /// <summary>
+        /// The effect that this ui system and all of its elements draw with.
+        /// The default is null, which means that no custom effect will be used.
+        /// </summary>
+        public Effect Effect;
+        /// <summary>
         /// The <see cref="TextFormatter"/> that this ui system's <see cref="Paragraph"/> elements format their text with.
         /// To add new formatting codes to the ui system, add them to this formatter.
         /// </summary>
@@ -236,7 +246,7 @@ namespace MLEM.Ui {
         public void DrawEarly(GameTime time, SpriteBatch batch) {
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
-                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, root.Transform);
+                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
             }
         }
 
@@ -250,9 +260,9 @@ namespace MLEM.Ui {
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
                     continue;
-                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, null, null, null, root.Transform);
+                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, this.DepthStencilState, null, this.Effect, root.Transform);
                 var alpha = this.DrawAlpha * root.Element.DrawAlpha;
-                root.Element.DrawTransformed(time, batch, alpha, this.BlendState, this.SamplerState, root.Transform);
+                root.Element.DrawTransformed(time, batch, alpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
                 batch.End();
             }
         }
