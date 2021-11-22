@@ -104,7 +104,7 @@ namespace MLEM.Extensions {
                 return x >= 0 && y >= 0 && x < this.texture.Width && y < this.texture.Height;
             }
 
-            /// <inheritdoc />
+            /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
             public void Dispose() {
                 this.Store();
             }

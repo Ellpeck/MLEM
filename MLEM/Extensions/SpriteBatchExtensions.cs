@@ -110,19 +110,37 @@ namespace MLEM.Extensions {
             return tex;
         }
 
-        /// <inheritdoc cref="SpriteBatch.Draw(Texture2D,Rectangle,Rectangle?,Color,float,Vector2,SpriteEffects,float)"/>
+        /// <summary>Submit a sprite for drawing in the current batch.</summary>
+        /// <param name="batch">The sprite batch to draw with.</param>
+        /// <param name="texture">A texture.</param>
+        /// <param name="destinationRectangle">The drawing bounds on screen.</param>
+        /// <param name="sourceRectangle">An optional region on the texture which will be rendered. If null - draws full texture.</param>
+        /// <param name="color">A color mask.</param>
+        /// <param name="rotation">A rotation of this sprite.</param>
+        /// <param name="origin">Center of the rotation. 0,0 by default.</param>
+        /// <param name="effects">Modificators for drawing. Can be combined.</param>
+        /// <param name="layerDepth">A depth of the layer of this sprite.</param>
         public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             var source = sourceRectangle ?? new Rectangle(0, 0, texture.Width, texture.Height);
             var scale = new Vector2(1F / source.Width, 1F / source.Height) * destinationRectangle.Size;
             batch.Draw(texture, destinationRectangle.Location, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
         }
 
-        /// <inheritdoc cref="SpriteBatch.Draw(Texture2D,Rectangle,Rectangle?,Color)"/>
+        /// <summary>Submit a sprite for drawing in the current batch.</summary>
+        /// <param name="batch">The sprite batch to draw with.</param>
+        /// <param name="texture">A texture.</param>
+        /// <param name="destinationRectangle">The drawing bounds on screen.</param>
+        /// <param name="sourceRectangle">An optional region on the texture which will be rendered. If null - draws full texture.</param>
+        /// <param name="color">A color mask.</param>
         public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color) {
             batch.Draw(texture, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
 
-        /// <inheritdoc cref="SpriteBatch.Draw(Texture2D,Rectangle,Color)"/>
+        /// <summary>Submit a sprite for drawing in the current batch.</summary>
+        /// <param name="batch">The sprite batch to draw with.</param>
+        /// <param name="texture">A texture.</param>
+        /// <param name="destinationRectangle">The drawing bounds on screen.</param>
+        /// <param name="color">A color mask.</param>
         public static void Draw(this SpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
             batch.Draw(texture, destinationRectangle, null, color);
         }

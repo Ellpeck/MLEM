@@ -163,17 +163,20 @@ namespace MLEM.Misc {
             return this.X <= value.X && value.X + value.Width <= this.X + this.Width && this.Y <= value.Y && value.Y + value.Height <= this.Y + this.Height;
         }
 
-        /// <inheritdoc />
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns><see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object obj) {
             return obj is RectangleF f && this == f;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="Equals(object)"/>
         public bool Equals(RectangleF other) {
             return this == other;
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             return (((17 * 23 + this.X.GetHashCode()) * 23 + this.Y.GetHashCode()) * 23 + this.Width.GetHashCode()) * 23 + this.Height.GetHashCode();
         }

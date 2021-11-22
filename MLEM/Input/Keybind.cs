@@ -147,7 +147,10 @@ namespace MLEM.Input {
             return string.Join(joiner, this.combinations.Select(c => c.ToString(combinationJoiner, inputName)));
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Converts this keybind into a string, separating every included <see cref="Combination"/> by a comma
+        /// </summary>
+        /// <returns>This keybind as a string</returns>
         public override string ToString() {
             return this.ToString(", ");
         }

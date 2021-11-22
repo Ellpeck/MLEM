@@ -26,7 +26,16 @@ namespace MLEM.Extended.Extensions {
             return new Misc.RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        /// <inheritdoc cref="MLEM.Extensions.NumberExtensions.Penetrate"/>
+        /// <summary>
+        /// Calculates the amount that the rectangle <paramref name="rect"/> is penetrating the rectangle <paramref name="other"/> by.
+        /// If a penetration on both axes is occuring, the one with the lower value is returned.
+        /// This is useful for collision detection, as it can be used to push colliding objects out of each other.
+        /// </summary>
+        /// <param name="rect">The rectangle to do the penetration</param>
+        /// <param name="other">The rectangle that should be penetrated</param>
+        /// <param name="normal">The direction that the penetration occured in</param>
+        /// <param name="penetration">The amount that the penetration occured by, in the direction of <paramref name="normal"/></param>
+        /// <returns>Whether or not a penetration occured</returns>
         public static bool Penetrate(this RectangleF rect, RectangleF other, out Vector2 normal, out float penetration) {
             return rect.ToMlem().Penetrate(other.ToMlem(), out normal, out penetration);
         }

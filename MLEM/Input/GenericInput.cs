@@ -25,7 +25,8 @@ namespace MLEM.Input {
             this.value = value;
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns this generic input, converted to a string.</summary>
+        /// <returns>This generic input, converted to a string.</returns>
         public override string ToString() {
             switch (this.Type) {
                 case InputType.Mouse:
@@ -39,12 +40,15 @@ namespace MLEM.Input {
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns><see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object obj) {
             return obj is GenericInput o && this.Type == o.Type && this.value == o.value;
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             return ((int) this.Type * 397) ^ this.value;
         }

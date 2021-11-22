@@ -148,7 +148,7 @@ namespace MLEM.Data {
             this.LastPackTime = TimeSpan.Zero;
         }
 
-        /// <inheritdoc />
+        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose() {
             this.Reset();
         }

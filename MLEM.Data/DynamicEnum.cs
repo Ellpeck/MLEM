@@ -82,7 +82,8 @@ namespace MLEM.Data {
             return ret;
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() {
             if (this.name == null) {
                 var included = new List<DynamicEnum>();

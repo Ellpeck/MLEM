@@ -44,7 +44,12 @@ namespace MLEM.Data.Content {
             return this.Read<T>(assetName, default);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Reloads the asset of the given type, with the given original name.
+        /// </summary>
+        /// <param name="originalAssetName">The original name of the asset.</param>
+        /// <param name="currentAsset">The current asset instance.</param>
+        /// <typeparam name="T">The asset's type.</typeparam>
         protected override void ReloadAsset<T>(string originalAssetName, T currentAsset) {
             this.Read(originalAssetName, currentAsset);
         }
@@ -78,7 +83,9 @@ namespace MLEM.Data.Content {
             throw new ContentLoadException($"Asset {assetName} not found. Tried files {string.Join(", ", triedFiles)}");
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Unloads this content manager, disposing all of the assets that it loaded.
+        /// </summary>
         public override void Unload() {
             foreach (var d in this.disposableAssets)
                 d.Dispose();
@@ -86,7 +93,9 @@ namespace MLEM.Data.Content {
             base.Unload();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Initializes the component. Used to load non-graphical resources.
+        /// </summary>
         public void Initialize() {
         }
 

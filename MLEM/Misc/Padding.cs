@@ -129,12 +129,15 @@ namespace MLEM.Misc {
             return this.Left.Equals(other.Left) && this.Right.Equals(other.Right) && this.Top.Equals(other.Top) && this.Bottom.Equals(other.Bottom);
         }
 
-        /// <inheritdoc />
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns><see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object obj) {
             return obj is Padding other && this.Equals(other);
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             var hashCode = this.Left.GetHashCode();
             hashCode = (hashCode * 397) ^ this.Right.GetHashCode();

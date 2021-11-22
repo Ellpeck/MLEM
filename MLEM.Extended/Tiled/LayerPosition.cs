@@ -51,12 +51,15 @@ namespace MLEM.Extended.Tiled {
             return this.Layer == other.Layer && this.X == other.X && this.Y == other.Y;
         }
 
-        /// <inheritdoc />
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns>true if <paramref name="obj">obj</paramref> and this instance are the same type and represent the same value; otherwise, false.</returns>
         public override bool Equals(object obj) {
             return obj is LayerPosition other && this.Equals(other);
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             var hashCode = this.Layer.GetHashCode();
             hashCode = (hashCode * 397) ^ this.X;
