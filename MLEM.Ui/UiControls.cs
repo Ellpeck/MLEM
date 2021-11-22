@@ -237,11 +237,10 @@ namespace MLEM.Ui {
         /// Throughout the ui system, this is used for mouse input querying.
         /// </summary>
         /// <param name="position">The position to query</param>
-        /// <param name="transform">If this value is true, the <see cref="RootElement.Transform"/> will be applied.</param>
         /// <returns>The element under the position, or null if there isn't one</returns>
-        public virtual Element GetElementUnderPos(Vector2 position, bool transform = true) {
+        public virtual Element GetElementUnderPos(Vector2 position) {
             foreach (var root in this.System.GetRootElements()) {
-                var pos = transform ? Vector2.Transform(position, root.InvTransform) : position;
+                var pos = Vector2.Transform(position, root.InvTransform);
                 var moused = root.Element.GetElementUnderPos(pos);
                 if (moused != null)
                     return moused;

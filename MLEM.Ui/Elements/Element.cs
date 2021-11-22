@@ -956,8 +956,7 @@ namespace MLEM.Ui.Elements {
         public virtual Element GetElementUnderPos(Vector2 position) {
             if (this.IsHidden)
                 return null;
-            if (this.Transform != Matrix.Identity)
-                position = Vector2.Transform(position, Matrix.Invert(this.Transform));
+            position = this.TransformInverse(position);
             var relevant = this.GetRelevantChildren();
             for (var i = relevant.Count - 1; i >= 0; i--) {
                 var element = relevant[i].GetElementUnderPos(position);
@@ -1017,6 +1016,28 @@ namespace MLEM.Ui.Elements {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
             this.ActionSound.SetFromStyle(style.ActionSound);
             this.SecondActionSound.SetFromStyle(style.ActionSound);
+        }
+
+        /// <summary>
+        /// Transforms the given <paramref name="position"/> by the inverse of this element's <see cref="Transform"/> matrix.
+        /// </summary>
+        /// <param name="position">The position to transform</param>
+        /// <returns>The transformed position</returns>
+        protected Vector2 TransformInverse(Vector2 position) {
+            return this.Transform != Matrix.Identity ? Vector2.Transform(position, Matrix.Invert(this.Transform)) : position;
+        }
+
+        /// <summary>
+        /// Transforms the given <paramref name="position"/> by this element's <see cref="Root"/>'s <see cref="RootElement.InvTransform"/>, the inverses of all of the <see cref="Transform"/> matrices of this element's parent tree (<see cref="GetParentTree"/>), and the inverse of this element's <see cref="Transform"/> matrix.
+        /// Note that, when using <see cref="UiControls.GetElementUnderPos"/>, this operation is done recursively, which is more efficient.
+        /// </summary>
+        /// <param name="position">The position to transform</param>
+        /// <returns>The transformed position</returns>
+        protected Vector2 TransformInverseAll(Vector2 position) {
+            position = Vector2.Transform(position, this.Root.InvTransform);
+            foreach (var parent in this.GetParentTree().Reverse())
+                position = parent.TransformInverse(position);
+            return this.TransformInverse(position);
         }
 
         /// <summary>

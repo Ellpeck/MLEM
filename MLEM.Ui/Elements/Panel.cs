@@ -189,8 +189,9 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override Element GetElementUnderPos(Vector2 position) {
             // if overflow is handled, don't propagate mouse checks to hidden children
-            if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(position))
-                return !this.IsHidden && this.CanBeMoused && this.DisplayArea.Contains(position) ? this : null;
+            var transformed = this.TransformInverse(position);
+            if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(transformed))
+                return !this.IsHidden && this.CanBeMoused && this.DisplayArea.Contains(transformed) ? this : null;
             return base.GetElementUnderPos(position);
         }
 
