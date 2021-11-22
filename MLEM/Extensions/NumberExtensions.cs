@@ -45,6 +45,11 @@ namespace MLEM.Extensions {
             return Math.Abs(first.X - second.X) <= tolerance && Math.Abs(first.Y - second.Y) <= tolerance && Math.Abs(first.Z - second.Z) <= tolerance && Math.Abs(first.W - second.W) <= tolerance;
         }
 
+        /// <inheritdoc cref="Equals(float,float,float)"/>
+        public static bool Equals(this Quaternion first, Quaternion second, float tolerance) {
+            return Math.Abs(first.X - second.X) <= tolerance && Math.Abs(first.Y - second.Y) <= tolerance && Math.Abs(first.Z - second.Z) <= tolerance && Math.Abs(first.W - second.W) <= tolerance;
+        }
+
         /// <inheritdoc cref="Math.Floor(decimal)"/>
         public static Vector2 FloorCopy(this Vector2 vec) {
             return new Vector2(vec.X.Floor(), vec.Y.Floor());
@@ -213,7 +218,7 @@ namespace MLEM.Extensions {
 
         /// <summary>
         /// Returns the rotation that the given matrix represents, as a <see cref="Quaternion"/>.
-        /// Returns <see cref="Quaternion.Identity"/> if the matrix does not contain valid rotation information.
+        /// Returns <see cref="Quaternion.Identity"/> if the matrix does not contain valid rotation information, or is not rotated.
         /// </summary>
         /// <param name="matrix">The matrix</param>
         /// <returns>The rotation of the matrix</returns>
@@ -226,6 +231,30 @@ namespace MLEM.Extensions {
                 matrix.M21 / scY, matrix.M22 / scY, matrix.M23 / scY, 0,
                 matrix.M31 / scZ, matrix.M32 / scZ, matrix.M33 / scZ, 0,
                 0, 0, 0, 1));
+        }
+
+        /// <summary>
+        /// Returns the rotation that the given matrix represents, as a <see cref="Vector3"/> that contains the x, y and z rotations in radians.
+        /// Returns <see cref="Vector3.Zero"/> if the matrix does not contain valid rotation information, or is not rotated.
+        /// </summary>
+        /// <param name="matrix">The matrix</param>
+        /// <returns>The rotation of the matrix</returns>
+        public static Vector3 RotationVector(this Matrix matrix) {
+            return matrix.Rotation().RotationVector();
+        }
+
+        /// <summary>
+        /// Returns the rotation that the given quaternion represents, as a <see cref="Vector3"/> that contains the x, y and z rotations in radians.
+        /// Returns <see cref="Vector3.Zero"/> if the quaternion does not contain valid rotation information, or is not rotated.
+        /// </summary>
+        /// <param name="quaternion">The quaternion</param>
+        /// <returns>The rotation of the quaternion</returns>
+        public static Vector3 RotationVector(this Quaternion quaternion) {
+            var (x, y, z, w) = quaternion;
+            return new Vector3(
+                (float) Math.Atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)),
+                (float) Math.Asin(MathHelper.Clamp(2 * (w * y - z * x), -1, 1)),
+                (float) Math.Atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)));
         }
 
         /// <summary>

@@ -43,10 +43,17 @@ namespace Tests {
         }
 
         [Test]
-        public void TestMatrixOps([Range(0.5F, 2, 0.5F)] float scale, [Range(-1, 1, 1F)] float rotationX) {
-            var matrix = Matrix.CreateRotationX(rotationX) * Matrix.CreateScale(scale, scale, scale);
+        public void TestMatrixOps([Range(0.5F, 2, 0.5F)] float scale, [Range(-1, 1, 0.5F)] float rotationX, [Range(-1, 1, 0.5F)] float rotationY, [Range(-1, 1, 0.5F)] float rotationZ) {
+            var rotation = Matrix.CreateRotationX(rotationX) * Matrix.CreateRotationY(rotationY) * Matrix.CreateRotationZ(rotationZ);
+            var matrix = rotation * Matrix.CreateScale(scale, scale, scale);
             Assert.IsTrue(matrix.Scale().Equals(new Vector3(scale), 0.001F), $"{matrix.Scale()} does not equal {new Vector2(scale)}");
-            Assert.AreEqual(matrix.Rotation(), Quaternion.CreateFromAxisAngle(Vector3.UnitX, rotationX));
+            Assert.IsTrue(matrix.Rotation().Equals(Quaternion.CreateFromRotationMatrix(rotation), 0.001F), $"{matrix.Rotation()} does not equal {Quaternion.CreateFromRotationMatrix(rotation)}");
+            Assert.IsTrue(matrix.RotationVector().Equals(new Vector3(rotationX, rotationY, rotationZ), 0.001F), $"{matrix.RotationVector()} does not equal {new Vector3(rotationX, rotationY, rotationZ)}");
+
+            // check against decomposed results
+            matrix.Decompose(out var sc, out var rot, out _);
+            Assert.AreEqual(matrix.Rotation(), rot);
+            Assert.AreEqual(matrix.Scale(), sc);
         }
 
         [Test]
