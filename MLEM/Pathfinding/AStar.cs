@@ -82,7 +82,7 @@ namespace MLEM.Pathfinding {
         /// <param name="defaultCost">The default cost for each path point</param>
         /// <param name="maxTries">The maximum amount of tries before path finding is aborted</param>
         /// <param name="allowDiagonals">If diagonals should be looked at for path finding</param>
-        /// <returns>A stack of path points, where the top item is the first point to go to.</returns>
+        /// <returns>A stack of path points, where the top item is the first point to go to, or null if no path was found.</returns>
         public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
             var stopwatch = Stopwatch.StartNew();
 
@@ -118,7 +118,7 @@ namespace MLEM.Pathfinding {
                 foreach (var dir in dirsUsed) {
                     var neighborPos = this.AddPositions(current.Pos, dir);
                     var cost = getCost(current.Pos, neighborPos);
-                    if (!float.IsInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
+                    if (!float.IsPositiveInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
                         var neighbor = new PathPoint<T>(neighborPos, this.GetManhattanDistance(neighborPos, goal), current, cost, defCost);
                         // check if we already have a waypoint at this location with a worse path
                         if (open.TryGetValue(neighborPos, out var alreadyNeighbor)) {

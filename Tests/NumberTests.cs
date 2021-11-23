@@ -43,7 +43,7 @@ namespace Tests {
         }
 
         [Test]
-        public void TestMatrixOps([Range(0.5F, 2, 1)] float scale, [Range(-0.5F, 0.5F, 1)] float rotationX, [Range(-0.5F, 0.5F, 1)] float rotationY, [Range(-0.5F, 0.5F, 0.5F)] float rotationZ) {
+        public void TestMatrixOps([Range(0.5F, 2, 0.5F)] float scale, [Range(-0.5F, 0.5F, 1)] float rotationX, [Range(-0.5F, 0.5F, 1)] float rotationY, [Range(-0.5F, 0.5F, 1)] float rotationZ) {
             var rotation = Matrix.CreateRotationX(rotationX) * Matrix.CreateRotationY(rotationY) * Matrix.CreateRotationZ(rotationZ);
             var matrix = rotation * Matrix.CreateScale(scale, scale, scale);
             Assert.IsTrue(matrix.Scale().Equals(new Vector3(scale), 0.001F), $"{matrix.Scale()} does not equal {new Vector2(scale)}");

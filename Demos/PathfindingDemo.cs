@@ -36,14 +36,14 @@ namespace Demos {
 
             // Create a cost function, which determines how expensive (or difficult) it should be to move from a given position
             // to the next, adjacent position. In our case, the only restriction should be walls and out-of-bounds positions, which
-            // both have a cost of float.MaxValue, meaning they are completely unwalkable. 
+            // both have a cost of AStar2.InfiniteCost, meaning they are completely unwalkable. 
             // If your game contains harder-to-move-on areas like, say, a muddy pit, you can return a higher cost value for those
             // locations. If you want to scale your cost function differently, you can specify a different default cost in your 
             // pathfinder's constructor
             float Cost(Point pos, Point nextPos) {
                 if (nextPos.X < 0 || nextPos.Y < 0 || nextPos.X >= 50 || nextPos.Y >= 50)
-                    return float.MaxValue;
-                return this.world[nextPos.X, nextPos.Y] ? 1 : float.MaxValue;
+                    return AStar2.InfiniteCost;
+                return this.world[nextPos.X, nextPos.Y] ? 1 : AStar2.InfiniteCost;
             }
 
             // Actually initialize the pathfinder with the cost function, as well as specify if moving diagonally between tiles should be
