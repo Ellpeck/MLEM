@@ -18,6 +18,7 @@ pipeline {
         branch 'release'
       }
       steps {
+        sh 'rm -rf /var/www/MLEM/*'
         sh 'cp Docs/_site/** /var/www/MLEM/ -r'
       }
     }
