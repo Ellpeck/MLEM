@@ -23,6 +23,7 @@ Improvements
 - Added Padding.Empty
 - Throw an exception when text formatter macros resolve recursively too many times
 - Allow using StaticSpriteBatch for AutoTiling
+- Made TextFormatter string size based on the currently active font rather than the default one
 
 Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
@@ -31,6 +32,7 @@ Fixes
 Additions
 - Allow specifying a maximum amount of characters for a TextField
 - Added a multiline editing mode to TextField
+- Added a formatting code to allow for inline font changes
 
 Improvements
 - *Made Image ScaleToImage take ui scale into account*

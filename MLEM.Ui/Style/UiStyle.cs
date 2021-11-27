@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MLEM.Font;
 using MLEM.Formatting;
@@ -194,6 +195,10 @@ namespace MLEM.Ui.Style {
         /// Note that this sound is only played if the callbacks have any subscribers.
         /// </summary>
         public SoundEffectInfo ActionSound;
+        /// <summary>
+        /// A set of additional fonts that can be used for the <c>&lt;f FontName&gt;</c> formatting code
+        /// </summary>
+        public Dictionary<string, GenericFont> AdditionalFonts = new Dictionary<string, GenericFont>();
 
     }
 }

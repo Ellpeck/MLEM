@@ -47,7 +47,8 @@ namespace Demos {
                 CheckboxTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
-                RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8)
+                RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8),
+                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/MonospacedFont"))}}
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,
@@ -87,7 +88,7 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
 
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. The names of all <c Orange>MonoGame Colors</c> can be used, as well as the codes <i>Italic</i>, <b>Bold</b>, <s>Drop Shadow'd</s> and <s><c Pink>mixed formatting</s></c>. \n<i>Even <c #ff611f82>inline custom colors</c> work!</i>"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. The names of all <c Orange>MonoGame Colors</c> can be used, as well as the codes <i>Italic</i>, <b>Bold</b>, <s>Drop Shadow'd</s> and <s><c Pink>mixed formatting</s></c>. You can also add additional fonts for things like\n<f Monospaced>void Code() {\n  // Code\n}</f>\n<i>Even <c #ff611f82>inline custom colors</c> work!</i>"));
 
             // adding some custom image formatting codes
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain <i Grass> images and more!"));

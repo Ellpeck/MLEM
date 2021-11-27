@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -88,44 +89,7 @@ namespace MLEM.Font {
         /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
         /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
-            var size = Vector2.Zero;
-            if (text.Length <= 0)
-                return size;
-            var xOffset = 0F;
-            for (var i = 0; i < text.Length; i++) {
-                switch (text[i]) {
-                    case '\n':
-                        xOffset = 0;
-                        size.Y += this.LineHeight;
-                        break;
-                    case OneEmSpace:
-                        xOffset += this.LineHeight;
-                        break;
-                    case Nbsp:
-                        xOffset += this.MeasureChar(' ');
-                        break;
-                    case Zwsp:
-                        // don't add width for a zero-width space
-                        break;
-                    case ' ':
-                        if (ignoreTrailingSpaces && IsTrailingSpace(text, i)) {
-                            // if this is a trailing space, we can skip remaining spaces too
-                            i = text.Length - 1;
-                            break;
-                        }
-                        xOffset += this.MeasureChar(' ');
-                        break;
-                    default:
-                        xOffset += this.MeasureChar(text[i]);
-                        break;
-                }
-                // increase x size if this line is the longest
-                if (xOffset > size.X)
-                    size.X = xOffset;
-            }
-            // include the last line's height too!
-            size.Y += this.LineHeight;
-            return size;
+            return MeasureString(i => this, text, ignoreTrailingSpaces);
         }
 
         /// <summary>
@@ -139,24 +103,7 @@ namespace MLEM.Font {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <returns>The truncated string, or the same string if it is shorter than the maximum width</returns>
         public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            var total = new StringBuilder();
-            var ellipsisWidth = this.MeasureString(ellipsis).X * scale;
-            for (var i = 0; i < text.Length; i++) {
-                if (fromBack) {
-                    total.Insert(0, text[text.Length - 1 - i]);
-                } else {
-                    total.Append(text[i]);
-                }
-
-                if (this.MeasureString(total.ToString()).X * scale + ellipsisWidth >= width) {
-                    if (fromBack) {
-                        return total.Remove(0, 1).Insert(0, ellipsis).ToString();
-                    } else {
-                        return total.Remove(total.Length - 1, 1).Append(ellipsis).ToString();
-                    }
-                }
-            }
-            return total.ToString();
+            return TruncateString(i => this, text, width, scale, fromBack, ellipsis);
         }
 
         /// <summary>
@@ -182,6 +129,72 @@ namespace MLEM.Font {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string as an enumerable of split sections</returns>
         public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
+            return SplitStringSeparate(i => this, text, width, scale);
+        }
+
+        internal static Vector2 MeasureString(Func<int, GenericFont> fontFunction, string text, bool ignoreTrailingSpaces) {
+            var size = Vector2.Zero;
+            if (text.Length <= 0)
+                return size;
+            var xOffset = 0F;
+            for (var i = 0; i < text.Length; i++) {
+                var font = fontFunction(i);
+                switch (text[i]) {
+                    case '\n':
+                        xOffset = 0;
+                        size.Y += font.LineHeight;
+                        break;
+                    case OneEmSpace:
+                        xOffset += font.LineHeight;
+                        break;
+                    case Nbsp:
+                        xOffset += font.MeasureChar(' ');
+                        break;
+                    case Zwsp:
+                        // don't add width for a zero-width space
+                        break;
+                    case ' ':
+                        if (ignoreTrailingSpaces && IsTrailingSpace(text, i)) {
+                            // if this is a trailing space, we can skip remaining spaces too
+                            i = text.Length - 1;
+                            break;
+                        }
+                        xOffset += font.MeasureChar(' ');
+                        break;
+                    default:
+                        xOffset += font.MeasureChar(text[i]);
+                        break;
+                }
+                // increase x size if this line is the longest
+                if (xOffset > size.X)
+                    size.X = xOffset;
+            }
+            // include the last line's height too!
+            size.Y += fontFunction(text.Length - 1).LineHeight;
+            return size;
+        }
+
+        internal static string TruncateString(Func<int, GenericFont> fontFunction, string text, float width, float scale, bool fromBack, string ellipsis) {
+            var total = new StringBuilder();
+            for (var i = 0; i < text.Length; i++) {
+                if (fromBack) {
+                    total.Insert(0, text[text.Length - 1 - i]);
+                } else {
+                    total.Append(text[i]);
+                }
+
+                if (fontFunction(i).MeasureString(total + ellipsis).X * scale >= width) {
+                    if (fromBack) {
+                        return total.Remove(0, 1).Insert(0, ellipsis).ToString();
+                    } else {
+                        return total.Remove(total.Length - 1, 1).Append(ellipsis).ToString();
+                    }
+                }
+            }
+            return total.ToString();
+        }
+
+        internal static IEnumerable<string> SplitStringSeparate(Func<int, GenericFont> fontFunction, string text, float width, float scale) {
             var currWidth = 0F;
             var lastSpaceIndex = -1;
             var widthSinceLastSpace = 0F;
@@ -195,7 +208,7 @@ namespace MLEM.Font {
                     widthSinceLastSpace = 0;
                     currWidth = 0;
                 } else {
-                    var cWidth = this.MeasureString(c.ToCachedString()).X * scale;
+                    var cWidth = fontFunction(i).MeasureString(c.ToCachedString()).X * scale;
                     if (c == ' ' || c == OneEmSpace || c == Zwsp) {
                         // remember the location of this (breaking!) space
                         lastSpaceIndex = curr.Length;

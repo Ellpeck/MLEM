@@ -34,6 +34,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/TestFontItalic.spritefont
 
+#begin Fonts/MonospacedFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MonospacedFont.spritefont
+
 #begin Textures/Anim.png
 /importer:TextureImporter
 /processor:TextureProcessor

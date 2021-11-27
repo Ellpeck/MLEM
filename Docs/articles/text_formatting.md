@@ -4,7 +4,7 @@ The **MLEM** package contains a simple text formatting system that supports colo
 
 Text formatting makes use of [generic fonts](font_extensions.md).
 
-It should also be noted that [MLEM.Ui](ui.md)'s `Paragraph`s support text formatting out of the box.
+It should also be noted that [MLEM.Ui](ui.md)'s `Paragraph` supports text formatting out of the box.
 
 ## Formatting codes
 To format your text, you can insert *formatting codes* into it. Almost all of these codes are single letters surrounded by `<>`, and some formatting codes can accept additional parameters after their letter representation.
@@ -15,6 +15,10 @@ By default, the following formatting options are available:
 - Drop shadows using `<s>`. Optional parameters for the shadow's color and positional offset are accepted: `<s #AARRGGBB 2.5>`. Reset using `</s>`.
 - Underlined and strikethrough text using `<u>` and `<st>`, respectively. Reset using `</u>` and `</st>`.
 - A wobbly sine wave animation using `<a wobbly>`. Optional parameters for the wobble's intensity and height are accepted: `<a wobbly 10 0.25>`. Reset using `</a>`.
+
+When using [MLEM.Ui](ui.md)'s `Paragraph`, these additional formatting options are available by default:
+- Hoverable and clickable links using `<l Url>`. Note that this code does not automatically change the color of the text. Reset using `</l>`.
+- Inline font changes using `<f FontName>`, with custom fonts gathered from `UiStyle.AdditionalFonts`. Reset using `</f>`.
 
 ## Getting your text ready
 To get your text ready for rendering with formatting codes, it has to be tokenized. For that, you need to create a new text formatter first. Additionally, you need to have a [generic font](font_extensions.md) ready:
