@@ -16,17 +16,17 @@ namespace MLEM.Font {
         /// <summary>
         /// This field holds the unicode representation of a one em space.
         /// This is a character that isn't drawn, but has the same width as <see cref="LineHeight"/>.
-        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.
         /// </summary>
         public const char OneEmSpace = '\u2003';
         /// <summary>
         /// This field holds the unicode representation of a non-breaking space.
-        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString"/>.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.
         /// </summary>
         public const char Nbsp = '\u00A0';
         /// <summary>
         /// This field holds the unicode representation of a zero-width space.
-        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations and string splitting, generic fonts implicitly support it in <see cref="MeasureString"/> and <see cref="SplitString"/>.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations and string splitting, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/> and <see cref="SplitString"/>.
         /// </summary>
         public const char Zwsp = '\u200B';
 
@@ -46,18 +46,9 @@ namespace MLEM.Font {
         /// </summary>
         public abstract float LineHeight { get; }
 
-        private readonly Func<int, GenericFont> identity;
-
         /// <summary>
-        /// Creates a new generic font with the default settings
-        /// </summary>
-        public GenericFont() {
-            this.identity = i => this;
-        }
-
-        /// <summary>
-        /// Measures the width of the given character with the default scale for use in <see cref="MeasureString"/>.
-        /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/> for most generic fonts, which is why <see cref="MeasureString"/> should be used even for single characters.
+        /// Measures the width of the given character with the default scale for use in <see cref="MeasureString(string,bool)"/>.
+        /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/> for most generic fonts, which is why <see cref="MeasureString(string,bool)"/> should be used even for single characters.
         /// </summary>
         /// <param name="c">The character whose width to calculate</param>
         /// <returns>The width of the given character with the default scale</returns>
@@ -98,7 +89,7 @@ namespace MLEM.Font {
         /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
         /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
-            return MeasureString(this.identity, text, ignoreTrailingSpaces);
+            return this.MeasureString(text, ignoreTrailingSpaces, null);
         }
 
         /// <summary>
@@ -112,13 +103,13 @@ namespace MLEM.Font {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <returns>The truncated string, or the same string if it is shorter than the maximum width</returns>
         public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return TruncateString(this.identity, text, width, scale, fromBack, ellipsis);
+            return this.TruncateString(text, width, scale, fromBack, ellipsis, null);
         }
 
         /// <summary>
         /// Splits a string to a given maximum width, adding newline characters between each line.
         /// Also splits long words and supports zero-width spaces and takes into account existing newline characters in the passed <paramref name="text"/>.
-        /// See <see cref="SplitStringSeparate"/> for a method that differentiates between existing newline characters and splits due to maximum width.
+        /// See <see cref="SplitStringSeparate(string,float,float)"/> for a method that differentiates between existing newline characters and splits due to maximum width.
         /// </summary>
         /// <param name="text">The text to split into multiple lines</param>
         /// <param name="width">The maximum width that each line should have</param>
@@ -138,16 +129,16 @@ namespace MLEM.Font {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string as an enumerable of split sections</returns>
         public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
-            return SplitStringSeparate(this.identity, text, width, scale);
+            return this.SplitStringSeparate(text, width, scale, null);
         }
 
-        internal static Vector2 MeasureString(Func<int, GenericFont> fontFunction, string text, bool ignoreTrailingSpaces) {
+        internal Vector2 MeasureString(string text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
                 return size;
             var xOffset = 0F;
             for (var i = 0; i < text.Length; i++) {
-                var font = fontFunction(i);
+                var font = fontFunction?.Invoke(i) ?? this;
                 switch (text[i]) {
                     case '\n':
                         xOffset = 0;
@@ -179,11 +170,11 @@ namespace MLEM.Font {
                     size.X = xOffset;
             }
             // include the last line's height too!
-            size.Y += fontFunction(text.Length - 1).LineHeight;
+            size.Y += (fontFunction?.Invoke(text.Length - 1) ?? this).LineHeight;
             return size;
         }
 
-        internal static string TruncateString(Func<int, GenericFont> fontFunction, string text, float width, float scale, bool fromBack, string ellipsis) {
+        internal string TruncateString(string text, float width, float scale, bool fromBack, string ellipsis, Func<int, GenericFont> fontFunction) {
             var total = new StringBuilder();
             for (var i = 0; i < text.Length; i++) {
                 if (fromBack) {
@@ -192,7 +183,8 @@ namespace MLEM.Font {
                     total.Append(text[i]);
                 }
 
-                if (fontFunction(i).MeasureString(total + ellipsis).X * scale >= width) {
+                var font = fontFunction?.Invoke(i) ?? this;
+                if (font.MeasureString(total + ellipsis).X * scale >= width) {
                     if (fromBack) {
                         return total.Remove(0, 1).Insert(0, ellipsis).ToString();
                     } else {
@@ -203,7 +195,7 @@ namespace MLEM.Font {
             return total.ToString();
         }
 
-        internal static IEnumerable<string> SplitStringSeparate(Func<int, GenericFont> fontFunction, string text, float width, float scale) {
+        internal IEnumerable<string> SplitStringSeparate(string text, float width, float scale, Func<int, GenericFont> fontFunction) {
             var currWidth = 0F;
             var lastSpaceIndex = -1;
             var widthSinceLastSpace = 0F;
@@ -217,7 +209,8 @@ namespace MLEM.Font {
                     widthSinceLastSpace = 0;
                     currWidth = 0;
                 } else {
-                    var cWidth = fontFunction(i).MeasureString(c.ToCachedString()).X * scale;
+                    var font = fontFunction?.Invoke(i) ?? this;
+                    var cWidth = font.MeasureString(c.ToCachedString()).X * scale;
                     if (c == ' ' || c == OneEmSpace || c == Zwsp) {
                         // remember the location of this (breaking!) space
                         lastSpaceIndex = curr.Length;
