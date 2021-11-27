@@ -21,6 +21,7 @@ Improvements
 - Exposed the epsilon value used by Camera
 - Added Padding.Empty
 - Throw an exception when text formatter macros resolve recursively too many times
+- Allow using StaticSpriteBatch for AutoTiling
 
 Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
