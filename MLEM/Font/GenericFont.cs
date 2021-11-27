@@ -46,6 +46,15 @@ namespace MLEM.Font {
         /// </summary>
         public abstract float LineHeight { get; }
 
+        private readonly Func<int, GenericFont> identity;
+
+        /// <summary>
+        /// Creates a new generic font with the default settings
+        /// </summary>
+        public GenericFont() {
+            this.identity = i => this;
+        }
+
         /// <summary>
         /// Measures the width of the given character with the default scale for use in <see cref="MeasureString"/>.
         /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/> for most generic fonts, which is why <see cref="MeasureString"/> should be used even for single characters.
@@ -89,7 +98,7 @@ namespace MLEM.Font {
         /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
         /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
-            return MeasureString(i => this, text, ignoreTrailingSpaces);
+            return MeasureString(this.identity, text, ignoreTrailingSpaces);
         }
 
         /// <summary>
@@ -103,7 +112,7 @@ namespace MLEM.Font {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <returns>The truncated string, or the same string if it is shorter than the maximum width</returns>
         public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return TruncateString(i => this, text, width, scale, fromBack, ellipsis);
+            return TruncateString(this.identity, text, width, scale, fromBack, ellipsis);
         }
 
         /// <summary>
@@ -129,7 +138,7 @@ namespace MLEM.Font {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string as an enumerable of split sections</returns>
         public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
-            return SplitStringSeparate(i => this, text, width, scale);
+            return SplitStringSeparate(this.identity, text, width, scale);
         }
 
         internal static Vector2 MeasureString(Func<int, GenericFont> fontFunction, string text, bool ignoreTrailingSpaces) {
