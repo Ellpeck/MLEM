@@ -60,8 +60,13 @@ namespace MLEM.Formatting {
         /// </summary>
         /// <param name="defaultPick">The default color, if none is specified</param>
         /// <returns>The color to render with</returns>
-        public Color? GetColor(Color defaultPick) {
-            return this.AppliedCodes.Select(c => c.GetColor(defaultPick)).FirstOrDefault(c => c.HasValue);
+        public Color GetColor(Color defaultPick) {
+            foreach (var code in this.AppliedCodes) {
+                var color = code.GetColor(defaultPick);
+                if (color.HasValue)
+                    return color.Value;
+            }
+            return defaultPick;
         }
 
         /// <summary>
@@ -70,7 +75,12 @@ namespace MLEM.Formatting {
         /// <param name="defaultPick">The default font, if none is specified</param>
         /// <returns>The font to render with</returns>
         public GenericFont GetFont(GenericFont defaultPick) {
-            return this.AppliedCodes.Select(c => c.GetFont(defaultPick)).FirstOrDefault(f => f != null);
+            foreach (var code in this.AppliedCodes) {
+                var font = code.GetFont(defaultPick);
+                if (font != null)
+                    return font;
+            }
+            return defaultPick;
         }
 
         /// <summary>

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -116,8 +115,8 @@ namespace MLEM.Formatting {
             var innerOffset = new Vector2(this.initialInnerOffset * scale, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
-                var drawFont = token.GetFont(font) ?? font;
-                var drawColor = token.GetColor(color) ?? color;
+                var drawFont = token.GetFont(font);
+                var drawColor = token.GetColor(color);
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
                     var line = token.SplitDisplayString[l];
                     for (var i = 0; i < line.Length; i++) {
@@ -184,7 +183,7 @@ namespace MLEM.Formatting {
             var innerOffset = new Vector2(this.initialInnerOffset, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
-                var tokenFont = token.GetFont(font) ?? font;
+                var tokenFont = token.GetFont(font);
                 token.InnerOffsets = new float[token.SplitDisplayString.Length - 1];
                 var area = new List<RectangleF>();
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
@@ -207,7 +206,7 @@ namespace MLEM.Formatting {
         private float GetInnerOffsetX(GenericFont defaultFont, int tokenIndex, int lineIndex, TextAlignment alignment) {
             if (alignment > TextAlignment.Left) {
                 var token = this.Tokens[tokenIndex];
-                var tokenFont = token.GetFont(defaultFont) ?? defaultFont;
+                var tokenFont = token.GetFont(defaultFont);
                 // if we're the last line in our line array, then we don't contain a line split, so the line ends in a later token
                 var endsLater = lineIndex >= token.SplitDisplayString.Length - 1;
                 // if the line ends in our token, we should ignore trailing white space
@@ -215,7 +214,7 @@ namespace MLEM.Formatting {
                 if (endsLater) {
                     for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
                         var other = this.Tokens[i];
-                        var otherFont = other.GetFont(defaultFont) ?? defaultFont;
+                        var otherFont = other.GetFont(defaultFont);
                         if (other.SplitDisplayString.Length > 1) {
                             // the line ends in this token (so we also ignore trailing whitespaces)
                             restOfLine += otherFont.MeasureString(other.SplitDisplayString[0], true).X;
@@ -238,7 +237,7 @@ namespace MLEM.Formatting {
             foreach (var token in this.Tokens) {
                 index -= token.Substring.Length;
                 if (index <= 0)
-                    return token.GetFont(font) ?? font;
+                    return token.GetFont(font);
             }
             return font;
         }
