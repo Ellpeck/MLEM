@@ -14,6 +14,7 @@ Additions
 - Added StaticSpriteBatch class
 - Added missing easing functions Quart and Quint to Easings
 - Added RotationVector extension methods for Matrix and Quaternion
+- Added DrawExtendedAutoTile to the AutoTiling class
 
 Improvements
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
