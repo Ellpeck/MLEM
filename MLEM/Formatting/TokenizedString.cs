@@ -194,7 +194,7 @@ namespace MLEM.Formatting {
 
                     if (l < token.SplitDisplayString.Length - 1) {
                         innerOffset.X = token.InnerOffsets[l] = this.GetInnerOffsetX(font, t, l + 1, alignment);
-                        innerOffset.Y += tokenFont.LineHeight;
+                        innerOffset.Y += font.LineHeight;
                     } else {
                         innerOffset.X += size.X;
                     }
@@ -239,7 +239,7 @@ namespace MLEM.Formatting {
                 if (index <= 0)
                     return token.GetFont(font);
             }
-            return font;
+            return null;
         }
 
     }

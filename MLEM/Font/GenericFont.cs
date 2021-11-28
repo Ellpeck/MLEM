@@ -142,10 +142,10 @@ namespace MLEM.Font {
                 switch (text[i]) {
                     case '\n':
                         xOffset = 0;
-                        size.Y += font.LineHeight;
+                        size.Y += this.LineHeight;
                         break;
                     case OneEmSpace:
-                        xOffset += font.LineHeight;
+                        xOffset += this.LineHeight;
                         break;
                     case Nbsp:
                         xOffset += font.MeasureChar(' ');
@@ -170,7 +170,7 @@ namespace MLEM.Font {
                     size.X = xOffset;
             }
             // include the last line's height too!
-            size.Y += (fontFunction?.Invoke(text.Length - 1) ?? this).LineHeight;
+            size.Y += this.LineHeight;
             return size;
         }
 
