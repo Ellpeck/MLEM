@@ -18,7 +18,7 @@
         <PackageReference Include="MonoGame.Extended.Content.Pipeline" Version="3.8.0" />
         <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0" />
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
-        <PackageReference Include="FontStashSharp.MonoGame" Version="1.0.3" />
+        <PackageReference Include="FontStashSharp.MonoGame" Version="1.0.4" />
     </ItemGroup>
 
     <ItemGroup>
