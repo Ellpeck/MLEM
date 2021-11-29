@@ -1,5 +1,5 @@
 # Changelog
-MLEM tries to adhere to [semantic versioning](https://semver.org/). Breaking changes are written in *italics*.
+MLEM tries to adhere to [semantic versioning](https://semver.org/). Breaking changes are written in **bold**.
 
 Jump to version:
 - [5.2.0 (Unreleased)](#520-unreleased)
@@ -17,7 +17,7 @@ Additions
 - Added DrawExtendedAutoTile to the AutoTiling class
 
 Improvements
-- *Moved AutoTiling to Graphics namespace*
+- **Moved AutoTiling to Graphics namespace**
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 - Exposed Camera's RoundPosition
 - Exposed the epsilon value used by Camera
@@ -30,7 +30,7 @@ Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
 
 Removals
-- *Removed deprecated Misc versions of SoundEffectInfo and SoundEffectInstanceHandler*
+- **Removed deprecated Misc versions of SoundEffectInfo and SoundEffectInstanceHandler**
 
 ### MLEM.Ui
 Additions
@@ -39,9 +39,9 @@ Additions
 - Added a formatting code to allow for inline font changes
 
 Improvements
-- *Made Image ScaleToImage take ui scale into account*
-- *Added style properties for a lot of hardcoded default element styles*
-- *Allow setting a custom effect and depth stencil state for ui drawing*
+- **Made Image ScaleToImage take ui scale into account**
+- **Added style properties for a lot of hardcoded default element styles**
+- **Allow setting a custom effect and depth stencil state for ui drawing**
 - Exposed the epsilon value used by Element calculations
 - Allow style properties to set style values with a higher priority, which allows elements to style their default children
 - Allow changing the entire ui style for a single element
@@ -56,7 +56,7 @@ Fixes
 - Fixed some inconsistencies with element transformations and mouse interaction
 
 Removals
-- *Removed ScrollBar ScrollerOffset*
+- **Removed ScrollBar ScrollerOffset**
 
 ### MLEM.Data
 Additions
@@ -64,7 +64,7 @@ Additions
 - Added JsonTypeSafeWrapper and JsonTypeSafeGenericDataHolder
 
 Improvements
-- *Use TitleContainer for opening streams where possible*
+- **Use TitleContainer for opening streams where possible**
 - Set GraphicsResource Name when loading assets using RawContentManager
 
 ## 5.1.0
@@ -73,8 +73,8 @@ Additions
 - Added RotateBy to Direction2Helper
 
 Improvements
-- *Moved ColorHelper.Invert to ColorExtensions.Invert*
-- *Allow enumerating SoundEffectInstanceHandler entries*
+- **Moved ColorHelper.Invert to ColorExtensions.Invert**
+- **Allow enumerating SoundEffectInstanceHandler entries**
 - Improved NinePatch memory usage
 - Moved sound-related classes into Sound namespace
 - Added customizable overloads for Keybind, Combination and GenericInput ToString methods
@@ -91,7 +91,7 @@ Additions
 - Added a masking character to TextField to allow for password-style text fields
 
 Improvements
-- *Explicitly disallow creating Paragraphs without fonts to make starting out with MLEM.Ui less confusing*
+- **Explicitly disallow creating Paragraphs without fonts to make starting out with MLEM.Ui less confusing**
 - Removed LINQ Any and All usage in various methods to improve memory usage
 - Allow adding Link children to non-Paragraph elements
 
@@ -129,7 +129,7 @@ Additions
 - Added text alignment options to tokenized strings
 
 Improvements
-- *Replaced TextInputWrapper with a more refined MlemPlatform that includes the ability to open links on various platforms*
+- **Replaced TextInputWrapper with a more refined MlemPlatform that includes the ability to open links on various platforms**
 - Allow NinePatches to be drawn tiled rather than stretched
 - Added the ability for Direction2 to be used as flags
 - Made Padding and Direction2 DataContracts
@@ -144,8 +144,8 @@ Fixes
 - Fixed UnderlineCode ending in the wrong places because it was marked as a font-changing code
 
 Removals
-- *Removed the array-based GetRandomEntry method*
-- *Removed obsolete ColorExtension methods*
+- **Removed the array-based GetRandomEntry method**
+- **Removed obsolete ColorExtension methods**
 
 ### MLEM.Ui
 Additions
@@ -159,7 +159,7 @@ Additions
 - Added text alignment options to paragraphs
 
 Improvements
-- *Removed unnecessary GraphicsDevice references from UiSystem*
+- **Removed unnecessary GraphicsDevice references from UiSystem**
 - Stop a panel's scroll bar from being removed from its children list automatically
 - Dispose of panels' render targets to avoid memory leaks
 - Allow changing the color that a panel renders its texture with
