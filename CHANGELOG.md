@@ -17,6 +17,7 @@ Additions
 - Added DrawExtendedAutoTile to the AutoTiling class
 
 Improvements
+- *Moved AutoTiling to Graphics namespace*
 - Cache TokenizedString inner offsets for non-Left text alignments to improve performance
 - Exposed Camera's RoundPosition
 - Exposed the epsilon value used by Camera
@@ -27,6 +28,9 @@ Improvements
 
 Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
+
+Removals
+- *Removed deprecated Misc versions of SoundEffectInfo and SoundEffectInstanceHandler*
 
 ### MLEM.Ui
 Additions

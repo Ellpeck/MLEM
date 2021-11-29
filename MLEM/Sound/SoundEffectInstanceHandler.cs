@@ -86,7 +86,7 @@ namespace MLEM.Sound {
         }
 
         /// <summary>
-        /// Adds a new <see cref="Misc.SoundEffectInfo"/> to this handler.
+        /// Adds a new <see cref="SoundEffectInfo"/> to this handler.
         /// This also starts playing the created instance.
         /// </summary>
         /// <param name="info">The info for which to add a <see cref="SoundEffectInstance"/></param>

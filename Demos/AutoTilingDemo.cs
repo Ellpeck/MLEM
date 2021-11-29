@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Misc;
+using MLEM.Graphics;
 using MLEM.Startup;
 
 namespace Demos {
