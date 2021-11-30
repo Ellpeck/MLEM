@@ -67,7 +67,8 @@ namespace MLEM.Extended.Tiled {
             return hashCode;
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns the fully qualified type name of this instance.</summary>
+        /// <returns>The fully qualified type name.</returns>
         public override string ToString() {
             return $"{nameof(this.Layer)}: {this.Layer}, {nameof(this.X)}: {this.X}, {nameof(this.Y)}: {this.Y}";
         }

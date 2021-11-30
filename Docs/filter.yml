@@ -1,7 +1,0 @@
-apiRules:
-  - exclude:
-      uidRegex: ^Demos
-  - exclude:
-      uidRegex: ^Sandbox
-  - exclude:
-      uidRegex: ^Template

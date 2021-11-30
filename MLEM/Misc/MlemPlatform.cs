@@ -18,7 +18,6 @@ namespace MLEM.Misc {
         /// The current MLEM platform
         /// Set this value before starting your game if you want to use platform-dependent MLEM features.
         /// </summary>
-        /// <exception cref="InvalidOperationException"></exception>
         public static MlemPlatform Current;
 
         /// <summary>

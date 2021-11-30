@@ -4,13 +4,10 @@
             "src": [
                 {
                     "src": "../",
-                    "files": [
-                        "**.csproj"
-                    ]
+                    "files": ["**/MLEM**.csproj"]
                 }
             ],
-            "dest": "api",
-            "filter": "filter.yml"
+            "dest": "api"
         }
     ],
     "build": {

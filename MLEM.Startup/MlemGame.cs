@@ -67,7 +67,9 @@ namespace MLEM.Startup {
             this.Content.RootDirectory = "Content";
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Override this to load graphical resources required by the game.
+        /// </summary>
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler(this);
@@ -77,7 +79,12 @@ namespace MLEM.Startup {
             this.OnLoadContent?.Invoke(this);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when the game should update.
+        /// Updates the <see cref="T:Microsoft.Xna.Framework.GameComponent" /> instances attached to this game.
+        /// Override this to update your game.
+        /// </summary>
+        /// <param name="gameTime">The elapsed time since the last call to <see cref="M:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)" />.</param>
         protected sealed override void Update(GameTime gameTime) {
             this.DoUpdate(gameTime);
             this.OnUpdate?.Invoke(this, gameTime);
@@ -85,7 +92,12 @@ namespace MLEM.Startup {
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when the game should draw a frame.
+        /// Draws the <see cref="T:Microsoft.Xna.Framework.DrawableGameComponent" /> instances attached to this game.
+        /// Override this to render your game.
+        /// </summary>
+        /// <param name="gameTime">A <see cref="T:Microsoft.Xna.Framework.GameTime" /> instance containing the elapsed time since the last call to <see cref="M:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)" /> and the total time elapsed since the game started.</param>
         protected sealed override void Draw(GameTime gameTime) {
             this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
             this.DoDraw(gameTime);

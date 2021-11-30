@@ -170,7 +170,9 @@ namespace MLEM.Misc {
             return obj is RectangleF f && this == f;
         }
 
-        /// <inheritdoc cref="Equals(object)"/>
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns><see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
         public bool Equals(RectangleF other) {
             return this == other;
         }
@@ -219,7 +221,8 @@ namespace MLEM.Misc {
             this.Y += amount.Y;
         }
 
-        /// <inheritdoc/>
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() {
             return "{X:" + this.X + " Y:" + this.Y + " Width:" + this.Width + " Height:" + this.Height + "}";
         }

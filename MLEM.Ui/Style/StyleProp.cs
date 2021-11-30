@@ -65,7 +65,8 @@ namespace MLEM.Ui.Style {
             return !EqualityComparer<T>.Default.Equals(this.Value, default);
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns the fully qualified type name of this instance.</summary>
+        /// <returns>The fully qualified type name.</returns>
         public override string ToString() {
             return this.Value?.ToString();
         }
