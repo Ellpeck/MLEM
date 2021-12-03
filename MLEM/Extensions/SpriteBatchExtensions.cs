@@ -147,20 +147,20 @@ namespace MLEM.Extensions {
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D,Rectangle,Rectangle?,Color,float,Vector2,SpriteEffects,float)"/>
-        public static void Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             var source = sourceRectangle ?? new Rectangle(0, 0, texture.Width, texture.Height);
             var scale = new Vector2(1F / source.Width, 1F / source.Height) * destinationRectangle.Size;
-            batch.Add(texture, destinationRectangle.Location, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
+            return batch.Add(texture, destinationRectangle.Location, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D,Rectangle,Rectangle?,Color)"/>
-        public static void Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color) {
-            batch.Add(texture, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Rectangle? sourceRectangle, Color color) {
+            return batch.Add(texture, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D,Rectangle,Color)"/>
-        public static void Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
-            batch.Add(texture, destinationRectangle, null, color);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, Texture2D texture, RectangleF destinationRectangle, Color color) {
+            return batch.Add(texture, destinationRectangle, null, color);
         }
 
         private static void AutoDispose(SpriteBatch batch, Texture2D texture) {

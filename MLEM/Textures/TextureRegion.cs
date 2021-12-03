@@ -173,38 +173,38 @@ namespace MLEM.Textures {
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            batch.Add(texture.Texture, position, texture.Area, color, rotation, origin + texture.PivotPixels, scale, effects, layerDepth);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            return batch.Add(texture.Texture, position, texture.Area, color, rotation, origin + texture.PivotPixels, scale, effects, layerDepth);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
-            batch.Add(texture, position, color, rotation, origin, new Vector2(scale), effects, layerDepth);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            return batch.Add(texture, position, color, rotation, origin, new Vector2(scale), effects, layerDepth);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
-            batch.Add(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin + texture.PivotPixels, effects, layerDepth);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+            return batch.Add(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin + texture.PivotPixels, effects, layerDepth);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
-            batch.Add(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin + texture.PivotPixels, effects, layerDepth);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+            return batch.Add(texture.Texture, destinationRectangle, texture.Area, color, rotation, origin + texture.PivotPixels, effects, layerDepth);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color) {
-            batch.Add(texture, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color) {
+            return batch.Add(texture, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color) {
-            batch.Add(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color) {
+            return batch.Add(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
 
         /// <inheritdoc cref="StaticSpriteBatch.Add(Texture2D, Vector2, Rectangle?, Color, float, Vector2, Vector2, SpriteEffects, float)"/>
-        public static void Add(this StaticSpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color) {
-            batch.Add(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+        public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color) {
+            return batch.Add(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
 
     }
