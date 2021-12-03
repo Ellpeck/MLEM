@@ -63,10 +63,9 @@ namespace MLEM.Graphics {
         /// This method allows for a tiled texture to be drawn in an auto-tiling mode.
         /// This allows, for example, a grass patch on a tilemap to have nice looking edges that transfer over into a path without any hard edges between tiles.
         /// 
-        /// This method is a more complex version of <see cref="DrawAutoTile"/> that overlays separate border textures on a base texture, which also allows for non-rectangular texture areas to be used easily. 
-        /// For auto-tiling in this way to work, the tiles have to be laid out as follows: 17 tiles aligned horizontally within the texture file, with the following information:
+        /// This method is a more complex version of <see cref="DrawAutoTile"/> that overlays separate border textures on a background texture region, which also allows for non-rectangular texture areas to be used easily. 
+        /// For auto-tiling in this way to work, the overlay sections have to be laid out as follows: 16 sections aligned horizontally within the texture file, with the following information:
         /// <list type="number">
-        /// <item><description>The texture used for filling big areas</description></item>
         /// <item><description>The texture used for straight, horizontal borders, with the borders facing away from the center, split up into four parts: top left, then top right, then bottom left, then bottom right</description></item>
         /// <item><description>The texture used for outer corners, with the corners facing away from the center, split up into four parts: top left, then top right, then bottom left, then bottom right</description></item>
         /// <item><description>The texture used for straight, vertical borders, with the borders facing away from the center, split up into four parts: top left, then top right, then bottom left, then bottom right</description></item>
@@ -77,7 +76,8 @@ namespace MLEM.Graphics {
         /// <param name="batch">The sprite batch to use for drawing.</param>
         /// <param name="pos">The position to draw at.</param>
         /// <param name="texture">The texture to use for drawing.</param>
-        /// <param name="textureRegion">The location of the first texture region, as described in the summary.</param>
+        /// <param name="backgroundRegion">The location of the background region, or null to skip drawing a background.</param>
+        /// <param name="overlayRegion">The location of the first overlay region, as described in the summary.</param>
         /// <param name="connectsTo">A function that determines whether two positions should connect.</param>
         /// <param name="backgroundColor">The color to draw the texture used for filling big areas with.</param>
         /// <param name="overlayColor">The color to draw border and corner textures with.</param>
@@ -85,12 +85,13 @@ namespace MLEM.Graphics {
         /// <param name="scale">The scale to draw with.</param>
         /// <param name="layerDepth">The layer depth to draw with.</param>
         /// <param name="overlayDepthOffset">An optional depth offset from <paramref name="layerDepth"/> that the overlay should be drawn with</param>
-        public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle textureRegion, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
+        public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle? backgroundRegion, Rectangle overlayRegion, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, textureRegion, connectsTo, sc);
-            batch.Draw(texture, pos, textureRegion, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayRegion, connectsTo, sc);
+            if (backgroundRegion != null)
+                batch.Draw(texture, pos, backgroundRegion, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
             if (r1 != Rectangle.Empty)
                 batch.Draw(texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
             if (r2 != Rectangle.Empty)
@@ -102,13 +103,15 @@ namespace MLEM.Graphics {
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile"/>
-        public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle textureRegion, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
+        public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle? backgroundRegion, Rectangle overlayRegion, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, textureRegion, connectsTo, sc);
-            var background = batch.Add(texture, pos, textureRegion, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
-            items?.Add(background);
+            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayRegion, connectsTo, sc);
+            if (backgroundRegion != null) {
+                var background = batch.Add(texture, pos, backgroundRegion, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
+                items?.Add(background);
+            }
             if (r1 != Rectangle.Empty) {
                 var o1 = batch.Add(texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
                 items?.Add(o1);
@@ -150,10 +153,10 @@ namespace MLEM.Graphics {
             var down = connectsTo(0, 1);
             var left = connectsTo(-1, 0);
             var right = connectsTo(1, 0);
-            var xUl = up && left ? connectsTo(-1, -1) ? -1 : 13 : left ? 1 : up ? 9 : 5;
-            var xUr = up && right ? connectsTo(1, -1) ? -1 : 14 : right ? 2 : up ? 10 : 6;
-            var xDl = down && left ? connectsTo(-1, 1) ? -1 : 15 : left ? 3 : down ? 11 : 7;
-            var xDr = down && right ? connectsTo(1, 1) ? -1 : 16 : right ? 4 : down ? 12 : 8;
+            var xUl = up && left ? connectsTo(-1, -1) ? -1 : 12 : left ? 0 : up ? 8 : 4;
+            var xUr = up && right ? connectsTo(1, -1) ? -1 : 13 : right ? 1 : up ? 9 : 5;
+            var xDl = down && left ? connectsTo(-1, 1) ? -1 : 14 : left ? 2 : down ? 10 : 6;
+            var xDr = down && right ? connectsTo(1, 1) ? -1 : 15 : right ? 3 : down ? 11 : 7;
             var (w, h) = textureRegion.Size;
             return (
                 xUl < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xUl * w, textureRegion.Y, w, h),
