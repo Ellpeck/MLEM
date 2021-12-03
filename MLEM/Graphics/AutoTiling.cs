@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Textures;
 
 namespace MLEM.Graphics {
     /// <summary>
@@ -25,32 +26,31 @@ namespace MLEM.Graphics {
         /// </summary>
         /// <param name="batch">The sprite batch to use for drawing.</param>
         /// <param name="pos">The position to draw at.</param>
-        /// <param name="texture">The texture to use for drawing.</param>
-        /// <param name="textureRegion">The location of the first texture region, as described in the summary.</param>
+        /// <param name="texture">The texture to use for drawing, with the area set to the first texture region, as described in the summary.</param>
         /// <param name="connectsTo">A function that determines whether two positions should connect.</param>
         /// <param name="color">The color to draw with.</param>
         /// <param name="origin">The origin to draw from.</param>
         /// <param name="scale">The scale to draw with.</param>
         /// <param name="layerDepth">The layer depth to draw with.</param>
-        public static void DrawAutoTile(SpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle textureRegion, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
+        public static void DrawAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion texture, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
-            var (p1, r1, p2, r2, p3, r3, p4, r4) = CalculateAutoTile(pos, textureRegion, connectsTo, sc);
-            batch.Draw(texture, p1, r1, color, 0, orig, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, p2, r2, color, 0, orig, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, p3, r3, color, 0, orig, sc, SpriteEffects.None, layerDepth);
-            batch.Draw(texture, p4, r4, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var (p1, r1, p2, r2, p3, r3, p4, r4) = CalculateAutoTile(pos, texture.Area, connectsTo, sc);
+            batch.Draw(texture.Texture, p1, r1, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture.Texture, p2, r2, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture.Texture, p3, r3, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            batch.Draw(texture.Texture, p4, r4, color, 0, orig, sc, SpriteEffects.None, layerDepth);
         }
 
         /// <inheritdoc cref="DrawAutoTile"/>
-        public static void AddAutoTile(StaticSpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle textureRegion, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
+        public static void AddAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion texture, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
-            var (p1, r1, p2, r2, p3, r3, p4, r4) = CalculateAutoTile(pos, textureRegion, connectsTo, sc);
-            var a1 = batch.Add(texture, p1, r1, color, 0, orig, sc, SpriteEffects.None, layerDepth);
-            var a2 = batch.Add(texture, p2, r2, color, 0, orig, sc, SpriteEffects.None, layerDepth);
-            var a3 = batch.Add(texture, p3, r3, color, 0, orig, sc, SpriteEffects.None, layerDepth);
-            var a4 = batch.Add(texture, p4, r4, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var (p1, r1, p2, r2, p3, r3, p4, r4) = CalculateAutoTile(pos, texture.Area, connectsTo, sc);
+            var a1 = batch.Add(texture.Texture, p1, r1, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var a2 = batch.Add(texture.Texture, p2, r2, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var a3 = batch.Add(texture.Texture, p3, r3, color, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var a4 = batch.Add(texture.Texture, p4, r4, color, 0, orig, sc, SpriteEffects.None, layerDepth);
             if (items != null) {
                 items.Add(a1);
                 items.Add(a2);
@@ -75,9 +75,8 @@ namespace MLEM.Graphics {
         /// </summary>
         /// <param name="batch">The sprite batch to use for drawing.</param>
         /// <param name="pos">The position to draw at.</param>
-        /// <param name="texture">The texture to use for drawing.</param>
-        /// <param name="backgroundRegion">The location of the background region, or null to skip drawing a background.</param>
-        /// <param name="overlayRegion">The location of the first overlay region, as described in the summary.</param>
+        /// <param name="backgroundTexture">The background region, or null to skip drawing a background.</param>
+        /// <param name="overlayTexture">The first overlay region, as described in the summary.</param>
         /// <param name="connectsTo">A function that determines whether two positions should connect.</param>
         /// <param name="backgroundColor">The color to draw the texture used for filling big areas with.</param>
         /// <param name="overlayColor">The color to draw border and corner textures with.</param>
@@ -85,47 +84,47 @@ namespace MLEM.Graphics {
         /// <param name="scale">The scale to draw with.</param>
         /// <param name="layerDepth">The layer depth to draw with.</param>
         /// <param name="overlayDepthOffset">An optional depth offset from <paramref name="layerDepth"/> that the overlay should be drawn with</param>
-        public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle? backgroundRegion, Rectangle overlayRegion, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
+        public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, TextureRegion overlayTexture, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayRegion, connectsTo, sc);
-            if (backgroundRegion != null)
-                batch.Draw(texture, pos, backgroundRegion, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
+            if (backgroundTexture != null)
+                batch.Draw(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
             if (r1 != Rectangle.Empty)
-                batch.Draw(texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                batch.Draw(overlayTexture.Texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
             if (r2 != Rectangle.Empty)
-                batch.Draw(texture, pos, r2, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                batch.Draw(overlayTexture.Texture, pos, r2, overlayColor, 0, orig, sc, SpriteEffects.None, od);
             if (r3 != Rectangle.Empty)
-                batch.Draw(texture, pos, r3, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                batch.Draw(overlayTexture.Texture, pos, r3, overlayColor, 0, orig, sc, SpriteEffects.None, od);
             if (r4 != Rectangle.Empty)
-                batch.Draw(texture, pos, r4, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                batch.Draw(overlayTexture.Texture, pos, r4, overlayColor, 0, orig, sc, SpriteEffects.None, od);
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile"/>
-        public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, Texture2D texture, Rectangle? backgroundRegion, Rectangle overlayRegion, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
+        public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, TextureRegion overlayTexture, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayRegion, connectsTo, sc);
-            if (backgroundRegion != null) {
-                var background = batch.Add(texture, pos, backgroundRegion, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
+            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
+            if (backgroundTexture != null) {
+                var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
                 items?.Add(background);
             }
             if (r1 != Rectangle.Empty) {
-                var o1 = batch.Add(texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                var o1 = batch.Add(overlayTexture.Texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
                 items?.Add(o1);
             }
             if (r2 != Rectangle.Empty) {
-                var o2 = batch.Add(texture, pos, r2, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                var o2 = batch.Add(overlayTexture.Texture, pos, r2, overlayColor, 0, orig, sc, SpriteEffects.None, od);
                 items?.Add(o2);
             }
             if (r3 != Rectangle.Empty) {
-                var o3 = batch.Add(texture, pos, r3, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                var o3 = batch.Add(overlayTexture.Texture, pos, r3, overlayColor, 0, orig, sc, SpriteEffects.None, od);
                 items?.Add(o3);
             }
             if (r4 != Rectangle.Empty) {
-                var o4 = batch.Add(texture, pos, r4, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                var o4 = batch.Add(overlayTexture.Texture, pos, r4, overlayColor, 0, orig, sc, SpriteEffects.None, od);
                 items?.Add(o4);
             }
         }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Graphics;
 using MLEM.Startup;
+using MLEM.Textures;
 
 namespace Demos {
     /// <summary>
@@ -59,12 +60,12 @@ namespace Demos {
                     }
 
                     // the texture region supplied to the AutoTiling method should only encompass the first filler tile's location and size
-                    AutoTiling.DrawAutoTile(this.SpriteBatch, new Vector2(x + 1, y + 1) * TileSize, this.texture, new Rectangle(0, 0, TileSize, TileSize), ConnectsTo, Color.White);
+                    AutoTiling.DrawAutoTile(this.SpriteBatch, new Vector2(x + 1, y + 1) * TileSize, new TextureRegion(this.texture, 0, 0, TileSize, TileSize), ConnectsTo, Color.White);
 
                     // when drawing extended auto-tiles, the same rules apply, but the source texture layout is different
-                    var background = new Rectangle(0, TileSize * 2, TileSize, TileSize);
-                    var overlay = background.OffsetCopy(new Point(TileSize, 0));
-                    AutoTiling.DrawExtendedAutoTile(this.SpriteBatch, new Vector2(x + 8, y + 1) * TileSize, this.texture, background, overlay, ConnectsTo, Color.White, Color.White);
+                    var background = new TextureRegion(this.texture, 0, TileSize * 2, TileSize, TileSize);
+                    var overlay = new TextureRegion(this.texture, background.Area.OffsetCopy(new Point(TileSize, 0)));
+                    AutoTiling.DrawExtendedAutoTile(this.SpriteBatch, new Vector2(x + 8, y + 1) * TileSize, background, overlay, ConnectsTo, Color.White, Color.White);
                 }
             }
             this.SpriteBatch.End();
