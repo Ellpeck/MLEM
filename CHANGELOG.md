@@ -67,6 +67,9 @@ Improvements
 - **Use TitleContainer for opening streams where possible**
 - Set GraphicsResource Name when loading assets using RawContentManager
 
+Removals
+- Marked features related to Lidgren.Network as obsolete
+
 ## 5.1.0
 ### MLEM
 Additions

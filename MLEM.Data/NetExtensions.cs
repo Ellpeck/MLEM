@@ -19,6 +19,7 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="buffer">The buffer to write to</param>
         /// <param name="vector">The vector to write</param>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static void Write(this NetBuffer buffer, Vector2 vector) {
             buffer.Write(vector.X);
             buffer.Write(vector.Y);
@@ -29,6 +30,7 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="buffer">The buffer to read from</param>
         /// <returns>The read vector</returns>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static Vector2 ReadVector2(this NetBuffer buffer) {
             return new Vector2(buffer.ReadFloat(), buffer.ReadFloat());
         }
@@ -38,6 +40,7 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="buffer">The buffer to write to</param>
         /// <param name="guid">The guid to write</param>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static void Write(this NetBuffer buffer, Guid guid) {
             buffer.Write(guid.ToByteArray());
         }
@@ -47,6 +50,7 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="buffer">The buffer to read from</param>
         /// <returns>The read guid</returns>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static Guid ReadGuid(this NetBuffer buffer) {
             return new Guid(buffer.ReadBytes(16));
         }
@@ -56,6 +60,7 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="buffer">The buffer to write to</param>
         /// <param name="direction">The direction to write</param>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static void Write(this NetBuffer buffer, Direction2 direction) {
             buffer.Write((short) direction);
         }
@@ -65,6 +70,7 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="buffer">The buffer to read from</param>
         /// <returns>The read direction</returns>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static Direction2 ReadDirection(this NetBuffer buffer) {
             return (Direction2) buffer.ReadInt16();
         }
@@ -76,6 +82,7 @@ namespace MLEM.Data {
         /// <param name="obj">The object to write</param>
         /// <param name="serializer">The JSON serializer to use</param>
         /// <typeparam name="T">The type of object written</typeparam>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static void WriteObject<T>(this NetBuffer buffer, T obj, JsonSerializer serializer) {
             if (EqualityComparer<T>.Default.Equals(obj, default)) {
                 buffer.Write(0);
@@ -97,6 +104,7 @@ namespace MLEM.Data {
         /// <param name="serializer">The JSON serializer to use</param>
         /// <typeparam name="T">The type of object read</typeparam>
         /// <returns>The read object</returns>
+        [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
         public static T ReadObject<T>(this NetBuffer buffer, JsonSerializer serializer) {
             var length = buffer.ReadInt32();
             if (length <= 0)

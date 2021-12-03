@@ -10,6 +10,7 @@ namespace MLEM.Data {
     /// It can be used both for serialization of outgoing packets, and deserialization of incoming packets.
     /// Before serializing and deserializing an object, each of the object's fields has to have a handler. New handlers can be added using <see cref="AddHandler{T}(System.Action{Lidgren.Network.NetBuffer,T},System.Func{Lidgren.Network.NetBuffer,T})"/> or <see cref="AddHandler{T}(Newtonsoft.Json.JsonSerializer)"/>.
     /// </summary>
+    [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
     public class NetBufferSerializer {
 
         private readonly Dictionary<Type, Action<NetBuffer, object>> writeFunctions = new Dictionary<Type, Action<NetBuffer, object>>();
