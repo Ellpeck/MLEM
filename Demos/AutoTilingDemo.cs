@@ -61,7 +61,7 @@ namespace Demos {
                     AutoTiling.DrawAutoTile(this.SpriteBatch, new Vector2(x + 1, y + 1) * TileSize, this.texture, new Rectangle(0, 0, TileSize, TileSize), ConnectsTo, Color.White);
 
                     // when drawing extended auto-tiles, the same rules apply, but the source texture layout is different
-                    AutoTiling.DrawExtendedAutoTile(this.SpriteBatch, new Vector2(x + 8, y + 1) * TileSize, this.texture, new Rectangle(0, TileSize * 2, TileSize, TileSize), ConnectsTo, Color.White);
+                    AutoTiling.DrawExtendedAutoTile(this.SpriteBatch, new Vector2(x + 8, y + 1) * TileSize, this.texture, new Rectangle(0, TileSize * 2, TileSize, TileSize), ConnectsTo, Color.White, Color.White);
                 }
             }
             this.SpriteBatch.End();
