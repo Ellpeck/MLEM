@@ -241,8 +241,15 @@ namespace MLEM.Ui.Elements {
         /// Set this field to true to cause this element's final display area to never exceed that of its <see cref="Parent"/>.
         /// If the resulting area is too large, the size of this element is shrunk to fit the target area.
         /// This can be useful if an element should fill the remaining area of a parent exactly.
+        /// When setting this value after this element has already been added to a ui, <see cref="SetAreaDirty"/> should be called.
         /// </summary>
         public bool PreventParentSpill;
+        /// <summary>
+        /// Set this field to true to cause this element's final display ever to never overlap with any of its siblings (<see cref="GetSiblings"/>).
+        /// If the resulting area is too large, the size of this element is shrunk to best accomodate for the areas of its siblings.
+        /// When setting this value after this element has already been added to a ui, <see cref="SetAreaDirty"/> should be called.
+        /// </summary>
+        public bool PreventSiblingSpill;
         /// <summary>
         /// The transparency (alpha value) that this element is rendered with.
         /// Note that, when <see cref="Draw"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
@@ -332,6 +339,10 @@ namespace MLEM.Ui.Elements {
         /// Event that is called when this element's <see cref="DisplayArea"/> is changed.
         /// </summary>
         public GenericCallback OnAreaUpdated;
+        /// <summary>
+        /// Event that is called when this element's area is marked as dirty using <see cref="SetAreaDirty"/>.
+        /// </summary>
+        public GenericCallback OnAreaDirty;
         /// <summary>
         /// Event that is called when the element that is currently being moused changes within the ui system.
         /// Note that the event fired doesn't necessarily correlate to this specific element.
@@ -516,8 +527,17 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public void SetAreaDirty() {
             this.areaDirty = true;
-            if (this.Parent != null && (this.Anchor >= Anchor.AutoLeft || this.Parent.SetWidthBasedOnChildren || this.Parent.SetHeightBasedOnChildren))
-                this.Parent.SetAreaDirty();
+            if (this.Parent != null) {
+                // set parent dirty if the parent's layout depends on our area
+                if (this.Anchor >= Anchor.AutoLeft || this.Parent.SetWidthBasedOnChildren || this.Parent.SetHeightBasedOnChildren)
+                    this.Parent.SetAreaDirty();
+                // set siblings dirty that depend on our area
+                foreach (var sibling in this.GetSiblings()) {
+                    if (sibling.PreventSiblingSpill)
+                        sibling.SetAreaDirty();
+                }
+            }
+            this.System?.InvokeOnElementAreaDirty(this);
         }
 
         /// <summary>
@@ -642,6 +662,30 @@ namespace MLEM.Ui.Elements {
                         newSize.X = parentArea.Right - pos.X;
                     if (pos.Y + newSize.Y > parentArea.Bottom)
                         newSize.Y = parentArea.Bottom - pos.Y;
+                }
+
+                if (this.PreventSiblingSpill) {
+                    foreach (var sibling in this.GetSiblings(e => !e.IsHidden)) {
+                        var leftIntersect = sibling.Area.Right - pos.X;
+                        var rightIntersect = pos.X + newSize.X - sibling.Area.Left;
+                        var bottomIntersect = sibling.Area.Bottom - pos.Y;
+                        var topIntersect = pos.Y + newSize.Y - sibling.Area.Top;
+                        if (leftIntersect > 0 && rightIntersect > 0 && bottomIntersect > 0 && topIntersect > 0) {
+                            if (rightIntersect + leftIntersect < topIntersect + bottomIntersect) {
+                                if (rightIntersect > leftIntersect) {
+                                    pos.X = Math.Max(pos.X, sibling.Area.Right);
+                                } else {
+                                    newSize.X = Math.Min(pos.X + newSize.X, sibling.Area.Left) - pos.X;
+                                }
+                            } else {
+                                if (topIntersect > bottomIntersect) {
+                                    pos.Y = Math.Max(pos.Y, sibling.Area.Bottom);
+                                } else {
+                                    newSize.Y = Math.Min(pos.Y + newSize.Y, sibling.Area.Top) - pos.Y;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 this.area = new RectangleF(pos, newSize);

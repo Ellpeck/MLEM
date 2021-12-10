@@ -152,6 +152,10 @@ namespace MLEM.Ui {
         /// </summary>
         public event Element.GenericCallback OnElementAreaUpdated;
         /// <summary>
+        /// Event that is invoked when an element's area is marked as dirty using <see cref="Element.SetAreaDirty"/>.
+        /// </summary>
+        public event Element.GenericCallback OnElementAreaDirty;
+        /// <summary>
         /// Event that is invoked when the <see cref="Element"/> that the mouse is currently over changes
         /// </summary>
         public event Element.GenericCallback OnMousedElementChanged;
@@ -193,6 +197,7 @@ namespace MLEM.Ui {
             this.OnElementTouchEnter += e => e.OnTouchEnter?.Invoke(e);
             this.OnElementTouchExit += e => e.OnTouchExit?.Invoke(e);
             this.OnElementAreaUpdated += e => e.OnAreaUpdated?.Invoke(e);
+            this.OnElementAreaDirty += e => e.OnAreaDirty?.Invoke(e);
             this.OnMousedElementChanged += e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged += e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged += e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
@@ -357,6 +362,7 @@ namespace MLEM.Ui {
         internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) => this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha);
         internal void InvokeOnElementUpdated(Element element, GameTime time) => this.OnElementUpdated?.Invoke(element, time);
         internal void InvokeOnElementAreaUpdated(Element element) => this.OnElementAreaUpdated?.Invoke(element);
+        internal void InvokeOnElementAreaDirty(Element element) => this.OnElementAreaDirty?.Invoke(element);
         internal void InvokeOnElementPressed(Element element) => this.OnElementPressed?.Invoke(element);
         internal void InvokeOnElementSecondaryPressed(Element element) => this.OnElementSecondaryPressed?.Invoke(element);
         internal void InvokeOnElementSelected(Element element) => this.OnElementSelected?.Invoke(element);
