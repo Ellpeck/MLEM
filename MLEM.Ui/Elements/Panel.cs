@@ -104,12 +104,15 @@ namespace MLEM.Ui.Elements {
                         throw new NotSupportedException($"A panel that scrolls overflow cannot contain another panel that scrolls overflow ({child})");
                 }
             }
-
             base.ForceUpdateArea();
+            this.SetScrollBarStyle();
+        }
 
+        /// <inheritdoc />
+        public override void SetAreaAndUpdateChildren(RectangleF area) {
+            base.SetAreaAndUpdateChildren(area);
             this.ScrollChildren();
             this.ScrollSetup();
-            this.SetScrollBarStyle();
         }
 
         private void ScrollChildren() {

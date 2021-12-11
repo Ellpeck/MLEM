@@ -646,7 +646,7 @@ namespace MLEM.Ui.Elements {
                         newSize.Y = parentArea.Bottom - pos.Y;
                 }
 
-                this.SetAreaDirectlyAndUpdateChildren(new RectangleF(pos, newSize));
+                this.SetAreaAndUpdateChildren(new RectangleF(pos, newSize));
 
                 if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
                     Element foundChild = null;
@@ -701,7 +701,7 @@ namespace MLEM.Ui.Elements {
         /// Note that this method does not take into account any auto-sizing, anchoring or positioning, and so it should be used sparingly, if at all.
         /// </summary>
         /// <seealso cref="ForceUpdateArea"/>
-        public void SetAreaDirectlyAndUpdateChildren(RectangleF area) {
+        public virtual void SetAreaAndUpdateChildren(RectangleF area) {
             this.area = area;
             this.System.InvokeOnElementAreaUpdated(this);
             foreach (var child in this.Children)

@@ -20,13 +20,13 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void ForceUpdateArea() {
-            base.ForceUpdateArea();
+        public override void SetAreaAndUpdateChildren(RectangleF area) {
+            base.SetAreaAndUpdateChildren(area);
             // we squish children in order of priority, since auto-anchoring is based on addition order
             for (var i = 0; i < this.SortedChildren.Count; i++) {
                 var child = this.SortedChildren[i];
                 if (SquishChild(child, out var squished))
-                    child.SetAreaDirectlyAndUpdateChildren(squished);
+                    child.SetAreaAndUpdateChildren(squished);
             }
         }
 
