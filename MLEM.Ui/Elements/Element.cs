@@ -176,7 +176,7 @@ namespace MLEM.Ui.Elements {
         }
         /// <summary>
         /// The priority of this element as part of its <see cref="Parent"/> element.
-        /// A higher priority means the element will be drawn first and, if auto-anchoring is used, anchored higher up within its parent.
+        /// A higher priority means the element will be drawn first, but not anchored higher up if auto-anchoring is used.
         /// </summary>
         public int Priority {
             get => this.priority;
@@ -256,6 +256,10 @@ namespace MLEM.Ui.Elements {
         /// Stores whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// </summary>
         public bool IsSelected { get; protected set; }
+        /// <summary>
+        /// Returns whether this element's <see cref="SetAreaDirty"/> method has been recently called and its area has not been updated since then using <see cref="UpdateAreaIfDirty"/> or <see cref="ForceUpdateArea"/>.
+        /// </summary>
+        public bool AreaDirty { get; private set; }
 
         /// <summary>
         /// A style property that contains the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
@@ -398,7 +402,6 @@ namespace MLEM.Ui.Elements {
         private Vector2 size;
         private Vector2 offset;
         private RectangleF area;
-        private bool areaDirty;
         private bool isHidden;
         private int priority;
         private UiStyle style;
@@ -515,17 +518,16 @@ namespace MLEM.Ui.Elements {
         /// If this element is auto-anchored or its parent automatically changes its size based on its children, this element's parent's area is also marked dirty.
         /// </summary>
         public void SetAreaDirty() {
-            this.areaDirty = true;
-            if (this.Parent != null && (this.Anchor >= Anchor.AutoLeft || this.Parent.SetWidthBasedOnChildren || this.Parent.SetHeightBasedOnChildren))
-                this.Parent.SetAreaDirty();
+            this.AreaDirty = true;
+            this.Parent?.OnChildAreaDirty(this);
         }
 
         /// <summary>
-        /// Updates this element's <see cref="Area"/> and all of its <see cref="Children"/> by calling <see cref="ForceUpdateArea"/> if <see cref="areaDirty"/> is true.
+        /// Updates this element's <see cref="Area"/> and all of its <see cref="Children"/> by calling <see cref="ForceUpdateArea"/> if <see cref="AreaDirty"/> is true.
         /// </summary>
-        /// <returns>Whether <see cref="areaDirty"/> was true and <see cref="ForceUpdateArea"/> was called</returns>
+        /// <returns>Whether <see cref="AreaDirty"/> was true and <see cref="ForceUpdateArea"/> was called</returns>
         public bool UpdateAreaIfDirty() {
-            if (this.areaDirty) {
+            if (this.AreaDirty) {
                 this.ForceUpdateArea();
                 return true;
             }
@@ -537,7 +539,7 @@ namespace MLEM.Ui.Elements {
         /// This method also updates all of this element's <see cref="Children"/>'s areas.
         /// </summary>
         public virtual void ForceUpdateArea() {
-            this.areaDirty = false;
+            this.AreaDirty = false;
             if (this.IsHidden)
                 return;
             // if the parent's area is dirty, it would get updated anyway when querying its ChildPaddedArea,
@@ -644,11 +646,7 @@ namespace MLEM.Ui.Elements {
                         newSize.Y = parentArea.Bottom - pos.Y;
                 }
 
-                this.area = new RectangleF(pos, newSize);
-                this.System.InvokeOnElementAreaUpdated(this);
-
-                foreach (var child in this.Children)
-                    child.ForceUpdateArea();
+                this.SetAreaDirectlyAndUpdateChildren(new RectangleF(pos, newSize));
 
                 if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
                     Element foundChild = null;
@@ -695,6 +693,19 @@ namespace MLEM.Ui.Elements {
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets this element's <see cref="Area"/> to the given <see cref="RectangleF"/> and invokes the <see cref="UiSystem.OnElementAreaUpdated"/> event.
+        /// This method also updates all of this element's <see cref="Children"/>'s areas.
+        /// Note that this method does not take into account any auto-sizing, anchoring or positioning, and so it should be used sparingly, if at all.
+        /// </summary>
+        /// <seealso cref="ForceUpdateArea"/>
+        public void SetAreaDirectlyAndUpdateChildren(RectangleF area) {
+            this.area = area;
+            this.System.InvokeOnElementAreaUpdated(this);
+            foreach (var child in this.Children)
+                child.ForceUpdateArea();
         }
 
         /// <summary>
@@ -1022,6 +1033,16 @@ namespace MLEM.Ui.Elements {
             this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
             this.ActionSound.SetFromStyle(style.ActionSound);
             this.SecondActionSound.SetFromStyle(style.ActionSound);
+        }
+
+        /// <summary>
+        /// A method that gets called by this element's <see cref="Children"/> when their <see cref="SetAreaDirty"/> methods get called.
+        /// Note that the element's area might already be dirty, which will not stop this method from being called.
+        /// </summary>
+        /// <param name="child">The child whose area is being set dirty</param>
+        protected virtual void OnChildAreaDirty(Element child) {
+            if (child.Anchor >= Anchor.AutoLeft || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
+                this.SetAreaDirty();
         }
 
         /// <summary>

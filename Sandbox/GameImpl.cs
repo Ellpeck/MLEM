@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
-using MLEM.Extended.Extensions;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
@@ -22,9 +21,7 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
-using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using Group = MLEM.Ui.Elements.Group;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {
@@ -216,7 +213,7 @@ namespace Sandbox {
             invalidPanel.AddChild(new VerticalSpace(1));
             this.UiSystem.Add("Invalid", invalidPanel);*/
 
-            var loadGroup = new Group(Anchor.TopLeft, Vector2.One, false);
+            /*var loadGroup = new Group(Anchor.TopLeft, Vector2.One, false);
             var loadPanel = loadGroup.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, false) {
                 ChildPadding = new Padding(5, 10, 5, 5)
             });
@@ -240,7 +237,36 @@ namespace Sandbox {
                 }
             };
             par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
-            this.UiSystem.Add("Load", loadGroup);
+            this.UiSystem.Add("Load", loadGroup);*/
+
+            var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
+            var squishingGroup = spillPanel.AddChild(new SquishingGroup(Anchor.TopLeft, Vector2.One));
+            squishingGroup.AddChild(new Button(Anchor.TopLeft, new Vector2(30), "TL") {
+                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D1),
+                Priority = 10
+            }).SetData("Ref", "TL");
+            squishingGroup.AddChild(new Button(Anchor.TopRight, new Vector2(30), "TR") {
+                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D2),
+                Priority = 20
+            }).SetData("Ref", "TR");
+            squishingGroup.AddChild(new Button(Anchor.BottomLeft, new Vector2(30), "BL") {
+                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D3),
+                Priority = 30
+            }).SetData("Ref", "BL");
+            squishingGroup.AddChild(new Button(Anchor.BottomRight, new Vector2(30), "BR") {
+                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D4),
+                Priority = 40
+            }).SetData("Ref", "BR");
+            squishingGroup.AddChild(new Button(Anchor.Center, Vector2.Zero, "0") {
+                PositionOffset = new Vector2(-10, -5),
+                Size = new Vector2(60, 55),
+                OnPressed = e => {
+                    e.Priority = 100 - e.Priority;
+                    ((Button) e).Text.Text = e.Priority.ToString();
+                    e.SetAreaDirty();
+                }
+            }).SetData("Ref", "Main");
+            this.UiSystem.Add("SpillTest", spillPanel);
         }
 
         protected override void DoUpdate(GameTime gameTime) {
@@ -253,10 +279,10 @@ namespace Sandbox {
                 this.camera.Zoom(0.1F * Math.Sign(delta), this.InputHandler.MousePosition.ToVector2());
             }
 
-            if (Input.InputsDown.Length > 0)
+            /*if (Input.InputsDown.Length > 0)
                 Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));
             if (Input.InputsPressed.Length > 0)
-                Console.WriteLine("Pressed: " + string.Join(", ", Input.InputsPressed));
+                Console.WriteLine("Pressed: " + string.Join(", ", Input.InputsPressed));*/
         }
 
         protected override void DoDraw(GameTime gameTime) {
