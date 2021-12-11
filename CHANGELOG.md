@@ -37,7 +37,6 @@ Additions
 - Allow specifying a maximum amount of characters for a TextField
 - Added a multiline editing mode to TextField
 - Added a formatting code to allow for inline font changes
-- Added PreventSiblingSpill to Element
 
 Improvements
 - **Made Image ScaleToImage take ui scale into account**

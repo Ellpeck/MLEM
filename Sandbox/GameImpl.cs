@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
+using MLEM.Extended.Extensions;
 using MLEM.Extended.Font;
 using MLEM.Extended.Tiled;
 using MLEM.Extensions;
@@ -21,7 +22,9 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
+using Group = MLEM.Ui.Elements.Group;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {
@@ -213,7 +216,7 @@ namespace Sandbox {
             invalidPanel.AddChild(new VerticalSpace(1));
             this.UiSystem.Add("Invalid", invalidPanel);*/
 
-            /*var loadGroup = new Group(Anchor.TopLeft, Vector2.One, false);
+            var loadGroup = new Group(Anchor.TopLeft, Vector2.One, false);
             var loadPanel = loadGroup.AddChild(new Panel(Anchor.Center, new Vector2(150, 150), Vector2.Zero, false, true, false) {
                 ChildPadding = new Padding(5, 10, 5, 5)
             });
@@ -237,30 +240,7 @@ namespace Sandbox {
                 }
             };
             par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
-            this.UiSystem.Add("Load", loadGroup);*/
-
-            var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
-            spillPanel.AddChild(new Button(Anchor.TopLeft, new Vector2(30), "TL") {
-                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D1)
-            });
-            spillPanel.AddChild(new Button(Anchor.TopRight, new Vector2(30), "TR") {
-                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D2)
-            });
-            spillPanel.AddChild(new Button(Anchor.BottomLeft, new Vector2(30), "BL") {
-                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D3)
-            });
-            spillPanel.AddChild(new Button(Anchor.BottomRight, new Vector2(30), "BR") {
-                OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D4)
-            });
-            spillPanel.AddChild(new Button(Anchor.Center, Vector2.Zero, "Spill Test") {
-                PositionOffset = new Vector2(-10, -5),
-                Size = new Vector2(60, 55),
-                OnPressed = e => {
-                    e.PreventSiblingSpill = !e.PreventSiblingSpill;
-                    e.SetAreaDirty();
-                }
-            });
-            this.UiSystem.Add("SpillTest", spillPanel);
+            this.UiSystem.Add("Load", loadGroup);
         }
 
         protected override void DoUpdate(GameTime gameTime) {
