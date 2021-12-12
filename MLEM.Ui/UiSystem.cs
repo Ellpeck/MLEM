@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -20,8 +21,6 @@ namespace MLEM.Ui {
     /// </summary>
     public class UiSystem : GameComponent {
 
-        private readonly List<RootElement> rootElements = new List<RootElement>();
-
         /// <summary>
         /// The viewport that this ui system is rendering inside of.
         /// This is automatically updated during <see cref="GameWindow.ClientSizeChanged"/>
@@ -36,7 +35,6 @@ namespace MLEM.Ui {
         /// If <see cref="AutoScaleWithScreen"/> is true, this is used as the screen size that uses the default <see cref="GlobalScale"/>
         /// </summary>
         public Point AutoScaleReferenceSize;
-        private float globalScale = 1;
         /// <summary>
         /// The global rendering scale of this ui system and all of its child elements.
         /// If <see cref="AutoScaleWithScreen"/> is true, this scale will be different based on the window size.
@@ -53,8 +51,6 @@ namespace MLEM.Ui {
                     root.Element.ForceUpdateArea();
             }
         }
-
-        private UiStyle style;
         /// <summary>
         /// The style options that this ui system and all of its elements use.
         /// To set the default, untextured style, use <see cref="UntexturedStyle"/>.
@@ -102,6 +98,11 @@ namespace MLEM.Ui {
         /// The ui controls are also the place to change bindings for controller and keyboard input.
         /// </summary>
         public UiControls Controls;
+        /// <summary>
+        /// The update and rendering statistics to be used for runtime debugging and profiling.
+        /// The metrics are reset accordingly every frame: <see cref="UiMetrics.ResetUpdates"/> is called at the start of <see cref="Update"/>, and <see cref="UiMetrics.ResetDraws"/> is called at the start of <see cref="DrawEarly"/>, or at the start of <see cref="Draw"/> if <see cref="DrawEarly"/> was not called.
+        /// </summary>
+        public UiMetrics Metrics;
 
         /// <summary>
         /// Event that is invoked after an <see cref="Element"/> is drawn, but before its children are drawn.
@@ -172,6 +173,13 @@ namespace MLEM.Ui {
         /// </summary>
         public event RootCallback OnRootRemoved;
 
+        internal readonly Stopwatch Stopwatch = new Stopwatch();
+
+        private readonly List<RootElement> rootElements = new List<RootElement>();
+        private float globalScale = 1;
+        private bool drewEarly;
+        private UiStyle style;
+
         /// <summary>
         /// Creates a new ui system with the given settings.
         /// </summary>
@@ -232,11 +240,15 @@ namespace MLEM.Ui {
         /// </summary>
         /// <param name="time">The game's time</param>
         public override void Update(GameTime time) {
-            this.Controls.Update();
+            this.Metrics.ResetUpdates();
+            this.Stopwatch.Restart();
 
-            for (var i = this.rootElements.Count - 1; i >= 0; i--) {
+            this.Controls.Update();
+            for (var i = this.rootElements.Count - 1; i >= 0; i--)
                 this.rootElements[i].Element.Update(time);
-            }
+
+            this.Stopwatch.Stop();
+            this.Metrics.UpdateTime += this.Stopwatch.Elapsed;
         }
 
         /// <summary>
@@ -246,10 +258,17 @@ namespace MLEM.Ui {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
         public void DrawEarly(GameTime time, SpriteBatch batch) {
+            this.Metrics.ResetDraws();
+            this.Stopwatch.Restart();
+
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
                     root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
             }
+
+            this.Stopwatch.Stop();
+            this.Metrics.DrawTime += this.Stopwatch.Elapsed;
+            this.drewEarly = true;
         }
 
         /// <summary>
@@ -259,6 +278,10 @@ namespace MLEM.Ui {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
         public void Draw(GameTime time, SpriteBatch batch) {
+            if (!this.drewEarly)
+                this.Metrics.ResetDraws();
+            this.Stopwatch.Restart();
+
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
                     continue;
@@ -267,6 +290,10 @@ namespace MLEM.Ui {
                 root.Element.DrawTransformed(time, batch, alpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
                 batch.End();
             }
+
+            this.Stopwatch.Stop();
+            this.Metrics.DrawTime += this.Stopwatch.Elapsed;
+            this.drewEarly = false;
         }
 
         /// <summary>

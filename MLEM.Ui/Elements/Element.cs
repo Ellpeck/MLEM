@@ -546,6 +546,7 @@ namespace MLEM.Ui.Elements {
             // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead
             if (this.Parent != null && this.Parent.UpdateAreaIfDirty())
                 return;
+            this.System.Stopwatch.Restart();
 
             var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
@@ -554,6 +555,10 @@ namespace MLEM.Ui.Elements {
 
             var recursion = 0;
             UpdateDisplayArea(actualSize);
+
+            this.System.Stopwatch.Stop();
+            this.System.Metrics.ForceAreaUpdateTime += this.System.Stopwatch.Elapsed;
+            this.System.Metrics.ForceAreaUpdates++;
 
             void UpdateDisplayArea(Vector2 newSize) {
                 var pos = new Vector2();
@@ -706,6 +711,7 @@ namespace MLEM.Ui.Elements {
             this.System.InvokeOnElementAreaUpdated(this);
             foreach (var child in this.Children)
                 child.ForceUpdateArea();
+            this.System.Metrics.ActualAreaUpdates++;
         }
 
         /// <summary>
@@ -885,6 +891,8 @@ namespace MLEM.Ui.Elements {
             foreach (var child in this.GetRelevantChildren())
                 if (child.System != null)
                     child.Update(time);
+
+            this.System.Metrics.Updates++;
         }
 
         /// <summary>
@@ -914,6 +922,7 @@ namespace MLEM.Ui.Elements {
             }
             // draw content in custom begin call
             this.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
+            this.System.Metrics.Draws++;
             if (customDraw) {
                 // end our draw
                 batch.End();

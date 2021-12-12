@@ -18,6 +18,8 @@ namespace Demos {
         private double fpsTime;
         private int lastFps;
         private int fpsCounter;
+        private UiMetrics cumulativeMetrics;
+        private TimeSpan secondCounter;
 
         static GameImpl() {
             Demos.Add("Ui", ("An in-depth demonstration of the MLEM.Ui package and its abilities", game => new UiDemo(game)));
@@ -29,6 +31,16 @@ namespace Demos {
 
         public GameImpl() {
             this.IsMouseVisible = true;
+            // print out ui metrics every second
+            this.OnDraw += (g, time) => {
+                this.cumulativeMetrics += this.UiSystem.Metrics;
+                this.secondCounter += time.ElapsedGameTime;
+                if (this.secondCounter.TotalSeconds >= 1) {
+                    this.secondCounter -= TimeSpan.FromSeconds(1);
+                    Console.WriteLine($"Metrics/s: {this.cumulativeMetrics}");
+                    this.cumulativeMetrics = new UiMetrics();
+                }
+            };
         }
 
         protected override void LoadContent() {

@@ -38,6 +38,7 @@ Additions
 - Added a multiline editing mode to TextField
 - Added a formatting code to allow for inline font changes
 - Added a SquishingGroup element
+- Added UiMetrics
 
 Improvements
 - **Made Image ScaleToImage take ui scale into account**
