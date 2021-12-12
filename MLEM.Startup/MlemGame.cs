@@ -38,15 +38,23 @@ namespace MLEM.Startup {
         public UiSystem UiSystem { get; protected set; }
 
         /// <summary>
-        /// An event that is invoked in <see cref="LoadContent"/>
+        /// An event that is invoked in <see cref="LoadContent"/>.
         /// </summary>
         public event GenericCallback OnLoadContent;
         /// <summary>
-        /// An event that is invoked in <see cref="Update"/>
+        /// An event that is invoked in <see cref="Update"/>, before <see cref="DoUpdate"/> is called.
+        /// </summary>
+        public event TimeCallback PreUpdate;
+        /// <summary>
+        /// An event that is invoked in <see cref="Update"/>, after <see cref="DoUpdate"/> is called.
         /// </summary>
         public event TimeCallback OnUpdate;
         /// <summary>
-        /// An event that is invoked in <see cref="Draw"/>
+        /// An event that is invoked in <see cref="Draw"/>, before <see cref="DoDraw"/> is called.
+        /// </summary>
+        public event TimeCallback PreDraw;
+        /// <summary>
+        /// An event that is invoked in <see cref="Draw"/>, after <see cref="DoDraw"/> is called.
         /// </summary>
         public event TimeCallback OnDraw;
 
@@ -74,7 +82,7 @@ namespace MLEM.Startup {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.InputHandler = new InputHandler(this);
             this.Components.Add(this.InputHandler);
-            this.UiSystem = new UiSystem(this, new UntexturedStyle(this.SpriteBatch), this.InputHandler);
+            this.UiSystem = new UiSystem(this, this.InitializeDefaultUiStyle(this.SpriteBatch), this.InputHandler);
             this.Components.Add(this.UiSystem);
             this.OnLoadContent?.Invoke(this);
         }
@@ -82,11 +90,15 @@ namespace MLEM.Startup {
         /// <summary>
         /// Called when the game should update.
         /// Updates the <see cref="T:Microsoft.Xna.Framework.GameComponent" /> instances attached to this game.
-        /// Override this to update your game.
+        /// Override <see cref="DoUpdate"/> to update your game.
         /// </summary>
         /// <param name="gameTime">The elapsed time since the last call to <see cref="M:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)" />.</param>
         protected sealed override void Update(GameTime gameTime) {
+            this.PreUpdate?.Invoke(this, gameTime);
+            CoroutineHandler.RaiseEvent(CoroutineEvents.PreUpdate);
+
             this.DoUpdate(gameTime);
+
             this.OnUpdate?.Invoke(this, gameTime);
             CoroutineHandler.Tick(gameTime.ElapsedGameTime.TotalSeconds);
             CoroutineHandler.RaiseEvent(CoroutineEvents.Update);
@@ -95,13 +107,17 @@ namespace MLEM.Startup {
         /// <summary>
         /// Called when the game should draw a frame.
         /// Draws the <see cref="T:Microsoft.Xna.Framework.DrawableGameComponent" /> instances attached to this game.
-        /// Override this to render your game.
+        /// Override <see cref="DoDraw"/> to render your game.
         /// </summary>
         /// <param name="gameTime">A <see cref="T:Microsoft.Xna.Framework.GameTime" /> instance containing the elapsed time since the last call to <see cref="M:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)" /> and the total time elapsed since the game started.</param>
         protected sealed override void Draw(GameTime gameTime) {
+            this.PreDraw?.Invoke(this, gameTime);
+            CoroutineHandler.RaiseEvent(CoroutineEvents.PreDraw);
+
             this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
+
             this.OnDraw?.Invoke(this, gameTime);
             CoroutineHandler.RaiseEvent(CoroutineEvents.Draw);
         }
@@ -122,6 +138,16 @@ namespace MLEM.Startup {
         /// <param name="gameTime">The game's time</param>
         protected virtual void DoUpdate(GameTime gameTime) {
             base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// This method is called in <see cref="LoadContent"/> when the <see cref="UiSystem"/> is initialized.
+        /// Override this method to easily modify or create a new default <see cref="UiStyle"/> for this game's <see cref="UiSystem"/>.
+        /// </summary>
+        /// <param name="batch">The sprite batch to use</param>
+        /// <returns>The <see cref="UiStyle"/> to use for this game's <see cref="UiSystem"/>.</returns>
+        protected virtual UiStyle InitializeDefaultUiStyle(SpriteBatch batch) {
+            return new UntexturedStyle(batch);
         }
 
         /// <summary>

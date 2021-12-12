@@ -72,6 +72,11 @@ Improvements
 Removals
 - Marked features related to Lidgren.Network as obsolete
 
+### MLEM.Startup
+Additions
+- Added virtual InitializeDefaultUiStyle to MlemGame
+- Added PreDraw and PreUpdate events and coroutine events
+
 ## 5.1.0
 ### MLEM
 Additions

@@ -49,16 +49,6 @@ namespace Demos {
             this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
             this.GraphicsDeviceManager.ApplyChanges();
             base.LoadContent();
-
-            var tex = LoadContent<Texture2D>("Textures/Test");
-            this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
-                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
-                TextScale = 0.1F,
-                PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
-                ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4),
-                ScrollBarBackground = new NinePatch(new TextureRegion(tex, 12, 0, 4, 8), 1, 1, 2, 2),
-                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(tex, 8, 0, 4, 8), 1, 1, 2, 2)
-            };
             this.UiSystem.AutoScaleReferenceSize = new Point(1280, 720);
             this.UiSystem.AutoScaleWithScreen = true;
             this.UiSystem.GlobalScale = 5;
@@ -95,6 +85,18 @@ namespace Demos {
             }
 
             ui.AddChild(new Paragraph(Anchor.TopLeft, 1, p => "FPS: " + this.lastFps));
+        }
+
+        protected override UiStyle InitializeDefaultUiStyle(SpriteBatch batch) {
+            var tex = LoadContent<Texture2D>("Textures/Test");
+            return new UntexturedStyle(this.SpriteBatch) {
+                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
+                TextScale = 0.1F,
+                PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
+                ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4),
+                ScrollBarBackground = new NinePatch(new TextureRegion(tex, 12, 0, 4, 8), 1, 1, 2, 2),
+                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(tex, 8, 0, 4, 8), 1, 1, 2, 2)
+            };
         }
 
         protected override void DoDraw(GameTime gameTime) {
