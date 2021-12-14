@@ -888,11 +888,13 @@ namespace MLEM.Ui.Elements {
         public virtual void Update(GameTime time) {
             this.System.InvokeOnElementUpdated(this, time);
 
-            foreach (var child in this.GetRelevantChildren())
+            foreach (var child in this.GetRelevantChildren()) {
                 if (child.System != null)
                     child.Update(time);
+            }
 
-            this.System.Metrics.Updates++;
+            if (this.System != null)
+                this.System.Metrics.Updates++;
         }
 
         /// <summary>
@@ -920,9 +922,12 @@ namespace MLEM.Ui.Elements {
                     batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, mat);
                 }
             }
+
             // draw content in custom begin call
             this.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
-            this.System.Metrics.Draws++;
+            if (this.System != null)
+                this.System.Metrics.Draws++;
+
             if (customDraw) {
                 // end our draw
                 batch.End();
