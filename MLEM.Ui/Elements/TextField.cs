@@ -211,7 +211,7 @@ namespace MLEM.Ui.Elements {
             this.InputRule = rule ?? DefaultRule;
             this.Multiline = multiline;
             if (font != null)
-                this.Font.Set(font);
+                this.Font = font;
             if (text != null)
                 this.SetText(text, true);
 

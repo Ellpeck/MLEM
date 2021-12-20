@@ -20,7 +20,14 @@ namespace MLEM.Ui.Elements {
         /// The font that this paragraph draws text with.
         /// To set its bold and italic font, use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.
         /// </summary>
-        public StyleProp<GenericFont> RegularFont;
+        public StyleProp<GenericFont> RegularFont {
+            get => this.regularFont;
+            set {
+                this.regularFont = value;
+                this.SetAreaDirty();
+                this.TokenizedText = null;
+            }
+        }
         /// <summary>
         /// The tokenized version of the <see cref="Text"/>
         /// </summary>
@@ -53,7 +60,6 @@ namespace MLEM.Ui.Elements {
                     this.text = value;
                     this.IsHidden = string.IsNullOrWhiteSpace(this.text);
                     this.SetAreaDirty();
-                    // force text to be re-tokenized
                     this.TokenizedText = null;
                 }
             }
@@ -96,6 +102,7 @@ namespace MLEM.Ui.Elements {
 
         private string text;
         private TextAlignment alignment;
+        private StyleProp<GenericFont> regularFont;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -150,7 +157,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.RegularFont.SetFromStyle(style.Font ?? throw new NotSupportedException("Paragraphs cannot use ui styles that don't have a font. Please supply a custom font by setting UiStyle.Font."));
+            this.RegularFont = this.RegularFont.CopyFromStyle(style.Font ?? throw new NotSupportedException("Paragraphs cannot use ui styles that don't have a font. Please supply a custom font by setting UiStyle.Font."));
             this.TextScale.SetFromStyle(style.TextScale);
             this.TextColor.SetFromStyle(style.TextColor);
         }

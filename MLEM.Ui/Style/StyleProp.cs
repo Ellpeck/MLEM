@@ -26,11 +26,12 @@ namespace MLEM.Ui.Style {
         }
 
         /// <summary>
-        /// Sets this style property's value and marks it as being set by a <see cref="UiStyle"/>.
-        /// This allows this property to be overridden by custom style settings using <see cref="Set"/>.
+        /// Sets this style property's value and marks it as being set by a <see cref="UiStyle"/> if it doesn't have a custom value yet.
+        /// This allows this property to be overridden by custom style settings using <see cref="StyleProp{T}(T)"/> or a higher <paramref name="priority"/>.
         /// </summary>
         /// <param name="value">The style to apply</param>
         /// <param name="priority">The priority that this style value has. Higher priority style values will override lower priority style values.</param>
+        ///<seealso cref="CopyFromStyle"/>
         public void SetFromStyle(T value, byte priority = 0) {
             if (priority >= this.lastSetPriority) {
                 this.Value = value;
@@ -39,13 +40,17 @@ namespace MLEM.Ui.Style {
         }
 
         /// <summary>
-        /// Sets this style property's value and marks it as being custom.
-        /// This causes <see cref="SetFromStyle"/> not to override the style value through a <see cref="UiStyle"/>.
+        /// Creates a copy of this style property and sets its value and marks it as being set by a <see cref="UiStyle"/> if it doesn't have a custom value yet.
+        /// This allows this property to be overridden by custom style settings using <see cref="StyleProp{T}(T)"/> or a higher <paramref name="priority"/>.
         /// </summary>
-        /// <param name="value"></param>
-        public void Set(T value) {
-            this.lastSetPriority = byte.MaxValue;
-            this.Value = value;
+        /// <param name="value">The style to apply</param>
+        /// <param name="priority">The priority that the style value has. Higher priority style values will override lower priority style values.</param>
+        /// <returns>The new style</returns>
+        /// <seealso cref="SetFromStyle"/>
+        public StyleProp<T> CopyFromStyle(T value, byte priority = 0) {
+            var ret = this;
+            ret.SetFromStyle(value, priority);
+            return ret;
         }
 
         /// <summary>
@@ -58,7 +63,7 @@ namespace MLEM.Ui.Style {
         }
 
         /// <summary>
-        /// Returns whether this style property has a value assigned to it using <see cref="SetFromStyle"/> or <see cref="Set"/>.
+        /// Returns whether this style property has a value assigned to it using <see cref="SetFromStyle"/> or <see cref="StyleProp{T}(T)"/>.
         /// </summary>
         /// <returns>Whether this style property has a value</returns>
         public bool HasValue() {

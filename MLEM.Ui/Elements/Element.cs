@@ -281,9 +281,14 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The child padding that this element has.
         /// The child padding moves any <see cref="Children"/> added to this element inwards by the given amount in each direction.
-        /// When setting this style after this element has already been added to a ui, <see cref="SetAreaDirty"/> should be called.
         /// </summary>
-        public StyleProp<Padding> ChildPadding;
+        public StyleProp<Padding> ChildPadding {
+            get => this.childPadding;
+            set {
+                this.childPadding = value;
+                this.SetAreaDirty();
+            }
+        }
 
         /// <summary>
         /// Event that is called after this element is drawn, but before its children are drawn
@@ -405,6 +410,7 @@ namespace MLEM.Ui.Elements {
         private bool isHidden;
         private int priority;
         private UiStyle style;
+        private StyleProp<Padding> childPadding;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.

@@ -211,8 +211,8 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.PanelTexture);
             this.StepPerScroll.SetFromStyle(style.PanelStepPerScroll);
             this.ScrollerSize.SetFromStyle(style.PanelScrollerSize);
-            this.ChildPadding.SetFromStyle(style.PanelChildPadding);
             this.ScrollBarOffset.SetFromStyle(style.PanelScrollBarOffset);
+            this.ChildPadding = this.ChildPadding.CopyFromStyle(style.PanelChildPadding);
             this.SetScrollBarStyle();
         }
 

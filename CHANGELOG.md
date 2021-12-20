@@ -50,6 +50,7 @@ Improvements
 - Skip unnecessary area updates for elements with dirty parents
 - Calculate panel scroll bar height based on content height
 - Remember the location that a scroll bar scroller was grabbed in when scrolling
+- Automatically set area dirty when changing child padding or paragraph fonts
 
 Fixes
 - Fixed VerticalSpace height parameter being an integer

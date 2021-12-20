@@ -79,7 +79,7 @@ namespace MLEM.Ui.Elements {
             this.Texture.SetFromStyle(style.TooltipBackground);
             this.MouseOffset.SetFromStyle(style.TooltipOffset);
             this.Delay.SetFromStyle(style.TooltipDelay);
-            this.ChildPadding.SetFromStyle(style.TooltipChildPadding);
+            this.ChildPadding = this.ChildPadding.CopyFromStyle(style.TooltipChildPadding);
             if (this.Paragraph != null) {
                 this.Paragraph.TextColor.SetFromStyle(style.TooltipTextColor, 1);
                 this.Paragraph.Size = new Vector2(style.TooltipTextWidth, 0);

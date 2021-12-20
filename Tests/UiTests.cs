@@ -79,9 +79,15 @@ namespace Tests {
             Assert.AreEqual(null, style.Value);
             style.SetFromStyle("from style");
             Assert.AreEqual("from style", style.Value);
-            style.Set("custom");
+            style = "custom";
             Assert.AreEqual("custom", style.Value);
             style.SetFromStyle("from style again");
+            Assert.AreEqual("custom", style.Value);
+
+            var copy = style.CopyFromStyle("copy from style", byte.MaxValue);
+            var weakCopy = style.CopyFromStyle("weak copy");
+            Assert.AreEqual("copy from style", copy.Value);
+            Assert.AreEqual("custom", weakCopy.Value);
             Assert.AreEqual("custom", style.Value);
         }
 
