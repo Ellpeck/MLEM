@@ -172,7 +172,7 @@ namespace MLEM.Animations {
     /// <summary>
     /// Represents a single frame of a <see cref="SpriteAnimation"/>
     /// </summary>
-    public class AnimationFrame {
+    public class AnimationFrame : GenericDataHolder {
 
         /// <summary>
         /// The texture regions that this frame should render.
