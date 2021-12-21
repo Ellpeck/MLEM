@@ -102,11 +102,11 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture.SetFromStyle(style.CheckboxTexture);
-            this.HoveredTexture.SetFromStyle(style.CheckboxHoveredTexture);
-            this.HoveredColor.SetFromStyle(style.CheckboxHoveredColor);
-            this.Checkmark.SetFromStyle(style.CheckboxCheckmark);
-            this.TextOffsetX.SetFromStyle(style.CheckboxTextOffsetX);
+            this.Texture = this.Texture.OrStyle(style.CheckboxTexture);
+            this.HoveredTexture = this.HoveredTexture.OrStyle(style.CheckboxHoveredTexture);
+            this.HoveredColor = this.HoveredColor.OrStyle(style.CheckboxHoveredColor);
+            this.Checkmark = this.Checkmark.OrStyle(style.CheckboxCheckmark);
+            this.TextOffsetX = this.TextOffsetX.OrStyle(style.CheckboxTextOffsetX);
         }
 
         /// <summary>

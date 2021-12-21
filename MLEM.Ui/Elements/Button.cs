@@ -83,7 +83,7 @@ namespace MLEM.Ui.Elements {
         public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : base(anchor, size) {
             if (text != null) {
                 this.Text = new Paragraph(Anchor.Center, 1, text, true);
-                this.Text.Padding.SetFromStyle(new Padding(1), 1);
+                this.Text.Padding = this.Text.Padding.OrStyle(new Padding(1), 1);
                 this.AddChild(this.Text);
             }
             if (tooltipText != null)
@@ -108,11 +108,11 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture.SetFromStyle(style.ButtonTexture);
-            this.HoveredTexture.SetFromStyle(style.ButtonHoveredTexture);
-            this.HoveredColor.SetFromStyle(style.ButtonHoveredColor);
-            this.DisabledTexture.SetFromStyle(style.ButtonDisabledTexture);
-            this.DisabledColor.SetFromStyle(style.ButtonDisabledColor);
+            this.Texture = this.Texture.OrStyle(style.ButtonTexture);
+            this.HoveredTexture = this.HoveredTexture.OrStyle(style.ButtonHoveredTexture);
+            this.HoveredColor = this.HoveredColor.OrStyle(style.ButtonHoveredColor);
+            this.DisabledTexture = this.DisabledTexture.OrStyle(style.ButtonDisabledTexture);
+            this.DisabledColor = this.DisabledColor.OrStyle(style.ButtonDisabledColor);
         }
 
     }

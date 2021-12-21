@@ -24,7 +24,7 @@ namespace MLEM.Ui.Elements {
         public static Button ImageButton(Anchor anchor, Vector2 size, TextureRegion texture, string text = null, string tooltipText = null, float imagePadding = 2) {
             var button = new Button(anchor, size, text, tooltipText);
             var image = new Image(Anchor.CenterLeft, Vector2.One, texture);
-            image.Padding.SetFromStyle(new Padding(imagePadding), 1);
+            image.Padding = image.Padding.OrStyle(new Padding(imagePadding), 1);
             button.OnAreaUpdated += e => image.Size = new Vector2(e.Area.Height, e.Area.Height) / e.Scale;
             button.AddChild(image, 0);
             return button;

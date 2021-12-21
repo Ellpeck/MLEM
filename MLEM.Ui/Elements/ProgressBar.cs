@@ -112,11 +112,11 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture.SetFromStyle(style.ProgressBarTexture);
-            this.Color.SetFromStyle(style.ProgressBarColor);
-            this.ProgressPadding.SetFromStyle(style.ProgressBarProgressPadding);
-            this.ProgressTexture.SetFromStyle(style.ProgressBarProgressTexture);
-            this.ProgressColor.SetFromStyle(style.ProgressBarProgressColor);
+            this.Texture = this.Texture.OrStyle(style.ProgressBarTexture);
+            this.Color = this.Color.OrStyle(style.ProgressBarColor);
+            this.ProgressPadding = this.ProgressPadding.OrStyle(style.ProgressBarProgressPadding);
+            this.ProgressTexture = this.ProgressTexture.OrStyle(style.ProgressBarProgressTexture);
+            this.ProgressColor = this.ProgressColor.OrStyle(style.ProgressBarProgressColor);
         }
 
     }

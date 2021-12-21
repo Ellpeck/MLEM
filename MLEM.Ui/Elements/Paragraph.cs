@@ -157,9 +157,9 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.RegularFont = this.RegularFont.CopyFromStyle(style.Font ?? throw new NotSupportedException("Paragraphs cannot use ui styles that don't have a font. Please supply a custom font by setting UiStyle.Font."));
-            this.TextScale.SetFromStyle(style.TextScale);
-            this.TextColor.SetFromStyle(style.TextColor);
+            this.RegularFont = this.RegularFont.OrStyle(style.Font ?? throw new NotSupportedException("Paragraphs cannot use ui styles that don't have a font. Please supply a custom font by setting UiStyle.Font."));
+            this.TextScale = this.TextScale.OrStyle(style.TextScale);
+            this.TextColor = this.TextColor.OrStyle(style.TextColor);
         }
 
         /// <summary>

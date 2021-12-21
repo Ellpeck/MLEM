@@ -217,10 +217,10 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Background.SetFromStyle(style.ScrollBarBackground);
-            this.ScrollerTexture.SetFromStyle(style.ScrollBarScrollerTexture);
-            this.SmoothScrolling.SetFromStyle(style.ScrollBarSmoothScrolling);
-            this.SmoothScrollFactor.SetFromStyle(style.ScrollBarSmoothScrollFactor);
+            this.Background = this.Background.OrStyle(style.ScrollBarBackground);
+            this.ScrollerTexture = this.ScrollerTexture.OrStyle(style.ScrollBarScrollerTexture);
+            this.SmoothScrolling = this.SmoothScrolling.OrStyle(style.ScrollBarSmoothScrolling);
+            this.SmoothScrollFactor = this.SmoothScrollFactor.OrStyle(style.ScrollBarSmoothScrollFactor);
         }
 
         /// <summary>

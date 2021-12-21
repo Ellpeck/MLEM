@@ -394,13 +394,13 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.TextScale.SetFromStyle(style.TextScale);
-            this.Font.SetFromStyle(style.Font);
-            this.Texture.SetFromStyle(style.TextFieldTexture);
-            this.HoveredTexture.SetFromStyle(style.TextFieldHoveredTexture);
-            this.HoveredColor.SetFromStyle(style.TextFieldHoveredColor);
-            this.TextOffsetX.SetFromStyle(style.TextFieldTextOffsetX);
-            this.CaretWidth.SetFromStyle(style.TextFieldCaretWidth);
+            this.TextScale = this.TextScale.OrStyle(style.TextScale);
+            this.Font = this.Font.OrStyle(style.Font);
+            this.Texture = this.Texture.OrStyle(style.TextFieldTexture);
+            this.HoveredTexture = this.HoveredTexture.OrStyle(style.TextFieldHoveredTexture);
+            this.HoveredColor = this.HoveredColor.OrStyle(style.TextFieldHoveredColor);
+            this.TextOffsetX = this.TextOffsetX.OrStyle(style.TextFieldTextOffsetX);
+            this.CaretWidth = this.CaretWidth.OrStyle(style.TextFieldCaretWidth);
         }
 
         private bool FilterText(ref string text, bool removeMismatching) {

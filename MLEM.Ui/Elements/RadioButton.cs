@@ -39,10 +39,10 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture.SetFromStyle(style.RadioTexture);
-            this.HoveredTexture.SetFromStyle(style.RadioHoveredTexture);
-            this.HoveredColor.SetFromStyle(style.RadioHoveredColor);
-            this.Checkmark.SetFromStyle(style.RadioCheckmark);
+            this.Texture = this.Texture.OrStyle(style.RadioTexture);
+            this.HoveredTexture = this.HoveredTexture.OrStyle(style.RadioHoveredTexture);
+            this.HoveredColor = this.HoveredColor.OrStyle(style.RadioHoveredColor);
+            this.Checkmark = this.Checkmark.OrStyle(style.RadioCheckmark);
         }
 
     }

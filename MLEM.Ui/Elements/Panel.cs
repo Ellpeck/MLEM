@@ -208,11 +208,11 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture.SetFromStyle(style.PanelTexture);
-            this.StepPerScroll.SetFromStyle(style.PanelStepPerScroll);
-            this.ScrollerSize.SetFromStyle(style.PanelScrollerSize);
-            this.ScrollBarOffset.SetFromStyle(style.PanelScrollBarOffset);
-            this.ChildPadding = this.ChildPadding.CopyFromStyle(style.PanelChildPadding);
+            this.Texture = this.Texture.OrStyle(style.PanelTexture);
+            this.StepPerScroll = this.StepPerScroll.OrStyle(style.PanelStepPerScroll);
+            this.ScrollerSize = this.ScrollerSize.OrStyle(style.PanelScrollerSize);
+            this.ScrollBarOffset = this.ScrollBarOffset.OrStyle(style.PanelScrollBarOffset);
+            this.ChildPadding = this.ChildPadding.OrStyle(style.PanelChildPadding);
             this.SetScrollBarStyle();
         }
 

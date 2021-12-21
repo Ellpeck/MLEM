@@ -76,12 +76,12 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
-            this.Texture.SetFromStyle(style.TooltipBackground);
-            this.MouseOffset.SetFromStyle(style.TooltipOffset);
-            this.Delay.SetFromStyle(style.TooltipDelay);
-            this.ChildPadding = this.ChildPadding.CopyFromStyle(style.TooltipChildPadding);
+            this.Texture = this.Texture.OrStyle(style.TooltipBackground);
+            this.MouseOffset = this.MouseOffset.OrStyle(style.TooltipOffset);
+            this.Delay = this.Delay.OrStyle(style.TooltipDelay);
+            this.ChildPadding = this.ChildPadding.OrStyle(style.TooltipChildPadding);
             if (this.Paragraph != null) {
-                this.Paragraph.TextColor.SetFromStyle(style.TooltipTextColor, 1);
+                this.Paragraph.TextColor = this.Paragraph.TextColor.OrStyle(style.TooltipTextColor, 1);
                 this.Paragraph.Size = new Vector2(style.TooltipTextWidth, 0);
             }
         }

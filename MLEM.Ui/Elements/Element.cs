@@ -1050,9 +1050,9 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="style">The new style</param>
         protected virtual void InitStyle(UiStyle style) {
-            this.SelectionIndicator.SetFromStyle(style.SelectionIndicator);
-            this.ActionSound.SetFromStyle(style.ActionSound);
-            this.SecondActionSound.SetFromStyle(style.ActionSound);
+            this.SelectionIndicator = this.SelectionIndicator.OrStyle(style.SelectionIndicator);
+            this.ActionSound = this.ActionSound.OrStyle(style.ActionSound);
+            this.SecondActionSound = this.SecondActionSound.OrStyle(style.ActionSound);
         }
 
         /// <summary>
