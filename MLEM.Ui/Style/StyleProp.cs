@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MLEM.Ui.Elements;
 
@@ -8,20 +9,20 @@ namespace MLEM.Ui.Style {
     /// Note that <c>T</c> implicitly converts to <c>StyleProp{T}</c> and vice versa.
     /// </summary>
     /// <typeparam name="T">The type of style setting that this property stores</typeparam>
-    public struct StyleProp<T> {
+    public struct StyleProp<T> : IEquatable<StyleProp<T>> {
 
         /// <summary>
         /// The currently applied style
         /// </summary>
         public T Value { get; private set; }
-        private byte lastSetPriority;
+        private byte priority;
 
         /// <summary>
-        /// Creates a new style property with the given custom style.
+        /// Creates a new style property with the given custom style and a priority of <see cref="byte.MaxValue"/>.
         /// </summary>
         /// <param name="value">The custom style to apply</param>
         public StyleProp(T value) {
-            this.lastSetPriority = byte.MaxValue;
+            this.priority = byte.MaxValue;
             this.Value = value;
         }
 
@@ -33,9 +34,9 @@ namespace MLEM.Ui.Style {
         /// <param name="priority">The priority that this style value has. Higher priority style values will override lower priority style values.</param>
         ///<seealso cref="CopyFromStyle"/>
         public void SetFromStyle(T value, byte priority = 0) {
-            if (priority >= this.lastSetPriority) {
+            if (priority >= this.priority) {
                 this.Value = value;
-                this.lastSetPriority = priority;
+                this.priority = priority;
             }
         }
 
@@ -70,6 +71,26 @@ namespace MLEM.Ui.Style {
             return !EqualityComparer<T>.Default.Equals(this.Value, default);
         }
 
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.</returns>
+        public bool Equals(StyleProp<T> other) {
+            return EqualityComparer<T>.Default.Equals(this.Value, other.Value);
+        }
+
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns>true if <paramref name="obj">obj</paramref> and this instance are the same type and represent the same value; otherwise, false.</returns>
+        public override bool Equals(object obj) {
+            return obj is StyleProp<T> other && this.Equals(other);
+        }
+
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        public override int GetHashCode() {
+            return EqualityComparer<T>.Default.GetHashCode(this.Value);
+        }
+
         /// <summary>Returns the fully qualified type name of this instance.</summary>
         /// <returns>The fully qualified type name.</returns>
         public override string ToString() {
@@ -92,6 +113,26 @@ namespace MLEM.Ui.Style {
         /// <returns>A style property with the given style value</returns>
         public static implicit operator StyleProp<T>(T prop) {
             return new StyleProp<T>(prop);
+        }
+
+        /// <summary>
+        /// Compares the two style properties and returns whether they are equal using <see cref="Equals(MLEM.Ui.Style.StyleProp{T})"/>.
+        /// </summary>
+        /// <param name="left">The left style property.</param>
+        /// <param name="right">The right style property.</param>
+        /// <returns>Whether the two style properties are equal.</returns>
+        public static bool operator ==(StyleProp<T> left, StyleProp<T> right) {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Compares the two style properties and returns whether they are not equal using <see cref="Equals(MLEM.Ui.Style.StyleProp{T})"/>.
+        /// </summary>
+        /// <param name="left">The left style property.</param>
+        /// <param name="right">The right style property.</param>
+        /// <returns>Whether the two style properties are not equal.</returns>
+        public static bool operator !=(StyleProp<T> left, StyleProp<T> right) {
+            return !left.Equals(right);
         }
 
     }

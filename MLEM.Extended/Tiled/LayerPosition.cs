@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.Serialization;
 using MonoGame.Extended.Tiled;
 
@@ -6,7 +7,7 @@ namespace MLEM.Extended.Tiled {
     /// A struct that represents a position on a <see cref="TiledMap"/> with multiple layers.
     /// </summary>
     [DataContract]
-    public struct LayerPosition {
+    public struct LayerPosition : IEquatable<LayerPosition> {
 
         /// <summary>
         /// The name of the layer that this position is on
@@ -36,16 +37,6 @@ namespace MLEM.Extended.Tiled {
             this.Y = y;
         }
 
-        /// <inheritdoc cref="Equals(LayerPosition)"/>
-        public static bool operator ==(LayerPosition left, LayerPosition right) {
-            return left.Equals(right);
-        }
-
-        /// <inheritdoc cref="Equals(LayerPosition)"/>
-        public static bool operator !=(LayerPosition left, LayerPosition right) {
-            return !left.Equals(right);
-        }
-
         /// <inheritdoc cref="Equals(object)"/>
         public bool Equals(LayerPosition other) {
             return this.Layer == other.Layer && this.X == other.X && this.Y == other.Y;
@@ -71,6 +62,59 @@ namespace MLEM.Extended.Tiled {
         /// <returns>The fully qualified type name.</returns>
         public override string ToString() {
             return $"{nameof(this.Layer)}: {this.Layer}, {nameof(this.X)}: {this.X}, {nameof(this.Y)}: {this.Y}";
+        }
+
+        /// <summary>
+        /// Adds the given layer positions together, returning a new layer position with the sum of their coordinates.
+        /// If the two layer positions' <see cref="Layer"/> differ, an <see cref="ArgumentException"/> is thrown.
+        /// </summary>
+        /// <param name="left">The left position.</param>
+        /// <param name="right">The right position.</param>
+        /// <returns>The sum of the positions.</returns>
+        /// <exception cref="ArgumentException">Thrown if the two positions' <see cref="Layer"/> are not the same.</exception>
+        public static LayerPosition Add(LayerPosition left, LayerPosition right) {
+            if (left.Layer != right.Layer)
+                throw new ArgumentException("Cannot add layer positions on different layers");
+            return new LayerPosition(left.Layer, left.X + right.X, left.Y + right.Y);
+        }
+
+        /// <inheritdoc cref="Equals(LayerPosition)"/>
+        public static bool operator ==(LayerPosition left, LayerPosition right) {
+            return left.Equals(right);
+        }
+
+        /// <inheritdoc cref="Equals(LayerPosition)"/>
+        public static bool operator !=(LayerPosition left, LayerPosition right) {
+            return !left.Equals(right);
+        }
+
+        /// <summary>
+        /// Returns the negative of the given layer position.
+        /// </summary>
+        /// <param name="position">The position to negate.</param>
+        /// <returns>The negative position.</returns>
+        public static LayerPosition operator -(LayerPosition position) {
+            return new LayerPosition(position.Layer, -position.X, -position.Y);
+        }
+
+        /// <summary>
+        /// Returns the sum of the two layer positions using <see cref="Add"/>.
+        /// </summary>
+        /// <param name="left">The left position.</param>
+        /// <param name="right">The right position.</param>
+        /// <returns>The sum of the positions.</returns>
+        public static LayerPosition operator +(LayerPosition left, LayerPosition right) {
+            return Add(left, right);
+        }
+
+        /// <summary>
+        /// Subtracts the second from the first position using <see cref="Add"/>.
+        /// </summary>
+        /// <param name="left">The left position.</param>
+        /// <param name="right">The right position.</param>
+        /// <returns>The difference of the positions.</returns>
+        public static LayerPosition operator -(LayerPosition left, LayerPosition right) {
+            return Add(left, -right);
         }
 
     }

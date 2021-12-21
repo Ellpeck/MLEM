@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 
@@ -7,7 +8,7 @@ namespace MLEM.Misc {
     /// A padding is an object of data that stores an offset from each side of a rectangle or square.
     /// </summary>
     [DataContract]
-    public struct Padding {
+    public struct Padding : IEquatable<Padding> {
 
         /// <summary>
         /// The empty padding, with all borders set to 0

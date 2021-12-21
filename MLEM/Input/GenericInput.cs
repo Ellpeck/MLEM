@@ -10,7 +10,7 @@ namespace MLEM.Input {
     /// Note that this type is serializable using <see cref="DataContractAttribute"/>.
     /// </summary>
     [DataContract]
-    public readonly struct GenericInput {
+    public readonly struct GenericInput : IEquatable<GenericInput> {
 
         /// <summary>
         /// The <see cref="InputType"/> of this generic input's current <see cref="value"/>.
@@ -40,11 +40,18 @@ namespace MLEM.Input {
             }
         }
 
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.</returns>
+        public bool Equals(GenericInput other) {
+            return this.Type == other.Type && this.value == other.value;
+        }
+
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns><see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
+        /// <returns>true if <paramref name="obj">obj</paramref> and this instance are the same type and represent the same value; otherwise, false.</returns>
         public override bool Equals(object obj) {
-            return obj is GenericInput o && this.Type == o.Type && this.value == o.value;
+            return obj is GenericInput other && this.Equals(other);
         }
 
         /// <summary>Returns the hash code for this instance.</summary>
@@ -54,7 +61,7 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Compares the two generic input instances for equality using <see cref="Equals"/>
+        /// Compares the two generic input instances for equality using <see cref="Equals(GenericInput)"/>
         /// </summary>
         /// <param name="left">The left input</param>
         /// <param name="right">The right input</param>
@@ -64,7 +71,7 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Compares the two generic input instances for inequality using <see cref="Equals"/>
+        /// Compares the two generic input instances for inequality using <see cref="Equals(GenericInput)"/>
         /// </summary>
         /// <param name="left">The left input</param>
         /// <param name="right">The right input</param>

@@ -179,7 +179,7 @@ namespace MLEM.Pathfinding {
     /// A point in a <see cref="AStar{T}"/> path
     /// </summary>
     /// <typeparam name="T">The type of point used for this path</typeparam>
-    public class PathPoint<T> {
+    public class PathPoint<T> : IEquatable<PathPoint<T>> {
 
         /// <summary>
         /// The path point that this point originated from
@@ -214,13 +214,18 @@ namespace MLEM.Pathfinding {
             this.F = this.G + distance * defaultCost;
         }
 
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.</returns>
+        public bool Equals(PathPoint<T> other) {
+            return ReferenceEquals(this, other) || EqualityComparer<T>.Default.Equals(this.Pos, other.Pos);
+        }
+
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns><see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object obj) {
-            if (obj == this)
-                return true;
-            return obj is PathPoint<T> point && point.Pos.Equals(this.Pos);
+            return obj is PathPoint<T> other && this.Equals(other);
         }
 
         /// <summary>Returns the hash code for this instance.</summary>
