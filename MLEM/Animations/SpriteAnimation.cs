@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Misc;
@@ -36,9 +38,15 @@ namespace MLEM.Animations {
             }
         }
         /// <summary>
-        /// The texture region that the animation's <see cref="CurrentFrame"/> has
+        /// The texture region that this animation's <see cref="CurrentFrame"/> should render.
+        /// If there are multiple regions, <see cref="CurrentRegions"/> should be used instead.
         /// </summary>
         public TextureRegion CurrentRegion => this.CurrentFrame.Region;
+        /// <summary>
+        /// The texture regions that this animation's <see cref="CurrentFrame"/> should render.
+        /// If there is only one region, <see cref="CurrentRegion"/> can be used for convenience.
+        /// </summary>
+        public IList<TextureRegion> CurrentRegions => this.CurrentFrame.Regions;
         /// <summary>
         /// The total amount of time that this animation has.
         /// This is auatomatically calculated based on the frame time of each frame.
@@ -83,6 +91,8 @@ namespace MLEM.Animations {
         /// </summary>
         /// <param name="frames">The frames this animation should have</param>
         public SpriteAnimation(params AnimationFrame[] frames) {
+            if (frames.Length <= 0)
+                throw new ArgumentException("Cannot create a sprite animation without any frames");
             this.frames = frames;
             foreach (var frame in frames)
                 this.TotalTime += frame.Seconds;
@@ -94,7 +104,16 @@ namespace MLEM.Animations {
         /// <param name="timePerFrame">The amount of time that each frame should last for</param>
         /// <param name="regions">The texture regions that should make up this animation</param>
         public SpriteAnimation(double timePerFrame, params TextureRegion[] regions)
-            : this(Array.ConvertAll(regions, region => new AnimationFrame(region, timePerFrame))) {
+            : this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {
+        }
+
+        /// <summary>
+        /// Creates a new sprite animation that contains the given texture region arrays as frames, where each frame represents one set of texture regions.
+        /// </summary>
+        /// <param name="timePerFrame">The amount of time that each frame should last for</param>
+        /// <param name="regions">The texture regions that should make up this animation</param>
+        public SpriteAnimation(double timePerFrame, params TextureRegion[][] regions) :
+            this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {
         }
 
         /// <summary>
@@ -103,8 +122,8 @@ namespace MLEM.Animations {
         /// <param name="timePerFrame">The amount of time that each frame should last for</param>
         /// <param name="texture">The texture that the regions should come from</param>
         /// <param name="regions">The texture regions that should make up this animation</param>
-        public SpriteAnimation(double timePerFrame, Texture2D texture, params Rectangle[] regions)
-            : this(timePerFrame, Array.ConvertAll(regions, region => new TextureRegion(texture, region))) {
+        public SpriteAnimation(double timePerFrame, Texture2D texture, params Rectangle[] regions) :
+            this(timePerFrame, Array.ConvertAll(regions, r => new TextureRegion(texture, r))) {
         }
 
         /// <summary>
@@ -156,21 +175,29 @@ namespace MLEM.Animations {
     public class AnimationFrame {
 
         /// <summary>
-        /// The texture region that this frame should render
+        /// The texture regions that this frame should render.
+        /// If there is only one region, <see cref="Region"/> can be used for convenience.
         /// </summary>
-        public readonly TextureRegion Region;
+        public readonly IList<TextureRegion> Regions;
         /// <summary>
-        /// The total amount of seconds that this frame should last for
+        /// The total amount of seconds that this frame should last for.
         /// </summary>
         public readonly double Seconds;
+        /// <summary>
+        /// The texture region that this frame should render.
+        /// If there are multiple regions, <see cref="Regions"/> should be used instead.
+        /// </summary>
+        public TextureRegion Region => this.Regions[0];
 
         /// <summary>
-        /// Creates a new animation frame based on a texture region and a time
+        /// Creates a new animation frame based on a set of texture regions and a time.
         /// </summary>
-        /// <param name="region">The texture region that this frame should render</param>
+        /// <param name="regions">The texture regions that this frame should render</param>
         /// <param name="seconds">The total amount of seconds that this frame should last for</param>
-        public AnimationFrame(TextureRegion region, double seconds) {
-            this.Region = region;
+        public AnimationFrame(double seconds, params TextureRegion[] regions) {
+            if (regions.Length <= 0)
+                throw new ArgumentException("Cannot create an animation frame without any regions");
+            this.Regions = new ReadOnlyCollection<TextureRegion>(regions);
             this.Seconds = seconds;
         }
 

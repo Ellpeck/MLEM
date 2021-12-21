@@ -25,6 +25,7 @@ Improvements
 - Throw an exception when text formatter macros resolve recursively too many times
 - Allow using StaticSpriteBatch for AutoTiling
 - Made TextFormatter string size based on the currently active font rather than the default one
+- Allow storing multiple texture regions per SpriteAnimation frame
 
 Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
