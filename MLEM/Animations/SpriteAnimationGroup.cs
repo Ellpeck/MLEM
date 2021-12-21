@@ -25,17 +25,21 @@ namespace MLEM.Animations {
             set => this.currAnimation = value;
         }
         /// <summary>
-        /// The animation that is currently playing
+        /// Returns the animation that is currently playing.
         /// </summary>
         public SpriteAnimation CurrentAnimation => this.CurrAnimation?.Animation;
         /// <summary>
-        /// The frame that <see cref="CurrentAnimation"/> is displaying
+        /// Returns the frame that <see cref="CurrentAnimation"/> is displaying.
         /// </summary>
         public AnimationFrame CurrentFrame => this.CurrentAnimation?.CurrentFrame;
         /// <summary>
-        /// The region that <see cref="CurrentFrame"/> has
+        /// Returns the <see cref="CurrentAnimation"/>'s <see cref="SpriteAnimation.CurrentRegion"/>.
         /// </summary>
         public TextureRegion CurrentRegion => this.CurrentAnimation?.CurrentRegion;
+        /// <summary>
+        /// Returns the <see cref="CurrentAnimation"/>'s <see cref="SpriteAnimation.CurrentRegions"/>.
+        /// </summary>
+        public IList<TextureRegion> CurrentRegions => this.CurrentAnimation?.CurrentRegions;
         /// <summary>
         /// A callback for when the currently displaying animation has changed due to a condition with a higher priority being met. 
         /// </summary>

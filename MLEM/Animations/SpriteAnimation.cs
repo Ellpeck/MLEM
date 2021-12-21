@@ -103,8 +103,8 @@ namespace MLEM.Animations {
         /// </summary>
         /// <param name="timePerFrame">The amount of time that each frame should last for</param>
         /// <param name="regions">The texture regions that should make up this animation</param>
-        public SpriteAnimation(double timePerFrame, params TextureRegion[] regions)
-            : this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {
+        public SpriteAnimation(double timePerFrame, params TextureRegion[] regions) :
+            this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {
         }
 
         /// <summary>
@@ -187,7 +187,8 @@ namespace MLEM.Animations {
         /// The texture region that this frame should render.
         /// If there are multiple regions, <see cref="Regions"/> should be used instead.
         /// </summary>
-        public TextureRegion Region => this.Regions[0];
+        /// <exception cref="InvalidOperationException">Thrown if this animation frame has more than one region, in which case <see cref="Regions"/> should be used instead.</exception>
+        public TextureRegion Region => this.Regions.Count == 1 ? this.Regions[0] : throw new InvalidOperationException("Cannot return single region for an animation frame with multiple regions");
 
         /// <summary>
         /// Creates a new animation frame based on a set of texture regions and a time.
