@@ -11,23 +11,15 @@ namespace MLEM.Animations {
     /// </summary>
     public class SpriteAnimationGroup : GenericDataHolder {
 
-        private readonly List<ConditionedAnimation> animations = new List<ConditionedAnimation>();
-        private ConditionedAnimation currAnimation;
-        private ConditionedAnimation CurrAnimation {
-            get {
-                if (this.isDirty) {
-                    this.isDirty = false;
-                    this.animations.Sort((a1, a2) => a2.Priority.CompareTo(a1.Priority));
-                    this.FindAnimationToPlay();
-                }
-                return this.currAnimation;
-            }
-            set => this.currAnimation = value;
-        }
         /// <summary>
         /// Returns the animation that is currently playing.
         /// </summary>
-        public SpriteAnimation CurrentAnimation => this.CurrAnimation?.Animation;
+        public SpriteAnimation CurrentAnimation {
+            get {
+                this.SortAnimationsIfDirty(true);
+                return this.currentAnimation?.Animation;
+            }
+        }
         /// <summary>
         /// Returns the frame that <see cref="CurrentAnimation"/> is displaying.
         /// </summary>
@@ -40,11 +32,6 @@ namespace MLEM.Animations {
         /// Returns the <see cref="CurrentAnimation"/>'s <see cref="SpriteAnimation.CurrentRegions"/>.
         /// </summary>
         public IList<TextureRegion> CurrentRegions => this.CurrentAnimation?.CurrentRegions;
-        /// <summary>
-        /// A callback for when the currently displaying animation has changed due to a condition with a higher priority being met. 
-        /// </summary>
-        public event AnimationChanged OnAnimationChanged;
-        private bool isDirty;
         /// <inheritdoc cref="SpriteAnimation.SpeedMultiplier"/>
         public float SpeedMultiplier {
             set {
@@ -52,6 +39,15 @@ namespace MLEM.Animations {
                     anim.Animation.SpeedMultiplier = value;
             }
         }
+
+        /// <summary>
+        /// A callback for when the currently displaying animation has changed due to a condition with a higher priority being met. 
+        /// </summary>
+        public event AnimationChanged OnAnimationChanged;
+
+        private readonly List<ConditionedAnimation> animations = new List<ConditionedAnimation>();
+        private ConditionedAnimation currentAnimation;
+        private bool animationsDirty;
 
         /// <summary>
         /// Adds a <see cref="SpriteAnimation"/> to this group.
@@ -62,7 +58,7 @@ namespace MLEM.Animations {
         /// <returns>This group, for chaining</returns>
         public SpriteAnimationGroup Add(SpriteAnimation anim, Func<bool> condition, int priority = 0) {
             this.animations.Add(new ConditionedAnimation(anim, condition, priority));
-            this.isDirty = true;
+            this.animationsDirty = true;
             return this;
         }
 
@@ -74,8 +70,8 @@ namespace MLEM.Animations {
         /// <inheritdoc cref="SpriteAnimation.Update(TimeSpan)"/>
         public void Update(TimeSpan elapsed) {
             this.FindAnimationToPlay();
-            if (this.CurrAnimation != null)
-                this.CurrAnimation.Animation.Update(elapsed);
+            if (this.CurrentAnimation != null)
+                this.CurrentAnimation.Update(elapsed);
         }
 
         /// <summary>
@@ -88,22 +84,34 @@ namespace MLEM.Animations {
         }
 
         private void FindAnimationToPlay() {
+            this.SortAnimationsIfDirty(false);
+
             ConditionedAnimation animToPlay = null;
-            if (this.CurrAnimation != null && this.CurrAnimation.ShouldPlay())
-                animToPlay = this.CurrAnimation;
+            if (this.currentAnimation != null && this.currentAnimation.ShouldPlay())
+                animToPlay = this.currentAnimation;
+
             foreach (var anim in this.animations) {
-                // if we find an animation with a lower priority then it means we can break
-                // because the list is sorted by priority
-                if (animToPlay != null && anim.Priority < animToPlay.Priority)
+                // if we find an animation with a lower priority then it means we can break since the list is sorted by priority
+                if (animToPlay != null && anim.Priority <= animToPlay.Priority)
                     break;
                 if (anim.ShouldPlay())
                     animToPlay = anim;
             }
-            if (animToPlay != this.CurrAnimation) {
-                this.OnAnimationChanged?.Invoke(this.CurrAnimation?.Animation, animToPlay?.Animation);
-                this.CurrAnimation = animToPlay;
+
+            if (animToPlay != this.currentAnimation) {
+                this.OnAnimationChanged?.Invoke(this.currentAnimation?.Animation, animToPlay?.Animation);
+                this.currentAnimation = animToPlay;
                 if (animToPlay != null)
                     animToPlay.Animation.Restart();
+            }
+        }
+
+        private void SortAnimationsIfDirty(bool findAnimationToPlay) {
+            if (this.animationsDirty) {
+                this.animationsDirty = false;
+                this.animations.Sort((a1, a2) => a2.Priority.CompareTo(a1.Priority));
+                if (findAnimationToPlay)
+                    this.FindAnimationToPlay();
             }
         }
 
