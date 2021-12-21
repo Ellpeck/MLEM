@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MLEM.Startup" Version="5.1.0" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+        <PackageReference Include="MLEM.Startup" Version="5.*" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
