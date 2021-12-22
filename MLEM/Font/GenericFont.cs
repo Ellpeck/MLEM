@@ -54,11 +54,26 @@ namespace MLEM.Font {
         /// <returns>The width of the given character with the default scale</returns>
         protected abstract float MeasureChar(char c);
 
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public abstract void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+        /// <summary>
+        /// Draws the given character with the given data for use in <see cref="DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float)"/>.
+        /// Note that this method is only called internally.
+        /// </summary>
+        /// <param name="batch">The sprite batch to draw with.</param>
+        /// <param name="c">The character which will be drawn.</param>
+        /// <param name="cString">A string representation of the character which will be drawn.</param>
+        /// <param name="position">The drawing location on screen.</param>
+        /// <param name="color">A color mask.</param>
+        /// <param name="rotation">A rotation of this character.</param>
+        /// <param name="origin">Center of the rotation. 0,0 by default.</param>
+        /// <param name="scale">A scaling of this character.</param>
+        /// <param name="effects">Modificators for drawing. Can be combined.</param>
+        /// <param name="layerDepth">A depth of the layer of this character.</param>
+        protected abstract void DrawChar(SpriteBatch batch, char c, string cString, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public abstract void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+        public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            this.DrawString(batch, text.ToString(), position, color, rotation, origin, scale, effects, layerDepth);
+        }
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
@@ -78,6 +93,64 @@ namespace MLEM.Font {
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color) {
             this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
+        }
+
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            var (flipX, flipY) = Vector2.Zero;
+            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
+            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
+            if (flippedV || flippedH) {
+                var (w, h) = this.MeasureString(text);
+                if (flippedH) {
+                    origin.X *= -1;
+                    flipX = -w;
+                }
+                if (flippedV) {
+                    origin.Y *= -1;
+                    flipY = this.LineHeight - h;
+                }
+            }
+
+            var trans = Matrix.Identity;
+            if (rotation == 0) {
+                trans.M11 = flippedH ? -scale.X : scale.X;
+                trans.M22 = flippedV ? -scale.Y : scale.Y;
+                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
+                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
+            } else {
+                var sin = (float) Math.Sin(rotation);
+                var cos = (float) Math.Cos(rotation);
+                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
+                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
+                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
+                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
+                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
+                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
+            }
+
+            var offset = Vector2.Zero;
+            for (var i = 0; i < text.Length; i++) {
+                var c = text[i];
+                if (c == '\n') {
+                    offset.X = 0;
+                    offset.Y += this.LineHeight;
+                    continue;
+                }
+
+                var cString = c.ToCachedString();
+                var (cW, cH) = this.MeasureString(cString);
+
+                var charPos = offset;
+                if (flippedH)
+                    charPos.X += cW;
+                if (flippedV)
+                    charPos.Y += cH - this.LineHeight;
+                Vector2.Transform(ref charPos, ref trans, out charPos);
+
+                this.DrawChar(batch, c, cString, charPos, color, rotation, Vector2.Zero, scale, effects, layerDepth);
+                offset.X += cW;
+            }
         }
 
         /// <summary>

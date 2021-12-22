@@ -1,4 +1,3 @@
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
@@ -38,14 +37,9 @@ namespace MLEM.Extended.Font {
             return region != null ? new Vector2(region.XAdvance, region.Height).X : 0;
         }
 
-        /// <inheritdoc/>
-        public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            batch.DrawString(this.Font, text, position, color, rotation, origin, scale, effects, layerDepth);
-        }
-
-        /// <inheritdoc/>
-        public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            batch.DrawString(this.Font, text, position, color, rotation, origin, scale, effects, layerDepth);
+        /// <inheritdoc />
+        protected override void DrawChar(SpriteBatch batch, char c, string cString, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            batch.DrawString(this.Font, cString, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
     }

@@ -8,6 +8,9 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 5.3.0 (Unreleased)
+### MLEM
+Improvements
+- Generify GenericFont's string drawing
 
 ## 5.2.0
 ### MLEM

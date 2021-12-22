@@ -239,7 +239,7 @@ namespace Sandbox {
             par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
             this.UiSystem.Add("Load", loadGroup);*/
 
-            var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
+            /*var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
             var squishingGroup = spillPanel.AddChild(new SquishingGroup(Anchor.TopLeft, Vector2.One));
             squishingGroup.AddChild(new Button(Anchor.TopLeft, new Vector2(30), "TL") {
                 OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D1),
@@ -266,7 +266,45 @@ namespace Sandbox {
                     e.SetAreaDirty();
                 }
             }).SetData("Ref", "Main");
-            this.UiSystem.Add("SpillTest", spillPanel);
+            this.UiSystem.Add("SpillTest", spillPanel);*/
+
+            var regularFont = spriteFont.Font;
+            var genericFont = spriteFont;
+
+            var index = 0;
+            var pos = new Vector2(100, 20);
+            var scale = 1F;
+            var origin = Vector2.Zero;
+            var rotation = 0F;
+            var effects = SpriteEffects.None;
+
+            this.OnDraw += (g, time) => {
+                const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
+                if (Input.IsKeyPressed(Keys.I)) {
+                    index++;
+                    if (index == 1) {
+                        scale = 2;
+                    } else if (index == 2) {
+                        origin = new Vector2(15, 15);
+                    } else if (index == 3) {
+                        rotation = 0.25F;
+                    } else if (index == 4) {
+                        effects = SpriteEffects.FlipHorizontally;
+                    } else if (index == 5) {
+                        effects = SpriteEffects.FlipVertically;
+                    } else if (index == 6) {
+                        effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+                    }
+                }
+
+                this.SpriteBatch.Begin();
+                if (Input.IsKeyDown(Keys.LeftShift)) {
+                    this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
+                } else {
+                    genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
+                }
+                this.SpriteBatch.End();
+            };
         }
 
         protected override void DoUpdate(GameTime gameTime) {

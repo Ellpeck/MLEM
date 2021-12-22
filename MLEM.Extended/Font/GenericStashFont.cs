@@ -1,4 +1,3 @@
-using System.Text;
 using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,18 +33,13 @@ namespace MLEM.Extended.Font {
         }
 
         /// <inheritdoc />
-        public override void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            this.Font.DrawText(batch, text, position, color, scale, rotation, origin, layerDepth);
-        }
-
-        /// <inheritdoc />
-        public override void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            this.Font.DrawText(batch, text, position, color, scale, rotation, origin, layerDepth);
-        }
-
-        /// <inheritdoc />
         protected override float MeasureChar(char c) {
             return this.Font.MeasureString(c.ToCachedString()).X;
+        }
+
+        /// <inheritdoc />
+        protected override void DrawChar(SpriteBatch batch, char c, string cString, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            this.Font.DrawText(batch, cString, position, color, scale, rotation, origin, layerDepth);
         }
 
     }
