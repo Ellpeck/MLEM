@@ -11,6 +11,7 @@ Jump to version:
 ### MLEM
 Additions
 - Added StringBuilder overloads to GenericFont
+- Added ColorExtensions.Multiply
 
 Improvements
 - Generify GenericFont's string drawing
