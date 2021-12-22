@@ -423,7 +423,7 @@ namespace MLEM.Ui.Elements {
             var maxWidth = this.DisplayArea.Width / this.Scale - this.TextOffsetX * 2;
             if (this.Multiline) {
                 // soft wrap if we're multiline
-                this.splitText = this.Font.Value.SplitStringSeparate(this.text.ToString(), maxWidth, this.TextScale).ToArray();
+                this.splitText = this.Font.Value.SplitStringSeparate(this.text, maxWidth, this.TextScale).ToArray();
                 this.displayedText = string.Join("\n", this.splitText);
                 this.UpdateCaretData();
 
@@ -466,7 +466,7 @@ namespace MLEM.Ui.Elements {
                 }
             } else {
                 // not multiline, so scroll horizontally based on caret position
-                if (this.Font.Value.MeasureString(this.text.ToString()).X * this.TextScale > maxWidth) {
+                if (this.Font.Value.MeasureString(this.text).X * this.TextScale > maxWidth) {
                     if (this.textOffset > this.CaretPos) {
                         // if we're moving the caret to the left
                         this.textOffset = this.CaretPos;

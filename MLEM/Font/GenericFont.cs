@@ -110,6 +110,11 @@ namespace MLEM.Font {
             return this.MeasureString(new CharSource(text), ignoreTrailingSpaces, null);
         }
 
+        /// <inheritdoc cref="MeasureString(string,bool)"/>
+        public Vector2 MeasureString(StringBuilder text, bool ignoreTrailingSpaces = false) {
+            return this.MeasureString(new CharSource(text), ignoreTrailingSpaces, null);
+        }
+
         /// <summary>
         /// Truncates a string to a given width. If the string's displayed area is larger than the maximum width, the string is cut off.
         /// Optionally, the string can be cut off a bit sooner, adding the <paramref name="ellipsis"/> at the end instead.
