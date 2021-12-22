@@ -7,6 +7,7 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
 using MLEM.Misc;
+using static MLEM.Font.GenericFont;
 
 namespace MLEM.Formatting {
     /// <summary>
@@ -51,7 +52,6 @@ namespace MLEM.Formatting {
         /// <summary>
         /// Splits this tokenized string, inserting newline characters if the width of the string is bigger than the maximum width.
         /// Note that a tokenized string can be re-split without losing any of its actual data, as this operation merely modifies the <see cref="DisplayString"/>.
-        /// <seealso cref="GenericFont.SplitString"/>
         /// </summary>
         /// <param name="font">The font to use for width calculations</param>
         /// <param name="width">The maximum width, in display pixels based on the font and scale</param>
@@ -59,7 +59,7 @@ namespace MLEM.Formatting {
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Split(GenericFont font, float width, float scale, TextAlignment alignment = TextAlignment.Left) {
             // a split string has the same character count as the input string but with newline characters added
-            this.modifiedString = string.Join("\n", font.SplitStringSeparate(this.String, width, scale, i => this.GetFontForIndex(font, i)));
+            this.modifiedString = string.Join("\n", font.SplitStringSeparate(new CharSource(this.String), width, scale, i => this.GetFontForIndex(font, i)));
             this.StoreModifiedSubstrings(font, alignment);
         }
 
@@ -74,13 +74,13 @@ namespace MLEM.Formatting {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Truncate(GenericFont font, float width, float scale, string ellipsis = "", TextAlignment alignment = TextAlignment.Left) {
-            this.modifiedString = font.TruncateString(this.String, width, scale, false, ellipsis, i => this.GetFontForIndex(font, i));
+            this.modifiedString = font.TruncateString(new CharSource(this.String), width, scale, false, ellipsis, i => this.GetFontForIndex(font, i)).ToString();
             this.StoreModifiedSubstrings(font, alignment);
         }
 
         /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
         public Vector2 Measure(GenericFont font) {
-            return font.MeasureString(this.DisplayString, false, i => this.GetFontForIndex(font, i));
+            return font.MeasureString(new CharSource(this.DisplayString), false, i => this.GetFontForIndex(font, i));
         }
 
         /// <summary>

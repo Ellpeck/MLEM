@@ -9,6 +9,9 @@ Jump to version:
 
 ## 5.3.0 (Unreleased)
 ### MLEM
+Additions
+- Added StringBuilder overloads to GenericFont
+
 Improvements
 - Generify GenericFont's string drawing
 

@@ -59,20 +59,23 @@ namespace MLEM.Font {
         /// Note that this method is only called internally.
         /// </summary>
         /// <param name="batch">The sprite batch to draw with.</param>
-        /// <param name="c">The character which will be drawn.</param>
         /// <param name="cString">A string representation of the character which will be drawn.</param>
         /// <param name="position">The drawing location on screen.</param>
         /// <param name="color">A color mask.</param>
         /// <param name="rotation">A rotation of this character.</param>
-        /// <param name="origin">Center of the rotation. 0,0 by default.</param>
         /// <param name="scale">A scaling of this character.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
         /// <param name="layerDepth">A depth of the layer of this character.</param>
-        protected abstract void DrawChar(SpriteBatch batch, char c, string cString, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+        protected abstract void DrawChar(SpriteBatch batch, string cString, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth);
+
+        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            this.DrawString(batch, new CharSource(text), position, color, rotation, origin, scale, effects, layerDepth);
+        }
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void DrawString(SpriteBatch batch, StringBuilder text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            this.DrawString(batch, text.ToString(), position, color, rotation, origin, scale, effects, layerDepth);
+            this.DrawString(batch, new CharSource(text), position, color, rotation, origin, scale, effects, layerDepth);
         }
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
@@ -95,64 +98,6 @@ namespace MLEM.Font {
             this.DrawString(batch, text, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0);
         }
 
-        ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            var (flipX, flipY) = Vector2.Zero;
-            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
-            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
-            if (flippedV || flippedH) {
-                var (w, h) = this.MeasureString(text);
-                if (flippedH) {
-                    origin.X *= -1;
-                    flipX = -w;
-                }
-                if (flippedV) {
-                    origin.Y *= -1;
-                    flipY = this.LineHeight - h;
-                }
-            }
-
-            var trans = Matrix.Identity;
-            if (rotation == 0) {
-                trans.M11 = flippedH ? -scale.X : scale.X;
-                trans.M22 = flippedV ? -scale.Y : scale.Y;
-                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
-                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
-            } else {
-                var sin = (float) Math.Sin(rotation);
-                var cos = (float) Math.Cos(rotation);
-                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
-                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
-                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
-                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
-                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
-                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
-            }
-
-            var offset = Vector2.Zero;
-            for (var i = 0; i < text.Length; i++) {
-                var c = text[i];
-                if (c == '\n') {
-                    offset.X = 0;
-                    offset.Y += this.LineHeight;
-                    continue;
-                }
-
-                var cString = c.ToCachedString();
-                var (cW, cH) = this.MeasureString(cString);
-
-                var charPos = offset;
-                if (flippedH)
-                    charPos.X += cW;
-                if (flippedV)
-                    charPos.Y += cH - this.LineHeight;
-                Vector2.Transform(ref charPos, ref trans, out charPos);
-
-                this.DrawChar(batch, c, cString, charPos, color, rotation, Vector2.Zero, scale, effects, layerDepth);
-                offset.X += cW;
-            }
-        }
-
         /// <summary>
         /// Measures the width of the given string when drawn with this font's underlying font.
         /// This method uses <see cref="MeasureChar"/> internally to calculate the size of known characters and calculates additional characters like <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/>.
@@ -162,7 +107,7 @@ namespace MLEM.Font {
         /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
         /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
-            return this.MeasureString(text, ignoreTrailingSpaces, null);
+            return this.MeasureString(new CharSource(text), ignoreTrailingSpaces, null);
         }
 
         /// <summary>
@@ -176,7 +121,12 @@ namespace MLEM.Font {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <returns>The truncated string, or the same string if it is shorter than the maximum width</returns>
         public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return this.TruncateString(text, width, scale, fromBack, ellipsis, null);
+            return this.TruncateString(new CharSource(text), width, scale, fromBack, ellipsis, null).ToString();
+        }
+
+        /// <inheritdoc cref="TruncateString(string,float,float,bool,string)"/>
+        public StringBuilder TruncateString(StringBuilder text, float width, float scale, bool fromBack = false, string ellipsis = "") {
+            return this.TruncateString(new CharSource(text), width, scale, fromBack, ellipsis, null);
         }
 
         /// <summary>
@@ -192,20 +142,30 @@ namespace MLEM.Font {
             return string.Join("\n", this.SplitStringSeparate(text, width, scale));
         }
 
+        /// <inheritdoc cref="SplitString(string,float,float)"/>
+        public string SplitString(StringBuilder text, float width, float scale) {
+            return string.Join("\n", this.SplitStringSeparate(text, width, scale));
+        }
+
         /// <summary>
         /// Splits a string to a given maximum width and returns each split section as a separate string.
         /// Note that existing new lines are taken into account for line length, but not split in the resulting strings.
-        /// This method differs from <see cref="SplitString"/> in that it differentiates between pre-existing newline characters and splits due to maximum width.
+        /// This method differs from <see cref="SplitString(string,float,float)"/> in that it differentiates between pre-existing newline characters and splits due to maximum width.
         /// </summary>
         /// <param name="text">The text to split into multiple lines</param>
         /// <param name="width">The maximum width that each line should have</param>
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string as an enumerable of split sections</returns>
         public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
-            return this.SplitStringSeparate(text, width, scale, null);
+            return this.SplitStringSeparate(new CharSource(text), width, scale, null);
         }
 
-        internal Vector2 MeasureString(string text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction) {
+        /// <inheritdoc cref="SplitStringSeparate(string,float,float)"/>
+        public IEnumerable<string> SplitStringSeparate(StringBuilder text, float width, float scale) {
+            return this.SplitStringSeparate(new CharSource(text), width, scale, null);
+        }
+
+        internal Vector2 MeasureString(CharSource text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
                 return size;
@@ -247,7 +207,7 @@ namespace MLEM.Font {
             return size;
         }
 
-        internal string TruncateString(string text, float width, float scale, bool fromBack, string ellipsis, Func<int, GenericFont> fontFunction) {
+        internal StringBuilder TruncateString(CharSource text, float width, float scale, bool fromBack, string ellipsis, Func<int, GenericFont> fontFunction) {
             var total = new StringBuilder();
             for (var i = 0; i < text.Length; i++) {
                 if (fromBack) {
@@ -259,16 +219,16 @@ namespace MLEM.Font {
                 var font = fontFunction?.Invoke(i) ?? this;
                 if (font.MeasureString(total + ellipsis).X * scale >= width) {
                     if (fromBack) {
-                        return total.Remove(0, 1).Insert(0, ellipsis).ToString();
+                        return total.Remove(0, 1).Insert(0, ellipsis);
                     } else {
-                        return total.Remove(total.Length - 1, 1).Append(ellipsis).ToString();
+                        return total.Remove(total.Length - 1, 1).Append(ellipsis);
                     }
                 }
             }
-            return total.ToString();
+            return total;
         }
 
-        internal IEnumerable<string> SplitStringSeparate(string text, float width, float scale, Func<int, GenericFont> fontFunction) {
+        internal IEnumerable<string> SplitStringSeparate(CharSource text, float width, float scale, Func<int, GenericFont> fontFunction) {
             var currWidth = 0F;
             var lastSpaceIndex = -1;
             var widthSinceLastSpace = 0F;
@@ -316,12 +276,89 @@ namespace MLEM.Font {
                 yield return curr.ToString();
         }
 
-        private static bool IsTrailingSpace(string s, int index) {
+        private void DrawString(SpriteBatch batch, CharSource text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            var (flipX, flipY) = Vector2.Zero;
+            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
+            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
+            if (flippedV || flippedH) {
+                var (w, h) = this.MeasureString(text, false, null);
+                if (flippedH) {
+                    origin.X *= -1;
+                    flipX = -w;
+                }
+                if (flippedV) {
+                    origin.Y *= -1;
+                    flipY = this.LineHeight - h;
+                }
+            }
+
+            var trans = Matrix.Identity;
+            if (rotation == 0) {
+                trans.M11 = flippedH ? -scale.X : scale.X;
+                trans.M22 = flippedV ? -scale.Y : scale.Y;
+                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
+                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
+            } else {
+                var sin = (float) Math.Sin(rotation);
+                var cos = (float) Math.Cos(rotation);
+                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
+                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
+                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
+                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
+                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
+                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
+            }
+
+            var offset = Vector2.Zero;
+            for (var i = 0; i < text.Length; i++) {
+                var c = text[i];
+                if (c == '\n') {
+                    offset.X = 0;
+                    offset.Y += this.LineHeight;
+                    continue;
+                }
+
+                var cString = c.ToCachedString();
+                var (cW, cH) = this.MeasureString(cString);
+
+                var charPos = offset;
+                if (flippedH)
+                    charPos.X += cW;
+                if (flippedV)
+                    charPos.Y += cH - this.LineHeight;
+                Vector2.Transform(ref charPos, ref trans, out charPos);
+
+                this.DrawChar(batch, cString, charPos, color, rotation, scale, effects, layerDepth);
+                offset.X += cW;
+            }
+        }
+
+        private static bool IsTrailingSpace(CharSource s, int index) {
             for (var i = index + 1; i < s.Length; i++) {
                 if (s[i] != ' ')
                     return false;
             }
             return true;
+        }
+
+        internal readonly struct CharSource {
+
+            private readonly string strg;
+            private readonly StringBuilder builder;
+
+            public int Length => this.strg?.Length ?? this.builder.Length;
+            public char this[int index] => this.strg?[index] ?? this.builder[index];
+
+            public CharSource(string strg) {
+                this.strg = strg;
+                this.builder = null;
+            }
+
+            public CharSource(StringBuilder builder) {
+                this.strg = null;
+                this.builder = builder;
+            }
+
         }
 
     }
