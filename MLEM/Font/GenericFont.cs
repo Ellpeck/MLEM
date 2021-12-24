@@ -26,7 +26,7 @@ namespace MLEM.Font {
         public const char Nbsp = '\u00A0';
         /// <summary>
         /// This field holds the unicode representation of a zero-width space.
-        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations and string splitting, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/> and <see cref="SplitString"/>.
+        /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations and string splitting, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/> and <see cref="SplitString(string,float,float)"/>.
         /// </summary>
         public const char Zwsp = '\u200B';
 

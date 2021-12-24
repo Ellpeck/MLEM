@@ -16,6 +16,10 @@ Additions
 Improvements
 - Generify GenericFont's string drawing
 
+### MLEM.Ui
+Improvements
+- Allow for checkboxes and radio buttons to be disabled
+
 ## 5.2.0
 ### MLEM
 Additions

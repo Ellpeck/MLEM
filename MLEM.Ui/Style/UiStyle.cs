@@ -110,6 +110,14 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Color CheckboxHoveredColor = Color.LightGray;
         /// <summary>
+        /// The texture that the <see cref="Checkbox"/> element uses when it <see cref="Checkbox.IsDisabled"/>.
+        /// </summary>
+        public NinePatch CheckboxDisabledTexture;
+        /// <summary>
+        /// The color that the <see cref="Checkbox"/> element uses when it <see cref="Checkbox.IsDisabled"/>.
+        /// </summary>
+        public Color CheckboxDisabledColor = Color.Gray;
+        /// <summary>
         /// The texture that the <see cref="Checkbox"/> element renders on top of its regular texture when it is <see cref="Checkbox.Checked"/>
         /// </summary>
         public TextureRegion CheckboxCheckmark;
