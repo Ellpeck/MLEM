@@ -19,8 +19,7 @@ namespace MLEM.Sound {
         /// Creates a new sound effect instance handler with the given settings
         /// </summary>
         /// <param name="game">The game instance</param>
-        public SoundEffectInstanceHandler(Game game) : base(game) {
-        }
+        public SoundEffectInstanceHandler(Game game) : base(game) {}
 
         /// <inheritdoc cref="Update()"/>
         public override void Update(GameTime gameTime) {
@@ -36,8 +35,7 @@ namespace MLEM.Sound {
             for (var i = this.playingSounds.Count - 1; i >= 0; i--) {
                 var entry = this.playingSounds[i];
                 if (entry.Instance.IsDisposed || entry.Instance.State == SoundState.Stopped) {
-                    entry.Instance.Stop(true);
-                    entry.OnStopped?.Invoke(entry.Instance);
+                    entry.StopAndNotify();
                     this.playingSounds.RemoveAt(i);
                 } else {
                     entry.TryApply3D(this.listeners);
@@ -67,6 +65,16 @@ namespace MLEM.Sound {
         public void Resume() {
             foreach (var entry in this.playingSounds)
                 entry.Instance.Resume();
+        }
+
+        /// <summary>
+        /// Stops all of the sound effect instances in this handler
+        /// </summary>
+        public void Stop() {
+            this.playingSounds.RemoveAll(e => {
+                e.StopAndNotify();
+                return true;
+            });
         }
 
         /// <summary>
@@ -132,7 +140,7 @@ namespace MLEM.Sound {
             /// </summary>
             public readonly SoundEffectInstance Instance;
             /// <summary>
-            /// An action that is invoked when this entry's <see cref="Instance"/> is stopped.
+            /// An action that is invoked when this entry's <see cref="Instance"/> is stopped or after it finishes naturally.
             /// This action is invoked in <see cref="SoundEffectInstanceHandler.Update()"/>.
             /// </summary>
             public readonly Action<SoundEffectInstance> OnStopped;
@@ -151,6 +159,11 @@ namespace MLEM.Sound {
             internal void TryApply3D(AudioListener[] listeners) {
                 if (listeners != null && listeners.Length > 0 && this.Emitter != null)
                     this.Instance.Apply3D(listeners, this.Emitter);
+            }
+
+            internal void StopAndNotify() {
+                this.Instance.Stop(true);
+                this.OnStopped?.Invoke(this.Instance);
             }
 
         }

@@ -12,6 +12,7 @@ Jump to version:
 Additions
 - Added StringBuilder overloads to GenericFont
 - Added ColorExtensions.Multiply
+- Added SoundEffectInstanceHandler.Stop
 
 Improvements
 - Generify GenericFont's string drawing
