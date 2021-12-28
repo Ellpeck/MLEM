@@ -35,8 +35,7 @@ namespace MLEM.Pathfinding {
 
         /// <inheritdoc />
         public AStar3(GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) :
-            base(AllDirs, AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {
-        }
+            base(AllDirs, AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {}
 
         /// <inheritdoc />
         protected override Vector3 AddPositions(Vector3 first, Vector3 second) {

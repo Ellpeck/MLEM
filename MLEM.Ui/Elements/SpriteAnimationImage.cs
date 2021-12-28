@@ -32,9 +32,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="size">The image's size</param>
         /// <param name="animation">The sprite group to display</param>
         /// <param name="scaleToImage">Whether this image element should scale to the texture</param>
-        public SpriteAnimationImage(Anchor anchor, Vector2 size, SpriteAnimation animation, bool scaleToImage = false) :
-            this(anchor, size, new SpriteAnimationGroup().Add(animation, () => true), scaleToImage) {
-        }
+        public SpriteAnimationImage(Anchor anchor, Vector2 size, SpriteAnimation animation, bool scaleToImage = false) : this(anchor, size, new SpriteAnimationGroup().Add(animation, () => true), scaleToImage) {}
 
         /// <inheritdoc />
         public override void Update(GameTime time) {

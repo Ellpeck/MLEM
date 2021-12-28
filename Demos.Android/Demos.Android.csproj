@@ -75,22 +75,22 @@
         <PackageReference Include="TextCopy" Version="4.3.0" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Demos\Demos.csproj">
-        <Project>{1bc4682b-aa14-4937-b5c7-707e20fe88ff}</Project>
-        <Name>Demos</Name>
-      </ProjectReference>
-      <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj">
-        <Project>{997f4739-7bec-4621-b9ca-68deb2d74412}</Project>
-        <Name>MLEM.Startup</Name>
-      </ProjectReference>
-      <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj">
-        <Project>{6f00629a-8b87-4264-8896-19983285e32f}</Project>
-        <Name>MLEM.Ui</Name>
-      </ProjectReference>
-      <ProjectReference Include="..\MLEM\MLEM.csproj">
-        <Project>{1d6ab762-43c4-4775-8924-707c7ec3f142}</Project>
-        <Name>MLEM</Name>
-      </ProjectReference>
+        <ProjectReference Include="..\Demos\Demos.csproj">
+            <Project>{1bc4682b-aa14-4937-b5c7-707e20fe88ff}</Project>
+            <Name>Demos</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj">
+            <Project>{997f4739-7bec-4621-b9ca-68deb2d74412}</Project>
+            <Name>MLEM.Startup</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj">
+            <Project>{6f00629a-8b87-4264-8896-19983285e32f}</Project>
+            <Name>MLEM.Ui</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\MLEM\MLEM.csproj">
+            <Project>{1d6ab762-43c4-4775-8924-707c7ec3f142}</Project>
+            <Name>MLEM</Name>
+        </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

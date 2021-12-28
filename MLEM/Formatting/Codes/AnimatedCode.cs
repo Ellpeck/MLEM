@@ -5,8 +5,7 @@ namespace MLEM.Formatting.Codes {
     public class AnimatedCode : Code {
 
         /// <inheritdoc />
-        public AnimatedCode(Match match, Regex regex) : base(match, regex) {
-        }
+        public AnimatedCode(Match match, Regex regex) : base(match, regex) {}
 
         /// <inheritdoc />
         public override bool EndsHere(Code other) {

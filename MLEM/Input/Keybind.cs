@@ -32,8 +32,7 @@ namespace MLEM.Input {
         /// <summary>
         /// Creates a new keybind with no default combinations
         /// </summary>
-        public Keybind() {
-        }
+        public Keybind() {}
 
         /// <summary>
         /// Adds a new key combination to this keybind that can optionally be pressed for the keybind to trigger.

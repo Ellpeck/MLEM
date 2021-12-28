@@ -8,8 +8,7 @@ namespace Tests {
 
         public RawContentManager RawContent { get; private set; }
 
-        private TestGame() {
-        }
+        private TestGame() {}
 
         protected override void LoadContent() {
             base.LoadContent();

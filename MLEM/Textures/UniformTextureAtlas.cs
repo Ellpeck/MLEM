@@ -82,9 +82,7 @@ namespace MLEM.Textures {
         /// <param name="texture">The texture to use for this atlas</param>
         /// <param name="regionAmountX">The amount of texture regions in the x direction</param>
         /// <param name="regionAmountY">The amount of texture regions in the y direction</param>
-        public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY) :
-            this(new TextureRegion(texture), regionAmountX, regionAmountY) {
-        }
+        public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY) : this(new TextureRegion(texture), regionAmountX, regionAmountY) {}
 
         private TextureRegion GetOrAddRegion(Rectangle rect) {
             if (this.regions.TryGetValue(rect, out var region))

@@ -23,8 +23,7 @@ namespace Demos {
         private NinePatch testPatch;
         private Panel root;
 
-        public UiDemo(MlemGame game) : base(game) {
-        }
+        public UiDemo(MlemGame game) : base(game) {}
 
         public override void LoadContent() {
             this.testTexture = LoadContent<Texture2D>("Textures/Test");

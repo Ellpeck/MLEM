@@ -27,8 +27,7 @@ namespace MLEM.Ui.Style {
         /// To create a style property with a lower priority, use <see cref="OrStyle(T,byte)"/> on an existing priority, or use <see cref="None"/>.
         /// </summary>
         /// <param name="value">The custom style to apply</param>
-        public StyleProp(T value) : this(value, byte.MaxValue) {
-        }
+        public StyleProp(T value) : this(value, byte.MaxValue) {}
 
         private StyleProp(T value, byte priority) {
             this.Value = value;

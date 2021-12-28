@@ -110,7 +110,5 @@ namespace MLEM.Data {
     /// An attribute that, when added to a constructor, will make that constructor the one used by <see cref="CopyExtensions.Copy{T}"/>, <see cref="CopyExtensions.DeepCopy{T}"/> and <see cref="CopyExtensions.DeepCopyInto{T}"/>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Constructor)]
-    public class CopyConstructorAttribute : Attribute {
-
-    }
+    public class CopyConstructorAttribute : Attribute {}
 }

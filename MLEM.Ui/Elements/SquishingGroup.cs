@@ -16,8 +16,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="anchor">The group's anchor.</param>
         /// <param name="size">The group's size.</param>
-        public SquishingGroup(Anchor anchor, Vector2 size) : base(anchor, size, false) {
-        }
+        public SquishingGroup(Anchor anchor, Vector2 size) : base(anchor, size, false) {}
 
         /// <inheritdoc />
         public override void SetAreaAndUpdateChildren(RectangleF area) {

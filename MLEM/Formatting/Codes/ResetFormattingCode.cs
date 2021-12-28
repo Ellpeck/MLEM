@@ -5,8 +5,7 @@ namespace MLEM.Formatting.Codes {
     public class ResetFormattingCode : Code {
 
         /// <inheritdoc />
-        public ResetFormattingCode(Match match, Regex regex) : base(match, regex) {
-        }
+        public ResetFormattingCode(Match match, Regex regex) : base(match, regex) {}
 
         /// <inheritdoc />
         public override bool EndsHere(Code other) {

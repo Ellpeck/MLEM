@@ -19,8 +19,7 @@ namespace Demos {
         private int current;
         private float progress;
 
-        public EasingsDemo(MlemGame game) : base(game) {
-        }
+        public EasingsDemo(MlemGame game) : base(game) {}
 
         public override void LoadContent() {
             base.LoadContent();

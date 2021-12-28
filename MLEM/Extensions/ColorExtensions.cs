@@ -50,7 +50,7 @@ namespace MLEM.Extensions {
         /// <param name="value">The number to parse.</param>
         /// <returns>The resulting color.</returns>
         public static Color FromHexRgba(int value) {
-            return new Color(value >> 16 & 0xFF, value >> 8 & 0xFF, value >> 0 & 0xFF, value >> 24 & 0xFF);
+            return new Color((value >> 16) & 0xFF, (value >> 8) & 0xFF, (value >> 0) & 0xFF, (value >> 24) & 0xFF);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace MLEM.Extensions {
         /// <param name="value">The number to parse.</param>
         /// <returns>The resulting color.</returns>
         public static Color FromHexRgb(int value) {
-            return new Color(value >> 16 & 0xFF, value >> 8 & 0xFF, value >> 0 & 0xFF);
+            return new Color((value >> 16) & 0xFF, (value >> 8) & 0xFF, (value >> 0) & 0xFF);
         }
 
         /// <summary>

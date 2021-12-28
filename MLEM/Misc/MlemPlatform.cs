@@ -140,8 +140,7 @@ namespace MLEM.Misc {
             }
 
             /// <inheritdoc />
-            public override void AddTextInputListener(GameWindow window, TextInputCallback callback) {
-            }
+            public override void AddTextInputListener(GameWindow window, TextInputCallback callback) {}
 
             /// <inheritdoc />
             public override void OpenLinkOrFile(string link) {
@@ -172,12 +171,10 @@ namespace MLEM.Misc {
             }
 
             /// <inheritdoc />
-            public override void AddTextInputListener(GameWindow window, TextInputCallback callback) {
-            }
+            public override void AddTextInputListener(GameWindow window, TextInputCallback callback) {}
 
             /// <inheritdoc />
-            public override void OpenLinkOrFile(string link) {
-            }
+            public override void OpenLinkOrFile(string link) {}
 
         }
 

@@ -29,9 +29,7 @@ namespace MLEM.Data.Json {
         /// </summary>
         /// <param name="type">The type that the dictionary is declared in</param>
         /// <param name="memberName">The name of the dictionary itself</param>
-        public StaticJsonConverter(Type type, string memberName) :
-            this(GetEntries(type, memberName)) {
-        }
+        public StaticJsonConverter(Type type, string memberName) : this(GetEntries(type, memberName)) {}
 
         /// <summary>Writes the JSON representation of the object.</summary>
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>

@@ -15,8 +15,7 @@ namespace Demos {
         private Texture2D texture;
         private string[] layout;
 
-        public AutoTilingDemo(MlemGame game) : base(game) {
-        }
+        public AutoTilingDemo(MlemGame game) : base(game) {}
 
         public override void LoadContent() {
             base.LoadContent();

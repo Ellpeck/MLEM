@@ -76,8 +76,7 @@ namespace MLEM.Data.Content {
                                 r.Name = assetName;
                             return t;
                         }
-                    } catch (FileNotFoundException) {
-                    }
+                    } catch (FileNotFoundException) {}
                 }
             }
             throw new ContentLoadException($"Asset {assetName} not found. Tried files {string.Join(", ", triedFiles)}");
@@ -96,8 +95,7 @@ namespace MLEM.Data.Content {
         /// <summary>
         /// Initializes the component. Used to load non-graphical resources.
         /// </summary>
-        public void Initialize() {
-        }
+        public void Initialize() {}
 
         private static List<RawContentReader> CollectContentReaders() {
             var ret = new List<RawContentReader>();

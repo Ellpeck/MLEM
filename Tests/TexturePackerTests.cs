@@ -80,8 +80,7 @@ namespace Tests {
             Assert.AreEqual(170, packer4.PackedTexture.Height);
         }
 
-        private static void StubResult(TextureRegion region) {
-        }
+        private static void StubResult(TextureRegion region) {}
 
     }
 }

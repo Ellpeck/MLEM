@@ -380,21 +380,65 @@ namespace MLEM.Ui {
                 root.Element.AndChildren(action);
         }
 
-        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) => this.OnElementDrawn?.Invoke(element, time, batch, alpha);
-        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) => this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha);
-        internal void InvokeOnElementUpdated(Element element, GameTime time) => this.OnElementUpdated?.Invoke(element, time);
-        internal void InvokeOnElementAreaUpdated(Element element) => this.OnElementAreaUpdated?.Invoke(element);
-        internal void InvokeOnElementPressed(Element element) => this.OnElementPressed?.Invoke(element);
-        internal void InvokeOnElementSecondaryPressed(Element element) => this.OnElementSecondaryPressed?.Invoke(element);
-        internal void InvokeOnElementSelected(Element element) => this.OnElementSelected?.Invoke(element);
-        internal void InvokeOnElementDeselected(Element element) => this.OnElementDeselected?.Invoke(element);
-        internal void InvokeOnSelectedElementChanged(Element element) => this.OnSelectedElementChanged?.Invoke(element);
-        internal void InvokeOnElementMouseExit(Element element) => this.OnElementMouseExit?.Invoke(element);
-        internal void InvokeOnElementMouseEnter(Element element) => this.OnElementMouseEnter?.Invoke(element);
-        internal void InvokeOnMousedElementChanged(Element element) => this.OnMousedElementChanged?.Invoke(element);
-        internal void InvokeOnElementTouchExit(Element element) => this.OnElementTouchExit?.Invoke(element);
-        internal void InvokeOnElementTouchEnter(Element element) => this.OnElementTouchEnter?.Invoke(element);
-        internal void InvokeOnTouchedElementChanged(Element element) => this.OnTouchedElementChanged?.Invoke(element);
+        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
+            this.OnElementDrawn?.Invoke(element, time, batch, alpha);
+        }
+
+        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
+            this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha);
+        }
+
+        internal void InvokeOnElementUpdated(Element element, GameTime time) {
+            this.OnElementUpdated?.Invoke(element, time);
+        }
+
+        internal void InvokeOnElementAreaUpdated(Element element) {
+            this.OnElementAreaUpdated?.Invoke(element);
+        }
+
+        internal void InvokeOnElementPressed(Element element) {
+            this.OnElementPressed?.Invoke(element);
+        }
+
+        internal void InvokeOnElementSecondaryPressed(Element element) {
+            this.OnElementSecondaryPressed?.Invoke(element);
+        }
+
+        internal void InvokeOnElementSelected(Element element) {
+            this.OnElementSelected?.Invoke(element);
+        }
+
+        internal void InvokeOnElementDeselected(Element element) {
+            this.OnElementDeselected?.Invoke(element);
+        }
+
+        internal void InvokeOnSelectedElementChanged(Element element) {
+            this.OnSelectedElementChanged?.Invoke(element);
+        }
+
+        internal void InvokeOnElementMouseExit(Element element) {
+            this.OnElementMouseExit?.Invoke(element);
+        }
+
+        internal void InvokeOnElementMouseEnter(Element element) {
+            this.OnElementMouseEnter?.Invoke(element);
+        }
+
+        internal void InvokeOnMousedElementChanged(Element element) {
+            this.OnMousedElementChanged?.Invoke(element);
+        }
+
+        internal void InvokeOnElementTouchExit(Element element) {
+            this.OnElementTouchExit?.Invoke(element);
+        }
+
+        internal void InvokeOnElementTouchEnter(Element element) {
+            this.OnElementTouchEnter?.Invoke(element);
+        }
+
+        internal void InvokeOnTouchedElementChanged(Element element) {
+            this.OnTouchedElementChanged?.Invoke(element);
+        }
 
         /// <summary>
         /// A delegate used for callbacks that involve a <see cref="RootElement"/>
@@ -534,10 +578,21 @@ namespace MLEM.Ui {
             this.Transform = Matrix.CreateScale(scale, scale, 1) * Matrix.CreateTranslation(new Vector3((1 - scale) * (origin ?? this.Element.DisplayArea.Center), 0));
         }
 
-        internal void InvokeOnElementAdded(Element element) => this.OnElementAdded?.Invoke(element);
-        internal void InvokeOnElementRemoved(Element element) => this.OnElementRemoved?.Invoke(element);
-        internal void InvokeOnAddedToUi(UiSystem system) => this.OnAddedToUi?.Invoke(system);
-        internal void InvokeOnRemovedFromUi(UiSystem system) => this.OnRemovedFromUi?.Invoke(system);
+        internal void InvokeOnElementAdded(Element element) {
+            this.OnElementAdded?.Invoke(element);
+        }
+
+        internal void InvokeOnElementRemoved(Element element) {
+            this.OnElementRemoved?.Invoke(element);
+        }
+
+        internal void InvokeOnAddedToUi(UiSystem system) {
+            this.OnAddedToUi?.Invoke(system);
+        }
+
+        internal void InvokeOnRemovedFromUi(UiSystem system) {
+            this.OnRemovedFromUi?.Invoke(system);
+        }
 
     }
 }

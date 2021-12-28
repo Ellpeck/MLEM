@@ -4,7 +4,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     </PropertyGroup>
-
+    
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>Simple data handling for MLEM Library for Extending MonoGame</Description>
@@ -17,11 +17,11 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
-
+        
         <!--TODO remove lidgren support eventually (methods marked as obsolete since 5.2.0)-->
         <PackageReference Include="Lidgren.Network" Version="1.0.2">
             <PrivateAssets>all</PrivateAssets>
@@ -33,7 +33,7 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
-
+    
     <ItemGroup>
         <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
         <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />

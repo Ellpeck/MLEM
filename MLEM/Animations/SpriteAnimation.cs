@@ -103,18 +103,14 @@ namespace MLEM.Animations {
         /// </summary>
         /// <param name="timePerFrame">The amount of time that each frame should last for</param>
         /// <param name="regions">The texture regions that should make up this animation</param>
-        public SpriteAnimation(double timePerFrame, params TextureRegion[] regions) :
-            this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {
-        }
+        public SpriteAnimation(double timePerFrame, params TextureRegion[] regions) : this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {}
 
         /// <summary>
         /// Creates a new sprite animation that contains the given texture region arrays as frames, where each frame represents one set of texture regions.
         /// </summary>
         /// <param name="timePerFrame">The amount of time that each frame should last for</param>
         /// <param name="regions">The texture regions that should make up this animation</param>
-        public SpriteAnimation(double timePerFrame, params TextureRegion[][] regions) :
-            this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {
-        }
+        public SpriteAnimation(double timePerFrame, params TextureRegion[][] regions) : this(Array.ConvertAll(regions, r => new AnimationFrame(timePerFrame, r))) {}
 
         /// <summary>
         /// Creates a new sprite animation based on the given texture regions in rectangle-based format.
@@ -122,9 +118,7 @@ namespace MLEM.Animations {
         /// <param name="timePerFrame">The amount of time that each frame should last for</param>
         /// <param name="texture">The texture that the regions should come from</param>
         /// <param name="regions">The texture regions that should make up this animation</param>
-        public SpriteAnimation(double timePerFrame, Texture2D texture, params Rectangle[] regions) :
-            this(timePerFrame, Array.ConvertAll(regions, r => new TextureRegion(texture, r))) {
-        }
+        public SpriteAnimation(double timePerFrame, Texture2D texture, params Rectangle[] regions) : this(timePerFrame, Array.ConvertAll(regions, r => new TextureRegion(texture, r))) {}
 
         /// <summary>
         /// Updates this animation, causing <see cref="TimeIntoAnimation"/> to be increased and the <see cref="CurrentFrame"/> to be updated.

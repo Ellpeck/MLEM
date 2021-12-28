@@ -58,8 +58,7 @@ namespace MLEM.Formatting.Codes {
         /// Update this formatting code's animations etc.
         /// </summary>
         /// <param name="time">The game's time</param>
-        public virtual void Update(GameTime time) {
-        }
+        public virtual void Update(GameTime time) {}
 
         /// <summary>
         /// Returns the string that this formatting code should be replaced with.
@@ -77,8 +76,7 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawSelf"/>
-        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
-        }
+        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {}
 
         /// <summary>
         /// Creates a new formatting code from the given regex and regex match.

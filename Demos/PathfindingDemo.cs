@@ -18,8 +18,7 @@ namespace Demos {
         private List<Point> path;
         private Button regenerateButton;
 
-        public PathfindingDemo(MlemGame game) : base(game) {
-        }
+        public PathfindingDemo(MlemGame game) : base(game) {}
 
         private async void Init() {
             this.path = null;

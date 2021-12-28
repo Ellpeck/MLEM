@@ -124,8 +124,7 @@ namespace Tests {
             public Direction2 Dir { get; set; }
             public TestObject OtherTest;
 
-            public TestObject(Vector2 test, string test2) {
-            }
+            public TestObject(Vector2 test, string test2) {}
 
             protected bool Equals(TestObject other) {
                 return this.Vec.Equals(other.Vec) && this.Point.Equals(other.Point) && Equals(this.OtherTest, other.OtherTest) && this.Dir == other.Dir;
@@ -143,8 +142,7 @@ namespace Tests {
 
         private class TestEnum : DynamicEnum {
 
-            public TestEnum(string name, BigInteger value) : base(name, value) {
-            }
+            public TestEnum(string name, BigInteger value) : base(name, value) {}
 
         }
 

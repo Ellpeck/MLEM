@@ -53,14 +53,10 @@ namespace MLEM.Textures {
         /// <param name="paddingTop">The padding on the top edge</param>
         /// <param name="paddingBottom">The padding on the bottom edge</param>
         /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
-        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) :
-            this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom), mode) {
-        }
+        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) : this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom), mode) {}
 
         /// <inheritdoc cref="NinePatch(TextureRegion, int, int, int, int, NinePatchMode)"/>
-        public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) :
-            this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom, mode) {
-        }
+        public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) : this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom, mode) {}
 
         /// <summary>
         /// Creates a new nine patch from a texture and a uniform padding
@@ -68,14 +64,10 @@ namespace MLEM.Textures {
         /// <param name="texture">The texture to use</param>
         /// <param name="padding">The padding that each edge should have</param>
         /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
-        public NinePatch(Texture2D texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) :
-            this(new TextureRegion(texture), padding, mode) {
-        }
+        public NinePatch(Texture2D texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) : this(new TextureRegion(texture), padding, mode) {}
 
         /// <inheritdoc cref="NinePatch(TextureRegion, int, NinePatchMode)"/>
-        public NinePatch(TextureRegion texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) :
-            this(texture, padding, padding, padding, padding, mode) {
-        }
+        public NinePatch(TextureRegion texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) : this(texture, padding, padding, padding, padding, mode) {}
 
         internal RectangleF GetRectangleForIndex(RectangleF area, int index, float patchScale = 1) {
             var pl = this.Padding.Left * patchScale;

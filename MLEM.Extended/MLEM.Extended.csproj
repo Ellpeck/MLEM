@@ -4,7 +4,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     </PropertyGroup>
-
+    
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending MonoGame extension that ties in with MonoGame.Extended and other MonoGame libraries</Description>
@@ -16,10 +16,10 @@
         <PackageIcon>Logo.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
-
+        
         <PackageReference Include="MonoGame.Extended" Version="3.8.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
@@ -33,7 +33,7 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
-
+    
     <ItemGroup>
         <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
         <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />

@@ -16,8 +16,7 @@ namespace Demos {
         private Group buttons;
         private bool stop;
 
-        public AnimationDemo(MlemGame game) : base(game) {
-        }
+        public AnimationDemo(MlemGame game) : base(game) {}
 
         public override void LoadContent() {
             base.LoadContent();

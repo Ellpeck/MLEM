@@ -19,17 +19,13 @@ namespace Demos {
             this.Game = game;
         }
 
-        public virtual void LoadContent() {
-        }
+        public virtual void LoadContent() {}
 
-        public virtual void Update(GameTime time) {
-        }
+        public virtual void Update(GameTime time) {}
 
-        public virtual void DoDraw(GameTime time) {
-        }
+        public virtual void DoDraw(GameTime time) {}
 
-        public virtual void Clear() {
-        }
+        public virtual void Clear() {}
 
         public static T LoadContent<T>(string name) {
             return MlemGame.LoadContent<T>(name);
