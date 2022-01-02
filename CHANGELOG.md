@@ -49,6 +49,7 @@ Improvements
 
 Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
+- Fixed StaticSpriteBatch handling rotated sprites incorrectly
 
 Removals
 - **Removed deprecated Misc versions of SoundEffectInfo and SoundEffectInstanceHandler**

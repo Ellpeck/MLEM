@@ -367,18 +367,38 @@ namespace MLEM.Graphics {
 
         private Item Add(Texture2D texture, Vector2 pos, Vector2 offset, Vector2 size, float sin, float cos, Color color, Vector2 texTl, Vector2 texBr, float depth) {
             return this.Add(texture, depth,
-                new VertexPositionColorTexture(new Vector3(pos.X + offset.X * cos - offset.Y * sin, pos.Y + offset.X * sin + offset.Y * cos, depth), color, texTl),
-                new VertexPositionColorTexture(new Vector3(pos.X + (offset.X + size.X) * cos - offset.Y * sin, pos.Y + (offset.X + size.X) + offset.Y * cos, depth), color, new Vector2(texBr.X, texTl.Y)),
-                new VertexPositionColorTexture(new Vector3(pos.X + offset.X * cos - (offset.Y + size.Y) * sin, pos.Y + offset.X * sin + (offset.Y + size.Y) * cos, depth), color, new Vector2(texTl.X, texBr.Y)),
-                new VertexPositionColorTexture(new Vector3(pos.X + (offset.X + size.X) * cos - (offset.Y + size.Y) * sin, pos.Y + (offset.X + size.X) * sin + (offset.Y + size.Y) * cos, depth), color, texBr));
+                new VertexPositionColorTexture(new Vector3(
+                        pos.X + offset.X * cos - offset.Y * sin,
+                        pos.Y + offset.X * sin + offset.Y * cos, depth),
+                    color, texTl),
+                new VertexPositionColorTexture(new Vector3(
+                        pos.X + (offset.X + size.X) * cos - offset.Y * sin,
+                        pos.Y + (offset.X + size.X) * sin + offset.Y * cos, depth),
+                    color, new Vector2(texBr.X, texTl.Y)),
+                new VertexPositionColorTexture(new Vector3(
+                        pos.X + offset.X * cos - (offset.Y + size.Y) * sin,
+                        pos.Y + offset.X * sin + (offset.Y + size.Y) * cos, depth),
+                    color, new Vector2(texTl.X, texBr.Y)),
+                new VertexPositionColorTexture(new Vector3(
+                        pos.X + (offset.X + size.X) * cos - (offset.Y + size.Y) * sin,
+                        pos.Y + (offset.X + size.X) * sin + (offset.Y + size.Y) * cos, depth),
+                    color, texBr));
         }
 
         private Item Add(Texture2D texture, Vector2 pos, Vector2 size, Color color, Vector2 texTl, Vector2 texBr, float depth) {
             return this.Add(texture, depth,
-                new VertexPositionColorTexture(new Vector3(pos, depth), color, texTl),
-                new VertexPositionColorTexture(new Vector3(pos.X + size.X, pos.Y, depth), color, new Vector2(texBr.X, texTl.Y)),
-                new VertexPositionColorTexture(new Vector3(pos.X, pos.Y + size.Y, depth), color, new Vector2(texTl.X, texBr.Y)),
-                new VertexPositionColorTexture(new Vector3(pos.X + size.X, pos.Y + size.Y, depth), color, texBr));
+                new VertexPositionColorTexture(
+                    new Vector3(pos, depth),
+                    color, texTl),
+                new VertexPositionColorTexture(
+                    new Vector3(pos.X + size.X, pos.Y, depth),
+                    color, new Vector2(texBr.X, texTl.Y)),
+                new VertexPositionColorTexture(
+                    new Vector3(pos.X, pos.Y + size.Y, depth),
+                    color, new Vector2(texTl.X, texBr.Y)),
+                new VertexPositionColorTexture(
+                    new Vector3(pos.X + size.X, pos.Y + size.Y, depth),
+                    color, texBr));
         }
 
         private Item Add(Texture2D texture, float depth, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
