@@ -24,6 +24,7 @@ Improvements
 ### MLEM.Data
 Improvements
 - Rethrow exceptions when no RawContentManager readers could be constructed
+- Make Newtonsoft.Json dependency optional
 
 ## 5.2.0
 ### MLEM
