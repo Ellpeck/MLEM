@@ -99,6 +99,7 @@ namespace MLEM.Data.Content {
 
         private static List<RawContentReader> CollectContentReaders() {
             var ret = new List<RawContentReader>();
+            var assemblyExceptions = new List<Exception>();
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
                 try {
                     if (assembly.IsDynamic)
@@ -114,10 +115,12 @@ namespace MLEM.Data.Content {
                             throw new NotSupportedException($"The type {type} cannot be constructed by a RawContentManager. Does it have a visible parameterless constructor?", e);
                         }
                     }
-                } catch {
-                    // ignored
+                } catch (Exception e) {
+                    assemblyExceptions.Add(e);
                 }
             }
+            if (ret.Count <= 0)
+                throw new AggregateException("Failed to construct any RawContentReader instances", assemblyExceptions);
             return ret;
         }
 

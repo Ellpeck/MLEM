@@ -21,6 +21,10 @@ Improvements
 Improvements
 - Allow for checkboxes and radio buttons to be disabled
 
+### MLEM.Data
+Improvements
+- Rethrow exceptions when no RawContentManager readers could be constructed
+
 ## 5.2.0
 ### MLEM
 Additions
