@@ -17,6 +17,9 @@ Additions
 Improvements
 - Generify GenericFont's string drawing
 
+Fixes
+- Fixed StaticSpriteBatch handling rotated sprites incorrectly
+
 ### MLEM.Ui
 Improvements
 - Allow for checkboxes and radio buttons to be disabled
@@ -49,7 +52,6 @@ Improvements
 
 Fixes
 - Fixed some end-of-line inconsistencies when using the Right text alignment
-- Fixed StaticSpriteBatch handling rotated sprites incorrectly
 
 Removals
 - **Removed deprecated Misc versions of SoundEffectInfo and SoundEffectInstanceHandler**
