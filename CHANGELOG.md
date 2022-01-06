@@ -23,6 +23,7 @@ Fixes
 ### MLEM.Ui
 Improvements
 - Allow for checkboxes and radio buttons to be disabled
+- Only set a paragraph's area dirty when a text change would cause it to change size
 
 ### MLEM.Data
 Improvements

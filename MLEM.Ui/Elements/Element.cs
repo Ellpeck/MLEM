@@ -398,6 +398,11 @@ namespace MLEM.Ui.Elements {
         /// The input handler that this element's <see cref="Controls"/> use
         /// </summary>
         protected InputHandler Input => this.Controls.Input;
+        /// <summary>
+        /// The <see cref="ChildPaddedArea"/> of this element's <see cref="Parent"/>, or the <see cref="UiSystem.Viewport"/> if this element has no parent.
+        /// This value is the one that is passed to <see cref="CalcActualSize"/> during <see cref="ForceUpdateArea"/>.
+        /// </summary>
+        protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.system.Viewport;
 
         private readonly List<Element> children = new List<Element>();
         private bool sortedChildrenDirty;
@@ -554,7 +559,7 @@ namespace MLEM.Ui.Elements {
                 return;
             this.System.Stopwatch.Restart();
 
-            var parentArea = this.Parent != null ? this.Parent.ChildPaddedArea : (RectangleF) this.system.Viewport;
+            var parentArea = this.ParentArea;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
             var parentCenterY = parentArea.Y + parentArea.Height / 2;
             var actualSize = this.CalcActualSize(parentArea);

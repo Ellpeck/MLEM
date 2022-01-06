@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
@@ -24,8 +25,7 @@ namespace MLEM.Ui.Elements {
             get => this.regularFont;
             set {
                 this.regularFont = value;
-                this.SetAreaDirty();
-                this.TokenizedText = null;
+                this.SetTextDirty();
             }
         }
         /// <summary>
@@ -59,8 +59,7 @@ namespace MLEM.Ui.Elements {
                 if (this.text != value) {
                     this.text = value;
                     this.IsHidden = string.IsNullOrWhiteSpace(this.text);
-                    this.SetAreaDirty();
-                    this.TokenizedText = null;
+                    this.SetTextDirty();
                 }
             }
         }
@@ -95,8 +94,7 @@ namespace MLEM.Ui.Elements {
             get => this.alignment;
             set {
                 this.alignment = value;
-                this.SetAreaDirty();
-                this.TokenizedText = null;
+                this.SetTextDirty();
             }
         }
 
@@ -185,6 +183,17 @@ namespace MLEM.Ui.Elements {
             } else {
                 this.TokenizedText.Split(this.RegularFont, width, scale, this.Alignment);
             }
+        }
+
+        /// <summary>
+        /// A helper method that causes the <see cref="TokenizedText"/> to be reset.
+        /// Additionally, <see cref="Element.SetAreaDirty"/> if this paragraph's area has changed enough to warrant it, or if it has any <see cref="Link"/> children.
+        /// </summary>
+        protected void SetTextDirty() {
+            this.TokenizedText = null;
+            // only set our area dirty if our size changed as a result of this action or if we have link children we need to update
+            if (!this.AreaDirty && (this.Children.Count > 0 || !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Epsilon)))
+                this.SetAreaDirty();
         }
 
         private void QueryTextCallback() {
