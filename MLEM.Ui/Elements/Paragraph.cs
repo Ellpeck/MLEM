@@ -266,7 +266,10 @@ namespace MLEM.Ui.Elements {
                 if (ret != null)
                     return ret;
                 // check if any of our token's parts are hovered
-                foreach (var rect in this.Token.GetArea(this.Parent.DisplayArea.Location, this.Scale * this.textScale)) {
+                var location = this.Parent.DisplayArea.Location;
+                if (this.Parent is Paragraph p)
+                    location.X += p.GetAlignmentOffset();
+                foreach (var rect in this.Token.GetArea(location, this.Scale * this.textScale)) {
                     if (rect.Contains(this.TransformInverse(position)))
                         return this;
                 }

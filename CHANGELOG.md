@@ -25,6 +25,9 @@ Improvements
 - Allow for checkboxes and radio buttons to be disabled
 - Only set a paragraph's area dirty when a text change would cause it to change size
 
+Fixes
+- Fixed paragraph links having incorrect hover locations when using special text alignments
+
 ### MLEM.Data
 Improvements
 - Rethrow exceptions when no RawContentManager readers could be constructed
