@@ -24,6 +24,7 @@ Fixes
 Improvements
 - Allow for checkboxes and radio buttons to be disabled
 - Only set a paragraph's area dirty when a text change would cause it to change size
+- Ensure that a panel gets notified of all relevant changes by calling OnChildAreaDirty for all grandchildren
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

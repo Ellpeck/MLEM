@@ -530,7 +530,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public void SetAreaDirty() {
             this.AreaDirty = true;
-            this.Parent?.OnChildAreaDirty(this);
+            this.Parent?.OnChildAreaDirty(this, false);
         }
 
         /// <summary>
@@ -1061,13 +1061,17 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// A method that gets called by this element's <see cref="Children"/> when their <see cref="SetAreaDirty"/> methods get called.
+        /// A method that gets called by this element's <see cref="Children"/> or any of its grandchildren when their <see cref="SetAreaDirty"/> methods get called.
         /// Note that the element's area might already be dirty, which will not stop this method from being called.
         /// </summary>
-        /// <param name="child">The child whose area is being set dirty</param>
-        protected virtual void OnChildAreaDirty(Element child) {
-            if (child.Anchor >= Anchor.AutoLeft || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
-                this.SetAreaDirty();
+        /// <param name="child">The child whose area is being set dirty.</param>
+        /// <param name="grandchild">Whether the <paramref name="child"/> is a grandchild of this element, rather than a direct child.</param>
+        protected virtual void OnChildAreaDirty(Element child, bool grandchild) {
+            if (!grandchild) {
+                if (child.Anchor >= Anchor.AutoLeft || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
+                    this.SetAreaDirty();
+            }
+            this.Parent?.OnChildAreaDirty(child, true);
         }
 
         /// <summary>

@@ -158,6 +158,15 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
+        protected override void OnChildAreaDirty(Element child, bool grandchild) {
+            base.OnChildAreaDirty(child, grandchild);
+            // we only need to scroll when a grandchild changes, since all of our children are forced 
+            // to be auto-anchored and so will automatically propagate their changes up to us
+            if (grandchild)
+                this.ScrollChildren();
+        }
+
+        /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             if (this.Texture.HasValue())
                 batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);

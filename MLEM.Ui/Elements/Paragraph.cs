@@ -191,8 +191,8 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         protected void SetTextDirty() {
             this.TokenizedText = null;
-            // only set our area dirty if our size changed as a result of this action or if we have link children we need to update
-            if (!this.AreaDirty && (!this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Epsilon) || this.Children.Count > 0))
+            // only set our area dirty if our size changed as a result of this action
+            if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Epsilon))
                 this.SetAreaDirty();
         }
 

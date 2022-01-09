@@ -30,9 +30,10 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        protected override void OnChildAreaDirty(Element child) {
-            base.OnChildAreaDirty(child);
-            this.SetAreaDirty();
+        protected override void OnChildAreaDirty(Element child, bool grandchild) {
+            base.OnChildAreaDirty(child, grandchild);
+            if (!grandchild)
+                this.SetAreaDirty();
         }
 
         private static bool SquishChild(Element element, out RectangleF squishedArea) {
