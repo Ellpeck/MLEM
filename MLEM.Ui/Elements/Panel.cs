@@ -120,7 +120,7 @@ namespace MLEM.Ui.Elements {
                 return;
             var offset = new Vector2(0, -this.ScrollBar.CurrentValue);
             foreach (var child in this.GetChildren(c => c != this.ScrollBar, true)) {
-                if (child.ScrollOffset != offset) {
+                if (!child.ScrollOffset.Equals(offset, Epsilon)) {
                     child.ScrollOffset = offset;
                     this.relevantChildrenDirty = true;
                 }
