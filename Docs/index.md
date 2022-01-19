@@ -37,8 +37,9 @@ MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting
 ![An image showing text with various colors and other formatting](https://raw.githubusercontent.com/Ellpeck/MLEM/release/Media/Formatting.png)
 
 # Friends of MLEM
-There are several other NuGet packages and tools that work well in combination with MonoGame and MLEM. Here are some of them:
+There are several other libraries and tools that work well in combination with MonoGame and MLEM. Here are some of them:
 - [Contentless](https://github.com/Ellpeck/Contentless), a tool that removes the need to add assets to the MonoGame Content Pipeline manually
 - [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET Core applications into several distributable formats
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended), a package that also provides several additional features for MonoGame
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project
+- [Illumilib](https://github.com/Ellpeck/Illumilib), a simple keyboard and mouse lighting library with support for Razer, Logitech and Corsair devices
