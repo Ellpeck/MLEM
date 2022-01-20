@@ -14,7 +14,7 @@
 - **MLEM** is the base package, which provides extension methods and additional features for MonoGame
 - **MLEM.Ui** features a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
 - **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame libraries
-- **MLEM.Data** provides simple data handling
+- **MLEM.Data** provides simple loading and processing of textures and data
 - **MLEM.Startup** combines MLEM with some other useful libraries into a quick Game startup class
 - **MLEM.Templates** contains cross-platform project templates
 
