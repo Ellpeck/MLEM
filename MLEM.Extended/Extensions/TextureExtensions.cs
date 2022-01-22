@@ -23,7 +23,7 @@ namespace MLEM.Extended.Extensions {
         /// <param name="region">The nine patch to convert</param>
         /// <returns>The converted nine patch</returns>
         public static TextureRegion2D ToExtended(this TextureRegion region) {
-            return new TextureRegion2D(region.Texture, region.U, region.V, region.Width, region.Height);
+            return new TextureRegion2D(region.Name, region.Texture, region.U, region.V, region.Width, region.Height);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MLEM.Extended.Extensions {
         /// <param name="patch">The nine patch to convert</param>
         /// <returns>The converted nine patch</returns>
         public static NinePatch ToMlem(this NinePatchRegion2D patch) {
-            return new NinePatch(new TextureRegion(patch.Texture, patch.Bounds), patch.LeftPadding, patch.RightPadding, patch.TopPadding, patch.BottomPadding);
+            return new NinePatch(((TextureRegion2D) patch).ToMlem(), patch.LeftPadding, patch.RightPadding, patch.TopPadding, patch.BottomPadding);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace MLEM.Extended.Extensions {
         /// <param name="region">The nine patch to convert</param>
         /// <returns>The converted nine patch</returns>
         public static TextureRegion ToMlem(this TextureRegion2D region) {
-            return new TextureRegion(region.Texture, region.Bounds);
+            return new TextureRegion(region.Texture, region.Bounds) {Name = region.Name};
         }
 
     }

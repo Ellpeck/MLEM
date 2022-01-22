@@ -31,6 +31,10 @@ Improvements
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments
 
+### MLEM.Extended
+Improvements
+- Preserve texture region names when converting between MLEM and MG.Extended
+
 ### MLEM.Data
 Improvements
 - Rethrow exceptions when no RawContentManager readers could be constructed
