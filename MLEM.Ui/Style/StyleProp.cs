@@ -75,6 +75,7 @@ namespace MLEM.Ui.Style {
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <param name="other">An object to compare with this object.</param>
         /// <returns>true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.</returns>
+        [Obsolete("StyleProp equality is ambiguous as it is not clear whether priority is taken into account. Compare Values instead.")]
         public bool Equals(StyleProp<T> other) {
             return EqualityComparer<T>.Default.Equals(this.Value, other.Value);
         }
@@ -82,12 +83,14 @@ namespace MLEM.Ui.Style {
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>true if <paramref name="obj">obj</paramref> and this instance are the same type and represent the same value; otherwise, false.</returns>
+        [Obsolete("StyleProp equality is ambiguous as it is not clear whether priority is taken into account. Compare Values instead.")]
         public override bool Equals(object obj) {
             return obj is StyleProp<T> other && this.Equals(other);
         }
 
         /// <summary>Returns the hash code for this instance.</summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        [Obsolete("StyleProp equality is ambiguous as it is not clear whether priority is taken into account. Compare Values instead.")]
         public override int GetHashCode() {
             return EqualityComparer<T>.Default.GetHashCode(this.Value);
         }
@@ -122,6 +125,7 @@ namespace MLEM.Ui.Style {
         /// <param name="left">The left style property.</param>
         /// <param name="right">The right style property.</param>
         /// <returns>Whether the two style properties are equal.</returns>
+        [Obsolete("StyleProp equality is ambiguous as it is not clear whether priority is taken into account. Compare Values instead.")]
         public static bool operator ==(StyleProp<T> left, StyleProp<T> right) {
             return left.Equals(right);
         }
@@ -132,6 +136,7 @@ namespace MLEM.Ui.Style {
         /// <param name="left">The left style property.</param>
         /// <param name="right">The right style property.</param>
         /// <returns>Whether the two style properties are not equal.</returns>
+        [Obsolete("StyleProp equality is ambiguous as it is not clear whether priority is taken into account. Compare Values instead.")]
         public static bool operator !=(StyleProp<T> left, StyleProp<T> right) {
             return !left.Equals(right);
         }

@@ -35,6 +35,9 @@ Improvements
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments
 
+Removals
+- Marked StyleProp equality members as obsolete
+
 ### MLEM.Extended
 Improvements
 - Preserve texture region names when converting between MLEM and MG.Extended
