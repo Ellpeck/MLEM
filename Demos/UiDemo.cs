@@ -81,7 +81,7 @@ namespace Demos {
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), "Change Style") {
                 OnPressed = element => this.UiSystem.Style = this.UiSystem.Style == untexturedStyle ? style : untexturedStyle,
                 PositionOffset = new Vector2(0, 1),
-                Texture = this.testPatch
+                Style = untexturedStyle
             });
 
             this.root.AddChild(new VerticalSpace(3));

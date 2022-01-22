@@ -32,22 +32,7 @@ namespace MLEM.Ui.Elements {
             internal set {
                 this.system = value;
                 this.Controls = value?.Controls;
-                this.Style = value?.Style;
-            }
-        }
-        /// <summary>
-        /// This Element's current <see cref="UiStyle"/>.
-        /// When this value is changed, <see cref="InitStyle"/> is called.
-        /// Note that this value is automatically set to the <see cref="UiSystem"/>'s ui style when it is changed.
-        /// </summary>
-        public UiStyle Style {
-            get => this.style;
-            set {
-                if (this.style != value) {
-                    this.style = value;
-                    if (value != null)
-                        this.InitStyle(value);
-                }
+                this.Style = this.Style.OrStyle(value?.Style);
             }
         }
         /// <summary>
@@ -262,6 +247,18 @@ namespace MLEM.Ui.Elements {
         public bool AreaDirty { get; private set; }
 
         /// <summary>
+        /// This Element's current <see cref="UiStyle"/>.
+        /// When this property is set, <see cref="InitStyle"/> is called.
+        /// </summary>
+        public StyleProp<UiStyle> Style {
+            get => this.style;
+            set {
+                this.style = value;
+                if (this.style.HasValue())
+                    this.InitStyle(this.style);
+            }
+        }
+        /// <summary>
         /// A style property that contains the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
         /// </summary>
         public StyleProp<NinePatch> SelectionIndicator;
@@ -418,7 +415,7 @@ namespace MLEM.Ui.Elements {
         private RectangleF area;
         private bool isHidden;
         private int priority;
-        private UiStyle style;
+        private StyleProp<UiStyle> style;
         private StyleProp<Padding> childPadding;
 
         /// <summary>
@@ -1062,8 +1059,8 @@ namespace MLEM.Ui.Elements {
             this.SelectionIndicator = this.SelectionIndicator.OrStyle(style.SelectionIndicator);
             this.ActionSound = this.ActionSound.OrStyle(style.ActionSound);
             this.SecondActionSound = this.SecondActionSound.OrStyle(style.ActionSound);
-            
-            this.System.InvokeOnElementStyleInit(this);
+
+            this.System?.InvokeOnElementStyleInit(this);
         }
 
         /// <summary>
