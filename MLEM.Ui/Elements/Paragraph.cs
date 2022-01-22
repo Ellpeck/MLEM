@@ -90,7 +90,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The <see cref="TextAlignment"/> that this paragraph's text should be rendered with
         /// </summary>
-        public TextAlignment Alignment {
+        public StyleProp<TextAlignment> Alignment {
             get => this.alignment;
             set {
                 this.alignment = value;
@@ -99,7 +99,7 @@ namespace MLEM.Ui.Elements {
         }
 
         private string text;
-        private TextAlignment alignment;
+        private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
 
         /// <summary>
@@ -158,6 +158,7 @@ namespace MLEM.Ui.Elements {
             this.RegularFont = this.RegularFont.OrStyle(style.Font ?? throw new NotSupportedException("Paragraphs cannot use ui styles that don't have a font. Please supply a custom font by setting UiStyle.Font."));
             this.TextScale = this.TextScale.OrStyle(style.TextScale);
             this.TextColor = this.TextColor.OrStyle(style.TextColor);
+            this.Alignment = this.Alignment.OrStyle(style.TextAlignment);
         }
 
         /// <summary>
@@ -202,7 +203,7 @@ namespace MLEM.Ui.Elements {
         }
 
         private float GetAlignmentOffset() {
-            switch (this.Alignment) {
+            switch (this.Alignment.Value) {
                 case TextAlignment.Center:
                     return this.DisplayArea.Width / 2;
                 case TextAlignment.Right:

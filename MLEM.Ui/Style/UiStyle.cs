@@ -199,6 +199,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Color TextColor = Color.White;
         /// <summary>
+        /// The <see cref="TextAlignment"/> that a <see cref="Paragraph"/> should use by default.
+        /// </summary>
+        public TextAlignment TextAlignment;
+        /// <summary>
         /// The <see cref="SoundEffectInfo"/> that should be played when an element's <see cref="Element.OnPressed"/> and <see cref="Element.OnSecondaryPressed"/> events are called.
         /// Note that this sound is only played if the callbacks have any subscribers.
         /// </summary>
