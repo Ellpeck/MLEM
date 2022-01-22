@@ -13,6 +13,7 @@ Additions
 - Added StringBuilder overloads to GenericFont
 - Added ColorExtensions.Multiply
 - Added SoundEffectInstanceHandler.Stop
+- Added TextureRegion.OffsetCopy
 
 Improvements
 - Generify GenericFont's string drawing

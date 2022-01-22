@@ -118,6 +118,16 @@ namespace MLEM.Textures {
         /// <param name="size">The size of this area</param>
         public TextureRegion(TextureRegion region, Point uv, Point size) : this(region.Texture, region.Position + uv, size) {}
 
+        /// <summary>
+        /// Returns a new <see cref="TextureRegion"/> that has the same <see cref="Texture"/>, <see cref="Pivot"/> and <see cref="Size"/> as this texture, but the returned region's <see cref="Position"/> will be offset by <paramref name="offset"/>.
+        /// Note that the <see cref="Name"/> is not preserved in the copy.
+        /// </summary>
+        /// <param name="offset">The offset to apply to the <see cref="Position"/></param>
+        /// <returns>An offset copy of this texture region</returns>
+        public TextureRegion OffsetCopy(Point offset) {
+            return new TextureRegion(this.Texture, this.Position + offset, this.Size) {Pivot = this.Pivot};
+        }
+
     }
 
     /// <summary>
