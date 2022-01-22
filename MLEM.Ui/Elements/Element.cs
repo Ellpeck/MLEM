@@ -342,6 +342,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public GenericCallback OnAreaUpdated;
         /// <summary>
+        /// Event that is called when this element's <see cref="InitStyle"/> method is called while setting the <see cref="Style"/>.
+        /// </summary>
+        public GenericCallback OnStyleInit;
+        /// <summary>
         /// Event that is called when the element that is currently being moused changes within the ui system.
         /// Note that the event fired doesn't necessarily correlate to this specific element.
         /// </summary>
@@ -1058,6 +1062,8 @@ namespace MLEM.Ui.Elements {
             this.SelectionIndicator = this.SelectionIndicator.OrStyle(style.SelectionIndicator);
             this.ActionSound = this.ActionSound.OrStyle(style.ActionSound);
             this.SecondActionSound = this.SecondActionSound.OrStyle(style.ActionSound);
+            
+            this.System.InvokeOnElementStyleInit(this);
         }
 
         /// <summary>

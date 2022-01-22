@@ -153,6 +153,10 @@ namespace MLEM.Ui {
         /// </summary>
         public event Element.GenericCallback OnElementAreaUpdated;
         /// <summary>
+        /// Event that is called when an <see cref="Element"/>'s <see cref="Element.InitStyle"/> method is called while setting its <see cref="Element.Style"/>.
+        /// </summary>
+        public event Element.GenericCallback OnElementStyleInit;
+        /// <summary>
         /// Event that is invoked when the <see cref="Element"/> that the mouse is currently over changes
         /// </summary>
         public event Element.GenericCallback OnMousedElementChanged;
@@ -190,6 +194,7 @@ namespace MLEM.Ui {
         public UiSystem(Game game, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true) : base(game) {
             this.Controls = new UiControls(this, inputHandler);
             this.style = style;
+
             this.OnElementDrawn += (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
             this.OnElementUpdated += (e, time) => e.OnUpdated?.Invoke(e, time);
             this.OnElementPressed += e => e.OnPressed?.Invoke(e);
@@ -201,6 +206,7 @@ namespace MLEM.Ui {
             this.OnElementTouchEnter += e => e.OnTouchEnter?.Invoke(e);
             this.OnElementTouchExit += e => e.OnTouchExit?.Invoke(e);
             this.OnElementAreaUpdated += e => e.OnAreaUpdated?.Invoke(e);
+            this.OnElementStyleInit += e => e.OnStyleInit?.Invoke(e);
             this.OnMousedElementChanged += e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged += e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged += e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
@@ -216,6 +222,7 @@ namespace MLEM.Ui {
                 if (e.OnSecondaryPressed != null)
                     e.SecondActionSound.Value?.Play();
             };
+
             MlemPlatform.Current?.AddTextInputListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
 
             if (automaticViewport) {
@@ -394,6 +401,10 @@ namespace MLEM.Ui {
 
         internal void InvokeOnElementAreaUpdated(Element element) {
             this.OnElementAreaUpdated?.Invoke(element);
+        }
+
+        internal void InvokeOnElementStyleInit(Element element) {
+            this.OnElementStyleInit?.Invoke(element);
         }
 
         internal void InvokeOnElementPressed(Element element) {
