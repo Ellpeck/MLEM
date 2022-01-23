@@ -48,6 +48,9 @@ Improvements
 - Rethrow exceptions when no RawContentManager readers could be constructed
 - Make Newtonsoft.Json dependency optional
 
+Removals
+- Marked CopyExtensions as obsolete
+
 ## 5.2.0
 ### MLEM
 Additions

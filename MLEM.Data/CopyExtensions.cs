@@ -7,6 +7,7 @@ namespace MLEM.Data {
     /// <summary>
     /// A set of extensions for dealing with copying objects.
     /// </summary>
+    [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
     public static class CopyExtensions {
 
         private const BindingFlags DefaultFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -21,6 +22,7 @@ namespace MLEM.Data {
         /// <param name="fieldInclusion">A predicate that determines whether or not the given field should be copied. If null, all fields will be copied.</param>
         /// <typeparam name="T">The type of the object to copy</typeparam>
         /// <returns>A shallow copy of the object</returns>
+        [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
         public static T Copy<T>(this T obj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
             var copy = (T) Construct(typeof(T), flags);
             obj.CopyInto(copy, flags, fieldInclusion);
@@ -36,6 +38,7 @@ namespace MLEM.Data {
         /// <param name="fieldInclusion">A predicate that determines whether or not the given field should be copied. If null, all fields will be copied.</param>
         /// <typeparam name="T">The type of the object to copy</typeparam>
         /// <returns>A deep copy of the object</returns>
+        [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
         public static T DeepCopy<T>(this T obj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
             var copy = (T) Construct(typeof(T), flags);
             obj.DeepCopyInto(copy, flags, fieldInclusion);
@@ -50,6 +53,7 @@ namespace MLEM.Data {
         /// <param name="flags">The binding flags for field searching</param>
         /// <param name="fieldInclusion">A predicate that determines whether or not the given field should be copied. If null, all fields will be copied.</param>
         /// <typeparam name="T">The type of the object to copy</typeparam>
+        [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
         public static void CopyInto<T>(this T obj, T otherObj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
             foreach (var field in typeof(T).GetFields(flags)) {
                 if (fieldInclusion == null || fieldInclusion(field))
@@ -66,6 +70,7 @@ namespace MLEM.Data {
         /// <param name="flags">The binding flags for field searching</param>
         /// <param name="fieldInclusion">A predicate that determines whether or not the given field should be copied. If null, all fields will be copied.</param>
         /// <typeparam name="T">The type of the object to copy</typeparam>
+        [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
         public static void DeepCopyInto<T>(this T obj, T otherObj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
             foreach (var field in obj.GetType().GetFields(flags)) {
                 if (fieldInclusion != null && !fieldInclusion(field))
@@ -109,6 +114,6 @@ namespace MLEM.Data {
     /// <summary>
     /// An attribute that, when added to a constructor, will make that constructor the one used by <see cref="CopyExtensions.Copy{T}"/>, <see cref="CopyExtensions.DeepCopy{T}"/> and <see cref="CopyExtensions.DeepCopyInto{T}"/>.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Constructor)]
+    [AttributeUsage(AttributeTargets.Constructor), Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
     public class CopyConstructorAttribute : Attribute {}
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using Microsoft.Xna.Framework;
@@ -36,33 +35,6 @@ namespace Tests {
 
             var read = serializer.Deserialize<TestObject>(new JsonTextReader(new StringReader(ret)));
             Assert.AreEqual(this.testObject, read);
-        }
-
-        [Test]
-        public void TestCopy() {
-            var copy = this.testObject.Copy();
-            Assert.AreEqual(this.testObject, copy);
-            Assert.AreSame(this.testObject.OtherTest, copy.OtherTest);
-
-            var deepCopy = this.testObject.DeepCopy();
-            Assert.AreEqual(this.testObject, deepCopy);
-            Assert.AreNotSame(this.testObject.OtherTest, deepCopy.OtherTest);
-        }
-
-        [Test]
-        public void TestCopySpeed() {
-            const int count = 1000000;
-            var stopwatch = Stopwatch.StartNew();
-            for (var i = 0; i < count; i++)
-                this.testObject.Copy();
-            stopwatch.Stop();
-            TestContext.WriteLine($"Copy took {stopwatch.Elapsed.TotalMilliseconds / count * 1000000}ns on average");
-
-            stopwatch.Restart();
-            for (var i = 0; i < count; i++)
-                this.testObject.DeepCopy();
-            stopwatch.Stop();
-            TestContext.WriteLine($"DeepCopy took {stopwatch.Elapsed.TotalMilliseconds / count * 1000000}ns on average");
         }
 
         [Test]

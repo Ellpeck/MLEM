@@ -119,13 +119,6 @@ namespace Sandbox {
                 Console.WriteLine(vec + " -> " + dir);
             }
 
-            var copy = obj.DeepCopy();
-            Console.WriteLine(copy);
-
-            var intoCopy = new Test(Vector2.One, "test") {OtherTest = new Test(Vector2.One, "other")};
-            obj.DeepCopyInto(intoCopy);
-            Console.WriteLine(intoCopy);
-
             var writer = new StringWriter();
             this.Content.GetJsonSerializer().Serialize(writer, obj);
             //Console.WriteLine(writer.ToString());
@@ -345,7 +338,6 @@ namespace Sandbox {
             public Direction2 Dir { get; set; }
             public Test OtherTest;
 
-            [CopyConstructor]
             public Test(Vector2 test, string test2) {
                 Console.WriteLine("Constructed with " + test + ", " + test2);
             }
