@@ -27,7 +27,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override string GetReplacementString(GenericFont font) {
-            return GenericFont.OneEmSpace.ToCachedString();
+            return GenericFont.Emsp.ToCachedString();
         }
 
         /// <inheritdoc />

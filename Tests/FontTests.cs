@@ -147,10 +147,10 @@ namespace Tests {
             }
 
             CompareSizes($"This is a very simple{GenericFont.Nbsp}test string");
-            CompareSizes($"This is a very simple{GenericFont.OneEmSpace}test string");
+            CompareSizes($"This is a very simple{GenericFont.Emsp}test string");
             CompareSizes($"This is a very simple{GenericFont.Zwsp}test string");
 
-            Assert.AreEqual(new Vector2(this.font.LineHeight, this.font.LineHeight), this.font.MeasureString(GenericFont.OneEmSpace.ToCachedString()));
+            Assert.AreEqual(new Vector2(this.font.LineHeight, this.font.LineHeight), this.font.MeasureString(GenericFont.Emsp.ToCachedString()));
             Assert.AreEqual(new Vector2(0, this.font.LineHeight), this.font.MeasureString(GenericFont.Zwsp.ToCachedString()));
         }
 

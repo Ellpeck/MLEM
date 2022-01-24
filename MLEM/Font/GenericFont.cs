@@ -18,7 +18,10 @@ namespace MLEM.Font {
         /// This is a character that isn't drawn, but has the same width as <see cref="LineHeight"/>.
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.
         /// </summary>
-        public const char OneEmSpace = '\u2003';
+        public const char Emsp = '\u2003';
+        /// <inheritdoc cref="Emsp"/>
+        [Obsolete("Use the Emsp field instead.")]
+        public const char OneEmSpace = Emsp;
         /// <summary>
         /// This field holds the unicode representation of a non-breaking space.
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.
@@ -48,7 +51,7 @@ namespace MLEM.Font {
 
         /// <summary>
         /// Measures the width of the given character with the default scale for use in <see cref="MeasureString(string,bool)"/>.
-        /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/> for most generic fonts, which is why <see cref="MeasureString(string,bool)"/> should be used even for single characters.
+        /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="Emsp"/> for most generic fonts, which is why <see cref="MeasureString(string,bool)"/> should be used even for single characters.
         /// </summary>
         /// <param name="c">The character whose width to calculate</param>
         /// <returns>The width of the given character with the default scale</returns>
@@ -100,7 +103,7 @@ namespace MLEM.Font {
 
         /// <summary>
         /// Measures the width of the given string when drawn with this font's underlying font.
-        /// This method uses <see cref="MeasureChar"/> internally to calculate the size of known characters and calculates additional characters like <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="OneEmSpace"/>.
+        /// This method uses <see cref="MeasureChar"/> internally to calculate the size of known characters and calculates additional characters like <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="Emsp"/>.
         /// If the text contains newline characters (\n), the size returned will represent a rectangle that encompasses the width of the longest line and the string's full height.
         /// </summary>
         /// <param name="text">The text whose size to calculate</param>
@@ -182,7 +185,7 @@ namespace MLEM.Font {
                         xOffset = 0;
                         size.Y += this.LineHeight;
                         break;
-                    case OneEmSpace:
+                    case Emsp:
                         xOffset += this.LineHeight;
                         break;
                     case Nbsp:
@@ -249,7 +252,7 @@ namespace MLEM.Font {
                 } else {
                     var font = fontFunction?.Invoke(i) ?? this;
                     var cWidth = font.MeasureString(c.ToCachedString()).X * scale;
-                    if (c == ' ' || c == OneEmSpace || c == Zwsp) {
+                    if (c == ' ' || c == Emsp || c == Zwsp) {
                         // remember the location of this (breaking!) space
                         lastSpaceIndex = curr.Length;
                         widthSinceLastSpace = 0;

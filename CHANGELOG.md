@@ -21,6 +21,9 @@ Improvements
 Fixes
 - Fixed StaticSpriteBatch handling rotated sprites incorrectly
 
+Removals
+- Renamed GenericFont.OneEmSpace to Emsp (and marked OneEmSpace as obsolete)
+
 ### MLEM.Ui
 Additions
 - Added Element.OnStyleInit event
