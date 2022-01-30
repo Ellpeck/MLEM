@@ -59,10 +59,8 @@ namespace MLEM.Ui {
             get => this.style;
             set {
                 this.style = value;
-                foreach (var root in this.rootElements) {
-                    root.Element.AndChildren(e => e.System = this);
-                    root.Element.ForceUpdateArea();
-                }
+                foreach (var root in this.rootElements)
+                    root.Element.AndChildren(e => e.Style = e.Style.OrStyle(value));
             }
         }
         /// <summary>
