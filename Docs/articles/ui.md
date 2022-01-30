@@ -21,10 +21,7 @@ protected override void Update(GameTime gameTime) {
     this.UiSystem.Update(gameTime);
 }
 
-protected override void Draw(GameTime gameTime) {
-    // DrawEarly needs to be called before clearing your graphics context
-    this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
-    
+protected override void Draw(GameTime gameTime) {    
     this.GraphicsDevice.Clear(Color.CornflowerBlue);
     // Do your regular game drawing here
     

@@ -176,8 +176,6 @@ namespace MLEM.Ui.Elements {
                 batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
             // if we handle overflow, draw using a scissor rectangle
             if (this.scrollOverflow) {
-                this.UpdateAreaIfDirty();
-
                 batch.End();
                 batch.GraphicsDevice.ScissorRectangle = (Rectangle) this.GetInnerArea();
 
