@@ -13,9 +13,14 @@ namespace MLEM.Ui.Elements {
     /// A panel element to be used inside of a <see cref="UiSystem"/>.
     /// The panel is a complex element that displays a box as a background to all of its child elements.
     /// Additionally, a panel can be set to <see cref="scrollOverflow"/> on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
-    /// As this behavior is accomplished using a <see cref="RenderTarget2D"/>, scrolling panels need to have their <see cref="DrawEarly"/> methods called using <see cref="UiSystem.DrawEarly"/>.
     /// </summary>
     public class Panel : Element {
+
+        private static readonly RasterizerState ScissorRasterizer = new RasterizerState {
+            // use the default cull mode from SpriteBatch, but with scissor test enabled
+            CullMode = CullMode.CullCounterClockwiseFace,
+            ScissorTestEnable = true
+        };
 
         /// <summary>
         /// The scroll bar that this panel contains.
@@ -51,7 +56,6 @@ namespace MLEM.Ui.Elements {
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly bool scrollOverflow;
 
-        private RenderTarget2D renderTarget;
         private bool relevantChildrenDirty;
         private float scrollBarChildOffset;
 
@@ -170,44 +174,34 @@ namespace MLEM.Ui.Elements {
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             if (this.Texture.HasValue())
                 batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
-            // if we handle overflow, draw using the render target in DrawUnbound
-            if (!this.scrollOverflow || this.renderTarget == null) {
-                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
-            } else {
-                // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
-                batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
-            }
-        }
+            // if we handle overflow, draw using a scissor rectangle
+            if (this.scrollOverflow) {
+                this.UpdateAreaIfDirty();
 
-        /// <inheritdoc />
-        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            this.UpdateAreaIfDirty();
-            if (this.scrollOverflow && this.renderTarget != null) {
-                // draw children onto the render target
-                using (batch.GraphicsDevice.WithRenderTarget(this.renderTarget)) {
-                    batch.GraphicsDevice.Clear(Color.Transparent);
-                    // offset children by the render target's location
-                    var area = this.GetRenderTargetArea();
-                    var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
-                    // do the usual draw, but within the render target
-                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, trans);
-                    base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, trans);
-                    batch.End();
-                }
+                batch.End();
+                batch.GraphicsDevice.ScissorRectangle = (Rectangle) this.GetInnerArea();
+
+                // do the usual draw, but with the scissor rectangle applied
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, ScissorRasterizer, effect, matrix);
+                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+                batch.End();
+
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix);
+            } else {
+                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
             }
-            base.DrawEarly(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
         }
 
         /// <inheritdoc />
         public override Element GetElementUnderPos(Vector2 position) {
             // if overflow is handled, don't propagate mouse checks to hidden children
             var transformed = this.TransformInverse(position);
-            if (this.scrollOverflow && !this.GetRenderTargetArea().Contains(transformed))
+            if (this.scrollOverflow && !this.GetInnerArea().Contains(transformed))
                 return !this.IsHidden && this.CanBeMoused && this.DisplayArea.Contains(transformed) ? this : null;
             return base.GetElementUnderPos(position);
         }
 
-        private RectangleF GetRenderTargetArea() {
+        private RectangleF GetInnerArea() {
             var area = this.ChildPaddedArea;
             area.X = this.DisplayArea.X;
             area.Width = this.DisplayArea.Width;
@@ -258,26 +252,6 @@ namespace MLEM.Ui.Elements {
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
             var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
             this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
-
-            // update the render target
-            var targetArea = (Rectangle) this.GetRenderTargetArea();
-            if (targetArea.Width <= 0 || targetArea.Height <= 0)
-                return;
-            if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
-                if (this.renderTarget != null)
-                    this.renderTarget.Dispose();
-                this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height);
-                this.relevantChildrenDirty = true;
-            }
-        }
-
-        /// <inheritdoc />
-        public override void Dispose() {
-            if (this.renderTarget != null) {
-                this.renderTarget.Dispose();
-                this.renderTarget = null;
-            }
-            base.Dispose();
         }
 
         private void SetScrollBarStyle() {
@@ -291,7 +265,7 @@ namespace MLEM.Ui.Elements {
         private void ForceUpdateRelevantChildren() {
             this.relevantChildrenDirty = false;
             this.relevantChildren.Clear();
-            var visible = this.GetRenderTargetArea();
+            var visible = this.GetInnerArea();
             foreach (var child in this.SortedChildren) {
                 if (child.Area.Intersects(visible)) {
                     this.relevantChildren.Add(child);

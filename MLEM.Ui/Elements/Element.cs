@@ -924,6 +924,7 @@ namespace MLEM.Ui.Elements {
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
             var mat = this.Transform * matrix;
+            // TODO ending and beginning again when the matrix changes isn't ideal (https://github.com/MonoGame/MonoGame/issues/3156)
             if (customDraw) {
                 // end the usual draw so that we can begin our own
                 batch.End();
@@ -984,6 +985,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect that is used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
+        [Obsolete("DrawEarly has been deprecated. There is no replacement, and all drawing code should be placed in Draw.")]
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
