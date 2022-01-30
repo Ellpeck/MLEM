@@ -985,7 +985,6 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect that is used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("DrawEarly has been deprecated. There is no replacement, and all drawing code should be placed in Draw.")]
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)

@@ -264,7 +264,6 @@ namespace MLEM.Ui {
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
-        [Obsolete("DrawEarly has been deprecated. There is no replacement, so only Draw has to be called.")]
         public void DrawEarly(GameTime time, SpriteBatch batch) {
             this.Metrics.ResetDraws();
             this.Stopwatch.Restart();
@@ -281,6 +280,7 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// Draws any <see cref="Element"/>s onto the screen.
+        /// Note that, when using <see cref="Panel"/>s with a scroll bar, <see cref="DrawEarly"/> needs to be called as well.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>

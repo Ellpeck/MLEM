@@ -114,6 +114,7 @@ namespace MLEM.Startup {
             this.PreDraw?.Invoke(this, gameTime);
             CoroutineHandler.RaiseEvent(CoroutineEvents.PreDraw);
 
+            this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
 

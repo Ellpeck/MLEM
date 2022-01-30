@@ -35,14 +35,12 @@ Improvements
 - Avoid unnecessary panel updates by using an Epsilon comparison when scrolling children
 - Allow setting a default text alignment for paragraphs in UiStyle
 - Made custom values of Element.Style persist when a new ui style is set
-- Use a scissor rectangle for panels instead of a render target
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments
 
 Removals
 - Marked StyleProp equality members as obsolete
-- Marked UiSystem.DrawEarly and Element.DrawEarly as obsolete
 
 ### MLEM.Extended
 Improvements
