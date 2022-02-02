@@ -42,6 +42,7 @@ Fixes
 
 Removals
 - Marked StyleProp equality members as obsolete
+- Marked BeginDelegate and BeginImpl as obsolete
 
 ### MLEM.Extended
 Improvements

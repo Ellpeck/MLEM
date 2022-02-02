@@ -183,7 +183,10 @@ namespace MLEM.Ui.Elements {
         /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
         /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
         /// </summary>
+        #pragma warning disable CS0618
+        [Obsolete("BeginImpl is deprecated. You can create a custom element class and override DrawEarly or Draw instead.")]
         public BeginDelegate BeginImpl;
+        #pragma warning restore CS0618
         /// <summary>
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
@@ -922,6 +925,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+            #pragma warning disable CS0618
             var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
             var mat = this.Transform * matrix;
             // TODO ending and beginning again when the matrix changes isn't ideal (https://github.com/MonoGame/MonoGame/issues/3156)
@@ -935,6 +939,7 @@ namespace MLEM.Ui.Elements {
                     batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, mat);
                 }
             }
+            #pragma warning restore CS0618
 
             // draw content in custom begin call
             this.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
@@ -1163,6 +1168,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state used for drawing</param>
         /// <param name="matrix">The transform matrix used for drawing</param>
+        [Obsolete("BeginDelegate is deprecated. You can create a custom element class and override DrawEarly or Draw instead.")]
         public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix);
 
     }
