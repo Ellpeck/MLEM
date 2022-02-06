@@ -288,13 +288,14 @@ namespace MLEM.Input {
                 this.LastViewportTouchState = this.ViewportTouchState;
 
                 this.TouchState = active ? TouchPanel.GetState() : default;
-                this.ViewportTouchState = this.TouchState;
-                if (this.ViewportTouchState.Count > 0 && this.ViewportOffset != Point.Zero) {
-                    for (var i = 0; i < this.ViewportTouchState.Count; i++) {
-                        var touch = this.ViewportTouchState[i];
+                if (this.TouchState.Count > 0 && this.ViewportOffset != Point.Zero) {
+                    this.ViewportTouchState = new List<TouchLocation>();
+                    foreach (var touch in this.TouchState) {
                         touch.TryGetPreviousLocation(out var previous);
-                        this.ViewportTouchState[i] = new TouchLocation(touch.Id, touch.State, touch.Position + this.ViewportOffset.ToVector2(), previous.State, previous.Position + this.ViewportOffset.ToVector2());
+                        this.ViewportTouchState.Add(new TouchLocation(touch.Id, touch.State, touch.Position + this.ViewportOffset.ToVector2(), previous.State, previous.Position + this.ViewportOffset.ToVector2()));
                     }
+                } else {
+                    this.ViewportTouchState = this.TouchState;
                 }
 
                 this.gestures.Clear();
