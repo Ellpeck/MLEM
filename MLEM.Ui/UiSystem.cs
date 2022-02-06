@@ -23,9 +23,16 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// The viewport that this ui system is rendering inside of.
-        /// This is automatically updated during <see cref="GameWindow.ClientSizeChanged"/>
+        /// This is automatically updated during <see cref="GameWindow.ClientSizeChanged"/> by default.
         /// </summary>
-        public Rectangle Viewport;
+        public Rectangle Viewport {
+            get => this.viewport;
+            set {
+                this.viewport = value;
+                foreach (var root in this.rootElements)
+                    root.Element.ForceUpdateArea();
+            }
+        }
         /// <summary>
         /// Set this field to true to cause the ui system and all of its elements to automatically scale up or down with greater and lower resolution, respectively.
         /// If this field is true, <see cref="AutoScaleReferenceSize"/> is used as the size that uses default <see cref="GlobalScale"/>
@@ -181,6 +188,7 @@ namespace MLEM.Ui {
         private float globalScale = 1;
         private bool drewEarly;
         private UiStyle style;
+        private Rectangle viewport;
 
         /// <summary>
         /// Creates a new ui system with the given settings.
@@ -228,8 +236,6 @@ namespace MLEM.Ui {
                 this.AutoScaleReferenceSize = this.Viewport.Size;
                 game.Window.ClientSizeChanged += (sender, args) => {
                     this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
-                    foreach (var root in this.rootElements)
-                        root.Element.ForceUpdateArea();
                 };
             }
 

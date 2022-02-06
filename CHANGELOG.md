@@ -36,6 +36,7 @@ Improvements
 - Allow setting a default text alignment for paragraphs in UiStyle
 - Made custom values of Element.Style persist when a new ui style is set
 - Update elements less aggressively when changing a ui system's style
+- Automatically update all elements when changing a ui system's viewport
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments
