@@ -17,6 +17,7 @@ Additions
 
 Improvements
 - Generify GenericFont's string drawing
+- Added InputHandler mouse and touch position querying that preserves the game's viewport
 
 Fixes
 - Fixed StaticSpriteBatch handling rotated sprites incorrectly
@@ -40,6 +41,7 @@ Improvements
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments
+- Fixed the graphics device's viewport being ignored for mouse and touch queries
 
 Removals
 - Marked StyleProp equality members as obsolete

@@ -22,6 +22,7 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using MonoGame.Extended.Tiled;
+using MonoGame.Extended.ViewportAdapters;
 
 namespace Sandbox {
     public class GameImpl : MlemGame {
@@ -298,6 +299,11 @@ namespace Sandbox {
                 }
                 this.SpriteBatch.End();
             };
+
+            var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
+            var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));
+            newPanel.AddChild(new Button(Anchor.TopLeft, new Vector2(100, 20), "Text", "Tooltip text"));
+            this.UiSystem.Add("Panel", newPanel);
         }
 
         protected override void DoUpdate(GameTime gameTime) {
@@ -307,7 +313,7 @@ namespace Sandbox {
 
             var delta = this.InputHandler.ScrollWheel - this.InputHandler.LastScrollWheel;
             if (delta != 0) {
-                this.camera.Zoom(0.1F * Math.Sign(delta), this.InputHandler.MousePosition.ToVector2());
+                this.camera.Zoom(0.1F * Math.Sign(delta), this.InputHandler.ViewportMousePosition.ToVector2());
             }
 
             /*if (Input.InputsDown.Length > 0)

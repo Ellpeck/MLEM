@@ -137,14 +137,14 @@ namespace MLEM.Ui.Elements {
 
             // MOUSE INPUT
             var moused = this.Controls.MousedElement;
-            if (moused == this && this.Controls.Input.IsMouseButtonPressed(MouseButton.Left)) {
+            if (moused == this && this.Input.IsMouseButtonPressed(MouseButton.Left)) {
                 this.isMouseHeld = true;
-                this.scrollStartOffset = this.TransformInverseAll(this.Input.MousePosition.ToVector2()) - this.ScrollerPosition;
-            } else if (this.isMouseHeld && !this.Controls.Input.IsMouseButtonDown(MouseButton.Left)) {
+                this.scrollStartOffset = this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()) - this.ScrollerPosition;
+            } else if (this.isMouseHeld && !this.Input.IsMouseButtonDown(MouseButton.Left)) {
                 this.isMouseHeld = false;
             }
             if (this.isMouseHeld)
-                this.ScrollToPos(this.TransformInverseAll(this.Input.MousePosition.ToVector2()));
+                this.ScrollToPos(this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()));
             if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
                 var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                 if (scroll != 0)
@@ -154,7 +154,7 @@ namespace MLEM.Ui.Elements {
             // TOUCH INPUT
             if (!this.Horizontal) {
                 // are we dragging on top of the panel?
-                if (this.Input.GetGesture(GestureType.VerticalDrag, out var drag)) {
+                if (this.Input.GetViewportGesture(GestureType.VerticalDrag, out var drag)) {
                     // if the element under the drag's start position is on top of the panel, start dragging
                     var touched = this.Parent.GetElementUnderPos(this.TransformInverseAll(drag.Position));
                     if (touched != null && touched != this)
@@ -167,11 +167,11 @@ namespace MLEM.Ui.Elements {
                     this.isDragging = false;
                 }
             }
-            if (this.Input.TouchState.Count <= 0) {
+            if (this.Input.ViewportTouchState.Count <= 0) {
                 // if no touch has occured this tick, then reset the variable
                 this.isTouchHeld = false;
             } else {
-                foreach (var loc in this.Input.TouchState) {
+                foreach (var loc in this.Input.ViewportTouchState) {
                     var pos = this.TransformInverseAll(loc.Position);
                     // if we just started touching and are on top of the scroller, then we should start scrolling
                     if (this.DisplayArea.Contains(pos) && !loc.TryGetPreviousLocation(out _)) {

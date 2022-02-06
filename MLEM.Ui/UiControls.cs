@@ -143,7 +143,7 @@ namespace MLEM.Ui {
 
             // MOUSE INPUT
             if (this.HandleMouse) {
-                var mousedNow = this.GetElementUnderPos(this.Input.MousePosition.ToVector2());
+                var mousedNow = this.GetElementUnderPos(this.Input.ViewportMousePosition.ToVector2());
                 this.SetMousedElement(mousedNow);
 
                 if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
@@ -184,22 +184,22 @@ namespace MLEM.Ui {
 
             // TOUCH INPUT
             if (this.HandleTouch) {
-                if (this.Input.GetGesture(GestureType.Tap, out var tap)) {
+                if (this.Input.GetViewportGesture(GestureType.Tap, out var tap)) {
                     this.IsAutoNavMode = false;
                     var tapped = this.GetElementUnderPos(tap.Position);
                     this.SelectElement(this.ActiveRoot, tapped);
                     if (tapped != null && tapped.CanBePressed)
                         this.System.InvokeOnElementPressed(tapped);
-                } else if (this.Input.GetGesture(GestureType.Hold, out var hold)) {
+                } else if (this.Input.GetViewportGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
                     var held = this.GetElementUnderPos(hold.Position);
                     this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
                         this.System.InvokeOnElementSecondaryPressed(held);
-                } else if (this.Input.TouchState.Count <= 0) {
+                } else if (this.Input.ViewportTouchState.Count <= 0) {
                     this.SetTouchedElement(null);
                 } else {
-                    foreach (var location in this.Input.TouchState) {
+                    foreach (var location in this.Input.ViewportTouchState) {
                         var element = this.GetElementUnderPos(location.Position);
                         if (location.State == TouchLocationState.Pressed) {
                             // start touching an element if we just touched down on it

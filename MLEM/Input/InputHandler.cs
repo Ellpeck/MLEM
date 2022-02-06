@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Misc;
@@ -16,7 +17,7 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Contains all of the gestures that have finished during the last update call.
-        /// To easily query these gestures, use <see cref="GetGesture"/>
+        /// To easily query these gestures, use <see cref="GetGesture"/> or <see cref="GetViewportGesture"/>.
         /// </summary>
         public readonly ReadOnlyCollection<GestureSample> Gestures;
 
@@ -79,6 +80,14 @@ namespace MLEM.Input {
         /// </summary>
         public TouchCollection TouchState { get; private set; }
         /// <summary>
+        /// Contains the <see cref="LastTouchState"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
+        /// </summary>
+        public IList<TouchLocation> LastViewportTouchState { get; private set; }
+        /// <summary>
+        /// Contains the <see cref="TouchState"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
+        /// </summary>
+        public IList<TouchLocation> ViewportTouchState { get; private set; }
+        /// <summary>
         /// Contains the amount of gamepads that are currently connected.
         /// This field is automatically updated in <see cref="Update()"/>
         /// </summary>
@@ -92,13 +101,21 @@ namespace MLEM.Input {
         /// </summary>
         public MouseState MouseState { get; private set; }
         /// <summary>
+        /// Contains the position of the mouse from the last update call, extracted from <see cref="LastMouseState"/>
+        /// </summary>
+        public Point LastMousePosition => this.LastMouseState.Position;
+        /// <summary>
+        /// Contains the <see cref="LastMousePosition"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
+        /// </summary>
+        public Point LastViewportMousePosition => this.LastMousePosition + this.ViewportOffset;
+        /// <summary>
         /// Contains the current position of the mouse, extracted from <see cref="MouseState"/>
         /// </summary>
         public Point MousePosition => this.MouseState.Position;
         /// <summary>
-        /// Contains the position of the mouse from the last update call, extracted from <see cref="LastMouseState"/>
+        /// Contains the <see cref="MousePosition"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
-        public Point LastMousePosition => this.LastMouseState.Position;
+        public Point ViewportMousePosition => this.MousePosition + this.ViewportOffset;
         /// <summary>
         /// Contains the current scroll wheel value, in increments of 120
         /// </summary>
@@ -125,6 +142,7 @@ namespace MLEM.Input {
         private readonly List<GenericInput> inputsDownAccum = new List<GenericInput>();
         private readonly List<GestureSample> gestures = new List<GestureSample>();
 
+        private Point ViewportOffset => new Point(-this.Game.GraphicsDevice.Viewport.X, -this.Game.GraphicsDevice.Viewport.Y);
         private DateTime heldKeyStart;
         private DateTime lastKeyRepeat;
         private bool triggerKeyRepeat;
@@ -267,7 +285,17 @@ namespace MLEM.Input {
 
             if (this.HandleTouch) {
                 this.LastTouchState = this.TouchState;
+                this.LastViewportTouchState = this.ViewportTouchState;
+
                 this.TouchState = active ? TouchPanel.GetState() : default;
+                this.ViewportTouchState = this.TouchState;
+                if (this.ViewportTouchState.Count > 0 && this.ViewportOffset != Point.Zero) {
+                    for (var i = 0; i < this.ViewportTouchState.Count; i++) {
+                        var touch = this.ViewportTouchState[i];
+                        touch.TryGetPreviousLocation(out var previous);
+                        this.ViewportTouchState[i] = new TouchLocation(touch.Id, touch.State, touch.Position + this.ViewportOffset.ToVector2(), previous.State, previous.Position + this.ViewportOffset.ToVector2());
+                    }
+                }
 
                 this.gestures.Clear();
                 while (active && TouchPanel.IsGestureAvailable)
@@ -507,6 +535,22 @@ namespace MLEM.Input {
                     sample = gesture;
                     return true;
                 }
+            }
+            sample = default;
+            return false;
+        }
+
+        /// <summary>
+        /// Queries for a gesture of the given type that finished during the current update call.
+        /// Unlike <see cref="GetGesture"/>, the return value of this method takes the <see cref="GraphicsDevice.Viewport"/> into account.
+        /// </summary>
+        /// <param name="type">The type of gesture to query for</param>
+        /// <param name="sample">The resulting gesture sample with the <see cref="GraphicsDevice.Viewport"/> taken into account, or default if there isn't one</param>
+        /// <returns>True if a gesture of the type was found, otherwise false</returns>
+        public bool GetViewportGesture(GestureType type, out GestureSample sample) {
+            if (this.GetGesture(type, out var original)) {
+                sample = new GestureSample(original.GestureType, original.Timestamp, original.Position + this.ViewportOffset.ToVector2(), original.Position2 + this.ViewportOffset.ToVector2(), original.Delta, original.Delta2);
+                return true;
             }
             sample = default;
             return false;

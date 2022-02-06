@@ -91,7 +91,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public void SnapPositionToMouse() {
             var viewport = this.System.Viewport;
-            var offset = (this.Input.MousePosition.ToVector2() + this.MouseOffset.Value) / this.Scale;
+            var offset = (this.Input.ViewportMousePosition.ToVector2() + this.MouseOffset.Value) / this.Scale;
             if (offset.X < viewport.X)
                 offset.X = viewport.X;
             if (offset.Y < viewport.Y)
