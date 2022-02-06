@@ -15,18 +15,74 @@ namespace MLEM.Input {
     public class InputHandler : GameComponent {
 
         /// <summary>
-        /// Contains the keyboard state from the last update call
+        /// Contains all of the gestures that have finished during the last update call.
+        /// To easily query these gestures, use <see cref="GetGesture"/>
         /// </summary>
-        public KeyboardState LastKeyboardState { get; private set; }
-        /// <summary>
-        /// Contains the current keyboard state
-        /// </summary>
-        public KeyboardState KeyboardState { get; private set; }
+        public readonly ReadOnlyCollection<GestureSample> Gestures;
+
         /// <summary>
         /// Set this field to false to disable keyboard handling for this input handler.
         /// </summary>
         public bool HandleKeyboard;
+        /// <summary>
+        /// Set this field to false to disable mouse handling for this input handler.
+        /// </summary>
+        public bool HandleMouse;
+        /// <summary>
+        /// Set this field to false to disable keyboard handling for this input handler.
+        /// </summary>
+        public bool HandleGamepads;
+        /// <summary>
+        /// Set this field to false to disable touch handling for this input handler.
+        /// </summary>
+        public bool HandleTouch;
+        /// <summary>
+        /// This is the amount of time that has to pass before the first keyboard repeat event is triggered.
+        /// <seealso cref="KeyRepeatRate"/>
+        /// </summary>
+        public TimeSpan KeyRepeatDelay = TimeSpan.FromSeconds(0.65);
+        /// <summary>
+        /// This is the amount of time that has to pass between keyboard repeat events.
+        /// <seealso cref="KeyRepeatDelay"/>
+        /// </summary>
+        public TimeSpan KeyRepeatRate = TimeSpan.FromSeconds(0.05);
+        /// <summary>
+        /// Set this field to false to disable keyboard repeat event handling.
+        /// </summary>
+        public bool HandleKeyboardRepeats = true;
+        /// <summary>
+        /// Set this field to false to disable gamepad repeat event handling.
+        /// </summary>
+        public bool HandleGamepadRepeats = true;
+        /// <summary>
+        /// Set this field to false to enable <see cref="InputsDown"/> and <see cref="InputsPressed"/> being calculated.
+        /// </summary>
+        public bool StoreAllActiveInputs;
 
+        /// <summary>
+        /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
+        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
+        /// </summary>
+        public GenericInput[] InputsDown { get; private set; } = Array.Empty<GenericInput>();
+        /// <summary>
+        /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> that are currently considered pressed.
+        /// An input is considered pressed if it was up in the last update, and is up in the current one.
+        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
+        /// </summary>
+        public GenericInput[] InputsPressed { get; private set; } = Array.Empty<GenericInput>();
+        /// <summary>
+        /// Contains the touch state from the last update call
+        /// </summary>
+        public TouchCollection LastTouchState { get; private set; }
+        /// <summary>
+        /// Contains the current touch state
+        /// </summary>
+        public TouchCollection TouchState { get; private set; }
+        /// <summary>
+        /// Contains the amount of gamepads that are currently connected.
+        /// This field is automatically updated in <see cref="Update()"/>
+        /// </summary>
+        public int ConnectedGamepads { get; private set; }
         /// <summary>
         /// Contains the mouse state from the last update call
         /// </summary>
@@ -52,86 +108,27 @@ namespace MLEM.Input {
         /// </summary>
         public int LastScrollWheel => this.LastMouseState.ScrollWheelValue;
         /// <summary>
-        /// Set this field to false to disable mouse handling for this input handler.
+        /// Contains the keyboard state from the last update call
         /// </summary>
-        public bool HandleMouse;
+        public KeyboardState LastKeyboardState { get; private set; }
+        /// <summary>
+        /// Contains the current keyboard state
+        /// </summary>
+        public KeyboardState KeyboardState { get; private set; }
 
         private readonly GamePadState[] lastGamepads = new GamePadState[GamePad.MaximumGamePadCount];
         private readonly GamePadState[] gamepads = new GamePadState[GamePad.MaximumGamePadCount];
-        /// <summary>
-        /// Contains the amount of gamepads that are currently connected.
-        /// This field is automatically updated in <see cref="Update()"/>
-        /// </summary>
-        public int ConnectedGamepads { get; private set; }
-        /// <summary>
-        /// Set this field to false to disable keyboard handling for this input handler.
-        /// </summary>
-        public bool HandleGamepads;
-
-        /// <summary>
-        /// Contains the touch state from the last update call
-        /// </summary>
-        public TouchCollection LastTouchState { get; private set; }
-        /// <summary>
-        /// Contains the current touch state
-        /// </summary>
-        public TouchCollection TouchState { get; private set; }
-        /// <summary>
-        /// Contains all of the gestures that have finished during the last update call.
-        /// To easily query these gestures, use <see cref="GetGesture"/>
-        /// </summary>
-        public readonly ReadOnlyCollection<GestureSample> Gestures;
-        private readonly List<GestureSample> gestures = new List<GestureSample>();
-        /// <summary>
-        /// Set this field to false to disable touch handling for this input handler.
-        /// </summary>
-        public bool HandleTouch;
-
-        /// <summary>
-        /// This is the amount of time that has to pass before the first keyboard repeat event is triggered.
-        /// <seealso cref="KeyRepeatRate"/>
-        /// </summary>
-        public TimeSpan KeyRepeatDelay = TimeSpan.FromSeconds(0.65);
-        /// <summary>
-        /// This is the amount of time that has to pass between keyboard repeat events.
-        /// <seealso cref="KeyRepeatDelay"/>
-        /// </summary>
-        public TimeSpan KeyRepeatRate = TimeSpan.FromSeconds(0.05);
-
-        /// <summary>
-        /// Set this field to false to disable keyboard repeat event handling.
-        /// </summary>
-        public bool HandleKeyboardRepeats = true;
-        private DateTime heldKeyStart;
-        private DateTime lastKeyRepeat;
-        private bool triggerKeyRepeat;
-        private Keys heldKey;
-
-        /// <summary>
-        /// Set this field to false to disable gamepad repeat event handling.
-        /// </summary>
-        public bool HandleGamepadRepeats = true;
         private readonly DateTime[] heldGamepadButtonStarts = new DateTime[GamePad.MaximumGamePadCount];
         private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
         private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
         private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
-
-        /// <summary>
-        /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
-        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
-        /// </summary>
-        public GenericInput[] InputsDown { get; private set; } = Array.Empty<GenericInput>();
-        /// <summary>
-        /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> that are currently considered pressed.
-        /// An input is considered pressed if it was up in the last update, and is up in the current one.
-        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
-        /// </summary>
-        public GenericInput[] InputsPressed { get; private set; } = Array.Empty<GenericInput>();
         private readonly List<GenericInput> inputsDownAccum = new List<GenericInput>();
-        /// <summary>
-        /// Set this field to false to enable <see cref="InputsDown"/> and <see cref="InputsPressed"/> being calculated.
-        /// </summary>
-        public bool StoreAllActiveInputs;
+        private readonly List<GestureSample> gestures = new List<GestureSample>();
+
+        private DateTime heldKeyStart;
+        private DateTime lastKeyRepeat;
+        private bool triggerKeyRepeat;
+        private Keys heldKey;
 
         /// <summary>
         /// Creates a new input handler with optional initial values.
