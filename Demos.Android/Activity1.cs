@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Misc;
+using static Android.Views.SystemUiFlags;
 
 namespace Demos.Android {
     [Activity(
@@ -46,7 +47,8 @@ namespace Demos.Android {
         public override void OnWindowFocusChanged(bool hasFocus) {
             base.OnWindowFocusChanged(hasFocus);
             // hide the status bar
-            this.view.SystemUiVisibility = (StatusBarVisibility) (SystemUiFlags.LayoutStable | SystemUiFlags.LayoutHideNavigation | SystemUiFlags.LayoutFullscreen | SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen | SystemUiFlags.ImmersiveSticky);
+            if (hasFocus)
+                this.Window.DecorView.SystemUiVisibility = (StatusBarVisibility) (ImmersiveSticky | LayoutStable | LayoutHideNavigation | LayoutFullscreen | HideNavigation | Fullscreen);
         }
 
     }

@@ -27,7 +27,7 @@
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
-        <DebugType>portable</DebugType>
+        <DebugType>full</DebugType>
         <Optimize>false</Optimize>
         <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
         <DefineConstants>DEBUG;TRACE;ANDROID</DefineConstants>
@@ -37,7 +37,7 @@
         <AndroidLinkMode>None</AndroidLinkMode>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>portable</DebugType>
+        <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
         <DefineConstants>TRACE;ANDROID</DefineConstants>
@@ -45,6 +45,14 @@
         <WarningLevel>4</WarningLevel>
         <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
         <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+        <AotAssemblies>false</AotAssemblies>
+        <EnableLLVM>false</EnableLLVM>
+        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+        <BundleAssemblies>false</BundleAssemblies>
+        <MandroidI18n />
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
+        <AndroidUseAapt2>true</AndroidUseAapt2>
+        <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />
