@@ -33,6 +33,22 @@ namespace MLEM.Formatting {
         /// </summary>
         public string DisplayString => this.ModifiedSubstring ?? this.Substring;
         /// <summary>
+        /// The range of characters that are visible within this token, based on <see cref="DisplayString"/> indices.
+        /// First value is the starting index of the visible range, second is the length.
+        /// </summary>
+        public Point DisplayVisibleRange { get; set; }
+        /// <summary>
+        /// Whether this token is entirely visible or not.
+        /// </summary>
+        public bool FullyVisible
+        {
+            get => DisplayVisibleRange.X <= 0 && DisplayVisibleRange.X + DisplayVisibleRange.Y >= DisplayString.Length;
+            set
+            {
+                DisplayVisibleRange = value ? new Point(0, DisplayString.Length) : Point.Zero;
+            }
+        }
+        /// <summary>
         /// The <see cref="DisplayString"/>, but split at newline characters
         /// </summary>
         public string[] SplitDisplayString { get; internal set; }
@@ -50,6 +66,7 @@ namespace MLEM.Formatting {
             this.RawIndex = rawIndex;
             this.Substring = substring;
             this.RawSubstring = rawSubstring;
+            this.FullyVisible = true;
 
             foreach (var code in appliedCodes)
                 code.Token = this;
@@ -107,12 +124,18 @@ namespace MLEM.Formatting {
         /// <param name="c">The character to draw</param>
         /// <param name="cString">A single-character string that contains the character to draw</param>
         /// <param name="indexInToken">The index within this token that the character is at</param>
+        /// <param name="displayIndex">The literal index within the token's display string this character is at.</param>
         /// <param name="pos">The position to draw the token at</param>
         /// <param name="font">The font to use to draw</param>
         /// <param name="color">The color to draw with</param>
         /// <param name="scale">The scale to draw at</param>
         /// <param name="depth">The depth to draw at</param>
-        public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, int displayIndex, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+
+            //If display index not within visible span, we don't draw.
+            if (displayIndex < DisplayVisibleRange.X || displayIndex >= DisplayVisibleRange.X + DisplayVisibleRange.Y)
+                return;
+            
             foreach (var code in this.AppliedCodes) {
                 if (code.DrawCharacter(time, batch, c, cString, indexInToken, ref pos, font, ref color, ref scale, depth))
                     return;
