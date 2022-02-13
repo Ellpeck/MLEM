@@ -36,7 +36,7 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public override void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             var actualColor = this.copyTextColor ? color : Color.White.CopyAlpha(color);
             batch.Draw(this.image.CurrentRegion, new RectangleF(pos, new Vector2(font.LineHeight * scale)), actualColor);
         }

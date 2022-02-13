@@ -20,13 +20,17 @@ namespace MLEM.Formatting.Codes {
         /// </summary>
         /// <returns>True if this code is currently selected</returns>
         public virtual bool IsSelected() {
-            return this.isSelected(this.Token);
+            foreach (var token in this.Tokens) {
+                if (this.isSelected(token))
+                    return true;
+            }
+            return false;
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             // since we inherit from UnderlineCode, we can just call base if selected
-            return this.IsSelected() && base.DrawCharacter(time, batch, c, cString, indexInToken, ref pos, font, ref color, ref scale, depth);
+            return this.IsSelected() && base.DrawCharacter(time, batch, c, cString, token, indexInToken, ref pos, font, ref color, ref scale, depth);
         }
 
     }

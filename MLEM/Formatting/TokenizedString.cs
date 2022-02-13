@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -44,8 +45,13 @@ namespace MLEM.Formatting {
             this.RawString = rawString;
             this.String = strg;
             this.Tokens = tokens;
+
             // since a code can be present in multiple tokens, we use Distinct here
             this.AllCodes = tokens.SelectMany(t => t.AppliedCodes).Distinct().ToArray();
+            // TODO this can probably be optimized by keeping track of a code's tokens while tokenizing
+            foreach (var code in this.AllCodes)
+                code.Tokens = new ReadOnlyCollection<Token>(this.Tokens.Where(t => t.AppliedCodes.Contains(code)).ToList());
+
             this.RecalculateTokenData(font, alignment);
         }
 

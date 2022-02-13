@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,9 +21,10 @@ namespace MLEM.Formatting.Codes {
         /// </summary>
         public readonly Match Match;
         /// <summary>
-        /// The token that this formatting code is a part of
+        /// The tokens that this formatting code is a part of.
+        /// Note that this array only has multiple entries if additional tokens have to be started while this code is still applied.
         /// </summary>
-        public Token Token { get; internal set; }
+        public IList<Token> Tokens { get; internal set; }
 
         /// <summary>
         /// Creates a new formatting code based on a formatting code regex and its match.
@@ -71,12 +73,12 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawCharacter"/>
-        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             return false;
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawSelf"/>
-        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {}
+        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 pos, GenericFont font, Color color, float scale, float depth) {}
 
         /// <summary>
         /// Creates a new formatting code from the given regex and regex match.

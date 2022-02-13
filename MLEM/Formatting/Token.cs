@@ -50,9 +50,6 @@ namespace MLEM.Formatting {
             this.RawIndex = rawIndex;
             this.Substring = substring;
             this.RawSubstring = rawSubstring;
-
-            foreach (var code in appliedCodes)
-                code.Token = this;
         }
 
         /// <summary>
@@ -96,7 +93,7 @@ namespace MLEM.Formatting {
         /// <param name="depth">The depth to draw at</param>
         public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             foreach (var code in this.AppliedCodes)
-                code.DrawSelf(time, batch, pos, font, color, scale, depth);
+                code.DrawSelf(time, batch, this, pos, font, color, scale, depth);
         }
 
         /// <summary>
@@ -114,7 +111,7 @@ namespace MLEM.Formatting {
         /// <param name="depth">The depth to draw at</param>
         public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             foreach (var code in this.AppliedCodes) {
-                if (code.DrawCharacter(time, batch, c, cString, indexInToken, ref pos, font, ref color, ref scale, depth))
+                if (code.DrawCharacter(time, batch, c, cString, this, indexInToken, ref pos, font, ref color, ref scale, depth))
                     return;
             }
 

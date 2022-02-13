@@ -19,9 +19,9 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             // don't underline spaces at the end of lines
-            if (c == ' ' && this.Token.DisplayString.Length > indexInToken + 1 && this.Token.DisplayString[indexInToken + 1] == '\n')
+            if (c == ' ' && token.DisplayString.Length > indexInToken + 1 && token.DisplayString[indexInToken + 1] == '\n')
                 return false;
             var (w, h) = font.MeasureString(cString) * scale;
             var t = h * this.thickness;

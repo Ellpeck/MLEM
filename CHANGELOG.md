@@ -20,6 +20,7 @@ Improvements
 - Added InputHandler mouse and touch position querying that preserves the game's viewport
 
 Fixes
+- **Fixed a formatting Code only knowing about the last Token that it is applied in**
 - Fixed StaticSpriteBatch handling rotated sprites incorrectly
 
 Removals
