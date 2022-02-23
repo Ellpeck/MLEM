@@ -18,6 +18,7 @@ Additions
 Improvements
 - Generify GenericFont's string drawing
 - Added InputHandler mouse and touch position querying that preserves the game's viewport
+- Added float version of GetRandomWeightedEntry
 
 Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**

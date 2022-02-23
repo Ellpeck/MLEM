@@ -41,5 +41,18 @@ namespace MLEM.Extensions {
             throw new IndexOutOfRangeException();
         }
 
+        /// <inheritdoc cref="GetRandomWeightedEntry{T}(System.Random,System.Collections.Generic.IList{T},System.Func{T,int})"/>
+        public static T GetRandomWeightedEntry<T>(this Random random, IList<T> entries, Func<T, float> weightFunc) {
+            var totalWeight = entries.Sum(weightFunc);
+            var goalWeight = random.NextDouble() * totalWeight;
+            var currWeight = 0F;
+            foreach (var entry in entries) {
+                currWeight += weightFunc(entry);
+                if (currWeight >= goalWeight)
+                    return entry;
+            }
+            throw new IndexOutOfRangeException();
+        }
+
     }
 }
