@@ -1,18 +1,13 @@
 {
-    "metadata": [
-        {
-            "src": [
-                {
-                    "src": "../",
-                    "files": ["**/MLEM**.csproj"]
-                }
-            ],
-            "dest": "api"
-        }
-    ],
+    "metadata": [{
+        "src": [{
+            "src": "../",
+            "files": ["**/MLEM**.csproj"]
+        }],
+        "dest": "api"
+    }],
     "build": {
-        "content": [
-            {
+        "content": [{
                 "files": [
                     "articles/**.md",
                     "articles/**/toc.yml",
@@ -28,8 +23,7 @@
                 "src": ".."
             }
         ],
-        "resource": [
-            {
+        "resource": [{
                 "files": [
                     "favicon.ico"
                 ]
@@ -50,7 +44,8 @@
         "fileMetadataFiles": [],
         "template": [
             "default",
-            "template"
+            "templates/darkfx",
+            "templates/custom"
         ],
         "postProcessors": [],
         "markdownEngineName": "markdig",
