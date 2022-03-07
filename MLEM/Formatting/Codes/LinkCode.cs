@@ -9,10 +9,12 @@ namespace MLEM.Formatting.Codes {
     public class LinkCode : UnderlineCode {
 
         private readonly Func<Token, bool> isSelected;
+        private readonly Color? color;
 
         /// <inheritdoc />
-        public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected) : base(match, regex, thickness, yOffset) {
+        public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected, Color? color = null) : base(match, regex, thickness, yOffset) {
             this.isSelected = isSelected;
+            this.color = color;
         }
 
         /// <summary>
@@ -25,6 +27,11 @@ namespace MLEM.Formatting.Codes {
                     return true;
             }
             return false;
+        }
+
+        /// <inheritdoc />
+        public override Color? GetColor(Color defaultPick) {
+            return this.color;
         }
 
         /// <inheritdoc />

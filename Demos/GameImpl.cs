@@ -72,7 +72,7 @@ namespace Demos {
                 IsHidden = true
             });
 
-            selection.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Select the demo you want to see below using your mouse, touch input, your keyboard or a controller. Check the demos' <c CornflowerBlue><l https://github.com/Ellpeck/MLEM/tree/main/Demos>source code</l></c> for more in-depth explanations of their functionality or the <c CornflowerBlue><l https://mlem.ellpeck.de/>website</l></c> for tutorials and API documentation."));
+            selection.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Select the demo you want to see below using your mouse, touch input, your keyboard or a controller. Check the demos' <l https://github.com/Ellpeck/MLEM/tree/main/Demos>source code</l> for more in-depth explanations of their functionality or the <l https://mlem.ellpeck.de/>website</l> for tutorials and API documentation."));
             selection.AddChild(new VerticalSpace(5));
             foreach (var demo in Demos) {
                 selection.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), demo.Key, demo.Value.Item1) {
@@ -99,7 +99,8 @@ namespace Demos {
                 PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
                 ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4),
                 ScrollBarBackground = new NinePatch(new TextureRegion(tex, 12, 0, 4, 8), 1, 1, 2, 2),
-                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(tex, 8, 0, 4, 8), 1, 1, 2, 2)
+                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(tex, 8, 0, 4, 8), 1, 1, 2, 2),
+                LinkColor = Color.CornflowerBlue
             };
         }
 

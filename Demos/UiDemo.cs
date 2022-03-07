@@ -47,7 +47,8 @@ namespace Demos {
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8),
-                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/MonospacedFont"))}}
+                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/MonospacedFont"))}},
+                LinkColor = Color.CornflowerBlue
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,
@@ -208,7 +209,7 @@ namespace Demos {
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button", "This button can't be clicked or moved to using automatic navigation") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
             this.root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Disabled checkbox") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
 
-            const string alignText = "Paragraphs can have <c CornflowerBlue><l Left>left</l></c> aligned text, <c CornflowerBlue><l Right>right</l></c> aligned text and <c CornflowerBlue><l Center>center</l></c> aligned text.";
+            const string alignText = "Paragraphs can have <l Left>left</l> aligned text, <l Right>right</l> aligned text and <l Center>center</l> aligned text.";
             this.root.AddChild(new VerticalSpace(3));
             var alignPar = this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, alignText));
             alignPar.LinkAction = (l, c) => {

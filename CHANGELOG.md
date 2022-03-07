@@ -19,6 +19,7 @@ Improvements
 - Generify GenericFont's string drawing
 - Added InputHandler mouse and touch position querying that preserves the game's viewport
 - Added float version of GetRandomWeightedEntry
+- Allow LinkCode to specify a color to draw with
 
 Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**
@@ -41,6 +42,7 @@ Improvements
 - Made custom values of Element.Style persist when a new ui style is set
 - Update elements less aggressively when changing a ui system's style
 - Automatically update all elements when changing a ui system's viewport
+- Allow setting a default color for clickable links in UiStyle
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

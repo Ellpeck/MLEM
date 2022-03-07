@@ -241,7 +241,8 @@ namespace MLEM.Ui {
 
             this.TextFormatter = new TextFormatter();
             this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
-                t => this.Controls.MousedElement is Paragraph.Link l1 && l1.Token == t || this.Controls.TouchedElement is Paragraph.Link l2 && l2.Token == t));
+                t => this.Controls.MousedElement is Paragraph.Link l1 && l1.Token == t || this.Controls.TouchedElement is Paragraph.Link l2 && l2.Token == t,
+                this.Style.LinkColor));
             this.TextFormatter.Codes.Add(new Regex("<f ([^>]+)>"), (_, m, r) => new FontCode(m, r,
                 f => this.Style.AdditionalFonts != null && this.Style.AdditionalFonts.TryGetValue(m.Groups[1].Value, out var c) ? c : f));
         }
