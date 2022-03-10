@@ -119,6 +119,7 @@ namespace MLEM.Ui.Elements {
         /// Creates a <see cref="Button"/> that acts as a way to input a custom value for a <see cref="Keybind"/>.
         /// Note that only the <see cref="Keybind.Combination"/> at index <paramref name="index"/> of the given keybind is displayed and edited, all others are ignored.
         /// Inputting custom keybinds using this element supports <see cref="ModifierKey"/>-based modifiers and any <see cref="GenericInput"/>-based keys.
+        /// The keybind button's current state can be retrieved using the "Active" <see cref="GenericDataHolder.GetData{T}"/> key, which stores a bool that indicates whether the button is currently waiting for a new value to be assigned.
         /// </summary>
         /// <param name="anchor">The button's anchor</param>
         /// <param name="size">The button's size</param>
@@ -134,7 +135,6 @@ namespace MLEM.Ui.Elements {
             string GetCurrentName() => keybind.TryGetCombination(index, out var combination) ? combination.ToString(" + ", inputName) : unboundPlaceholder;
 
             var button = new Button(anchor, size, GetCurrentName());
-            var active = false;
             var activeNext = false;
             button.OnPressed = e => {
                 button.Text.Text = activePlaceholder;
@@ -142,20 +142,20 @@ namespace MLEM.Ui.Elements {
             };
             button.OnUpdated = (e, time) => {
                 if (activeNext) {
-                    active = true;
+                    button.SetData("Active", true);
                     activeNext = false;
-                } else if (active) {
+                } else if (button.GetData<bool>("Active")) {
                     if (unbindKey != default && inputHandler.IsPressed(unbindKey)) {
                         keybind.Remove((c, i) => i == index);
                         button.Text.Text = unboundPlaceholder;
-                        active = false;
+                        button.SetData("Active", false);
                     } else if (inputHandler.InputsPressed.Length > 0) {
                         var key = inputHandler.InputsPressed.FirstOrDefault(i => !i.IsModifier());
                         if (key != default) {
                             var mods = inputHandler.InputsDown.Where(i => i.IsModifier());
                             keybind.Remove((c, i) => i == index).Insert(index, key, mods.ToArray());
                             button.Text.Text = GetCurrentName();
-                            active = false;
+                            button.SetData("Active", false);
                         }
                     }
                 } else {
