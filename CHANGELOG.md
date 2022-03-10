@@ -45,6 +45,7 @@ Improvements
 - Automatically update all elements when changing a ui system's viewport
 - Allow setting a default color for clickable links in UiStyle
 - Allow ElementHelper's KeybindButton to query a combination at a given index
+- Automatically select the first element when a dropdown is opened in auto nav mode
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

@@ -22,6 +22,13 @@ namespace MLEM.Ui.Elements {
             set {
                 this.Panel.IsHidden = !value;
                 this.OnOpenedOrClosed?.Invoke(this);
+
+                // select the first dropdown element in auto nav mode
+                if (value && this.Controls.IsAutoNavMode) {
+                    var firstChild = this.Panel.GetChildren().FirstOrDefault(c => c.CanBeSelected);
+                    if (firstChild != null)
+                        this.Root.SelectElement(firstChild, true);
+                }
             }
         }
         /// <summary>
