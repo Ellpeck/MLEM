@@ -22,13 +22,6 @@ namespace MLEM.Ui.Elements {
             set {
                 this.Panel.IsHidden = !value;
                 this.OnOpenedOrClosed?.Invoke(this);
-
-                // select the first dropdown element in auto nav mode
-                if (value && this.Controls.IsAutoNavMode) {
-                    var firstChild = this.Panel.GetChildren().FirstOrDefault(c => c.CanBeSelected);
-                    if (firstChild != null)
-                        this.Root.SelectElement(firstChild, true);
-                }
             }
         }
         /// <summary>
@@ -50,6 +43,12 @@ namespace MLEM.Ui.Elements {
             this.OnAreaUpdated += e => this.Panel.PositionOffset = new Vector2(0, e.Area.Height / this.Scale);
             this.OnOpenedOrClosed += e => this.Priority = this.IsOpen ? 10000 : 0;
             this.OnPressed += e => this.IsOpen = !this.IsOpen;
+            this.GetGamepadNextElement = (dir, usualNext) => {
+                // Force navigate down to our first child if we're open
+                if (this.IsOpen && dir == Direction2.Down)
+                    return this.Panel.GetChildren().FirstOrDefault(c => c.CanBeSelected) ?? usualNext;
+                return usualNext;
+            };
         }
 
         /// <summary>
@@ -61,6 +60,8 @@ namespace MLEM.Ui.Elements {
             // Since the dropdown causes elements to be over each other,
             // usual gamepad code doesn't apply
             element.GetGamepadNextElement = (dir, usualNext) => {
+                if (dir == Direction2.Left || dir == Direction2.Right)
+                    return null;
                 if (dir == Direction2.Up) {
                     var prev = element.GetOlderSibling();
                     return prev ?? this;
