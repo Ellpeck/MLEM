@@ -105,49 +105,6 @@ namespace MLEM.Misc {
             this.Height = size.Y;
         }
 
-        /// <summary>
-        /// Creates a new rectangle based on two corners that form a bounding box.
-        /// The resulting rectangle will encompass both corners as well as all of the space between them.
-        /// </summary>
-        /// <param name="corner1">The first corner to use</param>
-        /// <param name="corner2">The second corner to use</param>
-        /// <returns></returns>
-        public static RectangleF FromCorners(Vector2 corner1, Vector2 corner2) {
-            var minX = Math.Min(corner1.X, corner2.X);
-            var minY = Math.Min(corner1.Y, corner2.Y);
-            var maxX = Math.Max(corner1.X, corner2.X);
-            var maxY = Math.Max(corner1.Y, corner2.Y);
-            return new RectangleF(minX, minY, maxX - minX, maxY - minY);
-        }
-
-        /// <summary>
-        /// Converts a float-based rectangle to an int-based rectangle, flooring each value in the process.
-        /// </summary>
-        /// <param name="rect">The rectangle to convert</param>
-        /// <returns>The resulting rectangle</returns>
-        public static explicit operator Rectangle(RectangleF rect) {
-            return new Rectangle(rect.X.Floor(), rect.Y.Floor(), rect.Width.Floor(), rect.Height.Floor());
-        }
-
-        /// <summary>
-        /// Converts an int-based rectangle to a float-based rectangle.
-        /// </summary>
-        /// <param name="rect">The rectangle to convert</param>
-        /// <returns>The resulting rectangle</returns>
-        public static explicit operator RectangleF(Rectangle rect) {
-            return new RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        /// <inheritdoc cref="Equals(RectangleF)"/>
-        public static bool operator ==(RectangleF a, RectangleF b) {
-            return a.X == b.X && a.Y == b.Y && a.Width == b.Width && a.Height == b.Height;
-        }
-
-        /// <inheritdoc cref="Equals(RectangleF)"/>
-        public static bool operator !=(RectangleF a, RectangleF b) {
-            return !(a == b);
-        }
-
         /// <inheritdoc cref="Rectangle.Contains(float, float)"/>
         public bool Contains(float x, float y) {
             return this.X <= x && x < this.X + this.Width && this.Y <= y && y < this.Y + this.Height;
@@ -196,6 +153,92 @@ namespace MLEM.Misc {
             return value.Left < this.Right && this.Left < value.Right && value.Top < this.Bottom && this.Top < value.Bottom;
         }
 
+        /// <inheritdoc cref="Rectangle.Offset(float, float)"/>
+        public void Offset(float offsetX, float offsetY) {
+            this.X += offsetX;
+            this.Y += offsetY;
+        }
+
+        /// <inheritdoc cref="Rectangle.Offset(Vector2)"/>
+        public void Offset(Vector2 amount) {
+            this.X += amount.X;
+            this.Y += amount.Y;
+        }
+
+        /// <summary>
+        /// Calculates the suqared distance between this rectangle and the <paramref name="value"/>.
+        /// The returned value is the smallest squared distance between any two edges or corners of the two rectangles.
+        /// </summary>
+        /// <param name="value">The rectangle to calculate the squared distance to.</param>
+        /// <returns>The squared distance between the two rectangles.</returns>
+        public float DistanceSquared(RectangleF value) {
+            // we calculate the distance based on the quadrants that the other rectangle is in using 8 cases:
+            // 1 7 4 
+            // 3 T 6
+            // 2 8 5
+            var valueIsAbove = value.Bottom < this.Top;
+            var valueIsBelow = value.Top > this.Bottom;
+            if (value.Right < this.Left) {
+                if (valueIsAbove) // 1
+                    return Vector2.DistanceSquared(new Vector2(value.Right, value.Bottom), new Vector2(this.Left, this.Top));
+                if (valueIsBelow) // 2
+                    return Vector2.DistanceSquared(new Vector2(value.Right, value.Top), new Vector2(this.Left, this.Bottom));
+                return (this.Left - value.Right) * (this.Left - value.Right); // 3
+            } else if (value.Left > this.Right) {
+                if (valueIsAbove) // 4
+                    return Vector2.DistanceSquared(new Vector2(value.Left, value.Bottom), new Vector2(this.Right, this.Top));
+                if (valueIsBelow) // 5
+                    return Vector2.DistanceSquared(new Vector2(value.Left, value.Top), new Vector2(this.Right, this.Bottom));
+                return (value.Left - this.Right) * (value.Left - this.Right); // 6
+            } else if (valueIsAbove) {
+                return (this.Top - value.Bottom) * (this.Top - value.Bottom); // 7
+            } else if (valueIsBelow) {
+                return (value.Top - this.Bottom) * (value.Top - this.Bottom); // 8
+            } else {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Calculates the distance between this rectangle and the <paramref name="value"/>.
+        /// The returned value is the smallest distance between any two edges or corners of the two rectangles.
+        /// </summary>
+        /// <param name="value">The rectangle to calculate the distance to.</param>
+        /// <returns>The distance between the two rectangles.</returns>
+        public float Distance(RectangleF value) {
+            return (float) Math.Sqrt(this.DistanceSquared(value));
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString() {
+            return "{X:" + this.X + " Y:" + this.Y + " Width:" + this.Width + " Height:" + this.Height + "}";
+        }
+
+        /// <inheritdoc cref="Rectangle.Deconstruct"/>
+        public void Deconstruct(out float x, out float y, out float width, out float height) {
+            x = this.X;
+            y = this.Y;
+            width = this.Width;
+            height = this.Height;
+        }
+
+        /// <summary>
+        /// Converts a float-based rectangle to an int-based rectangle, flooring each value in the process.
+        /// </summary>
+        /// <param name="rect">The rectangle to convert</param>
+        /// <returns>The resulting rectangle</returns>
+        public static explicit operator Rectangle(RectangleF rect) {
+            return new Rectangle(rect.X.Floor(), rect.Y.Floor(), rect.Width.Floor(), rect.Height.Floor());
+        }
+
+        /// <inheritdoc cref="Rectangle.Union(Rectangle, Rectangle)"/>
+        public static RectangleF Union(RectangleF value1, RectangleF value2) {
+            var x = Math.Min(value1.X, value2.X);
+            var y = Math.Min(value1.Y, value2.Y);
+            return new RectangleF(x, y, Math.Max(value1.Right, value2.Right) - x, Math.Max(value1.Bottom, value2.Bottom) - y);
+        }
+
         /// <inheritdoc cref="Rectangle.Intersect(Rectangle, Rectangle)"/>
         public static RectangleF Intersect(RectangleF value1, RectangleF value2) {
             if (value1.Intersects(value2)) {
@@ -209,37 +252,38 @@ namespace MLEM.Misc {
             }
         }
 
-        /// <inheritdoc cref="Rectangle.Offset(float, float)"/>
-        public void Offset(float offsetX, float offsetY) {
-            this.X += offsetX;
-            this.Y += offsetY;
+        /// <summary>
+        /// Creates a new rectangle based on two corners that form a bounding box.
+        /// The resulting rectangle will encompass both corners as well as all of the space between them.
+        /// </summary>
+        /// <param name="corner1">The first corner to use</param>
+        /// <param name="corner2">The second corner to use</param>
+        /// <returns></returns>
+        public static RectangleF FromCorners(Vector2 corner1, Vector2 corner2) {
+            var minX = Math.Min(corner1.X, corner2.X);
+            var minY = Math.Min(corner1.Y, corner2.Y);
+            var maxX = Math.Max(corner1.X, corner2.X);
+            var maxY = Math.Max(corner1.Y, corner2.Y);
+            return new RectangleF(minX, minY, maxX - minX, maxY - minY);
         }
 
-        /// <inheritdoc cref="Rectangle.Offset(Vector2)"/>
-        public void Offset(Vector2 amount) {
-            this.X += amount.X;
-            this.Y += amount.Y;
+        /// <summary>
+        /// Converts an int-based rectangle to a float-based rectangle.
+        /// </summary>
+        /// <param name="rect">The rectangle to convert</param>
+        /// <returns>The resulting rectangle</returns>
+        public static explicit operator RectangleF(Rectangle rect) {
+            return new RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
-        public override string ToString() {
-            return "{X:" + this.X + " Y:" + this.Y + " Width:" + this.Width + " Height:" + this.Height + "}";
+        /// <inheritdoc cref="Equals(RectangleF)"/>
+        public static bool operator ==(RectangleF a, RectangleF b) {
+            return a.X == b.X && a.Y == b.Y && a.Width == b.Width && a.Height == b.Height;
         }
 
-        /// <inheritdoc cref="Rectangle.Union(Rectangle, Rectangle)"/>
-        public static RectangleF Union(RectangleF value1, RectangleF value2) {
-            var x = Math.Min(value1.X, value2.X);
-            var y = Math.Min(value1.Y, value2.Y);
-            return new RectangleF(x, y, Math.Max(value1.Right, value2.Right) - x, Math.Max(value1.Bottom, value2.Bottom) - y);
-        }
-
-        /// <inheritdoc cref="Rectangle.Deconstruct"/>
-        public void Deconstruct(out float x, out float y, out float width, out float height) {
-            x = this.X;
-            y = this.Y;
-            width = this.Width;
-            height = this.Height;
+        /// <inheritdoc cref="Equals(RectangleF)"/>
+        public static bool operator !=(RectangleF a, RectangleF b) {
+            return !(a == b);
         }
 
     }

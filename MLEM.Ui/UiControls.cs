@@ -373,12 +373,11 @@ namespace MLEM.Ui {
                 foreach (var child in children) {
                     if (!child.CanBeSelected || child == this.SelectedElement)
                         continue;
-                    var distVec = child.Area.Center - this.SelectedElement.Area.Center;
-                    if (Math.Abs(direction.Angle() - Math.Atan2(distVec.Y, distVec.X)) >= MathHelper.PiOver2 - Element.Epsilon)
+                    var (xOffset, yOffset) = child.Area.Center - this.SelectedElement.Area.Center;
+                    if (Math.Abs(direction.Angle() - Math.Atan2(yOffset, xOffset)) >= MathHelper.PiOver2 - Element.Epsilon)
                         continue;
-                    var distSq = distVec.LengthSquared();
-                    // prefer navigating to elements that have the same parent as the currently selected element
-                    if (closest == null || distSq < closestDistSq || closest.Parent != this.SelectedElement.Parent && child.Parent == this.SelectedElement.Parent) {
+                    var distSq = child.Area.DistanceSquared(this.SelectedElement.Area);
+                    if (closest == null || distSq < closestDistSq) {
                         closest = child;
                         closestDistSq = distSq;
                     }

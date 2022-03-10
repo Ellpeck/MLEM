@@ -14,6 +14,7 @@ Additions
 - Added ColorExtensions.Multiply
 - Added SoundEffectInstanceHandler.Stop
 - Added TextureRegion.OffsetCopy
+- Added RectangleF.DistanceSquared and RectangleF.Distance
 
 Improvements
 - Generify GenericFont's string drawing
