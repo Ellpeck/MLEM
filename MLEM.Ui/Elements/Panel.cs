@@ -85,7 +85,7 @@ namespace MLEM.Ui.Elements {
                     if (e == null || !e.GetParentTree().Contains(this))
                         return;
                     var firstChild = this.Children.First(c => c != this.ScrollBar);
-                    this.ScrollBar.CurrentValue = (e.UnscrolledArea.Center.Y - firstChild.Area.Height - this.Area.Height / 2) / e.Scale + this.ChildPadding.Value.Height;
+                    this.ScrollBar.CurrentValue = (e.Area.Center.Y - this.Area.Height / 2 - firstChild.Area.Top) / e.Scale + this.ChildPadding.Value.Height / 2;
                 };
                 this.AddChild(this.ScrollBar);
             }
