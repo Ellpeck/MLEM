@@ -46,6 +46,7 @@ Improvements
 - Allow setting a default color for clickable links in UiStyle
 - Allow ElementHelper's KeybindButton to query a combination at a given index
 - Automatically select the first element when a dropdown is opened in auto nav mode
+- Improved gamepad navigation by employing angles between elements
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using MLEM.Extensions;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Ui.Elements;
@@ -355,11 +357,11 @@ namespace MLEM.Ui {
         }
 
         /// <summary>
-        /// Returns the next element that should be selected during gamepad navigation, based on the <see cref="RectangleF"/> that we're looking for elements in.
+        /// Returns the next element that should be selected during gamepad navigation, based on the <see cref="Direction2"/> that we're looking for elements in.
         /// </summary>
-        /// <param name="searchArea">The area that we're looking for next elements in</param>
+        /// <param name="direction">The direction that we're looking for next elements in</param>
         /// <returns>The first element found in that area</returns>
-        protected virtual Element GetGamepadNextElement(RectangleF searchArea) {
+        protected virtual Element GetGamepadNextElement(Direction2 direction) {
             if (this.ActiveRoot == null)
                 return null;
             var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
@@ -367,14 +369,17 @@ namespace MLEM.Ui {
                 return children.FirstOrDefault(c => c.CanBeSelected);
             } else {
                 Element closest = null;
-                float closestDist = 0;
+                float closestDistSq = 0;
                 foreach (var child in children) {
-                    if (!child.CanBeSelected || child == this.SelectedElement || !searchArea.Intersects(child.Area))
+                    if (!child.CanBeSelected || child == this.SelectedElement)
                         continue;
-                    var dist = Vector2.Distance(child.Area.Center, this.SelectedElement.Area.Center);
-                    if (closest == null || dist < closestDist) {
+                    var distVec = child.Area.Center - this.SelectedElement.Area.Center;
+                    if (Math.Abs(direction.Angle() - Math.Atan2(distVec.Y, distVec.X)) >= MathHelper.PiOver2 - Element.Epsilon)
+                        continue;
+                    var distSq = distVec.LengthSquared();
+                    if (closest == null || distSq < closestDistSq) {
                         closest = child;
-                        closestDist = dist;
+                        closestDistSq = distSq;
                     }
                 }
                 return closest;
@@ -383,28 +388,7 @@ namespace MLEM.Ui {
 
         private void HandleGamepadNextElement(Direction2 dir) {
             this.IsAutoNavMode = true;
-            RectangleF searchArea = default;
-            if (this.SelectedElement?.Root != null) {
-                searchArea = this.SelectedElement.Area;
-                var (_, _, width, height) = this.System.Viewport;
-                switch (dir) {
-                    case Direction2.Down:
-                        searchArea.Height += height;
-                        break;
-                    case Direction2.Left:
-                        searchArea.X -= width;
-                        searchArea.Width += width;
-                        break;
-                    case Direction2.Right:
-                        searchArea.Width += width;
-                        break;
-                    case Direction2.Up:
-                        searchArea.Y -= height;
-                        searchArea.Height += height;
-                        break;
-                }
-            }
-            var next = this.GetGamepadNextElement(searchArea);
+            var next = this.GetGamepadNextElement(dir);
             if (this.SelectedElement != null)
                 next = this.SelectedElement.GetGamepadNextElement(dir, next);
             if (next != null)
