@@ -20,6 +20,7 @@ Improvements
 - Added InputHandler mouse and touch position querying that preserves the game's viewport
 - Added float version of GetRandomWeightedEntry
 - Allow LinkCode to specify a color to draw with
+- Allow better control over the order and layout of a Keybind's combinations
 
 Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**
@@ -43,6 +44,7 @@ Improvements
 - Update elements less aggressively when changing a ui system's style
 - Automatically update all elements when changing a ui system's viewport
 - Allow setting a default color for clickable links in UiStyle
+- Allow ElementHelper's KeybindButton to query a combination at a given index
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

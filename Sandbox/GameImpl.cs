@@ -304,6 +304,14 @@ namespace Sandbox {
             var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));
             newPanel.AddChild(new Button(Anchor.TopLeft, new Vector2(100, 20), "Text", "Tooltip text"));
             this.UiSystem.Add("Panel", newPanel);
+
+            var keybind = new Keybind(MouseButton.Left, ModifierKey.Shift);
+            var keybindPanel = new Panel(Anchor.BottomRight, new Vector2(100, 100), new Vector2(5));
+            for (var i = 0; i < 3; i++) {
+                var button = keybindPanel.AddChild(ElementHelper.KeybindButton(Anchor.AutoLeft, new Vector2(0.5F, 12), keybind, Input, "Press", Keys.Escape, index: i));
+                button.Text.TextScale = 0.1F;
+            }
+            this.UiSystem.Add("Keybinds", keybindPanel);
         }
 
         protected override void DoUpdate(GameTime gameTime) {

@@ -47,7 +47,28 @@ namespace MLEM.Input {
 
         /// <inheritdoc cref="Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>
         public Keybind Add(GenericInput key, ModifierKey modifier) {
-            return this.Add(key, modifier.GetKeys().Select(m => (GenericInput) m).ToArray());
+            foreach (var mod in modifier.GetKeys())
+                this.Add(key, mod);
+            return this;
+        }
+
+        /// <summary>
+        /// Inserts a new key combination into the given <paramref name="index"/> of this keybind's combinations that can optionally be pressed for the keybind to trigger.
+        /// </summary>
+        /// <param name="index">The index to insert this combination into.</param>
+        /// <param name="key">The key to be pressed.</param>
+        /// <param name="modifiers">The modifier keys that have to be held down.</param>
+        /// <returns>This keybind, for chaining.</returns>
+        public Keybind Insert(int index, GenericInput key, params GenericInput[] modifiers) {
+            this.combinations = this.combinations.Take(index).Append(new Combination(key, modifiers)).Concat(this.combinations.Skip(index)).ToArray();
+            return this;
+        }
+
+        /// <inheritdoc cref="Insert(int,MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>
+        public Keybind Insert(int index, GenericInput key, ModifierKey modifier) {
+            foreach (var mod in modifier.GetKeys().Reverse())
+                this.Insert(index, key, mod);
+            return this;
         }
 
         /// <summary>
@@ -132,6 +153,22 @@ namespace MLEM.Input {
         public IEnumerable<Combination> GetCombinations() {
             foreach (var combination in this.combinations)
                 yield return combination;
+        }
+
+        /// <summary>
+        /// Tries to retrieve the combination at the given <paramref name="index"/> within this keybind.
+        /// </summary>
+        /// <param name="index">The index of the combination to retrieve.</param>
+        /// <param name="combination">The combination, or default if this method returns false.</param>
+        /// <returns>Whether the combination could be successfully retrieved or the index was out of bounds of this keybind's combination collection.</returns>
+        public bool TryGetCombination(int index, out Combination combination) {
+            if (index >= 0 && index < this.combinations.Length) {
+                combination = this.combinations[index];
+                return true;
+            } else {
+                combination = default;
+                return false;
+            }
         }
 
         /// <summary>
