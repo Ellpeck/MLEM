@@ -377,7 +377,8 @@ namespace MLEM.Ui {
                     if (Math.Abs(direction.Angle() - Math.Atan2(distVec.Y, distVec.X)) >= MathHelper.PiOver2 - Element.Epsilon)
                         continue;
                     var distSq = distVec.LengthSquared();
-                    if (closest == null || distSq < closestDistSq) {
+                    // prefer navigating to elements that have the same parent as the currently selected element
+                    if (closest == null || distSq < closestDistSq || closest.Parent != this.SelectedElement.Parent && child.Parent == this.SelectedElement.Parent) {
                         closest = child;
                         closestDistSq = distSq;
                     }
