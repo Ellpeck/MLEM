@@ -79,13 +79,13 @@ namespace MLEM.Ui.Elements {
                 };
 
                 // handle automatic element selection, the scroller needs to scroll to the right location
-                this.OnSelectedElementChanged += (element, otherElement) => {
+                this.OnSelectedElementChanged += (_, e) => {
                     if (!this.Controls.IsAutoNavMode)
                         return;
-                    if (otherElement == null || !otherElement.GetParentTree().Contains(this))
+                    if (e == null || !e.GetParentTree().Contains(this))
                         return;
                     var firstChild = this.Children.First(c => c != this.ScrollBar);
-                    this.ScrollBar.CurrentValue = (otherElement.Area.Bottom - firstChild.Area.Top - this.Area.Height / 2) / this.Scale;
+                    this.ScrollBar.CurrentValue = (e.UnscrolledArea.Center.Y - firstChild.Area.Height - this.Area.Height / 2) / e.Scale + this.ChildPadding.Value.Height;
                 };
                 this.AddChild(this.ScrollBar);
             }

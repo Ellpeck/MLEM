@@ -53,6 +53,7 @@ Improvements
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments
 - Fixed the graphics device's viewport being ignored for mouse and touch queries
+- Fixed auto-navigating panels not scrolling to the center of elements properly
 
 Removals
 - Marked StyleProp equality members as obsolete
