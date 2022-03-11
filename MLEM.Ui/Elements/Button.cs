@@ -51,14 +51,7 @@ namespace MLEM.Ui.Elements {
         /// Set this property to true to mark the button as disabled.
         /// A disabled button cannot be moused over, selected or pressed.
         /// </summary>
-        public bool IsDisabled {
-            get => this.isDisabled;
-            set {
-                this.isDisabled = value;
-                this.CanBePressed = !value;
-                this.CanBeSelected = !value;
-            }
-        }
+        public virtual bool IsDisabled { get; set; }
         /// <summary>
         /// Whether this button's <see cref="Text"/> should be truncated if it exceeds this button's width.
         /// Defaults to false.
@@ -71,7 +64,10 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        private bool isDisabled;
+        /// <inheritdoc />
+        public override bool CanBeSelected => base.CanBeSelected && !this.IsDisabled;
+        /// <inheritdoc />
+        public override bool CanBePressed => base.CanBePressed && !this.IsDisabled;
 
         /// <summary>
         /// Creates a new button with the given settings

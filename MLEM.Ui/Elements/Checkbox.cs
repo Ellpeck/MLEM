@@ -62,21 +62,18 @@ namespace MLEM.Ui.Elements {
         /// Set this property to true to mark the checkbox as disabled.
         /// A disabled checkbox cannot be moused over, selected or toggled.
         /// </summary>
-        public bool IsDisabled {
-            get => this.isDisabled;
-            set {
-                this.isDisabled = value;
-                this.CanBePressed = !value;
-                this.CanBeSelected = !value;
-            }
-        }
+        public virtual bool IsDisabled { get; set; }
         /// <summary>
         /// An event that is invoked when this checkbox's <see cref="Checked"/> property changes
         /// </summary>
         public CheckStateChange OnCheckStateChange;
 
+        /// <inheritdoc />
+        public override bool CanBeSelected => base.CanBeSelected && !this.IsDisabled;
+        /// <inheritdoc />
+        public override bool CanBePressed => base.CanBePressed && !this.IsDisabled;
+
         private bool isChecked;
-        private bool isDisabled;
 
         /// <summary>
         /// Creates a new checkbox with the given settings

@@ -191,51 +191,51 @@ namespace MLEM.Ui.Elements {
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
         /// </summary>
-        public bool CanBeSelected = true;
+        public virtual bool CanBeSelected { get; set; } = true;
         /// <summary>
         /// Set this field to false to disallow the element from reacting to being moused over.
         /// </summary>
-        public bool CanBeMoused = true;
+        public virtual bool CanBeMoused { get; set; } = true;
         /// <summary>
         /// Set this field to false to disallow this element's <see cref="OnPressed"/> and <see cref="OnSecondaryPressed"/> events to be called.
         /// </summary>
-        public bool CanBePressed = true;
+        public virtual bool CanBePressed { get; set; } = true;
         /// <summary>
         /// Set this field to false to cause auto-anchored siblings to ignore this element as a possible anchor point.
         /// </summary>
-        public bool CanAutoAnchorsAttach = true;
+        public virtual bool CanAutoAnchorsAttach { get; set; } = true;
         /// <summary>
         /// Set this field to true to cause this element's width to be automatically calculated based on the area that its <see cref="Children"/> take up.
         /// To use this element's <see cref="Size"/>'s X coordinate as a minimum or maximum width rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> or <see cref="TreatSizeAsMaximum"/> to true.
         /// </summary>
-        public bool SetWidthBasedOnChildren;
+        public virtual bool SetWidthBasedOnChildren { get; set; }
         /// <summary>
         /// Set this field to true to cause this element's height to be automatically calculated based on the area that its <see cref="Children"/> take up.
         /// To use this element's <see cref="Size"/>'s Y coordinate as a minimum or maximum height rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> or <see cref="TreatSizeAsMaximum"/> to true.
         /// </summary>
-        public bool SetHeightBasedOnChildren;
+        public virtual bool SetHeightBasedOnChildren { get; set; }
         /// <summary>
         /// If this field is set to true, and <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled, the resulting width or height will always be greather than or equal to this element's <see cref="Size"/>.
         /// For example, if an element's <see cref="Size"/>'s Y coordinate is set to 20, but there is only one child with a height of 10 in it, the element's height would be shrunk to 10 if this value was false, but would remain at 20 if it was true.
         /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
         /// </summary>
-        public bool TreatSizeAsMinimum;
+        public virtual bool TreatSizeAsMinimum { get; set; }
         /// <summary>
         /// If this field is set to true, and <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/>are enabled, the resulting width or height weill always be less than or equal to this element's <see cref="Size"/>.
         /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
         /// </summary>
-        public bool TreatSizeAsMaximum;
+        public virtual bool TreatSizeAsMaximum { get; set; }
         /// <summary>
         /// Set this field to true to cause this element's final display area to never exceed that of its <see cref="Parent"/>.
         /// If the resulting area is too large, the size of this element is shrunk to fit the target area.
         /// This can be useful if an element should fill the remaining area of a parent exactly.
         /// </summary>
-        public bool PreventParentSpill;
+        public virtual bool PreventParentSpill { get; set; }
         /// <summary>
         /// The transparency (alpha value) that this element is rendered with.
         /// Note that, when <see cref="Draw"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
         /// </summary>
-        public float DrawAlpha = 1;
+        public virtual float DrawAlpha { get; set; } = 1;
         /// <summary>
         /// Stores whether this element is currently being moused over or touched.
         /// </summary>

@@ -55,6 +55,7 @@ Fixes
 - Fixed the graphics device's viewport being ignored for mouse and touch queries
 - Fixed auto-navigating panels not scrolling to the center of elements properly
 - Fixed UiControls allowing for non-selectable or non-mouseable elements to be marked as selected or moused
+- Fixed buttons and checkboxes changing their CanBeSelected and CanBePressed values when being disabled
 
 Removals
 - Marked StyleProp equality members as obsolete
