@@ -259,7 +259,9 @@ namespace MLEM.Ui {
         /// <param name="element">The element to select, or null to deselect the selected element.</param>
         /// <param name="autoNav">Whether automatic navigation should be forced on</param>
         public void SelectElement(RootElement root, Element element, bool? autoNav = null) {
-            if (root == null)
+            if (root == null || !root.CanSelectContent)
+                return;
+            if (element != null && !element.CanBeSelected)
                 return;
             var selected = this.GetSelectedElement(root);
             if (selected == element)
@@ -284,6 +286,8 @@ namespace MLEM.Ui {
         /// </summary>
         /// <param name="element">The element to set as moused</param>
         public void SetMousedElement(Element element) {
+            if (element != null && !element.CanBeMoused)
+                return;
             if (element != this.MousedElement) {
                 if (this.MousedElement != null)
                     this.System.InvokeOnElementMouseExit(this.MousedElement);
@@ -299,6 +303,8 @@ namespace MLEM.Ui {
         /// </summary>
         /// <param name="element">The element to set as touched</param>
         public void SetTouchedElement(Element element) {
+            if (element != null && !element.CanBeMoused)
+                return;
             if (element != this.TouchedElement) {
                 if (this.TouchedElement != null)
                     this.System.InvokeOnElementTouchExit(this.TouchedElement);
@@ -316,9 +322,11 @@ namespace MLEM.Ui {
         /// <param name="root">The root element whose selected element to return</param>
         /// <returns>The given root's selected element, or null if the root doesn't exist, or if there is no selected element for that root.</returns>
         public Element GetSelectedElement(RootElement root) {
-            if (root == null)
+            if (root == null || !root.CanSelectContent)
                 return null;
             this.selectedElements.TryGetValue(root.Name, out var element);
+            if (element != null && !element.CanBeSelected)
+                return null;
             return element;
         }
 
