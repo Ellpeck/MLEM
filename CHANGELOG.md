@@ -15,6 +15,7 @@ Additions
 - Added SoundEffectInstanceHandler.Stop
 - Added TextureRegion.OffsetCopy
 - Added RectangleF.DistanceSquared and RectangleF.Distance
+- Added GamepadExtensions.GetAnalogValue to get the analog value of any gamepad button
 
 Improvements
 - Generify GenericFont's string drawing
@@ -22,6 +23,7 @@ Improvements
 - Added float version of GetRandomWeightedEntry
 - Allow LinkCode to specify a color to draw with
 - Allow better control over the order and layout of a Keybind's combinations
+- Allow setting a gamepad button deadzone in InputHandler
 
 Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**

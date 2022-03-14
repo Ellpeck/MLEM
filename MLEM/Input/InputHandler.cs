@@ -59,6 +59,12 @@ namespace MLEM.Input {
         /// Set this field to false to enable <see cref="InputsDown"/> and <see cref="InputsPressed"/> being calculated.
         /// </summary>
         public bool StoreAllActiveInputs;
+        /// <summary>
+        /// This field represents the deadzone that gamepad <see cref="Buttons"/> have when input is queried for them using this input handler.
+        /// A deadzone is the percentage (between 0 and 1) that an analog value has to reach for it to be considered down (<see cref="IsGamepadButtonDown"/>) or pressed (<see cref="IsGamepadButtonPressed"/>).
+        /// Querying of analog values is done using <see cref="GamepadExtensions.GetAnalogValue"/>.
+        /// </summary>
+        public float GamepadButtonDeadzone;
 
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
@@ -234,13 +240,13 @@ namespace MLEM.Input {
                 this.ConnectedGamepads = GamePad.MaximumGamePadCount;
                 for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
-                    var state = GamePadState.Default;
+                    this.gamepads[i] = GamePadState.Default;
                     if (GamePad.GetCapabilities(i).IsConnected) {
                         if (active) {
-                            state = GamePad.GetState(i);
+                            this.gamepads[i] = GamePad.GetState(i);
                             if (this.StoreAllActiveInputs) {
                                 foreach (var button in EnumHelper.Buttons) {
-                                    if (state.IsButtonDown(button))
+                                    if (this.IsGamepadButtonDown(button, i))
                                         this.inputsDownAccum.Add(button);
                                 }
                             }
@@ -249,7 +255,6 @@ namespace MLEM.Input {
                         if (this.ConnectedGamepads > i)
                             this.ConnectedGamepads = i;
                     }
-                    this.gamepads[i] = state;
                 }
 
                 if (this.HandleGamepadRepeats) {
@@ -446,48 +451,48 @@ namespace MLEM.Input {
         public bool IsGamepadButtonDown(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
-                    if (this.GetGamepadState(i).IsButtonDown(button))
+                    if (this.GetGamepadState(i).GetAnalogValue(button) >= this.GamepadButtonDeadzone)
                         return true;
                 }
                 return false;
             }
-            return this.GetGamepadState(index).IsButtonDown(button);
+            return this.GetGamepadState(index).GetAnalogValue(button) >= this.GamepadButtonDeadzone;
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonUp"/>
         public bool IsGamepadButtonUp(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
-                    if (this.GetGamepadState(i).IsButtonUp(button))
+                    if (this.GetGamepadState(i).GetAnalogValue(button) < this.GamepadButtonDeadzone)
                         return true;
                 }
                 return false;
             }
-            return this.GetGamepadState(index).IsButtonUp(button);
+            return this.GetGamepadState(index).GetAnalogValue(button) < this.GamepadButtonDeadzone;
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonDown"/>
         public bool WasGamepadButtonDown(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
-                    if (this.GetLastGamepadState(i).IsButtonDown(button))
+                    if (this.GetLastGamepadState(i).GetAnalogValue(button) >= this.GamepadButtonDeadzone)
                         return true;
                 }
                 return false;
             }
-            return this.GetLastGamepadState(index).IsButtonDown(button);
+            return this.GetLastGamepadState(index).GetAnalogValue(button) >= this.GamepadButtonDeadzone;
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonUp"/>
         public bool WasGamepadButtonUp(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
-                    if (this.GetLastGamepadState(i).IsButtonUp(button))
+                    if (this.GetLastGamepadState(i).GetAnalogValue(button) < this.GamepadButtonDeadzone)
                         return true;
                 }
                 return false;
             }
-            return this.GetLastGamepadState(index).IsButtonUp(button);
+            return this.GetLastGamepadState(index).GetAnalogValue(button) < this.GamepadButtonDeadzone;
         }
 
         /// <summary>
