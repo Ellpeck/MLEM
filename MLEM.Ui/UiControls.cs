@@ -387,7 +387,7 @@ namespace MLEM.Ui {
                         continue;
                     var distSq = child.Area.DistanceSquared(this.SelectedElement.Area);
                     // both distance and angle play a role in a destination button's priority, so we combine them
-                    var priority = distSq * (angle / MathHelper.TwoPi + 1);
+                    var priority = (distSq + 1) * (angle / MathHelper.PiOver2 + 1);
                     if (closest == null || priority < closestPriority) {
                         closest = child;
                         closestPriority = priority;

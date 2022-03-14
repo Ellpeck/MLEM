@@ -305,11 +305,13 @@ namespace Sandbox {
             newPanel.AddChild(new Button(Anchor.TopLeft, new Vector2(100, 20), "Text", "Tooltip text"));
             this.UiSystem.Add("Panel", newPanel);
 
-            var keybind = new Keybind(MouseButton.Left, ModifierKey.Shift);
-            var keybindPanel = new Panel(Anchor.BottomRight, new Vector2(100, 100), new Vector2(5));
-            for (var i = 0; i < 3; i++) {
-                var button = keybindPanel.AddChild(ElementHelper.KeybindButton(Anchor.AutoLeft, new Vector2(0.5F, 12), keybind, Input, "Press", Keys.Escape, index: i));
-                button.Text.TextScale = 0.1F;
+            var keybindPanel = new Panel(Anchor.BottomRight, new Vector2(130, 150), new Vector2(5));
+            for (var i = 0; i < 15; i++) {
+                var button = keybindPanel.AddChild(new Button(default, default, i.ToString()));
+                button.Anchor = Anchor.AutoInline;
+                button.Padding = new Padding(0.5F);
+                button.SetHeightBasedOnChildren = false;
+                button.Size = new Vector2(30, 50);
             }
             this.UiSystem.Add("Keybinds", keybindPanel);
         }
