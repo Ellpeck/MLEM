@@ -49,6 +49,7 @@ Improvements
 - Automatically select the first element when a dropdown is opened in auto nav mode
 - Improved gamepad navigation by employing angles between elements
 - Prefer elements that have the same parent as the currently selected element when using gamepad navigation
+- Allow specifying a custom position for a tooltip to snap to
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

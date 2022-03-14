@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using MLEM.Input;
 using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
@@ -22,6 +23,12 @@ namespace MLEM.Ui.Elements {
         /// The paragraph of text that this tooltip displays
         /// </summary>
         public Paragraph Paragraph;
+        /// <summary>
+        /// The position that this tooltip should be following (or snapped to) instead of the <see cref="InputHandler.ViewportMousePosition"/>.
+        /// If this value is unset, <see cref="InputHandler.ViewportMousePosition"/> will be used as the snap position.
+        /// Note that <see cref="MouseOffset"/> is still applied with this value set.
+        /// </summary>
+        public virtual Vector2? SnapPosition { get; set; }
 
         private TimeSpan delayCountdown;
         private bool autoHidden;
@@ -91,7 +98,8 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public void SnapPositionToMouse() {
             var viewport = this.System.Viewport;
-            var offset = (this.Input.ViewportMousePosition.ToVector2() + this.MouseOffset.Value) / this.Scale;
+            var snapPosition = this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2();
+            var offset = (snapPosition + this.MouseOffset.Value) / this.Scale;
             if (offset.X < viewport.X)
                 offset.X = viewport.X;
             if (offset.Y < viewport.Y)
