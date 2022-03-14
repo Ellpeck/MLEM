@@ -377,17 +377,20 @@ namespace MLEM.Ui {
                 return children.FirstOrDefault(c => c.CanBeSelected);
             } else {
                 Element closest = null;
-                float closestDistSq = 0;
+                float closestPriority = 0;
                 foreach (var child in children) {
                     if (!child.CanBeSelected || child == this.SelectedElement)
                         continue;
                     var (xOffset, yOffset) = child.Area.Center - this.SelectedElement.Area.Center;
-                    if (Math.Abs(direction.Angle() - Math.Atan2(yOffset, xOffset)) >= MathHelper.PiOver2 - Element.Epsilon)
+                    var angle = Math.Abs(direction.Angle() - (float) Math.Atan2(yOffset, xOffset));
+                    if (angle >= MathHelper.PiOver2 - Element.Epsilon)
                         continue;
                     var distSq = child.Area.DistanceSquared(this.SelectedElement.Area);
-                    if (closest == null || distSq < closestDistSq) {
+                    // both distance and angle play a role in a destination button's priority, so we combine them
+                    var priority = distSq * (angle / MathHelper.TwoPi + 1);
+                    if (closest == null || priority < closestPriority) {
                         closest = child;
-                        closestDistSq = distSq;
+                        closestPriority = priority;
                     }
                 }
                 return closest;
