@@ -22,36 +22,6 @@ namespace MLEM.Ui {
         /// </summary>
         public readonly InputHandler Input;
         /// <summary>
-        /// This value ist true if the <see cref="InputHandler"/> was created by this ui controls instance, or if it was passed in.
-        /// If the input handler was created by this instance, its <see cref="InputHandler.Update()"/> method should be called by us.
-        /// </summary>
-        protected readonly bool IsInputOurs;
-        /// <summary>
-        /// The <see cref="UiSystem"/> that this ui controls instance is controlling
-        /// </summary>
-        protected readonly UiSystem System;
-
-        /// <summary>
-        /// The <see cref="RootElement"/> that is currently active.
-        /// The active root element is the one with the highest <see cref="RootElement.Priority"/> that whose <see cref="RootElement.CanSelectContent"/> property is true.
-        /// </summary>
-        public RootElement ActiveRoot { get; protected set; }
-        /// <summary>
-        /// The <see cref="Element"/> that the mouse is currently over.
-        /// </summary>
-        public Element MousedElement { get; protected set; }
-        /// <summary>
-        /// The <see cref="Element"/> that is currently touched.
-        /// </summary>
-        public Element TouchedElement { get; protected set; }
-        private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
-        /// <summary>
-        /// The element that is currently selected.
-        /// This is the <see cref="RootElement.SelectedElement"/> of the <see cref="ActiveRoot"/>.
-        /// </summary>
-        public Element SelectedElement => this.GetSelectedElement(this.ActiveRoot);
-
-        /// <summary>
         /// A list of <see cref="Keys"/>, <see cref="Buttons"/> and/or <see cref="MouseButton"/> that act as the buttons on the keyboard which perform the <see cref="Element.OnPressed"/> action.
         /// If the <see cref="ModifierKey.Shift"/> is held, these buttons perform <see cref="Element.OnSecondaryPressed"/>.
         /// </summary>
@@ -85,6 +55,25 @@ namespace MLEM.Ui {
         /// This can be used to easily serialize and deserialize all ui keybinds.
         /// </summary>
         public readonly Keybind[] Keybinds;
+
+        /// <summary>
+        /// The <see cref="RootElement"/> that is currently active.
+        /// The active root element is the one with the highest <see cref="RootElement.Priority"/> that whose <see cref="RootElement.CanSelectContent"/> property is true.
+        /// </summary>
+        public RootElement ActiveRoot { get; protected set; }
+        /// <summary>
+        /// The <see cref="Element"/> that the mouse is currently over.
+        /// </summary>
+        public Element MousedElement { get; protected set; }
+        /// <summary>
+        /// The <see cref="Element"/> that is currently touched.
+        /// </summary>
+        public Element TouchedElement { get; protected set; }
+        /// <summary>
+        /// The element that is currently selected.
+        /// This is the <see cref="RootElement.SelectedElement"/> of the <see cref="ActiveRoot"/>.
+        /// </summary>
+        public Element SelectedElement => this.GetSelectedElement(this.ActiveRoot);
         /// <summary>
         /// The zero-based index of the <see cref="GamePad"/> used for gamepad input.
         /// If this index is lower than 0, every connected gamepad will trigger input.
@@ -113,9 +102,35 @@ namespace MLEM.Ui {
         /// <summary>
         /// If this value is true, the ui controls are in automatic navigation mode.
         /// This means that the <see cref="UiStyle.SelectionIndicator"/> will be drawn around the <see cref="SelectedElement"/>.
-        /// To set this value, use <see cref="SelectElement"/> or <see cref="RootElement.SelectElement"/>
         /// </summary>
-        public bool IsAutoNavMode { get; internal set; }
+        public bool IsAutoNavMode {
+            get => this.isAutoNavMode;
+            set {
+                if (this.isAutoNavMode != value) {
+                    this.isAutoNavMode = value;
+                    this.AutoNavModeChanged?.Invoke(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// An event that is raised when <see cref="IsAutoNavMode"/> is changed.
+        /// This can be used for custom actions like hiding the mouse cursor when automatic navigation is enabled.
+        /// </summary>
+        public event Action<bool> AutoNavModeChanged;
+
+        /// <summary>
+        /// This value ist true if the <see cref="InputHandler"/> was created by this ui controls instance, or if it was passed in.
+        /// If the input handler was created by this instance, its <see cref="InputHandler.Update()"/> method should be called by us.
+        /// </summary>
+        protected readonly bool IsInputOurs;
+        /// <summary>
+        /// The <see cref="UiSystem"/> that this ui controls instance is controlling
+        /// </summary>
+        protected readonly UiSystem System;
+
+        private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
+        private bool isAutoNavMode;
 
         /// <summary>
         /// Creates a new instance of the ui controls.

@@ -36,6 +36,7 @@ Removals
 ### MLEM.Ui
 Additions
 - Added Element.OnStyleInit event
+- Added UiControls.AutoNavModeChanged event
 
 Improvements
 - Allow for checkboxes and radio buttons to be disabled
