@@ -241,9 +241,9 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public bool IsMouseOver { get; protected set; }
         /// <summary>
-        /// Stores whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
+        /// Returns whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// </summary>
-        public bool IsSelected { get; protected set; }
+        public bool IsSelected => this.Root.SelectedElement == this;
         /// <summary>
         /// Returns whether this element's <see cref="SetAreaDirty"/> method has been recently called and its area has not been updated since then using <see cref="UpdateAreaIfDirty"/> or <see cref="ForceUpdateArea"/>.
         /// </summary>
@@ -436,8 +436,6 @@ namespace MLEM.Ui.Elements {
             this.OnMouseExit += element => this.IsMouseOver = false;
             this.OnTouchEnter += element => this.IsMouseOver = true;
             this.OnTouchExit += element => this.IsMouseOver = false;
-            this.OnSelected += element => this.IsSelected = true;
-            this.OnDeselected += element => this.IsSelected = false;
             this.GetTabNextElement += (backward, next) => next;
             this.GetGamepadNextElement += (dir, next) => next;
 

@@ -61,7 +61,7 @@ Fixes
 - Fixed UiControls allowing for non-selectable or non-mouseable elements to be marked as selected or moused
 - Fixed buttons and checkboxes changing their CanBeSelected and CanBePressed values when being disabled
 - Fixed children of Panel scroll bars also being scrolled
-- Fixed RootElement.CanSelectContent returning incorrect results when CanBeSelected changes in children
+- Fixed RootElement.CanSelectContent and Element.IsSelected returning incorrect results when CanBeSelected changes
 
 Removals
 - Marked StyleProp equality members as obsolete
