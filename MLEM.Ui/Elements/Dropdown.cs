@@ -63,10 +63,10 @@ namespace MLEM.Ui.Elements {
                 if (dir == Direction2.Left || dir == Direction2.Right)
                     return null;
                 if (dir == Direction2.Up) {
-                    var prev = element.GetOlderSibling();
+                    var prev = element.GetOlderSibling(e => e.CanBeSelected);
                     return prev ?? this;
                 } else if (dir == Direction2.Down) {
-                    return element.GetSiblings(e => e.GetOlderSibling() == element).FirstOrDefault();
+                    return element.GetSiblings(e => e.CanBeSelected && e.GetOlderSibling(s => s.CanBeSelected) == element).FirstOrDefault();
                 }
                 return usualNext;
             };
