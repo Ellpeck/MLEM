@@ -156,7 +156,7 @@ namespace MLEM.Ui {
         public virtual void Update() {
             if (this.IsInputOurs)
                 this.Input.Update();
-            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanSelectContent && !root.Element.IsHidden);
+            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => !root.Element.IsHidden && root.CanSelectContent);
 
             // MOUSE INPUT
             if (this.HandleMouse) {
@@ -274,7 +274,7 @@ namespace MLEM.Ui {
         /// <param name="element">The element to select, or null to deselect the selected element.</param>
         /// <param name="autoNav">Whether automatic navigation should be forced on</param>
         public void SelectElement(RootElement root, Element element, bool? autoNav = null) {
-            if (root == null || !root.CanSelectContent)
+            if (root == null)
                 return;
             if (element != null && !element.CanBeSelected)
                 return;
@@ -337,7 +337,7 @@ namespace MLEM.Ui {
         /// <param name="root">The root element whose selected element to return</param>
         /// <returns>The given root's selected element, or null if the root doesn't exist, or if there is no selected element for that root.</returns>
         public Element GetSelectedElement(RootElement root) {
-            if (root == null || !root.CanSelectContent)
+            if (root == null)
                 return null;
             this.selectedElements.TryGetValue(root.Name, out var element);
             if (element != null && !element.CanBeSelected)

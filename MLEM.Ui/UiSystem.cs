@@ -535,7 +535,7 @@ namespace MLEM.Ui {
         /// Determines whether this root element contains any children that <see cref="Elements.Element.CanBeSelected"/>.
         /// This value is automatically calculated.
         /// </summary>
-        public bool CanSelectContent { get; private set; }
+        public bool CanSelectContent => this.Element.CanBeSelected || this.Element.GetChildren(c => c.CanBeSelected, true).Any();
 
         /// <summary>
         /// Event that is invoked when a <see cref="Element"/> is added to this root element or any of its children.
@@ -558,21 +558,6 @@ namespace MLEM.Ui {
             this.Name = name;
             this.Element = element;
             this.System = system;
-
-            this.OnElementAdded += e => {
-                if (e.CanBeSelected)
-                    this.CanSelectContent = true;
-            };
-            this.OnElementRemoved += e => {
-                if (e.CanBeSelected) {
-                    // check if removing this element removed all other selectable elements
-                    foreach (var c in this.Element.GetChildren(regardGrandchildren: true)) {
-                        if (c.CanBeSelected)
-                            return;
-                    }
-                    this.CanSelectContent = false;
-                }
-            };
         }
 
         /// <summary>
