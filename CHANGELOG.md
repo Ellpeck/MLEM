@@ -29,6 +29,7 @@ Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**
 - Fixed Code.Draw receiving the index in the current line rather than the current token
 - Fixed StaticSpriteBatch handling rotated sprites incorrectly
+- Fixed InputHandler.InputsPressed ignoring repeat events for keyboards and gamepads
 
 Removals
 - Renamed GenericFont.OneEmSpace to Emsp (and marked OneEmSpace as obsolete)

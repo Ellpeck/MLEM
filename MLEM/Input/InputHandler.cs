@@ -313,7 +313,7 @@ namespace MLEM.Input {
                     this.InputsPressed = Array.Empty<GenericInput>();
                     this.InputsDown = Array.Empty<GenericInput>();
                 } else {
-                    this.InputsPressed = this.inputsDownAccum.Where(i => !this.InputsDown.Contains(i)).ToArray();
+                    this.InputsPressed = this.inputsDownAccum.Where(this.IsPressed).ToArray();
                     this.InputsDown = this.inputsDownAccum.ToArray();
                     this.inputsDownAccum.Clear();
                 }
