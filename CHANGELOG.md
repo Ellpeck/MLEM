@@ -16,6 +16,7 @@ Additions
 - Added TextureRegion.OffsetCopy
 - Added RectangleF.DistanceSquared and RectangleF.Distance
 - Added GamepadExtensions.GetAnalogValue to get the analog value of any gamepad button
+- Added InputHandler.TryGetDownTime
 
 Improvements
 - Generify GenericFont's string drawing
@@ -24,6 +25,7 @@ Improvements
 - Allow LinkCode to specify a color to draw with
 - Allow better control over the order and layout of a Keybind's combinations
 - Allow setting a gamepad button deadzone in InputHandler
+- Trigger InputHandler key and gamepad repeats for the most recently pressed input
 
 Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**
@@ -32,6 +34,7 @@ Fixes
 - Fixed InputHandler.InputsPressed ignoring repeat events for keyboards and gamepads
 
 Removals
+- **Removed InputHandler.StoreAllActiveInputs and always store all active inputs**
 - Renamed GenericFont.OneEmSpace to Emsp (and marked OneEmSpace as obsolete)
 
 ### MLEM.Ui

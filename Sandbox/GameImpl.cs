@@ -327,9 +327,9 @@ namespace Sandbox {
             }
 
             /*if (Input.InputsDown.Length > 0)
-                Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));
+                Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));*/
             if (Input.InputsPressed.Length > 0)
-                Console.WriteLine("Pressed: " + string.Join(", ", Input.InputsPressed));*/
+                Console.WriteLine("Pressed: " + string.Join(", ", Input.InputsPressed));
         }
 
         protected override void DoDraw(GameTime gameTime) {

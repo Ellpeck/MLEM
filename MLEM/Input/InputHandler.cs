@@ -56,10 +56,6 @@ namespace MLEM.Input {
         /// </summary>
         public bool HandleGamepadRepeats = true;
         /// <summary>
-        /// Set this field to false to enable <see cref="InputsDown"/> and <see cref="InputsPressed"/> being calculated.
-        /// </summary>
-        public bool StoreAllActiveInputs;
-        /// <summary>
         /// This field represents the deadzone that gamepad <see cref="Buttons"/> have when input is queried for them using this input handler.
         /// A deadzone is the percentage (between 0 and 1) that an analog value has to exceed for it to be considered down (<see cref="IsGamepadButtonDown"/>) or pressed (<see cref="IsGamepadButtonPressed"/>).
         /// Querying of analog values is done using <see cref="GamepadExtensions.GetAnalogValue"/>.
@@ -68,13 +64,12 @@ namespace MLEM.Input {
 
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
-        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
+        /// Additionally, <see cref="TryGetDownTime"/> or <see cref="GetDownTime"/> can be used to determine the amount of time that a given input has been down for.
         /// </summary>
         public GenericInput[] InputsDown { get; private set; } = Array.Empty<GenericInput>();
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> that are currently considered pressed.
         /// An input is considered pressed if it was up in the last update, and is up in the current one.
-        /// Note that this value only gets set if <see cref="StoreAllActiveInputs"/> is true.
         /// </summary>
         public GenericInput[] InputsPressed { get; private set; } = Array.Empty<GenericInput>();
         /// <summary>
@@ -141,15 +136,14 @@ namespace MLEM.Input {
 
         private readonly GamePadState[] lastGamepads = new GamePadState[GamePad.MaximumGamePadCount];
         private readonly GamePadState[] gamepads = new GamePadState[GamePad.MaximumGamePadCount];
-        private readonly DateTime[] heldGamepadButtonStarts = new DateTime[GamePad.MaximumGamePadCount];
         private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
         private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
         private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
-        private readonly List<GenericInput> inputsDownAccum = new List<GenericInput>();
         private readonly List<GestureSample> gestures = new List<GestureSample>();
 
         private Point ViewportOffset => new Point(-this.Game.GraphicsDevice.Viewport.X, -this.Game.GraphicsDevice.Viewport.Y);
-        private DateTime heldKeyStart;
+        private Dictionary<(GenericInput, int), DateTime> inputsDownAccum = new Dictionary<(GenericInput, int), DateTime>();
+        private Dictionary<(GenericInput, int), DateTime> inputsDown = new Dictionary<(GenericInput, int), DateTime>();
         private DateTime lastKeyRepeat;
         private bool triggerKeyRepeat;
         private Keys heldKey;
@@ -162,13 +156,11 @@ namespace MLEM.Input {
         /// <param name="handleMouse">If mouse input should be handled</param>
         /// <param name="handleGamepads">If gamepad input should be handled</param>
         /// <param name="handleTouch">If touch input should be handled</param>
-        /// <param name="storeAllActiveInputs">Whether all inputs that are currently down and pressed should be calculated each update</param>
-        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true, bool storeAllActiveInputs = true) : base(game) {
+        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(game) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
             this.HandleTouch = handleTouch;
-            this.StoreAllActiveInputs = storeAllActiveInputs;
             this.Gestures = this.gestures.AsReadOnly();
         }
 
@@ -177,42 +169,28 @@ namespace MLEM.Input {
         /// Call this in your <see cref="Game.Update"/> method.
         /// </summary>
         public void Update() {
+            var now = DateTime.UtcNow;
             var active = this.Game.IsActive;
             if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = active ? Keyboard.GetState() : default;
                 var pressedKeys = this.KeyboardState.GetPressedKeys();
-                if (this.StoreAllActiveInputs) {
-                    foreach (var pressed in pressedKeys)
-                        this.inputsDownAccum.Add(pressed);
-                }
+                foreach (var pressed in pressedKeys)
+                    this.AccumulateDown(pressed, -1);
 
                 if (this.HandleKeyboardRepeats) {
                     this.triggerKeyRepeat = false;
-                    if (this.heldKey == Keys.None) {
-                        // if we're not repeating a key, set the first key being held to the repeat key
-                        // note that modifier keys don't count as that wouldn't really make sense
-                        var key = pressedKeys.FirstOrDefault(k => !k.IsModifier());
-                        if (key != Keys.None) {
-                            this.heldKey = key;
-                            this.heldKeyStart = DateTime.UtcNow;
-                        }
-                    } else {
-                        // if the repeating key isn't being held anymore, reset
-                        if (!this.IsKeyDown(this.heldKey)) {
-                            this.heldKey = Keys.None;
-                        } else {
-                            var now = DateTime.UtcNow;
-                            var holdTime = now - this.heldKeyStart;
-                            // if we've been holding the key longer than the initial delay...
-                            if (holdTime >= this.KeyRepeatDelay) {
-                                var diff = now - this.lastKeyRepeat;
-                                // and we've been holding it for longer than a repeat...
-                                if (diff >= this.KeyRepeatRate) {
-                                    this.lastKeyRepeat = now;
-                                    // then trigger a repeat, causing IsKeyPressed to be true once
-                                    this.triggerKeyRepeat = true;
-                                }
+                    // the key that started being held most recently should be the one being repeated
+                    this.heldKey = pressedKeys.OrderBy(k => this.GetDownTime(k)).FirstOrDefault();
+                    if (this.TryGetDownTime(this.heldKey, out var heldTime)) {
+                        // if we've been holding the key longer than the initial delay...
+                        if (heldTime >= this.KeyRepeatDelay) {
+                            var diff = now - this.lastKeyRepeat;
+                            // and we've been holding it for longer than a repeat...
+                            if (diff >= this.KeyRepeatRate) {
+                                this.lastKeyRepeat = now;
+                                // then trigger a repeat, causing IsKeyPressed to be true once
+                                this.triggerKeyRepeat = true;
                             }
                         }
                     }
@@ -224,11 +202,9 @@ namespace MLEM.Input {
                 var state = Mouse.GetState();
                 if (active && this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.Position)) {
                     this.MouseState = state;
-                    if (this.StoreAllActiveInputs) {
-                        foreach (var button in MouseExtensions.MouseButtons) {
-                            if (state.GetState(button) == ButtonState.Pressed)
-                                this.inputsDownAccum.Add(button);
-                        }
+                    foreach (var button in MouseExtensions.MouseButtons) {
+                        if (state.GetState(button) == ButtonState.Pressed)
+                            this.AccumulateDown(button, -1);
                     }
                 } else {
                     // mouse position and scroll wheel value should be preserved when the mouse is out of bounds
@@ -244,43 +220,29 @@ namespace MLEM.Input {
                     if (GamePad.GetCapabilities(i).IsConnected) {
                         if (active) {
                             this.gamepads[i] = GamePad.GetState(i);
-                            if (this.StoreAllActiveInputs) {
-                                foreach (var button in EnumHelper.Buttons) {
-                                    if (this.IsGamepadButtonDown(button, i))
-                                        this.inputsDownAccum.Add(button);
-                                }
+                            foreach (var button in EnumHelper.Buttons) {
+                                if (this.IsGamepadButtonDown(button, i))
+                                    this.AccumulateDown(button, i);
                             }
                         }
-                    } else {
-                        if (this.ConnectedGamepads > i)
-                            this.ConnectedGamepads = i;
+                    } else if (this.ConnectedGamepads > i) {
+                        this.ConnectedGamepads = i;
                     }
                 }
 
                 if (this.HandleGamepadRepeats) {
                     for (var i = 0; i < this.ConnectedGamepads; i++) {
                         this.triggerGamepadButtonRepeat[i] = false;
-
-                        if (!this.heldGamepadButtons[i].HasValue) {
-                            foreach (var b in EnumHelper.Buttons) {
-                                if (this.IsGamepadButtonDown(b, i)) {
-                                    this.heldGamepadButtons[i] = b;
-                                    this.heldGamepadButtonStarts[i] = DateTime.UtcNow;
-                                    break;
-                                }
-                            }
-                        } else {
-                            if (!this.IsGamepadButtonDown(this.heldGamepadButtons[i].Value, i)) {
-                                this.heldGamepadButtons[i] = null;
-                            } else {
-                                var now = DateTime.UtcNow;
-                                var holdTime = now - this.heldGamepadButtonStarts[i];
-                                if (holdTime >= this.KeyRepeatDelay) {
-                                    var diff = now - this.lastGamepadButtonRepeats[i];
-                                    if (diff >= this.KeyRepeatRate) {
-                                        this.lastGamepadButtonRepeats[i] = now;
-                                        this.triggerGamepadButtonRepeat[i] = true;
-                                    }
+                        this.heldGamepadButtons[i] = EnumHelper.Buttons
+                            .Where(b => this.IsGamepadButtonDown(b, i))
+                            .OrderBy(b => this.GetDownTime(b, i))
+                            .Cast<Buttons?>().FirstOrDefault();
+                        if (this.heldGamepadButtons[i].HasValue && this.TryGetDownTime(this.heldGamepadButtons[i].Value, out var heldTime, i)) {
+                            if (heldTime >= this.KeyRepeatDelay) {
+                                var diff = now - this.lastGamepadButtonRepeats[i];
+                                if (diff >= this.KeyRepeatRate) {
+                                    this.lastGamepadButtonRepeats[i] = now;
+                                    this.triggerGamepadButtonRepeat[i] = true;
                                 }
                             }
                         }
@@ -308,15 +270,16 @@ namespace MLEM.Input {
                     this.gestures.Add(TouchPanel.ReadGesture());
             }
 
-            if (this.StoreAllActiveInputs) {
-                if (this.inputsDownAccum.Count <= 0) {
-                    this.InputsPressed = Array.Empty<GenericInput>();
-                    this.InputsDown = Array.Empty<GenericInput>();
-                } else {
-                    this.InputsPressed = this.inputsDownAccum.Where(this.IsPressed).ToArray();
-                    this.InputsDown = this.inputsDownAccum.ToArray();
-                    this.inputsDownAccum.Clear();
-                }
+            if (this.inputsDownAccum.Count <= 0) {
+                this.InputsPressed = Array.Empty<GenericInput>();
+                this.InputsDown = Array.Empty<GenericInput>();
+                this.inputsDown.Clear();
+            } else {
+                this.InputsPressed = this.inputsDownAccum.Keys.Where(kv => this.IsPressed(kv.Item1, kv.Item2)).Select(kv => kv.Item1).ToArray();
+                this.InputsDown = this.inputsDownAccum.Keys.Select(kv => kv.Item1).ToArray();
+                // swapping these collections means that we don't have to keep moving entries between them
+                (this.inputsDown, this.inputsDownAccum) = (this.inputsDownAccum, this.inputsDown);
+                this.inputsDownAccum.Clear();
             }
         }
 
@@ -650,6 +613,38 @@ namespace MLEM.Input {
                     return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Tries to retrieve the amount of time that a given <see cref="GenericInput"/> has been held down for.
+        /// If the input is currently down, this method returns true and the amount of time that it has been down for is stored in <paramref name="downTime"/>.
+        /// </summary>
+        /// <param name="input">The input whose down time to query.</param>
+        /// <param name="downTime">The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the input is currently being held.</returns>
+        public bool TryGetDownTime(GenericInput input, out TimeSpan downTime, int index = -1) {
+            if (this.inputsDown.TryGetValue((input, index), out var start)) {
+                downTime = DateTime.UtcNow - start;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns the amount of time that a given <see cref="GenericInput"/> has been held down for.
+        /// If this input isn't currently own, this method returns <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        /// <param name="input">The input whose down time to query.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
+        public TimeSpan GetDownTime(GenericInput input, int index = -1) {
+            this.TryGetDownTime(input, out var time, index);
+            return time;
+        }
+
+        private void AccumulateDown(GenericInput input, int index) {
+            this.inputsDownAccum.Add((input, index), this.inputsDown.TryGetValue((input, index), out var start) ? start : DateTime.UtcNow);
         }
 
         /// <summary>

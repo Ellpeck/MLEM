@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using MLEM.Extensions;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Ui.Elements;
