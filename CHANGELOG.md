@@ -26,6 +26,7 @@ Improvements
 - Allow better control over the order and layout of a Keybind's combinations
 - Allow setting a gamepad button deadzone in InputHandler
 - Trigger InputHandler key and gamepad repeats for the most recently pressed input
+- Added properties and constructors for existing operator overloads to GenericInput
 
 Fixes
 - **Fixed a formatting Code only knowing about the last Token that it is applied in**
