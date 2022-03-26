@@ -115,7 +115,7 @@ namespace MLEM.Ui.Elements {
             return group;
         }
 
-        /// <inheritdoc cref="KeybindButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Input.Keybind,MLEM.Input.InputHandler,string,MLEM.Input.GenericInput,string,System.Func{MLEM.Input.GenericInput,string},int)"/>
+        /// <inheritdoc cref="KeybindButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Input.Keybind,MLEM.Input.InputHandler,string,MLEM.Input.Keybind,string,System.Func{MLEM.Input.GenericInput,string},int)"/>
         public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0) {
             return KeybindButton(anchor, size, keybind, inputHandler, activePlaceholder, new Keybind(unbindKey), unboundPlaceholder, inputName, index);
         }
