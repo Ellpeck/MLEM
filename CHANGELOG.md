@@ -73,7 +73,8 @@ Fixes
 
 Removals
 - Marked StyleProp equality members as obsolete
-- Marked BeginDelegate and BeginImpl as obsolete
+- Marked Element.BeginDelegate and Element.BeginImpl as obsolete
+- Marked Element.DrawEarly and UiSystem.DrawEarly as obsolete
 
 ### MLEM.Extended
 Improvements

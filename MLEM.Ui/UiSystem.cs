@@ -105,7 +105,7 @@ namespace MLEM.Ui {
         public UiControls Controls;
         /// <summary>
         /// The update and rendering statistics to be used for runtime debugging and profiling.
-        /// The metrics are reset accordingly every frame: <see cref="UiMetrics.ResetUpdates"/> is called at the start of <see cref="Update"/>, and <see cref="UiMetrics.ResetDraws"/> is called at the start of <see cref="DrawEarly"/>, or at the start of <see cref="Draw"/> if <see cref="DrawEarly"/> was not called.
+        /// The metrics are reset accordingly every frame: <see cref="UiMetrics.ResetUpdates"/> is called at the start of <see cref="Update"/>, and <see cref="UiMetrics.ResetDraws"/> is called at the start of <see cref="Draw"/>.
         /// </summary>
         public UiMetrics Metrics;
 
@@ -268,6 +268,7 @@ namespace MLEM.Ui {
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
+        [Obsolete("DrawEarly is deprecated. Calling it is not required anymore, and there is no replacement.")]
         public void DrawEarly(GameTime time, SpriteBatch batch) {
             this.Metrics.ResetDraws();
             this.stopwatch.Restart();
@@ -284,7 +285,6 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// Draws any <see cref="Element"/>s onto the screen.
-        /// Note that, when using <see cref="Panel"/>s with a scroll bar, <see cref="DrawEarly"/> needs to be called as well.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>

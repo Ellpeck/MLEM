@@ -13,7 +13,6 @@ namespace MLEM.Ui.Elements {
     /// A panel element to be used inside of a <see cref="UiSystem"/>.
     /// The panel is a complex element that displays a box as a background to all of its child elements.
     /// Additionally, a panel can be set to <see cref="scrollOverflow"/> on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
-    /// As this behavior is accomplished using a <see cref="RenderTarget2D"/>, scrolling panels need to have their <see cref="DrawEarly"/> methods called using <see cref="UiSystem.DrawEarly"/>.
     /// </summary>
     public class Panel : Element {
 
@@ -169,22 +168,13 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            if (this.Texture.HasValue())
-                batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
-            // if we handle overflow, draw using the render target in DrawUnbound
-            if (!this.scrollOverflow || this.renderTarget == null) {
-                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
-            } else {
-                // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
-                batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
-            }
-        }
-
-        /// <inheritdoc />
-        public override void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            this.UpdateAreaIfDirty();
+            // draw children onto the render target if we have one
             if (this.scrollOverflow && this.renderTarget != null) {
-                // draw children onto the render target
+                this.UpdateAreaIfDirty();
+                batch.End();
+                // force render target usage to preserve so that previous content isn't cleared
+                var lastUsage = batch.GraphicsDevice.PresentationParameters.RenderTargetUsage;
+                batch.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
                 using (batch.GraphicsDevice.WithRenderTarget(this.renderTarget)) {
                     batch.GraphicsDevice.Clear(Color.Transparent);
                     // offset children by the render target's location
@@ -195,8 +185,19 @@ namespace MLEM.Ui.Elements {
                     base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, trans);
                     batch.End();
                 }
+                batch.GraphicsDevice.PresentationParameters.RenderTargetUsage = lastUsage;
+                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix);
             }
-            base.DrawEarly(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+
+            if (this.Texture.HasValue())
+                batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
+            // if we handle overflow, draw using the render target in DrawUnbound
+            if (!this.scrollOverflow || this.renderTarget == null) {
+                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            } else {
+                // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
+                batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);
+            }
         }
 
         /// <inheritdoc />

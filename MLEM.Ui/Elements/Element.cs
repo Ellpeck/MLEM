@@ -185,7 +185,7 @@ namespace MLEM.Ui.Elements {
         /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
         /// </summary>
         #pragma warning disable CS0618
-        [Obsolete("BeginImpl is deprecated. You can create a custom element class and override DrawEarly or Draw instead.")]
+        [Obsolete("BeginImpl is deprecated. You can create a custom element class and override Draw instead.")]
         public BeginDelegate BeginImpl;
         #pragma warning restore CS0618
         /// <summary>
@@ -990,6 +990,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect that is used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
+        [Obsolete("DrawEarly is deprecated. For custom implementations, see Panel.Draw for how to replace this method.")]
         public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
@@ -1168,7 +1169,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state used for drawing</param>
         /// <param name="matrix">The transform matrix used for drawing</param>
-        [Obsolete("BeginDelegate is deprecated. You can create a custom element class and override DrawEarly or Draw instead.")]
+        [Obsolete("BeginDelegate is deprecated. You can create a custom element class and override Draw instead.")]
         public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix);
 
     }
