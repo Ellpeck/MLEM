@@ -53,6 +53,7 @@ Improvements
 - Automatically update all elements when changing a ui system's viewport
 - Allow setting a default color for clickable links in UiStyle
 - Allow ElementHelper's KeybindButton to query a combination at a given index
+- Allow ElementHelper's KeybindButton to accept a Keybind for clearing a combination
 - Automatically select the first element when a dropdown is opened in auto nav mode
 - Improved gamepad navigation by employing angles between elements
 - Prefer elements that have the same parent as the currently selected element when using gamepad navigation

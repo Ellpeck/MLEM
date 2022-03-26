@@ -115,6 +115,11 @@ namespace MLEM.Ui.Elements {
             return group;
         }
 
+        /// <inheritdoc cref="KeybindButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Input.Keybind,MLEM.Input.InputHandler,string,MLEM.Input.GenericInput,string,System.Func{MLEM.Input.GenericInput,string},int)"/>
+        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0) {
+            return KeybindButton(anchor, size, keybind, inputHandler, activePlaceholder, new Keybind(unbindKey), unboundPlaceholder, inputName, index);
+        }
+
         /// <summary>
         /// Creates a <see cref="Button"/> that acts as a way to input a custom value for a <see cref="Keybind"/>.
         /// Note that only the <see cref="Keybind.Combination"/> at index <paramref name="index"/> of the given keybind is displayed and edited, all others are ignored.
@@ -126,12 +131,12 @@ namespace MLEM.Ui.Elements {
         /// <param name="keybind">The keybind that this button should represent</param>
         /// <param name="inputHandler">The input handler to query inputs with</param>
         /// <param name="activePlaceholder">A placeholder text that is displayed while the keybind is being edited</param>
-        /// <param name="unbindKey">An optional generic input that allows the keybind value to be unbound, clearing all combinations</param>
+        /// <param name="unbind">An optional keybind to press that allows the keybind value to be unbound, clearing the combination</param>
         /// <param name="unboundPlaceholder">A placeholder text that is displayed if the keybind is unbound</param>
         /// <param name="inputName">An optional function to give each input a display name that is easier to read. If this is null, <see cref="GenericInput.ToString"/> is used.</param>
         /// <param name="index">The index in the <paramref name="keybind"/> that the button should display. Note that, if the index is greater than the amount of combinations, combinations entered using this button will be stored at an earlier index.</param>
         /// <returns>A keybind button with the given settings</returns>
-        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0) {
+        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, Keybind unbind = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0) {
             string GetCurrentName() => keybind.TryGetCombination(index, out var combination) ? combination.ToString(" + ", inputName) : unboundPlaceholder;
 
             var button = new Button(anchor, size, GetCurrentName());
@@ -145,7 +150,7 @@ namespace MLEM.Ui.Elements {
                     button.SetData("Active", true);
                     activeNext = false;
                 } else if (button.GetData<bool>("Active")) {
-                    if (unbindKey != default && inputHandler.IsPressed(unbindKey)) {
+                    if (unbind != null && unbind.IsPressed(inputHandler)) {
                         keybind.Remove((c, i) => i == index);
                         button.Text.Text = unboundPlaceholder;
                         button.SetData("Active", false);
