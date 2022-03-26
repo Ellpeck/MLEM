@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -409,6 +410,7 @@ namespace MLEM.Ui.Elements {
         protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.system.Viewport;
 
         private readonly List<Element> children = new List<Element>();
+        private readonly Stopwatch stopwatch = new Stopwatch();
         private bool sortedChildrenDirty;
         private IList<Element> sortedChildren;
         private UiSystem system;
@@ -559,7 +561,7 @@ namespace MLEM.Ui.Elements {
             // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead
             if (this.Parent != null && this.Parent.UpdateAreaIfDirty())
                 return;
-            this.System.Stopwatch.Restart();
+            this.stopwatch.Restart();
 
             var parentArea = this.ParentArea;
             var parentCenterX = parentArea.X + parentArea.Width / 2;
@@ -569,8 +571,8 @@ namespace MLEM.Ui.Elements {
             var recursion = 0;
             UpdateDisplayArea(actualSize);
 
-            this.System.Stopwatch.Stop();
-            this.System.Metrics.ForceAreaUpdateTime += this.System.Stopwatch.Elapsed;
+            this.stopwatch.Stop();
+            this.System.Metrics.ForceAreaUpdateTime += this.stopwatch.Elapsed;
             this.System.Metrics.ForceAreaUpdates++;
 
             void UpdateDisplayArea(Vector2 newSize) {

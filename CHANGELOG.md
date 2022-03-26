@@ -69,6 +69,7 @@ Fixes
 - Fixed children of Panel scroll bars also being scrolled
 - Fixed RootElement.CanSelectContent and Element.IsSelected returning incorrect results when CanBeSelected changes
 - Fixed dropdowns with some non-selectable children failing to navigate when using gamepad controls
+- Fixed UiMetrics.ForceAreaUpdateTime being inaccurate for nested elements
 
 Removals
 - Marked StyleProp equality members as obsolete

@@ -182,9 +182,8 @@ namespace MLEM.Ui {
         /// </summary>
         public event RootCallback OnRootRemoved;
 
-        internal readonly Stopwatch Stopwatch = new Stopwatch();
-
         private readonly List<RootElement> rootElements = new List<RootElement>();
+        private readonly Stopwatch stopwatch = new Stopwatch();
         private float globalScale = 1;
         private bool drewEarly;
         private UiStyle style;
@@ -253,14 +252,14 @@ namespace MLEM.Ui {
         /// <param name="time">The game's time</param>
         public override void Update(GameTime time) {
             this.Metrics.ResetUpdates();
-            this.Stopwatch.Restart();
+            this.stopwatch.Restart();
 
             this.Controls.Update();
             for (var i = this.rootElements.Count - 1; i >= 0; i--)
                 this.rootElements[i].Element.Update(time);
 
-            this.Stopwatch.Stop();
-            this.Metrics.UpdateTime += this.Stopwatch.Elapsed;
+            this.stopwatch.Stop();
+            this.Metrics.UpdateTime += this.stopwatch.Elapsed;
         }
 
         /// <summary>
@@ -271,15 +270,15 @@ namespace MLEM.Ui {
         /// <param name="batch">The sprite batch to use for drawing</param>
         public void DrawEarly(GameTime time, SpriteBatch batch) {
             this.Metrics.ResetDraws();
-            this.Stopwatch.Restart();
+            this.stopwatch.Restart();
 
             foreach (var root in this.rootElements) {
                 if (!root.Element.IsHidden)
                     root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
             }
 
-            this.Stopwatch.Stop();
-            this.Metrics.DrawTime += this.Stopwatch.Elapsed;
+            this.stopwatch.Stop();
+            this.Metrics.DrawTime += this.stopwatch.Elapsed;
             this.drewEarly = true;
         }
 
@@ -292,7 +291,7 @@ namespace MLEM.Ui {
         public void Draw(GameTime time, SpriteBatch batch) {
             if (!this.drewEarly)
                 this.Metrics.ResetDraws();
-            this.Stopwatch.Restart();
+            this.stopwatch.Restart();
 
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
@@ -303,8 +302,8 @@ namespace MLEM.Ui {
                 batch.End();
             }
 
-            this.Stopwatch.Stop();
-            this.Metrics.DrawTime += this.Stopwatch.Elapsed;
+            this.stopwatch.Stop();
+            this.Metrics.DrawTime += this.stopwatch.Elapsed;
             this.drewEarly = false;
         }
 
