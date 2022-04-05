@@ -29,6 +29,9 @@ namespace MLEM.Ui.Elements {
         /// Note that <see cref="MouseOffset"/> is still applied with this value set.
         /// </summary>
         public virtual Vector2? SnapPosition { get; set; }
+        
+        /// <inheritdoc />
+        public override bool IsHidden => this.autoHidden || base.IsHidden;
 
         private TimeSpan delayCountdown;
         private bool autoHidden;
@@ -167,10 +170,8 @@ namespace MLEM.Ui.Elements {
                 }
             }
             if (this.autoHidden != shouldBeHidden) {
-                // only auto-hide if IsHidden wasn't changed manually
-                if (this.IsHidden == this.autoHidden)
-                    this.IsHidden = shouldBeHidden;
                 this.autoHidden = shouldBeHidden;
+                this.SetAreaDirty();
             }
         }
 

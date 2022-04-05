@@ -151,7 +151,7 @@ namespace MLEM.Ui.Elements {
         /// Set this property to <c>true</c> to cause this element to be hidden.
         /// Hidden elements don't receive input events, aren't rendered and don't factor into auto-anchoring.
         /// </summary>
-        public bool IsHidden {
+        public virtual bool IsHidden {
             get => this.isHidden;
             set {
                 if (this.isHidden == value)
