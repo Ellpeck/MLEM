@@ -72,6 +72,7 @@ Fixes
 - Fixed dropdowns with some non-selectable children failing to navigate when using gamepad controls
 - Fixed UiMetrics.ForceAreaUpdateTime being inaccurate for nested elements
 - Fixed tooltips sometimes ignoring manually set IsHidden values
+- Fixed delayed tooltips sometimes displaying in the wrong location for one frame
 
 Removals
 - Marked StyleProp equality members as obsolete

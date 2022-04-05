@@ -79,6 +79,7 @@ namespace MLEM.Ui.Elements {
                 if (this.delayCountdown <= TimeSpan.Zero) {
                     this.IsHidden = false;
                     this.UpdateAutoHidden();
+                    this.SnapPositionToMouse();
                 }
             } else {
                 this.UpdateAutoHidden();
