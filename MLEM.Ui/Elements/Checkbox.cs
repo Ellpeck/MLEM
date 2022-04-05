@@ -67,9 +67,14 @@ namespace MLEM.Ui.Elements {
         /// An event that is invoked when this checkbox's <see cref="Checked"/> property changes
         /// </summary>
         public CheckStateChange OnCheckStateChange;
+        /// <summary>
+        /// Whether this checkbox should be able to be selected even if it <see cref="IsDisabled"/>.
+        /// If this is true, <see cref="CanBeSelected"/> will be able to return true even if <see cref="IsDisabled"/> is true.
+        /// </summary>
+        public bool CanSelectDisabled;
 
         /// <inheritdoc />
-        public override bool CanBeSelected => base.CanBeSelected && !this.IsDisabled;
+        public override bool CanBeSelected => base.CanBeSelected && (this.CanSelectDisabled || !this.IsDisabled);
         /// <inheritdoc />
         public override bool CanBePressed => base.CanBePressed && !this.IsDisabled;
 
