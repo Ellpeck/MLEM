@@ -59,6 +59,7 @@ Improvements
 - Improved gamepad navigation by employing angles between elements
 - Prefer elements that have the same parent as the currently selected element when using gamepad navigation
 - Allow specifying a custom position for a tooltip to snap to
+- Allow tooltips to display for elements when selected in auto-nav mode
 
 Fixes
 - Fixed paragraph links having incorrect hover locations when using special text alignments

@@ -16,6 +16,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<Vector2> MouseOffset;
         /// <summary>
+        /// The offset that this tooltip's top center coordinate should have from the bottom center of the element snapped to when <see cref="DisplayInAutoNavMode"/> is true.
+        /// </summary>
+        public StyleProp<Vector2> AutoNavOffset;
+        /// <summary>
         /// The amount of time that the mouse has to be over an element before it appears
         /// </summary>
         public StyleProp<TimeSpan> Delay;
@@ -24,17 +28,23 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public Paragraph Paragraph;
         /// <summary>
+        /// Determines whether this tooltip should display when <see cref="UiControls.IsAutoNavMode"/> is true, which is when the UI is being controlled using a keyboard or gamepad.
+        /// If this tooltip is displayed in auto-nav mode, it will display below the selected element with the <see cref="AutoNavOffset"/> applied.
+        /// </summary>
+        public bool DisplayInAutoNavMode;
+        /// <summary>
         /// The position that this tooltip should be following (or snapped to) instead of the <see cref="InputHandler.ViewportMousePosition"/>.
         /// If this value is unset, <see cref="InputHandler.ViewportMousePosition"/> will be used as the snap position.
         /// Note that <see cref="MouseOffset"/> is still applied with this value set.
         /// </summary>
         public virtual Vector2? SnapPosition { get; set; }
-        
+
         /// <inheritdoc />
         public override bool IsHidden => this.autoHidden || base.IsHidden;
 
         private TimeSpan delayCountdown;
         private bool autoHidden;
+        private Element snapElement;
 
         /// <summary>
         /// Creates a new tooltip with the given settings
@@ -88,6 +98,7 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.Texture = this.Texture.OrStyle(style.TooltipBackground);
             this.MouseOffset = this.MouseOffset.OrStyle(style.TooltipOffset);
+            this.AutoNavOffset = this.AutoNavOffset.OrStyle(style.TooltipAutoNavOffset);
             this.Delay = this.Delay.OrStyle(style.TooltipDelay);
             this.ChildPadding = this.ChildPadding.OrStyle(style.TooltipChildPadding);
             if (this.Paragraph != null) {
@@ -97,12 +108,20 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Causes this tooltip's position to be snapped to the mouse position.
+        /// Causes this tooltip's position to be snapped to the mouse position, or the <see cref="snapElement"/> if <see cref="DisplayInAutoNavMode"/> is true, or the <see cref="SnapPosition"/> if set.
         /// </summary>
         public void SnapPositionToMouse() {
+            Vector2 snapPosition;
+            if (this.snapElement != null) {
+                // center our snap position below the snap element
+                snapPosition = new Vector2(this.snapElement.DisplayArea.Center.X, this.snapElement.DisplayArea.Bottom) + this.AutoNavOffset;
+                snapPosition.X -= this.DisplayArea.Width / 2F;
+            } else {
+                snapPosition = (this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2()) + this.MouseOffset.Value;
+            }
+
             var viewport = this.System.Viewport;
-            var snapPosition = this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2();
-            var offset = (snapPosition + this.MouseOffset.Value) / this.Scale;
+            var offset = snapPosition / this.Scale;
             if (offset.X < viewport.X)
                 offset.X = viewport.X;
             if (offset.Y < viewport.Y)
@@ -119,8 +138,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="system">The system to add this tooltip to</param>
         /// <param name="name">The name that this tooltip should use</param>
-        public void Display(UiSystem system, string name) {
-            system.Add(name, this);
+        /// <returns>Whether this tooltip was successfully added, which is not the case if it is already being displayed currently.</returns>
+        public bool Display(UiSystem system, string name) {
+            if (system.Add(name, this) == null)
+                return false;
             if (this.Delay <= TimeSpan.Zero) {
                 this.IsHidden = false;
                 this.SnapPositionToMouse();
@@ -129,6 +150,7 @@ namespace MLEM.Ui.Elements {
                 this.delayCountdown = this.Delay;
             }
             this.autoHidden = false;
+            return true;
         }
 
         /// <summary>
@@ -145,8 +167,20 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public void AddToElement(Element elementToHover) {
-            elementToHover.OnMouseEnter += element => this.Display(element.System, element.GetType().Name + "Tooltip");
-            elementToHover.OnMouseExit += element => this.Remove();
+            elementToHover.OnMouseEnter += e => this.Display(e.System, $"{e.GetType().Name}Tooltip");
+            elementToHover.OnMouseExit += e => this.Remove();
+            elementToHover.OnSelected += e => {
+                if (this.DisplayInAutoNavMode) {
+                    this.snapElement = e;
+                    this.Display(e.System, $"{e.GetType().Name}Tooltip");
+                }
+            };
+            elementToHover.OnDeselected += e => {
+                if (this.DisplayInAutoNavMode) {
+                    this.Remove();
+                    this.snapElement = null;
+                }
+            };
         }
 
         private void Init(Element elementToHover) {

@@ -208,6 +208,12 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button", "This button can't be clicked or moved to using automatic navigation") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
             this.root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Disabled checkbox") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
+            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled tooltip button", "This button can't be clicked, but can be moved to using automatic navigation, and will display its tooltip even when done so.") {
+                CanSelectDisabled = true,
+                IsDisabled = true,
+                Tooltip = {DisplayInAutoNavMode = true},
+                PositionOffset = new Vector2(0, 1)
+            });
 
             const string alignText = "Paragraphs can have <l Left>left</l> aligned text, <l Right>right</l> aligned text and <l Center>center</l> aligned text.";
             this.root.AddChild(new VerticalSpace(3));
