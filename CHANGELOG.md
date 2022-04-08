@@ -2,12 +2,12 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/). Breaking changes are written in **bold**.
 
 Jump to version:
-- [5.3.0 (Unreleased)](#530-unreleased)
+- [5.3.0](#530)
 - [5.2.0](#520)
 - [5.1.0](#510)
 - [5.0.0](#500)
 
-## 5.3.0 (Unreleased)
+## 5.3.0
 ### MLEM
 Additions
 - Added StringBuilder overloads to GenericFont
