@@ -114,7 +114,9 @@ namespace MLEM.Startup {
             this.PreDraw?.Invoke(this, gameTime);
             CoroutineHandler.RaiseEvent(CoroutineEvents.PreDraw);
 
+            #pragma warning disable CS0618
             this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
+            #pragma warning restore CS0618
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
 
