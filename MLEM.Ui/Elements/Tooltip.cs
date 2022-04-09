@@ -171,7 +171,7 @@ namespace MLEM.Ui.Elements {
             elementToHover.OnMouseEnter += e => this.Display(e.System, $"{e.GetType().Name}Tooltip");
             elementToHover.OnMouseExit += e => this.Remove();
             elementToHover.OnSelected += e => {
-                if (this.DisplayInAutoNavMode) {
+                if (this.DisplayInAutoNavMode && e.Controls.IsAutoNavMode) {
                     this.snapElement = e;
                     this.Display(e.System, $"{e.GetType().Name}Tooltip");
                 }

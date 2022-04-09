@@ -10,6 +10,10 @@ Jump to version:
 
 ## 5.4.0 (Unreleased)
 
+### MLEM.Ui
+Fixes
+- Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
+
 ## 5.3.0
 ### MLEM
 Additions
