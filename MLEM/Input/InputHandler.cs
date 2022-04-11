@@ -140,6 +140,7 @@ namespace MLEM.Input {
         private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
         private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
         private readonly List<GestureSample> gestures = new List<GestureSample>();
+        private readonly HashSet<(GenericInput, int)> consumedPresses = new HashSet<(GenericInput, int)>();
 
         private Point ViewportOffset => new Point(-this.Game.GraphicsDevice.Viewport.X, -this.Game.GraphicsDevice.Viewport.Y);
         private Dictionary<(GenericInput, int), DateTime> inputsDownAccum = new Dictionary<(GenericInput, int), DateTime>();
@@ -171,6 +172,9 @@ namespace MLEM.Input {
         public void Update() {
             var now = DateTime.UtcNow;
             var active = this.Game.IsActive;
+
+            this.consumedPresses.Clear();
+
             if (this.HandleKeyboard) {
                 this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = active ? Keyboard.GetState() : default;
@@ -352,6 +356,22 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns whether the given key is considered pressed, and marks the press as consumed if it is.
+        /// A key is considered pressed if it was not down the last update call, but is down the current update call.
+        /// A key press is considered consumed if this method has already returned true previously since the last <see cref="Update()"/> call.
+        /// If <see cref="HandleKeyboardRepeats"/> is true, this method will also return true to signify a key repeat.
+        /// </summary>
+        /// <param name="key">The key to query.</param>
+        /// <returns>If the key is pressed and the press is not consumed yet.</returns>
+        public bool TryConsumeKeyPressed(Keys key) {
+            if (this.IsKeyPressed(key) && !this.consumedPresses.Contains((key, -1))) {
+                this.consumedPresses.Add((key, -1));
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns whether the given modifier key is down.
         /// </summary>
         /// <param name="modifier">The modifier key</param>
@@ -408,6 +428,21 @@ namespace MLEM.Input {
         /// <returns>Whether the button is pressed</returns>
         public bool IsMouseButtonPressed(MouseButton button) {
             return this.WasMouseButtonUp(button) && this.IsMouseButtonDown(button);
+        }
+
+        /// <summary>
+        /// Returns whether the given mouse button is considered pressed, and marks the press as consumed if it is.
+        /// A mouse button is considered pressed if it was up the last update call, and is down the current update call.
+        /// A mouse button press is considered consumed if this method has already returned true previously since the last <see cref="Update()"/> call.
+        /// </summary>
+        /// <param name="button">The button to query.</param>
+        /// <returns>If the button is pressed and the press is not consumed yet.</returns>
+        public bool TryConsumeMouseButtonPressed(MouseButton button) {
+            if (this.IsMouseButtonPressed(button) && !this.consumedPresses.Contains((button, -1))) {
+                this.consumedPresses.Add((button, -1));
+                return true;
+            }
+            return false;
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonDown"/>
@@ -493,6 +528,23 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns whether the given gamepad button on the given index is considered pressed, and marks the press as consumed if it is.
+        /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call.
+        /// A gamepad button press is considered consumed if this method has already returned true previously since the last <see cref="Update()"/> call.
+        /// If <see cref="HandleGamepadRepeats"/> is true, this method will also return true to signify a gamepad button repeat.
+        /// </summary>
+        /// <param name="button">The button to query.</param>
+        /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad.</param>
+        /// <returns>Whether the given button is pressed and the press is not consumed yet.</returns>
+        public bool TryConsumeGamepadButtonPressed(Buttons button, int index = -1) {
+            if (this.IsGamepadButtonPressed(button) && !this.consumedPresses.Contains((button, index))) {
+                this.consumedPresses.Add((button, index));
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Queries for a gesture of a given type that finished during the current update call.
         /// </summary>
         /// <param name="type">The type of gesture to query for</param>
@@ -552,7 +604,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="control">The control whose up state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
-        /// <returns>Whether the given control is down</returns>
+        /// <returns>Whether the given control is up.</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsUp(GenericInput control, int index = -1) {
             switch (control.Type) {
@@ -573,7 +625,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="control">The control whose pressed state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
-        /// <returns>Whether the given control is down</returns>
+        /// <returns>Whether the given control is pressed.</returns>
         /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsPressed(GenericInput control, int index = -1) {
             switch (control.Type) {
@@ -583,6 +635,26 @@ namespace MLEM.Input {
                     return this.IsGamepadButtonPressed(control, index);
                 case GenericInput.InputType.Mouse:
                     return this.IsMouseButtonPressed(control);
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns if a given control of any kind is pressed, and marks the press as consumed if it is.
+        /// This is a helper function that can be passed a <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/>.
+        /// </summary>
+        /// <param name="control">The control whose pressed state to query.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the given control is pressed and the press is not consumed yet.</returns>
+        public bool TryConsumePressed(GenericInput control, int index = -1) {
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.TryConsumeKeyPressed(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.TryConsumeGamepadButtonPressed(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.TryConsumeMouseButtonPressed(control);
                 default:
                     return false;
             }

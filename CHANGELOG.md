@@ -9,6 +9,9 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 5.4.0 (Unreleased)
+### MLEM
+Additions
+- Added consuming variants of IsPressed methods to InputHandler
 
 ### MLEM.Ui
 Fixes
