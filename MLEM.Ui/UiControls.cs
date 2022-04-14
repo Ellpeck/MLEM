@@ -386,14 +386,16 @@ namespace MLEM.Ui {
         protected virtual Element GetGamepadNextElement(Direction2 direction) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element)
+                // we can't add these checks to GetChildren because it ignores false grandchildren
+                .Where(c => c.CanBeSelected && c.AutoNavGroup == this.SelectedElement?.AutoNavGroup);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
-                return children.FirstOrDefault(c => c.CanBeSelected);
+                return children.FirstOrDefault();
             } else {
                 Element closest = null;
                 float closestPriority = 0;
                 foreach (var child in children) {
-                    if (!child.CanBeSelected || child == this.SelectedElement)
+                    if (child == this.SelectedElement)
                         continue;
                     var (xOffset, yOffset) = child.Area.Center - this.SelectedElement.Area.Center;
                     var angle = Math.Abs(direction.Angle() - (float) Math.Atan2(yOffset, xOffset));
