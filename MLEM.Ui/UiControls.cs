@@ -353,15 +353,15 @@ namespace MLEM.Ui {
         protected virtual Element GetTabNextElement(bool backward) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element);
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element)
+                // we can't add these checks to GetChildren because it ignores false grandchildren
+                .Where(c => c.CanBeSelected && c.AutoNavGroup == this.SelectedElement?.AutoNavGroup);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
-                return backward ? children.LastOrDefault(c => c.CanBeSelected) : children.FirstOrDefault(c => c.CanBeSelected);
+                return backward ? children.LastOrDefault() : children.FirstOrDefault();
             } else {
                 var foundCurr = false;
                 Element lastFound = null;
                 foreach (var child in children) {
-                    if (!child.CanBeSelected)
-                        continue;
                     if (child == this.SelectedElement) {
                         // when going backwards, return the last element found before the current one
                         if (backward)

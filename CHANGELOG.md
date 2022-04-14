@@ -14,6 +14,9 @@ Additions
 - Added consuming variants of IsPressed methods to InputHandler
 
 ### MLEM.Ui
+Additions
+- Added Element.AutoNavGroup which allows forming groups for auto-navigation
+
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
 - Fixed radio buttons not unchecking all other radio buttons with the same root element

@@ -249,6 +249,12 @@ namespace MLEM.Ui.Elements {
         /// Returns whether this element's <see cref="SetAreaDirty"/> method has been recently called and its area has not been updated since then using <see cref="UpdateAreaIfDirty"/> or <see cref="ForceUpdateArea"/>.
         /// </summary>
         public bool AreaDirty { get; private set; }
+        /// <summary>
+        /// An optional string that represents a group of elements for automatic (keyboard and gamepad) navigation.
+        /// All elements that share the same auto-nav group will be able to be navigated between, and all other elements will not be reachable from elements of other groups.
+        /// Note that, if no element is previously selected and auto-navigation is invoked, this element can always be navigated to if it is the first one chosen by auto-navigation.
+        /// </summary>
+        public virtual string AutoNavGroup { get; set; }
 
         /// <summary>
         /// This Element's current <see cref="UiStyle"/>.
