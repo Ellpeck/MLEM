@@ -4,7 +4,7 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     /// <summary>
     /// A radio button element to use inside of a <see cref="UiSystem"/>.
-    /// A radio button is a variation of a <see cref="Checkbox"/> that causes all other radio buttons in the same <see cref="Group"/> to be deselected upon selection.
+    /// A radio button is a variation of a <see cref="Checkbox"/> that causes all other radio buttons in the same <see cref="RootElement"/> to be deselected upon selection.
     /// </summary>
     public class RadioButton : Checkbox {
 
@@ -26,13 +26,13 @@ namespace MLEM.Ui.Elements {
             base(anchor, size, label, defaultChecked) {
             this.Group = group;
 
-            // don't += because we want to override the checking + unchecking behavior of Checkbox
+            // don't += because we want to override the checking/unchecking behavior of Checkbox
             this.OnPressed = element => {
                 this.Checked = true;
-                foreach (var sib in this.GetSiblings()) {
-                    if (sib is RadioButton radio && radio.Group == this.Group)
-                        radio.Checked = false;
-                }
+                this.Root.Element.AndChildren(e => {
+                    if (e != this && e is RadioButton r && r.Group == this.Group)
+                        r.Checked = false;
+                });
             };
         }
 
