@@ -17,6 +17,9 @@ Additions
 Additions
 - Added Element.AutoNavGroup which allows forming groups for auto-navigation
 
+Improvements
+- Ensure that Element.IsMouseOver is always accurate by making it an auto-property
+
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
 - Fixed radio buttons not unchecking all other radio buttons with the same root element

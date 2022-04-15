@@ -240,7 +240,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Stores whether this element is currently being moused over or touched.
         /// </summary>
-        public bool IsMouseOver { get; protected set; }
+        public bool IsMouseOver => this.Controls.MousedElement == this || this.Controls.TouchedElement == this;
         /// <summary>
         /// Returns whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// </summary>
@@ -439,11 +439,6 @@ namespace MLEM.Ui.Elements {
             this.size = size;
 
             this.Children = new ReadOnlyCollection<Element>(this.children);
-
-            this.OnMouseEnter += element => this.IsMouseOver = true;
-            this.OnMouseExit += element => this.IsMouseOver = false;
-            this.OnTouchEnter += element => this.IsMouseOver = true;
-            this.OnTouchExit += element => this.IsMouseOver = false;
             this.GetTabNextElement += (backward, next) => next;
             this.GetGamepadNextElement += (dir, next) => next;
 
