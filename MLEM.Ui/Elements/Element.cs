@@ -485,6 +485,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="element">The child element to remove</param>
         public virtual void RemoveChild(Element element) {
             this.children.Remove(element);
+            if (this.Root?.SelectedElement == element)
+                this.Root.SelectElement(null);
             // set area dirty here so that a dirty call is made
             // upwards to us if the element is auto-positioned
             element.SetAreaDirty();

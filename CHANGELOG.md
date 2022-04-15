@@ -20,6 +20,7 @@ Additions
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
 - Fixed radio buttons not unchecking all other radio buttons with the same root element
+- Fixed elements not being deselected when removed through RemoveChild
 
 ## 5.3.0
 ### MLEM
