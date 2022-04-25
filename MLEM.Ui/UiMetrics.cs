@@ -33,12 +33,12 @@ namespace MLEM.Ui {
         public uint Updates { get; internal set; }
 
         /// <summary>
-        /// The amount of time that <see cref="Element.Draw"/> took.
+        /// The amount of time that <see cref="Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> took.
         /// Can be divided by <see cref="Draws"/> to get an average per draw.
         /// </summary>
         public TimeSpan DrawTime { get; internal set; }
         /// <summary>
-        /// The amount of times that <see cref="Element.Draw"/> was called.
+        /// The amount of times that <see cref="Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> was called.
         /// </summary>
         public uint Draws { get; internal set; }
 

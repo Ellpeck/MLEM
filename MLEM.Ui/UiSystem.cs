@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
+using MLEM.Graphics;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
@@ -77,22 +78,31 @@ namespace MLEM.Ui {
         /// <summary>
         /// The blend state that this ui system and all of its elements draw with
         /// </summary>
+        [Obsolete("Set this through SpriteBatchContext instead")]
         public BlendState BlendState;
         /// <summary>
         /// The sampler state that this ui system and all of its elements draw with.
         /// The default is <see cref="Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"/>, as that is the one that works best with pixel graphics.
         /// </summary>
-        public SamplerState SamplerState = SamplerState.PointClamp;
+        [Obsolete("Set this through SpriteBatchContext instead")]
+        public SamplerState SamplerState;
         /// <summary>
         /// The depth stencil state that this ui system and all of its elements draw with.
         /// The default is <see cref="Microsoft.Xna.Framework.Graphics.DepthStencilState.None"/>, which is also the default for <see cref="SpriteBatch.Begin"/>.
         /// </summary>
-        public DepthStencilState DepthStencilState = DepthStencilState.None;
+        [Obsolete("Set this through SpriteBatchContext instead")]
+        public DepthStencilState DepthStencilState;
         /// <summary>
         /// The effect that this ui system and all of its elements draw with.
         /// The default is null, which means that no custom effect will be used.
         /// </summary>
+        [Obsolete("Set this through SpriteBatchContext instead")]
         public Effect Effect;
+        /// <summary>
+        /// The spriteb atch context that this ui system and all of its elements should draw with.
+        /// The default <see cref="MLEM.Graphics.SpriteBatchContext.SamplerState"/> is <see cref="Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"/>, as that is the one that works best with pixel graphics.
+        /// </summary>
+        public SpriteBatchContext SpriteBatchContext = new SpriteBatchContext(samplerState: SamplerState.PointClamp);
         /// <summary>
         /// The <see cref="TextFormatter"/> that this ui system's <see cref="Paragraph"/> elements format their text with.
         /// To add new formatting codes to the ui system, add them to this formatter.
@@ -296,9 +306,24 @@ namespace MLEM.Ui {
             foreach (var root in this.rootElements) {
                 if (root.Element.IsHidden)
                     continue;
-                batch.Begin(SpriteSortMode.Deferred, this.BlendState, this.SamplerState, this.DepthStencilState, null, this.Effect, root.Transform);
-                var alpha = this.DrawAlpha * root.Element.DrawAlpha;
-                root.Element.DrawTransformed(time, batch, alpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
+                var context = this.SpriteBatchContext;
+                context.TransformMatrix = root.Transform * context.TransformMatrix;
+
+                #pragma warning disable CS0618
+                if (this.BlendState != null)
+                    context.BlendState = this.BlendState;
+                if (this.SamplerState != null)
+                    context.SamplerState = this.SamplerState;
+                if (this.DepthStencilState != null)
+                    context.DepthStencilState = this.DepthStencilState;
+                if (this.Effect != null)
+                    context.Effect = this.Effect;
+                #pragma warning restore CS0618
+
+                batch.Begin(context);
+                #pragma warning disable CS0618
+                root.Element.DrawTransformed(time, batch, this.DrawAlpha * root.Element.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
+                #pragma warning restore CS0618
                 batch.End();
             }
 

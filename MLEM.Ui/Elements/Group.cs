@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Graphics;
 
 namespace MLEM.Ui.Elements {
     /// <summary>
@@ -20,10 +21,10 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             // since the group never accesses its own area when drawing, we have to update it manually
             this.UpdateAreaIfDirty();
-            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            base.Draw(time, batch, alpha, context);
         }
 
     }

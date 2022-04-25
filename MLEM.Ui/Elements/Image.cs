@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Graphics;
 using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
@@ -103,7 +104,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             if (this.Texture == null)
                 return;
             var center = new Vector2(this.Texture.Width / 2F, this.Texture.Height / 2F);
@@ -116,7 +117,7 @@ namespace MLEM.Ui.Elements {
                 var scale = new Vector2(1F / this.Texture.Width, 1F / this.Texture.Height) * this.DisplayArea.Size;
                 batch.Draw(this.Texture, this.DisplayArea.Location + center * scale, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             }
-            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            base.Draw(time, batch, alpha, context);
         }
 
         /// <summary>

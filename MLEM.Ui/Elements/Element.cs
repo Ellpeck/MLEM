@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
+using MLEM.Graphics;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
@@ -234,7 +235,7 @@ namespace MLEM.Ui.Elements {
         public virtual bool PreventParentSpill { get; set; }
         /// <summary>
         /// The transparency (alpha value) that this element is rendered with.
-        /// Note that, when <see cref="Draw"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
+        /// Note that, when <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
         /// </summary>
         public virtual float DrawAlpha { get; set; } = 1;
         /// <summary>
@@ -916,7 +917,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Draws this element by calling <see cref="Draw"/> internally.
+        /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
         /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <see cref="SpriteBatch.Begin"/> call is also started.
         /// </summary>
         /// <param name="time">The game's time</param>
@@ -927,25 +928,37 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect that is used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
+        [Obsolete("Use DrawTransformed that takes a SpriteBatchContext instead")]
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+            this.DrawTransformed(time, batch, alpha, new SpriteBatchContext(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix));
+        }
+
+        /// <summary>
+        /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
+        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <see cref="SpriteBatch.Begin"/> call is also started.
+        /// </summary>
+        /// <param name="time">The game's time</param>
+        /// <param name="batch">The sprite batch to use for drawing</param>
+        /// <param name="alpha">The alpha to draw this element and its children with</param>
+        /// <param name="context">The sprite batch context to use for drawing</param>
+        public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             #pragma warning disable CS0618
             var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
-            var mat = this.Transform * matrix;
+            var transformed = context;
+            transformed.TransformMatrix = this.Transform * transformed.TransformMatrix;
             // TODO ending and beginning again when the matrix changes isn't ideal (https://github.com/MonoGame/MonoGame/issues/3156)
             if (customDraw) {
                 // end the usual draw so that we can begin our own
                 batch.End();
                 // begin our own draw call
-                if (this.BeginImpl != null) {
-                    this.BeginImpl(this, time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
-                } else {
-                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, mat);
-                }
+                batch.Begin(transformed);
             }
             #pragma warning restore CS0618
 
             // draw content in custom begin call
-            this.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, mat);
+            #pragma warning disable CS0618
+            this.Draw(time, batch, alpha, transformed.BlendState, transformed.SamplerState, transformed.DepthStencilState, transformed.Effect, transformed.TransformMatrix);
+            #pragma warning restore CS0618
             if (this.System != null)
                 this.System.Metrics.Draws++;
 
@@ -953,7 +966,7 @@ namespace MLEM.Ui.Elements {
                 // end our draw
                 batch.End();
                 // begin the usual draw again for other elements
-                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix);
+                batch.Begin(context);
             }
         }
 
@@ -969,14 +982,30 @@ namespace MLEM.Ui.Elements {
         /// <param name="effect">The effect that is used for drawing</param>
         /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
         /// <param name="matrix">The transformation matrix that is used for drawing</param>
+        [Obsolete("Use Draw that takes a SpriteBatchContext instead")]
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+            this.Draw(time, batch, alpha, new SpriteBatchContext(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix));
+        }
+
+        /// <summary>
+        /// Draws this element and all of its children. Override this method to draw the content of custom elements.
+        /// Note that, when this is called, <see cref="SpriteBatch.Begin"/> has already been called with custom <see cref="Transform"/> etc. applied.
+        /// </summary>
+        /// <param name="time">The game's time</param>
+        /// <param name="batch">The sprite batch to use for drawing</param>
+        /// <param name="alpha">The alpha to draw this element and its children with</param>
+        /// <param name="context">The sprite batch context to use for drawing</param>
+        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             this.System.InvokeOnElementDrawn(this, time, batch, alpha);
             if (this.IsSelected)
                 this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha);
 
             foreach (var child in this.GetRelevantChildren()) {
-                if (!child.IsHidden)
-                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, blendState, samplerState, depthStencilState, effect, matrix);
+                if (!child.IsHidden) {
+                    #pragma warning disable CS0618
+                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
+                    #pragma warning restore CS0618
+                }
             }
         }
 
@@ -1131,7 +1160,7 @@ namespace MLEM.Ui.Elements {
         public delegate void OtherElementCallback(Element thisElement, Element otherElement);
 
         /// <summary>
-        /// A delegate used inside of <see cref="Element.Draw"/>
+        /// A delegate used inside of <see cref="Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/>
         /// </summary>
         /// <param name="element">The element that is being drawn</param>
         /// <param name="time">The game's time</param>

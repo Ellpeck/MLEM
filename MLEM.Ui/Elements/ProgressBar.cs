@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Graphics;
 using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
@@ -73,7 +74,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             batch.Draw(this.Texture, this.DisplayArea, (Color) this.Color * alpha, this.Scale);
 
             var percentage = this.CurrentValue / this.MaxValue;
@@ -106,7 +107,7 @@ namespace MLEM.Ui.Elements {
             } else {
                 batch.Draw(batch.GetBlankTexture(), offsetArea, (Color) this.ProgressColor * alpha);
             }
-            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            base.Draw(time, batch, alpha, context);
         }
 
         /// <inheritdoc />

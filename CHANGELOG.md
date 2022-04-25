@@ -12,6 +12,7 @@ Jump to version:
 ### MLEM
 Additions
 - Added consuming variants of IsPressed methods to InputHandler
+- Added SpriteBatchContext struct and extensions
 
 ### MLEM.Ui
 Additions
@@ -19,11 +20,15 @@ Additions
 
 Improvements
 - Ensure that Element.IsMouseOver is always accurate by making it an auto-property
+- Started using SpriteBatchContext for Draw and DrawTransformed methods
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
 - Fixed radio buttons not unchecking all other radio buttons with the same root element
 - Fixed elements not being deselected when removed through RemoveChild
+
+Removals
+- Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones
 
 ## 5.3.0
 ### MLEM

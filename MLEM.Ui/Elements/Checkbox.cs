@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Graphics;
 using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
@@ -108,7 +109,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             var tex = this.Texture;
             var color = Color.White * alpha;
             if (this.IsDisabled) {
@@ -123,7 +124,7 @@ namespace MLEM.Ui.Elements {
             batch.Draw(tex, boxDisplayArea, color, this.Scale);
             if (this.Checked)
                 batch.Draw(this.Checkmark, boxDisplayArea, Color.White * alpha);
-            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            base.Draw(time, batch, alpha, context);
         }
 
         /// <inheritdoc />

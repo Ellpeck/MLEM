@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+using MLEM.Graphics;
 using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Style;
@@ -167,7 +168,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             // draw children onto the render target if we have one
             if (this.scrollOverflow && this.renderTarget != null) {
                 this.UpdateAreaIfDirty();
@@ -179,21 +180,22 @@ namespace MLEM.Ui.Elements {
                     batch.GraphicsDevice.Clear(Color.Transparent);
                     // offset children by the render target's location
                     var area = this.GetRenderTargetArea();
-                    var trans = Matrix.CreateTranslation(-area.X, -area.Y, 0);
                     // do the usual draw, but within the render target
-                    batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, trans);
-                    base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, trans);
+                    var trans = context;
+                    trans.TransformMatrix = Matrix.CreateTranslation(-area.X, -area.Y, 0);
+                    batch.Begin(trans);
+                    base.Draw(time, batch, alpha, trans);
                     batch.End();
                 }
                 batch.GraphicsDevice.PresentationParameters.RenderTargetUsage = lastUsage;
-                batch.Begin(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix);
+                batch.Begin(context);
             }
 
             if (this.Texture.HasValue())
                 batch.Draw(this.Texture, this.DisplayArea, this.DrawColor.OrDefault(Color.White) * alpha, this.Scale);
             // if we handle overflow, draw using the render target in DrawUnbound
             if (!this.scrollOverflow || this.renderTarget == null) {
-                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+                base.Draw(time, batch, alpha, context);
             } else {
                 // draw the actual render target (don't apply the alpha here because it's already drawn onto with alpha)
                 batch.Draw(this.renderTarget, this.GetRenderTargetArea(), Color.White);

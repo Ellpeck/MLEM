@@ -6,6 +6,7 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
+using MLEM.Graphics;
 using MLEM.Misc;
 using MLEM.Ui.Style;
 
@@ -144,12 +145,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             var pos = this.DisplayArea.Location + new Vector2(this.GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
             this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0);
-            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            base.Draw(time, batch, alpha, context);
         }
 
         /// <inheritdoc />

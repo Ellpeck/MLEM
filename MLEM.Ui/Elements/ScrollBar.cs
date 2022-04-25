@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using MLEM.Graphics;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Textures;
@@ -205,13 +206,13 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
             if (this.MaxValue > 0) {
                 var scrollerRect = new RectangleF(this.ScrollerPosition, this.ScrollerSize * this.Scale);
                 batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
             }
-            base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+            base.Draw(time, batch, alpha, context);
         }
 
         /// <inheritdoc />
