@@ -61,6 +61,11 @@ namespace MLEM.Input {
         /// Querying of analog values is done using <see cref="GamepadExtensions.GetAnalogValue"/>.
         /// </summary>
         public float GamepadButtonDeadzone;
+        /// <summary>
+        /// Set this field to true to invert the press behavior of <see cref="IsKeyPressed"/>, <see cref="IsMouseButtonPressed"/>, <see cref="IsGamepadButtonPressed"/> and <see cref="IsPressed"/>.
+        /// Inverted behavior means that, instead of an input counting as pressed when it was up in the last frame and is now down, it will be counted as pressed when it was down in the last frame and is now up.
+        /// </summary>
+        public bool InvertPressBehavior;
 
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
@@ -274,12 +279,14 @@ namespace MLEM.Input {
                     this.gestures.Add(TouchPanel.ReadGesture());
             }
 
-            if (this.inputsDownAccum.Count <= 0) {
+            if (this.inputsDownAccum.Count <= 0 && this.inputsDown.Count <= 0) {
                 this.InputsPressed = Array.Empty<GenericInput>();
                 this.InputsDown = Array.Empty<GenericInput>();
                 this.inputsDown.Clear();
             } else {
-                this.InputsPressed = this.inputsDownAccum.Keys.Where(kv => this.IsPressed(kv.Item1, kv.Item2)).Select(kv => kv.Item1).ToArray();
+                // if we're inverting press behavior, we need to check the press state for the inputs that were down in the last frame
+                var down = this.InvertPressBehavior ? this.inputsDown : this.inputsDownAccum;
+                this.InputsPressed = down.Keys.Where(kv => this.IsPressed(kv.Item1, kv.Item2)).Select(kv => kv.Item1).ToArray();
                 this.InputsDown = this.inputsDownAccum.Keys.Select(kv => kv.Item1).ToArray();
                 // swapping these collections means that we don't have to keep moving entries between them
                 (this.inputsDown, this.inputsDownAccum) = (this.inputsDownAccum, this.inputsDown);
@@ -332,7 +339,7 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns whether the given key is considered pressed.
-        /// A key is considered pressed if it was not down the last update call, but is down the current update call.
+        /// A key is considered pressed if it was not down the last update call, but is down the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
         /// If <see cref="HandleKeyboardRepeats"/> is true, this method will also return true to signify a key repeat.
         /// </summary>
         /// <param name="key">The key to query</param>
@@ -346,12 +353,15 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns whether the given key is considered pressed.
+        /// A key is considered pressed if it was not down the last update call, but is down the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
         /// This has the same behavior as <see cref="IsKeyPressed"/>, but ignores keyboard repeat events.
         /// If <see cref="HandleKeyboardRepeats"/> is false, this method does the same as <see cref="IsKeyPressed"/>.
         /// </summary>
         /// <param name="key">The key to query</param>
         /// <returns>If the key is pressed</returns>
         public bool IsKeyPressedIgnoreRepeats(Keys key) {
+            if (this.InvertPressBehavior)
+                return this.WasKeyDown(key) && this.IsKeyUp(key);
             return this.WasKeyUp(key) && this.IsKeyDown(key);
         }
 
@@ -422,11 +432,13 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns whether the given mouse button is considered pressed.
-        /// A mouse button is considered pressed if it was up the last update call, and is down the current update call.
+        /// A mouse button is considered pressed if it was up the last update call, and is down the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <returns>Whether the button is pressed</returns>
         public bool IsMouseButtonPressed(MouseButton button) {
+            if (this.InvertPressBehavior)
+                return this.WasMouseButtonDown(button) && this.IsMouseButtonUp(button);
             return this.WasMouseButtonUp(button) && this.IsMouseButtonDown(button);
         }
 
@@ -495,7 +507,7 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns whether the given gamepad button on the given index is considered pressed.
-        /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call.
+        /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
         /// If <see cref="HandleGamepadRepeats"/> is true, this method will also return true to signify a gamepad button repeat.
         /// </summary>
         /// <param name="button">The button to query</param>
@@ -517,13 +529,16 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns whether the given key is considered pressed.
-        /// This has the same behavior as <see cref="IsGamepadButtonPressed"/>, but ignores gamepad repeat events.
+        /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
+        /// This has the same behavior as <see cref="IsGamepadButtonPressed"/>, but ignores gamepad repeat events. 
         /// If <see cref="HandleGamepadRepeats"/> is false, this method does the same as <see cref="IsGamepadButtonPressed"/>.
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad</param>
         /// <returns>Whether the given button is pressed</returns>
         public bool IsGamepadButtonPressedIgnoreRepeats(Buttons button, int index = -1) {
+            if (this.InvertPressBehavior)
+                return this.WasGamepadButtonDown(button, index) && this.IsGamepadButtonUp(button, index);
             return this.WasGamepadButtonUp(button, index) && this.IsGamepadButtonDown(button, index);
         }
 

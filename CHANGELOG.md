@@ -13,6 +13,7 @@ Jump to version:
 Additions
 - Added consuming variants of IsPressed methods to InputHandler
 - Added SpriteBatchContext struct and extensions
+- Added InputHandler.InvertPressBehavior
 
 ### MLEM.Ui
 Additions
