@@ -8,6 +8,6 @@ namespace TemplateNamespace {
         public GameImpl() {
             Instance = this;
         }
-        
+
     }
 }

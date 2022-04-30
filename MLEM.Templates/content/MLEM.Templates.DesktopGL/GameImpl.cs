@@ -1,13 +1,13 @@
 using MLEM.Startup;
 
-namespace TemplateNamespace {
-    public class GameImpl : MlemGame {
+namespace TemplateNamespace; 
 
-        public static GameImpl Instance { get; private set; }
+public class GameImpl : MlemGame {
 
-        public GameImpl() {
-            Instance = this;
-        }
+    public static GameImpl Instance { get; private set; }
 
+    public GameImpl() {
+        Instance = this;
     }
+
 }

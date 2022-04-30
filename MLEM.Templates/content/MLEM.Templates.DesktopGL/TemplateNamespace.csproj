@@ -2,7 +2,7 @@
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <PublishReadyToRun>false</PublishReadyToRun>
         <TieredCompilation>false</TieredCompilation>
         <ApplicationIcon>Icon.ico</ApplicationIcon>
@@ -16,8 +16,6 @@
     </ItemGroup>
     
     <ItemGroup>
-        <MonoGameContentReference Include="Content\Content.mgcb" />
-        <Content Include="Content\*\**" />
         <EmbeddedResource Include="Icon.ico" />
         <EmbeddedResource Include="Icon.bmp" />
     </ItemGroup>
