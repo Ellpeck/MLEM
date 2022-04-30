@@ -22,6 +22,7 @@ Additions
 Improvements
 - Ensure that Element.IsMouseOver is always accurate by making it an auto-property
 - Started using SpriteBatchContext for Draw and DrawTransformed methods
+- Make use of the new consuming variants in InputHandler and Keybind to consume UiControls inputs
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode

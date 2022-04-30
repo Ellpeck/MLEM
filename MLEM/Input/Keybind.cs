@@ -132,8 +132,23 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns whether this keybind is considered to be pressed and has not been consumed yet using<see cref="TryConsumePressed"/>.
+        /// See <see cref="InputHandler.IsPressedAvailable"/> for more information.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>Whether this keybind is considered to be pressed</returns>
+        public bool IsPressedAvailable(InputHandler handler, int gamepadIndex = -1) {
+            foreach (var combination in this.combinations) {
+                if (combination.IsPressedAvailable(handler, gamepadIndex))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns whether this keybind is considered to be pressed.
-        /// See <see cref="InputHandler.IsPressed"/> for more information.
+        /// See <see cref="InputHandler.TryConsumePressed"/> for more information.
         /// </summary>
         /// <param name="handler">The input handler to query the keys with</param>
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
@@ -239,6 +254,7 @@ namespace MLEM.Input {
 
             /// <summary>
             /// Returns whether this combination is currently down
+            /// See <see cref="InputHandler.IsDown"/> for more information.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
@@ -248,7 +264,8 @@ namespace MLEM.Input {
             }
 
             /// <summary>
-            /// Returns whether this combination is currently pressed
+            /// Returns whether this combination is currently pressed.
+            /// See <see cref="InputHandler.IsPressed"/> for more information.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
@@ -258,8 +275,20 @@ namespace MLEM.Input {
             }
 
             /// <summary>
+            /// Returns whether this combination is currently pressed and has not been consumed yet using <see cref="TryConsumePressed"/>.
+            /// See <see cref="InputHandler.IsPressedAvailable"/> for more information.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination is pressed</returns>
+            public bool IsPressedAvailable(InputHandler handler, int gamepadIndex = -1) {
+                return this.IsModifierDown(handler, gamepadIndex) && handler.IsPressedAvailable(this.Key, gamepadIndex);
+            }
+
+            /// <summary>
             /// Returns whether this combination is currently pressed and the press has not been consumed yet.
             /// A combination is considered consumed if this method has already returned true previously since the last <see cref="InputHandler.Update()"/> call.
+            /// See <see cref="InputHandler.TryConsumePressed"/> for more information.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>

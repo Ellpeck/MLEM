@@ -162,22 +162,26 @@ namespace MLEM.Ui {
                 var mousedNow = this.GetElementUnderPos(this.Input.ViewportMousePosition.ToVector2());
                 this.SetMousedElement(mousedNow);
 
-                if (this.Input.IsMouseButtonPressed(MouseButton.Left)) {
+                if (this.Input.IsMouseButtonPressedAvailable(MouseButton.Left)) {
                     this.IsAutoNavMode = false;
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.SelectElement(this.ActiveRoot, selectedNow);
-                    if (mousedNow != null && mousedNow.CanBePressed)
+                    if (mousedNow != null && mousedNow.CanBePressed) {
                         this.System.InvokeOnElementPressed(mousedNow);
-                } else if (this.Input.IsMouseButtonPressed(MouseButton.Right)) {
+                        this.Input.TryConsumeMouseButtonPressed(MouseButton.Left);
+                    }
+                } else if (this.Input.IsMouseButtonPressedAvailable(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
-                    if (mousedNow != null && mousedNow.CanBePressed)
+                    if (mousedNow != null && mousedNow.CanBePressed) {
                         this.System.InvokeOnElementSecondaryPressed(mousedNow);
+                        this.Input.TryConsumeMouseButtonPressed(MouseButton.Right);
+                    }
                 }
             }
 
             // KEYBOARD INPUT
             if (this.HandleKeyboard) {
-                if (this.KeyboardButtons.IsPressed(this.Input, this.GamepadIndex)) {
+                if (this.KeyboardButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
                             // secondary action on element using space or enter
@@ -186,6 +190,7 @@ namespace MLEM.Ui {
                             // first action on element using space or enter
                             this.System.InvokeOnElementPressed(this.SelectedElement);
                         }
+                        this.KeyboardButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
                 } else if (this.Input.IsKeyPressed(Keys.Tab)) {
                     this.IsAutoNavMode = true;
@@ -230,20 +235,28 @@ namespace MLEM.Ui {
 
             // GAMEPAD INPUT
             if (this.HandleGamepad) {
-                if (this.GamepadButtons.IsPressed(this.Input, this.GamepadIndex)) {
-                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
+                if (this.GamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
+                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         this.System.InvokeOnElementPressed(this.SelectedElement);
-                } else if (this.SecondaryGamepadButtons.IsPressed(this.Input, this.GamepadIndex)) {
-                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed)
+                        this.GamepadButtons.TryConsumePressed(this.Input, this.GamepadIndex);
+                    }
+                } else if (this.SecondaryGamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
+                    if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
                         this.System.InvokeOnElementSecondaryPressed(this.SelectedElement);
-                } else if (this.DownButtons.IsPressed(this.Input, this.GamepadIndex)) {
-                    this.HandleGamepadNextElement(Direction2.Down);
-                } else if (this.LeftButtons.IsPressed(this.Input, this.GamepadIndex)) {
-                    this.HandleGamepadNextElement(Direction2.Left);
-                } else if (this.RightButtons.IsPressed(this.Input, this.GamepadIndex)) {
-                    this.HandleGamepadNextElement(Direction2.Right);
-                } else if (this.UpButtons.IsPressed(this.Input, this.GamepadIndex)) {
-                    this.HandleGamepadNextElement(Direction2.Up);
+                        this.SecondaryGamepadButtons.TryConsumePressed(this.Input, this.GamepadIndex);
+                    }
+                } else if (this.DownButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
+                    if (this.HandleGamepadNextElement(Direction2.Down))
+                        this.DownButtons.TryConsumePressed(this.Input, this.GamepadIndex);
+                } else if (this.LeftButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
+                    if (this.HandleGamepadNextElement(Direction2.Left))
+                        this.LeftButtons.TryConsumePressed(this.Input, this.GamepadIndex);
+                } else if (this.RightButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
+                    if (this.HandleGamepadNextElement(Direction2.Right))
+                        this.RightButtons.TryConsumePressed(this.Input, this.GamepadIndex);
+                } else if (this.UpButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
+                    if (this.HandleGamepadNextElement(Direction2.Up))
+                        this.UpButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                 }
             }
         }
@@ -413,13 +426,16 @@ namespace MLEM.Ui {
             }
         }
 
-        private void HandleGamepadNextElement(Direction2 dir) {
+        private bool HandleGamepadNextElement(Direction2 dir) {
             this.IsAutoNavMode = true;
             var next = this.GetGamepadNextElement(dir);
             if (this.SelectedElement != null)
                 next = this.SelectedElement.GetGamepadNextElement(dir, next);
-            if (next != null)
+            if (next != null) {
                 this.SelectElement(this.ActiveRoot, next);
+                return true;
+            }
+            return false;
         }
 
     }

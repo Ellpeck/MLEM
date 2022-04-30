@@ -366,6 +366,15 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns if the given key is considered pressed, and if the press has not been consumed yet using <see cref="TryConsumeKeyPressed"/>.
+        /// </summary>
+        /// <param name="key">The key to query.</param>
+        /// <returns>If the key is pressed and the press is not consumed yet.</returns>
+        public bool IsKeyPressedAvailable(Keys key) {
+            return this.IsKeyPressed(key) && !this.consumedPresses.Contains((key, -1));
+        }
+
+        /// <summary>
         /// Returns whether the given key is considered pressed, and marks the press as consumed if it is.
         /// A key is considered pressed if it was not down the last update call, but is down the current update call.
         /// A key press is considered consumed if this method has already returned true previously since the last <see cref="Update()"/> call.
@@ -374,7 +383,7 @@ namespace MLEM.Input {
         /// <param name="key">The key to query.</param>
         /// <returns>If the key is pressed and the press is not consumed yet.</returns>
         public bool TryConsumeKeyPressed(Keys key) {
-            if (this.IsKeyPressed(key) && !this.consumedPresses.Contains((key, -1))) {
+            if (this.IsKeyPressedAvailable(key)) {
                 this.consumedPresses.Add((key, -1));
                 return true;
             }
@@ -443,6 +452,15 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns if the given mouse button is considered pressed, and if the press has not been consumed yet using <see cref="TryConsumeMouseButtonPressed"/>.
+        /// </summary>
+        /// <param name="button">The button to query.</param>
+        /// <returns>If the button is pressed and the press is not consumed yet.</returns>
+        public bool IsMouseButtonPressedAvailable(MouseButton button) {
+            return this.IsMouseButtonPressed(button) && !this.consumedPresses.Contains((button, -1));
+        }
+
+        /// <summary>
         /// Returns whether the given mouse button is considered pressed, and marks the press as consumed if it is.
         /// A mouse button is considered pressed if it was up the last update call, and is down the current update call.
         /// A mouse button press is considered consumed if this method has already returned true previously since the last <see cref="Update()"/> call.
@@ -450,7 +468,7 @@ namespace MLEM.Input {
         /// <param name="button">The button to query.</param>
         /// <returns>If the button is pressed and the press is not consumed yet.</returns>
         public bool TryConsumeMouseButtonPressed(MouseButton button) {
-            if (this.IsMouseButtonPressed(button) && !this.consumedPresses.Contains((button, -1))) {
+            if (this.IsMouseButtonPressedAvailable(button)) {
                 this.consumedPresses.Add((button, -1));
                 return true;
             }
@@ -543,6 +561,16 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns if the given gamepad button is considered pressed, and if the press has not been consumed yet using <see cref="TryConsumeMouseButtonPressed"/>.
+        /// </summary>
+        /// <param name="button">The button to query.</param>
+        /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad.</param>
+        /// <returns>Whether the given button is pressed and the press is not consumed yet.</returns>
+        public bool IsGamepadButtonPressedAvailable(Buttons button, int index = -1) {
+            return this.IsGamepadButtonPressed(button) && !this.consumedPresses.Contains((button, index)) && (index < 0 || !this.consumedPresses.Contains((button, -1)));
+        }
+
+        /// <summary>
         /// Returns whether the given gamepad button on the given index is considered pressed, and marks the press as consumed if it is.
         /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call.
         /// A gamepad button press is considered consumed if this method has already returned true previously since the last <see cref="Update()"/> call.
@@ -552,7 +580,7 @@ namespace MLEM.Input {
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad.</param>
         /// <returns>Whether the given button is pressed and the press is not consumed yet.</returns>
         public bool TryConsumeGamepadButtonPressed(Buttons button, int index = -1) {
-            if (this.IsGamepadButtonPressed(button) && !this.consumedPresses.Contains((button, index))) {
+            if (this.IsGamepadButtonPressedAvailable(button, index)) {
                 this.consumedPresses.Add((button, index));
                 return true;
             }
@@ -656,7 +684,26 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Returns if a given control of any kind is pressed, and marks the press as consumed if it is.
+        /// Returns if a given control of any kind is pressed, and if the press has not been consumed yet using <see cref="TryConsumePressed"/>.
+        /// </summary>
+        /// <param name="control">The control whose pressed state to query.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the given control is pressed and the press is not consumed yet.</returns>
+        public bool IsPressedAvailable(GenericInput control, int index = -1) {
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.IsKeyPressedAvailable(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.IsGamepadButtonPressedAvailable(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.IsMouseButtonPressedAvailable(control);
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns if a given control of any kind is pressed and available, and marks the press as consumed if it is.
         /// This is a helper function that can be passed a <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/>.
         /// </summary>
         /// <param name="control">The control whose pressed state to query.</param>
