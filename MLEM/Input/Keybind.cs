@@ -132,6 +132,21 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns whether this keybind is considered to be pressed.
+        /// See <see cref="InputHandler.IsPressed"/> for more information.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>Whether this keybind is considered to be pressed</returns>
+        public bool TryConsumePressed(InputHandler handler, int gamepadIndex = -1) {
+            foreach (var combination in this.combinations) {
+                if (combination.TryConsumePressed(handler, gamepadIndex))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns whether any of this keybind's modifier keys are currently down.
         /// See <see cref="InputHandler.IsDown"/> for more information.
         /// </summary>
@@ -240,6 +255,17 @@ namespace MLEM.Input {
             /// <returns>Whether this combination is pressed</returns>
             public bool IsPressed(InputHandler handler, int gamepadIndex = -1) {
                 return this.IsModifierDown(handler, gamepadIndex) && handler.IsPressed(this.Key, gamepadIndex);
+            }
+
+            /// <summary>
+            /// Returns whether this combination is currently pressed and the press has not been consumed yet.
+            /// A combination is considered consumed if this method has already returned true previously since the last <see cref="InputHandler.Update()"/> call.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination is pressed</returns>
+            public bool TryConsumePressed(InputHandler handler, int gamepadIndex = -1) {
+                return this.IsModifierDown(handler, gamepadIndex) && handler.TryConsumePressed(this.Key, gamepadIndex);
             }
 
             /// <summary>

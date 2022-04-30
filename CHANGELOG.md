@@ -11,7 +11,7 @@ Jump to version:
 ## 5.4.0 (Unreleased)
 ### MLEM
 Additions
-- Added consuming variants of IsPressed methods to InputHandler
+- Added consuming variants of IsPressed methods to InputHandler and Keybind
 - Added SpriteBatchContext struct and extensions
 - Added InputHandler.InvertPressBehavior
 
