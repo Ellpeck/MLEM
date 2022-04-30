@@ -192,14 +192,17 @@ namespace MLEM.Ui {
                         }
                         this.KeyboardButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
-                } else if (this.Input.IsKeyPressed(Keys.Tab)) {
+                } else if (this.Input.IsKeyPressedAvailable(Keys.Tab)) {
                     this.IsAutoNavMode = true;
                     // tab or shift-tab to next or previous element
                     var backward = this.Input.IsModifierKeyDown(ModifierKey.Shift);
                     var next = this.GetTabNextElement(backward);
                     if (this.SelectedElement?.Root != null)
                         next = this.SelectedElement.GetTabNextElement(backward, next);
-                    this.SelectElement(this.ActiveRoot, next);
+                    if (next != this.SelectedElement) {
+                        this.SelectElement(this.ActiveRoot, next);
+                        this.Input.TryConsumeKeyPressed(Keys.Tab);
+                    }
                 }
             }
 

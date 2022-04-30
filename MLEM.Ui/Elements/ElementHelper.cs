@@ -150,7 +150,7 @@ namespace MLEM.Ui.Elements {
                     button.SetData("Active", true);
                     activeNext = false;
                 } else if (button.GetData<bool>("Active")) {
-                    if (unbind != null && unbind.IsPressed(inputHandler)) {
+                    if (unbind != null && unbind.TryConsumePressed(inputHandler)) {
                         keybind.Remove((c, i) => i == index);
                         button.Text.Text = unboundPlaceholder;
                         button.SetData("Active", false);

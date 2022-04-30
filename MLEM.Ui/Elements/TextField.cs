@@ -257,24 +257,26 @@ namespace MLEM.Ui.Elements {
             if (!this.IsSelected || this.IsHidden)
                 return;
 
-            if (this.Input.IsKeyPressed(Keys.Left)) {
+            if (this.CaretPos > 0 && this.Input.TryConsumePressed(Keys.Left)) {
                 this.CaretPos--;
-            } else if (this.Input.IsKeyPressed(Keys.Right)) {
+            } else if (this.CaretPos < this.text.Length && this.Input.TryConsumePressed(Keys.Right)) {
                 this.CaretPos++;
-            } else if (this.Multiline && this.Input.IsKeyPressed(Keys.Up)) {
-                this.MoveCaretToLine(this.CaretLine - 1);
-            } else if (this.Multiline && this.Input.IsKeyPressed(Keys.Down)) {
-                this.MoveCaretToLine(this.CaretLine + 1);
-            } else if (this.Input.IsKeyPressed(Keys.Home)) {
+            } else if (this.Multiline && this.Input.IsKeyPressedAvailable(Keys.Up) && this.MoveCaretToLine(this.CaretLine - 1)) {
+                this.Input.TryConsumeKeyPressed(Keys.Up);
+            } else if (this.Multiline && this.Input.IsKeyPressedAvailable(Keys.Down) && this.MoveCaretToLine(this.CaretLine + 1)) {
+                this.Input.TryConsumeKeyPressed(Keys.Down);
+            } else if (this.CaretPos != 0 && this.Input.TryConsumeKeyPressed(Keys.Home)) {
                 this.CaretPos = 0;
-            } else if (this.Input.IsKeyPressed(Keys.End)) {
+            } else if (this.CaretPos != this.text.Length && this.Input.TryConsumeKeyPressed(Keys.End)) {
                 this.CaretPos = this.text.Length;
             } else if (this.Input.IsModifierKeyDown(ModifierKey.Control)) {
-                if (this.Input.IsKeyPressed(Keys.V)) {
+                if (this.Input.IsKeyPressedAvailable(Keys.V)) {
                     var clip = ClipboardService.GetText();
-                    if (clip != null)
+                    if (clip != null) {
                         this.InsertText(clip, true);
-                } else if (this.Input.IsKeyPressed(Keys.C)) {
+                        this.Input.TryConsumeKeyPressed(Keys.V);
+                    }
+                } else if (this.Input.TryConsumeKeyPressed(Keys.C)) {
                     // until there is text selection, just copy the whole content
                     ClipboardService.SetText(this.Text);
                 }

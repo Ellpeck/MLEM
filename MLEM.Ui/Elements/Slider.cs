@@ -30,9 +30,9 @@ namespace MLEM.Ui.Elements {
             base.Update(time);
 
             if (this.IsSelected) {
-                if (this.Controls.LeftButtons.IsPressed(this.Input, this.Controls.GamepadIndex)) {
+                if (this.CurrentValue > 0 && this.Controls.LeftButtons.TryConsumePressed(this.Input, this.Controls.GamepadIndex)) {
                     this.CurrentValue -= this.StepPerScroll;
-                } else if (this.Controls.RightButtons.IsPressed(this.Input, this.Controls.GamepadIndex)) {
+                } else if (this.CurrentValue < this.MaxValue && this.Controls.RightButtons.TryConsumePressed(this.Input, this.Controls.GamepadIndex)) {
                     this.CurrentValue += this.StepPerScroll;
                 }
             }
