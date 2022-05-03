@@ -32,6 +32,37 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<TimeSpan> Delay;
         /// <summary>
+        /// The <see cref="Elements.Paragraph.TextColor"/> that this tooltip's <see cref="Paragraphs"/> should have
+        /// </summary>
+        public StyleProp<Color> ParagraphTextColor {
+            get => this.paragraphTextColor;
+            set {
+                this.paragraphTextColor = value;
+                this.UpdateParagraphsStyles();
+            }
+        }
+        /// <summary>
+        /// The <see cref="Elements.Paragraph.TextScale"/> that this tooltip's <see cref="Paragraphs"/> should have
+        /// </summary>
+        public StyleProp<float> ParagraphTextScale {
+            get => this.paragraphTextScale;
+            set {
+                this.paragraphTextScale = value;
+                this.UpdateParagraphsStyles();
+            }
+        }
+        /// <summary>
+        /// The width that this tooltip's <see cref="Paragraphs"/> should have
+        /// </summary>
+        public StyleProp<float> ParagraphWidth {
+            get => this.paragraphWidth;
+            set {
+                this.paragraphWidth = value;
+                this.UpdateParagraphsStyles();
+            }
+        }
+
+        /// <summary>
         /// The paragraph of text that this tooltip displays
         /// </summary>
         [Obsolete("Use Paragraphs instead, which allows for multiple paragraphs to be managed by one tooltip")]
@@ -54,6 +85,9 @@ namespace MLEM.Ui.Elements {
         private TimeSpan delayCountdown;
         private bool autoHidden;
         private Element snapElement;
+        private StyleProp<float> paragraphWidth;
+        private StyleProp<float> paragraphTextScale;
+        private StyleProp<Color> paragraphTextColor;
 
         /// <summary>
         /// Creates a new tooltip with the given settings
@@ -115,15 +149,11 @@ namespace MLEM.Ui.Elements {
             this.MouseOffset = this.MouseOffset.OrStyle(style.TooltipOffset);
             this.AutoNavOffset = this.AutoNavOffset.OrStyle(style.TooltipAutoNavOffset);
             this.Delay = this.Delay.OrStyle(style.TooltipDelay);
+            this.ParagraphTextColor = this.ParagraphTextColor.OrStyle(style.TooltipTextColor);
+            this.ParagraphTextScale = this.ParagraphTextScale.OrStyle(style.TextScale);
+            this.ParagraphWidth = this.ParagraphWidth.OrStyle(style.TooltipTextWidth);
             this.ChildPadding = this.ChildPadding.OrStyle(style.TooltipChildPadding);
-            foreach (var paragraph in this.Paragraphs)
-                SetParagraphStyle(paragraph, style);
-
-            #pragma warning disable CS0618
-            // still set style here in case someone changed the paragraph field manually
-            if (this.Paragraph != null)
-                SetParagraphStyle(this.Paragraph, style);
-            #pragma warning restore CS0618
+            this.UpdateParagraphsStyles();
         }
 
         /// <summary>
@@ -136,8 +166,7 @@ namespace MLEM.Ui.Elements {
         public Paragraph AddParagraph(Paragraph paragraph, int index = -1) {
             this.Paragraphs.Add(paragraph);
             this.AddChild(paragraph, index);
-            if (this.Style.HasValue())
-                SetParagraphStyle(paragraph, this.Style);
+            this.UpdateParagraphStyle(paragraph);
             return paragraph;
         }
 
@@ -262,9 +291,21 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        private static void SetParagraphStyle(Paragraph paragraph, UiStyle style) {
-            paragraph.TextColor = paragraph.TextColor.OrStyle(style.TooltipTextColor, 1);
-            paragraph.Size = new Vector2(style.TooltipTextWidth, 0);
+        private void UpdateParagraphsStyles() {
+            foreach (var paragraph in this.Paragraphs)
+                this.UpdateParagraphStyle(paragraph);
+
+            #pragma warning disable CS0618
+            // still set style here in case someone changed the paragraph field manually
+            if (this.Paragraph != null)
+                this.UpdateParagraphStyle(this.Paragraph);
+            #pragma warning restore CS0618
+        }
+
+        private void UpdateParagraphStyle(Paragraph paragraph) {
+            paragraph.TextColor = paragraph.TextColor.OrStyle(this.ParagraphTextColor, 1);
+            paragraph.TextScale = paragraph.TextScale.OrStyle(this.ParagraphTextScale, 1);
+            paragraph.Size = new Vector2(this.ParagraphWidth, 0);
             paragraph.AutoAdjustWidth = true;
         }
 
