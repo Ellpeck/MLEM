@@ -15,7 +15,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// A list of <see cref="Elements.Paragraph"/> objects that this tooltip automatically manages.
         /// A paragraph that is contained in this list will automatically have the <see cref="UiStyle.TooltipTextWidth"/> and <see cref="UiStyle.TooltipTextColor"/> applied.
-        /// To add a paragraph to both this list and to <see cref="Element.Children"/>, use <see cref="AddParagraph(Elements.Paragraph)"/>.
+        /// To add a paragraph to both this list and to <see cref="Element.Children"/>, use <see cref="AddParagraph(Elements.Paragraph,int)"/>.
         /// </summary>
         public readonly List<Paragraph> Paragraphs = new List<Paragraph>();
 
@@ -132,9 +132,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="paragraph">The paragraph to add</param>
         /// <returns>The added paragraph, for chaining</returns>
-        public Paragraph AddParagraph(Paragraph paragraph) {
+        /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
+        public Paragraph AddParagraph(Paragraph paragraph, int index = -1) {
             this.Paragraphs.Add(paragraph);
-            this.AddChild(paragraph);
+            this.AddChild(paragraph, index);
             if (this.Style.HasValue())
                 SetParagraphStyle(paragraph, this.Style);
             return paragraph;
@@ -146,8 +147,9 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="text">The text that the paragraph should display</param>
         /// <returns>The created paragraph, for chaining</returns>
-        public Paragraph AddParagraph(Paragraph.TextCallback text) {
-            return this.AddParagraph(new Paragraph(Anchor.AutoLeft, 0, text));
+        /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
+        public Paragraph AddParagraph(Paragraph.TextCallback text, int index = -1) {
+            return this.AddParagraph(new Paragraph(Anchor.AutoLeft, 0, text), index);
         }
 
         /// <summary>
@@ -156,8 +158,9 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="text">The text that the paragraph should display</param>
         /// <returns>The created paragraph, for chaining</returns>
-        public Paragraph AddParagraph(string text) {
-            return this.AddParagraph(p => text);
+        /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
+        public Paragraph AddParagraph(string text, int index = -1) {
+            return this.AddParagraph(p => text, index);
         }
 
         /// <summary>

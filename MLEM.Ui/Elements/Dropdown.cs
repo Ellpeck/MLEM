@@ -55,8 +55,9 @@ namespace MLEM.Ui.Elements {
         /// Adds an element to this dropdown's <see cref="Panel"/>
         /// </summary>
         /// <param name="element">The element to add</param>
-        public void AddElement(Element element) {
-            this.Panel.AddChild(element);
+        /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
+        public void AddElement(Element element, int index = -1) {
+            this.Panel.AddChild(element, index);
             // Since the dropdown causes elements to be over each other,
             // usual gamepad code doesn't apply
             element.GetGamepadNextElement = (dir, usualNext) => {
@@ -77,8 +78,9 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
-        public Element AddElement(string text, GenericCallback pressed = null) {
-            return this.AddElement(p => text, pressed);
+        /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
+        public Element AddElement(string text, GenericCallback pressed = null, int index = -1) {
+            return this.AddElement(p => text, pressed, index);
         }
 
         /// <summary>
@@ -87,7 +89,8 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
-        public Element AddElement(Paragraph.TextCallback text, GenericCallback pressed = null) {
+        /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
+        public Element AddElement(Paragraph.TextCallback text, GenericCallback pressed = null, int index = -1) {
             var paragraph = new Paragraph(Anchor.AutoLeft, 1, text) {
                 CanBeMoused = true,
                 CanBeSelected = true,
@@ -97,7 +100,7 @@ namespace MLEM.Ui.Elements {
                 paragraph.OnPressed += pressed;
             paragraph.OnMouseEnter += e => paragraph.TextColor = Color.LightGray;
             paragraph.OnMouseExit += e => paragraph.TextColor = Color.White;
-            this.AddElement(paragraph);
+            this.AddElement(paragraph, index);
             return paragraph;
         }
 
