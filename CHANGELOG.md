@@ -27,6 +27,7 @@ Improvements
 - Allow adding dropdown elements at a specified index
 - Turned Tooltip paragraph styling into style properties
 - Improved ElementHelper.AddTooltip overloads
+- Don't query a paragraph's text callback in the constructor
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
