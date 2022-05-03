@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MLEM.Input;
 using MLEM.Ui.Style;
@@ -10,6 +11,13 @@ namespace MLEM.Ui.Elements {
     /// Tooltips can easily be configured to be hooked onto an element, causing them to appear when it is moused, and disappear when it is not moused anymore.
     /// </summary>
     public class Tooltip : Panel {
+
+        /// <summary>
+        /// A list of <see cref="Elements.Paragraph"/> objects that this tooltip automatically manages.
+        /// A paragraph that is contained in this list will automatically have the <see cref="UiStyle.TooltipTextWidth"/> and <see cref="UiStyle.TooltipTextColor"/> applied.
+        /// To add a paragraph to both this list and to <see cref="Element.Children"/>, use <see cref="AddParagraph(Elements.Paragraph)"/>.
+        /// </summary>
+        public readonly List<Paragraph> Paragraphs = new List<Paragraph>();
 
         /// <summary>
         /// The offset that this tooltip's top left corner should have from the mouse position
@@ -26,6 +34,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The paragraph of text that this tooltip displays
         /// </summary>
+        [Obsolete("Use Paragraphs instead, which allows for multiple paragraphs to be managed by one tooltip")]
         public Paragraph Paragraph;
         /// <summary>
         /// Determines whether this tooltip should display when <see cref="UiControls.IsAutoNavMode"/> is true, which is when the UI is being controlled using a keyboard or gamepad.
@@ -53,8 +62,11 @@ namespace MLEM.Ui.Elements {
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public Tooltip(string text = null, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-            if (text != null)
-                this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, 0, text));
+            if (text != null) {
+                #pragma warning disable CS0618
+                this.Paragraph = this.AddParagraph(text);
+                #pragma warning restore CS0618
+            }
             this.Init(elementToHover);
         }
 
@@ -65,7 +77,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public Tooltip(Paragraph.TextCallback textCallback, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-            this.Paragraph = this.AddChild(new Paragraph(Anchor.TopLeft, 0, textCallback));
+            #pragma warning disable CS0618
+            this.Paragraph = this.AddParagraph(textCallback);
+            #pragma warning restore CS0618
             this.Init(elementToHover);
         }
 
@@ -102,10 +116,48 @@ namespace MLEM.Ui.Elements {
             this.AutoNavOffset = this.AutoNavOffset.OrStyle(style.TooltipAutoNavOffset);
             this.Delay = this.Delay.OrStyle(style.TooltipDelay);
             this.ChildPadding = this.ChildPadding.OrStyle(style.TooltipChildPadding);
-            if (this.Paragraph != null) {
-                this.Paragraph.TextColor = this.Paragraph.TextColor.OrStyle(style.TooltipTextColor, 1);
-                this.Paragraph.Size = new Vector2(style.TooltipTextWidth, 0);
-            }
+            foreach (var paragraph in this.Paragraphs)
+                SetParagraphStyle(paragraph, style);
+
+            #pragma warning disable CS0618
+            // still set style here in case someone changed the paragraph field manually
+            if (this.Paragraph != null)
+                SetParagraphStyle(this.Paragraph, style);
+            #pragma warning restore CS0618
+        }
+
+        /// <summary>
+        /// Adds the given paragraph to this tooltip's managed <see cref="Paragraphs"/> list, as well as to its children using <see cref="Element.AddChild{T}"/>.
+        /// A paragraph that is contained in the <see cref="Paragraphs"/> list will automatically have the <see cref="UiStyle.TooltipTextWidth"/> and <see cref="UiStyle.TooltipTextColor"/> applied.
+        /// </summary>
+        /// <param name="paragraph">The paragraph to add</param>
+        /// <returns>The added paragraph, for chaining</returns>
+        public Paragraph AddParagraph(Paragraph paragraph) {
+            this.Paragraphs.Add(paragraph);
+            this.AddChild(paragraph);
+            if (this.Style.HasValue())
+                SetParagraphStyle(paragraph, this.Style);
+            return paragraph;
+        }
+
+        /// <summary>
+        /// Adds a new paragraph with the given text callback to this tooltip's managed <see cref="Paragraphs"/> list, as well as to its children using <see cref="Element.AddChild{T}"/>.
+        /// A paragraph that is contained in the <see cref="Paragraphs"/> list will automatically have the <see cref="UiStyle.TooltipTextWidth"/> and <see cref="UiStyle.TooltipTextColor"/> applied.
+        /// </summary>
+        /// <param name="text">The text that the paragraph should display</param>
+        /// <returns>The created paragraph, for chaining</returns>
+        public Paragraph AddParagraph(Paragraph.TextCallback text) {
+            return this.AddParagraph(new Paragraph(Anchor.AutoLeft, 0, text));
+        }
+
+        /// <summary>
+        /// Adds a new paragraph with the given text to this tooltip's managed <see cref="Paragraphs"/> list, as well as to its children using <see cref="Element.AddChild{T}"/>.
+        /// A paragraph that is contained in the <see cref="Paragraphs"/> list will automatically have the <see cref="UiStyle.TooltipTextWidth"/> and <see cref="UiStyle.TooltipTextColor"/> applied.
+        /// </summary>
+        /// <param name="text">The text that the paragraph should display</param>
+        /// <returns>The created paragraph, for chaining</returns>
+        public Paragraph AddParagraph(string text) {
+            return this.AddParagraph(p => text);
         }
 
         /// <summary>
@@ -185,9 +237,6 @@ namespace MLEM.Ui.Elements {
         }
 
         private void Init(Element elementToHover) {
-            if (this.Paragraph != null)
-                this.Paragraph.AutoAdjustWidth = true;
-
             this.SetWidthBasedOnChildren = true;
             this.SetHeightBasedOnChildren = true;
             this.CanBeMoused = false;
@@ -208,6 +257,12 @@ namespace MLEM.Ui.Elements {
                 this.autoHidden = shouldBeHidden;
                 this.SetAreaDirty();
             }
+        }
+
+        private static void SetParagraphStyle(Paragraph paragraph, UiStyle style) {
+            paragraph.TextColor = paragraph.TextColor.OrStyle(style.TooltipTextColor, 1);
+            paragraph.Size = new Vector2(style.TooltipTextWidth, 0);
+            paragraph.AutoAdjustWidth = true;
         }
 
     }

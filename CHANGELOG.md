@@ -23,6 +23,7 @@ Improvements
 - Ensure that Element.IsMouseOver is always accurate by making it an auto-property
 - Started using SpriteBatchContext for Draw and DrawTransformed methods
 - Make use of the new consuming variants in InputHandler and Keybind to consume UiControls inputs
+- Allow Tooltip to manage more than one paragraph and make it easier to add new lines
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
@@ -31,6 +32,7 @@ Fixes
 
 Removals
 - Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones
+- Marked Tooltip.Paragraph as obsolete in favor of new Paragraphs collection
 
 ## 5.3.0
 ### MLEM
