@@ -184,7 +184,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="textCallback">The text to display on the tooltip</param>
         /// <returns>The created tooltip instance</returns>
         public static Tooltip AddTooltip(this Element element, Paragraph.TextCallback textCallback) {
-            return new Tooltip(textCallback, element);
+            return element.AddTooltip(new Tooltip(textCallback));
         }
 
         /// <summary>
@@ -194,7 +194,18 @@ namespace MLEM.Ui.Elements {
         /// <param name="text">The text to display on the tooltip</param>
         /// <returns>The created tooltip instance</returns>
         public static Tooltip AddTooltip(this Element element, string text) {
-            return new Tooltip(text, element);
+            return element.AddTooltip(new Tooltip(text));
+        }
+
+        /// <summary>
+        /// Adds the given <see cref="Tooltip"/> to the given element
+        /// </summary>
+        /// <param name="element">The element to add the tooltip to</param>
+        /// <param name="tooltip">The tooltip to add</param>
+        /// <returns>The passed tooltip, for chaining</returns>
+        public static Tooltip AddTooltip(this Element element, Tooltip tooltip) {
+            tooltip.AddToElement(element);
+            return tooltip;
         }
 
     }

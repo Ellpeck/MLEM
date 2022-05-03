@@ -26,6 +26,7 @@ Improvements
 - Allow Tooltip to manage more than one paragraph and make it easier to add new lines
 - Allow adding dropdown elements at a specified index
 - Turned Tooltip paragraph styling into style properties
+- Improved ElementHelper.AddTooltip overloads
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
