@@ -59,7 +59,7 @@ namespace MLEM.Ui.Elements {
             set {
                 if (this.text != value) {
                     this.text = value;
-                    this.IsHidden = string.IsNullOrWhiteSpace(this.text);
+                    this.forceHide = string.IsNullOrWhiteSpace(this.text);
                     this.SetTextDirty();
                 }
             }
@@ -99,9 +99,13 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <inheritdoc />
+        public override bool IsHidden => base.IsHidden || this.forceHide;
+
         private string text;
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
+        private bool forceHide;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -110,14 +114,12 @@ namespace MLEM.Ui.Elements {
         /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
         /// <param name="textCallback">The paragraph's text</param>
         /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
-        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false) : this(anchor, width, "", autoAdjustWidth) {
-            this.IsHidden = true;
+        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false) : this(anchor, width, string.Empty, autoAdjustWidth) {
             this.GetTextCallback = textCallback;
         }
 
         /// <inheritdoc cref="Paragraph(Anchor,float,TextCallback,bool)"/>
         public Paragraph(Anchor anchor, float width, string text, bool autoAdjustWidth = false) : base(anchor, new Vector2(width, 0)) {
-            this.IsHidden = true;
             this.Text = text;
             this.AutoAdjustWidth = autoAdjustWidth;
             this.CanBeSelected = false;

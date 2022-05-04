@@ -28,6 +28,7 @@ Improvements
 - Turned Tooltip paragraph styling into style properties
 - Improved ElementHelper.AddTooltip overloads
 - Don't query a paragraph's text callback in the constructor
+- Allow manually hiding a paragraph without its text overriding the hidden state
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
