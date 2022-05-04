@@ -901,13 +901,14 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Updates this element and all of its <see cref="GetRelevantChildren"/>
+        /// Updates this element and all of its <see cref="SortedChildren"/>
         /// </summary>
         /// <param name="time">The game's time</param>
         public virtual void Update(GameTime time) {
             this.System.InvokeOnElementUpdated(this, time);
 
-            foreach (var child in this.GetRelevantChildren()) {
+            // update all sorted children, not just relevant ones, because they might become relevant or irrelevant through updates
+            foreach (var child in this.SortedChildren) {
                 if (child.System != null)
                     child.Update(time);
             }

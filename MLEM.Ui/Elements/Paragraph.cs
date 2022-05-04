@@ -59,8 +59,13 @@ namespace MLEM.Ui.Elements {
             set {
                 if (this.text != value) {
                     this.text = value;
-                    this.forceHide = string.IsNullOrWhiteSpace(this.text);
                     this.SetTextDirty();
+                    
+                    var force = string.IsNullOrWhiteSpace(this.text);
+                    if (this.forceHide != force) {
+                        this.forceHide = force;
+                        this.SetAreaDirty();
+                    }
                 }
             }
         }

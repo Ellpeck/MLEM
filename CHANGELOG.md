@@ -34,6 +34,7 @@ Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode
 - Fixed radio buttons not unchecking all other radio buttons with the same root element
 - Fixed elements not being deselected when removed through RemoveChild
+- Fixed elements sometimes staying hidden when they shouldn't in scrolling panels
 
 Removals
 - Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones
