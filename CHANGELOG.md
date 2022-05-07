@@ -40,6 +40,10 @@ Removals
 - Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones
 - Marked Tooltip.Paragraph as obsolete in favor of new Paragraphs collection
 
+### MLEM.Data
+Improvements
+- Premultiply textures when using RawContentManager
+
 ## 5.3.0
 ### MLEM
 Additions

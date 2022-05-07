@@ -1,5 +1,7 @@
 using System.IO;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 
 namespace MLEM.Data.Content {
     /// <inheritdoc />
@@ -11,7 +13,20 @@ namespace MLEM.Data.Content {
                 existing.Reload(stream);
                 return existing;
             } else {
-                return Texture2D.FromStream(manager.GraphicsDevice, stream);
+                // premultiply the texture's color to be in line with the pipeline's texture reader
+                // TODO this can be converted to use https://github.com/MonoGame/MonoGame/pull/7369 in the future
+                using (var texture = Texture2D.FromStream(manager.GraphicsDevice, stream)) {
+                    var ret = new Texture2D(manager.GraphicsDevice, texture.Width, texture.Height);
+                    using (var textureData = texture.GetTextureData()) {
+                        using (var retData = ret.GetTextureData()) {
+                            for (var x = 0; x < ret.Width; x++) {
+                                for (var y = 0; y < ret.Height; y++)
+                                    retData[x, y] = Color.FromNonPremultiplied(textureData[x, y].ToVector4());
+                            }
+                        }
+                    }
+                    return ret;
+                }
             }
         }
 
