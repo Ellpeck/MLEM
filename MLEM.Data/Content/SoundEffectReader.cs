@@ -12,7 +12,7 @@ namespace MLEM.Data.Content {
 
         /// <inheritdoc />
         public override string[] GetFileExtensions() {
-            return new[] {"ogg", "wav", "mp3"};
+            return new[] {"wav"};
         }
 
     }

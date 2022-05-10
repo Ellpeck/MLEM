@@ -44,6 +44,9 @@ Removals
 Improvements
 - Premultiply textures when using RawContentManager
 
+Fixes
+- Fixed SoundEffectReader incorrectly claiming it could read ogg and mp3 files
+
 ## 5.3.0
 ### MLEM
 Additions
