@@ -143,6 +143,34 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Causes the easing function to play fully, followed by <paramref name="other"/> playing fully, in the span between an input of 0 and 1.
+        /// Note that <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing[])"/> provides a version of this method for any amount of follow-up easing functions.
+        /// </summary>
+        /// <param name="easing">The first easing function to play.</param>
+        /// <param name="other">The second easing function to play.</param>
+        /// <returns>A combined easing function of the two functions passed.</returns>
+        public static Easing AndThen(this Easing easing, Easing other) {
+            return p => p <= 0.5F ? easing(p * 2) : other((p - 0.5F) * 2);
+        }
+
+        /// <summary>
+        /// Causes the easing function to play fully, followed by all elements of <paramref name="others"/> playing fully, in the span between an input of 0 and 1.
+        /// This is an any-amount version of <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing)"/>.
+        /// </summary>
+        /// <param name="easing">The first easing function to play.</param>
+        /// <param name="others">The next easing functions to play.</param>
+        /// <returns>A combined easing function of all of the functions passed.</returns>
+        public static Easing AndThen(this Easing easing, params Easing[] others) {
+            var interval = 1F / (others.Length + 1);
+            return p => {
+                if (p <= interval)
+                    return easing(p / interval);
+                var index = (int) ((p - interval) * (others.Length + 1));
+                return others[index]((p - (index + 1) * interval) / interval);
+            };
+        }
+
+        /// <summary>
         /// A delegate method used by <see cref="Easings"/>.
         /// </summary>
         /// <param name="percentage">The percentage into the easing function. Either between 0 and 1, or, if <see cref="Easings.ScaleInput"/> was used, between an arbitary set of values.</param>
