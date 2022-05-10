@@ -7,7 +7,7 @@
     
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>Simple loading and processing of textures and other data for MonoGame</Description>
+        <Description>Simple loading and processing of textures and other data for MonoGame, including the ability to load non-XNB content files easily</Description>
         <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
         <PackageTags>monogame ellpeck mlem utility extensions data serialize</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
