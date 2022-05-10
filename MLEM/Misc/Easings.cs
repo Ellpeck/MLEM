@@ -115,6 +115,24 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Reverses the input of an easing function, which is usually between 0 and 1, to be passed into the easing function as if it were between 1 and 0.
+        /// </summary>
+        /// <param name="easing">The easing function whose output to reverse.</param>
+        /// <returns>The reversed easing function.</returns>
+        public static Easing ReverseInput(this Easing easing) {
+            return p => easing(1 - p);
+        }
+
+        /// <summary>
+        /// Reverses the output of an easing function, which is usually between 0 and 1, to return as if it were between 1 and 0.
+        /// </summary>
+        /// <param name="easing">The easing function whose input to reverse.</param>
+        /// <returns>The reversed easing function.</returns>
+        public static Easing ReverseOutput(this Easing easing) {
+            return p => 1 - easing(p);
+        }
+
+        /// <summary>
         /// Causes the easing functino to play fully, and then play fully in reverse, in the span between an input of 0 and 1.
         /// In some places, this behavior is also called "auto-reversing".
         /// </summary>

@@ -14,6 +14,7 @@ Additions
 - Added consuming variants of IsPressed methods to InputHandler and Keybind
 - Added SpriteBatchContext struct and extensions
 - Added InputHandler.InvertPressBehavior
+- Added ReverseInput and ReverseOutput to Easings
 
 ### MLEM.Ui
 Additions
