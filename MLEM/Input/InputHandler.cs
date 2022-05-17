@@ -371,7 +371,7 @@ namespace MLEM.Input {
         /// <param name="key">The key to query.</param>
         /// <returns>If the key is pressed and the press is not consumed yet.</returns>
         public bool IsKeyPressedAvailable(Keys key) {
-            return this.IsKeyPressed(key) && !this.consumedPresses.Contains((key, -1));
+            return this.IsKeyPressed(key) && !this.IsPressConsumed(key);
         }
 
         /// <summary>
@@ -457,7 +457,7 @@ namespace MLEM.Input {
         /// <param name="button">The button to query.</param>
         /// <returns>If the button is pressed and the press is not consumed yet.</returns>
         public bool IsMouseButtonPressedAvailable(MouseButton button) {
-            return this.IsMouseButtonPressed(button) && !this.consumedPresses.Contains((button, -1));
+            return this.IsMouseButtonPressed(button) && !this.IsPressConsumed(button);
         }
 
         /// <summary>
@@ -567,7 +567,7 @@ namespace MLEM.Input {
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad.</param>
         /// <returns>Whether the given button is pressed and the press is not consumed yet.</returns>
         public bool IsGamepadButtonPressedAvailable(Buttons button, int index = -1) {
-            return this.IsGamepadButtonPressed(button) && !this.consumedPresses.Contains((button, index)) && (index < 0 || !this.consumedPresses.Contains((button, -1)));
+            return this.IsGamepadButtonPressed(button) && !this.IsPressConsumed(button, index) && (index < 0 || !this.IsPressConsumed(button));
         }
 
         /// <summary>
@@ -749,6 +749,15 @@ namespace MLEM.Input {
             return false;
         }
 
+        /// <inheritdoc cref="IsPressedAvailable"/>
+        public bool IsAnyPressedAvailable(params GenericInput[] controls) {
+            foreach (var control in controls) {
+                if (this.IsPressedAvailable(control))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Tries to retrieve the amount of time that a given <see cref="GenericInput"/> has been held down for.
         /// If the input is currently down, this method returns true and the amount of time that it has been down for is stored in <paramref name="downTime"/>.
@@ -775,6 +784,17 @@ namespace MLEM.Input {
         public TimeSpan GetDownTime(GenericInput input, int index = -1) {
             this.TryGetDownTime(input, out var time, index);
             return time;
+        }
+
+        /// <summary>
+        /// Returns whether the given <see cref="GenericInput"/>'s press state has been consumed using <see cref="TryConsumePressed"/>.
+        /// If an input has been consumed, <see cref="IsPressedAvailable"/> and <see cref="TryConsumePressed"/> will always return false for that input.
+        /// </summary>
+        /// <param name="input">The input to query.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether a press has been consumed for the given input.</returns>
+        public bool IsPressConsumed(GenericInput input, int index = -1) {
+            return this.consumedPresses.Contains((input, index));
         }
 
         private void AccumulateDown(GenericInput input, int index) {
