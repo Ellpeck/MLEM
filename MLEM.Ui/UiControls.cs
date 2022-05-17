@@ -373,7 +373,9 @@ namespace MLEM.Ui {
                 // we can't add these checks to GetChildren because it ignores false grandchildren
                 .Where(c => c.CanBeSelected && c.AutoNavGroup == this.SelectedElement?.AutoNavGroup);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
-                return backward ? children.LastOrDefault() : children.FirstOrDefault();
+                // if we don't have an element selected in this root, navigate to the first one without a group
+                var allowed = children.Where(c => c.AutoNavGroup == null);
+                return backward ? allowed.LastOrDefault() : allowed.FirstOrDefault();
             } else {
                 var foundCurr = false;
                 Element lastFound = null;
@@ -406,7 +408,8 @@ namespace MLEM.Ui {
                 // we can't add these checks to GetChildren because it ignores false grandchildren
                 .Where(c => c.CanBeSelected && c.AutoNavGroup == this.SelectedElement?.AutoNavGroup);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
-                return children.FirstOrDefault();
+                // if we don't have an element selected in this root, navigate to the first one without a group
+                return children.FirstOrDefault(c => c.AutoNavGroup == null);
             } else {
                 Element closest = null;
                 float closestPriority = 0;

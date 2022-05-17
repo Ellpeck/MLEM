@@ -253,7 +253,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// An optional string that represents a group of elements for automatic (keyboard and gamepad) navigation.
         /// All elements that share the same auto-nav group will be able to be navigated between, and all other elements will not be reachable from elements of other groups.
-        /// Note that, if no element is previously selected and auto-navigation is invoked, this element can always be navigated to if it is the first one chosen by auto-navigation.
+        /// Note that, if no element is previously selected and auto-navigation is invoked, this element cannot be chosen as the first element to navigate to if its auto-nav group is non-null.
         /// </summary>
         public virtual string AutoNavGroup { get; set; }
 
