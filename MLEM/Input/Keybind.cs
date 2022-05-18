@@ -8,9 +8,10 @@ namespace MLEM.Input {
     /// A keybind represents a generic way to trigger input.
     /// A keybind is made up of multiple key combinations, one of which has to be pressed for the keybind to be triggered.
     /// Note that this type is serializable using <see cref="DataContractAttribute"/>.
+    /// Note that this class implements <see cref="IComparable"/> and <see cref="IComparable{T}"/>, which allows two combinations to be ordered based on how many <see cref="Combination.Modifiers"/> their combinations have.
     /// </summary>
     [DataContract]
-    public class Keybind {
+    public class Keybind : IComparable<Keybind>, IComparable {
 
         [DataMember]
         private Combination[] combinations = Array.Empty<Combination>();
@@ -213,6 +214,32 @@ namespace MLEM.Input {
             return string.Join(joiner, this.combinations.Select(c => c.ToString(combinationJoiner, inputName)));
         }
 
+        /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        /// 
+        /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item></list></returns>
+        public int CompareTo(Keybind other) {
+            return this.combinations.Sum(c => other.combinations.Sum(c.CompareTo));
+        }
+
+        /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
+        /// <param name="obj">An object to compare with this instance.</param>
+        /// <exception cref="T:System.ArgumentException">
+        /// <paramref name="obj" /> is not the same type as this instance.</exception>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        /// 
+        /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item></list></returns>
+        public int CompareTo(object obj) {
+            if (ReferenceEquals(null, obj))
+                return 1;
+            if (ReferenceEquals(this, obj))
+                return 0;
+            if (!(obj is Keybind other))
+                throw new ArgumentException($"Object must be of type {nameof(Keybind)}");
+            return this.CompareTo(other);
+        }
+
         /// <summary>
         /// Converts this keybind into a string, separating every included <see cref="Combination"/> by a comma
         /// </summary>
@@ -224,9 +251,10 @@ namespace MLEM.Input {
         /// <summary>
         /// A key combination is a combination of a set of modifier keys and a key.
         /// All of the keys are <see cref="GenericInput"/> instances, so they can be keyboard-, mouse- or gamepad-based.
+        /// Note that this class implements <see cref="IComparable"/> and <see cref="IComparable{T}"/>, which allows two combinations to be ordered based on how many <see cref="Modifiers"/> they have.
         /// </summary>
         [DataContract]
-        public class Combination {
+        public class Combination : IComparable<Combination>, IComparable {
 
             /// <summary>
             /// The inputs that have to be held down for this combination to be valid.
@@ -247,7 +275,7 @@ namespace MLEM.Input {
             /// </summary>
             /// <param name="key">The key</param>
             /// <param name="modifiers">The modifiers</param>
-            public Combination(GenericInput key, GenericInput[] modifiers) {
+            public Combination(GenericInput key, params GenericInput[] modifiers) {
                 this.Modifiers = modifiers;
                 this.Key = key;
             }
@@ -322,6 +350,32 @@ namespace MLEM.Input {
             /// <returns>A human-readable string representing this combination</returns>
             public string ToString(string joiner, Func<GenericInput, string> inputName = null) {
                 return string.Join(joiner, this.Modifiers.Append(this.Key).Select(i => inputName?.Invoke(i) ?? i.ToString()));
+            }
+
+            /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
+            /// <param name="other">An object to compare with this instance.</param>
+            /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            /// 
+            /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item></list></returns>
+            public int CompareTo(Combination other) {
+                return this.Modifiers.Length.CompareTo(other.Modifiers.Length);
+            }
+
+            /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
+            /// <param name="obj">An object to compare with this instance.</param>
+            /// <exception cref="T:System.ArgumentException">
+            /// <paramref name="obj" /> is not the same type as this instance.</exception>
+            /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            /// 
+            /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item></list></returns>
+            public int CompareTo(object obj) {
+                if (ReferenceEquals(null, obj))
+                    return 1;
+                if (ReferenceEquals(this, obj))
+                    return 0;
+                if (!(obj is Combination other))
+                    throw new ArgumentException($"Object must be of type {nameof(Combination)}");
+                return this.CompareTo(other);
             }
 
             /// <summary>Returns a string that represents the current object.</summary>

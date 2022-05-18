@@ -16,6 +16,9 @@ Additions
 - Added InputHandler.InvertPressBehavior
 - Added ReverseInput, ReverseOutput and AndThen to Easings
 
+Improvements
+- Allow comparing Keybind and Combination based on the amount of modifiers they have
+
 ### MLEM.Ui
 Additions
 - Added Element.AutoNavGroup which allows forming groups for auto-navigation
