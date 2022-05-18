@@ -60,6 +60,16 @@ namespace MLEM.Input {
         /// <param name="button">The button to convert.</param>
         public GenericInput(Buttons button) : this(InputType.Gamepad, (int) button) {}
 
+        /// <summary>
+        /// Creates a new generic input from the given <see cref="Enum"/> value.
+        /// If the value is a <see cref="MouseButton"/>, <see cref="Keys"/> or <see cref="Buttons"/>, the appropriate <see cref="Type"/> and value will be set. Otherwise, the <see cref="Type"/> will be set to <see cref="InputType.None"/>.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        public GenericInput(Enum value) {
+            this.Type = value is MouseButton ? InputType.Mouse : value is Keys ? InputType.Keyboard : value is Buttons ? InputType.Gamepad : InputType.None;
+            this.value = Convert.ToInt32(value);
+        }
+
         private GenericInput(InputType type, int value) {
             this.Type = type;
             this.value = value;

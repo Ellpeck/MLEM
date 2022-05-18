@@ -15,6 +15,7 @@ Additions
 - Added SpriteBatchContext struct and extensions
 - Added InputHandler.InvertPressBehavior
 - Added ReverseInput, ReverseOutput and AndThen to Easings
+- Added an Enum constructor to GenericInput
 
 Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
