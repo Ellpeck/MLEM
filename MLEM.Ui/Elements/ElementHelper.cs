@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Input;
@@ -115,9 +116,9 @@ namespace MLEM.Ui.Elements {
             return group;
         }
 
-        /// <inheritdoc cref="KeybindButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Input.Keybind,MLEM.Input.InputHandler,string,MLEM.Input.Keybind,string,System.Func{MLEM.Input.GenericInput,string},int)"/>
-        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0) {
-            return KeybindButton(anchor, size, keybind, inputHandler, activePlaceholder, new Keybind(unbindKey), unboundPlaceholder, inputName, index);
+        /// <inheritdoc cref="KeybindButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Input.Keybind,MLEM.Input.InputHandler,string,MLEM.Input.GenericInput,string,System.Func{MLEM.Input.GenericInput,string},int,System.Func{MLEM.Input.GenericInput,System.Collections.Generic.IEnumerable{MLEM.Input.GenericInput},bool})"/>
+        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0, Func<GenericInput, IEnumerable<GenericInput>, bool> isKeybindAllowed = null) {
+            return KeybindButton(anchor, size, keybind, inputHandler, activePlaceholder, new Keybind(unbindKey), unboundPlaceholder, inputName, index, isKeybindAllowed);
         }
 
         /// <summary>
@@ -135,8 +136,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="unboundPlaceholder">A placeholder text that is displayed if the keybind is unbound</param>
         /// <param name="inputName">An optional function to give each input a display name that is easier to read. If this is null, <see cref="GenericInput.ToString"/> is used.</param>
         /// <param name="index">The index in the <paramref name="keybind"/> that the button should display. Note that, if the index is greater than the amount of combinations, combinations entered using this button will be stored at an earlier index.</param>
+        /// <param name="isKeybindAllowed">A function that can optionally determine whether a given input and modifier combination is allowed. If this is null, all combinations are allowed.</param>
         /// <returns>A keybind button with the given settings</returns>
-        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, Keybind unbind = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0) {
+        public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, Keybind unbind = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0, Func<GenericInput, IEnumerable<GenericInput>, bool> isKeybindAllowed = null) {
             string GetCurrentName() => keybind.TryGetCombination(index, out var combination) ? combination.ToString(" + ", inputName) : unboundPlaceholder;
 
             var button = new Button(anchor, size, GetCurrentName());
@@ -157,10 +159,12 @@ namespace MLEM.Ui.Elements {
                     } else if (inputHandler.InputsPressed.Length > 0) {
                         var key = inputHandler.InputsPressed.FirstOrDefault(i => !i.IsModifier());
                         if (key != default) {
-                            var mods = inputHandler.InputsDown.Where(i => i.IsModifier());
-                            keybind.Remove((c, i) => i == index).Insert(index, key, mods.ToArray());
-                            button.Text.Text = GetCurrentName();
-                            button.SetData("Active", false);
+                            var mods = inputHandler.InputsDown.Where(i => i.IsModifier()).ToArray();
+                            if (isKeybindAllowed == null || isKeybindAllowed(key, mods)) {
+                                keybind.Remove((c, i) => i == index).Insert(index, key, mods);
+                                button.Text.Text = GetCurrentName();
+                                button.SetData("Active", false);
+                            }
                         }
                     }
                 } else {
