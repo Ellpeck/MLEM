@@ -42,6 +42,7 @@ Fixes
 - Fixed radio buttons not unchecking all other radio buttons with the same root element
 - Fixed elements not being deselected when removed through RemoveChild
 - Fixed elements sometimes staying hidden when they shouldn't in scrolling panels
+- Fixed elements' OnDeselected events not being raised when CanBeSelected is set to false while selected
 
 Removals
 - Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones

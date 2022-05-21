@@ -355,8 +355,6 @@ namespace MLEM.Ui {
             if (root == null)
                 return null;
             this.selectedElements.TryGetValue(root.Name, out var element);
-            if (element != null && !element.CanBeSelected)
-                return null;
             return element;
         }
 

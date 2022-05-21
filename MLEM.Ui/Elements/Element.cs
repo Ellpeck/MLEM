@@ -193,7 +193,14 @@ namespace MLEM.Ui.Elements {
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
         /// </summary>
-        public virtual bool CanBeSelected { get; set; } = true;
+        public virtual bool CanBeSelected {
+            get => this.canBeSelected;
+            set {
+                this.canBeSelected = value;
+                if (!this.canBeSelected && this.Root?.SelectedElement == this)
+                    this.Root.SelectElement(null);
+            }
+        }
         /// <summary>
         /// Set this field to false to disallow the element from reacting to being moused over.
         /// </summary>
@@ -429,6 +436,7 @@ namespace MLEM.Ui.Elements {
         private int priority;
         private StyleProp<UiStyle> style;
         private StyleProp<Padding> childPadding;
+        private bool canBeSelected = true;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.
