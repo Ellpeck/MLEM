@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using FontStashSharp;
 using Microsoft.Xna.Framework;
@@ -21,6 +23,7 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.ViewportAdapters;
 
@@ -314,6 +317,36 @@ namespace Sandbox {
                 button.Size = new Vector2(30, 50);
             }
             this.UiSystem.Add("Keybinds", keybindPanel);
+
+            var packer = new RuntimeTexturePacker(padding: 1);
+            var regions = new List<TextureRegion>();
+            packer.Add(new UniformTextureAtlas(tex, 16, 16), r => {
+                regions.AddRange(r.Values);
+                Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
+            }, true);
+            packer.Add(this.Content.LoadTextureAtlas("Textures/Furniture"), r => {
+                regions.AddRange(r.Values);
+                Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
+            }, true);
+            packer.Pack(this.GraphicsDevice);
+            packer.PackedTexture.SaveAsPng(File.Create("_Packed.png"), packer.PackedTexture.Width, packer.PackedTexture.Height);
+
+            this.OnDraw += (g, t) => {
+                this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+                var x = 0;
+                var y = 10;
+                foreach (var r in regions) {
+                    const int sc = 5;
+                    this.SpriteBatch.DrawRectangle(new Vector2(x, y), new Vector2(r.Width * sc, r.Height * sc), Color.Green);
+                    this.SpriteBatch.Draw(r, new Vector2(x, y), Color.White, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
+                    x += r.Width * sc + 1;
+                    if (x >= 1000) {
+                        x = 0;
+                        y += 50;
+                    }
+                }
+                this.SpriteBatch.End();
+            };
         }
 
         protected override void DoUpdate(GameTime gameTime) {

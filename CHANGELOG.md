@@ -49,8 +49,13 @@ Removals
 - Marked Tooltip.Paragraph as obsolete in favor of new Paragraphs collection
 
 ### MLEM.Data
+Additions
+- Added the ability to add padding to RuntimeTexturePacker texture regions
+- Added the ability to pack UniformTextureAtlas and DataTextureAtlas using RuntimeTexturePacker
+
 Improvements
 - Premultiply textures when using RawContentManager
+- Allow enumerating all region names of a DataTextureAtlas
 
 Fixes
 - Fixed SoundEffectReader incorrectly claiming it could read ogg and mp3 files

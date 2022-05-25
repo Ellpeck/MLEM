@@ -38,43 +38,93 @@ namespace MLEM.Data {
         private readonly bool forcePowerOfTwo;
         private readonly bool forceSquare;
         private readonly bool disposeTextures;
+        private readonly int padding;
 
         private int maxWidth;
 
         /// <summary>
-        /// Creates a new runtime texture packer with the given settings
+        /// Creates a new runtime texture packer with the given settings.
         /// </summary>
         /// <param name="maxWidth">The maximum width that the packed texture can have. Defaults to 2048.</param>
         /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than <see cref="maxWidth"/>. Defaults to false.</param>
-        /// <param name="forcePowerOfTwo">Whether the resulting <see cref="PackedTexture"/> should have a width and height that is a power of two</param>
-        /// <param name="forceSquare">Whether the resulting <see cref="PackedTexture"/> should be square regardless of required size</param>
-        /// <param name="disposeTextures">Whether the original textures submitted to this texture packer should be disposed after packing</param>
-        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false, bool forcePowerOfTwo = false, bool forceSquare = false, bool disposeTextures = false) {
+        /// <param name="forcePowerOfTwo">Whether the resulting <see cref="PackedTexture"/> should have a width and height that is a power of two.</param>
+        /// <param name="forceSquare">Whether the resulting <see cref="PackedTexture"/> should be square regardless of required size.</param>
+        /// <param name="disposeTextures">Whether the original textures submitted to this texture packer should be disposed after packing.</param>
+        /// <param name="padding">The padding that each texture region should have around itself. This can be useful if texture bleeding issues occur due to texture coordinate rounding.</param>
+        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false, bool forcePowerOfTwo = false, bool forceSquare = false, bool disposeTextures = false, int padding = default) {
             this.maxWidth = maxWidth;
             this.autoIncreaseMaxWidth = autoIncreaseMaxWidth;
             this.forcePowerOfTwo = forcePowerOfTwo;
             this.forceSquare = forceSquare;
             this.disposeTextures = disposeTextures;
+            this.padding = padding;
         }
 
         /// <summary>
-        /// Adds a new texture to this texture packer to be packed.
+        /// Adds a new <see cref="UniformTextureAtlas"/> to this texture packer to be packed.
+        /// The passed <see cref="Action{T}"/> is invoked in <see cref="Pack"/> and provides the caller with the resulting dictionary of texture regions on the <see cref="PackedTexture"/>, mapped to their x and y positions on the original <see cref="UniformTextureAtlas"/>.
+        /// Note that the resulting data cannot be converted back into a <see cref="UniformTextureAtlas"/>, since the resulting texture regions might be scattered throughout the <see cref="PackedTexture"/>.
+        /// </summary>
+        /// <param name="atlas">The texture atlas to pack.</param>
+        /// <param name="result">The result callback which will receive the resulting texture regions.</param>
+        /// <param name="padWithPixels">Whether the texture packer's padding should be filled with a copy of the texture's border, rather than transparent pixels. This value only has an effect if the texture packer was constructed with a padding.</param>
+        /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width.</exception>
+        public void Add(UniformTextureAtlas atlas, Action<Dictionary<Point, TextureRegion>> result, bool padWithPixels = false) {
+            var resultRegions = new Dictionary<Point, TextureRegion>();
+            for (var x = 0; x < atlas.RegionAmountX; x++) {
+                for (var y = 0; y < atlas.RegionAmountY; y++) {
+                    var pos = new Point(x, y);
+                    this.Add(atlas[pos], r => {
+                        resultRegions.Add(pos, r);
+                        if (resultRegions.Count >= atlas.RegionAmountX * atlas.RegionAmountY)
+                            result.Invoke(resultRegions);
+                    }, padWithPixels);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a new <see cref="DataTextureAtlas"/> to this texture packer to be packed.
+        /// The passed <see cref="Action{T}"/> is invoked in <see cref="Pack"/> and provides the caller with the resulting dictionary of texture regions on the <see cref="PackedTexture"/>, mapped to their name on the original <see cref="DataTextureAtlas"/>.
+        /// Note that the resulting data cannot be converted back into a <see cref="DataTextureAtlas"/>, since the resulting texture regions might be scattered throughout the <see cref="PackedTexture"/>.
+        /// </summary>
+        /// <param name="atlas">The texture atlas to pack.</param>
+        /// <param name="result">The result callback which will receive the resulting texture regions.</param>
+        /// <param name="padWithPixels">Whether the texture packer's padding should be filled with a copy of the texture's border, rather than transparent pixels. This value only has an effect if the texture packer was constructed with a padding.</param>
+        /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width.</exception>
+        public void Add(DataTextureAtlas atlas, Action<Dictionary<string, TextureRegion>> result, bool padWithPixels = false) {
+            var atlasRegions = atlas.RegionNames.ToArray();
+            var resultRegions = new Dictionary<string, TextureRegion>();
+            foreach (var region in atlasRegions) {
+                this.Add(atlas[region], r => {
+                    resultRegions.Add(region, r);
+                    if (resultRegions.Count >= atlasRegions.Length)
+                        result.Invoke(resultRegions);
+                }, padWithPixels);
+            }
+        }
+
+        /// <summary>
+        /// Adds a new <see cref="Texture2D"/> to this texture packer to be packed.
         /// The passed <see cref="Action{T}"/> is invoked in <see cref="Pack"/> and provides the caller with the resulting texture region on the <see cref="PackedTexture"/>.
         /// </summary>
-        /// <param name="texture">The texture to pack</param>
-        /// <param name="result">The result callback which will receive the resulting texture region</param>
-        public void Add(Texture2D texture, Action<TextureRegion> result) {
-            this.Add(new TextureRegion(texture), result);
+        /// <param name="texture">The texture to pack.</param>
+        /// <param name="result">The result callback which will receive the resulting texture region.</param>
+        /// <param name="padWithPixels">Whether the texture packer's padding should be filled with a copy of the texture's border, rather than transparent pixels. This value only has an effect if the texture packer was constructed with a padding.</param>
+        /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width.</exception>
+        public void Add(Texture2D texture, Action<TextureRegion> result, bool padWithPixels = false) {
+            this.Add(new TextureRegion(texture), result, padWithPixels);
         }
 
         /// <summary>
         /// Adds a new <see cref="TextureRegion"/> to this texture packer to be packed.
         /// The passed <see cref="Action{T}"/> is invoked in <see cref="Pack"/> and provides the caller with the resulting texture region on the <see cref="PackedTexture"/>.
         /// </summary>
-        /// <param name="texture">The texture to pack</param>
-        /// <param name="result">The result callback which will receive the resulting texture region</param>
-        /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width</exception>
-        public void Add(TextureRegion texture, Action<TextureRegion> result) {
+        /// <param name="texture">The texture region to pack.</param>
+        /// <param name="result">The result callback which will receive the resulting texture region.</param>
+        /// <param name="padWithPixels">Whether the texture packer's padding should be filled with a copy of the texture's border, rather than transparent pixels. This value only has an effect if the texture packer was constructed with a padding.</param>
+        /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width.</exception>
+        public void Add(TextureRegion texture, Action<TextureRegion> result, bool padWithPixels = false) {
             if (this.PackedTexture != null)
                 throw new InvalidOperationException("Cannot add texture to a texture packer that is already packed");
             if (texture.Width > this.maxWidth) {
@@ -84,11 +134,11 @@ namespace MLEM.Data {
                     throw new InvalidOperationException($"Cannot add texture with width {texture.Width} to a texture packer with max width {this.maxWidth}");
                 }
             }
-            this.textures.Add(new Request(texture, result));
+            this.textures.Add(new Request(texture, result, padWithPixels));
         }
 
         /// <summary>
-        /// Packs all of the textures and texture regions added using <see cref="Add(Microsoft.Xna.Framework.Graphics.Texture2D,System.Action{MLEM.Textures.TextureRegion})"/> into one texture.
+        /// Packs all of the textures and texture regions added using <see cref="Add(Microsoft.Xna.Framework.Graphics.Texture2D,System.Action{MLEM.Textures.TextureRegion},bool)"/> into one texture.
         /// The resulting texture will be stored in <see cref="PackedTexture"/>.
         /// All of the result callbacks that were added will also be invoked.
         /// </summary>
@@ -100,10 +150,8 @@ namespace MLEM.Data {
 
             // set pack areas for each request
             var stopwatch = Stopwatch.StartNew();
-            foreach (var request in this.textures.OrderByDescending(t => t.Texture.Width * t.Texture.Height)) {
-                var area = this.FindFreeArea(new Point(request.Texture.Width, request.Texture.Height));
-                request.PackedArea = area;
-            }
+            foreach (var request in this.textures.OrderByDescending(t => t.Texture.Width * t.Texture.Height))
+                request.PackedArea = this.FindFreeArea(new Point(request.Texture.Width, request.Texture.Height));
             stopwatch.Stop();
             this.LastCalculationTime = stopwatch.Elapsed;
 
@@ -122,14 +170,15 @@ namespace MLEM.Data {
             stopwatch.Restart();
             using (var data = this.PackedTexture.GetTextureData()) {
                 foreach (var request in this.textures)
-                    CopyRegion(data, request);
+                    this.CopyRegion(data, request);
             }
             stopwatch.Stop();
             this.LastPackTime = stopwatch.Elapsed;
 
             // invoke callbacks
             foreach (var request in this.textures) {
-                request.Result.Invoke(new TextureRegion(this.PackedTexture, request.PackedArea));
+                var packedArea = request.PackedArea.Shrink(new Point(this.padding));
+                request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea));
                 if (this.disposeTextures)
                     request.Texture.Texture.Dispose();
             }
@@ -154,6 +203,9 @@ namespace MLEM.Data {
         }
 
         private Rectangle FindFreeArea(Point size) {
+            size.X += this.padding * 2;
+            size.Y += this.padding * 2;
+
             var pos = new Point(0, 0);
             var lowestY = int.MaxValue;
             while (true) {
@@ -179,13 +231,21 @@ namespace MLEM.Data {
             }
         }
 
-        private static void CopyRegion(TextureExtensions.TextureData destination, Request request) {
+        private void CopyRegion(TextureExtensions.TextureData destination, Request request) {
+            var location = request.PackedArea.Location + new Point(this.padding);
             using (var data = request.Texture.Texture.GetTextureData()) {
-                for (var x = 0; x < request.Texture.Width; x++) {
-                    for (var y = 0; y < request.Texture.Height; y++) {
-                        var dest = request.PackedArea.Location + new Point(x, y);
-                        var src = request.Texture.Position + new Point(x, y);
-                        destination[dest] = data[src];
+                for (var x = -this.padding; x < request.Texture.Width + this.padding; x++) {
+                    for (var y = -this.padding; y < request.Texture.Height + this.padding; y++) {
+                        Color srcColor;
+                        if (!request.PadWithPixels && (x < 0 || y < 0 || x >= request.Texture.Width || y >= request.Texture.Height)) {
+                            // if we're out of bounds and not padding with pixels, we make it transparent
+                            srcColor = Color.Transparent;
+                        } else {
+                            // otherwise, we just use the closest pixel that is actually in bounds, causing the border pixels to be doubled up
+                            var src = new Point(MathHelper.Clamp(x, 0, request.Texture.Width - 1), MathHelper.Clamp(y, 0, request.Texture.Height - 1));
+                            srcColor = data[request.Texture.Position + src];
+                        }
+                        destination[location + new Point(x, y)] = srcColor;
                     }
                 }
             }
@@ -202,11 +262,13 @@ namespace MLEM.Data {
 
             public readonly TextureRegion Texture;
             public readonly Action<TextureRegion> Result;
+            public readonly bool PadWithPixels;
             public Rectangle PackedArea;
 
-            public Request(TextureRegion texture, Action<TextureRegion> result) {
+            public Request(TextureRegion texture, Action<TextureRegion> result, bool padWithPixels) {
                 this.Texture = texture;
                 this.Result = result;
+                this.PadWithPixels = padWithPixels;
             }
 
         }

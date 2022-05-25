@@ -50,9 +50,13 @@ namespace MLEM.Data {
             }
         }
         /// <summary>
-        /// Returns an enumerable of all of the <see cref="TextureRegion"/>s in this atlas.
+        /// Returns an enumerable of all of the <see cref="TextureRegion"/> values in this atlas.
         /// </summary>
         public IEnumerable<TextureRegion> Regions => this.regions.Values;
+        /// <summary>
+        /// Returns an enumerable of all of the <see cref="TextureRegion"/> names in this atlas.
+        /// </summary>
+        public IEnumerable<string> RegionNames => this.regions.Keys;
 
         private readonly Dictionary<string, TextureRegion> regions = new Dictionary<string, TextureRegion>();
 
