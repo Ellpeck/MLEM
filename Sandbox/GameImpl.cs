@@ -318,16 +318,16 @@ namespace Sandbox {
             }
             this.UiSystem.Add("Keybinds", keybindPanel);
 
-            var packer = new RuntimeTexturePacker(padding: 1);
+            var packer = new RuntimeTexturePacker();
             var regions = new List<TextureRegion>();
             packer.Add(new UniformTextureAtlas(tex, 16, 16), r => {
                 regions.AddRange(r.Values);
                 Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
-            }, true);
+            }, 1, true);
             packer.Add(this.Content.LoadTextureAtlas("Textures/Furniture"), r => {
                 regions.AddRange(r.Values);
                 Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
-            }, true);
+            }, 1, true);
             packer.Pack(this.GraphicsDevice);
             packer.PackedTexture.SaveAsPng(File.Create("_Packed.png"), packer.PackedTexture.Width, packer.PackedTexture.Height);
 

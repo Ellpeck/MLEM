@@ -56,6 +56,7 @@ Additions
 Improvements
 - Premultiply textures when using RawContentManager
 - Allow enumerating all region names of a DataTextureAtlas
+- Cache RuntimeTexturePacker texture data while packing to improve performance
 
 Fixes
 - Fixed SoundEffectReader incorrectly claiming it could read ogg and mp3 files
