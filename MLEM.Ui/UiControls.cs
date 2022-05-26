@@ -415,7 +415,7 @@ namespace MLEM.Ui {
                     if (child == this.SelectedElement)
                         continue;
                     var (xOffset, yOffset) = child.Area.Center - this.SelectedElement.Area.Center;
-                    var angle = Math.Abs(direction.Angle() - (float) Math.Atan2(yOffset, xOffset));
+                    var angle = Math.Abs(MathHelper.WrapAngle(direction.Angle() - (float) Math.Atan2(yOffset, xOffset)));
                     if (angle >= MathHelper.PiOver2 - Element.Epsilon)
                         continue;
                     var distSq = child.Area.DistanceSquared(this.SelectedElement.Area);

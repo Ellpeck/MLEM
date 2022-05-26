@@ -43,6 +43,7 @@ Fixes
 - Fixed elements not being deselected when removed through RemoveChild
 - Fixed elements sometimes staying hidden when they shouldn't in scrolling panels
 - Fixed elements' OnDeselected events not being raised when CanBeSelected is set to false while selected
+- Fixed gamepad auto-nav angle being incorrect for some elements
 
 Removals
 - Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones
