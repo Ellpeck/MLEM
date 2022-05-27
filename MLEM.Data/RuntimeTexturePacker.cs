@@ -71,7 +71,6 @@ namespace MLEM.Data {
         /// <param name="ignoreTransparent">Whether completely transparent texture regions in the <paramref name="atlas"/> should be ignored. If this is true, they will not be part of the <paramref name="result"/> collection either.</param>
         /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width.</exception>
         public void Add(UniformTextureAtlas atlas, Action<Dictionary<Point, TextureRegion>> result, int padding = 0, bool padWithPixels = false, bool ignoreTransparent = false) {
-            TextureData data = null;
             var addedRegions = new List<TextureRegion>();
             var resultRegions = new Dictionary<Point, TextureRegion>();
             for (var x = 0; x < atlas.RegionAmountX; x++) {
@@ -80,9 +79,7 @@ namespace MLEM.Data {
                     var region = atlas[pos];
 
                     if (ignoreTransparent) {
-                        if (data == null)
-                            data = atlas.Texture.GetTextureData();
-                        if (IsTransparent(region, data))
+                        if (IsTransparent(region))
                             continue;
                     }
 
@@ -255,13 +252,7 @@ namespace MLEM.Data {
         }
 
         private void CopyRegion(TextureData destination, Request request) {
-            // we cache texture data in case multiple requests use the same underlying texture
-            // this collection doesn't need to be disposed since we don't actually edit these textures
-            if (!this.dataCache.TryGetValue(request.Texture.Texture, out var data)) {
-                data = request.Texture.Texture.GetTextureData();
-                this.dataCache.Add(request.Texture.Texture, data);
-            }
-
+            var data = this.GetCachedTextureData(request.Texture.Texture);
             var location = request.PackedArea.Location + new Point(request.Padding);
             for (var x = -request.Padding; x < request.Texture.Width + request.Padding; x++) {
                 for (var y = -request.Padding; y < request.Texture.Height + request.Padding; y++) {
@@ -279,14 +270,18 @@ namespace MLEM.Data {
             }
         }
 
-        private static int ToPowerOfTwo(int value) {
-            var ret = 1;
-            while (ret < value)
-                ret <<= 1;
-            return ret;
+        private TextureData GetCachedTextureData(Texture2D texture) {
+            // we cache texture data in case multiple requests use the same underlying texture
+            // this collection doesn't need to be disposed since we don't actually edit these textures
+            if (!this.dataCache.TryGetValue(texture, out var data)) {
+                data = texture.GetTextureData();
+                this.dataCache.Add(texture, data);
+            }
+            return data;
         }
 
-        private static bool IsTransparent(TextureRegion region, TextureData data) {
+        private bool IsTransparent(TextureRegion region) {
+            var data = this.GetCachedTextureData(region.Texture);
             for (var rX = 0; rX < region.Width; rX++) {
                 for (var rY = 0; rY < region.Height; rY++) {
                     if (data[region.U + rX, region.V + rY] != Color.Transparent)
@@ -294,6 +289,13 @@ namespace MLEM.Data {
                 }
             }
             return true;
+        }
+
+        private static int ToPowerOfTwo(int value) {
+            var ret = 1;
+            while (ret < value)
+                ret <<= 1;
+            return ret;
         }
 
         private class Request {
