@@ -34,7 +34,8 @@ namespace MLEM.Data {
         /// </summary>
         public TimeSpan LastTotalTime => this.LastCalculationTime + this.LastPackTime;
 
-        private readonly List<Request> textures = new List<Request>();
+        private readonly List<Request> texturesToPack = new List<Request>();
+        private readonly List<Request> alreadyPackedTextures = new List<Request>();
         private readonly Dictionary<Texture2D, TextureData> dataCache = new Dictionary<Texture2D, TextureData>();
         private readonly bool autoIncreaseMaxWidth;
         private readonly bool forcePowerOfTwo;
@@ -148,7 +149,7 @@ namespace MLEM.Data {
                     throw new InvalidOperationException($"Cannot add texture with width {texture.Width} to a texture packer with max width {this.maxWidth}");
                 }
             }
-            this.textures.Add(new Request(texture, result, padding, padWithPixels));
+            this.texturesToPack.Add(new Request(texture, result, padding, padWithPixels));
         }
 
         /// <summary>
@@ -162,19 +163,19 @@ namespace MLEM.Data {
             if (this.PackedTexture != null)
                 throw new InvalidOperationException("Cannot pack a texture packer that is already packed");
 
-            // we pack larger textures first, so that smaller textures can fit in the gaps that larger ones leave
-            this.textures.Sort((r1, r2) => (r2.Texture.Width * r2.Texture.Height).CompareTo(r1.Texture.Width * r1.Texture.Height));
-
             // set pack areas for each request
+            // we pack larger textures first, so that smaller textures can fit in the gaps that larger ones leave
             var stopwatch = Stopwatch.StartNew();
-            foreach (var request in this.textures)
+            foreach (var request in this.texturesToPack.OrderByDescending(t => t.Texture.Width * t.Texture.Height)) {
                 request.PackedArea = this.FindFreeArea(request);
+                this.alreadyPackedTextures.Add(request);
+            }
             stopwatch.Stop();
             this.LastCalculationTime = stopwatch.Elapsed;
 
             // figure out texture size and generate texture
-            var width = this.textures.Max(t => t.PackedArea.Right);
-            var height = this.textures.Max(t => t.PackedArea.Bottom);
+            var width = this.alreadyPackedTextures.Max(t => t.PackedArea.Right);
+            var height = this.alreadyPackedTextures.Max(t => t.PackedArea.Bottom);
             if (this.forcePowerOfTwo) {
                 width = ToPowerOfTwo(width);
                 height = ToPowerOfTwo(height);
@@ -186,21 +187,22 @@ namespace MLEM.Data {
             // copy texture data onto the packed texture
             stopwatch.Restart();
             using (var data = this.PackedTexture.GetTextureData()) {
-                foreach (var request in this.textures)
+                foreach (var request in this.alreadyPackedTextures)
                     this.CopyRegion(data, request);
             }
             stopwatch.Stop();
             this.LastPackTime = stopwatch.Elapsed;
 
             // invoke callbacks
-            foreach (var request in this.textures) {
+            foreach (var request in this.alreadyPackedTextures) {
                 var packedArea = request.PackedArea.Shrink(new Point(request.Padding));
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea));
                 if (this.disposeTextures)
                     request.Texture.Texture.Dispose();
             }
 
-            this.textures.Clear();
+            this.texturesToPack.Clear();
+            this.alreadyPackedTextures.Clear();
             this.dataCache.Clear();
         }
 
@@ -210,7 +212,8 @@ namespace MLEM.Data {
         public void Reset() {
             this.PackedTexture?.Dispose();
             this.PackedTexture = null;
-            this.textures.Clear();
+            this.texturesToPack.Clear();
+            this.alreadyPackedTextures.Clear();
             this.dataCache.Clear();
             this.LastCalculationTime = TimeSpan.Zero;
             this.LastPackTime = TimeSpan.Zero;
@@ -231,7 +234,7 @@ namespace MLEM.Data {
             while (true) {
                 var intersected = false;
                 var area = new Rectangle(pos, size);
-                foreach (var tex in this.textures) {
+                foreach (var tex in this.alreadyPackedTextures) {
                     if (tex.PackedArea.Intersects(area)) {
                         pos.X = tex.PackedArea.Right;
                         // when we move down, we want to move down by the smallest intersecting texture's height
