@@ -323,7 +323,7 @@ namespace Sandbox {
             packer.Add(new UniformTextureAtlas(tex, 16, 16), r => {
                 regions.AddRange(r.Values);
                 Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
-            }, 1, true);
+            }, 1, true, true);
             packer.Add(this.Content.LoadTextureAtlas("Textures/Furniture"), r => {
                 regions.AddRange(r.Values);
                 Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
@@ -342,7 +342,7 @@ namespace Sandbox {
                     x += r.Width * sc + 1;
                     if (x >= 1000) {
                         x = 0;
-                        y += 50;
+                        y += 250;
                     }
                 }
                 this.SpriteBatch.End();

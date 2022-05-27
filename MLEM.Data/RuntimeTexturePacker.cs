@@ -68,17 +68,30 @@ namespace MLEM.Data {
         /// <param name="result">The result callback which will receive the resulting texture regions.</param>
         /// <param name="padding">The padding that the texture should have around itself. This can be useful if texture bleeding issues occur due to texture coordinate rounding.</param>
         /// <param name="padWithPixels">Whether the texture's padding should be filled with a copy of the texture's border, rather than transparent pixels. This value only has an effect if <paramref name="padding"/> is greater than 0.</param>
+        /// <param name="ignoreTransparent">Whether completely transparent texture regions in the <paramref name="atlas"/> should be ignored. If this is true, they will not be part of the <paramref name="result"/> collection either.</param>
         /// <exception cref="InvalidOperationException">Thrown when trying to add data to a packer that has already been packed, or when trying to add a texture width a width greater than the defined max width.</exception>
-        public void Add(UniformTextureAtlas atlas, Action<Dictionary<Point, TextureRegion>> result, int padding = 0, bool padWithPixels = false) {
+        public void Add(UniformTextureAtlas atlas, Action<Dictionary<Point, TextureRegion>> result, int padding = 0, bool padWithPixels = false, bool ignoreTransparent = false) {
+            TextureData data = null;
+            var addedRegions = new List<TextureRegion>();
             var resultRegions = new Dictionary<Point, TextureRegion>();
             for (var x = 0; x < atlas.RegionAmountX; x++) {
                 for (var y = 0; y < atlas.RegionAmountY; y++) {
                     var pos = new Point(x, y);
-                    this.Add(atlas[pos], r => {
+                    var region = atlas[pos];
+
+                    if (ignoreTransparent) {
+                        if (data == null)
+                            data = atlas.Texture.GetTextureData();
+                        if (IsTransparent(region, data))
+                            continue;
+                    }
+
+                    this.Add(region, r => {
                         resultRegions.Add(pos, r);
-                        if (resultRegions.Count >= atlas.RegionAmountX * atlas.RegionAmountY)
+                        if (resultRegions.Count >= addedRegions.Count)
                             result.Invoke(resultRegions);
                     }, padding, padWithPixels);
+                    addedRegions.Add(region);
                 }
             }
         }
@@ -271,6 +284,16 @@ namespace MLEM.Data {
             while (ret < value)
                 ret <<= 1;
             return ret;
+        }
+
+        private static bool IsTransparent(TextureRegion region, TextureData data) {
+            for (var rX = 0; rX < region.Width; rX++) {
+                for (var rY = 0; rY < region.Height; rY++) {
+                    if (data[region.U + rX, region.V + rY] != Color.Transparent)
+                        return false;
+                }
+            }
+            return true;
         }
 
         private class Request {
