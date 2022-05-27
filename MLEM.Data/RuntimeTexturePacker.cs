@@ -152,9 +152,12 @@ namespace MLEM.Data {
             if (this.PackedTexture != null)
                 throw new InvalidOperationException("Cannot pack a texture packer that is already packed");
 
+            // we pack larger textures first, so that smaller textures can fit in the gaps that larger ones leave
+            this.textures.Sort((r1, r2) => (r2.Texture.Width * r2.Texture.Height).CompareTo(r1.Texture.Width * r1.Texture.Height));
+
             // set pack areas for each request
             var stopwatch = Stopwatch.StartNew();
-            foreach (var request in this.textures.OrderByDescending(t => t.Texture.Width * t.Texture.Height))
+            foreach (var request in this.textures)
                 request.PackedArea = this.FindFreeArea(request);
             stopwatch.Stop();
             this.LastCalculationTime = stopwatch.Elapsed;
