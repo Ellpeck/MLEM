@@ -329,7 +329,9 @@ namespace Sandbox {
                 Console.WriteLine($"Returned {r.Count} regions: {string.Join(", ", r.Select(kv => kv.Key + ": " + kv.Value.Area))}");
             }, 1, true);
             packer.Pack(this.GraphicsDevice);
-            packer.PackedTexture.SaveAsPng(File.Create("_Packed.png"), packer.PackedTexture.Width, packer.PackedTexture.Height);
+
+            using (var stream = File.Create("_Packed.png"))
+                packer.PackedTexture.SaveAsPng(stream, packer.PackedTexture.Width, packer.PackedTexture.Height);
 
             this.OnDraw += (g, t) => {
                 this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);

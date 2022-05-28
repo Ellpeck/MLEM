@@ -36,6 +36,7 @@ namespace MLEM.Data {
 
         private readonly List<Request> texturesToPack = new List<Request>();
         private readonly List<Request> alreadyPackedTextures = new List<Request>();
+        private readonly Dictionary<Point, Point> firstPossiblePosForSizeCache = new Dictionary<Point, Point>();
         private readonly Dictionary<Texture2D, TextureData> dataCache = new Dictionary<Texture2D, TextureData>();
         private readonly bool autoIncreaseMaxWidth;
         private readonly bool forcePowerOfTwo;
@@ -168,6 +169,8 @@ namespace MLEM.Data {
             var stopwatch = Stopwatch.StartNew();
             foreach (var request in this.texturesToPack.OrderByDescending(t => t.Texture.Width * t.Texture.Height)) {
                 request.PackedArea = this.FindFreeArea(request);
+                // if this is the first position that this request fit in, no other requests of the same size will find a position before it
+                this.firstPossiblePosForSizeCache[request.PackedArea.Size] = request.PackedArea.Location;
                 this.alreadyPackedTextures.Add(request);
             }
             stopwatch.Stop();
@@ -201,9 +204,7 @@ namespace MLEM.Data {
                     request.Texture.Texture.Dispose();
             }
 
-            this.texturesToPack.Clear();
-            this.alreadyPackedTextures.Clear();
-            this.dataCache.Clear();
+            this.ClearTempCollections();
         }
 
         /// <summary>
@@ -212,11 +213,9 @@ namespace MLEM.Data {
         public void Reset() {
             this.PackedTexture?.Dispose();
             this.PackedTexture = null;
-            this.texturesToPack.Clear();
-            this.alreadyPackedTextures.Clear();
-            this.dataCache.Clear();
             this.LastCalculationTime = TimeSpan.Zero;
             this.LastPackTime = TimeSpan.Zero;
+            this.ClearTempCollections();
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
@@ -229,7 +228,7 @@ namespace MLEM.Data {
             size.X += request.Padding * 2;
             size.Y += request.Padding * 2;
 
-            var pos = new Point(0, 0);
+            var pos = this.firstPossiblePosForSizeCache.TryGetValue(size, out var first) ? first : Point.Zero;
             var lowestY = int.MaxValue;
             while (true) {
                 var intersected = false;
@@ -292,6 +291,13 @@ namespace MLEM.Data {
                 }
             }
             return true;
+        }
+
+        private void ClearTempCollections() {
+            this.texturesToPack.Clear();
+            this.alreadyPackedTextures.Clear();
+            this.firstPossiblePosForSizeCache.Clear();
+            this.dataCache.Clear();
         }
 
         private static int ToPowerOfTwo(int value) {
