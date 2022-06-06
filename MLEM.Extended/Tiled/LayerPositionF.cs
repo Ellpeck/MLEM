@@ -4,11 +4,11 @@ using MonoGame.Extended.Tiled;
 
 namespace MLEM.Extended.Tiled {
     /// <summary>
-    /// A struct that represents a position on a <see cref="TiledMap"/> with multiple layers, where the <see cref="X"/> and <see cref="Y"/> coordinates are 32-bit integer numbers.
-    /// See <see cref="LayerPositionF"/> for a floating point position.
+    /// A struct that represents a position on a <see cref="TiledMap"/> with multiple layers, where the <see cref="X"/> and <see cref="Y"/> coordinates are 32-bit floating point numbers.
+    /// See <see cref="LayerPosition"/> for an integer position.
     /// </summary>
     [DataContract]
-    public struct LayerPosition : IEquatable<LayerPosition> {
+    public struct LayerPositionF : IEquatable<LayerPositionF> {
 
         /// <summary>
         /// The name of the layer that this position is on
@@ -19,12 +19,12 @@ namespace MLEM.Extended.Tiled {
         /// The x coordinate of this position
         /// </summary>
         [DataMember]
-        public int X;
+        public float X;
         /// <summary>
         /// The y coordinate of this position
         /// </summary>
         [DataMember]
-        public int Y;
+        public float Y;
 
         /// <summary>
         /// Creates a new layer position with the given settings
@@ -32,14 +32,14 @@ namespace MLEM.Extended.Tiled {
         /// <param name="layerName">The layer name</param>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
-        public LayerPosition(string layerName, int x, int y) {
+        public LayerPositionF(string layerName, float x, float y) {
             this.Layer = layerName;
             this.X = x;
             this.Y = y;
         }
 
         /// <inheritdoc cref="Equals(object)"/>
-        public bool Equals(LayerPosition other) {
+        public bool Equals(LayerPositionF other) {
             return this.Layer == other.Layer && this.X == other.X && this.Y == other.Y;
         }
 
@@ -47,15 +47,15 @@ namespace MLEM.Extended.Tiled {
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>true if <paramref name="obj">obj</paramref> and this instance are the same type and represent the same value; otherwise, false.</returns>
         public override bool Equals(object obj) {
-            return obj is LayerPosition other && this.Equals(other);
+            return obj is LayerPositionF other && this.Equals(other);
         }
 
         /// <summary>Returns the hash code for this instance.</summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             var hashCode = this.Layer.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.X;
-            hashCode = (hashCode * 397) ^ this.Y;
+            hashCode = (hashCode * 397) ^ this.X.GetHashCode();
+            hashCode = (hashCode * 397) ^ this.Y.GetHashCode();
             return hashCode;
         }
 
@@ -73,19 +73,19 @@ namespace MLEM.Extended.Tiled {
         /// <param name="right">The right position.</param>
         /// <returns>The sum of the positions.</returns>
         /// <exception cref="ArgumentException">Thrown if the two positions' <see cref="Layer"/> are not the same.</exception>
-        public static LayerPosition Add(LayerPosition left, LayerPosition right) {
+        public static LayerPositionF Add(LayerPositionF left, LayerPositionF right) {
             if (left.Layer != right.Layer)
                 throw new ArgumentException("Cannot add layer positions on different layers");
-            return new LayerPosition(left.Layer, left.X + right.X, left.Y + right.Y);
+            return new LayerPositionF(left.Layer, left.X + right.X, left.Y + right.Y);
         }
 
-        /// <inheritdoc cref="Equals(LayerPosition)"/>
-        public static bool operator ==(LayerPosition left, LayerPosition right) {
+        /// <inheritdoc cref="Equals(LayerPositionF)"/>
+        public static bool operator ==(LayerPositionF left, LayerPositionF right) {
             return left.Equals(right);
         }
 
-        /// <inheritdoc cref="Equals(LayerPosition)"/>
-        public static bool operator !=(LayerPosition left, LayerPosition right) {
+        /// <inheritdoc cref="Equals(LayerPositionF)"/>
+        public static bool operator !=(LayerPositionF left, LayerPositionF right) {
             return !left.Equals(right);
         }
 
@@ -94,8 +94,8 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="position">The position to negate.</param>
         /// <returns>The negative position.</returns>
-        public static LayerPosition operator -(LayerPosition position) {
-            return new LayerPosition(position.Layer, -position.X, -position.Y);
+        public static LayerPositionF operator -(LayerPositionF position) {
+            return new LayerPositionF(position.Layer, -position.X, -position.Y);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="left">The left position.</param>
         /// <param name="right">The right position.</param>
         /// <returns>The sum of the positions.</returns>
-        public static LayerPosition operator +(LayerPosition left, LayerPosition right) {
+        public static LayerPositionF operator +(LayerPositionF left, LayerPositionF right) {
             return Add(left, right);
         }
 
@@ -114,17 +114,18 @@ namespace MLEM.Extended.Tiled {
         /// <param name="left">The left position.</param>
         /// <param name="right">The right position.</param>
         /// <returns>The difference of the positions.</returns>
-        public static LayerPosition operator -(LayerPosition left, LayerPosition right) {
+        public static LayerPositionF operator -(LayerPositionF left, LayerPositionF right) {
             return Add(left, -right);
         }
 
         /// <summary>
-        /// Implicitly converts a <see cref="LayerPosition"/> to a <see cref="LayerPositionF"/>.
+        /// Implicitly converts a <see cref="LayerPositionF"/> to a <see cref="LayerPosition"/>.
+        /// The coordinates are typecast to 32-bit integers in the process.
         /// </summary>
         /// <param name="position">The position to convert.</param>
         /// <returns>The converted position.</returns>
-        public static implicit operator LayerPositionF(LayerPosition position) {
-            return new LayerPositionF(position.Layer, position.X, position.Y);
+        public static implicit operator LayerPosition(LayerPositionF position) {
+            return new LayerPosition(position.Layer, (int) position.X, (int) position.Y);
         }
 
     }

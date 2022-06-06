@@ -49,6 +49,13 @@ Removals
 - Marked old Draw and DrawTransformed overloads as obsolete in favor of SpriteBatchContext ones
 - Marked Tooltip.Paragraph as obsolete in favor of new Paragraphs collection
 
+### MLEM.Extended
+Additions
+- Added LayerPositionF
+
+Improvements
+- Allow using a StaticSpriteBatch to render an IndividualTiledMapRenderer
+
 ### MLEM.Data
 Additions
 - Added the ability to add padding to RuntimeTexturePacker texture regions
