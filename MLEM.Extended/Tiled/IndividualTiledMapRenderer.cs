@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Cameras;
 using MLEM.Extensions;
+using MLEM.Graphics;
 using MLEM.Misc;
 using MonoGame.Extended.Tiled;
 using RectangleF = MonoGame.Extended.RectangleF;
@@ -93,6 +94,20 @@ namespace MLEM.Extended.Tiled {
         }
 
         /// <summary>
+        /// Adds this individual tiled map renderer to the given <see cref="StaticSpriteBatch"/>.
+        /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
+        /// </summary>
+        /// <param name="batch">The static sprite batch to use for drawing.</param>
+        /// <param name="frustum">The area that is visible, in pixel space.</param>
+        /// <param name="addFunction">The add function to use, or null to use <see cref="DefaultAdd"/>.</param>
+        public void Add(StaticSpriteBatch batch, RectangleF? frustum = null, AddDelegate addFunction = null) {
+            for (var i = 0; i < this.map.TileLayers.Count; i++) {
+                if (this.map.TileLayers[i].IsVisible)
+                    this.AddLayer(batch, i, frustum, addFunction);
+            }
+        }
+
+        /// <summary>
         /// Draws the given layer of this individual tiled map renderer.
         /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
         /// </summary>
@@ -102,16 +117,32 @@ namespace MLEM.Extended.Tiled {
         /// <param name="drawFunction">The draw function to use, or null to use <see cref="DefaultDraw"/></param>
         public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
             var draw = drawFunction ?? DefaultDraw;
-            var frust = frustum ?? new RectangleF(0, 0, float.MaxValue, float.MaxValue);
-            var minX = Math.Max(0, frust.Left / this.map.TileWidth).Floor();
-            var minY = Math.Max(0, frust.Top / this.map.TileHeight).Floor();
-            var maxX = Math.Min(this.map.Width, frust.Right / this.map.TileWidth).Ceil();
-            var maxY = Math.Min(this.map.Height, frust.Bottom / this.map.TileHeight).Ceil();
+            var (minX, minY, maxX, maxY) = this.GetFrustum(frustum);
             for (var x = minX; x < maxX; x++) {
                 for (var y = minY; y < maxY; y++) {
                     var info = this.drawInfos[layerIndex, x, y];
                     if (info != null)
                         draw(batch, info);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds the given layer of this individual tiled map renderer to the given <see cref="StaticSpriteBatch"/>.
+        /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
+        /// </summary>
+        /// <param name="batch">The static sprite batch to use for drawing.</param>
+        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/>.</param>
+        /// <param name="frustum">The area that is visible, in pixel space.</param>
+        /// <param name="addFunction">The add function to use, or null to use <see cref="DefaultAdd"/>.</param>
+        public void AddLayer(StaticSpriteBatch batch, int layerIndex, RectangleF? frustum = null, AddDelegate addFunction = null) {
+            var add = addFunction ?? DefaultAdd;
+            var (minX, minY, maxX, maxY) = this.GetFrustum(frustum);
+            for (var x = minX; x < maxX; x++) {
+                for (var y = minY; y < maxY; y++) {
+                    var info = this.drawInfos[layerIndex, x, y];
+                    if (info != null)
+                        add(batch, info);
                 }
             }
         }
@@ -125,8 +156,17 @@ namespace MLEM.Extended.Tiled {
                 animation.Update(time);
         }
 
+        private (int MinX, int MinY, int MaxX, int MaxY) GetFrustum(RectangleF? frustum) {
+            var frust = frustum ?? new RectangleF(0, 0, float.MaxValue, float.MaxValue);
+            var minX = Math.Max(0, frust.Left / this.map.TileWidth).Floor();
+            var minY = Math.Max(0, frust.Top / this.map.TileHeight).Floor();
+            var maxX = Math.Min(this.map.Width, frust.Right / this.map.TileWidth).Ceil();
+            var maxY = Math.Min(this.map.Height, frust.Bottom / this.map.TileHeight).Ceil();
+            return (minX, minY, maxX, maxY);
+        }
+
         /// <summary>
-        /// The default implementation of <see cref="DrawDelegate"/> that is used by <see cref="SetMap"/> if no custom draw function is passed
+        /// The default implementation of <see cref="DrawDelegate"/> that is used by <see cref="Draw"/> if no custom draw function is passed.
         /// </summary>
         /// <param name="batch">The sprite batch to use for drawing</param>
         /// <param name="info">The <see cref="TileDrawInfo"/> to draw</param>
@@ -135,6 +175,18 @@ namespace MLEM.Extended.Tiled {
             var effects = info.Tile.GetSpriteEffects();
             var drawPos = new Vector2(info.Position.X * info.Renderer.map.TileWidth, info.Position.Y * info.Renderer.map.TileHeight);
             batch.Draw(info.Tileset.Texture, drawPos, region, Color.White, 0, Vector2.Zero, 1, effects, info.Depth);
+        }
+
+        /// <summary>
+        /// The default implementation of <see cref="AddDelegate"/> that is used by <see cref="Add"/> if no custom add function is passed.
+        /// </summary>
+        /// <param name="batch">The static sprite batch to use for drawing.</param>
+        /// <param name="info">The <see cref="TileDrawInfo"/> to add.</param>
+        public static void DefaultAdd(StaticSpriteBatch batch, TileDrawInfo info) {
+            var region = info.Tileset.GetTextureRegion(info.TilesetTile);
+            var effects = info.Tile.GetSpriteEffects();
+            var drawPos = new Vector2(info.Position.X * info.Renderer.map.TileWidth, info.Position.Y * info.Renderer.map.TileHeight);
+            batch.Add(info.Tileset.Texture, drawPos, region, Color.White, 0, Vector2.Zero, 1, effects, info.Depth);
         }
 
         /// <summary>
@@ -154,6 +206,13 @@ namespace MLEM.Extended.Tiled {
         /// <param name="batch">The sprite batch to use for drawing</param>
         /// <param name="info">The <see cref="TileDrawInfo"/> to draw</param>
         public delegate void DrawDelegate(SpriteBatch batch, TileDrawInfo info);
+
+        /// <summary>
+        /// A delegate method used for adding an <see cref="IndividualTiledMapRenderer"/> to a <see cref="StaticSpriteBatch"/>.
+        /// </summary>
+        /// <param name="batch">The static sprite batch to use for drawing.</param>
+        /// <param name="info">The <see cref="TileDrawInfo"/> to add.</param>
+        public delegate void AddDelegate(StaticSpriteBatch batch, TileDrawInfo info);
 
         /// <summary>
         /// A tile draw info contains information about a tile at a given map location.
