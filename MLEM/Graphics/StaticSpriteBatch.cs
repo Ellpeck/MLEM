@@ -337,6 +337,8 @@ namespace MLEM.Graphics {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
             if (this.items.Remove(item)) {
+                if (this.items.Count <= 0)
+                    this.texture = null;
                 this.batchChanged = true;
                 return true;
             }

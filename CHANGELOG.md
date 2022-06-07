@@ -21,6 +21,9 @@ Additions
 Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
 
+Fixes
+- Fixed StaticSpriteBatch not resetting its texture when all items are removed
+
 ### MLEM.Ui
 Additions
 - Added Element.AutoNavGroup which allows forming groups for auto-navigation
