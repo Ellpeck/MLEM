@@ -20,9 +20,7 @@ Additions
 
 Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
-
-Fixes
-- Fixed StaticSpriteBatch not resetting its texture when all items are removed
+- Allow using multiple textures in a StaticSpriteBatch
 
 ### MLEM.Ui
 Additions

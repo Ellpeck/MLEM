@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 
 namespace MLEM.Graphics {
     /// <summary>
@@ -18,17 +17,31 @@ namespace MLEM.Graphics {
         private static readonly VertexPositionColorTexture[] Data = new VertexPositionColorTexture[MaxBatchItems * 4];
 
         /// <summary>
-        /// The amount of vertices that are currently batched
+        /// The amount of vertices that are currently batched.
         /// </summary>
         public int Vertices => this.items.Count * 4;
+        /// <summary>
+        /// The amount of vertex buffers that this static sprite batch has.
+        /// To see the amount of buffers that are actually in use, see <see cref="FilledBuffers"/>.
+        /// </summary>
+        public int Buffers => this.vertexBuffers.Count;
+        /// <summary>
+        /// The amount of textures that this static sprite batch is currently using.
+        /// </summary>
+        public int Textures => this.textures.Distinct().Count();
+        /// <summary>
+        /// The amount of vertex buffers that are currently filled in this static sprite batch.
+        /// To see the amount of buffers that are available, see <see cref="Buffers"/>.
+        /// </summary>
+        public int FilledBuffers { get; private set; }
 
         private readonly GraphicsDevice graphicsDevice;
         private readonly SpriteEffect spriteEffect;
 
         private readonly List<VertexBuffer> vertexBuffers = new List<VertexBuffer>();
+        private readonly List<Texture2D> textures = new List<Texture2D>();
         private readonly ISet<Item> items = new HashSet<Item>();
         private IndexBuffer indices;
-        private Texture2D texture;
         private bool batching;
         private bool batchChanged;
 
@@ -56,49 +69,55 @@ namespace MLEM.Graphics {
         /// Ends batching.
         /// Call this method after calling <c>Add</c> or any of its overloads the desired number of times to add batched items.
         /// </summary>
-        /// <param name="sortMode">The drawing order for sprite drawing. <see cref="SpriteSortMode.Deferred" /> by default. Note that <see cref="SpriteSortMode.Immediate"/> and <see cref="SpriteSortMode.Texture"/> are not supported.</param>
-        /// <exception cref="InvalidOperationException">Thrown if this method is called before <see cref="BeginBatch"/> was called</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <paramref name="sortMode"/> is <see cref="SpriteSortMode.Immediate"/> or <see cref="SpriteSortMode.Texture"/>, which are not supported</exception>
-        public void EndBatch(SpriteSortMode sortMode = SpriteSortMode.Deferred) {
+        /// <param name="sortMode">The drawing order for sprite drawing. <see cref="SpriteSortMode.Texture" /> by default, since it is the best in terms of rendering performance. Note that <see cref="SpriteSortMode.Immediate"/> is not supported.</param>
+        /// <exception cref="InvalidOperationException">Thrown if this method is called before <see cref="BeginBatch"/> was called.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <paramref name="sortMode"/> is <see cref="SpriteSortMode.Immediate"/>, which is not supported.</exception>
+        public void EndBatch(SpriteSortMode sortMode = SpriteSortMode.Texture) {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
-            if (sortMode == SpriteSortMode.Immediate || sortMode == SpriteSortMode.Texture)
-                throw new ArgumentOutOfRangeException(nameof(sortMode), "Cannot use sprite sort modes Immediate or Texture for static batching");
+            if (sortMode == SpriteSortMode.Immediate)
+                throw new ArgumentOutOfRangeException(nameof(sortMode), "Cannot use sprite sort mode Immediate for static batching");
             this.batching = false;
 
             // if we didn't add or remove any batch items, we don't have to recalculate anything
             if (!this.batchChanged)
                 return;
             this.batchChanged = false;
-
-            // ensure we have enough vertex buffers
-            var requiredBuffers = (this.items.Count / (float) MaxBatchItems).Ceil();
-            while (this.vertexBuffers.Count < requiredBuffers)
-                this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, MaxBatchItems * 4, BufferUsage.WriteOnly));
+            this.FilledBuffers = 0;
+            this.textures.Clear();
 
             // order items according to the sort mode
             IEnumerable<Item> ordered = this.items;
-            if (sortMode == SpriteSortMode.BackToFront) {
-                ordered = ordered.OrderBy(i => -i.Depth);
-            } else if (sortMode == SpriteSortMode.FrontToBack) {
-                ordered = ordered.OrderBy(i => i.Depth);
+            switch (sortMode) {
+                case SpriteSortMode.Texture:
+                    // SortingKey is internal, but this will do for batching the same texture together
+                    ordered = ordered.OrderBy(i => i.Texture.GetHashCode());
+                    break;
+                case SpriteSortMode.BackToFront:
+                    ordered = ordered.OrderBy(i => -i.Depth);
+                    break;
+                case SpriteSortMode.FrontToBack:
+                    ordered = ordered.OrderBy(i => i.Depth);
+                    break;
             }
 
             // fill vertex buffers
             var dataIndex = 0;
-            var arrayIndex = 0;
+            Texture2D texture = null;
             foreach (var item in ordered) {
+                // if the texture changes, we also have to start a new buffer!
+                if (dataIndex > 0 && (item.Texture != texture || dataIndex >= Data.Length)) {
+                    this.FillBuffer(this.FilledBuffers++, texture, Data);
+                    dataIndex = 0;
+                }
                 Data[dataIndex++] = item.TopLeft;
                 Data[dataIndex++] = item.TopRight;
                 Data[dataIndex++] = item.BottomLeft;
                 Data[dataIndex++] = item.BottomRight;
-                if (dataIndex >= Data.Length) {
-                    this.vertexBuffers[arrayIndex++].SetData(Data);
-                    dataIndex = 0;
-                }
+                texture = item.Texture;
             }
             if (dataIndex > 0)
-                this.vertexBuffers[arrayIndex].SetData(Data);
+                this.FillBuffer(this.FilledBuffers++, texture, Data);
 
             // ensure we have enough indices
             var maxItems = Math.Min(this.items.Count, MaxBatchItems);
@@ -152,21 +171,23 @@ namespace MLEM.Graphics {
             this.spriteEffect.CurrentTechnique.Passes[0].Apply();
 
             var totalIndex = 0;
-            foreach (var buffer in this.vertexBuffers) {
+            for (var i = 0; i < this.FilledBuffers; i++) {
+                var buffer = this.vertexBuffers[i];
+                var texture = this.textures[i];
                 var tris = Math.Min(this.items.Count * 4 - totalIndex, buffer.VertexCount) / 4 * 2;
-                if (tris <= 0)
-                    break;
+
                 this.graphicsDevice.SetVertexBuffer(buffer);
                 if (effect != null) {
                     foreach (var pass in effect.CurrentTechnique.Passes) {
                         pass.Apply();
-                        this.graphicsDevice.Textures[0] = this.texture;
+                        this.graphicsDevice.Textures[0] = texture;
                         this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, tris);
                     }
                 } else {
-                    this.graphicsDevice.Textures[0] = this.texture;
+                    this.graphicsDevice.Textures[0] = texture;
                     this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, tris);
                 }
+
                 totalIndex += buffer.VertexCount;
             }
         }
@@ -337,8 +358,6 @@ namespace MLEM.Graphics {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
             if (this.items.Remove(item)) {
-                if (this.items.Count <= 0)
-                    this.texture = null;
                 this.batchChanged = true;
                 return true;
             }
@@ -354,7 +373,8 @@ namespace MLEM.Graphics {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
             this.items.Clear();
-            this.texture = null;
+            this.textures.Clear();
+            this.FilledBuffers = 0;
             this.batchChanged = true;
         }
 
@@ -406,13 +426,17 @@ namespace MLEM.Graphics {
         private Item Add(Texture2D texture, float depth, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
-            if (this.texture != null && this.texture != texture)
-                throw new ArgumentException("Cannot use multiple textures in one batch", nameof(texture));
-            var item = new Item(tl, tr, bl, br, depth);
+            var item = new Item(texture, depth, tl, tr, bl, br);
             this.items.Add(item);
-            this.texture = texture;
             this.batchChanged = true;
             return item;
+        }
+
+        private void FillBuffer(int index, Texture2D texture, VertexPositionColorTexture[] data) {
+            if (this.vertexBuffers.Count <= index)
+                this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, MaxBatchItems * 4, BufferUsage.WriteOnly));
+            this.vertexBuffers[index].SetData(data);
+            this.textures.Insert(index, texture);
         }
 
         /// <summary>
@@ -421,18 +445,20 @@ namespace MLEM.Graphics {
         /// </summary>
         public class Item {
 
+            internal readonly Texture2D Texture;
+            internal readonly float Depth;
             internal readonly VertexPositionColorTexture TopLeft;
             internal readonly VertexPositionColorTexture TopRight;
             internal readonly VertexPositionColorTexture BottomLeft;
             internal readonly VertexPositionColorTexture BottomRight;
-            internal readonly float Depth;
 
-            internal Item(VertexPositionColorTexture topLeft, VertexPositionColorTexture topRight, VertexPositionColorTexture bottomLeft, VertexPositionColorTexture bottomRight, float depth) {
+            internal Item(Texture2D texture, float depth, VertexPositionColorTexture topLeft, VertexPositionColorTexture topRight, VertexPositionColorTexture bottomLeft, VertexPositionColorTexture bottomRight) {
+                this.Texture = texture;
+                this.Depth = depth;
                 this.TopLeft = topLeft;
                 this.TopRight = topRight;
                 this.BottomLeft = bottomLeft;
                 this.BottomRight = bottomRight;
-                this.Depth = depth;
             }
 
         }
