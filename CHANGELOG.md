@@ -25,6 +25,7 @@ Improvements
 ### MLEM.Ui
 Additions
 - Added Element.AutoNavGroup which allows forming groups for auto-navigation
+- Added UiMarkdownParser
 
 Improvements
 - Ensure that Element.IsMouseOver is always accurate by making it an auto-property

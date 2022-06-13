@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Coroutine;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,7 @@ using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
+using MLEM.Ui.Parsers;
 using MLEM.Ui.Style;
 
 namespace Demos {
@@ -222,6 +224,13 @@ namespace Demos {
                 if (Enum.TryParse<TextAlignment>(c.Match.Groups[1].Value, out var alignment))
                     alignPar.Alignment = alignment;
             };
+
+            this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "MLEM.Ui also contains a simple Markdown parser, which can be useful for displaying things like changelogs in your game."));
+            this.root.AddChild(new VerticalSpace(3));
+            var parser = new UiMarkdownParser {GraphicsDevice = this.GraphicsDevice};
+            using (var reader = new StreamReader(TitleContainer.OpenStream("Content/Markdown.md")))
+                parser.ParseInto(reader.ReadToEnd(), this.root);
 
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "The code for this demo contains some examples for how to query element data. This is the output of that:"));
