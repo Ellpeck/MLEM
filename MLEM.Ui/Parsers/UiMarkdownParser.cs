@@ -78,22 +78,22 @@ namespace MLEM.Ui.Parsers {
         /// <param name="element">The element to add the parsed elements to.</param>
         /// <returns>The <paramref name="element"/>, for chaining.</returns>
         public Element ParseInto(string markdown, Element element) {
-            foreach (var el in this.Parse(markdown))
-                element.AddChild(el);
+            foreach (var (_, e) in this.Parse(markdown))
+                element.AddChild(e);
             return element;
         }
 
         /// <summary>
-        /// Parses the given markdown string into a set of elements and returns them.
+        /// Parses the given markdown string into a set of elements and returns them along with their <see cref="ElementType"/>.
         /// During this process, the element stylings specified using <see cref="Style{T}"/> are also applied.
         /// </summary>
         /// <param name="markdown">The markdown to parse.</param>
         /// <returns>The parsed elements.</returns>
-        public IEnumerable<Element> Parse(string markdown) {
-            foreach (var (type, element) in this.ParseUnstyled(markdown)) {
-                if (this.elementStyles.TryGetValue(type, out var style))
-                    style.Invoke(element);
-                yield return element;
+        public IEnumerable<(ElementType, Element)> Parse(string markdown) {
+            foreach (var (t, e) in this.ParseUnstyled(markdown)) {
+                if (this.elementStyles.TryGetValue(t, out var style))
+                    style.Invoke(e);
+                yield return (t, e);
             }
         }
 
