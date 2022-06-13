@@ -32,7 +32,6 @@ namespace MLEM.Ui.Parsers {
 
         /// <summary>
         /// The base path for markdown images, which is prepended to the image link.
-        /// Note that this is only applied for local images (ones whose link doesn't start with http).
         /// </summary>
         public string ImageBasePath;
         /// <summary>
@@ -163,6 +162,9 @@ namespace MLEM.Ui.Parsers {
 
                     async void LoadImageAsync() {
                         var loc = imageMatch.Groups[1].Value;
+                        // only apply the base path for relative files
+                        if (this.ImageBasePath != null && !loc.StartsWith("http") && !Path.IsPathRooted(loc))
+                            loc = $"{this.ImageBasePath}/{loc}";
                         try {
                             Texture2D tex;
                             if (loc.StartsWith("http")) {
@@ -171,8 +173,6 @@ namespace MLEM.Ui.Parsers {
                                         tex = Texture2D.FromStream(this.GraphicsDevice, src);
                                 }
                             } else {
-                                if (this.ImageBasePath != null)
-                                    loc = $"{this.ImageBasePath}/{loc}";
                                 using (var stream = Path.IsPathRooted(loc) ? File.OpenRead(loc) : TitleContainer.OpenStream(loc))
                                     tex = Texture2D.FromStream(this.GraphicsDevice, stream);
                             }
