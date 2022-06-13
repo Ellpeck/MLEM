@@ -59,6 +59,7 @@ namespace MLEM.Ui.Parsers {
         public UiMarkdownParser(bool applyDefaultStyling = true) {
             if (applyDefaultStyling) {
                 this.CodeFont = "Monospaced";
+                this.Style<VerticalSpace>(ElementType.VerticalSpace, v => v.Size = new Vector2(1, 5));
                 for (var i = 0; i < 6; i++) {
                     var level = i;
                     this.Style<Paragraph>(ElementTypes[Array.IndexOf(ElementTypes, ElementType.Header1) + i], p => {
@@ -138,13 +139,13 @@ namespace MLEM.Ui.Parsers {
 
                 // quotes
                 if (line.StartsWith(">")) {
-                    yield return (ElementType.Quote, new Paragraph(Anchor.AutoLeft, 1, line.Substring(1).Trim()));
+                    yield return (ElementType.Blockquote, new Paragraph(Anchor.AutoLeft, 1, line.Substring(1).Trim()));
                     continue;
                 }
 
                 // vertical space (empty lines)
                 if (line.Trim().Length <= 0) {
-                    yield return (ElementType.VerticalSpace, new VerticalSpace(4));
+                    yield return (ElementType.VerticalSpace, new VerticalSpace(0));
                     continue;
                 }
 
@@ -229,7 +230,7 @@ namespace MLEM.Ui.Parsers {
             /// A blockquote.
             /// This element type is a <see cref="Paragraph"/>.
             /// </summary>
-            Quote = 1,
+            Blockquote = 1,
             /// <summary>
             /// A vertical space, which is a gap between multiple markdown paragraphs.
             /// This element type is a <see cref="VerticalSpace"/>.
