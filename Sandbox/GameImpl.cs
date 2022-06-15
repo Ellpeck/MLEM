@@ -54,7 +54,7 @@ namespace Sandbox {
 
             this.Components.Add(this.rawContent = new RawContentManager(this.Services));
 
-            this.map = LoadContent<TiledMap>("Tiled/Map");
+            this.map = MlemGame.LoadContent<TiledMap>("Tiled/Map");
             this.mapRenderer = new IndividualTiledMapRenderer(this.map);
             this.collisions = new TiledMapCollisions(this.map);
 
@@ -78,7 +78,7 @@ namespace Sandbox {
             //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
             //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
             var font = new GenericStashFont(system.GetFont(32));
-            var spriteFont = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
+            var spriteFont = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("Fonts/TestFont"));
             this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
                 Font = font,
                 TextScale = 0.5F,
@@ -277,7 +277,7 @@ namespace Sandbox {
 
             this.OnDraw += (g, time) => {
                 const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
-                if (Input.IsKeyPressed(Keys.I)) {
+                if (MlemGame.Input.IsKeyPressed(Keys.I)) {
                     index++;
                     if (index == 1) {
                         scale = 2;
@@ -295,7 +295,7 @@ namespace Sandbox {
                 }
 
                 this.SpriteBatch.Begin();
-                if (Input.IsKeyDown(Keys.LeftShift)) {
+                if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
                     this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
                 } else {
                     genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
@@ -363,8 +363,8 @@ namespace Sandbox {
 
             /*if (Input.InputsDown.Length > 0)
                 Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));*/
-            if (Input.InputsPressed.Length > 0)
-                Console.WriteLine("Pressed: " + string.Join(", ", Input.InputsPressed));
+            if (MlemGame.Input.InputsPressed.Length > 0)
+                Console.WriteLine("Pressed: " + string.Join(", ", MlemGame.Input.InputsPressed));
         }
 
         protected override void DoDraw(GameTime gameTime) {

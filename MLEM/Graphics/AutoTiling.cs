@@ -35,7 +35,7 @@ namespace MLEM.Graphics {
         public static void DrawAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion texture, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
-            var (p1, r1, p2, r2, p3, r3, p4, r4) = CalculateAutoTile(pos, texture.Area, connectsTo, sc);
+            var (p1, r1, p2, r2, p3, r3, p4, r4) = AutoTiling.CalculateAutoTile(pos, texture.Area, connectsTo, sc);
             batch.Draw(texture.Texture, p1, r1, color, 0, orig, sc, SpriteEffects.None, layerDepth);
             batch.Draw(texture.Texture, p2, r2, color, 0, orig, sc, SpriteEffects.None, layerDepth);
             batch.Draw(texture.Texture, p3, r3, color, 0, orig, sc, SpriteEffects.None, layerDepth);
@@ -46,7 +46,7 @@ namespace MLEM.Graphics {
         public static void AddAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion texture, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
-            var (p1, r1, p2, r2, p3, r3, p4, r4) = CalculateAutoTile(pos, texture.Area, connectsTo, sc);
+            var (p1, r1, p2, r2, p3, r3, p4, r4) = AutoTiling.CalculateAutoTile(pos, texture.Area, connectsTo, sc);
             var a1 = batch.Add(texture.Texture, p1, r1, color, 0, orig, sc, SpriteEffects.None, layerDepth);
             var a2 = batch.Add(texture.Texture, p2, r2, color, 0, orig, sc, SpriteEffects.None, layerDepth);
             var a3 = batch.Add(texture.Texture, p3, r3, color, 0, orig, sc, SpriteEffects.None, layerDepth);
@@ -88,7 +88,7 @@ namespace MLEM.Graphics {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
+            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
             if (backgroundTexture != null)
                 batch.Draw(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
             if (r1 != Rectangle.Empty)
@@ -106,7 +106,7 @@ namespace MLEM.Graphics {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
+            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
             if (backgroundTexture != null) {
                 var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
                 items?.Add(background);

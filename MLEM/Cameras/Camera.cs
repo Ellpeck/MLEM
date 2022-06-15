@@ -164,7 +164,7 @@ namespace MLEM.Cameras {
                 if (this.Max.Y > max.Y)
                     this.Max = new Vector2(this.Max.X, max.Y);
             }
-            return !this.Position.Equals(lastPos, Epsilon);
+            return !this.Position.Equals(lastPos, Camera.Epsilon);
         }
 
         /// <summary>

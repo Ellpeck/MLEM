@@ -14,7 +14,7 @@ namespace MLEM.Graphics {
 
         // this maximum is limited by indices being a short
         private const int MaxBatchItems = short.MaxValue / 6;
-        private static readonly VertexPositionColorTexture[] Data = new VertexPositionColorTexture[MaxBatchItems * 4];
+        private static readonly VertexPositionColorTexture[] Data = new VertexPositionColorTexture[StaticSpriteBatch.MaxBatchItems * 4];
 
         /// <summary>
         /// The amount of vertices that are currently batched.
@@ -106,21 +106,21 @@ namespace MLEM.Graphics {
             Texture2D texture = null;
             foreach (var item in ordered) {
                 // if the texture changes, we also have to start a new buffer!
-                if (dataIndex > 0 && (item.Texture != texture || dataIndex >= Data.Length)) {
-                    this.FillBuffer(this.FilledBuffers++, texture, Data);
+                if (dataIndex > 0 && (item.Texture != texture || dataIndex >= StaticSpriteBatch.Data.Length)) {
+                    this.FillBuffer(this.FilledBuffers++, texture, StaticSpriteBatch.Data);
                     dataIndex = 0;
                 }
-                Data[dataIndex++] = item.TopLeft;
-                Data[dataIndex++] = item.TopRight;
-                Data[dataIndex++] = item.BottomLeft;
-                Data[dataIndex++] = item.BottomRight;
+                StaticSpriteBatch.Data[dataIndex++] = item.TopLeft;
+                StaticSpriteBatch.Data[dataIndex++] = item.TopRight;
+                StaticSpriteBatch.Data[dataIndex++] = item.BottomLeft;
+                StaticSpriteBatch.Data[dataIndex++] = item.BottomRight;
                 texture = item.Texture;
             }
             if (dataIndex > 0)
-                this.FillBuffer(this.FilledBuffers++, texture, Data);
+                this.FillBuffer(this.FilledBuffers++, texture, StaticSpriteBatch.Data);
 
             // ensure we have enough indices
-            var maxItems = Math.Min(this.items.Count, MaxBatchItems);
+            var maxItems = Math.Min(this.items.Count, StaticSpriteBatch.MaxBatchItems);
             // each item has 2 triangles which each have 3 indices
             if (this.indices == null || this.indices.IndexCount < 6 * maxItems) {
                 var newIndices = new short[6 * maxItems];
@@ -434,7 +434,7 @@ namespace MLEM.Graphics {
 
         private void FillBuffer(int index, Texture2D texture, VertexPositionColorTexture[] data) {
             if (this.vertexBuffers.Count <= index)
-                this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, MaxBatchItems * 4, BufferUsage.WriteOnly));
+                this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, StaticSpriteBatch.MaxBatchItems * 4, BufferUsage.WriteOnly));
             this.vertexBuffers[index].SetData(data);
             this.textures.Insert(index, texture);
         }

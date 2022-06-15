@@ -7,7 +7,6 @@ using MLEM.Data.Json;
 using MLEM.Misc;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using static MLEM.Data.DynamicEnum;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Tests {
@@ -41,27 +40,27 @@ namespace Tests {
         public void TestDynamicEnum() {
             var flags = new TestEnum[100];
             for (var i = 0; i < flags.Length; i++)
-                flags[i] = AddFlag<TestEnum>("Flag" + i);
+                flags[i] = DynamicEnum.AddFlag<TestEnum>("Flag" + i);
 
-            Assert.AreEqual(GetValue(flags[7]), BigInteger.One << 7);
-            Assert.AreEqual(GetEnumValue<TestEnum>(BigInteger.One << 75), flags[75]);
+            Assert.AreEqual(DynamicEnum.GetValue(flags[7]), BigInteger.One << 7);
+            Assert.AreEqual(DynamicEnum.GetEnumValue<TestEnum>(BigInteger.One << 75), flags[75]);
 
-            Assert.AreEqual(GetValue(Or(flags[2], flags[17])), (BigInteger.One << 2) | (BigInteger.One << 17));
-            Assert.AreEqual(GetValue(And(flags[2], flags[3])), BigInteger.Zero);
-            Assert.AreEqual(And(Or(flags[24], flags[52]), Or(flags[52], flags[75])), flags[52]);
-            Assert.AreEqual(Xor(Or(flags[85], flags[73]), flags[73]), flags[85]);
-            Assert.AreEqual(Xor(Or(flags[85], Or(flags[73], flags[12])), flags[73]), Or(flags[85], flags[12]));
-            Assert.AreEqual(GetValue(Neg(flags[74])), ~(BigInteger.One << 74));
+            Assert.AreEqual(DynamicEnum.GetValue(DynamicEnum.Or(flags[2], flags[17])), BigInteger.One << 2 | BigInteger.One << 17);
+            Assert.AreEqual(DynamicEnum.GetValue(DynamicEnum.And(flags[2], flags[3])), BigInteger.Zero);
+            Assert.AreEqual(DynamicEnum.And(DynamicEnum.Or(flags[24], flags[52]), DynamicEnum.Or(flags[52], flags[75])), flags[52]);
+            Assert.AreEqual(DynamicEnum.Xor(DynamicEnum.Or(flags[85], flags[73]), flags[73]), flags[85]);
+            Assert.AreEqual(DynamicEnum.Xor(DynamicEnum.Or(flags[85], DynamicEnum.Or(flags[73], flags[12])), flags[73]), DynamicEnum.Or(flags[85], flags[12]));
+            Assert.AreEqual(DynamicEnum.GetValue(DynamicEnum.Neg(flags[74])), ~(BigInteger.One << 74));
 
-            Assert.AreEqual(Or(flags[24], flags[52]).HasFlag(flags[24]), true);
-            Assert.AreEqual(Or(flags[24], flags[52]).HasAnyFlag(flags[24]), true);
-            Assert.AreEqual(Or(flags[24], flags[52]).HasFlag(Or(flags[24], flags[26])), false);
-            Assert.AreEqual(Or(flags[24], flags[52]).HasAnyFlag(Or(flags[24], flags[26])), true);
+            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasFlag(flags[24]), true);
+            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasAnyFlag(flags[24]), true);
+            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasFlag(DynamicEnum.Or(flags[24], flags[26])), false);
+            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasAnyFlag(DynamicEnum.Or(flags[24], flags[26])), true);
 
-            Assert.AreEqual(Parse<TestEnum>("Flag24"), flags[24]);
-            Assert.AreEqual(Parse<TestEnum>("Flag24 | Flag43"), Or(flags[24], flags[43]));
+            Assert.AreEqual(DynamicEnum.Parse<TestEnum>("Flag24"), flags[24]);
+            Assert.AreEqual(DynamicEnum.Parse<TestEnum>("Flag24 | Flag43"), DynamicEnum.Or(flags[24], flags[43]));
             Assert.AreEqual(flags[24].ToString(), "Flag24");
-            Assert.AreEqual(Or(flags[24], flags[43]).ToString(), "Flag24 | Flag43");
+            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[43]).ToString(), "Flag24 | Flag43");
         }
 
         [Test]
@@ -71,14 +70,14 @@ namespace Tests {
             // normal generic data holder should crush the time span down to a string due to its custom serializer
             var data = new GenericDataHolder();
             data.SetData("Time", TimeSpan.FromMinutes(5));
-            var read = SerializeAndDeserialize(serializer, data);
+            var read = DataTests.SerializeAndDeserialize(serializer, data);
             Assert.IsNotInstanceOf<TimeSpan>(read.GetData<object>("Time"));
             Assert.Throws<InvalidCastException>(() => read.GetData<TimeSpan>("Time"));
 
             // json type safe generic data holder should wrap the time span to ensure that it stays a time span
             var safeData = new JsonTypeSafeGenericDataHolder();
             safeData.SetData("Time", TimeSpan.FromMinutes(5));
-            var safeRead = SerializeAndDeserialize(serializer, safeData);
+            var safeRead = DataTests.SerializeAndDeserialize(serializer, safeData);
             Assert.IsInstanceOf<TimeSpan>(safeRead.GetData<object>("Time"));
             Assert.DoesNotThrow(() => safeRead.GetData<TimeSpan>("Time"));
         }
@@ -99,11 +98,11 @@ namespace Tests {
             public TestObject(Vector2 test, string test2) {}
 
             protected bool Equals(TestObject other) {
-                return this.Vec.Equals(other.Vec) && this.Point.Equals(other.Point) && Equals(this.OtherTest, other.OtherTest) && this.Dir == other.Dir;
+                return this.Vec.Equals(other.Vec) && this.Point.Equals(other.Point) && object.Equals(this.OtherTest, other.OtherTest) && this.Dir == other.Dir;
             }
 
             public override bool Equals(object obj) {
-                return ReferenceEquals(this, obj) || obj is TestObject other && this.Equals(other);
+                return object.ReferenceEquals(this, obj) || obj is TestObject other && this.Equals(other);
             }
 
             public override int GetHashCode() {

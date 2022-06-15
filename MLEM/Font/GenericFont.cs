@@ -21,7 +21,7 @@ namespace MLEM.Font {
         public const char Emsp = '\u2003';
         /// <inheritdoc cref="Emsp"/>
         [Obsolete("Use the Emsp field instead.")]
-        public const char OneEmSpace = Emsp;
+        public const char OneEmSpace = GenericFont.Emsp;
         /// <summary>
         /// This field holds the unicode representation of a non-breaking space.
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.
@@ -185,17 +185,17 @@ namespace MLEM.Font {
                         xOffset = 0;
                         size.Y += this.LineHeight;
                         break;
-                    case Emsp:
+                    case GenericFont.Emsp:
                         xOffset += this.LineHeight;
                         break;
-                    case Nbsp:
+                    case GenericFont.Nbsp:
                         xOffset += font.MeasureChar(' ');
                         break;
-                    case Zwsp:
+                    case GenericFont.Zwsp:
                         // don't add width for a zero-width space
                         break;
                     case ' ':
-                        if (ignoreTrailingSpaces && IsTrailingSpace(text, i)) {
+                        if (ignoreTrailingSpaces && GenericFont.IsTrailingSpace(text, i)) {
                             // if this is a trailing space, we can skip remaining spaces too
                             i = text.Length - 1;
                             break;
@@ -252,7 +252,7 @@ namespace MLEM.Font {
                 } else {
                     var font = fontFunction?.Invoke(i) ?? this;
                     var cWidth = font.MeasureString(c.ToCachedString()).X * scale;
-                    if (c == ' ' || c == Emsp || c == Zwsp) {
+                    if (c == ' ' || c == GenericFont.Emsp || c == GenericFont.Zwsp) {
                         // remember the location of this (breaking!) space
                         lastSpaceIndex = curr.Length;
                         widthSinceLastSpace = 0;

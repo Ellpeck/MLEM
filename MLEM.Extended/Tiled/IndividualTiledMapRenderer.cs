@@ -116,7 +116,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="frustum">The area that is visible, in pixel space.</param>
         /// <param name="drawFunction">The draw function to use, or null to use <see cref="DefaultDraw"/></param>
         public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
-            var draw = drawFunction ?? DefaultDraw;
+            var draw = drawFunction ?? IndividualTiledMapRenderer.DefaultDraw;
             var (minX, minY, maxX, maxY) = this.GetFrustum(frustum);
             for (var x = minX; x < maxX; x++) {
                 for (var y = minY; y < maxY; y++) {
@@ -136,7 +136,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="frustum">The area that is visible, in pixel space.</param>
         /// <param name="addFunction">The add function to use, or null to use <see cref="DefaultAdd"/>.</param>
         public void AddLayer(StaticSpriteBatch batch, int layerIndex, RectangleF? frustum = null, AddDelegate addFunction = null) {
-            var add = addFunction ?? DefaultAdd;
+            var add = addFunction ?? IndividualTiledMapRenderer.DefaultAdd;
             var (minX, minY, maxX, maxY) = this.GetFrustum(frustum);
             for (var x = minX; x < maxX; x++) {
                 for (var y = minY; y < maxY; y++) {

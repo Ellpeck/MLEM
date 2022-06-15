@@ -81,7 +81,7 @@ namespace MLEM.Data {
                     var region = atlas[pos];
 
                     if (ignoreTransparent) {
-                        if (IsTransparent(region))
+                        if (this.IsTransparent(region))
                             continue;
                     }
 
@@ -180,8 +180,8 @@ namespace MLEM.Data {
             var width = this.alreadyPackedTextures.Max(t => t.PackedArea.Right);
             var height = this.alreadyPackedTextures.Max(t => t.PackedArea.Bottom);
             if (this.forcePowerOfTwo) {
-                width = ToPowerOfTwo(width);
-                height = ToPowerOfTwo(height);
+                width = RuntimeTexturePacker.ToPowerOfTwo(width);
+                height = RuntimeTexturePacker.ToPowerOfTwo(height);
             }
             if (this.forceSquare)
                 width = height = Math.Max(width, height);

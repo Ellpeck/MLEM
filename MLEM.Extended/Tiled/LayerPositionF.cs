@@ -54,8 +54,8 @@ namespace MLEM.Extended.Tiled {
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             var hashCode = this.Layer.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.X.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.Y.GetHashCode();
+            hashCode = hashCode * 397 ^ this.X.GetHashCode();
+            hashCode = hashCode * 397 ^ this.Y.GetHashCode();
             return hashCode;
         }
 
@@ -105,7 +105,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="right">The right position.</param>
         /// <returns>The sum of the positions.</returns>
         public static LayerPositionF operator +(LayerPositionF left, LayerPositionF right) {
-            return Add(left, right);
+            return LayerPositionF.Add(left, right);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="right">The right position.</param>
         /// <returns>The difference of the positions.</returns>
         public static LayerPositionF operator -(LayerPositionF left, LayerPositionF right) {
-            return Add(left, -right);
+            return LayerPositionF.Add(left, -right);
         }
 
         /// <summary>

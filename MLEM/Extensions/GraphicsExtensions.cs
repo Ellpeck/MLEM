@@ -21,18 +21,18 @@ namespace MLEM.Extensions {
             manager.IsFullScreen = fullscreen;
             if (fullscreen) {
                 var view = manager.GraphicsDevice.Viewport;
-                lastWidth = view.Width;
-                lastHeight = view.Height;
+                GraphicsExtensions.lastWidth = view.Width;
+                GraphicsExtensions.lastHeight = view.Height;
 
                 var curr = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
                 manager.PreferredBackBufferWidth = curr.Width;
                 manager.PreferredBackBufferHeight = curr.Height;
             } else {
-                if (lastWidth <= 0 || lastHeight <= 0)
+                if (GraphicsExtensions.lastWidth <= 0 || GraphicsExtensions.lastHeight <= 0)
                     throw new InvalidOperationException("Can't call SetFullscreen to change out of fullscreen mode without going into fullscreen mode first");
 
-                manager.PreferredBackBufferWidth = lastWidth;
-                manager.PreferredBackBufferHeight = lastHeight;
+                manager.PreferredBackBufferWidth = GraphicsExtensions.lastWidth;
+                manager.PreferredBackBufferHeight = GraphicsExtensions.lastHeight;
             }
             manager.ApplyChanges();
         }

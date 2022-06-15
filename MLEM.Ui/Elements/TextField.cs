@@ -209,7 +209,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="text">The text that the text field should contain by default</param>
         /// <param name="multiline">Whether the text field should support multi-line editing</param>
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, GenericFont font = null, string text = null, bool multiline = false) : base(anchor, size) {
-            this.InputRule = rule ?? DefaultRule;
+            this.InputRule = rule ?? TextField.DefaultRule;
             this.Multiline = multiline;
             if (font != null)
                 this.Font = font;

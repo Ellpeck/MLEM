@@ -87,13 +87,13 @@ namespace MLEM.Formatting {
                 // if we've reached the end of the string
                 if (next == null) {
                     var sub = s.Substring(rawIndex, s.Length - rawIndex);
-                    tokens.Add(new Token(codes.ToArray(), index, rawIndex, StripFormatting(font, sub, codes), sub));
+                    tokens.Add(new Token(codes.ToArray(), index, rawIndex, TextFormatter.StripFormatting(font, sub, codes), sub));
                     break;
                 }
 
                 // create a new token for the content up to the next code
                 var ret = s.Substring(rawIndex, next.Match.Index - rawIndex);
-                var strippedRet = StripFormatting(font, ret, codes);
+                var strippedRet = TextFormatter.StripFormatting(font, ret, codes);
                 tokens.Add(new Token(codes.ToArray(), index, rawIndex, strippedRet, ret));
 
                 // move to the start of the next code
@@ -104,7 +104,7 @@ namespace MLEM.Formatting {
                 codes.RemoveAll(c => c.EndsHere(next));
                 codes.Add(next);
             }
-            return new TokenizedString(font, alignment, s, StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
+            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
         }
 
         /// <summary>

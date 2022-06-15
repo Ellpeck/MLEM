@@ -13,7 +13,7 @@ namespace Tests {
         protected override void LoadContent() {
             base.LoadContent();
             this.RawContent = new RawContentManager(this.Services, this.Content.RootDirectory);
-            this.UiSystem.Style.Font = new GenericSpriteFont(LoadContent<SpriteFont>("TestFont"));
+            this.UiSystem.Style.Font = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("TestFont"));
         }
 
         public static TestGame Create() {

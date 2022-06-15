@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
-using static MLEM.Misc.Direction2;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -45,22 +44,22 @@ namespace MLEM.Misc {
         /// The up and right direction, or +x, -y.
         /// </summary>
         [EnumMember]
-        UpRight = Up | Right,
+        UpRight = Direction2.Up | Direction2.Right,
         /// <summary>
         /// The down and right direction, or +x, +y.
         /// </summary>
         [EnumMember]
-        DownRight = Down | Right,
+        DownRight = Direction2.Down | Direction2.Right,
         /// <summary>
         /// The up and left direction, or -x, -y.
         /// </summary>
         [EnumMember]
-        UpLeft = Up | Left,
+        UpLeft = Direction2.Up | Direction2.Left,
         /// <summary>
         /// The down and left direction, or -x, +y.
         /// </summary>
         [EnumMember]
-        DownLeft = Down | Left
+        DownLeft = Direction2.Down | Direction2.Left
 
     }
 
@@ -76,18 +75,18 @@ namespace MLEM.Misc {
         /// <summary>
         /// The <see cref="Direction2.Up"/> through <see cref="Direction2.Left"/> directions
         /// </summary>
-        public static readonly Direction2[] Adjacent = All.Where(IsAdjacent).ToArray();
+        public static readonly Direction2[] Adjacent = Direction2Helper.All.Where(Direction2Helper.IsAdjacent).ToArray();
         /// <summary>
         /// The <see cref="Direction2.UpRight"/> through <see cref="Direction2.UpLeft"/> directions
         /// </summary>
-        public static readonly Direction2[] Diagonals = All.Where(IsDiagonal).ToArray();
+        public static readonly Direction2[] Diagonals = Direction2Helper.All.Where(Direction2Helper.IsDiagonal).ToArray();
         /// <summary>
         /// All directions except <see cref="Direction2.None"/>
         /// </summary>
-        public static readonly Direction2[] AllExceptNone = All.Where(dir => dir != None).ToArray();
+        public static readonly Direction2[] AllExceptNone = Direction2Helper.All.Where(dir => dir != Direction2.None).ToArray();
 
-        private static readonly Direction2[] Clockwise = {Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft};
-        private static readonly Dictionary<Direction2, int> ClockwiseLookup = Clockwise.Select((d, i) => (d, i)).ToDictionary(kv => kv.d, kv => kv.i);
+        private static readonly Direction2[] Clockwise = {Direction2.Up, Direction2.UpRight, Direction2.Right, Direction2.DownRight, Direction2.Down, Direction2.DownLeft, Direction2.Left, Direction2.UpLeft};
+        private static readonly Dictionary<Direction2, int> ClockwiseLookup = Direction2Helper.Clockwise.Select((d, i) => (d, i)).ToDictionary(kv => kv.d, kv => kv.i);
 
         /// <summary>
         /// Returns if the given direction is considered an "adjacent" direction.
@@ -96,7 +95,7 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction to query</param>
         /// <returns>Whether the direction is adjacent</returns>
         public static bool IsAdjacent(this Direction2 dir) {
-            return dir == Up || dir == Right || dir == Down || dir == Left;
+            return dir == Direction2.Up || dir == Direction2.Right || dir == Direction2.Down || dir == Direction2.Left;
         }
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace MLEM.Misc {
         /// <param name="dir">The direction to query</param>
         /// <returns>Whether the direction is diagonal</returns>
         public static bool IsDiagonal(this Direction2 dir) {
-            return dir == UpRight || dir == DownRight || dir == UpLeft || dir == DownLeft;
+            return dir == Direction2.UpRight || dir == Direction2.DownRight || dir == Direction2.UpLeft || dir == Direction2.DownLeft;
         }
 
         /// <summary>
@@ -116,21 +115,21 @@ namespace MLEM.Misc {
         /// <returns>The direction's offset</returns>
         public static Point Offset(this Direction2 dir) {
             switch (dir) {
-                case Up:
+                case Direction2.Up:
                     return new Point(0, -1);
-                case Right:
+                case Direction2.Right:
                     return new Point(1, 0);
-                case Down:
+                case Direction2.Down:
                     return new Point(0, 1);
-                case Left:
+                case Direction2.Left:
                     return new Point(-1, 0);
-                case UpRight:
+                case Direction2.UpRight:
                     return new Point(1, -1);
-                case DownRight:
+                case Direction2.DownRight:
                     return new Point(1, 1);
-                case DownLeft:
+                case Direction2.DownLeft:
                     return new Point(-1, 1);
-                case UpLeft:
+                case Direction2.UpLeft:
                     return new Point(-1, -1);
                 default:
                     return Point.Zero;
@@ -156,24 +155,24 @@ namespace MLEM.Misc {
         /// <returns>The opposite of the direction</returns>
         public static Direction2 Opposite(this Direction2 dir) {
             switch (dir) {
-                case Up:
-                    return Down;
-                case Right:
-                    return Left;
-                case Down:
-                    return Up;
-                case Left:
-                    return Right;
-                case UpRight:
-                    return DownLeft;
-                case DownRight:
-                    return UpLeft;
-                case DownLeft:
-                    return UpRight;
-                case UpLeft:
-                    return DownRight;
+                case Direction2.Up:
+                    return Direction2.Down;
+                case Direction2.Right:
+                    return Direction2.Left;
+                case Direction2.Down:
+                    return Direction2.Up;
+                case Direction2.Left:
+                    return Direction2.Right;
+                case Direction2.UpRight:
+                    return Direction2.DownLeft;
+                case Direction2.DownRight:
+                    return Direction2.UpLeft;
+                case Direction2.DownLeft:
+                    return Direction2.UpRight;
+                case Direction2.UpLeft:
+                    return Direction2.DownRight;
                 default:
-                    return None;
+                    return Direction2.None;
             }
         }
 
@@ -194,9 +193,9 @@ namespace MLEM.Misc {
         /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCw(this Direction2 dir, bool fortyFiveDegrees = false) {
-            if (!ClockwiseLookup.TryGetValue(dir, out var dirIndex))
-                return None;
-            return Clockwise[(dirIndex + (fortyFiveDegrees ? 1 : 2)) % Clockwise.Length];
+            if (!Direction2Helper.ClockwiseLookup.TryGetValue(dir, out var dirIndex))
+                return Direction2.None;
+            return Direction2Helper.Clockwise[(dirIndex + (fortyFiveDegrees ? 1 : 2)) % Direction2Helper.Clockwise.Length];
         }
 
         /// <summary>
@@ -206,10 +205,10 @@ namespace MLEM.Misc {
         /// <param name="fortyFiveDegrees">Whether to rotate by 45 degrees. If this is false, the rotation is 90 degrees instead.</param>
         /// <returns>The rotated direction</returns>
         public static Direction2 RotateCcw(this Direction2 dir, bool fortyFiveDegrees = false) {
-            if (!ClockwiseLookup.TryGetValue(dir, out var dirIndex))
-                return None;
+            if (!Direction2Helper.ClockwiseLookup.TryGetValue(dir, out var dirIndex))
+                return Direction2.None;
             var index = dirIndex - (fortyFiveDegrees ? 1 : 2);
-            return Clockwise[index < 0 ? index + Clockwise.Length : index];
+            return Direction2Helper.Clockwise[index < 0 ? index + Direction2Helper.Clockwise.Length : index];
         }
 
         /// <summary>
@@ -219,11 +218,11 @@ namespace MLEM.Misc {
         /// <returns>The vector's direction</returns>
         public static Direction2 ToDirection(this Vector2 offset) {
             var offsetAngle = (float) Math.Atan2(offset.Y, offset.X);
-            foreach (var dir in AllExceptNone) {
+            foreach (var dir in Direction2Helper.AllExceptNone) {
                 if (Math.Abs(dir.Angle() - offsetAngle) <= MathHelper.PiOver4 / 2)
                     return dir;
             }
-            return None;
+            return Direction2.None;
         }
 
         /// <summary>
@@ -234,10 +233,10 @@ namespace MLEM.Misc {
         /// <returns>The vector's direction</returns>
         public static Direction2 To90Direction(this Vector2 offset) {
             if (offset.X == 0 && offset.Y == 0)
-                return None;
+                return Direction2.None;
             if (Math.Abs(offset.X) > Math.Abs(offset.Y))
-                return offset.X > 0 ? Right : Left;
-            return offset.Y > 0 ? Down : Up;
+                return offset.X > 0 ? Direction2.Right : Direction2.Left;
+            return offset.Y > 0 ? Direction2.Down : Direction2.Up;
         }
 
         /// <summary>
@@ -247,17 +246,17 @@ namespace MLEM.Misc {
         /// <param name="reference">The direction to rotate by</param>
         /// <param name="start">The direction to use as the default direction</param>
         /// <returns>The direction, rotated by the reference direction</returns>
-        public static Direction2 RotateBy(this Direction2 dir, Direction2 reference, Direction2 start = Up) {
-            if (!ClockwiseLookup.TryGetValue(reference, out var refIndex))
-                return None;
-            if (!ClockwiseLookup.TryGetValue(start, out var startIndex))
-                return None;
-            if (!ClockwiseLookup.TryGetValue(dir, out var dirIndex))
-                return None;
+        public static Direction2 RotateBy(this Direction2 dir, Direction2 reference, Direction2 start = Direction2.Up) {
+            if (!Direction2Helper.ClockwiseLookup.TryGetValue(reference, out var refIndex))
+                return Direction2.None;
+            if (!Direction2Helper.ClockwiseLookup.TryGetValue(start, out var startIndex))
+                return Direction2.None;
+            if (!Direction2Helper.ClockwiseLookup.TryGetValue(dir, out var dirIndex))
+                return Direction2.None;
             var diff = refIndex - startIndex;
             if (diff < 0)
-                diff += Clockwise.Length;
-            return Clockwise[(dirIndex + diff) % Clockwise.Length];
+                diff += Direction2Helper.Clockwise.Length;
+            return Direction2Helper.Clockwise[(dirIndex + diff) % Direction2Helper.Clockwise.Length];
         }
 
     }

@@ -652,7 +652,7 @@ namespace MLEM.Ui.Elements {
                                 var newX = prevArea.Right + this.ScaledOffset.X;
                                 // with awkward ui scale values, floating point rounding can cause an element that would usually
                                 // be positioned correctly to be pushed into the next line due to a very small deviation
-                                if (newX + newSize.X <= parentArea.Right + Epsilon) {
+                                if (newX + newSize.X <= parentArea.Right + Element.Epsilon) {
                                     pos.X = newX;
                                     pos.Y = prevArea.Y + this.ScaledOffset.Y;
                                 } else {
@@ -715,7 +715,7 @@ namespace MLEM.Ui.Elements {
                     }
 
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
-                    if (!autoSize.Equals(this.UnscrolledArea.Size, Epsilon)) {
+                    if (!autoSize.Equals(this.UnscrolledArea.Size, Element.Epsilon)) {
                         recursion++;
                         if (recursion >= 16) {
                             throw new ArithmeticException($"The area of {this} with root {this.Root.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");

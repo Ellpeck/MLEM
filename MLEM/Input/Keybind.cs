@@ -231,9 +231,9 @@ namespace MLEM.Input {
         /// 
         /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item></list></returns>
         public int CompareTo(object obj) {
-            if (ReferenceEquals(null, obj))
+            if (object.ReferenceEquals(null, obj))
                 return 1;
-            if (ReferenceEquals(this, obj))
+            if (object.ReferenceEquals(this, obj))
                 return 0;
             if (!(obj is Keybind other))
                 throw new ArgumentException($"Object must be of type {nameof(Keybind)}");
@@ -369,9 +369,9 @@ namespace MLEM.Input {
             /// 
             /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item></list></returns>
             public int CompareTo(object obj) {
-                if (ReferenceEquals(null, obj))
+                if (object.ReferenceEquals(null, obj))
                     return 1;
-                if (ReferenceEquals(this, obj))
+                if (object.ReferenceEquals(this, obj))
                     return 0;
                 if (!(obj is Combination other))
                     throw new ArgumentException($"Object must be of type {nameof(Combination)}");

@@ -43,8 +43,8 @@ namespace Tests {
         [Test]
         public void TestDisposal() {
             using var packer = new RuntimeTexturePacker(128, disposeTextures: true);
-            packer.Add(new TextureRegion(this.disposedTestTexture), StubResult);
-            packer.Add(new TextureRegion(this.disposedTestTexture, 0, 0, 8, 8), StubResult);
+            packer.Add(new TextureRegion(this.disposedTestTexture), TexturePackerTests.StubResult);
+            packer.Add(new TextureRegion(this.disposedTestTexture, 0, 0, 8, 8), TexturePackerTests.StubResult);
             packer.Pack(this.game.GraphicsDevice);
             Assert.True(this.disposedTestTexture.IsDisposed);
             Assert.False(packer.PackedTexture.IsDisposed);
@@ -55,26 +55,26 @@ namespace Tests {
             // test forced max width
             using var packer = new RuntimeTexturePacker(128);
             Assert.Throws<InvalidOperationException>(() => {
-                packer.Add(new TextureRegion(this.testTexture, 0, 0, 256, 128), StubResult);
+                packer.Add(new TextureRegion(this.testTexture, 0, 0, 256, 128), TexturePackerTests.StubResult);
             });
 
             // test auto-expanding width
             using var packer2 = new RuntimeTexturePacker(128, true);
             Assert.DoesNotThrow(() => {
-                packer2.Add(new TextureRegion(this.testTexture, 0, 0, 256, 128), StubResult);
+                packer2.Add(new TextureRegion(this.testTexture, 0, 0, 256, 128), TexturePackerTests.StubResult);
             });
             packer2.Pack(this.game.GraphicsDevice);
 
             // test power of two forcing
             using var packer3 = new RuntimeTexturePacker(128, forcePowerOfTwo: true);
-            packer3.Add(new TextureRegion(this.testTexture, 0, 0, 37, 170), StubResult);
+            packer3.Add(new TextureRegion(this.testTexture, 0, 0, 37, 170), TexturePackerTests.StubResult);
             packer3.Pack(this.game.GraphicsDevice);
             Assert.AreEqual(64, packer3.PackedTexture.Width);
             Assert.AreEqual(256, packer3.PackedTexture.Height);
 
             // test square forcing
             using var packer4 = new RuntimeTexturePacker(128, forceSquare: true);
-            packer4.Add(new TextureRegion(this.testTexture, 0, 0, 37, 170), StubResult);
+            packer4.Add(new TextureRegion(this.testTexture, 0, 0, 37, 170), TexturePackerTests.StubResult);
             packer4.Pack(this.game.GraphicsDevice);
             Assert.AreEqual(170, packer4.PackedTexture.Width);
             Assert.AreEqual(170, packer4.PackedTexture.Height);

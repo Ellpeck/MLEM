@@ -21,7 +21,7 @@ namespace MLEM.Data.Json {
         /// <param name="serializer">The serializer to add the converters to</param>
         /// <returns>The given serializer, for chaining</returns>
         public static JsonSerializer AddAll(JsonSerializer serializer) {
-            foreach (var converter in Converters)
+            foreach (var converter in JsonConverters.Converters)
                 serializer.Converters.Add(converter);
             return serializer;
         }

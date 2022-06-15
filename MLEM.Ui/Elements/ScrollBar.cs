@@ -45,7 +45,7 @@ namespace MLEM.Ui.Elements {
                 // force current value to be clamped
                 this.CurrentValue = this.CurrentValue;
                 // auto-hide if necessary
-                var shouldHide = this.maxValue <= Epsilon;
+                var shouldHide = this.maxValue <= Element.Epsilon;
                 if (this.AutoHideWhenEmpty && this.IsHidden != shouldHide) {
                     this.IsHidden = shouldHide;
                     this.OnAutoHide?.Invoke(this);
@@ -188,7 +188,7 @@ namespace MLEM.Ui.Elements {
 
             if (this.SmoothScrolling && this.scrollAdded != 0) {
                 this.scrollAdded *= this.SmoothScrollFactor;
-                if (Math.Abs(this.scrollAdded) <= Epsilon)
+                if (Math.Abs(this.scrollAdded) <= Element.Epsilon)
                     this.scrollAdded = 0;
                 this.OnValueChanged?.Invoke(this, this.CurrentValue);
             }

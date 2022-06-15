@@ -62,7 +62,7 @@ namespace MLEM.Ui.Parsers {
                 this.Style<VerticalSpace>(ElementType.VerticalSpace, v => v.Size = new Vector2(1, 5));
                 for (var i = 0; i < 6; i++) {
                     var level = i;
-                    this.Style<Paragraph>(ElementTypes[Array.IndexOf(ElementTypes, ElementType.Header1) + i], p => {
+                    this.Style<Paragraph>(UiMarkdownParser.ElementTypes[Array.IndexOf(UiMarkdownParser.ElementTypes, ElementType.Header1) + i], p => {
                         p.Alignment = TextAlignment.Center;
                         p.TextScaleMultiplier = 2 - level * 0.15F;
                     });
@@ -107,7 +107,7 @@ namespace MLEM.Ui.Parsers {
         /// <typeparam name="T">The type of elements that the given <see cref="ElementType"/> flags are expected to be.</typeparam>
         /// <returns>This parser, for chaining.</returns>
         public UiMarkdownParser Style<T>(ElementType types, Action<T> style, bool add = false) where T : Element {
-            foreach (var type in ElementTypes) {
+            foreach (var type in UiMarkdownParser.ElementTypes) {
                 if (types.HasFlag(type)) {
                     if (add && this.elementStyles.ContainsKey(type)) {
                         this.elementStyles[type] += Action;
@@ -193,7 +193,7 @@ namespace MLEM.Ui.Parsers {
                 var parsedHeader = false;
                 for (var h = 6; h >= 1; h--) {
                     if (line.StartsWith(new string('#', h))) {
-                        var type = ElementTypes[Array.IndexOf(ElementTypes, ElementType.Header1) + h - 1];
+                        var type = UiMarkdownParser.ElementTypes[Array.IndexOf(UiMarkdownParser.ElementTypes, ElementType.Header1) + h - 1];
                         yield return (type, new Paragraph(Anchor.AutoLeft, 1, line.Substring(h).Trim()));
                         parsedHeader = true;
                         break;
@@ -275,7 +275,7 @@ namespace MLEM.Ui.Parsers {
             /// A combined flag that contains <see cref="Header1"/> through <see cref="Header6"/>.
             /// This element type is a <see cref="Paragraph"/>.
             /// </summary>
-            Headers = Header1 | Header2 | Header3 | Header4 | Header5 | Header6,
+            Headers = ElementType.Header1 | ElementType.Header2 | ElementType.Header3 | ElementType.Header4 | ElementType.Header5 | ElementType.Header6,
             /// <summary>
             /// A paragraph, which is one line of markdown text.
             /// This element type is a <see cref="Paragraph"/>.

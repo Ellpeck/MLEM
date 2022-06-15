@@ -118,7 +118,7 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc cref="KeybindButton(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,MLEM.Input.Keybind,MLEM.Input.InputHandler,string,MLEM.Input.Keybind,string,System.Func{MLEM.Input.GenericInput,string},int,System.Func{MLEM.Input.GenericInput,System.Collections.Generic.IEnumerable{MLEM.Input.GenericInput},bool})"/>
         public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, GenericInput unbindKey = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0, Func<GenericInput, IEnumerable<GenericInput>, bool> isKeybindAllowed = null) {
-            return KeybindButton(anchor, size, keybind, inputHandler, activePlaceholder, new Keybind(unbindKey), unboundPlaceholder, inputName, index, isKeybindAllowed);
+            return ElementHelper.KeybindButton(anchor, size, keybind, inputHandler, activePlaceholder, new Keybind(unbindKey), unboundPlaceholder, inputName, index, isKeybindAllowed);
         }
 
         /// <summary>
@@ -139,7 +139,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="isKeybindAllowed">A function that can optionally determine whether a given input and modifier combination is allowed. If this is null, all combinations are allowed.</param>
         /// <returns>A keybind button with the given settings</returns>
         public static Button KeybindButton(Anchor anchor, Vector2 size, Keybind keybind, InputHandler inputHandler, string activePlaceholder, Keybind unbind = default, string unboundPlaceholder = "", Func<GenericInput, string> inputName = null, int index = 0, Func<GenericInput, IEnumerable<GenericInput>, bool> isKeybindAllowed = null) {
-            string GetCurrentName() => keybind.TryGetCombination(index, out var combination) ? combination.ToString(" + ", inputName) : unboundPlaceholder;
+            string GetCurrentName() {
+                return keybind.TryGetCombination(index, out var combination) ? combination.ToString(" + ", inputName) : unboundPlaceholder;
+            }
 
             var button = new Button(anchor, size, GetCurrentName());
             var activeNext = false;

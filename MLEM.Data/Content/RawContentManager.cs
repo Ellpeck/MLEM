@@ -56,9 +56,9 @@ namespace MLEM.Data.Content {
 
         private T Read<T>(string assetName, T existing) {
             var triedFiles = new List<string>();
-            if (readers == null)
-                readers = CollectContentReaders();
-            foreach (var reader in readers) {
+            if (RawContentManager.readers == null)
+                RawContentManager.readers = RawContentManager.CollectContentReaders();
+            foreach (var reader in RawContentManager.readers) {
                 if (!reader.CanRead(typeof(T)))
                     continue;
                 foreach (var ext in reader.GetFileExtensions()) {

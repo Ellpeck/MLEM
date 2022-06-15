@@ -248,7 +248,7 @@ namespace MLEM.Misc {
                 var num2 = Math.Min(value1.Y + value1.Height, value2.Y + value2.Height);
                 return new RectangleF(x, y, num1 - x, num2 - y);
             } else {
-                return Empty;
+                return RectangleF.Empty;
             }
         }
 

@@ -19,12 +19,12 @@ namespace MLEM.Extensions {
         /// <param name="batch">The sprite batch</param>
         /// <returns>A 1x1 pixel white texture</returns>
         public static Texture2D GetBlankTexture(this SpriteBatch batch) {
-            if (blankTexture == null) {
-                blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1);
-                blankTexture.SetData(new[] {Color.White});
-                AutoDispose(batch, blankTexture);
+            if (SpriteBatchExtensions.blankTexture == null) {
+                SpriteBatchExtensions.blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1);
+                SpriteBatchExtensions.blankTexture.SetData(new[] {Color.White});
+                SpriteBatchExtensions.AutoDispose(batch, SpriteBatchExtensions.blankTexture);
             }
-            return blankTexture;
+            return SpriteBatchExtensions.blankTexture;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace MLEM.Extensions {
                 outli, color, outli,
                 outli, outli, outli
             });
-            AutoDispose(batch, tex);
+            SpriteBatchExtensions.AutoDispose(batch, tex);
             return new NinePatch(tex, 1);
         }
 
@@ -57,7 +57,7 @@ namespace MLEM.Extensions {
         public static Texture2D GenerateSquareTexture(this SpriteBatch batch, Color color) {
             var tex = new Texture2D(batch.GraphicsDevice, 1, 1);
             tex.SetData(new[] {color});
-            AutoDispose(batch, tex);
+            SpriteBatchExtensions.AutoDispose(batch, tex);
             return tex;
         }
 
@@ -80,7 +80,7 @@ namespace MLEM.Extensions {
                     }
                 }
             }
-            AutoDispose(batch, tex);
+            SpriteBatchExtensions.AutoDispose(batch, tex);
             return tex;
         }
 
@@ -107,7 +107,7 @@ namespace MLEM.Extensions {
                         data[x, y] = Color.Lerp(top, btm, y / (float) height);
                 }
             }
-            AutoDispose(batch, tex);
+            SpriteBatchExtensions.AutoDispose(batch, tex);
             return tex;
         }
 

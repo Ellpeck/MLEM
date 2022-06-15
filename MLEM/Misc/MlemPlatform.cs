@@ -50,7 +50,7 @@ namespace MLEM.Misc {
         /// </summary>
         /// <exception cref="InvalidOperationException">If <see cref="Current"/> is null</exception>
         public static void EnsureExists() {
-            if (Current == null)
+            if (MlemPlatform.Current == null)
                 throw new InvalidOperationException("MlemPlatform was not initialized. For more information, see the MlemPlatform class or https://mlem.ellpeck.de/api/MLEM.Misc.MlemPlatform");
         }
 

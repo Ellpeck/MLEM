@@ -18,7 +18,7 @@ namespace MLEM.Input {
             {ModifierKey.Control, new[] {Keys.LeftControl, Keys.RightControl}},
             {ModifierKey.Alt, new[] {Keys.LeftAlt, Keys.RightAlt}}
         };
-        private static readonly Dictionary<Keys, ModifierKey> ModifiersLookup = KeysLookup
+        private static readonly Dictionary<Keys, ModifierKey> ModifiersLookup = KeysExtensions.KeysLookup
             .SelectMany(kv => kv.Value.Select(v => (kv.Key, v)))
             .ToDictionary(kv => kv.Item2, kv => kv.Item1);
 
@@ -28,7 +28,7 @@ namespace MLEM.Input {
         /// <param name="modifier">The modifier key</param>
         /// <returns>All of the keys the modifier key represents</returns>
         public static IEnumerable<Keys> GetKeys(this ModifierKey modifier) {
-            return KeysLookup.TryGetValue(modifier, out var keys) ? keys : Enumerable.Empty<Keys>();
+            return KeysExtensions.KeysLookup.TryGetValue(modifier, out var keys) ? keys : Enumerable.Empty<Keys>();
         }
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace MLEM.Input {
         /// <param name="key">The key to convert to a modifier key</param>
         /// <returns>The modifier key, or <see cref="ModifierKey.None"/></returns>
         public static ModifierKey GetModifier(this Keys key) {
-            return ModifiersLookup.TryGetValue(key, out var mod) ? mod : ModifierKey.None;
+            return KeysExtensions.ModifiersLookup.TryGetValue(key, out var mod) ? mod : ModifierKey.None;
         }
 
         /// <inheritdoc cref="GetModifier(Microsoft.Xna.Framework.Input.Keys)"/>
         public static ModifierKey GetModifier(this GenericInput input) {
-            return input.Type == GenericInput.InputType.Keyboard ? GetModifier((Keys) input) : ModifierKey.None;
+            return input.Type == GenericInput.InputType.Keyboard ? ((Keys) input).GetModifier() : ModifierKey.None;
         }
 
         /// <summary>
@@ -52,12 +52,12 @@ namespace MLEM.Input {
         /// <param name="key">The key</param>
         /// <returns>If the key is a modifier key</returns>
         public static bool IsModifier(this Keys key) {
-            return GetModifier(key) != ModifierKey.None;
+            return key.GetModifier() != ModifierKey.None;
         }
 
         /// <inheritdoc cref="IsModifier(Microsoft.Xna.Framework.Input.Keys)"/>
         public static bool IsModifier(this GenericInput input) {
-            return GetModifier(input) != ModifierKey.None;
+            return input.GetModifier() != ModifierKey.None;
         }
 
     }

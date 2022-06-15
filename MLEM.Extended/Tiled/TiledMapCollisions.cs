@@ -36,7 +36,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="collisionFunction">The function used to collect the collision info of a tile, or null to use <see cref="DefaultCollectCollisions"/></param>
         public void SetMap(TiledMap map, CollectCollisions collisionFunction = null) {
             this.map = map;
-            this.collisionFunction = collisionFunction ?? DefaultCollectCollisions;
+            this.collisionFunction = collisionFunction ?? TiledMapCollisions.DefaultCollectCollisions;
             this.collisionInfos = new TileCollisionInfo[map.Layers.Count, map.Width, map.Height];
             for (var i = 0; i < map.TileLayers.Count; i++) {
                 for (var x = 0; x < map.Width; x++) {

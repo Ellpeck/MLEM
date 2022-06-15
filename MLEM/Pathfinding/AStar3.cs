@@ -30,12 +30,12 @@ namespace MLEM.Pathfinding {
                     }
                 }
             }
-            AllDirs = dirs.ToArray();
+            AStar3.AllDirs = dirs.ToArray();
         }
 
         /// <inheritdoc />
         public AStar3(GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) :
-            base(AllDirs, AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {}
+            base(AStar3.AllDirs, AStar3.AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {}
 
         /// <inheritdoc />
         protected override Vector3 AddPositions(Vector3 first, Vector3 second) {

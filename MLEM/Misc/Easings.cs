@@ -72,7 +72,7 @@ namespace MLEM.Misc {
         public static readonly Easing InOutElastic = p => p == 0 ? 0 : p == 1 ? 1 : p < 0.5 ? -((float) Math.Pow(2, 20 * p - 10) * (float) Math.Sin((20 * p - 11.125) * 1.39626340159546F)) / 2 : (float) Math.Pow(2, -20 * p + 10) * (float) Math.Sin((20 * p - 11.125) * 1.39626340159546F) / 2 + 1;
 
         /// <summary>https://easings.net/#easeInBounce</summary>
-        public static readonly Easing InBounce = p => 1 - OutBounce(1 - p);
+        public static readonly Easing InBounce = p => 1 - Easings.OutBounce(1 - p);
         /// <summary>https://easings.net/#easeOutBounce</summary>
         public static readonly Easing OutBounce = p => {
             const float n1 = 7.5625F;
@@ -88,7 +88,7 @@ namespace MLEM.Misc {
             }
         };
         /// <summary>https://easings.net/#easeInOutBounce</summary>
-        public static readonly Easing InOutBounce = p => p < 0.5 ? (1 - OutBounce(1 - 2 * p)) / 2 : (1 + OutBounce(2 * p - 1)) / 2;
+        public static readonly Easing InOutBounce = p => p < 0.5 ? (1 - Easings.OutBounce(1 - 2 * p)) / 2 : (1 + Easings.OutBounce(2 * p - 1)) / 2;
 
         /// <summary>
         /// Scales the input of an easing function, which is usually between 0 and 1, to a given minimum and maximum.

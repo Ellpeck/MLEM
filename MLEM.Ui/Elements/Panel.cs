@@ -121,7 +121,7 @@ namespace MLEM.Ui.Elements {
             var offset = new Vector2(0, -this.ScrollBar.CurrentValue);
             // we ignore false grandchildren so that the children of the scroll bar stay in place
             foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true)) {
-                if (!child.ScrollOffset.Equals(offset, Epsilon)) {
+                if (!child.ScrollOffset.Equals(offset, Element.Epsilon)) {
                     child.ScrollOffset = offset;
                     this.relevantChildrenDirty = true;
                 }
@@ -246,13 +246,13 @@ namespace MLEM.Ui.Elements {
 
             // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
-            if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Epsilon)) {
+            if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
 
                 // update child padding based on whether the scroll bar is visible
                 var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
-                if (!this.scrollBarChildOffset.Equals(childOffset, Epsilon)) {
+                if (!this.scrollBarChildOffset.Equals(childOffset, Element.Epsilon)) {
                     this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
                     this.scrollBarChildOffset = childOffset;
                     this.SetAreaDirty();

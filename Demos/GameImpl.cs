@@ -23,11 +23,11 @@ namespace Demos {
         private TimeSpan secondCounter;
 
         static GameImpl() {
-            Demos.Add("Ui", ("An in-depth demonstration of the MLEM.Ui package and its abilities", game => new UiDemo(game)));
-            Demos.Add("Easings", ("An example of MLEM's Easings class, an adaptation of easings.net", game => new EasingsDemo(game)));
-            Demos.Add("Pathfinding", ("An example of MLEM's A* pathfinding implementation in 2D", game => new PathfindingDemo(game)));
-            Demos.Add("Animation and Texture Atlas", ("An example of UniformTextureAtlases, SpriteAnimations and SpriteAnimationGroups", game => new AnimationDemo(game)));
-            Demos.Add("Auto Tiling", ("A demonstration of the AutoTiling class that MLEM provides", game => new AutoTilingDemo(game)));
+            GameImpl.Demos.Add("Ui", ("An in-depth demonstration of the MLEM.Ui package and its abilities", game => new UiDemo(game)));
+            GameImpl.Demos.Add("Easings", ("An example of MLEM's Easings class, an adaptation of easings.net", game => new EasingsDemo(game)));
+            GameImpl.Demos.Add("Pathfinding", ("An example of MLEM's A* pathfinding implementation in 2D", game => new PathfindingDemo(game)));
+            GameImpl.Demos.Add("Animation and Texture Atlas", ("An example of UniformTextureAtlases, SpriteAnimations and SpriteAnimationGroups", game => new AnimationDemo(game)));
+            GameImpl.Demos.Add("Auto Tiling", ("A demonstration of the AutoTiling class that MLEM provides", game => new AutoTilingDemo(game)));
         }
 
         public GameImpl() {
@@ -74,7 +74,7 @@ namespace Demos {
 
             selection.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Select the demo you want to see below using your mouse, touch input, your keyboard or a controller. Check the demos' <l https://github.com/Ellpeck/MLEM/tree/main/Demos>source code</l> for more in-depth explanations of their functionality or the <l https://mlem.ellpeck.de/>website</l> for tutorials and API documentation."));
             selection.AddChild(new VerticalSpace(5));
-            foreach (var demo in Demos) {
+            foreach (var demo in GameImpl.Demos) {
                 selection.AddChild(new Button(Anchor.AutoCenter, new Vector2(1, 10), demo.Key, demo.Value.Item1) {
                     OnPressed = e => {
                         selection.IsHidden = true;
@@ -92,9 +92,9 @@ namespace Demos {
         }
 
         protected override UiStyle InitializeDefaultUiStyle(SpriteBatch batch) {
-            var tex = LoadContent<Texture2D>("Textures/Test");
+            var tex = MlemGame.LoadContent<Texture2D>("Textures/Test");
             return new UntexturedStyle(this.SpriteBatch) {
-                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont")),
+                Font = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("Fonts/TestFont")),
                 TextScale = 0.1F,
                 PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
                 ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4),

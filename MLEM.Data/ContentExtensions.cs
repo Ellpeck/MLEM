@@ -21,7 +21,7 @@ namespace MLEM.Data {
         /// <param name="content">The content manager to add the json serializer to</param>
         /// <param name="serializer">The json serializer to add</param>
         public static void SetJsonSerializer(this ContentManager content, JsonSerializer serializer) {
-            Serializers[content] = serializer;
+            ContentExtensions.Serializers[content] = serializer;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace MLEM.Data {
         /// <param name="content">The content manager whose serializer to get</param>
         /// <returns>The content manager's serializer</returns>
         public static JsonSerializer GetJsonSerializer(this ContentManager content) {
-            if (!Serializers.TryGetValue(content, out var serializer)) {
+            if (!ContentExtensions.Serializers.TryGetValue(content, out var serializer)) {
                 serializer = JsonConverters.AddAll(new JsonSerializer());
                 content.SetJsonSerializer(serializer);
             }
@@ -44,7 +44,7 @@ namespace MLEM.Data {
         /// <param name="content">The content manager to add the converter to</param>
         /// <param name="converter">The converter to add</param>
         public static void AddJsonConverter(this ContentManager content, JsonConverter converter) {
-            var serializer = GetJsonSerializer(content);
+            var serializer = content.GetJsonSerializer();
             serializer.Converters.Add(converter);
         }
 
@@ -60,7 +60,7 @@ namespace MLEM.Data {
         public static T LoadJson<T>(this ContentManager content, string name, string[] extensions = null, JsonSerializer serializer = null) {
             var triedFiles = new List<string>();
             var serializerToUse = serializer ?? content.GetJsonSerializer();
-            foreach (var extension in extensions ?? JsonExtensions) {
+            foreach (var extension in extensions ?? ContentExtensions.JsonExtensions) {
                 var file = Path.Combine(content.RootDirectory, name + extension);
                 triedFiles.Add(file);
                 try {

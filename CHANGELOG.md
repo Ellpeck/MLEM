@@ -22,6 +22,9 @@ Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
 - Allow using multiple textures in a StaticSpriteBatch
 
+Removals
+- Marked AStar.InfiniteCost as obsolete
+
 ### MLEM.Ui
 Additions
 - Added Element.AutoNavGroup which allows forming groups for auto-navigation

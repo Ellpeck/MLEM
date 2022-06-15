@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using static MonoGame.Extended.Tiled.TiledMapTileFlipFlags;
 using ColorHelper = MLEM.Extensions.ColorHelper;
 
 namespace MLEM.Extended.Tiled {
@@ -144,9 +143,9 @@ namespace MLEM.Extended.Tiled {
         public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, int localId, bool createStub = true) {
             var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
             if (tilesetTile == null && createStub) {
-                if (!StubTilesetTiles.TryGetValue(localId, out tilesetTile)) {
+                if (!TiledExtensions.StubTilesetTiles.TryGetValue(localId, out tilesetTile)) {
                     tilesetTile = new TiledMapTilesetTile(localId);
-                    StubTilesetTiles.Add(localId, tilesetTile);
+                    TiledExtensions.StubTilesetTiles.Add(localId, tilesetTile);
                 }
             }
             return tilesetTile;
@@ -271,12 +270,12 @@ namespace MLEM.Extended.Tiled {
         /// <param name="position">The position to add to the object's position</param>
         /// <param name="flipFlags">The flipping of the tile that this object belongs to. If set, the returned area will be "flipped" in the tile's space so that it matches the flip flags.</param>
         /// <returns>The area that the tile covers</returns>
-        public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2? position = null, TiledMapTileFlipFlags flipFlags = None) {
+        public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2? position = null, TiledMapTileFlipFlags flipFlags = TiledMapTileFlipFlags.None) {
             var tileSize = map.GetTileSize();
             var area = new RectangleF(obj.Position / tileSize, obj.Size / tileSize);
-            if (flipFlags.HasFlag(FlipHorizontally))
+            if (flipFlags.HasFlag(TiledMapTileFlipFlags.FlipHorizontally))
                 area.X = 1 - area.X - area.Width;
-            if (flipFlags.HasFlag(FlipVertically))
+            if (flipFlags.HasFlag(TiledMapTileFlipFlags.FlipVertically))
                 area.Y = 1 - area.Y - area.Height;
             if (position != null)
                 area.Offset(position.Value);

@@ -60,7 +60,7 @@ namespace MLEM.Ui.Elements {
                 if (this.text != value) {
                     this.text = value;
                     this.SetTextDirty();
-                    
+
                     var force = string.IsNullOrWhiteSpace(this.text);
                     if (this.forceHide != force) {
                         this.forceHide = force;
@@ -197,7 +197,7 @@ namespace MLEM.Ui.Elements {
         protected void SetTextDirty() {
             this.TokenizedText = null;
             // only set our area dirty if our size changed as a result of this action
-            if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Epsilon))
+            if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon))
                 this.SetAreaDirty();
         }
 

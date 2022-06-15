@@ -12,11 +12,11 @@ namespace MLEM.Misc {
         /// <summary>
         /// All values of the <see cref="Buttons"/> enum.
         /// </summary>
-        public static readonly Buttons[] Buttons = GetValues<Buttons>().ToArray();
+        public static readonly Buttons[] Buttons = EnumHelper.GetValues<Buttons>().ToArray();
         /// <summary>
         /// All values of the <see cref="Keys"/> enum.
         /// </summary>
-        public static readonly Keys[] Keys = GetValues<Keys>().ToArray();
+        public static readonly Keys[] Keys = EnumHelper.GetValues<Keys>().ToArray();
 
         /// <summary>
         /// Returns all of the values of the given enum type.

@@ -28,7 +28,7 @@ namespace Demos {
         public UiDemo(MlemGame game) : base(game) {}
 
         public override void LoadContent() {
-            this.testTexture = LoadContent<Texture2D>("Textures/Test");
+            this.testTexture = Demo.LoadContent<Texture2D>("Textures/Test");
             this.testPatch = new NinePatch(new TextureRegion(this.testTexture, 0, 8, 24, 24), 8);
             base.LoadContent();
 
@@ -38,7 +38,10 @@ namespace Demos {
                 // when using a SpriteFont, use GenericSpriteFont. When using a MonoGame.Extended BitmapFont, use GenericBitmapFont.
                 // Wrapping fonts like this allows for both types to be usable within MLEM.Ui easily
                 // Supplying a bold and an italic version is optional
-                Font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"), LoadContent<SpriteFont>("Fonts/TestFontBold"), LoadContent<SpriteFont>("Fonts/TestFontItalic")),
+                Font = new GenericSpriteFont(
+                    Demo.LoadContent<SpriteFont>("Fonts/TestFont"),
+                    Demo.LoadContent<SpriteFont>("Fonts/TestFontBold"),
+                    Demo.LoadContent<SpriteFont>("Fonts/TestFontItalic")),
                 TextScale = 0.1F,
                 PanelTexture = this.testPatch,
                 ButtonTexture = new NinePatch(new TextureRegion(this.testTexture, 24, 8, 16, 16), 4),
@@ -49,7 +52,7 @@ namespace Demos {
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8),
-                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/MonospacedFont"))}},
+                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}},
                 LinkColor = Color.CornflowerBlue
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
@@ -158,7 +161,7 @@ namespace Demos {
 
             // Check the WobbleButton method for an explanation of how this button works
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Wobble Me", "This button wobbles around visually when clicked, but this doesn't affect its actual size and positioning") {
-                OnPressed = element => CoroutineHandler.Start(WobbleButton(element)),
+                OnPressed = element => CoroutineHandler.Start(UiDemo.WobbleButton(element)),
                 PositionOffset = new Vector2(0, 1)
             });
             // Another button that shows animations!
@@ -191,13 +194,13 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Progress bars!"));
             var bar1 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Right, 10) {PositionOffset = new Vector2(0, 1)});
-            CoroutineHandler.Start(WobbleProgressBar(bar1));
+            CoroutineHandler.Start(UiDemo.WobbleProgressBar(bar1));
             var bar2 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(1, 8), Direction2.Left, 10) {PositionOffset = new Vector2(0, 1)});
-            CoroutineHandler.Start(WobbleProgressBar(bar2));
+            CoroutineHandler.Start(UiDemo.WobbleProgressBar(bar2));
             var bar3 = this.root.AddChild(new ProgressBar(Anchor.AutoLeft, new Vector2(8, 30), Direction2.Down, 10) {PositionOffset = new Vector2(0, 1)});
-            CoroutineHandler.Start(WobbleProgressBar(bar3));
+            CoroutineHandler.Start(UiDemo.WobbleProgressBar(bar3));
             var bar4 = this.root.AddChild(new ProgressBar(Anchor.AutoInline, new Vector2(8, 30), Direction2.Up, 10) {PositionOffset = new Vector2(1, 0)});
-            CoroutineHandler.Start(WobbleProgressBar(bar4));
+            CoroutineHandler.Start(UiDemo.WobbleProgressBar(bar4));
 
             this.root.AddChild(new VerticalSpace(3));
             var dropdown = this.root.AddChild(new Dropdown(Anchor.AutoLeft, new Vector2(1, 10), "Dropdown Menu"));

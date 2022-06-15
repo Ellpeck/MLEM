@@ -829,9 +829,9 @@ namespace MLEM.Input {
         /// <param name="gestures">The gestures to enable or disable</param>
         public static void SetGesturesEnabled(bool enabled, params GestureType[] gestures) {
             if (enabled) {
-                EnableGestures(gestures);
+                InputHandler.EnableGestures(gestures);
             } else {
-                DisableGestures(gestures);
+                InputHandler.DisableGestures(gestures);
             }
         }
 

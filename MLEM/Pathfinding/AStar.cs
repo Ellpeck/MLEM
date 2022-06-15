@@ -14,6 +14,7 @@ namespace MLEM.Pathfinding {
         /// <summary>
         /// A value that represents an infinite path cost, or a cost for a location that cannot possibly be reached.
         /// </summary>
+        [Obsolete("This field is deprecated. Use float.PositiveInfinity or float.MaxValue instead.")]
         public const float InfiniteCost = float.PositiveInfinity;
         /// <summary>
         /// The array of all directions that will be checked for path finding.
@@ -110,7 +111,7 @@ namespace MLEM.Pathfinding {
                 closed.Add(current.Pos, current);
 
                 if (current.Pos.Equals(goal)) {
-                    ret = CompilePath(current);
+                    ret = AStar<T>.CompilePath(current);
                     break;
                 }
 
@@ -167,7 +168,7 @@ namespace MLEM.Pathfinding {
         /// <summary>
         /// A cost function for a given path finding position.
         /// If a path point should have the default cost, <see cref="AStar{T}.DefaultCost"/> should be returned.
-        /// If a path point should be unreachable, <see cref="AStar{T}.InfiniteCost"/> should be returned.
+        /// If a path point should be unreachable, <see cref="float.PositiveInfinity"/> or <see cref="float.MaxValue"/> should be returned.
         /// </summary>
         /// <param name="currPos">The current position in the path</param>
         /// <param name="nextPos">The position we're trying to reach from the current position</param>
@@ -218,7 +219,7 @@ namespace MLEM.Pathfinding {
         /// <param name="other">An object to compare with this object.</param>
         /// <returns>true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.</returns>
         public bool Equals(PathPoint<T> other) {
-            return ReferenceEquals(this, other) || EqualityComparer<T>.Default.Equals(this.Pos, other.Pos);
+            return object.ReferenceEquals(this, other) || EqualityComparer<T>.Default.Equals(this.Pos, other.Pos);
         }
 
         /// <summary>Indicates whether this instance and a specified object are equal.</summary>

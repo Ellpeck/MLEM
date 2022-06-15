@@ -60,7 +60,7 @@ namespace MLEM.Data {
             if (this.allFlagsCache == null)
                 this.allFlagsCache = new Dictionary<DynamicEnum, bool>();
             if (!this.allFlagsCache.TryGetValue(flags, out var ret)) {
-                ret = (GetValue(this) & GetValue(flags)) == GetValue(flags);
+                ret = (DynamicEnum.GetValue(this) & DynamicEnum.GetValue(flags)) == DynamicEnum.GetValue(flags);
                 this.allFlagsCache.Add(flags, ret);
             }
             return ret;
@@ -76,7 +76,7 @@ namespace MLEM.Data {
             if (this.anyFlagsCache == null)
                 this.anyFlagsCache = new Dictionary<DynamicEnum, bool>();
             if (!this.anyFlagsCache.TryGetValue(flags, out var ret)) {
-                ret = (GetValue(this) & GetValue(flags)) != 0;
+                ret = (DynamicEnum.GetValue(this) & DynamicEnum.GetValue(flags)) != 0;
                 this.anyFlagsCache.Add(flags, ret);
             }
             return ret;
@@ -87,13 +87,13 @@ namespace MLEM.Data {
         public override string ToString() {
             if (this.name == null) {
                 var included = new List<DynamicEnum>();
-                if (GetValue(this) != 0) {
-                    foreach (var v in GetValues(this.GetType())) {
-                        if (this.HasFlag(v) && GetValue(v) != 0)
+                if (DynamicEnum.GetValue(this) != 0) {
+                    foreach (var v in DynamicEnum.GetValues(this.GetType())) {
+                        if (this.HasFlag(v) && DynamicEnum.GetValue(v) != 0)
                             included.Add(v);
                     }
                 }
-                this.name = included.Count > 0 ? string.Join(" | ", included) : GetValue(this).ToString();
+                this.name = included.Count > 0 ? string.Join(" | ", included) : DynamicEnum.GetValue(this).ToString();
             }
             return this.name;
         }
@@ -107,7 +107,7 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         /// <exception cref="ArgumentException">Thrown if the name or value passed are already present</exception>
         public static T Add<T>(string name, BigInteger value) where T : DynamicEnum {
-            var storage = GetStorage(typeof(T));
+            var storage = DynamicEnum.GetStorage(typeof(T));
 
             // cached parsed values and names might be incomplete with new values
             storage.ClearCaches();
@@ -119,7 +119,7 @@ namespace MLEM.Data {
                     throw new ArgumentException($"Duplicate name {name}", nameof(name));
             }
 
-            var ret = Construct(typeof(T), name, value);
+            var ret = DynamicEnum.Construct(typeof(T), name, value);
             storage.Values.Add(value, ret);
             return (T) ret;
         }
@@ -134,9 +134,9 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         public static T AddValue<T>(string name) where T : DynamicEnum {
             BigInteger value = 0;
-            while (GetStorage(typeof(T)).Values.ContainsKey(value))
+            while (DynamicEnum.GetStorage(typeof(T)).Values.ContainsKey(value))
                 value++;
-            return Add<T>(name, value);
+            return DynamicEnum.Add<T>(name, value);
         }
 
         /// <summary>
@@ -149,9 +149,9 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         public static T AddFlag<T>(string name) where T : DynamicEnum {
             BigInteger value = 1;
-            while (GetStorage(typeof(T)).Values.ContainsKey(value))
+            while (DynamicEnum.GetStorage(typeof(T)).Values.ContainsKey(value))
                 value <<= 1;
-            return Add<T>(name, value);
+            return DynamicEnum.Add<T>(name, value);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type whose values to get</typeparam>
         /// <returns>The defined values for the given type</returns>
         public static IEnumerable<T> GetValues<T>() where T : DynamicEnum {
-            return GetValues(typeof(T)).Cast<T>();
+            return DynamicEnum.GetValues(typeof(T)).Cast<T>();
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace MLEM.Data {
         /// <param name="type">The type whose values to get</param>
         /// <returns>The defined values for the given type</returns>
         public static IEnumerable<DynamicEnum> GetValues(Type type) {
-            return GetStorage(type).Values.Values;
+            return DynamicEnum.GetStorage(type).Values.Values;
         }
 
         /// <summary>
@@ -182,9 +182,9 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise OR (|) combination</returns>
         public static T Or<T>(T left, T right) where T : DynamicEnum {
-            var cache = GetStorage(typeof(T)).OrCache;
+            var cache = DynamicEnum.GetStorage(typeof(T)).OrCache;
             if (!cache.TryGetValue((left, right), out var ret)) {
-                ret = GetEnumValue<T>(GetValue(left) | GetValue(right));
+                ret = DynamicEnum.GetEnumValue<T>(DynamicEnum.GetValue(left) | DynamicEnum.GetValue(right));
                 cache.Add((left, right), ret);
             }
             return (T) ret;
@@ -198,9 +198,9 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise AND (&amp;) combination</returns>
         public static T And<T>(T left, T right) where T : DynamicEnum {
-            var cache = GetStorage(typeof(T)).AndCache;
+            var cache = DynamicEnum.GetStorage(typeof(T)).AndCache;
             if (!cache.TryGetValue((left, right), out var ret)) {
-                ret = GetEnumValue<T>(GetValue(left) & GetValue(right));
+                ret = DynamicEnum.GetEnumValue<T>(DynamicEnum.GetValue(left) & DynamicEnum.GetValue(right));
                 cache.Add((left, right), ret);
             }
             return (T) ret;
@@ -214,9 +214,9 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise XOR (^) combination</returns>
         public static T Xor<T>(T left, T right) where T : DynamicEnum {
-            var cache = GetStorage(typeof(T)).XorCache;
+            var cache = DynamicEnum.GetStorage(typeof(T)).XorCache;
             if (!cache.TryGetValue((left, right), out var ret)) {
-                ret = GetEnumValue<T>(GetValue(left) ^ GetValue(right));
+                ret = DynamicEnum.GetEnumValue<T>(DynamicEnum.GetValue(left) ^ DynamicEnum.GetValue(right));
                 cache.Add((left, right), ret);
             }
             return (T) ret;
@@ -229,9 +229,9 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the values</typeparam>
         /// <returns>The bitwise NEG (~) value</returns>
         public static T Neg<T>(T value) where T : DynamicEnum {
-            var cache = GetStorage(typeof(T)).NegCache;
+            var cache = DynamicEnum.GetStorage(typeof(T)).NegCache;
             if (!cache.TryGetValue(value, out var ret)) {
-                ret = GetEnumValue<T>(~GetValue(value));
+                ret = DynamicEnum.GetEnumValue<T>(~DynamicEnum.GetValue(value));
                 cache.Add(value, ret);
             }
             return (T) ret;
@@ -253,7 +253,7 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type that the returned dynamic enum should have</typeparam>
         /// <returns>The defined or combined dynamic enum value</returns>
         public static T GetEnumValue<T>(BigInteger value) where T : DynamicEnum {
-            return (T) GetEnumValue(typeof(T), value);
+            return (T) DynamicEnum.GetEnumValue(typeof(T), value);
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace MLEM.Data {
         /// <param name="value">The value whose dynamic enum value to get</param>
         /// <returns>The defined or combined dynamic enum value</returns>
         public static DynamicEnum GetEnumValue(Type type, BigInteger value) {
-            var storage = GetStorage(type);
+            var storage = DynamicEnum.GetStorage(type);
 
             // get the defined value if it exists
             if (storage.Values.TryGetValue(value, out var defined))
@@ -271,7 +271,7 @@ namespace MLEM.Data {
 
             // otherwise, cache the combined value
             if (!storage.FlagCache.TryGetValue(value, out var combined)) {
-                combined = Construct(type, null, value);
+                combined = DynamicEnum.Construct(type, null, value);
                 storage.FlagCache.Add(value, combined);
             }
             return combined;
@@ -286,7 +286,7 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the dynamic enum value to parse</typeparam>
         /// <returns>The parsed enum value, or null if parsing fails</returns>
         public static T Parse<T>(string strg) where T : DynamicEnum {
-            return (T) Parse(typeof(T), strg);
+            return (T) DynamicEnum.Parse(typeof(T), strg);
         }
 
         /// <summary>
@@ -297,28 +297,28 @@ namespace MLEM.Data {
         /// <param name="strg">The string to parse into a dynamic enum value</param>
         /// <returns>The parsed enum value, or null if parsing fails</returns>
         public static DynamicEnum Parse(Type type, string strg) {
-            var cache = GetStorage(type).ParseCache;
+            var cache = DynamicEnum.GetStorage(type).ParseCache;
             if (!cache.TryGetValue(strg, out var cached)) {
                 BigInteger? accum = null;
                 foreach (var val in strg.Split('|')) {
-                    foreach (var defined in GetValues(type)) {
+                    foreach (var defined in DynamicEnum.GetValues(type)) {
                         if (defined.name == val.Trim()) {
-                            accum = (accum ?? 0) | GetValue(defined);
+                            accum = (accum ?? 0) | DynamicEnum.GetValue(defined);
                             break;
                         }
                     }
                 }
                 if (accum != null)
-                    cached = GetEnumValue(type, accum.Value);
+                    cached = DynamicEnum.GetEnumValue(type, accum.Value);
                 cache.Add(strg, cached);
             }
             return cached;
         }
 
         private static Storage GetStorage(Type type) {
-            if (!Storages.TryGetValue(type, out var storage)) {
+            if (!DynamicEnum.Storages.TryGetValue(type, out var storage)) {
                 storage = new Storage();
-                Storages.Add(type, storage);
+                DynamicEnum.Storages.Add(type, storage);
             }
             return storage;
         }

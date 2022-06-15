@@ -135,9 +135,9 @@ namespace MLEM.Misc {
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
             var hashCode = this.Left.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.Right.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.Top.GetHashCode();
-            hashCode = (hashCode * 397) ^ this.Bottom.GetHashCode();
+            hashCode = hashCode * 397 ^ this.Right.GetHashCode();
+            hashCode = hashCode * 397 ^ this.Top.GetHashCode();
+            hashCode = hashCode * 397 ^ this.Bottom.GetHashCode();
             return hashCode;
         }
 

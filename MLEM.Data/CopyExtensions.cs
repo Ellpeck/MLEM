@@ -23,8 +23,8 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the object to copy</typeparam>
         /// <returns>A shallow copy of the object</returns>
         [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
-        public static T Copy<T>(this T obj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
-            var copy = (T) Construct(typeof(T), flags);
+        public static T Copy<T>(this T obj, BindingFlags flags = CopyExtensions.DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
+            var copy = (T) CopyExtensions.Construct(typeof(T), flags);
             obj.CopyInto(copy, flags, fieldInclusion);
             return copy;
         }
@@ -39,8 +39,8 @@ namespace MLEM.Data {
         /// <typeparam name="T">The type of the object to copy</typeparam>
         /// <returns>A deep copy of the object</returns>
         [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
-        public static T DeepCopy<T>(this T obj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
-            var copy = (T) Construct(typeof(T), flags);
+        public static T DeepCopy<T>(this T obj, BindingFlags flags = CopyExtensions.DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
+            var copy = (T) CopyExtensions.Construct(typeof(T), flags);
             obj.DeepCopyInto(copy, flags, fieldInclusion);
             return copy;
         }
@@ -54,7 +54,7 @@ namespace MLEM.Data {
         /// <param name="fieldInclusion">A predicate that determines whether or not the given field should be copied. If null, all fields will be copied.</param>
         /// <typeparam name="T">The type of the object to copy</typeparam>
         [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
-        public static void CopyInto<T>(this T obj, T otherObj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
+        public static void CopyInto<T>(this T obj, T otherObj, BindingFlags flags = CopyExtensions.DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
             foreach (var field in typeof(T).GetFields(flags)) {
                 if (fieldInclusion == null || fieldInclusion(field))
                     field.SetValue(otherObj, field.GetValue(obj));
@@ -71,7 +71,7 @@ namespace MLEM.Data {
         /// <param name="fieldInclusion">A predicate that determines whether or not the given field should be copied. If null, all fields will be copied.</param>
         /// <typeparam name="T">The type of the object to copy</typeparam>
         [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
-        public static void DeepCopyInto<T>(this T obj, T otherObj, BindingFlags flags = DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
+        public static void DeepCopyInto<T>(this T obj, T otherObj, BindingFlags flags = CopyExtensions.DefaultFlags, Predicate<FieldInfo> fieldInclusion = null) {
             foreach (var field in obj.GetType().GetFields(flags)) {
                 if (fieldInclusion != null && !fieldInclusion(field))
                     continue;
@@ -83,7 +83,7 @@ namespace MLEM.Data {
                     var otherVal = field.GetValue(otherObj);
                     // if the object we want to copy into doesn't have a value yet, we create one
                     if (otherVal == null) {
-                        otherVal = Construct(field.FieldType, flags);
+                        otherVal = CopyExtensions.Construct(field.FieldType, flags);
                         field.SetValue(otherObj, otherVal);
                     }
                     val.DeepCopyInto(otherVal, flags);
@@ -92,7 +92,7 @@ namespace MLEM.Data {
         }
 
         private static object Construct(Type t, BindingFlags flags) {
-            if (!ConstructorCache.TryGetValue(t, out var constructor)) {
+            if (!CopyExtensions.ConstructorCache.TryGetValue(t, out var constructor)) {
                 var constructors = t.GetConstructors(flags);
                 // find a contructor with the correct attribute
                 constructor = constructors.FirstOrDefault(c => c.GetCustomAttribute<CopyConstructorAttribute>() != null);
@@ -104,7 +104,7 @@ namespace MLEM.Data {
                     constructor = constructors.FirstOrDefault();
                 if (constructor == null)
                     throw new NullReferenceException($"Type {t} does not have a constructor with the required visibility");
-                ConstructorCache.Add(t, constructor);
+                CopyExtensions.ConstructorCache.Add(t, constructor);
             }
             return constructor.Invoke(new object[constructor.GetParameters().Length]);
         }

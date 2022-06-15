@@ -123,12 +123,12 @@ namespace MLEM.Formatting {
                 var token = this.Tokens[t];
                 var drawFont = token.GetFont(font);
                 var drawColor = token.GetColor(color);
-                
+
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
                     foreach (var c in token.SplitDisplayString[l]) {
                         var cString = c.ToCachedString();
-                       
+
                         if (indexInToken == 0)
                             token.DrawSelf(time, batch, pos + innerOffset, drawFont, color, scale, depth);
                         token.DrawCharacter(time, batch, c, cString, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
@@ -136,7 +136,7 @@ namespace MLEM.Formatting {
                         innerOffset.X += drawFont.MeasureString(cString).X * scale;
                         indexInToken++;
                     }
-                    
+
                     // only split at a new line, not between tokens!
                     if (l < token.SplitDisplayString.Length - 1) {
                         innerOffset.X = token.InnerOffsets[l] * scale;

@@ -24,7 +24,7 @@ namespace MLEM.Ui.Elements {
             // we squish children in order of priority, since auto-anchoring is based on addition order
             for (var i = 0; i < this.SortedChildren.Count; i++) {
                 var child = this.SortedChildren[i];
-                if (SquishChild(child, out var squished))
+                if (SquishingGroup.SquishChild(child, out var squished))
                     child.SetAreaAndUpdateChildren(squished);
             }
         }
@@ -66,7 +66,7 @@ namespace MLEM.Ui.Elements {
                     }
                 }
             }
-            if (!pos.Equals(element.Area.Location, Epsilon) || !size.Equals(element.Area.Size, Epsilon)) {
+            if (!pos.Equals(element.Area.Location, Element.Epsilon) || !size.Equals(element.Area.Size, Element.Epsilon)) {
                 squishedArea = new RectangleF(pos, size);
                 return true;
             }

@@ -18,7 +18,7 @@ namespace MLEM.Startup {
         /// <summary>
         /// The static game instance's input handler
         /// </summary>
-        public static InputHandler Input => instance.InputHandler;
+        public static InputHandler Input => MlemGame.instance.InputHandler;
 
         /// <summary>
         /// This game's graphics device manager, initialized in the constructor
@@ -64,7 +64,7 @@ namespace MLEM.Startup {
         /// <param name="windowWidth">The default window width</param>
         /// <param name="windowHeight">The default window height</param>
         public MlemGame(int windowWidth = 1280, int windowHeight = 720) {
-            instance = this;
+            MlemGame.instance = this;
 
             this.GraphicsDeviceManager = new GraphicsDeviceManager(this) {
                 PreferredBackBufferWidth = windowWidth,
@@ -160,7 +160,7 @@ namespace MLEM.Startup {
         /// <typeparam name="T">The type of content to load</typeparam>
         /// <returns>The loaded content</returns>
         public static T LoadContent<T>(string name) {
-            return instance.Content.Load<T>(name);
+            return MlemGame.instance.Content.Load<T>(name);
         }
 
         /// <summary>

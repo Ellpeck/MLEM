@@ -15,9 +15,9 @@ namespace MLEM.Extensions {
         /// <param name="c">The character to turn into a string</param>
         /// <returns>A string representing the character</returns>
         public static string ToCachedString(this char c) {
-            if (!Cache.TryGetValue(c, out var ret)) {
+            if (!CharExtensions.Cache.TryGetValue(c, out var ret)) {
                 ret = c.ToString();
-                Cache.Add(c, ret);
+                CharExtensions.Cache.Add(c, ret);
             }
             return ret;
         }

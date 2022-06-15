@@ -57,7 +57,7 @@ namespace MLEM.Sound {
         public float GetRandomPitch() {
             if (this.RandomPitchModifier == 0)
                 return this.Pitch;
-            return this.Pitch + ((float) Random.NextDouble() * 2 - 1) * this.RandomPitchModifier;
+            return this.Pitch + ((float) SoundEffectInfo.Random.NextDouble() * 2 - 1) * this.RandomPitchModifier;
         }
 
         /// <summary>

@@ -27,7 +27,7 @@ namespace Demos {
             // using it having wrong coordinates and/or sizes
             // the regions that are part of the atlas are then referenced by region coordinates rather than texture coordinates
             // (as seen below)
-            var atlas = new UniformTextureAtlas(LoadContent<Texture2D>("Textures/Anim"), 4, 4);
+            var atlas = new UniformTextureAtlas(Demo.LoadContent<Texture2D>("Textures/Anim"), 4, 4);
 
             // create the four animations by supplying the time per frame, and the four regions used
             // note that you don't need to use a texture atlas for this, you can also simply supply the texture and the regions manually here

@@ -26,9 +26,9 @@ namespace MLEM.Font {
         /// <param name="bold">A bold version of the font</param>
         /// <param name="italic">An italic version of the font</param>
         public GenericSpriteFont(SpriteFont font, SpriteFont bold = null, SpriteFont italic = null) {
-            this.Font = SetDefaults(font);
-            this.Bold = bold != null ? new GenericSpriteFont(SetDefaults(bold)) : this;
-            this.Italic = italic != null ? new GenericSpriteFont(SetDefaults(italic)) : this;
+            this.Font = GenericSpriteFont.SetDefaults(font);
+            this.Bold = bold != null ? new GenericSpriteFont(GenericSpriteFont.SetDefaults(bold)) : this;
+            this.Italic = italic != null ? new GenericSpriteFont(GenericSpriteFont.SetDefaults(italic)) : this;
         }
 
         /// <inheritdoc />

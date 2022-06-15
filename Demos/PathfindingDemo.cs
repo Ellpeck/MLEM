@@ -41,8 +41,8 @@ namespace Demos {
             // pathfinder's constructor
             float Cost(Point pos, Point nextPos) {
                 if (nextPos.X < 0 || nextPos.Y < 0 || nextPos.X >= 50 || nextPos.Y >= 50)
-                    return AStar2.InfiniteCost;
-                return this.world[nextPos.X, nextPos.Y] ? 1 : AStar2.InfiniteCost;
+                    return float.PositiveInfinity;
+                return this.world[nextPos.X, nextPos.Y] ? 1 : float.PositiveInfinity;
             }
 
             // Actually initialize the pathfinder with the cost function, as well as specify if moving diagonally between tiles should be
