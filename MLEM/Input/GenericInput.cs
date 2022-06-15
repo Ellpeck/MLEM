@@ -24,13 +24,7 @@ namespace MLEM.Input {
         /// Returns this generic input's <see cref="Keys"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException">If this generic input's <see cref="Type"/> is not <see cref="InputType.Keyboard"/> or <see cref="InputType.None"/>.</exception>
-        public Keys Key {
-            get {
-                if (this.Type == InputType.None)
-                    return Keys.None;
-                return this.Type == InputType.Keyboard ? (Keys) this.value : throw new InvalidOperationException();
-            }
-        }
+        public Keys Key => this.Type == InputType.None ? 0 : this.Type == InputType.Keyboard ? (Keys) this.value : throw new InvalidOperationException();
         /// <summary>
         /// Returns this generic input's <see cref="MouseButton"/>.
         /// </summary>
@@ -39,8 +33,8 @@ namespace MLEM.Input {
         /// <summary>
         /// Returns this generic input's <see cref="Buttons"/>.
         /// </summary>
-        /// <exception cref="InvalidOperationException">If this generic input's <see cref="Type"/> is not <see cref="InputType.Gamepad"/>.</exception>
-        public Buttons Button => this.Type == InputType.Gamepad ? (Buttons) this.value : throw new InvalidOperationException();
+        /// <exception cref="InvalidOperationException">If this generic input's <see cref="Type"/> is not <see cref="InputType.Gamepad"/> or <see cref="InputType.None"/>.</exception>
+        public Buttons Button => this.Type == InputType.None ? 0 : this.Type == InputType.Gamepad ? (Buttons) this.value : throw new InvalidOperationException();
 
         /// <summary>
         /// Creates a new generic input from the given keyboard <see cref="Keys"/>.
