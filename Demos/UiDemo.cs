@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
-using MLEM.Formatting.Codes;
 using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
@@ -93,12 +92,7 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
 
             // a paragraph with formatting codes. To see them all or to add more, check the TextFormatting class
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. The names of all <c Orange>MonoGame Colors</c> can be used, as well as the codes <i>Italic</i>, <b>Bold</b>, <s>Drop Shadow'd</s> and <s><c Pink>mixed formatting</s></c>. You can also add additional fonts for things like\n<f Monospaced>void Code() {\n  // Code\n}</f>\n<i>Even <c #ff611f82>inline custom colors</c> work!</i>"));
-
-            // adding some custom image formatting codes
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Additionally, you can create custom formatting codes that contain <i Grass> images and more!"));
-            this.UiSystem.TextFormatter.AddImage("Grass", image.Texture);
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Defining text animations as formatting codes is also possible, including <a wobbly>wobbly text</a> at <a wobbly 8 0.25>different intensities</a>. Of course, more animations can be added though."));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. For more info, check out the <b>text formatting demo</b>!"));
 
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Multiline text input:", true));
