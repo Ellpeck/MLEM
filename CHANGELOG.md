@@ -17,6 +17,7 @@ Additions
 - Added ReverseInput, ReverseOutput and AndThen to Easings
 - Added an Enum constructor to GenericInput
 - Added RandomPitchModifier and GetRandomPitch to SoundEffectInfo
+- Added TextInput class, which is an isolated version of MLEM.Ui's TextField logic
 
 Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
