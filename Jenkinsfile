@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Submodules') {
+      steps {
+        sh 'git submodule update --init --recursive --force'
+      }
+    }
     stage('Cake Build') {
       steps {
         sh 'dotnet tool restore'
