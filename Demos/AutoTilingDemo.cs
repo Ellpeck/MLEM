@@ -37,7 +37,7 @@ namespace Demos {
             this.GraphicsDevice.Clear(Color.Black);
 
             // drawing the auto tiles
-            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(10));
+            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(10));
             for (var x = 0; x < 6; x++) {
                 for (var y = 0; y < 5; y++) {
                     // don't draw non-grass tiles ( )

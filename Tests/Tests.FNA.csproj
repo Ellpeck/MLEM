@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <VSTestLogger>nunit</VSTestLogger>
+        <RootNamespace>Tests</RootNamespace>
+        <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.FNA.csproj" />
+        <ProjectReference Include="..\MLEM.Data\MLEM.Data.FNA.csproj" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.FNA.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\FNA\FNA.Core.csproj" />
+        <PackageReference Include="coverlet.collector" Version="3.1.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+        <PackageReference Include="NunitXml.TestLogger" Version="3.0.117" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Content/**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="FNA/**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>%(Filename)%(Extension)</Link>
+        </Content>
+    </ItemGroup>
+</Project>

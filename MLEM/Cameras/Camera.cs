@@ -58,7 +58,7 @@ namespace MLEM.Cameras {
         }
         /// <summary>
         /// The matrix that this camera "sees", based on its position and scale.
-        /// Use this in your <see cref="SpriteBatch.Begin"/> calls to render based on the camera's viewport.
+        /// Use this in your <c>SpriteBatch.Begin</c> calls to render based on the camera's viewport.
         /// </summary>
         public Matrix ViewMatrix {
             get {
@@ -105,7 +105,7 @@ namespace MLEM.Cameras {
         /// <param name="roundPosition">Whether the camera's <see cref="Position"/> should be rounded to full integers when calculating the <see cref="ViewMatrix"/></param>
         public Camera(GraphicsDevice graphicsDevice, bool roundPosition = true) {
             this.graphicsDevice = graphicsDevice;
-            this.AutoScaleReferenceSize = this.Viewport.Size;
+            this.AutoScaleReferenceSize = new Point(this.Viewport.Width, this.Viewport.Height);
             this.RoundPosition = roundPosition;
         }
 
@@ -173,7 +173,7 @@ namespace MLEM.Cameras {
         /// <param name="delta">The amount to zoom in or out by</param>
         /// <param name="zoomCenter">The position that should be regarded as the zoom's center, in screen space. The default value is the center.</param>
         public void Zoom(float delta, Vector2? zoomCenter = null) {
-            var center = (zoomCenter ?? this.Viewport.Size.ToVector2() / 2) / this.ActualScale;
+            var center = (zoomCenter ?? new Vector2(this.Viewport.Width, this.Viewport.Height) / 2) / this.ActualScale;
             var lastScale = this.Scale;
             this.Scale += delta;
             this.Position += center * ((this.Scale - lastScale) / this.Scale);

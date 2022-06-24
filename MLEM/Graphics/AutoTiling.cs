@@ -62,8 +62,8 @@ namespace MLEM.Graphics {
         /// <summary>
         /// This method allows for a tiled texture to be drawn in an auto-tiling mode.
         /// This allows, for example, a grass patch on a tilemap to have nice looking edges that transfer over into a path without any hard edges between tiles.
-        /// 
-        /// This method is a more complex version of <see cref="DrawAutoTile"/> that overlays separate border textures on a background texture region, which also allows for non-rectangular texture areas to be used easily. 
+        ///
+        /// This method is a more complex version of <see cref="DrawAutoTile"/> that overlays separate border textures on a background texture region, which also allows for non-rectangular texture areas to be used easily.
         /// For auto-tiling in this way to work, the overlay sections have to be laid out as follows: 16 sections aligned horizontally within the texture file, with the following information:
         /// <list type="number">
         /// <item><description>The texture used for straight, horizontal borders, with the borders facing away from the center, split up into four parts: top left, then top right, then bottom left, then bottom right</description></item>
@@ -138,8 +138,8 @@ namespace MLEM.Graphics {
             var xUr = up && right ? connectsTo(1, -1) ? 0 : 4 : right ? 1 : up ? 3 : 2;
             var xDl = down && left ? connectsTo(-1, 1) ? 0 : 4 : left ? 1 : down ? 3 : 2;
             var xDr = down && right ? connectsTo(1, 1) ? 0 : 4 : right ? 1 : down ? 3 : 2;
-            var (w, h) = textureRegion.Size;
-            var (w2, h2) = new Point(w / 2, h / 2);
+            var (w, h) = (textureRegion.Width, textureRegion.Height);
+            var (w2, h2) = (w / 2, h / 2);
             return (
                 new Vector2(pos.X, pos.Y), new Rectangle(textureRegion.X + xUl * w, textureRegion.Y, w2, h2),
                 new Vector2(pos.X + w2 * scale.X, pos.Y), new Rectangle(textureRegion.X + w2 + xUr * w, textureRegion.Y, w2, h2),
@@ -156,7 +156,7 @@ namespace MLEM.Graphics {
             var xUr = up && right ? connectsTo(1, -1) ? -1 : 13 : right ? 1 : up ? 9 : 5;
             var xDl = down && left ? connectsTo(-1, 1) ? -1 : 14 : left ? 2 : down ? 10 : 6;
             var xDr = down && right ? connectsTo(1, 1) ? -1 : 15 : right ? 3 : down ? 11 : 7;
-            var (w, h) = textureRegion.Size;
+            var (w, h) = (textureRegion.Width, textureRegion.Height);
             return (
                 xUl < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xUl * w, textureRegion.Y, w, h),
                 xUr < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xUr * w, textureRegion.Y, w, h),

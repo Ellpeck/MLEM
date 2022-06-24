@@ -7,18 +7,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MLEM.Data.Content {
     /// <summary>
-    /// Represents a version of <see cref="ContentManager"/> that doesn't load content binary <c>xnb</c> files, but rather as their regular formats. 
+    /// Represents a version of <see cref="ContentManager"/> that doesn't load content binary <c>xnb</c> files, but rather as their regular formats.
     /// </summary>
     public class RawContentManager : ContentManager, IGameComponent {
 
         private static List<RawContentReader> readers;
 
-        private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
-
         /// <summary>
         /// The graphics device that this content manager uses
         /// </summary>
         public readonly GraphicsDevice GraphicsDevice;
+
+        private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
+        #if FNA
+        private Dictionary<string, object> LoadedAssets { get; } = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+        #endif
 
         /// <summary>
         /// Creates a new content manager with an optionally specified root directory.
@@ -50,7 +53,11 @@ namespace MLEM.Data.Content {
         /// <param name="originalAssetName">The original name of the asset.</param>
         /// <param name="currentAsset">The current asset instance.</param>
         /// <typeparam name="T">The asset's type.</typeparam>
-        protected override void ReloadAsset<T>(string originalAssetName, T currentAsset) {
+        protected
+            #if !FNA
+            override
+            #endif
+            void ReloadAsset<T>(string originalAssetName, T currentAsset) {
             this.Read(originalAssetName, currentAsset);
         }
 

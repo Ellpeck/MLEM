@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <RootNamespace>MLEM.Extended</RootNamespace>
+        <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <NoWarn>NU1702</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>Ellpeck</Authors>
+        <Description>MLEM Library for Extending FNA extension that ties in with other FNA libraries</Description>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageTags>fna ellpeck mlem utility extensions extended</PackageTags>
+        <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>Logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
+
+        <ProjectReference Include="..\FontStashSharp\src\XNA\FontStashSharp.FNA.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
+        <ProjectReference Include="..\FNA\FNA.Core.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
+
+        <Compile Remove="Tiled/**" />
+        <Compile Remove="Extensions/**" />
+        <Compile Remove="Font/GenericBitmapFont.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
+        <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />
+    </ItemGroup>
+</Project>

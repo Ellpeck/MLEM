@@ -105,12 +105,12 @@ namespace MLEM.Misc {
             this.Height = size.Y;
         }
 
-        /// <inheritdoc cref="Rectangle.Contains(float, float)"/>
+        /// <inheritdoc cref="Rectangle.Contains(int, int)"/>
         public bool Contains(float x, float y) {
             return this.X <= x && x < this.X + this.Width && this.Y <= y && y < this.Y + this.Height;
         }
 
-        /// <inheritdoc cref="Rectangle.Contains(Vector2)"/>
+        /// <inheritdoc cref="Rectangle.Contains(Point)"/>
         public bool Contains(Vector2 value) {
             return this.Contains(value.X, value.Y);
         }
@@ -140,7 +140,7 @@ namespace MLEM.Misc {
             return (((17 * 23 + this.X.GetHashCode()) * 23 + this.Y.GetHashCode()) * 23 + this.Width.GetHashCode()) * 23 + this.Height.GetHashCode();
         }
 
-        /// <inheritdoc cref="Rectangle.Inflate(float,float)"/>
+        /// <inheritdoc cref="Rectangle.Inflate(int,int)"/>
         public void Inflate(float horizontalAmount, float verticalAmount) {
             this.X -= horizontalAmount;
             this.Y -= verticalAmount;
@@ -153,13 +153,13 @@ namespace MLEM.Misc {
             return value.Left < this.Right && this.Left < value.Right && value.Top < this.Bottom && this.Top < value.Bottom;
         }
 
-        /// <inheritdoc cref="Rectangle.Offset(float, float)"/>
+        /// <inheritdoc cref="Rectangle.Offset(int, int)"/>
         public void Offset(float offsetX, float offsetY) {
             this.X += offsetX;
             this.Y += offsetY;
         }
 
-        /// <inheritdoc cref="Rectangle.Offset(Vector2)"/>
+        /// <inheritdoc cref="Rectangle.Offset(Point)"/>
         public void Offset(Vector2 amount) {
             this.X += amount.X;
             this.Y += amount.Y;
@@ -173,7 +173,7 @@ namespace MLEM.Misc {
         /// <returns>The squared distance between the two rectangles.</returns>
         public float DistanceSquared(RectangleF value) {
             // we calculate the distance based on the quadrants that the other rectangle is in using 8 cases:
-            // 1 7 4 
+            // 1 7 4
             // 3 T 6
             // 2 8 5
             var valueIsAbove = value.Bottom < this.Top;
@@ -215,7 +215,13 @@ namespace MLEM.Misc {
             return "{X:" + this.X + " Y:" + this.Y + " Width:" + this.Width + " Height:" + this.Height + "}";
         }
 
-        /// <inheritdoc cref="Rectangle.Deconstruct"/>
+        /// <summary>
+        /// Deconstruction method for <see cref="RectangleF"/>.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void Deconstruct(out float x, out float y, out float width, out float height) {
             x = this.X;
             y = this.Y;

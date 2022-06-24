@@ -135,8 +135,8 @@ namespace MLEM.Ui.Elements {
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
             this.ParseText(size);
-            var (w, h) = this.TokenizedText.Measure(this.RegularFont) * this.TextScale * this.TextScaleMultiplier * this.Scale;
-            return new Vector2(this.AutoAdjustWidth ? w + this.ScaledPadding.Width : size.X, h + this.ScaledPadding.Height);
+            var textSize = this.TokenizedText.Measure(this.RegularFont) * this.TextScale * this.TextScaleMultiplier * this.Scale;
+            return new Vector2(this.AutoAdjustWidth ? textSize.X + this.ScaledPadding.Width : size.X, textSize.Y + this.ScaledPadding.Height);
         }
 
         /// <inheritdoc />

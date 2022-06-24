@@ -23,9 +23,9 @@ namespace MLEM.Formatting.Codes {
             // don't underline spaces at the end of lines
             if (c == ' ' && token.DisplayString.Length > indexInToken + 1 && token.DisplayString[indexInToken + 1] == '\n')
                 return false;
-            var (w, h) = font.MeasureString(cString) * scale;
-            var t = h * this.thickness;
-            batch.Draw(batch.GetBlankTexture(), new RectangleF(pos.X, pos.Y + this.yOffset * h - t, w, t), color);
+            var size = font.MeasureString(cString) * scale;
+            var t = size.Y * this.thickness;
+            batch.Draw(batch.GetBlankTexture(), new RectangleF(pos.X, pos.Y + this.yOffset * size.Y - t, size.X, t), color);
             return false;
         }
 

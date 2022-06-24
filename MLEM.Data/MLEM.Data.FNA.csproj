@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <RootNamespace>MLEM.Data</RootNamespace>
+        <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <NoWarn>NU1701</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>Ellpeck</Authors>
+        <Description>Simple loading and processing of textures and other data for FNA, including the ability to load non-XNB content files easily</Description>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageTags>fna ellpeck mlem utility extensions data serialize</PackageTags>
+        <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>Logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
+
+        <!--TODO remove lidgren support eventually (methods marked as obsolete since 5.2.0)-->
+        <PackageReference Include="Lidgren.Network" Version="1.0.2">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <ProjectReference Include="..\FNA\FNA.Core.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
+        <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />
+    </ItemGroup>
+</Project>

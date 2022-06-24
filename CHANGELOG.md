@@ -18,6 +18,7 @@ Additions
 - Added an Enum constructor to GenericInput
 - Added RandomPitchModifier and GetRandomPitch to SoundEffectInfo
 - Added TextInput class, which is an isolated version of MLEM.Ui's TextField logic
+- Added MLEM.FNA, which is fully compatible with FNA
 
 Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
@@ -31,6 +32,7 @@ Removals
 Additions
 - Added Element.AutoNavGroup which allows forming groups for auto-navigation
 - Added UiMarkdownParser
+- Added MLEM.Ui.FNA, which is fully compatible with FNA
 
 Improvements
 - Ensure that Element.IsMouseOver is always accurate by making it an auto-property
@@ -59,6 +61,7 @@ Removals
 ### MLEM.Extended
 Additions
 - Added LayerPositionF
+- Added MLEM.Extended.FNA, which is fully compatible with FNA
 
 Improvements
 - Allow using a StaticSpriteBatch to render an IndividualTiledMapRenderer
@@ -67,6 +70,7 @@ Improvements
 Additions
 - Added the ability to add padding to RuntimeTexturePacker texture regions
 - Added the ability to pack UniformTextureAtlas and DataTextureAtlas using RuntimeTexturePacker
+- Added MLEM.Data.FNA, which is fully compatible with FNA
 
 Improvements
 - Premultiply textures when using RawContentManager
@@ -76,6 +80,10 @@ Improvements
 
 Fixes
 - Fixed SoundEffectReader incorrectly claiming it could read ogg and mp3 files
+
+### MLEM.Startup
+Additions
+- Added MLEM.Startup.FNA, which is fully compatible with FNA
 
 ## 5.3.0
 ### MLEM

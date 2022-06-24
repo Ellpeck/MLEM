@@ -33,7 +33,7 @@ namespace MLEM.Textures {
         /// <summary>
         /// The size of this texture region
         /// </summary>
-        public Point Size => this.Area.Size;
+        public Point Size => new Point(this.Area.Width, this.Area.Height);
         /// <summary>
         /// The width of this texture region
         /// </summary>
@@ -51,8 +51,8 @@ namespace MLEM.Textures {
         /// The <see cref="Pivot"/> of this texture region, but in absolute pixels rather than percentage.
         /// </summary>
         public Vector2 PivotPixels {
-            get => this.Pivot * this.Size.ToVector2();
-            set => this.Pivot = value / this.Size.ToVector2();
+            get => this.Pivot * new Vector2(this.Size.X, this.Size.Y);
+            set => this.Pivot = value / new Vector2(this.Size.X, this.Size.Y);
         }
         /// <summary>
         /// The name of this texture region. By default, this name is <see cref="string.Empty"/>.
@@ -91,14 +91,14 @@ namespace MLEM.Textures {
         /// <param name="texture">The texture to use</param>
         /// <param name="uv">The top left corner of this area</param>
         /// <param name="size">The size of this area</param>
-        public TextureRegion(Texture2D texture, Point uv, Point size) : this(texture, new Rectangle(uv, size)) {}
+        public TextureRegion(Texture2D texture, Point uv, Point size) : this(texture, new Rectangle(uv.X, uv.Y, size.X, size.Y)) {}
 
         /// <summary>
         /// Creates a new texture region which is a sub-region of the given texture region
         /// </summary>
         /// <param name="region">The texture region to create a sub-region of</param>
         /// <param name="area">The new texture region area</param>
-        public TextureRegion(TextureRegion region, Rectangle area) : this(region, area.Location, area.Size) {}
+        public TextureRegion(TextureRegion region, Rectangle area) : this(region, area.Location, new Point(area.Width, area.Height)) {}
 
         /// <summary>
         /// Creates a new texture region which is a sub-region of the given texture region

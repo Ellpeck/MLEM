@@ -170,8 +170,13 @@ namespace MLEM.Ui.Parsers {
                             Texture2D tex;
                             if (loc.StartsWith("http")) {
                                 using (var client = new HttpClient()) {
-                                    using (var src = await client.GetStreamAsync(loc))
-                                        tex = Texture2D.FromStream(this.GraphicsDevice, src);
+                                    using (var src = await client.GetStreamAsync(loc)) {
+                                        using (var memory = new MemoryStream()) {
+                                            // download the full stream before passing it to texture
+                                            await src.CopyToAsync(memory);
+                                            tex = Texture2D.FromStream(this.GraphicsDevice, memory);
+                                        }
+                                    }
                                 }
                             } else {
                                 using (var stream = Path.IsPathRooted(loc) ? File.OpenRead(loc) : TitleContainer.OpenStream(loc))

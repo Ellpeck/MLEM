@@ -57,9 +57,9 @@ namespace MLEM.Misc {
         /// <summary>
         /// A delegate method that can be used for <see cref="MlemPlatform.AddTextInputListener"/>
         /// </summary>
-        /// <param name="sender">The object that sent the event. The <see cref="MlemPlatform"/> used in most cases.</param>
-        /// <param name="key">The key that was pressed</param>
-        /// <param name="character">The character that corresponds to that key</param>
+        /// <param name="sender">The object that sent the event. The <see cref="GameWindow"/> or <see cref="MlemPlatform"/> used in most cases.</param>
+        /// <param name="key">The key that was pressed. Note that this is always <see cref="Keys.None"/> on FNA.</param>
+        /// <param name="character">The character that corresponds to that key.</param>
         public delegate void TextInputCallback(object sender, Keys key, char character);
 
         /// <summary>
@@ -78,10 +78,10 @@ namespace MLEM.Misc {
             private readonly Action<GameWindow, EventHandler<T>> addListener;
 
             /// <summary>
-            /// Creates a new DesktopGL-based platform
+            /// Creates a new DesktopGL-based platform.
             /// See <see cref="MlemPlatform.DesktopGl{T}"/> class documentation for more detailed information.
             /// </summary>
-            /// <param name="addListener">The function that is used to add a text input listener</param>
+            /// <param name="addListener">The function that is used to add a text input listener.</param>
             public DesktopGl(Action<GameWindow, EventHandler<T>> addListener) {
                 this.addListener = addListener;
             }
@@ -100,6 +100,44 @@ namespace MLEM.Misc {
                         this.character = args.GetType().GetField("Character");
                     callback.Invoke(sender, (Keys) this.key.GetValue(args), (char) this.character.GetValue(args));
                 });
+            }
+
+            /// <inheritdoc />
+            public override void OpenLinkOrFile(string link) {
+                Process.Start(new ProcessStartInfo(link) {UseShellExecute = true});
+            }
+
+        }
+
+        /// <summary>
+        /// The MLEM Desktop platform for FNA.
+        /// This platform uses the built-in FNA TextInputEXT event, which makes this listener work with any keyboard localization natively.
+        /// This platform is initialized as follows:
+        /// <code>
+        /// MlemPlatform.Current = new MlemPlatform.DesktopFna(a => TextInputEXT.TextInput += a);
+        /// </code>
+        /// </summary>
+        public class DesktopFna : MlemPlatform {
+
+            private readonly Action<Action<char>> addListener;
+
+            /// <summary>
+            /// Creates a new Desktop for FNA platform.
+            /// See <see cref="MlemPlatform.DesktopFna"/> class documentation for more detailed information.
+            /// </summary>
+            /// <param name="addListener">The function that is used to add a text input listener.</param>
+            public DesktopFna(Action<Action<char>> addListener) {
+                this.addListener = addListener;
+            }
+
+            /// <inheritdoc />
+            public override Task<string> OpenOnScreenKeyboard(string title, string description, string defaultText, bool usePasswordMode) {
+                return Task.FromResult<string>(null);
+            }
+
+            /// <inheritdoc />
+            public override void AddTextInputListener(GameWindow window, TextInputCallback callback) {
+                this.addListener(c => callback(this, Keys.None, c));
             }
 
             /// <inheritdoc />

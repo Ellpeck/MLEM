@@ -91,7 +91,7 @@ namespace MLEM.Input {
         public int CaretPos {
             get => this.caretPos;
             set {
-                var val = MathHelper.Clamp(value, 0, this.text.Length);
+                var val = (int) MathHelper.Clamp(value, 0F, this.text.Length);
                 if (this.caretPos != val) {
                     this.caretPos = val;
                     this.caretBlinkTimer = 0;
@@ -226,12 +226,14 @@ namespace MLEM.Input {
 
         /// <summary>
         /// A method that should be called when the given text should be entered into this text input.
-        /// This method is designed to be used with the <see cref="GameWindow.TextInput"/> event.
+        /// This method is designed to be used with <see cref="MlemPlatform.AddTextInputListener"/> or the TextInput event provided by MonoGame and FNA.
         /// </summary>
         /// <param name="key">The key that was pressed.</param>
         /// <param name="character">The character that the <paramref name="key"/> represents.</param>
         /// <returns>Whether text was successfully input.</returns>
         public bool OnTextInput(Keys key, char character) {
+            // FNA's text input event doesn't supply keys, so we handle this in Update
+            #if !FNA
             if (key == Keys.Back) {
                 if (this.CaretPos > 0) {
                     this.CaretPos--;
@@ -246,6 +248,9 @@ namespace MLEM.Input {
                 return this.InsertText(character);
             }
             return false;
+            #else
+            return this.InsertText(character);
+            #endif
         }
 
         /// <summary>
@@ -254,26 +259,37 @@ namespace MLEM.Input {
         /// <param name="time">The current game time.</param>
         /// <param name="input">The input handler to use for input querying.</param>
         public void Update(GameTime time, InputHandler input) {
+            // FNA's text input event doesn't supply keys, so we handle this here
+            #if FNA
+            if (this.CaretPos > 0 && input.TryConsumePressed(Keys.Back)) {
+                this.CaretPos--;
+                this.RemoveText(this.CaretPos, 1);
+            } else if (this.CaretPos < this.text.Length && input.TryConsumePressed(Keys.Delete)) {
+                this.RemoveText(this.CaretPos, 1);
+            } else if (this.Multiline && input.TryConsumePressed(Keys.Enter)) {
+                this.InsertText('\n');
+            } else
+            #endif
             if (this.CaretPos > 0 && input.TryConsumePressed(Keys.Left)) {
                 this.CaretPos--;
             } else if (this.CaretPos < this.text.Length && input.TryConsumePressed(Keys.Right)) {
                 this.CaretPos++;
             } else if (this.Multiline && input.IsKeyPressedAvailable(Keys.Up) && this.MoveCaretToLine(this.CaretLine - 1)) {
-                input.TryConsumeKeyPressed(Keys.Up);
+                input.TryConsumePressed(Keys.Up);
             } else if (this.Multiline && input.IsKeyPressedAvailable(Keys.Down) && this.MoveCaretToLine(this.CaretLine + 1)) {
-                input.TryConsumeKeyPressed(Keys.Down);
-            } else if (this.CaretPos != 0 && input.TryConsumeKeyPressed(Keys.Home)) {
+                input.TryConsumePressed(Keys.Down);
+            } else if (this.CaretPos != 0 && input.TryConsumePressed(Keys.Home)) {
                 this.CaretPos = 0;
-            } else if (this.CaretPos != this.text.Length && input.TryConsumeKeyPressed(Keys.End)) {
+            } else if (this.CaretPos != this.text.Length && input.TryConsumePressed(Keys.End)) {
                 this.CaretPos = this.text.Length;
             } else if (input.IsModifierKeyDown(ModifierKey.Control)) {
                 if (input.IsKeyPressedAvailable(Keys.V)) {
                     var clip = this.PasteFromClipboardFunction?.Invoke();
                     if (clip != null) {
                         this.InsertText(clip, true);
-                        input.TryConsumeKeyPressed(Keys.V);
+                        input.TryConsumePressed(Keys.V);
                     }
-                } else if (input.TryConsumeKeyPressed(Keys.C)) {
+                } else if (input.TryConsumePressed(Keys.C)) {
                     // until there is text selection, just copy the whole content
                     this.CopyToClipboardFunction?.Invoke(this.Text);
                 }

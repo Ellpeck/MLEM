@@ -3,8 +3,9 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>Simple loading and processing of textures and other data for MonoGame, including the ability to load non-XNB content files easily</Description>
@@ -15,12 +16,11 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageIcon>Logo.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <NoWarn>NU1701</NoWarn>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
-        
+
         <!--TODO remove lidgren support eventually (methods marked as obsolete since 5.2.0)-->
         <PackageReference Include="Lidgren.Network" Version="1.0.2">
             <PrivateAssets>all</PrivateAssets>
@@ -35,7 +35,7 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
-    
+
     <ItemGroup>
         <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
         <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />

@@ -159,7 +159,7 @@ namespace MLEM.Ui {
 
             // MOUSE INPUT
             if (this.HandleMouse) {
-                var mousedNow = this.GetElementUnderPos(this.Input.ViewportMousePosition.ToVector2());
+                var mousedNow = this.GetElementUnderPos(new Vector2(this.Input.ViewportMousePosition.X, this.Input.ViewportMousePosition.Y));
                 this.SetMousedElement(mousedNow);
 
                 if (this.Input.IsMouseButtonPressedAvailable(MouseButton.Left)) {
@@ -414,8 +414,8 @@ namespace MLEM.Ui {
                 foreach (var child in children) {
                     if (child == this.SelectedElement)
                         continue;
-                    var (xOffset, yOffset) = child.Area.Center - this.SelectedElement.Area.Center;
-                    var angle = Math.Abs(MathHelper.WrapAngle(direction.Angle() - (float) Math.Atan2(yOffset, xOffset)));
+                    var offset = child.Area.Center - this.SelectedElement.Area.Center;
+                    var angle = Math.Abs(MathHelper.WrapAngle(direction.Angle() - (float) Math.Atan2(offset.Y, offset.X)));
                     if (angle >= MathHelper.PiOver2 - Element.Epsilon)
                         continue;
                     var distSq = child.Area.DistanceSquared(this.SelectedElement.Area);

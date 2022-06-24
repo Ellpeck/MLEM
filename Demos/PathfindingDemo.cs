@@ -35,9 +35,9 @@ namespace Demos {
 
             // Create a cost function, which determines how expensive (or difficult) it should be to move from a given position
             // to the next, adjacent position. In our case, the only restriction should be walls and out-of-bounds positions, which
-            // both have a cost of AStar2.InfiniteCost, meaning they are completely unwalkable. 
+            // both have a cost of AStar2.InfiniteCost, meaning they are completely unwalkable.
             // If your game contains harder-to-move-on areas like, say, a muddy pit, you can return a higher cost value for those
-            // locations. If you want to scale your cost function differently, you can specify a different default cost in your 
+            // locations. If you want to scale your cost function differently, you can specify a different default cost in your
             // pathfinder's constructor
             float Cost(Point pos, Point nextPos) {
                 if (nextPos.X < 0 || nextPos.Y < 0 || nextPos.X >= 50 || nextPos.Y >= 50)
@@ -73,7 +73,7 @@ namespace Demos {
         public override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.White);
 
-            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(14));
+            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(14));
             var tex = this.SpriteBatch.GetBlankTexture();
             // draw the world with simple shapes
             for (var x = 0; x < 50; x++) {
@@ -87,9 +87,9 @@ namespace Demos {
             // in a real game, you'd obviously make your characters walk along the path instead of drawing it
             if (this.path != null) {
                 for (var i = 1; i < this.path.Count; i++) {
-                    var (firstX, firstY) = this.path[i - 1];
-                    var (secondX, secondY) = this.path[i];
-                    this.SpriteBatch.Draw(tex, RectangleF.FromCorners(new Vector2(firstX + 0.25F, firstY + 0.25F), new Vector2(secondX + 0.75F, secondY + 0.75F)), Color.Blue);
+                    var first = this.path[i - 1];
+                    var second = this.path[i];
+                    this.SpriteBatch.Draw(tex, RectangleF.FromCorners(new Vector2(first.X + 0.25F, first.Y + 0.25F), new Vector2(second.X + 0.75F, second.Y + 0.75F)), Color.Blue);
                 }
             }
             this.SpriteBatch.End();

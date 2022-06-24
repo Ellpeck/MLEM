@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MLEM.Graphics {
     /// <summary>
-    /// A sprite batch context is a set of information for a <see cref="SpriteBatch"/> to use, which encapsulates all of the information usually passed directly to <see cref="SpriteBatch.Begin"/>.
+    /// A sprite batch context is a set of information for a <see cref="SpriteBatch"/> to use, which encapsulates all of the information usually passed directly to <c>SpriteBatch.Begin</c>.
     /// To use a sprite batch context effectively, the extension methods in <see cref="SpriteBatchContextExtensions"/> should be used.
     /// </summary>
     public struct SpriteBatchContext {
@@ -17,7 +17,7 @@ namespace MLEM.Graphics {
         /// </summary>
         public BlendState BlendState;
         /// <summary>
-        /// State of the sampler. 
+        /// State of the sampler.
         /// </summary>
         public SamplerState SamplerState;
         /// <summary>

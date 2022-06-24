@@ -70,7 +70,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The size of this element, where X represents the width and Y represents the height.
         /// If the x or y value of the size is between 0 and 1, the size will be seen as a percentage of its parent's size rather than as an absolute value.
-        /// If the x (or y) value of the size is negative, the width (or height) is seen as a percentage of the element's resulting height (or width). 
+        /// If the x (or y) value of the size is negative, the width (or height) is seen as a percentage of the element's resulting height (or width).
         /// </summary>
         /// <example>
         /// The following example combines both types of percentage-based sizing.
@@ -178,12 +178,12 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// This element's transform matrix.
         /// Can easily be scaled using <see cref="ScaleTransform"/>.
-        /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
+        /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
         /// </summary>
         public Matrix Transform = Matrix.Identity;
         /// <summary>
         /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
-        /// Note that, when this is non-null, a new <see cref="SpriteBatch.Begin"/> call is used for this element.
+        /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
         /// </summary>
         #pragma warning disable CS0618
         [Obsolete("BeginImpl is deprecated. You can create a custom element class and override Draw instead.")]
@@ -927,7 +927,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
-        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <see cref="SpriteBatch.Begin"/> call is also started.
+        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
@@ -944,7 +944,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
-        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <see cref="SpriteBatch.Begin"/> call is also started.
+        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
@@ -981,7 +981,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Draws this element and all of its children. Override this method to draw the content of custom elements.
-        /// Note that, when this is called, <see cref="SpriteBatch.Begin"/> has already been called with custom <see cref="Transform"/> etc. applied.
+        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has already been called with custom <see cref="Transform"/> etc. applied.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
@@ -998,7 +998,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Draws this element and all of its children. Override this method to draw the content of custom elements.
-        /// Note that, when this is called, <see cref="SpriteBatch.Begin"/> has already been called with custom <see cref="Transform"/> etc. applied.
+        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has already been called with custom <see cref="Transform"/> etc. applied.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
@@ -1021,7 +1021,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Draws this element and all of its <see cref="GetRelevantChildren"/> early.
         /// Drawing early involves drawing onto <see cref="RenderTarget2D"/> instances rather than onto the screen.
-        /// Note that, when this is called, <see cref="SpriteBatch.Begin"/> has not yet been called.
+        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has not yet been called.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>

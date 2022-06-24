@@ -1,6 +1,6 @@
 ![The MLEM logo](https://raw.githubusercontent.com/Ellpeck/MLEM/release/Media/Banner.png)
 
-**MLEM Library for Extending MonoGame** is an addition to the game framework [MonoGame](https://www.monogame.net/) that provides extension methods, quality of life improvements and additional features like a ui system and easy input handling.
+**MLEM Library for Extending MonoGame and FNA** is an addition to the game frameworks [MonoGame](https://www.monogame.net/) and [FNA](https://fna-xna.github.io/) that provides extension methods, quality of life improvements and additional features like a ui system and easy input handling.
 
 # What next?
 - Get it on [NuGet](https://www.nuget.org/packages?q=mlem)

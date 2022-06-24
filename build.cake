@@ -9,13 +9,13 @@ var config = Argument("configuration", "Release");
 
 Task("Prepare").Does(() => {
     DotNetCoreRestore("MLEM.sln");
-    
+
     if (branch != "release") {
         var buildNum = EnvironmentVariable("BUILD_NUMBER");
         if (buildNum != null)
             version += "-" + buildNum;
     }
-        
+
     DeleteFiles("**/*.nupkg");
 });
 
@@ -27,13 +27,16 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
     foreach (var project in GetFiles("**/MLEM*.csproj"))
         DotNetCoreBuild(project.FullPath, settings);
     DotNetCoreBuild("Demos/Demos.csproj", settings);
+    DotNetCoreBuild("Demos/Demos.FNA.csproj", settings);
 });
 
 Task("Test").IsDependentOn("Build").Does(() => {
-    DotNetCoreTest("Tests/Tests.csproj", new DotNetCoreTestSettings {
+    var settings = new DotNetCoreTestSettings {
         Configuration = config,
         Collectors = {"XPlat Code Coverage"}
-    });
+    };
+    DotNetCoreTest("Tests/Tests.csproj", settings);
+    DotNetCoreTest("Tests/Tests.FNA.csproj", settings);
 });
 
 Task("Pack").IsDependentOn("Test").Does(() => {

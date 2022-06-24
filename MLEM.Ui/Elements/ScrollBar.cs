@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using MLEM.Extensions;
 using MLEM.Graphics;
 using MLEM.Input;
 using MLEM.Misc;
@@ -195,13 +196,13 @@ namespace MLEM.Ui.Elements {
         }
 
         private void ScrollToPos(Vector2 position) {
-            var (width, height) = this.ScrollerSize * this.Scale;
+            var size = this.ScrollerSize * this.Scale;
             if (this.Horizontal) {
-                var offset = this.scrollStartOffset.X >= 0 && this.scrollStartOffset.X <= width ? this.scrollStartOffset.X : width / 2;
-                this.CurrentValue = (position.X - this.Area.X - offset) / (this.Area.Width - width) * this.MaxValue;
+                var offset = this.scrollStartOffset.X >= 0 && this.scrollStartOffset.X <= size.X ? this.scrollStartOffset.X : size.X / 2;
+                this.CurrentValue = (position.X - this.Area.X - offset) / (this.Area.Width - size.X) * this.MaxValue;
             } else {
-                var offset = this.scrollStartOffset.Y >= 0 && this.scrollStartOffset.Y <= height ? this.scrollStartOffset.Y : height / 2;
-                this.CurrentValue = (position.Y - this.Area.Y - offset) / (this.Area.Height - height) * this.MaxValue;
+                var offset = this.scrollStartOffset.Y >= 0 && this.scrollStartOffset.Y <= size.Y ? this.scrollStartOffset.Y : size.Y / 2;
+                this.CurrentValue = (position.Y - this.Area.Y - offset) / (this.Area.Height - size.Y) * this.MaxValue;
             }
         }
 

@@ -1,0 +1,6 @@
+[submodule "FNA"]
+	path = FNA
+	url = https://github.com/FNA-XNA/FNA
+[submodule "FontStashSharp"]
+	path = FontStashSharp
+	url = https://github.com/FontStashSharp/FontStashSharp

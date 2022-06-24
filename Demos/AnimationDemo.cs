@@ -90,7 +90,7 @@ namespace Demos {
         public override void DoDraw(GameTime gameTime) {
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: Matrix.CreateScale(10));
+            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(10));
             // draw the group's current region
             // if not using a group, just draw the animation's CurrentRegion here
             this.SpriteBatch.Draw(this.group.CurrentRegion, new Vector2(10, 10), Color.White);

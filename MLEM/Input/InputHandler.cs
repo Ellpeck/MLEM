@@ -15,6 +15,12 @@ namespace MLEM.Input {
     /// </summary>
     public class InputHandler : GameComponent {
 
+        #if FNA
+        private const int MaximumGamePadCount = 4;
+        #else
+        private static readonly int MaximumGamePadCount = GamePad.MaximumGamePadCount;
+        #endif
+
         /// <summary>
         /// Contains all of the gestures that have finished during the last update call.
         /// To easily query these gestures, use <see cref="GetGesture"/> or <see cref="GetViewportGesture"/>.
@@ -80,11 +86,11 @@ namespace MLEM.Input {
         /// <summary>
         /// Contains the touch state from the last update call
         /// </summary>
-        public TouchCollection LastTouchState { get; private set; }
+        public TouchCollection LastTouchState { get; private set; } = new TouchCollection(Array.Empty<TouchLocation>());
         /// <summary>
         /// Contains the current touch state
         /// </summary>
-        public TouchCollection TouchState { get; private set; }
+        public TouchCollection TouchState { get; private set; } = new TouchCollection(Array.Empty<TouchLocation>());
         /// <summary>
         /// Contains the <see cref="LastTouchState"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
@@ -109,7 +115,7 @@ namespace MLEM.Input {
         /// <summary>
         /// Contains the position of the mouse from the last update call, extracted from <see cref="LastMouseState"/>
         /// </summary>
-        public Point LastMousePosition => this.LastMouseState.Position;
+        public Point LastMousePosition => new Point(this.LastMouseState.X, this.LastMouseState.Y);
         /// <summary>
         /// Contains the <see cref="LastMousePosition"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
@@ -117,7 +123,7 @@ namespace MLEM.Input {
         /// <summary>
         /// Contains the current position of the mouse, extracted from <see cref="MouseState"/>
         /// </summary>
-        public Point MousePosition => this.MouseState.Position;
+        public Point MousePosition => new Point(this.MouseState.X, this.MouseState.Y);
         /// <summary>
         /// Contains the <see cref="MousePosition"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
@@ -139,11 +145,11 @@ namespace MLEM.Input {
         /// </summary>
         public KeyboardState KeyboardState { get; private set; }
 
-        private readonly GamePadState[] lastGamepads = new GamePadState[GamePad.MaximumGamePadCount];
-        private readonly GamePadState[] gamepads = new GamePadState[GamePad.MaximumGamePadCount];
-        private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[GamePad.MaximumGamePadCount];
-        private readonly bool[] triggerGamepadButtonRepeat = new bool[GamePad.MaximumGamePadCount];
-        private readonly Buttons?[] heldGamepadButtons = new Buttons?[GamePad.MaximumGamePadCount];
+        private readonly GamePadState[] lastGamepads = new GamePadState[MaximumGamePadCount];
+        private readonly GamePadState[] gamepads = new GamePadState[MaximumGamePadCount];
+        private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[MaximumGamePadCount];
+        private readonly bool[] triggerGamepadButtonRepeat = new bool[MaximumGamePadCount];
+        private readonly Buttons?[] heldGamepadButtons = new Buttons?[MaximumGamePadCount];
         private readonly List<GestureSample> gestures = new List<GestureSample>();
         private readonly HashSet<(GenericInput, int)> consumedPresses = new HashSet<(GenericInput, int)>();
 
@@ -209,7 +215,7 @@ namespace MLEM.Input {
             if (this.HandleMouse) {
                 this.LastMouseState = this.MouseState;
                 var state = Mouse.GetState();
-                if (active && this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.Position)) {
+                if (active && this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.X, state.Y)) {
                     this.MouseState = state;
                     foreach (var button in MouseExtensions.MouseButtons) {
                         if (state.GetState(button) == ButtonState.Pressed)
@@ -217,18 +223,22 @@ namespace MLEM.Input {
                     }
                 } else {
                     // mouse position and scroll wheel value should be preserved when the mouse is out of bounds
+                    #if FNA
+                    this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0);
+                    #else
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0, state.HorizontalScrollWheelValue);
+                    #endif
                 }
             }
 
             if (this.HandleGamepads) {
-                this.ConnectedGamepads = GamePad.MaximumGamePadCount;
-                for (var i = 0; i < GamePad.MaximumGamePadCount; i++) {
+                this.ConnectedGamepads = MaximumGamePadCount;
+                for (var i = 0; i < MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
-                    this.gamepads[i] = GamePadState.Default;
-                    if (GamePad.GetCapabilities(i).IsConnected) {
+                    this.gamepads[i] = default;
+                    if (GamePad.GetCapabilities((PlayerIndex) i).IsConnected) {
                         if (active) {
-                            this.gamepads[i] = GamePad.GetState(i);
+                            this.gamepads[i] = GamePad.GetState((PlayerIndex) i);
                             foreach (var button in EnumHelper.Buttons) {
                                 if (this.IsGamepadButtonDown(button, i))
                                     this.AccumulateDown(button, i);
@@ -263,12 +273,13 @@ namespace MLEM.Input {
                 this.LastTouchState = this.TouchState;
                 this.LastViewportTouchState = this.ViewportTouchState;
 
-                this.TouchState = active ? TouchPanel.GetState() : default;
+                this.TouchState = active ? TouchPanel.GetState() : new TouchCollection(Array.Empty<TouchLocation>());
                 if (this.TouchState.Count > 0 && this.ViewportOffset != Point.Zero) {
                     this.ViewportTouchState = new List<TouchLocation>();
                     foreach (var touch in this.TouchState) {
                         touch.TryGetPreviousLocation(out var previous);
-                        this.ViewportTouchState.Add(new TouchLocation(touch.Id, touch.State, touch.Position + this.ViewportOffset.ToVector2(), previous.State, previous.Position + this.ViewportOffset.ToVector2()));
+                        var offset = new Vector2(this.ViewportOffset.X, this.ViewportOffset.Y);
+                        this.ViewportTouchState.Add(new TouchLocation(touch.Id, touch.State, touch.Position + offset, previous.State, previous.Position + offset));
                     }
                 } else {
                     this.ViewportTouchState = this.TouchState;
@@ -548,7 +559,7 @@ namespace MLEM.Input {
         /// <summary>
         /// Returns whether the given key is considered pressed.
         /// A gamepad button is considered pressed if it was down the last update call, and is up the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
-        /// This has the same behavior as <see cref="IsGamepadButtonPressed"/>, but ignores gamepad repeat events. 
+        /// This has the same behavior as <see cref="IsGamepadButtonPressed"/>, but ignores gamepad repeat events.
         /// If <see cref="HandleGamepadRepeats"/> is false, this method does the same as <see cref="IsGamepadButtonPressed"/>.
         /// </summary>
         /// <param name="button">The button to query</param>
@@ -613,7 +624,8 @@ namespace MLEM.Input {
         /// <returns>True if a gesture of the type was found, otherwise false</returns>
         public bool GetViewportGesture(GestureType type, out GestureSample sample) {
             if (this.GetGesture(type, out var original)) {
-                sample = new GestureSample(original.GestureType, original.Timestamp, original.Position + this.ViewportOffset.ToVector2(), original.Position2 + this.ViewportOffset.ToVector2(), original.Delta, original.Delta2);
+                var offset = new Vector2(this.ViewportOffset.X, this.ViewportOffset.Y);
+                sample = new GestureSample(original.GestureType, original.Timestamp, original.Position + offset, original.Position2 + offset, original.Delta, original.Delta2);
                 return true;
             }
             sample = default;

@@ -57,7 +57,7 @@ namespace MLEM.Extensions {
         /// <param name="manager">The graphics device manager</param>
         /// <param name="window">The window whose bounds to use</param>
         public static void ResetWidthAndHeight(this GraphicsDeviceManager manager, GameWindow window) {
-            var (_, _, width, height) = window.ClientBounds;
+            var (width, height) = (window.ClientBounds.Width, window.ClientBounds.Height);
             manager.PreferredBackBufferWidth = Math.Max(height, width);
             manager.PreferredBackBufferHeight = Math.Min(height, width);
             manager.ApplyChanges();
@@ -90,7 +90,12 @@ namespace MLEM.Extensions {
             /// <param name="target">The target to apply</param>
             public TargetContext(GraphicsDevice device, RenderTarget2D target) {
                 this.device = device;
+                #if FNA
+                // RenderTargetCount doesn't exist in FNA but we still want the optimization in MG
+                this.lastTargets = device.GetRenderTargets();
+                #else
                 this.lastTargets = device.RenderTargetCount <= 0 ? null : device.GetRenderTargets();
+                #endif
                 device.SetRenderTarget(target);
             }
 

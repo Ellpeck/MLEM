@@ -5,12 +5,13 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Textures;
 
 namespace MLEM.Data {
     /// <summary>
     /// <para>
-    /// This class represents an atlas of <see cref="TextureRegion"/> objects which are loaded from a special texture atlas file. 
+    /// This class represents an atlas of <see cref="TextureRegion"/> objects which are loaded from a special texture atlas file.
     /// To load a data texture atlas, you can use <see cref="DataTextureAtlasExtensions.LoadTextureAtlas"/>.
     /// </para>
     /// <para>
@@ -95,7 +96,7 @@ namespace MLEM.Data {
                 var loc = new Rectangle(
                     int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value),
                     int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
-                loc.Offset(off);
+                loc.Offset(off.ToPoint());
 
                 // pivot
                 var piv = !match.Groups[6].Success ? Vector2.Zero : off + new Vector2(

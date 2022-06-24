@@ -223,13 +223,13 @@ namespace MLEM.Extensions {
         /// <param name="matrix">The matrix</param>
         /// <returns>The rotation of the matrix</returns>
         public static Quaternion Rotation(this Matrix matrix) {
-            var (scX, scY, scZ) = matrix.Scale();
-            if (scX == 0 || scY == 0 || scZ == 0)
+            var sc = matrix.Scale();
+            if (sc.X == 0 || sc.Y == 0 || sc.Z == 0)
                 return Quaternion.Identity;
             return Quaternion.CreateFromRotationMatrix(new Matrix(
-                matrix.M11 / scX, matrix.M12 / scX, matrix.M13 / scX, 0,
-                matrix.M21 / scY, matrix.M22 / scY, matrix.M23 / scY, 0,
-                matrix.M31 / scZ, matrix.M32 / scZ, matrix.M33 / scZ, 0,
+                matrix.M11 / sc.X, matrix.M12 / sc.X, matrix.M13 / sc.X, 0,
+                matrix.M21 / sc.Y, matrix.M22 / sc.Y, matrix.M23 / sc.Y, 0,
+                matrix.M31 / sc.Z, matrix.M32 / sc.Z, matrix.M33 / sc.Z, 0,
                 0, 0, 0, 1));
         }
 
@@ -250,7 +250,7 @@ namespace MLEM.Extensions {
         /// <param name="quaternion">The quaternion</param>
         /// <returns>The rotation of the quaternion</returns>
         public static Vector3 RotationVector(this Quaternion quaternion) {
-            var (x, y, z, w) = quaternion;
+            var (x, y, z, w) = (quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
             return new Vector3(
                 (float) Math.Atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)),
                 (float) Math.Asin(MathHelper.Clamp(2 * (w * y - z * x), -1, 1)),
@@ -268,16 +268,16 @@ namespace MLEM.Extensions {
         /// <param name="penetration">The amount that the penetration occured by, in the direction of <paramref name="normal"/></param>
         /// <returns>Whether or not a penetration occured</returns>
         public static bool Penetrate(this RectangleF rect, RectangleF other, out Vector2 normal, out float penetration) {
-            var (offsetX, offsetY) = other.Center - rect.Center;
-            var overlapX = rect.Width / 2 + other.Width / 2 - Math.Abs(offsetX);
+            var offset = other.Center - rect.Center;
+            var overlapX = rect.Width / 2 + other.Width / 2 - Math.Abs(offset.X);
             if (overlapX > 0) {
-                var overlapY = rect.Height / 2 + other.Height / 2 - Math.Abs(offsetY);
+                var overlapY = rect.Height / 2 + other.Height / 2 - Math.Abs(offset.Y);
                 if (overlapY > 0) {
                     if (overlapX < overlapY) {
-                        normal = new Vector2(offsetX < 0 ? -1 : 1, 0);
+                        normal = new Vector2(offset.X < 0 ? -1 : 1, 0);
                         penetration = overlapX;
                     } else {
-                        normal = new Vector2(0, offsetY < 0 ? -1 : 1);
+                        normal = new Vector2(0, offset.Y < 0 ? -1 : 1);
                         penetration = overlapY;
                     }
                     return true;
@@ -287,6 +287,24 @@ namespace MLEM.Extensions {
             penetration = 0;
             return false;
         }
+
+        #if FNA
+        /// <summary>
+        /// Gets a <see cref="Point"/> representation for this object.
+        /// </summary>
+        /// <returns>A <see cref="Point"/> representation for this object.</returns>
+        public static Point ToPoint(this Vector2 vector) {
+            return new Point((int) vector.X, (int) vector.Y);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Vector2"/> representation for this object.
+        /// </summary>
+        /// <returns>A <see cref="Vector2"/> representation for this object.</returns>
+        public static Vector2 ToVector2(this Point point) {
+            return new Vector2(point.X, point.Y);
+        }
+        #endif
 
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 
 namespace MLEM.Graphics {
     /// <summary>
@@ -174,18 +176,18 @@ namespace MLEM.Graphics {
             for (var i = 0; i < this.FilledBuffers; i++) {
                 var buffer = this.vertexBuffers[i];
                 var texture = this.textures[i];
-                var tris = Math.Min(this.items.Count * 4 - totalIndex, buffer.VertexCount) / 4 * 2;
+                var verts = Math.Min(this.items.Count * 4 - totalIndex, buffer.VertexCount);
 
                 this.graphicsDevice.SetVertexBuffer(buffer);
                 if (effect != null) {
                     foreach (var pass in effect.CurrentTechnique.Passes) {
                         pass.Apply();
                         this.graphicsDevice.Textures[0] = texture;
-                        this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, tris);
+                        this.DrawPrimitives(verts);
                     }
                 } else {
                     this.graphicsDevice.Textures[0] = texture;
-                    this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, tris);
+                    this.DrawPrimitives(verts);
                 }
 
                 totalIndex += buffer.VertexCount;
@@ -290,10 +292,11 @@ namespace MLEM.Graphics {
             if ((effects & SpriteEffects.FlipHorizontally) != 0)
                 (texBr.X, texTl.X) = (texTl.X, texBr.X);
 
+            var destSize = new Vector2(destinationRectangle.Width, destinationRectangle.Height);
             if (rotation == 0) {
-                return this.Add(texture, destinationRectangle.Location.ToVector2() - origin, destinationRectangle.Size.ToVector2(), color, texTl, texBr, layerDepth);
+                return this.Add(texture, destinationRectangle.Location.ToVector2() - origin, destSize, color, texTl, texBr, layerDepth);
             } else {
-                return this.Add(texture, destinationRectangle.Location.ToVector2(), -origin, destinationRectangle.Size.ToVector2(), (float) Math.Sin(rotation), (float) Math.Cos(rotation), color, texTl, texBr, layerDepth);
+                return this.Add(texture, destinationRectangle.Location.ToVector2(), -origin, destSize, (float) Math.Sin(rotation), (float) Math.Cos(rotation), color, texTl, texBr, layerDepth);
             }
         }
 
@@ -439,6 +442,14 @@ namespace MLEM.Graphics {
             this.textures.Insert(index, texture);
         }
 
+        private void DrawPrimitives(int vertices) {
+            #if FNA
+            this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertices, 0, vertices / 4 * 2);
+            #else
+            this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertices / 4 * 2);
+            #endif
+        }
+
         /// <summary>
         /// A struct that represents an item added to a <see cref="StaticSpriteBatch"/> using <c>Add</c> or any of its overloads.
         /// An item returned after adding can be removed using <see cref="Remove"/>.
@@ -462,6 +473,59 @@ namespace MLEM.Graphics {
             }
 
         }
+
+        #if FNA
+        private class SpriteEffect : Effect {
+
+            private EffectParameter matrixParam;
+            private Viewport lastViewport;
+            private Matrix projection;
+
+            public Matrix? TransformMatrix { get; set; }
+
+            public SpriteEffect(GraphicsDevice device) : base(device, SpriteEffect.LoadEffectCode()) {
+                this.CacheEffectParameters();
+            }
+
+            private SpriteEffect(SpriteEffect cloneSource) : base(cloneSource) {
+                this.CacheEffectParameters();
+            }
+
+            public override Effect Clone() {
+                return new SpriteEffect(this);
+            }
+
+            private void CacheEffectParameters() {
+                this.matrixParam = this.Parameters["MatrixTransform"];
+            }
+
+            protected override void OnApply() {
+                var vp = this.GraphicsDevice.Viewport;
+                if (vp.Width != this.lastViewport.Width || vp.Height != this.lastViewport.Height) {
+                    Matrix.CreateOrthographicOffCenter(0, vp.Width, vp.Height, 0, 0, -1, out this.projection);
+                    this.projection.M41 += -0.5f * this.projection.M11;
+                    this.projection.M42 += -0.5f * this.projection.M22;
+                    this.lastViewport = vp;
+                }
+
+                if (this.TransformMatrix.HasValue) {
+                    this.matrixParam.SetValue(this.TransformMatrix.GetValueOrDefault() * this.projection);
+                } else {
+                    this.matrixParam.SetValue(this.projection);
+                }
+            }
+
+            private static byte[] LoadEffectCode() {
+                using (var stream = typeof(Effect).Assembly.GetManifestResourceStream("Microsoft.Xna.Framework.Graphics.Effect.Resources.SpriteEffect.fxb")) {
+                    using (var memory = new MemoryStream()) {
+                        stream.CopyTo(memory);
+                        return memory.ToArray();
+                    }
+                }
+            }
+
+        }
+        #endif
 
     }
 }

@@ -47,7 +47,7 @@ namespace MLEM.Textures {
         /// Returns the <see cref="TextureRegion"/> at this texture atlas' given region position
         /// </summary>
         /// <param name="point">The region's x and y location</param>
-        public TextureRegion this[Point point] => this[new Rectangle(point, new Point(1, 1))];
+        public TextureRegion this[Point point] => this[new Rectangle(point.X, point.Y, 1, 1)];
         /// <inheritdoc cref="this[Point]"/>
         public TextureRegion this[int x, int y] => this[new Point(x, y)];
         /// <summary>

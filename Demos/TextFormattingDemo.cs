@@ -50,7 +50,7 @@ namespace Demos {
 
         public override void DoDraw(GameTime time) {
             this.GraphicsDevice.Clear(Color.DarkSlateGray);
-            this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
             // we draw the tokenized text in the center of the screen
             // since the text is already center-aligned, we only need to align it on the y axis here

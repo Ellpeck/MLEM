@@ -9,7 +9,9 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+#if !FNA
 using MonoGame.Framework.Utilities;
+#endif
 
 namespace Demos {
     public class GameImpl : MlemGame {
@@ -47,11 +49,13 @@ namespace Demos {
 
         protected override void LoadContent() {
             // TODO remove with MonoGame 3.8.1 https://github.com/MonoGame/MonoGame/issues/7298
+            #if !FNA
             if (PlatformInfo.MonoGamePlatform == MonoGamePlatform.DesktopGL) {
                 this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
                 this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
                 this.GraphicsDeviceManager.ApplyChanges();
             }
+            #endif
 
             base.LoadContent();
             this.UiSystem.AutoScaleReferenceSize = new Point(1280, 720);

@@ -69,7 +69,9 @@ namespace MLEM.Startup {
             this.GraphicsDeviceManager = new GraphicsDeviceManager(this) {
                 PreferredBackBufferWidth = windowWidth,
                 PreferredBackBufferHeight = windowHeight,
+                #if !FNA
                 HardwareModeSwitch = false
+                #endif
             };
             this.Window.AllowUserResizing = true;
             this.Content.RootDirectory = "Content";

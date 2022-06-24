@@ -285,18 +285,18 @@ namespace MLEM.Font {
         }
 
         private void DrawString(SpriteBatch batch, CharSource text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            var (flipX, flipY) = Vector2.Zero;
+            var (flipX, flipY) = (0F, 0F);
             var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
             var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
             if (flippedV || flippedH) {
-                var (w, h) = this.MeasureString(text, false, null);
+                var size = this.MeasureString(text, false, null);
                 if (flippedH) {
                     origin.X *= -1;
-                    flipX = -w;
+                    flipX = -size.X;
                 }
                 if (flippedV) {
                     origin.Y *= -1;
-                    flipY = this.LineHeight - h;
+                    flipY = this.LineHeight - size.Y;
                 }
             }
 
@@ -327,17 +327,17 @@ namespace MLEM.Font {
                 }
 
                 var cString = c.ToCachedString();
-                var (cW, cH) = this.MeasureString(cString);
+                var cSize = this.MeasureString(cString);
 
                 var charPos = offset;
                 if (flippedH)
-                    charPos.X += cW;
+                    charPos.X += cSize.X;
                 if (flippedV)
-                    charPos.Y += cH - this.LineHeight;
+                    charPos.Y += cSize.Y - this.LineHeight;
                 Vector2.Transform(ref charPos, ref trans, out charPos);
 
                 this.DrawChar(batch, cString, charPos, color, rotation, scale, effects, layerDepth);
-                offset.X += cW;
+                offset.X += cSize.X;
             }
         }
 

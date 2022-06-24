@@ -5,7 +5,6 @@ using MLEM.Ui.Elements;
 namespace MLEM.Ui {
     /// <summary>
     /// A snapshot of update and rendering statistics from <see cref="UiSystem.Metrics"/> to be used for runtime debugging and profiling.
-    /// This metrics struct works similarly to <see cref="GraphicsMetrics"/>.
     /// </summary>
     public struct UiMetrics {
 

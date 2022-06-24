@@ -9,10 +9,13 @@ namespace MLEM.Data.Content {
 
         /// <inheritdoc />
         protected override Texture2D Read(RawContentManager manager, string assetPath, Stream stream, Texture2D existing) {
+            #if !FNA
             if (existing != null) {
                 existing.Reload(stream);
                 return existing;
-            } else {
+            } else
+            #endif
+            {
                 // premultiply the texture's color to be in line with the pipeline's texture reader
                 // TODO this can be converted to use https://github.com/MonoGame/MonoGame/pull/7369 in the future
                 using (var texture = Texture2D.FromStream(manager.GraphicsDevice, stream)) {

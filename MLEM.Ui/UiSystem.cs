@@ -88,7 +88,7 @@ namespace MLEM.Ui {
         public SamplerState SamplerState;
         /// <summary>
         /// The depth stencil state that this ui system and all of its elements draw with.
-        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.DepthStencilState.None"/>, which is also the default for <see cref="SpriteBatch.Begin"/>.
+        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.DepthStencilState.None"/>, which is also the default for <c>SpriteBatch.Begin</c>.
         /// </summary>
         [Obsolete("Set this through SpriteBatchContext instead")]
         public DepthStencilState DepthStencilState;
@@ -241,10 +241,10 @@ namespace MLEM.Ui {
             MlemPlatform.Current?.AddTextInputListener(game.Window, (sender, key, character) => this.ApplyToAll(e => e.OnTextInput?.Invoke(e, key, character)));
 
             if (automaticViewport) {
-                this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
-                this.AutoScaleReferenceSize = this.Viewport.Size;
+                this.Viewport = new Rectangle(0, 0, game.Window.ClientBounds.Width, game.Window.ClientBounds.Height);
+                this.AutoScaleReferenceSize = new Point(this.Viewport.X, this.Viewport.Y);
                 game.Window.ClientSizeChanged += (sender, args) => {
-                    this.Viewport = new Rectangle(Point.Zero, game.Window.ClientBounds.Size);
+                    this.Viewport = new Rectangle(0, 0, game.Window.ClientBounds.Width, game.Window.ClientBounds.Height);
                 };
             }
 
@@ -570,11 +570,11 @@ namespace MLEM.Ui {
         /// </summary>
         public event Element.GenericCallback OnElementRemoved;
         /// <summary>
-        /// Event that is invoked when this <see cref="RootElement"/> gets added to a <see cref="UiSystem"/> in <see cref="UiSystem.Add"/> 
+        /// Event that is invoked when this <see cref="RootElement"/> gets added to a <see cref="UiSystem"/> in <see cref="UiSystem.Add"/>
         /// </summary>
         public event Action<UiSystem> OnAddedToUi;
         /// <summary>
-        /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/> 
+        /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/>
         /// </summary>
         public event Action<UiSystem> OnRemovedFromUi;
 

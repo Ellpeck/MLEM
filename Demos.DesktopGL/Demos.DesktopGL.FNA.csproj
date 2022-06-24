@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <ApplicationIcon>Icon.ico</ApplicationIcon>
+        <AssemblyName>MLEM Desktop Demos</AssemblyName>
+        <RootNamespace>Demos.DesktopGL</RootNamespace>
+        <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <!-- We still use the MG content builder for ease of compatibility between the MG and FNA demo projects -->
+        <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Demos\Demos.FNA.csproj" />
+        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.FNA.csproj" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.FNA.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+        <ProjectReference Include="..\FNA\FNA.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
+        <Content Include="..\Demos\Content\*\**" />
+        <EmbeddedResource Include="Icon.ico" />
+        <EmbeddedResource Include="Icon.bmp" />
+        <Content Include="FNA/**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>%(Filename)%(Extension)</Link>
+        </Content>
+    </ItemGroup>
+
+</Project>

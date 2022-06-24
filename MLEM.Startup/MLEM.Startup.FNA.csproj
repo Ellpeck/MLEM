@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <RootNamespace>MLEM.Startup</RootNamespace>
+        <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Authors>Ellpeck</Authors>
+        <Description>MLEM Library for Extending FNA combined with some other useful libraries into a quick Game startup class</Description>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageTags>fna ellpeck mlem utility extensions</PackageTags>
+        <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>Logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Coroutine" Version="2.1.3" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.FNA.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
+
+        <ProjectReference Include="..\FNA\FNA.Core.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
+        <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />
+    </ItemGroup>
+</Project>

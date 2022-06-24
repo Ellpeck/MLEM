@@ -170,7 +170,7 @@ namespace MLEM.Data {
             foreach (var request in this.texturesToPack.OrderByDescending(t => t.Texture.Width * t.Texture.Height)) {
                 request.PackedArea = this.FindFreeArea(request);
                 // if this is the first position that this request fit in, no other requests of the same size will find a position before it
-                this.firstPossiblePosForSizeCache[request.PackedArea.Size] = request.PackedArea.Location;
+                this.firstPossiblePosForSizeCache[new Point(request.PackedArea.Width, request.PackedArea.Height)] = request.PackedArea.Location;
                 this.alreadyPackedTextures.Add(request);
             }
             stopwatch.Stop();
@@ -198,7 +198,7 @@ namespace MLEM.Data {
 
             // invoke callbacks
             foreach (var request in this.alreadyPackedTextures) {
-                var packedArea = request.PackedArea.Shrink(new Point(request.Padding));
+                var packedArea = request.PackedArea.Shrink(new Point(request.Padding, request.Padding));
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea));
                 if (this.disposeTextures)
                     request.Texture.Texture.Dispose();
@@ -232,7 +232,7 @@ namespace MLEM.Data {
             var lowestY = int.MaxValue;
             while (true) {
                 var intersected = false;
-                var area = new Rectangle(pos, size);
+                var area = new Rectangle(pos.X, pos.Y, size.X, size.Y);
                 foreach (var tex in this.alreadyPackedTextures) {
                     if (tex.PackedArea.Intersects(area)) {
                         pos.X = tex.PackedArea.Right;
@@ -255,7 +255,7 @@ namespace MLEM.Data {
 
         private void CopyRegion(TextureData destination, Request request) {
             var data = this.GetCachedTextureData(request.Texture.Texture);
-            var location = request.PackedArea.Location + new Point(request.Padding);
+            var location = request.PackedArea.Location + new Point(request.Padding, request.Padding);
             for (var x = -request.Padding; x < request.Texture.Width + request.Padding; x++) {
                 for (var y = -request.Padding; y < request.Texture.Height + request.Padding; y++) {
                     Color srcColor;
@@ -264,7 +264,7 @@ namespace MLEM.Data {
                         srcColor = Color.Transparent;
                     } else {
                         // otherwise, we just use the closest pixel that is actually in bounds, causing the border pixels to be doubled up
-                        var src = new Point(MathHelper.Clamp(x, 0, request.Texture.Width - 1), MathHelper.Clamp(y, 0, request.Texture.Height - 1));
+                        var src = new Point((int) MathHelper.Clamp(x, 0, request.Texture.Width - 1), (int) MathHelper.Clamp(y, 0, request.Texture.Height - 1));
                         srcColor = data[request.Texture.Position + src];
                     }
                     destination[location + new Point(x, y)] = srcColor;
