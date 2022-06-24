@@ -5,7 +5,6 @@
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <RootNamespace>MLEM.Extended</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
-        <NoWarn>NU1702</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -23,7 +22,7 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <ProjectReference Include="..\FontStashSharp\src\XNA\FontStashSharp.FNA.csproj">
+        <ProjectReference Include="..\FontStashSharp\src\XNA\FontStashSharp.FNA.Core.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
         <ProjectReference Include="..\FNA\FNA.Core.csproj">
