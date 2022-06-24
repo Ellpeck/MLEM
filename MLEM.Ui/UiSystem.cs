@@ -242,7 +242,7 @@ namespace MLEM.Ui {
 
             if (automaticViewport) {
                 this.Viewport = new Rectangle(0, 0, game.Window.ClientBounds.Width, game.Window.ClientBounds.Height);
-                this.AutoScaleReferenceSize = new Point(this.Viewport.X, this.Viewport.Y);
+                this.AutoScaleReferenceSize = new Point(this.Viewport.Width, this.Viewport.Height);
                 game.Window.ClientSizeChanged += (sender, args) => {
                     this.Viewport = new Rectangle(0, 0, game.Window.ClientBounds.Width, game.Window.ClientBounds.Height);
                 };
