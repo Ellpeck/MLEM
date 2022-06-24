@@ -111,6 +111,12 @@ namespace MLEM.Ui.Elements {
             set => this.textInput.Multiline = value;
         }
 
+        #if FNA
+        /// <inheritdoc />
+        // we need to make sure that the enter press doesn't get consumed by our press function so that it still works in TextInput
+        public override bool CanBePressed => base.CanBePressed && !this.IsSelected;
+        #endif
+
         /// <summary>
         /// The text that displays in this text field if <see cref="Text"/> is empty
         /// </summary>
