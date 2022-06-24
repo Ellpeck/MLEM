@@ -1,6 +1,6 @@
 # MLEM.Ui
 
-**MLEM.Ui** is a Ui framework for MonoGame that features elements with automatic positioning and sizing. It contains various ready-made element types like buttons, paragraphs, text fields and more, along with the ability to easily create custom controls. It supports **mouse**, **keyboard**, **gamepad** and **touch** input with little to no additional setup work required.
+**MLEM.Ui** is a Ui framework for MonoGame and FNA that features elements with automatic positioning and sizing. It contains various ready-made element types like buttons, paragraphs, text fields and more, along with the ability to easily create custom controls. It supports **mouse**, **keyboard**, **gamepad** and **touch** input with little to no additional setup work required.
 
 To see some of what MLEM.Ui can do, you can check out [the demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/UiDemo.cs) as well.
 
@@ -11,7 +11,7 @@ public UiSystem UiSystem;
 
 protected override void LoadContent() {
     // Load your other content here
-    
+
     // Initialize the Ui system
     this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch));
 }
@@ -24,26 +24,30 @@ protected override void Update(GameTime gameTime) {
 protected override void Draw(GameTime gameTime) {
     this.GraphicsDevice.Clear(Color.CornflowerBlue);
     // Do your regular game drawing here
-    
+
     // Call Draw at the end to draw the Ui on top of your game
     this.UiSystem.Draw(gameTime, this.SpriteBatch);
 }
 ```
 
 ### Text Input
-On desktop devices, MonoGame provides the `Window.TextInput` event that gets called automatically with the correct characters for the keys that you're pressing, even for non-American keyboards. However, this function doesn't exist on other devices. Similarly, MonoGame provides the `KeyboardInput` class for showing an on-screen keyboard on mobile devices and consoles, but not on desktop. 
+On desktop devices, MonoGame provides the `Window.TextInput` event that gets called automatically with the correct characters for the keys that you're pressing, even for non-American keyboards. However, this function doesn't exist on other devices. Similarly, MonoGame provides the `KeyboardInput` class for showing an on-screen keyboard on mobile devices and consoles, but not on desktop.
 
 To make MLEM compatible with all devices without publishing a separate version for each MonoGame platform, you have to set up the `MlemPlatform` class based on the system you're using MLEM.Ui with. This has to be done *before* initializing your `UiSystem`.
 
-DesktopGL:
+DesktopGL and WindowsDX using MonoGame:
 ```cs
 MlemPlatform.Current = new MlemPlatform.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);
+```
+Desktop using FNA:
+```cs
+MlemPlatform.Current = new MlemPlatform.DesktopFna(a => TextInputEXT.TextInput += a);
 ```
 Mobile devices and consoles:
 ```cs
 MlemPlatform.Current = new MlemPlatform.Mobile(KeyboardInput.Show, l => this.StartActivity(new Intent(Intent.ActionView, Uri.Parse(l))));
 ```
-If you're not using text input, you can just set the platform to a stub one like so:
+If you're not using text input, you can leave the platform uninitialized or just set it to a stub one like so:
 ```cs
 MlemPlatform.Current = new MlemPlatform.None();
 ```

@@ -9,7 +9,7 @@ using MLEM.Formatting.Codes;
 namespace MLEM.Misc {
     /// <summary>
     /// MlemPlatform is a wrapper around some of MonoGame's platform-dependent behavior to allow for MLEM to stay platform-independent.
-    /// See <see cref="DesktopGl{T}"/>, <see cref="Mobile"/> and <see cref="None"/> for information on the specific platforms.
+    /// See <see cref="DesktopGl{T}"/>, <see cref="DesktopFna"/>, <see cref="Mobile"/> and <see cref="None"/> for information on the specific platforms.
     /// The MLEM demos' main classes also make use of this functionality: https://github.com/Ellpeck/MLEM/blob/main/Demos.DesktopGL/Program.cs#L8 and https://github.com/Ellpeck/MLEM/blob/main/Demos.Android/Activity1.cs#L33.
     /// </summary>
     public abstract class MlemPlatform {
@@ -63,7 +63,7 @@ namespace MLEM.Misc {
         public delegate void TextInputCallback(object sender, Keys key, char character);
 
         /// <summary>
-        /// The MLEM DesktopGL platform.
+        /// The MLEM DesktopGL platform, which is also compatible with other desktop distributions of MonoGame, like WindowsDX.
         /// This platform uses the built-in MonoGame TextInput event, which makes this listener work with any keyboard localization natively.
         /// This platform is initialized as follows:
         /// <code>

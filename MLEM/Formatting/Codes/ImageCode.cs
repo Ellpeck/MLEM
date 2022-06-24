@@ -41,6 +41,12 @@ namespace MLEM.Formatting.Codes {
             batch.Draw(this.image.CurrentRegion, new RectangleF(pos, new Vector2(font.LineHeight * scale)), actualColor);
         }
 
+        /// <inheritdoc />
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+            // we don't want to draw the first (space) character (in case it is set to a missing character in FNA)
+            return indexInToken == 0;
+        }
+
     }
 
     /// <summary>
