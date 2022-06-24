@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="MLEM.Startup" Version="5.*" />
+        <PackageReference Include="MLEM.Startup" Version="6.*" />
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>

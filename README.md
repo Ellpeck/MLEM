@@ -11,17 +11,17 @@
 - See [the changelog](https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md) for information on updates
 
 # Packages
-- **MLEM** is the base package, which provides extension methods and additional features for MonoGame and FNA.
-- **MLEM.Ui** features a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types.
-- **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame and FNA libraries.
-- **MLEM.Data** provides simple loading and processing of textures and other data, including the ability to load non-XNB content files easily.
-- **MLEM.Startup** combines MLEM with some other useful libraries into a quick Game startup class.
-- **MLEM.Templates** contains cross-platform project templates.
+- **MLEM** is the base package, which provides extension methods and additional features for MonoGame and FNA
+- **MLEM.Ui** features a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
+- **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame and FNA libraries
+- **MLEM.Data** provides simple loading and processing of textures and other data, including the ability to load non-XNB content files easily
+- **MLEM.Startup** combines MLEM with some other useful libraries into a quick Game startup class
+- **MLEM.Templates** contains cross-platform project templates
 
 # Made with MLEM
 - [A Breath of Spring Air](https://ellpeck.itch.io/a-breath-of-spring-air), a short platformer ([Source](https://git.ellpeck.de/Ellpeck/GreatSpringGameJam))
 - [Don't Wake Up](https://ellpeck.itch.io/dont-wake-up), a short puzzle game ([Source](https://github.com/Ellpeck/DontLetGo))
-- [Pong clone](https://github.com/luanfagu/pong), a very simple pong clone ([Source](https://github.com/luanfagu/pong))
+- [Pong Clone](https://github.com/luanfagu/pong), a very simple pong clone ([Source](https://github.com/luanfagu/pong))
 - [Tiny Life](https://tinylifegame.com), an isometric life simulation game ([Modding API](https://github.com/Ellpeck/TinyLifeExampleMod))
 
 If you created a game with the help of MLEM, you can get it added to this list by submitting it on the [issue tracker](https://github.com/Ellpeck/MLEM/issues). If its source is public, other people will be able to use your project as an example, too!
@@ -40,7 +40,7 @@ MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting
 # Friends of MLEM
 There are several other libraries and tools that work well in combination with MonoGame, FNA and MLEM. Here are some of them:
 - [Contentless](https://github.com/Ellpeck/Contentless), a tool that removes the need to add assets to the MonoGame Content Pipeline manually
-- [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET Core applications into several distributable formats
+- [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET applications into several distributable formats
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended), a package that also provides several additional features for MonoGame
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project
 - [Illumilib](https://github.com/Ellpeck/Illumilib), a simple keyboard and mouse lighting library with support for Razer, Logitech and Corsair devices

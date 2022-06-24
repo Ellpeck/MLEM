@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
+
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
@@ -7,14 +7,14 @@
         <TieredCompilation>false</TieredCompilation>
         <ApplicationIcon>Icon.ico</ApplicationIcon>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Contentless" Version="3.*" />
-        <PackageReference Include="MLEM.Startup" Version="5.*" />
+        <PackageReference Include="MLEM.Startup" Version="6.*" />
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <EmbeddedResource Include="Icon.ico" />
         <EmbeddedResource Include="Icon.bmp" />
