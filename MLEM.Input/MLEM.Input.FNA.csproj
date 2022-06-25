@@ -1,15 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <RootNamespace>MLEM.Input</RootNamespace>
+        <DefineConstants>$(DefineConstants);FNA</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>A mouse, keyboard, gamepad and touch ready Ui system for MonoGame that features automatic anchoring, sizing and several ready-to-use element types</Description>
+        <Description>Simple input handling for FNA, including a unified way to query mouse, keyboard, gamepad and touch input, a simple keybind system, and a text input field abstraction.</Description>
         <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
-        <PackageTags>monogame ellpeck mlem ui user interface graphical gui system mouse keyboard gamepad touch</PackageTags>
+        <PackageTags>fna input handler keybind mouse keyboard gamepad touch ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -18,12 +20,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="TextCopy" Version="6.1.0" />
-        <ProjectReference Include="..\MLEM.Input\MLEM.Input.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+        <ProjectReference Include="..\FNA\FNA.Core.csproj">
             <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
+        </ProjectReference>
     </ItemGroup>
 
     <ItemGroup>

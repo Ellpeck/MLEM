@@ -12,7 +12,8 @@
 
 # Packages
 - **MLEM** is the base package, which provides extension methods and additional features for MonoGame and FNA
-- **MLEM.Ui** features a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
+- **MLEM.Input** features simple input handling for MonoGame, including a unified way to query mouse, keyboard, gamepad and touch input, a simple keybind system, and a text input field abstraction
+- **MLEM.Ui** includes a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
 - **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame and FNA libraries
 - **MLEM.Data** provides simple loading and processing of textures and other data, including the ability to load non-XNB content files easily
 - **MLEM.Startup** combines MLEM with some other useful libraries into a quick Game startup class
