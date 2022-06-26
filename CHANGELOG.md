@@ -24,6 +24,7 @@ Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have
 - Allow using multiple textures in a StaticSpriteBatch
 - Added GenericInput support for Buttons.None
+- Improved the way terminating formatting codes work by introducing SimpleEndCode
 
 Removals
 - Marked AStar.InfiniteCost as obsolete

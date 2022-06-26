@@ -40,8 +40,6 @@ namespace MLEM.Formatting {
                 new Vector2(float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? offset : 2)));
             this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
             this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.55F));
-            this.Codes.Add(new Regex("</(s|u|st|l)>"), (f, m, r) => new ResetFormattingCode(m, r));
-            this.Codes.Add(new Regex("</(b|i|f)>"), (f, m, r) => new FontCode(m, r, null));
 
             // color codes
             foreach (var c in typeof(Color).GetProperties()) {
@@ -51,13 +49,14 @@ namespace MLEM.Formatting {
                 }
             }
             this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorHelper.FromHexString(m.Groups[1].Value)));
-            this.Codes.Add(new Regex("</c>"), (f, m, r) => new ColorCode(m, r, null));
 
             // animation codes
             this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
                 float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : 5,
                 float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : 1 / 8F));
-            this.Codes.Add(new Regex("</a>"), (f, m, r) => new AnimatedCode(m, r));
+
+            // control codes
+            this.Codes.Add(new Regex(@"</(\w+)>"), (f, m, r) => new SimpleEndCode(m, r, m.Groups[1].Value));
 
             // macros
             this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToCachedString());
@@ -101,7 +100,7 @@ namespace MLEM.Formatting {
                 index += strippedRet.Length;
 
                 // remove all codes that are incompatible with the next one and apply it
-                codes.RemoveAll(c => c.EndsHere(next));
+                codes.RemoveAll(c => c.EndsHere(next) || next.EndsOther(c));
                 codes.Add(next);
             }
             return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());

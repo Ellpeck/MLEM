@@ -18,10 +18,5 @@ namespace MLEM.Formatting.Codes {
             return this.font?.Invoke(defaultPick);
         }
 
-        /// <inheritdoc />
-        public override bool EndsHere(Code other) {
-            return other is FontCode;
-        }
-
     }
 }

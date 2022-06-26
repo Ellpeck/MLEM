@@ -29,10 +29,5 @@ namespace MLEM.Formatting.Codes {
             return false;
         }
 
-        /// <inheritdoc />
-        public override bool EndsHere(Code other) {
-            return other is UnderlineCode || other is ResetFormattingCode;
-        }
-
     }
 }

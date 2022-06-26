@@ -39,11 +39,23 @@ namespace MLEM.Formatting.Codes {
         /// <summary>
         /// Returns whether this formatting code should end when the passed formatting code starts.
         /// If this method returns true, a new <see cref="Token"/> is started at its position.
+        /// This is the opposite version of <see cref="EndsOther"/>.
         /// </summary>
-        /// <param name="other">The code that is started here</param>
-        /// <returns>If this code should end</returns>
+        /// <param name="other">The code that is started here.</param>
+        /// <returns>If this code should end here.</returns>
         public virtual bool EndsHere(Code other) {
             return other.GetType() == this.GetType();
+        }
+
+        /// <summary>
+        /// Returns whether the <paramref name="other"/> <see cref="Code"/> should end when this formatting code starts.
+        /// If this method returns true, a new <see cref="Token"/> is started at this code's position.
+        /// This is the opposite version of <see cref="EndsHere"/>.
+        /// </summary>
+        /// <param name="other">The code that could end here.</param>
+        /// <returns>Whether the <paramref name="other"/> code should end here.</returns>
+        public virtual bool EndsOther(Code other) {
+            return false;
         }
 
         /// <inheritdoc cref="Formatting.Token.GetColor"/>

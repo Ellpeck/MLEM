@@ -12,7 +12,7 @@ namespace Demos {
 
         private const string Text =
             "MLEM's text formatting system allows for various <b>formatting codes</b> to be applied in the middle of a string. Here's a demonstration of some of them.\n\n" +
-            "You can write in <b>bold</i>, <i>italics</i>, <u>with an underline</u>, <st>strikethrough</st>, or with a <s #000000 4>drop shadow</s> whose <s #ff0000 4>color</s> and <s #000000 10>offset</s> you can modify in each application of the code.\n\n" +
+            "You can write in <b>bold</i>, <i>italics</i>, <u>with an underline</u>, <st>strikethrough</st>, with a <s #000000 4>drop shadow</s> whose <s #ff0000 4>color</s> and <s #000000 10>offset</s> you can modify in each application of the code, or with various types of <b>combined <c Pink>formatting</c> codes</b>.\n\n" +
             "You can apply <c CornflowerBlue>custom</c> <c Yellow>colors</c> to text, including all default <c Orange>MonoGame colors</c> and <c #aabb00>inline custom colors</c>.\n\n" +
             "You can also use animations like <a wobbly>a wobbly one</a>, as well as create custom ones using the <a wobbly>Code class</a>.\n\n" +
             "You can also display <i grass> icons in your text!\n\n" +
