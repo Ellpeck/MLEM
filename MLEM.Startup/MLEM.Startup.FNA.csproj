@@ -23,6 +23,7 @@
     <ItemGroup>
         <PackageReference Include="Coroutine" Version="2.1.3" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.FNA.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
         <ProjectReference Include="..\FNA\FNA.Core.csproj">
             <PrivateAssets>all</PrivateAssets>

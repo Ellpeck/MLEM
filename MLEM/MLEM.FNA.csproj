@@ -9,7 +9,7 @@
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
-        <Description>MLEM Library for Extending FNA provides extension methods and additional features for FNA</Description>
+        <Description>The MLEM base package, which provides extension methods and additional features for FNA, including a text formatting system and simple input handling</Description>
         <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
         <PackageTags>fna ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>

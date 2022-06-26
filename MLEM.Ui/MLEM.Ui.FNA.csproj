@@ -21,7 +21,7 @@
 
     <ItemGroup>
         <PackageReference Include="TextCopy" Version="6.1.0" />
-        <ProjectReference Include="..\MLEM.Input\MLEM.Input.FNA.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
         <ProjectReference Include="..\FNA\FNA.Core.csproj">
             <PrivateAssets>all</PrivateAssets>

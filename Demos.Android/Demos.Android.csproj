@@ -87,10 +87,6 @@
             <Project>{1bc4682b-aa14-4937-b5c7-707e20fe88ff}</Project>
             <Name>Demos</Name>
         </ProjectReference>
-        <ProjectReference Include="..\MLEM.Input\MLEM.Input.csproj">
-          <Project>{34c0707b-1b0a-437e-9536-39ec7012c1b5}</Project>
-          <Name>MLEM.Input</Name>
-        </ProjectReference>
         <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj">
             <Project>{997f4739-7bec-4621-b9ca-68deb2d74412}</Project>
             <Name>MLEM.Startup</Name>

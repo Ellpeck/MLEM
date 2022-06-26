@@ -26,12 +26,7 @@ Improvements
 - Added GenericInput support for Buttons.None
 
 Removals
-- **Moved Input namespace into MLEM.Input**
 - Marked AStar.InfiniteCost as obsolete
-
-### MLEM.Input
-Additions
-- Added Input namespace that was originally a part of MLEM
 
 ### MLEM.Ui
 Additions
