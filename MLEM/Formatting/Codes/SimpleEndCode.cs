@@ -8,7 +8,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public SimpleEndCode(Match match, Regex regex, string codeNameToEnd) : base(match, regex) {
-            this.codeToEnd = new Regex($"<{codeNameToEnd}.*>");
+            this.codeToEnd = new Regex($@"<{codeNameToEnd}(\W.*)?>");
         }
 
         /// <inheritdoc />
