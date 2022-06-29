@@ -95,7 +95,7 @@ namespace MLEM.Input {
                 if (this.caretPos != val) {
                     this.caretPos = val;
                     this.caretBlinkTimer = 0;
-                    this.UpdateTextData(false);
+                    this.SetTextDataDirty(false);
                 }
             }
         }
@@ -103,12 +103,22 @@ namespace MLEM.Input {
         /// The line of text that the caret is currently on.
         /// This can only be only non-0 if <see cref="Multiline"/> is true.
         /// </summary>
-        public int CaretLine { get; private set; }
+        public int CaretLine {
+            get {
+                this.UpdateTextDataIfDirty();
+                return this.caretLine;
+            }
+        }
         /// <summary>
         /// The position in the current <see cref="CaretLine"/> that the caret is currently on.
         /// If <see cref="Multiline"/> is false, this value is always equal to <see cref="CaretPos"/>.
         /// </summary>
-        public int CaretPosInLine { get; private set; }
+        public int CaretPosInLine {
+            get {
+                this.UpdateTextDataIfDirty();
+                return this.caretPosInLine;
+            }
+        }
         /// <summary>
         /// A character that should be displayed instead of this text input's <see cref="Text"/> content.
         /// The amount of masking characters displayed will be equal to the <see cref="Text"/>'s length.
@@ -119,7 +129,7 @@ namespace MLEM.Input {
             set {
                 if (this.maskingCharacter != value) {
                     this.maskingCharacter = value;
-                    this.UpdateTextData(false);
+                    this.SetTextDataDirty(false);
                 }
             }
         }
@@ -138,7 +148,7 @@ namespace MLEM.Input {
             set {
                 if (this.multiline != value) {
                     this.multiline = value;
-                    this.UpdateTextData(false);
+                    this.SetTextDataDirty(false);
                 }
             }
         }
@@ -150,7 +160,7 @@ namespace MLEM.Input {
             set {
                 if (this.font != value) {
                     this.font = value;
-                    this.UpdateTextData(false);
+                    this.SetTextDataDirty(false);
                 }
             }
         }
@@ -163,7 +173,7 @@ namespace MLEM.Input {
             set {
                 if (this.textScale != value) {
                     this.textScale = value;
-                    this.UpdateTextData(false);
+                    this.SetTextDataDirty(false);
                 }
             }
         }
@@ -176,7 +186,7 @@ namespace MLEM.Input {
             set {
                 if (this.size != value) {
                     this.size = value;
-                    this.UpdateTextData(false);
+                    this.SetTextDataDirty(false);
                 }
             }
         }
@@ -200,11 +210,14 @@ namespace MLEM.Input {
         private int textOffset;
         private int lineOffset;
         private int caretPos;
+        private int caretLine;
+        private int caretPosInLine;
         private float caretDrawOffset;
         private bool multiline;
         private GenericFont font;
         private float textScale;
         private Vector2 size;
+        private bool textDataDirty;
 
         /// <summary>
         /// Creates a new text input with the given settings.
@@ -259,6 +272,8 @@ namespace MLEM.Input {
         /// <param name="time">The current game time.</param>
         /// <param name="input">The input handler to use for input querying.</param>
         public void Update(GameTime time, InputHandler input) {
+            this.UpdateTextDataIfDirty();
+
             // FNA's text input event doesn't supply keys, so we handle this here
             #if FNA
             if (this.CaretPos > 0 && input.TryConsumePressed(Keys.Back)) {
@@ -309,9 +324,7 @@ namespace MLEM.Input {
         /// <param name="caretWidth">The width that the caret should have, which is multiplied with <paramref name="drawScale"/> before drawing.</param>
         /// <param name="textColor">The color to draw the text and caret with.</param>
         public void Draw(SpriteBatch batch, Vector2 textPos, float drawScale, float caretWidth, Color textColor) {
-            // handle first initialization if not done
-            if (this.displayedText == null)
-                this.UpdateTextData(false);
+            this.UpdateTextDataIfDirty();
 
             var scale = this.TextScale * drawScale;
             this.Font.DrawString(batch, this.displayedText, textPos, textColor, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
@@ -339,7 +352,7 @@ namespace MLEM.Input {
             this.text.Clear();
             this.text.Append(strg);
             this.CaretPos = this.text.Length;
-            this.UpdateTextData();
+            this.SetTextDataDirty();
         }
 
         /// <summary>
@@ -356,7 +369,7 @@ namespace MLEM.Input {
                 strg = strg.Substring(0, this.MaximumCharacters.Value - this.text.Length);
             this.text.Insert(this.CaretPos, strg);
             this.CaretPos += strg.Length;
-            this.UpdateTextData();
+            this.SetTextDataDirty();
             return true;
         }
 
@@ -371,7 +384,7 @@ namespace MLEM.Input {
             this.text.Remove(index, length);
             // ensure that caret pos is still in bounds
             this.CaretPos = this.CaretPos;
-            this.UpdateTextData();
+            this.SetTextDataDirty();
             return true;
         }
 
@@ -382,6 +395,7 @@ namespace MLEM.Input {
         /// <param name="line">The line to move the caret to</param>
         /// <returns>True if the caret was moved, false if it was not (which indicates that the line with the given <paramref name="line"/> index does not exist)</returns>
         public bool MoveCaretToLine(int line) {
+            this.UpdateTextDataIfDirty();
             var (destStart, destEnd) = this.GetLineBounds(line);
             if (destEnd > 0) {
                 // find the position whose distance from the start is closest to the current distance from the start
@@ -413,9 +427,16 @@ namespace MLEM.Input {
             return true;
         }
 
-        private void UpdateTextData(bool textChanged = true) {
-            if (this.Font == null)
+        private void SetTextDataDirty(bool textChanged = true) {
+            this.textDataDirty = true;
+            if (textChanged)
+                this.OnTextChange?.Invoke(this, this.Text);
+        }
+
+        private void UpdateTextDataIfDirty() {
+            if (!this.textDataDirty || this.Font == null)
                 return;
+            this.textDataDirty = false;
             if (this.Multiline) {
                 // soft wrap if we're multiline
                 this.splitText = this.Font.SplitStringSeparate(this.text, this.Size.X, this.TextScale).ToArray();
@@ -482,9 +503,6 @@ namespace MLEM.Input {
 
             if (this.MaskingCharacter != null)
                 this.displayedText = new string(this.MaskingCharacter.Value, this.displayedText.Length);
-
-            if (textChanged)
-                this.OnTextChange?.Invoke(this, this.Text);
         }
 
         private void UpdateCaretData() {
@@ -496,8 +514,8 @@ namespace MLEM.Input {
                     var split = this.splitText[d];
                     for (var i = 0; i <= split.Length; i++) {
                         if (index == this.CaretPos) {
-                            this.CaretLine = line;
-                            this.CaretPosInLine = i - startOfLine;
+                            this.caretLine = line;
+                            this.caretPosInLine = i - startOfLine;
                             this.caretDrawOffset = this.Font.MeasureString(split.Substring(startOfLine, this.CaretPosInLine)).X;
                             return;
                         }
@@ -514,8 +532,8 @@ namespace MLEM.Input {
                     line++;
                 }
             } else if (this.displayedText != null) {
-                this.CaretLine = 0;
-                this.CaretPosInLine = this.CaretPos;
+                this.caretLine = 0;
+                this.caretPosInLine = this.CaretPos;
                 this.caretDrawOffset = this.Font.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)).X;
             }
         }
