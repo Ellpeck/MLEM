@@ -19,6 +19,7 @@ Additions
 - Added RandomPitchModifier and GetRandomPitch to SoundEffectInfo
 - Added TextInput class, which is an isolated version of MLEM.Ui's TextField logic
 - Added MLEM.FNA, which is fully compatible with FNA
+- Added TryGetUpTime, GetUpTime, TryGetTimeSincePress and GetTimeSincePress to InputHandler
 
 Improvements
 - Allow comparing Keybind and Combination based on the amount of modifiers they have

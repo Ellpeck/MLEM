@@ -145,13 +145,15 @@ namespace MLEM.Input {
         /// </summary>
         public KeyboardState KeyboardState { get; private set; }
 
-        private readonly GamePadState[] lastGamepads = new GamePadState[MaximumGamePadCount];
-        private readonly GamePadState[] gamepads = new GamePadState[MaximumGamePadCount];
-        private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[MaximumGamePadCount];
-        private readonly bool[] triggerGamepadButtonRepeat = new bool[MaximumGamePadCount];
-        private readonly Buttons?[] heldGamepadButtons = new Buttons?[MaximumGamePadCount];
+        private readonly GamePadState[] lastGamepads = new GamePadState[InputHandler.MaximumGamePadCount];
+        private readonly GamePadState[] gamepads = new GamePadState[InputHandler.MaximumGamePadCount];
+        private readonly DateTime[] lastGamepadButtonRepeats = new DateTime[InputHandler.MaximumGamePadCount];
+        private readonly bool[] triggerGamepadButtonRepeat = new bool[InputHandler.MaximumGamePadCount];
+        private readonly Buttons?[] heldGamepadButtons = new Buttons?[InputHandler.MaximumGamePadCount];
         private readonly List<GestureSample> gestures = new List<GestureSample>();
         private readonly HashSet<(GenericInput, int)> consumedPresses = new HashSet<(GenericInput, int)>();
+        private readonly Dictionary<(GenericInput, int), DateTime> inputUpTimes = new Dictionary<(GenericInput, int), DateTime>();
+        private readonly Dictionary<(GenericInput, int), DateTime> inputPressedTimes = new Dictionary<(GenericInput, int), DateTime>();
 
         private Point ViewportOffset => new Point(-this.Game.GraphicsDevice.Viewport.X, -this.Game.GraphicsDevice.Viewport.Y);
         private Dictionary<(GenericInput, int), DateTime> inputsDownAccum = new Dictionary<(GenericInput, int), DateTime>();
@@ -232,8 +234,8 @@ namespace MLEM.Input {
             }
 
             if (this.HandleGamepads) {
-                this.ConnectedGamepads = MaximumGamePadCount;
-                for (var i = 0; i < MaximumGamePadCount; i++) {
+                this.ConnectedGamepads = InputHandler.MaximumGamePadCount;
+                for (var i = 0; i < InputHandler.MaximumGamePadCount; i++) {
                     this.lastGamepads[i] = this.gamepads[i];
                     this.gamepads[i] = default;
                     if (GamePad.GetCapabilities((PlayerIndex) i).IsConnected) {
@@ -293,12 +295,28 @@ namespace MLEM.Input {
             if (this.inputsDownAccum.Count <= 0 && this.inputsDown.Count <= 0) {
                 this.InputsPressed = Array.Empty<GenericInput>();
                 this.InputsDown = Array.Empty<GenericInput>();
-                this.inputsDown.Clear();
             } else {
+                // handle pressed inputs
+                var pressed = new List<GenericInput>();
                 // if we're inverting press behavior, we need to check the press state for the inputs that were down in the last frame
-                var down = this.InvertPressBehavior ? this.inputsDown : this.inputsDownAccum;
-                this.InputsPressed = down.Keys.Where(kv => this.IsPressed(kv.Item1, kv.Item2)).Select(kv => kv.Item1).ToArray();
-                this.InputsDown = this.inputsDownAccum.Keys.Select(kv => kv.Item1).ToArray();
+                foreach (var key in (this.InvertPressBehavior ? this.inputsDown : this.inputsDownAccum).Keys) {
+                    if (this.IsPressed(key.Item1, key.Item2)) {
+                        this.inputPressedTimes[key] = DateTime.UtcNow;
+                        pressed.Add(key.Item1);
+                    }
+                }
+                this.InputsPressed = pressed.ToArray();
+
+                // handle inputs that changed to up
+                foreach (var key in this.inputsDownAccum.Keys)
+                    this.inputUpTimes.Remove(key);
+                foreach (var key in this.inputsDown.Keys) {
+                    if (!this.inputsDownAccum.ContainsKey(key))
+                        this.inputUpTimes[key] = DateTime.UtcNow;
+                }
+
+                // handle inputs that are currently down
+                this.InputsDown = this.inputsDownAccum.Keys.Select(key => key.Item1).ToArray();
                 // swapping these collections means that we don't have to keep moving entries between them
                 (this.inputsDown, this.inputsDownAccum) = (this.inputsDownAccum, this.inputsDown);
                 this.inputsDownAccum.Clear();
@@ -788,13 +806,69 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns the amount of time that a given <see cref="GenericInput"/> has been held down for.
-        /// If this input isn't currently own, this method returns <see cref="TimeSpan.Zero"/>.
+        /// If this input isn't currently down, this method returns <see cref="TimeSpan.Zero"/>.
         /// </summary>
         /// <param name="input">The input whose down time to query.</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
         /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
         public TimeSpan GetDownTime(GenericInput input, int index = -1) {
             this.TryGetDownTime(input, out var time, index);
+            return time;
+        }
+
+        /// <summary>
+        /// Tries to retrieve the amount of time that a given <see cref="GenericInput"/> has been up for since the last time it was down.
+        /// If the input is currently up, this method returns true and the amount of time that it has been up for is stored in <paramref name="upTime"/>.
+        /// </summary>
+        /// <param name="input">The input whose up time to query.</param>
+        /// <param name="upTime">The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the input is currently up.</returns>
+        public bool TryGetUpTime(GenericInput input, out TimeSpan upTime, int index = -1) {
+            if (this.inputUpTimes.TryGetValue((input, index), out var start)) {
+                upTime = DateTime.UtcNow - start;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns the amount of time that a given <see cref="GenericInput"/> has been up for since the last time it was down.
+        /// If this input isn't currently up, this method returns <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        /// <param name="input">The input whose up time to query.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
+        public TimeSpan GetUpTime(GenericInput input, int index = -1) {
+            this.TryGetUpTime(input, out var time, index);
+            return time;
+        }
+
+        /// <summary>
+        /// Tries to retrieve the amount of time that has passed since a given <see cref="GenericInput"/> last counted as pressed.
+        /// If the input has previously been pressed, or is currently pressed, this method returns true and the amount of time that has passed since it was last pressed is stored in <paramref name="lastPressTime"/>.
+        /// </summary>
+        /// <param name="input">The input whose last press time to query.</param>
+        /// <param name="lastPressTime">The resulting up time, or <see cref="TimeSpan.Zero"/> if the input was never pressed or is currently pressed.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns><see langword="true"/> if the input has previously been pressed or is currently pressed, <see langword="false"/> otherwise.</returns>
+        public bool TryGetTimeSincePress(GenericInput input, out TimeSpan lastPressTime, int index = -1) {
+            if (this.inputPressedTimes.TryGetValue((input, index), out var start)) {
+                lastPressTime = DateTime.UtcNow - start;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns the amount of time that has passed since a given <see cref="GenericInput"/> last counted as pressed.
+        /// If this input hasn't been pressed previously, or is currently pressed, this method returns <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        /// <param name="input">The input whose up time to query.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
+        public TimeSpan GetTimeSincePress(GenericInput input, int index = -1) {
+            this.TryGetTimeSincePress(input, out var time, index);
             return time;
         }
 
