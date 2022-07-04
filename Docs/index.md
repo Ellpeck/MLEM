@@ -1,6 +1,6 @@
 ![The MLEM logo](https://raw.githubusercontent.com/Ellpeck/MLEM/release/Media/Banner.png)
 
-**MLEM Library for Extending MonoGame and FNA** is an addition to the game frameworks [MonoGame](https://www.monogame.net/) and [FNA](https://fna-xna.github.io/) that provides extension methods, quality of life improvements and additional features like a ui system and easy input handling.
+**MLEM Library for Extending MonoGame and FNA** is a set of multipurpose libraries for the game frameworks [MonoGame](https://www.monogame.net/) and [FNA](https://fna-xna.github.io/) that provides abstractions, quality of life improvements and additional features like an extensive ui system and easy input handling.
 
 # What next?
 - Get it on [NuGet](https://www.nuget.org/packages?q=mlem)
@@ -11,8 +11,8 @@
 - See [the changelog](https://mlem.ellpeck.de/CHANGELOG.html) for information on updates
 
 # Packages
-- **MLEM** is the base package, which provides extension methods and additional features for MonoGame and FNA, including a text formatting system and simple input handling
-- **MLEM.Ui** features a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
+- **MLEM** is the base package, which provides various small addons and abstractions for MonoGame and FNA, including a text formatting system and simple input handling
+- **MLEM.Ui** provides a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
 - **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame and FNA libraries
 - **MLEM.Data** provides simple loading and processing of textures and other data, including the ability to load non-XNB content files easily
 - **MLEM.Startup** combines MLEM with some other useful libraries into a quick Game startup class
