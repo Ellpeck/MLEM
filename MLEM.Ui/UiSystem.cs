@@ -508,7 +508,6 @@ namespace MLEM.Ui {
         /// The <see cref="UiSystem"/> that this root element is a part of.
         /// </summary>
         public readonly UiSystem System;
-        private float scale = 1;
         /// <summary>
         /// The scale of this root element.
         /// Note that, to change the scale of every root element, you can use <see cref="UiSystem.GlobalScale"/>
@@ -522,7 +521,6 @@ namespace MLEM.Ui {
                 this.Element.ForceUpdateArea();
             }
         }
-        private int priority;
         /// <summary>
         /// The priority of this root element.
         /// A higher priority means the element will be updated first, as well as rendered on top.
@@ -539,7 +537,6 @@ namespace MLEM.Ui {
         /// This is a combination of this root element's <see cref="Scale"/> as well as the ui system's <see cref="UiSystem.GlobalScale"/>.
         /// </summary>
         public float ActualScale => this.System.GlobalScale * this.Scale;
-
         /// <summary>
         /// The transformation that this root element (and all of its children) has.
         /// This transform is applied both to input, as well as to rendering.
@@ -549,7 +546,6 @@ namespace MLEM.Ui {
         /// An inversion of <see cref="Transform"/>
         /// </summary>
         public Matrix InvTransform => Matrix.Invert(this.Transform);
-
         /// <summary>
         /// The child element of this root element that is currently selected.
         /// If there is no selected element in this root, this value will be <c>null</c>.
@@ -557,9 +553,17 @@ namespace MLEM.Ui {
         public Element SelectedElement => this.System.Controls.GetSelectedElement(this);
         /// <summary>
         /// Determines whether this root element contains any children that <see cref="Elements.Element.CanBeSelected"/>.
-        /// This value is automatically calculated.
+        /// This value is automatically calculated, and used in <see cref="CanBeActive"/>.
         /// </summary>
         public bool CanSelectContent => this.Element.CanBeSelected || this.Element.GetChildren(c => c.CanBeSelected, true).Any();
+        /// <summary>
+        /// Determines whether this root element can become the <see cref="UiControls.ActiveRoot"/>.
+        /// This property returns <see langword="true"/> if <see cref="CanSelectContent"/> is <see langword="true"/> and the <see cref="Element"/> is not hidden, or if it has been set to <see langword="true"/> manually.
+        /// </summary>
+        public bool CanBeActive {
+            get => this.canBeActive || (!this.Element.IsHidden && this.CanSelectContent);
+            set => this.canBeActive = value;
+        }
 
         /// <summary>
         /// Event that is invoked when a <see cref="Element"/> is added to this root element or any of its children.
@@ -577,6 +581,10 @@ namespace MLEM.Ui {
         /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/>
         /// </summary>
         public event Action<UiSystem> OnRemovedFromUi;
+
+        private float scale = 1;
+        private bool canBeActive;
+        private int priority;
 
         internal RootElement(string name, Element element, UiSystem system) {
             this.Name = name;

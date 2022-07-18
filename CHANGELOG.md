@@ -47,6 +47,7 @@ Improvements
 - Don't query a paragraph's text callback in the constructor
 - Allow manually hiding a paragraph without its text overriding the hidden state
 - Added optional isKeybindAllowed parameter to KeybindButton
+- Allow manually setting a RootElement as CanBeActive
 
 Fixes
 - Fixed auto-nav tooltip displaying on the selected element even when not in auto-nav mode

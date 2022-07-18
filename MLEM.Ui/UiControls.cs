@@ -57,7 +57,7 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// The <see cref="RootElement"/> that is currently active.
-        /// The active root element is the one with the highest <see cref="RootElement.Priority"/> that whose <see cref="RootElement.CanSelectContent"/> property is true.
+        /// The active root element is the one with the highest <see cref="RootElement.Priority"/> that <see cref="RootElement.CanBeActive"/>.
         /// </summary>
         public RootElement ActiveRoot { get; protected set; }
         /// <summary>
@@ -155,7 +155,7 @@ namespace MLEM.Ui {
         public virtual void Update() {
             if (this.IsInputOurs)
                 this.Input.Update();
-            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => !root.Element.IsHidden && root.CanSelectContent);
+            this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanBeActive);
 
             // MOUSE INPUT
             if (this.HandleMouse) {
