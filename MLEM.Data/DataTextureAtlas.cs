@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -5,7 +6,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Textures;
 
 namespace MLEM.Data {
@@ -84,9 +84,8 @@ namespace MLEM.Data {
             }
             var atlas = new DataTextureAtlas(texture);
 
-            // parse each texture region: "<name> loc <u> <v> <w> <h> [piv <px> <py>] [off <ox> <oy>]"
+            // parse each texture region: "<names> loc <u> <v> <w> <h> [piv <px> <py>] [off <ox> <oy>]"
             foreach (Match match in Regex.Matches(text, @"(.+)\W+loc\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W*(?:piv\W+([0-9.]+)\W+([0-9.]+))?\W*(?:off\W+([0-9.]+)\W+([0-9.]+))?")) {
-                var name = match.Groups[1].Value.Trim();
                 // offset
                 var off = !match.Groups[8].Success ? Vector2.Zero : new Vector2(
                     float.Parse(match.Groups[8].Value, CultureInfo.InvariantCulture),
@@ -103,11 +102,16 @@ namespace MLEM.Data {
                     float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
                     float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
 
-                var region = new TextureRegion(texture, loc) {
-                    PivotPixels = piv,
-                    Name = name
-                };
-                atlas.regions.Add(name, region);
+                foreach (var name in Regex.Split(match.Groups[1].Value, @"\W")) {
+                    var trimmed = name.Trim();
+                    if (trimmed.Length <= 0)
+                        continue;
+                    var region = new TextureRegion(texture, loc) {
+                        PivotPixels = piv,
+                        Name = trimmed
+                    };
+                    atlas.regions.Add(trimmed, region);
+                }
             }
 
             return atlas;

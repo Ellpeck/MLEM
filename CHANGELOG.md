@@ -80,6 +80,7 @@ Improvements
 - Allow enumerating all region names of a DataTextureAtlas
 - Cache RuntimeTexturePacker texture data while packing to improve performance
 - Greatly improved RuntimeTexturePacker performance
+- Allow specifying multiple names for a DataTextureAtlas region
 
 Fixes
 - Fixed SoundEffectReader incorrectly claiming it could read ogg and mp3 files
