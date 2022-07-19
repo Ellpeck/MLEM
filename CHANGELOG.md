@@ -26,6 +26,7 @@ Improvements
 - Allow using multiple textures in a StaticSpriteBatch
 - Added GenericInput support for Buttons.None
 - Improved the way terminating formatting codes work by introducing SimpleEndCode
+- Allow RandomExtensions to operate on any ICollection
 
 Removals
 - Marked AStar.InfiniteCost as obsolete
