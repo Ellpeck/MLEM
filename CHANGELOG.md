@@ -2,13 +2,13 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/). Breaking changes are written in **bold**.
 
 Jump to version:
-- [6.0.0 (Unreleased)](#540-unreleased)
+- [6.0.0](#600)
 - [5.3.0](#530)
 - [5.2.0](#520)
 - [5.1.0](#510)
 - [5.0.0](#500)
 
-## 6.0.0 (Unreleased)
+## 6.0.0
 ### MLEM
 Additions
 - Added consuming variants of IsPressed methods to InputHandler and Keybind
