@@ -90,6 +90,10 @@ Fixes
 Additions
 - Added MLEM.Startup.FNA, which is fully compatible with FNA
 
+### MLEM.Templates
+Improvements
+- Updated to MonoGame 3.8.1
+
 ## 5.3.0
 ### MLEM
 Additions

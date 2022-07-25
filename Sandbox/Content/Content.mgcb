@@ -62,13 +62,4 @@
 #begin Textures/Test.png
 /copy:Textures/Test.png
 
-#begin Tiled/Map.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Tiled/Map.tmx
-
-#begin Tiled/Tileset.tsx
-/importer:TiledMapTilesetImporter
-/processor:TiledMapTilesetProcessor
-/build:Tiled/Tileset.tsx
 

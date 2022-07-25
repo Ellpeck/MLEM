@@ -17,7 +17,6 @@ namespace MLEM.Data.Content {
             #endif
             {
                 // premultiply the texture's color to be in line with the pipeline's texture reader
-                // TODO this can be converted to use https://github.com/MonoGame/MonoGame/pull/7369 in the future
                 using (var texture = Texture2D.FromStream(manager.GraphicsDevice, stream)) {
                     var ret = new Texture2D(manager.GraphicsDevice, texture.Width, texture.Height);
                     using (var textureData = texture.GetTextureData()) {

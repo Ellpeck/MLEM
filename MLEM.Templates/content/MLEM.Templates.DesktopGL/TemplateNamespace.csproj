@@ -11,12 +11,17 @@
     <ItemGroup>
         <PackageReference Include="Contentless" Version="3.*" />
         <PackageReference Include="MLEM.Startup" Version="6.*" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
-        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.263" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.263" />
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Include="Icon.ico" />
         <EmbeddedResource Include="Icon.bmp" />
     </ItemGroup>
+
+    <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+        <Message Text="Restoring dotnet tools" Importance="High" />
+        <Exec Command="dotnet tool restore" />
+    </Target>
 </Project>

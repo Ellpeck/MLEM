@@ -1,104 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProductVersion>8.0.30703</ProductVersion>
-        <SchemaVersion>2.0</SchemaVersion>
-        <ProjectGuid>{410C0262-131C-4D0E-910D-D01B4F7143E0}</ProjectGuid>
-        <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Demos.Android</RootNamespace>
-        <AssemblyName>Demos.Android</AssemblyName>
-        <FileAlignment>512</FileAlignment>
-        <AndroidApplication>true</AndroidApplication>
-        <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
-        <AndroidResgenClass>Resource</AndroidResgenClass>
-        <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-        <AndroidStoreUncompressedFileExtensions>.m4a</AndroidStoreUncompressedFileExtensions>
-        <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
-        <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-        <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-        <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-        <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-        <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+        <TargetFramework>net6.0-android</TargetFramework>
+        <SupportedOSPlatformVersion>31</SupportedOSPlatformVersion>
+        <OutputType>Exe</OutputType>
+        <ApplicationId>de.ellpeck.mlem.demos.android</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ImplicitUsings>true</ImplicitUsings>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>portable</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
-        <DefineConstants>DEBUG;TRACE;ANDROID</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-        <AndroidLinkMode>None</AndroidLinkMode>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>portable</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
-        <DefineConstants>TRACE;ANDROID</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-        <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-        <AotAssemblies>false</AotAssemblies>
-        <EnableLLVM>false</EnableLLVM>
-        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-        <BundleAssemblies>false</BundleAssemblies>
-        <MandroidI18n />
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
-        <AndroidUseAapt2>true</AndroidUseAapt2>
-        <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    </PropertyGroup>
+    
     <ItemGroup>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Xml" />
-        <Reference Include="Mono.Android" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.263" />
+        <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.263" />
+        
+        <ProjectReference Include="..\Demos\Demos.csproj" />
     </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Activity1.cs" />
-        <Compile Include="Resources\Resource.Designer.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <AndroidResource Include="Resources\Drawable\Icon.png" />
-        <AndroidResource Include="Resources\Values\Strings.xml" />
-    </ItemGroup>
+    
     <ItemGroup>
         <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
-        <None Include="..\Demos\Content\*\**" />
     </ItemGroup>
-    <ItemGroup>
-        <None Include="Properties\AndroidManifest.xml" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Coroutine" Version="2.1.3" />
-        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-        <PackageReference Include="MonoGame.Framework.Android" Version="3.8.0.1641" />
-        <PackageReference Include="TextCopy" Version="6.1.0" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\Demos\Demos.csproj">
-            <Project>{1bc4682b-aa14-4937-b5c7-707e20fe88ff}</Project>
-            <Name>Demos</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj">
-            <Project>{997f4739-7bec-4621-b9ca-68deb2d74412}</Project>
-            <Name>MLEM.Startup</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj">
-            <Project>{6f00629a-8b87-4264-8896-19983285e32f}</Project>
-            <Name>MLEM.Ui</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\MLEM\MLEM.csproj">
-            <Project>{1d6ab762-43c4-4775-8924-707c7ec3f142}</Project>
-            <Name>MLEM</Name>
-        </ProjectReference>
-    </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
