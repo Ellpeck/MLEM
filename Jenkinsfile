@@ -9,7 +9,6 @@ pipeline {
     stage('Cake Build') {
       steps {
         sh 'dotnet tool restore'
-        sh 'dotnet workload restore'
         // we use xvfb to allow for graphics-dependent tests
         sh 'xvfb-run -a dotnet cake --target Publish --branch ' + env.BRANCH_NAME
       }
