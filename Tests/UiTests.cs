@@ -32,11 +32,15 @@ namespace Tests {
             invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
             invalidPanel.AddChild(new VerticalSpace(1));
             Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel));
+        }
 
-            invalidPanel = new Panel(Anchor.Center, Vector2.Zero, Vector2.Zero, true);
-            invalidPanel.AddChild(new Group(Anchor.CenterRight, new Vector2(10), false));
-            invalidPanel.AddChild(new Group(Anchor.BottomLeft, new Vector2(10), false));
-            Assert.Throws<InvalidOperationException>(() => this.AddAndUpdate(invalidPanel));
+        [Test]
+        public void TestOddlyAlignedPanel() {
+            var oddPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
+            oddPanel.AddChild(new Group(Anchor.TopCenter, new Vector2(100), false));
+            oddPanel.AddChild(new Group(Anchor.AutoRight, new Vector2(120), false));
+            this.AddAndUpdate(oddPanel);
+            Assert.AreEqual(120 + 10, oddPanel.DisplayArea.Width);
         }
 
         [Test]
@@ -66,7 +70,7 @@ namespace Tests {
             Assert.AreEqual(11, panel.GetChildren(regardGrandchildren: true).Count());
 
             var testBtn = panel.GetChildren<Button>().First();
-            // panel's width is 150, minus child padding of 5 on each side, and scroll bar's width of 5 and gap of 1 
+            // panel's width is 150, minus child padding of 5 on each side, and scroll bar's width of 5 and gap of 1
             const int panelContentWidth = 150 - 5 - 5 - 5 - 1;
             Assert.AreEqual(testBtn.DisplayArea.Width, panelContentWidth);
             // button's width, minus child padding of 3 left and 3 right, divided by 2 because of group's width
