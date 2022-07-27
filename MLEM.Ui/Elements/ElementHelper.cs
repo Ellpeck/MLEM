@@ -214,5 +214,32 @@ namespace MLEM.Ui.Elements {
             return tooltip;
         }
 
+        /// <summary>
+        /// Returns whether the given <see cref="Anchor"/> is automatic. The anchors <see cref="Anchor.AutoLeft"/>, <see cref="Anchor.AutoCenter"/>, <see cref="Anchor.AutoRight"/>, <see cref="Anchor.AutoInline"/> and <see cref="Anchor.AutoInlineIgnoreOverflow"/> will return true.
+        /// </summary>
+        /// <param name="anchor">The anchor to query.</param>
+        /// <returns>Whether the given anchor is automatic.</returns>
+        public static bool IsAuto(this Anchor anchor) {
+            return anchor == Anchor.AutoLeft || anchor == Anchor.AutoCenter || anchor == Anchor.AutoRight || anchor == Anchor.AutoInline || anchor == Anchor.AutoInlineIgnoreOverflow;
+        }
+
+        /// <summary>
+        /// Returns whether the given <see cref="Anchor"/> is left-aligned for the purpose of <see cref="Element.GetRightmostChild"/>. The anchors <see cref="Anchor.TopLeft"/>, <see cref="Anchor.CenterLeft"/>, <see cref="Anchor.BottomLeft"/>, <see cref="Anchor.AutoLeft"/>, <see cref="Anchor.AutoInline"/> and <see cref="Anchor.AutoInlineIgnoreOverflow"/> will return true.
+        /// </summary>
+        /// <param name="anchor">The anchor to query.</param>
+        /// <returns>Whether the given anchor is left-aligned.</returns>
+        public static bool IsLeftAligned(this Anchor anchor) {
+            return anchor == Anchor.TopLeft || anchor == Anchor.CenterLeft || anchor == Anchor.BottomLeft || anchor == Anchor.AutoLeft || anchor == Anchor.AutoInline || anchor == Anchor.AutoInlineIgnoreOverflow;
+        }
+
+        /// <summary>
+        /// Returns whether the given <see cref="Anchor"/> is top-aligned for the purpose of <see cref="Element.GetLowestChild"/>. The anchors <see cref="Anchor.TopLeft"/>, <see cref="Anchor.TopCenter"/>, <see cref="Anchor.TopRight"/>, <see cref="Anchor.AutoLeft"/>, <see cref="Anchor.AutoCenter"/>, <see cref="Anchor.AutoRight"/>, <see cref="Anchor.AutoInline"/> and <see cref="Anchor.AutoInlineIgnoreOverflow"/> will return true.
+        /// </summary>
+        /// <param name="anchor">The anchor to query.</param>
+        /// <returns>Whether the given anchor is top-aligned.</returns>
+        public static bool IsTopAligned(this Anchor anchor) {
+            return anchor == Anchor.TopLeft || anchor == Anchor.TopCenter || anchor == Anchor.TopRight || anchor == Anchor.AutoLeft || anchor == Anchor.AutoCenter || anchor == Anchor.AutoRight || anchor == Anchor.AutoInline || anchor == Anchor.AutoInlineIgnoreOverflow;
+        }
+
     }
 }

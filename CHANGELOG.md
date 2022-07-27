@@ -10,6 +10,12 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 6.1.0
+### MLEM.Ui
+Additions
+- Added some extension methods for querying Anchor types
+
+Improvements
+- Allow elements to auto-adjust their size even when their children are aligned oddly
 
 ## 6.0.0
 ### MLEM

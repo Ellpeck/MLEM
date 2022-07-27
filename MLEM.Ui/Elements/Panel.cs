@@ -98,7 +98,7 @@ namespace MLEM.Ui.Elements {
                 if (this.SetHeightBasedOnChildren)
                     throw new NotSupportedException("A panel can't both set height based on children and scroll overflow");
                 foreach (var child in this.Children) {
-                    if (child != this.ScrollBar && child.Anchor < Anchor.AutoLeft)
+                    if (child != this.ScrollBar && !child.Anchor.IsAuto())
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
                     if (child is Panel panel && panel.scrollOverflow)
                         throw new NotSupportedException($"A panel that scrolls overflow cannot contain another panel that scrolls overflow ({child})");
@@ -161,7 +161,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void OnChildAreaDirty(Element child, bool grandchild) {
             base.OnChildAreaDirty(child, grandchild);
-            // we only need to scroll when a grandchild changes, since all of our children are forced 
+            // we only need to scroll when a grandchild changes, since all of our children are forced
             // to be auto-anchored and so will automatically propagate their changes up to us
             if (grandchild)
                 this.ScrollChildren();

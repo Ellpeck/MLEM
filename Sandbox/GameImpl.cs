@@ -27,14 +27,14 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.ViewportAdapters;
 
-namespace Sandbox; 
+namespace Sandbox;
 
 public class GameImpl : MlemGame {
 
     private Camera camera;
-    private TiledMap map;
+    /*private TiledMap map;
     private IndividualTiledMapRenderer mapRenderer;
-    private TiledMapCollisions collisions;
+    private TiledMapCollisions collisions;*/
     private RawContentManager rawContent;
     private TokenizedString tokenized;
 
@@ -50,14 +50,14 @@ public class GameImpl : MlemGame {
 
         this.Components.Add(this.rawContent = new RawContentManager(this.Services));
 
-        this.map = MlemGame.LoadContent<TiledMap>("Tiled/Map");
+        /*this.map = MlemGame.LoadContent<TiledMap>("Tiled/Map");
         this.mapRenderer = new IndividualTiledMapRenderer(this.map);
-        this.collisions = new TiledMapCollisions(this.map);
+        this.collisions = new TiledMapCollisions(this.map);*/
 
         this.camera = new Camera(this.GraphicsDevice) {
             AutoScaleWithScreen = true,
             Scale = 2,
-            LookingPosition = new Vector2(25, 25) * this.map.GetTileSize(),
+            /*LookingPosition = new Vector2(25, 25) * this.map.GetTileSize(),*/
             MinScale = 0.25F,
             MaxScale = 4
         };
@@ -296,7 +296,7 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };
 
-        var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
+        /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
         var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));
         newPanel.AddChild(new Button(Anchor.TopLeft, new Vector2(100, 20), "Text", "Tooltip text"));
         this.UiSystem.Add("Panel", newPanel);
@@ -341,7 +341,19 @@ public class GameImpl : MlemGame {
                 }
             }
             this.SpriteBatch.End();
-        };
+        };*/
+
+        var widthPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
+        for (var i = 0; i < 5; i++)
+            widthPanel.AddChild(new Paragraph(Anchor.AutoCenter, 100000, "Test String " + Math.Pow(10, i), true) {
+                OnUpdated = (e, time) => {
+                    if (Input.IsPressed(Keys.A)) {
+                        e.Anchor = (Anchor) (((int) e.Anchor + 1) % EnumHelper.GetValues<Anchor>().Count());
+                        Console.WriteLine(e.Anchor);
+                    }
+                }
+            });
+        this.UiSystem.Add("WidthTest", widthPanel);
     }
 
     protected override void DoUpdate(GameTime gameTime) {
@@ -356,12 +368,12 @@ public class GameImpl : MlemGame {
 
         /*if (Input.InputsDown.Length > 0)
             Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));*/
-        if (MlemGame.Input.InputsPressed.Length > 0)
+        /*if (MlemGame.Input.InputsPressed.Length > 0)
             Console.WriteLine("Pressed: " + string.Join(", ", MlemGame.Input.InputsPressed));
         MlemGame.Input.HandleKeyboardRepeats = false;
         Console.WriteLine("Down time: " + MlemGame.Input.GetDownTime(Keys.A));
         Console.WriteLine("Time since press: " + MlemGame.Input.GetTimeSincePress(Keys.A));
-        Console.WriteLine("Up time: " + MlemGame.Input.GetUpTime(Keys.A));
+        Console.WriteLine("Up time: " + MlemGame.Input.GetUpTime(Keys.A));*/
     }
 
     protected override void DoDraw(GameTime gameTime) {

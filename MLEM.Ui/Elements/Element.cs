@@ -633,7 +633,7 @@ namespace MLEM.Ui.Elements {
                         break;
                 }
 
-                if (this.Anchor >= Anchor.AutoLeft) {
+                if (this.Anchor.IsAuto()) {
                     Element previousChild;
                     if (this.Anchor == Anchor.AutoInline || this.Anchor == Anchor.AutoInlineIgnoreOverflow) {
                         previousChild = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
@@ -687,11 +687,13 @@ namespace MLEM.Ui.Elements {
                     if (this.SetHeightBasedOnChildren) {
                         var lowest = this.GetLowestChild(e => !e.IsHidden);
                         if (lowest != null) {
-                            autoSize.Y = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
+                            if (lowest.Anchor.IsTopAligned()) {
+                                autoSize.Y = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
+                            } else {
+                                autoSize.Y = lowest.UnscrolledArea.Height + this.ScaledChildPadding.Height;
+                            }
                             foundChild = lowest;
                         } else {
-                            if (this.Children.Any(e => !e.IsHidden))
-                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its height based on children but it only has visible children anchored too low ({string.Join(", ", this.Children.Where(c => !c.IsHidden).Select(c => c.Anchor))})");
                             autoSize.Y = 0;
                         }
                     }
@@ -699,11 +701,13 @@ namespace MLEM.Ui.Elements {
                     if (this.SetWidthBasedOnChildren) {
                         var rightmost = this.GetRightmostChild(e => !e.IsHidden);
                         if (rightmost != null) {
-                            autoSize.X = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
+                            if (rightmost.Anchor.IsLeftAligned()) {
+                                autoSize.X = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
+                            } else {
+                                autoSize.X = rightmost.UnscrolledArea.Width + this.ScaledChildPadding.Width;
+                            }
                             foundChild = rightmost;
                         } else {
-                            if (this.Children.Any(e => !e.IsHidden))
-                                throw new InvalidOperationException($"{this} with root {this.Root.Name} sets its width based on children but it only has visible children anchored too far right ({string.Join(", ", this.Children.Where(c => !c.IsHidden).Select(c => c.Anchor))})");
                             autoSize.X = 0;
                         }
                     }
@@ -717,11 +721,9 @@ namespace MLEM.Ui.Elements {
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
                     if (!autoSize.Equals(this.UnscrolledArea.Size, Element.Epsilon)) {
                         recursion++;
-                        if (recursion >= 16) {
+                        if (recursion >= 16)
                             throw new ArithmeticException($"The area of {this} with root {this.Root.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
-                        } else {
-                            UpdateDisplayArea(autoSize);
-                        }
+                        UpdateDisplayArea(autoSize);
                     }
                 }
             }
@@ -773,13 +775,15 @@ namespace MLEM.Ui.Elements {
         /// <returns>The lowest element, or null if no such element exists</returns>
         public Element GetLowestChild(Func<Element, bool> condition = null) {
             Element lowest = null;
+            var lowestX = float.MinValue;
             foreach (var child in this.Children) {
                 if (condition != null && !condition(child))
                     continue;
-                if (child.Anchor > Anchor.TopRight && child.Anchor < Anchor.AutoLeft)
-                    continue;
-                if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
+                var x = !child.Anchor.IsTopAligned() ? child.UnscrolledArea.Height : child.UnscrolledArea.Bottom;
+                if (x >= lowestX) {
                     lowest = child;
+                    lowestX = x;
+                }
             }
             return lowest;
         }
@@ -791,13 +795,15 @@ namespace MLEM.Ui.Elements {
         /// <returns>The rightmost element, or null if no such element exists</returns>
         public Element GetRightmostChild(Func<Element, bool> condition = null) {
             Element rightmost = null;
+            var rightmostX = float.MinValue;
             foreach (var child in this.Children) {
                 if (condition != null && !condition(child))
                     continue;
-                if (child.Anchor < Anchor.AutoLeft && child.Anchor != Anchor.TopLeft && child.Anchor != Anchor.CenterLeft && child.Anchor != Anchor.BottomLeft)
-                    continue;
-                if (rightmost == null || child.UnscrolledArea.Right >= rightmost.UnscrolledArea.Right)
+                var x = !child.Anchor.IsLeftAligned() ? child.UnscrolledArea.Width : child.UnscrolledArea.Right;
+                if (child.UnscrolledArea.Right >= rightmostX) {
                     rightmost = child;
+                    rightmostX = x;
+                }
             }
             return rightmost;
         }
@@ -1119,7 +1125,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="grandchild">Whether the <paramref name="child"/> is a grandchild of this element, rather than a direct child.</param>
         protected virtual void OnChildAreaDirty(Element child, bool grandchild) {
             if (!grandchild) {
-                if (child.Anchor >= Anchor.AutoLeft || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
+                if (child.Anchor.IsAuto() || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
                     this.SetAreaDirty();
             }
             this.Parent?.OnChildAreaDirty(child, true);
