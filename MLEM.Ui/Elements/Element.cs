@@ -800,7 +800,7 @@ namespace MLEM.Ui.Elements {
                 if (condition != null && !condition(child))
                     continue;
                 var x = !child.Anchor.IsLeftAligned() ? child.UnscrolledArea.Width : child.UnscrolledArea.Right;
-                if (child.UnscrolledArea.Right >= rightmostX) {
+                if (x >= rightmostX) {
                     rightmost = child;
                     rightmostX = x;
                 }
