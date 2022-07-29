@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -28,7 +27,7 @@ namespace MLEM.Ui.Parsers {
     /// </remarks>
     public class UiMarkdownParser {
 
-        private static readonly ElementType[] ElementTypes = EnumHelper.GetValues<ElementType>().ToArray();
+        private static readonly ElementType[] ElementTypes = EnumHelper.GetValues<ElementType>();
 
         /// <summary>
         /// The base path for markdown images, which is prepended to the image link.

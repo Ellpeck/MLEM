@@ -10,6 +10,10 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 6.1.0
+### MLEM
+Improvements
+- Improved EnumHelper.GetValues signature to return an array
+
 ### MLEM.Ui
 Additions
 - Added some extension methods for querying Anchor types

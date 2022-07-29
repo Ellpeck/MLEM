@@ -1,17 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using FontStashSharp;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
 using MLEM.Extended.Font;
-using MLEM.Extended.Tiled;
 using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
@@ -23,9 +17,6 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
-using MonoGame.Extended;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.ViewportAdapters;
 
 namespace Sandbox;
 
@@ -348,7 +339,7 @@ public class GameImpl : MlemGame {
             widthPanel.AddChild(new Paragraph(Anchor.AutoCenter, 100000, "Test String " + Math.Pow(10, i), true) {
                 OnUpdated = (e, time) => {
                     if (Input.IsPressed(Keys.A)) {
-                        e.Anchor = (Anchor) (((int) e.Anchor + 1) % EnumHelper.GetValues<Anchor>().Count());
+                        e.Anchor = (Anchor) (((int) e.Anchor + 1) % EnumHelper.GetValues<Anchor>().Length);
                         Console.WriteLine(e.Anchor);
                     }
                 }

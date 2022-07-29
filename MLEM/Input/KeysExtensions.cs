@@ -12,7 +12,7 @@ namespace MLEM.Input {
         /// <summary>
         /// All enum values of <see cref="ModifierKey"/>
         /// </summary>
-        public static readonly ModifierKey[] ModifierKeys = EnumHelper.GetValues<ModifierKey>().ToArray();
+        public static readonly ModifierKey[] ModifierKeys = EnumHelper.GetValues<ModifierKey>();
         private static readonly Dictionary<ModifierKey, Keys[]> KeysLookup = new Dictionary<ModifierKey, Keys[]> {
             {ModifierKey.Shift, new[] {Keys.LeftShift, Keys.RightShift}},
             {ModifierKey.Control, new[] {Keys.LeftControl, Keys.RightControl}},
