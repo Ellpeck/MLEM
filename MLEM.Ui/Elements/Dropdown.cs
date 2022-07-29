@@ -42,7 +42,16 @@ namespace MLEM.Ui.Elements {
             });
             this.OnAreaUpdated += e => this.Panel.PositionOffset = new Vector2(0, e.Area.Height / this.Scale);
             this.OnOpenedOrClosed += e => this.Priority = this.IsOpen ? 10000 : 0;
-            this.OnPressed += e => this.IsOpen = !this.IsOpen;
+            this.OnPressed += e => {
+                this.IsOpen = !this.IsOpen;
+                // close other dropdowns in the same root when we open
+                if (this.IsOpen) {
+                    this.Root.Element.AndChildren(o => {
+                        if (o != this && o is Dropdown d && d.IsOpen)
+                            d.IsOpen = false;
+                    });
+                }
+            };
             this.GetGamepadNextElement = (dir, usualNext) => {
                 // Force navigate down to our first child if we're open
                 if (this.IsOpen && dir == Direction2.Down)
