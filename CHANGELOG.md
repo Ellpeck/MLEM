@@ -22,6 +22,10 @@ Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly
 - Close other dropdowns when opening a dropdown
 
+### MLEM.Data
+Fixes
+- Fixed data texture atlases not allowing most characters in their region names
+
 ## 6.0.0
 ### MLEM
 Additions

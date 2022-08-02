@@ -86,7 +86,7 @@ namespace MLEM.Data {
             var atlas = new DataTextureAtlas(texture);
 
             // parse each texture region: "<names> loc <u> <v> <w> <h> [piv <px> <py>] [off <ox> <oy>]"
-            foreach (Match match in Regex.Matches(text, @"(.+)\W+loc\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W+([0-9]+)\W*(?:piv\W+([0-9.]+)\W+([0-9.]+))?\W*(?:off\W+([0-9.]+)\W+([0-9.]+))?")) {
+            foreach (Match match in Regex.Matches(text, @"(.+)\s+loc\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*(?:piv\s+([0-9.]+)\s+([0-9.]+))?\s*(?:off\s+([0-9.]+)\s+([0-9.]+))?")) {
                 // offset
                 var off = !match.Groups[8].Success ? Vector2.Zero : new Vector2(
                     float.Parse(match.Groups[8].Value, CultureInfo.InvariantCulture),
@@ -103,7 +103,7 @@ namespace MLEM.Data {
                     float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
                     float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
 
-                foreach (var name in Regex.Split(match.Groups[1].Value, @"\W")) {
+                foreach (var name in Regex.Split(match.Groups[1].Value, @"\s")) {
                     var trimmed = name.Trim();
                     if (trimmed.Length <= 0)
                         continue;
