@@ -9,6 +9,10 @@ piv 80 16
 Plant
 loc 96 0 16 32
 
+TestRegionNegativePivot
+loc 0 32 +16 16
+piv -32 +46
+
 LongTableUp
 loc 0 32 64 48
 piv 16 48

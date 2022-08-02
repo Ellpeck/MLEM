@@ -23,6 +23,9 @@ Improvements
 - Close other dropdowns when opening a dropdown
 
 ### MLEM.Data
+Improvements
+- Allow data texture atlas pivots and offsets to be negative
+
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
 

@@ -86,7 +86,7 @@ namespace MLEM.Data {
             var atlas = new DataTextureAtlas(texture);
 
             // parse each texture region: "<names> loc <u> <v> <w> <h> [piv <px> <py>] [off <ox> <oy>]"
-            foreach (Match match in Regex.Matches(text, @"(.+)\s+loc\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*(?:piv\s+([0-9.]+)\s+([0-9.]+))?\s*(?:off\s+([0-9.]+)\s+([0-9.]+))?")) {
+            foreach (Match match in Regex.Matches(text, @"(.+)\s+loc\s+([0-9+]+)\s+([0-9+]+)\s+([0-9+]+)\s+([0-9+]+)\s*(?:piv\s+([0-9.+-]+)\s+([0-9.+-]+))?\s*(?:off\s+([0-9.+-]+)\s+([0-9.+-]+))?")) {
                 // offset
                 var off = !match.Groups[8].Success ? Vector2.Zero : new Vector2(
                     float.Parse(match.Groups[8].Value, CultureInfo.InvariantCulture),
