@@ -199,7 +199,10 @@ namespace MLEM.Data {
             // invoke callbacks
             foreach (var request in this.alreadyPackedTextures) {
                 var packedArea = request.PackedArea.Shrink(new Point(request.Padding, request.Padding));
-                request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea));
+                request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea) {
+                    Pivot = request.Texture.Pivot,
+                    Name = request.Texture.Name
+                });
                 if (this.disposeTextures)
                     request.Texture.Texture.Dispose();
             }

@@ -25,6 +25,7 @@ Improvements
 ### MLEM.Data
 Improvements
 - Allow data texture atlas pivots and offsets to be negative
+- Made RuntimeTexturePacker restore texture region name and pivot when packing
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
