@@ -26,6 +26,7 @@ Improvements
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
 - Fixed paragraphs sometimes not updating their position properly when hidden because they're empty
+- Fixed panels sometimes not drawing children that came into view when their positions changed unexpectedly
 
 ### MLEM.Data
 Improvements

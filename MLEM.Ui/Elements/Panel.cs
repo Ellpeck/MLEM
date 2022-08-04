@@ -118,14 +118,10 @@ namespace MLEM.Ui.Elements {
         private void ScrollChildren() {
             if (!this.scrollOverflow)
                 return;
-            var offset = new Vector2(0, -this.ScrollBar.CurrentValue);
             // we ignore false grandchildren so that the children of the scroll bar stay in place
-            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true)) {
-                if (!child.ScrollOffset.Equals(offset, Element.Epsilon)) {
-                    child.ScrollOffset = offset;
-                    this.relevantChildrenDirty = true;
-                }
-            }
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true))
+                child.ScrollOffset.Y = -this.ScrollBar.CurrentValue;
+            this.relevantChildrenDirty = true;
         }
 
         /// <inheritdoc />
