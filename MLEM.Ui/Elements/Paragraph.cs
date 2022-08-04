@@ -110,7 +110,7 @@ namespace MLEM.Ui.Elements {
         private string text;
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
-        private bool forceHide;
+        private bool forceHide = true;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.

@@ -32,6 +32,7 @@ Improvements
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
+- Fixed paragraphs sometimes not updating their position properly when hidden because they're empty
 
 ## 6.0.0
 ### MLEM
