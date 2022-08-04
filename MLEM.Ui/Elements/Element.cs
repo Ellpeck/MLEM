@@ -1125,7 +1125,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="grandchild">Whether the <paramref name="child"/> is a grandchild of this element, rather than a direct child.</param>
         protected virtual void OnChildAreaDirty(Element child, bool grandchild) {
             if (!grandchild) {
-                if (child.Anchor.IsAuto() || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
+                if (child.Anchor.IsAuto() || child.PreventParentSpill || this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren)
                     this.SetAreaDirty();
             }
             this.Parent?.OnChildAreaDirty(child, true);
