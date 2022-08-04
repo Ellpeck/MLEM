@@ -10,6 +10,7 @@ Jump to version:
 - [5.0.0](#500)
 
 ## 6.1.0
+
 ### MLEM
 Improvements
 - Improved EnumHelper.GetValues signature to return an array
@@ -24,6 +25,7 @@ Improvements
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
+- Fixed paragraphs sometimes not updating their position properly when hidden because they're empty
 
 ### MLEM.Data
 Improvements
@@ -32,9 +34,9 @@ Improvements
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
-- Fixed paragraphs sometimes not updating their position properly when hidden because they're empty
 
 ## 6.0.0
+
 ### MLEM
 Additions
 - Added consuming variants of IsPressed methods to InputHandler and Keybind
@@ -121,6 +123,7 @@ Improvements
 - Updated to MonoGame 3.8.1
 
 ## 5.3.0
+
 ### MLEM
 Additions
 - Added StringBuilder overloads to GenericFont
@@ -205,6 +208,7 @@ Removals
 - Marked CopyExtensions as obsolete
 
 ## 5.2.0
+
 ### MLEM
 Additions
 - Added a strikethrough formatting code
@@ -279,6 +283,7 @@ Additions
 - Added PreDraw and PreUpdate events and coroutine events
 
 ## 5.1.0
+
 ### MLEM
 Additions
 - Added RotateBy to Direction2Helper
@@ -329,6 +334,7 @@ Fixes
 - Fixed DynamicEnum AddFlag going into an infinite loop
 
 ## 5.0.0
+
 ### MLEM
 Additions
 - Added some Collection extensions, namely for dealing with combinations
