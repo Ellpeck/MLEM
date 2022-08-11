@@ -14,6 +14,7 @@ Jump to version:
 ### MLEM
 Improvements
 - Improved EnumHelper.GetValues signature to return an array
+- Allow using external gesture handling alongside InputHandler through ExternalGestureHandling
 
 ### MLEM.Ui
 Additions

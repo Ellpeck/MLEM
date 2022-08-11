@@ -72,6 +72,12 @@ namespace MLEM.Input {
         /// Inverted behavior means that, instead of an input counting as pressed when it was up in the last frame and is now down, it will be counted as pressed when it was down in the last frame and is now up.
         /// </summary>
         public bool InvertPressBehavior;
+        /// <summary>
+        /// If your project already handles the processing of MonoGame's gestures elsewhere, you can set this field to true to ensure that this input handler's gesture handling does not override your own, since <see cref="GestureSample"/> objects can only be retrieved once and are then removed from the <see cref="TouchPanelState"/>'s queue.
+        /// If this value is set to true, but you still want to be able to use <see cref="Gestures"/>, <see cref="GetGesture"/>, and <see cref="GetViewportGesture"/>, you can make this input handler aware of a gesture for the duration of the update frame that you added it on by using <see cref="AddExternalGesture"/>.
+        /// For more info, see https://mlem.ellpeck.de/articles/input.html#external-gesture-handling.
+        /// </summary>
+        public bool ExternalGestureHandling;
 
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
@@ -287,9 +293,12 @@ namespace MLEM.Input {
                     this.ViewportTouchState = this.TouchState;
                 }
 
+                // we still want to clear gestures when handling externally to maintain the per-frame gesture system
                 this.gestures.Clear();
-                while (active && TouchPanel.IsGestureAvailable)
-                    this.gestures.Add(TouchPanel.ReadGesture());
+                if (active && !this.ExternalGestureHandling) {
+                    while (TouchPanel.IsGestureAvailable)
+                        this.gestures.Add(TouchPanel.ReadGesture());
+                }
             }
 
             if (this.inputsDownAccum.Count <= 0 && this.inputsDown.Count <= 0) {
@@ -648,6 +657,19 @@ namespace MLEM.Input {
             }
             sample = default;
             return false;
+        }
+
+        /// <summary>
+        /// Adds a gesture to the <see cref="Gestures"/> collection and allows it to be queried using <see cref="GetGesture"/> and <see cref="GetViewportGesture"/> for the duration of the update frame that it was added on.
+        /// This method should be used when <see cref="ExternalGestureHandling"/> is set to true, but <see cref="GetGesture"/> and <see cref="GetViewportGesture"/> should still be available.
+        /// For more info, see https://mlem.ellpeck.de/articles/input.html#external-gesture-handling.
+        /// </summary>
+        /// <param name="sample">The gesture sample to add.</param>
+        /// <exception cref="InvalidOperationException">Thrown if <see cref="ExternalGestureHandling"/> is false.</exception>
+        public void AddExternalGesture(GestureSample sample) {
+            if (!this.ExternalGestureHandling)
+                throw new InvalidOperationException($"Cannot add external gestures if {nameof(this.ExternalGestureHandling)} is false");
+            this.gestures.Add(sample);
         }
 
         /// <summary>

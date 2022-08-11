@@ -50,3 +50,8 @@ if (this.InputHandler.GetGesture(GestureType.Tap, out var sample)) {
     // The gesture did not happen this frame
 }
 ```
+
+### External gesture handling
+If your game already handles gestures through some other means, you might notice that one of the gesture handling methods stops working correctly. This is due to the fact that MonoGame's gesture querying system only supports each gesture to be queried once before it is removed from the queue.
+
+If you want to continue using your own gesture handling, but still allow the `InputHandler` to use gestures (for [MLEM.Ui](ui.md), for example), you can set `GesturesExternal` to true in your `InputHandler`. Then, you can use `AddExternalGesture` to make the input handler aware of a gesture for the duration of the update frame that you added it on.
