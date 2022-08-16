@@ -78,6 +78,27 @@ namespace Tests {
         }
 
         [Test]
+        public void TestAbsoluteAutoSize() {
+            var parent = new Panel(Anchor.AutoLeft, new Vector2(200, 100), Vector2.Zero) {
+                ChildPadding = Padding.Empty
+            };
+            var el1 = parent.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.5F, 0.75F)) {
+                AutoSizeAddedAbsolute = new Vector2(-50, 25)
+            });
+            var el2 = parent.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -0.5F)) {
+                AutoSizeAddedAbsolute = new Vector2(-25, 50)
+            });
+            this.AddAndUpdate(parent);
+
+            Assert.AreEqual(0.5F * 200 - 50, el1.DisplayArea.Width);
+            Assert.AreEqual(0.75F * 100 + 25, el1.DisplayArea.Height);
+
+            const float el2Width = 0.25F * 200 - 25;
+            Assert.AreEqual(el2Width, el2.DisplayArea.Width);
+            Assert.AreEqual(0.5F * el2Width + 50, el2.DisplayArea.Height);
+        }
+
+        [Test]
         public void TestStyle() {
             var style = new StyleProp<string>();
             Assert.AreEqual(null, style.Value);

@@ -71,9 +71,10 @@ namespace MLEM.Ui.Elements {
         /// The size of this element, where X represents the width and Y represents the height.
         /// If the x or y value of the size is between 0 and 1, the size will be seen as a percentage of its parent's size rather than as an absolute value.
         /// If the x (or y) value of the size is negative, the width (or height) is seen as a percentage of the element's resulting height (or width).
+        /// Additionally, if auto-sizing is used, <see cref="AutoSizeAddedAbsolute"/> can be set to add or subtract an absolute value from the automatically calculated size.
         /// </summary>
         /// <example>
-        /// The following example combines both types of percentage-based sizing.
+        /// The following example, ignoring <see cref="Scale"/>, combines both types of percentage-based sizing.
         /// If this element is inside of a <see cref="Parent"/> whose width is 20, this element's width will be set to <c>0.5 * 20 = 10</c>, and its height will be set to <c>2.5 * 10 = 25</c>.
         /// <code>
         /// element.Size = new Vector2(0.5F, -2.5F);
@@ -92,6 +93,26 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="Size"/>, but with <see cref="Scale"/> applied.
         /// </summary>
         public Vector2 ScaledSize => this.size * this.Scale;
+        /// <summary>
+        /// If auto-sizing is used by setting <see cref="Size"/> less than or equal to 1, this property allows adding or subtracting an additional, absolute value from the automatically calculated size.
+        /// If this element is not using auto-sizing, this property is ignored.
+        /// </summary>
+        /// <example>
+        /// Ignoring <see cref="Scale"/>, if this element's <see cref="Size"/> is set to <c>0.5, 0.75</c> and its <see cref="Parent"/> has a size of <c>200, 100</c>, then an added absolute size of <c>-50, 25</c> will result in a final <see cref="Area"/> size of <c>0.5 * 200 - 50, 0.75 * 100 + 25</c>, or <c>50, 100</c>.
+        /// </example>
+        public Vector2 AutoSizeAddedAbsolute {
+            get => this.autoSizeAddedAbsolute;
+            set {
+                if (this.autoSizeAddedAbsolute == value)
+                    return;
+                this.autoSizeAddedAbsolute = value;
+                this.SetAreaDirty();
+            }
+        }
+        /// <summary>
+        /// The <see cref="AutoSizeAddedAbsolute"/>, but with <see cref="Scale"/> applied.
+        /// </summary>
+        public Vector2 ScaledAutoSizeAddedAbsolute => this.autoSizeAddedAbsolute * this.Scale;
         /// <summary>
         /// This element's offset from its default position, which is dictated by its <see cref="Anchor"/>.
         /// Note that, depending on the side that the element is anchored to, this offset moves it in a different direction.
@@ -430,6 +451,7 @@ namespace MLEM.Ui.Elements {
         private UiSystem system;
         private Anchor anchor;
         private Vector2 size;
+        private Vector2 autoSizeAddedAbsolute;
         private Vector2 offset;
         private RectangleF area;
         private bool isHidden;
@@ -751,12 +773,12 @@ namespace MLEM.Ui.Elements {
         /// <returns>The actual size of this element, taking <see cref="Scale"/> into account</returns>
         protected virtual Vector2 CalcActualSize(RectangleF parentArea) {
             var ret = new Vector2(
-                this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X,
-                this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y);
+                this.size.X > 1 ? this.ScaledSize.X : parentArea.Width * this.size.X + this.ScaledAutoSizeAddedAbsolute.X,
+                this.size.Y > 1 ? this.ScaledSize.Y : parentArea.Height * this.size.Y + this.ScaledAutoSizeAddedAbsolute.Y);
             if (this.size.X < 0)
-                ret.X = -this.size.X * ret.Y;
+                ret.X = -this.size.X * ret.Y + this.ScaledAutoSizeAddedAbsolute.X;
             if (this.size.Y < 0)
-                ret.Y = -this.size.Y * ret.X;
+                ret.Y = -this.size.Y * ret.X + this.ScaledAutoSizeAddedAbsolute.Y;
             return ret;
         }
 
