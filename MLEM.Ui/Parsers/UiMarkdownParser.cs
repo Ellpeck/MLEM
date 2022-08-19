@@ -138,7 +138,7 @@ namespace MLEM.Ui.Parsers {
 
                 // quotes
                 if (line.StartsWith(">")) {
-                    yield return (ElementType.Blockquote, new Paragraph(Anchor.AutoLeft, 1, line.Substring(1).Trim()));
+                    yield return (ElementType.Blockquote, new Paragraph(Anchor.AutoLeft, 1, this.ParseParagraph(line.Substring(1).Trim())));
                     continue;
                 }
 
@@ -198,7 +198,7 @@ namespace MLEM.Ui.Parsers {
                 for (var h = 6; h >= 1; h--) {
                     if (line.StartsWith(new string('#', h))) {
                         var type = UiMarkdownParser.ElementTypes[Array.IndexOf(UiMarkdownParser.ElementTypes, ElementType.Header1) + h - 1];
-                        yield return (type, new Paragraph(Anchor.AutoLeft, 1, line.Substring(h).Trim()));
+                        yield return (type, new Paragraph(Anchor.AutoLeft, 1, this.ParseParagraph(line.Substring(h).Trim())));
                         parsedHeader = true;
                         break;
                     }
@@ -207,20 +207,23 @@ namespace MLEM.Ui.Parsers {
                     continue;
 
                 // parse everything else as a paragraph (with formatting)
-                var par = line;
-                // replace links
-                par = Regex.Replace(par, @"<([^>]+)>", "<l $1>$1</l>");
-                par = Regex.Replace(par, @"\[([^\]]+)\]\(([^)]+)\)", "<l $2>$1</l>");
-                // replace formatting
-                par = Regex.Replace(par, @"\*\*([^\*]+)\*\*", "<b>$1</b>");
-                par = Regex.Replace(par, @"__([^_]+)__", "<b>$1</b>");
-                par = Regex.Replace(par, @"\*([^\*]+)\*", "<i>$1</i>");
-                par = Regex.Replace(par, @"_([^_]+)_", "<i>$1</i>");
-                par = Regex.Replace(par, @"~~([^~]+)~~", "<st>$1</st>");
-                // replace inline code with custom code font
-                par = Regex.Replace(par, @"`([^`]+)`", $"<f {this.CodeFont}>$1</f>");
-                yield return (ElementType.Paragraph, new Paragraph(Anchor.AutoLeft, 1, par));
+                yield return (ElementType.Paragraph, new Paragraph(Anchor.AutoLeft, 1, this.ParseParagraph(line)));
             }
+        }
+
+        private string ParseParagraph(string par) {
+            // replace links
+            par = Regex.Replace(par, @"<([^>]+)>", "<l $1>$1</l>");
+            par = Regex.Replace(par, @"\[([^\]]+)\]\(([^)]+)\)", "<l $2>$1</l>");
+            // replace formatting
+            par = Regex.Replace(par, @"\*\*([^\*]+)\*\*", "<b>$1</b>");
+            par = Regex.Replace(par, @"__([^_]+)__", "<b>$1</b>");
+            par = Regex.Replace(par, @"\*([^\*]+)\*", "<i>$1</i>");
+            par = Regex.Replace(par, @"_([^_]+)_", "<i>$1</i>");
+            par = Regex.Replace(par, @"~~([^~]+)~~", "<st>$1</st>");
+            // replace inline code with custom code font
+            par = Regex.Replace(par, @"`([^`]+)`", $"<f {this.CodeFont}>$1</f>");
+            return par;
         }
 
         /// <summary>
