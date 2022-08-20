@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using MLEM.Misc;
+﻿using MLEM.Misc;
 
-namespace Sandbox; 
+namespace Sandbox;
 
 internal static class Program {
 

@@ -102,16 +102,16 @@ namespace Tests {
 
         [Test]
         public void TestMacros() {
-            this.formatter.Macros.Add(new Regex("<testmacro>"), (f, m, r) => "<test1>");
-            this.formatter.Macros.Add(new Regex("<test1>"), (f, m, r) => "<test2>blue");
-            this.formatter.Macros.Add(new Regex("<test2>"), (f, m, r) => "<c Blue>");
+            this.formatter.Macros.Add(new Regex("<testmacro>"), (_, _, _) => "<test1>");
+            this.formatter.Macros.Add(new Regex("<test1>"), (_, _, _) => "<test2>blue");
+            this.formatter.Macros.Add(new Regex("<test2>"), (_, _, _) => "<c Blue>");
             const string strg = "This text uses a bunch of non-breaking~spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <testmacro> text</c>.";
             const string goal = "This text uses a bunch of non-breaking\u00A0spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <c Blue>blue text</c>.";
             Assert.AreEqual(this.formatter.ResolveMacros(strg), goal);
 
             // test recursive macros
-            this.formatter.Macros.Add(new Regex("<rec1>"), (f, m, r) => "<rec2>");
-            this.formatter.Macros.Add(new Regex("<rec2>"), (f, m, r) => "<rec1>");
+            this.formatter.Macros.Add(new Regex("<rec1>"), (_, _, _) => "<rec2>");
+            this.formatter.Macros.Add(new Regex("<rec2>"), (_, _, _) => "<rec1>");
             Assert.Throws<ArithmeticException>(() => this.formatter.ResolveMacros("Test <rec1> string"));
         }
 

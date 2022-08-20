@@ -88,7 +88,7 @@ namespace MLEM.Graphics {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
+            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo);
             if (backgroundTexture != null)
                 batch.Draw(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
             if (r1 != Rectangle.Empty)
@@ -106,7 +106,7 @@ namespace MLEM.Graphics {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
             var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(pos, overlayTexture.Area, connectsTo, sc);
+            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo);
             if (backgroundTexture != null) {
                 var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
                 items?.Add(background);
@@ -147,7 +147,7 @@ namespace MLEM.Graphics {
                 new Vector2(pos.X + w2 * scale.X, pos.Y + h2 * scale.Y), new Rectangle(textureRegion.X + w2 + xDr * w, textureRegion.Y + h2, w2, h2));
         }
 
-        private static (Rectangle, Rectangle, Rectangle, Rectangle) CalculateExtendedAutoTile(Vector2 pos, Rectangle textureRegion, ConnectsTo connectsTo, Vector2 scale) {
+        private static (Rectangle, Rectangle, Rectangle, Rectangle) CalculateExtendedAutoTile(Rectangle textureRegion, ConnectsTo connectsTo) {
             var up = connectsTo(0, -1);
             var down = connectsTo(0, 1);
             var left = connectsTo(-1, 0);

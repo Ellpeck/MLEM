@@ -122,12 +122,12 @@ namespace Tests {
             for (var i = 1; i <= 100; i++) {
                 var totalUpdates = 0;
                 var main = new Group(Anchor.TopLeft, new Vector2(50)) {
-                    OnAreaUpdated = e => totalUpdates++
+                    OnAreaUpdated = _ => totalUpdates++
                 };
                 var group = main;
                 for (var g = 0; g < i; g++) {
                     group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One) {
-                        OnAreaUpdated = e => totalUpdates++
+                        OnAreaUpdated = _ => totalUpdates++
                     });
                 }
                 stopwatch.Restart();

@@ -31,7 +31,7 @@ public class GameImpl : MlemGame {
 
     public GameImpl() {
         this.IsMouseVisible = true;
-        this.Window.ClientSizeChanged += (o, args) => {
+        this.Window.ClientSizeChanged += (_, _) => {
             Console.WriteLine("Size changed");
         };
     }
@@ -121,7 +121,7 @@ public class GameImpl : MlemGame {
         var res = this.Content.LoadJson<Test>("Test");
         Console.WriteLine("The res is " + res);
 
-        var gradient = this.SpriteBatch.GenerateGradientTexture(Color.Green, Color.Red, Color.Blue, Color.Yellow);
+        //var gradient = this.SpriteBatch.GenerateGradientTexture(Color.Green, Color.Red, Color.Blue, Color.Yellow);
         /*this.OnDraw += (game, time) => {
             this.SpriteBatch.Begin();
             this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), new Rectangle(640 - 4, 360 - 4, 8, 8), Color.Green);
@@ -139,9 +139,9 @@ public class GameImpl : MlemGame {
         var sc = 4;
         var formatter = new TextFormatter();
         formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
-        formatter.Macros.Add(new Regex("<testmacro>"), (f, m, r) => "<test1>");
-        formatter.Macros.Add(new Regex("<test1>"), (f, m, r) => "<test2> blue");
-        formatter.Macros.Add(new Regex("<test2>"), (f, m, r) => "<c Blue>");
+        formatter.Macros.Add(new Regex("<testmacro>"), (_, _, _) => "<test1>");
+        formatter.Macros.Add(new Regex("<test1>"), (_, _, _) => "<test2> blue");
+        formatter.Macros.Add(new Regex("<test2>"), (_, _, _) => "<c Blue>");
         var strg = "This text uses a bunch of non-breaking~spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <testmacro> text</c>.";
         //var strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
         //var strg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
@@ -149,7 +149,7 @@ public class GameImpl : MlemGame {
         this.tokenized = formatter.Tokenize(font, strg);
         this.tokenized.Split(font, 400, sc);
 
-        var square = this.SpriteBatch.GenerateSquareTexture(Color.Yellow);
+        //var square = this.SpriteBatch.GenerateSquareTexture(Color.Yellow);
         var round = this.SpriteBatch.GenerateCircleTexture(Color.Green, 128);
 
         var region = new TextureRegion(round) {Pivot = new Vector2(0.5F)};
@@ -159,7 +159,7 @@ public class GameImpl : MlemGame {
         foreach (var r in atlas.Regions)
             Console.WriteLine(r.Name + ": " + r.U + " " + r.V + " " + r.Width + " " + r.Height + " " + r.PivotPixels);
 
-        this.OnDraw += (g, time) => {
+        this.OnDraw += (_, _) => {
             this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
             //this.SpriteBatch.Draw(square, new Rectangle(10, 10, 400, 400), Color.White);
             //this.SpriteBatch.Draw(round, new Rectangle(10, 10, 400, 400), Color.White);
@@ -173,7 +173,7 @@ public class GameImpl : MlemGame {
             //this.SpriteBatch.DrawGrid(new Vector2(30, 30), new Vector2(40, 60), new Point(10, 5), Color.Yellow, 3);
             this.SpriteBatch.End();
         };
-        this.OnUpdate += (g, time) => {
+        this.OnUpdate += (_, time) => {
             if (this.InputHandler.IsPressed(Keys.W)) {
                 this.tokenized = formatter.Tokenize(font, strg);
                 this.tokenized.Split(font, this.InputHandler.IsModifierKeyDown(ModifierKey.Shift) ? 400 : 500, sc);
@@ -259,7 +259,7 @@ public class GameImpl : MlemGame {
         var rotation = 0F;
         var effects = SpriteEffects.None;
 
-        this.OnDraw += (g, time) => {
+        this.OnDraw += (_, _) => {
             const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
             if (MlemGame.Input.IsKeyPressed(Keys.I)) {
                 index++;
@@ -335,15 +335,16 @@ public class GameImpl : MlemGame {
         };*/
 
         var widthPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++) {
             widthPanel.AddChild(new Paragraph(Anchor.AutoCenter, 100000, "Test String " + Math.Pow(10, i), true) {
-                OnUpdated = (e, time) => {
-                    if (Input.IsPressed(Keys.A)) {
+                OnUpdated = (e, _) => {
+                    if (MlemGame.Input.IsPressed(Keys.A)) {
                         e.Anchor = (Anchor) (((int) e.Anchor + 1) % EnumHelper.GetValues<Anchor>().Length);
                         Console.WriteLine(e.Anchor);
                     }
                 }
             });
+        }
         this.UiSystem.Add("WidthTest", widthPanel);
     }
 

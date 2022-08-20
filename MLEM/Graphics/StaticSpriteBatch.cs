@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+#if FNA
 using MLEM.Extensions;
+using System.IO;
+#endif
 
 namespace MLEM.Graphics {
     /// <summary>

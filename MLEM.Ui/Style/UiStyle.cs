@@ -5,9 +5,9 @@ using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Misc;
+using MLEM.Sound;
 using MLEM.Textures;
 using MLEM.Ui.Elements;
-using SoundEffectInfo = MLEM.Sound.SoundEffectInfo;
 
 namespace MLEM.Ui.Style {
     /// <summary>

@@ -561,7 +561,7 @@ namespace MLEM.Ui {
         /// This property returns <see langword="true"/> if <see cref="CanSelectContent"/> is <see langword="true"/> and the <see cref="Element"/> is not hidden, or if it has been set to <see langword="true"/> manually.
         /// </summary>
         public bool CanBeActive {
-            get => this.canBeActive || (!this.Element.IsHidden && this.CanSelectContent);
+            get => this.canBeActive || !this.Element.IsHidden && this.CanSelectContent;
             set => this.canBeActive = value;
         }
 

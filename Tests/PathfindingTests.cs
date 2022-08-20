@@ -66,7 +66,7 @@ namespace Tests {
                 'X' => float.PositiveInfinity,
                 _ => (float) char.GetNumericValue(c)
             }).ToArray()).ToArray();
-            var pathFinder = new AStar2((p1, p2) => costs[p2.Y][p2.X], allowDiagonals);
+            var pathFinder = new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals);
             return pathFinder.FindPath(start, end);
         }
 

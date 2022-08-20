@@ -12,11 +12,11 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 namespace Tests {
     public class DataTests {
 
-        private readonly TestObject testObject = new(Vector2.One, "test") {
+        private readonly TestObject testObject = new() {
             Vec = new Vector2(10, 20),
             Point = new Point(20, 30),
             Dir = Direction2.Left,
-            OtherTest = new TestObject(Vector2.One, "other") {
+            OtherTest = new TestObject {
                 Vec = new Vector2(70, 30),
                 Dir = Direction2.Right
             }
@@ -94,8 +94,6 @@ namespace Tests {
             public Point Point;
             public Direction2 Dir { get; set; }
             public TestObject OtherTest;
-
-            public TestObject(Vector2 test, string test2) {}
 
             protected bool Equals(TestObject other) {
                 return this.Vec.Equals(other.Vec) && this.Point.Equals(other.Point) && object.Equals(this.OtherTest, other.OtherTest) && this.Dir == other.Dir;

@@ -13,22 +13,21 @@ namespace MLEM.Data.Content {
             if (existing != null) {
                 existing.Reload(stream);
                 return existing;
-            } else
+            }
             #endif
-            {
-                // premultiply the texture's color to be in line with the pipeline's texture reader
-                using (var texture = Texture2D.FromStream(manager.GraphicsDevice, stream)) {
-                    var ret = new Texture2D(manager.GraphicsDevice, texture.Width, texture.Height);
-                    using (var textureData = texture.GetTextureData()) {
-                        using (var retData = ret.GetTextureData()) {
-                            for (var x = 0; x < ret.Width; x++) {
-                                for (var y = 0; y < ret.Height; y++)
-                                    retData[x, y] = Color.FromNonPremultiplied(textureData[x, y].ToVector4());
-                            }
+
+            // premultiply the texture's color to be in line with the pipeline's texture reader
+            using (var texture = Texture2D.FromStream(manager.GraphicsDevice, stream)) {
+                var ret = new Texture2D(manager.GraphicsDevice, texture.Width, texture.Height);
+                using (var textureData = texture.GetTextureData()) {
+                    using (var retData = ret.GetTextureData()) {
+                        for (var x = 0; x < ret.Width; x++) {
+                            for (var y = 0; y < ret.Height; y++)
+                                retData[x, y] = Color.FromNonPremultiplied(textureData[x, y].ToVector4());
                         }
                     }
-                    return ret;
                 }
+                return ret;
             }
         }
 

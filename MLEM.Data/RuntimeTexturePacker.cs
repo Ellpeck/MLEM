@@ -267,7 +267,7 @@ namespace MLEM.Data {
                         srcColor = Color.Transparent;
                     } else {
                         // otherwise, we just use the closest pixel that is actually in bounds, causing the border pixels to be doubled up
-                        var src = new Point((int) MathHelper.Clamp(x, 0, request.Texture.Width - 1), (int) MathHelper.Clamp(y, 0, request.Texture.Height - 1));
+                        var src = new Point((int) MathHelper.Clamp(x, 0F, request.Texture.Width - 1), (int) MathHelper.Clamp(y, 0F, request.Texture.Height - 1));
                         srcColor = data[request.Texture.Position + src];
                     }
                     destination[location + new Point(x, y)] = srcColor;

@@ -304,6 +304,41 @@ namespace MLEM.Extensions {
         public static Vector2 ToVector2(this Point point) {
             return new Vector2(point.X, point.Y);
         }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Point"/>.
+        /// </summary>
+        /// <param name="point">The point to deconstruct.</param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public static void Deconstruct(this Point point, out int x, out int y) {
+            x = point.X;
+            y = point.Y;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Vector2"/>.
+        /// </summary>
+        /// <param name="vector">The vector to deconstruct.</param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public static void Deconstruct(this Vector2 vector, out float x, out float y) {
+            x = vector.X;
+            y = vector.Y;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Vector3"/>.
+        /// </summary>
+        /// <param name="vector">The vector to deconstruct.</param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        public static void Deconstruct(this Vector3 vector, out float x, out float y, out float z) {
+            x = vector.X;
+            y = vector.Y;
+            z = vector.Z;
+        }
         #endif
 
     }

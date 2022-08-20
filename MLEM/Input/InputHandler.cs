@@ -73,7 +73,7 @@ namespace MLEM.Input {
         /// </summary>
         public bool InvertPressBehavior;
         /// <summary>
-        /// If your project already handles the processing of MonoGame's gestures elsewhere, you can set this field to true to ensure that this input handler's gesture handling does not override your own, since <see cref="GestureSample"/> objects can only be retrieved once and are then removed from the <see cref="TouchPanelState"/>'s queue.
+        /// If your project already handles the processing of MonoGame's gestures elsewhere, you can set this field to true to ensure that this input handler's gesture handling does not override your own, since <see cref="GestureSample"/> objects can only be retrieved once and are then removed from the <see cref="TouchPanel"/>'s queue.
         /// If this value is set to true, but you still want to be able to use <see cref="Gestures"/>, <see cref="GetGesture"/>, and <see cref="GetViewportGesture"/>, you can make this input handler aware of a gesture for the duration of the update frame that you added it on by using <see cref="AddExternalGesture"/>.
         /// For more info, see https://mlem.ellpeck.de/articles/input.html#external-gesture-handling.
         /// </summary>

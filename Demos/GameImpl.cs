@@ -9,9 +9,6 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
-#if !FNA
-using MonoGame.Framework.Utilities;
-#endif
 
 namespace Demos {
     public class GameImpl : MlemGame {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -6,8 +5,10 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Textures;
+#if FNA
+using MLEM.Extensions;
+#endif
 
 namespace MLEM.Data {
     /// <summary>

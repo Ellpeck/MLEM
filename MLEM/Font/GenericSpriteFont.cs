@@ -1,7 +1,10 @@
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
+
+#if !FNA
+using System.Linq;
+#endif
 
 namespace MLEM.Font {
     /// <inheritdoc/>

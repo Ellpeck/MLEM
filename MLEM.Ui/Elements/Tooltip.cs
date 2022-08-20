@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MLEM.Extensions;
 using MLEM.Input;
 using MLEM.Ui.Style;
+#if FNA
+using MLEM.Extensions;
+#endif
 
 namespace MLEM.Ui.Elements {
     /// <summary>

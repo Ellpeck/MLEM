@@ -10,9 +10,9 @@ using MLEM.Extensions;
 using MLEM.Graphics;
 using MLEM.Input;
 using MLEM.Misc;
+using MLEM.Sound;
 using MLEM.Textures;
 using MLEM.Ui.Style;
-using SoundEffectInfo = MLEM.Sound.SoundEffectInfo;
 
 namespace MLEM.Ui.Elements {
     /// <summary>

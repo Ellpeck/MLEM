@@ -43,7 +43,7 @@ namespace Demos {
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
             base.DoDraw(time);
 
-            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
+            this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             var view = this.GraphicsDevice.Viewport;
 
             // graph the easing function

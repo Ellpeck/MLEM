@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
+
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <ApplicationIcon>Icon.ico</ApplicationIcon>
         <AssemblyName>MLEM Desktop Demos</AssemblyName>
     </PropertyGroup>
-    
+
     <ItemGroup>
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.263" />
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.263" />
-        
+
         <ProjectReference Include="..\Demos\Demos.csproj" />
         <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
         <EmbeddedResource Include="Icon.ico" />
         <EmbeddedResource Include="Icon.bmp" />
     </ItemGroup>
-    
+
     <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
         <Message Text="Restoring dotnet tools" Importance="High" />
         <Exec Command="dotnet tool restore" />
