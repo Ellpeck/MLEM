@@ -229,16 +229,10 @@ namespace MLEM.Formatting {
                 if (endsLater) {
                     for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
                         var other = this.Tokens[i];
-                        var otherFont = other.GetFont(defaultFont);
-                        if (other.SplitDisplayString.Length > 1) {
-                            // the line ends in this token (so we also ignore trailing whitespaces)
-                            restOfLine += otherFont.MeasureString(other.SplitDisplayString[0], true).X;
+                        restOfLine += other.GetFont(defaultFont).MeasureString(other.SplitDisplayString[0], true).X;
+                        // if the token's split display string has multiple lines, then the line ends in it, which means we can stop
+                        if (other.SplitDisplayString.Length > 1)
                             break;
-                        } else {
-                            // the line doesn't end in this token (or it's the last token), so add it fully
-                            var lastToken = i >= this.Tokens.Length - 1;
-                            restOfLine += otherFont.MeasureString(other.DisplayString, lastToken).X;
-                        }
                     }
                 }
                 if (alignment == TextAlignment.Center)

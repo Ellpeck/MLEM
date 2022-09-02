@@ -21,6 +21,7 @@ Improvements
 
 Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
+- Fixed some TokenizedString tokens starting with a line break not being split correctly
 
 ### MLEM.Ui
 Additions
