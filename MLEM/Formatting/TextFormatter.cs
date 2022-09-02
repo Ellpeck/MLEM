@@ -68,8 +68,8 @@ namespace MLEM.Formatting {
         /// </summary>
         /// <param name="font">The font to use for tokenization. Note that this font needs to be the same that will later be used for splitting, measuring and/or drawing.</param>
         /// <param name="s">The string to tokenize</param>
-        /// <param name="alignment">The text alignment that should be used. Note that this alignment needs to be the same that will later be used for splitting, measuring and/or drawing.</param>
-        /// <returns></returns>
+        /// <param name="alignment">The text alignment that should be used. This alignment can later be changed using <see cref="TokenizedString.Realign"/>.</param>
+        /// <returns>The tokenized string.</returns>
         public TokenizedString Tokenize(GenericFont font, string s, TextAlignment alignment = TextAlignment.Left) {
             // resolve macros
             s = this.ResolveMacros(s);

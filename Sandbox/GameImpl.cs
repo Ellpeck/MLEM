@@ -136,13 +136,13 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };*/
 
-        var sc = 4;
+        var sc = 2;
         var formatter = new TextFormatter();
         formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
         formatter.Macros.Add(new Regex("<testmacro>"), (_, _, _) => "<test1>");
         formatter.Macros.Add(new Regex("<test1>"), (_, _, _) => "<test2> blue");
         formatter.Macros.Add(new Regex("<test2>"), (_, _, _) => "<c Blue>");
-        var strg = "This text uses a bunch of non-breaking~spaces to see if macros work. Additionally, it uses a macro that resolves into a bunch of other macros and then, at the end, into <testmacro> text</c>.";
+        const string strg = "This \nstring    \nis\n     split     \n    weirdly    \n  .     ";
         //var strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
         //var strg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
         //var strg = "This is <u>a test of the underlined formatting code</u>!";
@@ -159,7 +159,7 @@ public class GameImpl : MlemGame {
         foreach (var r in atlas.Regions)
             Console.WriteLine(r.Name + ": " + r.U + " " + r.V + " " + r.Width + " " + r.Height + " " + r.PivotPixels);
 
-        this.OnDraw += (_, _) => {
+        this.OnDraw += (_, time) => {
             this.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
             //this.SpriteBatch.Draw(square, new Rectangle(10, 10, 400, 400), Color.White);
             //this.SpriteBatch.Draw(round, new Rectangle(10, 10, 400, 400), Color.White);
@@ -169,14 +169,16 @@ public class GameImpl : MlemGame {
 
             //this.SpriteBatch.FillRectangle(new RectangleF(400, 20, 400, 1000), Color.Green);
             //font.DrawString(this.SpriteBatch, this.tokenized.DisplayString, new Vector2(400, 20), Color.White * 0.25F, 0, Vector2.Zero, sc, SpriteEffects.None, 0);
-            //this.tokenized.Draw(time, this.SpriteBatch, new Vector2(400, 20), font, Color.White, sc, 0);
+            this.tokenized.Draw(time, this.SpriteBatch, new Vector2(200, 20), font, Color.White, sc, 0);
             //this.SpriteBatch.DrawGrid(new Vector2(30, 30), new Vector2(40, 60), new Point(10, 5), Color.Yellow, 3);
             this.SpriteBatch.End();
         };
+        var alignment = TextAlignment.Left;
         this.OnUpdate += (_, time) => {
             if (this.InputHandler.IsPressed(Keys.W)) {
+                alignment = alignment == TextAlignment.Left ? TextAlignment.Right : TextAlignment.Left;
                 this.tokenized = formatter.Tokenize(font, strg);
-                this.tokenized.Split(font, this.InputHandler.IsModifierKeyDown(ModifierKey.Shift) ? 400 : 500, sc);
+                this.tokenized.Realign(font, alignment);
             }
             this.tokenized.Update(time);
         };
@@ -278,13 +280,13 @@ public class GameImpl : MlemGame {
                 }
             }
 
-            this.SpriteBatch.Begin();
+            /*this.SpriteBatch.Begin();
             if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
                 this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
             } else {
                 genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
             }
-            this.SpriteBatch.End();
+            this.SpriteBatch.End();*/
         };
 
         /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);

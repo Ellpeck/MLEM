@@ -12,6 +12,9 @@ Jump to version:
 ## 6.1.0
 
 ### MLEM
+Additions
+- Added TokenizedString.Realign
+
 Improvements
 - Improved EnumHelper.GetValues signature to return an array
 - Allow using external gesture handling alongside InputHandler through ExternalGestureHandling

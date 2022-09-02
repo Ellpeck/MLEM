@@ -52,7 +52,7 @@ namespace MLEM.Formatting {
             foreach (var code in this.AllCodes)
                 code.Tokens = new ReadOnlyCollection<Token>(this.Tokens.Where(t => t.AppliedCodes.Contains(code)).ToList());
 
-            this.RecalculateTokenData(font, alignment);
+            this.Realign(font, alignment);
         }
 
         /// <summary>
@@ -82,6 +82,42 @@ namespace MLEM.Formatting {
         public void Truncate(GenericFont font, float width, float scale, string ellipsis = "", TextAlignment alignment = TextAlignment.Left) {
             this.modifiedString = font.TruncateString(new CharSource(this.String), width, scale, false, ellipsis, i => this.GetFontForIndex(font, i)).ToString();
             this.StoreModifiedSubstrings(font, alignment);
+        }
+
+        /// <summary>
+        /// Realigns this tokenized string using the given <see cref="TextAlignment"/>.
+        /// If the <paramref name="alignment"/> is <see cref="TextAlignment.Right"/>, trailing space characters (but not <see cref="GenericFont.Nbsp"/>) will be removed.
+        /// </summary>
+        /// <param name="font">The font to use for width calculations.</param>
+        /// <param name="alignment">The text alignment that should be used for width calculations.</param>
+        public void Realign(GenericFont font, TextAlignment alignment) {
+            // split display strings
+            foreach (var token in this.Tokens)
+                token.SplitDisplayString = token.DisplayString.Split('\n');
+
+            // token areas and inner offsets
+            this.initialInnerOffset = this.GetInnerOffsetX(font, 0, 0, alignment);
+            var innerOffset = new Vector2(this.initialInnerOffset, 0);
+            for (var t = 0; t < this.Tokens.Length; t++) {
+                var token = this.Tokens[t];
+                var tokenFont = token.GetFont(font);
+                token.InnerOffsets = new float[token.SplitDisplayString.Length - 1];
+                var area = new List<RectangleF>();
+                for (var l = 0; l < token.SplitDisplayString.Length; l++) {
+                    var size = tokenFont.MeasureString(token.SplitDisplayString[l]);
+                    var rect = new RectangleF(innerOffset, size);
+                    if (!rect.IsEmpty)
+                        area.Add(rect);
+
+                    if (l < token.SplitDisplayString.Length - 1) {
+                        innerOffset.X = token.InnerOffsets[l] = this.GetInnerOffsetX(font, t, l + 1, alignment);
+                        innerOffset.Y += font.LineHeight;
+                    } else {
+                        innerOffset.X += size.X;
+                    }
+                }
+                token.Area = area.ToArray();
+            }
         }
 
         /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
@@ -179,37 +215,7 @@ namespace MLEM.Formatting {
                     this.Tokens[currToken++].ModifiedSubstring = string.Empty;
             }
 
-            this.RecalculateTokenData(font, alignment);
-        }
-
-        private void RecalculateTokenData(GenericFont font, TextAlignment alignment) {
-            // split display strings
-            foreach (var token in this.Tokens)
-                token.SplitDisplayString = token.DisplayString.Split('\n');
-
-            // token areas and inner offsets
-            this.initialInnerOffset = this.GetInnerOffsetX(font, 0, 0, alignment);
-            var innerOffset = new Vector2(this.initialInnerOffset, 0);
-            for (var t = 0; t < this.Tokens.Length; t++) {
-                var token = this.Tokens[t];
-                var tokenFont = token.GetFont(font);
-                token.InnerOffsets = new float[token.SplitDisplayString.Length - 1];
-                var area = new List<RectangleF>();
-                for (var l = 0; l < token.SplitDisplayString.Length; l++) {
-                    var size = tokenFont.MeasureString(token.SplitDisplayString[l]);
-                    var rect = new RectangleF(innerOffset, size);
-                    if (!rect.IsEmpty)
-                        area.Add(rect);
-
-                    if (l < token.SplitDisplayString.Length - 1) {
-                        innerOffset.X = token.InnerOffsets[l] = this.GetInnerOffsetX(font, t, l + 1, alignment);
-                        innerOffset.Y += font.LineHeight;
-                    } else {
-                        innerOffset.X += size.X;
-                    }
-                }
-                token.Area = area.ToArray();
-            }
+            this.Realign(font, alignment);
         }
 
         private float GetInnerOffsetX(GenericFont defaultFont, int tokenIndex, int lineIndex, TextAlignment alignment) {
