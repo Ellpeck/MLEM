@@ -2,7 +2,8 @@
     "metadata": [{
         "src": [{
             "src": "../",
-            "files": ["**/MLEM**.csproj"]
+            "files": ["**/MLEM**.csproj"],
+            "exclude": ["**.FNA.**"]
         }],
         "dest": "api"
     }],
