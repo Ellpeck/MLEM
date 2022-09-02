@@ -19,6 +19,9 @@ Improvements
 - Improved EnumHelper.GetValues signature to return an array
 - Allow using external gesture handling alongside InputHandler through ExternalGestureHandling
 
+Fixes
+- Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
+
 ### MLEM.Ui
 Additions
 - Added some extension methods for querying Anchor types

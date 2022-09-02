@@ -223,7 +223,7 @@ namespace MLEM.Formatting {
                 var token = this.Tokens[tokenIndex];
                 var tokenFont = token.GetFont(defaultFont);
                 // if we're the last line in our line array, then we don't contain a line split, so the line ends in a later token
-                var endsLater = lineIndex >= token.SplitDisplayString.Length - 1;
+                var endsLater = lineIndex >= token.SplitDisplayString.Length - 1 && tokenIndex < this.Tokens.Length - 1;
                 // if the line ends in our token, we should ignore trailing white space
                 var restOfLine = tokenFont.MeasureString(token.SplitDisplayString[lineIndex], !endsLater).X;
                 if (endsLater) {
