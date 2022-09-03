@@ -2,6 +2,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MLEM.Extensions;
 using MLEM.Misc;
 using Uri = Android.Net.Uri;

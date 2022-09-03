@@ -1,5 +1,7 @@
 ﻿using MLEM.Misc;
-#if FNA
+#if !FNA
+using Microsoft.Xna.Framework;
+#else
 using Microsoft.Xna.Framework.Input;
 #endif
 
