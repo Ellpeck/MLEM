@@ -31,6 +31,7 @@ Additions
 Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly
 - Close other dropdowns when opening a dropdown
+- Generified UiMarkdownParser by adding abstract UiParser
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
