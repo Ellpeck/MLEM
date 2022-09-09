@@ -16,7 +16,7 @@ Task("Prepare").Does(() => {
             version += "-" + buildNum;
     }
 
-    DeleteFiles("**/*.nupkg");
+    DeleteFiles("**/MLEM*.nupkg");
 });
 
 Task("Build").IsDependentOn("Prepare").Does(() =>{
@@ -62,7 +62,7 @@ Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn
         };
     }
     settings.SkipDuplicate = true;
-    NuGetPush(GetFiles("**/*.nupkg"), settings);
+    NuGetPush(GetFiles("**/MLEM*.nupkg"), settings);
 });
 
 Task("Document").Does(() => {
