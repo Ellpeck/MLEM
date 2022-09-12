@@ -23,7 +23,7 @@ namespace MLEM.Graphics {
         /// <summary>
         /// The amount of vertices that are currently batched.
         /// </summary>
-        public int Vertices => this.items.Count * 4;
+        public int Vertices => this.currentItems.Count * 4;
         /// <summary>
         /// The amount of vertex buffers that this static sprite batch has.
         /// To see the amount of buffers that are actually in use, see <see cref="FilledBuffers"/>.
@@ -41,13 +41,16 @@ namespace MLEM.Graphics {
 
         private readonly GraphicsDevice graphicsDevice;
         private readonly SpriteEffect spriteEffect;
-
         private readonly List<DynamicVertexBuffer> vertexBuffers = new List<DynamicVertexBuffer>();
         private readonly List<Texture2D> textures = new List<Texture2D>();
-        private readonly ISet<Item> items = new HashSet<Item>();
+        private readonly ISet<Item> currentItems = new HashSet<Item>();
+        private readonly List<Item> sortedItems = new List<Item>();
+
         private IndexBuffer indices;
         private bool batching;
         private bool batchChanged;
+        private SpriteSortMode sortMode;
+        private Comparer<Item> comparer;
 
         /// <summary>
         /// Creates a new static sprite batch with the given <see cref="GraphicsDevice"/>
@@ -62,10 +65,22 @@ namespace MLEM.Graphics {
         /// Begins batching.
         /// Call this method before calling <c>Add</c> or any of its overloads.
         /// </summary>
+        /// <param name="sortMode">The drawing order for sprite drawing. <see cref="SpriteSortMode.Texture" /> by default, since it is the best in terms of rendering performance. Note that <see cref="SpriteSortMode.Immediate"/> is not supported.</param>
         /// <exception cref="InvalidOperationException">Thrown if this batch is currently batching already</exception>
-        public void BeginBatch() {
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <paramref name="sortMode"/> is <see cref="SpriteSortMode.Immediate"/>, which is not supported.</exception>
+        public void BeginBatch(SpriteSortMode sortMode = SpriteSortMode.Texture) {
             if (this.batching)
                 throw new InvalidOperationException("Already batching");
+            if (sortMode == SpriteSortMode.Immediate)
+                throw new ArgumentOutOfRangeException(nameof(sortMode), "Cannot use sprite sort mode Immediate for static batching");
+
+            // update comparer and re-sort our list if our sort mode changed
+            if (this.sortMode != sortMode) {
+                this.sortMode = sortMode;
+                this.comparer = Comparer<Item>.Create(StaticSpriteBatch.CreateComparison(sortMode));
+                this.sortedItems.Sort(this.comparer);
+            }
+
             this.batching = true;
         }
 
@@ -73,14 +88,10 @@ namespace MLEM.Graphics {
         /// Ends batching.
         /// Call this method after calling <c>Add</c> or any of its overloads the desired number of times to add batched items.
         /// </summary>
-        /// <param name="sortMode">The drawing order for sprite drawing. <see cref="SpriteSortMode.Texture" /> by default, since it is the best in terms of rendering performance. Note that <see cref="SpriteSortMode.Immediate"/> is not supported.</param>
         /// <exception cref="InvalidOperationException">Thrown if this method is called before <see cref="BeginBatch"/> was called.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <paramref name="sortMode"/> is <see cref="SpriteSortMode.Immediate"/>, which is not supported.</exception>
-        public void EndBatch(SpriteSortMode sortMode = SpriteSortMode.Texture) {
+        public void EndBatch() {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
-            if (sortMode == SpriteSortMode.Immediate)
-                throw new ArgumentOutOfRangeException(nameof(sortMode), "Cannot use sprite sort mode Immediate for static batching");
             this.batching = false;
 
             // if we didn't add or remove any batch items, we don't have to recalculate anything
@@ -90,41 +101,32 @@ namespace MLEM.Graphics {
             this.FilledBuffers = 0;
             this.textures.Clear();
 
-            // order items according to the sort mode
-            IEnumerable<Item> ordered = this.items;
-            switch (sortMode) {
-                case SpriteSortMode.Texture:
-                    // SortingKey is internal, but this will do for batching the same texture together
-                    ordered = ordered.OrderBy(i => i.Texture.GetHashCode());
-                    break;
-                case SpriteSortMode.BackToFront:
-                    ordered = ordered.OrderBy(i => -i.Depth);
-                    break;
-                case SpriteSortMode.FrontToBack:
-                    ordered = ordered.OrderBy(i => i.Depth);
-                    break;
-            }
-
             // fill vertex buffers
             var dataIndex = 0;
             Texture2D texture = null;
-            foreach (var item in ordered) {
+            // we use RemoveAll to iterate safely while being able to remove
+            this.sortedItems.RemoveAll(i => {
+                // we remove items in here to avoid having to search for them when removing them in Remove
+                if (i.Removed)
+                    return true;
+
                 // if the texture changes, we also have to start a new buffer!
-                if (dataIndex > 0 && (item.Texture != texture || dataIndex >= StaticSpriteBatch.Data.Length)) {
+                if (dataIndex > 0 && (i.Texture != texture || dataIndex >= StaticSpriteBatch.Data.Length)) {
                     this.FillBuffer(this.FilledBuffers++, texture, StaticSpriteBatch.Data);
                     dataIndex = 0;
                 }
-                StaticSpriteBatch.Data[dataIndex++] = item.TopLeft;
-                StaticSpriteBatch.Data[dataIndex++] = item.TopRight;
-                StaticSpriteBatch.Data[dataIndex++] = item.BottomLeft;
-                StaticSpriteBatch.Data[dataIndex++] = item.BottomRight;
-                texture = item.Texture;
-            }
+                StaticSpriteBatch.Data[dataIndex++] = i.TopLeft;
+                StaticSpriteBatch.Data[dataIndex++] = i.TopRight;
+                StaticSpriteBatch.Data[dataIndex++] = i.BottomLeft;
+                StaticSpriteBatch.Data[dataIndex++] = i.BottomRight;
+                texture = i.Texture;
+                return false;
+            });
             if (dataIndex > 0)
                 this.FillBuffer(this.FilledBuffers++, texture, StaticSpriteBatch.Data);
 
             // ensure we have enough indices
-            var maxItems = Math.Min(this.items.Count, StaticSpriteBatch.MaxBatchItems);
+            var maxItems = Math.Min(this.currentItems.Count, StaticSpriteBatch.MaxBatchItems);
             // each item has 2 triangles which each have 3 indices
             if (this.indices == null || this.indices.IndexCount < 6 * maxItems) {
                 var newIndices = new short[6 * maxItems];
@@ -148,6 +150,10 @@ namespace MLEM.Graphics {
                 this.indices = new IndexBuffer(this.graphicsDevice, IndexElementSize.SixteenBits, newIndices.Length, BufferUsage.WriteOnly);
                 this.indices.SetData(newIndices);
             }
+
+            // sanity check, this shouldn't be able to happen
+            if (this.currentItems.Count != this.sortedItems.Count)
+                throw new InvalidOperationException("Current and sorted items have mismatched sizes");
         }
 
         /// <summary>
@@ -178,7 +184,7 @@ namespace MLEM.Graphics {
             for (var i = 0; i < this.FilledBuffers; i++) {
                 var buffer = this.vertexBuffers[i];
                 var texture = this.textures[i];
-                var verts = Math.Min(this.items.Count * 4 - totalIndex, buffer.VertexCount);
+                var verts = Math.Min(this.currentItems.Count * 4 - totalIndex, buffer.VertexCount);
 
                 this.graphicsDevice.SetVertexBuffer(buffer);
                 if (effect != null) {
@@ -362,8 +368,10 @@ namespace MLEM.Graphics {
         public bool Remove(Item item) {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
-            if (this.items.Remove(item)) {
+            if (!item.Removed && this.currentItems.Remove(item)) {
                 this.batchChanged = true;
+                // this item will only actually get removed from sortedItems in EndBatch for performance
+                item.Removed = true;
                 return true;
             }
             return false;
@@ -377,7 +385,8 @@ namespace MLEM.Graphics {
         public void ClearBatch() {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
-            this.items.Clear();
+            this.currentItems.Clear();
+            this.sortedItems.Clear();
             this.textures.Clear();
             this.FilledBuffers = 0;
             this.batchChanged = true;
@@ -432,7 +441,10 @@ namespace MLEM.Graphics {
             if (!this.batching)
                 throw new InvalidOperationException("Not batching");
             var item = new Item(texture, depth, tl, tr, bl, br);
-            this.items.Add(item);
+            this.currentItems.Add(item);
+            // add item in a sorted fashion
+            var pos = this.sortedItems.BinarySearch(item, this.comparer);
+            this.sortedItems.Insert(pos >= 0 ? pos : ~pos, item);
             this.batchChanged = true;
             return item;
         }
@@ -452,6 +464,19 @@ namespace MLEM.Graphics {
             #endif
         }
 
+        private static Comparison<Item> CreateComparison(SpriteSortMode sortMode) {
+            switch (sortMode) {
+                case SpriteSortMode.Texture:
+                    return (i1, i2) => i1.TextureHash.CompareTo(i2.TextureHash);
+                case SpriteSortMode.BackToFront:
+                    return (i1, i2) => i2.Depth.CompareTo(i1.Depth);
+                case SpriteSortMode.FrontToBack:
+                    return (i1, i2) => i1.Depth.CompareTo(i2.Depth);
+                default:
+                    return (i1, i2) => 0;
+            }
+        }
+
         /// <summary>
         /// A struct that represents an item added to a <see cref="StaticSpriteBatch"/> using <c>Add</c> or any of its overloads.
         /// An item returned after adding can be removed using <see cref="Remove"/>.
@@ -459,14 +484,17 @@ namespace MLEM.Graphics {
         public class Item {
 
             internal readonly Texture2D Texture;
+            internal readonly int TextureHash;
             internal readonly float Depth;
             internal readonly VertexPositionColorTexture TopLeft;
             internal readonly VertexPositionColorTexture TopRight;
             internal readonly VertexPositionColorTexture BottomLeft;
             internal readonly VertexPositionColorTexture BottomRight;
+            internal bool Removed;
 
             internal Item(Texture2D texture, float depth, VertexPositionColorTexture topLeft, VertexPositionColorTexture topRight, VertexPositionColorTexture bottomLeft, VertexPositionColorTexture bottomRight) {
                 this.Texture = texture;
+                this.TextureHash = texture.GetHashCode();
                 this.Depth = depth;
                 this.TopLeft = topLeft;
                 this.TopRight = topRight;
