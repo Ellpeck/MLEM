@@ -42,7 +42,7 @@ namespace MLEM.Graphics {
         private readonly GraphicsDevice graphicsDevice;
         private readonly SpriteEffect spriteEffect;
 
-        private readonly List<VertexBuffer> vertexBuffers = new List<VertexBuffer>();
+        private readonly List<DynamicVertexBuffer> vertexBuffers = new List<DynamicVertexBuffer>();
         private readonly List<Texture2D> textures = new List<Texture2D>();
         private readonly ISet<Item> items = new HashSet<Item>();
         private IndexBuffer indices;
@@ -439,8 +439,8 @@ namespace MLEM.Graphics {
 
         private void FillBuffer(int index, Texture2D texture, VertexPositionColorTexture[] data) {
             if (this.vertexBuffers.Count <= index)
-                this.vertexBuffers.Add(new VertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, StaticSpriteBatch.MaxBatchItems * 4, BufferUsage.WriteOnly));
-            this.vertexBuffers[index].SetData(data);
+                this.vertexBuffers.Add(new DynamicVertexBuffer(this.graphicsDevice, VertexPositionColorTexture.VertexDeclaration, StaticSpriteBatch.MaxBatchItems * 4, BufferUsage.WriteOnly));
+            this.vertexBuffers[index].SetData(data, 0, data.Length, SetDataOptions.Discard);
             this.textures.Insert(index, texture);
         }
 
