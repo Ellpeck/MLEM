@@ -355,15 +355,24 @@ public class GameImpl : MlemGame {
         this.UiSystem.Add("WidthTest", widthPanel);
 
         var batch = new StaticSpriteBatch(this.GraphicsDevice);
-        batch.BeginBatch(SpriteSortMode.Deferred);
+        batch.BeginBatch();
         var depth = 0F;
         var items = new List<StaticSpriteBatch.Item>();
         foreach (var r in atlas.Regions)
             items.Add(batch.Add(r, new Vector2(50 + r.GetHashCode() % 200, 50), ColorHelper.FromHexRgb(r.GetHashCode()), 0, Vector2.Zero, 1, SpriteEffects.None, depth += 0.0001F));
         batch.Remove(items[5]);
         batch.EndBatch();
-        batch.BeginBatch(SpriteSortMode.BackToFront);
-        batch.EndBatch();
+        var sortMode = SpriteSortMode.Deferred;
+        this.OnUpdate += (_, _) => {
+            if (MlemGame.Input.IsPressed(Keys.S)) {
+                do {
+                    sortMode = (SpriteSortMode) (((int) sortMode + 1) % 5);
+                } while (sortMode == SpriteSortMode.Immediate);
+                Console.WriteLine(sortMode);
+                batch.BeginBatch(sortMode);
+                batch.EndBatch();
+            }
+        };
         this.OnDraw += (_, _) => batch.Draw(null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(3));
     }
 

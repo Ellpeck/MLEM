@@ -43,7 +43,7 @@ namespace MLEM.Graphics {
         private readonly SpriteEffect spriteEffect;
         private readonly List<DynamicVertexBuffer> vertexBuffers = new List<DynamicVertexBuffer>();
         private readonly List<Texture2D> textures = new List<Texture2D>();
-        private readonly SortedList<float, ISet<Item>> items = new SortedList<float, ISet<Item>>();
+        private readonly SortedDictionary<float, ISet<Item>> items = new SortedDictionary<float, ISet<Item>>();
 
         private IndexBuffer indices;
         private bool batching;
