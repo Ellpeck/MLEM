@@ -43,6 +43,7 @@ namespace MLEM.Graphics {
         private readonly SpriteEffect spriteEffect;
         private readonly List<DynamicVertexBuffer> vertexBuffers = new List<DynamicVertexBuffer>();
         private readonly List<Texture2D> textures = new List<Texture2D>();
+        // TODO this can still be optimized by not giving items with a unique depth a single-entry set immediately
         private readonly SortedDictionary<float, ISet<Item>> items = new SortedDictionary<float, ISet<Item>>();
 
         private IndexBuffer indices;
