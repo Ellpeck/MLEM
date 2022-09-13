@@ -43,13 +43,12 @@ namespace MLEM.Graphics {
         private readonly SpriteEffect spriteEffect;
         private readonly List<DynamicVertexBuffer> vertexBuffers = new List<DynamicVertexBuffer>();
         private readonly List<Texture2D> textures = new List<Texture2D>();
-        // TODO this can still be optimized by not giving items with a unique depth a single-entry set immediately
-        private readonly SortedDictionary<float, ISet<Item>> items = new SortedDictionary<float, ISet<Item>>();
+        private readonly SortedDictionary<float, ItemSet> items = new SortedDictionary<float, ItemSet>();
 
+        private SpriteSortMode sortMode = SpriteSortMode.Texture;
         private IndexBuffer indices;
         private bool batching;
         private bool batchChanged;
-        private SpriteSortMode sortMode;
         private int itemAmount;
 
         /// <summary>
@@ -65,20 +64,20 @@ namespace MLEM.Graphics {
         /// Begins batching.
         /// Call this method before calling <c>Add</c> or any of its overloads.
         /// </summary>
-        /// <param name="sortMode">The drawing order for sprite drawing. <see cref="SpriteSortMode.Texture" /> by default, since it is the best in terms of rendering performance. Note that <see cref="SpriteSortMode.Immediate"/> is not supported.</param>
+        /// <param name="sortMode">The drawing order for sprite drawing. When <see langword="null"/> is passed, the last used sort mode will be used again. The initial sort mode is <see cref="SpriteSortMode.Texture"/>. Note that <see cref="SpriteSortMode.Immediate"/> is not supported.</param>
         /// <exception cref="InvalidOperationException">Thrown if this batch is currently batching already</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the <paramref name="sortMode"/> is <see cref="SpriteSortMode.Immediate"/>, which is not supported.</exception>
-        public void BeginBatch(SpriteSortMode sortMode = SpriteSortMode.Texture) {
+        public void BeginBatch(SpriteSortMode? sortMode = null) {
             if (this.batching)
                 throw new InvalidOperationException("Already batching");
             if (sortMode == SpriteSortMode.Immediate)
                 throw new ArgumentOutOfRangeException(nameof(sortMode), "Cannot use sprite sort mode Immediate for static batching");
 
             // if the sort mode changed (which should be very rare in practice), we have to re-sort our list
-            if (this.sortMode != sortMode) {
-                this.sortMode = sortMode;
+            if (sortMode != null && this.sortMode != sortMode) {
+                this.sortMode = sortMode.Value;
                 if (this.items.Count > 0) {
-                    var tempItems = this.items.Values.SelectMany(s => s).ToArray();
+                    var tempItems = this.items.Values.SelectMany(s => s.Items).ToArray();
                     this.items.Clear();
                     foreach (var item in tempItems)
                         this.AddItemToSet(item);
@@ -110,7 +109,7 @@ namespace MLEM.Graphics {
             var dataIndex = 0;
             Texture2D texture = null;
             foreach (var itemSet in this.items.Values) {
-                foreach (var item in itemSet) {
+                foreach (var item in itemSet.Items) {
                     // if the texture changes, we also have to start a new buffer!
                     if (dataIndex > 0 && (item.Texture != texture || dataIndex >= StaticSpriteBatch.Data.Length)) {
                         this.FillBuffer(this.FilledBuffers++, texture, StaticSpriteBatch.Data);
@@ -356,6 +355,21 @@ namespace MLEM.Graphics {
         }
 
         /// <summary>
+        /// Adds an item to this batch.
+        /// Note that this batch needs to currently be batching, meaning <see cref="BeginBatch"/> has to have been called previously.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        /// <returns>The added <paramref name="item"/>, for chaining.</returns>
+        public Item Add(Item item) {
+            if (!this.batching)
+                throw new InvalidOperationException("Not batching");
+            this.AddItemToSet(item);
+            this.itemAmount++;
+            this.batchChanged = true;
+            return item;
+        }
+
+        /// <summary>
         /// Removes the given item from this batch.
         /// Note that this batch needs to currently be batching, meaning <see cref="BeginBatch"/> has to have been called previously.
         /// </summary>
@@ -367,7 +381,7 @@ namespace MLEM.Graphics {
                 throw new InvalidOperationException("Not batching");
             var key = item.GetSortKey(this.sortMode);
             if (this.items.TryGetValue(key, out var itemSet) && itemSet.Remove(item)) {
-                if (itemSet.Count <= 0)
+                if (itemSet.IsEmpty)
                     this.items.Remove(key);
                 this.itemAmount--;
                 this.batchChanged = true;
@@ -437,13 +451,7 @@ namespace MLEM.Graphics {
         }
 
         private Item Add(Texture2D texture, float depth, VertexPositionColorTexture tl, VertexPositionColorTexture tr, VertexPositionColorTexture bl, VertexPositionColorTexture br) {
-            if (!this.batching)
-                throw new InvalidOperationException("Not batching");
-            var item = new Item(texture, depth, tl, tr, bl, br);
-            this.AddItemToSet(item);
-            this.itemAmount++;
-            this.batchChanged = true;
-            return item;
+            return this.Add(new Item(texture, depth, tl, tr, bl, br));
         }
 
         private void FillBuffer(int index, Texture2D texture, VertexPositionColorTexture[] data) {
@@ -464,7 +472,7 @@ namespace MLEM.Graphics {
         private void AddItemToSet(Item item) {
             var sortKey = item.GetSortKey(this.sortMode);
             if (!this.items.TryGetValue(sortKey, out var itemSet)) {
-                itemSet = new HashSet<Item>();
+                itemSet = new ItemSet();
                 this.items.Add(sortKey, itemSet);
             }
             itemSet.Add(item);
@@ -502,6 +510,52 @@ namespace MLEM.Graphics {
                         return this.Depth;
                     default:
                         return 0;
+                }
+            }
+
+        }
+
+        private class ItemSet {
+
+            public IEnumerable<Item> Items {
+                get {
+                    if (this.items != null)
+                        return this.items;
+                    if (this.single != null)
+                        return Enumerable.Repeat(this.single, 1);
+                    return Enumerable.Empty<Item>();
+                }
+            }
+            public bool IsEmpty => this.items == null && this.single == null;
+
+            private HashSet<Item> items;
+            private Item single;
+
+            public void Add(Item item) {
+                if (this.items != null) {
+                    this.items.Add(item);
+                } else if (this.single != null) {
+                    this.items = new HashSet<Item>();
+                    this.items.Add(this.single);
+                    this.items.Add(item);
+                    this.single = null;
+                } else {
+                    this.single = item;
+                }
+            }
+
+            public bool Remove(Item item) {
+                if (this.items != null && this.items.Remove(item)) {
+                    if (this.items.Count <= 1) {
+                        this.single = this.items.Single();
+                        this.items = null;
+                    }
+                    return true;
+                } else if (this.single == item) {
+                    this.single = null;
+                    return true;
+                } else {
+                    return false;
                 }
             }
 
