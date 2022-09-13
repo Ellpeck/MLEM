@@ -347,6 +347,7 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = root;
                 e.System = this;
+                e.OnAddedToUi?.Invoke(e);
                 root.InvokeOnElementAdded(e);
                 e.SetAreaDirty();
             });
@@ -369,6 +370,7 @@ namespace MLEM.Ui {
             root.Element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
+                e.OnRemovedFromUi?.Invoke(e);
                 root.InvokeOnElementRemoved(e);
                 e.SetAreaDirty();
             });

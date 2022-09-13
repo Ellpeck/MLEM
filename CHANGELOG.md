@@ -29,6 +29,7 @@ Fixes
 Additions
 - Added some extension methods for querying Anchor types
 - Added Element.AutoSizeAddedAbsolute to allow for more granular control of auto-sizing
+- Added Element.OnAddedToUi and Element.OnRemovedFromUi
 
 Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly

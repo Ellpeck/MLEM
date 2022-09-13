@@ -407,13 +407,21 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public GamepadNextElementCallback GetGamepadNextElement;
         /// <summary>
-        /// Event that is called when a child is added to this element using <see cref="AddChild{T}"/>
+        /// Event that is called when a child or any level of grandchild is added to this element using <see cref="AddChild{T}"/>
         /// </summary>
         public OtherElementCallback OnChildAdded;
         /// <summary>
-        /// Event that is called when a child is removed from this element using <see cref="RemoveChild"/>
+        /// Event that is called when a child or any level of grandchild is removed from this element using <see cref="RemoveChild"/>
         /// </summary>
         public OtherElementCallback OnChildRemoved;
+        /// <summary>
+        /// Event that is called when this element is added to a <see cref="UiSystem"/>, that is, when this element's <see cref="System"/> is set to a non-<see langword="null"/> value.
+        /// </summary>
+        public GenericCallback OnAddedToUi;
+        /// <summary>
+        /// Event that is called when this element is removed from a <see cref="UiSystem"/>, that is, when this element's <see cref="System"/> is set to <see langword="null"/>.
+        /// </summary>
+        public GenericCallback OnRemovedFromUi;
         /// <summary>
         /// Event that is called when this element's <see cref="Dispose"/> method is called, which also happens in <see cref="Finalize"/>.
         /// This event is useful for unregistering global event handlers when this object should be destroyed.
@@ -497,6 +505,7 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = this.Root;
                 e.System = this.System;
+                e.OnAddedToUi?.Invoke(e);
                 this.Root?.InvokeOnElementAdded(e);
                 this.OnChildAdded?.Invoke(this, e);
             });
@@ -520,6 +529,7 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
+                e.OnRemovedFromUi?.Invoke(e);
                 this.Root?.InvokeOnElementRemoved(e);
                 this.OnChildRemoved?.Invoke(this, e);
             });
