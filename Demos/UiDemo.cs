@@ -68,7 +68,9 @@ namespace Demos {
             this.UiSystem.AutoScaleWithScreen = true;
 
             // create the root panel that all the other components sit on and add it to the ui system
-            this.root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true);
+            this.root = new Panel(Anchor.Center, new Vector2(80, 100), Vector2.Zero, false, true) {
+                ScrollBar = {MouseDragScrolling = true}
+            };
             // add the root to the demos' ui
             this.UiRoot.AddChild(this.root);
 
