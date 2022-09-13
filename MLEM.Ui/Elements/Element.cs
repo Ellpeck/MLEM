@@ -407,11 +407,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public GamepadNextElementCallback GetGamepadNextElement;
         /// <summary>
-        /// Event that is called when a child or any level of grandchild is added to this element using <see cref="AddChild{T}"/>
+        /// Event that is called when a child is added to this element using <see cref="AddChild{T}"/>
+        /// Note that, while this event is only called for immediate children of this element, <see cref="RootElement.OnElementAdded"/> is called for all children and grandchildren.
         /// </summary>
         public OtherElementCallback OnChildAdded;
         /// <summary>
-        /// Event that is called when a child or any level of grandchild is removed from this element using <see cref="RemoveChild"/>
+        /// Event that is called when a child is removed from this element using <see cref="RemoveChild"/>.
+        /// Note that, while this event is only called for immediate children of this element, <see cref="RootElement.OnElementRemoved"/> is called for all children and grandchildren.
         /// </summary>
         public OtherElementCallback OnChildRemoved;
         /// <summary>
@@ -507,8 +509,8 @@ namespace MLEM.Ui.Elements {
                 e.System = this.System;
                 e.OnAddedToUi?.Invoke(e);
                 this.Root?.InvokeOnElementAdded(e);
-                this.OnChildAdded?.Invoke(this, e);
             });
+            this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
             element.SetAreaDirty();
             return element;
@@ -531,8 +533,8 @@ namespace MLEM.Ui.Elements {
                 e.System = null;
                 e.OnRemovedFromUi?.Invoke(e);
                 this.Root?.InvokeOnElementRemoved(e);
-                this.OnChildRemoved?.Invoke(this, e);
             });
+            this.OnChildRemoved?.Invoke(this, element);
             this.SetSortedChildrenDirty();
         }
 

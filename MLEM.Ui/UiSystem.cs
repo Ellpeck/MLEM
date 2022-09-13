@@ -572,7 +572,7 @@ namespace MLEM.Ui {
         /// </summary>
         public event Element.GenericCallback OnElementAdded;
         /// <summary>
-        /// Event that is invoked when a <see cref="Element"/> is removed rom this root element of any of its children.
+        /// Event that is invoked when a <see cref="Element"/> is removed rom this root element or any of its children.
         /// </summary>
         public event Element.GenericCallback OnElementRemoved;
         /// <summary>

@@ -41,6 +41,7 @@ Fixes
 - Fixed paragraphs sometimes not updating their position properly when hidden because they're empty
 - Fixed panels sometimes not drawing children that came into view when their positions changed unexpectedly
 - Fixed UiMarkdownParser not parsing formatting in headings and blockquotes
+- Fixed Element.OnChildAdded and Element.OnChildRemoved being called for grandchildren when a child is added
 
 ### MLEM.Data
 Improvements
