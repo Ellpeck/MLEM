@@ -143,24 +143,8 @@ namespace MLEM.Data {
                             i += 2;
                             break;
                         default:
-                            // if we have a location for the previous regions, they're valid so we add them
-                            if (location != Rectangle.Empty && namesOffsets.Count > 0) {
-                                location.Offset(offset.ToPoint());
-                                pivot += offset;
-                                if (!pivotRelative)
-                                    pivot -= location.Location.ToVector2();
-
-                                foreach (var (name, off) in namesOffsets) {
-                                    var region = new TextureRegion(texture, location.OffsetCopy(off.ToPoint())) {
-                                        PivotPixels = pivot + off,
-                                        Name = name
-                                    };
-                                    foreach (var kv in customData)
-                                        region.SetData(kv.Key, kv.Value);
-                                    atlas.regions.Add(name, region);
-                                }
-                                namesOffsets.Clear();
-                            }
+                            // if we have data for the previous regions, they're valid so we add them
+                            AddCurrentRegions();
 
                             // we're starting a new region (or adding another name for a new region), so clear old data
                             namesOffsets.Add((word.Trim(), Vector2.Zero));
@@ -175,7 +159,35 @@ namespace MLEM.Data {
                 }
             }
 
+            // add the last region that was started on
+            AddCurrentRegions();
             return atlas;
+
+            void AddCurrentRegions() {
+                // the location is the only mandatory instruction, which is why we check it here
+                if (location == Rectangle.Empty || namesOffsets.Count <= 0)
+                    return;
+
+                location.Offset(offset.ToPoint());
+                if (pivot != Vector2.Zero) {
+                    pivot += offset;
+                    if (!pivotRelative)
+                        pivot -= location.Location.ToVector2();
+                }
+
+                foreach (var (name, off) in namesOffsets) {
+                    var region = new TextureRegion(texture, location.OffsetCopy(off.ToPoint())) {
+                        PivotPixels = pivot + off,
+                        Name = name
+                    };
+                    foreach (var kv in customData)
+                        region.SetData(kv.Key, kv.Value);
+                    atlas.regions.Add(name, region);
+                }
+
+                // we only clear names offsets if the location was valid, otherwise we ignore multiple names for a region
+                namesOffsets.Clear();
+            }
         }
 
     }
