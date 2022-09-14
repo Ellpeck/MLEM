@@ -27,6 +27,7 @@ namespace MLEM.Data {
     /// <item><description>The (optional) <c>off</c> (of <c>offset</c>) instruction defines an offset that is added onto the location and pivot of this texture region. This is useful when duplicating a previously defined texture region to create a second region that has a constant offset. It requires two arguments: The x and y offset.</description></item>
     /// <item><description>The (optional and repeatable) <c>cpy</c> (or <c>copy</c>) instruction defines an additional texture region that should also be generated from the same data, but with a given offset that will be applied to the location and pivot. It requires three arguments: the copy region's name and the x and y offsets.</description></item>
     /// <item><description>The (optional and repeatable) <c>dat</c> (or <c>data</c>) instruction defines a custom data point that can be added to the resulting <see cref="TextureRegion"/>'s <see cref="GenericDataHolder"/> data. It requires two arguments: the data point's name and the data point's value, the latter of which is also stored as a string value.</description></item>
+    /// <item><description>The (optional) <c>frm</c> (or <c>from</c>) instruction defines a texture region (defined before the current region) whose data should be copied. All data from the region will be copied, but adding additional instructions afterwards modifies the data. It requires one argument: the name of the region whose data to copy. If this instruction is used, the <c>loc</c> instruction is not required.</description></item>
     /// </list>
     /// </para>
     /// <example>
@@ -141,6 +142,19 @@ namespace MLEM.Data {
                             customData.Add(words[i + 1], words[i + 2]);
                             i += 2;
                             break;
+                        case "frm":
+                        case "from":
+                            var fromRegion = atlas[words[i + 1]];
+                            customData.Clear();
+                            foreach (var key in fromRegion.GetDataKeys())
+                                customData.Add(key, fromRegion.GetData<string>(key));
+                            location = fromRegion.Area;
+                            pivot = fromRegion.PivotPixels;
+                            if (pivot != Vector2.Zero && !pivotRelative)
+                                pivot += location.Location.ToVector2();
+                            offset = Vector2.Zero;
+                            i += 1;
+                            break;
                         default:
                             // if we have data for the previous regions, they're valid so we add them
                             AddCurrentRegions();
@@ -163,7 +177,7 @@ namespace MLEM.Data {
             return atlas;
 
             void AddCurrentRegions() {
-                // the location is the only mandatory instruction, which is why we check it here
+                // the location is the only mandatory information, which is why we check it here
                 if (location == Rectangle.Empty || namesOffsets.Count <= 0)
                     return;
                 foreach (var (name, addedOff) in namesOffsets) {

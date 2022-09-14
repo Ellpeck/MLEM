@@ -46,7 +46,7 @@ Fixes
 
 ### MLEM.Data
 Additions
-- Added data and copy instructions to DataTextureAtlas
+- Added data, from, and copy instructions to DataTextureAtlas
 
 Improvements
 - Allow data texture atlas pivots and offsets to be negative

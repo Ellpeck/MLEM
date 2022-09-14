@@ -13,7 +13,7 @@ namespace Tests {
             using var game = TestGame.Create();
             using var texture = new Texture2D(game.GraphicsDevice, 1, 1);
             var atlas = DataTextureAtlas.LoadAtlasData(new TextureRegion(texture), game.RawContent, "Texture.atlas");
-            Assert.AreEqual(11, atlas.Regions.Count());
+            Assert.AreEqual(12, atlas.Regions.Count());
 
             // no pivot
             var plant = atlas["Plant"];
@@ -35,13 +35,18 @@ namespace Tests {
             Assert.AreEqual(negativePivot.Area, new Rectangle(0, 32, 16, 16));
             Assert.AreEqual(negativePivot.PivotPixels, new Vector2(-32, 46 - 32));
 
-            // copies (pivot pixels should be identical to LongTableUp because they're region-internal)
+            // cpy (pivot pixels should be identical to LongTableUp because they're region-internal)
             var copy1 = atlas["Copy1"];
             Assert.AreEqual(copy1.Area, new Rectangle(0 + 16, 32, 64, 48));
             Assert.AreEqual(copy1.PivotPixels, new Vector2(16, 48 - 32));
             var copy2 = atlas["Copy2"];
             Assert.AreEqual(copy2.Area, new Rectangle(0 + 32, 32 + 4, 64, 48));
             Assert.AreEqual(copy2.PivotPixels, new Vector2(16, 48 - 32));
+
+            // frm
+            var copy3 = atlas["Copy3"];
+            Assert.AreEqual(copy3.Area, new Rectangle(0 + 2, 32 + 4, 64, 48));
+            Assert.AreEqual(copy3.PivotPixels, new Vector2(16, 48 - 32));
 
             // data
             var data = atlas["DataTest"];

@@ -20,10 +20,12 @@ dat DataPoint2 3.5
 dat DataPoint3 ---
 
 LongTableUp
-piv 16 48
-loc 0 32 64 48
+piv 16 48 loc 0 32 64 48
 copy Copy1 16 0
 cpy Copy2 32 4
+
+Copy3 from
+LongTableUp off 2 4
 
 LongTableRight LongTableDown LongTableLeft
 location 32 30 64 48
