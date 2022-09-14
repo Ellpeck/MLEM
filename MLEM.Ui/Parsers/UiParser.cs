@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Formatting;
@@ -9,6 +8,12 @@ using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
+using System.Net.Http;
+#else
+using System.Net;
+#endif
 
 namespace MLEM.Ui.Parsers {
     /// <summary>
@@ -148,15 +153,16 @@ namespace MLEM.Ui.Parsers {
                 try {
                     Texture2D tex;
                     if (path.StartsWith("http")) {
-                        using (var client = new HttpClient()) {
-                            using (var src = await client.GetStreamAsync(path)) {
-                                using (var memory = new MemoryStream()) {
-                                    // download the full stream before passing it to texture
-                                    await src.CopyToAsync(memory);
-                                    tex = Texture2D.FromStream(this.GraphicsDevice, memory);
-                                }
-                            }
-                        }
+                        byte[] src;
+                        #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
+                        using (var client = new HttpClient())
+                            src = await client.GetByteArrayAsync(path);
+                        #else
+                        using (var client = new WebClient())
+                            src = await client.DownloadDataTaskAsync(path);
+                        #endif
+                        using (var memory = new MemoryStream(src))
+                            tex = Texture2D.FromStream(this.GraphicsDevice, memory);
                     } else {
                         using (var stream = Path.IsPathRooted(path) ? File.OpenRead(path) : TitleContainer.OpenStream(path))
                             tex = Texture2D.FromStream(this.GraphicsDevice, stream);

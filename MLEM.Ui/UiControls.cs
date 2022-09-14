@@ -367,7 +367,7 @@ namespace MLEM.Ui {
         protected virtual Element GetTabNextElement(bool backward) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element)
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Concat(Enumerable.Repeat(this.ActiveRoot.Element, 1))
                 // we can't add these checks to GetChildren because it ignores false grandchildren
                 .Where(c => c.CanBeSelected && c.AutoNavGroup == this.SelectedElement?.AutoNavGroup);
             if (this.SelectedElement?.Root != this.ActiveRoot) {
@@ -402,7 +402,7 @@ namespace MLEM.Ui {
         protected virtual Element GetGamepadNextElement(Direction2 direction) {
             if (this.ActiveRoot == null)
                 return null;
-            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Append(this.ActiveRoot.Element)
+            var children = this.ActiveRoot.Element.GetChildren(c => !c.IsHidden, true, true).Concat(Enumerable.Repeat(this.ActiveRoot.Element, 1))
                 // we can't add these checks to GetChildren because it ignores false grandchildren
                 .Where(c => c.CanBeSelected && c.AutoNavGroup == this.SelectedElement?.AutoNavGroup);
             if (this.SelectedElement?.Root != this.ActiveRoot) {

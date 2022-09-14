@@ -11,6 +11,8 @@ namespace MLEM.Misc {
     [DataContract]
     public class GenericDataHolder : IGenericDataHolder {
 
+        private static readonly string[] EmptyStrings = new string[0];
+
         [DataMember(EmitDefaultValue = false)]
         private Dictionary<string, object> data;
 
@@ -34,9 +36,9 @@ namespace MLEM.Misc {
         }
 
         /// <inheritdoc />
-        public IReadOnlyCollection<string> GetDataKeys() {
+        public IEnumerable<string> GetDataKeys() {
             if (this.data == null)
-                return Array.Empty<string>();
+                return GenericDataHolder.EmptyStrings;
             return this.data.Keys;
         }
 
@@ -67,7 +69,7 @@ namespace MLEM.Misc {
         /// Returns all of the generic data that this object stores.
         /// </summary>
         /// <returns>The generic data on this object</returns>
-        IReadOnlyCollection<string> GetDataKeys();
+        IEnumerable<string> GetDataKeys();
 
     }
 }

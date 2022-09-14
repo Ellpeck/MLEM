@@ -20,6 +20,7 @@ Improvements
 - Allow using external gesture handling alongside InputHandler through ExternalGestureHandling
 - Discard old data when updating a StaticSpriteBatch
 - **Drastically improved StaticSpriteBatch batching performance**
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
@@ -36,6 +37,7 @@ Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly
 - Close other dropdowns when opening a dropdown
 - Generified UiMarkdownParser by adding abstract UiParser
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
@@ -51,9 +53,18 @@ Additions
 Improvements
 - Allow data texture atlas pivots and offsets to be negative
 - Made RuntimeTexturePacker restore texture region name and pivot when packing
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
+
+## MLEM.Extended
+Improvements
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
+
+## MLEM.Startup
+Improvements
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 ## 6.0.0
 

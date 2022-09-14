@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net6.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <RootNamespace>MLEM.Ui</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <NoWarn>MSB3270</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -20,10 +21,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="TextCopy" Version="6.1.0" />
+        <PackageReference Include="TextCopy" Version="6.1.0" Condition="'$(TargetFramework)'!='net452'" />
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <ProjectReference Include="..\FNA\FNA.Core.csproj">
+        <ProjectReference Include="..\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
     </ItemGroup>

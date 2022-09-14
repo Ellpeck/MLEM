@@ -4,6 +4,7 @@
         <VSTestLogger>nunit</VSTestLogger>
         <RootNamespace>Tests</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <NoWarn>MSB3270</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

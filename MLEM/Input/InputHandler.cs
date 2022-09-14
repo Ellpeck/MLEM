@@ -20,6 +20,8 @@ namespace MLEM.Input {
         #else
         private static readonly int MaximumGamePadCount = GamePad.MaximumGamePadCount;
         #endif
+        private static readonly TouchLocation[] EmptyTouchLocations = new TouchLocation[0];
+        private static readonly GenericInput[] EmptyGenericInputs = new GenericInput[0];
 
         /// <summary>
         /// Contains all of the gestures that have finished during the last update call.
@@ -83,20 +85,20 @@ namespace MLEM.Input {
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> values that are currently down.
         /// Additionally, <see cref="TryGetDownTime"/> or <see cref="GetDownTime"/> can be used to determine the amount of time that a given input has been down for.
         /// </summary>
-        public GenericInput[] InputsDown { get; private set; } = Array.Empty<GenericInput>();
+        public GenericInput[] InputsDown { get; private set; } = InputHandler.EmptyGenericInputs;
         /// <summary>
         /// An array of all <see cref="Keys"/>, <see cref="Buttons"/> and <see cref="MouseButton"/> that are currently considered pressed.
         /// An input is considered pressed if it was up in the last update, and is up in the current one.
         /// </summary>
-        public GenericInput[] InputsPressed { get; private set; } = Array.Empty<GenericInput>();
+        public GenericInput[] InputsPressed { get; private set; } = InputHandler.EmptyGenericInputs;
         /// <summary>
         /// Contains the touch state from the last update call
         /// </summary>
-        public TouchCollection LastTouchState { get; private set; } = new TouchCollection(Array.Empty<TouchLocation>());
+        public TouchCollection LastTouchState { get; private set; } = new TouchCollection(InputHandler.EmptyTouchLocations);
         /// <summary>
         /// Contains the current touch state
         /// </summary>
-        public TouchCollection TouchState { get; private set; } = new TouchCollection(Array.Empty<TouchLocation>());
+        public TouchCollection TouchState { get; private set; } = new TouchCollection(InputHandler.EmptyTouchLocations);
         /// <summary>
         /// Contains the <see cref="LastTouchState"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
@@ -281,7 +283,7 @@ namespace MLEM.Input {
                 this.LastTouchState = this.TouchState;
                 this.LastViewportTouchState = this.ViewportTouchState;
 
-                this.TouchState = active ? TouchPanel.GetState() : new TouchCollection(Array.Empty<TouchLocation>());
+                this.TouchState = active ? TouchPanel.GetState() : new TouchCollection(InputHandler.EmptyTouchLocations);
                 if (this.TouchState.Count > 0 && this.ViewportOffset != Point.Zero) {
                     this.ViewportTouchState = new List<TouchLocation>();
                     foreach (var touch in this.TouchState) {
@@ -302,8 +304,8 @@ namespace MLEM.Input {
             }
 
             if (this.inputsDownAccum.Count <= 0 && this.inputsDown.Count <= 0) {
-                this.InputsPressed = Array.Empty<GenericInput>();
-                this.InputsDown = Array.Empty<GenericInput>();
+                this.InputsPressed = InputHandler.EmptyGenericInputs;
+                this.InputsDown = InputHandler.EmptyGenericInputs;
             } else {
                 // handle pressed inputs
                 var pressed = new List<GenericInput>();

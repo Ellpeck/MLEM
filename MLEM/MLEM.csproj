@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net6.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     </PropertyGroup>
@@ -21,6 +21,8 @@
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+
+        <PackageReference Include="System.ValueTuple" Version="4.5.0" Condition="'$(TargetFramework)'=='net452'" />
     </ItemGroup>
 
     <ItemGroup>

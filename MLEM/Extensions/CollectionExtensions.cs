@@ -25,7 +25,7 @@ namespace MLEM.Extensions {
         public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<IEnumerable<T>> things) {
             var combos = Enumerable.Repeat(Enumerable.Empty<T>(), 1);
             foreach (var t in things)
-                combos = combos.SelectMany(c => t.Select(c.Append));
+                combos = combos.SelectMany(c => t.Select(o => c.Concat(Enumerable.Repeat(o, 1))));
             return combos;
         }
 
@@ -47,7 +47,7 @@ namespace MLEM.Extensions {
         public static IEnumerable<IEnumerable<int>> IndexCombinations<T>(this IEnumerable<IEnumerable<T>> things) {
             var combos = Enumerable.Repeat(Enumerable.Empty<int>(), 1);
             foreach (var t in things)
-                combos = combos.SelectMany(c => t.Select((o, i) => c.Append(i)));
+                combos = combos.SelectMany(c => t.Select((o, i) => c.Concat(Enumerable.Repeat(i, 1))));
             return combos;
         }
 
