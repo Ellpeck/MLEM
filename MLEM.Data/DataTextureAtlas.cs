@@ -167,24 +167,26 @@ namespace MLEM.Data {
                 // the location is the only mandatory instruction, which is why we check it here
                 if (location == Rectangle.Empty || namesOffsets.Count <= 0)
                     return;
+                foreach (var (name, addedOff) in namesOffsets) {
+                    var loc = location;
+                    var piv = pivot;
+                    var off = offset + addedOff;
 
-                location.Offset(offset.ToPoint());
-                if (pivot != Vector2.Zero) {
-                    pivot += offset;
-                    if (!pivotRelative)
-                        pivot -= location.Location.ToVector2();
-                }
+                    loc.Offset(off);
+                    if (piv != Vector2.Zero) {
+                        piv += off;
+                        if (!pivotRelative)
+                            piv -= loc.Location.ToVector2();
+                    }
 
-                foreach (var (name, off) in namesOffsets) {
-                    var region = new TextureRegion(texture, location.OffsetCopy(off.ToPoint())) {
-                        PivotPixels = pivot + off,
+                    var region = new TextureRegion(texture, loc) {
+                        PivotPixels = piv,
                         Name = name
                     };
                     foreach (var kv in customData)
                         region.SetData(kv.Key, kv.Value);
                     atlas.regions.Add(name, region);
                 }
-
                 // we only clear names offsets if the location was valid, otherwise we ignore multiple names for a region
                 namesOffsets.Clear();
             }

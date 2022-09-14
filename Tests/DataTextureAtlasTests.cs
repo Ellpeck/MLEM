@@ -35,13 +35,13 @@ namespace Tests {
             Assert.AreEqual(negativePivot.Area, new Rectangle(0, 32, 16, 16));
             Assert.AreEqual(negativePivot.PivotPixels, new Vector2(-32, 46 - 32));
 
-            // copies
+            // copies (pivot pixels should be identical to LongTableUp because they're region-internal)
             var copy1 = atlas["Copy1"];
             Assert.AreEqual(copy1.Area, new Rectangle(0 + 16, 32, 64, 48));
-            Assert.AreEqual(copy1.PivotPixels, new Vector2(16 + 16, 48 - 32));
+            Assert.AreEqual(copy1.PivotPixels, new Vector2(16, 48 - 32));
             var copy2 = atlas["Copy2"];
             Assert.AreEqual(copy2.Area, new Rectangle(0 + 32, 32 + 4, 64, 48));
-            Assert.AreEqual(copy2.PivotPixels, new Vector2(16 + 32, 48 - 32 + 4));
+            Assert.AreEqual(copy2.PivotPixels, new Vector2(16, 48 - 32));
 
             // data
             var data = atlas["DataTest"];
