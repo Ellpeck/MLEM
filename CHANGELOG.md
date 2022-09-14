@@ -45,6 +45,9 @@ Fixes
 - Fixed Element.OnChildAdded and Element.OnChildRemoved being called for grandchildren when a child is added
 
 ### MLEM.Data
+Additions
+- Added data and copy instructions to DataTextureAtlas
+
 Improvements
 - Allow data texture atlas pivots and offsets to be negative
 - Made RuntimeTexturePacker restore texture region name and pivot when packing

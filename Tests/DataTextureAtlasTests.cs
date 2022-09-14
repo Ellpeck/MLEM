@@ -13,7 +13,7 @@ namespace Tests {
             using var game = TestGame.Create();
             using var texture = new Texture2D(game.GraphicsDevice, 1, 1);
             var atlas = DataTextureAtlas.LoadAtlasData(new TextureRegion(texture), game.RawContent, "Texture.atlas");
-            Assert.AreEqual(atlas.Regions.Count(), 8);
+            Assert.AreEqual(11, atlas.Regions.Count());
 
             // no added offset
             var table = atlas["LongTableUp"];
@@ -29,6 +29,20 @@ namespace Tests {
             var negativePivot = atlas["TestRegionNegativePivot"];
             Assert.AreEqual(negativePivot.Area, new Rectangle(0, 32, 16, 16));
             Assert.AreEqual(negativePivot.PivotPixels, new Vector2(-32, 46 - 32));
+
+            // copies
+            var copy1 = atlas["Copy1"];
+            Assert.AreEqual(copy1.Area, new Rectangle(0 + 16, 32, 64, 48));
+            Assert.AreEqual(copy1.PivotPixels, new Vector2(16 + 16, 48 - 32));
+            var copy2 = atlas["Copy2"];
+            Assert.AreEqual(copy2.Area, new Rectangle(0 + 32, 32 + 4, 64, 48));
+            Assert.AreEqual(copy2.PivotPixels, new Vector2(16 + 32, 48 - 32 + 4));
+
+            // data
+            var data = atlas["DataTest"];
+            Assert.AreEqual("ThisIsSomeData", data.GetData<string>("DataPoint1"));
+            Assert.AreEqual("3.5", data.GetData<string>("DataPoint2"));
+            Assert.AreEqual("---", data.GetData<string>("DataPoint3"));
         }
 
     }

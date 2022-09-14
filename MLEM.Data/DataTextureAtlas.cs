@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -5,6 +6,8 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
+using MLEM.Misc;
 using MLEM.Textures;
 #if FNA
 using MLEM.Extensions;
@@ -18,15 +21,19 @@ namespace MLEM.Data {
     /// </para>
     /// <para>
     /// Data texture atlases are designed to be easy to write by hand. Because of this, their structure is very simple.
-    /// Each texture region defined in the atlas consists of its name, followed by a set of possible keywords and their arguments, separated by spaces.
-    /// The <c>loc</c> keyword defines the <see cref="TextureRegion.Area"/> of the texture region as a rectangle whose origin is its top-left corner. It requires four arguments: x, y, width and height of the rectangle.
-    /// The (optional) <c>piv</c> keyword defines the <see cref="TextureRegion.PivotPixels"/> of the texture region. It requires two arguments: x and y. If it is not supplied, the pivot defaults to the top-left corner of the texture region.
-    /// The (optional) <c>off</c> keyword defines an offset that is added onto the location and pivot of this texture region. This is useful when copying and pasting a previously defined texture region to create a second region that has a constant offset. It requires two arguments: The x and y offset.
+    /// Each texture region defined in the atlas consists of its names (where multiple names can be separated by whitespace), followed by a set of possible instructions and their arguments, also separated by whitespace.
+    /// <list type="bullet">
+    /// <item><description>The <c>loc</c> (or <c>location</c>) instruction defines the <see cref="TextureRegion.Area"/> of the texture region as a rectangle whose origin is its top-left corner. It requires four arguments: x, y, width and height of the rectangle.</description></item>
+    /// <item><description>The (optional) <c>piv</c> (or <c>pivot</c>) instruction defines the <see cref="TextureRegion.PivotPixels"/> of the texture region. It requires two arguments: x and y. If it is not supplied, the pivot defaults to the top-left corner of the texture region.</description></item>
+    /// <item><description>The (optional) <c>off</c> (of <c>offset</c>) instruction defines an offset that is added onto the location and pivot of this texture region. This is useful when duplicating a previously defined texture region to create a second region that has a constant offset. It requires two arguments: The x and y offset.</description></item>
+    /// <item><description>The (optional and repeatable) <c>cpy</c> (or <c>copy</c>) instruction defines an additional texture region that should also be generated from the same data, but with a given offset that will be applied to the location and pivot. It requires three arguments: the copy region's name and the x and y offsets.</description></item>
+    /// <item><description>The (optional and repeatable) <c>dat</c> (or <c>data</c>) instruction defines a custom data point that can be added to the resulting <see cref="TextureRegion"/>'s <see cref="GenericDataHolder"/> data. It requires two arguments: the data point's name and the data point's value, the latter of which is also stored as a string value.</description></item>
+    /// </list>
     /// </para>
     /// <example>
-    /// The following entry defines a texture region with the name <c>LongTableRight</c>, whose <see cref="TextureRegion.Area"/> will be a rectangle with X=32, Y=30, Width=64, Height=48, and whose <see cref="TextureRegion.PivotPixels"/> will be a vector with X=80, Y=46.
+    /// The following entry defines a texture region with the names <c>LongTableRight</c> and <c>LongTableUp</c>, whose <see cref="TextureRegion.Area"/> will be a rectangle with X=32, Y=30, Width=64, Height=48, and whose <see cref="TextureRegion.PivotPixels"/> will be a vector with X=80, Y=46.
     /// <code>
-    /// LongTableRight
+    /// LongTableRight LongTableUp
     /// loc 32 30 64 48
     /// piv 80 46
     /// </code>
@@ -69,6 +76,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Loads a <see cref="DataTextureAtlas"/> from the given loaded texture and texture data file.
+        /// For more information on data texture atlases, see the <see cref="DataTextureAtlas"/> type documentation.
         /// </summary>
         /// <param name="texture">The texture to use for this data texture atlas</param>
         /// <param name="content">The content manager to use for loading</param>
@@ -78,41 +86,92 @@ namespace MLEM.Data {
         public static DataTextureAtlas LoadAtlasData(TextureRegion texture, ContentManager content, string infoPath, bool pivotRelative = false) {
             var info = Path.Combine(content.RootDirectory, infoPath);
             string text;
-            if (Path.IsPathRooted(info)) {
-                text = File.ReadAllText(info);
-            } else {
-                using (var reader = new StreamReader(TitleContainer.OpenStream(info)))
-                    text = reader.ReadToEnd();
+            try {
+                if (Path.IsPathRooted(info)) {
+                    text = File.ReadAllText(info);
+                } else {
+                    using (var reader = new StreamReader(TitleContainer.OpenStream(info)))
+                        text = reader.ReadToEnd();
+                }
+            } catch (Exception e) {
+                throw new ContentLoadException($"Couldn't load data texture atlas data from {info}", e);
             }
             var atlas = new DataTextureAtlas(texture);
+            var words = Regex.Split(text, @"\s+");
 
-            // parse each texture region: "<names> loc <u> <v> <w> <h> [piv <px> <py>] [off <ox> <oy>]"
-            foreach (Match match in Regex.Matches(text, @"(.+)\s+loc\s+([0-9+]+)\s+([0-9+]+)\s+([0-9+]+)\s+([0-9+]+)\s*(?:piv\s+([0-9.+-]+)\s+([0-9.+-]+))?\s*(?:off\s+([0-9.+-]+)\s+([0-9.+-]+))?")) {
-                // offset
-                var off = !match.Groups[8].Success ? Vector2.Zero : new Vector2(
-                    float.Parse(match.Groups[8].Value, CultureInfo.InvariantCulture),
-                    float.Parse(match.Groups[9].Value, CultureInfo.InvariantCulture));
+            var namesOffsets = new List<(string, Vector2)>();
+            var customData = new Dictionary<string, string>();
+            var location = Rectangle.Empty;
+            var pivot = Vector2.Zero;
+            var offset = Vector2.Zero;
+            for (var i = 0; i < words.Length; i++) {
+                var word = words[i];
+                try {
+                    switch (word) {
+                        case "loc":
+                        case "location":
+                            location = new Rectangle(
+                                int.Parse(words[i + 1], CultureInfo.InvariantCulture), int.Parse(words[i + 2], CultureInfo.InvariantCulture),
+                                int.Parse(words[i + 3], CultureInfo.InvariantCulture), int.Parse(words[i + 4], CultureInfo.InvariantCulture));
+                            i += 4;
+                            break;
+                        case "piv":
+                        case "pivot":
+                            pivot = new Vector2(
+                                float.Parse(words[i + 1], CultureInfo.InvariantCulture),
+                                float.Parse(words[i + 2], CultureInfo.InvariantCulture));
+                            i += 2;
+                            break;
+                        case "off":
+                        case "offset":
+                            offset = new Vector2(
+                                float.Parse(words[i + 1], CultureInfo.InvariantCulture),
+                                float.Parse(words[i + 2], CultureInfo.InvariantCulture));
+                            i += 2;
+                            break;
+                        case "cpy":
+                        case "copy":
+                            var copyOffset = new Vector2(
+                                float.Parse(words[i + 2], CultureInfo.InvariantCulture),
+                                float.Parse(words[i + 3], CultureInfo.InvariantCulture));
+                            namesOffsets.Add((words[i + 1], copyOffset));
+                            i += 3;
+                            break;
+                        case "dat":
+                        case "data":
+                            customData.Add(words[i + 1], words[i + 2]);
+                            i += 2;
+                            break;
+                        default:
+                            // if we have a location for the previous regions, they're valid so we add them
+                            if (location != Rectangle.Empty && namesOffsets.Count > 0) {
+                                location.Offset(offset.ToPoint());
+                                pivot += offset;
+                                if (!pivotRelative)
+                                    pivot -= location.Location.ToVector2();
 
-                // location
-                var loc = new Rectangle(
-                    int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value),
-                    int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
-                loc.Offset(off.ToPoint());
+                                foreach (var (name, off) in namesOffsets) {
+                                    var region = new TextureRegion(texture, location.OffsetCopy(off.ToPoint())) {
+                                        PivotPixels = pivot + off,
+                                        Name = name
+                                    };
+                                    foreach (var kv in customData)
+                                        region.SetData(kv.Key, kv.Value);
+                                    atlas.regions.Add(name, region);
+                                }
+                                namesOffsets.Clear();
+                            }
 
-                // pivot
-                var piv = !match.Groups[6].Success ? Vector2.Zero : off + new Vector2(
-                    float.Parse(match.Groups[6].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.X),
-                    float.Parse(match.Groups[7].Value, CultureInfo.InvariantCulture) - (pivotRelative ? 0 : loc.Y));
-
-                foreach (var name in Regex.Split(match.Groups[1].Value, @"\s")) {
-                    var trimmed = name.Trim();
-                    if (trimmed.Length <= 0)
-                        continue;
-                    var region = new TextureRegion(texture, loc) {
-                        PivotPixels = piv,
-                        Name = trimmed
-                    };
-                    atlas.regions.Add(trimmed, region);
+                            // we're starting a new region (or adding another name for a new region), so clear old data
+                            namesOffsets.Add((word.Trim(), Vector2.Zero));
+                            customData.Clear();
+                            location = Rectangle.Empty;
+                            pivot = Vector2.Zero;
+                            offset = Vector2.Zero;
+                            break;
+                    }
+                } catch (Exception e) {
+                    throw new ContentLoadException($"Couldn't parse data texture atlas instruction {word} for region(s) {string.Join(", ", namesOffsets)}", e);
                 }
             }
 
@@ -128,6 +187,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Loads a <see cref="DataTextureAtlas"/> from the given texture and texture data file.
+        /// For more information on data texture atlases, see the <see cref="DataTextureAtlas"/> type documentation.
         /// </summary>
         /// <param name="content">The content manager to use for loading</param>
         /// <param name="texturePath">The path to the texture file</param>
