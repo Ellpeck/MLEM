@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Misc;
 using MLEM.Textures;
 #if FNA
@@ -172,7 +171,7 @@ namespace MLEM.Data {
                     var piv = pivot;
                     var off = offset + addedOff;
 
-                    loc.Offset(off);
+                    loc.Offset(off.ToPoint());
                     if (piv != Vector2.Zero) {
                         piv += off;
                         if (!pivotRelative)
