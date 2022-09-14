@@ -823,6 +823,7 @@ namespace MLEM.Input {
                 downTime = DateTime.UtcNow - start;
                 return true;
             }
+            downTime = default;
             return false;
         }
 
@@ -851,6 +852,7 @@ namespace MLEM.Input {
                 upTime = DateTime.UtcNow - start;
                 return true;
             }
+            upTime = default;
             return false;
         }
 
@@ -879,6 +881,7 @@ namespace MLEM.Input {
                 lastPressTime = DateTime.UtcNow - start;
                 return true;
             }
+            lastPressTime = default;
             return false;
         }
 

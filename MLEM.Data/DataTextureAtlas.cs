@@ -9,9 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
 using MLEM.Misc;
 using MLEM.Textures;
-#if FNA
-using MLEM.Extensions;
-#endif
 
 namespace MLEM.Data {
     /// <summary>
