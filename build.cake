@@ -34,8 +34,8 @@ Task("Test").IsDependentOn("Build").Does(() => {
         Configuration = config,
         Collectors = {"XPlat Code Coverage"}
     };
-    DotNetTest("Tests/Tests.csproj", settings);
-    DotNetTest("Tests/Tests.FNA.csproj", settings);
+    DotNetTest("MLEM.sln", settings);
+    DotNetTest("MLEM.FNA.sln", settings);
 });
 
 Task("Pack").IsDependentOn("Test").Does(() => {
