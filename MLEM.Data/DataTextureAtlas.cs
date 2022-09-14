@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Misc;
 using MLEM.Textures;
 #if FNA
@@ -148,7 +149,8 @@ namespace MLEM.Data {
                             customData.Clear();
                             foreach (var key in fromRegion.GetDataKeys())
                                 customData.Add(key, fromRegion.GetData<string>(key));
-                            location = fromRegion.Area;
+                            // our main texture might be a sub-region already, so we have to take that into account
+                            location = fromRegion.Area.OffsetCopy(new Point(-texture.U, -texture.V));
                             pivot = fromRegion.PivotPixels;
                             if (pivot != Vector2.Zero && !pivotRelative)
                                 pivot += location.Location.ToVector2();
