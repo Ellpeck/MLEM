@@ -8,8 +8,8 @@ var branch = Argument("branch", "main");
 var config = Argument("configuration", "Release");
 
 Task("Prepare").Does(() => {
-    DotNetCoreRestore("MLEM.sln");
-    DotNetCoreRestore("MLEM.FNA.sln");
+    DotNetRestore("MLEM.sln");
+    DotNetRestore("MLEM.FNA.sln");
 
     if (branch != "release") {
         var buildNum = EnvironmentVariable("BUILD_NUMBER");
@@ -21,32 +21,30 @@ Task("Prepare").Does(() => {
 });
 
 Task("Build").IsDependentOn("Prepare").Does(() =>{
-    var settings = new DotNetCoreBuildSettings {
+    var settings = new DotNetBuildSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
     };
-    foreach (var project in GetFiles("**/MLEM*.csproj"))
-        DotNetCoreBuild(project.FullPath, settings);
-    DotNetCoreBuild("Demos/Demos.csproj", settings);
-    DotNetCoreBuild("Demos/Demos.FNA.csproj", settings);
+    DotNetBuild("MLEM.sln", settings);
+    DotNetBuild("MLEM.FNA.sln", settings);
 });
 
 Task("Test").IsDependentOn("Build").Does(() => {
-    var settings = new DotNetCoreTestSettings {
+    var settings = new DotNetTestSettings {
         Configuration = config,
         Collectors = {"XPlat Code Coverage"}
     };
-    DotNetCoreTest("Tests/Tests.csproj", settings);
-    DotNetCoreTest("Tests/Tests.FNA.csproj", settings);
+    DotNetTest("Tests/Tests.csproj", settings);
+    DotNetTest("Tests/Tests.FNA.csproj", settings);
 });
 
 Task("Pack").IsDependentOn("Test").Does(() => {
-    var settings = new DotNetCorePackSettings {
+    var settings = new DotNetPackSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
     };
     foreach (var project in GetFiles("**/MLEM*.csproj"))
-        DotNetCorePack(project.FullPath, settings);
+        DotNetPack(project.FullPath, settings);
 });
 
 Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn("Pack").Does(() => {
