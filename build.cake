@@ -9,6 +9,7 @@ var config = Argument("configuration", "Release");
 
 Task("Prepare").Does(() => {
     DotNetCoreRestore("MLEM.sln");
+    DotNetCoreRestore("MLEM.FNA.sln");
 
     if (branch != "release") {
         var buildNum = EnvironmentVariable("BUILD_NUMBER");

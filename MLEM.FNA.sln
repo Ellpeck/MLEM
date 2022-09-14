@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "FNA\FNA.csproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontStashSharp.FNA", "FontStashSharp\src\XNA\FontStashSharp.FNA.csproj", "{39249E92-EBF2-4951-A086-AB4951C3CCE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA.Core", "FNA\FNA.Core.csproj", "{E33D9B9B-DDC7-4488-BCCF-76625AF80B4D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,9 +66,5 @@ Global
 		{39249E92-EBF2-4951-A086-AB4951C3CCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39249E92-EBF2-4951-A086-AB4951C3CCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39249E92-EBF2-4951-A086-AB4951C3CCE1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E33D9B9B-DDC7-4488-BCCF-76625AF80B4D}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{E33D9B9B-DDC7-4488-BCCF-76625AF80B4D}.Debug|Any CPU.Build.0 = Debug|x64
-		{E33D9B9B-DDC7-4488-BCCF-76625AF80B4D}.Release|Any CPU.ActiveCfg = Release|x64
-		{E33D9B9B-DDC7-4488-BCCF-76625AF80B4D}.Release|Any CPU.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
