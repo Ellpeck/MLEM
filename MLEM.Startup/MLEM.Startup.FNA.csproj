@@ -6,7 +6,6 @@
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <RootNamespace>MLEM.Startup</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
-        <NoWarn>MSB3270</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>

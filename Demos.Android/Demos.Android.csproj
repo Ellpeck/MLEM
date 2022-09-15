@@ -7,15 +7,16 @@
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <ImplicitUsings>true</ImplicitUsings>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
         <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
-        
+
         <ProjectReference Include="..\Demos\Demos.csproj" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <MonoGameContentReference Include="..\Demos\Content\Content.mgcb" />
     </ItemGroup>

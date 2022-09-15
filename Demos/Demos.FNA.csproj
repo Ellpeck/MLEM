@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>Demos</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
-        <NoWarn>MSB3270</NoWarn>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>

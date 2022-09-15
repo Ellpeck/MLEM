@@ -43,8 +43,8 @@ Task("Pack").IsDependentOn("Test").Does(() => {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
     };
-    foreach (var project in GetFiles("**/MLEM*.csproj"))
-        DotNetPack(project.FullPath, settings);
+    DotNetPack("MLEM.sln", settings);
+    DotNetPack("MLEM.FNA.sln", settings);
 });
 
 Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn("Pack").Does(() => {

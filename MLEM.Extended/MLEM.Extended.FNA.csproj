@@ -5,7 +5,7 @@
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <RootNamespace>MLEM.Extended</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
-        <NoWarn>NU1702;MSB3270</NoWarn>
+        <NoWarn>NU1702</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
