@@ -2,6 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
+        <VSTestResultsDirectory>TestResults</VSTestResultsDirectory>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
