@@ -25,7 +25,7 @@ namespace MLEM.Extensions {
         public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<IEnumerable<T>> things) {
             var combos = Enumerable.Repeat(Enumerable.Empty<T>(), 1);
             foreach (var t in things)
-                combos = combos.SelectMany(c => t.Select(o => c.Concat(Enumerable.Repeat(o, 1))));
+                combos = combos.SelectMany(c => t.Select(c.Append));
             return combos;
         }
 
@@ -47,9 +47,33 @@ namespace MLEM.Extensions {
         public static IEnumerable<IEnumerable<int>> IndexCombinations<T>(this IEnumerable<IEnumerable<T>> things) {
             var combos = Enumerable.Repeat(Enumerable.Empty<int>(), 1);
             foreach (var t in things)
-                combos = combos.SelectMany(c => t.Select((o, i) => c.Concat(Enumerable.Repeat(i, 1))));
+                combos = combos.SelectMany(c => t.Select((o, i) => c.Append(i)));
             return combos;
         }
+
+        #if NET452
+        /// <summary>Appends a value to the end of the sequence.</summary>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="element">The value to append to <paramref name="source"/>.</param>
+        /// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+        /// <returns>A new sequence that ends with <paramref name="element"/>.</returns>
+        public static IEnumerable<T> Append<T>(this IEnumerable<T> source, T element) {
+            foreach (var src in source)
+                yield return src;
+            yield return element;
+        }
+
+        /// <summary>Prepends a value to the beginning of the sequence.</summary>
+        /// <param name="source">A sequence of values.</param>
+        /// <param name="element">The value to prepend to <paramref name="source"/>.</param>
+        /// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+        /// <returns>A new sequence that begins with <paramref name="element"/>.</returns>
+        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, T element) {
+            yield return element;
+            foreach (var src in source)
+                yield return src;
+        }
+        #endif
 
     }
 }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 
+#if NET452
+using MLEM.Extensions;
+#endif
+
 namespace MLEM.Input {
     /// <summary>
     /// A keybind represents a generic way to trigger input.
@@ -44,7 +48,7 @@ namespace MLEM.Input {
         /// <param name="modifiers">The modifier keys that have to be held down.</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Add(GenericInput key, params GenericInput[] modifiers) {
-            this.combinations = this.combinations.Concat(Enumerable.Repeat(new Combination(key, modifiers), 1)).ToArray();
+            this.combinations = this.combinations.Append(new Combination(key, modifiers)).ToArray();
             return this;
         }
 
@@ -63,7 +67,7 @@ namespace MLEM.Input {
         /// <param name="modifiers">The modifier keys that have to be held down.</param>
         /// <returns>This keybind, for chaining.</returns>
         public Keybind Insert(int index, GenericInput key, params GenericInput[] modifiers) {
-            this.combinations = this.combinations.Take(index).Concat(Enumerable.Repeat(new Combination(key, modifiers), 1)).Concat(this.combinations.Skip(index)).ToArray();
+            this.combinations = this.combinations.Take(index).Append(new Combination(key, modifiers)).Concat(this.combinations.Skip(index)).ToArray();
             return this;
         }
 
@@ -351,7 +355,7 @@ namespace MLEM.Input {
             /// <param name="inputName">The function to use for determining the display name of a <see cref="GenericInput"/>. If this is null, the generic input's default <see cref="GenericInput.ToString"/> method is used.</param>
             /// <returns>A human-readable string representing this combination</returns>
             public string ToString(string joiner, Func<GenericInput, string> inputName = null) {
-                return string.Join(joiner, this.Modifiers.Concat(Enumerable.Repeat(this.Key, 1)).Select(i => inputName?.Invoke(i) ?? i.ToString()));
+                return string.Join(joiner, this.Modifiers.Append(this.Key).Select(i => inputName?.Invoke(i) ?? i.ToString()));
             }
 
             /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
