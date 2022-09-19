@@ -452,7 +452,7 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="ChildPaddedArea"/> of this element's <see cref="Parent"/>, or the <see cref="UiSystem.Viewport"/> if this element has no parent.
         /// This value is the one that is passed to <see cref="CalcActualSize"/> during <see cref="ForceUpdateArea"/>.
         /// </summary>
-        protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.system.Viewport;
+        protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.System.Viewport;
 
         private readonly List<Element> children = new List<Element>();
         private readonly Stopwatch stopwatch = new Stopwatch();
@@ -601,7 +601,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public virtual void ForceUpdateArea() {
             this.AreaDirty = false;
-            if (this.IsHidden)
+            if (this.IsHidden || this.System == null)
                 return;
             // if the parent's area is dirty, it would get updated anyway when querying its ChildPaddedArea,
             // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead

@@ -45,6 +45,7 @@ Fixes
 - Fixed panels sometimes not drawing children that came into view when their positions changed unexpectedly
 - Fixed UiMarkdownParser not parsing formatting in headings and blockquotes
 - Fixed Element.OnChildAdded and Element.OnChildRemoved being called for grandchildren when a child is added
+- Fixed an exception when trying to force-update the area of an element without a ui system
 
 ### MLEM.Data
 Additions
