@@ -2,6 +2,8 @@
 
 **MLEM Library for Extending MonoGame and FNA** is a set of multipurpose libraries for the game frameworks [MonoGame](https://www.monogame.net/) and [FNA](https://fna-xna.github.io/) that provides abstractions, quality of life improvements and additional features like an extensive ui system and easy input handling.
 
+MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 6.0 and .NET Framework 4.5.2, which makes it compatible with MonoGame and FNA on Desktop, mobile devices and consoles.
+
 # What next?
 - Get it on [NuGet](https://www.nuget.org/packages?q=mlem)
 - Get prerelease builds on [BaGet](https://nuget.ellpeck.de/?q=mlem)
