@@ -84,8 +84,9 @@ namespace MLEM.Ui.Elements {
                         return;
                     if (e == null || !e.GetParentTree().Contains(this))
                         return;
-                    var firstChild = this.Children.First(c => c != this.ScrollBar);
-                    this.ScrollBar.CurrentValue = (e.Area.Center.Y - this.Area.Height / 2 - firstChild.Area.Top) / e.Scale + this.ChildPadding.Value.Height / 2;
+                    var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
+                    if (firstChild != null)
+                        this.ScrollBar.CurrentValue = (e.Area.Center.Y - this.Area.Height / 2 - firstChild.Area.Top) / e.Scale + this.ChildPadding.Value.Height / 2;
                 };
                 this.AddChild(this.ScrollBar);
             }
@@ -231,28 +232,30 @@ namespace MLEM.Ui.Elements {
         protected virtual void ScrollSetup() {
             if (!this.scrollOverflow || this.IsHidden)
                 return;
-            // if there is only one child, then we have just the scroll bar
-            if (this.Children.Count == 1)
-                return;
 
-            // the "real" first child is the scroll bar, which we want to ignore
-            var firstChild = this.Children.First(c => c != this.ScrollBar);
-            var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden);
-            var childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
+            float childrenHeight;
+            if (this.Children.Count > 1) {
+                var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
+                var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden);
+                childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
+            } else {
+                // if we only have one child (the scroll bar), then the children take up no visual height
+                childrenHeight = 0;
+            }
 
-            // the max value of the scrollbar is the amount of non-scaled pixels taken up by overflowing components
+            // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
+            }
 
-                // update child padding based on whether the scroll bar is visible
-                var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
-                if (!this.scrollBarChildOffset.Equals(childOffset, Element.Epsilon)) {
-                    this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
-                    this.scrollBarChildOffset = childOffset;
-                    this.SetAreaDirty();
-                }
+            // update child padding based on whether the scroll bar is visible
+            var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
+            if (!this.scrollBarChildOffset.Equals(childOffset, Element.Epsilon)) {
+                this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
+                this.scrollBarChildOffset = childOffset;
+                this.SetAreaDirty();
             }
 
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content

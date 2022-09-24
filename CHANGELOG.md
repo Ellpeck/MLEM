@@ -46,6 +46,7 @@ Fixes
 - Fixed UiMarkdownParser not parsing formatting in headings and blockquotes
 - Fixed Element.OnChildAdded and Element.OnChildRemoved being called for grandchildren when a child is added
 - Fixed an exception when trying to force-update the area of an element without a ui system
+- Fixed the scroll bar of an empty panel being positioned incorrectly
 
 ### MLEM.Data
 Additions
