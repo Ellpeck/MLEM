@@ -84,9 +84,7 @@ namespace MLEM.Ui.Elements {
                         return;
                     if (e == null || !e.GetParentTree().Contains(this))
                         return;
-                    var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
-                    if (firstChild != null)
-                        this.ScrollBar.CurrentValue = (e.Area.Center.Y - this.Area.Height / 2 - firstChild.Area.Top) / e.Scale + this.ChildPadding.Value.Height / 2;
+                    this.ScrollToElement(e);
                 };
                 this.AddChild(this.ScrollBar);
             }
@@ -116,15 +114,6 @@ namespace MLEM.Ui.Elements {
             this.ScrollSetup();
         }
 
-        private void ScrollChildren() {
-            if (!this.scrollOverflow)
-                return;
-            // we ignore false grandchildren so that the children of the scroll bar stay in place
-            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true))
-                child.ScrollOffset.Y = -this.ScrollBar.CurrentValue;
-            this.relevantChildrenDirty = true;
-        }
-
         /// <inheritdoc />
         public override void ForceUpdateSortedChildren() {
             base.ForceUpdateSortedChildren();
@@ -142,26 +131,6 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void RemoveChildren(Func<Element, bool> condition = null) {
             base.RemoveChildren(e => e != this.ScrollBar && (condition == null || condition(e)));
-        }
-
-        /// <inheritdoc />
-        protected override IList<Element> GetRelevantChildren() {
-            var relevant = base.GetRelevantChildren();
-            if (this.scrollOverflow) {
-                if (this.relevantChildrenDirty)
-                    this.ForceUpdateRelevantChildren();
-                relevant = this.relevantChildren;
-            }
-            return relevant;
-        }
-
-        /// <inheritdoc />
-        protected override void OnChildAreaDirty(Element child, bool grandchild) {
-            base.OnChildAreaDirty(child, grandchild);
-            // we only need to scroll when a grandchild changes, since all of our children are forced
-            // to be auto-anchored and so will automatically propagate their changes up to us
-            if (grandchild)
-                this.ScrollChildren();
         }
 
         /// <inheritdoc />
@@ -208,11 +177,32 @@ namespace MLEM.Ui.Elements {
             return base.GetElementUnderPos(position);
         }
 
-        private RectangleF GetRenderTargetArea() {
-            var area = this.ChildPaddedArea;
-            area.X = this.DisplayArea.X;
-            area.Width = this.DisplayArea.Width;
-            return area;
+        /// <inheritdoc />
+        public override void Dispose() {
+            if (this.renderTarget != null) {
+                this.renderTarget.Dispose();
+                this.renderTarget = null;
+            }
+            base.Dispose();
+        }
+
+        /// <summary>
+        /// Scrolls this panel's <see cref="ScrollBar"/> to the given <see cref="Element"/> in such a way that its center is positioned in the center of this panel.
+        /// </summary>
+        /// <param name="element">The element to scroll to.</param>
+        public void ScrollToElement(Element element) {
+            this.ScrollToElement(element.Area.Center.Y);
+        }
+
+        /// <summary>
+        /// Scrolls this panel's <see cref="ScrollBar"/> to the given <paramref name="elementY"/> coordinate in such a way that the coordinate is positioned in the center of this panel.
+        /// </summary>
+        /// <param name="elementY">The y coordinate to scroll to, which should have this element's <see cref="Element.Scale"/> applied.</param>
+        public void ScrollToElement(float elementY) {
+            var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
+            if (firstChild == null)
+                return;
+            this.ScrollBar.CurrentValue = (elementY - this.Area.Height / 2 - firstChild.Area.Top) / this.Scale + this.ChildPadding.Value.Height / 2;
         }
 
         /// <inheritdoc />
@@ -224,6 +214,26 @@ namespace MLEM.Ui.Elements {
             this.ScrollBarOffset = this.ScrollBarOffset.OrStyle(style.PanelScrollBarOffset);
             this.ChildPadding = this.ChildPadding.OrStyle(style.PanelChildPadding);
             this.SetScrollBarStyle();
+        }
+
+        /// <inheritdoc />
+        protected override IList<Element> GetRelevantChildren() {
+            var relevant = base.GetRelevantChildren();
+            if (this.scrollOverflow) {
+                if (this.relevantChildrenDirty)
+                    this.ForceUpdateRelevantChildren();
+                relevant = this.relevantChildren;
+            }
+            return relevant;
+        }
+
+        /// <inheritdoc />
+        protected override void OnChildAreaDirty(Element child, bool grandchild) {
+            base.OnChildAreaDirty(child, grandchild);
+            // we only need to scroll when a grandchild changes, since all of our children are forced
+            // to be auto-anchored and so will automatically propagate their changes up to us
+            if (grandchild)
+                this.ScrollChildren();
         }
 
         /// <summary>
@@ -274,15 +284,6 @@ namespace MLEM.Ui.Elements {
             }
         }
 
-        /// <inheritdoc />
-        public override void Dispose() {
-            if (this.renderTarget != null) {
-                this.renderTarget.Dispose();
-                this.renderTarget = null;
-            }
-            base.Dispose();
-        }
-
         private void SetScrollBarStyle() {
             if (this.ScrollBar == null)
                 return;
@@ -307,6 +308,22 @@ namespace MLEM.Ui.Elements {
                     }
                 }
             }
+        }
+
+        private RectangleF GetRenderTargetArea() {
+            var area = this.ChildPaddedArea;
+            area.X = this.DisplayArea.X;
+            area.Width = this.DisplayArea.Width;
+            return area;
+        }
+
+        private void ScrollChildren() {
+            if (!this.scrollOverflow)
+                return;
+            // we ignore false grandchildren so that the children of the scroll bar stay in place
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true))
+                child.ScrollOffset.Y = -this.ScrollBar.CurrentValue;
+            this.relevantChildrenDirty = true;
         }
 
     }
