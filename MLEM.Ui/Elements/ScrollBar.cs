@@ -34,6 +34,16 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> ScrollerTexture;
         /// <summary>
+        /// Whether smooth scrolling should be enabled for this scroll bar.
+        /// Smooth scrolling causes the <see cref="CurrentValue"/> to change gradually rather than instantly when scrolling.
+        /// </summary>
+        public StyleProp<bool> SmoothScrolling;
+        /// <summary>
+        /// The factor with which <see cref="SmoothScrolling"/> happens.
+        /// </summary>
+        public StyleProp<float> SmoothScrollFactor;
+
+        /// <summary>
         /// The scroller's width and height
         /// </summary>
         public Vector2 ScrollerSize;
@@ -86,7 +96,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// This property is true while the user scrolls on the scroll bar using the mouse or touch input
         /// </summary>
-        public bool IsBeingScrolled => this.isMouseHeld || this.isDragging || this.isTouchHeld;
+        public bool IsBeingScrolled => this.isMouseScrolling || this.isMouseDragging || this.isTouchDragging || this.isTouchScrolling;
         /// <summary>
         /// This field determines if this scroll bar should automatically be hidden from a <see cref="Panel"/> if there aren't enough children to allow for scrolling.
         /// </summary>
@@ -99,18 +109,14 @@ namespace MLEM.Ui.Elements {
             !this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Width - this.ScrollerSize.X * this.Scale),
             this.Horizontal ? 0 : this.CurrentValue / this.maxValue * (this.DisplayArea.Height - this.ScrollerSize.Y * this.Scale));
         /// <summary>
-        /// Whether smooth scrolling should be enabled for this scroll bar.
-        /// Smooth scrolling causes the <see cref="CurrentValue"/> to change gradually rather than instantly when scrolling.
+        /// Whether this scroll bar should allow dragging the mouse over its attached <see cref="Panel"/>'s content while holding the left mouse button to scroll, similarly to how scrolling using touch input works.
         /// </summary>
-        public StyleProp<bool> SmoothScrolling;
-        /// <summary>
-        /// The factor with which <see cref="SmoothScrolling"/> happens.
-        /// </summary>
-        public StyleProp<float> SmoothScrollFactor;
+        public bool MouseDragScrolling;
 
-        private bool isMouseHeld;
-        private bool isDragging;
-        private bool isTouchHeld;
+        private bool isMouseScrolling;
+        private bool isMouseDragging;
+        private bool isTouchScrolling;
+        private bool isTouchDragging;
         private float maxValue;
         private float scrollAdded;
         private float currValue;
@@ -141,18 +147,29 @@ namespace MLEM.Ui.Elements {
 
             // MOUSE INPUT
             var moused = this.Controls.MousedElement;
-            if (moused == this && this.Input.WasMouseButtonUp(MouseButton.Left) && this.Input.IsMouseButtonDown(MouseButton.Left)) {
-                this.isMouseHeld = true;
+            var wasMouseUp = this.Input.WasMouseButtonUp(MouseButton.Left);
+            var isMouseDown = this.Input.IsMouseButtonDown(MouseButton.Left);
+            if (moused == this && wasMouseUp && isMouseDown) {
+                this.isMouseScrolling = true;
                 this.scrollStartOffset = this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()) - this.ScrollerPosition;
-            } else if (this.isMouseHeld && !this.Input.IsMouseButtonDown(MouseButton.Left)) {
-                this.isMouseHeld = false;
+            } else if (!isMouseDown) {
+                this.isMouseScrolling = false;
             }
-            if (this.isMouseHeld)
+            if (this.isMouseScrolling)
                 this.ScrollToPos(this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()));
-            if (!this.Horizontal && moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
-                var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
-                if (scroll != 0)
-                    this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
+            if (!this.Horizontal) {
+                if (moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
+                    var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
+                    if (scroll != 0)
+                        this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
+
+                    if (this.MouseDragScrolling && moused != this && wasMouseUp && isMouseDown)
+                        this.isMouseDragging = true;
+                }
+                if (!isMouseDown)
+                    this.isMouseDragging = false;
+                if (this.isMouseDragging)
+                    this.CurrentValue -= (this.Input.MousePosition.Y - this.Input.LastMousePosition.Y) / this.Scale;
             }
 
             // TOUCH INPUT
@@ -162,29 +179,29 @@ namespace MLEM.Ui.Elements {
                     // if the element under the drag's start position is on top of the panel, start dragging
                     var touched = this.Parent.GetElementUnderPos(this.TransformInverseAll(drag.Position));
                     if (touched != null && touched != this)
-                        this.isDragging = true;
+                        this.isTouchDragging = true;
 
                     // if we're dragging at all, then move the scroller
-                    if (this.isDragging)
+                    if (this.isTouchDragging)
                         this.CurrentValue -= drag.Delta.Y / this.Scale;
                 } else {
-                    this.isDragging = false;
+                    this.isTouchDragging = false;
                 }
             }
             if (this.Input.ViewportTouchState.Count <= 0) {
                 // if no touch has occured this tick, then reset the variable
-                this.isTouchHeld = false;
+                this.isTouchScrolling = false;
             } else {
                 foreach (var loc in this.Input.ViewportTouchState) {
                     var pos = this.TransformInverseAll(loc.Position);
                     // if we just started touching and are on top of the scroller, then we should start scrolling
                     if (this.DisplayArea.Contains(pos) && !loc.TryGetPreviousLocation(out _)) {
-                        this.isTouchHeld = true;
+                        this.isTouchScrolling = true;
                         this.scrollStartOffset = pos - this.ScrollerPosition;
                         break;
                     }
                     // scroll no matter if we're on the scroller right now
-                    if (this.isTouchHeld)
+                    if (this.isTouchScrolling)
                         this.ScrollToPos(pos);
                 }
             }

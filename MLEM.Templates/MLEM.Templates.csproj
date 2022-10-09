@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
+
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>net452;netstandard2.0;net6.0</TargetFrameworks>
         <IncludeContentInPack>true</IncludeContentInPack>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ContentTargetFolders>content</ContentTargetFolders>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>NU5128</NoWarn>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <PackageType>Template</PackageType>
         <Title>MLEM Templates</Title>
@@ -21,7 +21,7 @@
         <PackageIcon>Logo.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <Content Include="content\**\*" Exclude="content\**\.DS_Store;content\**\bin;content\**\obj" />
         <Compile Remove="**\*" />

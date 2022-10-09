@@ -9,6 +9,10 @@ using MLEM.Misc;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
+#if NET452
+using MLEM.Extensions;
+#endif
+
 namespace MLEM.Ui {
     /// <summary>
     /// UiControls holds and manages all of the controls for a <see cref="UiSystem"/>.

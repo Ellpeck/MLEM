@@ -4,4 +4,4 @@ obj
 packages
 *.user
 tools
-TestResults
+TestResults*

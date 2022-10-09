@@ -4,6 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>Demos</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>

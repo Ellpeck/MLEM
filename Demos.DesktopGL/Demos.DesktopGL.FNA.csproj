@@ -7,6 +7,7 @@
         <AssemblyName>MLEM Desktop Demos</AssemblyName>
         <RootNamespace>Demos.DesktopGL</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <IsPackable>false</IsPackable>
         <!-- We still use the MG content builder for ease of compatibility between the MG and FNA demo projects -->
         <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     </PropertyGroup>

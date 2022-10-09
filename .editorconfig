@@ -111,3 +111,7 @@ resharper_wrap_object_and_collection_initializer_style = wrap_if_long
 resharper_xmldoc_attribute_indent = align_by_first_attribute
 resharper_xmldoc_attribute_style = on_single_line
 resharper_xmldoc_pi_attribute_style = on_single_line
+
+[*.md]
+trim_trailing_whitespace = false
+indent_size = 2

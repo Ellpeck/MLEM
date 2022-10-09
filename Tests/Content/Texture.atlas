@@ -13,11 +13,21 @@ TestRegionNegativePivot
 loc 0 32 +16 16
 piv -32 +46
 
+DataTest
+loc 0 0 16 16
+dat DataPoint1 ThisIsSomeData
+dat DataPoint2 3.5
+dat DataPoint3 ---
+
 LongTableUp
-loc 0 32 64 48
-piv 16 48
+piv 16 48 loc 0 32 64 48
+copy Copy1 16 0
+cpy Copy2 32 4
+
+Copy3 from
+LongTableUp off 2 4
 
 LongTableRight LongTableDown LongTableLeft
-loc 32 30 64 48
+location 32 30 64 48
 piv 80 46
-off 32 2
+offset 32 2

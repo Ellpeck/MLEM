@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>net452;netstandard2.0;net6.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>A mouse, keyboard, gamepad and touch ready Ui system for MonoGame that features automatic anchoring, sizing and several ready-to-use element types</Description>
@@ -16,16 +16,16 @@
         <PackageIcon>Logo.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="TextCopy" Version="6.1.0" />
+        <PackageReference Include="TextCopy" Version="6.1.0" Condition="'$(TargetFramework)'!='net452'" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
-        
+
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
-    
+
     <ItemGroup>
         <None Include="../Media/Logo.png" Pack="true" PackagePath="" />
         <None Include="../Docs/index.md" Pack="true" PackagePath="README.md" />

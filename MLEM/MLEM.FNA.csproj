@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>net452;netstandard2.0;net6.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <RootNamespace>MLEM</RootNamespace>
@@ -20,9 +20,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FNA\FNA.Core.csproj">
+        <ProjectReference Include="..\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
+
+        <PackageReference Include="System.ValueTuple" Version="4.5.0" Condition="'$(TargetFramework)'=='net452'" />
     </ItemGroup>
 
     <ItemGroup>

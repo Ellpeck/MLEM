@@ -19,6 +19,9 @@ Additions
 Improvements
 - Improved EnumHelper.GetValues signature to return an array
 - Allow using external gesture handling alongside InputHandler through ExternalGestureHandling
+- Discard old data when updating a StaticSpriteBatch
+- **Drastically improved StaticSpriteBatch batching performance**
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
@@ -28,25 +31,44 @@ Fixes
 Additions
 - Added some extension methods for querying Anchor types
 - Added Element.AutoSizeAddedAbsolute to allow for more granular control of auto-sizing
+- Added Element.OnAddedToUi and Element.OnRemovedFromUi
+- Added ScrollBar.MouseDragScrolling
+- Added Panel.ScrollToElement
 
 Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly
 - Close other dropdowns when opening a dropdown
 - Generified UiMarkdownParser by adding abstract UiParser
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
 - Fixed paragraphs sometimes not updating their position properly when hidden because they're empty
 - Fixed panels sometimes not drawing children that came into view when their positions changed unexpectedly
 - Fixed UiMarkdownParser not parsing formatting in headings and blockquotes
+- Fixed Element.OnChildAdded and Element.OnChildRemoved being called for grandchildren when a child is added
+- Fixed an exception when trying to force-update the area of an element without a ui system
+- Fixed the scroll bar of an empty panel being positioned incorrectly
 
 ### MLEM.Data
+Additions
+- Added data, from, and copy instructions to DataTextureAtlas
+
 Improvements
 - Allow data texture atlas pivots and offsets to be negative
 - Made RuntimeTexturePacker restore texture region name and pivot when packing
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
+
+## MLEM.Extended
+Improvements
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
+
+## MLEM.Startup
+Improvements
+- Multi-target net452, making MLEM compatible with MonoGame for consoles
 
 ## 6.0.0
 

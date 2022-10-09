@@ -408,12 +408,22 @@ namespace MLEM.Ui.Elements {
         public GamepadNextElementCallback GetGamepadNextElement;
         /// <summary>
         /// Event that is called when a child is added to this element using <see cref="AddChild{T}"/>
+        /// Note that, while this event is only called for immediate children of this element, <see cref="RootElement.OnElementAdded"/> is called for all children and grandchildren.
         /// </summary>
         public OtherElementCallback OnChildAdded;
         /// <summary>
-        /// Event that is called when a child is removed from this element using <see cref="RemoveChild"/>
+        /// Event that is called when a child is removed from this element using <see cref="RemoveChild"/>.
+        /// Note that, while this event is only called for immediate children of this element, <see cref="RootElement.OnElementRemoved"/> is called for all children and grandchildren.
         /// </summary>
         public OtherElementCallback OnChildRemoved;
+        /// <summary>
+        /// Event that is called when this element is added to a <see cref="UiSystem"/>, that is, when this element's <see cref="System"/> is set to a non-<see langword="null"/> value.
+        /// </summary>
+        public GenericCallback OnAddedToUi;
+        /// <summary>
+        /// Event that is called when this element is removed from a <see cref="UiSystem"/>, that is, when this element's <see cref="System"/> is set to <see langword="null"/>.
+        /// </summary>
+        public GenericCallback OnRemovedFromUi;
         /// <summary>
         /// Event that is called when this element's <see cref="Dispose"/> method is called, which also happens in <see cref="Finalize"/>.
         /// This event is useful for unregistering global event handlers when this object should be destroyed.
@@ -442,7 +452,7 @@ namespace MLEM.Ui.Elements {
         /// The <see cref="ChildPaddedArea"/> of this element's <see cref="Parent"/>, or the <see cref="UiSystem.Viewport"/> if this element has no parent.
         /// This value is the one that is passed to <see cref="CalcActualSize"/> during <see cref="ForceUpdateArea"/>.
         /// </summary>
-        protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.system.Viewport;
+        protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.System.Viewport;
 
         private readonly List<Element> children = new List<Element>();
         private readonly Stopwatch stopwatch = new Stopwatch();
@@ -497,9 +507,10 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = this.Root;
                 e.System = this.System;
+                e.OnAddedToUi?.Invoke(e);
                 this.Root?.InvokeOnElementAdded(e);
-                this.OnChildAdded?.Invoke(this, e);
             });
+            this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
             element.SetAreaDirty();
             return element;
@@ -520,9 +531,10 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => {
                 e.Root = null;
                 e.System = null;
+                e.OnRemovedFromUi?.Invoke(e);
                 this.Root?.InvokeOnElementRemoved(e);
-                this.OnChildRemoved?.Invoke(this, e);
             });
+            this.OnChildRemoved?.Invoke(this, element);
             this.SetSortedChildrenDirty();
         }
 
@@ -589,7 +601,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public virtual void ForceUpdateArea() {
             this.AreaDirty = false;
-            if (this.IsHidden)
+            if (this.IsHidden || this.System == null)
                 return;
             // if the parent's area is dirty, it would get updated anyway when querying its ChildPaddedArea,
             // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead

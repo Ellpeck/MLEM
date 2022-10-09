@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 
+#if NET452
+using MLEM.Extensions;
+#endif
+
 namespace MLEM.Input {
     /// <summary>
     /// A keybind represents a generic way to trigger input.
@@ -13,8 +17,10 @@ namespace MLEM.Input {
     [DataContract]
     public class Keybind : IComparable<Keybind>, IComparable {
 
+        private static readonly Combination[] EmptyCombinations = new Combination[0];
+
         [DataMember]
-        private Combination[] combinations = Array.Empty<Combination>();
+        private Combination[] combinations = Keybind.EmptyCombinations;
 
         /// <summary>
         /// Creates a new keybind and adds the given key and modifiers using <see cref="Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>
@@ -77,7 +83,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Clear() {
-            this.combinations = Array.Empty<Combination>();
+            this.combinations = Keybind.EmptyCombinations;
             return this;
         }
 

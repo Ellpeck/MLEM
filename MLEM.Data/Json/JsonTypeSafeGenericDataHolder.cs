@@ -12,6 +12,8 @@ namespace MLEM.Data.Json {
     [DataContract]
     public class JsonTypeSafeGenericDataHolder : IGenericDataHolder {
 
+        private static readonly string[] EmptyStrings = new string[0];
+
         [DataMember(EmitDefaultValue = false)]
         private Dictionary<string, JsonTypeSafeWrapper> data;
 
@@ -35,9 +37,9 @@ namespace MLEM.Data.Json {
         }
 
         /// <inheritdoc />
-        public IReadOnlyCollection<string> GetDataKeys() {
+        public IEnumerable<string> GetDataKeys() {
             if (this.data == null)
-                return Array.Empty<string>();
+                return JsonTypeSafeGenericDataHolder.EmptyStrings;
             return this.data.Keys;
         }
 

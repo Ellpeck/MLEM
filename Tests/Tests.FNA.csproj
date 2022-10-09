@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
+        <VSTestResultsDirectory>TestResults.FNA</VSTestResultsDirectory>
         <RootNamespace>Tests</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
