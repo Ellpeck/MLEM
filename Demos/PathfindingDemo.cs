@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
@@ -51,7 +52,7 @@ namespace Demos {
 
             // Now find a path from the top left to the bottom right corner and store it in a variable
             // If no path can be found after the maximum amount of tries (10000 by default), the pathfinder will abort and return no path (null)
-            var foundPath = await this.pathfinder.FindPathAsync(Point.Zero, new Point(49, 49));
+            var foundPath = await Task.Run(() => this.pathfinder.FindPath(Point.Zero, new Point(49, 49)));
             this.path = foundPath != null ? foundPath.ToList() : null;
 
             // print out some info

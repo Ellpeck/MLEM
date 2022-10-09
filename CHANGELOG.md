@@ -14,14 +14,13 @@ Jump to version:
 ### MLEM
 Additions
 - Added TokenizedString.Realign
-- Added the ability to include special per-position directions in AStar pathfinding
 
 Improvements
 - Improved EnumHelper.GetValues signature to return an array
 - Allow using external gesture handling alongside InputHandler through ExternalGestureHandling
 - Discard old data when updating a StaticSpriteBatch
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
-- Allow retrieving the cost of a calculated path when using AStar
+- **Allow retrieving the cost of a calculated path when using AStar**
 - **Drastically improved StaticSpriteBatch batching performance**
 
 Fixes

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace MLEM.Pathfinding {
     /// <summary>
@@ -10,23 +9,6 @@ namespace MLEM.Pathfinding {
     /// </summary>
     /// <typeparam name="T">The type of points used for this path</typeparam>
     public abstract class AStar<T> {
-
-        /// <summary>
-        /// A value that represents an infinite path cost, or a cost for a location that cannot possibly be reached.
-        /// </summary>
-        [Obsolete("This field is deprecated. Use float.PositiveInfinity or float.MaxValue instead.")]
-        public const float InfiniteCost = float.PositiveInfinity;
-
-        /// <summary>
-        /// The array of all directions that will be checked for path finding.
-        /// Note that this array is only used if <see cref="DefaultAllowDiagonals"/> is true.
-        /// </summary>
-        public readonly T[] AllDirections;
-        /// <summary>
-        /// The array of all adjacent directions that will be checked for path finding.
-        /// Note that this array is only used if <see cref="DefaultAllowDiagonals"/> is false.
-        /// </summary>
-        public readonly T[] AdjacentDirections;
 
         /// <summary>
         /// The default cost function that determines the cost for each path finding position.
@@ -41,13 +23,9 @@ namespace MLEM.Pathfinding {
         /// </summary>
         public int DefaultMaxTries;
         /// <summary>
-        /// Whether or not diagonal directions are considered while finding a path.
+        /// The default <see cref="CollectAdditionalNeighbors"/> function.
         /// </summary>
-        public bool DefaultAllowDiagonals;
-        /// <summary>
-        /// The default function that determines a set of additional directions (or offsets) that should be tested for walkability, in addition to <see cref="AllDirections"/> or <see cref="AdjacentDirections"/>.
-        /// </summary>
-        public GetSpecialDirections DefaultSpecialDirections;
+        public CollectAdditionalNeighbors DefaultAdditionalNeighbors;
 
         /// <summary>
         /// The amount of tries required for finding the last queried path
@@ -61,26 +39,15 @@ namespace MLEM.Pathfinding {
         /// <summary>
         /// Creates a new A* pathfinder with the supplied default settings.
         /// </summary>
-        /// <param name="allDirections">All directions that should be checked</param>
-        /// <param name="adjacentDirections">All adjacent directions that should be checked</param>
         /// <param name="defaultCostFunction">The default function for cost determination of a path point</param>
-        /// <param name="defaultAllowDiagonals">Whether or not diagonals should be allowed by default</param>
         /// <param name="defaultCost">The default cost for a path point</param>
         /// <param name="defaultMaxTries">The default amount of tries before path finding is aborted</param>
-        /// <param name="defaultSpecialDirections">The default function that determines a set of additional directions (or offsets) that should be tested for walkability.</param>
-        protected AStar(T[] allDirections, T[] adjacentDirections, GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000, GetSpecialDirections defaultSpecialDirections = null) {
-            this.AllDirections = allDirections;
-            this.AdjacentDirections = adjacentDirections;
+        /// <param name="defaultAdditionalNeighbors">The default <see cref="CollectAdditionalNeighbors"/> function.</param>
+        protected AStar(GetCost defaultCostFunction, float defaultCost, int defaultMaxTries, CollectAdditionalNeighbors defaultAdditionalNeighbors) {
             this.DefaultCostFunction = defaultCostFunction;
             this.DefaultCost = defaultCost;
             this.DefaultMaxTries = defaultMaxTries;
-            this.DefaultAllowDiagonals = defaultAllowDiagonals;
-            this.DefaultSpecialDirections = defaultSpecialDirections;
-        }
-
-        /// <inheritdoc cref="FindPath(T,T,MLEM.Pathfinding.AStar{T}.GetCost,System.Nullable{float},System.Nullable{int},System.Nullable{bool},MLEM.Pathfinding.AStar{T}.GetSpecialDirections)"/>
-        public Task<Stack<T>> FindPathAsync(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
-            return Task.Run(() => this.FindPath(start, goal, costFunction, defaultCost, maxTries, allowDiagonals));
+            this.DefaultAdditionalNeighbors = defaultAdditionalNeighbors;
         }
 
         /// <summary>
@@ -91,43 +58,11 @@ namespace MLEM.Pathfinding {
         /// <param name="costFunction">The function that determines the cost for each path point</param>
         /// <param name="defaultCost">The default cost for each path point</param>
         /// <param name="maxTries">The maximum amount of tries before path finding is aborted</param>
-        /// <param name="allowDiagonals">If diagonals should be looked at for path finding</param>
-        /// <param name="specialDirections">An optional function that determines a set of additional directions (or offsets) that should be tested for walkability.</param>
+        /// <param name="additionalNeighbors">A function that determines a set of additional neighbors to be considered for a given point.</param>
         /// <returns>A stack of path points, where the top item is the first point to go to, or null if no path was found.</returns>
-        public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null, GetSpecialDirections specialDirections = null) {
-            this.TryFindPath(start, goal, out var path, out _, costFunction, defaultCost, maxTries, allowDiagonals, specialDirections);
+        public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, CollectAdditionalNeighbors additionalNeighbors = null) {
+            this.TryFindPath(start, goal, out var path, out _, costFunction, defaultCost, maxTries, additionalNeighbors);
             return path;
-        }
-
-        /// <inheritdoc cref="FindPath(T,IEnumerable{T},MLEM.Pathfinding.AStar{T}.GetCost,System.Nullable{float},System.Nullable{int},System.Nullable{bool},MLEM.Pathfinding.AStar{T}.GetSpecialDirections)"/>
-        public Task<Stack<T>> FindPathAsync(T start, IEnumerable<T> goals, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null) {
-            return Task.Run(() => this.FindPath(start, goals, costFunction, defaultCost, maxTries, allowDiagonals));
-        }
-
-        /// <summary>
-        /// Tries to find paths between a <paramref name="start"/> position and a set of <paramref name="goals"/> and returns the path that had the lowest overall cost.
-        /// Note that this method is only faster than a one-to-many pathfinding method like Dijkstra's algorithm in situations where the amount of possible <paramref name="goals"/> is much lower than the total amount of possible positions, or the <paramref name="goals"/> are relatively close to each other.
-        /// </summary>
-        /// <param name="start">The point to start path finding at</param>
-        /// <param name="goals">The set of points to try to find a path to</param>
-        /// <param name="costFunction">The function that determines the cost for each path point</param>
-        /// <param name="defaultCost">The default cost for each path point</param>
-        /// <param name="maxTries">The maximum amount of tries before path finding is aborted</param>
-        /// <param name="allowDiagonals">If diagonals should be looked at for path finding</param>
-        /// <param name="specialDirections">An optional function that determines a set of additional directions (or offsets) that should be tested for walkability.</param>
-        /// <returns>A stack of path points, where the top item is the first point to go to, or null if no paths were found.</returns>
-        public Stack<T> FindPath(T start, IEnumerable<T> goals, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null, GetSpecialDirections specialDirections = null) {
-            var lowestCost = float.PositiveInfinity;
-            Stack<T> cheapestPath = null;
-            foreach (var goal in goals) {
-                if (!this.TryFindPath(start, goal, out var path, out var cost, costFunction, defaultCost, maxTries, allowDiagonals, specialDirections))
-                    continue;
-                if (cost < lowestCost) {
-                    lowestCost = cost;
-                    cheapestPath = path;
-                }
-            }
-            return cheapestPath;
         }
 
         /// <summary>
@@ -140,23 +75,22 @@ namespace MLEM.Pathfinding {
         /// <param name="costFunction">The function that determines the cost for each path point</param>
         /// <param name="defaultCost">The default cost for each path point</param>
         /// <param name="maxTries">The maximum amount of tries before path finding is aborted</param>
-        /// <param name="allowDiagonals">If diagonals should be looked at for path finding</param>
-        /// <param name="specialDirections">An optional function that determines a set of additional directions (or offsets) that should be tested for walkability.</param>
+        /// <param name="additionalNeighbors">A function that determines a set of additional neighbors to be considered for a given point.</param>
         /// <returns>Whether a path was found.</returns>
-        public bool TryFindPath(T start, T goal, out Stack<T> path, out float totalCost, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, bool? allowDiagonals = null, GetSpecialDirections specialDirections = null) {
+        public bool TryFindPath(T start, T goal, out Stack<T> path, out float totalCost, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, CollectAdditionalNeighbors additionalNeighbors = null) {
             path = null;
             totalCost = float.PositiveInfinity;
 
             var stopwatch = Stopwatch.StartNew();
             var getCost = costFunction ?? this.DefaultCostFunction;
-            var diags = allowDiagonals ?? this.DefaultAllowDiagonals;
             var tries = maxTries ?? this.DefaultMaxTries;
             var defCost = defaultCost ?? this.DefaultCost;
-            var special = specialDirections ?? this.DefaultSpecialDirections;
+            var additional = additionalNeighbors ?? this.DefaultAdditionalNeighbors;
 
+            var neighbors = new HashSet<T>();
             var open = new Dictionary<T, PathPoint<T>>();
             var closed = new Dictionary<T, PathPoint<T>>();
-            open.Add(start, new PathPoint<T>(start, this.GetManhattanDistance(start, goal), null, 0, defCost));
+            open.Add(start, new PathPoint<T>(start, this.GetHeuristicDistance(start, goal), null, 0, defCost));
 
             var count = 0;
             while (open.Count > 0) {
@@ -171,17 +105,32 @@ namespace MLEM.Pathfinding {
                 open.Remove(current.Pos);
                 closed.Add(current.Pos, current);
 
-                if (current.Pos.Equals(goal)) {
+                if (EqualityComparer<T>.Default.Equals(current.Pos, goal)) {
                     path = AStar<T>.CompilePath(current);
                     totalCost = current.F;
                     break;
                 }
 
-                foreach (var dir in diags ? this.AllDirections : this.AdjacentDirections)
-                    ExamineDirection(current, dir);
-                if (special != null) {
-                    foreach (var dir in special(current.Pos))
-                        ExamineDirection(current, dir);
+                neighbors.Clear();
+                this.CollectNeighbors(current.Pos, neighbors);
+                additional?.Invoke(current.Pos, neighbors);
+
+                foreach (var neighborPos in neighbors) {
+                    var cost = getCost(current.Pos, neighborPos);
+                    if (!float.IsPositiveInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
+                        var neighbor = new PathPoint<T>(neighborPos, this.GetHeuristicDistance(neighborPos, goal), current, cost, defCost);
+                        // check if we already have a waypoint at this location with a worse path
+                        if (open.TryGetValue(neighborPos, out var alreadyNeighbor)) {
+                            if (neighbor.G < alreadyNeighbor.G) {
+                                open.Remove(neighborPos);
+                            } else {
+                                // if the old waypoint is better, we don't add ours
+                                continue;
+                            }
+                        }
+                        // add the new neighbor as a possible waypoint
+                        open.Add(neighborPos, neighbor);
+                    }
                 }
 
                 count++;
@@ -193,36 +142,23 @@ namespace MLEM.Pathfinding {
             this.LastTriesNeeded = count;
             this.LastTimeNeeded = stopwatch.Elapsed;
             return path != null;
-
-            void ExamineDirection(PathPoint<T> current, T dir) {
-                var neighborPos = this.AddPositions(current.Pos, dir);
-                var cost = getCost(current.Pos, neighborPos);
-                if (!float.IsPositiveInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
-                    var neighbor = new PathPoint<T>(neighborPos, this.GetManhattanDistance(neighborPos, goal), current, cost, defCost);
-                    // check if we already have a waypoint at this location with a worse path
-                    if (open.TryGetValue(neighborPos, out var alreadyNeighbor)) {
-                        if (neighbor.G < alreadyNeighbor.G) {
-                            open.Remove(neighborPos);
-                        } else {
-                            // if the old waypoint is better, we don't add ours
-                            return;
-                        }
-                    }
-                    // add the new neighbor as a possible waypoint
-                    open.Add(neighborPos, neighbor);
-                }
-            }
         }
 
         /// <summary>
-        /// A helper method to add two positions together.
+        /// This method should implement a heuristic that determines the total distance between the given <paramref name="start"/> position and the given second position <paramref name="position"/>.
+        /// Note that this is multiplied with the <see cref="DefaultCost"/> automatically, so no costs need to be considered in this method's return value.
         /// </summary>
-        protected abstract T AddPositions(T first, T second);
+        /// <param name="start">The start position.</param>
+        /// <param name="position">The position to get the distance to.</param>
+        /// <returns>The total distance between the two positions.</returns>
+        protected abstract float GetHeuristicDistance(T start, T position);
 
         /// <summary>
-        /// A helper method to get the Manhattan Distance between two points.
+        /// This method should populate a set of positions that are considered <paramref name="neighbors"/> to the given <paramref name="position"/>. For example, this method might return directly adjacent positions, diagonal positions, or faraway positions that can be teleported to.
         /// </summary>
-        protected abstract float GetManhattanDistance(T first, T second);
+        /// <param name="position">The position whose neighbors to return.</param>
+        /// <param name="neighbors">The set to populate with neighbors.</param>
+        protected abstract void CollectNeighbors(T position, ISet<T> neighbors);
 
         private static Stack<T> CompilePath(PathPoint<T> current) {
             var path = new Stack<T>();
@@ -234,20 +170,20 @@ namespace MLEM.Pathfinding {
         }
 
         /// <summary>
-        /// A cost function for a given path finding position.
+        /// A cost function for a given pair of neighboring path finding positions.
         /// If a path point should have the default cost, <see cref="AStar{T}.DefaultCost"/> should be returned.
         /// If a path point should be unreachable, <see cref="float.PositiveInfinity"/> or <see cref="float.MaxValue"/> should be returned.
         /// </summary>
-        /// <param name="currPos">The current position in the path</param>
-        /// <param name="nextPos">The position we're trying to reach from the current position</param>
+        /// <param name="currPos">The current position in the path.</param>
+        /// <param name="nextPos">The neighboring position whose cost to check.</param>
         public delegate float GetCost(T currPos, T nextPos);
 
         /// <summary>
-        /// A delegate used by <see cref="AStar{T}.DefaultSpecialDirections"/> and <see cref="AStar{T}.TryFindPath"/> that determines a set of additional directions (or offsets) that should be tested for walkability.
+        /// A delegate that determines a set of additional <paramref name="neighbors"/> to be considered for a given <paramref name="position"/>.
         /// </summary>
-        /// <param name="currPos">The current position in the path.</param>
-        /// <returns>A set of additional directions (or offsets) that should be checked for walkability. If the given <paramref name="currPos"/> has no special directions, an empty <see cref="IEnumerable{T}"/> should be returned.</returns>
-        public delegate IEnumerable<T> GetSpecialDirections(T currPos);
+        /// <param name="position">The position whose neighbors to return.</param>
+        /// <param name="neighbors">The set to populate with neighbors.</param>
+        public delegate void CollectAdditionalNeighbors(T position, ISet<T> neighbors);
 
     }
 
@@ -278,7 +214,7 @@ namespace MLEM.Pathfinding {
         /// Creates a new path point with the supplied settings.
         /// </summary>
         /// <param name="pos">The point's position</param>
-        /// <param name="distance">The point's manhattan distance from the start point</param>
+        /// <param name="distance">The point's distance from the start point</param>
         /// <param name="parent">The point's parent</param>
         /// <param name="terrainCostForThisPos">The point's terrain cost, based on <see cref="AStar{T}.GetCost"/></param>
         /// <param name="defaultCost">The default cost for a path point</param>
@@ -307,7 +243,7 @@ namespace MLEM.Pathfinding {
         /// <summary>Returns the hash code for this instance.</summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() {
-            return this.Pos.GetHashCode();
+            return EqualityComparer<T>.Default.GetHashCode(this.Pos);
         }
 
     }

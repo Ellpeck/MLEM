@@ -76,12 +76,14 @@ namespace Tests {
             Assert.IsNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 4), area, true));
 
             // but if we define a link across the wall, it should work
-            Assert.IsNotNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 4), area, false,
-                p => p.X == 2 && p.Y == 2 ? new[] {new Point(-1, 2)} : Enumerable.Empty<Point>()));
+            Assert.IsNotNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 4), area, false, (p, n) => {
+                if (p.X == 2 && p.Y == 2)
+                    n.Add(new Point(1, 4));
+            }));
         }
 
         [Test]
-        public void TestMultiplePaths() {
+        public void TestCosts() {
             var area = new[] {
                 "XXXXXXXX",
                 "X  2  X",
@@ -99,23 +101,19 @@ namespace Tests {
                 pathfinder.TryFindPath(new Point(1, 1), goals[i], out _, out var cost);
                 Assert.AreEqual(goalCosts[i], cost);
             }
-
-            var path = pathfinder.FindPath(new Point(1, 1), goals).ToArray();
-            var expected = new[] {new Point(1, 1), new Point(2, 1), new Point(3, 1), new Point(4, 1), new Point(5, 1), new Point(5, 2), new Point(5, 3), new Point(5, 4), new Point(5, 5)};
-            Assert.AreEqual(path, expected);
         }
 
-        private static Stack<Point> FindPathInArea(Point start, Point end, IEnumerable<string> area, bool allowDiagonals, AStar2.GetSpecialDirections getSpecialDirections = null) {
-            return PathfindingTests.CreatePathfinder(area, allowDiagonals, getSpecialDirections).FindPath(start, end);
+        private static Stack<Point> FindPathInArea(Point start, Point end, IEnumerable<string> area, bool allowDiagonals, AStar2.CollectAdditionalNeighbors collectAdditionalNeighbors = null) {
+            return PathfindingTests.CreatePathfinder(area, allowDiagonals, collectAdditionalNeighbors).FindPath(start, end);
         }
 
-        private static AStar2 CreatePathfinder(IEnumerable<string> area, bool allowDiagonals, AStar2.GetSpecialDirections getSpecialDirections = null) {
+        private static AStar2 CreatePathfinder(IEnumerable<string> area, bool allowDiagonals, AStar2.CollectAdditionalNeighbors collectAdditionalNeighbors = null) {
             var costs = area.Select(s => s.Select(c => c switch {
                 ' ' => 1,
                 'X' => float.PositiveInfinity,
                 _ => (float) char.GetNumericValue(c)
             }).ToArray()).ToArray();
-            return new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals, 1, 64, getSpecialDirections);
+            return new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals, 1, 64, collectAdditionalNeighbors);
         }
 
     }
