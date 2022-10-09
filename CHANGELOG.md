@@ -14,6 +14,7 @@ Jump to version:
 ### MLEM
 Additions
 - Added TokenizedString.Realign
+- Added the ability to include special per-position directions in AStar pathfinding
 
 Improvements
 - Improved EnumHelper.GetValues signature to return an array

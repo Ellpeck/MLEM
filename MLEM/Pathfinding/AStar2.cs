@@ -13,8 +13,8 @@ namespace MLEM.Pathfinding {
         private static readonly Point[] AllDirs = Direction2Helper.All.Offsets().ToArray();
 
         /// <inheritdoc />
-        public AStar2(GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000) :
-            base(AStar2.AllDirs, AStar2.AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries) {}
+        public AStar2(GetCost defaultCostFunction, bool defaultAllowDiagonals, float defaultCost = 1, int defaultMaxTries = 10000, GetSpecialDirections defaultSpecialDirections = null) :
+            base(AStar2.AllDirs, AStar2.AdjacentDirs, defaultCostFunction, defaultAllowDiagonals, defaultCost, defaultMaxTries, defaultSpecialDirections) {}
 
         /// <inheritdoc />
         protected override Point AddPositions(Point first, Point second) {

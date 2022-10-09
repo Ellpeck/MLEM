@@ -60,13 +60,33 @@ namespace Tests {
             Assert.IsNotNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 3), area, true));
         }
 
-        private static Stack<Point> FindPathInArea(Point start, Point end, IEnumerable<string> area, bool allowDiagonals) {
+        [Test]
+        public void TestSpecialDirections() {
+            var area = new[] {
+                "XXXX",
+                "X XX",
+                "X  X",
+                "XXXX",
+                "X  X",
+                "XXXX"
+            };
+
+            // both types of traditional pathfinding should get stuck
+            Assert.IsNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 4), area, false));
+            Assert.IsNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 4), area, true));
+
+            // but if we define a link across the wall, it should work
+            Assert.IsNotNull(PathfindingTests.FindPathInArea(new Point(1, 1), new Point(2, 4), area, false,
+                p => p.X == 2 && p.Y == 2 ? new[] {new Point(-1, 2)} : Enumerable.Empty<Point>()));
+        }
+
+        private static Stack<Point> FindPathInArea(Point start, Point end, IEnumerable<string> area, bool allowDiagonals, AStar2.GetSpecialDirections getSpecialDirections = null) {
             var costs = area.Select(s => s.Select(c => c switch {
                 ' ' => 1,
                 'X' => float.PositiveInfinity,
                 _ => (float) char.GetNumericValue(c)
             }).ToArray()).ToArray();
-            var pathFinder = new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals);
+            var pathFinder = new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals, 1, 64, getSpecialDirections);
             return pathFinder.FindPath(start, end);
         }
 
