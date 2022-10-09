@@ -80,14 +80,42 @@ namespace Tests {
                 p => p.X == 2 && p.Y == 2 ? new[] {new Point(-1, 2)} : Enumerable.Empty<Point>()));
         }
 
+        [Test]
+        public void TestMultiplePaths() {
+            var area = new[] {
+                "XXXXXXXX",
+                "X  2  X",
+                "XXXXX X",
+                "X 53  X",
+                "X XXX X",
+                "X X X X",
+                "XXXXXXXX"
+            };
+            var pathfinder = PathfindingTests.CreatePathfinder(area, false);
+
+            var goals = new[] {new Point(1, 5), new Point(3, 5), new Point(5, 5)};
+            var goalCosts = new[] {19, float.PositiveInfinity, 9};
+            for (var i = 0; i < goals.Length; i++) {
+                pathfinder.TryFindPath(new Point(1, 1), goals[i], out _, out var cost);
+                Assert.AreEqual(goalCosts[i], cost);
+            }
+
+            var path = pathfinder.FindPath(new Point(1, 1), goals).ToArray();
+            var expected = new[] {new Point(1, 1), new Point(2, 1), new Point(3, 1), new Point(4, 1), new Point(5, 1), new Point(5, 2), new Point(5, 3), new Point(5, 4), new Point(5, 5)};
+            Assert.AreEqual(path, expected);
+        }
+
         private static Stack<Point> FindPathInArea(Point start, Point end, IEnumerable<string> area, bool allowDiagonals, AStar2.GetSpecialDirections getSpecialDirections = null) {
+            return PathfindingTests.CreatePathfinder(area, allowDiagonals, getSpecialDirections).FindPath(start, end);
+        }
+
+        private static AStar2 CreatePathfinder(IEnumerable<string> area, bool allowDiagonals, AStar2.GetSpecialDirections getSpecialDirections = null) {
             var costs = area.Select(s => s.Select(c => c switch {
                 ' ' => 1,
                 'X' => float.PositiveInfinity,
                 _ => (float) char.GetNumericValue(c)
             }).ToArray()).ToArray();
-            var pathFinder = new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals, 1, 64, getSpecialDirections);
-            return pathFinder.FindPath(start, end);
+            return new AStar2((_, p2) => costs[p2.Y][p2.X], allowDiagonals, 1, 64, getSpecialDirections);
         }
 
     }

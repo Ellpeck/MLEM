@@ -20,8 +20,9 @@ Improvements
 - Improved EnumHelper.GetValues signature to return an array
 - Allow using external gesture handling alongside InputHandler through ExternalGestureHandling
 - Discard old data when updating a StaticSpriteBatch
-- **Drastically improved StaticSpriteBatch batching performance**
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
+- Allow retrieving the cost of a calculated path when using AStar
+- **Drastically improved StaticSpriteBatch batching performance**
 
 Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
