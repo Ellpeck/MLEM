@@ -61,7 +61,7 @@ namespace MLEM.Pathfinding {
         /// <param name="additionalNeighbors">A function that determines a set of additional neighbors to be considered for a given point.</param>
         /// <returns>A stack of path points, where the top item is the first point to go to, or null if no path was found.</returns>
         public Stack<T> FindPath(T start, T goal, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, CollectAdditionalNeighbors additionalNeighbors = null) {
-            this.TryFindPath(start, goal, out var path, out _, costFunction, defaultCost, maxTries, additionalNeighbors);
+            this.TryFindPath(start, new[] {goal}, out var path, out _, costFunction, defaultCost, maxTries, additionalNeighbors);
             return path;
         }
 
@@ -69,7 +69,7 @@ namespace MLEM.Pathfinding {
         /// Tries to find a path between two points using this pathfinder's default settings or, alternatively, the supplied override settings.
         /// </summary>
         /// <param name="start">The point to start path finding at</param>
-        /// <param name="goal">The point to find a path to</param>
+        /// <param name="goals">The points to find a path to, one of which will be chosen as the closest or best destination</param>
         /// <param name="path">The path that was found, or <see langword="null"/> if no path was found.</param>
         /// <param name="totalCost">The total cost that was calculated for the path, or <see cref="float.PositiveInfinity"/> if no path was found.</param>
         /// <param name="costFunction">The function that determines the cost for each path point</param>
@@ -77,7 +77,7 @@ namespace MLEM.Pathfinding {
         /// <param name="maxTries">The maximum amount of tries before path finding is aborted</param>
         /// <param name="additionalNeighbors">A function that determines a set of additional neighbors to be considered for a given point.</param>
         /// <returns>Whether a path was found.</returns>
-        public bool TryFindPath(T start, T goal, out Stack<T> path, out float totalCost, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, CollectAdditionalNeighbors additionalNeighbors = null) {
+        public bool TryFindPath(T start, ICollection<T> goals, out Stack<T> path, out float totalCost, GetCost costFunction = null, float? defaultCost = null, int? maxTries = null, CollectAdditionalNeighbors additionalNeighbors = null) {
             path = null;
             totalCost = float.PositiveInfinity;
 
@@ -90,7 +90,7 @@ namespace MLEM.Pathfinding {
             var neighbors = new HashSet<T>();
             var open = new Dictionary<T, PathPoint<T>>();
             var closed = new Dictionary<T, PathPoint<T>>();
-            open.Add(start, new PathPoint<T>(start, this.GetHeuristicDistance(start, goal), null, 0, defCost));
+            open.Add(start, new PathPoint<T>(start, this.GetMinHeuristicDistance(start, goals), null, 0, defCost));
 
             var count = 0;
             while (open.Count > 0) {
@@ -105,7 +105,7 @@ namespace MLEM.Pathfinding {
                 open.Remove(current.Pos);
                 closed.Add(current.Pos, current);
 
-                if (EqualityComparer<T>.Default.Equals(current.Pos, goal)) {
+                if (goals.Contains(current.Pos)) {
                     path = AStar<T>.CompilePath(current);
                     totalCost = current.F;
                     break;
@@ -118,7 +118,7 @@ namespace MLEM.Pathfinding {
                 foreach (var neighborPos in neighbors) {
                     var cost = getCost(current.Pos, neighborPos);
                     if (!float.IsPositiveInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
-                        var neighbor = new PathPoint<T>(neighborPos, this.GetHeuristicDistance(neighborPos, goal), current, cost, defCost);
+                        var neighbor = new PathPoint<T>(neighborPos, this.GetMinHeuristicDistance(neighborPos, goals), current, cost, defCost);
                         // check if we already have a waypoint at this location with a worse path
                         if (open.TryGetValue(neighborPos, out var alreadyNeighbor)) {
                             if (neighbor.G < alreadyNeighbor.G) {
@@ -159,6 +159,13 @@ namespace MLEM.Pathfinding {
         /// <param name="position">The position whose neighbors to return.</param>
         /// <param name="neighbors">The set to populate with neighbors.</param>
         protected abstract void CollectNeighbors(T position, ISet<T> neighbors);
+
+        private float GetMinHeuristicDistance(T start, IEnumerable<T> positions) {
+            var min = float.MaxValue;
+            foreach (var position in positions)
+                min = Math.Min(min, this.GetHeuristicDistance(start, position));
+            return min;
+        }
 
         private static Stack<T> CompilePath(PathPoint<T> current) {
             var path = new Stack<T>();

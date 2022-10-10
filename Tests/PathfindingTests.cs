@@ -83,7 +83,7 @@ namespace Tests {
         }
 
         [Test]
-        public void TestCosts() {
+        public void TestCostsAndMultipleGoals() {
             var area = new[] {
                 "XXXXXXXX",
                 "X  2  X",
@@ -95,12 +95,19 @@ namespace Tests {
             };
             var pathfinder = PathfindingTests.CreatePathfinder(area, false);
 
+            // try to find paths to each goal individually
             var goals = new[] {new Point(1, 5), new Point(3, 5), new Point(5, 5)};
             var goalCosts = new[] {19, float.PositiveInfinity, 9};
             for (var i = 0; i < goals.Length; i++) {
-                pathfinder.TryFindPath(new Point(1, 1), goals[i], out _, out var cost);
+                pathfinder.TryFindPath(new Point(1, 1), new[] {goals[i]}, out _, out var cost);
                 Assert.AreEqual(goalCosts[i], cost);
             }
+
+            // try to find paths to the best goal
+            var expected = new[] {new Point(1, 1), new Point(2, 1), new Point(3, 1), new Point(4, 1), new Point(5, 1), new Point(5, 2), new Point(5, 3), new Point(5, 4), new Point(5, 5)};
+            pathfinder.TryFindPath(new Point(1, 1), goals, out var path, out var bestCost);
+            Assert.AreEqual(bestCost, 9);
+            Assert.AreEqual(expected, path);
         }
 
         private static Stack<Point> FindPathInArea(Point start, Point end, IEnumerable<string> area, bool allowDiagonals, AStar2.CollectAdditionalNeighbors collectAdditionalNeighbors = null) {
