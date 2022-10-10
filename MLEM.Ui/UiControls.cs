@@ -161,7 +161,6 @@ namespace MLEM.Ui {
                 this.Input.Update();
             this.ActiveRoot = this.System.GetRootElements().FirstOrDefault(root => root.CanBeActive);
 
-            // MOUSE INPUT
             if (this.HandleMouse) {
                 var mousedNow = this.GetElementUnderPos(new Vector2(this.Input.ViewportMousePosition.X, this.Input.ViewportMousePosition.Y));
                 this.SetMousedElement(mousedNow);
@@ -181,9 +180,10 @@ namespace MLEM.Ui {
                         this.Input.TryConsumeMouseButtonPressed(MouseButton.Right);
                     }
                 }
+            } else {
+                this.SetMousedElement(null);
             }
 
-            // KEYBOARD INPUT
             if (this.HandleKeyboard) {
                 if (this.KeyboardButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
@@ -210,7 +210,6 @@ namespace MLEM.Ui {
                 }
             }
 
-            // TOUCH INPUT
             if (this.HandleTouch) {
                 if (this.Input.GetViewportGesture(GestureType.Tap, out var tap)) {
                     this.IsAutoNavMode = false;
@@ -238,9 +237,10 @@ namespace MLEM.Ui {
                         }
                     }
                 }
+            } else {
+                this.SetTouchedElement(null);
             }
 
-            // GAMEPAD INPUT
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {

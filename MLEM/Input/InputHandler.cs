@@ -108,8 +108,8 @@ namespace MLEM.Input {
         /// </summary>
         public IList<TouchLocation> ViewportTouchState { get; private set; }
         /// <summary>
-        /// Contains the amount of gamepads that are currently connected.
-        /// This field is automatically updated in <see cref="Update()"/>
+        /// Contains the amount of gamepads that are currently connected. Note that this value will be set to 0 if <see cref="HandleGamepads"/> is false.
+        /// This field is automatically updated in <see cref="Update()"/>.
         /// </summary>
         public int ConnectedGamepads { get; private set; }
         /// <summary>
@@ -196,15 +196,15 @@ namespace MLEM.Input {
 
             this.consumedPresses.Clear();
 
+            this.LastKeyboardState = this.KeyboardState;
             if (this.HandleKeyboard) {
-                this.LastKeyboardState = this.KeyboardState;
                 this.KeyboardState = active ? Keyboard.GetState() : default;
                 var pressedKeys = this.KeyboardState.GetPressedKeys();
                 foreach (var pressed in pressedKeys)
                     this.AccumulateDown(pressed, -1);
 
+                this.triggerKeyRepeat = false;
                 if (this.HandleKeyboardRepeats) {
-                    this.triggerKeyRepeat = false;
                     // the key that started being held most recently should be the one being repeated
                     this.heldKey = pressedKeys.OrderBy(k => this.GetDownTime(k)).FirstOrDefault();
                     if (this.TryGetDownTime(this.heldKey, out var heldTime)) {
@@ -219,11 +219,17 @@ namespace MLEM.Input {
                             }
                         }
                     }
+                } else {
+                    this.heldKey = Keys.None;
                 }
+            } else {
+                this.KeyboardState = default;
+                this.triggerKeyRepeat = false;
+                this.heldKey = Keys.None;
             }
 
+            this.LastMouseState = this.MouseState;
             if (this.HandleMouse) {
-                this.LastMouseState = this.MouseState;
                 var state = Mouse.GetState();
                 if (active && this.Game.GraphicsDevice.Viewport.Bounds.Contains(state.X, state.Y)) {
                     this.MouseState = state;
@@ -239,6 +245,8 @@ namespace MLEM.Input {
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0, state.HorizontalScrollWheelValue);
                     #endif
                 }
+            } else {
+                this.MouseState = default;
             }
 
             if (this.HandleGamepads) {
@@ -259,9 +267,9 @@ namespace MLEM.Input {
                     }
                 }
 
-                if (this.HandleGamepadRepeats) {
-                    for (var i = 0; i < this.ConnectedGamepads; i++) {
-                        this.triggerGamepadButtonRepeat[i] = false;
+                for (var i = 0; i < this.ConnectedGamepads; i++) {
+                    this.triggerGamepadButtonRepeat[i] = false;
+                    if (this.HandleGamepadRepeats) {
                         this.heldGamepadButtons[i] = EnumHelper.Buttons
                             .Where(b => this.IsGamepadButtonDown(b, i))
                             .OrderBy(b => this.GetDownTime(b, i))
@@ -275,14 +283,23 @@ namespace MLEM.Input {
                                 }
                             }
                         }
+                    } else {
+                        this.heldGamepadButtons[i] = null;
                     }
+                }
+            } else {
+                this.ConnectedGamepads = 0;
+                for (var i = 0; i < InputHandler.MaximumGamePadCount; i++) {
+                    this.lastGamepads[i] = this.gamepads[i];
+                    this.gamepads[i] = default;
+                    this.triggerGamepadButtonRepeat[i] = false;
+                    this.heldGamepadButtons[i] = null;
                 }
             }
 
+            this.LastTouchState = this.TouchState;
+            this.LastViewportTouchState = this.ViewportTouchState;
             if (this.HandleTouch) {
-                this.LastTouchState = this.TouchState;
-                this.LastViewportTouchState = this.ViewportTouchState;
-
                 this.TouchState = active ? TouchPanel.GetState() : new TouchCollection(InputHandler.EmptyTouchLocations);
                 if (this.TouchState.Count > 0 && this.ViewportOffset != Point.Zero) {
                     this.ViewportTouchState = new List<TouchLocation>();
@@ -301,6 +318,9 @@ namespace MLEM.Input {
                     while (TouchPanel.IsGestureAvailable)
                         this.gestures.Add(TouchPanel.ReadGesture());
                 }
+            } else {
+                this.TouchState = new TouchCollection(InputHandler.EmptyTouchLocations);
+                this.gestures.Clear();
             }
 
             if (this.inputsDownAccum.Count <= 0 && this.inputsDown.Count <= 0) {

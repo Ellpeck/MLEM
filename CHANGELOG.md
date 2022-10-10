@@ -27,6 +27,7 @@ Improvements
 Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
 - Fixed some TokenizedString tokens starting with a line break not being split correctly
+- Fixed InputHandler maintaining old input states when input types are toggled off
 
 ### MLEM.Ui
 Additions
@@ -50,6 +51,7 @@ Fixes
 - Fixed Element.OnChildAdded and Element.OnChildRemoved being called for grandchildren when a child is added
 - Fixed an exception when trying to force-update the area of an element without a ui system
 - Fixed the scroll bar of an empty panel being positioned incorrectly
+- Fixed UiControls maintaining old input states when input types are toggled off
 
 ### MLEM.Data
 Additions
