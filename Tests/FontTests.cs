@@ -2,7 +2,6 @@ using System;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
@@ -150,8 +149,8 @@ namespace Tests {
             CompareSizes($"This is a very simple{GenericFont.Emsp}test string");
             CompareSizes($"This is a very simple{GenericFont.Zwsp}test string");
 
-            Assert.AreEqual(new Vector2(this.font.LineHeight, this.font.LineHeight), this.font.MeasureString(GenericFont.Emsp.ToCachedString()));
-            Assert.AreEqual(new Vector2(0, this.font.LineHeight), this.font.MeasureString(GenericFont.Zwsp.ToCachedString()));
+            Assert.AreEqual(new Vector2(this.font.LineHeight, this.font.LineHeight), this.font.MeasureString(GenericFont.Emsp.ToString()));
+            Assert.AreEqual(new Vector2(0, this.font.LineHeight), this.font.MeasureString(GenericFont.Zwsp.ToString()));
         }
 
     }

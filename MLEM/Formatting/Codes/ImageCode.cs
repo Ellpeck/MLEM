@@ -27,7 +27,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override string GetReplacementString(GenericFont font) {
-            return GenericFont.Emsp.ToCachedString();
+            return GenericFont.Emsp.ToString();
         }
 
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             // we don't want to draw the first (space) character (in case it is set to a missing character in FNA)
             return indexInToken == 0;
         }

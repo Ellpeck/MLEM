@@ -17,6 +17,9 @@
 #begin Fonts/Cadman_Roman.otf
 /copy:Fonts/Cadman_Roman.otf
 
+#begin Fonts/Symbola-Emoji.ttf
+/copy:Fonts/Symbola-Emoji.ttf
+
 #begin Fonts/Regular.fnt
 /importer:BitmapFontImporter
 /processor:BitmapFontProcessor

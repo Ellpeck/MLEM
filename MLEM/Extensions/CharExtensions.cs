@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace MLEM.Extensions {
     /// <summary>
     /// A set of extensions for dealing with <see cref="char"/>
     /// </summary>
+    [Obsolete("ToCachedString is deprecated. Consider using a more robust, custom implementation for text caching.")]
     public static class CharExtensions {
 
         private static readonly Dictionary<char, string> Cache = new Dictionary<char, string>();
@@ -14,6 +16,7 @@ namespace MLEM.Extensions {
         /// </summary>
         /// <param name="c">The character to turn into a string</param>
         /// <returns>A string representing the character</returns>
+        [Obsolete("ToCachedString is deprecated. Consider using a more robust, custom implementation for text caching.")]
         public static string ToCachedString(this char c) {
             if (!CharExtensions.Cache.TryGetValue(c, out var ret)) {
                 ret = c.ToString();

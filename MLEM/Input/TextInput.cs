@@ -417,9 +417,10 @@ namespace MLEM.Input {
         private bool FilterText(ref string text, bool removeMismatching) {
             if (removeMismatching) {
                 var result = new StringBuilder();
-                foreach (var c in text) {
-                    if (this.InputRule(this, c.ToCachedString()))
-                        result.Append(c);
+                foreach (var codePoint in new CodePointSource(text)) {
+                    var character = char.ConvertFromUtf32(codePoint);
+                    if (this.InputRule(this, character))
+                        result.Append(character);
                 }
                 text = result.ToString();
             } else if (!this.InputRule(this, text))

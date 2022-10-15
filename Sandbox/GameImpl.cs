@@ -11,11 +11,9 @@ using MLEM.Data;
 using MLEM.Data.Content;
 using MLEM.Extended.Font;
 using MLEM.Extensions;
-using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Graphics;
-using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -67,10 +65,13 @@ public class GameImpl : MlemGame {
 
         var system = new FontSystem();
         system.AddFont(File.ReadAllBytes("Content/Fonts/Cadman_Roman.otf"));
+        system.AddFont(File.ReadAllBytes("Content/Fonts/Symbola-Emoji.ttf"));
         //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
         //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
         var font = new GenericStashFont(system.GetFont(32));
+        /*
         var spriteFont = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("Fonts/TestFont"));
+        */
         this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
             Font = font,
             TextScale = 0.5F,
@@ -147,7 +148,7 @@ public class GameImpl : MlemGame {
         formatter.Macros.Add(new Regex("<testmacro>"), (_, _, _) => "<test1>");
         formatter.Macros.Add(new Regex("<test1>"), (_, _, _) => "<test2> blue");
         formatter.Macros.Add(new Regex("<test2>"), (_, _, _) => "<c Blue>");
-        const string strg = "This \nstring    \nis\n     split     \n    weirdly    \n  .     ";
+        const string strg = "This is a string containing 💡 emoji";
         //var strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
         //var strg = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
         //var strg = "This is <u>a test of the underlined formatting code</u>!";
@@ -256,43 +257,43 @@ public class GameImpl : MlemGame {
         }).SetData("Ref", "Main");
         this.UiSystem.Add("SpillTest", spillPanel);*/
 
-        var regularFont = spriteFont.Font;
-        var genericFont = spriteFont;
+        /* var regularFont = spriteFont.Font;
+         var genericFont = spriteFont;
 
-        var index = 0;
-        var pos = new Vector2(100, 20);
-        var scale = 1F;
-        var origin = Vector2.Zero;
-        var rotation = 0F;
-        var effects = SpriteEffects.None;
+         var index = 0;
+         var pos = new Vector2(100, 20);
+         var scale = 1F;
+         var origin = Vector2.Zero;
+         var rotation = 0F;
+         var effects = SpriteEffects.None;
 
-        this.OnDraw += (_, _) => {
-            const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
-            if (MlemGame.Input.IsKeyPressed(Keys.I)) {
-                index++;
-                if (index == 1) {
-                    scale = 2;
-                } else if (index == 2) {
-                    origin = new Vector2(15, 15);
-                } else if (index == 3) {
-                    rotation = 0.25F;
-                } else if (index == 4) {
-                    effects = SpriteEffects.FlipHorizontally;
-                } else if (index == 5) {
-                    effects = SpriteEffects.FlipVertically;
-                } else if (index == 6) {
-                    effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
-                }
-            }
+         this.OnDraw += (_, _) => {
+             const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
+             if (MlemGame.Input.IsKeyPressed(Keys.I)) {
+                 index++;
+                 if (index == 1) {
+                     scale = 2;
+                 } else if (index == 2) {
+                     origin = new Vector2(15, 15);
+                 } else if (index == 3) {
+                     rotation = 0.25F;
+                 } else if (index == 4) {
+                     effects = SpriteEffects.FlipHorizontally;
+                 } else if (index == 5) {
+                     effects = SpriteEffects.FlipVertically;
+                 } else if (index == 6) {
+                     effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+                 }
+             }
 
-            /*this.SpriteBatch.Begin();
-            if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
-                this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
-            } else {
-                genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
-            }
-            this.SpriteBatch.End();*/
-        };
+             this.SpriteBatch.Begin();
+             if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
+                 this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
+             } else {
+                 genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
+             }
+             this.SpriteBatch.End();
+         };*/
 
         /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
         var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));

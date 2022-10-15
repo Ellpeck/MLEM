@@ -23,6 +23,7 @@ Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Allow retrieving the cost of a calculated path when using AStar
 - **Drastically improved StaticSpriteBatch batching performance**
+- **Made GenericFont and TokenizedString support UTF-32 characters like emoji**
 
 Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
@@ -68,6 +69,7 @@ Fixes
 ## MLEM.Extended
 Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
+- **Made GenericBitmapFont and GenericStashFont support UTF-32 characters like emoji**
 
 ## MLEM.Startup
 Improvements

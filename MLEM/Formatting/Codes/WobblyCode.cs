@@ -28,7 +28,7 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             var offset = new Vector2(0, (float) Math.Sin(token.Index + indexInToken + this.TimeIntoAnimation.TotalSeconds * this.modifier) * font.LineHeight * this.heightModifier * scale);
             pos += offset;
             // we return false since we still want regular drawing to occur, we just changed the position

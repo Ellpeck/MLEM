@@ -18,8 +18,8 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
-            font.DrawString(batch, cString, pos + this.offset * scale, this.color.CopyAlpha(color), 0, Vector2.Zero, scale, SpriteEffects.None, depth);
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+            font.DrawString(batch, character, pos + this.offset * scale, this.color.CopyAlpha(color), 0, Vector2.Zero, scale, SpriteEffects.None, depth);
             // we return false since we still want regular drawing to occur
             return false;
         }

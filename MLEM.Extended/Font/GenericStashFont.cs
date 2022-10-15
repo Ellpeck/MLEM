@@ -1,7 +1,6 @@
 using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 
 namespace MLEM.Extended.Font {
@@ -33,13 +32,13 @@ namespace MLEM.Extended.Font {
         }
 
         /// <inheritdoc />
-        protected override float MeasureChar(char c) {
-            return this.Font.MeasureString(c.ToCachedString()).X;
+        protected override float MeasureCharacter(int codePoint) {
+            return this.Font.MeasureString(char.ConvertFromUtf32(codePoint)).X;
         }
 
         /// <inheritdoc />
-        protected override void DrawChar(SpriteBatch batch, string cString, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            this.Font.DrawText(batch, cString, position, color, scale, rotation, Vector2.Zero, layerDepth);
+        protected override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            this.Font.DrawText(batch, character, position, color, scale, rotation, Vector2.Zero, layerDepth);
         }
 
     }

@@ -85,7 +85,7 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawCharacter"/>
-        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             return false;
         }
 

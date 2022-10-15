@@ -19,11 +19,11 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
             // don't underline spaces at the end of lines
-            if (c == ' ' && token.DisplayString.Length > indexInToken + 1 && token.DisplayString[indexInToken + 1] == '\n')
+            if (codePoint == ' ' && token.DisplayString.Length > indexInToken + 1 && token.DisplayString[indexInToken + 1] == '\n')
                 return false;
-            var size = font.MeasureString(cString) * scale;
+            var size = font.MeasureString(character) * scale;
             var t = size.Y * this.thickness;
             batch.Draw(batch.GetBlankTexture(), new RectangleF(pos.X, pos.Y + this.yOffset * size.Y - t, size.X, t), color);
             return false;

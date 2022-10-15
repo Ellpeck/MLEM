@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 
 #if !FNA
 using System.Linq;
@@ -35,13 +34,13 @@ namespace MLEM.Font {
         }
 
         /// <inheritdoc />
-        protected override float MeasureChar(char c) {
-            return this.Font.MeasureString(c.ToCachedString()).X;
+        protected override float MeasureCharacter(int codePoint) {
+            return this.Font.MeasureString(char.ConvertFromUtf32(codePoint)).X;
         }
 
         /// <inheritdoc />
-        protected override void DrawChar(SpriteBatch batch, string cString, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            batch.DrawString(this.Font, cString, position, color, rotation, Vector2.Zero, scale, effects, layerDepth);
+        protected override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            batch.DrawString(this.Font, character, position, color, rotation, Vector2.Zero, scale, effects, layerDepth);
         }
 
         private static SpriteFont SetDefaults(SpriteFont font) {

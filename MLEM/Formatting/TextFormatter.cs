@@ -59,8 +59,8 @@ namespace MLEM.Formatting {
             this.Codes.Add(new Regex(@"</(\w+)>"), (f, m, r) => new SimpleEndCode(m, r, m.Groups[1].Value));
 
             // macros
-            this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToCachedString());
-            this.Macros.Add(new Regex("<n>"), (f, m, r) => '\n'.ToCachedString());
+            this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToString());
+            this.Macros.Add(new Regex("<n>"), (f, m, r) => '\n'.ToString());
         }
 
         /// <summary>

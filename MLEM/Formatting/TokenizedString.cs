@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
 using MLEM.Misc;
-using static MLEM.Font.GenericFont;
 
 namespace MLEM.Formatting {
     /// <summary>
@@ -65,7 +63,7 @@ namespace MLEM.Formatting {
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Split(GenericFont font, float width, float scale, TextAlignment alignment = TextAlignment.Left) {
             // a split string has the same character count as the input string but with newline characters added
-            this.modifiedString = string.Join("\n", font.SplitStringSeparate(new CharSource(this.String), width, scale, i => this.GetFontForIndex(font, i)));
+            this.modifiedString = string.Join("\n", font.SplitStringSeparate(new CodePointSource(this.String), width, scale, i => this.GetFontForIndex(font, i)));
             this.StoreModifiedSubstrings(font, alignment);
         }
 
@@ -80,7 +78,7 @@ namespace MLEM.Formatting {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Truncate(GenericFont font, float width, float scale, string ellipsis = "", TextAlignment alignment = TextAlignment.Left) {
-            this.modifiedString = font.TruncateString(new CharSource(this.String), width, scale, false, ellipsis, i => this.GetFontForIndex(font, i)).ToString();
+            this.modifiedString = font.TruncateString(new CodePointSource(this.String), width, scale, false, ellipsis, i => this.GetFontForIndex(font, i)).ToString();
             this.StoreModifiedSubstrings(font, alignment);
         }
 
@@ -122,7 +120,7 @@ namespace MLEM.Formatting {
 
         /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
         public Vector2 Measure(GenericFont font) {
-            return font.MeasureString(new CharSource(this.DisplayString), false, i => this.GetFontForIndex(font, i));
+            return font.MeasureString(new CodePointSource(this.DisplayString), false, i => this.GetFontForIndex(font, i));
         }
 
         /// <summary>
@@ -162,14 +160,18 @@ namespace MLEM.Formatting {
 
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
-                    foreach (var c in token.SplitDisplayString[l]) {
-                        var cString = c.ToCachedString();
+                    var charIndex = 0;
+                    var line = new CodePointSource(token.SplitDisplayString[l]);
+                    while (charIndex < line.Length) {
+                        var (codePoint, length) = line.GetCodePoint(charIndex);
+                        var character = char.ConvertFromUtf32(codePoint);
 
                         if (indexInToken == 0)
                             token.DrawSelf(time, batch, pos + innerOffset, drawFont, color, scale, depth);
-                        token.DrawCharacter(time, batch, c, cString, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
+                        token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
 
-                        innerOffset.X += drawFont.MeasureString(cString).X * scale;
+                        innerOffset.X += drawFont.MeasureString(character).X * scale;
+                        charIndex += length;
                         indexInToken++;
                     }
 

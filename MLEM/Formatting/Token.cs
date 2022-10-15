@@ -97,26 +97,26 @@ namespace MLEM.Formatting {
         }
 
         /// <summary>
-        /// Draws a given character using this token's formatting options.
+        /// Draws a given code point using this token's formatting options.
         /// </summary>
         /// <param name="time">The time</param>
         /// <param name="batch">The sprite batch to use</param>
-        /// <param name="c">The character to draw</param>
-        /// <param name="cString">A single-character string that contains the character to draw</param>
+        /// <param name="codePoint">The code point of the character to draw</param>
+        /// <param name="character">The string representation of the character to draw</param>
         /// <param name="indexInToken">The index within this token that the character is at</param>
         /// <param name="pos">The position to draw the token at</param>
         /// <param name="font">The font to use to draw</param>
         /// <param name="color">The color to draw with</param>
         /// <param name="scale">The scale to draw at</param>
         /// <param name="depth">The depth to draw at</param>
-        public void DrawCharacter(GameTime time, SpriteBatch batch, char c, string cString, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
             foreach (var code in this.AppliedCodes) {
-                if (code.DrawCharacter(time, batch, c, cString, this, indexInToken, ref pos, font, ref color, ref scale, depth))
+                if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, ref pos, font, ref color, ref scale, depth))
                     return;
             }
 
             // if no code drew, we have to do it ourselves
-            font.DrawString(batch, cString, pos, color, 0, Vector2.Zero, scale, SpriteEffects.None, depth);
+            font.DrawString(batch, character, pos, color, 0, Vector2.Zero, scale, SpriteEffects.None, depth);
         }
 
         /// <summary>
