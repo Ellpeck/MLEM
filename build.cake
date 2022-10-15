@@ -56,7 +56,7 @@ Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn
         };
     } else {
         settings = new NuGetPushSettings {
-            Source = "http://localhost:5000/v3/index.json",
+            Source = "https://nuget.ellpeck.de/v3/index.json",
             ApiKey = EnvironmentVariable("BAGET")
         };
     }
