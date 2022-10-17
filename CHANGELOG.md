@@ -37,6 +37,7 @@ Additions
 - Added Element.OnAddedToUi and Element.OnRemovedFromUi
 - Added ScrollBar.MouseDragScrolling
 - Added Panel.ScrollToElement
+- Added ElementHelper.MakeGrid
 
 Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly

@@ -68,10 +68,29 @@ namespace MLEM.Ui.Elements {
             for (var i = 0; i < amount; i++) {
                 var anchor = i == amount - 1 ? Anchor.AutoInlineIgnoreOverflow : Anchor.AutoInline;
                 cols[i] = new Group(anchor, new Vector2(totalSize.X / amount, totalSize.Y), setHeightBasedOnChildren);
-                if (parent != null)
-                    parent.AddChild(cols[i]);
+                parent?.AddChild(cols[i]);
             }
             return cols;
+        }
+
+        /// <summary>
+        /// Creates an array of groups with a fixed width and height that can be used to create a grid with equally sized boxes.
+        /// </summary>
+        /// <param name="parent">The element the groups should be added to, can be <see langword="null"/>.</param>
+        /// <param name="totalSize">The total size that the grid should take up.</param>
+        /// <param name="width">The width of the grid, or the amount of columns it should have.</param>
+        /// <param name="height">The height of the grid, or the amount of rows it should have.</param>
+        /// <returns>The created grid.</returns>
+        public static Group[,] MakeGrid(Element parent, Vector2 totalSize, int width, int height) {
+            var grid = new Group[width, height];
+            for (var y = 0; y < height; y++) {
+                for (var x = 0; x < width; x++) {
+                    var anchor = x == 0 ? Anchor.AutoLeft : Anchor.AutoInlineIgnoreOverflow;
+                    grid[x, y] = new Group(anchor, new Vector2(totalSize.X / width, totalSize.Y / height), false);
+                    parent?.AddChild(grid[x, y]);
+                }
+            }
+            return grid;
         }
 
         /// <summary>
