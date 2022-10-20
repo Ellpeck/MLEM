@@ -58,6 +58,7 @@ Fixes
 ### MLEM.Data
 Additions
 - Added data, from, and copy instructions to DataTextureAtlas
+- Added the ability to add additional regions to a RuntimeTexturePacker after packing
 
 Improvements
 - Allow data texture atlas pivots and offsets to be negative

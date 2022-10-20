@@ -80,6 +80,29 @@ namespace Tests {
             Assert.AreEqual(170, packer4.PackedTexture.Height);
         }
 
+        [Test]
+        public void TestPackMultipleTimes() {
+            using var packer = new RuntimeTexturePacker(1024);
+
+            // pack the first time
+            var results = 0;
+            for (var i = 0; i < 10; i++)
+                packer.Add(new TextureRegion(this.testTexture, 0, 0, 64, 64), _ => results++);
+            packer.Pack(this.game.GraphicsDevice);
+            Assert.AreEqual(10, results);
+
+            // pack without resizing
+            packer.Add(new TextureRegion(this.testTexture, 0, 0, 0, 0), _ => results++);
+            packer.Pack(this.game.GraphicsDevice);
+            Assert.AreEqual(11, results);
+
+            // pack and force a resize
+            packer.Add(new TextureRegion(this.testTexture, 0, 0, 64, 64), _ => results++);
+            packer.Pack(this.game.GraphicsDevice);
+            // all callbacks are called again, so we add 11 again, as well as the callback we just added
+            Assert.AreEqual(2 * 11 + 1, results);
+        }
+
         private static void StubResult(TextureRegion region) {}
 
     }
