@@ -33,7 +33,7 @@ namespace MLEM.Extended.Font {
 
         /// <inheritdoc />
         protected override float MeasureCharacter(int codePoint) {
-            return this.Font.MeasureString(char.ConvertFromUtf32(codePoint)).X;
+            return this.Font.MeasureString(this.ConvertCachedUtf32(codePoint)).X;
         }
 
         /// <inheritdoc />

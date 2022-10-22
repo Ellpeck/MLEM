@@ -48,6 +48,8 @@ namespace MLEM.Font {
         /// </summary>
         public abstract float LineHeight { get; }
 
+        private readonly Dictionary<int, string> codePointCache = new Dictionary<int, string>();
+
         /// <summary>
         /// Measures the width of the given code point with the default scale for use in <see cref="MeasureString(string,bool)"/>.
         /// Note that this method does not support <see cref="Nbsp"/>, <see cref="Zwsp"/> and <see cref="Emsp"/> for most generic fonts, which is why <see cref="MeasureString(string,bool)"/> should be used even for single characters.
@@ -173,6 +175,19 @@ namespace MLEM.Font {
             return this.SplitStringSeparate(new CodePointSource(text), width, scale, null);
         }
 
+        /// <summary>
+        /// Converts the given UTF-32 <paramref name="codePoint"/> into a string using <see cref="char.ConvertFromUtf32"/>, but caches the result in a <see cref="Dictionary{TKey,TValue}"/> cache to avoid allocating excess memory.
+        /// </summary>
+        /// <param name="codePoint">The UTF-32 code point to convert.</param>
+        /// <returns>The string representation of the code point.</returns>
+        public string ConvertCachedUtf32(int codePoint) {
+            if (!this.codePointCache.TryGetValue(codePoint, out var ret)) {
+                ret = char.ConvertFromUtf32(codePoint);
+                this.codePointCache.Add(codePoint, ret);
+            }
+            return ret;
+        }
+
         internal Vector2 MeasureString(CodePointSource text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
@@ -225,9 +240,9 @@ namespace MLEM.Font {
                 var innerIndex = fromBack ? text.Length - 1 - index : index;
                 var (codePoint, length) = text.GetCodePoint(innerIndex, fromBack);
                 if (fromBack) {
-                    total.Insert(0, char.ConvertFromUtf32(codePoint));
+                    total.Insert(0, this.ConvertCachedUtf32(codePoint));
                 } else {
-                    total.Append(char.ConvertFromUtf32(codePoint));
+                    total.Append(this.ConvertCachedUtf32(codePoint));
                 }
 
                 if (this.MeasureString(new CodePointSource(total + ellipsis), false, fontFunction).X * scale >= width) {
@@ -258,7 +273,7 @@ namespace MLEM.Font {
                     currWidth = 0;
                 } else {
                     var font = fontFunction?.Invoke(index) ?? this;
-                    var character = char.ConvertFromUtf32(codePoint);
+                    var character = this.ConvertCachedUtf32(codePoint);
                     var charWidth = font.MeasureString(character).X * scale;
                     if (codePoint == ' ' || codePoint == GenericFont.Emsp || codePoint == GenericFont.Zwsp) {
                         // remember the location of this (breaking!) space
@@ -334,7 +349,7 @@ namespace MLEM.Font {
                     offset.X = 0;
                     offset.Y += this.LineHeight;
                 } else {
-                    var character = char.ConvertFromUtf32(codePoint);
+                    var character = this.ConvertCachedUtf32(codePoint);
                     var charSize = this.MeasureString(character);
 
                     var charPos = offset;
