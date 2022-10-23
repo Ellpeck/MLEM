@@ -164,7 +164,7 @@ namespace MLEM.Formatting {
                     var line = new CodePointSource(token.SplitDisplayString[l]);
                     while (charIndex < line.Length) {
                         var (codePoint, length) = line.GetCodePoint(charIndex);
-                        var character = drawFont.ConvertCachedUtf32(codePoint);
+                        var character = CodePointSource.ToString(codePoint);
 
                         if (indexInToken == 0)
                             token.DrawSelf(time, batch, pos + innerOffset, drawFont, color, scale, depth);

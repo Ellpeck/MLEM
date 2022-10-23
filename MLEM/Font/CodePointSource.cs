@@ -4,9 +4,11 @@ using System.Text;
 
 namespace MLEM.Font {
     /// <summary>
-    /// A code point source is a wrapper around a <see cref="string"/> or <see cref="StringBuilder"/> that allows retrieving UTF-32 code points at a given index using <see cref="GetCodePoint"/>. Additionally, it allows enumerating every code point in the underlying <see cref="string"/> or <see cref="StringBuilder"/>.
+    /// A code point source is a wrapper around a <see cref="string"/> or <see cref="StringBuilder"/> that allows retrieving UTF-32 code points at a given index using <see cref="GetCodePoint"/>. Additionally, it allows enumerating every code point in the underlying <see cref="string"/> or <see cref="StringBuilder"/>. This class also contains <see cref="ToString(int)"/>, which converts a code point into its <see cref="string"/> representation, but caches the result to avoid allocating excess memory.
     /// </summary>
     public readonly struct CodePointSource : IEnumerable<int> {
+
+        private static readonly Dictionary<int, string> StringCache = new Dictionary<int, string>();
 
         private readonly string strg;
         private readonly StringBuilder builder;
@@ -42,7 +44,7 @@ namespace MLEM.Font {
         /// </summary>
         /// <param name="index">The index at which to return the code point, which is measured in characters.</param>
         /// <param name="indexLowSurrogate">Whether the <paramref name="index"/> represents a low surrogate. If this is <see langword="false"/>, the <paramref name="index"/> represents a high surrogate and the low surrogate will be looked for in the following character. If this is <see langword="true"/>, the <paramref name="index"/> represents a low surrogate and the high surrogate will be looked for in the previous character.</param>
-        /// <returns></returns>
+        /// <returns>The code point at the given location, as well as its length.</returns>
         public (int CodePoint, int Length) GetCodePoint(int index, bool indexLowSurrogate = false) {
             var curr = this[index];
             if (indexLowSurrogate) {
@@ -78,6 +80,19 @@ namespace MLEM.Font {
         /// <filterpriority>2</filterpriority>
         IEnumerator IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Converts the given UTF-32 <paramref name="codePoint"/> into a string using <see cref="char.ConvertFromUtf32"/>, but caches the result in a <see cref="Dictionary{TKey,TValue}"/> cache to avoid allocating excess memory.
+        /// </summary>
+        /// <param name="codePoint">The UTF-32 code point to convert.</param>
+        /// <returns>The string representation of the code point.</returns>
+        public static string ToString(int codePoint) {
+            if (!CodePointSource.StringCache.TryGetValue(codePoint, out var ret)) {
+                ret = char.ConvertFromUtf32(codePoint);
+                CodePointSource.StringCache.Add(codePoint, ret);
+            }
+            return ret;
         }
 
     }
