@@ -46,5 +46,24 @@ namespace MLEM.Misc {
             }
         }
 
+        /// <summary>
+        /// Returns all of the defined unique flags from the given enum type <typeparamref name="T"/> which are contained in <paramref name="combinedFlag"/>.
+        /// Any combined flags (flags that aren't powers of two) which are defined in <typeparamref name="T"/> will not be returned.
+        /// </summary>
+        /// <param name="combinedFlag">The combined flags whose individual flags to return.</param>
+        /// <typeparam name="T">The type of enum.</typeparam>
+        /// <returns>All of the unique flags that make up <paramref name="combinedFlag"/>.</returns>
+        public static IEnumerable<T> GetUniqueFlags<T>(T combinedFlag) where T : struct, Enum {
+            var uniqueFlag = 1;
+            foreach (var flag in EnumHelper.GetValues<T>()) {
+                var flagValue = Convert.ToInt64(flag);
+                // GetValues is always ordered by binary value, so we can be sure that the next flag is bigger than the last
+                while (uniqueFlag < flagValue)
+                    uniqueFlag <<= 1;
+                if (flagValue == uniqueFlag && combinedFlag.HasFlag(flag))
+                    yield return flag;
+            }
+        }
+
     }
 }

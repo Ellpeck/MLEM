@@ -37,33 +37,6 @@ namespace Tests {
         }
 
         [Test]
-        public void TestDynamicEnum() {
-            var flags = new TestEnum[100];
-            for (var i = 0; i < flags.Length; i++)
-                flags[i] = DynamicEnum.AddFlag<TestEnum>("Flag" + i);
-
-            Assert.AreEqual(DynamicEnum.GetValue(flags[7]), BigInteger.One << 7);
-            Assert.AreEqual(DynamicEnum.GetEnumValue<TestEnum>(BigInteger.One << 75), flags[75]);
-
-            Assert.AreEqual(DynamicEnum.GetValue(DynamicEnum.Or(flags[2], flags[17])), BigInteger.One << 2 | BigInteger.One << 17);
-            Assert.AreEqual(DynamicEnum.GetValue(DynamicEnum.And(flags[2], flags[3])), BigInteger.Zero);
-            Assert.AreEqual(DynamicEnum.And(DynamicEnum.Or(flags[24], flags[52]), DynamicEnum.Or(flags[52], flags[75])), flags[52]);
-            Assert.AreEqual(DynamicEnum.Xor(DynamicEnum.Or(flags[85], flags[73]), flags[73]), flags[85]);
-            Assert.AreEqual(DynamicEnum.Xor(DynamicEnum.Or(flags[85], DynamicEnum.Or(flags[73], flags[12])), flags[73]), DynamicEnum.Or(flags[85], flags[12]));
-            Assert.AreEqual(DynamicEnum.GetValue(DynamicEnum.Neg(flags[74])), ~(BigInteger.One << 74));
-
-            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasFlag(flags[24]), true);
-            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasAnyFlag(flags[24]), true);
-            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasFlag(DynamicEnum.Or(flags[24], flags[26])), false);
-            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[52]).HasAnyFlag(DynamicEnum.Or(flags[24], flags[26])), true);
-
-            Assert.AreEqual(DynamicEnum.Parse<TestEnum>("Flag24"), flags[24]);
-            Assert.AreEqual(DynamicEnum.Parse<TestEnum>("Flag24 | Flag43"), DynamicEnum.Or(flags[24], flags[43]));
-            Assert.AreEqual(flags[24].ToString(), "Flag24");
-            Assert.AreEqual(DynamicEnum.Or(flags[24], flags[43]).ToString(), "Flag24 | Flag43");
-        }
-
-        [Test]
         public void TestJsonTypeSafety() {
             var serializer = new JsonSerializer {TypeNameHandling = TypeNameHandling.Auto};
 
@@ -106,12 +79,6 @@ namespace Tests {
             public override int GetHashCode() {
                 return HashCode.Combine(this.Vec, this.Point, this.OtherTest, (int) this.Dir);
             }
-
-        }
-
-        private class TestEnum : DynamicEnum {
-
-            public TestEnum(string name, BigInteger value) : base(name, value) {}
 
         }
 

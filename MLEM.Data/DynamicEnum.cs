@@ -134,7 +134,7 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         public static T AddValue<T>(string name) where T : DynamicEnum {
             BigInteger value = 0;
-            while (DynamicEnum.GetStorage(typeof(T)).Values.ContainsKey(value))
+            while (DynamicEnum.IsDefined(typeof(T), value))
                 value++;
             return DynamicEnum.Add<T>(name, value);
         }
@@ -149,7 +149,7 @@ namespace MLEM.Data {
         /// <returns>The newly created enum value</returns>
         public static T AddFlag<T>(string name) where T : DynamicEnum {
             BigInteger value = 1;
-            while (DynamicEnum.GetStorage(typeof(T)).Values.ContainsKey(value))
+            while (DynamicEnum.IsDefined(typeof(T), value))
                 value <<= 1;
             return DynamicEnum.Add<T>(name, value);
         }
@@ -186,6 +186,27 @@ namespace MLEM.Data {
             foreach (var flag in DynamicEnum.GetValues<T>()) {
                 if (combinedFlag.HasFlag(flag) && (includeZero || DynamicEnum.GetValue(flag) != BigInteger.Zero))
                     yield return flag;
+            }
+        }
+
+        /// <summary>
+        /// Returns all of the defined unique flags from the given dynamic enum type <typeparamref name="T"/> which are contained in <paramref name="combinedFlag"/>.
+        /// Any combined flags (flags that aren't powers of two) which are defined in <typeparamref name="T"/> will not be returned.
+        /// </summary>
+        /// <param name="combinedFlag">The combined flags whose individual flags to return.</param>
+        /// <typeparam name="T">The type of enum.</typeparam>
+        /// <returns>All of the unique flags that make up <paramref name="combinedFlag"/>.</returns>
+        public static IEnumerable<T> GetUniqueFlags<T>(T combinedFlag) where T : DynamicEnum {
+            // we can't use the same method here as EnumHelper.GetUniqueFlags since DynamicEnum doesn't guarantee sorted values
+            var max = DynamicEnum.GetValues<T>().Max(DynamicEnum.GetValue);
+            var uniqueFlag = BigInteger.One;
+            while (uniqueFlag <= max) {
+                if (DynamicEnum.IsDefined(typeof(T), uniqueFlag)) {
+                    var uniqueFlagValue = DynamicEnum.GetEnumValue<T>(uniqueFlag);
+                    if (combinedFlag.HasFlag(uniqueFlagValue))
+                        yield return uniqueFlagValue;
+                }
+                uniqueFlag <<= 1;
             }
         }
 
@@ -307,7 +328,8 @@ namespace MLEM.Data {
         /// <summary>
         /// Parses the given <see cref="string"/> into a dynamic enum value and returns the result.
         /// This method supports defined enum values as well as values combined using the pipe (|) character and any number of spaces.
-        /// If no enum value can be parsed, null is returned.        /// </summary>
+        /// If no enum value can be parsed, null is returned.
+        /// </summary>
         /// <param name="type">The type of the dynamic enum value to parse</param>
         /// <param name="strg">The string to parse into a dynamic enum value</param>
         /// <returns>The parsed enum value, or null if parsing fails</returns>
@@ -328,6 +350,27 @@ namespace MLEM.Data {
                 cache.Add(strg, cached);
             }
             return cached;
+        }
+
+        /// <summary>
+        /// Returns whether the given <paramref name="value"/> is defined in the given dynamic enum <paramref name="type"/>.
+        /// A value counts as explicitly defined if it has been added using <see cref="Add{T}"/>, <see cref="AddValue{T}"/> or <see cref="AddFlag{T}"/>.
+        /// </summary>
+        /// <param name="type">The dynamic enum type to query.</param>
+        /// <param name="value">The value to query.</param>
+        /// <returns>Whether the <paramref name="value"/> is defined.</returns>
+        public static bool IsDefined(Type type, BigInteger value) {
+            return DynamicEnum.GetStorage(type).Values.ContainsKey(value);
+        }
+
+        /// <summary>
+        /// Returns whether the given <paramref name="value"/> is defined in its dynamic enum type.
+        /// A value counts as explicitly defined if it has been added using <see cref="Add{T}"/>, <see cref="AddValue{T}"/> or <see cref="AddFlag{T}"/>.
+        /// </summary>
+        /// <param name="value">The value to query.</param>
+        /// <returns>Whether the <paramref name="value"/> is defined.</returns>
+        public static bool IsDefined(DynamicEnum value) {
+            return value != null && DynamicEnum.IsDefined(value.GetType(), DynamicEnum.GetValue(value));
         }
 
         private static Storage GetStorage(Type type) {
