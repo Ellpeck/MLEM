@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 
 namespace MLEM.Misc {
@@ -28,6 +29,21 @@ namespace MLEM.Misc {
             #else
             return (T[]) Enum.GetValues(typeof(T));
             #endif
+        }
+
+        /// <summary>
+        /// Returns all of the defined values from the given enum type <typeparamref name="T"/> which are contained in <paramref name="combinedFlag"/>.
+        /// Note that, if combined flags are defined in <typeparamref name="T"/>, and <paramref name="combinedFlag"/> contains them, they will also be returned.
+        /// </summary>
+        /// <param name="combinedFlag">The combined flags whose individual flags to return.</param>
+        /// <param name="includeZero">Whether the enum value 0 should also be returned, if <typeparamref name="T"/> contains one.</param>
+        /// <typeparam name="T">The type of enum.</typeparam>
+        /// <returns>All of the flags that make up <paramref name="combinedFlag"/>.</returns>
+        public static IEnumerable<T> GetFlags<T>(T combinedFlag, bool includeZero = true) where T : struct, Enum {
+            foreach (var flag in EnumHelper.GetValues<T>()) {
+                if (combinedFlag.HasFlag(flag) && (includeZero || Convert.ToInt64(flag) != 0))
+                    yield return flag;
+            }
         }
 
     }

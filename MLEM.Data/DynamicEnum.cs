@@ -175,6 +175,21 @@ namespace MLEM.Data {
         }
 
         /// <summary>
+        /// Returns all of the defined values from the given dynamic enum type <typeparamref name="T"/> which are contained in <paramref name="combinedFlag"/>.
+        /// Note that, if combined flags are defined in <typeparamref name="T"/>, and <paramref name="combinedFlag"/> contains them, they will also be returned.
+        /// </summary>
+        /// <param name="combinedFlag">The combined flags whose individual flags to return.</param>
+        /// <param name="includeZero">Whether the enum value 0 should also be returned, if <typeparamref name="T"/> contains one.</param>
+        /// <typeparam name="T">The type of enum.</typeparam>
+        /// <returns>All of the flags that make up <paramref name="combinedFlag"/>.</returns>
+        public static IEnumerable<T> GetFlags<T>(T combinedFlag, bool includeZero = true) where T : DynamicEnum {
+            foreach (var flag in DynamicEnum.GetValues<T>()) {
+                if (combinedFlag.HasFlag(flag) && (includeZero || DynamicEnum.GetValue(flag) != BigInteger.Zero))
+                    yield return flag;
+            }
+        }
+
+        /// <summary>
         /// Returns the bitwise OR (|) combination of the two dynamic enum values
         /// </summary>
         /// <param name="left">The left value</param>

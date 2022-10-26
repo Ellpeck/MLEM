@@ -14,6 +14,7 @@ Jump to version:
 ### MLEM
 Additions
 - Added TokenizedString.Realign
+- Added EnumHelper.GetFlags
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
@@ -59,6 +60,7 @@ Fixes
 Additions
 - Added data, from, and copy instructions to DataTextureAtlas
 - Added the ability to add additional regions to a RuntimeTexturePacker after packing
+- Added DynamicEnum.GetFlags
 
 Improvements
 - Allow data texture atlas pivots and offsets to be negative
