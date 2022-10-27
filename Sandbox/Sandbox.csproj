@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Content\Fonts\Symbola-Emoji.ttf" />
+        <Content Include="Content\Fonts\Symbola-Emoji.ttf" />
     </ItemGroup>
 
     <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

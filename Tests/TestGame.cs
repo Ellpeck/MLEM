@@ -3,24 +3,24 @@ using MLEM.Data.Content;
 using MLEM.Font;
 using MLEM.Startup;
 
-namespace Tests {
-    public class TestGame : MlemGame {
+namespace Tests; 
 
-        public RawContentManager RawContent { get; private set; }
+public class TestGame : MlemGame {
 
-        private TestGame() {}
+    public RawContentManager RawContent { get; private set; }
 
-        protected override void LoadContent() {
-            base.LoadContent();
-            this.RawContent = new RawContentManager(this.Services, this.Content.RootDirectory);
-            this.UiSystem.Style.Font = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("TestFont"));
-        }
+    private TestGame() {}
 
-        public static TestGame Create() {
-            var game = new TestGame();
-            game.RunOneFrame();
-            return game;
-        }
-
+    protected override void LoadContent() {
+        base.LoadContent();
+        this.RawContent = new RawContentManager(this.Services, this.Content.RootDirectory);
+        this.UiSystem.Style.Font = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("TestFont"));
     }
+
+    public static TestGame Create() {
+        var game = new TestGame();
+        game.RunOneFrame();
+        return game;
+    }
+
 }

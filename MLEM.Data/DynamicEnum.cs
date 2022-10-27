@@ -13,9 +13,6 @@ namespace MLEM.Data {
     /// A dynamic enum uses <see cref="BigInteger"/> as its underlying type, allowing for an arbitrary number of enum values to be created, even when a <see cref="FlagsAttribute"/>-like structure is used that would only allow for up to 64 values in a regular enum.
     /// All enum operations including <see cref="And{T}"/>, <see cref="Or{T}"/>, <see cref="Xor{T}"/> and <see cref="Neg{T}"/> are supported and can be implemented in derived classes using operator overloads.
     /// To create a custom dynamic enum, simply create a class that extends <see cref="DynamicEnum"/>. New values can then be added using <see cref="Add{T}"/>, <see cref="AddValue{T}"/> or <see cref="AddFlag{T}"/>.
-    ///
-    /// This class, and its entire concept, are extremely terrible. If you intend on using this, there's probably at least one better solution available.
-    /// Though if, for some weird reason, you need a way to have more than 64 distinct flags, this is a pretty good solution.
     /// </summary>
     /// <remarks>
     /// To include enum-like operator overloads in a dynamic enum named MyEnum, the following code can be used:
