@@ -10,7 +10,7 @@ namespace MLEM.Input {
         /// <summary>
         /// All enum values of <see cref="MouseButton"/>
         /// </summary>
-        public static readonly MouseButton[] MouseButtons = (MouseButton[]) Enum.GetValues(typeof(MouseButton));
+        public static readonly MouseButton[] MouseButtons = {MouseButton.Left, MouseButton.Middle, MouseButton.Right, MouseButton.Extra1, MouseButton.Extra2};
 
         /// <summary>
         /// Returns the <see cref="ButtonState"/> of the given mouse button.

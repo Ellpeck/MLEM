@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+#if NET6_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#endif
+
 namespace MLEM.Data {
     /// <summary>
     /// A set of extensions for dealing with copying objects.
     /// </summary>
     [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
+    #if NET6_0_OR_GREATER
+    [UnconditionalSuppressMessage("Aot", "IL3050"), UnconditionalSuppressMessage("Aot", "IL2070"), UnconditionalSuppressMessage("Aot", "IL2090")]
+    #endif
     public static class CopyExtensions {
 
         private const BindingFlags DefaultFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -15,7 +22,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Creates a shallow copy of the object and returns it.
-        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>. 
+        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>.
         /// </summary>
         /// <param name="obj">The object to create a shallow copy of</param>
         /// <param name="flags">The binding flags for field searching</param>
@@ -31,7 +38,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Creates a deep copy of the object and returns it.
-        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>. 
+        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>.
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
         /// <param name="flags">The binding flags for field searching</param>
@@ -63,7 +70,7 @@ namespace MLEM.Data {
 
         /// <summary>
         /// Copies the given object <paramref name="obj"/> into the given object <paramref name="otherObj"/> in a deep manner.
-        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>. 
+        /// Object creation occurs using a constructor with the <see cref="CopyConstructorAttribute"/> or, if none is present, the first constructor with the correct <see cref="BindingFlags"/>.
         /// </summary>
         /// <param name="obj">The object to create a deep copy of</param>
         /// <param name="otherObj">The object to copy into</param>

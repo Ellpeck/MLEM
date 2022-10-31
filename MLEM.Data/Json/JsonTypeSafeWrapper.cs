@@ -34,6 +34,9 @@ namespace MLEM.Data.Json {
         /// </summary>
         /// <param name="value">The value to wrap</param>
         /// <returns>A <see cref="JsonTypeSafeWrapper{T}"/> with a type matching the type of <paramref name="value"/></returns>
+        #if NET7_0_OR_GREATER
+        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+        #endif
         public static JsonTypeSafeWrapper Of(object value) {
             var type = typeof(JsonTypeSafeWrapper<>).MakeGenericType(value.GetType());
             return (JsonTypeSafeWrapper) Activator.CreateInstance(type, value);

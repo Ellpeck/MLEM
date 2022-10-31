@@ -11,9 +11,16 @@ namespace MLEM.Data.Json {
         /// <summary>
         /// An array of all of the <see cref="JsonConverter"/>s that are part of MLEM.Data
         /// </summary>
-        public static readonly JsonConverter[] Converters = typeof(JsonConverters).Assembly.GetExportedTypes()
-            .Where(t => t.IsSubclassOf(typeof(JsonConverter)) && !t.IsGenericType)
-            .Select(Activator.CreateInstance).Cast<JsonConverter>().ToArray();
+        public static readonly JsonConverter[] Converters = {
+            new Direction2Converter(),
+            #pragma warning disable CS0618
+            new DynamicEnumConverter(),
+            #pragma warning restore CS0618
+            new PointConverter(),
+            new RectangleConverter(),
+            new RectangleFConverter(),
+            new Vector2Converter()
+        };
 
         /// <summary>
         /// Adds all of the <see cref="JsonConverter"/> objects that are part of MLEM.Data to the given <see cref="JsonSerializer"/>

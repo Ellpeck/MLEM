@@ -9,6 +9,9 @@ namespace MLEM.Data.Json {
     /// This class uses <see cref="JsonTypeSafeWrapper"/> for each object stored to ensure that objects with a custom <see cref="JsonConverter"/> get deserialized as an instance of their original type if <see cref="JsonSerializer.TypeNameHandling"/> is not set to <see cref="TypeNameHandling.None"/>.
     /// </summary>
     [DataContract]
+    #if NET7_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("The native code for instantiation of JsonTypeSafeWrapper instances might not be available at runtime.")]
+    #endif
     public class JsonTypeSafeGenericDataHolder : IGenericDataHolder {
 
         private static readonly string[] EmptyStrings = new string[0];

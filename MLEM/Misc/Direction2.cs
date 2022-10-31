@@ -71,7 +71,10 @@ namespace MLEM.Misc {
         /// <summary>
         /// All <see cref="Direction2"/> enum values
         /// </summary>
-        public static readonly Direction2[] All = (Direction2[]) Enum.GetValues(typeof(Direction2));
+        public static readonly Direction2[] All = {
+            Direction2.None, Direction2.Up, Direction2.Right, Direction2.Down, Direction2.Left,
+            Direction2.UpRight, Direction2.DownRight, Direction2.UpLeft, Direction2.DownLeft
+        };
         /// <summary>
         /// The <see cref="Direction2.Up"/> through <see cref="Direction2.Left"/> directions
         /// </summary>

@@ -24,7 +24,12 @@ namespace MLEM.Ui.Parsers {
         /// <summary>
         /// An array containing all of the <see cref="ElementType"/> enum values.
         /// </summary>
-        public static readonly ElementType[] ElementTypes = (ElementType[]) Enum.GetValues(typeof(ElementType));
+        public static readonly ElementType[] ElementTypes =
+            #if NET6_0_OR_GREATER
+            Enum.GetValues<ElementType>();
+        #else
+            (ElementType[]) Enum.GetValues(typeof(ElementType));
+        #endif
 
         /// <summary>
         /// The base path for images, which is prepended to the image link.

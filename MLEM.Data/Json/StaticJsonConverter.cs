@@ -4,9 +4,13 @@ using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 
+#if NET6_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#endif
+
 namespace MLEM.Data.Json {
     /// <summary>
-    /// A <see cref="JsonConverter{T}"/> that doesn't actually serialize the object, but instead serializes the name given to it by the underlying <see cref="Dictionary{T,T}"/>. 
+    /// A <see cref="JsonConverter{T}"/> that doesn't actually serialize the object, but instead serializes the name given to it by the underlying <see cref="Dictionary{T,T}"/>.
     /// Optionally, the name of a <see cref="Dictionary{TKey,TValue}"/> can be passed to this converter when used in the <see cref="JsonConverterAttribute"/> by passing the arguments for the <see cref="StaticJsonConverter{T}(Type,string)"/> constructor as <see cref="JsonConverterAttribute.ConverterParameters"/>.
     /// </summary>
     /// <typeparam name="T">The type of the object to convert</typeparam>
@@ -29,7 +33,11 @@ namespace MLEM.Data.Json {
         /// </summary>
         /// <param name="type">The type that the dictionary is declared in</param>
         /// <param name="memberName">The name of the dictionary itself</param>
-        public StaticJsonConverter(Type type, string memberName) : this(StaticJsonConverter<T>.GetEntries(type, memberName)) {}
+        public StaticJsonConverter(
+            #if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
+            #endif
+            Type type, string memberName) : this(StaticJsonConverter<T>.GetEntries(type, memberName)) {}
 
         /// <summary>Writes the JSON representation of the object.</summary>
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
@@ -56,7 +64,11 @@ namespace MLEM.Data.Json {
             return ret;
         }
 
-        private static Dictionary<string, T> GetEntries(Type type, string memberName) {
+        private static Dictionary<string, T> GetEntries(
+            #if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
+            #endif
+            Type type, string memberName) {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
             var value = type.GetProperty(memberName, flags)?.GetValue(null) ?? type.GetField(memberName, flags)?.GetValue(null);
             if (value == null)

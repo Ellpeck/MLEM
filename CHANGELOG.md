@@ -23,6 +23,7 @@ Improvements
 - Discard old data when updating a StaticSpriteBatch
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Allow retrieving the cost of a calculated path when using AStar
+- Added trimming and AOT annotations and made MLEM trimmable
 - **Drastically improved StaticSpriteBatch batching performance**
 - **Made GenericFont and TokenizedString support UTF-32 characters like emoji**
 
@@ -48,6 +49,7 @@ Improvements
 - Close other dropdowns when opening a dropdown
 - Generified UiMarkdownParser by adding abstract UiParser
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
+- Added trimming and AOT annotations and made MLEM.Ui trimmable
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
@@ -69,6 +71,7 @@ Improvements
 - Allow data texture atlas pivots and offsets to be negative
 - Made RuntimeTexturePacker restore texture region name and pivot when packing
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
+- Added trimming and AOT annotations and made MLEM.Data trimmable
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
@@ -79,11 +82,13 @@ Removals
 ## MLEM.Extended
 Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
+- Added trimming and AOT annotations and made MLEM.Extended trimmable
 - **Made GenericBitmapFont and GenericStashFont support UTF-32 characters like emoji**
 
 ## MLEM.Startup
 Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
+- Added trimming and AOT annotations and made MLEM.Startup trimmable
 
 ## 6.0.0
 

@@ -17,11 +17,21 @@ namespace MLEM.Input {
         /// <summary>
         /// All values of the <see cref="Buttons"/> enum.
         /// </summary>
-        public static readonly Buttons[] AllButtons = (Buttons[]) Enum.GetValues(typeof(Buttons));
+        public static readonly Buttons[] AllButtons =
+            #if NET6_0_OR_GREATER
+            Enum.GetValues<Buttons>();
+        #else
+            (Buttons[]) Enum.GetValues(typeof(Buttons));
+        #endif
         /// <summary>
         /// All values of the <see cref="Keys"/> enum.
         /// </summary>
-        public static readonly Keys[] AllKeys = (Keys[]) Enum.GetValues(typeof(Keys));
+        public static readonly Keys[] AllKeys =
+            #if NET6_0_OR_GREATER
+            Enum.GetValues<Keys>();
+        #else
+            (Keys[]) Enum.GetValues(typeof(Keys));
+        #endif
 
         #if FNA
         private const int MaximumGamePadCount = 4;

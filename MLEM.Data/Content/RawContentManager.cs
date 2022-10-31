@@ -5,13 +5,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+#if NET6_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#endif
+
 namespace MLEM.Data.Content {
     /// <summary>
     /// Represents a version of <see cref="ContentManager"/> that doesn't load content binary <c>xnb</c> files, but rather as their regular formats.
     /// </summary>
     public class RawContentManager : ContentManager, IGameComponent {
-
-        private static List<RawContentReader> readers;
 
         /// <summary>
         /// The graphics device that this content manager uses
@@ -19,19 +21,36 @@ namespace MLEM.Data.Content {
         public readonly GraphicsDevice GraphicsDevice;
 
         private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
+        private readonly List<RawContentReader> readers;
+
         #if FNA
         private Dictionary<string, object> LoadedAssets { get; } = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
         #endif
 
         /// <summary>
         /// Creates a new content manager with an optionally specified root directory.
+        /// Each <see cref="RawContentReader"/> required for asset loading is gathered and instantiated automatically from the loaded assemblies.
         /// </summary>
         /// <param name="serviceProvider">The service provider of your game</param>
         /// <param name="rootDirectory">The root directory. Defaults to "Content"</param>
+        #if NET6_0_OR_GREATER
+        [RequiresUnreferencedCode("Automatically gathered RawContentReader types might be removed, use other constructor to add readers manually")]
+        #endif
         public RawContentManager(IServiceProvider serviceProvider, string rootDirectory = "Content") :
+            this(serviceProvider, RawContentManager.CollectContentReaders(), rootDirectory) {}
+
+        /// <summary>
+        /// Creates a new content manager with an optionally specified root directory.
+        /// Each <see cref="RawContentReader"/> required for asset loading has to be passed using <paramref name="readers"/>.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider of your game</param>
+        /// <param name="readers">The raw content readers to use, which can be modified externally afterwards to add additional readers if desired.</param>
+        /// <param name="rootDirectory">The root directory. Defaults to "Content"</param>
+        public RawContentManager(IServiceProvider serviceProvider, List<RawContentReader> readers, string rootDirectory) :
             base(serviceProvider, rootDirectory) {
             if (serviceProvider.GetService(typeof(IGraphicsDeviceService)) is IGraphicsDeviceService s)
                 this.GraphicsDevice = s.GraphicsDevice;
+            this.readers = readers;
         }
 
         /// <summary>
@@ -63,9 +82,7 @@ namespace MLEM.Data.Content {
 
         private T Read<T>(string assetName, T existing) {
             var triedFiles = new List<string>();
-            if (RawContentManager.readers == null)
-                RawContentManager.readers = RawContentManager.CollectContentReaders();
-            foreach (var reader in RawContentManager.readers) {
+            foreach (var reader in this.readers) {
                 if (!reader.CanRead(typeof(T)))
                     continue;
                 foreach (var ext in reader.GetFileExtensions()) {
@@ -104,6 +121,9 @@ namespace MLEM.Data.Content {
         /// </summary>
         public void Initialize() {}
 
+        #if NET6_0_OR_GREATER
+        [RequiresUnreferencedCode("Automatically gathered RawContentReader types might be removed, use other constructor to add readers manually")]
+        #endif
         private static List<RawContentReader> CollectContentReaders() {
             var ret = new List<RawContentReader>();
             var assemblyExceptions = new List<Exception>();
