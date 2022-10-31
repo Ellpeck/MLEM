@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using MLEM.Misc;
 
 namespace MLEM.Input {
     /// <summary>
@@ -14,6 +13,15 @@ namespace MLEM.Input {
     /// It includes keyboard, mouse, gamepad and touch states, as well as a new "pressed" state for keys and the ability for keyboard and gamepad repeat events.
     /// </summary>
     public class InputHandler : GameComponent {
+
+        /// <summary>
+        /// All values of the <see cref="Buttons"/> enum.
+        /// </summary>
+        public static readonly Buttons[] AllButtons = (Buttons[]) Enum.GetValues(typeof(Buttons));
+        /// <summary>
+        /// All values of the <see cref="Keys"/> enum.
+        /// </summary>
+        public static readonly Keys[] AllKeys = (Keys[]) Enum.GetValues(typeof(Keys));
 
         #if FNA
         private const int MaximumGamePadCount = 4;
@@ -257,7 +265,7 @@ namespace MLEM.Input {
                     if (GamePad.GetCapabilities((PlayerIndex) i).IsConnected) {
                         if (active) {
                             this.gamepads[i] = GamePad.GetState((PlayerIndex) i);
-                            foreach (var button in EnumHelper.Buttons) {
+                            foreach (var button in InputHandler.AllButtons) {
                                 if (this.IsGamepadButtonDown(button, i))
                                     this.AccumulateDown(button, i);
                             }
@@ -270,7 +278,7 @@ namespace MLEM.Input {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
                     this.triggerGamepadButtonRepeat[i] = false;
                     if (this.HandleGamepadRepeats) {
-                        this.heldGamepadButtons[i] = EnumHelper.Buttons
+                        this.heldGamepadButtons[i] = InputHandler.AllButtons
                             .Where(b => this.IsGamepadButtonDown(b, i))
                             .OrderBy(b => this.GetDownTime(b, i))
                             .Cast<Buttons?>().FirstOrDefault();

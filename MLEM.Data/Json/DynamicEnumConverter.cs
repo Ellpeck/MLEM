@@ -5,6 +5,7 @@ namespace MLEM.Data.Json {
     /// <summary>
     /// Converts a <see cref="DynamicEnum"/> to and from JSON
     /// </summary>
+    [Obsolete("DynamicEnum has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums"), JsonConverter(typeof(DynamicEnumConverter))]
     public class DynamicEnumConverter : JsonConverter<DynamicEnum> {
 
         /// <summary>Writes the JSON representation of the object.</summary>

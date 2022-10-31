@@ -31,6 +31,9 @@ Fixes
 - Fixed some TokenizedString tokens starting with a line break not being split correctly
 - Fixed InputHandler maintaining old input states when input types are toggled off
 
+Removals
+- Marked EnumHelper as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
+
 ### MLEM.Ui
 Additions
 - Added some extension methods for querying Anchor types
@@ -69,6 +72,9 @@ Improvements
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names
+
+Removals
+- Marked DynamicEnum as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
 
 ## MLEM.Extended
 Improvements

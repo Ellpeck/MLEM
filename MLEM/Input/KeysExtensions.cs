@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
-using MLEM.Misc;
 
 namespace MLEM.Input {
     /// <summary>
@@ -12,7 +12,7 @@ namespace MLEM.Input {
         /// <summary>
         /// All enum values of <see cref="ModifierKey"/>
         /// </summary>
-        public static readonly ModifierKey[] ModifierKeys = EnumHelper.GetValues<ModifierKey>();
+        public static readonly ModifierKey[] ModifierKeys = (ModifierKey[]) Enum.GetValues(typeof(ModifierKey));
         private static readonly Dictionary<ModifierKey, Keys[]> KeysLookup = new Dictionary<ModifierKey, Keys[]> {
             {ModifierKey.Shift, new[] {Keys.LeftShift, Keys.RightShift}},
             {ModifierKey.Control, new[] {Keys.LeftControl, Keys.RightControl}},

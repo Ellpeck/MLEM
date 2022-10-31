@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework.Input;
-using MLEM.Misc;
 
 namespace MLEM.Input {
     /// <summary>
@@ -11,7 +10,7 @@ namespace MLEM.Input {
         /// <summary>
         /// All enum values of <see cref="MouseButton"/>
         /// </summary>
-        public static readonly MouseButton[] MouseButtons = EnumHelper.GetValues<MouseButton>();
+        public static readonly MouseButton[] MouseButtons = (MouseButton[]) Enum.GetValues(typeof(MouseButton));
 
         /// <summary>
         /// Returns the <see cref="ButtonState"/> of the given mouse button.

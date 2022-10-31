@@ -347,7 +347,7 @@ public class GameImpl : MlemGame {
             widthPanel.AddChild(new Paragraph(Anchor.AutoCenter, 100000, "Test String " + Math.Pow(10, i), true) {
                 OnUpdated = (e, _) => {
                     if (MlemGame.Input.IsPressed(Keys.A)) {
-                        e.Anchor = (Anchor) (((int) e.Anchor + 1) % EnumHelper.GetValues<Anchor>().Length);
+                        e.Anchor = (Anchor) (((int) e.Anchor + 1) % 14);
                         Console.WriteLine(e.Anchor);
                     }
                 }

@@ -4,14 +4,12 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Formatting;
-using MLEM.Misc;
 using MLEM.Textures;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
 using System.Net.Http;
-
 #else
 using System.Net;
 #endif
@@ -26,7 +24,7 @@ namespace MLEM.Ui.Parsers {
         /// <summary>
         /// An array containing all of the <see cref="ElementType"/> enum values.
         /// </summary>
-        public static readonly ElementType[] ElementTypes = EnumHelper.GetValues<ElementType>();
+        public static readonly ElementType[] ElementTypes = (ElementType[]) Enum.GetValues(typeof(ElementType));
 
         /// <summary>
         /// The base path for images, which is prepended to the image link.

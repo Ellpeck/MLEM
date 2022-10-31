@@ -25,7 +25,7 @@ namespace MLEM.Data {
     /// public static MyEnum operator ~(MyEnum value) => Neg(value);
     /// </code>
     /// </remarks>
-    [JsonConverter(typeof(DynamicEnumConverter))]
+    [Obsolete("DynamicEnum has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums"), JsonConverter(typeof(DynamicEnumConverter))]
     public abstract class DynamicEnum {
 
         private static readonly Dictionary<Type, Storage> Storages = new Dictionary<Type, Storage>();

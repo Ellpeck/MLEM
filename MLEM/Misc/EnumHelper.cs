@@ -6,15 +6,18 @@ namespace MLEM.Misc {
     /// <summary>
     /// A helper class that allows easier usage of <see cref="Enum"/> values.
     /// </summary>
+    [Obsolete("EnumHelper has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums")]
     public static class EnumHelper {
 
         /// <summary>
         /// All values of the <see cref="Buttons"/> enum.
         /// </summary>
+        [Obsolete("This field has been moved to InputHandler.AllButtons")]
         public static readonly Buttons[] Buttons = EnumHelper.GetValues<Buttons>();
         /// <summary>
         /// All values of the <see cref="Keys"/> enum.
         /// </summary>
+        [Obsolete("This field has been moved to InputHandler.AllKeys")]
         public static readonly Keys[] Keys = EnumHelper.GetValues<Keys>();
 
         /// <summary>

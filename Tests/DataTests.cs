@@ -1,8 +1,6 @@
 using System;
 using System.IO;
-using System.Numerics;
 using Microsoft.Xna.Framework;
-using MLEM.Data;
 using MLEM.Data.Json;
 using MLEM.Misc;
 using Newtonsoft.Json;
