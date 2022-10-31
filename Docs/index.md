@@ -46,3 +46,4 @@ There are several other libraries and tools that work well in combination with M
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended), a package that also provides several additional features for MonoGame
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project
 - [Illumilib](https://github.com/Ellpeck/Illumilib), a simple keyboard and mouse lighting library with support for Razer, Logitech and Corsair devices
+- [DynamicEnums](https://github.com/Ellpeck/DynamicEnums), which provides enum-like single-instance values with additional capabilities, including dynamic addition of new arbitrary values and flags
