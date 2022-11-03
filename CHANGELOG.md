@@ -24,6 +24,7 @@ Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Allow retrieving the cost of a calculated path when using AStar
 - Added trimming and AOT annotations and made MLEM trimmable
+- Allow specifying percentage-based padding for a NinePatch
 - **Drastically improved StaticSpriteBatch batching performance**
 - **Made GenericFont and TokenizedString support UTF-32 characters like emoji**
 

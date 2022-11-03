@@ -17,7 +17,7 @@ namespace MLEM.Textures {
         /// </summary>
         public readonly TextureRegion Region;
         /// <summary>
-        /// The padding in each direction that marks where the outline area stops
+        /// The padding in each direction that marks where the outline area stops, in pixels
         /// </summary>
         public readonly Padding Padding;
         /// <summary>
@@ -33,11 +33,12 @@ namespace MLEM.Textures {
         /// Creates a new nine patch from a texture and a padding
         /// </summary>
         /// <param name="texture">The texture to use</param>
-        /// <param name="padding">The padding that marks where the outline area stops</param>
+        /// <param name="padding">The padding that marks where the outline area stops in pixels, or as a percentage if <paramref name="paddingPercent"/> is <see langword="true"/></param>
         /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
-        public NinePatch(TextureRegion texture, Padding padding, NinePatchMode mode = NinePatchMode.Stretch) {
+        /// <param name="paddingPercent">Whether the padding should represent a percentage of the underlying <paramref name="texture"/>'s size, rather than an absolute pixel amount</param>
+        public NinePatch(TextureRegion texture, Padding padding, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false) {
             this.Region = texture;
-            this.Padding = padding;
+            this.Padding = paddingPercent ? padding * texture.Size.ToVector2() : padding;
             this.Mode = mode;
             this.SourceRectangles = new Rectangle[9];
             for (var i = 0; i < this.SourceRectangles.Length; i++)
@@ -48,26 +49,28 @@ namespace MLEM.Textures {
         /// Creates a new nine patch from a texture and a padding
         /// </summary>
         /// <param name="texture">The texture to use</param>
-        /// <param name="paddingLeft">The padding on the left edge</param>
-        /// <param name="paddingRight">The padding on the right edge</param>
-        /// <param name="paddingTop">The padding on the top edge</param>
-        /// <param name="paddingBottom">The padding on the bottom edge</param>
+        /// <param name="paddingLeft">The padding on the left edge in pixels, or as a percentage if <paramref name="paddingPercent"/> is <see langword="true"/></param>
+        /// <param name="paddingRight">The padding on the right edge in pixels, or as a percentage if <paramref name="paddingPercent"/> is <see langword="true"/></param>
+        /// <param name="paddingTop">The padding on the top edge in pixels, or as a percentage if <paramref name="paddingPercent"/> is <see langword="true"/></param>
+        /// <param name="paddingBottom">The padding on the bottom edge in pixels, or as a percentage if <paramref name="paddingPercent"/> is <see langword="true"/></param>
         /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
-        public NinePatch(TextureRegion texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) : this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom), mode) {}
+        /// <param name="paddingPercent">Whether the padding should represent a percentage of the underlying <paramref name="texture"/>'s size, rather than an absolute pixel amount</param>
+        public NinePatch(TextureRegion texture, float paddingLeft, float paddingRight, float paddingTop, float paddingBottom, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false) : this(texture, new Padding(paddingLeft, paddingRight, paddingTop, paddingBottom), mode, paddingPercent) {}
 
-        /// <inheritdoc cref="NinePatch(TextureRegion, int, int, int, int, NinePatchMode)"/>
-        public NinePatch(Texture2D texture, int paddingLeft, int paddingRight, int paddingTop, int paddingBottom, NinePatchMode mode = NinePatchMode.Stretch) : this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom, mode) {}
+        /// <inheritdoc cref="NinePatch(TextureRegion, float, float, float, float, NinePatchMode, bool)"/>
+        public NinePatch(Texture2D texture, float paddingLeft, float paddingRight, float paddingTop, float paddingBottom, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false) : this(new TextureRegion(texture), paddingLeft, paddingRight, paddingTop, paddingBottom, mode, paddingPercent) {}
 
         /// <summary>
         /// Creates a new nine patch from a texture and a uniform padding
         /// </summary>
         /// <param name="texture">The texture to use</param>
-        /// <param name="padding">The padding that each edge should have</param>
+        /// <param name="padding">The padding that each edge should have in pixels, or as a percentage if <paramref name="paddingPercent"/> is <see langword="true"/></param>
         /// <param name="mode">The mode to use for drawing this nine patch, defaults to <see cref="NinePatchMode.Stretch"/></param>
-        public NinePatch(Texture2D texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) : this(new TextureRegion(texture), padding, mode) {}
+        /// <param name="paddingPercent">Whether the padding should represent a percentage of the underlying <paramref name="texture"/>'s size, rather than an absolute pixel amount</param>
+        public NinePatch(Texture2D texture, float padding, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false) : this(new TextureRegion(texture), padding, mode, paddingPercent) {}
 
-        /// <inheritdoc cref="NinePatch(TextureRegion, int, NinePatchMode)"/>
-        public NinePatch(TextureRegion texture, int padding, NinePatchMode mode = NinePatchMode.Stretch) : this(texture, padding, padding, padding, padding, mode) {}
+        /// <inheritdoc cref="NinePatch(TextureRegion, float, NinePatchMode, bool)"/>
+        public NinePatch(TextureRegion texture, float padding, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false) : this(texture, padding, padding, padding, padding, mode, paddingPercent) {}
 
         internal RectangleF GetRectangleForIndex(RectangleF area, int index, float patchScale = 1) {
             var pl = this.Padding.Left * patchScale;

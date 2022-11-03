@@ -91,8 +91,8 @@ namespace Demos {
                 TextScale = 0.1F,
                 PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
                 ButtonTexture = new NinePatch(new TextureRegion(tex, 24, 8, 16, 16), 4),
-                ScrollBarBackground = new NinePatch(new TextureRegion(tex, 12, 0, 4, 8), 1, 1, 2, 2),
-                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(tex, 8, 0, 4, 8), 1, 1, 2, 2),
+                ScrollBarBackground = new NinePatch(new TextureRegion(tex, 12, 0, 4, 8), 0.25F, paddingPercent: true),
+                ScrollBarScrollerTexture = new NinePatch(new TextureRegion(tex, 8, 0, 4, 8), 0.25F, paddingPercent: true),
                 LinkColor = Color.CornflowerBlue
             };
         }

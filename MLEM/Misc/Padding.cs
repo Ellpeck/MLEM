@@ -96,6 +96,13 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Scales a padding by a <see cref="Vector2"/>.
+        /// </summary>
+        public static Padding operator *(Padding p, Vector2 scale) {
+            return new Padding(p.Left * scale.X, p.Right * scale.X, p.Top * scale.Y, p.Bottom * scale.Y);
+        }
+
+        /// <summary>
         /// Adds two paddings together in a memberwise fashion.
         /// </summary>
         public static Padding operator +(Padding left, Padding right) {
