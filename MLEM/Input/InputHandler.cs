@@ -20,7 +20,7 @@ namespace MLEM.Input {
         public static readonly Buttons[] AllButtons =
             #if NET6_0_OR_GREATER
             Enum.GetValues<Buttons>();
-        #else
+            #else
             (Buttons[]) Enum.GetValues(typeof(Buttons));
         #endif
         /// <summary>
@@ -29,7 +29,7 @@ namespace MLEM.Input {
         public static readonly Keys[] AllKeys =
             #if NET6_0_OR_GREATER
             Enum.GetValues<Keys>();
-        #else
+            #else
             (Keys[]) Enum.GetValues(typeof(Keys));
         #endif
 
@@ -179,6 +179,7 @@ namespace MLEM.Input {
         private readonly List<GestureSample> gestures = new List<GestureSample>();
         private readonly HashSet<(GenericInput, int)> consumedPresses = new HashSet<(GenericInput, int)>();
         private readonly Dictionary<(GenericInput, int), DateTime> inputUpTimes = new Dictionary<(GenericInput, int), DateTime>();
+        private readonly Dictionary<(GenericInput, int), DateTime> inputDownTimes = new Dictionary<(GenericInput, int), DateTime>();
         private readonly Dictionary<(GenericInput, int), DateTime> inputPressedTimes = new Dictionary<(GenericInput, int), DateTime>();
 
         private Point ViewportOffset => new Point(-this.Game.GraphicsDevice.Viewport.X, -this.Game.GraphicsDevice.Viewport.Y);
@@ -356,12 +357,14 @@ namespace MLEM.Input {
                 }
                 this.InputsPressed = pressed.ToArray();
 
-                // handle inputs that changed to up
-                foreach (var key in this.inputsDownAccum.Keys)
-                    this.inputUpTimes.Remove(key);
+                // handle inputs that changed between down and up
                 foreach (var key in this.inputsDown.Keys) {
                     if (!this.inputsDownAccum.ContainsKey(key))
                         this.inputUpTimes[key] = DateTime.UtcNow;
+                }
+                foreach (var key in this.inputsDownAccum.Keys) {
+                    if (!this.inputsDown.ContainsKey(key))
+                        this.inputDownTimes[key] = DateTime.UtcNow;
                 }
 
                 // handle inputs that are currently down
@@ -852,15 +855,17 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Tries to retrieve the amount of time that a given <see cref="GenericInput"/> has been held down for.
-        /// If the input is currently down, this method returns true and the amount of time that it has been down for is stored in <paramref name="downTime"/>.
+        /// If the input is currently down or has been down previously, this method returns true and the amount of time that it has currently or last been down for is stored in <paramref name="downTime"/>.
         /// </summary>
         /// <param name="input">The input whose down time to query.</param>
         /// <param name="downTime">The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
         /// <returns>Whether the input is currently being held.</returns>
         public bool TryGetDownTime(GenericInput input, out TimeSpan downTime, int index = -1) {
-            if (this.inputsDown.TryGetValue((input, index), out var start)) {
-                downTime = DateTime.UtcNow - start;
+            if (this.inputDownTimes.TryGetValue((input, index), out var wentDown)) {
+                // if we're currently down, we return the amount of time we've been down for so far
+                // if we're not currently down, we return the last amount of time we were down for
+                downTime = (this.IsDown(input) || !this.inputUpTimes.TryGetValue((input, index), out var wentUp) ? DateTime.UtcNow : wentUp) - wentDown;
                 return true;
             }
             downTime = default;
@@ -868,8 +873,8 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Returns the amount of time that a given <see cref="GenericInput"/> has been held down for.
-        /// If this input isn't currently down, this method returns <see cref="TimeSpan.Zero"/>.
+        /// Returns the current or last amount of time that a given <see cref="GenericInput"/> has been held down for.
+        /// If this input isn't currently down and has not been down previously, this method returns <see cref="TimeSpan.Zero"/>.
         /// </summary>
         /// <param name="input">The input whose down time to query.</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
@@ -881,15 +886,17 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Tries to retrieve the amount of time that a given <see cref="GenericInput"/> has been up for since the last time it was down.
-        /// If the input is currently up, this method returns true and the amount of time that it has been up for is stored in <paramref name="upTime"/>.
+        /// If the input has previously been down, this method returns true and the amount of time that it has been up for is stored in <paramref name="upTime"/>.
         /// </summary>
         /// <param name="input">The input whose up time to query.</param>
         /// <param name="upTime">The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
         /// <returns>Whether the input is currently up.</returns>
         public bool TryGetUpTime(GenericInput input, out TimeSpan upTime, int index = -1) {
-            if (this.inputUpTimes.TryGetValue((input, index), out var start)) {
-                upTime = DateTime.UtcNow - start;
+            if (this.inputUpTimes.TryGetValue((input, index), out var wentUp)) {
+                // if we're currently up, we return the amount of time we've been up for so far
+                // if we're not currently up, we return the last amount of time we were up for
+                upTime = (this.IsUp(input) || !this.inputDownTimes.TryGetValue((input, index), out var wentDown) ? DateTime.UtcNow : wentDown) - wentUp;
                 return true;
             }
             upTime = default;
@@ -897,8 +904,8 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Returns the amount of time that a given <see cref="GenericInput"/> has been up for since the last time it was down.
-        /// If this input isn't currently up, this method returns <see cref="TimeSpan.Zero"/>.
+        /// Returns the amount of time that a given <see cref="GenericInput"/> has last been up for since the last time it was down.
+        /// If this input hasn't been down previously, this method returns <see cref="TimeSpan.Zero"/>.
         /// </summary>
         /// <param name="input">The input whose up time to query.</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
@@ -927,7 +934,7 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns the amount of time that has passed since a given <see cref="GenericInput"/> last counted as pressed.
-        /// If this input hasn't been pressed previously, or is currently pressed, this method returns <see cref="TimeSpan.Zero"/>.
+        /// If this input hasn't been pressed previously, this method returns <see cref="TimeSpan.Zero"/>.
         /// </summary>
         /// <param name="input">The input whose up time to query.</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
