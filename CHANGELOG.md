@@ -15,6 +15,7 @@ Jump to version:
 Additions
 - Added TokenizedString.Realign
 - Added GetFlags and GetUniqueFlags to EnumHelper
+- Added GetDownTime, GetUpTime and GetTimeSincePress to Keybind and Combination
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements

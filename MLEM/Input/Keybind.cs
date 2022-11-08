@@ -184,6 +184,39 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns the amount of time that this keybind has been held down for.
+        /// If this input isn't currently down, this method returns <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
+        public TimeSpan GetDownTime(InputHandler handler, int gamepadIndex = -1) {
+            return this.combinations.Max(c => c.GetDownTime(handler, gamepadIndex));
+        }
+
+        /// <summary>
+        /// Returns the amount of time that this keybind has been up for since the last time it was down.
+        /// If this input isn't currently up, this method returns <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
+        public TimeSpan GetUpTime(InputHandler handler, int gamepadIndex = -1) {
+            return this.combinations.Min(c => c.GetUpTime(handler, gamepadIndex));
+        }
+
+        /// <summary>
+        /// Returns the amount of time that has passed since this keybind last counted as pressed.
+        /// If this input hasn't been pressed previously, or is currently pressed, this method returns <see cref="TimeSpan.Zero"/>.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
+        public TimeSpan GetTimeSincePress(InputHandler handler, int gamepadIndex = -1) {
+            return this.combinations.Min(c => c.GetTimeSincePress(handler, gamepadIndex));
+        }
+
+        /// <summary>
         /// Returns an enumerable of all of the combinations that this keybind currently contains
         /// </summary>
         /// <returns>This keybind's combinations</returns>
@@ -345,6 +378,39 @@ namespace MLEM.Input {
                         return true;
                 }
                 return false;
+            }
+
+            /// <summary>
+            /// Returns the amount of time that this combination has been held down for.
+            /// If this input isn't currently down, this method returns <see cref="TimeSpan.Zero"/>.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
+            public TimeSpan GetDownTime(InputHandler handler, int gamepadIndex = -1) {
+                return handler.GetDownTime(this.Key, gamepadIndex);
+            }
+
+            /// <summary>
+            /// Returns the amount of time that this combination has been up for since the last time it was down.
+            /// If this input isn't currently up, this method returns <see cref="TimeSpan.Zero"/>.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
+            public TimeSpan GetUpTime(InputHandler handler, int gamepadIndex = -1) {
+                return handler.GetUpTime(this.Key, gamepadIndex);
+            }
+
+            /// <summary>
+            /// Returns the amount of time that has passed since this combination last counted as pressed.
+            /// If this input hasn't been pressed previously, or is currently pressed, this method returns <see cref="TimeSpan.Zero"/>.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
+            public TimeSpan GetTimeSincePress(InputHandler handler, int gamepadIndex = -1) {
+                return handler.GetTimeSincePress(this.Key, gamepadIndex);
             }
 
             /// <summary>
