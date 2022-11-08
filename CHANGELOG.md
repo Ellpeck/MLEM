@@ -34,6 +34,7 @@ Fixes
 - Fixed TokenizedString handling trailing spaces incorrectly in the last line of non-left aligned text
 - Fixed some TokenizedString tokens starting with a line break not being split correctly
 - Fixed InputHandler maintaining old input states when input types are toggled off
+- Fixed Combination.IsModifierDown querying one of its modifiers instead of all of them
 
 Removals
 - Marked EnumHelper as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)

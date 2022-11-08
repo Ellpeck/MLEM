@@ -406,35 +406,31 @@ namespace MLEM.Input {
             }
 
             /// <summary>
-            /// Returns whether this combination's modifier keys are currently down
+            /// Returns whether all of this combination's modifier keys are currently down.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
             /// <returns>Whether this combination's modifiers are down</returns>
             public bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
-                if (this.Modifiers.Length <= 0)
-                    return true;
                 foreach (var modifier in this.Modifiers) {
-                    if (handler.IsDown(modifier, gamepadIndex))
-                        return true;
+                    if (!handler.IsDown(modifier, gamepadIndex))
+                        return false;
                 }
-                return false;
+                return true;
             }
 
             /// <summary>
-            /// Returns whether this combination's modifier keys were down in the last update call.
+            /// Returns whether all of this combination's modifier keys were down in the last update call.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
             /// <returns>Whether this combination's modifiers were down</returns>
             public bool WasModifierDown(InputHandler handler, int gamepadIndex = -1) {
-                if (this.Modifiers.Length <= 0)
-                    return true;
                 foreach (var modifier in this.Modifiers) {
-                    if (handler.WasDown(modifier, gamepadIndex))
-                        return true;
+                    if (!handler.WasDown(modifier, gamepadIndex))
+                        return false;
                 }
-                return false;
+                return true;
             }
 
             /// <summary>
