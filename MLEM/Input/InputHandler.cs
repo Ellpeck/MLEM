@@ -758,6 +758,48 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns if a given control of any kind was down in the last update call.
+        /// This is a helper function that can be passed a <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/>.
+        /// </summary>
+        /// <param name="control">The control whose down state to query</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
+        /// <returns>Whether the given control was down</returns>
+        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
+        public bool WasDown(GenericInput control, int index = -1) {
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.WasKeyDown(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.WasGamepadButtonDown(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.WasMouseButtonDown(control);
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Returns if a given control of any kind was up in the last update call.
+        /// This is a helper function that can be passed a <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/>.
+        /// </summary>
+        /// <param name="control">The control whose up state to query</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
+        /// <returns>Whether the given control was up.</returns>
+        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
+        public bool WasUp(GenericInput control, int index = -1) {
+            switch (control.Type) {
+                case GenericInput.InputType.Keyboard:
+                    return this.WasKeyUp(control);
+                case GenericInput.InputType.Gamepad:
+                    return this.WasGamepadButtonUp(control, index);
+                case GenericInput.InputType.Mouse:
+                    return this.WasMouseButtonUp(control);
+                default:
+                    return true;
+            }
+        }
+
+        /// <summary>
         /// Returns if a given control of any kind is pressed.
         /// This is a helper function that can be passed a <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/>.
         /// </summary>

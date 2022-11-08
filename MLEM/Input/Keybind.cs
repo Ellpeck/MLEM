@@ -124,6 +124,21 @@ namespace MLEM.Input {
         }
 
         /// <summary>
+        /// Returns whether this keybind was considered to be down in the last update call.
+        /// See <see cref="InputHandler.WasDown"/> for more information.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>Whether this keybind was considered to be down</returns>
+        public bool WasDown(InputHandler handler, int gamepadIndex = -1) {
+            foreach (var combination in this.combinations) {
+                if (combination.WasDown(handler, gamepadIndex))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns whether this keybind is considered to be pressed.
         /// See <see cref="InputHandler.IsPressed"/> for more information.
         /// </summary>
@@ -178,6 +193,21 @@ namespace MLEM.Input {
         public bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
             foreach (var combination in this.combinations) {
                 if (combination.IsModifierDown(handler, gamepadIndex))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns whether any of this keybind's modifier keys were down in the last update call.
+        /// See <see cref="InputHandler.WasDown"/> for more information.
+        /// </summary>
+        /// <param name="handler">The input handler to query the keys with</param>
+        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+        /// <returns>Whether any of this keyboard's modifier keys were down</returns>
+        public bool WasModifierDown(InputHandler handler, int gamepadIndex = -1) {
+            foreach (var combination in this.combinations) {
+                if (combination.WasModifierDown(handler, gamepadIndex))
                     return true;
             }
             return false;
@@ -320,7 +350,7 @@ namespace MLEM.Input {
             }
 
             /// <summary>
-            /// Returns whether this combination is currently down
+            /// Returns whether this combination is currently down.
             /// See <see cref="InputHandler.IsDown"/> for more information.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
@@ -328,6 +358,17 @@ namespace MLEM.Input {
             /// <returns>Whether this combination is down</returns>
             public bool IsDown(InputHandler handler, int gamepadIndex = -1) {
                 return this.IsModifierDown(handler, gamepadIndex) && handler.IsDown(this.Key, gamepadIndex);
+            }
+
+            /// <summary>
+            /// Returns whether this combination was down in the last upate call.
+            /// See <see cref="InputHandler.WasDown"/> for more information.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination was down</returns>
+            public bool WasDown(InputHandler handler, int gamepadIndex = -1) {
+                return this.WasModifierDown(handler, gamepadIndex) && handler.WasDown(this.Key, gamepadIndex);
             }
 
             /// <summary>
@@ -375,6 +416,22 @@ namespace MLEM.Input {
                     return true;
                 foreach (var modifier in this.Modifiers) {
                     if (handler.IsDown(modifier, gamepadIndex))
+                        return true;
+                }
+                return false;
+            }
+
+            /// <summary>
+            /// Returns whether this combination's modifier keys were down in the last update call.
+            /// </summary>
+            /// <param name="handler">The input handler to query the keys with</param>
+            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
+            /// <returns>Whether this combination's modifiers were down</returns>
+            public bool WasModifierDown(InputHandler handler, int gamepadIndex = -1) {
+                if (this.Modifiers.Length <= 0)
+                    return true;
+                foreach (var modifier in this.Modifiers) {
+                    if (handler.WasDown(modifier, gamepadIndex))
                         return true;
                 }
                 return false;
