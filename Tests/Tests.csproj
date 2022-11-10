@@ -5,27 +5,30 @@
         <VSTestResultsDirectory>TestResults</VSTestResultsDirectory>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
-
+    
     <ItemGroup>
+        <ProjectReference Include="..\MLEM.Extended\MLEM.Extended.csproj" />
         <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.csproj" />
         <ProjectReference Include="..\MLEM.Data\MLEM.Data.csproj" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
     </ItemGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
+        
         <PackageReference Include="coverlet.collector" Version="3.1.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NUnit" Version="3.13.3" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
         <PackageReference Include="NunitXml.TestLogger" Version="3.0.117" />
     </ItemGroup>
-
+    
     <ItemGroup>
         <Content Include="Content/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

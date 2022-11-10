@@ -40,5 +40,53 @@ namespace MLEM.Extended.Extensions {
             return rect.ToMlem().Penetrate(other.ToMlem(), out normal, out penetration);
         }
 
+        /// <summary>
+        /// Returns how far between the given <paramref name="range"/>'s <see cref="Range{T}.Min"/> and <see cref="Range{T}.Max"/> value the given <paramref name="value"/> is, as a number between 0 and 1.
+        /// Note that, if the <paramref name="value"/> is outside the given <paramref name="range"/>, a correct proportional value outside the 0 to 1 range will still be returned.
+        /// This method is the reverse action of <see cref="FromPercentage(MonoGame.Extended.Range{float},float)"/>.
+        /// </summary>
+        /// <param name="range">The range to query.</param>
+        /// <param name="value">The value to query.</param>
+        /// <returns>The percentage.</returns>
+        public static float GetPercentage(this Range<float> range, float value) {
+            return (value - range.Min) / (range.Max - range.Min);
+        }
+
+        /// <summary>
+        /// Returns how far between the given <paramref name="range"/>'s <see cref="Range{T}.Min"/> and <see cref="Range{T}.Max"/> value the given <paramref name="value"/> is, as a number between 0 and 1.
+        /// Note that, if the <paramref name="value"/> is outside the given <paramref name="range"/>, a correct proportional value outside the 0 to 1 range will still be returned.
+        /// This method is the reverse action of <see cref="FromPercentage(MonoGame.Extended.Range{int},float)"/>.
+        /// </summary>
+        /// <param name="range">The range to query.</param>
+        /// <param name="value">The value to query.</param>
+        /// <returns>The percentage.</returns>
+        public static float GetPercentage(this Range<int> range, float value) {
+            return (value - range.Min) / (range.Max - range.Min);
+        }
+
+        /// <summary>
+        /// Returns a value within the given <paramref name="range"/>'s <see cref="Range{T}.Min"/> and <see cref="Range{T}.Max"/> values based on the given <paramref name="percentage"/> into the range.
+        /// Note that, if the <paramref name="percentage"/> is outside the 0 to 1 range, a correct value outside the <paramref name="range"/> will still be returned.
+        /// This method is the reverse action of <see cref="GetPercentage(MonoGame.Extended.Range{float},float)"/>.
+        /// </summary>
+        /// <param name="range">The range to query.</param>
+        /// <param name="percentage">The percentage to query.</param>
+        /// <returns>The value.</returns>
+        public static float FromPercentage(this Range<float> range, float percentage) {
+            return (range.Max - range.Min) * percentage + range.Min;
+        }
+
+        /// <summary>
+        /// Returns a value within the given <paramref name="range"/>'s <see cref="Range{T}.Min"/> and <see cref="Range{T}.Max"/> values based on the given <paramref name="percentage"/> into the range.
+        /// Note that, if the <paramref name="percentage"/> is outside the 0 to 1 range, a correct value outside the <paramref name="range"/> will still be returned.
+        /// This method is the reverse action of <see cref="GetPercentage(MonoGame.Extended.Range{int},float)"/>.
+        /// </summary>
+        /// <param name="range">The range to query.</param>
+        /// <param name="percentage">The percentage to query.</param>
+        /// <returns>The value.</returns>
+        public static float FromPercentage(this Range<int> range, float percentage) {
+            return (range.Max - range.Min) * percentage + range.Min;
+        }
+
     }
 }

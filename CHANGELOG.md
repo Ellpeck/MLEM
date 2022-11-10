@@ -84,6 +84,9 @@ Removals
 - Marked DynamicEnum as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
 
 ## MLEM.Extended
+Additions
+- Added Range extension methods GetPercentage and FromPercentage
+
 Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Added trimming and AOT annotations and made MLEM.Extended trimmable

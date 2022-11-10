@@ -1,9 +1,14 @@
 using Microsoft.Xna.Framework;
 using MLEM.Extensions;
-using MLEM.Misc;
 using NUnit.Framework;
+using RectangleF = MLEM.Misc.RectangleF;
 
-namespace Tests; 
+#if !FNA
+using MonoGame.Extended;
+using MLEM.Extended.Extensions;
+#endif
+
+namespace Tests;
 
 public class NumberTests {
 
@@ -67,5 +72,29 @@ public class NumberTests {
         Assert.AreEqual(normal, Vector2.Zero);
         Assert.AreEqual(penetration, 0);
     }
+
+    #if !FNA
+    [Test]
+    public void TestRangePercentage() {
+        Assert.AreEqual(0.5F, new Range<int>(1, 7).GetPercentage(4));
+        Assert.AreEqual(1, new Range<int>(1, 7).GetPercentage(7));
+        Assert.AreEqual(0, new Range<int>(1, 7).GetPercentage(1));
+        Assert.AreEqual(4, new Range<int>(1, 7).FromPercentage(0.5F));
+        Assert.AreEqual(7, new Range<int>(1, 7).FromPercentage(1));
+        Assert.AreEqual(1, new Range<int>(1, 7).FromPercentage(0));
+
+        Assert.AreEqual(0.5F, new Range<float>(-1, 1).GetPercentage(0));
+        Assert.AreEqual(0.25F, new Range<float>(-1, 1).GetPercentage(-0.5F));
+        Assert.AreEqual(0.75F, new Range<float>(-1, 1).GetPercentage(0.5F));
+        Assert.AreEqual(0, new Range<float>(-1, 1).FromPercentage(0.5F));
+        Assert.AreEqual(-0.5F, new Range<float>(-1, 1).FromPercentage(0.25F));
+        Assert.AreEqual(0.5F, new Range<float>(-1, 1).FromPercentage(0.75F));
+
+        Assert.AreEqual(1.5F, new Range<float>(8, 10).GetPercentage(11));
+        Assert.AreEqual(-0.5F, new Range<float>(8, 10).GetPercentage(7));
+        Assert.AreEqual(11, new Range<float>(8, 10).FromPercentage(1.5F));
+        Assert.AreEqual(7, new Range<float>(8, 10).FromPercentage(-0.5F));
+    }
+    #endif
 
 }
