@@ -27,6 +27,7 @@ Improvements
 - Added trimming and AOT annotations and made MLEM trimmable
 - Allow specifying percentage-based padding for a NinePatch
 - Improved the way InputHandler down time calculation works
+- Allow explicitly specifying each region for extended auto tiles
 - **Drastically improved StaticSpriteBatch batching performance**
 - **Made GenericFont and TokenizedString support UTF-32 characters like emoji**
 
