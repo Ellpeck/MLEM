@@ -60,7 +60,7 @@ namespace MLEM.Textures {
         public string Name = string.Empty;
         /// <summary>
         /// A <see cref="TextureRegion"/> that this texture region was created from.
-        /// This value is set in the various constructors that accept another <see cref="TextureRegion"/> to create sub-regions from, as well as by MLEM.Data's <c>RuntimeTexturePacker</c>.
+        /// This value is set in the various constructors that accept another <see cref="TextureRegion"/> to create sub-regions from, in <see cref="OffsetCopy"/>, as well as by MLEM.Data's <c>RuntimeTexturePacker</c>.
         /// </summary>
         public TextureRegion Source;
 
@@ -132,7 +132,10 @@ namespace MLEM.Textures {
         /// <param name="offset">The offset to apply to the <see cref="Position"/></param>
         /// <returns>An offset copy of this texture region</returns>
         public TextureRegion OffsetCopy(Point offset) {
-            return new TextureRegion(this.Texture, this.Position + offset, this.Size) {Pivot = this.Pivot};
+            return new TextureRegion(this.Texture, this.Position + offset, this.Size) {
+                Pivot = this.Pivot,
+                Source = this
+            };
         }
 
     }
