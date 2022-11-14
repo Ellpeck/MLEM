@@ -203,7 +203,8 @@ namespace MLEM.Data {
                 var packedArea = request.PackedArea.Shrink(new Point(request.Padding, request.Padding));
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea) {
                     Pivot = request.Texture.Pivot,
-                    Name = request.Texture.Name
+                    Name = request.Texture.Name,
+                    Source = request.Texture
                 });
                 if (this.disposeTextures)
                     request.Texture.Texture.Dispose();

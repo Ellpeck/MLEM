@@ -76,6 +76,7 @@ Improvements
 - Made RuntimeTexturePacker restore texture region name and pivot when packing
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Added trimming and AOT annotations and made MLEM.Data trimmable
+- Store a RuntimeTexturePacker packed texture region's source region
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names

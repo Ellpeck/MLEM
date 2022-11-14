@@ -58,6 +58,11 @@ namespace MLEM.Textures {
         /// The name of this texture region. By default, this name is <see cref="string.Empty"/>.
         /// </summary>
         public string Name = string.Empty;
+        /// <summary>
+        /// A <see cref="TextureRegion"/> that this texture region was created from.
+        /// This value is set in the various constructors that accept another <see cref="TextureRegion"/> to create sub-regions from, as well as by MLEM.Data's <c>RuntimeTexturePacker</c>.
+        /// </summary>
+        public TextureRegion Source;
 
         /// <summary>
         /// Creates a new texture region from a texture and a rectangle which defines the region's area
@@ -116,7 +121,9 @@ namespace MLEM.Textures {
         /// <param name="region">The texture region to create a sub-region of</param>
         /// <param name="uv">The top left corner of this area</param>
         /// <param name="size">The size of this area</param>
-        public TextureRegion(TextureRegion region, Point uv, Point size) : this(region.Texture, region.Position + uv, size) {}
+        public TextureRegion(TextureRegion region, Point uv, Point size) : this(region.Texture, region.Position + uv, size) {
+            this.Source = region;
+        }
 
         /// <summary>
         /// Returns a new <see cref="TextureRegion"/> that has the same <see cref="Texture"/>, <see cref="Pivot"/> and <see cref="Size"/> as this texture, but the returned region's <see cref="Position"/> will be offset by <paramref name="offset"/>.
