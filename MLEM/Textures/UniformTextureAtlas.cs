@@ -33,6 +33,12 @@ namespace MLEM.Textures {
         /// </summary>
         public readonly int RegionHeight;
         /// <summary>
+        /// The padding that each texture region has around itself, in pixels, which will be taken away from each side of <see cref="TextureRegion"/> objects created and returned by this texture atlas.
+        /// Creating a texture atlas with padding can be useful if texture bleeding issues occur due to texture coordinate rounding.
+        /// </summary>
+        public readonly int RegionPadding;
+
+        /// <summary>
         /// The texture to use for this atlas.
         /// Note that <see cref="Region"/> stores the actual area that we depend on.
         /// </summary>
@@ -68,10 +74,12 @@ namespace MLEM.Textures {
         /// <param name="region">The texture region to use for this atlas</param>
         /// <param name="regionAmountX">The amount of texture regions in the x direction</param>
         /// <param name="regionAmountY">The amount of texture regions in the y direction</param>
-        public UniformTextureAtlas(TextureRegion region, int regionAmountX, int regionAmountY) {
+        /// <param name="regionPadding">The padding that each texture region has around itself, in pixels, which will be taken away from each side of <see cref="TextureRegion"/> objects created and returned by this texture atlas.</param>
+        public UniformTextureAtlas(TextureRegion region, int regionAmountX, int regionAmountY, int regionPadding = 0) {
             this.Region = region;
             this.RegionAmountX = regionAmountX;
             this.RegionAmountY = regionAmountY;
+            this.RegionPadding = regionPadding;
             this.RegionWidth = region.Width / regionAmountX;
             this.RegionHeight = region.Height / regionAmountY;
         }
@@ -82,14 +90,16 @@ namespace MLEM.Textures {
         /// <param name="texture">The texture to use for this atlas</param>
         /// <param name="regionAmountX">The amount of texture regions in the x direction</param>
         /// <param name="regionAmountY">The amount of texture regions in the y direction</param>
-        public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY) : this(new TextureRegion(texture), regionAmountX, regionAmountY) {}
+        /// <param name="regionPadding">The padding that each texture region has around itself, in pixels, which will be taken away from each side of <see cref="TextureRegion"/> objects created and returned by this texture atlas.</param>
+        public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY, int regionPadding = 0) :
+            this(new TextureRegion(texture), regionAmountX, regionAmountY, regionPadding) {}
 
         private TextureRegion GetOrAddRegion(Rectangle rect) {
             if (this.regions.TryGetValue(rect, out var region))
                 return region;
             region = new TextureRegion(this.Region,
-                rect.X * this.RegionWidth, rect.Y * this.RegionHeight,
-                rect.Width * this.RegionWidth, rect.Height * this.RegionHeight);
+                rect.X * this.RegionWidth + this.RegionPadding, rect.Y * this.RegionHeight + this.RegionPadding,
+                rect.Width * this.RegionWidth - 2 * this.RegionPadding, rect.Height * this.RegionHeight - 2 * this.RegionPadding);
             this.regions.Add(rect, region);
             return region;
         }

@@ -16,6 +16,7 @@ Additions
 - Added TokenizedString.Realign
 - Added GetFlags and GetUniqueFlags to EnumHelper
 - Added GetDownTime, GetUpTime, GetTimeSincePress, WasModifierDown and WasDown to Keybind and Combination
+- Added the ability for UniformTextureAtlases to have padding for each region
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
