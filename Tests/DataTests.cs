@@ -37,24 +37,16 @@ public class DataTests {
 
     [Test]
     public void TestJsonTypeSafety() {
-        var serializer = new JsonSerializer {TypeNameHandling = TypeNameHandling.Auto};
-
-        // normal generic data holder should crush the time span down to a string due to its custom serializer
-        var data = new GenericDataHolder();
-        data.SetData("Time", TimeSpan.FromMinutes(5));
-        var read = DataTests.SerializeAndDeserialize(serializer, data);
-        Assert.IsNotInstanceOf<TimeSpan>(read.GetData<object>("Time"));
-        Assert.Throws<InvalidCastException>(() => read.GetData<TimeSpan>("Time"));
-
-        // json type safe generic data holder should wrap the time span to ensure that it stays a time span
         var safeData = new JsonTypeSafeGenericDataHolder();
+        // data holder should wrap the time span to ensure that it stays a time span
         safeData.SetData("Time", TimeSpan.FromMinutes(5));
-        var safeRead = DataTests.SerializeAndDeserialize(serializer, safeData);
+        var safeRead = DataTests.SerializeAndDeserialize(safeData);
         Assert.IsInstanceOf<TimeSpan>(safeRead.GetData<object>("Time"));
         Assert.DoesNotThrow(() => safeRead.GetData<TimeSpan>("Time"));
     }
 
-    private static T SerializeAndDeserialize<T>(JsonSerializer serializer, T t) {
+    private static T SerializeAndDeserialize<T>(T t) {
+        var serializer = new JsonSerializer {TypeNameHandling = TypeNameHandling.Auto};
         var writer = new StringWriter();
         serializer.Serialize(writer, t);
         return serializer.Deserialize<T>(new JsonTextReader(new StringReader(writer.ToString())));
