@@ -14,6 +14,7 @@ namespace MLEM.Data.Json {
         /// <summary>
         /// Returns this json type-safe wrapper's value as an <see cref="object"/>.
         /// </summary>
+        [JsonIgnore]
         public abstract object Value { get; }
 
         /// <summary>
