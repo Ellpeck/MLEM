@@ -6,6 +6,7 @@ namespace MLEM.Data.Json {
     /// <summary>
     /// An <see cref="IGenericDataHolder"/> represents an object that can hold generic key-value based data.
     /// This class uses <see cref="JsonTypeSafeWrapper"/> for each object stored to ensure that objects with a custom <see cref="JsonConverter"/> get deserialized as an instance of their original type if <see cref="JsonSerializer.TypeNameHandling"/> is not set to <see cref="TypeNameHandling.None"/>.
+    /// Note that, using <see cref="SetData"/>, adding <see cref="JsonTypeSafeWrapper{T}"/> instances directly is also possible.
     /// </summary>
     #if NET7_0_OR_GREATER
     [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("The native code for instantiation of JsonTypeSafeWrapper instances might not be available at runtime.")]
@@ -25,7 +26,7 @@ namespace MLEM.Data.Json {
             } else {
                 if (this.data == null)
                     this.data = new Dictionary<string, JsonTypeSafeWrapper>();
-                this.data[key] = JsonTypeSafeWrapper.Of(data);
+                this.data[key] = data as JsonTypeSafeWrapper ?? JsonTypeSafeWrapper.Of(data);
             }
         }
 
