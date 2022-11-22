@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -7,12 +6,9 @@ namespace MLEM.Misc {
     /// A lot of MLEM components extend this class to allow for users to add additional data to them easily.
     /// This <see cref="IGenericDataHolder"/> implemention uses an underlying <see cref="Dictionary{String,Object}"/> that only keeps track of non-default values.
     /// </summary>
-    [DataContract]
     public class GenericDataHolder : IGenericDataHolder {
 
         private static readonly string[] EmptyStrings = new string[0];
-
-        [DataMember(EmitDefaultValue = false)]
         private Dictionary<string, object> data;
 
         /// <inheritdoc />

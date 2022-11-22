@@ -39,6 +39,7 @@ Fixes
 - Fixed Combination.IsModifierDown querying one of its modifiers instead of all of them
 
 Removals
+- Removed DataContract attribute from GenericDataHolder
 - Marked EnumHelper as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
 
 ### MLEM.Ui
@@ -79,6 +80,7 @@ Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Added trimming and AOT annotations and made MLEM.Data trimmable
 - Store a RuntimeTexturePacker packed texture region's source region
+- Use JSON.NET attributes in favor of DataContract and DataMember
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names

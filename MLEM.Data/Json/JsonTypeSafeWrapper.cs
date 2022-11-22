@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace MLEM.Data.Json {
@@ -45,12 +44,12 @@ namespace MLEM.Data.Json {
     }
 
     /// <inheritdoc />
-    [DataContract]
     public class JsonTypeSafeWrapper<T> : JsonTypeSafeWrapper {
 
         /// <inheritdoc />
         public override object Value => this.value;
-        [DataMember]
+
+        [JsonProperty]
         private readonly T value;
 
         /// <summary>
