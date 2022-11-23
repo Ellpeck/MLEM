@@ -73,6 +73,15 @@ namespace MLEM.Data {
         }
 
         /// <summary>
+        /// Converts this data texture atlas to a <see cref="Dictionary{TKey,TValue}"/> and returns the result.
+        /// The resulting dictionary will contain all named regions that this data texture atlas contains.
+        /// </summary>
+        /// <returns>The dictionary representation of this data texture atlas.</returns>
+        public Dictionary<string, TextureRegion> ToDictionary() {
+            return new Dictionary<string, TextureRegion>(this.regions);
+        }
+
+        /// <summary>
         /// Loads a <see cref="DataTextureAtlas"/> from the given loaded texture and texture data file.
         /// For more information on data texture atlases, see the <see cref="DataTextureAtlas"/> type documentation.
         /// </summary>

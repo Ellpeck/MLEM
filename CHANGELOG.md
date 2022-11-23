@@ -17,6 +17,7 @@ Additions
 - Added GetFlags and GetUniqueFlags to EnumHelper
 - Added GetDownTime, GetUpTime, GetTimeSincePress, WasModifierDown and WasDown to Keybind and Combination
 - Added the ability for UniformTextureAtlases to have padding for each region
+- Added UniformTextureAtlas methods ToList and ToDictionary
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
@@ -73,6 +74,7 @@ Additions
 - Added data, from, and copy instructions to DataTextureAtlas
 - Added the ability to add additional regions to a RuntimeTexturePacker after packing
 - Added GetFlags, GetUniqueFlags and IsDefined to DynamicEnum
+- Added DataTextureAtlas.ToDictionary
 
 Improvements
 - Allow data texture atlas pivots and offsets to be negative

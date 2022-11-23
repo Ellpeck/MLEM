@@ -94,6 +94,32 @@ namespace MLEM.Textures {
         public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY, int regionPadding = 0) :
             this(new TextureRegion(texture), regionAmountX, regionAmountY, regionPadding) {}
 
+        /// <summary>
+        /// Converts this uniform texture atlas to a <see cref="List{T}"/> and returns the result.
+        /// The resulting list will contain all square 1x1 regions that this uniform texture atlas contains, based on <see cref="RegionAmountX"/> and <see cref="RegionAmountY"/>, with each index containing the <see cref="TextureRegion"/> at <see cref="this[int]"/>.
+        /// </summary>
+        /// <returns>The list representation of this uniform texture atlas.</returns>
+        public List<TextureRegion> ToList() {
+            var ret = new List<TextureRegion>();
+            for (var i = 0; i < this.RegionAmountX * this.RegionAmountY; i++)
+                ret.Add(this[i]);
+            return ret;
+        }
+
+        /// <summary>
+        /// Converts this uniform texture atlas to a <see cref="Dictionary{TKey,TValue}"/> and returns the result.
+        /// The resulting dictionary will contain all square 1x1 regions that this uniform texture atlas contains, based on <see cref="RegionAmountX"/> and <see cref="RegionAmountY"/>, wich each key containing the <see cref="TextureRegion"/> at <see cref="this[Point]"/>.
+        /// </summary>
+        /// <returns>The dictionary representation of this uniform texture atlas.</returns>
+        public Dictionary<Point, TextureRegion> ToDictionary() {
+            var ret = new Dictionary<Point, TextureRegion>();
+            for (var x = 0; x < this.RegionAmountX; x++) {
+                for (var y = 0; y < this.RegionAmountY; y++)
+                    ret.Add(new Point(x, y), this[x, y]);
+            }
+            return ret;
+        }
+
         private TextureRegion GetOrAddRegion(Rectangle rect) {
             if (this.regions.TryGetValue(rect, out var region))
                 return region;
