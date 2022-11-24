@@ -425,9 +425,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public GenericCallback OnRemovedFromUi;
         /// <summary>
-        /// Event that is called when this element's <see cref="Dispose"/> method is called, which also happens in <see cref="Finalize"/>.
+        /// Event that is called when this element's <see cref="Dispose"/> method is called.
         /// This event is useful for unregistering global event handlers when this object should be destroyed.
         /// </summary>
+        [Obsolete("OnDisposed will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
         public GenericCallback OnDisposed;
 
         /// <summary>
@@ -488,6 +489,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
+        [Obsolete("Dispose will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
         ~Element() {
             this.Dispose();
         }
@@ -1098,6 +1100,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+        [Obsolete("Dispose will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
         public virtual void Dispose() {
             this.OnDisposed?.Invoke(this);
             GC.SuppressFinalize(this);

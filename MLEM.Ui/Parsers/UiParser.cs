@@ -27,7 +27,7 @@ namespace MLEM.Ui.Parsers {
         public static readonly ElementType[] ElementTypes =
             #if NET6_0_OR_GREATER
             Enum.GetValues<ElementType>();
-        #else
+            #else
             (ElementType[]) Enum.GetValues(typeof(ElementType));
         #endif
 
@@ -145,9 +145,15 @@ namespace MLEM.Ui.Parsers {
                 throw new NullReferenceException("A UI parser requires a GraphicsDevice for parsing images");
 
             TextureRegion image = null;
-            LoadImageAsync();
             return new Image(Anchor.AutoLeft, new Vector2(1, -1), _ => image) {
-                OnDisposed = e => image?.Texture.Dispose()
+                OnAddedToUi = e => {
+                    if (image == null)
+                        LoadImageAsync();
+                },
+                OnRemovedFromUi = e => {
+                    image?.Texture.Dispose();
+                    image = null;
+                }
             };
 
             async void LoadImageAsync() {

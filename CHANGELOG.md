@@ -68,6 +68,10 @@ Fixes
 - Fixed an exception when trying to force-update the area of an element without a ui system
 - Fixed the scroll bar of an empty panel being positioned incorrectly
 - Fixed UiControls maintaining old input states when input types are toggled off
+- Fixed an occasional deadlock when a game is disposed with a scrolling Panel present
+
+Removals
+- Marked Element.OnDisposed as obsolete in favor of the more predictable OnRemovedFromUi
 
 ### MLEM.Data
 Additions

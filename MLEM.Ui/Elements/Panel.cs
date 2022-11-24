@@ -70,6 +70,13 @@ namespace MLEM.Ui.Elements {
             this.scrollOverflow = scrollOverflow;
             this.CanBeSelected = false;
 
+            // we dispose our render target when removing so that it doesn't cause a memory leak
+            // if we're added back afterwards, it'll be recreated in ScrollSetup anyway
+            this.OnRemovedFromUi += _ => {
+                this.renderTarget?.Dispose();
+                this.renderTarget = null;
+            };
+
             if (scrollOverflow) {
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
@@ -177,15 +184,6 @@ namespace MLEM.Ui.Elements {
             return base.GetElementUnderPos(position);
         }
 
-        /// <inheritdoc />
-        public override void Dispose() {
-            if (this.renderTarget != null) {
-                this.renderTarget.Dispose();
-                this.renderTarget = null;
-            }
-            base.Dispose();
-        }
-
         /// <summary>
         /// Scrolls this panel's <see cref="ScrollBar"/> to the given <see cref="Element"/> in such a way that its center is positioned in the center of this panel.
         /// </summary>
@@ -274,11 +272,13 @@ namespace MLEM.Ui.Elements {
 
             // update the render target
             var targetArea = (Rectangle) this.GetRenderTargetArea();
-            if (targetArea.Width <= 0 || targetArea.Height <= 0)
+            if (targetArea.Width <= 0 || targetArea.Height <= 0) {
+                this.renderTarget?.Dispose();
+                this.renderTarget = null;
                 return;
+            }
             if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
-                if (this.renderTarget != null)
-                    this.renderTarget.Dispose();
+                this.renderTarget?.Dispose();
                 this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height);
                 this.relevantChildrenDirty = true;
             }

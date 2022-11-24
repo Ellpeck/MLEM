@@ -411,7 +411,6 @@ namespace MLEM.Graphics {
             this.indices?.Dispose();
             foreach (var buffer in this.vertexBuffers)
                 buffer.Dispose();
-            GC.SuppressFinalize(this);
         }
 
         private Item Add(Texture2D texture, Vector2 pos, Vector2 offset, Vector2 size, float sin, float cos, Color color, Vector2 texTl, Vector2 texBr, float depth) {
