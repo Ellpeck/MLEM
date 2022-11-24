@@ -345,10 +345,7 @@ namespace MLEM.Ui {
             var root = new RootElement(name, element, this);
             this.rootElements.Add(root);
             root.Element.AndChildren(e => {
-                e.Root = root;
-                e.System = this;
-                e.OnAddedToUi?.Invoke(e);
-                root.InvokeOnElementAdded(e);
+                e.AddedToUi(this, root);
                 e.SetAreaDirty();
             });
             this.OnRootAdded?.Invoke(root);
@@ -368,10 +365,7 @@ namespace MLEM.Ui {
             this.rootElements.Remove(root);
             this.Controls.SelectElement(root, null);
             root.Element.AndChildren(e => {
-                e.Root = null;
-                e.System = null;
-                e.OnRemovedFromUi?.Invoke(e);
-                root.InvokeOnElementRemoved(e);
+                e.RemovedFromUi();
                 e.SetAreaDirty();
             });
             this.OnRootRemoved?.Invoke(root);

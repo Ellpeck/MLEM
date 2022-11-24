@@ -70,13 +70,6 @@ namespace MLEM.Ui.Elements {
             this.scrollOverflow = scrollOverflow;
             this.CanBeSelected = false;
 
-            // we dispose our render target when removing so that it doesn't cause a memory leak
-            // if we're added back afterwards, it'll be recreated in ScrollSetup anyway
-            this.OnRemovedFromUi += _ => {
-                this.renderTarget?.Dispose();
-                this.renderTarget = null;
-            };
-
             if (scrollOverflow) {
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
@@ -232,6 +225,15 @@ namespace MLEM.Ui.Elements {
             // to be auto-anchored and so will automatically propagate their changes up to us
             if (grandchild)
                 this.ScrollChildren();
+        }
+
+        /// <inheritdoc />
+        protected internal override void RemovedFromUi() {
+            base.RemovedFromUi();
+            // we dispose our render target when removing so that it doesn't cause a memory leak
+            // if we're added back afterwards, it'll be recreated in ScrollSetup anyway
+            this.renderTarget?.Dispose();
+            this.renderTarget = null;
         }
 
         /// <summary>

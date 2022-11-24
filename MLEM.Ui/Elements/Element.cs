@@ -31,7 +31,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public UiSystem System {
             get => this.system;
-            internal set {
+            private set {
                 this.system = value;
                 this.Controls = value?.Controls;
                 this.Style = this.Style.OrStyle(value?.Style);
@@ -50,7 +50,7 @@ namespace MLEM.Ui.Elements {
         /// This element's <see cref="RootElement"/>.
         /// Note that this value is set even if this element has a <see cref="Parent"/>. To get the element that represents the root element, use <see cref="RootElement.Element"/>.
         /// </summary>
-        public RootElement Root { get; internal set; }
+        public RootElement Root { get; private set; }
         /// <summary>
         /// The scale that this ui element renders with
         /// </summary>
@@ -481,8 +481,8 @@ namespace MLEM.Ui.Elements {
             this.size = size;
 
             this.Children = new ReadOnlyCollection<Element>(this.children);
-            this.GetTabNextElement += (backward, next) => next;
-            this.GetGamepadNextElement += (dir, next) => next;
+            this.GetTabNextElement = (backward, next) => next;
+            this.GetGamepadNextElement = (dir, next) => next;
 
             this.SetAreaDirty();
             this.SetSortedChildrenDirty();
@@ -506,12 +506,7 @@ namespace MLEM.Ui.Elements {
                 index = this.children.Count;
             this.children.Insert(index, element);
             element.Parent = this;
-            element.AndChildren(e => {
-                e.Root = this.Root;
-                e.System = this.System;
-                e.OnAddedToUi?.Invoke(e);
-                this.Root?.InvokeOnElementAdded(e);
-            });
+            element.AndChildren(e => e.AddedToUi(this.System, this.Root));
             this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
             element.SetAreaDirty();
@@ -530,12 +525,7 @@ namespace MLEM.Ui.Elements {
             // upwards to us if the element is auto-positioned
             element.SetAreaDirty();
             element.Parent = null;
-            element.AndChildren(e => {
-                e.Root = null;
-                e.System = null;
-                e.OnRemovedFromUi?.Invoke(e);
-                this.Root?.InvokeOnElementRemoved(e);
-            });
+            element.AndChildren(e => e.RemovedFromUi());
             this.OnChildRemoved?.Invoke(this, element);
             this.SetSortedChildrenDirty();
         }
@@ -1188,6 +1178,31 @@ namespace MLEM.Ui.Elements {
             foreach (var parent in this.GetParentTree().Reverse())
                 position = parent.TransformInverse(position);
             return this.TransformInverse(position);
+        }
+
+        /// <summary>
+        /// Called when this element is added to a <see cref="UiSystem"/> and, optionally, a given <see cref="RootElement"/>.
+        /// This method is called in <see cref="AddChild{T}"/> and <see cref="UiSystem.Add"/>.
+        /// </summary>
+        /// <param name="system">The ui system to add to.</param>
+        /// <param name="root">The root element to add to.</param>
+        protected internal virtual void AddedToUi(UiSystem system, RootElement root) {
+            this.Root = root;
+            this.System = system;
+            this.OnAddedToUi?.Invoke(this);
+            root?.InvokeOnElementAdded(this);
+        }
+
+        /// <summary>
+        /// Called when this element is removed from a <see cref="UiSystem"/> and <see cref="RootElement"/>.
+        /// This method is called in <see cref="RemoveChild"/> and <see cref="UiSystem.Remove"/>.
+        /// </summary>
+        protected internal virtual void RemovedFromUi() {
+            var root = this.Root;
+            this.Root = null;
+            this.System = null;
+            this.OnRemovedFromUi?.Invoke(this);
+            root?.InvokeOnElementRemoved(this);
         }
 
         /// <summary>
