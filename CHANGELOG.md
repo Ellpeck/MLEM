@@ -88,6 +88,7 @@ Improvements
 - Added trimming and AOT annotations and made MLEM.Data trimmable
 - Store a RuntimeTexturePacker packed texture region's source region
 - Use JSON.NET attributes in favor of DataContract and DataMember
+- Made JsonTypeSafeWrapper.Of generic to potentially avoid reflective instantiation
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names

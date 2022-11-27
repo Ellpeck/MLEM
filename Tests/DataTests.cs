@@ -40,9 +40,15 @@ public class DataTests {
         var safeData = new JsonTypeSafeGenericDataHolder();
         // data holder should wrap the time span to ensure that it stays a time span
         safeData.SetData("Time", TimeSpan.FromMinutes(5));
+        // also check path that creates an instance through reflection
+        safeData.SetData<object>("Time2", TimeSpan.FromMinutes(15));
+
         var safeRead = DataTests.SerializeAndDeserialize(safeData);
         Assert.IsInstanceOf<TimeSpan>(safeRead.GetData<object>("Time"));
-        Assert.DoesNotThrow(() => safeRead.GetData<TimeSpan>("Time"));
+        Assert.AreEqual(TimeSpan.FromMinutes(5), safeRead.GetData<TimeSpan>("Time"));
+
+        Assert.IsInstanceOf<TimeSpan>(safeRead.GetData<object>("Time2"));
+        Assert.AreEqual(TimeSpan.FromMinutes(15), safeRead.GetData<TimeSpan>("Time2"));
     }
 
     private static T SerializeAndDeserialize<T>(T t) {

@@ -29,17 +29,21 @@ namespace MLEM.Data.Json {
 
         /// <summary>
         /// Creates a new <see cref="JsonTypeSafeWrapper{T}"/> from the given value.
-        /// The type parameter of the returned wrapper will be equal to the <see cref="Type"/> of the <paramref name="value"/> passed.
-        /// If a <see cref="JsonTypeSafeWrapper{T}"/> for a specific type, known at comepile type, should be created, you can use <see cref="JsonTypeSafeWrapper{T}(T)"/>.
+        /// The type parameter of the returned wrapper will be equal to the <see cref="Type"/> of the <paramref name="value"/> passed, even if it is a subtype of <typeparamref name="T"/>.
+        /// If a <see cref="JsonTypeSafeWrapper{T}"/> for a specific type, known at compile type, should be created, you can use <see cref="JsonTypeSafeWrapper{T}(T)"/>.
         /// </summary>
         /// <param name="value">The value to wrap</param>
         /// <returns>A <see cref="JsonTypeSafeWrapper{T}"/> with a type matching the type of <paramref name="value"/></returns>
         #if NET7_0_OR_GREATER
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("The native code for this instantiation might not be available at runtime if the value's type is a subtype of T.")]
         #endif
-        public static JsonTypeSafeWrapper Of(object value) {
-            var type = typeof(JsonTypeSafeWrapper<>).MakeGenericType(value.GetType());
-            return (JsonTypeSafeWrapper) Activator.CreateInstance(type, value);
+        public static JsonTypeSafeWrapper Of<T>(T value) {
+            if (value.GetType() == typeof(T)) {
+                return new JsonTypeSafeWrapper<T>(value);
+            } else {
+                var type = typeof(JsonTypeSafeWrapper<>).MakeGenericType(value.GetType());
+                return (JsonTypeSafeWrapper) Activator.CreateInstance(type, value);
+            }
         }
 
     }
@@ -55,7 +59,7 @@ namespace MLEM.Data.Json {
 
         /// <summary>
         /// Creates a new json type-safe wrapper instance that wraps the given <paramref name="value"/>.
-        /// If the type of the value is unknown at compile time, <see cref="JsonTypeSafeWrapper.Of"/> can be used instead.
+        /// If the type of the value is unknown at compile time, <see cref="JsonTypeSafeWrapper.Of{T}"/> can be used instead.
         /// </summary>
         /// <param name="value">The value to wrap</param>
         public JsonTypeSafeWrapper(T value) {

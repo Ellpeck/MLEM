@@ -33,8 +33,7 @@ namespace MLEM.Data.Json {
             } else {
                 if (this.data == null)
                     this.data = new Dictionary<string, JsonTypeSafeWrapper>();
-                // if types already match exactly, we don't need to use Of (which requires dynamic code)
-                this.data[key] = data.GetType() == typeof(T) ? new JsonTypeSafeWrapper<T>(data) : JsonTypeSafeWrapper.Of(data);
+                this.data[key] = JsonTypeSafeWrapper.Of(data);
             }
         }
 
