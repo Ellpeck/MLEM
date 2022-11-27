@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MLEM.Misc;
 using Newtonsoft.Json;
 
@@ -19,14 +20,21 @@ namespace MLEM.Data.Json {
         private Dictionary<string, JsonTypeSafeWrapper> data;
 
         /// <inheritdoc />
+        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
         public void SetData(string key, object data) {
-            if (data == default) {
+            this.SetData<object>(key, data);
+        }
+
+        /// <inheritdoc />
+        public void SetData<T>(string key, T data) {
+            if (EqualityComparer<T>.Default.Equals(data, default)) {
                 if (this.data != null)
                     this.data.Remove(key);
             } else {
                 if (this.data == null)
                     this.data = new Dictionary<string, JsonTypeSafeWrapper>();
-                this.data[key] = data as JsonTypeSafeWrapper ?? JsonTypeSafeWrapper.Of(data);
+                // if types already match exactly, we don't need to use Of (which requires dynamic code)
+                this.data[key] = data.GetType() == typeof(T) ? new JsonTypeSafeWrapper<T>(data) : JsonTypeSafeWrapper.Of(data);
             }
         }
 

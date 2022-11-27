@@ -30,6 +30,7 @@ Improvements
 - Allow specifying percentage-based padding for a NinePatch
 - Improved the way InputHandler down time calculation works
 - Allow explicitly specifying each region for extended auto tiles
+- Added a generic version of IGenericDataHolder.SetData
 - **Drastically improved StaticSpriteBatch batching performance**
 - **Made GenericFont and TokenizedString support UTF-32 characters like emoji**
 
@@ -87,7 +88,6 @@ Improvements
 - Added trimming and AOT annotations and made MLEM.Data trimmable
 - Store a RuntimeTexturePacker packed texture region's source region
 - Use JSON.NET attributes in favor of DataContract and DataMember
-- Allow adding JsonTypeSafeWrapper instances to JsonTypeSafeGenericDataHolder directly
 
 Fixes
 - Fixed data texture atlases not allowing most characters in their region names

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MLEM.Misc {
@@ -12,8 +13,14 @@ namespace MLEM.Misc {
         private Dictionary<string, object> data;
 
         /// <inheritdoc />
+        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
         public void SetData(string key, object data) {
-            if (data == default) {
+            this.SetData<object>(key, data);
+        }
+
+        /// <inheritdoc />
+        public void SetData<T>(string key, T data) {
+            if (EqualityComparer<T>.Default.Equals(data, default)) {
                 if (this.data != null)
                     this.data.Remove(key);
             } else {
@@ -50,7 +57,15 @@ namespace MLEM.Misc {
         /// </summary>
         /// <param name="key">The key to store the data by</param>
         /// <param name="data">The data to store in the object</param>
+        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
         void SetData(string key, object data);
+
+        /// <summary>
+        /// Store a piece of generic data on this object.
+        /// </summary>
+        /// <param name="key">The key to store the data by</param>
+        /// <param name="data">The data to store in the object</param>
+        void SetData<T>(string key, T data);
 
         /// <summary>
         /// Returns a piece of generic data of the given type on this object.
