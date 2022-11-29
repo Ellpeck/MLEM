@@ -101,7 +101,7 @@ namespace MLEM.Misc {
         /// <param name="maxValue">The (exclusive) maximum value.</param>
         /// <param name="seed">The seed to use.</param>
         /// <returns>The generated number.</returns>
-        public static float Single(int maxValue, int seed) {
+        public static float Single(float maxValue, int seed) {
             return maxValue * SingleRandom.Single(seed);
         }
 
@@ -112,7 +112,7 @@ namespace MLEM.Misc {
         /// <param name="maxValue">The (exclusive) maximum value.</param>
         /// <param name="seeds">The seeds to use.</param>
         /// <returns>The generated number.</returns>
-        public static float Single(int maxValue, params int[] seeds) {
+        public static float Single(float maxValue, params int[] seeds) {
             return maxValue * SingleRandom.Single(seeds);
         }
 
@@ -124,7 +124,7 @@ namespace MLEM.Misc {
         /// <param name="maxValue">The (exclusive) maximum value.</param>
         /// <param name="seed">The seed to use.</param>
         /// <returns>The generated number.</returns>
-        public static float Single(int minValue, int maxValue, int seed) {
+        public static float Single(float minValue, float maxValue, int seed) {
             return (maxValue - minValue) * SingleRandom.Single(seed) + minValue;
         }
 
@@ -136,7 +136,7 @@ namespace MLEM.Misc {
         /// <param name="maxValue">The (exclusive) maximum value.</param>
         /// <param name="seeds">The seeds to use.</param>
         /// <returns>The generated number.</returns>
-        public static float Single(int minValue, int maxValue, params int[] seeds) {
+        public static float Single(float minValue, float maxValue, params int[] seeds) {
             return (maxValue - minValue) * SingleRandom.Single(seeds) + minValue;
         }
 
