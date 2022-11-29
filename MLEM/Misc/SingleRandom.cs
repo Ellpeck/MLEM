@@ -155,7 +155,7 @@ namespace MLEM.Misc {
             seed ^= (seed << 17);
             seed *= 928511849;
             seed ^= (seed << 12);
-            return seed;
+            return seed + 3;
         }
 
     }
