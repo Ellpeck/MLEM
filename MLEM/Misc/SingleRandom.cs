@@ -3,7 +3,7 @@
 namespace MLEM.Misc {
     /// <summary>
     /// The SingleRandom class allows generating single, one-off pseudorandom numbers based on a seed, or a set of seeds.
-    /// The types of numbers that can be generated are <see cref="int"/> and <see cref="float"/>, the former of which can be generated with specific minimum and maximum values.
+    /// The types of numbers that can be generated are <see cref="int"/> and <see cref="float"/>, both of which can be generated with specific minimum and maximum values if desired.
     /// Methods in this class are tested to be sufficiently "random", that is, to be sufficiently distributed throughout their range, as well as sufficiently different for neighboring seeds.
     /// </summary>
     public class SingleRandom {
@@ -92,6 +92,52 @@ namespace MLEM.Misc {
         /// <returns>The generated number.</returns>
         public static float Single(params int[] seeds) {
             return (SingleRandom.Scramble(seeds) / (float) int.MaxValue + 1) / 2;
+        }
+
+        /// <summary>
+        /// Generates a single, one-off pseudorandom floating point number between 0 and <paramref name="maxValue"/> based on a given <paramref name="seed"/>.
+        /// This method is guaranteed to return the same result for the same <paramref name="seed"/>.
+        /// </summary>
+        /// <param name="maxValue">The (exclusive) maximum value.</param>
+        /// <param name="seed">The seed to use.</param>
+        /// <returns>The generated number.</returns>
+        public static float Single(int maxValue, int seed) {
+            return maxValue * SingleRandom.Single(seed);
+        }
+
+        /// <summary>
+        /// Generates a single, one-off pseudorandom floating point number between 0 and <paramref name="maxValue"/> based on a given set of <paramref name="seeds"/>.
+        /// This method is guaranteed to return the same result for the same set of <paramref name="seeds"/>.
+        /// </summary>
+        /// <param name="maxValue">The (exclusive) maximum value.</param>
+        /// <param name="seeds">The seeds to use.</param>
+        /// <returns>The generated number.</returns>
+        public static float Single(int maxValue, params int[] seeds) {
+            return maxValue * SingleRandom.Single(seeds);
+        }
+
+        /// <summary>
+        /// Generates a single, one-off pseudorandom floating point number between <paramref name="minValue"/> and <paramref name="maxValue"/> based on a given <paramref name="seed"/>.
+        /// This method is guaranteed to return the same result for the same <paramref name="seed"/>.
+        /// </summary>
+        /// <param name="minValue">The (inclusive) minimum value.</param>
+        /// <param name="maxValue">The (exclusive) maximum value.</param>
+        /// <param name="seed">The seed to use.</param>
+        /// <returns>The generated number.</returns>
+        public static float Single(int minValue, int maxValue, int seed) {
+            return (maxValue - minValue) * SingleRandom.Single(seed) + minValue;
+        }
+
+        /// <summary>
+        /// Generates a single, one-off pseudorandom floating point number between <paramref name="minValue"/> and <paramref name="maxValue"/> based on a given set of <paramref name="seeds"/>.
+        /// This method is guaranteed to return the same result for the same set of <paramref name="seeds"/>.
+        /// </summary>
+        /// <param name="minValue">The (inclusive) minimum value.</param>
+        /// <param name="maxValue">The (exclusive) maximum value.</param>
+        /// <param name="seeds">The seeds to use.</param>
+        /// <returns>The generated number.</returns>
+        public static float Single(int minValue, int maxValue, params int[] seeds) {
+            return (maxValue - minValue) * SingleRandom.Single(seeds) + minValue;
         }
 
         private static int Scramble(int[] seeds) {
