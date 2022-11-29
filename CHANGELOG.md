@@ -18,6 +18,7 @@ Additions
 - Added GetDownTime, GetUpTime, GetTimeSincePress, WasModifierDown and WasDown to Keybind and Combination
 - Added the ability for UniformTextureAtlases to have padding for each region
 - Added UniformTextureAtlas methods ToList and ToDictionary
+- Added the SingleRandom utility class
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
