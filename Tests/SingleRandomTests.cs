@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using MLEM.Misc;
 using NUnit.Framework;
@@ -10,8 +12,10 @@ public class SingleRandomTests {
     [Test]
     public void TestEquality() {
         for (var i = 0; i < 1000000; i++) {
-            Assert.AreEqual(SingleRandom.Single(i), SingleRandom.Single(new[] {i}));
-            Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(new[] {i}));
+            Assert.AreEqual(SingleRandom.Single(i), SingleRandom.Single(new SeedSource().Add(i)));
+            Assert.AreEqual(SingleRandom.Single(i), SingleRandom.Single(new SeedSource(i)));
+            Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(new SeedSource().Add(i)));
+            Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(new SeedSource(i)));
 
             // test if all methods that accept mins and max are identical
             Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(int.MaxValue, i));
@@ -44,6 +48,17 @@ public class SingleRandomTests {
         }
         Assert.AreEqual(0.5, ints.Average() / int.MaxValue, 0.001);
         Assert.AreEqual(0.5, flts.Average(), 0.001);
+    }
+
+    [Test]
+    public void TestExpectedValues() {
+        var distributed = File.ReadAllLines("Content/DistributedSingleRandoms.txt");
+        for (var i = 0; i < 10000; i++)
+            Assert.AreEqual(SingleRandom.Single(i * 10000).ToString(CultureInfo.InvariantCulture), distributed[i]);
+
+        var consecutive = File.ReadAllLines("Content/ConsecutiveSingleRandoms.txt");
+        for (var i = 0; i < 10000; i++)
+            Assert.AreEqual(SingleRandom.Single(i).ToString(CultureInfo.InvariantCulture), consecutive[i]);
     }
 
 }
