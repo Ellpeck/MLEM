@@ -181,13 +181,7 @@ namespace MLEM.Misc {
         /// <param name="seed">The seed to add.</param>
         /// <returns>A new seed source with the seed added.</returns>
         public SeedSource Add(int seed) {
-            seed ^= seed << 7;
-            seed *= 207398809;
-            seed ^= seed << 17;
-            seed *= 928511849;
-            seed ^= seed << 12;
-            seed += 3;
-            return new SeedSource(new int?(this.Get() + seed));
+            return new SeedSource(new int?(SeedSource.Scramble(this.Get()) + SeedSource.Scramble(seed)));
         }
 
         /// <summary>
@@ -227,6 +221,15 @@ namespace MLEM.Misc {
         /// <returns>A new <see cref="Random"/> using this seed source's value.</returns>
         public Random Random() {
             return new Random(this.Get());
+        }
+
+        private static int Scramble(int x) {
+            x += 84317;
+            x ^= x << 7;
+            x *= 207398809;
+            x ^= x << 17;
+            x *= 928511849;
+            return x;
         }
 
     }
