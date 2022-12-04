@@ -79,7 +79,7 @@
         /// <param name="seed">The seed to use.</param>
         /// <returns>The generated number.</returns>
         public static float Single(int seed) {
-            return (new SeedSource(seed).Get() / (float) int.MaxValue + 1) / 2;
+            return (new SeedSource().Add(seed).Get() / (float) int.MaxValue + 1) / 2;
         }
 
         /// <summary>

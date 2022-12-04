@@ -12,23 +12,6 @@ namespace MLEM.Misc {
 
         private readonly int? value;
 
-        /// <summary>
-        /// Creates a new seed source from the given seed, which will be added automatically using <see cref="Add(int)"/>.
-        /// </summary>
-        /// <param name="seed">The initial seed to use.</param>
-        public SeedSource(int seed) : this() {
-            this = this.Add(seed);
-        }
-
-        /// <summary>
-        /// Creates a new seed source from the given set of seeds, which will be added automatically using <see cref="Add(int)"/>.
-        /// </summary>
-        /// <param name="seeds">The initial seeds to use.</param>
-        public SeedSource(params int[] seeds) : this() {
-            foreach (var seed in seeds)
-                this = this.Add(seed);
-        }
-
         private SeedSource(int? value) {
             this.value = value;
         }
@@ -40,7 +23,7 @@ namespace MLEM.Misc {
         /// <param name="seed">The seed to add.</param>
         /// <returns>A new seed source with the seed added.</returns>
         public SeedSource Add(int seed) {
-            return new SeedSource(new int?(SeedSource.Scramble(this.Get()) + SeedSource.Scramble(seed)));
+            return new SeedSource(SeedSource.Scramble(this.Get()) + SeedSource.Scramble(seed));
         }
 
         /// <summary>
@@ -67,12 +50,35 @@ namespace MLEM.Misc {
         }
 
         /// <summary>
+        /// Adds the given seed to this seed source's value and returns the result as a new seed source.
+        /// Guids are scrambled by invoking <see cref="Add(int)"/> using every byte in the <see cref="Guid"/>'s byte array.
+        /// </summary>
+        /// <param name="seed">The seed to add.</param>
+        /// <returns>A new seed source with the seed added.</returns>
+        public SeedSource Add(Guid seed) {
+            var ret = this;
+            foreach (var b in seed.ToByteArray())
+                ret = ret.Add(b);
+            return ret;
+        }
+
+        /// <summary>
+        /// Adds the given seed to this seed source's value and returns the result as a new seed source.
+        /// Any objects that don't have a specially defined <see cref="Add(int)"/> overload get scrambled using <see cref="object.GetHashCode"/>.
+        /// </summary>
+        /// <param name="seed">The seed to add.</param>
+        /// <returns>A new seed source with the seed added.</returns>
+        public SeedSource Add(object seed) {
+            return this.Add(seed?.GetHashCode() ?? 0);
+        }
+
+        /// <summary>
         /// Returns a new seed source whose value is this seed source's value, but scrambled further.
         /// In essence, this creates a new seed source whose value is determined by the current seed source.
         /// </summary>
         /// <returns>A new seed source with a rotated value.</returns>
         public SeedSource Rotate() {
-            return new SeedSource(new int?(SeedSource.Scramble(this.Get())));
+            return new SeedSource(SeedSource.Scramble(this.Get()));
         }
 
         /// <summary>

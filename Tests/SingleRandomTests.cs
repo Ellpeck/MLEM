@@ -13,9 +13,7 @@ public class SingleRandomTests {
     public void TestEquality() {
         for (var i = 0; i < 1000000; i++) {
             Assert.AreEqual(SingleRandom.Single(i), SingleRandom.Single(new SeedSource().Add(i)));
-            Assert.AreEqual(SingleRandom.Single(i), SingleRandom.Single(new SeedSource(i)));
             Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(new SeedSource().Add(i)));
-            Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(new SeedSource(i)));
 
             // test if all methods that accept mins and max are identical
             Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(int.MaxValue, i));
