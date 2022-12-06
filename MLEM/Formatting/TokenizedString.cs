@@ -167,19 +167,21 @@ namespace MLEM.Formatting {
 
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
+                    // only draw self at the start of the first line of the token!
+                    if (indexInToken == 0) {
+                        token.DrawSelf(time, batch, pos + innerOffset, drawFont, color, scale, depth);
+                        innerOffset.X += selfWidth * scale;
+                    }
+
                     var charIndex = 0;
                     var line = new CodePointSource(token.SplitDisplayString[l]);
                     while (charIndex < line.Length) {
                         var (codePoint, length) = line.GetCodePoint(charIndex);
                         var character = CodePointSource.ToString(codePoint);
 
-                        if (indexInToken == 0)
-                            token.DrawSelf(time, batch, pos + innerOffset, drawFont, color, scale, depth);
                         token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
 
                         innerOffset.X += drawFont.MeasureString(character).X * scale;
-                        if (indexInToken == 0)
-                            innerOffset.X += selfWidth * scale;
                         charIndex += length;
                         indexInToken++;
                     }
