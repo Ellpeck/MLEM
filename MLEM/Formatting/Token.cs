@@ -81,6 +81,19 @@ namespace MLEM.Formatting {
         }
 
         /// <summary>
+        /// Returns the width of the token itself, including all of the <see cref="Code"/> instances that this token contains.
+        /// Note that this method does not return the width of this token's <see cref="DisplayString"/>, but only the width that the codes themselves take up.
+        /// </summary>
+        /// <param name="font">The font to use for calculating the width.</param>
+        /// <returns>The width of this token itself.</returns>
+        public float GetSelfWidth(GenericFont font) {
+            var ret = 0F;
+            foreach (var code in this.AppliedCodes)
+                ret += code.GetSelfWidth(font);
+            return ret;
+        }
+
+        /// <summary>
         /// Draws the token itself, including all of the <see cref="Code"/> instances that this token contains.
         /// Note that, to draw the token's actual string, <see cref="DrawCharacter"/> is used.
         /// </summary>

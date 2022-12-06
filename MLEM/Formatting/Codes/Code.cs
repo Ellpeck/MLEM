@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -68,6 +69,11 @@ namespace MLEM.Formatting.Codes {
             return null;
         }
 
+        /// <inheritdoc cref="Token.GetSelfWidth"/>
+        public virtual float GetSelfWidth(GenericFont font) {
+            return 0;
+        }
+
         /// <summary>
         /// Update this formatting code's animations etc.
         /// </summary>
@@ -80,6 +86,7 @@ namespace MLEM.Formatting.Codes {
         /// </summary>
         /// <param name="font">The font that is used</param>
         /// <returns>The replacement string for this formatting code</returns>
+        [Obsolete("This method is deprecated. Use GetSelfWidth to add additional width to this code and DrawSelf or DrawCharacter to draw additional items.")]
         public virtual string GetReplacementString(GenericFont font) {
             return string.Empty;
         }

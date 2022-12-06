@@ -8,7 +8,7 @@ using MLEM.Formatting.Codes;
 using MLEM.Textures;
 using NUnit.Framework;
 
-namespace Tests; 
+namespace Tests;
 
 public class FontTests {
 
@@ -121,7 +121,7 @@ public class FontTests {
         const string strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book.";
         var ret = this.formatter.Tokenize(this.font, strg);
         Assert.AreEqual(ret.Tokens.Length, 13);
-        Assert.AreEqual(ret.DisplayString, "Lorem Ipsum \u2003 is simply dummy text of the \u2003 printing and typesetting \u2003 industry. Lorem Ipsum has been the industry's standard dummy text \u2003 ever since the \u2003 1500s, when \u2003\u2003\u2003\u2003\u2003\u2003\u2003 an unknown printer took a galley of type and scrambled it to make a type specimen book.");
+        Assert.AreEqual(ret.DisplayString, "Lorem Ipsum  is simply dummy text of the  printing and typesetting  industry. Lorem Ipsum has been the industry's standard dummy text  ever since the  1500s, when  an unknown printer took a galley of type and scrambled it to make a type specimen book.");
         Assert.AreEqual(ret.AllCodes.Length, 12);
     }
 
@@ -137,6 +137,8 @@ public class FontTests {
         CompareSizes("\nThis is a very simple test string");
         CompareSizes("This is a very simple test string\n");
         CompareSizes("This is a very simple test string\n\n\n\n\n");
+        CompareSizes("This    is a very    simple   test   string");
+        CompareSizes("This is a very    simple   \n   test string");
     }
 
     [Test]

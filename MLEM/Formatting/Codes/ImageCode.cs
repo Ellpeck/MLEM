@@ -26,8 +26,8 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override string GetReplacementString(GenericFont font) {
-            return GenericFont.Emsp.ToString();
+        public override float GetSelfWidth(GenericFont font) {
+            return font.LineHeight;
         }
 
         /// <inheritdoc />

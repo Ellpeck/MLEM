@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -63,7 +64,8 @@ namespace MLEM.Formatting {
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Split(GenericFont font, float width, float scale, TextAlignment alignment = TextAlignment.Left) {
             // a split string has the same character count as the input string but with newline characters added
-            this.modifiedString = string.Join("\n", font.SplitStringSeparate(new CodePointSource(this.String), width, scale, i => this.GetFontForIndex(font, i)));
+            this.modifiedString = string.Join("\n", font.SplitStringSeparate(new CodePointSource(this.String), width, scale,
+                i => this.GetFontForIndex(font, i), i => this.GetSelfWidthForIndex(font, i)));
             this.StoreModifiedSubstrings(font, alignment);
         }
 
@@ -78,7 +80,8 @@ namespace MLEM.Formatting {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Truncate(GenericFont font, float width, float scale, string ellipsis = "", TextAlignment alignment = TextAlignment.Left) {
-            this.modifiedString = font.TruncateString(new CodePointSource(this.String), width, scale, false, ellipsis, i => this.GetFontForIndex(font, i)).ToString();
+            this.modifiedString = font.TruncateString(new CodePointSource(this.String), width, scale, false, ellipsis,
+                i => this.GetFontForIndex(font, i), i => this.GetSelfWidthForIndex(font, i)).ToString();
             this.StoreModifiedSubstrings(font, alignment);
         }
 
@@ -102,7 +105,10 @@ namespace MLEM.Formatting {
                 token.InnerOffsets = new float[token.SplitDisplayString.Length - 1];
                 var area = new List<RectangleF>();
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
-                    var size = tokenFont.MeasureString(token.SplitDisplayString[l]);
+                    var size = tokenFont.MeasureString(token.SplitDisplayString[l], !this.EndsLater(t, l));
+                    if (l == 0)
+                        size.X += token.GetSelfWidth(tokenFont);
+
                     var rect = new RectangleF(innerOffset, size);
                     if (!rect.IsEmpty)
                         area.Add(rect);
@@ -120,7 +126,7 @@ namespace MLEM.Formatting {
 
         /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
         public Vector2 Measure(GenericFont font) {
-            return font.MeasureString(new CodePointSource(this.DisplayString), false, i => this.GetFontForIndex(font, i));
+            return font.MeasureString(new CodePointSource(this.DisplayString), false, i => this.GetFontForIndex(font, i), i => this.GetSelfWidthForIndex(font, i));
         }
 
         /// <summary>
@@ -156,6 +162,7 @@ namespace MLEM.Formatting {
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
                 var drawFont = token.GetFont(font);
+                var selfWidth = token.GetSelfWidth(drawFont);
                 var drawColor = token.GetColor(color);
 
                 var indexInToken = 0;
@@ -171,6 +178,8 @@ namespace MLEM.Formatting {
                         token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
 
                         innerOffset.X += drawFont.MeasureString(character).X * scale;
+                        if (indexInToken == 0)
+                            innerOffset.X += selfWidth * scale;
                         charIndex += length;
                         indexInToken++;
                     }
@@ -224,14 +233,15 @@ namespace MLEM.Formatting {
             if (alignment > TextAlignment.Left) {
                 var token = this.Tokens[tokenIndex];
                 var tokenFont = token.GetFont(defaultFont);
-                // if we're the last line in our line array, then we don't contain a line split, so the line ends in a later token
-                var endsLater = lineIndex >= token.SplitDisplayString.Length - 1 && tokenIndex < this.Tokens.Length - 1;
+                var tokenWidth = lineIndex <= 0 ? token.GetSelfWidth(tokenFont) : 0;
+                var endsLater = this.EndsLater(tokenIndex, lineIndex);
                 // if the line ends in our token, we should ignore trailing white space
-                var restOfLine = tokenFont.MeasureString(token.SplitDisplayString[lineIndex], !endsLater).X;
+                var restOfLine = tokenFont.MeasureString(token.SplitDisplayString[lineIndex], !endsLater).X + tokenWidth;
                 if (endsLater) {
                     for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
                         var other = this.Tokens[i];
-                        restOfLine += other.GetFont(defaultFont).MeasureString(other.SplitDisplayString[0], true).X;
+                        var otherWidth = other.GetSelfWidth(defaultFont);
+                        restOfLine += other.GetFont(defaultFont).MeasureString(other.SplitDisplayString[0], !this.EndsLater(i, 0)).X + otherWidth;
                         // if the token's split display string has multiple lines, then the line ends in it, which means we can stop
                         if (other.SplitDisplayString.Length > 1)
                             break;
@@ -251,6 +261,22 @@ namespace MLEM.Formatting {
                     return token.GetFont(font);
             }
             return null;
+        }
+
+        private float GetSelfWidthForIndex(GenericFont font, int index) {
+            foreach (var token in this.Tokens) {
+                if (index == token.Index)
+                    return token.GetSelfWidth(font);
+                // if we're already beyond this token, any later tokens definitely won't match
+                if (token.Index > index)
+                    break;
+            }
+            return 0;
+        }
+
+        private bool EndsLater(int tokenIndex, int lineIndex) {
+            // if we're the last line in our line array, then we don't contain a line split, so the line ends in a later token
+            return lineIndex >= this.Tokens[tokenIndex].SplitDisplayString.Length - 1 && tokenIndex < this.Tokens.Length - 1;
         }
 
     }

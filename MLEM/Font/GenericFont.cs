@@ -110,12 +110,12 @@ namespace MLEM.Font {
         /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
         /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
-            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces, null);
+            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces, null, null);
         }
 
         /// <inheritdoc cref="MeasureString(string,bool)"/>
         public Vector2 MeasureString(StringBuilder text, bool ignoreTrailingSpaces = false) {
-            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces, null);
+            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces, null, null);
         }
 
         /// <summary>
@@ -129,12 +129,12 @@ namespace MLEM.Font {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <returns>The truncated string, or the same string if it is shorter than the maximum width</returns>
         public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return this.TruncateString(new CodePointSource(text), width, scale, fromBack, ellipsis, null).ToString();
+            return this.TruncateString(new CodePointSource(text), width, scale, fromBack, ellipsis, null, null).ToString();
         }
 
         /// <inheritdoc cref="TruncateString(string,float,float,bool,string)"/>
         public StringBuilder TruncateString(StringBuilder text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return this.TruncateString(new CodePointSource(text), width, scale, fromBack, ellipsis, null);
+            return this.TruncateString(new CodePointSource(text), width, scale, fromBack, ellipsis, null, null);
         }
 
         /// <summary>
@@ -165,21 +165,22 @@ namespace MLEM.Font {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string as an enumerable of split sections</returns>
         public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
-            return this.SplitStringSeparate(new CodePointSource(text), width, scale, null);
+            return this.SplitStringSeparate(new CodePointSource(text), width, scale, null, null);
         }
 
         /// <inheritdoc cref="SplitStringSeparate(string,float,float)"/>
         public IEnumerable<string> SplitStringSeparate(StringBuilder text, float width, float scale) {
-            return this.SplitStringSeparate(new CodePointSource(text), width, scale, null);
+            return this.SplitStringSeparate(new CodePointSource(text), width, scale, null, null);
         }
 
-        internal Vector2 MeasureString(CodePointSource text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction) {
+        internal Vector2 MeasureString(CodePointSource text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction, Func<int, float> extraWidthFunction) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
                 return size;
             var xOffset = 0F;
             var index = 0;
             while (index < text.Length) {
+                xOffset += extraWidthFunction?.Invoke(index) ?? 0;
                 var font = fontFunction?.Invoke(index) ?? this;
                 var (codePoint, length) = text.GetCodePoint(index);
                 switch (codePoint) {
@@ -218,7 +219,7 @@ namespace MLEM.Font {
             return size;
         }
 
-        internal StringBuilder TruncateString(CodePointSource text, float width, float scale, bool fromBack, string ellipsis, Func<int, GenericFont> fontFunction) {
+        internal StringBuilder TruncateString(CodePointSource text, float width, float scale, bool fromBack, string ellipsis, Func<int, GenericFont> fontFunction, Func<int, float> extraWidthFunction) {
             var total = new StringBuilder();
             var index = 0;
             while (index < text.Length) {
@@ -230,7 +231,7 @@ namespace MLEM.Font {
                     total.Append(CodePointSource.ToString(codePoint));
                 }
 
-                if (this.MeasureString(new CodePointSource(total + ellipsis), false, fontFunction).X * scale >= width) {
+                if (this.MeasureString(new CodePointSource(total + ellipsis), false, fontFunction, extraWidthFunction).X * scale >= width) {
                     if (fromBack) {
                         return total.Remove(0, length).Insert(0, ellipsis);
                     } else {
@@ -242,7 +243,7 @@ namespace MLEM.Font {
             return total;
         }
 
-        internal IEnumerable<string> SplitStringSeparate(CodePointSource text, float width, float scale, Func<int, GenericFont> fontFunction) {
+        internal IEnumerable<string> SplitStringSeparate(CodePointSource text, float width, float scale, Func<int, GenericFont> fontFunction, Func<int, float> extraWidthFunction) {
             var currWidth = 0F;
             var lastSpaceIndex = -1;
             var widthSinceLastSpace = 0F;
@@ -259,7 +260,7 @@ namespace MLEM.Font {
                 } else {
                     var font = fontFunction?.Invoke(index) ?? this;
                     var character = CodePointSource.ToString(codePoint);
-                    var charWidth = font.MeasureString(character).X * scale;
+                    var charWidth = (font.MeasureString(character).X + (extraWidthFunction?.Invoke(index) ?? 0)) * scale;
                     if (codePoint == ' ' || codePoint == GenericFont.Emsp || codePoint == GenericFont.Zwsp) {
                         // remember the location of this (breaking!) space
                         lastSpaceIndex = curr.Length;
@@ -298,7 +299,7 @@ namespace MLEM.Font {
             var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
             var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
             if (flippedV || flippedH) {
-                var size = this.MeasureString(text, false, null);
+                var size = this.MeasureString(text, false, null, null);
                 if (flippedH) {
                     origin.X *= -1;
                     flipX = -size.X;

@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
@@ -23,6 +25,7 @@ namespace Demos {
         private TextFormatter formatter;
         private TokenizedString tokenizedText;
         private GenericFont font;
+        private bool drawBounds;
 
         public TextFormattingDemo(MlemGame game) : base(game) {}
 
@@ -56,6 +59,16 @@ namespace Demos {
             // since the text is already center-aligned, we only need to align it on the y axis here
             var size = this.tokenizedText.Measure(this.font) * TextFormattingDemo.Scale;
             var pos = new Vector2(this.GraphicsDevice.Viewport.Width / 2, (this.GraphicsDevice.Viewport.Height - size.Y) / 2);
+
+            // draw bounds, which can be toggled with B in this demo
+            if (this.drawBounds) {
+                foreach (var token in this.tokenizedText.Tokens) {
+                    foreach (var area in token.GetArea(pos, TextFormattingDemo.Scale))
+                        this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), area, Color.Black * 0.25F);
+                }
+            }
+
+            // draw the text itself
             this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, TextFormattingDemo.Scale, 0);
 
             this.SpriteBatch.End();
@@ -64,6 +77,8 @@ namespace Demos {
         public override void Update(GameTime time) {
             // update our tokenized string to animate the animation codes
             this.tokenizedText.Update(time);
+            if (this.InputHandler.IsPressed(Keys.B))
+                this.drawBounds = !this.drawBounds;
         }
 
         public override void Clear() {
