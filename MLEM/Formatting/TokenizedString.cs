@@ -162,17 +162,13 @@ namespace MLEM.Formatting {
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
                 var drawFont = token.GetFont(font);
-                var selfWidth = token.GetSelfWidth(drawFont);
                 var drawColor = token.GetColor(color);
+
+                token.DrawSelf(time, batch, pos + innerOffset, drawFont, drawColor, scale, depth);
+                innerOffset.X += token.GetSelfWidth(drawFont) * scale;
 
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
-                    // only draw self at the start of the first line of the token!
-                    if (indexInToken == 0) {
-                        token.DrawSelf(time, batch, pos + innerOffset, drawFont, color, scale, depth);
-                        innerOffset.X += selfWidth * scale;
-                    }
-
                     var charIndex = 0;
                     var line = new CodePointSource(token.SplitDisplayString[l]);
                     while (charIndex < line.Length) {
@@ -242,8 +238,8 @@ namespace MLEM.Formatting {
                 if (endsLater) {
                     for (var i = tokenIndex + 1; i < this.Tokens.Length; i++) {
                         var other = this.Tokens[i];
-                        var otherWidth = other.GetSelfWidth(defaultFont);
-                        restOfLine += other.GetFont(defaultFont).MeasureString(other.SplitDisplayString[0], !this.EndsLater(i, 0)).X + otherWidth;
+                        var otherFont = other.GetFont(defaultFont);
+                        restOfLine += otherFont.MeasureString(other.SplitDisplayString[0], !this.EndsLater(i, 0)).X + other.GetSelfWidth(otherFont);
                         // if the token's split display string has multiple lines, then the line ends in it, which means we can stop
                         if (other.SplitDisplayString.Length > 1)
                             break;
@@ -268,7 +264,7 @@ namespace MLEM.Formatting {
         private float GetSelfWidthForIndex(GenericFont font, int index) {
             foreach (var token in this.Tokens) {
                 if (index == token.Index)
-                    return token.GetSelfWidth(font);
+                    return token.GetSelfWidth(token.GetFont(font));
                 // if we're already beyond this token, any later tokens definitely won't match
                 if (token.Index > index)
                     break;
