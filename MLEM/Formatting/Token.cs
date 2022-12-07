@@ -134,7 +134,6 @@ namespace MLEM.Formatting {
 
         /// <summary>
         /// Gets a list of rectangles that encompass this token's area.
-        /// Note that more than one rectangle is only returned if the string has been split.
         /// This can be used to invoke events when the mouse is hovered over the token, for example.
         /// </summary>
         /// <param name="stringPos">The position that the string is drawn at</param>

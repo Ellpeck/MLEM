@@ -19,6 +19,7 @@ Additions
 - Added the ability for UniformTextureAtlases to have padding for each region
 - Added UniformTextureAtlas methods ToList and ToDictionary
 - Added SingleRandom and SeedSource
+- Added TokenizedString.GetArea
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
@@ -46,6 +47,7 @@ Removals
 - Removed DataContract attribute from GenericDataHolder
 - Marked EnumHelper as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
 - Marked Code.GetReplacementString as obsolete
+- Marked TokenizedString.Measure as obsolete in favor of GetArea
 
 ### MLEM.Ui
 Additions

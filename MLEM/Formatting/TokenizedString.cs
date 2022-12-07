@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
 using MLEM.Misc;
@@ -39,6 +40,7 @@ namespace MLEM.Formatting {
         public readonly Code[] AllCodes;
         private string modifiedString;
         private float initialInnerOffset;
+        private RectangleF area;
 
         internal TokenizedString(GenericFont font, TextAlignment alignment, string rawString, string strg, Token[] tokens) {
             this.RawString = rawString;
@@ -63,10 +65,16 @@ namespace MLEM.Formatting {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Split(GenericFont font, float width, float scale, TextAlignment alignment = TextAlignment.Left) {
-            // a split string has the same character count as the input string but with newline characters added
-            this.modifiedString = string.Join("\n", font.SplitStringSeparate(new CodePointSource(this.String), width, scale,
-                i => this.GetFontForIndex(font, i), i => this.GetSelfWidthForIndex(font, i)));
-            this.StoreModifiedSubstrings(font, alignment);
+            var index = 0;
+            var modified = new StringBuilder();
+            foreach (var part in GenericFont.SplitStringSeparate(this.AsDecoratedSources(font), width, scale)) {
+                var joined = string.Join("\n", part);
+                this.Tokens[index].ModifiedSubstring = joined;
+                modified.Append(joined);
+                index++;
+            }
+            this.modifiedString = modified.ToString();
+            this.Realign(font, alignment);
         }
 
         /// <summary>
@@ -80,9 +88,15 @@ namespace MLEM.Formatting {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <param name="alignment">The text alignment that should be used for width calculations</param>
         public void Truncate(GenericFont font, float width, float scale, string ellipsis = "", TextAlignment alignment = TextAlignment.Left) {
-            this.modifiedString = font.TruncateString(new CodePointSource(this.String), width, scale, false, ellipsis,
-                i => this.GetFontForIndex(font, i), i => this.GetSelfWidthForIndex(font, i)).ToString();
-            this.StoreModifiedSubstrings(font, alignment);
+            var index = 0;
+            var modified = new StringBuilder();
+            foreach (var part in GenericFont.TruncateString(this.AsDecoratedSources(font), width, scale, false, ellipsis)) {
+                this.Tokens[index].ModifiedSubstring = part.ToString();
+                modified.Append(part);
+                index++;
+            }
+            this.modifiedString = modified.ToString();
+            this.Realign(font, alignment);
         }
 
         /// <summary>
@@ -97,36 +111,54 @@ namespace MLEM.Formatting {
                 token.SplitDisplayString = token.DisplayString.Split('\n');
 
             // token areas and inner offsets
+            this.area = RectangleF.Empty;
             this.initialInnerOffset = this.GetInnerOffsetX(font, 0, 0, alignment);
             var innerOffset = new Vector2(this.initialInnerOffset, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
                 var tokenFont = token.GetFont(font);
                 token.InnerOffsets = new float[token.SplitDisplayString.Length - 1];
-                var area = new List<RectangleF>();
+
+                var tokenArea = new List<RectangleF>();
+                var selfRect = new RectangleF(innerOffset, new Vector2(token.GetSelfWidth(tokenFont), tokenFont.LineHeight));
+                if (!selfRect.IsEmpty) {
+                    tokenArea.Add(selfRect);
+                    this.area = RectangleF.Union(this.area, selfRect);
+                    innerOffset.X += selfRect.Width;
+                }
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
                     var size = tokenFont.MeasureString(token.SplitDisplayString[l], !this.EndsLater(t, l));
-                    if (l == 0)
-                        size.X += token.GetSelfWidth(tokenFont);
-
                     var rect = new RectangleF(innerOffset, size);
-                    if (!rect.IsEmpty)
-                        area.Add(rect);
+                    if (!rect.IsEmpty) {
+                        tokenArea.Add(rect);
+                        this.area = RectangleF.Union(this.area, rect);
+                    }
 
                     if (l < token.SplitDisplayString.Length - 1) {
                         innerOffset.X = token.InnerOffsets[l] = this.GetInnerOffsetX(font, t, l + 1, alignment);
-                        innerOffset.Y += font.LineHeight;
+                        innerOffset.Y += tokenFont.LineHeight;
                     } else {
                         innerOffset.X += size.X;
                     }
                 }
-                token.Area = area.ToArray();
+                token.Area = tokenArea.ToArray();
             }
         }
 
         /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
+        [Obsolete("Measure is deprecated. Use GetArea, which returns the string's total size measurement, instead.")]
         public Vector2 Measure(GenericFont font) {
-            return font.MeasureString(new CodePointSource(this.DisplayString), false, i => this.GetFontForIndex(font, i), i => this.GetSelfWidthForIndex(font, i));
+            return this.GetArea(Vector2.Zero, 1).Size;
+        }
+
+        /// <summary>
+        /// Measures the area that this entire tokenized string and all of its <see cref="Tokens"/> take up and returns it as a <see cref="RectangleF"/>.
+        /// </summary>
+        /// <param name="stringPos">The position that this string is being rendered at, which will offset the resulting <see cref="RectangleF"/>.</param>
+        /// <param name="scale">The scale that this string is being rendered with, which will scale the resulting <see cref="RectangleF"/>.</param>
+        /// <returns>The area that this tokenized string takes up.</returns>
+        public RectangleF GetArea(Vector2 stringPos, float scale) {
+            return new RectangleF(stringPos + this.area.Location * scale, this.area.Size * scale);
         }
 
         /// <summary>
@@ -185,46 +217,10 @@ namespace MLEM.Formatting {
                     // only split at a new line, not between tokens!
                     if (l < token.SplitDisplayString.Length - 1) {
                         innerOffset.X = token.InnerOffsets[l] * scale;
-                        innerOffset.Y += font.LineHeight * scale;
+                        innerOffset.Y += drawFont.LineHeight * scale;
                     }
                 }
             }
-        }
-
-        private void StoreModifiedSubstrings(GenericFont font, TextAlignment alignment) {
-            if (this.Tokens.Length == 1) {
-                // skip substring logic for unformatted text
-                this.Tokens[0].ModifiedSubstring = this.modifiedString;
-            } else {
-                // this is basically a substring function that ignores added newlines for indexing
-                var index = 0;
-                var currToken = 0;
-                var splitIndex = 0;
-                var ret = new StringBuilder();
-                while (splitIndex < this.modifiedString.Length && currToken < this.Tokens.Length) {
-                    var token = this.Tokens[currToken];
-                    if (token.Substring.Length > 0) {
-                        ret.Append(this.modifiedString[splitIndex]);
-                        // if the current char is not an added newline, we simulate length increase
-                        if (this.modifiedString[splitIndex] != '\n' || this.String[index] == '\n')
-                            index++;
-                        splitIndex++;
-                    }
-                    // move on to the next token if we reached its end
-                    if (index >= token.Index + token.Substring.Length) {
-                        token.ModifiedSubstring = ret.ToString();
-                        ret.Clear();
-                        currToken++;
-                    }
-                }
-                // set additional token contents beyond our string in case we truncated
-                if (ret.Length > 0)
-                    this.Tokens[currToken++].ModifiedSubstring = ret.ToString();
-                while (currToken < this.Tokens.Length)
-                    this.Tokens[currToken++].ModifiedSubstring = string.Empty;
-            }
-
-            this.Realign(font, alignment);
         }
 
         private float GetInnerOffsetX(GenericFont defaultFont, int tokenIndex, int lineIndex, TextAlignment alignment) {
@@ -252,29 +248,16 @@ namespace MLEM.Formatting {
             return 0;
         }
 
-        private GenericFont GetFontForIndex(GenericFont font, int index) {
-            foreach (var token in this.Tokens) {
-                index -= token.Substring.Length;
-                if (index <= 0)
-                    return token.GetFont(font);
-            }
-            return null;
-        }
-
-        private float GetSelfWidthForIndex(GenericFont font, int index) {
-            foreach (var token in this.Tokens) {
-                if (index == token.Index)
-                    return token.GetSelfWidth(token.GetFont(font));
-                // if we're already beyond this token, any later tokens definitely won't match
-                if (token.Index > index)
-                    break;
-            }
-            return 0;
-        }
-
         private bool EndsLater(int tokenIndex, int lineIndex) {
             // if we're the last line in our line array, then we don't contain a line split, so the line ends in a later token
             return lineIndex >= this.Tokens[tokenIndex].SplitDisplayString.Length - 1 && tokenIndex < this.Tokens.Length - 1;
+        }
+
+        private IEnumerable<GenericFont.DecoratedCodePointSource> AsDecoratedSources(GenericFont font) {
+            return this.Tokens.Select(t => {
+                var tokenFont = t.GetFont(font);
+                return new GenericFont.DecoratedCodePointSource(new CodePointSource(t.Substring), tokenFont, t.GetSelfWidth(tokenFont));
+            });
         }
 
     }

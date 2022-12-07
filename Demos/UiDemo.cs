@@ -94,10 +94,17 @@ namespace Demos {
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "Paragraphs can also contain <c Blue>formatting codes</c>, including colors and <i>text styles</i>. For more info, check out the <b>text formatting demo</b>!"));
 
             this.root.AddChild(new VerticalSpace(3));
+            this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Text input:", true));
+            this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 10)) {
+                PositionOffset = new Vector2(0, 1),
+                PlaceholderText = "Click here to input text"
+            });
+
+            this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoCenter, 1, "Multiline text input:", true));
             this.root.AddChild(new TextField(Anchor.AutoLeft, new Vector2(1, 50), multiline: true) {
                 PositionOffset = new Vector2(0, 1),
-                PlaceholderText = "Click here to input text"
+                PlaceholderText = "Click here to input a lot"
             });
 
             this.root.AddChild(new VerticalSpace(3));
@@ -204,12 +211,24 @@ namespace Demos {
             dropdown.AddElement(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Buttons"));
 
             this.root.AddChild(new VerticalSpace(3));
-            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button", "This button can't be clicked or moved to using automatic navigation") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
-            this.root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Disabled checkbox") {IsDisabled = true}).PositionOffset = new Vector2(0, 1);
+            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled button", "This button can't be clicked or moved to using automatic navigation") {
+                IsDisabled = true,
+                PositionOffset = new Vector2(0, 1)
+            });
+            this.root.AddChild(new Checkbox(Anchor.AutoLeft, new Vector2(1, 10), "Disabled checkbox") {
+                IsDisabled = true,
+                PositionOffset = new Vector2(0, 1)
+            });
             this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Disabled tooltip button", "This button can't be clicked, but can be moved to using automatic navigation, and will display its tooltip even when done so.") {
                 CanSelectDisabled = true,
                 IsDisabled = true,
-                Tooltip = {DisplayInAutoNavMode = true},
+                PositionOffset = new Vector2(0, 1),
+                Tooltip = {
+                    DisplayInAutoNavMode = true
+                }
+            });
+            this.root.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Button with <b>far</b> too much text which will automatically be cut off, hi!") {
+                TruncateTextIfLong = true,
                 PositionOffset = new Vector2(0, 1)
             });
 

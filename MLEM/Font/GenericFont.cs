@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -110,12 +111,12 @@ namespace MLEM.Font {
         /// <param name="ignoreTrailingSpaces">Whether trailing whitespace should be ignored in the returned size, causing the end of each line to be effectively trimmed</param>
         /// <returns>The size of the string when drawn with this font</returns>
         public Vector2 MeasureString(string text, bool ignoreTrailingSpaces = false) {
-            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces, null, null);
+            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces);
         }
 
         /// <inheritdoc cref="MeasureString(string,bool)"/>
         public Vector2 MeasureString(StringBuilder text, bool ignoreTrailingSpaces = false) {
-            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces, null, null);
+            return this.MeasureString(new CodePointSource(text), ignoreTrailingSpaces);
         }
 
         /// <summary>
@@ -129,12 +130,12 @@ namespace MLEM.Font {
         /// <param name="ellipsis">The characters to add to the end of the string if it is too long</param>
         /// <returns>The truncated string, or the same string if it is shorter than the maximum width</returns>
         public string TruncateString(string text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return this.TruncateString(new CodePointSource(text), width, scale, fromBack, ellipsis, null, null).ToString();
+            return GenericFont.TruncateString(Enumerable.Repeat(new DecoratedCodePointSource(new CodePointSource(text), this, 0), 1), width, scale, fromBack, ellipsis).First().ToString();
         }
 
         /// <inheritdoc cref="TruncateString(string,float,float,bool,string)"/>
         public StringBuilder TruncateString(StringBuilder text, float width, float scale, bool fromBack = false, string ellipsis = "") {
-            return this.TruncateString(new CodePointSource(text), width, scale, fromBack, ellipsis, null, null);
+            return GenericFont.TruncateString(Enumerable.Repeat(new DecoratedCodePointSource(new CodePointSource(text), this, 0), 1), width, scale, fromBack, ellipsis).First();
         }
 
         /// <summary>
@@ -165,23 +166,21 @@ namespace MLEM.Font {
         /// <param name="scale">The scale to use for width measurements</param>
         /// <returns>The split string as an enumerable of split sections</returns>
         public IEnumerable<string> SplitStringSeparate(string text, float width, float scale) {
-            return this.SplitStringSeparate(new CodePointSource(text), width, scale, null, null);
+            return GenericFont.SplitStringSeparate(Enumerable.Repeat(new DecoratedCodePointSource(new CodePointSource(text), this, 0), 1), width, scale).First();
         }
 
         /// <inheritdoc cref="SplitStringSeparate(string,float,float)"/>
         public IEnumerable<string> SplitStringSeparate(StringBuilder text, float width, float scale) {
-            return this.SplitStringSeparate(new CodePointSource(text), width, scale, null, null);
+            return GenericFont.SplitStringSeparate(Enumerable.Repeat(new DecoratedCodePointSource(new CodePointSource(text), this, 0), 1), width, scale).First();
         }
 
-        internal Vector2 MeasureString(CodePointSource text, bool ignoreTrailingSpaces, Func<int, GenericFont> fontFunction, Func<int, float> extraWidthFunction) {
+        private Vector2 MeasureString(CodePointSource text, bool ignoreTrailingSpaces) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
                 return size;
             var xOffset = 0F;
             var index = 0;
             while (index < text.Length) {
-                xOffset += extraWidthFunction?.Invoke(index) ?? 0;
-                var font = fontFunction?.Invoke(index) ?? this;
                 var (codePoint, length) = text.GetCodePoint(index);
                 switch (codePoint) {
                     case '\n':
@@ -192,7 +191,7 @@ namespace MLEM.Font {
                         xOffset += this.LineHeight;
                         break;
                     case GenericFont.Nbsp:
-                        xOffset += font.MeasureCharacter(' ');
+                        xOffset += this.MeasureCharacter(' ');
                         break;
                     case GenericFont.Zwsp:
                         // don't add width for a zero-width space
@@ -203,10 +202,10 @@ namespace MLEM.Font {
                             index = text.Length - 1;
                             break;
                         }
-                        xOffset += font.MeasureCharacter(' ');
+                        xOffset += this.MeasureCharacter(' ');
                         break;
                     default:
-                        xOffset += font.MeasureCharacter(codePoint);
+                        xOffset += this.MeasureCharacter(codePoint);
                         break;
                 }
                 // increase x size if this line is the longest
@@ -219,87 +218,12 @@ namespace MLEM.Font {
             return size;
         }
 
-        internal StringBuilder TruncateString(CodePointSource text, float width, float scale, bool fromBack, string ellipsis, Func<int, GenericFont> fontFunction, Func<int, float> extraWidthFunction) {
-            var total = new StringBuilder();
-            var index = 0;
-            while (index < text.Length) {
-                var innerIndex = fromBack ? text.Length - 1 - index : index;
-                var (codePoint, length) = text.GetCodePoint(innerIndex, fromBack);
-                if (fromBack) {
-                    total.Insert(0, CodePointSource.ToString(codePoint));
-                } else {
-                    total.Append(CodePointSource.ToString(codePoint));
-                }
-
-                if (this.MeasureString(new CodePointSource(total + ellipsis), false, fontFunction, extraWidthFunction).X * scale >= width) {
-                    if (fromBack) {
-                        return total.Remove(0, length).Insert(0, ellipsis);
-                    } else {
-                        return total.Remove(total.Length - length, length).Append(ellipsis);
-                    }
-                }
-                index += length;
-            }
-            return total;
-        }
-
-        internal IEnumerable<string> SplitStringSeparate(CodePointSource text, float width, float scale, Func<int, GenericFont> fontFunction, Func<int, float> extraWidthFunction) {
-            var currWidth = 0F;
-            var lastSpaceIndex = -1;
-            var widthSinceLastSpace = 0F;
-            var curr = new StringBuilder();
-            var index = 0;
-            while (index < text.Length) {
-                var (codePoint, length) = text.GetCodePoint(index);
-                if (codePoint == '\n') {
-                    // fake split at pre-defined new lines
-                    curr.Append('\n');
-                    lastSpaceIndex = -1;
-                    widthSinceLastSpace = 0;
-                    currWidth = 0;
-                } else {
-                    var font = fontFunction?.Invoke(index) ?? this;
-                    var character = CodePointSource.ToString(codePoint);
-                    var charWidth = (font.MeasureString(character).X + (extraWidthFunction?.Invoke(index) ?? 0)) * scale;
-                    if (codePoint == ' ' || codePoint == GenericFont.Emsp || codePoint == GenericFont.Zwsp) {
-                        // remember the location of this (breaking!) space
-                        lastSpaceIndex = curr.Length;
-                        widthSinceLastSpace = 0;
-                    } else if (currWidth + charWidth >= width) {
-                        // check if this line contains a space
-                        if (lastSpaceIndex < 0) {
-                            // if there is no last space, the word is longer than a line so we split here
-                            yield return curr.ToString();
-                            currWidth = 0;
-                            curr.Clear();
-                        } else {
-                            // split after the last space
-                            yield return curr.ToString().Substring(0, lastSpaceIndex + 1);
-                            curr.Remove(0, lastSpaceIndex + 1);
-                            // we need to restore the width accumulated since the last space for the new line
-                            currWidth = widthSinceLastSpace;
-                        }
-                        widthSinceLastSpace = 0;
-                        lastSpaceIndex = -1;
-                    }
-
-                    // add current character
-                    currWidth += charWidth;
-                    widthSinceLastSpace += charWidth;
-                    curr.Append(character);
-                }
-                index += length;
-            }
-            if (curr.Length > 0)
-                yield return curr.ToString();
-        }
-
         private void DrawString(SpriteBatch batch, CodePointSource text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             var (flipX, flipY) = (0F, 0F);
             var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
             var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
             if (flippedV || flippedH) {
-                var size = this.MeasureString(text, false, null, null);
+                var size = this.MeasureString(text, false);
                 if (flippedH) {
                     origin.X *= -1;
                     flipX = -size.X;
@@ -352,6 +276,126 @@ namespace MLEM.Font {
             }
         }
 
+        internal static IEnumerable<IEnumerable<string>> SplitStringSeparate(IEnumerable<DecoratedCodePointSource> text, float maxWidth, float scale) {
+            var currWidth = 0F;
+            var lastSpacePart = -1;
+            var lastSpaceIndex = -1;
+            var widthSinceLastSpace = 0F;
+            var curr = new StringBuilder();
+            var fullSplit = new List<List<string>>();
+            foreach (var part in text) {
+                var partSplit = new List<string>();
+                AddWidth(partSplit, part.ExtraWidth * scale, true);
+
+                var index = 0;
+                while (index < part.Source.Length) {
+                    var (codePoint, length) = part.Source.GetCodePoint(index);
+                    if (codePoint == '\n') {
+                        // fake split at pre-defined new lines
+                        curr.Append('\n');
+                        lastSpacePart = -1;
+                        lastSpaceIndex = -1;
+                        widthSinceLastSpace = 0;
+                        currWidth = 0;
+                    } else {
+                        var character = CodePointSource.ToString(codePoint);
+                        var charWidth = part.Font.MeasureString(character).X * scale;
+                        if (codePoint == ' ' || codePoint == GenericFont.Emsp || codePoint == GenericFont.Zwsp) {
+                            // remember the location of this (breaking!) space
+                            lastSpacePart = fullSplit.Count;
+                            lastSpaceIndex = curr.Length;
+                            widthSinceLastSpace = 0;
+                            // we never want to insert a line break before a space!
+                            AddWidth(partSplit, charWidth, false);
+                        } else {
+                            AddWidth(partSplit, charWidth, true);
+                        }
+                        curr.Append(character);
+                    }
+                    index += length;
+                }
+
+                if (curr.Length > 0) {
+                    partSplit.Add(curr.ToString());
+                    curr.Clear();
+                }
+                fullSplit.Add(partSplit);
+            }
+            return fullSplit;
+
+            void AddWidth(ICollection<string> partSplit, float width, bool canBreakHere) {
+                if (canBreakHere && currWidth + width >= maxWidth) {
+                    // check if this line contains a space
+                    if (lastSpaceIndex < 0) {
+                        // if there is no last space, the word is longer than a line so we split here
+                        partSplit.Add(curr.ToString());
+                        curr.Clear();
+                        currWidth = 0;
+                    } else {
+                        if (lastSpacePart < fullSplit.Count) {
+                            // the last space exists, but isn't a part of curr, so we have to backtrack and split the previous token
+                            var prevPart = fullSplit[lastSpacePart];
+                            var prevCurr = prevPart[prevPart.Count - 1];
+                            prevPart[prevPart.Count - 1] = prevCurr.Substring(0, lastSpaceIndex + 1);
+                            prevPart.Add(prevCurr.Substring(lastSpaceIndex + 1));
+                        } else {
+                            // split after the last space
+                            partSplit.Add(curr.ToString().Substring(0, lastSpaceIndex + 1));
+                            curr.Remove(0, lastSpaceIndex + 1);
+                        }
+                        // we need to restore the width accumulated since the last space for the new line
+                        currWidth = widthSinceLastSpace;
+                    }
+                    widthSinceLastSpace = 0;
+                    lastSpacePart = -1;
+                    lastSpaceIndex = -1;
+                }
+
+                currWidth += width;
+                widthSinceLastSpace += width;
+            }
+        }
+
+        internal static IEnumerable<StringBuilder> TruncateString(IEnumerable<DecoratedCodePointSource> text, float maxWidth, float scale, bool fromBack, string ellipsis) {
+            var total = new StringBuilder();
+            var extraWidth = 0F;
+            var endReached = false;
+            foreach (var part in (fromBack ? text.Reverse() : text)) {
+                var curr = new StringBuilder();
+                // if we reached the end previously, all the other parts should just be empty
+                if (!endReached) {
+                    extraWidth += part.ExtraWidth * scale;
+                    var index = 0;
+                    while (index < part.Source.Length) {
+                        var innerIndex = fromBack ? part.Source.Length - 1 - index : index;
+                        var (codePoint, length) = part.Source.GetCodePoint(innerIndex, fromBack);
+                        var character = CodePointSource.ToString(codePoint);
+                        if (fromBack) {
+                            curr.Insert(0, character);
+                            total.Insert(0, character);
+                        } else {
+                            curr.Append(character);
+                            total.Append(character);
+                        }
+
+                        if (part.Font.MeasureString(new CodePointSource(total + ellipsis), false).X * scale + extraWidth >= maxWidth) {
+                            if (fromBack) {
+                                curr.Remove(0, length).Insert(0, ellipsis);
+                                total.Remove(0, length).Insert(0, ellipsis);
+                            } else {
+                                curr.Remove(curr.Length - length, length).Append(ellipsis);
+                                total.Remove(total.Length - length, length).Append(ellipsis);
+                            }
+                            endReached = true;
+                            break;
+                        }
+                        index += length;
+                    }
+                }
+                yield return curr;
+            }
+        }
+
         private static bool IsTrailingSpace(CodePointSource s, int index) {
             while (index < s.Length) {
                 var (codePoint, length) = s.GetCodePoint(index);
@@ -360,6 +404,20 @@ namespace MLEM.Font {
                 index += length;
             }
             return true;
+        }
+
+        internal readonly struct DecoratedCodePointSource {
+
+            public readonly CodePointSource Source;
+            public readonly GenericFont Font;
+            public readonly float ExtraWidth;
+
+            public DecoratedCodePointSource(CodePointSource source, GenericFont font, float extraWidth) {
+                this.Source = source;
+                this.Font = font;
+                this.ExtraWidth = extraWidth;
+            }
+
         }
 
     }

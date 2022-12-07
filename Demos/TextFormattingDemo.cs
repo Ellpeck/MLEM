@@ -6,6 +6,7 @@ using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
+using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
 
@@ -57,14 +58,16 @@ namespace Demos {
 
             // we draw the tokenized text in the center of the screen
             // since the text is already center-aligned, we only need to align it on the y axis here
-            var size = this.tokenizedText.Measure(this.font) * TextFormattingDemo.Scale;
+            var size = this.tokenizedText.GetArea(Vector2.Zero, TextFormattingDemo.Scale).Size;
             var pos = new Vector2(this.GraphicsDevice.Viewport.Width / 2, (this.GraphicsDevice.Viewport.Height - size.Y) / 2);
 
             // draw bounds, which can be toggled with B in this demo
             if (this.drawBounds) {
+                var blank = this.SpriteBatch.GetBlankTexture();
+                this.SpriteBatch.Draw(blank, new RectangleF(pos - new Vector2(size.X / 2, 0), size), Color.Red * 0.25F);
                 foreach (var token in this.tokenizedText.Tokens) {
                     foreach (var area in token.GetArea(pos, TextFormattingDemo.Scale))
-                        this.SpriteBatch.Draw(this.SpriteBatch.GetBlankTexture(), area, Color.Black * 0.25F);
+                        this.SpriteBatch.Draw(blank, area, Color.Black * 0.25F);
                 }
             }
 
