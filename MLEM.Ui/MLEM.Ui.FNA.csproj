@@ -21,7 +21,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="TextCopy" Version="6.1.0" Condition="'$(TargetFramework)'!='net452'" />
+        <PackageReference Include="TextCopy" Version="6.2.0" Condition="'$(TargetFramework)'!='net452'" />
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
         <ProjectReference Include="..\FNA\FNA.csproj">
