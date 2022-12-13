@@ -143,9 +143,9 @@ namespace MLEM.Formatting {
 
         private static string StripFormatting(GenericFont font, string s, IEnumerable<Code> codes) {
             foreach (var code in codes) {
-                #pragma warning disable CS0618
+#pragma warning disable CS0618
                 s = code.Regex.Replace(s, code.GetReplacementString(font));
-                #pragma warning restore CS0618
+#pragma warning restore CS0618
             }
             return s;
         }

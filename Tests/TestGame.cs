@@ -3,7 +3,7 @@ using MLEM.Data.Content;
 using MLEM.Font;
 using MLEM.Startup;
 
-namespace Tests; 
+namespace Tests;
 
 public class TestGame : MlemGame {
 

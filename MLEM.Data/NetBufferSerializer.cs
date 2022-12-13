@@ -11,9 +11,9 @@ namespace MLEM.Data {
     /// Before serializing and deserializing an object, each of the object's fields has to have a handler. New handlers can be added using <see cref="AddHandler{T}(System.Action{Lidgren.Network.NetBuffer,T},System.Func{Lidgren.Network.NetBuffer,T})"/> or <see cref="AddHandler{T}(Newtonsoft.Json.JsonSerializer)"/>.
     /// </summary>
     [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
-    #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
     [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Aot", "IL2070")]
-    #endif
+#endif
     public class NetBufferSerializer {
 
         private readonly Dictionary<Type, Action<NetBuffer, object>> writeFunctions = new Dictionary<Type, Action<NetBuffer, object>>();

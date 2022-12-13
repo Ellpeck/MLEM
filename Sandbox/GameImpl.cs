@@ -399,7 +399,7 @@ public class GameImpl : MlemGame {
             Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));*/
         if (MlemGame.Input.InputsPressed.Length > 0)
             Console.WriteLine("Pressed: " + string.Join(", ", MlemGame.Input.InputsPressed));
-        MlemGame.Input.HandleKeyboardRepeats = false;/*
+        MlemGame.Input.HandleKeyboardRepeats = false; /*
         Console.WriteLine("Down time: " + MlemGame.Input.GetDownTime(Keys.A));
         Console.WriteLine("Time since press: " + MlemGame.Input.GetTimeSincePress(Keys.A));*/
         Console.WriteLine("Up time: " + MlemGame.Input.GetUpTime(Keys.A));

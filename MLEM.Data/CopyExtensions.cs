@@ -12,9 +12,9 @@ namespace MLEM.Data {
     /// A set of extensions for dealing with copying objects.
     /// </summary>
     [Obsolete("CopyExtensions has major flaws and insufficient speed compared to other libraries specifically designed for copying objects.")]
-    #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
     [UnconditionalSuppressMessage("Aot", "IL3050"), UnconditionalSuppressMessage("Aot", "IL2070"), UnconditionalSuppressMessage("Aot", "IL2090")]
-    #endif
+#endif
     public static class CopyExtensions {
 
         private const BindingFlags DefaultFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

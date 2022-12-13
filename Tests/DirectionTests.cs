@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using MLEM.Misc;
 using NUnit.Framework;
 
-namespace Tests; 
+namespace Tests;
 
 public class DirectionTests {
 

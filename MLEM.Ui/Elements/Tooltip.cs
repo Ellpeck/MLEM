@@ -100,9 +100,9 @@ namespace MLEM.Ui.Elements {
         public Tooltip(string text = null, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
             if (text != null) {
-                #pragma warning disable CS0618
+#pragma warning disable CS0618
                 this.Paragraph = this.AddParagraph(text);
-                #pragma warning restore CS0618
+#pragma warning restore CS0618
             }
             this.Init(elementToHover);
         }
@@ -114,9 +114,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public Tooltip(Paragraph.TextCallback textCallback, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             this.Paragraph = this.AddParagraph(textCallback);
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
             this.Init(elementToHover);
         }
 
@@ -298,11 +298,11 @@ namespace MLEM.Ui.Elements {
             foreach (var paragraph in this.Paragraphs)
                 this.UpdateParagraphStyle(paragraph);
 
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             // still set style here in case someone changed the paragraph field manually
             if (this.Paragraph != null)
                 this.UpdateParagraphStyle(this.Paragraph);
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
         }
 
         private void UpdateParagraphStyle(Paragraph paragraph) {

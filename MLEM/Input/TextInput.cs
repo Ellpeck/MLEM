@@ -246,7 +246,7 @@ namespace MLEM.Input {
         /// <returns>Whether text was successfully input.</returns>
         public bool OnTextInput(Keys key, char character) {
             // FNA's text input event doesn't supply keys, so we handle this in Update
-            #if !FNA
+#if !FNA
             if (key == Keys.Back) {
                 if (this.CaretPos > 0) {
                     this.CaretPos--;
@@ -261,9 +261,9 @@ namespace MLEM.Input {
                 return this.InsertText(character);
             }
             return false;
-            #else
+#else
             return this.InsertText(character);
-            #endif
+#endif
         }
 
         /// <summary>
@@ -274,8 +274,8 @@ namespace MLEM.Input {
         public void Update(GameTime time, InputHandler input) {
             this.UpdateTextDataIfDirty();
 
+#if FNA
             // FNA's text input event doesn't supply keys, so we handle this here
-            #if FNA
             if (this.CaretPos > 0 && input.TryConsumePressed(Keys.Back)) {
                 this.CaretPos--;
                 this.RemoveText(this.CaretPos, 1);
@@ -284,7 +284,7 @@ namespace MLEM.Input {
             } else if (this.Multiline && input.TryConsumePressed(Keys.Enter)) {
                 this.InsertText('\n');
             } else
-            #endif
+#endif
             if (this.CaretPos > 0 && input.TryConsumePressed(Keys.Left)) {
                 this.CaretPos--;
             } else if (this.CaretPos < this.text.Length && input.TryConsumePressed(Keys.Right)) {

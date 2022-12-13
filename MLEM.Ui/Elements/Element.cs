@@ -206,10 +206,10 @@ namespace MLEM.Ui.Elements {
         /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
         /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
         /// </summary>
-        #pragma warning disable CS0618
+#pragma warning disable CS0618
         [Obsolete("BeginImpl is deprecated. You can create a custom element class and override Draw instead.")]
         public BeginDelegate BeginImpl;
-        #pragma warning restore CS0618
+#pragma warning restore CS0618
         /// <summary>
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
@@ -983,7 +983,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="context">The sprite batch context to use for drawing</param>
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
             var transformed = context;
             transformed.TransformMatrix = this.Transform * transformed.TransformMatrix;
@@ -994,12 +994,12 @@ namespace MLEM.Ui.Elements {
                 // begin our own draw call
                 batch.Begin(transformed);
             }
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
 
             // draw content in custom begin call
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             this.Draw(time, batch, alpha, transformed.BlendState, transformed.SamplerState, transformed.DepthStencilState, transformed.Effect, transformed.TransformMatrix);
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
             if (this.System != null)
                 this.System.Metrics.Draws++;
 
@@ -1043,9 +1043,9 @@ namespace MLEM.Ui.Elements {
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden) {
-                    #pragma warning disable CS0618
+#pragma warning disable CS0618
                     child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
-                    #pragma warning restore CS0618
+#pragma warning restore CS0618
                 }
             }
         }

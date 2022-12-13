@@ -9,12 +9,12 @@ namespace MLEM.Data.Content {
 
         /// <inheritdoc />
         protected override Texture2D Read(RawContentManager manager, string assetPath, Stream stream, Texture2D existing) {
-            #if !FNA
+#if !FNA
             if (existing != null) {
                 existing.Reload(stream);
                 return existing;
             }
-            #endif
+#endif
 
             // premultiply the texture's color to be in line with the pipeline's texture reader
             using (var texture = Texture2D.FromStream(manager.GraphicsDevice, stream)) {

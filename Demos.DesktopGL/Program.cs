@@ -10,11 +10,11 @@ namespace Demos.DesktopGL;
 public static class Program {
 
     public static void Main() {
-        #if FNA
+#if FNA
         MlemPlatform.Current = new MlemPlatform.DesktopFna(a => TextInputEXT.TextInput += a);
-        #else
+#else
         MlemPlatform.Current = new MlemPlatform.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);
-        #endif
+#endif
         using var game = new GameImpl();
         game.Run();
     }

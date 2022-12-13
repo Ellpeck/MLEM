@@ -112,11 +112,11 @@ namespace MLEM.Ui.Elements {
             set => this.textInput.Multiline = value;
         }
 
-        #if FNA
+#if FNA
         /// <inheritdoc />
         // we need to make sure that the enter press doesn't get consumed by our press function so that it still works in TextInput
         public override bool CanBePressed => base.CanBePressed && !this.IsSelected;
-        #endif
+#endif
 
         /// <summary>
         /// The text that displays in this text field if <see cref="Text"/> is empty
@@ -146,9 +146,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="multiline">Whether the text field should support multi-line editing</param>
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, GenericFont font = null, string text = null, bool multiline = false) : base(anchor, size) {
             this.textInput = new TextInput(null, Vector2.Zero, 1
-                #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
                 , null, ClipboardService.SetText, ClipboardService.GetText
-                #endif
+#endif
             ) {
                 OnTextChange = (i, s) => this.OnTextChange?.Invoke(this, s),
                 InputRule = (i, s) => this.InputRule.Invoke(this, s)

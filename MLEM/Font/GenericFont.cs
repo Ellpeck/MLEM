@@ -360,7 +360,7 @@ namespace MLEM.Font {
             var total = new StringBuilder();
             var extraWidth = 0F;
             var endReached = false;
-            foreach (var part in (fromBack ? text.Reverse() : text)) {
+            foreach (var part in fromBack ? text.Reverse() : text) {
                 var curr = new StringBuilder();
                 // if we reached the end previously, all the other parts should just be empty
                 if (!endReached) {

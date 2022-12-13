@@ -288,7 +288,7 @@ namespace MLEM.Extensions {
             return false;
         }
 
-        #if FNA
+#if FNA
         /// <summary>
         /// Gets a <see cref="Point"/> representation for this object.
         /// </summary>
@@ -339,7 +339,7 @@ namespace MLEM.Extensions {
             y = vector.Y;
             z = vector.Z;
         }
-        #endif
+#endif
 
     }
 }

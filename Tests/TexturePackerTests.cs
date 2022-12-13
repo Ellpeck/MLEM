@@ -4,7 +4,7 @@ using MLEM.Data;
 using MLEM.Textures;
 using NUnit.Framework;
 
-namespace Tests; 
+namespace Tests;
 
 public class TexturePackerTests {
 

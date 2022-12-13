@@ -23,9 +23,9 @@ namespace MLEM.Data.Content {
         private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
         private readonly List<RawContentReader> readers;
 
-        #if FNA
+#if FNA
         private Dictionary<string, object> LoadedAssets { get; } = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-        #endif
+#endif
 
         /// <summary>
         /// Creates a new content manager with an optionally specified root directory.
@@ -33,9 +33,9 @@ namespace MLEM.Data.Content {
         /// </summary>
         /// <param name="serviceProvider">The service provider of your game</param>
         /// <param name="rootDirectory">The root directory. Defaults to "Content"</param>
-        #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
         [RequiresUnreferencedCode("Automatically gathered RawContentReader types might be removed, use other constructor to add readers manually")]
-        #endif
+#endif
         public RawContentManager(IServiceProvider serviceProvider, string rootDirectory = "Content") :
             this(serviceProvider, RawContentManager.CollectContentReaders(), rootDirectory) {}
 
@@ -73,9 +73,9 @@ namespace MLEM.Data.Content {
         /// <param name="currentAsset">The current asset instance.</param>
         /// <typeparam name="T">The asset's type.</typeparam>
         protected
-            #if !FNA
+#if !FNA
             override
-            #endif
+#endif
             void ReloadAsset<T>(string originalAssetName, T currentAsset) {
             this.Read(originalAssetName, currentAsset);
         }
@@ -121,9 +121,9 @@ namespace MLEM.Data.Content {
         /// </summary>
         public void Initialize() {}
 
-        #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
         [RequiresUnreferencedCode("Automatically gathered RawContentReader types might be removed, use other constructor to add readers manually")]
-        #endif
+#endif
         private static List<RawContentReader> CollectContentReaders() {
             var ret = new List<RawContentReader>();
             var assemblyExceptions = new List<Exception>();

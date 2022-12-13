@@ -69,9 +69,9 @@ namespace MLEM.Startup {
             this.GraphicsDeviceManager = new GraphicsDeviceManager(this) {
                 PreferredBackBufferWidth = windowWidth,
                 PreferredBackBufferHeight = windowHeight,
-                #if !FNA
+#if !FNA
                 HardwareModeSwitch = false
-                #endif
+#endif
             };
             this.Window.AllowUserResizing = true;
             this.Content.RootDirectory = "Content";
@@ -116,9 +116,9 @@ namespace MLEM.Startup {
             this.PreDraw?.Invoke(this, gameTime);
             CoroutineHandler.RaiseEvent(CoroutineEvents.PreDraw);
 
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
 

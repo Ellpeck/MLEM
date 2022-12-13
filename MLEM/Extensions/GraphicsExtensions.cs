@@ -90,12 +90,12 @@ namespace MLEM.Extensions {
             /// <param name="target">The target to apply</param>
             public TargetContext(GraphicsDevice device, RenderTarget2D target) {
                 this.device = device;
-                #if FNA
+#if FNA
                 // RenderTargetCount doesn't exist in FNA but we still want the optimization in MG
                 this.lastTargets = device.GetRenderTargets();
-                #else
+#else
                 this.lastTargets = device.RenderTargetCount <= 0 ? null : device.GetRenderTargets();
-                #endif
+#endif
                 device.SetRenderTarget(target);
             }
 

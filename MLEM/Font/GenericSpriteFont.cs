@@ -44,10 +44,10 @@ namespace MLEM.Font {
         }
 
         private static SpriteFont SetDefaults(SpriteFont font) {
-            #if FNA
+#if FNA
             // none of the copying is available with FNA
             return font;
-            #else
+#else
             // we copy the font here to set the default character to a space
             return new SpriteFont(
                 font.Texture,
@@ -58,7 +58,7 @@ namespace MLEM.Font {
                 font.Spacing,
                 font.Glyphs.Select(g => new Vector3(g.LeftSideBearing, g.Width, g.RightSideBearing)).ToList(),
                 ' ');
-            #endif
+#endif
         }
 
     }

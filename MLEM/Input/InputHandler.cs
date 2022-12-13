@@ -18,26 +18,26 @@ namespace MLEM.Input {
         /// All values of the <see cref="Buttons"/> enum.
         /// </summary>
         public static readonly Buttons[] AllButtons =
-            #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
             Enum.GetValues<Buttons>();
-            #else
+#else
             (Buttons[]) Enum.GetValues(typeof(Buttons));
-        #endif
+#endif
         /// <summary>
         /// All values of the <see cref="Keys"/> enum.
         /// </summary>
         public static readonly Keys[] AllKeys =
-            #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
             Enum.GetValues<Keys>();
-            #else
+#else
             (Keys[]) Enum.GetValues(typeof(Keys));
-        #endif
+#endif
 
-        #if FNA
+#if FNA
         private const int MaximumGamePadCount = 4;
-        #else
+#else
         private static readonly int MaximumGamePadCount = GamePad.MaximumGamePadCount;
-        #endif
+#endif
         private static readonly TouchLocation[] EmptyTouchLocations = new TouchLocation[0];
         private static readonly GenericInput[] EmptyGenericInputs = new GenericInput[0];
 
@@ -258,11 +258,11 @@ namespace MLEM.Input {
                     }
                 } else {
                     // mouse position and scroll wheel value should be preserved when the mouse is out of bounds
-                    #if FNA
+#if FNA
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0);
-                    #else
+#else
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0, state.HorizontalScrollWheelValue);
-                    #endif
+#endif
                 }
             } else {
                 this.MouseState = default;

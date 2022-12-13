@@ -73,7 +73,7 @@ public class NumberTests {
         Assert.AreEqual(penetration, 0);
     }
 
-    #if !FNA
+#if !FNA
     [Test]
     public void TestRangePercentage() {
         Assert.AreEqual(0.5F, new Range<int>(1, 7).GetPercentage(4));
@@ -95,6 +95,6 @@ public class NumberTests {
         Assert.AreEqual(11, new Range<float>(8, 10).FromPercentage(1.5F));
         Assert.AreEqual(7, new Range<float>(8, 10).FromPercentage(-0.5F));
     }
-    #endif
+#endif
 
 }

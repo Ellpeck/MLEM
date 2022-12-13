@@ -8,7 +8,7 @@ using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using NUnit.Framework;
 
-namespace Tests; 
+namespace Tests;
 
 public class UiTests {
 

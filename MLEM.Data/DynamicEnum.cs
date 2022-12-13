@@ -26,9 +26,9 @@ namespace MLEM.Data {
     /// </code>
     /// </remarks>
     [Obsolete("DynamicEnum has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums"), JsonConverter(typeof(DynamicEnumConverter))]
-    #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
     [System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessage("Aot", "IL2067")]
-    #endif
+#endif
     public abstract class DynamicEnum {
 
         private static readonly Dictionary<Type, Storage> Storages = new Dictionary<Type, Storage>();

@@ -27,11 +27,11 @@ namespace MLEM.Misc {
         /// <typeparam name="T">The type whose enum to get</typeparam>
         /// <returns>An enumerable of the values of the enum, in declaration order.</returns>
         public static T[] GetValues<T>() where T : struct, Enum {
-            #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
             return Enum.GetValues<T>();
-            #else
+#else
             return (T[]) Enum.GetValues(typeof(T));
-            #endif
+#endif
         }
 
         /// <summary>

@@ -51,7 +51,7 @@ namespace MLEM.Extensions {
             return combos;
         }
 
-        #if NET452
+#if NET452
         /// <summary>Appends a value to the end of the sequence.</summary>
         /// <param name="source">A sequence of values.</param>
         /// <param name="element">The value to append to <paramref name="source"/>.</param>
@@ -73,7 +73,7 @@ namespace MLEM.Extensions {
             foreach (var src in source)
                 yield return src;
         }
-        #endif
+#endif
 
     }
 }

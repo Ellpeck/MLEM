@@ -84,7 +84,7 @@ namespace MLEM.Ui.Style {
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>true if <paramref name="obj">obj</paramref> and this instance are the same type and represent the same value; otherwise, false.</returns>
         [Obsolete("StyleProp equality is ambiguous as it is not clear whether priority is taken into account. Compare Values instead.")]
-        #pragma warning disable CS0809
+#pragma warning disable CS0809
         public override bool Equals(object obj) {
             return obj is StyleProp<T> other && this.Equals(other);
         }
@@ -95,7 +95,7 @@ namespace MLEM.Ui.Style {
         public override int GetHashCode() {
             return EqualityComparer<T>.Default.GetHashCode(this.Value);
         }
-        #pragma warning restore CS0809
+#pragma warning restore CS0809
 
         /// <summary>Returns the fully qualified type name of this instance.</summary>
         /// <returns>The fully qualified type name.</returns>

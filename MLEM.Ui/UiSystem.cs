@@ -309,7 +309,7 @@ namespace MLEM.Ui {
                 var context = this.SpriteBatchContext;
                 context.TransformMatrix = root.Transform * context.TransformMatrix;
 
-                #pragma warning disable CS0618
+#pragma warning disable CS0618
                 if (this.BlendState != null)
                     context.BlendState = this.BlendState;
                 if (this.SamplerState != null)
@@ -318,12 +318,12 @@ namespace MLEM.Ui {
                     context.DepthStencilState = this.DepthStencilState;
                 if (this.Effect != null)
                     context.Effect = this.Effect;
-                #pragma warning restore CS0618
+#pragma warning restore CS0618
 
                 batch.Begin(context);
-                #pragma warning disable CS0618
+#pragma warning disable CS0618
                 root.Element.DrawTransformed(time, batch, this.DrawAlpha * root.Element.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
-                #pragma warning restore CS0618
+#pragma warning restore CS0618
                 batch.End();
             }
 

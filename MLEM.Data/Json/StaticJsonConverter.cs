@@ -34,9 +34,9 @@ namespace MLEM.Data.Json {
         /// <param name="type">The type that the dictionary is declared in</param>
         /// <param name="memberName">The name of the dictionary itself</param>
         public StaticJsonConverter(
-            #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
-            #endif
+#endif
             Type type, string memberName) : this(StaticJsonConverter<T>.GetEntries(type, memberName)) {}
 
         /// <summary>Writes the JSON representation of the object.</summary>
@@ -65,9 +65,9 @@ namespace MLEM.Data.Json {
         }
 
         private static Dictionary<string, T> GetEntries(
-            #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
-            #endif
+#endif
             Type type, string memberName) {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
             var value = type.GetProperty(memberName, flags)?.GetValue(null) ?? type.GetField(memberName, flags)?.GetValue(null);

@@ -10,6 +10,7 @@ using MLEM.Ui.Style;
 
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
 using System.Net.Http;
+
 #else
 using System.Net;
 #endif
@@ -25,11 +26,11 @@ namespace MLEM.Ui.Parsers {
         /// An array containing all of the <see cref="ElementType"/> enum values.
         /// </summary>
         public static readonly ElementType[] ElementTypes =
-            #if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
             Enum.GetValues<ElementType>();
-            #else
+#else
             (ElementType[]) Enum.GetValues(typeof(ElementType));
-        #endif
+#endif
 
         /// <summary>
         /// The base path for images, which is prepended to the image link.
@@ -164,13 +165,13 @@ namespace MLEM.Ui.Parsers {
                     Texture2D tex;
                     if (path.StartsWith("http")) {
                         byte[] src;
-                        #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
                         using (var client = new HttpClient())
                             src = await client.GetByteArrayAsync(path);
-                        #else
+#else
                         using (var client = new WebClient())
                             src = await client.DownloadDataTaskAsync(path);
-                        #endif
+#endif
                         using (var memory = new MemoryStream(src))
                             tex = Texture2D.FromStream(this.GraphicsDevice, memory);
                     } else {

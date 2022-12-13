@@ -461,11 +461,11 @@ namespace MLEM.Graphics {
         }
 
         private void DrawPrimitives(int vertices) {
-            #if FNA
+#if FNA
             this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertices, 0, vertices / 4 * 2);
-            #else
+#else
             this.graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertices / 4 * 2);
-            #endif
+#endif
         }
 
         private void AddItemToSet(Item item) {
@@ -560,7 +560,7 @@ namespace MLEM.Graphics {
 
         }
 
-        #if FNA
+#if FNA
         private class SpriteEffect : Effect {
 
             private EffectParameter matrixParam;
@@ -611,7 +611,7 @@ namespace MLEM.Graphics {
             }
 
         }
-        #endif
+#endif
 
     }
 }
