@@ -51,8 +51,7 @@ namespace Demos {
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8),
-                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}},
-                LinkColor = Color.CornflowerBlue
+                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}}
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,

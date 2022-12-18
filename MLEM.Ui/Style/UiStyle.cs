@@ -216,7 +216,7 @@ namespace MLEM.Ui.Style {
         /// The color that a <see cref="Paragraph"/>'s <see cref="Paragraph.Link"/> codes should have.
         /// This value is passed to <see cref="LinkCode"/>.
         /// </summary>
-        public Color? LinkColor;
+        public Color? LinkColor = Color.CornflowerBlue;
         /// <summary>
         /// A set of additional fonts that can be used for the <c>&lt;f FontName&gt;</c> formatting code
         /// </summary>

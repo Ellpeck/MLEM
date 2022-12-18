@@ -65,6 +65,7 @@ Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Added trimming and AOT annotations and made MLEM.Ui trimmable
 - Ensure paragraphs display up-to-date versions of their text callbacks
+- Set cornflower blue as the default link color
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
