@@ -172,9 +172,15 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Set this property to <c>true</c> to cause this element to be hidden.
         /// Hidden elements don't receive input events, aren't rendered and don't factor into auto-anchoring.
+        /// If this value changes often, consider using <see cref="AutoHideCondition"/> to set it automatically.
         /// </summary>
         public virtual bool IsHidden {
-            get => this.isHidden;
+            get {
+                // instead of just returning, we set IsHidden here because we might have to set our area dirty
+                if (this.AutoHideCondition != null)
+                    this.IsHidden = this.AutoHideCondition(this);
+                return this.isHidden;
+            }
             set {
                 if (this.isHidden == value)
                     return;
@@ -430,6 +436,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         [Obsolete("OnDisposed will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
         public GenericCallback OnDisposed;
+        /// <summary>
+        /// An optional function that can be used to set <see cref="IsHidden"/> automatically based on a user-defined condition. This removes the need to hide an element based on a condition in <see cref="Element.OnUpdated"/> or manually.
+        /// </summary>
+        public Func<Element, bool> AutoHideCondition;
 
         /// <summary>
         /// A list of all of this element's direct children.

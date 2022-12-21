@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Graphics;
@@ -51,8 +52,16 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Set this property to true to mark the button as disabled.
         /// A disabled button cannot be moused over, selected or pressed.
+        /// If this value changes often, consider using <see cref="AutoDisableCondition"/> to set it automatically.
         /// </summary>
-        public virtual bool IsDisabled { get; set; }
+        public virtual bool IsDisabled {
+            get {
+                if (this.AutoDisableCondition != null)
+                    this.IsDisabled = this.AutoDisableCondition(this);
+                return this.isDisabled;
+            }
+            set => this.isDisabled = value;
+        }
         /// <summary>
         /// Whether this button's <see cref="Text"/> should be truncated if it exceeds this button's width.
         /// Defaults to false.
@@ -69,11 +78,17 @@ namespace MLEM.Ui.Elements {
         /// If this is true, <see cref="CanBeSelected"/> will be able to return true even if <see cref="IsDisabled"/> is true.
         /// </summary>
         public bool CanSelectDisabled;
+        /// <summary>
+        /// An optional function that can be used to set <see cref="IsDisabled"/> automatically based on a user-defined condition. This removes the need to disable a button based on a condition in <see cref="Element.OnUpdated"/> or manually.
+        /// </summary>
+        public Func<Button, bool> AutoDisableCondition;
 
         /// <inheritdoc />
         public override bool CanBeSelected => base.CanBeSelected && (this.CanSelectDisabled || !this.IsDisabled);
         /// <inheritdoc />
         public override bool CanBePressed => base.CanBePressed && !this.IsDisabled;
+
+        private bool isDisabled;
 
         /// <summary>
         /// Creates a new button with the given settings
