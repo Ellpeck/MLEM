@@ -57,7 +57,7 @@ Additions
 - Added ScrollBar.MouseDragScrolling
 - Added Panel.ScrollToElement
 - Added ElementHelper.MakeGrid
-- Added Element.AutoHideCondition and Button.AutoDisableCondition
+- Added Button.AutoDisableCondition
 
 Improvements
 - Allow elements to auto-adjust their size even when their children are aligned oddly
