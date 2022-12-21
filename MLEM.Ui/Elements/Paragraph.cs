@@ -53,20 +53,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public string Text {
             get {
-                this.QueryTextCallback();
-                return this.text;
+                var ret = this.GetTextCallback?.Invoke(this) ?? this.text;
+                this.CheckTextChange(ret);
+                return ret;
             }
             set {
-                if (this.text != value) {
-                    this.text = value;
-                    this.SetTextDirty();
-
-                    var force = string.IsNullOrWhiteSpace(this.text);
-                    if (this.forceHide != force) {
-                        this.forceHide = force;
-                        this.SetAreaDirty();
-                    }
-                }
+                this.text = value;
+                this.CheckTextChange(value);
             }
         }
         /// <summary>
@@ -105,12 +98,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override bool IsHidden => base.IsHidden || this.forceHide;
+        public override bool IsHidden => base.IsHidden || string.IsNullOrWhiteSpace(this.Text);
 
         private string text;
+        private string lastText;
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
-        private bool forceHide = true;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -141,7 +134,6 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override void Update(GameTime time) {
-            this.QueryTextCallback();
             base.Update(time);
             if (this.TokenizedText != null)
                 this.TokenizedText.Update(time);
@@ -149,7 +141,6 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-            this.QueryTextCallback();
             var pos = this.DisplayArea.Location + new Vector2(this.GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
@@ -202,9 +193,14 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
         }
 
-        private void QueryTextCallback() {
-            if (this.GetTextCallback != null)
-                this.Text = this.GetTextCallback(this);
+        private void CheckTextChange(string newText) {
+            if (this.lastText == newText)
+                return;
+            var emptyChanged = string.IsNullOrWhiteSpace(this.lastText) != string.IsNullOrWhiteSpace(newText);
+            this.lastText = newText;
+            if (emptyChanged)
+                this.SetAreaDirty();
+            this.SetTextDirty();
         }
 
         private float GetAlignmentOffset() {

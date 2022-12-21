@@ -30,17 +30,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public TextureRegion Texture {
             get {
-                if (this.GetTextureCallback != null)
-                    this.Texture = this.GetTextureCallback(this);
-                return this.texture;
+                var ret = this.GetTextureCallback?.Invoke(this) ?? this.texture;
+                this.CheckTextureChange(ret);
+                return ret;
             }
             set {
-                if (this.texture != value) {
-                    this.texture = value;
-                    this.IsHidden = this.texture == null;
-                    if (this.scaleToImage)
-                        this.SetAreaDirty();
-                }
+                this.texture = value;
+                this.CheckTextureChange(value);
             }
         }
         /// <summary>
@@ -75,8 +71,12 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public float ImageRotation;
 
+        /// <inheritdoc />
+        public override bool IsHidden => base.IsHidden || this.Texture == null;
+
         private bool scaleToImage;
         private TextureRegion texture;
+        private TextureRegion lastTexture;
 
         /// <summary>
         /// Creates a new image with the given settings
@@ -121,6 +121,15 @@ namespace MLEM.Ui.Elements {
                 batch.Draw(this.Texture, this.DisplayArea.Location + center * scale, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             }
             base.Draw(time, batch, alpha, context);
+        }
+
+        private void CheckTextureChange(TextureRegion newTexture) {
+            if (this.lastTexture == newTexture)
+                return;
+            var nullChanged = this.lastTexture == null != (newTexture == null);
+            this.lastTexture = newTexture;
+            if (nullChanged || this.scaleToImage)
+                this.SetAreaDirty();
         }
 
         /// <summary>

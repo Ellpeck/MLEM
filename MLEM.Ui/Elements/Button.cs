@@ -52,14 +52,10 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Set this property to true to mark the button as disabled.
         /// A disabled button cannot be moused over, selected or pressed.
-        /// If this value changes often, consider using <see cref="AutoDisableCondition"/> to set it automatically.
+        /// If this value changes often, consider using <see cref="AutoDisableCondition"/>.
         /// </summary>
         public virtual bool IsDisabled {
-            get {
-                if (this.AutoDisableCondition != null)
-                    this.IsDisabled = this.AutoDisableCondition(this);
-                return this.isDisabled;
-            }
+            get => this.isDisabled || this.AutoDisableCondition?.Invoke(this) == true;
             set => this.isDisabled = value;
         }
         /// <summary>
@@ -79,7 +75,8 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public bool CanSelectDisabled;
         /// <summary>
-        /// An optional function that can be used to set <see cref="IsDisabled"/> automatically based on a user-defined condition. This removes the need to disable a button based on a condition in <see cref="Element.OnUpdated"/> or manually.
+        /// An optional function that can be used to modify the result of <see cref="IsDisabled"/> automatically based on a user-defined condition. This removes the need to disable a button based on a condition in <see cref="Element.OnUpdated"/> or manually.
+        /// Note that, if <see cref="IsDisabled"/>'s underlying value is set to <see langword="true"/> using <see cref="set_IsDisabled"/>, this function's result will be ignored.
         /// </summary>
         public Func<Button, bool> AutoDisableCondition;
 
