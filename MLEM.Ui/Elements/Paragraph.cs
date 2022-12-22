@@ -107,7 +107,8 @@ namespace MLEM.Ui.Elements {
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
         private TokenizedString tokenizedText;
-        private Vector2? lastAlignSplitSize;
+        private float? lastAlignSplitWidth;
+        private float? lastAlignSplitScale;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -195,7 +196,8 @@ namespace MLEM.Ui.Elements {
 
             // tokenize the text
             this.tokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text, this.Alignment);
-            this.lastAlignSplitSize = null;
+            this.lastAlignSplitWidth = null;
+            this.lastAlignSplitScale = null;
 
             // add links to the paragraph
             this.RemoveChildren(c => c is Link);
@@ -204,11 +206,14 @@ namespace MLEM.Ui.Elements {
         }
 
         private void AlignAndSplitIfNecessary(Vector2 size) {
-            if (size == this.lastAlignSplitSize)
-                return;
-            this.lastAlignSplitSize = size;
             var width = size.X - this.ScaledPadding.Width;
             var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
+
+            if (this.lastAlignSplitWidth == width && this.lastAlignSplitScale == scale)
+                return;
+            this.lastAlignSplitWidth = width;
+            this.lastAlignSplitScale = scale;
+
             if (this.TruncateIfLong) {
                 this.tokenizedText.Truncate(this.RegularFont, width, scale, this.Ellipsis, this.Alignment);
             } else {
