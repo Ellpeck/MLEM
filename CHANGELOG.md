@@ -67,6 +67,7 @@ Improvements
 - Added trimming and AOT annotations and made MLEM.Ui trimmable
 - Ensure paragraphs display up-to-date versions of their text callbacks
 - Set cornflower blue as the default link color
+- Added TextField.OnCopyPasteException to allow handling exceptions thrown by TextCopy
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
@@ -31,6 +32,14 @@ namespace MLEM.Ui.Elements {
         public static readonly Rule PathNames = (field, add) => TextInput.PathNames(field.textInput, add);
         /// <inheritdoc cref="TextInput.FileNames"/>
         public static readonly Rule FileNames = (field, add) => TextInput.FileNames(field.textInput, add);
+
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
+        /// <summary>
+        /// An event that is raised when an exception is thrown while trying to copy or paste clipboard contents using TextCopy.
+        /// If no event handlers are added, the exception is ignored.
+        /// </summary>
+        public static event Action<Exception> OnCopyPasteException;
+#endif
 
         /// <summary>
         /// The color that this text field's text should display with
@@ -147,7 +156,20 @@ namespace MLEM.Ui.Elements {
         public TextField(Anchor anchor, Vector2 size, Rule rule = null, GenericFont font = null, string text = null, bool multiline = false) : base(anchor, size) {
             this.textInput = new TextInput(null, Vector2.Zero, 1
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
-                , null, ClipboardService.SetText, ClipboardService.GetText
+                , null, s => {
+                    try {
+                        ClipboardService.SetText(s);
+                    } catch (Exception e) {
+                        TextField.OnCopyPasteException?.Invoke(e);
+                    }
+                }, () => {
+                    try {
+                        return ClipboardService.GetText();
+                    } catch (Exception e) {
+                        TextField.OnCopyPasteException?.Invoke(e);
+                        return null;
+                    }
+                }
 #endif
             ) {
                 OnTextChange = (i, s) => this.OnTextChange?.Invoke(this, s),
