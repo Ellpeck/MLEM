@@ -32,7 +32,13 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The tokenized version of the <see cref="Text"/>
         /// </summary>
-        public TokenizedString TokenizedText { get; private set; }
+        public TokenizedString TokenizedText {
+            get {
+                this.CheckTextChange();
+                this.TokenizeIfNecessary();
+                return this.tokenizedText;
+            }
+        }
         /// <summary>
         /// The color that the text will be rendered with
         /// </summary>
@@ -53,14 +59,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public string Text {
             get {
-                var ret = this.GetTextCallback?.Invoke(this) ?? this.text;
-                this.CheckTextChange(ret);
-                return ret;
+                this.CheckTextChange();
+                return this.displayedText;
             }
-            set {
-                this.text = value;
-                this.CheckTextChange(value);
-            }
+            set => this.explicitlySetText = value;
         }
         /// <summary>
         /// If this paragraph should automatically adjust its width based on the width of the text within it
@@ -100,10 +102,11 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override bool IsHidden => base.IsHidden || string.IsNullOrWhiteSpace(this.Text);
 
-        private string text;
-        private string lastText;
+        private string displayedText;
+        private string explicitlySetText;
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
+        private TokenizedString tokenizedText;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -127,16 +130,15 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
-            this.ParseText(size);
-            var textSize = this.TokenizedText.GetArea(Vector2.Zero, this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
+            this.AlignAndSplit(size);
+            var textSize = this.tokenizedText.GetArea(Vector2.Zero, this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
             return new Vector2(this.AutoAdjustWidth ? textSize.X + this.ScaledPadding.Width : size.X, textSize.Y + this.ScaledPadding.Height);
         }
 
         /// <inheritdoc />
         public override void Update(GameTime time) {
             base.Update(time);
-            if (this.TokenizedText != null)
-                this.TokenizedText.Update(time);
+            this.TokenizedText?.Update(time);
         }
 
         /// <inheritdoc />
@@ -157,47 +159,19 @@ namespace MLEM.Ui.Elements {
             this.Alignment = this.Alignment.OrStyle(style.TextAlignment);
         }
 
-        /// <summary>
-        /// Parses this paragraph's <see cref="Text"/> into <see cref="TokenizedText"/>.
-        /// Additionally, this method adds any <see cref="Link"/> elements for tokenized links in the text.
-        /// </summary>
-        /// <param name="size">The paragraph's default size</param>
-        protected virtual void ParseText(Vector2 size) {
-            if (this.TokenizedText == null) {
-                // tokenize the text
-                this.TokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text, this.Alignment);
-
-                // add links to the paragraph
-                this.RemoveChildren(c => c is Link);
-                foreach (var link in this.TokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)))
-                    this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale * this.TextScaleMultiplier));
-            }
-
-            var width = size.X - this.ScaledPadding.Width;
-            var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
-            if (this.TruncateIfLong) {
-                this.TokenizedText.Truncate(this.RegularFont, width, scale, this.Ellipsis, this.Alignment);
-            } else {
-                this.TokenizedText.Split(this.RegularFont, width, scale, this.Alignment);
-            }
-        }
-
-        /// <summary>
-        /// A helper method that causes the <see cref="TokenizedText"/> to be reset.
-        /// Additionally, <see cref="Element.SetAreaDirty"/> if this paragraph's area has changed enough to warrant it, or if it has any <see cref="Link"/> children.
-        /// </summary>
-        protected void SetTextDirty() {
-            this.TokenizedText = null;
+        private void SetTextDirty() {
+            this.tokenizedText = null;
             // only set our area dirty if our size changed as a result of this action
             if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon))
                 this.SetAreaDirty();
         }
 
-        private void CheckTextChange(string newText) {
-            if (this.lastText == newText)
+        private void CheckTextChange() {
+            var newText = this.GetTextCallback?.Invoke(this) ?? this.explicitlySetText;
+            if (this.displayedText == newText)
                 return;
-            var emptyChanged = string.IsNullOrWhiteSpace(this.lastText) != string.IsNullOrWhiteSpace(newText);
-            this.lastText = newText;
+            var emptyChanged = string.IsNullOrWhiteSpace(this.displayedText) != string.IsNullOrWhiteSpace(newText);
+            this.displayedText = newText;
             if (emptyChanged)
                 this.SetAreaDirty();
             this.SetTextDirty();
@@ -211,6 +185,30 @@ namespace MLEM.Ui.Elements {
                     return this.DisplayArea.Width;
             }
             return 0;
+        }
+
+        private void TokenizeIfNecessary() {
+            if (this.tokenizedText != null)
+                return;
+
+            // tokenize the text
+            this.tokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text, this.Alignment);
+
+            // add links to the paragraph
+            this.RemoveChildren(c => c is Link);
+            foreach (var link in this.tokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)))
+                this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale * this.TextScaleMultiplier));
+        }
+
+        private void AlignAndSplit(Vector2 size) {
+            this.TokenizeIfNecessary();
+            var width = size.X - this.ScaledPadding.Width;
+            var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
+            if (this.TruncateIfLong) {
+                this.tokenizedText.Truncate(this.RegularFont, width, scale, this.Ellipsis, this.Alignment);
+            } else {
+                this.tokenizedText.Split(this.RegularFont, width, scale, this.Alignment);
+            }
         }
 
         /// <summary>
