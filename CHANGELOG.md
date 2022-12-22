@@ -68,6 +68,7 @@ Improvements
 - Ensure paragraphs display up-to-date versions of their text callbacks
 - Set cornflower blue as the default link color
 - Added TextField.OnCopyPasteException to allow handling exceptions thrown by TextCopy
+- Avoid paragraphs splitting or truncating their text unnecessarily
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly

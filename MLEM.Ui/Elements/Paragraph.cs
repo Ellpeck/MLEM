@@ -107,6 +107,7 @@ namespace MLEM.Ui.Elements {
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
         private TokenizedString tokenizedText;
+        private Vector2? lastAlignSplitSize;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -130,7 +131,8 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
-            this.AlignAndSplit(size);
+            this.TokenizeIfNecessary();
+            this.AlignAndSplitIfNecessary(size);
             var textSize = this.tokenizedText.GetArea(Vector2.Zero, this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
             return new Vector2(this.AutoAdjustWidth ? textSize.X + this.ScaledPadding.Width : size.X, textSize.Y + this.ScaledPadding.Height);
         }
@@ -193,6 +195,7 @@ namespace MLEM.Ui.Elements {
 
             // tokenize the text
             this.tokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text, this.Alignment);
+            this.lastAlignSplitSize = null;
 
             // add links to the paragraph
             this.RemoveChildren(c => c is Link);
@@ -200,8 +203,10 @@ namespace MLEM.Ui.Elements {
                 this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale * this.TextScaleMultiplier));
         }
 
-        private void AlignAndSplit(Vector2 size) {
-            this.TokenizeIfNecessary();
+        private void AlignAndSplitIfNecessary(Vector2 size) {
+            if (size == this.lastAlignSplitSize)
+                return;
+            this.lastAlignSplitSize = size;
             var width = size.X - this.ScaledPadding.Width;
             var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
             if (this.TruncateIfLong) {
