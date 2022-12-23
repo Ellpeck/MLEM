@@ -184,8 +184,8 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override void Update(GameTime time) {
-            base.Update(time);
             this.TokenizedText?.Update(time);
+            base.Update(time);
         }
 
         /// <inheritdoc />
