@@ -46,7 +46,13 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The width of the space between this checkbox and its <see cref="Label"/>
         /// </summary>
-        public StyleProp<float> TextOffsetX;
+        public StyleProp<float> TextOffsetX {
+            get => this.textOffsetX;
+            set {
+                this.textOffsetX = value;
+                this.SetAreaDirty();
+            }
+        }
         /// <summary>
         /// Whether or not this checkbox is currently checked.
         /// </summary>
@@ -80,6 +86,7 @@ namespace MLEM.Ui.Elements {
         public override bool CanBePressed => base.CanBePressed && !this.IsDisabled;
 
         private bool isChecked;
+        private StyleProp<float> textOffsetX;
 
         /// <summary>
         /// Creates a new checkbox with the given settings

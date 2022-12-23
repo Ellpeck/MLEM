@@ -47,12 +47,26 @@ namespace MLEM.Ui.Elements {
         /// The scale that the text will be rendered with.
         /// To add a multiplier rather than changing the scale directly, use <see cref="TextScaleMultiplier"/>.
         /// </summary>
-        public StyleProp<float> TextScale;
+        public StyleProp<float> TextScale {
+            get => this.textScale;
+            set {
+                this.textScale = value;
+                this.SetTextDirty();
+            }
+        }
         /// <summary>
         /// A multiplier that will be applied to <see cref="TextScale"/>.
         /// To change the text scale itself, use <see cref="TextScale"/>.
         /// </summary>
-        public float TextScaleMultiplier = 1;
+        public float TextScaleMultiplier {
+            get => this.textScaleMultiplier;
+            set {
+                if (this.textScaleMultiplier != value) {
+                    this.textScaleMultiplier = value;
+                    this.SetTextDirty();
+                }
+            }
+        }
         /// <summary>
         /// The text to render inside of this paragraph.
         /// Use <see cref="GetTextCallback"/> if the text changes frequently.
@@ -67,17 +81,41 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// If this paragraph should automatically adjust its width based on the width of the text within it
         /// </summary>
-        public bool AutoAdjustWidth;
+        public bool AutoAdjustWidth {
+            get => this.autoAdjustWidth;
+            set {
+                if (this.autoAdjustWidth != value) {
+                    this.autoAdjustWidth = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// Whether this paragraph should be truncated instead of split if the displayed <see cref="Text"/>'s width exceeds the provided width.
         /// When the string is truncated, the <see cref="Ellipsis"/> is added to its end.
         /// </summary>
-        public bool TruncateIfLong;
+        public bool TruncateIfLong {
+            get => this.truncateIfLong;
+            set {
+                if (this.truncateIfLong != value) {
+                    this.truncateIfLong = value;
+                    this.SetAlignSplitDirty();
+                }
+            }
+        }
         /// <summary>
         /// The ellipsis characters to use if <see cref="TruncateIfLong"/> is enabled and the string is truncated.
         /// If this is set to an empty string, no ellipsis will be attached to the truncated string.
         /// </summary>
-        public string Ellipsis = "...";
+        public string Ellipsis {
+            get => this.ellipsis;
+            set {
+                if (this.ellipsis != value) {
+                    this.ellipsis = value;
+                    this.SetAlignSplitDirty();
+                }
+            }
+        }
         /// <summary>
         /// An event that gets called when this paragraph's <see cref="Text"/> is queried.
         /// Use this event for setting this paragraph's text if it changes frequently.
@@ -106,9 +144,14 @@ namespace MLEM.Ui.Elements {
         private string explicitlySetText;
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
+        private StyleProp<float> textScale;
         private TokenizedString tokenizedText;
         private float? lastAlignSplitWidth;
         private float? lastAlignSplitScale;
+        private string ellipsis = "...";
+        private bool truncateIfLong;
+        private float textScaleMultiplier = 1;
+        private bool autoAdjustWidth;
 
         /// <summary>
         /// Creates a new paragraph with the given settings.
@@ -196,8 +239,7 @@ namespace MLEM.Ui.Elements {
 
             // tokenize the text
             this.tokenizedText = this.System.TextFormatter.Tokenize(this.RegularFont, this.Text, this.Alignment);
-            this.lastAlignSplitWidth = null;
-            this.lastAlignSplitScale = null;
+            this.SetAlignSplitDirty();
 
             // add links to the paragraph
             this.RemoveChildren(c => c is Link);
@@ -219,6 +261,11 @@ namespace MLEM.Ui.Elements {
             } else {
                 this.tokenizedText.Split(this.RegularFont, width, scale, this.Alignment);
             }
+        }
+
+        private void SetAlignSplitDirty() {
+            this.lastAlignSplitWidth = null;
+            this.lastAlignSplitScale = null;
         }
 
         /// <summary>

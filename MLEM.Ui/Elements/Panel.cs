@@ -46,7 +46,13 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The amount of pixels of room there should be between the <see cref="ScrollBar"/> and the rest of the content
         /// </summary>
-        public StyleProp<float> ScrollBarOffset;
+        public StyleProp<float> ScrollBarOffset {
+            get => this.scrollBarOffset;
+            set {
+                this.scrollBarOffset = value;
+                this.SetAreaDirty();
+            }
+        }
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly bool scrollOverflow;
@@ -54,6 +60,7 @@ namespace MLEM.Ui.Elements {
         private RenderTarget2D renderTarget;
         private bool relevantChildrenDirty;
         private float scrollBarChildOffset;
+        private StyleProp<float> scrollBarOffset;
 
         /// <summary>
         /// Creates a new panel with the given settings.

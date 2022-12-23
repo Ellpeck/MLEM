@@ -233,34 +233,82 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// Set this field to false to cause auto-anchored siblings to ignore this element as a possible anchor point.
         /// </summary>
-        public virtual bool CanAutoAnchorsAttach { get; set; } = true;
+        public virtual bool CanAutoAnchorsAttach {
+            get => this.canAutoAnchorsAttach;
+            set {
+                if (this.canAutoAnchorsAttach != value) {
+                    this.canAutoAnchorsAttach = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// Set this field to true to cause this element's width to be automatically calculated based on the area that its <see cref="Children"/> take up.
         /// To use this element's <see cref="Size"/>'s X coordinate as a minimum or maximum width rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> or <see cref="TreatSizeAsMaximum"/> to true.
         /// </summary>
-        public virtual bool SetWidthBasedOnChildren { get; set; }
+        public virtual bool SetWidthBasedOnChildren {
+            get => this.setWidthBasedOnChildren;
+            set {
+                if (this.setWidthBasedOnChildren != value) {
+                    this.setWidthBasedOnChildren = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// Set this field to true to cause this element's height to be automatically calculated based on the area that its <see cref="Children"/> take up.
         /// To use this element's <see cref="Size"/>'s Y coordinate as a minimum or maximum height rather than ignoring it, set <see cref="TreatSizeAsMinimum"/> or <see cref="TreatSizeAsMaximum"/> to true.
         /// </summary>
-        public virtual bool SetHeightBasedOnChildren { get; set; }
+        public virtual bool SetHeightBasedOnChildren {
+            get => this.setHeightBasedOnChildren;
+            set {
+                if (this.setHeightBasedOnChildren != value) {
+                    this.setHeightBasedOnChildren = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// If this field is set to true, and <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled, the resulting width or height will always be greather than or equal to this element's <see cref="Size"/>.
         /// For example, if an element's <see cref="Size"/>'s Y coordinate is set to 20, but there is only one child with a height of 10 in it, the element's height would be shrunk to 10 if this value was false, but would remain at 20 if it was true.
         /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
         /// </summary>
-        public virtual bool TreatSizeAsMinimum { get; set; }
+        public virtual bool TreatSizeAsMinimum {
+            get => this.treatSizeAsMinimum;
+            set {
+                if (this.treatSizeAsMinimum != value) {
+                    this.treatSizeAsMinimum = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// If this field is set to true, and <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/>are enabled, the resulting width or height weill always be less than or equal to this element's <see cref="Size"/>.
         /// Note that this value only has an effect if <see cref="SetWidthBasedOnChildren"/> or <see cref="SetHeightBasedOnChildren"/> are enabled.
         /// </summary>
-        public virtual bool TreatSizeAsMaximum { get; set; }
+        public virtual bool TreatSizeAsMaximum {
+            get => this.treatSizeAsMaximum;
+            set {
+                if (this.treatSizeAsMaximum != value) {
+                    this.treatSizeAsMaximum = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// Set this field to true to cause this element's final display area to never exceed that of its <see cref="Parent"/>.
         /// If the resulting area is too large, the size of this element is shrunk to fit the target area.
         /// This can be useful if an element should fill the remaining area of a parent exactly.
         /// </summary>
-        public virtual bool PreventParentSpill { get; set; }
+        public virtual bool PreventParentSpill {
+            get => this.preventParentSpill;
+            set {
+                if (this.preventParentSpill != value) {
+                    this.preventParentSpill = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
         /// <summary>
         /// The transparency (alpha value) that this element is rendered with.
         /// Note that, when <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> is called, this alpha value is multiplied with the <see cref="Parent"/>'s alpha value and passed down to this element's <see cref="Children"/>.
@@ -470,6 +518,12 @@ namespace MLEM.Ui.Elements {
         private StyleProp<UiStyle> style;
         private StyleProp<Padding> childPadding;
         private bool canBeSelected = true;
+        private bool canAutoAnchorsAttach = true;
+        private bool setWidthBasedOnChildren;
+        private bool setHeightBasedOnChildren;
+        private bool treatSizeAsMinimum;
+        private bool treatSizeAsMaximum;
+        private bool preventParentSpill;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.
