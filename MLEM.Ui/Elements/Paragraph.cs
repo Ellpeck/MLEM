@@ -76,7 +76,10 @@ namespace MLEM.Ui.Elements {
                 this.CheckTextChange();
                 return this.displayedText;
             }
-            set => this.explicitlySetText = value;
+            set {
+                this.explicitlySetText = value;
+                this.CheckTextChange();
+            }
         }
         /// <summary>
         /// If this paragraph should automatically adjust its width based on the width of the text within it
