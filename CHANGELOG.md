@@ -20,6 +20,7 @@ Additions
 - Added UniformTextureAtlas methods ToList and ToDictionary
 - Added SingleRandom and SeedSource
 - Added TokenizedString.GetArea
+- Added InputHandler.WasPressedForLess and related methods
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements

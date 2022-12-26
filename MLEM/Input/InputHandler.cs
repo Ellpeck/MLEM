@@ -859,6 +859,43 @@ namespace MLEM.Input {
             }
         }
 
+        /// <summary>
+        /// Returns if a given control of any kind was just let go this frame, and had been down for less than the given <paramref name="time"/> before that. Essentially, this action signifies a short press action.
+        /// </summary>
+        /// <param name="control">The control whose pressed state to query.</param>
+        /// <param name="time">The maximum time that the control should have been down for.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the given control was pressed for less than the given time.</returns>
+        public bool WasPressedForLess(GenericInput control, TimeSpan time, int index = -1) {
+            return this.WasDown(control, index) && this.IsUp(control, index) && this.GetDownTime(control, index) < time;
+        }
+
+        /// <summary>
+        /// Returns if a given control of any kind was just let go this frame, and had been down for less than the given <paramref name="time"/> before that, and if the press has not been consumed yet using <see cref="TryConsumePressedForLess"/>. Essentially, this action signifies a short press action.
+        /// </summary>
+        /// <param name="control">The control whose pressed state to query.</param>
+        /// <param name="time">The maximum time that the control should have been down for.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the given control was pressed for less than the given time, and the press has not been consumed yet.</returns>
+        public bool WasPressedForLessAvailable(GenericInput control, TimeSpan time, int index = -1) {
+            return this.WasPressedForLess(control, time, index) && !this.IsPressConsumed(control, index);
+        }
+
+        /// <summary>
+        /// Returns if a given control of any kind was just let go this frame, and had been down for less than the given <paramref name="time"/> before that, and if the press has not been consumed yet using <see cref="TryConsumePressedForLess"/>, and marks the press as consumed if it is. Essentially, this action signifies a short press action.
+        /// </summary>
+        /// <param name="control">The control whose pressed state to query.</param>
+        /// <param name="time">The maximum time that the control should have been down for.</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
+        /// <returns>Whether the given control was pressed for less than the given time, and the press was successfully consumed.</returns>
+        public bool TryConsumePressedForLess(GenericInput control, TimeSpan time, int index = -1) {
+            if (this.WasPressedForLessAvailable(control, time, index)) {
+                this.consumedPresses.Add((control, index));
+                return true;
+            }
+            return false;
+        }
+
         /// <inheritdoc cref="IsDown"/>
         public bool IsAnyDown(params GenericInput[] controls) {
             foreach (var control in controls) {
