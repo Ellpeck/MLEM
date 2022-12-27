@@ -6,11 +6,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using static MLEM.Input.GenericInput;
 
 namespace MLEM.Input {
     /// <summary>
     /// An input handler is a more advanced wrapper around MonoGame's default input system.
-    /// It includes keyboard, mouse, gamepad and touch states, as well as a new "pressed" state for keys and the ability for keyboard and gamepad repeat events.
+    /// It includes keyboard, mouse, gamepad and touch handling through the <see cref="GenericInput"/> wrapper, as well as a new "pressed" state for inputs, the ability for keyboard and gamepad repeat events, and the ability to track down, up and press times for inputs.
     /// </summary>
     public class InputHandler : GameComponent {
 
@@ -277,7 +278,7 @@ namespace MLEM.Input {
                         if (active) {
                             this.gamepads[i] = GamePad.GetState((PlayerIndex) i);
                             foreach (var button in InputHandler.AllButtons) {
-                                if (this.IsGamepadButtonDown(button, i))
+                                if (this.IsDown(button, i))
                                     this.AccumulateDown(button, i);
                             }
                         }
@@ -290,7 +291,7 @@ namespace MLEM.Input {
                     this.triggerGamepadButtonRepeat[i] = false;
                     if (this.HandleGamepadRepeats) {
                         this.heldGamepadButtons[i] = InputHandler.AllButtons
-                            .Where(b => this.IsGamepadButtonDown(b, i))
+                            .Where(b => this.IsDown(b, i))
                             .OrderBy(b => this.GetDownTime(b, i))
                             .Cast<Buttons?>().FirstOrDefault();
                         if (this.heldGamepadButtons[i].HasValue && this.TryGetDownTime(this.heldGamepadButtons[i].Value, out var heldTime, i)) {
@@ -398,22 +399,39 @@ namespace MLEM.Input {
             return this.gamepads[index];
         }
 
+        /// <summary>
+        /// Returns whether the given modifier key is down.
+        /// </summary>
+        /// <param name="modifier">The modifier key</param>
+        /// <returns>If the modifier key is down</returns>
+        public bool IsModifierKeyDown(ModifierKey modifier) {
+            foreach (var key in modifier.GetKeys()) {
+                if (this.IsDown(key))
+                    return true;
+            }
+            return false;
+        }
+
         /// <inheritdoc cref="Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsDown instead.")]
         public bool IsKeyDown(Keys key) {
             return this.KeyboardState.IsKeyDown(key);
         }
 
         /// <inheritdoc cref="Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsUp instead.")]
         public bool IsKeyUp(Keys key) {
             return this.KeyboardState.IsKeyUp(key);
         }
 
         /// <inheritdoc cref="Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version WasDown instead.")]
         public bool WasKeyDown(Keys key) {
             return this.LastKeyboardState.IsKeyDown(key);
         }
 
         /// <inheritdoc cref="Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version WasUp instead.")]
         public bool WasKeyUp(Keys key) {
             return this.LastKeyboardState.IsKeyUp(key);
         }
@@ -425,6 +443,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="key">The key to query</param>
         /// <returns>If the key is pressed</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressed instead.")]
         public bool IsKeyPressed(Keys key) {
             // if the queried key is the held key and a repeat should be triggered, return true
             if (this.HandleKeyboardRepeats && key == this.heldKey && this.triggerKeyRepeat)
@@ -440,6 +459,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="key">The key to query</param>
         /// <returns>If the key is pressed</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressedIgnoreRepeats instead.")]
         public bool IsKeyPressedIgnoreRepeats(Keys key) {
             if (this.InvertPressBehavior)
                 return this.WasKeyDown(key) && this.IsKeyUp(key);
@@ -451,6 +471,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="key">The key to query.</param>
         /// <returns>If the key is pressed and the press is not consumed yet.</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressedAvailable instead.")]
         public bool IsKeyPressedAvailable(Keys key) {
             return this.IsKeyPressed(key) && !this.IsPressConsumed(key);
         }
@@ -463,6 +484,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="key">The key to query.</param>
         /// <returns>If the key is pressed and the press is not consumed yet.</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version TryConsumePressed instead.")]
         public bool TryConsumeKeyPressed(Keys key) {
             if (this.IsKeyPressedAvailable(key)) {
                 this.consumedPresses.Add((key, -1));
@@ -472,23 +494,11 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Returns whether the given modifier key is down.
-        /// </summary>
-        /// <param name="modifier">The modifier key</param>
-        /// <returns>If the modifier key is down</returns>
-        public bool IsModifierKeyDown(ModifierKey modifier) {
-            foreach (var key in modifier.GetKeys()) {
-                if (this.IsKeyDown(key))
-                    return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Returns whether the given mouse button is currently down.
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <returns>Whether or not the queried button is down</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsDown instead.")]
         public bool IsMouseButtonDown(MouseButton button) {
             return this.MouseState.GetState(button) == ButtonState.Pressed;
         }
@@ -498,6 +508,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <returns>Whether or not the queried button is up</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsUp instead.")]
         public bool IsMouseButtonUp(MouseButton button) {
             return this.MouseState.GetState(button) == ButtonState.Released;
         }
@@ -507,6 +518,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <returns>Whether or not the queried button was down</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version WasDown instead.")]
         public bool WasMouseButtonDown(MouseButton button) {
             return this.LastMouseState.GetState(button) == ButtonState.Pressed;
         }
@@ -516,6 +528,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <returns>Whether or not the queried button was up</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version WasUp instead.")]
         public bool WasMouseButtonUp(MouseButton button) {
             return this.LastMouseState.GetState(button) == ButtonState.Released;
         }
@@ -526,6 +539,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="button">The button to query</param>
         /// <returns>Whether the button is pressed</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressed instead.")]
         public bool IsMouseButtonPressed(MouseButton button) {
             if (this.InvertPressBehavior)
                 return this.WasMouseButtonDown(button) && this.IsMouseButtonUp(button);
@@ -537,6 +551,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="button">The button to query.</param>
         /// <returns>If the button is pressed and the press is not consumed yet.</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressedAvailable instead.")]
         public bool IsMouseButtonPressedAvailable(MouseButton button) {
             return this.IsMouseButtonPressed(button) && !this.IsPressConsumed(button);
         }
@@ -548,6 +563,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <param name="button">The button to query.</param>
         /// <returns>If the button is pressed and the press is not consumed yet.</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version TryConsumePressed instead.")]
         public bool TryConsumeMouseButtonPressed(MouseButton button) {
             if (this.IsMouseButtonPressedAvailable(button)) {
                 this.consumedPresses.Add((button, -1));
@@ -557,6 +573,7 @@ namespace MLEM.Input {
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonDown"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsDown instead.")]
         public bool IsGamepadButtonDown(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
@@ -569,6 +586,7 @@ namespace MLEM.Input {
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonUp"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsUp instead.")]
         public bool IsGamepadButtonUp(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
@@ -581,6 +599,7 @@ namespace MLEM.Input {
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonDown"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version WasDown instead.")]
         public bool WasGamepadButtonDown(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
@@ -593,6 +612,7 @@ namespace MLEM.Input {
         }
 
         /// <inheritdoc cref="GamePadState.IsButtonUp"/>
+        [Obsolete("This method is deprecated. Use the GenericInput version WasUp instead.")]
         public bool WasGamepadButtonUp(Buttons button, int index = -1) {
             if (index < 0) {
                 for (var i = 0; i < this.ConnectedGamepads; i++) {
@@ -612,6 +632,7 @@ namespace MLEM.Input {
         /// <param name="button">The button to query</param>
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad</param>
         /// <returns>Whether the given button is pressed</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressed instead.")]
         public bool IsGamepadButtonPressed(Buttons button, int index = -1) {
             if (this.HandleGamepadRepeats) {
                 if (index < 0) {
@@ -635,6 +656,7 @@ namespace MLEM.Input {
         /// <param name="button">The button to query</param>
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad</param>
         /// <returns>Whether the given button is pressed</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressedIgnoreRepeats instead.")]
         public bool IsGamepadButtonPressedIgnoreRepeats(Buttons button, int index = -1) {
             if (this.InvertPressBehavior)
                 return this.WasGamepadButtonDown(button, index) && this.IsGamepadButtonUp(button, index);
@@ -647,6 +669,7 @@ namespace MLEM.Input {
         /// <param name="button">The button to query.</param>
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad.</param>
         /// <returns>Whether the given button is pressed and the press is not consumed yet.</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version IsPressedAvailable instead.")]
         public bool IsGamepadButtonPressedAvailable(Buttons button, int index = -1) {
             return this.IsGamepadButtonPressed(button) && !this.IsPressConsumed(button, index) && (index < 0 || !this.IsPressConsumed(button));
         }
@@ -660,6 +683,7 @@ namespace MLEM.Input {
         /// <param name="button">The button to query.</param>
         /// <param name="index">The zero-based index of the gamepad, or -1 for any gamepad.</param>
         /// <returns>Whether the given button is pressed and the press is not consumed yet.</returns>
+        [Obsolete("This method is deprecated. Use the GenericInput version TryConsumePressed instead.")]
         public bool TryConsumeGamepadButtonPressed(Buttons button, int index = -1) {
             if (this.IsGamepadButtonPressedAvailable(button, index)) {
                 this.consumedPresses.Add((button, index));
@@ -722,15 +746,21 @@ namespace MLEM.Input {
         /// <param name="control">The control whose down state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is down</returns>
-        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsDown(GenericInput control, int index = -1) {
             switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.IsKeyDown(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.IsGamepadButtonDown(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.IsMouseButtonDown(control);
+                case InputType.Keyboard:
+                    return this.KeyboardState.IsKeyDown(control);
+                case InputType.Gamepad:
+                    if (index < 0) {
+                        for (var i = 0; i < this.ConnectedGamepads; i++) {
+                            if (this.GetGamepadState(i).GetAnalogValue(control) > this.GamepadButtonDeadzone)
+                                return true;
+                        }
+                        return false;
+                    }
+                    return this.GetGamepadState(index).GetAnalogValue(control) > this.GamepadButtonDeadzone;
+                case InputType.Mouse:
+                    return this.MouseState.GetState(control) == ButtonState.Pressed;
                 default:
                     return false;
             }
@@ -743,15 +773,21 @@ namespace MLEM.Input {
         /// <param name="control">The control whose up state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is up.</returns>
-        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsUp(GenericInput control, int index = -1) {
             switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.IsKeyUp(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.IsGamepadButtonUp(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.IsMouseButtonUp(control);
+                case InputType.Keyboard:
+                    return this.KeyboardState.IsKeyUp(control);
+                case InputType.Gamepad:
+                    if (index < 0) {
+                        for (var i = 0; i < this.ConnectedGamepads; i++) {
+                            if (this.GetGamepadState(i).GetAnalogValue(control) <= this.GamepadButtonDeadzone)
+                                return true;
+                        }
+                        return false;
+                    }
+                    return this.GetGamepadState(index).GetAnalogValue(control) <= this.GamepadButtonDeadzone;
+                case InputType.Mouse:
+                    return this.MouseState.GetState(control) == ButtonState.Released;
                 default:
                     return true;
             }
@@ -764,15 +800,21 @@ namespace MLEM.Input {
         /// <param name="control">The control whose down state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control was down</returns>
-        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool WasDown(GenericInput control, int index = -1) {
             switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.WasKeyDown(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.WasGamepadButtonDown(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.WasMouseButtonDown(control);
+                case InputType.Keyboard:
+                    return this.LastKeyboardState.IsKeyDown(control);
+                case InputType.Gamepad:
+                    if (index < 0) {
+                        for (var i = 0; i < this.ConnectedGamepads; i++) {
+                            if (this.GetLastGamepadState(i).GetAnalogValue(control) > this.GamepadButtonDeadzone)
+                                return true;
+                        }
+                        return false;
+                    }
+                    return this.GetLastGamepadState(index).GetAnalogValue(control) > this.GamepadButtonDeadzone;
+                case InputType.Mouse:
+                    return this.LastMouseState.GetState(control) == ButtonState.Pressed;
                 default:
                     return false;
             }
@@ -785,15 +827,21 @@ namespace MLEM.Input {
         /// <param name="control">The control whose up state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control was up.</returns>
-        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool WasUp(GenericInput control, int index = -1) {
             switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.WasKeyUp(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.WasGamepadButtonUp(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.WasMouseButtonUp(control);
+                case InputType.Keyboard:
+                    return this.LastKeyboardState.IsKeyUp(control);
+                case InputType.Gamepad:
+                    if (index < 0) {
+                        for (var i = 0; i < this.ConnectedGamepads; i++) {
+                            if (this.GetLastGamepadState(i).GetAnalogValue(control) <= this.GamepadButtonDeadzone)
+                                return true;
+                        }
+                        return false;
+                    }
+                    return this.GetLastGamepadState(index).GetAnalogValue(control) <= this.GamepadButtonDeadzone;
+                case InputType.Mouse:
+                    return this.LastMouseState.GetState(control) == ButtonState.Released;
                 default:
                     return true;
             }
@@ -801,23 +849,47 @@ namespace MLEM.Input {
 
         /// <summary>
         /// Returns if a given control of any kind is pressed.
-        /// This is a helper function that can be passed a <see cref="Keys"/>, <see cref="Buttons"/> or <see cref="MouseButton"/>.
+        /// If <see cref="HandleKeyboardRepeats"/> or <see cref="HandleGamepadRepeats"/> are true, this method will also return true to signify a key or gamepad button repeat.
+        /// An input is considered pressed if it was not down the last update call, but is down the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
         /// </summary>
         /// <param name="control">The control whose pressed state to query</param>
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is pressed.</returns>
-        /// <exception cref="ArgumentException">If the passed control isn't of a supported type</exception>
         public bool IsPressed(GenericInput control, int index = -1) {
+            // handle repeat events for specific inputs, and delegate to default "ignore repeats" behavior otherwise
             switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.IsKeyPressed(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.IsGamepadButtonPressed(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.IsMouseButtonPressed(control);
-                default:
-                    return false;
+                case InputType.Keyboard:
+                    if (this.HandleKeyboardRepeats && (Keys) control == this.heldKey && this.triggerKeyRepeat)
+                        return true;
+                    break;
+                case InputType.Gamepad:
+                    if (this.HandleGamepadRepeats) {
+                        if (index < 0) {
+                            for (var i = 0; i < this.ConnectedGamepads; i++) {
+                                if (this.heldGamepadButtons[i] == (Buttons) control && this.triggerGamepadButtonRepeat[i])
+                                    return true;
+                            }
+                        } else if (this.heldGamepadButtons[index] == (Buttons) control && this.triggerGamepadButtonRepeat[index]) {
+                            return true;
+                        }
+                    }
+                    break;
             }
+            return this.IsPressedIgnoreRepeats(control, index);
+        }
+
+        /// <summary>
+        /// An input is considered pressed if it was not down the last update call, but is down the current update call. If <see cref="InvertPressBehavior"/> is true, this behavior is inverted.
+        /// This has the same behavior as <see cref="IsPressed"/>, but ignores keyboard and gamepad repeat events.
+        /// If <see cref="HandleKeyboardRepeats"/> and <see cref="HandleGamepadRepeats"/> are false, this method does the same as <see cref="IsPressed"/>.
+        /// </summary>
+        /// <param name="control">The control whose pressed state to query</param>
+        /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
+        /// <returns>Whether the given control is pressed, ignoring repeat events.</returns>
+        public bool IsPressedIgnoreRepeats(GenericInput control, int index = -1) {
+            if (this.InvertPressBehavior)
+                return this.WasDown(control, index) && this.IsUp(control, index);
+            return this.WasUp(control, index) && this.IsDown(control, index);
         }
 
         /// <summary>
@@ -827,16 +899,7 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
         /// <returns>Whether the given control is pressed and the press is not consumed yet.</returns>
         public bool IsPressedAvailable(GenericInput control, int index = -1) {
-            switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.IsKeyPressedAvailable(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.IsGamepadButtonPressedAvailable(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.IsMouseButtonPressedAvailable(control);
-                default:
-                    return false;
-            }
+            return this.IsPressed(control, index) && !this.IsPressConsumed(control, index);
         }
 
         /// <summary>
@@ -847,16 +910,11 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
         /// <returns>Whether the given control is pressed and the press is not consumed yet.</returns>
         public bool TryConsumePressed(GenericInput control, int index = -1) {
-            switch (control.Type) {
-                case GenericInput.InputType.Keyboard:
-                    return this.TryConsumeKeyPressed(control);
-                case GenericInput.InputType.Gamepad:
-                    return this.TryConsumeGamepadButtonPressed(control, index);
-                case GenericInput.InputType.Mouse:
-                    return this.TryConsumeMouseButtonPressed(control);
-                default:
-                    return false;
+            if (this.IsPressedAvailable(control, index)) {
+                this.consumedPresses.Add((control, index));
+                return true;
             }
+            return false;
         }
 
         /// <summary>

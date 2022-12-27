@@ -165,19 +165,19 @@ namespace MLEM.Ui {
                 var mousedNow = this.GetElementUnderPos(new Vector2(this.Input.ViewportMousePosition.X, this.Input.ViewportMousePosition.Y));
                 this.SetMousedElement(mousedNow);
 
-                if (this.Input.IsMouseButtonPressedAvailable(MouseButton.Left)) {
+                if (this.Input.IsPressedAvailable(MouseButton.Left)) {
                     this.IsAutoNavMode = false;
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.SelectElement(this.ActiveRoot, selectedNow);
                     if (mousedNow != null && mousedNow.CanBePressed) {
                         this.System.InvokeOnElementPressed(mousedNow);
-                        this.Input.TryConsumeMouseButtonPressed(MouseButton.Left);
+                        this.Input.TryConsumePressed(MouseButton.Left);
                     }
-                } else if (this.Input.IsMouseButtonPressedAvailable(MouseButton.Right)) {
+                } else if (this.Input.IsPressedAvailable(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
                     if (mousedNow != null && mousedNow.CanBePressed) {
                         this.System.InvokeOnElementSecondaryPressed(mousedNow);
-                        this.Input.TryConsumeMouseButtonPressed(MouseButton.Right);
+                        this.Input.TryConsumePressed(MouseButton.Right);
                     }
                 }
             } else {
@@ -196,7 +196,7 @@ namespace MLEM.Ui {
                         }
                         this.KeyboardButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
-                } else if (this.Input.IsKeyPressedAvailable(Keys.Tab)) {
+                } else if (this.Input.IsPressedAvailable(Keys.Tab)) {
                     this.IsAutoNavMode = true;
                     // tab or shift-tab to next or previous element
                     var backward = this.Input.IsModifierKeyDown(ModifierKey.Shift);
@@ -205,7 +205,7 @@ namespace MLEM.Ui {
                         next = this.SelectedElement.GetTabNextElement(backward, next);
                     if (next != this.SelectedElement) {
                         this.SelectElement(this.ActiveRoot, next);
-                        this.Input.TryConsumeKeyPressed(Keys.Tab);
+                        this.Input.TryConsumePressed(Keys.Tab);
                     }
                 }
             }

@@ -20,7 +20,7 @@ Additions
 - Added UniformTextureAtlas methods ToList and ToDictionary
 - Added SingleRandom and SeedSource
 - Added TokenizedString.GetArea
-- Added InputHandler.WasPressedForLess and related methods
+- Added InputHandler.WasPressedForLess and related methods as well as InputHandler.IsPressedIgnoreRepeats
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
@@ -49,6 +49,7 @@ Removals
 - Marked EnumHelper as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
 - Marked Code.GetReplacementString as obsolete
 - Marked TokenizedString.Measure as obsolete in favor of GetArea
+- Marked non-GenericInput versions of IsDown, IsUp, IsPressed and related methods as obsolete in favor of GenericInput ones
 
 ### MLEM.Ui
 Additions

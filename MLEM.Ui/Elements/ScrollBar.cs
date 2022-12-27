@@ -147,8 +147,8 @@ namespace MLEM.Ui.Elements {
 
             // MOUSE INPUT
             var moused = this.Controls.MousedElement;
-            var wasMouseUp = this.Input.WasMouseButtonUp(MouseButton.Left);
-            var isMouseDown = this.Input.IsMouseButtonDown(MouseButton.Left);
+            var wasMouseUp = this.Input.WasUp(MouseButton.Left);
+            var isMouseDown = this.Input.IsDown(MouseButton.Left);
             if (moused == this && wasMouseUp && isMouseDown) {
                 this.isMouseScrolling = true;
                 this.scrollStartOffset = this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()) - this.ScrollerPosition;

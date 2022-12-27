@@ -387,7 +387,7 @@ public class GameImpl : MlemGame {
 
     protected override void DoUpdate(GameTime gameTime) {
         base.DoUpdate(gameTime);
-        if (this.InputHandler.IsKeyPressed(Keys.F11))
+        if (this.InputHandler.IsPressed(Keys.F11))
             this.GraphicsDeviceManager.SetFullscreen(!this.GraphicsDeviceManager.IsFullScreen);
 
         var delta = this.InputHandler.ScrollWheel - this.InputHandler.LastScrollWheel;

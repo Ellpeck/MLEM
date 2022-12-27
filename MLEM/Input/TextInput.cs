@@ -289,16 +289,16 @@ namespace MLEM.Input {
                 this.CaretPos--;
             } else if (this.CaretPos < this.text.Length && input.TryConsumePressed(Keys.Right)) {
                 this.CaretPos++;
-            } else if (this.Multiline && input.IsKeyPressedAvailable(Keys.Up) && this.MoveCaretToLine(this.CaretLine - 1)) {
+            } else if (this.Multiline && input.IsPressedAvailable(Keys.Up) && this.MoveCaretToLine(this.CaretLine - 1)) {
                 input.TryConsumePressed(Keys.Up);
-            } else if (this.Multiline && input.IsKeyPressedAvailable(Keys.Down) && this.MoveCaretToLine(this.CaretLine + 1)) {
+            } else if (this.Multiline && input.IsPressedAvailable(Keys.Down) && this.MoveCaretToLine(this.CaretLine + 1)) {
                 input.TryConsumePressed(Keys.Down);
             } else if (this.CaretPos != 0 && input.TryConsumePressed(Keys.Home)) {
                 this.CaretPos = 0;
             } else if (this.CaretPos != this.text.Length && input.TryConsumePressed(Keys.End)) {
                 this.CaretPos = this.text.Length;
             } else if (input.IsModifierKeyDown(ModifierKey.Control)) {
-                if (input.IsKeyPressedAvailable(Keys.V)) {
+                if (input.IsPressedAvailable(Keys.V)) {
                     var clip = this.PasteFromClipboardFunction?.Invoke();
                     if (clip != null) {
                         this.InsertText(clip, true);
