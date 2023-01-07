@@ -37,6 +37,7 @@ Improvements
 - Allow explicitly specifying each region for extended auto tiles
 - Added a generic version of IGenericDataHolder.SetData
 - Allow formatting codes to have an arbitrary custom width
+- Allow initializing text formatters without default codes and macros
 - **Drastically improved StaticSpriteBatch batching performance**
 - **Made GenericFont and TokenizedString support UTF-32 characters like emoji**
 

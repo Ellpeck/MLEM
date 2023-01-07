@@ -29,44 +29,54 @@ namespace MLEM.Formatting {
         public readonly Dictionary<Regex, Macro> Macros = new Dictionary<Regex, Macro>();
 
         /// <summary>
-        /// Creates a new text formatter with a set of default formatting codes.
+        /// Creates a new text formatter with an optional set of default formatting codes.
         /// </summary>
-        public TextFormatter() {
-            // font codes
-            this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
-            this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
-            this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r,
-                m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black,
-                new Vector2(float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? offset : 2)));
-            this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
-            this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.55F));
+        /// <param name="hasFontModifiers">Whether default font modifier codes should be added, including bold, italic, strikethrough, shadow, subscript, and more.</param>
+        /// <param name="hasColors">Whether default color codes should be added, including all <see cref="Color"/> values and the ability to use custom colors.</param>
+        /// <param name="hasAnimations">Whether default animation codes should be added, namely the wobbly animation.</param>
+        /// <param name="hasMacros">Whether default macros should be added, including TeX's ~ non-breaking space and more.</param>
+        public TextFormatter(bool hasFontModifiers = true, bool hasColors = true, bool hasAnimations = true, bool hasMacros = true) {
+            // general font modifier codes
+            if (hasFontModifiers) {
+                this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
+                this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
+                this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r,
+                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black,
+                    new Vector2(float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? offset : 2)));
+                this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
+                this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.55F));
+                this.Codes.Add(new Regex(@"<sub(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
+                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? off : 0.15F));
+                this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
+                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : -0.25F));
+            }
 
             // color codes
-            foreach (var c in typeof(Color).GetProperties()) {
-                if (c.GetGetMethod().IsStatic) {
-                    var value = (Color) c.GetValue(null);
-                    this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m, r) => new ColorCode(m, r, value));
+            if (hasColors) {
+                foreach (var c in typeof(Color).GetProperties()) {
+                    if (c.GetGetMethod().IsStatic) {
+                        var value = (Color) c.GetValue(null);
+                        this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m, r) => new ColorCode(m, r, value));
+                    }
                 }
+                this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorHelper.FromHexString(m.Groups[1].Value)));
             }
-            this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorHelper.FromHexString(m.Groups[1].Value)));
 
             // animation codes
-            this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
-                float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : 5,
-                float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : 1 / 8F));
+            if (hasAnimations) {
+                this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
+                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : 5,
+                    float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : 1 / 8F));
+            }
 
             // control codes
             this.Codes.Add(new Regex(@"</(\w+)>"), (f, m, r) => new SimpleEndCode(m, r, m.Groups[1].Value));
 
-            // superscript and subscript codes
-           this.Codes.Add(new Regex(@"<sub(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
-                float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? off : 0.15F));
-           this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
-               float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : -0.25F));
-
             // macros
-            this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToString());
-            this.Macros.Add(new Regex("<n>"), (f, m, r) => '\n'.ToString());
+            if (hasMacros) {
+                this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToString());
+                this.Macros.Add(new Regex("<n>"), (f, m, r) => '\n'.ToString());
+            }
         }
 
         /// <summary>
