@@ -58,6 +58,12 @@ namespace MLEM.Formatting {
             // control codes
             this.Codes.Add(new Regex(@"</(\w+)>"), (f, m, r) => new SimpleEndCode(m, r, m.Groups[1].Value));
 
+            // superscript and subscript codes
+           this.Codes.Add(new Regex(@"<sub(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
+                float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? off : 0.15F));
+           this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
+               float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : -0.25F));
+
             // macros
             this.Macros.Add(new Regex("~"), (f, m, r) => GenericFont.Nbsp.ToString());
             this.Macros.Add(new Regex("<n>"), (f, m, r) => '\n'.ToString());

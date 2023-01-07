@@ -22,6 +22,7 @@ Additions
 - Added TokenizedString.GetArea
 - Added InputHandler.WasPressedForLess and related methods as well as InputHandler.IsPressedIgnoreRepeats
 - Added RandomExtensions.NextSingle with minimum and maximum values
+- Added subscript and superscript formatting codes
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
