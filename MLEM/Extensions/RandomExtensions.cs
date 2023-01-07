@@ -55,5 +55,37 @@ namespace MLEM.Extensions {
             throw new IndexOutOfRangeException();
         }
 
+        /// <summary>
+        /// Returns a random floating-point number that is greater than or equal to 0, and less than <paramref name="maxValue"/>.
+        /// </summary>
+        /// <param name="random">The random.</param>
+        /// <param name="maxValue">The (exclusive) maximum value.</param>
+        /// <returns>A single-precision floating point number that is greater than or equal to 0, and less than <paramref name="maxValue"/>.</returns>
+        public static float NextSingle(this Random random, float maxValue) {
+            return maxValue * random.NextSingle();
+        }
+
+        /// <summary>
+        /// Returns a random floating-point number that is greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
+        /// </summary>
+        /// <param name="random">The random.</param>
+        /// <param name="minValue">The (inclusive) minimum value.</param>
+        /// <param name="maxValue">The (exclusive) maximum value.</param>
+        /// <returns>A single-precision floating point number that is greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.</returns>
+        public static float NextSingle(this Random random, float minValue, float maxValue) {
+            return (maxValue - minValue) * random.NextSingle() + minValue;
+        }
+
+#if !NET6_0_OR_GREATER
+        /// <summary>
+        /// Returns a random floating-point number that is greater than or equal to 0, and less than 1.
+        /// </summary>
+        /// <param name="random">The random.</param>
+        /// <returns>A single-precision floating point number that is greater than or equal to 0, and less than 1.</returns>
+        public static float NextSingle(this Random random) {
+            return (float) random.NextDouble();
+        }
+#endif
+
     }
 }

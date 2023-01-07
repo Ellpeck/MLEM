@@ -21,6 +21,7 @@ Additions
 - Added SingleRandom and SeedSource
 - Added TokenizedString.GetArea
 - Added InputHandler.WasPressedForLess and related methods as well as InputHandler.IsPressedIgnoreRepeats
+- Added RandomExtensions.NextSingle with minimum and maximum values
 - **Added the ability to find paths to one of multiple goals using AStar**
 
 Improvements
