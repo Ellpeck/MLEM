@@ -206,7 +206,12 @@ namespace MLEM.Ui {
         /// <param name="style">The style settings that this ui should have. Use <see cref="UntexturedStyle"/> for the default, untextured style.</param>
         /// <param name="inputHandler">The input handler that this ui's <see cref="UiControls"/> should use. If none is supplied, a new input handler is created for this ui.</param>
         /// <param name="automaticViewport">If this value is set to true, the ui system's <see cref="Viewport"/> will be set automatically based on the <see cref="GameWindow"/>'s size. Defaults to true.</param>
-        public UiSystem(Game game, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true) : base(game) {
+        /// <param name="hasFontModifierFormatting">Whether default font modifier codes should be added to this ui system's <see cref="TextFormatter"/>, including bold, italic, strikethrough, shadow, subscript, and more.</param>
+        /// <param name="hasColorFormatting">Whether default color codes should be added to this ui system's <see cref="TextFormatter"/>, including all <see cref="Color"/> values and the ability to use custom colors.</param>
+        /// <param name="hasAnimationFormatting">Whether default animation codes should be added to this ui system's <see cref="TextFormatter"/>, namely the wobbly animation.</param>
+        /// <param name="hasMacroFormatting">Whether default macros should be added to this ui system's <see cref="TextFormatter"/>, including TeX's ~ non-breaking space and more.</param>
+        /// <param name="hasUiFormatting">Whether <see cref="UiSystem"/>-based formatting codes should be added to this ui system's <see cref="TextFormatter"/>, including <see cref="Paragraph.Link"/> codes and font switching.</param>
+        public UiSystem(Game game, UiStyle style, InputHandler inputHandler = null, bool automaticViewport = true, bool hasFontModifierFormatting = true, bool hasColorFormatting = true, bool hasAnimationFormatting = true, bool hasMacroFormatting = true, bool hasUiFormatting = true) : base(game) {
             this.Controls = new UiControls(this, inputHandler);
             this.style = style;
 
@@ -248,12 +253,14 @@ namespace MLEM.Ui {
                 };
             }
 
-            this.TextFormatter = new TextFormatter();
-            this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
-                t => this.Controls.MousedElement is Paragraph.Link l1 && l1.Token == t || this.Controls.TouchedElement is Paragraph.Link l2 && l2.Token == t,
-                this.Style.LinkColor));
-            this.TextFormatter.Codes.Add(new Regex("<f ([^>]+)>"), (_, m, r) => new FontCode(m, r,
-                f => this.Style.AdditionalFonts != null && this.Style.AdditionalFonts.TryGetValue(m.Groups[1].Value, out var c) ? c : f));
+            this.TextFormatter = new TextFormatter(hasFontModifierFormatting, hasColorFormatting, hasAnimationFormatting, hasMacroFormatting);
+            if (hasUiFormatting) {
+                this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
+                    t => this.Controls.MousedElement is Paragraph.Link l1 && l1.Token == t || this.Controls.TouchedElement is Paragraph.Link l2 && l2.Token == t,
+                    d => this.Style.LinkColor));
+                this.TextFormatter.Codes.Add(new Regex("<f ([^>]+)>"), (_, m, r) => new FontCode(m, r,
+                    f => this.Style.AdditionalFonts != null && this.Style.AdditionalFonts.TryGetValue(m.Groups[1].Value, out var c) ? c : f));
+            }
         }
 
         /// <summary>

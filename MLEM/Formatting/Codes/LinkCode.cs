@@ -9,13 +9,18 @@ namespace MLEM.Formatting.Codes {
     public class LinkCode : UnderlineCode {
 
         private readonly Func<Token, bool> isSelected;
-        private readonly Color? color;
+        private readonly Func<Color, Color?> color;
 
         /// <inheritdoc />
-        public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected, Color? color = null) : base(match, regex, thickness, yOffset) {
+        public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected, Func<Color, Color?> color) :
+            base(match, regex, thickness, yOffset) {
             this.isSelected = isSelected;
             this.color = color;
         }
+
+        /// <inheritdoc />
+        public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected, Color? color = null) :
+            this(match, regex, thickness, yOffset, isSelected, d => color) {}
 
         /// <summary>
         /// Returns true if this link formatting code is currently selected or hovered over, based on the selection function.
@@ -31,7 +36,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override Color? GetColor(Color defaultPick) {
-            return this.color;
+            return this.color.Invoke(defaultPick);
         }
 
         /// <inheritdoc />

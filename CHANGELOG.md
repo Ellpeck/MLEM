@@ -75,6 +75,7 @@ Improvements
 - Added TextField.OnCopyPasteException to allow handling exceptions thrown by TextCopy
 - Avoid paragraphs splitting or truncating their text unnecessarily
 - Automatically mark elements dirty when various member values are changed
+- Allow initializing a ui system's text formatter without default codes and macros
 
 Fixes
 - Fixed parents of elements that prevent spill not being notified properly
@@ -86,6 +87,7 @@ Fixes
 - Fixed the scroll bar of an empty panel being positioned incorrectly
 - Fixed UiControls maintaining old input states when input types are toggled off
 - Fixed an occasional deadlock when a game is disposed with a scrolling Panel present
+- Fixed UiStyle.LinkColor not being applied to the ui system when changed
 
 Removals
 - Marked Element.OnDisposed as obsolete in favor of the more predictable OnRemovedFromUi
