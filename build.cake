@@ -2,7 +2,7 @@
 #tool docfx.console&version=2.59.4
 
 // this is the upcoming version, for prereleases
-var version = Argument("version", "6.1.0");
+var version = Argument("version", "6.2.0");
 var target = Argument("target", "Default");
 var branch = Argument("branch", "main");
 var config = Argument("configuration", "Release");
