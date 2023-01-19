@@ -2,14 +2,14 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**.
 
 Jump to version:
-- [6.1.0 (Unreleased)](#610-unreleased)
+- [6.1.0](#610)
 - [6.0.0](#600)
 - [5.3.0](#530)
 - [5.2.0](#520)
 - [5.1.0](#510)
 - [5.0.0](#500)
 
-## 6.1.0 (Unreleased)
+## 6.1.0
 
 ### MLEM
 Additions
