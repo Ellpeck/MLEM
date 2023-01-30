@@ -12,6 +12,10 @@ Jump to version:
 
 ## 6.2.0 (In Development)
 
+### MLEM.Data
+Improvements
+- Improved RuntimeTexturePacker speed when using many distinct texture sizes
+
 ## 6.1.0
 
 ### MLEM

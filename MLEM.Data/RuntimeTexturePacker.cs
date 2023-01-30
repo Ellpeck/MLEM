@@ -238,7 +238,12 @@ namespace MLEM.Data {
             size.X += request.Padding * 2;
             size.Y += request.Padding * 2;
 
-            var pos = this.firstPossiblePosForSize.TryGetValue(size, out var first) ? first : Point.Zero;
+            // initialize our search position from the cache, or use default (zero)
+            if (!this.firstPossiblePosForSize.TryGetValue(size, out var pos)) {
+                // if our size hasn't been recordet yet, check if a size has been recorded that is smaller in both axes, before which our size definitely won't fit
+                pos = this.firstPossiblePosForSize.OrderByDescending(s => s.Key.X * s.Key.Y).FirstOrDefault(s => s.Key.X <= size.X && s.Key.Y <= size.Y).Value;
+            }
+
             var lowestY = int.MaxValue;
             while (true) {
                 var intersected = false;
