@@ -12,6 +12,10 @@ Jump to version:
 
 ## 6.2.0 (In Development)
 
+### MLEM.Ui
+Fixes
+- Fixed images not updating their hidden state properly when the displayed texture changes
+
 ## 6.1.0
 
 ### MLEM

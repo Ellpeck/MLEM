@@ -30,13 +30,12 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public TextureRegion Texture {
             get {
-                var ret = this.GetTextureCallback?.Invoke(this) ?? this.texture;
-                this.CheckTextureChange(ret);
-                return ret;
+                this.CheckTextureChange();
+                return this.displayedTexture;
             }
             set {
-                this.texture = value;
-                this.CheckTextureChange(value);
+                this.explicitlySetTexture = value;
+                this.CheckTextureChange();
             }
         }
         /// <summary>
@@ -75,8 +74,8 @@ namespace MLEM.Ui.Elements {
         public override bool IsHidden => base.IsHidden || this.Texture == null;
 
         private bool scaleToImage;
-        private TextureRegion texture;
-        private TextureRegion lastTexture;
+        private TextureRegion explicitlySetTexture;
+        private TextureRegion displayedTexture;
 
         /// <summary>
         /// Creates a new image with the given settings
@@ -107,6 +106,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
+        public override void Update(GameTime time) {
+            this.CheckTextureChange();
+            base.Update(time);
+        }
+
+        /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             if (this.Texture == null)
                 return;
@@ -123,11 +128,12 @@ namespace MLEM.Ui.Elements {
             base.Draw(time, batch, alpha, context);
         }
 
-        private void CheckTextureChange(TextureRegion newTexture) {
-            if (this.lastTexture == newTexture)
+        private void CheckTextureChange() {
+            var newTexture = this.GetTextureCallback?.Invoke(this) ?? this.explicitlySetTexture;
+            if (this.displayedTexture == newTexture)
                 return;
-            var nullChanged = this.lastTexture == null != (newTexture == null);
-            this.lastTexture = newTexture;
+            var nullChanged = this.displayedTexture == null != (newTexture == null);
+            this.displayedTexture = newTexture;
             if (nullChanged || this.scaleToImage)
                 this.SetAreaDirty();
         }
