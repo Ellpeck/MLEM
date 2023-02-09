@@ -377,7 +377,7 @@ blockquote {
   height: 20px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -440,31 +440,4 @@ input:checked + .slider:before {
   padding-right: 7px;
   padding-left: 7px;
   vertical-align: middle;
-}
-
-@media (min-width: 1600px) {
-  .container {
-    width: 100%;
-  }
-  .sidefilter {
-    width: 18%;
-  }
-  .sidetoc {
-    width: 18%;
-  }
-  .article.grid-right {
-    margin-left: 19%;
-  }
-  .sideaffix {
-    width: 11.5%;
-  }
-  .affix ul>li.active>a {
-    white-space: initial;
-  }
-  .affix ul>li>a {
-    width: 99%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
 }
