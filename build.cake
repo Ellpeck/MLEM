@@ -1,5 +1,5 @@
-#addin Cake.DocFx&version=1.0.0
-#tool docfx&version=2.61.0
+#addin nuget:?package=Cake.DocFx&version=1.0.0
+#tool dotnet:?package=docfx&version=2.61.0
 
 // this is the upcoming version, for prereleases
 var version = Argument("version", "6.2.0");
