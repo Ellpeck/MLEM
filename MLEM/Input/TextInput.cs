@@ -512,6 +512,14 @@ namespace MLEM.Input {
 
         private void UpdateCaretData() {
             if (this.splitText != null) {
+                // the code below will never execute if our text is empty, so reset our caret position fully
+                if (this.splitText.Length <= 0) {
+                    this.caretLine = 0;
+                    this.caretPosInLine = 0;
+                    this.caretDrawOffset = 0;
+                    return;
+                }
+
                 var line = 0;
                 var index = 0;
                 for (var d = 0; d < this.splitText.Length; d++) {
