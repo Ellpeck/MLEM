@@ -12,9 +12,14 @@ Jump to version:
 
 ## 6.2.0 (In Development)
 
+### MLEM
+Fixes
+- Fixed control characters being included in TextInput
+
 ### MLEM.Ui
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
+- Fixed control characters being included in TextField
 
 ## 6.1.0
 

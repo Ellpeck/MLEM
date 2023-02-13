@@ -415,16 +415,20 @@ namespace MLEM.Input {
         }
 
         private bool FilterText(ref string text, bool removeMismatching) {
-            if (removeMismatching) {
-                var result = new StringBuilder();
-                foreach (var codePoint in new CodePointSource(text)) {
-                    var character = char.ConvertFromUtf32(codePoint);
-                    if (this.InputRule(this, character))
-                        result.Append(character);
+            var result = new StringBuilder();
+            foreach (var codePoint in new CodePointSource(text)) {
+                var character = char.ConvertFromUtf32(codePoint);
+                // don't include control characters
+                if (character.Length == 1 && char.IsControl(character, 0))
+                    continue;
+                if (this.InputRule(this, character)) {
+                    result.Append(character);
+                } else if (!removeMismatching) {
+                    // if we don't remove mismatching characters, we just fail
+                    return false;
                 }
-                text = result.ToString();
-            } else if (!this.InputRule(this, text))
-                return false;
+            }
+            text = result.ToString();
             return true;
         }
 
