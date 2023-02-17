@@ -485,6 +485,8 @@ namespace MLEM.Input {
                     this.textOffset = 0;
                 }
             } else {
+                this.splitText = null;
+                this.lineOffset = 0;
                 // not multiline, so scroll horizontally based on caret position
                 if (this.Font.MeasureString(this.text).X * this.TextScale > this.Size.X) {
                     if (this.textOffset > this.CaretPos) {

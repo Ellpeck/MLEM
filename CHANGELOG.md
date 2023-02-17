@@ -15,6 +15,7 @@ Jump to version:
 ### MLEM
 Fixes
 - Fixed control characters being included in TextInput
+- Fixed TextInputs behaving incorrectly when switching between multiline and single-line modes
 
 ### MLEM.Ui
 Fixes
