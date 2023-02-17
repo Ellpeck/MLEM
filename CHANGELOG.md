@@ -17,11 +17,11 @@ Fixes
 - Fixed control characters being included in TextInput
 - Fixed TextInputs behaving incorrectly when switching between multiline and single-line modes
 - Fixed TextInput drawing characters with the wrong width if a masking character is used
+- Fixed a multiline TextInput's cursor not returning to the default position when the last character is removed
 
 ### MLEM.Ui
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
-- Fixed a multiline text field's cursor not returning to the default position when the last character is removed
 
 ## 6.1.0
 
