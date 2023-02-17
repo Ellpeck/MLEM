@@ -442,9 +442,14 @@ namespace MLEM.Input {
             if (!this.textDataDirty || this.Font == null)
                 return;
             this.textDataDirty = false;
+
+            var visualText = this.text;
+            if (this.MaskingCharacter != null)
+                visualText = new StringBuilder(visualText.Length).Append(this.MaskingCharacter.Value, visualText.Length);
+
             if (this.Multiline) {
                 // soft wrap if we're multiline
-                this.splitText = this.Font.SplitStringSeparate(this.text, this.Size.X, this.TextScale).ToArray();
+                this.splitText = this.Font.SplitStringSeparate(visualText, this.Size.X, this.TextScale).ToArray();
                 this.displayedText = string.Join("\n", this.splitText);
                 this.UpdateCaretData();
 
@@ -471,7 +476,7 @@ namespace MLEM.Input {
                         }
                         if (this.displayedText[i] == '\n') {
                             lines++;
-                            if (this.text[originalIndex] == '\n')
+                            if (visualText[originalIndex] == '\n')
                                 originalIndex++;
                         } else {
                             originalIndex++;
@@ -488,28 +493,25 @@ namespace MLEM.Input {
                 this.splitText = null;
                 this.lineOffset = 0;
                 // not multiline, so scroll horizontally based on caret position
-                if (this.Font.MeasureString(this.text).X * this.TextScale > this.Size.X) {
+                if (this.Font.MeasureString(visualText).X * this.TextScale > this.Size.X) {
                     if (this.textOffset > this.CaretPos) {
                         // if we're moving the caret to the left
                         this.textOffset = this.CaretPos;
                     } else {
                         // if we're moving the caret to the right
-                        var importantArea = this.text.ToString(this.textOffset, Math.Min(this.CaretPos, this.text.Length) - this.textOffset);
+                        var importantArea = visualText.ToString(this.textOffset, Math.Min(this.CaretPos, visualText.Length) - this.textOffset);
                         var bound = this.CaretPos - this.Font.TruncateString(importantArea, this.Size.X, this.TextScale, true).Length;
                         if (this.textOffset < bound)
                             this.textOffset = bound;
                     }
-                    var visible = this.text.ToString(this.textOffset, this.text.Length - this.textOffset);
+                    var visible = visualText.ToString(this.textOffset, visualText.Length - this.textOffset);
                     this.displayedText = this.Font.TruncateString(visible, this.Size.X, this.TextScale);
                 } else {
-                    this.displayedText = this.Text;
+                    this.displayedText = visualText.ToString();
                     this.textOffset = 0;
                 }
                 this.UpdateCaretData();
             }
-
-            if (this.MaskingCharacter != null)
-                this.displayedText = new string(this.MaskingCharacter.Value, this.displayedText.Length);
         }
 
         private void UpdateCaretData() {
