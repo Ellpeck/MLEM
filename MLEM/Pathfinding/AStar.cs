@@ -209,28 +209,28 @@ namespace MLEM.Pathfinding {
         /// </summary>
         public readonly T Pos;
         /// <summary>
-        /// The F cost of this path point
+        /// The F cost of this path point, which is the estimated total distance from the start to the goal.
         /// </summary>
         public readonly float F;
         /// <summary>
-        /// The G cost of this path point
+        /// The G cost of this path point, which is the actual distance from the start to the current <see cref="Pos"/>.
         /// </summary>
         public readonly float G;
 
         /// <summary>
         /// Creates a new path point with the supplied settings.
         /// </summary>
-        /// <param name="pos">The point's position</param>
-        /// <param name="distance">The point's distance from the start point</param>
-        /// <param name="parent">The point's parent</param>
-        /// <param name="terrainCostForThisPos">The point's terrain cost, based on <see cref="AStar{T}.GetCost"/></param>
-        /// <param name="defaultCost">The default cost for a path point</param>
-        public PathPoint(T pos, float distance, PathPoint<T> parent, float terrainCostForThisPos, float defaultCost) {
+        /// <param name="pos">The point's position.</param>
+        /// <param name="heuristicDistance">The point's estimated distance from the <paramref name="pos"/> to the goal, based on the <paramref name="defaultCost"/>.</param>
+        /// <param name="parent">The point's parent.</param>
+        /// <param name="terrainCost">The terrain cost to move from the <paramref name="parent"/> to this point, based on <see cref="AStar{T}.GetCost"/>.</param>
+        /// <param name="defaultCost">The default cost for a path point.</param>
+        public PathPoint(T pos, float heuristicDistance, PathPoint<T> parent, float terrainCost, float defaultCost) {
             this.Pos = pos;
             this.Parent = parent;
 
-            this.G = (parent == null ? 0 : parent.G) + terrainCostForThisPos;
-            this.F = this.G + distance * defaultCost;
+            this.G = (parent == null ? 0 : parent.G) + terrainCost;
+            this.F = this.G + heuristicDistance * defaultCost;
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
