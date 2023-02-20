@@ -19,9 +19,15 @@ Fixes
 - Fixed TextInput drawing characters with the wrong width if a masking character is used
 - Fixed a multiline TextInput's cursor not returning to the default position when the last character is removed
 
+Improvements
+- Increased TextFormatter macro recursion limit to 64
+
 ### MLEM.Ui
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
+
+Improvements
+- Increased Element area calculation recursion limit to 64
 
 ## 6.1.0
 

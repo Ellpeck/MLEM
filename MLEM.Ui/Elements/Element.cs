@@ -801,8 +801,8 @@ namespace MLEM.Ui.Elements {
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
                     if (!autoSize.Equals(this.UnscrolledArea.Size, Element.Epsilon)) {
                         recursion++;
-                        if (recursion >= 16)
-                            throw new ArithmeticException($"The area of {this} with root {this.Root.Name} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
+                        if (recursion >= 64)
+                            throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
                         UpdateDisplayArea(autoSize);
                     }
                 }
@@ -1148,6 +1148,18 @@ namespace MLEM.Ui.Elements {
         public virtual void Dispose() {
             this.OnDisposed?.Invoke(this);
             GC.SuppressFinalize(this);
+        }
+
+        /// <inheritdoc />
+        public override string ToString() {
+            var ret = this.GetType().ToString();
+            // elements will contain their path up to the root (Paragraph@Panel@...@RootName)
+            if (this.Parent != null) {
+                ret += $"@{this.Parent}";
+            } else if (this.Root?.Element == this) {
+                ret += $"@{this.Root.Name}";
+            }
+            return ret;
         }
 
         /// <summary>

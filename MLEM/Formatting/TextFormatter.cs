@@ -131,21 +131,22 @@ namespace MLEM.Formatting {
         public string ResolveMacros(string s) {
             // resolve macros that resolve into macros
             var rec = 0;
+            var ret = s;
             bool matched;
             do {
                 matched = false;
                 foreach (var macro in this.Macros) {
-                    s = macro.Key.Replace(s, m => {
+                    ret = macro.Key.Replace(ret, m => {
                         // if the match evaluator was queried, then we know we matched something
                         matched = true;
                         return macro.Value(this, m, macro.Key);
                     });
                 }
                 rec++;
-                if (rec >= 16)
-                    throw new ArithmeticException($"A string resolved macros recursively too many times. Does it contain any conflicting macros?\n{s}");
+                if (rec >= 64)
+                    throw new ArithmeticException($"A string resolved macros recursively too many times. Does it contain any conflicting macros?\nOriginal: {s}\nCurrent: {ret}");
             } while (matched);
-            return s;
+            return ret;
         }
 
         private Code GetNextCode(string s, int index, int maxIndex = int.MaxValue) {
