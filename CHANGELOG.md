@@ -134,7 +134,7 @@ Fixes
 Removals
 - Marked DynamicEnum as obsolete due to its reimplementation in [DynamicEnums](https://www.nuget.org/packages/DynamicEnums)
 
-## MLEM.Extended
+### MLEM.Extended
 Additions
 - Added Range extension methods GetPercentage and FromPercentage
 
@@ -143,7 +143,7 @@ Improvements
 - Added trimming and AOT annotations and made MLEM.Extended trimmable
 - **Made GenericBitmapFont and GenericStashFont support UTF-32 characters like emoji**
 
-## MLEM.Startup
+### MLEM.Startup
 Improvements
 - Multi-target net452, making MLEM compatible with MonoGame for consoles
 - Added trimming and AOT annotations and made MLEM.Startup trimmable
