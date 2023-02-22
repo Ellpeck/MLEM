@@ -29,6 +29,52 @@ namespace MLEM.Formatting {
         public readonly Dictionary<Regex, Macro> Macros = new Dictionary<Regex, Macro>();
 
         /// <summary>
+        /// The line thickness used by this text formatter, which determines how the default <see cref="UnderlineCode"/>-based formatting codes are drawn.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float LineThickness = 1 / 16F;
+        /// <summary>
+        /// The underline offset used by this text formatter, which determines how the default <see cref="UnderlineCode"/> is drawn.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float UnderlineOffset = 0.85F;
+        /// <summary>
+        /// The strikethrough offset used by this text formatter, which determines how the default <see cref="UnderlineCode"/>'s strikethrough variant is drawn.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float StrikethroughOffset = 0.55F;
+        /// <summary>
+        /// The default subscript offset used by this text formatter, which determines how the default <see cref="SubSupCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float DefaultSubOffset = 0.15F;
+        /// <summary>
+        /// The default superscript offset used by this text formatter, which determines how the default <see cref="SubSupCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float DefaultSupOffset = -0.25F;
+        /// <summary>
+        /// The default shadow color used by this text formatter, which determines how the default <see cref="ShadowCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public Color DefaultShadowColor = Color.Black;
+        /// <summary>
+        /// The default shadow offset used by this text formatter, which determines how the default <see cref="ShadowCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public Vector2 DefaultShadowOffset = new Vector2(2);
+        /// <summary>
+        /// The default wobbly modifier used by this text formatter, which determines how the default <see cref="WobblyCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float DefaultWobblyModifier = 5;
+        /// <summary>
+        /// The default wobbly modifier used by this text formatter, which determines how the default <see cref="WobblyCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float DefaultWobblyHeight = 1 / 8F;
+
+        /// <summary>
         /// Creates a new text formatter with an optional set of default formatting codes.
         /// </summary>
         /// <param name="hasFontModifiers">Whether default font modifier codes should be added, including bold, italic, strikethrough, shadow, subscript, and more.</param>
@@ -41,14 +87,14 @@ namespace MLEM.Formatting {
                 this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
                 this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
                 this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r,
-                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : Color.Black,
-                    new Vector2(float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? offset : 2)));
-                this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.85F));
-                this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, 1 / 16F, 0.55F));
+                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : this.DefaultShadowColor,
+                    float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? new Vector2(offset) : this.DefaultShadowOffset));
+                this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, this.LineThickness, this.UnderlineOffset));
+                this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, this.LineThickness, this.StrikethroughOffset));
                 this.Codes.Add(new Regex(@"<sub(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
-                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? off : 0.15F));
+                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? off : this.DefaultSubOffset));
                 this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
-                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : -0.25F));
+                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : this.DefaultSupOffset));
             }
 
             // color codes
@@ -65,8 +111,8 @@ namespace MLEM.Formatting {
             // animation codes
             if (hasAnimations) {
                 this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
-                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : 5,
-                    float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : 1 / 8F));
+                    float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : this.DefaultWobblyModifier,
+                    float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : this.DefaultWobblyHeight));
             }
 
             // control codes

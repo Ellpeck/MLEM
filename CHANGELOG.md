@@ -21,6 +21,7 @@ Fixes
 
 Improvements
 - Increased TextFormatter macro recursion limit to 64
+- Allow changing the default values used by default TextFormatter codes
 
 ### MLEM.Ui
 Fixes
