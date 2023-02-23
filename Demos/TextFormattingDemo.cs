@@ -20,13 +20,14 @@ namespace Demos {
             "You can also use animations like <a wobbly>a wobbly one</a>, as well as create custom ones using the <a wobbly>Code class</a>.\n\n" +
             "You can also display <i grass> icons in your text, and use super<sup>script</sup> or sub<sub>script</sub> formatting!\n\n" +
             "Additionally, the text formatter has various methods for interacting with the text, like custom behaviors when hovering over certain parts, and more.";
-        private const float Scale = 0.5F;
-        private const float Width = 0.9F;
+        private const float DefaultScale = 0.5F;
+        private const float WidthMultiplier = 0.9F;
 
         private TextFormatter formatter;
         private TokenizedString tokenizedText;
         private GenericFont font;
         private bool drawBounds;
+        private float scale = TextFormattingDemo.DefaultScale;
 
         public TextFormattingDemo(MlemGame game) : base(game) {}
 
@@ -38,9 +39,9 @@ namespace Demos {
             // GenericFont and its subtypes are wrappers around various font classes, including SpriteFont, MonoGame.Extended's BitmapFont and FontStashSharp
             // supplying a bold and italic version of the font here allows for the bold and italic formatting codes to be used
             this.font = new GenericSpriteFont(
-                Demo.LoadContent<SpriteFont>("Fonts/TestFont"),
-                Demo.LoadContent<SpriteFont>("Fonts/TestFontBold"),
-                Demo.LoadContent<SpriteFont>("Fonts/TestFontItalic"));
+                Demo.LoadContent<SpriteFont>("Fonts/Roboto"),
+                Demo.LoadContent<SpriteFont>("Fonts/RobotoBold"),
+                Demo.LoadContent<SpriteFont>("Fonts/RobotoItalic"));
 
             // adding the image code used in the example to it
             var testTexture = Demo.LoadContent<Texture2D>("Textures/Test");
@@ -49,7 +50,7 @@ namespace Demos {
             // tokenizing our text and splitting it to fit the screen
             // we specify our text alignment here too, so that all data is cached correctly for display
             this.tokenizedText = this.formatter.Tokenize(this.font, TextFormattingDemo.Text, TextAlignment.Center);
-            this.tokenizedText.Split(this.font, this.GraphicsDevice.Viewport.Width * TextFormattingDemo.Width, TextFormattingDemo.Scale, TextAlignment.Center);
+            this.tokenizedText.Split(this.font, this.GraphicsDevice.Viewport.Width * TextFormattingDemo.WidthMultiplier, this.scale, TextAlignment.Center);
         }
 
         public override void DoDraw(GameTime time) {
@@ -58,7 +59,7 @@ namespace Demos {
 
             // we draw the tokenized text in the center of the screen
             // since the text is already center-aligned, we only need to align it on the y axis here
-            var size = this.tokenizedText.GetArea(Vector2.Zero, TextFormattingDemo.Scale).Size;
+            var size = this.tokenizedText.GetArea(Vector2.Zero, this.scale).Size;
             var pos = new Vector2(this.GraphicsDevice.Viewport.Width / 2, (this.GraphicsDevice.Viewport.Height - size.Y) / 2);
 
             // draw bounds, which can be toggled with B in this demo
@@ -66,13 +67,13 @@ namespace Demos {
                 var blank = this.SpriteBatch.GetBlankTexture();
                 this.SpriteBatch.Draw(blank, new RectangleF(pos - new Vector2(size.X / 2, 0), size), Color.Red * 0.25F);
                 foreach (var token in this.tokenizedText.Tokens) {
-                    foreach (var area in token.GetArea(pos, TextFormattingDemo.Scale))
+                    foreach (var area in token.GetArea(pos, this.scale))
                         this.SpriteBatch.Draw(blank, area, Color.Black * 0.25F);
                 }
             }
 
             // draw the text itself
-            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, TextFormattingDemo.Scale, 0);
+            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.scale, 0);
 
             this.SpriteBatch.End();
         }
@@ -90,9 +91,13 @@ namespace Demos {
         }
 
         private void OnResize(object sender, EventArgs e) {
+            // scale our text based on window size
+            var viewport = new Rectangle(0, 0, this.Game.Window.ClientBounds.Width,  this.Game.Window.ClientBounds.Height);
+            this.scale = TextFormattingDemo.DefaultScale * Math.Min(viewport.Width / 1280F, viewport.Height / 720F);
+
             // re-split our text if the window resizes, since it depends on the window size
             // this doesn't require re-tokenization of the text, since TokenizedString also stores the un-split version
-            this.tokenizedText.Split(this.font, this.GraphicsDevice.Viewport.Width * TextFormattingDemo.Width, TextFormattingDemo.Scale, TextAlignment.Center);
+            this.tokenizedText.Split(this.font, this.GraphicsDevice.Viewport.Width * TextFormattingDemo.WidthMultiplier, this.scale, TextAlignment.Center);
         }
 
     }

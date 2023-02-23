@@ -41,6 +41,27 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/TestFontItalic.spritefont
 
+#begin Fonts/Roboto.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Roboto.spritefont
+
+#begin Fonts/RobotoBold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/RobotoBold.spritefont
+
+#begin Fonts/RobotoItalic.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/RobotoItalic.spritefont
+
 #begin Markdown.md
 /copy:Markdown.md
 
