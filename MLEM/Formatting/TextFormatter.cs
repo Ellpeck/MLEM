@@ -73,6 +73,21 @@ namespace MLEM.Formatting {
         /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
         /// </summary>
         public float DefaultWobblyHeight = 1 / 8F;
+        /// <summary>
+        /// The default outline thickness used by this text formatter, which determines how the default <see cref="OutlineCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public float DefaultOutlineThickness = 2;
+        /// <summary>
+        /// The default outline color used by this text formatter, which determines how the default <see cref="OutlineCode"/> is drawn if no custom value is used.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public Color DefaultOutlineColor = Color.Black;
+        /// <summary>
+        /// Whether the default outline used by this text formatter should also draw outlines diagonally, which determines how the default <see cref="OutlineCode"/> is drawn if no custom value is used. Non-diagonally drawn outlines might generally look better when using a pixelart font.
+        /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
+        /// </summary>
+        public bool OutlineDiagonals = true;
 
         /// <summary>
         /// Creates a new text formatter with an optional set of default formatting codes.
@@ -95,6 +110,10 @@ namespace MLEM.Formatting {
                     float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? off : this.DefaultSubOffset));
                 this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
                     float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : this.DefaultSupOffset));
+                this.Codes.Add(new Regex(@"<o(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new OutlineCode(m, r,
+                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : this.DefaultOutlineColor,
+                    float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var thickness) ? thickness : this.DefaultOutlineThickness,
+                    this.OutlineDiagonals));
             }
 
             // color codes
