@@ -18,6 +18,7 @@ namespace MLEM.Input {
     public class Keybind : IComparable<Keybind>, IComparable {
 
         private static readonly Combination[] EmptyCombinations = new Combination[0];
+        private static readonly GenericInput[] EmptyInputs = new GenericInput[0];
 
         [DataMember]
         private Combination[] combinations = Keybind.EmptyCombinations;
@@ -48,7 +49,16 @@ namespace MLEM.Input {
         /// <param name="modifiers">The modifier keys that have to be held down.</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Add(GenericInput key, params GenericInput[] modifiers) {
-            this.combinations = this.combinations.Append(new Combination(key, modifiers)).ToArray();
+            return this.Add(new Combination(key, modifiers));
+        }
+
+        /// <summary>
+        /// Adds the given <see cref="Combination"/> to this keybind that can optionally be pressed for the keybind to trigger.
+        /// </summary>
+        /// <param name="combination">The combination to add.</param>
+        /// <returns>This keybind, for chaining</returns>
+        public Keybind Add(Combination combination) {
+            this.combinations = this.combinations.Append(combination).ToArray();
             return this;
         }
 
@@ -67,7 +77,17 @@ namespace MLEM.Input {
         /// <param name="modifiers">The modifier keys that have to be held down.</param>
         /// <returns>This keybind, for chaining.</returns>
         public Keybind Insert(int index, GenericInput key, params GenericInput[] modifiers) {
-            this.combinations = this.combinations.Take(index).Append(new Combination(key, modifiers)).Concat(this.combinations.Skip(index)).ToArray();
+            return this.Insert(index, new Combination(key, modifiers));
+        }
+
+        /// <summary>
+        /// Inserts the given <see cref="Combination"/> into the given <paramref name="index"/> of this keybind's combinations that can optionally be pressed for the keybind to trigger.
+        /// </summary>
+        /// <param name="index">The index to insert this combination into.</param>
+        /// <param name="combination">The combination to insert.</param>
+        /// <returns>This keybind, for chaining.</returns>
+        public Keybind Insert(int index, Combination combination) {
+            this.combinations = this.combinations.Take(index).Append(combination).Concat(this.combinations.Skip(index)).ToArray();
             return this;
         }
 
@@ -326,11 +346,17 @@ namespace MLEM.Input {
         public class Combination : IComparable<Combination>, IComparable {
 
             /// <summary>
-            /// The inputs that have to be held down for this combination to be valid.
-            /// If this collection is empty, there are no required modifier keys.
+            /// The inputs that have to be held down for this combination to be valid, which is queried in <see cref="IsModifierDown"/> and <see cref="WasModifierDown"/>.
+            /// If this collection is empty, there are no required modifiers.
             /// </summary>
             [DataMember]
             public readonly GenericInput[] Modifiers;
+            /// <summary>
+            /// The inputs that have to be up for this combination to be valid, which is queried in <see cref="IsModifierDown"/> and <see cref="WasModifierDown"/>.
+            /// If this collection is empty, there are no required inverse modifiers.
+            /// </summary>
+            [DataMember]
+            public readonly GenericInput[] InverseModifiers;
             /// <summary>
             /// The input that has to be down (or pressed) for this combination to be considered down (or pressed).
             /// Note that <see cref="Modifiers"/> needs to be empty, or all of its values need to be down, as well.
@@ -342,11 +368,26 @@ namespace MLEM.Input {
             /// Creates a new combination with the given settings.
             /// To add a combination to a <see cref="Keybind"/>, use <see cref="Keybind.Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/> instead.
             /// </summary>
-            /// <param name="key">The key</param>
-            /// <param name="modifiers">The modifiers</param>
-            public Combination(GenericInput key, params GenericInput[] modifiers) {
-                this.Modifiers = modifiers;
+            /// <param name="key">The key.</param>
+            /// <param name="modifiers">The modifiers.</param>
+            public Combination(GenericInput key, params GenericInput[] modifiers) : this(key, modifiers, null) {}
+
+            /// <summary>
+            /// Creates a new combination with the given settings.
+            /// To add a combination to a <see cref="Keybind"/>, use <see cref="Keybind.Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/> instead.
+            /// Note that inputs are automatically removed from <paramref name="inverseModifiers"/> if they are also present in <paramref name="modifiers"/>, or if they are the main <paramref name="key"/>.
+            /// </summary>
+            /// <param name="key">The key.</param>
+            /// <param name="modifiers">The modifiers, or <see langword="null"/> to use no modifiers.</param>
+            /// <param name="inverseModifiers">The inverse modifiers, or <see langword="null"/> to use no modifiers.</param>
+            public Combination(GenericInput key, GenericInput[] modifiers, GenericInput[] inverseModifiers) {
                 this.Key = key;
+                this.Modifiers = modifiers ?? Keybind.EmptyInputs;
+                this.InverseModifiers = inverseModifiers ?? Keybind.EmptyInputs;
+
+                // make sure that inverse modifiers don't contain any modifiers or the key
+                if (this.InverseModifiers.Length > 0)
+                    this.InverseModifiers = this.InverseModifiers.Where(k => k != this.Key).Except(this.Modifiers).ToArray();
             }
 
             /// <summary>
@@ -406,7 +447,7 @@ namespace MLEM.Input {
             }
 
             /// <summary>
-            /// Returns whether all of this combination's modifier keys are currently down.
+            /// Returns whether all of this combination's <see cref="Modifiers"/> are currently down and <see cref="InverseModifiers"/> are currently up.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
@@ -416,11 +457,15 @@ namespace MLEM.Input {
                     if (!handler.IsDown(modifier, gamepadIndex))
                         return false;
                 }
+                foreach (var invModifier in this.InverseModifiers) {
+                    if (handler.IsDown(invModifier, gamepadIndex))
+                        return false;
+                }
                 return true;
             }
 
             /// <summary>
-            /// Returns whether all of this combination's modifier keys were down in the last update call.
+            /// Returns whether all of this combination's <see cref="Modifiers"/> were down and <see cref="InverseModifiers"/> were up in the last update call.
             /// </summary>
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
@@ -428,6 +473,10 @@ namespace MLEM.Input {
             public bool WasModifierDown(InputHandler handler, int gamepadIndex = -1) {
                 foreach (var modifier in this.Modifiers) {
                     if (!handler.WasDown(modifier, gamepadIndex))
+                        return false;
+                }
+                foreach (var invModifier in this.InverseModifiers) {
+                    if (handler.WasDown(invModifier, gamepadIndex))
                         return false;
                 }
                 return true;

@@ -15,6 +15,8 @@ Jump to version:
 ### MLEM
 Additions
 - Added a simple outline formatting code
+- Added the ability to add inverse modifiers to a Keybind
+- Added GenericInput collections AllKeys, AllMouseButtons, AllButtons and AllInputs
 
 Fixes
 - Fixed control characters being included in TextInput

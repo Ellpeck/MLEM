@@ -14,6 +14,7 @@ using MLEM.Extensions;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Graphics;
+using MLEM.Input;
 using MLEM.Misc;
 using MLEM.Startup;
 using MLEM.Textures;
@@ -383,6 +384,11 @@ public class GameImpl : MlemGame {
             }
         };
         this.OnDraw += (_, _) => batch.Draw(null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(3));
+
+        Console.WriteLine("Keys: " + string.Join(", ", GenericInput.AllKeys));
+        Console.WriteLine("MouseButtons: " + string.Join(", ", GenericInput.AllMouseButtons));
+        Console.WriteLine("Buttons: " + string.Join(", ", GenericInput.AllButtons));
+        Console.WriteLine("Inputs: " + string.Join(", ", GenericInput.AllInputs));
     }
 
     protected override void DoUpdate(GameTime gameTime) {
@@ -397,12 +403,15 @@ public class GameImpl : MlemGame {
 
         /*if (Input.InputsDown.Length > 0)
             Console.WriteLine("Down: " + string.Join(", ", Input.InputsDown));*/
-        if (MlemGame.Input.InputsPressed.Length > 0)
+        /*if (MlemGame.Input.InputsPressed.Length > 0)
             Console.WriteLine("Pressed: " + string.Join(", ", MlemGame.Input.InputsPressed));
         MlemGame.Input.HandleKeyboardRepeats = false; /*
         Console.WriteLine("Down time: " + MlemGame.Input.GetDownTime(Keys.A));
-        Console.WriteLine("Time since press: " + MlemGame.Input.GetTimeSincePress(Keys.A));*/
-        Console.WriteLine("Up time: " + MlemGame.Input.GetUpTime(Keys.A));
+        Console.WriteLine("Time since press: " + MlemGame.Input.GetTimeSincePress(Keys.A));#1#
+        Console.WriteLine("Up time: " + MlemGame.Input.GetUpTime(Keys.A));*/
+
+        var combination = new Keybind.Combination(Keys.K, new GenericInput[] {Keys.LeftShift}, GenericInput.AllKeys);
+        Console.WriteLine($"Mod: {combination.IsModifierDown(this.InputHandler)} Down: {combination.IsDown(this.InputHandler)}");
     }
 
     protected override void DoDraw(GameTime gameTime) {

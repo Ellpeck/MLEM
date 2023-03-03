@@ -36,4 +36,11 @@ public class KeybindTests {
         Assert.AreEqual(-1, new Keybind(Keys.A, Keys.LeftAlt).CompareTo(new Keybind(Keys.B, Keys.LeftShift, Keys.RightShift).Add(Keys.B, Keys.RightShift).Add(Keys.C, Keys.RightControl)));
     }
 
+    [Test]
+    public void TestModifierOverlap() {
+        var combination = new Keybind.Combination(Keys.A, new GenericInput[] {Keys.Left, Keys.Right}, new GenericInput[] {Keys.Up, Keys.Right});
+        Assert.AreEqual(combination.Modifiers, new GenericInput[] {Keys.Left, Keys.Right});
+        Assert.AreEqual(combination.InverseModifiers, new GenericInput[] {Keys.Up});
+    }
+
 }

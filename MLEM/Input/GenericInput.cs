@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +12,24 @@ namespace MLEM.Input {
     /// </summary>
     [DataContract]
     public readonly struct GenericInput : IEquatable<GenericInput> {
+
+        /// <summary>
+        /// All <see cref="GenericInput"/> values created from all values of the <see cref="Keys"/> enum.
+        /// </summary>
+        public static readonly GenericInput[] AllKeys = InputHandler.AllKeys.Select(k => (GenericInput) k).ToArray();
+        /// <summary>
+        /// All <see cref="GenericInput"/> values created from all values of the <see cref="Input.MouseButton"/> enum.
+        /// </summary>
+        public static readonly GenericInput[] AllMouseButtons = MouseExtensions.MouseButtons.Select(k => (GenericInput) k).ToArray();
+        /// <summary>
+        /// All <see cref="GenericInput"/> values created from all values of the <see cref="Buttons"/> enum.
+        /// </summary>
+        public static readonly GenericInput[] AllButtons = InputHandler.AllButtons.Select(k => (GenericInput) k).ToArray();
+        /// <summary>
+        /// All <see cref="GenericInput"/> values created from all values of the <see cref="Keys"/>, <see cref="Input.MouseButton"/> and <see cref="Buttons"/> enums.
+        /// This collection represents all possible valid, non-default <see cref="GenericInput"/> values.
+        /// </summary>
+        public static readonly GenericInput[] AllInputs = GenericInput.AllKeys.Concat(GenericInput.AllMouseButtons).Concat(GenericInput.AllButtons).ToArray();
 
         /// <summary>
         /// The <see cref="InputType"/> of this generic input's current <see cref="value"/>.
