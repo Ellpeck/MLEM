@@ -391,6 +391,11 @@ namespace MLEM.Input {
             }
 
             /// <summary>
+            /// Creates a new empty combination using the default <see cref="GenericInput"/> with the <see cref="GenericInput.InputType.None"/> input type and no <see cref="Modifiers"/> or <see cref="InverseModifiers"/>.
+            /// </summary>
+            public Combination() : this(default, null, null) {}
+
+            /// <summary>
             /// Returns whether this combination is currently down.
             /// See <see cref="InputHandler.IsDown"/> for more information.
             /// </summary>
