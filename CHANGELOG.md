@@ -28,6 +28,9 @@ Improvements
 - Increased TextFormatter macro recursion limit to 64
 - Allow changing the default values used by default TextFormatter codes
 
+Removals
+- Marked GetDownTime, GetUpTime and GetTimeSincePress in Keybind and Combination as obsolete
+
 ### MLEM.Ui
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes

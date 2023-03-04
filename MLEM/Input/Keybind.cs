@@ -240,6 +240,7 @@ namespace MLEM.Input {
         /// <param name="handler">The input handler to query the keys with</param>
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
+        [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetDownTime or custom handling instead.")]
         public TimeSpan GetDownTime(InputHandler handler, int gamepadIndex = -1) {
             return this.combinations.Max(c => c.GetDownTime(handler, gamepadIndex));
         }
@@ -251,6 +252,7 @@ namespace MLEM.Input {
         /// <param name="handler">The input handler to query the keys with</param>
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
+        [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetUpTime or custom handling instead.")]
         public TimeSpan GetUpTime(InputHandler handler, int gamepadIndex = -1) {
             return this.combinations.Min(c => c.GetUpTime(handler, gamepadIndex));
         }
@@ -262,6 +264,7 @@ namespace MLEM.Input {
         /// <param name="handler">The input handler to query the keys with</param>
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
+        [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetTimeSincePress or custom handling instead.")]
         public TimeSpan GetTimeSincePress(InputHandler handler, int gamepadIndex = -1) {
             return this.combinations.Min(c => c.GetTimeSincePress(handler, gamepadIndex));
         }
@@ -494,6 +497,7 @@ namespace MLEM.Input {
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
             /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
+            [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetDownTime or custom handling instead.")]
             public TimeSpan GetDownTime(InputHandler handler, int gamepadIndex = -1) {
                 return handler.GetDownTime(this.Key, gamepadIndex);
             }
@@ -505,6 +509,7 @@ namespace MLEM.Input {
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
             /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
+            [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetUpTime or custom handling instead.")]
             public TimeSpan GetUpTime(InputHandler handler, int gamepadIndex = -1) {
                 return handler.GetUpTime(this.Key, gamepadIndex);
             }
@@ -516,6 +521,7 @@ namespace MLEM.Input {
             /// <param name="handler">The input handler to query the keys with</param>
             /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
             /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
+            [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetTimeSincePress or custom handling instead.")]
             public TimeSpan GetTimeSincePress(InputHandler handler, int gamepadIndex = -1) {
                 return handler.GetTimeSincePress(this.Key, gamepadIndex);
             }
