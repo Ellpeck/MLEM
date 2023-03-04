@@ -4,9 +4,9 @@
         <SupportedOSPlatformVersion>31</SupportedOSPlatformVersion>
         <OutputType>Exe</OutputType>
         <ApplicationId>de.ellpeck.mlem.demos.android</ApplicationId>
-        <ApplicationVersion>1</ApplicationVersion>
-        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-        <ImplicitUsings>true</ImplicitUsings>
+        <ApplicationVersion>100</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+        <PublishTrimmed>false</PublishTrimmed>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 

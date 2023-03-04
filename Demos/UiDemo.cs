@@ -242,7 +242,10 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "MLEM.Ui also contains a simple Markdown parser, which can be useful for displaying things like changelogs in your game."));
             this.root.AddChild(new VerticalSpace(3));
-            var parser = new UiMarkdownParser {GraphicsDevice = this.GraphicsDevice};
+            var parser = new UiMarkdownParser {
+                GraphicsDevice = this.GraphicsDevice,
+                ImageExceptionHandler = (s, e) => Console.Error.WriteLine($"Couldn't load image {s}: {e}")
+            };
             using (var reader = new StreamReader(TitleContainer.OpenStream("Content/Markdown.md")))
                 parser.ParseInto(reader.ReadToEnd(), this.root);
 
