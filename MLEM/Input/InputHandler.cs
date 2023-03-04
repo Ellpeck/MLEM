@@ -193,16 +193,18 @@ namespace MLEM.Input {
         /// <summary>
         /// Creates a new input handler with optional initial values.
         /// </summary>
-        /// <param name="game">The game instance that this input handler belongs to</param>
-        /// <param name="handleKeyboard">If keyboard input should be handled</param>
-        /// <param name="handleMouse">If mouse input should be handled</param>
-        /// <param name="handleGamepads">If gamepad input should be handled</param>
-        /// <param name="handleTouch">If touch input should be handled</param>
-        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true) : base(game) {
+        /// <param name="game">The game instance that this input handler belongs to.</param>
+        /// <param name="handleKeyboard">The initial value for <see cref="HandleKeyboard"/>, which determines whether this input handler handles keyboard inputs.</param>
+        /// <param name="handleMouse">The initial value for <see cref="HandleMouse"/>, which determines whether this input handler handles mouse inputs.</param>
+        /// <param name="handleGamepads">The initial value for <see cref="HandleGamepads"/>, which determines whether this input handler handles gamepad inputs.</param>
+        /// <param name="handleTouch">The initial value for <see cref="HandleTouch"/>, which determines whether this input handler handles touch inputs.</param>
+        /// <param name="externalGestureHandling">The initial value for <see cref="ExternalGestureHandling"/>, which determines whether gestures will be supplied using <see cref="AddExternalGesture"/> (or this input handler should handle gestures itself).</param>
+        public InputHandler(Game game, bool handleKeyboard = true, bool handleMouse = true, bool handleGamepads = true, bool handleTouch = true, bool externalGestureHandling = false) : base(game) {
             this.HandleKeyboard = handleKeyboard;
             this.HandleMouse = handleMouse;
             this.HandleGamepads = handleGamepads;
             this.HandleTouch = handleTouch;
+            this.ExternalGestureHandling = externalGestureHandling;
             this.Gestures = this.gestures.AsReadOnly();
         }
 

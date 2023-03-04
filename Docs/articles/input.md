@@ -34,7 +34,7 @@ Keyboard and gamepad repeat events can be enabled or disabled through the `Handl
 When enabled, repeat events for *pressing* are automatically triggered. This means that calling `IsPressed` every update call would return `true` for a control that is being held down every `KeyRepeatRate` seconds after `KeyRepeatDelay` seconds have passed once.
 
 ## Gesture handling
-MonoGame's default touch handling can be a bit wonky to deal with, so the input handler also provides a much better user experience for touch gesture input.
+MonoGame's default touch handling is not very library-friendly, so the input handler also provides a much more streamlined user experience for touch gesture input.
 
 To enable touch input, the gestures you want to use first have to be enabled:
 ```cs
@@ -52,6 +52,6 @@ if (this.InputHandler.GetGesture(GestureType.Tap, out var sample)) {
 ```
 
 ### External gesture handling
-If your game already handles gestures through some other means, you might notice that one of the gesture handling methods stops working correctly. This is due to the fact that MonoGame's gesture querying system only supports each gesture to be queried once before it is removed from the queue.
+If your game already handles gestures through some other means, you might notice that one of the gesture handling methods stops working correctly. This is due to the fact that MonoGame's gesture querying system only supports each gesture being queried once before it is removed from the queue.
 
-If you want to continue using your own gesture handling, but still allow the `InputHandler` to use gestures (for [MLEM.Ui](ui.md), for example), you can set `GesturesExternal` to true in your `InputHandler`. Then, you can use `AddExternalGesture` to make the input handler aware of a gesture for the duration of the update frame that you added it on.
+If you want to continue using your own gesture handling, but still allow the `InputHandler` to use gestures (for [MLEM.Ui](ui.md), for example), you can set `ExternalGestureHandling` to true in your `InputHandler`. Then, you can use `AddExternalGesture` to make the input handler aware of a gesture for the duration of the update frame that you added it on.
