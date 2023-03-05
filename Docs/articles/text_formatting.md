@@ -44,7 +44,7 @@ To draw your tokenized text, all you have to do is call its `Draw` method like s
 ```cs
 tokenizedString.Draw(gameTime, spriteBatch, position, font, color, scale, depth); 
 ```
-Note that, if your tokenized text contains any animations, you have to updated the tokenized string every `Update` call like so:
+Note that, if your tokenized text contains any animations, you have to update the tokenized string every `Update` call like so:
 ```cs
 tokenizedString.Update(gameTime);
 ```

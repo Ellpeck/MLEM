@@ -32,7 +32,7 @@ This means that, to check if the tile at tile coordinate `6, 10` contains any co
 ```cs
 var tiles = collisions.GetCollidingTiles(new RectangleF(6, 10, 1, 1));
 ```
-If the tile at that location is `16x16` pixels big and it has a single collision box at pixels `4, 4` that is `8x8` pixels big, then the following code prints out its percentaged coordinates: `X: 0.25, Y: 0.25, Width: 0.5, Height: 0.5`.
+If the tile at that location is `16x16` pixels big, and it has a single collision box at pixels `4, 4` that is `8x8` pixels big, then the following code prints out its percentaged coordinates: `X: 0.25, Y: 0.25, Width: 0.5, Height: 0.5`.
 ```cs
 foreach (var tile in tiles) 
     Console.WriteLine(tile.Collisions[0]);

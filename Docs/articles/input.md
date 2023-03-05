@@ -4,6 +4,8 @@ The **MLEM** base package features an extended `InputHandler` class that allows 
 
 Rather than using an event-based structure, the MLEM input handler relies on the game's `Update` frames: To query input through the input handler, you have to query it every Update frame, and input information will only be available for a single update frame in most situations.
 
+The input handler makes use of the `GenericInput` struct, which is a MLEM wrapper around the three main types of input that MonoGame and FNA provide: `Keys`, `Buttons` and `MouseButton` (the latter of which is a MLEM abstraction of mouse buttons). Values of all of these types can be converted into `GenericInput` implicitly, and a `GenericInput` can be converted back implicitly as well, so you will rarely ever have to interact with the `GenericInput` type manually.
+
 ## Setting it up
 To set it up, all you have to do is create a new instance. The constructor optionally accepts parameters to enable or disable certain kinds of input.
 ```cs
@@ -52,7 +54,7 @@ if (this.InputHandler.TryConsumePressed(Keys.Up)) {
 ```
 
 ## Input metrics
-The input handler tracks additional data related to keyboard, gamepad, and mouse inputs, such as the amount of times that they have been down and up for, as well as the amount of time that has passed since they were last pressed. These metrics can be useful for implementing short-press and long-press behavior.
+The input handler tracks additional data related to keyboard, gamepad, and mouse inputs, such as the amount of times that they have been down for. These metrics can be useful for implementing short-press and long-press behavior.
 
 ```cs 
 // how long has the A key been up (or down) for the last time it was up (or down)?
@@ -64,7 +66,7 @@ var timeSincePress = this.InputHandler.TryGetTimeSincePress(Keys.A);
 ```
 
 ## Gesture handling
-MonoGame's default gesture handling (which is inherited from XNA) can be a little difficult to deal with, mainly due to the fact that gestures stay in the queue until they are queried (so they might be very old), and the fact that they can't be queried without being removed from the queue, which is especially annoying if queued gesture is not the one a specific piece of code was waiting for.
+MonoGame's default gesture handling (which is inherited from XNA) can be a little difficult to deal with. This is mainly due to the fact that gestures stay in the queue until they are queried (so they might be very old), and the fact that they can't be queried without being permanently removed from the queue.
 
 Because of this, MLEM's input handler also provides a much more streamlined user experience for touch gesture input.
 
@@ -86,7 +88,7 @@ if (this.InputHandler.GetGesture(GestureType.Tap, out var sample)) {
 ### External gesture handling
 If your game already handles gestures through some other means, you might notice that one of the gesture handling methods stops working correctly. This is due to the fact that MonoGame's gesture querying system only supports each gesture being queried once before it is removed from the queue, which causes any additional queries for that gesture to fail.
 
-The input handler's gesture handling does not have this problem, since gestures are kept around for an entire update frame no matter how many times they are queried, and gestures can be queried from multiple sources based on the expected gesture type. Because of this, it's generally recommended to use the input handler's gesture system instead of the default one.
+The input handler's gesture handling does not have this problem, since gestures are kept around for an entire update frame no matter how many times they are queried, and gestures can be queried from multiple sources based on the expected gesture type. Because of this, it's generally recommended that you use the input handler's gesture system instead of the default one.
 
 However, if you want to continue using your own gesture handling, but still allow the `InputHandler` to have access to gestures (for [MLEM.Ui](ui.md), for example), you can set `ExternalGestureHandling` to true in your `InputHandler`. Then, you can use `AddExternalGesture` to make the input handler aware of a gesture for the duration of the update frame that you added it on. As an example, you could modify your game's existing gesture handling like this:
 ```cs 
