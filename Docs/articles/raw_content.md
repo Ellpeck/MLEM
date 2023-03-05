@@ -57,3 +57,17 @@ namespace Test {
 }
 ```
 As `RawContentManager` automatically collects all raw content readers in the loaded assemblies, you don't have to register your custom reader anywhere.
+
+## Environments without reflection or with trimming
+By default, the `RawContentManager` finds all types that extend `RawContentReader` in all loaded assemblies, so they don't have to be added manually. This won't work in environments like NativeAOT, where reflection isn't as readily available, or in assemblies that get trimmed.
+
+If you're in an environment with this restriction, you can manually collect all of the content readers that you plan on using and call the constructor that accepts a list of content readers instead:
+```csharp
+protected override void LoadContent() {
+    var neededReaders = new List<RawContentReader> {
+        new Texture2DReader(), new JsonReader() // ...
+    };
+    this.rawContent = new RawContentManager(this.Services);
+    this.Components.Add(this.rawContent);
+}
+```

@@ -53,7 +53,7 @@ MlemPlatform.Current = new MlemPlatform.None();
 ```
 Initializing the platform in this way also allows for links in paragraphs to be clickable, causing a browser or explorer window to be opened on desktop or mobile devices.
 
-For more info on MLEM's platform-related code, you can also check out MlemPlatform's [documentation](https://mlem.ellpeck.de/api/MLEM.Misc.MlemPlatform).
+For more info on MLEM's platform-related code, you can also check out MlemPlatform's [documentation](xref:MLEM.Misc.MlemPlatform).
 
 ## Setting the style
 By default, MLEM.Ui's controls look pretty bland, since it doesn't ship with any fonts or textures for any of its controls. To change the style of your ui, simply expand your `new UntexturedStyle(this.SpriteBatch)` call to include fonts and textures of your choosing, for example:
@@ -94,3 +94,5 @@ Note that, when setting the width and height of any element, there are some thin
 - Each element has a `SetWidthBasedOnChildren` and a `SetHeightBasedOnChildren` property, which allow them to change their size automatically based on their content
 - When specifying a width or height *lower than or equal to 1*, it is seen as a percentage based on the parent's size instead. For example, a paragraph with a width of `0.5F` inside of a panel width a width of `200` will be `100` units wide.
 - When specifying a width *lower than 0*, it is seen as a percentage based on the element's height, and vice versa. For example, a panel with a width of `200` and a height of `-2` will be `400` units tall.
+
+A lot of other ways to modify the size of an object are available as well, including `TreatSizeAsMaximum`, `TreatSizeAsMinimum`, `PreventParentSpill` and more. For more information, the `Element` [documentation](xref:MLEM.Ui.Elements.Element) contains descriptions of all fields, properties and methods.

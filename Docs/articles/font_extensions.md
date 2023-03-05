@@ -23,6 +23,12 @@ var split = spriteFont.SplitString("This is a really long line of text [...]", w
 spriteFont.DrawString(this.SpriteBatch, split, new Vector2(10, 10), Color.White);
 ```
 
+Alternatively, the `SplitStringSeparate` method returns a collection of strings, where each entry represents a place where a split has been introduced. Using this method, you can differentiate between pre-existing newline characters and newly introduced ones.
+```cs
+var split = spriteFont.SplitStringSeparate("This is a line of text that contains\nnewline characters!", width: 10, scale: 1);
+// returns something like ["This is a line of ", "text that contains\nnewline characters!"]
+```
+
 ## Truncating
 Using generic fonts, a long line of text can also be truncated to fit a certain width in pixels. The remaining text that doesn't fit will simply be chopped off of the end (or start) of the string.
 ```cs
