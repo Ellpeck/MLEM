@@ -21,9 +21,10 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 6.0 and .NET
 - **MLEM.Templates** contains cross-platform project templates
 
 # Made with MLEM
+- [Touchy Tickets](https://ell.lt/touchytickets), a mobile idle game ([Source](https://git.ellpeck.de/Ellpeck/TouchyTickets))
 - [A Breath of Spring Air](https://ellpeck.itch.io/a-breath-of-spring-air), a short platformer ([Source](https://git.ellpeck.de/Ellpeck/GreatSpringGameJam))
 - [Don't Wake Up](https://ellpeck.itch.io/dont-wake-up), a short puzzle game ([Source](https://github.com/Ellpeck/DontLetGo))
-- [Pong Clone](https://github.com/luanfagu/pong), a very simple pong clone ([Source](https://github.com/luanfagu/pong))
+- Pong Clone, a very simple pong clone demo ([Source](https://github.com/luanfagu/pong))
 - [Tiny Life](https://tinylifegame.com), an isometric life simulation game ([Modding API](https://github.com/Ellpeck/TinyLifeExampleMod))
 
 If you created a game with the help of MLEM, you can get it added to this list by submitting it on the [issue tracker](https://github.com/Ellpeck/MLEM/issues). If its source is public, other people will be able to use your project as an example, too!
