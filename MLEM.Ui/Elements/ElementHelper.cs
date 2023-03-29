@@ -234,21 +234,39 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Returns whether the given <see cref="Anchor"/> is automatic. The anchors <see cref="Anchor.AutoLeft"/>, <see cref="Anchor.AutoCenter"/>, <see cref="Anchor.AutoRight"/>, <see cref="Anchor.AutoInline"/> and <see cref="Anchor.AutoInlineIgnoreOverflow"/> will return true.
+        /// Returns whether the given <see cref="Anchor"/> is automatic. The anchors <see cref="Anchor.AutoLeft"/>, <see cref="Anchor.AutoCenter"/>, <see cref="Anchor.AutoRight"/>, and any anchor that <see cref="IsInline"/> will return true.
         /// </summary>
         /// <param name="anchor">The anchor to query.</param>
         /// <returns>Whether the given anchor is automatic.</returns>
         public static bool IsAuto(this Anchor anchor) {
-            return anchor == Anchor.AutoLeft || anchor == Anchor.AutoCenter || anchor == Anchor.AutoRight || anchor == Anchor.AutoInline || anchor == Anchor.AutoInlineIgnoreOverflow;
+            return anchor == Anchor.AutoLeft || anchor == Anchor.AutoCenter || anchor == Anchor.AutoRight || anchor.IsInline();
         }
 
         /// <summary>
-        /// Returns whether the given <see cref="Anchor"/> is left-aligned for the purpose of <see cref="Element.GetRightmostChild"/>. The anchors <see cref="Anchor.TopLeft"/>, <see cref="Anchor.CenterLeft"/>, <see cref="Anchor.BottomLeft"/>, <see cref="Anchor.AutoLeft"/>, <see cref="Anchor.AutoInline"/> and <see cref="Anchor.AutoInlineIgnoreOverflow"/> will return true.
+        /// Returns whether the given <see cref="Anchor"/> is inline. The anchors <see cref="Anchor.AutoInline"/>, <see cref="Anchor.AutoInlineCenter"/>, <see cref="Anchor.AutoInlineBottom"/>, and any anchor that <see cref="IsIgnoreOverflow"/> will return true.
+        /// </summary>
+        /// <param name="anchor">The anchor to query.</param>
+        /// <returns>Whether the given anchor is inline.</returns>
+        public static bool IsInline(this Anchor anchor) {
+            return anchor == Anchor.AutoInline || anchor == Anchor.AutoInlineCenter || anchor == Anchor.AutoInlineBottom || anchor.IsIgnoreOverflow();
+        }
+
+        /// <summary>
+        /// Returns whether the given <see cref="Anchor"/> ignores overflow. The anchors <see cref="Anchor.AutoInlineIgnoreOverflow"/>, <see cref="Anchor.AutoInlineCenterIgnoreOverflow"/>, and <see cref="Anchor.AutoInlineBottomIgnoreOverflow"/> will return true.
+        /// </summary>
+        /// <param name="anchor">The anchor to query.</param>
+        /// <returns>Whether the given anchor ignores overflow.</returns>
+        public static bool IsIgnoreOverflow(this Anchor anchor) {
+            return anchor == Anchor.AutoInlineIgnoreOverflow || anchor == Anchor.AutoInlineCenterIgnoreOverflow || anchor == Anchor.AutoInlineBottomIgnoreOverflow;
+        }
+
+        /// <summary>
+        /// Returns whether the given <see cref="Anchor"/> is left-aligned for the purpose of <see cref="Element.GetRightmostChild"/>. The anchors <see cref="Anchor.TopLeft"/>, <see cref="Anchor.CenterLeft"/>, <see cref="Anchor.BottomLeft"/>, <see cref="Anchor.AutoLeft"/>, and any anchor that <see cref="IsInline"/> will return true.
         /// </summary>
         /// <param name="anchor">The anchor to query.</param>
         /// <returns>Whether the given anchor is left-aligned.</returns>
         public static bool IsLeftAligned(this Anchor anchor) {
-            return anchor == Anchor.TopLeft || anchor == Anchor.CenterLeft || anchor == Anchor.BottomLeft || anchor == Anchor.AutoLeft || anchor == Anchor.AutoInline || anchor == Anchor.AutoInlineIgnoreOverflow;
+            return anchor == Anchor.TopLeft || anchor == Anchor.CenterLeft || anchor == Anchor.BottomLeft || anchor == Anchor.AutoLeft || anchor.IsInline();
         }
 
         /// <summary>

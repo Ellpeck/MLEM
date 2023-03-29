@@ -2,7 +2,7 @@ using MLEM.Ui.Elements;
 
 namespace MLEM.Ui {
     /// <summary>
-    /// Represents a location for an <see cref="Element"/> to attach to within its parent (or within the screen's viewport if it is the <see cref="RootElement"/>). 
+    /// Represents a location for an <see cref="Element"/> to attach to within its parent (or within the screen's viewport if it is the <see cref="RootElement"/>).
     /// </summary>
     public enum Anchor {
 
@@ -60,7 +60,7 @@ namespace MLEM.Ui {
         AutoRight,
         /// <summary>
         /// This is an auto-anchoring value.
-        /// This anchor will cause an element to be placed in the same line as its older sibling, or at the start of the next line if there is no space to the right of its older sibling.
+        /// This anchor will cause an element to be placed at the top right of its older sibling, or at the start of the next line if there is no space to the right of its older sibling.
         /// </summary>
         AutoInline,
         /// <summary>
@@ -68,7 +68,29 @@ namespace MLEM.Ui {
         /// This anchor is an overflow-ignoring version of <see cref="AutoInline"/>, meaning that the element will never be forced into the next line.
         /// Note that, when using this property, it is very easy to cause an element to overflow out of its parent container.
         /// </summary>
-        AutoInlineIgnoreOverflow
+        AutoInlineIgnoreOverflow,
+        /// <summary>
+        /// This is an auto-anchoring value.
+        /// This anchor will cause an element to be placed at the center right of its older sibling, or at the start of the next line if there is no space to the right of its older sibling.
+        /// </summary>
+        AutoInlineCenter,
+        /// <summary>
+        /// This is an auto-anchoring value.
+        /// This anchor is an overflow-ignoring version of <see cref="AutoInlineCenter"/>, meaning that the element will never be forced into the next line.
+        /// Note that, when using this property, it is very easy to cause an element to overflow out of its parent container.
+        /// </summary>
+        AutoInlineCenterIgnoreOverflow,
+        /// <summary>
+        /// This is an auto-anchoring value.
+        /// This anchor will cause an element to be placed at the bottom right of its older sibling, or at the start of the next line if there is no space to the right of its older sibling.
+        /// </summary>
+        AutoInlineBottom,
+        /// <summary>
+        /// This is an auto-anchoring value.
+        /// This anchor is an overflow-ignoring version of <see cref="AutoInlineBottom"/>, meaning that the element will never be forced into the next line.
+        /// Note that, when using this property, it is very easy to cause an element to overflow out of its parent container.
+        /// </summary>
+        AutoInlineBottomIgnoreOverflow
 
     }
 }

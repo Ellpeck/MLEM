@@ -33,6 +33,9 @@ Removals
 - Marked GetDownTime, GetUpTime and GetTimeSincePress in Keybind and Combination as obsolete
 
 ### MLEM.Ui
+Additions
+- Added `AutoInlineCenter` and `AutoInlineBottom` anchors
+
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
 

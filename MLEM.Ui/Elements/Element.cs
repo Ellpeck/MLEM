@@ -672,8 +672,6 @@ namespace MLEM.Ui.Elements {
                 switch (this.anchor) {
                     case Anchor.TopLeft:
                     case Anchor.AutoLeft:
-                    case Anchor.AutoInline:
-                    case Anchor.AutoInlineIgnoreOverflow:
                         pos.X = parentArea.X + this.ScaledOffset.X;
                         pos.Y = parentArea.Y + this.ScaledOffset.Y;
                         break;
@@ -714,36 +712,32 @@ namespace MLEM.Ui.Elements {
                 }
 
                 if (this.Anchor.IsAuto()) {
-                    Element previousChild;
-                    if (this.Anchor == Anchor.AutoInline || this.Anchor == Anchor.AutoInlineIgnoreOverflow) {
-                        previousChild = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                    } else {
-                        previousChild = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                    }
-                    if (previousChild != null) {
-                        var prevArea = previousChild.GetAreaForAutoAnchors();
-                        switch (this.Anchor) {
-                            case Anchor.AutoLeft:
-                            case Anchor.AutoCenter:
-                            case Anchor.AutoRight:
-                                pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
-                                break;
-                            case Anchor.AutoInline:
-                                var newX = prevArea.Right + this.ScaledOffset.X;
-                                // with awkward ui scale values, floating point rounding can cause an element that would usually
-                                // be positioned correctly to be pushed into the next line due to a very small deviation
-                                if (newX + newSize.X <= parentArea.Right + Element.Epsilon) {
-                                    pos.X = newX;
-                                    pos.Y = prevArea.Y + this.ScaledOffset.Y;
-                                } else {
-                                    pos.Y = prevArea.Bottom + this.ScaledOffset.Y;
+                    if (this.Anchor.IsInline()) {
+                        var anchorEl = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
+                        if (anchorEl != null) {
+                            var anchorElArea = anchorEl.GetAreaForAutoAnchors();
+                            var newX = anchorElArea.Right + this.ScaledOffset.X;
+                            // with awkward ui scale values, floating point rounding can cause an element that would usually
+                            // be positioned correctly to be pushed into the next line due to a very small deviation
+                            if (this.Anchor.IsIgnoreOverflow() || newX + newSize.X <= parentArea.Right + Element.Epsilon) {
+                                pos.X = newX;
+                                pos.Y = anchorElArea.Y + this.ScaledOffset.Y;
+                                if (this.Anchor == Anchor.AutoInlineCenter || this.Anchor == Anchor.AutoInlineCenterIgnoreOverflow) {
+                                    pos.Y += (anchorElArea.Height - newSize.Y) / 2;
+                                } else if (this.Anchor == Anchor.AutoInlineBottom || this.Anchor == Anchor.AutoInlineBottomIgnoreOverflow) {
+                                    pos.Y += anchorElArea.Height - newSize.Y;
                                 }
-                                break;
-                            case Anchor.AutoInlineIgnoreOverflow:
-                                pos.X = prevArea.Right + this.ScaledOffset.X;
-                                pos.Y = prevArea.Y + this.ScaledOffset.Y;
-                                break;
+                            } else {
+                                // all inline anchors act the same when overflowing into the next line
+                                pos.X = parentArea.X + this.ScaledOffset.X;
+                                pos.Y = anchorElArea.Bottom + this.ScaledOffset.Y;
+                            }
                         }
+                    } else {
+                        // non-inline auto anchors keep their x coordinates from the switch above
+                        var anchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
+                        if (anchorEl != null)
+                            pos.Y = anchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
                     }
                 }
 
