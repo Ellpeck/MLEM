@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Coroutine" Version="2.1.4" />
+        <PackageReference Include="Coroutine" Version="2.1.5" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
 
