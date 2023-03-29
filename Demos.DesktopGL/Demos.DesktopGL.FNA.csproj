@@ -29,7 +29,7 @@
         <Content Include="..\Demos\Content\*\**" />
         <EmbeddedResource Include="Icon.ico" />
         <EmbeddedResource Include="Icon.bmp" />
-        <Content Include="FnaNative/**">
+        <Content Include="../FnaNative/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Link>%(Filename)%(Extension)</Link>
         </Content>
