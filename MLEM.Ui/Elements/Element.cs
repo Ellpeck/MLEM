@@ -672,6 +672,12 @@ namespace MLEM.Ui.Elements {
                 switch (this.anchor) {
                     case Anchor.TopLeft:
                     case Anchor.AutoLeft:
+                    case Anchor.AutoInline:
+                    case Anchor.AutoInlineCenter:
+                    case Anchor.AutoInlineBottom:
+                    case Anchor.AutoInlineIgnoreOverflow:
+                    case Anchor.AutoInlineCenterIgnoreOverflow:
+                    case Anchor.AutoInlineBottomIgnoreOverflow:
                         pos.X = parentArea.X + this.ScaledOffset.X;
                         pos.Y = parentArea.Y + this.ScaledOffset.Y;
                         break;
@@ -728,7 +734,6 @@ namespace MLEM.Ui.Elements {
                                     pos.Y += anchorElArea.Height - newSize.Y;
                                 }
                             } else {
-                                pos.X = parentArea.X + this.ScaledOffset.X;
                                 // inline anchors that overflow into the next line act like AutoLeft
                                 var newlineAnchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
                                 if (newlineAnchorEl != null)
@@ -736,7 +741,7 @@ namespace MLEM.Ui.Elements {
                             }
                         }
                     } else {
-                        // non-inline auto anchors keep their x coordinates from the switch above
+                        // auto anchors keep their x coordinates from the switch above
                         var anchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
                         if (anchorEl != null)
                             pos.Y = anchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
