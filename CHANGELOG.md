@@ -34,10 +34,11 @@ Removals
 
 ### MLEM.Ui
 Additions
-- Added `AutoInlineCenter` and `AutoInlineBottom` anchors
+- Added AutoInlineCenter and AutoInlineBottom anchors
 
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
+- Fixed AutoInline elements overflowing into their parent if it's taller
 
 Improvements
 - Increased Element area calculation recursion limit to 64

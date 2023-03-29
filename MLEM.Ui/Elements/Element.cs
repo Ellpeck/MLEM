@@ -728,9 +728,11 @@ namespace MLEM.Ui.Elements {
                                     pos.Y += anchorElArea.Height - newSize.Y;
                                 }
                             } else {
-                                // all inline anchors act the same when overflowing into the next line
                                 pos.X = parentArea.X + this.ScaledOffset.X;
-                                pos.Y = anchorElArea.Bottom + this.ScaledOffset.Y;
+                                // inline anchors that overflow into the next line act like AutoLeft
+                                var newlineAnchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
+                                if (newlineAnchorEl != null)
+                                    pos.Y = newlineAnchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
                             }
                         }
                     } else {
