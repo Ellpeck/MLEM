@@ -106,13 +106,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        protected override Vector2 CalcActualSize(RectangleF parentArea) {
-            var size = base.CalcActualSize(parentArea);
+        public override void SetAreaAndUpdateChildren(RectangleF area) {
+            base.SetAreaAndUpdateChildren(area);
             if (this.Label != null) {
-                this.Label.Size = new Vector2((size.X - size.Y) / this.Scale - this.TextOffsetX, 1);
-                this.Label.PositionOffset = new Vector2(size.Y / this.Scale + this.TextOffsetX, 0);
+                this.Label.Size = new Vector2((area.Width - area.Height) / this.Scale - this.TextOffsetX, 1);
+                this.Label.PositionOffset = new Vector2(area.Height / this.Scale + this.TextOffsetX, 0);
             }
-            return size;
         }
 
         /// <inheritdoc />

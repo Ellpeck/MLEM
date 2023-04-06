@@ -39,6 +39,7 @@ Additions
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
 - Fixed AutoInline elements overflowing into their parent if it's taller
+- Fixed Paragraph and Checkbox not reacting to SquishingGroup sizing properly
 
 Improvements
 - Increased Element area calculation recursion limit to 64

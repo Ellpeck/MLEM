@@ -176,12 +176,22 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
+        public override void SetAreaAndUpdateChildren(RectangleF area) {
+            base.SetAreaAndUpdateChildren(area);
+            // in case an outside source sets our area, we still want to display our text correctly
+            this.AlignAndSplitIfNecessary(area.Size);
+        }
+
+        /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var size = base.CalcActualSize(parentArea);
             this.CheckTextChange();
             this.TokenizeIfNecessary();
             this.AlignAndSplitIfNecessary(size);
             var textSize = this.tokenizedText.GetArea(Vector2.Zero, this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
+            // if we auto-adjust our width, then we would also split the same way with our adjusted width, so cache that
+            if (this.AutoAdjustWidth)
+                this.lastAlignSplitWidth = textSize.X;
             return new Vector2(this.AutoAdjustWidth ? textSize.X + this.ScaledPadding.Width : size.X, textSize.Y + this.ScaledPadding.Height);
         }
 
@@ -255,7 +265,7 @@ namespace MLEM.Ui.Elements {
             var width = size.X - this.ScaledPadding.Width;
             var scale = this.TextScale * this.TextScaleMultiplier * this.Scale;
 
-            if (this.lastAlignSplitWidth == width && this.lastAlignSplitScale == scale)
+            if (this.lastAlignSplitWidth?.Equals(width, Element.Epsilon) == true && this.lastAlignSplitScale?.Equals(scale, Element.Epsilon) == true)
                 return;
             this.lastAlignSplitWidth = width;
             this.lastAlignSplitScale = scale;
