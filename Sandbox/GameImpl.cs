@@ -229,22 +229,22 @@ public class GameImpl : MlemGame {
         par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
         this.UiSystem.Add("Load", loadGroup);*/
 
-        /*var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
+        var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
         var squishingGroup = spillPanel.AddChild(new SquishingGroup(Anchor.TopLeft, Vector2.One));
         squishingGroup.AddChild(new Button(Anchor.TopLeft, new Vector2(30), "TL") {
-            OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D1),
+            OnUpdated = (e, time) => e.IsHidden = MlemGame.Input.IsDown(Keys.D1),
             Priority = 10
         }).SetData("Ref", "TL");
         squishingGroup.AddChild(new Button(Anchor.TopRight, new Vector2(30), "TR") {
-            OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D2),
+            OnUpdated = (e, time) => e.IsHidden = MlemGame.Input.IsDown(Keys.D2),
             Priority = 20
         }).SetData("Ref", "TR");
-        squishingGroup.AddChild(new Button(Anchor.BottomLeft, new Vector2(30), "BL") {
-            OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D3),
+        squishingGroup.AddChild(new Button(Anchor.BottomLeft, new Vector2(1, 30), "BL") {
+            OnUpdated = (e, time) => e.IsHidden = MlemGame.Input.IsDown(Keys.D3),
             Priority = 30
         }).SetData("Ref", "BL");
         squishingGroup.AddChild(new Button(Anchor.BottomRight, new Vector2(30), "BR") {
-            OnUpdated = (e, time) => e.IsHidden = Input.IsKeyDown(Keys.D4),
+            OnUpdated = (e, time) => e.IsHidden = MlemGame.Input.IsDown(Keys.D4),
             Priority = 40
         }).SetData("Ref", "BR");
         squishingGroup.AddChild(new Button(Anchor.Center, Vector2.Zero, "0") {
@@ -256,7 +256,7 @@ public class GameImpl : MlemGame {
                 e.SetAreaDirty();
             }
         }).SetData("Ref", "Main");
-        this.UiSystem.Add("SpillTest", spillPanel);*/
+        this.UiSystem.Add("SpillTest", spillPanel);
 
         /* var regularFont = spriteFont.Font;
          var genericFont = spriteFont;
@@ -343,7 +343,7 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };*/
 
-        var widthPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
+        /*var widthPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
         for (var i = 0; i < 5; i++) {
             widthPanel.AddChild(new Paragraph(Anchor.AutoCenter, 100000, "Test String " + Math.Pow(10, i), true) {
                 OnUpdated = (e, _) => {
@@ -383,12 +383,12 @@ public class GameImpl : MlemGame {
                 }
             }
         };
-        this.OnDraw += (_, _) => batch.Draw(null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(3));
+        this.OnDraw += (_, _) => batch.Draw(null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(3));*/
 
-        Console.WriteLine("Keys: " + string.Join(", ", GenericInput.AllKeys));
+        /*Console.WriteLine("Keys: " + string.Join(", ", GenericInput.AllKeys));
         Console.WriteLine("MouseButtons: " + string.Join(", ", GenericInput.AllMouseButtons));
         Console.WriteLine("Buttons: " + string.Join(", ", GenericInput.AllButtons));
-        Console.WriteLine("Inputs: " + string.Join(", ", GenericInput.AllInputs));
+        Console.WriteLine("Inputs: " + string.Join(", ", GenericInput.AllInputs));*/
     }
 
     protected override void DoUpdate(GameTime gameTime) {
@@ -410,8 +410,8 @@ public class GameImpl : MlemGame {
         Console.WriteLine("Time since press: " + MlemGame.Input.GetTimeSincePress(Keys.A));#1#
         Console.WriteLine("Up time: " + MlemGame.Input.GetUpTime(Keys.A));*/
 
-        var combination = new Keybind.Combination(Keys.K, new GenericInput[] {Keys.LeftShift}, GenericInput.AllKeys);
-        Console.WriteLine($"Mod: {combination.IsModifierDown(this.InputHandler)} Down: {combination.IsDown(this.InputHandler)}");
+        /*var combination = new Keybind.Combination(Keys.K, new GenericInput[] {Keys.LeftShift}, GenericInput.AllKeys);
+        Console.WriteLine($"Mod: {combination.IsModifierDown(this.InputHandler)} Down: {combination.IsDown(this.InputHandler)}");*/
     }
 
     protected override void DoDraw(GameTime gameTime) {

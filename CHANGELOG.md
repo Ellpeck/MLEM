@@ -18,16 +18,16 @@ Additions
 - Added the ability to add inverse modifiers to a Keybind
 - Added GenericInput collections AllKeys, AllMouseButtons, AllButtons and AllInputs
 
+Improvements
+- Increased TextFormatter macro recursion limit to 64
+- Allow changing the default values used by default TextFormatter codes
+- Allow setting ExternalGestureHandling through the InputHandler constructor
+
 Fixes
 - Fixed control characters being included in TextInput
 - Fixed TextInputs behaving incorrectly when switching between multiline and single-line modes
 - Fixed TextInput drawing characters with the wrong width if a masking character is used
 - Fixed a multiline TextInput's cursor not returning to the default position when the last character is removed
-
-Improvements
-- Increased TextFormatter macro recursion limit to 64
-- Allow changing the default values used by default TextFormatter codes
-- Allow setting ExternalGestureHandling through the InputHandler constructor
 
 Removals
 - Marked GetDownTime, GetUpTime and GetTimeSincePress in Keybind and Combination as obsolete
@@ -36,13 +36,14 @@ Removals
 Additions
 - Added AutoInlineCenter and AutoInlineBottom anchors
 
+Improvements
+- Increased Element area calculation recursion limit to 64
+- Improved the SquishingGroup algorithm by prioritizing each element's final size
+
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
 - Fixed AutoInline elements overflowing into their parent if it's taller
 - Fixed Paragraph and Checkbox not reacting to SquishingGroup sizing properly
-
-Improvements
-- Increased Element area calculation recursion limit to 64
 
 ## 6.1.0
 

@@ -1,13 +1,13 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Extensions;
 using MLEM.Misc;
 
 namespace MLEM.Ui.Elements {
     /// <summary>
-    /// A squishing group is a <see cref="Group"/> whose <see cref="Element.Children"/> automatically get resized so that they do not overlap each other.
-    /// The order in which elements are squished depends on their <see cref="Element.Priority"/>, where elements with a lower priority will move out of the way of elements with a higher priority.
-    /// If all elements have the same priority, their addition order (their order in <see cref="Element.Children"/>) determines squish order.
+    /// A squishing group is a <see cref="Group"/> whose <see cref="Element.Children"/> automatically get resized so that they do not overlap each other. Elements are squished in a way that maximizes the final area that each element retains compared to its original area.
+    /// The order in which elements are squished depends on their <see cref="Element.Priority"/>, where elements with a lower priority will move out of the way of elements with a higher priority. If all elements have the same priority, their addition order (their order in <see cref="Element.Children"/>) determines squish order.
     /// </summary>
     public class SquishingGroup : Group {
 
@@ -43,27 +43,17 @@ namespace MLEM.Ui.Elements {
             var pos = element.Area.Location;
             var size = element.Area.Size;
             foreach (var sibling in element.GetSiblings(e => !e.IsHidden)) {
-                var siblingArea = sibling.Area;
-                var leftIntersect = siblingArea.Right - pos.X;
-                var rightIntersect = pos.X + size.X - siblingArea.Left;
-                var bottomIntersect = siblingArea.Bottom - pos.Y;
-                var topIntersect = pos.Y + size.Y - siblingArea.Top;
-                if (leftIntersect > 0 && rightIntersect > 0 && bottomIntersect > 0 && topIntersect > 0) {
-                    if (rightIntersect + leftIntersect < topIntersect + bottomIntersect) {
-                        if (rightIntersect > leftIntersect) {
-                            size.X -= siblingArea.Right - pos.X;
-                            pos.X = Math.Max(pos.X, siblingArea.Right);
-                        } else {
-                            size.X = Math.Min(pos.X + size.X, siblingArea.Left) - pos.X;
-                        }
-                    } else {
-                        if (topIntersect > bottomIntersect) {
-                            size.Y -= siblingArea.Bottom - pos.Y;
-                            pos.Y = Math.Max(pos.Y, siblingArea.Bottom);
-                        } else {
-                            size.Y = Math.Min(pos.Y + size.Y, siblingArea.Top) - pos.Y;
-                        }
-                    }
+                var sibArea = sibling.Area;
+                if (pos.X < sibArea.Right && sibArea.Left < pos.X + size.X && pos.Y < sibArea.Bottom && sibArea.Top < pos.Y + size.Y) {
+                    var possible = new[] {
+                        new RectangleF(Math.Max(pos.X, sibArea.Right), pos.Y, size.X - (sibArea.Right - pos.X), size.Y),
+                        new RectangleF(pos.X, pos.Y, Math.Min(pos.X + size.X, sibArea.Left) - pos.X, size.Y),
+                        new RectangleF(pos.X, Math.Max(pos.Y, sibArea.Bottom), size.X, size.Y - (sibArea.Bottom - pos.Y)),
+                        new RectangleF(pos.X, pos.Y, size.X, Math.Min(pos.Y + size.Y, sibArea.Top) - pos.Y)
+                    };
+                    var biggest = possible.OrderByDescending(r => r.Width * r.Height).First();
+                    pos = biggest.Location;
+                    size = biggest.Size;
                 }
             }
             if (!pos.Equals(element.Area.Location, Element.Epsilon) || !size.Equals(element.Area.Size, Element.Epsilon)) {
