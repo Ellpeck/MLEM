@@ -1,14 +1,23 @@
 {
-    "metadata": [{
-        "src": [{
-            "src": "../",
-            "files": ["**/MLEM**.csproj"],
-            "exclude": ["**.FNA.**"]
-        }],
-        "dest": "api"
-    }],
+    "metadata": [
+        {
+            "src": [
+                {
+                    "src": "../",
+                    "files": [
+                        "**/MLEM**.csproj"
+                    ],
+                    "exclude": [
+                        "**.FNA.**"
+                    ]
+                }
+            ],
+            "dest": "api"
+        }
+    ],
     "build": {
-        "content": [{
+        "content": [
+            {
                 "files": [
                     "articles/**.md",
                     "articles/**/toc.yml",
@@ -24,13 +33,16 @@
                 "src": ".."
             }
         ],
-        "resource": [{
+        "resource": [
+            {
                 "files": [
                     "favicon.ico"
                 ]
             },
             {
-                "files": ["*"],
+                "files": [
+                    "*"
+                ],
                 "src": "../Media"
             }
         ],
@@ -41,14 +53,10 @@
             "_enableSearch": true
         },
         "dest": "_site",
-        "globalMetadataFiles": [],
-        "fileMetadataFiles": [],
         "template": [
             "default",
-            "templates/darkfx"
-        ],
-        "postProcessors": [],
-        "markdownEngineName": "markdig",
-        "noLangKeyword": false
+            "modern",
+            "overrides"
+        ]
     }
 }

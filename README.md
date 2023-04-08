@@ -27,7 +27,7 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 6.0 and .NET
 - Pong Clone, a very simple pong clone demo ([Source](https://github.com/luanfagu/pong))
 - [Tiny Life](https://tinylifegame.com), an isometric life simulation game ([Modding API](https://github.com/Ellpeck/TinyLifeExampleMod))
 
-If you created a game with the help of MLEM, you can get it added to this list by submitting it on the [issue tracker](https://github.com/Ellpeck/MLEM/issues). If its source is public, other people will be able to use your project as an example, too!
+If you created a project with the help of MLEM, you can get it added to this list by submitting an issue or a pull request. If its source is public, other people will be able to use your project as an example, too!
 
 # Gallery
 Here are some images that show a couple of MLEM's features.
