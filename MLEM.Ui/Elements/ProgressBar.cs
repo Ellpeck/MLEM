@@ -10,7 +10,7 @@ using MLEM.Ui.Style;
 namespace MLEM.Ui.Elements {
     /// <summary>
     /// A progress bar element to use inside of a <see cref="UiSystem"/>.
-    /// A progress bar is an element that fills up a bar based on a given <see cref="currentValue"/> percentage.
+    /// A progress bar is an element that fills up a bar based on a given <see cref="CurrentValue"/> percentage.
     /// </summary>
     public class ProgressBar : Element {
 

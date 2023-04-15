@@ -32,7 +32,7 @@ namespace MLEM.Input {
         public static readonly GenericInput[] AllInputs = GenericInput.AllKeys.Concat(GenericInput.AllMouseButtons).Concat(GenericInput.AllButtons).ToArray();
 
         /// <summary>
-        /// The <see cref="InputType"/> of this generic input's current <see cref="value"/>.
+        /// The <see cref="InputType"/> of this generic input's current value.
         /// </summary>
         [DataMember]
         public readonly InputType Type;

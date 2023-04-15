@@ -49,7 +49,7 @@ namespace MLEM.Data {
         /// Creates a new runtime texture packer with the given settings.
         /// </summary>
         /// <param name="maxWidth">The maximum width that the packed texture can have. Defaults to 2048.</param>
-        /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than <see cref="maxWidth"/>. Defaults to false.</param>
+        /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than the maximum width specified in the constructor. Defaults to false.</param>
         /// <param name="forcePowerOfTwo">Whether the resulting <see cref="PackedTexture"/> should have a width and height that is a power of two.</param>
         /// <param name="forceSquare">Whether the resulting <see cref="PackedTexture"/> should be square regardless of required size.</param>
         /// <param name="disposeTextures">Whether the original textures submitted to this texture packer should be disposed after packing.</param>

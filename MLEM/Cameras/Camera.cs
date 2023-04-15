@@ -13,7 +13,7 @@ namespace MLEM.Cameras {
 
         /// <summary>
         /// This field holds an epsilon value used in some camera calculations to mitigate floating point rounding inaccuracies.
-        /// If camera <see cref="Position"/> or <see cref="Viewport"/> size are extremely small or extremely big, this value can be reduced or increased.
+        /// If camera <see cref="Position"/> or <see cref="ScaledViewport"/> size are extremely small or extremely big, this value can be reduced or increased.
         /// </summary>
         public static float Epsilon = 0.01F;
 

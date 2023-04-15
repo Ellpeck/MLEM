@@ -76,7 +76,7 @@ namespace MLEM.Ui.Elements {
         public bool CanSelectDisabled;
         /// <summary>
         /// An optional function that can be used to modify the result of <see cref="IsDisabled"/> automatically based on a user-defined condition. This removes the need to disable a button based on a condition in <see cref="Element.OnUpdated"/> or manually.
-        /// Note that, if <see cref="IsDisabled"/>'s underlying value is set to <see langword="true"/> using <see cref="set_IsDisabled"/>, this function's result will be ignored.
+        /// Note that, if <see cref="IsDisabled"/>'s underlying value is set to <see langword="true"/> using <see cref="IsDisabled"/>, this function's result will be ignored.
         /// </summary>
         public Func<Button, bool> AutoDisableCondition;
 

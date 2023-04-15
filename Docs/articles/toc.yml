@@ -1,16 +1,25 @@
-- name: MLEM.Ui
-  href: ui.md
+- name: MLEM
 - name: Font Extensions
   href: font_extensions.md
 - name: Text Formatting
   href: text_formatting.md
 - name: Input Handler
   href: input.md
-- name: Raw Content Manager
-  href: raw_content.md
 - name: Sprite Animations
   href: sprite_animations.md
+
+- name: MLEM.Ui
+- name: MLEM.Ui
+  href: ui.md
+
+- name: MLEM.Extended
 - name: Tiled Extensions
   href: tiled_extensions.md
+
+- name: MLEM.Data
+- name: Raw Content Manager
+  href: raw_content.md
+
+- name: MLEM.Startup
 - name: MLEM.Startup
   href: startup.md

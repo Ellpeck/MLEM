@@ -196,7 +196,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Causes this tooltip's position to be snapped to the mouse position, or the <see cref="snapElement"/> if <see cref="DisplayInAutoNavMode"/> is true, or the <see cref="SnapPosition"/> if set.
+        /// Causes this tooltip's position to be snapped to the mouse position, or the element to snap to if <see cref="DisplayInAutoNavMode"/> is true, or the <see cref="SnapPosition"/> if set.
         /// </summary>
         public void SnapPositionToMouse() {
             Vector2 snapPosition;

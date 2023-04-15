@@ -190,7 +190,7 @@ namespace MLEM.Extended.Tiled {
         }
 
         /// <summary>
-        /// A delegate method used for <see cref="IndividualTiledMapRenderer.depthFunction"/>.
+        /// A delegate method used for an <see cref="IndividualTiledMapRenderer"/>'s depth function.
         /// The idea is to return a depth (between 0 and 1) for the given tile that determines where in the sprite batch it should be rendererd.
         /// Note that, for this depth function to take effect, the sprite batch needs to begin with <see cref="SpriteSortMode.FrontToBack"/> or <see cref="SpriteSortMode.BackToFront"/>.
         /// </summary>

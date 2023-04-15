@@ -13,13 +13,13 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// A panel element to be used inside of a <see cref="UiSystem"/>.
     /// The panel is a complex element that displays a box as a background to all of its child elements.
-    /// Additionally, a panel can be set to <see cref="scrollOverflow"/> on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
+    /// Additionally, a panel can be set to scroll overflowing elements on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
     /// </summary>
     public class Panel : Element {
 
         /// <summary>
         /// The scroll bar that this panel contains.
-        /// This is only nonnull if <see cref="scrollOverflow"/> is true.
+        /// This is only nonnull if scrolling overflow was enabled in the constructor.
         /// Note that some scroll bar styling is controlled by this panel, namely <see cref="StepPerScroll"/> and <see cref="ScrollerSize"/>.
         /// </summary>
         public readonly ScrollBar ScrollBar;
