@@ -1,31 +1,32 @@
 pipeline {
-  agent any
+  agent none
   stages {
-    stage('Submodules') {
-      steps {
-        sh 'git submodule update --init --recursive --force'
-      }
-    }
-    stage('Cake Build') {
-      steps {
-        sh 'dotnet tool restore'
-        // we use xvfb to allow for graphics-dependent tests
-        sh 'xvfb-run -a dotnet cake --target Publish --branch ' + env.BRANCH_NAME
-      }
-    }
-    stage('Document') {
-      steps {
-        sh 'dotnet cake --target Document --branch ' + env.BRANCH_NAME
-        stash includes: 'Docs/_site/**', name: 'site'
+    stage('Cake') {
+      agent any
+      stages {
+        stage('Submodules') {
+          steps {
+            sh 'git submodule update --init --recursive --force'
+          }
+        }
+        stage('Build') {
+          steps {
+            sh 'dotnet tool restore'
+            // we use xvfb to allow for graphics-dependent tests
+            sh 'xvfb-run -a dotnet cake --target Publish --branch ' + env.BRANCH_NAME
+          }
+        }
+        stage('Document') {
+          steps {
+            sh 'dotnet cake --target Document --branch ' + env.BRANCH_NAME
+            stash includes: 'Docs/_site/**', name: 'site'
+          }
+        }
       }
     }
     stage('Publish Docs') {
-      agent {
-          label 'web'
-      }
-      when {
-        branch 'release'
-      }
+      agent { label 'web' }
+      when { branch 'release' }
       steps {
         unstash 'site'
         sh 'rm -rf /var/www/MLEM/*'
