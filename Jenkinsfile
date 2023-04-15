@@ -23,6 +23,12 @@ pipeline {
           }
         }
       }
+      post {
+        always {
+          nunit testResultsPattern: '**/TestResults.xml'
+          cobertura coberturaReportFile: '**/coverage.cobertura.xml'
+        }
+      }
     }
     stage('Publish Docs') {
       agent { label 'web' }
@@ -32,12 +38,6 @@ pipeline {
         sh 'rm -rf /var/www/MLEM/*'
         sh 'cp Docs/_site/** /var/www/MLEM/ -r'
       }
-    }
-  }
-  post {
-    always {
-      nunit testResultsPattern: '**/TestResults.xml'
-      cobertura coberturaReportFile: '**/coverage.cobertura.xml'
     }
   }
   environment {
