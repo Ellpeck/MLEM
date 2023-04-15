@@ -16,13 +16,18 @@ pipeline {
     stage('Document') {
       steps {
         sh 'dotnet cake --target Document --branch ' + env.BRANCH_NAME
+        stash includes: 'Docs/_site/**', name: 'site'
       }
     }
     stage('Publish Docs') {
+      agent {
+          label 'web'
+      }
       when {
         branch 'release'
       }
       steps {
+        unstash 'site'
         sh 'rm -rf /var/www/MLEM/*'
         sh 'cp Docs/_site/** /var/www/MLEM/ -r'
       }
