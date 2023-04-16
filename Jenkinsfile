@@ -31,8 +31,9 @@ pipeline {
       }
     }
     stage('Publish Docs') {
-      agent { label 'web' }
       when { branch 'release' }
+      agent { label 'web' }
+      options { skipDefaultCheckout() }
       steps {
         unstash 'site'
         sh 'rm -rf /var/www/MLEM/*'
