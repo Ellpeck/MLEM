@@ -14,7 +14,7 @@ Task("Prepare").Does(() => {
     if (branch != "release") {
         var buildNum = EnvironmentVariable("BUILD_NUMBER");
         if (buildNum != null)
-            version += "-" + buildNum;
+            version += "-ci." + buildNum;
     }
 
     DeleteFiles("**/MLEM*.nupkg");
