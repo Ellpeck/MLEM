@@ -44,6 +44,7 @@ Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
 - Fixed AutoInline elements overflowing into their parent if it's taller
 - Fixed Paragraph and Checkbox not reacting to SquishingGroup sizing properly
+- Fixed TextInput and Slider still reacting to input when they are selected, but not part of the active root
 
 ## 6.1.0
 

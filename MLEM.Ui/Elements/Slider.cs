@@ -29,7 +29,7 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             base.Update(time);
 
-            if (this.IsSelected) {
+            if (this.IsSelectedActive) {
                 if (this.CurrentValue > 0 && this.Controls.LeftButtons.TryConsumePressed(this.Input, this.Controls.GamepadIndex)) {
                     this.CurrentValue -= this.StepPerScroll;
                 } else if (this.CurrentValue < this.MaxValue && this.Controls.RightButtons.TryConsumePressed(this.Input, this.Controls.GamepadIndex)) {

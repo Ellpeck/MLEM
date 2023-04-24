@@ -192,7 +192,7 @@ namespace MLEM.Ui.Elements {
                     this.SetText(this.Multiline ? result : result.Replace('\n', ' '), true);
             };
             this.OnTextInput += (element, key, character) => {
-                if (this.IsSelected && !this.IsHidden)
+                if (this.IsSelectedActive && !this.IsHidden)
                     this.textInput.OnTextInput(key, character);
             };
             this.OnDeselected += e => this.CaretPos = 0;
@@ -209,7 +209,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Update(GameTime time) {
             base.Update(time);
-            if (this.IsSelected && !this.IsHidden)
+            if (this.IsSelectedActive && !this.IsHidden)
                 this.textInput.Update(time, this.Input);
         }
 

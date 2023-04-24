@@ -320,8 +320,14 @@ namespace MLEM.Ui.Elements {
         public bool IsMouseOver => this.Controls.MousedElement == this || this.Controls.TouchedElement == this;
         /// <summary>
         /// Returns whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
+        /// Note that, unlike <see cref="IsSelectedActive"/>, this property will be <see langword="true"/> even if this element's <see cref="Root"/> is not the <see cref="UiControls.ActiveRoot"/>.
         /// </summary>
         public bool IsSelected => this.Root.SelectedElement == this;
+        /// <summary>
+        /// Returns whether this element is its <see cref="Controls"/>'s <see cref="UiControls.SelectedElement"/>.
+        /// Note that <see cref="IsSelected"/> can be used to query whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/> instead.
+        /// </summary>
+        public bool IsSelectedActive => this.Controls.SelectedElement == this;
         /// <summary>
         /// Returns whether this element's <see cref="SetAreaDirty"/> method has been recently called and its area has not been updated since then using <see cref="UpdateAreaIfDirty"/> or <see cref="ForceUpdateArea"/>.
         /// </summary>
