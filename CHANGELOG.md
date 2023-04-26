@@ -28,6 +28,7 @@ Fixes
 - Fixed TextInputs behaving incorrectly when switching between multiline and single-line modes
 - Fixed TextInput drawing characters with the wrong width if a masking character is used
 - Fixed a multiline TextInput's cursor not returning to the default position when the last character is removed
+- Fixed GetRandomWeightedEntry distribution not being equal for equal weights
 
 Removals
 - Marked GetDownTime, GetUpTime and GetTimeSincePress in Keybind and Combination as obsolete

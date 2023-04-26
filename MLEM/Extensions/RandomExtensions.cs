@@ -36,7 +36,7 @@ namespace MLEM.Extensions {
             var currWeight = 0;
             foreach (var entry in entries) {
                 currWeight += weightFunc(entry);
-                if (currWeight >= goalWeight)
+                if (currWeight > goalWeight)
                     return entry;
             }
             throw new IndexOutOfRangeException();
@@ -49,7 +49,7 @@ namespace MLEM.Extensions {
             var currWeight = 0F;
             foreach (var entry in entries) {
                 currWeight += weightFunc(entry);
-                if (currWeight >= goalWeight)
+                if (currWeight > goalWeight)
                     return entry;
             }
             throw new IndexOutOfRangeException();
