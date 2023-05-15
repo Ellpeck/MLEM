@@ -256,7 +256,7 @@ namespace MLEM.Data {
                     // if no texture is occupying this space, we have found a free area
                     if (existing == null) {
                         // if this is the first position that this request fit in, no other requests of the same size will find a position before it
-                        this.initialPositions[area.Size] = area.Location;
+                        this.initialPositions[new Point(area.Width, area.Height)] = area.Location;
                         this.occupiedPositions.Add(area.Location, request);
                         return area;
                     }
