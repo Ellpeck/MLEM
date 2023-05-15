@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Data;
 using MLEM.Textures;
@@ -15,7 +17,7 @@ public class TexturePackerTests {
     [SetUp]
     public void SetUp() {
         this.game = TestGame.Create();
-        this.testTexture = new Texture2D(this.game.GraphicsDevice, 256, 256);
+        this.testTexture = new Texture2D(this.game.GraphicsDevice, 2048, 2048);
         this.disposedTestTexture = new Texture2D(this.game.GraphicsDevice, 16, 16);
     }
 
@@ -39,6 +41,24 @@ public class TexturePackerTests {
         packer.Pack(this.game.GraphicsDevice);
         Assert.AreEqual(packer.PackedTexture.Width, 16 + 32 + 48 + 64 + 80);
         Assert.AreEqual(packer.PackedTexture.Height, 64);
+    }
+
+    [Test]
+    public void TestOverlap() {
+        var packed = new List<TextureRegion>();
+        using (var packer = new RuntimeTexturePacker()) {
+            for (var i = 1; i <= 1000; i++)
+                packer.Add(new TextureRegion(this.testTexture, 0, 0, i % 239, i % 673), packed.Add);
+            packer.Pack(this.game.GraphicsDevice);
+        }
+
+        foreach (var r1 in packed) {
+            foreach (var r2 in packed) {
+                if (r1 == r2)
+                    continue;
+                Assert.False(r1.Area.Intersects(r2.Area));
+            }
+        }
     }
 
     [Test]
@@ -102,6 +122,26 @@ public class TexturePackerTests {
         packer.Pack(this.game.GraphicsDevice);
         // all callbacks are called again, so we add 11 again, as well as the callback we just added
         Assert.AreEqual(2 * 11 + 1, results);
+    }
+
+    [Test]
+    public void TestPackTimes() {
+        for (var total = 1; total <= 1001; total += 100) {
+            using var sameSizePacker = new RuntimeTexturePacker();
+            using var diffSizePacker = new RuntimeTexturePacker();
+            for (var i = 0; i < total; i++) {
+                sameSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10, 10), TexturePackerTests.StubResult);
+                diffSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10 + i % 129, 10 * (i % 5 + 1)), TexturePackerTests.StubResult);
+            }
+            sameSizePacker.Pack(this.game.GraphicsDevice);
+            diffSizePacker.Pack(this.game.GraphicsDevice);
+
+            TestContext.WriteLine($"""
+                {total} regions,
+                same-size {sameSizePacker.LastCalculationTime.TotalMilliseconds} calc, {sameSizePacker.LastPackTime.TotalMilliseconds} pack, {sameSizePacker.LastTotalTime.TotalMilliseconds} total,
+                diff-size {diffSizePacker.LastCalculationTime.TotalMilliseconds} calc, {diffSizePacker.LastPackTime.TotalMilliseconds} pack, {diffSizePacker.LastTotalTime.TotalMilliseconds} total
+                """);
+        }
     }
 
     private static void StubResult(TextureRegion region) {}
