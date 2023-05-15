@@ -36,7 +36,7 @@ namespace MLEM.Data {
 
         private readonly List<Request> texturesToPack = new List<Request>();
         private readonly List<Request> packedTextures = new List<Request>();
-        private readonly Dictionary<Point, Point> firstPossiblePosForSize = new Dictionary<Point, Point>();
+        private readonly Dictionary<Point, Request> occupiedPositions = new Dictionary<Point, Request>();
         private readonly Dictionary<Texture2D, TextureData> dataCache = new Dictionary<Texture2D, TextureData>();
         private readonly bool autoIncreaseMaxWidth;
         private readonly bool forcePowerOfTwo;
@@ -162,9 +162,7 @@ namespace MLEM.Data {
             // we pack larger textures first, so that smaller textures can fit in the gaps that larger ones leave
             var stopwatch = Stopwatch.StartNew();
             foreach (var request in this.texturesToPack.OrderByDescending(t => t.Texture.Width * t.Texture.Height)) {
-                request.PackedArea = this.FindFreeArea(request);
-                // if this is the first position that this request fit in, no other requests of the same size will find a position before it
-                this.firstPossiblePosForSize[new Point(request.PackedArea.Width, request.PackedArea.Height)] = request.PackedArea.Location;
+                request.PackedArea = this.OccupyFreeArea(request);
                 this.packedTextures.Add(request);
             }
             stopwatch.Stop();
@@ -224,7 +222,7 @@ namespace MLEM.Data {
             this.LastPackTime = TimeSpan.Zero;
             this.texturesToPack.Clear();
             this.packedTextures.Clear();
-            this.firstPossiblePosForSize.Clear();
+            this.occupiedPositions.Clear();
             this.dataCache.Clear();
         }
 
@@ -233,31 +231,42 @@ namespace MLEM.Data {
             this.Reset();
         }
 
-        private Rectangle FindFreeArea(Request request) {
+        private Rectangle OccupyFreeArea(Request request) {
             var size = new Point(request.Texture.Width, request.Texture.Height);
             size.X += request.Padding * 2;
             size.Y += request.Padding * 2;
 
-            var pos = this.firstPossiblePosForSize.TryGetValue(size, out var first) ? first : Point.Zero;
+            // exit early if the texture doesn't need to find a free location
+            if (size.X <= 0 || size.Y <= 0)
+                return Rectangle.Empty;
+
+            var area = new Rectangle(Point.Zero, size);
             var lowestY = int.MaxValue;
             while (true) {
-                var intersected = false;
-                var area = new Rectangle(pos.X, pos.Y, size.X, size.Y);
-                foreach (var tex in this.packedTextures) {
-                    if (tex.PackedArea.Intersects(area)) {
-                        pos.X = tex.PackedArea.Right;
-                        // when we move down, we want to move down by the smallest intersecting texture's height
-                        if (lowestY > tex.PackedArea.Bottom)
-                            lowestY = tex.PackedArea.Bottom;
-                        intersected = true;
-                        break;
+                // check if the current area is already occupied
+                if (!this.occupiedPositions.TryGetValue(area.Location, out var existing)) {
+                    existing = this.packedTextures.FirstOrDefault(t => t.PackedArea.Intersects(area));
+                    if (existing == null) {
+                        // if no texture is occupying this space, we have found a free area
+                        this.occupiedPositions.Add(area.Location, request);
+                        return area;
                     }
+
+                    // also cache the existing texture for this position, in case we check it again in the future
+                    this.occupiedPositions.Add(area.Location, existing);
                 }
-                if (!intersected)
-                    return area;
-                if (pos.X + size.X > this.maxWidth) {
-                    pos.X = 0;
-                    pos.Y = lowestY;
+
+                // move to the right by the existing texture's width
+                area.X = existing.PackedArea.Right;
+
+                // remember the smallest intersecting texture's height for when we move down
+                if (lowestY > existing.PackedArea.Bottom)
+                    lowestY = existing.PackedArea.Bottom;
+
+                // move down a row if we exceed our maximum width
+                if (area.Right > this.maxWidth) {
+                    area.X = 0;
+                    area.Y = lowestY;
                     lowestY = int.MaxValue;
                 }
             }

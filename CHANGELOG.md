@@ -47,6 +47,10 @@ Fixes
 - Fixed Paragraph and Checkbox not reacting to SquishingGroup sizing properly
 - Fixed TextInput and Slider still reacting to input when they are selected, but not part of the active root
 
+### MLEM.Data
+Improvements
+- Improved RuntimeTexturePacker performance for differently sized textures
+
 ## 6.1.0
 
 ### MLEM
