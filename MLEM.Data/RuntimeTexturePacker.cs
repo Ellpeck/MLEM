@@ -240,7 +240,7 @@ namespace MLEM.Data {
             if (size.X <= 0 || size.Y <= 0)
                 return Rectangle.Empty;
 
-            var area = new Rectangle(Point.Zero, size);
+            var area = new Rectangle(0, 0, size.X, size.Y);
             var lowestY = int.MaxValue;
             while (true) {
                 // check if the current area is already occupied
