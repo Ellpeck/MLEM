@@ -33,10 +33,15 @@ namespace MLEM.Data {
         /// The time that <see cref="Pack"/> took the last time it was called
         /// </summary>
         public TimeSpan LastTotalTime => this.LastCalculationTime + this.LastPackTime;
+        /// <summary>
+        /// The amount of currently packed texture regions.
+        /// </summary>
+        public int PackedTextures => this.packedTextures.Count;
 
         private readonly List<Request> texturesToPack = new List<Request>();
         private readonly List<Request> packedTextures = new List<Request>();
         private readonly Dictionary<Point, Request> occupiedPositions = new Dictionary<Point, Request>();
+        private readonly Dictionary<Point, Point> initialPositions = new Dictionary<Point, Point>();
         private readonly Dictionary<Texture2D, TextureData> dataCache = new Dictionary<Texture2D, TextureData>();
         private readonly bool autoIncreaseMaxWidth;
         private readonly bool forcePowerOfTwo;
@@ -222,6 +227,7 @@ namespace MLEM.Data {
             this.LastPackTime = TimeSpan.Zero;
             this.texturesToPack.Clear();
             this.packedTextures.Clear();
+            this.initialPositions.Clear();
             this.occupiedPositions.Clear();
             this.dataCache.Clear();
         }
@@ -240,14 +246,17 @@ namespace MLEM.Data {
             if (size.X <= 0 || size.Y <= 0)
                 return Rectangle.Empty;
 
-            var area = new Rectangle(0, 0, size.X, size.Y);
+            var pos = this.initialPositions.TryGetValue(size, out var first) ? first : Point.Zero;
+            var area = new Rectangle(pos.X, pos.Y, size.X, size.Y);
             var lowestY = int.MaxValue;
             while (true) {
                 // check if the current area is already occupied
                 if (!this.occupiedPositions.TryGetValue(area.Location, out var existing)) {
                     existing = this.packedTextures.FirstOrDefault(t => t.PackedArea.Intersects(area));
+                    // if no texture is occupying this space, we have found a free area
                     if (existing == null) {
-                        // if no texture is occupying this space, we have found a free area
+                        // if this is the first position that this request fit in, no other requests of the same size will find a position before it
+                        this.initialPositions[area.Size] = area.Location;
                         this.occupiedPositions.Add(area.Location, request);
                         return area;
                     }

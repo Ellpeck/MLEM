@@ -50,6 +50,7 @@ Fixes
 ### MLEM.Data
 Improvements
 - Improved RuntimeTexturePacker performance for differently sized textures
+- Allow querying the amount of RuntimeTexturePacker regions
 
 ## 6.1.0
 

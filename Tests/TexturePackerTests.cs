@@ -126,7 +126,7 @@ public class TexturePackerTests {
 
     [Test]
     public void TestPackTimes() {
-        for (var total = 1; total <= 1001; total += 100) {
+        for (var total = 1; total <= 10001; total += 1000) {
             using var sameSizePacker = new RuntimeTexturePacker();
             using var diffSizePacker = new RuntimeTexturePacker();
             for (var i = 0; i < total; i++) {
