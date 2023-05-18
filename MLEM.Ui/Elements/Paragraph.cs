@@ -139,6 +139,16 @@ namespace MLEM.Ui.Elements {
                 this.SetTextDirty();
             }
         }
+        /// <summary>
+        /// The inclusive index in this paragraph's <see cref="Text"/> to start drawing at.
+        /// This value is passed to <see cref="TokenizedString.Draw"/>.
+        /// </summary>
+        public int? DrawStartIndex;
+        /// <summary>
+        /// The exclusive index in this paragraph's <see cref="Text"/> to stop drawing at.
+        /// This value is passed to <see cref="TokenizedString.Draw"/>.
+        /// </summary>
+        public int? DrawEndIndex;
 
         /// <inheritdoc />
         public override bool IsHidden => base.IsHidden || string.IsNullOrWhiteSpace(this.Text);
@@ -206,7 +216,7 @@ namespace MLEM.Ui.Elements {
             var pos = this.DisplayArea.Location + new Vector2(this.GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
-            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0);
+            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, this.DrawStartIndex, this.DrawEndIndex);
             base.Draw(time, batch, alpha, context);
         }
 

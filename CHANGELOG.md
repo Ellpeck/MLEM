@@ -22,6 +22,7 @@ Improvements
 - Increased TextFormatter macro recursion limit to 64
 - Allow changing the default values used by default TextFormatter codes
 - Allow setting ExternalGestureHandling through the InputHandler constructor
+- Allow specifying start and end indices when drawing a TokenizedString
 
 Fixes
 - Fixed control characters being included in TextInput
@@ -40,6 +41,7 @@ Additions
 Improvements
 - Increased Element area calculation recursion limit to 64
 - Improved the SquishingGroup algorithm by prioritizing each element's final size
+- Allow specifying start and end indices when drawing a Paragraph
 
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes

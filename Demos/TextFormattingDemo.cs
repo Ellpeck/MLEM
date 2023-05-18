@@ -34,6 +34,8 @@ namespace Demos {
                 return TextFormattingDemo.DefaultScale * Math.Min(viewport.Width / 1280F, viewport.Height / 720F);
             }
         }
+        private int startIndex;
+        private int endIndex;
 
         public TextFormattingDemo(MlemGame game) : base(game) {}
 
@@ -60,6 +62,7 @@ namespace Demos {
             // we specify our text alignment here too, so that all data is cached correctly for display
             this.tokenizedText = this.formatter.Tokenize(this.font, TextFormattingDemo.Text, TextAlignment.Center);
             this.tokenizedText.Split(this.font, this.GraphicsDevice.Viewport.Width * TextFormattingDemo.WidthMultiplier, this.Scale, TextAlignment.Center);
+            this.endIndex = this.tokenizedText.String.Length;
         }
 
         public override void DoDraw(GameTime time) {
@@ -81,8 +84,8 @@ namespace Demos {
                 }
             }
 
-            // draw the text itself
-            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0);
+            // draw the text itself (start and end indices are optional)
+            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0, this.startIndex, this.endIndex);
 
             this.SpriteBatch.End();
         }
@@ -90,8 +93,18 @@ namespace Demos {
         public override void Update(GameTime time) {
             // update our tokenized string to animate the animation codes
             this.tokenizedText.Update(time);
+
+            // change some demo showcase info based on keybinds
             if (this.InputHandler.IsPressed(Keys.B))
                 this.drawBounds = !this.drawBounds;
+            if (this.startIndex > 0 && this.InputHandler.IsDown(Keys.Left))
+                this.startIndex--;
+            if (this.startIndex < this.tokenizedText.String.Length && this.InputHandler.IsDown(Keys.Right))
+                this.startIndex++;
+            if (this.endIndex > 0 && this.InputHandler.IsDown(Keys.Down))
+                this.endIndex--;
+            if (this.endIndex < this.tokenizedText.String.Length && this.InputHandler.IsDown(Keys.Up))
+                this.endIndex++;
         }
 
         public override void Clear() {

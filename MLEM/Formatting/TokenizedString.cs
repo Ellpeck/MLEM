@@ -189,29 +189,37 @@ namespace MLEM.Formatting {
         }
 
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, int? startIndex = null, int? endIndex = null) {
             var innerOffset = new Vector2(this.initialInnerOffset * scale, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
+                if (endIndex != null && token.Index >= endIndex)
+                    return;
+
                 var drawFont = token.GetFont(font);
                 var drawColor = token.GetColor(color);
 
-                token.DrawSelf(time, batch, pos + innerOffset, drawFont, drawColor, scale, depth);
+                if (startIndex == null || token.Index >= startIndex)
+                    token.DrawSelf(time, batch, pos + innerOffset, drawFont, drawColor, scale, depth);
                 innerOffset.X += token.GetSelfWidth(drawFont) * scale;
 
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
-                    var charIndex = 0;
+                    var cpsIndex = 0;
                     var line = new CodePointSource(token.SplitDisplayString[l]);
-                    while (charIndex < line.Length) {
-                        var (codePoint, length) = line.GetCodePoint(charIndex);
+                    while (cpsIndex < line.Length) {
+                        if (endIndex != null && token.Index + indexInToken >= endIndex)
+                            return;
+
+                        var (codePoint, length) = line.GetCodePoint(cpsIndex);
                         var character = CodePointSource.ToString(codePoint);
 
-                        token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
+                        if (startIndex == null || token.Index + indexInToken >= startIndex)
+                            token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
 
                         innerOffset.X += drawFont.MeasureString(character).X * scale;
-                        charIndex += length;
-                        indexInToken++;
+                        indexInToken += length;
+                        cpsIndex += length;
                     }
 
                     // only split at a new line, not between tokens!
