@@ -46,7 +46,7 @@ public class TexturePackerTests {
     [Test]
     public void TestOverlap() {
         var packed = new List<TextureRegion>();
-        using (var packer = new RuntimeTexturePacker()) {
+        using (var packer = new RuntimeTexturePacker(8192)) {
             for (var i = 1; i <= 1000; i++)
                 packer.Add(new TextureRegion(this.testTexture, 0, 0, i % 239, i % 673), packed.Add);
             packer.Pack(this.game.GraphicsDevice);
