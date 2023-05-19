@@ -17,6 +17,7 @@ Additions
 - Added a simple outline formatting code
 - Added the ability to add inverse modifiers to a Keybind
 - Added GenericInput collections AllKeys, AllMouseButtons, AllButtons and AllInputs
+- Added TextFormatter.StripAllFormatting
 
 Improvements
 - Increased TextFormatter macro recursion limit to 64

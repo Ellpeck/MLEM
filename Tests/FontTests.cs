@@ -126,6 +126,12 @@ public class FontTests {
     }
 
     [Test]
+    public void TestStripping() {
+        var stripped = this.formatter.StripAllFormatting("This is a <b>test string</b></b><b></b> <i>with a lot of</i>content</b><i></b></i> and an <k> invalid code</b> as well<ü>.");
+        Assert.AreEqual("This is a test string with a lot ofcontent and an <k> invalid code as well<ü>.", stripped);
+    }
+
+    [Test]
     public void TestConsistency() {
         void CompareSizes(string s) {
             var spriteFont = ((GenericSpriteFont) this.font).Font;

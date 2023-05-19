@@ -214,18 +214,32 @@ namespace MLEM.Formatting {
             return ret;
         }
 
+        /// <summary>
+        /// Strips all formatting codes from the given string, causing a string without any formatting codes to be returned.
+        /// Note that, if a <see cref="TokenizedString"/> has already been created using <see cref="Tokenize"/>, it is more efficient to use <see cref="TokenizedString.String"/> or <see cref="TokenizedString.DisplayString"/>.
+        /// </summary>
+        /// <param name="s">The string to strip formatting codes from.</param>
+        /// <returns>The stripped string.</returns>
+        public string StripAllFormatting(string s) {
+            foreach (var regex in this.Codes.Keys)
+                s = regex.Replace(s, string.Empty);
+            return s;
+        }
+
         private Code GetNextCode(string s, int index, int maxIndex = int.MaxValue) {
-            var (c, m, r) = this.Codes
-                .Select(kv => (c: kv.Value, m: kv.Key.Match(s, index), r: kv.Key))
-                .Where(kv => kv.m.Success && kv.m.Index <= maxIndex)
-                .OrderBy(kv => kv.m.Index)
+            var (constructor, match, regex) = this.Codes
+                .Select(kv => (Constructor: kv.Value, Match: kv.Key.Match(s, index), Regex: kv.Key))
+                .Where(kv => kv.Match.Success && kv.Match.Index <= maxIndex)
+                .OrderBy(kv => kv.Match.Index)
                 .FirstOrDefault();
-            return c?.Invoke(this, m, r);
+            return constructor?.Invoke(this, match, regex);
         }
 
         private static string StripFormatting(GenericFont font, string s, IEnumerable<Code> codes) {
             foreach (var code in codes) {
 #pragma warning disable CS0618
+                // this can be combined with StripAllFormatting (which was added after GetReplacementString was deprecated) once GetReplacementString is removed
+                // (just make this method accept a set of regular expressions, and then call it with all code keys in StripAllFormatting, and the applied codes' regexes in Tokenize)
                 s = code.Regex.Replace(s, code.GetReplacementString(font));
 #pragma warning restore CS0618
             }
