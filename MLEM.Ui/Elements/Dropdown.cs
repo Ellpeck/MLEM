@@ -37,10 +37,13 @@ namespace MLEM.Ui.Elements {
         /// <param name="text">The text displayed on the dropdown button</param>
         /// <param name="tooltipText">The text displayed as a tooltip when hovering over the dropdown button</param>
         public Dropdown(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : base(anchor, size, text, tooltipText) {
-            this.Panel = this.AddChild(new Panel(Anchor.TopCenter, size, Vector2.Zero, true) {
+            this.Panel = this.AddChild(new Panel(Anchor.TopCenter, Vector2.Zero, Vector2.Zero, true) {
                 IsHidden = true
             });
-            this.OnAreaUpdated += e => this.Panel.PositionOffset = new Vector2(0, e.Area.Height / this.Scale);
+            this.OnAreaUpdated += e => {
+                this.Panel.Size = new Vector2(e.Area.Width / e.Scale, 0);
+                this.Panel.PositionOffset = new Vector2(0, e.Area.Height / e.Scale);
+            };
             this.OnOpenedOrClosed += e => this.Priority = this.IsOpen ? 10000 : 0;
             this.OnPressed += e => {
                 this.IsOpen = !this.IsOpen;

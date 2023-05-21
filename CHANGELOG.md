@@ -50,6 +50,7 @@ Fixes
 - Fixed AutoInline elements overflowing into their parent if it's taller
 - Fixed Paragraph and Checkbox not reacting to SquishingGroup sizing properly
 - Fixed TextInput and Slider still reacting to input when they are selected, but not part of the active root
+- Fixed dropdown menu panels not updating their width when the dropdown's width changes
 
 ### MLEM.Data
 Improvements
