@@ -230,8 +230,11 @@ namespace MLEM.Ui.Elements {
             base.OnChildAreaDirty(child, grandchild);
             // we only need to scroll when a grandchild changes, since all of our children are forced
             // to be auto-anchored and so will automatically propagate their changes up to us
-            if (grandchild)
+            if (grandchild) {
                 this.ScrollChildren();
+                // we also need to re-setup here in case the child is involved in a special GetTotalCoveredArea
+                this.ScrollSetup();
+            }
         }
 
         /// <inheritdoc />
@@ -253,8 +256,8 @@ namespace MLEM.Ui.Elements {
             float childrenHeight;
             if (this.Children.Count > 1) {
                 var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
-                var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden);
-                childrenHeight = lowestChild.Area.Bottom - firstChild.Area.Top;
+                var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden, true);
+                childrenHeight = lowestChild.GetTotalCoveredArea(false).Bottom - firstChild.Area.Top;
             } else {
                 // if we only have one child (the scroll bar), then the children take up no visual height
                 childrenHeight = 0;

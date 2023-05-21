@@ -43,6 +43,7 @@ Improvements
 - Increased Element area calculation recursion limit to 64
 - Improved the SquishingGroup algorithm by prioritizing each element's final size
 - Allow specifying start and end indices when drawing a Paragraph
+- Allow elements with larger children to influence a panel's scrollable area
 
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes

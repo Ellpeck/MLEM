@@ -859,14 +859,16 @@ namespace MLEM.Ui.Elements {
         /// Returns this element's lowest child element (in terms of y position) that matches the given condition.
         /// </summary>
         /// <param name="condition">The condition to match</param>
+        /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The lowest element, or null if no such element exists</returns>
-        public Element GetLowestChild(Func<Element, bool> condition = null) {
+        public Element GetLowestChild(Func<Element, bool> condition = null, bool total = false) {
             Element lowest = null;
             var lowestX = float.MinValue;
             foreach (var child in this.Children) {
                 if (condition != null && !condition(child))
                     continue;
-                var x = !child.Anchor.IsTopAligned() ? child.UnscrolledArea.Height : child.UnscrolledArea.Bottom;
+                var covered = total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea;
+                var x = !child.Anchor.IsTopAligned() ? covered.Height : covered.Bottom;
                 if (x >= lowestX) {
                     lowest = child;
                     lowestX = x;
@@ -879,14 +881,16 @@ namespace MLEM.Ui.Elements {
         /// Returns this element's rightmost child (in terms of x position) that matches the given condition.
         /// </summary>
         /// <param name="condition">The condition to match</param>
+        /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The rightmost element, or null if no such element exists</returns>
-        public Element GetRightmostChild(Func<Element, bool> condition = null) {
+        public Element GetRightmostChild(Func<Element, bool> condition = null, bool total = false) {
             Element rightmost = null;
             var rightmostX = float.MinValue;
             foreach (var child in this.Children) {
                 if (condition != null && !condition(child))
                     continue;
-                var x = !child.Anchor.IsLeftAligned() ? child.UnscrolledArea.Width : child.UnscrolledArea.Right;
+                var covered = total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea;
+                var x = !child.Anchor.IsLeftAligned() ? covered.Width : covered.Right;
                 if (x >= rightmostX) {
                     rightmost = child;
                     rightmostX = x;
@@ -900,8 +904,9 @@ namespace MLEM.Ui.Elements {
         /// The returned element's <see cref="Parent"/> will always be equal to this element's <see cref="Parent"/>.
         /// </summary>
         /// <param name="condition">The condition to match</param>
+        /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The lowest older sibling of this element, or null if no such element exists</returns>
-        public Element GetLowestOlderSibling(Func<Element, bool> condition = null) {
+        public Element GetLowestOlderSibling(Func<Element, bool> condition = null, bool total = false) {
             if (this.Parent == null)
                 return null;
             Element lowest = null;
@@ -910,7 +915,7 @@ namespace MLEM.Ui.Elements {
                     break;
                 if (condition != null && !condition(child))
                     continue;
-                if (lowest == null || child.UnscrolledArea.Bottom >= lowest.UnscrolledArea.Bottom)
+                if (lowest == null || (total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea).Bottom >= lowest.UnscrolledArea.Bottom)
                     lowest = child;
             }
             return lowest;
@@ -990,6 +995,21 @@ namespace MLEM.Ui.Elements {
             yield return this.Parent;
             foreach (var parent in this.Parent.GetParentTree())
                 yield return parent;
+        }
+
+        /// <summary>
+        /// Returns the total covered area of this element, which is its <see cref="Area"/> (or <see cref="UnscrolledArea"/>), unioned with all of the total covered areas of its <see cref="Children"/>.
+        /// The returned area is only different from this element's <see cref="Area"/> (or <see cref="UnscrolledArea"/>) if it has any <see cref="Children"/> that are outside of this element's area, or are bigger than this element.
+        /// </summary>
+        /// <param name="unscrolled">Whether to use elements' <see cref="UnscrolledArea"/> (instead of their <see cref="Area"/>).</param>
+        /// <returns>This element's total covered area.</returns>
+        public RectangleF GetTotalCoveredArea(bool unscrolled) {
+            var ret = unscrolled ? this.UnscrolledArea : this.Area;
+            foreach (var child in this.Children) {
+                if (!child.IsHidden)
+                    ret = RectangleF.Union(ret, child.GetTotalCoveredArea(unscrolled));
+            }
+            return ret;
         }
 
         /// <summary>
