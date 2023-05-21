@@ -233,7 +233,8 @@ namespace MLEM.Ui.Elements {
             if (grandchild) {
                 this.ScrollChildren();
                 // we also need to re-setup here in case the child is involved in a special GetTotalCoveredArea
-                this.ScrollSetup();
+                if (!this.AreaDirty)
+                    this.ScrollSetup();
             }
         }
 
