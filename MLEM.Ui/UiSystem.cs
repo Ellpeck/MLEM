@@ -419,6 +419,14 @@ namespace MLEM.Ui {
                 root.Element.AndChildren(action);
         }
 
+        /// <inheritdoc />
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
+                while (this.rootElements.Count > 0)
+                    this.Remove(this.rootElements[0].Name);
+            }
+        }
+
         internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
             this.OnElementDrawn?.Invoke(element, time, batch, alpha);
         }

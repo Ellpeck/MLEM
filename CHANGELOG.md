@@ -44,6 +44,7 @@ Improvements
 - Improved the SquishingGroup algorithm by prioritizing each element's final size
 - Allow specifying start and end indices when drawing a Paragraph
 - Allow elements with larger children to influence a panel's scrollable area
+- Remove all elements from a UiSystem when it is disposed
 
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes
