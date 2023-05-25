@@ -3,6 +3,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
         <VSTestResultsDirectory>TestResults.FNA</VSTestResultsDirectory>
+        <RunSettingsFilePath>Tests.FNA.runsettings</RunSettingsFilePath>
         <RootNamespace>Tests</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
         <IsPackable>false</IsPackable>
