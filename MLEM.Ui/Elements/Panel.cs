@@ -136,7 +136,8 @@ namespace MLEM.Ui.Elements {
 
             // when removing children, our scroll bar might have to be hidden
             // if we don't do this before adding children again, they might incorrectly assume that the scroll bar will still be visible and adjust their size accordingly
-            this.ScrollSetup();
+            if (this.System != null)
+                this.ScrollSetup();
         }
 
         /// <inheritdoc />
