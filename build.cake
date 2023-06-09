@@ -1,11 +1,12 @@
 #addin nuget:?package=Cake.DocFx&version=1.0.0
-#tool dotnet:?package=docfx&version=2.65.3
+#tool dotnet:?package=docfx&version=2.67.3
 
 // this is the upcoming version, for prereleases
 var version = Argument("version", "6.2.0");
 var target = Argument("target", "Default");
 var branch = Argument("branch", "main");
 var config = Argument("configuration", "Release");
+var serve = HasArgument("serve");
 
 Task("Prepare").Does(() => {
     DotNetRestore("MLEM.sln");
@@ -65,9 +66,10 @@ Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn
 });
 
 Task("Document").Does(() => {
-    var path = "Docs/docfx.json";
-    DocFxMetadata(path);
-    DocFxBuild(path);
+    DocFxMetadata("Docs/docfx.json");
+    DocFxBuild("Docs/docfx.json");
+    if (serve)
+        DocFxServe("Docs/_site");
 });
 
 Task("Default").IsDependentOn("Pack");
