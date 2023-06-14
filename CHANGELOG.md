@@ -45,6 +45,7 @@ Improvements
 - Allow specifying start and end indices when drawing a Paragraph
 - Allow elements with larger children to influence a panel's scrollable area
 - Remove all elements from a UiSystem when it is disposed
+- Made elements' ui styles be inherited by their children
 
 Fixes
 - Fixed images not updating their hidden state properly when the displayed texture changes

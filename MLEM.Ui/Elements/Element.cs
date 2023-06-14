@@ -34,7 +34,7 @@ namespace MLEM.Ui.Elements {
             private set {
                 this.system = value;
                 this.Controls = value?.Controls;
-                this.Style = this.Style.OrStyle(value?.Style);
+                this.AndChildren(e => e.Style = e.Style.OrStyle(value?.Style));
             }
         }
         /// <summary>
