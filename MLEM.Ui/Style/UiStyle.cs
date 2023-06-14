@@ -13,7 +13,7 @@ namespace MLEM.Ui.Style {
     /// <summary>
     /// The style settings for a <see cref="UiSystem"/>.
     /// Each <see cref="Element"/> uses these style settings by default, however you can also change these settings per element using the elements' individual style settings.
-    /// Note that this class is a <see cref="GenericDataHolder"/>, meaning additional styles for custom components can easily be added using <see cref="GenericDataHolder.SetData"/>
+    /// Additional styles for built-in or custom element types can easily be added using <see cref="AddCustomStyle{T}"/>.
     /// </summary>
     public class UiStyle : GenericDataHolder {
 
@@ -21,6 +21,14 @@ namespace MLEM.Ui.Style {
         /// The texture that is rendered on top of the <see cref="UiControls.SelectedElement"/>
         /// </summary>
         public NinePatch SelectionIndicator;
+        /// <summary>
+        /// A <see cref="UiAnimation"/> that is played when the mouse enters an element.
+        /// </summary>
+        public UiAnimation MouseEnterAnimation;
+        /// <summary>
+        /// A <see cref="UiAnimation"/> that is played when the mouse exists an element.
+        /// </summary>
+        public UiAnimation MouseExitAnimation;
         /// <summary>
         /// The texture that the <see cref="Button"/> element uses
         /// </summary>
@@ -46,6 +54,10 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="Panel"/> element uses
         /// </summary>
         public NinePatch PanelTexture;
+        /// <summary>
+        /// The color that the <see cref="Panel"/> element draws with.
+        /// </summary>
+        public Color PanelColor = Color.White;
         /// <summary>
         /// The <see cref="Element.ChildPadding"/> to apply to a <see cref="Panel"/> by default
         /// </summary>
@@ -221,6 +233,41 @@ namespace MLEM.Ui.Style {
         /// A set of additional fonts that can be used for the <c>&lt;f FontName&gt;</c> formatting code
         /// </summary>
         public Dictionary<string, GenericFont> AdditionalFonts = new Dictionary<string, GenericFont>();
+
+        private readonly Dictionary<Type, Action<Element>> elementStyles = new Dictionary<Type, Action<Element>>();
+
+        /// <summary>
+        /// Adds an action to the given <see cref="Element"/> type <typeparamref name="T"/> that allows applying any kind of custom styling or behavior to it.
+        /// Custom styles added in this manner can be applied to an element using <see cref="ApplyCustomStyle"/>.
+        /// </summary>
+        /// <param name="style">The style action to add.</param>
+        /// <param name="add">Whether the <paramref name="style"/> function should be added to the existing style settings rather than replacing them.</param>
+        /// <typeparam name="T">The <see cref="Element"/> type that the <paramref name="style"/> should apply to.</typeparam>
+        public void AddCustomStyle<T>(Action<T> style, bool add = false) where T : Element {
+            if (add && this.elementStyles.ContainsKey(typeof(T))) {
+                this.elementStyles[typeof(T)] += Action;
+            } else {
+                this.elementStyles[typeof(T)] = Action;
+            }
+
+            void Action(Element e) {
+                style.Invoke((T) e);
+            }
+        }
+
+        /// <summary>
+        /// Applies a set of custom styling actions to the given <paramref name="element"/> which were added through <see cref="AddCustomStyle{T}"/>.
+        /// This method is automatically invoked in <see cref="Element.InitStyle"/>.
+        /// </summary>
+        /// <param name="element">The element to apply custom styling to.</param>
+        /// <returns>Whether any custom styling exists for the given <paramref name="element"/>.</returns>
+        public bool ApplyCustomStyle(Element element) {
+            if (this.elementStyles.TryGetValue(element.GetType(), out var style)) {
+                style?.Invoke(element);
+                return true;
+            }
+            return false;
+        }
 
     }
 }

@@ -1290,8 +1290,11 @@ namespace MLEM.Ui.Elements {
             this.SelectionIndicator = this.SelectionIndicator.OrStyle(style.SelectionIndicator);
             this.ActionSound = this.ActionSound.OrStyle(style.ActionSound);
             this.SecondActionSound = this.SecondActionSound.OrStyle(style.ActionSound);
+            this.MouseEnterAnimation = this.MouseEnterAnimation.OrStyle(style.MouseEnterAnimation);
+            this.MouseExitAnimation = this.MouseExitAnimation.OrStyle(style.MouseExitAnimation);
 
             this.System?.InvokeOnElementStyleInit(this);
+            style.ApplyCustomStyle(this);
         }
 
         /// <summary>

@@ -109,11 +109,11 @@ namespace MLEM.Ui.Parsers {
 
         /// <summary>
         /// Specifies an action to be invoked when a new element with the given <see cref="ElementType"/> is parsed in <see cref="Parse"/> or <see cref="ParseInto"/>.
-        /// These actions can be used to modify the style properties of the created elements.
+        /// These actions can be used to modify the style properties of the created elements similarly to <see cref="UiStyle.AddCustomStyle{T}"/>.
         /// </summary>
         /// <param name="types">The element types that should be styled. Can be a combined flag.</param>
         /// <param name="style">The action that styles the elements with the given element type.</param>
-        /// <param name="add">Whether the <paramref name="style"/> function should be added to the existing style settings, or replace them.</param>
+        /// <param name="add">Whether the <paramref name="style"/> function should be added to the existing style settings rather than replacing them.</param>
         /// <typeparam name="T">The type of elements that the given <see cref="ElementType"/> flags are expected to be.</typeparam>
         /// <returns>This parser, for chaining.</returns>
         public UiParser Style<T>(ElementType types, Action<T> style, bool add = false) where T : Element {

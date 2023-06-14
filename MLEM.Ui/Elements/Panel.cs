@@ -212,6 +212,7 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture = this.Texture.OrStyle(style.PanelTexture);
+            this.DrawColor = this.DrawColor.OrStyle(style.PanelColor);
             this.StepPerScroll = this.StepPerScroll.OrStyle(style.PanelStepPerScroll);
             this.ScrollerSize = this.ScrollerSize.OrStyle(style.PanelScrollerSize);
             this.ScrollBarOffset = this.ScrollBarOffset.OrStyle(style.PanelScrollBarOffset);
