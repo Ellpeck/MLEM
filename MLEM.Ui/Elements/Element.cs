@@ -379,6 +379,14 @@ namespace MLEM.Ui.Elements {
                 this.SetAreaDirty();
             }
         }
+        /// <summary>
+        /// A <see cref="UiAnimation"/> that is played when the mouse enters this element, in <see cref="OnMouseEnter"/>.
+        /// </summary>
+        public StyleProp<UiAnimation> MouseEnterAnimation;
+        /// <summary>
+        /// A <see cref="UiAnimation"/> that is played when the mouse exits this element, in <see cref="OnMouseExit"/>.
+        /// </summary>
+        public StyleProp<UiAnimation> MouseExitAnimation;
 
         /// <summary>
         /// Event that is called after this element is drawn, but before its children are drawn
@@ -491,6 +499,12 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         protected readonly IList<Element> Children;
         /// <summary>
+        /// A list of all of the <see cref="UiAnimation"/> instances that are currently playing.
+        /// You can modify this collection through <see cref="PlayAnimation"/> and <see cref="StopAnimation"/>.
+        /// </summary>
+        protected readonly List<UiAnimation> PlayingAnimations = new List<UiAnimation>();
+
+        /// <summary>
         /// A sorted version of <see cref="Children"/>. The children are sorted by their <see cref="Priority"/>.
         /// </summary>
         protected IList<Element> SortedChildren {
@@ -541,8 +555,16 @@ namespace MLEM.Ui.Elements {
             this.size = size;
 
             this.Children = new ReadOnlyCollection<Element>(this.children);
-            this.GetTabNextElement = (backward, next) => next;
-            this.GetGamepadNextElement = (dir, next) => next;
+            this.GetTabNextElement += (backward, next) => next;
+            this.GetGamepadNextElement += (dir, next) => next;
+            this.OnMouseEnter += e => {
+                if (e.MouseEnterAnimation.HasValue())
+                    e.PlayAnimation(e.MouseEnterAnimation);
+            };
+            this.OnMouseExit += e => {
+                if (e.MouseExitAnimation.HasValue())
+                    e.PlayAnimation(e.MouseExitAnimation);
+            };
 
             this.SetAreaDirty();
             this.SetSortedChildrenDirty();
@@ -1028,6 +1050,14 @@ namespace MLEM.Ui.Elements {
         public virtual void Update(GameTime time) {
             this.System.InvokeOnElementUpdated(this, time);
 
+            for (var i = this.PlayingAnimations.Count - 1; i >= 0; i--) {
+                var anim = this.PlayingAnimations[i];
+                if (anim.Update(this, time)) {
+                    anim.OnFinished(this);
+                    this.PlayingAnimations.RemoveAt(i);
+                }
+            }
+
             // update all sorted children, not just relevant ones, because they might become relevant or irrelevant through updates
             foreach (var child in this.SortedChildren) {
                 if (child.System != null)
@@ -1168,6 +1198,33 @@ namespace MLEM.Ui.Elements {
                     return element;
             }
             return this.CanBeMoused && this.DisplayArea.Contains(position) ? this : null;
+        }
+
+        /// <summary>
+        /// Plays the given <see cref="UiAnimation"/> on this element, causing it to be added to the <see cref="PlayingAnimations"/> and updated in <see cref="Update"/>.
+        /// If the given <paramref name="animation"/> is already playing on this element, it will be restarted.
+        /// </summary>
+        /// <param name="animation">The animation to play.</param>
+        public virtual void PlayAnimation(UiAnimation animation) {
+            if (this.PlayingAnimations.Contains(animation)) {
+                // if we're already playing this animation, just restart it
+                animation.OnFinished(this);
+            } else {
+                this.PlayingAnimations.Add(animation);
+            }
+        }
+
+        /// <summary>
+        /// Stops the given <see cref="UiAnimation"/> on this element, causing it to be removed from the <see cref="PlayingAnimations"/> and <see cref="UiAnimation.OnFinished"/> to be invoked.
+        /// </summary>
+        /// <param name="animation">The animation to stop.</param>
+        /// <returns>Whether the animation was present in this element's <see cref="PlayingAnimations"/>.</returns>
+        public virtual bool StopAnimation(UiAnimation animation) {
+            if (this.PlayingAnimations.Remove(animation)) {
+                animation.OnFinished(this);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

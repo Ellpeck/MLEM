@@ -38,6 +38,7 @@ Removals
 ### MLEM.Ui
 Additions
 - Added AutoInlineCenter and AutoInlineBottom anchors
+- Added UiAnimation system
 
 Improvements
 - Increased Element area calculation recursion limit to 64

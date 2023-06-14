@@ -164,21 +164,13 @@ namespace Demos {
                 PositionOffset = new Vector2(0, 1)
             });
             // Another button that shows animations!
-            var fancyHoverTimer = 0D;
-            var fancyButton = this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Fancy Hover") {
+            this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Fancy Hover") {
                 PositionOffset = new Vector2(0, 1),
-                OnUpdated = (e, time) => {
-                    if (e.IsMouseOver && fancyHoverTimer <= 0.5F)
-                        return;
-                    if (fancyHoverTimer > 0) {
-                        fancyHoverTimer -= time.ElapsedGameTime.TotalSeconds * 3;
-                        e.ScaleTransform(1 + (float) Math.Sin(fancyHoverTimer * MathHelper.Pi) * 0.05F);
-                    } else {
-                        e.Transform = Matrix.Identity;
-                    }
+                MouseEnterAnimation = new UiAnimation(0.15, (a, e, p) => e.ScaleTransform(1 + Easings.OutSine(p) * 0.05F)),
+                MouseExitAnimation = new UiAnimation(0.15, (a, e, p) => e.ScaleTransform(1 + Easings.OutSine.ReverseOutput()(p) * 0.05F)) {
+                    Finished = (a, e) => e.Transform = Matrix.Identity
                 }
             });
-            fancyButton.OnMouseEnter += e => fancyHoverTimer = 1;
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale)") {
                 OnPressed = element => {
                     if (element.Root.Transform == Matrix.Identity) {
