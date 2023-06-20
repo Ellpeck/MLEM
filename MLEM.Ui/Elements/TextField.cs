@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MLEM.Font;
 using MLEM.Graphics;
 using MLEM.Input;
@@ -139,6 +140,12 @@ namespace MLEM.Ui.Elements {
         /// The description of the <c>KeyboardInput</c> field on mobile devices and consoles
         /// </summary>
         public string MobileDescription;
+        /// <summary>
+        /// An element that should be pressed (using <see cref="UiControls.PressElement"/>) if <see cref="Keys.Enter"/> is pressed while this text field is active.
+        /// Note that, for text fields that are <see cref="Multiline"/>, this is ignored.
+        /// This also occurs once the text input window is successfully closed on a mobile device.
+        /// </summary>
+        public Element EnterReceiver;
 
         private readonly TextInput textInput;
         private StyleProp<GenericFont> font;
@@ -188,12 +195,14 @@ namespace MLEM.Ui.Elements {
             this.OnPressed += async e => {
                 var title = this.MobileTitle ?? this.PlaceholderText;
                 var result = await MlemPlatform.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
-                if (result != null)
+                if (result != null) {
                     this.SetText(this.Multiline ? result : result.Replace('\n', ' '), true);
+                    this.EnterReceiver?.Controls?.PressElement(this.EnterReceiver);
+                }
             };
             this.OnTextInput += (element, key, character) => {
-                if (this.IsSelectedActive && !this.IsHidden)
-                    this.textInput.OnTextInput(key, character);
+                if (this.IsSelectedActive && !this.IsHidden && !this.textInput.OnTextInput(key, character) && key == Keys.Enter && !this.Multiline)
+                    this.EnterReceiver?.Controls?.PressElement(this.EnterReceiver);
             };
             this.OnDeselected += e => this.CaretPos = 0;
             this.OnSelected += e => this.CaretPos = this.textInput.Length;
@@ -209,8 +218,14 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Update(GameTime time) {
             base.Update(time);
-            if (this.IsSelectedActive && !this.IsHidden)
+            if (this.IsSelectedActive && !this.IsHidden) {
                 this.textInput.Update(time, this.Input);
+#if FNA
+                // this occurs in OnTextInput outside FNA, where special keys are also counted as text input
+                if (this.EnterReceiver != null && !this.Multiline && this.Input.TryConsumePressed(Keys.Enter))
+                    this.EnterReceiver.Controls?.PressElement(this.EnterReceiver);
+#endif
+            }
         }
 
         /// <inheritdoc />
