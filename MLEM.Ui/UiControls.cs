@@ -170,13 +170,13 @@ namespace MLEM.Ui {
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.SelectElement(this.ActiveRoot, selectedNow);
                     if (mousedNow != null && mousedNow.CanBePressed) {
-                        this.System.InvokeOnElementPressed(mousedNow);
+                        this.PressElement(mousedNow);
                         this.Input.TryConsumePressed(MouseButton.Left);
                     }
                 } else if (this.Input.IsPressedAvailable(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
                     if (mousedNow != null && mousedNow.CanBePressed) {
-                        this.System.InvokeOnElementSecondaryPressed(mousedNow);
+                        this.PressElement(mousedNow, true);
                         this.Input.TryConsumePressed(MouseButton.Right);
                     }
                 }
@@ -187,13 +187,8 @@ namespace MLEM.Ui {
             if (this.HandleKeyboard) {
                 if (this.KeyboardButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
-                        if (this.Input.IsModifierKeyDown(ModifierKey.Shift)) {
-                            // secondary action on element using space or enter
-                            this.System.InvokeOnElementSecondaryPressed(this.SelectedElement);
-                        } else {
-                            // first action on element using space or enter
-                            this.System.InvokeOnElementPressed(this.SelectedElement);
-                        }
+                        // primary or secondary action on element using space or enter
+                        this.PressElement(this.SelectedElement, this.Input.IsModifierKeyDown(ModifierKey.Shift));
                         this.KeyboardButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
                 } else if (this.Input.IsPressedAvailable(Keys.Tab)) {
@@ -216,13 +211,13 @@ namespace MLEM.Ui {
                     var tapped = this.GetElementUnderPos(tap.Position);
                     this.SelectElement(this.ActiveRoot, tapped);
                     if (tapped != null && tapped.CanBePressed)
-                        this.System.InvokeOnElementPressed(tapped);
+                        this.PressElement(tapped);
                 } else if (this.Input.GetViewportGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
                     var held = this.GetElementUnderPos(hold.Position);
                     this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
-                        this.System.InvokeOnElementSecondaryPressed(held);
+                        this.PressElement(held, true);
                 } else if (this.Input.ViewportTouchState.Count <= 0) {
                     this.SetTouchedElement(null);
                 } else {
@@ -244,12 +239,12 @@ namespace MLEM.Ui {
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
-                        this.System.InvokeOnElementPressed(this.SelectedElement);
+                        this.PressElement(this.SelectedElement);
                         this.GamepadButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
                 } else if (this.SecondaryGamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
-                        this.System.InvokeOnElementSecondaryPressed(this.SelectedElement);
+                        this.PressElement(this.SelectedElement, true);
                         this.SecondaryGamepadButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
                 } else if (this.DownButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
@@ -360,6 +355,19 @@ namespace MLEM.Ui {
                 return null;
             this.selectedElements.TryGetValue(root.Name, out var element);
             return element;
+        }
+
+        /// <summary>
+        /// Causes the passed element to be pressed, invoking its <see cref="Element.OnPressed"/> or <see cref="Element.OnSecondaryPressed"/> through <see cref="UiSystem.OnElementPressed"/> or <see cref="UiSystem.OnElementSecondaryPressed"/>.
+        /// </summary>
+        /// <param name="element">The element to press.</param>
+        /// <param name="secondary">Whether the secondary action should be invoked, rather than the primary one.</param>
+        public void PressElement(Element element, bool secondary = false) {
+            if (secondary) {
+                this.System.InvokeOnElementSecondaryPressed(element);
+            } else {
+                this.System.InvokeOnElementPressed(element);
+            }
         }
 
         /// <summary>

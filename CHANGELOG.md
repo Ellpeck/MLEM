@@ -40,6 +40,7 @@ Additions
 - Added AutoInlineCenter and AutoInlineBottom anchors
 - Added UiAnimation system
 - Added AddCustomStyle and ApplyCustomStyle to UiStyle to allow for easy custom styling of elements
+- Added UiControls.PressElement
 
 Improvements
 - Increased Element area calculation recursion limit to 64
