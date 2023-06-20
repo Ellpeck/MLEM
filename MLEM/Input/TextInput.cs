@@ -418,9 +418,6 @@ namespace MLEM.Input {
             var result = new StringBuilder();
             foreach (var codePoint in new CodePointSource(text)) {
                 var character = char.ConvertFromUtf32(codePoint);
-                // don't include control characters
-                if (character.Length == 1 && char.IsControl(character, 0))
-                    continue;
                 if (this.InputRule(this, character)) {
                     result.Append(character);
                 } else if (!removeMismatching) {
