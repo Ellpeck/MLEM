@@ -61,11 +61,23 @@ namespace MLEM.Input {
         /// <summary>
         /// A <see cref="Rule"/> that only allows characters not contained in <see cref="Path.GetInvalidPathChars"/>
         /// </summary>
-        public static readonly Rule PathNames = (input, add) => add.IndexOfAny(Path.GetInvalidPathChars()) < 0;
+        public static readonly Rule PathNames = (input, add) => {
+            foreach (var c in add) {
+                if (char.IsControl(c) || Path.GetInvalidPathChars().Contains(c))
+                    return false;
+            }
+            return true;
+        };
         /// <summary>
         /// A <see cref="Rule"/> that only allows characters not contained in <see cref="Path.GetInvalidFileNameChars"/>
         /// </summary>
-        public static readonly Rule FileNames = (input, add) => add.IndexOfAny(Path.GetInvalidFileNameChars()) < 0;
+        public static readonly Rule FileNames = (input, add) => {
+            foreach (var c in add) {
+                if (char.IsControl(c) || Path.GetInvalidFileNameChars().Contains(c))
+                    return false;
+            }
+            return true;
+        };
 
         /// <summary>
         /// This text input's current text

@@ -24,6 +24,7 @@ Improvements
 - Allow changing the default values used by default TextFormatter codes
 - Allow setting ExternalGestureHandling through the InputHandler constructor
 - Allow specifying start and end indices when drawing a TokenizedString
+- Include control characters in TextInput FileNames and PathNames rules
 
 Fixes
 - Fixed control characters being included in TextInput
