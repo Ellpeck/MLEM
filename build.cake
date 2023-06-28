@@ -2,7 +2,7 @@
 #tool dotnet:?package=docfx&version=2.67.5
 
 // this is the upcoming version, for prereleases
-var version = Argument("version", "6.2.0");
+var version = Argument("version", "6.3.0");
 var target = Argument("target", "Default");
 var branch = Argument("branch", "main");
 var config = Argument("configuration", "Release");
