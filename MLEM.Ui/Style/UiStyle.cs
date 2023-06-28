@@ -237,6 +237,72 @@ namespace MLEM.Ui.Style {
         private readonly Dictionary<Type, Action<Element>> elementStyles = new Dictionary<Type, Action<Element>>();
 
         /// <summary>
+        /// Creates a new set of style settings with the default values.
+        /// </summary>
+        public UiStyle() {}
+
+        /// <summary>
+        /// Creates a new set of style settings with values inherited from the given <paramref name="original"/> style settings.
+        /// </summary>
+        /// <param name="original">The original style settings, to copy into the new instance.</param>
+        public UiStyle(UiStyle original) {
+            this.SelectionIndicator = original.SelectionIndicator;
+            this.MouseEnterAnimation = original.MouseEnterAnimation;
+            this.MouseExitAnimation = original.MouseExitAnimation;
+            this.ButtonTexture = original.ButtonTexture;
+            this.ButtonHoveredTexture = original.ButtonHoveredTexture;
+            this.ButtonHoveredColor = original.ButtonHoveredColor;
+            this.ButtonDisabledTexture = original.ButtonDisabledTexture;
+            this.ButtonDisabledColor = original.ButtonDisabledColor;
+            this.PanelTexture = original.PanelTexture;
+            this.PanelColor = original.PanelColor;
+            this.PanelChildPadding = original.PanelChildPadding;
+            this.PanelStepPerScroll = original.PanelStepPerScroll;
+            this.PanelScrollerSize = original.PanelScrollerSize;
+            this.PanelScrollBarOffset = original.PanelScrollBarOffset;
+            this.TextFieldTexture = original.TextFieldTexture;
+            this.TextFieldHoveredTexture = original.TextFieldHoveredTexture;
+            this.TextFieldHoveredColor = original.TextFieldHoveredColor;
+            this.TextFieldTextOffsetX = original.TextFieldTextOffsetX;
+            this.TextFieldCaretWidth = original.TextFieldCaretWidth;
+            this.ScrollBarBackground = original.ScrollBarBackground;
+            this.ScrollBarScrollerTexture = original.ScrollBarScrollerTexture;
+            this.ScrollBarSmoothScrolling = original.ScrollBarSmoothScrolling;
+            this.ScrollBarSmoothScrollFactor = original.ScrollBarSmoothScrollFactor;
+            this.CheckboxTexture = original.CheckboxTexture;
+            this.CheckboxHoveredTexture = original.CheckboxHoveredTexture;
+            this.CheckboxHoveredColor = original.CheckboxHoveredColor;
+            this.CheckboxDisabledTexture = original.CheckboxDisabledTexture;
+            this.CheckboxDisabledColor = original.CheckboxDisabledColor;
+            this.CheckboxCheckmark = original.CheckboxCheckmark;
+            this.CheckboxTextOffsetX = original.CheckboxTextOffsetX;
+            this.RadioTexture = original.RadioTexture;
+            this.RadioHoveredTexture = original.RadioHoveredTexture;
+            this.RadioHoveredColor = original.RadioHoveredColor;
+            this.RadioCheckmark = original.RadioCheckmark;
+            this.TooltipBackground = original.TooltipBackground;
+            this.TooltipOffset = original.TooltipOffset;
+            this.TooltipAutoNavOffset = original.TooltipAutoNavOffset;
+            this.TooltipTextColor = original.TooltipTextColor;
+            this.TooltipDelay = original.TooltipDelay;
+            this.TooltipTextWidth = original.TooltipTextWidth;
+            this.TooltipChildPadding = original.TooltipChildPadding;
+            this.ProgressBarTexture = original.ProgressBarTexture;
+            this.ProgressBarColor = original.ProgressBarColor;
+            this.ProgressBarProgressPadding = original.ProgressBarProgressPadding;
+            this.ProgressBarProgressTexture = original.ProgressBarProgressTexture;
+            this.ProgressBarProgressColor = original.ProgressBarProgressColor;
+            this.Font = original.Font;
+            this.TextScale = original.TextScale;
+            this.TextColor = original.TextColor;
+            this.TextAlignment = original.TextAlignment;
+            this.ActionSound = original.ActionSound;
+            this.LinkColor = original.LinkColor;
+            this.AdditionalFonts = new Dictionary<string, GenericFont>(original.AdditionalFonts);
+            this.elementStyles = new Dictionary<Type, Action<Element>>(original.elementStyles);
+        }
+
+        /// <summary>
         /// Adds an action to the given <see cref="Element"/> type <typeparamref name="T"/> that allows applying any kind of custom styling or behavior to it.
         /// Custom styles added in this manner can be applied to an element using <see cref="ApplyCustomStyle"/>.
         /// </summary>

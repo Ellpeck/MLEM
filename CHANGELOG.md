@@ -43,6 +43,7 @@ Additions
 - Added AddCustomStyle and ApplyCustomStyle to UiStyle to allow for easy custom styling of elements
 - Added UiControls.PressElement
 - Added TextField.EnterReceiver
+- Added a copy constructor to UiStyle
 
 Improvements
 - Increased Element area calculation recursion limit to 64
