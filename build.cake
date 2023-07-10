@@ -50,20 +50,20 @@ Task("Pack").IsDependentOn("Test").Does(() => {
 });
 
 Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn("Pack").Does(() => {
-    NuGetPushSettings settings;
+    DotNetNuGetPushSettings settings;
     if (branch == "release") {
-        settings = new NuGetPushSettings {
+        settings = new DotNetNuGetPushSettings {
             Source = "https://api.nuget.org/v3/index.json",
             ApiKey = EnvironmentVariable("NUGET_KEY")
         };
     } else {
-        settings = new NuGetPushSettings {
+        settings = new DotNetNuGetPushSettings {
             Source = "https://nuget.ellpeck.de/v3/index.json",
             ApiKey = EnvironmentVariable("BAGET_KEY")
         };
     }
     settings.SkipDuplicate = true;
-    NuGetPush(GetFiles("**/MLEM*.nupkg"), settings);
+    DotNetNuGetPush("**/MLEM*.nupkg", settings);
 });
 
 Task("Document").Does(() => {
