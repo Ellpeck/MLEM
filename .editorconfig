@@ -113,6 +113,6 @@ resharper_xmldoc_attribute_indent = align_by_first_attribute
 resharper_xmldoc_attribute_style = on_single_line
 resharper_xmldoc_pi_attribute_style = on_single_line
 
-[*.md]
+[{*.md,*.yaml,*.yml}]
 trim_trailing_whitespace = false
 indent_size = 2

@@ -9,11 +9,12 @@ var config = Argument("configuration", "Release");
 var serve = HasArgument("serve");
 
 Task("Prepare").Does(() => {
+    DotNetWorkloadInstall("android");
     DotNetRestore("MLEM.sln");
     DotNetRestore("MLEM.FNA.sln");
 
     if (branch != "release") {
-        var buildNum = EnvironmentVariable("BUILD_NUMBER");
+        var buildNum = EnvironmentVariable("CI_PIPELINE_NUMBER");
         if (buildNum != null)
             version += "-ci." + buildNum;
     }
@@ -53,12 +54,12 @@ Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn
     if (branch == "release") {
         settings = new NuGetPushSettings {
             Source = "https://api.nuget.org/v3/index.json",
-            ApiKey = EnvironmentVariable("NUGET")
+            ApiKey = EnvironmentVariable("NUGET_KEY")
         };
     } else {
         settings = new NuGetPushSettings {
             Source = "https://nuget.ellpeck.de/v3/index.json",
-            ApiKey = EnvironmentVariable("BAGET")
+            ApiKey = EnvironmentVariable("BAGET_KEY")
         };
     }
     settings.SkipDuplicate = true;
