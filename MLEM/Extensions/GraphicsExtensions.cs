@@ -69,9 +69,20 @@ namespace MLEM.Extensions {
         /// </summary>
         /// <param name="device">The graphics device</param>
         /// <param name="target">The render target to apply</param>
-        /// <returns></returns>
+        /// <returns>The render target context, to be used in a <c>using</c> statement</returns>
         public static TargetContext WithRenderTarget(this GraphicsDevice device, RenderTarget2D target) {
             return new TargetContext(device, target);
+        }
+
+        /// <summary>
+        /// Starts a new <see cref="TargetContext"/> using the specified render target bindings.
+        /// The returned context automatically disposes when used in a <c>using</c> statement, which causes any previously applied render targets to be reapplied automatically.
+        /// </summary>
+        /// <param name="device">The graphics device</param>
+        /// <param name="targets">The render targets to apply</param>
+        /// <returns>The render target context, to be used in a <c>using</c> statement</returns>
+        public static TargetContext WithRenderTargets(this GraphicsDevice device, params RenderTargetBinding[] targets) {
+            return new TargetContext(device, targets);
         }
 
         /// <summary>
@@ -88,7 +99,20 @@ namespace MLEM.Extensions {
             /// </summary>
             /// <param name="device">The graphics device to apply the target on</param>
             /// <param name="target">The target to apply</param>
-            public TargetContext(GraphicsDevice device, RenderTarget2D target) {
+            public TargetContext(GraphicsDevice device, RenderTarget2D target) : this(device) {
+                device.SetRenderTarget(target);
+            }
+
+            /// <summary>
+            /// Creates a new target context with the given settings.
+            /// </summary>
+            /// <param name="device">The graphics device to apply the target on</param>
+            /// <param name="targets">The targets to apply</param>
+            public TargetContext(GraphicsDevice device, RenderTargetBinding[] targets) : this(device) {
+                device.SetRenderTargets(targets);
+            }
+
+            private TargetContext(GraphicsDevice device) {
                 this.device = device;
 #if FNA
                 // RenderTargetCount doesn't exist in FNA but we still want the optimization in MG
@@ -96,7 +120,6 @@ namespace MLEM.Extensions {
 #else
                 this.lastTargets = device.RenderTargetCount <= 0 ? null : device.GetRenderTargets();
 #endif
-                device.SetRenderTarget(target);
             }
 
             /// <summary>

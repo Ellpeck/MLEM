@@ -13,6 +13,10 @@ Jump to version:
 
 ## 6.3.0 (In Development)
 
+### MLEM
+Additions
+- Added GraphicsExtensions.WithRenderTargets, a multi-target version of WithRenderTarget
+
 ## 6.2.0
 
 ### MLEM
