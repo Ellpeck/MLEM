@@ -63,6 +63,18 @@ namespace MLEM.Font {
             return (curr, 1);
         }
 
+        /// <summary>
+        /// Returns an index in this code point source that is as close to <paramref name="index"/> as possible, but not between two members of a surrogate pair. If the <paramref name="index"/> is already not between surrogate pairs, it is returned unchanged.
+        /// </summary>
+        /// <param name="index">The index to ensure is not between surrogates.</param>
+        /// <param name="increase">Whether the returned index should be increased by 1 (instead of decreased by 1) when it is between surrogates.</param>
+        /// <returns>An index close to <paramref name="index"/>, but not between surrogates.</returns>
+        public int EnsureSurrogateBoundary(int index, bool increase) {
+            if (index < this.Length && char.IsLowSurrogate(this[index]))
+                return increase && index < this.Length - 1 || index <= 0 ? index + 1 : index - 1;
+            return index;
+        }
+
         /// <summary>Returns an enumerator that iterates through the collection.</summary>
         /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
         /// <filterpriority>1</filterpriority>

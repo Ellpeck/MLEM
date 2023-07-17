@@ -105,7 +105,8 @@ namespace MLEM.Input {
             set {
                 var val = (int) MathHelper.Clamp(value, 0F, this.text.Length);
                 if (this.caretPos != val) {
-                    this.caretPos = val;
+                    // ensure that we don't move to a location that is between high and low surrogates
+                    this.caretPos = new CodePointSource(this.text).EnsureSurrogateBoundary(val, val > this.caretPos);
                     this.caretBlinkTimer = 0;
                     this.SetTextDataDirty(false);
                 }
@@ -360,7 +361,7 @@ namespace MLEM.Input {
             if (!this.FilterText(ref strg, removeMismatching))
                 return;
             if (this.MaximumCharacters != null && strg.Length > this.MaximumCharacters)
-                strg = strg.Substring(0, this.MaximumCharacters.Value);
+                strg = strg.Substring(0, new CodePointSource(strg).EnsureSurrogateBoundary(this.MaximumCharacters.Value, false));
             this.text.Clear();
             this.text.Append(strg);
             this.CaretPos = this.text.Length;
@@ -378,7 +379,7 @@ namespace MLEM.Input {
             if (!this.FilterText(ref strg, removeMismatching))
                 return false;
             if (this.MaximumCharacters != null && this.text.Length + strg.Length > this.MaximumCharacters)
-                strg = strg.Substring(0, this.MaximumCharacters.Value - this.text.Length);
+                strg = strg.Substring(0, new CodePointSource(strg).EnsureSurrogateBoundary(this.MaximumCharacters.Value - this.text.Length, false));
             this.text.Insert(this.CaretPos, strg);
             this.CaretPos += strg.Length;
             this.SetTextDataDirty();
@@ -393,7 +394,8 @@ namespace MLEM.Input {
         public bool RemoveText(int index, int length) {
             if (index < 0 || index >= this.text.Length)
                 return false;
-            this.text.Remove(index, length);
+            var source = new CodePointSource(this.text);
+            this.text.Remove(source.EnsureSurrogateBoundary(index, false), source.EnsureSurrogateBoundary(index + length, true) - index);
             // ensure that caret pos is still in bounds
             this.CaretPos = this.CaretPos;
             this.SetTextDataDirty();

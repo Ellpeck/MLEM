@@ -17,6 +17,9 @@ Jump to version:
 Additions
 - Added GraphicsExtensions.WithRenderTargets, a multi-target version of WithRenderTarget
 
+Fixes
+- Fixed TextInput not working correctly when using surrogate pairs
+
 ## 6.2.0
 
 ### MLEM
