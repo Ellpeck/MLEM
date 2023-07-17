@@ -71,7 +71,7 @@ namespace MLEM.Font {
         /// <returns>An index close to <paramref name="index"/>, but not between surrogates.</returns>
         public int EnsureSurrogateBoundary(int index, bool increase) {
             if (index < this.Length && char.IsLowSurrogate(this[index]))
-                return increase && index < this.Length - 1 || index <= 0 ? index + 1 : index - 1;
+                return increase || index <= 0 ? index + 1 : index - 1;
             return index;
         }
 

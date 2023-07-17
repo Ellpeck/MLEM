@@ -419,7 +419,7 @@ namespace MLEM.Input {
                         this.CaretPos = destStart + destAccum.Length;
                         return true;
                     }
-                    destAccum += this.text[destStart + destAccum.Length];
+                    destAccum += CodePointSource.ToString(new CodePointSource(this.text).GetCodePoint(destStart + destAccum.Length).CodePoint);
                 }
                 // if we don't find a proper position, just move to the end of the destination line
                 this.CaretPos = destEnd;
