@@ -16,6 +16,7 @@ Jump to version:
 ### MLEM
 Additions
 - Added GraphicsExtensions.WithRenderTargets, a multi-target version of WithRenderTarget
+- Added Zero, One, Linear and Clamp to Easings
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs

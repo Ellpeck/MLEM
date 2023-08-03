@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Xna.Framework;
 
 namespace MLEM.Misc {
     /// <summary>
@@ -7,6 +8,21 @@ namespace MLEM.Misc {
     /// By default, each function takes an input that ranges between 0 and 1, and produces an output that roughly ranges between 0 and 1. To change this behavior, you can use <see cref="ScaleInput"/> and <see cref="ScaleOutput"/>.
     /// </summary>
     public static class Easings {
+
+        /// <summary>
+        /// An easing function that constantly returns 0, regardless of the input percentage.
+        /// This is useful for chaining using <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing)"/>.
+        /// </summary>
+        public static readonly Easing Zero = p => 0;
+        /// <summary>
+        /// An easing function that constantly returns 1, regardless of the input percentage.
+        /// This is useful for chaining using <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing)"/>.
+        /// </summary>
+        public static readonly Easing One = p => 1;
+        /// <summary>
+        /// A linear easing function that returns the input percentage without modifying it.
+        /// </summary>
+        public static readonly Easing Linear = p => p;
 
         /// <summary>https://easings.net/#easeInSine</summary>
         public static readonly Easing InSine = p => 1 - (float) Math.Cos(p * Math.PI / 2);
@@ -168,6 +184,17 @@ namespace MLEM.Misc {
                 var index = (int) ((p - interval) * (others.Length + 1));
                 return others[index]((p - (index + 1) * interval) / interval);
             };
+        }
+
+        /// <summary>
+        /// Causes output from the easing function to be clamped between the <paramref name="min"/> and <paramref name="max"/> values passed.
+        /// </summary>
+        /// <param name="easing">The easing function to clamp.</param>
+        /// <param name="min">The minimum output value to clamp to, defaults to 0.</param>
+        /// <param name="max">The maximum output value to clamp to, defaults to 1.</param>
+        /// <returns>A clamped easing function.</returns>
+        public static Easing Clamp(this Easing easing, float min = 0, float max = 1) {
+            return p => MathHelper.Clamp(easing(p), min, max);
         }
 
         /// <summary>
