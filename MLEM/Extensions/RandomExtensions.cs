@@ -16,8 +16,7 @@ namespace MLEM.Extensions {
         /// <typeparam name="T">The entries' type</typeparam>
         /// <returns>A random entry</returns>
         public static T GetRandomEntry<T>(this Random random, ICollection<T> entries) {
-            // ElementAt internally optimizes for IList access so we don't have to here
-            return entries.ElementAt(random.Next(entries.Count));
+            return RandomExtensions.GetRandomEntry(entries, random.NextSingle());
         }
 
         /// <summary>
@@ -31,28 +30,12 @@ namespace MLEM.Extensions {
         /// <returns>A random entry, based on the entries' weight</returns>
         /// <exception cref="IndexOutOfRangeException">If the weight function returns different weights for the same entry</exception>
         public static T GetRandomWeightedEntry<T>(this Random random, ICollection<T> entries, Func<T, int> weightFunc) {
-            var totalWeight = entries.Sum(weightFunc);
-            var goalWeight = random.Next(totalWeight);
-            var currWeight = 0;
-            foreach (var entry in entries) {
-                currWeight += weightFunc(entry);
-                if (currWeight > goalWeight)
-                    return entry;
-            }
-            throw new IndexOutOfRangeException();
+            return RandomExtensions.GetRandomWeightedEntry(entries, weightFunc, random.NextSingle());
         }
 
         /// <inheritdoc cref="GetRandomWeightedEntry{T}(System.Random,System.Collections.Generic.ICollection{T},System.Func{T,int})"/>
         public static T GetRandomWeightedEntry<T>(this Random random, ICollection<T> entries, Func<T, float> weightFunc) {
-            var totalWeight = entries.Sum(weightFunc);
-            var goalWeight = random.NextDouble() * totalWeight;
-            var currWeight = 0F;
-            foreach (var entry in entries) {
-                currWeight += weightFunc(entry);
-                if (currWeight > goalWeight)
-                    return entry;
-            }
-            throw new IndexOutOfRangeException();
+            return RandomExtensions.GetRandomWeightedEntry(entries, weightFunc, random.NextSingle());
         }
 
         /// <summary>
@@ -86,6 +69,33 @@ namespace MLEM.Extensions {
             return (float) random.NextDouble();
         }
 #endif
+
+        internal static T GetRandomEntry<T>(ICollection<T> entries, float randomValue) {
+            // ElementAt internally optimizes for IList access so we don't have to here
+            return entries.ElementAt((int) (randomValue * entries.Count));
+        }
+
+        internal static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, int> weightFunc, float randomValue) {
+            var goalWeight = randomValue * entries.Sum(weightFunc);
+            var currWeight = 0;
+            foreach (var entry in entries) {
+                currWeight += weightFunc(entry);
+                if (currWeight > goalWeight)
+                    return entry;
+            }
+            throw new IndexOutOfRangeException();
+        }
+
+        internal static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, float> weightFunc, float randomValue) {
+            var goalWeight = randomValue * entries.Sum(weightFunc);
+            var currWeight = 0F;
+            foreach (var entry in entries) {
+                currWeight += weightFunc(entry);
+                if (currWeight > goalWeight)
+                    return entry;
+            }
+            throw new IndexOutOfRangeException();
+        }
 
     }
 }

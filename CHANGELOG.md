@@ -17,6 +17,7 @@ Jump to version:
 Additions
 - Added GraphicsExtensions.WithRenderTargets, a multi-target version of WithRenderTarget
 - Added Zero, One, Linear and Clamp to Easings
+- Added GetRandomEntry and GetRandomWeightedEntry to SingleRandom
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs

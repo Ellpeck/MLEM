@@ -1,4 +1,8 @@
-﻿namespace MLEM.Misc {
+﻿using System;
+using System.Collections.Generic;
+using MLEM.Extensions;
+
+namespace MLEM.Misc {
     /// <summary>
     /// The SingleRandom class allows generating single, one-off pseudorandom numbers based on a seed or a <see cref="SeedSource"/>.
     /// The types of numbers that can be generated are <see cref="int"/> and <see cref="float"/>, both of which can be generated with specific minimum and maximum values if desired.
@@ -136,6 +140,36 @@
         /// <returns>The generated number.</returns>
         public static float Single(float minValue, float maxValue, SeedSource source) {
             return (maxValue - minValue) * SingleRandom.Single(source) + minValue;
+        }
+
+        /// <summary>
+        /// Gets a random entry from the given collection with uniform chance.
+        /// </summary>
+        /// <param name="entries">The entries to choose from</param>
+        /// <param name="source">The <see cref="SeedSource"/> to use.</param>
+        /// <typeparam name="T">The entries' type</typeparam>
+        /// <returns>A random entry</returns>
+        public static T GetRandomEntry<T>(ICollection<T> entries, SeedSource source) {
+            return RandomExtensions.GetRandomEntry(entries, SingleRandom.Single(source));
+        }
+
+        /// <summary>
+        /// Returns a random entry from the given collection based on the specified weight function.
+        /// A higher weight for an entry increases its likeliness of being picked.
+        /// </summary>
+        /// <param name="entries">The entries to choose from</param>
+        /// <param name="weightFunc">A function that applies weight to each entry</param>
+        /// <param name="source">The <see cref="SeedSource"/> to use.</param>
+        /// <typeparam name="T">The entries' type</typeparam>
+        /// <returns>A random entry, based on the entries' weight</returns>
+        /// <exception cref="IndexOutOfRangeException">If the weight function returns different weights for the same entry</exception>
+        public static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, int> weightFunc, SeedSource source) {
+            return RandomExtensions.GetRandomWeightedEntry(entries, weightFunc, SingleRandom.Single(source));
+        }
+
+        /// <inheritdoc cref="GetRandomWeightedEntry{T}(System.Collections.Generic.ICollection{T},System.Func{T,int},MLEM.Misc.SeedSource)"/>
+        public static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, float> weightFunc, SeedSource source) {
+            return RandomExtensions.GetRandomWeightedEntry(entries, weightFunc, SingleRandom.Single(source));
         }
 
     }
