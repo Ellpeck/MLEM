@@ -106,8 +106,6 @@ namespace MLEM.Ui.Elements {
                 foreach (var child in this.Children) {
                     if (child != this.ScrollBar && !child.Anchor.IsAuto())
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
-                    if (child is Panel panel && panel.scrollOverflow)
-                        throw new NotSupportedException($"A panel that scrolls overflow cannot contain another panel that scrolls overflow ({child})");
                 }
             }
             base.ForceUpdateArea();
@@ -298,7 +296,7 @@ namespace MLEM.Ui.Elements {
             }
             if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
                 this.renderTarget?.Dispose();
-                this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height);
+                this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                 this.relevantChildrenDirty = true;
             }
         }
