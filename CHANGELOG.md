@@ -25,6 +25,7 @@ Fixes
 ### MLEM.Ui
 Improvements
 - Allow scrolling panels to contain other scrolling panels
+- Allow dropdowns to have scrolling panels (#8)
 
 ## 6.2.0
 

@@ -36,12 +36,15 @@ namespace MLEM.Ui.Elements {
         /// <param name="size">The dropdown button's size</param>
         /// <param name="text">The text displayed on the dropdown button</param>
         /// <param name="tooltipText">The text displayed as a tooltip when hovering over the dropdown button</param>
-        public Dropdown(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : base(anchor, size, text, tooltipText) {
-            this.Panel = this.AddChild(new Panel(Anchor.TopCenter, Vector2.Zero, Vector2.Zero, true) {
+        /// <param name="panelHeight">The height of the <see cref="Panel"/>. If this is 0, the panel will be set to <see cref="Element.SetHeightBasedOnChildren"/>.</param>
+        /// <param name="scrollPanel">Whether this dropdown's <see cref="Panel"/> should automatically add a scroll bar to scroll towards elements that are beyond the area it covers.</param>
+        /// <param name="autoHidePanelScrollbar">Whether this dropdown's <see cref="Panel"/>'s scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling. This only has an effect if <paramref name="scrollPanel"/> is <see langword="true"/>.</param>
+        public Dropdown(Anchor anchor, Vector2 size, string text = null, string tooltipText = null, float panelHeight = 0, bool scrollPanel = false, bool autoHidePanelScrollbar = true) : base(anchor, size, text, tooltipText) {
+            this.Panel = this.AddChild(new Panel(Anchor.TopCenter, Vector2.Zero, Vector2.Zero, panelHeight == 0, scrollPanel, autoHidePanelScrollbar) {
                 IsHidden = true
             });
             this.OnAreaUpdated += e => {
-                this.Panel.Size = new Vector2(e.Area.Width / e.Scale, 0);
+                this.Panel.Size = new Vector2(e.Area.Width / e.Scale, panelHeight);
                 this.Panel.PositionOffset = new Vector2(0, e.Area.Height / e.Scale);
             };
             this.OnOpenedOrClosed += e => this.Priority = this.IsOpen ? 10000 : 0;
@@ -61,6 +64,12 @@ namespace MLEM.Ui.Elements {
                     return this.Panel.GetChildren().FirstOrDefault(c => c.CanBeSelected) ?? usualNext;
                 return usualNext;
             };
+        }
+
+        /// <inheritdoc />
+        protected override void OnChildAreaDirty(Element child, bool grandchild) {
+            if (child != this.Panel)
+                base.OnChildAreaDirty(child, grandchild);
         }
 
         /// <summary>
