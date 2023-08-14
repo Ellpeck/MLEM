@@ -61,6 +61,7 @@ namespace MLEM.Ui.Elements {
         private bool relevantChildrenDirty;
         private float scrollBarChildOffset;
         private StyleProp<float> scrollBarOffset;
+        private float lastScrollOffset;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -70,7 +71,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="positionOffset">The panel's offset from its anchor point</param>
         /// <param name="setHeightBasedOnChildren">Whether the panel should automatically calculate its height based on its children's size</param>
         /// <param name="scrollOverflow">Whether this panel should automatically add a scroll bar to scroll towards elements that are beyond the area this panel covers</param>
-        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling</param>
+        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling. This only has an effect if <paramref name="scrollOverflow"/> is <see langword="true"/>.</param>
         public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
@@ -278,9 +279,9 @@ namespace MLEM.Ui.Elements {
             // update child padding based on whether the scroll bar is visible
             var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
             if (!this.scrollBarChildOffset.Equals(childOffset, Element.Epsilon)) {
+                // this implicitly sets our area dirty!
                 this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
                 this.scrollBarChildOffset = childOffset;
-                this.SetAreaDirty();
             }
 
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
@@ -288,15 +289,15 @@ namespace MLEM.Ui.Elements {
             this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
 
             // update the render target
-            var targetArea = (Rectangle) this.GetRenderTargetArea();
-            if (targetArea.Width <= 0 || targetArea.Height <= 0) {
+            var (_, _, width, height) = (Rectangle) this.GetRenderTargetArea();
+            if (width <= 0 || height <= 0) {
                 this.renderTarget?.Dispose();
                 this.renderTarget = null;
                 return;
             }
-            if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
+            if (this.renderTarget == null || width != this.renderTarget.Width || height != this.renderTarget.Height) {
                 this.renderTarget?.Dispose();
-                this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                this.renderTarget = new RenderTarget2D(this.System.Game.GraphicsDevice, width, height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                 this.relevantChildrenDirty = true;
             }
         }
@@ -328,7 +329,7 @@ namespace MLEM.Ui.Elements {
         }
 
         private RectangleF GetRenderTargetArea() {
-            var area = this.ChildPaddedArea;
+            var area = this.ChildPaddedArea.OffsetCopy(this.ScaledScrollOffset);
             area.X = this.DisplayArea.X;
             area.Width = this.DisplayArea.Width;
             return area;
@@ -339,7 +340,8 @@ namespace MLEM.Ui.Elements {
                 return;
             // we ignore false grandchildren so that the children of the scroll bar stay in place
             foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true))
-                child.ScrollOffset.Y = -this.ScrollBar.CurrentValue;
+                child.ScrollOffset.Y += (this.lastScrollOffset - this.ScrollBar.CurrentValue);
+            this.lastScrollOffset = this.ScrollBar.CurrentValue;
             this.relevantChildrenDirty = true;
         }
 

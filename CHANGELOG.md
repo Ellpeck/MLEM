@@ -22,6 +22,10 @@ Additions
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
 
+### MLEM.Ui
+Improvements
+- Allow scrolling panels to contain other scrolling panels
+
 ## 6.2.0
 
 ### MLEM

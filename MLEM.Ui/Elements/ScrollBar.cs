@@ -158,7 +158,7 @@ namespace MLEM.Ui.Elements {
             if (this.isMouseScrolling)
                 this.ScrollToPos(this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()));
             if (!this.Horizontal) {
-                if (moused != null && (moused == this.Parent || moused.GetParentTree().Contains(this.Parent))) {
+                if (this.IsMousedForScrolling(moused)) {
                     var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
                     if (scroll != 0)
                         this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
@@ -242,6 +242,23 @@ namespace MLEM.Ui.Elements {
             this.ScrollerTexture = this.ScrollerTexture.OrStyle(style.ScrollBarScrollerTexture);
             this.SmoothScrolling = this.SmoothScrolling.OrStyle(style.ScrollBarSmoothScrolling);
             this.SmoothScrollFactor = this.SmoothScrollFactor.OrStyle(style.ScrollBarSmoothScrollFactor);
+        }
+
+        private bool IsMousedForScrolling(Element moused) {
+            if (moused == null || (moused != this.Parent && !moused.GetParentTree().Contains(this.Parent)))
+                return false;
+            // if we're moused, check if there are any scroll bars deeper than us that should take precedence
+            var foundMe = false;
+            foreach (var child in this.Parent.GetChildren(regardGrandchildren: true)) {
+                if (foundMe) {
+                    if (child is ScrollBar b && !b.Horizontal && b.IsMousedForScrolling(moused))
+                        return false;
+                } else if (child == this) {
+                    // once we found ourselves, all subsequent children are deeper/older!
+                    foundMe = true;
+                }
+            }
+            return true;
         }
 
         /// <summary>
