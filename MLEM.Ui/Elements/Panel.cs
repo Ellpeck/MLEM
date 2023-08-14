@@ -289,15 +289,15 @@ namespace MLEM.Ui.Elements {
             this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
 
             // update the render target
-            var (_, _, width, height) = (Rectangle) this.GetRenderTargetArea();
-            if (width <= 0 || height <= 0) {
+            var area = (Rectangle) this.GetRenderTargetArea();
+            if (area.Width <= 0 || area.Height <= 0) {
                 this.renderTarget?.Dispose();
                 this.renderTarget = null;
                 return;
             }
-            if (this.renderTarget == null || width != this.renderTarget.Width || height != this.renderTarget.Height) {
+            if (this.renderTarget == null || area.Width != this.renderTarget.Width || area.Height != this.renderTarget.Height) {
                 this.renderTarget?.Dispose();
-                this.renderTarget = new RenderTarget2D(this.System.Game.GraphicsDevice, width, height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                this.renderTarget = new RenderTarget2D(this.System.Game.GraphicsDevice, area.Width, area.Height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                 this.relevantChildrenDirty = true;
             }
         }
