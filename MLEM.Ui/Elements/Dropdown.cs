@@ -66,12 +66,6 @@ namespace MLEM.Ui.Elements {
             };
         }
 
-        /// <inheritdoc />
-        protected override void OnChildAreaDirty(Element child, bool grandchild) {
-            if (child != this.Panel)
-                base.OnChildAreaDirty(child, grandchild);
-        }
-
         /// <summary>
         /// Adds an element to this dropdown's <see cref="Panel"/>
         /// </summary>

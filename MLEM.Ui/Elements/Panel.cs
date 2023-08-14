@@ -278,10 +278,10 @@ namespace MLEM.Ui.Elements {
 
             // update child padding based on whether the scroll bar is visible
             var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
-            if (!this.scrollBarChildOffset.Equals(childOffset, Element.Epsilon)) {
-                // this implicitly sets our area dirty!
-                this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
+            var childOffsetDelta = childOffset - this.scrollBarChildOffset;
+            if (!childOffsetDelta.Equals(0, Element.Epsilon)) {
                 this.scrollBarChildOffset = childOffset;
+                this.ChildPadding += new Padding(0, childOffsetDelta, 0, 0);
             }
 
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
