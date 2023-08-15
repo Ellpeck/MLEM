@@ -55,6 +55,7 @@ namespace MLEM.Ui.Elements {
         }
 
         private readonly List<Element> relevantChildren = new List<Element>();
+        private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -336,11 +337,16 @@ namespace MLEM.Ui.Elements {
         }
 
         private void ScrollChildren() {
+            this.scrolledChildren.RemoveWhere(c => !c.GetParentTree().Contains(this));
             if (!this.scrollOverflow)
                 return;
             // we ignore false grandchildren so that the children of the scroll bar stay in place
-            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true))
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true)) {
+                // if a child was newly added later, the last scroll offset was never applied
+                if (this.scrolledChildren.Add(child))
+                    child.ScrollOffset.Y -= this.lastScrollOffset;
                 child.ScrollOffset.Y += (this.lastScrollOffset - this.ScrollBar.CurrentValue);
+            }
             this.lastScrollOffset = this.ScrollBar.CurrentValue;
             this.relevantChildrenDirty = true;
         }
