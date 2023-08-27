@@ -18,6 +18,7 @@ Additions
 - Added GraphicsExtensions.WithRenderTargets, a multi-target version of WithRenderTarget
 - Added Zero, One, Linear and Clamp to Easings
 - Added GetRandomEntry and GetRandomWeightedEntry to SingleRandom
+- Added the ability to draw single corners of AutoTiling's extended auto tiles
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
