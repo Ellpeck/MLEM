@@ -15,7 +15,7 @@ Task("Prepare").Does(() => {
 
     if (branch != "release") {
         var buildNum = EnvironmentVariable("CI_PIPELINE_NUMBER");
-        if (buildNum != null)
+        if (!string.IsNullOrEmpty(buildNum))
             version += "-ci." + buildNum;
     }
 
@@ -49,21 +49,24 @@ Task("Pack").IsDependentOn("Test").Does(() => {
     DotNetPack("MLEM.FNA.sln", settings);
 });
 
-Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn("Pack").Does(() => {
-    DotNetNuGetPushSettings settings;
-    if (branch == "release") {
-        settings = new DotNetNuGetPushSettings {
-            Source = "https://api.nuget.org/v3/index.json",
-            ApiKey = EnvironmentVariable("NUGET_KEY")
-        };
-    } else {
-        settings = new DotNetNuGetPushSettings {
-            Source = "https://nuget.ellpeck.de/v3/index.json",
-            ApiKey = EnvironmentVariable("BAGET_KEY")
-        };
-    }
-    settings.SkipDuplicate = true;
-    DotNetNuGetPush("**/MLEM*.nupkg", settings);
+Task("Push")
+    .WithCriteria(branch == "main" || branch == "release", "Not on main or release branch")
+    .WithCriteria(string.IsNullOrEmpty(EnvironmentVariable("CI_COMMIT_PULL_REQUEST")), "On pull request")
+    .IsDependentOn("Pack").Does(() => {
+        DotNetNuGetPushSettings settings;
+        if (branch == "release") {
+            settings = new DotNetNuGetPushSettings {
+                Source = "https://api.nuget.org/v3/index.json",
+                ApiKey = EnvironmentVariable("NUGET_KEY")
+            };
+        } else {
+            settings = new DotNetNuGetPushSettings {
+                Source = "https://nuget.ellpeck.de/v3/index.json",
+                ApiKey = EnvironmentVariable("BAGET_KEY")
+            };
+        }
+        settings.SkipDuplicate = true;
+        DotNetNuGetPush("**/MLEM*.nupkg", settings);
 });
 
 Task("Document").Does(() => {
