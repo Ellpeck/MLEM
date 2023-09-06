@@ -26,8 +26,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="size">The radio button's size</param>
         /// <param name="label">The label to display next to the radio button</param>
         /// <param name="defaultChecked">If the radio button should be checked by default</param>
-        /// <param name="group">The group that the radio button has</param>
-        public RadioGroupButton(Anchor anchor, Vector2 size, string label, bool defaultChecked = false, RadioGroup? group = null) :
+        /// <param name="group">The group that the radio button has. Can be null</param>
+        public RadioGroupButton(Anchor anchor, Vector2 size, string label, bool defaultChecked = false, RadioGroup group = null) :
             base(anchor, size, label, defaultChecked) {
             this.Group = group;
 
@@ -53,8 +53,12 @@ namespace MLEM.Ui.Elements {
     /// A group of radio group buttons
     /// </summary>
     public class RadioGroup {
-        private RadioGroupButton? selection;
-        public RadioGroupButton? Selection{ get => selection; set {
+        //can be null
+        private RadioGroupButton selection;
+        /// <summary>
+        /// The currently selected item, set to null to unselect all
+        /// </summary>
+        public RadioGroupButton Selection{ get => selection; set {
             if (selection != null) this.selection.Checked = false;
             selection = value;
             if(selection != null) {
