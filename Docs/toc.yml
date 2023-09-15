@@ -1,3 +1,5 @@
+- name: Home
+  href: /
 - name: Tutorials
   href: articles/
 - name: API Documentation
