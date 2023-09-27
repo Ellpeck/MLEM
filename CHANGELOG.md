@@ -28,6 +28,10 @@ Improvements
 - Allow scrolling panels to contain other scrolling panels
 - Allow dropdowns to have scrolling panels
 
+### MLEM.Data
+Fixes
+- Fixed various exception types not being wrapped by ContentLoadExceptions when loading raw or JSON content
+
 ## 6.2.0
 
 ### MLEM

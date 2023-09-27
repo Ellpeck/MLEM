@@ -100,7 +100,7 @@ namespace MLEM.Data.Content {
                                 r.Name = assetName;
                             return t;
                         }
-                    } catch (FileNotFoundException) {}
+                    } catch (IOException) {}
                 }
             }
             throw new ContentLoadException($"Asset {assetName} not found. Tried files {string.Join(", ", triedFiles)}");

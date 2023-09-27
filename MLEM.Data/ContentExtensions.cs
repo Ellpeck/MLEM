@@ -68,7 +68,7 @@ namespace MLEM.Data {
                         using (var reader = new JsonTextReader(stream))
                             return serializerToUse.Deserialize<T>(reader);
                     }
-                } catch (FileNotFoundException) {}
+                } catch (IOException) {}
             }
             throw new ContentLoadException($"Asset {name} not found. Tried files {string.Join(", ", triedFiles)}");
         }
