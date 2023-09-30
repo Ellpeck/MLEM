@@ -44,7 +44,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The color property</returns>
         public static Color GetColor(this TiledMapProperties properties, string key) {
-            return ColorHelper.FromHexString(properties.Get(key));
+            ColorHelper.TryFromHexString(properties.Get(key), out var val);
+            return val;
         }
 
         /// <summary>

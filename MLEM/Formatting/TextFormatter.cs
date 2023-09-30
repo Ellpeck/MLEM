@@ -102,7 +102,7 @@ namespace MLEM.Formatting {
                 this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
                 this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
                 this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r,
-                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : this.DefaultShadowColor,
+                    ColorHelper.TryFromHexString(m.Groups[1].Value, out var color) ? color : this.DefaultShadowColor,
                     float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? new Vector2(offset) : this.DefaultShadowOffset));
                 this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, this.LineThickness, this.UnderlineOffset));
                 this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, this.LineThickness, this.StrikethroughOffset));
@@ -111,7 +111,7 @@ namespace MLEM.Formatting {
                 this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
                     float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : this.DefaultSupOffset));
                 this.Codes.Add(new Regex(@"<o(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new OutlineCode(m, r,
-                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : this.DefaultOutlineColor,
+                    ColorHelper.TryFromHexString(m.Groups[1].Value, out var color) ? color : this.DefaultOutlineColor,
                     float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var thickness) ? thickness : this.DefaultOutlineThickness,
                     this.OutlineDiagonals));
             }
@@ -124,12 +124,13 @@ namespace MLEM.Formatting {
                         this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m, r) => new ColorCode(m, r, value));
                     }
                 }
-                this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorHelper.FromHexString(m.Groups[1].Value)));
+                this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r,
+                    ColorHelper.TryFromHexString(m.Groups[1].Value, out var color) ? color : Color.Red));
             }
 
             // animation codes
             if (hasAnimations) {
-                this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
+                this.Codes.Add(new Regex("<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
                     float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : this.DefaultWobblyModifier,
                     float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : this.DefaultWobblyHeight));
             }

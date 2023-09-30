@@ -19,6 +19,10 @@ Additions
 - Added Zero, One, Linear and Clamp to Easings
 - Added GetRandomEntry and GetRandomWeightedEntry to SingleRandom
 - Added the ability to draw single corners of AutoTiling's extended auto tiles
+- Added ColorHelper.TryFromHexString, a non-throwing version of FromHexString
+
+Improvements
+- Stopped the text formatter throwing if a color can't be parsed
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs

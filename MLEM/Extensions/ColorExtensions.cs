@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using Microsoft.Xna.Framework;
 
@@ -64,16 +65,34 @@ namespace MLEM.Extensions {
         }
 
         /// <summary>
-        /// Parses a hexadecimal string into a color.
+        /// Parses a hexadecimal string into a color and throws a <see cref="FormatException"/> if parsing fails.
         /// The string can either be formatted as RRGGBB or AARRGGBB and can optionally start with a <c>#</c>.
         /// </summary>
         /// <param name="value">The string to parse.</param>
         /// <returns>The resulting color.</returns>
+        /// <exception cref="FormatException">Thrown if parsing fails.</exception>
         public static Color FromHexString(string value) {
+            if (!ColorHelper.TryFromHexString(value, out var val))
+                throw new FormatException($"Cannot parse hex string {value}");
+            return val;
+        }
+
+        /// <summary>
+        /// Tries to parse a hexadecimal string into a color and returns whether a color was successfully parsed.
+        /// The string can either be formatted as RRGGBB or AARRGGBB and can optionally start with a <c>#</c>.
+        /// </summary>
+        /// <param name="value">The string to parse.</param>
+        /// <param name="color">The resulting color.</param>
+        /// <returns>Whether parsing was successful.</returns>
+        public static bool TryFromHexString(string value, out Color color) {
             if (value.StartsWith("#"))
                 value = value.Substring(1);
-            var val = int.Parse(value, NumberStyles.HexNumber);
-            return value.Length > 6 ? ColorHelper.FromHexRgba(val) : ColorHelper.FromHexRgb(val);
+            if (int.TryParse(value, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var val)) {
+                color = value.Length > 6 ? ColorHelper.FromHexRgba(val) : ColorHelper.FromHexRgb(val);
+                return true;
+            }
+            color = default;
+            return false;
         }
 
     }
