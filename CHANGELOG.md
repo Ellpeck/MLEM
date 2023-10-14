@@ -34,6 +34,7 @@ Improvements
 
 Fixes
 - Fixed panels updating their relevant children too much when the scroll bar is hidden
+- Fixed a stack overflow exception when a panel's scroll bar auto-hiding causes elements to gain height
 
 ### MLEM.Data
 Fixes

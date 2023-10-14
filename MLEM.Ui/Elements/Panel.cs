@@ -56,6 +56,7 @@ namespace MLEM.Ui.Elements {
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
+        private readonly float[] scrollBarMaxHistory = new float[3];
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -110,7 +111,10 @@ namespace MLEM.Ui.Elements {
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
                 }
             }
+
             base.ForceUpdateArea();
+            Array.Clear(this.scrollBarMaxHistory, 0, this.scrollBarMaxHistory.Length);
+
             this.SetScrollBarStyle();
         }
 
@@ -273,8 +277,15 @@ namespace MLEM.Ui.Elements {
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                this.ScrollBar.MaxValue = scrollBarMax;
-                this.relevantChildrenDirty = true;
+                // avoid a show/hide oscillation that occurs while updating our area with children that can lose height when the scroll bar is shown (like long paragraphs)
+                if (!this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) || !this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon)) {
+                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                    this.scrollBarMaxHistory[2] = scrollBarMax;
+
+                    this.ScrollBar.MaxValue = scrollBarMax;
+                    this.relevantChildrenDirty = true;
+                }
             }
 
             // update child padding based on whether the scroll bar is visible
