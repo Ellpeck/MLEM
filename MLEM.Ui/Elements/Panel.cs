@@ -271,7 +271,7 @@ namespace MLEM.Ui.Elements {
             }
 
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
-            var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
+            var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
