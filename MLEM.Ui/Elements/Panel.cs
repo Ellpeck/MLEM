@@ -114,11 +114,14 @@ namespace MLEM.Ui.Elements {
                     if (child != this.ScrollBar && !child.Anchor.IsAuto())
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
                 }
+            }
 
+            base.ForceUpdateArea();
+            if (this.scrollOverflow) {
                 for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
                     this.scrollBarMaxHistory[i] = -1;
             }
-            base.ForceUpdateArea();
+
             this.SetScrollBarStyle();
         }
 
