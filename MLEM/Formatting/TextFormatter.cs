@@ -156,11 +156,12 @@ namespace MLEM.Formatting {
             // resolve macros
             s = this.ResolveMacros(s);
             var tokens = new List<Token>();
-            var codes = new List<Code>();
+            var applied = new List<Code>();
+            var allCodes = new List<Code>();
             // add the formatting code right at the start of the string
             var firstCode = this.GetNextCode(s, 0, 0);
             if (firstCode != null)
-                codes.Add(firstCode);
+                applied.Add(firstCode);
             var index = 0;
             var rawIndex = 0;
             while (rawIndex < s.Length) {
@@ -168,24 +169,25 @@ namespace MLEM.Formatting {
                 // if we've reached the end of the string
                 if (next == null) {
                     var sub = s.Substring(rawIndex, s.Length - rawIndex);
-                    tokens.Add(new Token(codes.ToArray(), index, rawIndex, TextFormatter.StripFormatting(font, sub, codes), sub));
+                    tokens.Add(new Token(applied.ToArray(), index, rawIndex, TextFormatter.StripFormatting(font, sub, applied), sub));
                     break;
                 }
+                allCodes.Add(next);
 
                 // create a new token for the content up to the next code
                 var ret = s.Substring(rawIndex, next.Match.Index - rawIndex);
-                var strippedRet = TextFormatter.StripFormatting(font, ret, codes);
-                tokens.Add(new Token(codes.ToArray(), index, rawIndex, strippedRet, ret));
+                var strippedRet = TextFormatter.StripFormatting(font, ret, applied);
+                tokens.Add(new Token(applied.ToArray(), index, rawIndex, strippedRet, ret));
 
                 // move to the start of the next code
                 rawIndex = next.Match.Index;
                 index += strippedRet.Length;
 
                 // remove all codes that are incompatible with the next one and apply it
-                codes.RemoveAll(c => c.EndsHere(next) || next.EndsOther(c));
-                codes.Add(next);
+                applied.RemoveAll(c => c.EndsHere(next) || next.EndsOther(c));
+                applied.Add(next);
             }
-            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
+            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(font, s, allCodes), tokens.ToArray(), allCodes.ToArray());
         }
 
         /// <summary>

@@ -23,6 +23,7 @@ Additions
 
 Improvements
 - Stopped the text formatter throwing if a color can't be parsed
+- Improved text formatter tokenization performance
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs

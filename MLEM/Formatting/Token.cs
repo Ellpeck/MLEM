@@ -50,6 +50,8 @@ namespace MLEM.Formatting {
             this.RawIndex = rawIndex;
             this.Substring = substring;
             this.RawSubstring = rawSubstring;
+            foreach (var code in appliedCodes)
+                code.Tokens.Add(this);
         }
 
         /// <summary>
