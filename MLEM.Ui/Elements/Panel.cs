@@ -56,7 +56,7 @@ namespace MLEM.Ui.Elements {
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
-        private readonly float[] scrollBarMaxHistory = new float[3];
+        private readonly float[] scrollBarMaxHistory;
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -97,6 +97,10 @@ namespace MLEM.Ui.Elements {
                     this.ScrollToElement(e);
                 };
                 this.AddChild(this.ScrollBar);
+
+                this.scrollBarMaxHistory = new float[3];
+                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
+                    this.scrollBarMaxHistory[i] = -1;
             }
         }
 
@@ -110,11 +114,11 @@ namespace MLEM.Ui.Elements {
                     if (child != this.ScrollBar && !child.Anchor.IsAuto())
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
                 }
+
+                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
+                    this.scrollBarMaxHistory[i] = -1;
             }
-
             base.ForceUpdateArea();
-            Array.Clear(this.scrollBarMaxHistory, 0, this.scrollBarMaxHistory.Length);
-
             this.SetScrollBarStyle();
         }
 
