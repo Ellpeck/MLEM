@@ -56,7 +56,7 @@ namespace MLEM.Ui.Elements {
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
-        private readonly List<float> scrollBarMaxHistory = new List<float>();
+        private readonly float[] scrollBarMaxHistory = new float[3];
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -113,7 +113,7 @@ namespace MLEM.Ui.Elements {
             }
 
             base.ForceUpdateArea();
-            this.scrollBarMaxHistory.Clear();
+            Array.Clear(this.scrollBarMaxHistory, 0, this.scrollBarMaxHistory.Length);
 
             this.SetScrollBarStyle();
         }
@@ -278,10 +278,10 @@ namespace MLEM.Ui.Elements {
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 // avoid a show/hide oscillation that occurs while updating our area with children that can lose height when the scroll bar is shown (like long paragraphs)
-                if (this.scrollBarMaxHistory.Count < 3 || !this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) || !this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon)) {
-                    if (this.scrollBarMaxHistory.Count > 0)
-                        this.scrollBarMaxHistory.RemoveAt(0);
-                    this.scrollBarMaxHistory.Add(scrollBarMax);
+                if (!this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) || !this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon)) {
+                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                    this.scrollBarMaxHistory[2] = scrollBarMax;
 
                     this.ScrollBar.MaxValue = scrollBarMax;
                     this.relevantChildrenDirty = true;
