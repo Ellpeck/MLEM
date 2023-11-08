@@ -29,6 +29,9 @@ Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
 
 ### MLEM.Ui
+Additions
+- Added UiControls.NavType, which stores the most recently used type of ui navigation
+
 Improvements
 - Allow scrolling panels to contain other scrolling panels
 - Allow dropdowns to have scrolling panels
