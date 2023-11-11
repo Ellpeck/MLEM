@@ -591,6 +591,7 @@ namespace MLEM.Ui.Elements {
             element.AndChildren(e => e.AddedToUi(this.System, this.Root));
             this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
+            element.SetAreaDirty();
             return element;
         }
 
@@ -1341,7 +1342,6 @@ namespace MLEM.Ui.Elements {
         protected internal virtual void AddedToUi(UiSystem system, RootElement root) {
             this.Root = root;
             this.System = system;
-            this.SetAreaDirty();
             this.OnAddedToUi?.Invoke(this);
             root?.InvokeOnElementAdded(this);
         }

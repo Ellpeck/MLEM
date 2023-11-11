@@ -245,13 +245,12 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void OnChildAreaDirty(Element child, bool grandchild) {
             base.OnChildAreaDirty(child, grandchild);
-            // we only need to scroll when a grandchild changes, since all of our children are forced
-            // to be auto-anchored and so will automatically propagate their changes up to us
-            if (grandchild) {
+            if (grandchild && !this.AreaDirty) {
+                // we only need to scroll when a grandchild changes, since all of our children are forced
+                // to be auto-anchored and so will automatically propagate their changes up to us
                 this.ScrollChildren();
                 // we also need to re-setup here in case the child is involved in a special GetTotalCoveredArea
-                if (!this.AreaDirty)
-                    this.ScrollSetup();
+                this.ScrollSetup();
             }
         }
 
@@ -358,17 +357,16 @@ namespace MLEM.Ui.Elements {
             if (!this.scrollOverflow)
                 return;
 
-            // we ignore false grandchildren so that the children of the scroll bar stay in place
-            var currentChildren = new HashSet<Element>(this.GetChildren(c => c != this.ScrollBar, true, true));
-
+            var currentChildren = new HashSet<Element>();
             // scroll all our children (and cache newly added ones)
-            foreach (var child in currentChildren) {
+            // we ignore false grandchildren so that the children of the scroll bar stay in place
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true)) {
                 // if a child was newly added later, the last scroll offset was never applied
                 if (this.scrolledChildren.Add(child))
                     child.ScrollOffset.Y -= this.lastScrollOffset;
                 child.ScrollOffset.Y += (this.lastScrollOffset - this.ScrollBar.CurrentValue);
+                currentChildren.Add(child);
             }
-
             // remove cached scrolled children that aren't our children anymore
             this.scrolledChildren.IntersectWith(currentChildren);
 
