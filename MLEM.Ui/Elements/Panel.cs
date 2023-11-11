@@ -355,11 +355,8 @@ namespace MLEM.Ui.Elements {
         }
 
         private void ScrollChildren() {
-            if (!this.scrollOverflow) {
-                if (this.scrolledChildren.Count > 0)
-                    this.scrolledChildren.Clear();
+            if (!this.scrollOverflow)
                 return;
-            }
 
             // we ignore false grandchildren so that the children of the scroll bar stay in place
             var currentChildren = new HashSet<Element>(this.GetChildren(c => c != this.ScrollBar, true, true));
