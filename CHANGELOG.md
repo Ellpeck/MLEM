@@ -36,6 +36,7 @@ Improvements
 - Allow scrolling panels to contain other scrolling panels
 - Allow dropdowns to have scrolling panels
 - Don't unnecessarily set areas dirty when removing a root element from the ui
+- Improved Panel performance when adding and removing a lot of children
 
 Fixes
 - Fixed panels updating their relevant children too much when the scroll bar is hidden
