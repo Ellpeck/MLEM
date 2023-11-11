@@ -351,10 +351,7 @@ namespace MLEM.Ui {
                 return null;
             var root = new RootElement(name, element, this);
             this.rootElements.Add(root);
-            root.Element.AndChildren(e => {
-                e.SetAreaDirty();
-                e.AddedToUi(this, root);
-            });
+            root.Element.AndChildren(e => e.AddedToUi(this, root));
             this.OnRootAdded?.Invoke(root);
             root.InvokeOnAddedToUi(this);
             this.SortRoots();

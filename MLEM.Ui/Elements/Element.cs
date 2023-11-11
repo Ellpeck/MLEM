@@ -588,10 +588,7 @@ namespace MLEM.Ui.Elements {
                 index = this.children.Count;
             this.children.Insert(index, element);
             element.Parent = this;
-            element.AndChildren(e => {
-                e.SetAreaDirty();
-                e.AddedToUi(this.System, this.Root);
-            });
+            element.AndChildren(e => e.AddedToUi(this.System, this.Root));
             this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
             return element;
@@ -1344,6 +1341,7 @@ namespace MLEM.Ui.Elements {
         protected internal virtual void AddedToUi(UiSystem system, RootElement root) {
             this.Root = root;
             this.System = system;
+            this.SetAreaDirty();
             this.OnAddedToUi?.Invoke(this);
             root?.InvokeOnElementAdded(this);
         }
