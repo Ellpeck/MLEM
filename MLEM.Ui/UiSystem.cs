@@ -352,8 +352,8 @@ namespace MLEM.Ui {
             var root = new RootElement(name, element, this);
             this.rootElements.Add(root);
             root.Element.AndChildren(e => {
-                e.AddedToUi(this, root);
                 e.SetAreaDirty();
+                e.AddedToUi(this, root);
             });
             this.OnRootAdded?.Invoke(root);
             root.InvokeOnAddedToUi(this);
@@ -371,10 +371,8 @@ namespace MLEM.Ui {
                 return;
             this.rootElements.Remove(root);
             this.Controls.SelectElement(root, null);
-            root.Element.AndChildren(e => {
-                e.RemovedFromUi();
-                e.SetAreaDirty();
-            });
+            // we don't need to set dirty here since re-adding to a ui will cause dirty state anyway
+            root.Element.AndChildren(e => e.RemovedFromUi());
             this.OnRootRemoved?.Invoke(root);
             root.InvokeOnRemovedFromUi(this);
         }

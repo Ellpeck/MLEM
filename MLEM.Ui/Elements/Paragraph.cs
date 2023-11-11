@@ -232,7 +232,7 @@ namespace MLEM.Ui.Elements {
         private void SetTextDirty() {
             this.tokenizedText = null;
             // only set our area dirty if our size changed as a result of this action
-            if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon))
+            if (!this.AreaDirty && (this.System == null || !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon)))
                 this.SetAreaDirty();
         }
 
