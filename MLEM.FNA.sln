@@ -16,11 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.FNA", "Tests\Tests.FN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Extended.FNA", "MLEM.Extended\MLEM.Extended.FNA.csproj", "{A5B22930-DF4B-4A62-93ED-A6549F7B666B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "FNA\FNA.csproj", "{35253CE1-C864-4CD3-8249-4D1319748E8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "ThirdParty\FNA\FNA.csproj", "{35253CE1-C864-4CD3-8249-4D1319748E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontStashSharp.FNA", "FontStashSharp\src\XNA\FontStashSharp.FNA.csproj", "{39249E92-EBF2-4951-A086-AB4951C3CCE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontStashSharp.FNA", "ThirdParty\FontStashSharp\src\XNA\FontStashSharp.FNA.csproj", "{39249E92-EBF2-4951-A086-AB4951C3CCE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA.Core", "FNA\FNA.Core.csproj", "{458FFA5E-A1C4-4B23-A5D8-259385FEECED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA.Core", "ThirdParty\FNA\FNA.Core.csproj", "{458FFA5E-A1C4-4B23-A5D8-259385FEECED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

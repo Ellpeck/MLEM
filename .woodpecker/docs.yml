@@ -1,6 +1,6 @@
 ﻿steps:
   document:
-    image: mcr.microsoft.com/dotnet/sdk:7.0.305
+    image: mcr.microsoft.com/dotnet/sdk:8.0-jammy
     commands:
       - dotnet tool restore
       - dotnet cake --target Document --branch $CI_COMMIT_BRANCH

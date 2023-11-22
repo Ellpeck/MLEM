@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
         <VSTestResultsDirectory>TestResults.FNA</VSTestResultsDirectory>
         <RunSettingsFilePath>Tests.FNA.runsettings</RunSettingsFilePath>
@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FNA\FNA.Core.csproj" />
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.Core.csproj" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 
         <PackageReference Include="coverlet.collector" Version="6.0.0">
@@ -35,7 +35,7 @@
         <Content Include="Content/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Include="../FnaNative/**">
+        <Content Include="../ThirdParty/Native/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Link>%(Filename)%(Extension)</Link>
         </Content>

@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FNA\FNA.Core.csproj">
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.Core.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
     </ItemGroup>

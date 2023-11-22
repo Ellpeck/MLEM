@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ApplicationIcon>Icon.ico</ApplicationIcon>
         <AssemblyName>MLEM Desktop Demos</AssemblyName>
         <RootNamespace>Demos.DesktopGL</RootNamespace>
@@ -21,7 +21,7 @@
 
     <ItemGroup>
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
-        <ProjectReference Include="..\FNA\FNA.Core.csproj" />
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -29,7 +29,7 @@
         <Content Include="..\Demos\Content\*\**" />
         <EmbeddedResource Include="Icon.ico" />
         <EmbeddedResource Include="Icon.bmp" />
-        <Content Include="../FnaNative/**">
+        <Content Include="../ThirdParty/Native/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <Link>%(Filename)%(Extension)</Link>
         </Content>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net452;netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <IsTrimmable>true</IsTrimmable>
@@ -26,7 +26,7 @@
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.FNA.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <ProjectReference Include="..\FNA\FNA.csproj">
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
     </ItemGroup>
