@@ -6,7 +6,6 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ContentTargetFolders>content</ContentTargetFolders>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <IsTrimmable>true</IsTrimmable>
         <NoWarn>NU5128</NoWarn>
     </PropertyGroup>
 
