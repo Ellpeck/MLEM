@@ -25,7 +25,9 @@ Task("Prepare").Does(() => {
 Task("Build").IsDependentOn("Prepare").Does(() =>{
     var settings = new DotNetBuildSettings {
         Configuration = config,
-        ArgumentCustomization = args => args.Append($"/p:Version={version}")
+        ArgumentCustomization = args => args.Append($"/p:Version={version}"),
+        // .net 8 has an issue that causes simultaneous tool restores during build to fail
+        MSBuildSettings = new DotNetMSBuildSettings { MaxCpuCount = 1 }
     };
     DotNetBuild("MLEM.sln", settings);
     DotNetBuild("MLEM.FNA.sln", settings);
