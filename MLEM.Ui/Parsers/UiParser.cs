@@ -10,7 +10,6 @@ using MLEM.Ui.Style;
 
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
 using System.Net.Http;
-
 #else
 using System.Net;
 #endif
@@ -146,7 +145,8 @@ namespace MLEM.Ui.Parsers {
                 throw new NullReferenceException("A UI parser requires a GraphicsDevice for parsing images");
 
             TextureRegion image = null;
-            return new Image(Anchor.AutoLeft, new Vector2(1, -1), _ => image) {
+            return new Image(Anchor.AutoLeft, Vector2.One, _ => image) {
+                SetHeightBasedOnAspect = true,
                 OnAddedToUi = e => {
                     if (image == null)
                         LoadImageAsync();

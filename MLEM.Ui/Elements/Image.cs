@@ -69,11 +69,40 @@ namespace MLEM.Ui.Elements {
         /// Note that increased rotation does not increase this component's size, even if the rotated texture would go out of bounds of this component.
         /// </summary>
         public float ImageRotation;
+        /// <summary>
+        /// Whether this image's width should automatically be calculated based on this image's calculated height in relation to its <see cref="Texture"/>'s aspect ratio.
+        /// Note that, if this is <see langword="true"/>, the <see cref="Element.AutoSizeAddedAbsolute"/> value will still be applied to this image's width.
+        /// </summary>
+        public bool SetWidthBasedOnAspect {
+            get => this.setWidthBasedOnAspect;
+            set {
+                if (this.setWidthBasedOnAspect != value) {
+                    this.setWidthBasedOnAspect = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
+        /// <summary>
+        /// Whether this image's height should automatically be calculated based on this image's calculated width in relation to its <see cref="Texture"/>'s aspect ratio.
+        /// This behavior is useful if an image should take up a certain width, but the aspect ratio of its texture can vary and the image should not take up more height than is necessary.
+        /// Note that, if this is <see langword="true"/>, the <see cref="Element.AutoSizeAddedAbsolute"/> value will still be applied to this image's height.
+        /// </summary>
+        public bool SetHeightBasedOnAspect {
+            get => this.setHeightBasedOnAspect;
+            set {
+                if (this.setHeightBasedOnAspect != value) {
+                    this.setHeightBasedOnAspect = value;
+                    this.SetAreaDirty();
+                }
+            }
+        }
 
         /// <inheritdoc />
         public override bool IsHidden => base.IsHidden || this.Texture == null;
 
         private bool scaleToImage;
+        private bool setWidthBasedOnAspect;
+        private bool setHeightBasedOnAspect;
         private TextureRegion explicitlySetTexture;
         private TextureRegion displayedTexture;
 
@@ -86,7 +115,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="scaleToImage">Whether this image's size should be based on the texture's size</param>
         public Image(Anchor anchor, Vector2 size, TextureRegion texture, bool scaleToImage = false) : base(anchor, size) {
             this.Texture = texture;
-            this.scaleToImage = scaleToImage;
+            this.ScaleToImage = scaleToImage;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
         }
@@ -95,14 +124,23 @@ namespace MLEM.Ui.Elements {
         public Image(Anchor anchor, Vector2 size, TextureCallback getTextureCallback, bool scaleToImage = false) : base(anchor, size) {
             this.GetTextureCallback = getTextureCallback;
             this.Texture = getTextureCallback(this);
-            this.scaleToImage = scaleToImage;
+            this.ScaleToImage = scaleToImage;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
         }
 
         /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
-            return this.Texture != null && this.scaleToImage ? this.Texture.Size.ToVector2() * this.Scale : base.CalcActualSize(parentArea);
+            var ret = base.CalcActualSize(parentArea);
+            if (this.Texture != null) {
+                if (this.ScaleToImage)
+                    ret = this.Texture.Size.ToVector2() * this.Scale;
+                if (this.SetWidthBasedOnAspect)
+                    ret.X = ret.Y * this.Texture.Width / this.Texture.Height + this.ScaledAutoSizeAddedAbsolute.X;
+                if (this.SetHeightBasedOnAspect)
+                    ret.Y = ret.X * this.Texture.Height / this.Texture.Width + this.ScaledAutoSizeAddedAbsolute.Y;
+            }
+            return ret;
         }
 
         /// <inheritdoc />
@@ -134,7 +172,7 @@ namespace MLEM.Ui.Elements {
                 return;
             var nullChanged = this.displayedTexture == null != (newTexture == null);
             this.displayedTexture = newTexture;
-            if (nullChanged || this.scaleToImage)
+            if (nullChanged || this.ScaleToImage || this.SetWidthBasedOnAspect || this.SetHeightBasedOnAspect)
                 this.SetAreaDirty();
         }
 

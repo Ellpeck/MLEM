@@ -31,6 +31,7 @@ Fixes
 ### MLEM.Ui
 Additions
 - Added UiControls.NavType, which stores the most recently used type of ui navigation
+- Added SetWidthBasedOnAspect and SetHeightBasedOnAspect to images
 
 Improvements
 - Allow scrolling panels to contain other scrolling panels
