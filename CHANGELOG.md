@@ -24,6 +24,7 @@ Additions
 Improvements
 - Stopped the text formatter throwing if a color can't be parsed
 - Improved text formatter tokenization performance
+- Allow using control and arrow keys to move the visible area of a text input
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
@@ -37,6 +38,7 @@ Improvements
 - Allow scrolling panels to contain other scrolling panels
 - Allow dropdowns to have scrolling panels
 - Improved Panel performance when adding and removing a lot of children
+- Don't reset the caret position of a text field when selecting or deselecting it
 
 Fixes
 - Fixed panels updating their relevant children too much when the scroll bar is hidden

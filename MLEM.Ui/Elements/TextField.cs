@@ -204,8 +204,6 @@ namespace MLEM.Ui.Elements {
                 if (this.IsSelectedActive && !this.IsHidden && !this.textInput.OnTextInput(key, character) && key == Keys.Enter && !this.Multiline)
                     this.EnterReceiver?.Controls?.PressElement(this.EnterReceiver);
             };
-            this.OnDeselected += e => this.CaretPos = 0;
-            this.OnSelected += e => this.CaretPos = this.textInput.Length;
         }
 
         /// <inheritdoc />
