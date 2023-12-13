@@ -96,6 +96,11 @@ namespace MLEM.Ui.Elements {
                 }
             }
         }
+        /// <summary>
+        /// The sampler state that this image's <see cref="Texture"/> should be drawn with.
+        /// If this is <see langword="null"/>, the current <see cref="SpriteBatchContext"/>'s <see cref="SpriteBatchContext.SamplerState"/> will be used, which will likely be the same as <see cref="UiSystem.SpriteBatchContext"/>.
+        /// </summary>
+        public SamplerState SamplerState;
 
         /// <inheritdoc />
         public override bool IsHidden => base.IsHidden || this.Texture == null;
@@ -153,6 +158,14 @@ namespace MLEM.Ui.Elements {
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             if (this.Texture == null)
                 return;
+
+            if (this.SamplerState != null) {
+                batch.End();
+                var localContext = context;
+                localContext.SamplerState = this.SamplerState;
+                batch.Begin(localContext);
+            }
+
             var center = new Vector2(this.Texture.Width / 2F, this.Texture.Height / 2F);
             var color = this.Color.OrDefault(Microsoft.Xna.Framework.Color.White) * alpha;
             if (this.MaintainImageAspect) {
@@ -163,6 +176,12 @@ namespace MLEM.Ui.Elements {
                 var scale = new Vector2(1F / this.Texture.Width, 1F / this.Texture.Height) * this.DisplayArea.Size;
                 batch.Draw(this.Texture, this.DisplayArea.Location + center * scale, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
             }
+
+            if (this.SamplerState != null) {
+                batch.End();
+                batch.Begin(context);
+            }
+
             base.Draw(time, batch, alpha, context);
         }
 
