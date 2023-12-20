@@ -34,6 +34,7 @@ Fixes
 Additions
 - Added UiControls.NavType, which stores the most recently used type of ui navigation
 - Added SetWidthBasedOnAspect and SetHeightBasedOnAspect to images
+- Added the ability to set a custom SamplerState for images
 
 Improvements
 - Allow scrolling panels to contain other scrolling panels
@@ -44,6 +45,10 @@ Improvements
 Fixes
 - Fixed panels updating their relevant children too much when the scroll bar is hidden
 - Fixed a stack overflow exception when a panel's scroll bar auto-hiding causes elements to gain height
+
+### MLEM.Extended
+Improvements
+- Updated to FontStashSharp 1.3.0's API
 
 ### MLEM.Data
 Fixes
