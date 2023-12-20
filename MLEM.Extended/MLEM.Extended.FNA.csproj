@@ -3,7 +3,7 @@
         <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <IsTrimmable Condition="'$(TargetFramework)'=='net8.0'">true</IsTrimmable>
+        <IsAotCompatible Condition="'$(TargetFramework)'=='net8.0'">true</IsAotCompatible>
         <RootNamespace>MLEM.Extended</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
         <NoWarn>NU1702</NoWarn>
