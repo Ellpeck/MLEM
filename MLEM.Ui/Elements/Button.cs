@@ -88,13 +88,20 @@ namespace MLEM.Ui.Elements {
         private bool isDisabled;
 
         /// <summary>
+        /// Creates a new button with the given settings and no text or tooltip.
+        /// </summary>
+        /// <param name="anchor">The button's anchor</param>
+        /// <param name="size">The button's size</param>
+        public Button(Anchor anchor, Vector2 size) : base(anchor, size) {}
+
+        /// <summary>
         /// Creates a new button with the given settings
         /// </summary>
         /// <param name="anchor">The button's anchor</param>
         /// <param name="size">The button's size</param>
         /// <param name="text">The text that should be displayed on the button</param>
         /// <param name="tooltipText">The text that should be displayed in a <see cref="Tooltip"/> when hovering over this button</param>
-        public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : base(anchor, size) {
+        public Button(Anchor anchor, Vector2 size, string text = null, string tooltipText = null) : this(anchor, size) {
             if (text != null) {
                 this.Text = new Paragraph(Anchor.Center, 1, text, true);
                 this.Text.Padding = this.Text.Padding.OrStyle(new Padding(1), 1);
@@ -102,6 +109,23 @@ namespace MLEM.Ui.Elements {
             }
             if (tooltipText != null)
                 this.Tooltip = this.AddTooltip(tooltipText);
+        }
+
+        /// <summary>
+        /// Creates a new button with the given settings
+        /// </summary>
+        /// <param name="anchor">The button's anchor</param>
+        /// <param name="size">The button's size</param>
+        /// <param name="textCallback">The text that should be displayed on the button</param>
+        /// <param name="tooltipTextCallback">The text that should be displayed in a <see cref="Tooltip"/> when hovering over this button</param>
+        public Button(Anchor anchor, Vector2 size, Paragraph.TextCallback textCallback = null, Paragraph.TextCallback tooltipTextCallback = null) : this(anchor, size) {
+            if (textCallback != null) {
+                this.Text = new Paragraph(Anchor.Center, 1, textCallback, true);
+                this.Text.Padding = this.Text.Padding.OrStyle(new Padding(1), 1);
+                this.AddChild(this.Text);
+            }
+            if (tooltipTextCallback != null)
+                this.Tooltip = this.AddTooltip(tooltipTextCallback);
         }
 
         /// <inheritdoc />

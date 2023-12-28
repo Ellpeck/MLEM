@@ -104,6 +104,16 @@ namespace MLEM.Ui.Elements {
             }
         }
 
+        /// <summary>
+        /// Creates a new panel with the given settings.
+        /// </summary>
+        /// <param name="anchor">The panel's anchor</param>
+        /// <param name="size">The panel's default size</param>
+        /// <param name="setHeightBasedOnChildren">Whether the panel should automatically calculate its height based on its children's size</param>
+        /// <param name="scrollOverflow">Whether this panel should automatically add a scroll bar to scroll towards elements that are beyond the area this panel covers</param>
+        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling. This only has an effect if <paramref name="scrollOverflow"/> is <see langword="true"/>.</param>
+        public Panel(Anchor anchor, Vector2 size, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : this(anchor, size, Vector2.Zero, setHeightBasedOnChildren, scrollOverflow, autoHideScrollbar) {}
+
         /// <inheritdoc />
         public override void ForceUpdateArea() {
             if (this.scrollOverflow) {

@@ -35,6 +35,7 @@ Additions
 - Added UiControls.NavType, which stores the most recently used type of ui navigation
 - Added SetWidthBasedOnAspect and SetHeightBasedOnAspect to images
 - Added the ability to set a custom SamplerState for images
+- Added some useful additional constructors to various elements
 
 Improvements
 - Allow scrolling panels to contain other scrolling panels
