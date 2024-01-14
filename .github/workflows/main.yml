@@ -23,7 +23,7 @@ jobs:
       - name: Run cake
         uses: coactions/setup-xvfb@v1
         with:
-          run: dotnet cake --target Publish --branch $GITHUB_REF_NAME
+          run: dotnet cake --target Publish --branch ${{ github.ref_name }}
         env:
           nuget_key: ${{ secrets.NUGET_KEY }}
           baget_key: ${{ secrets.BAGET_KEY }}
