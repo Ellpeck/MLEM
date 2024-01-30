@@ -50,6 +50,7 @@ Fixes
 ### MLEM.Extended
 Improvements
 - Updated to FontStashSharp 1.3.0's API
+- Expose character and line spacing in GenericStashFont
 
 ### MLEM.Data
 Fixes
