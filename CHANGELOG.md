@@ -29,6 +29,7 @@ Improvements
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
 - Fixed InputHandler touch states being initialized incorrectly when touch handling is disabled
+- Fixed empty NinePatch regions stalling when using tile mode
 
 ### MLEM.Ui
 Additions
