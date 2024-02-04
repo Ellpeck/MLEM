@@ -2,7 +2,7 @@
 command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting the 'pre-push' file in the hooks directory (set by 'core.hookspath'; usually '.git/hooks').\n"; exit 2; }
 git lfs pre-push "$@"
 
-if ! git status -s | grep -q "M Changelog.md"; then
-    echo "The changelog was not updated. Please document your changes in Changelog.md before pushing."
+if ! git diff origin --name-status | grep -E -q "M\s+CHANGELOG.md"; then
+    echo "The changelog was not updated. Please document your changes in CHANGELOG.md before pushing."
     exit 1
 fi

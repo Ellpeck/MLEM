@@ -7,5 +7,5 @@ jobs:
         with:
           changeLogPath: CHANGELOG.md
           missingUpdateErrorMessage: |
-            The changelog was not updated. Please document your changes in Changelog.md.
+            The changelog was not updated. Please document your changes in CHANGELOG.md.
             Run `git config core.hooksPath .githooks` to enable a git hook that ensures you updated the changelog before pushing.
