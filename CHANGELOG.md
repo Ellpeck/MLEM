@@ -20,6 +20,7 @@ Additions
 - Added GetRandomEntry and GetRandomWeightedEntry to SingleRandom
 - Added the ability to draw single corners of AutoTiling's extended auto tiles
 - Added ColorHelper.TryFromHexString, a non-throwing version of FromHexString
+- Added ToHexStringRgba and ToHexStringRgb to ColorExtensions
 
 Improvements
 - Stopped the text formatter throwing if a color can't be parsed
