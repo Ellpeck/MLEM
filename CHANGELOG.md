@@ -26,6 +26,7 @@ Improvements
 - Stopped the text formatter throwing if a color can't be parsed
 - Improved text formatter tokenization performance
 - Allow using control and arrow keys to move the visible area of a text input
+- Allow formatting codes applied later to override settings of earlier ones
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
