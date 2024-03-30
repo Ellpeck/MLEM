@@ -46,6 +46,7 @@ Improvements
 - Allow dropdowns to have scrolling panels
 - Improved Panel performance when adding and removing a lot of children
 - Don't reset the caret position of a text field when selecting or deselecting it
+- Improved UiParser.ParseImage with locks and a callback action
 
 Fixes
 - Fixed panels updating their relevant children too much when the scroll bar is hidden
