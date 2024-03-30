@@ -144,6 +144,12 @@ namespace MLEM.Ui.Elements {
                     ret.X = ret.Y * this.Texture.Width / this.Texture.Height + this.ScaledAutoSizeAddedAbsolute.X;
                 if (this.SetHeightBasedOnAspect)
                     ret.Y = ret.X * this.Texture.Height / this.Texture.Width + this.ScaledAutoSizeAddedAbsolute.Y;
+            } else {
+                // if we don't have a texture and we auto-set width or height, calculate as if we had a texture with a size of 0
+                if (this.SetWidthBasedOnAspect)
+                    ret.X = this.ScaledAutoSizeAddedAbsolute.X;
+                if (this.SetHeightBasedOnAspect)
+                    ret.Y = this.ScaledAutoSizeAddedAbsolute.Y;
             }
             return ret;
         }
