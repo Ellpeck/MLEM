@@ -223,10 +223,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="elementY">The y coordinate to scroll to, which should have this element's <see cref="Element.Scale"/> applied.</param>
         public void ScrollToElement(float elementY) {
-            var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
-            if (firstChild == null)
+            var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
+            if (highestValidChild == null)
                 return;
-            this.ScrollBar.CurrentValue = (elementY - this.Area.Height / 2 - firstChild.Area.Top) / this.Scale + this.ChildPadding.Value.Height / 2;
+            this.ScrollBar.CurrentValue = (elementY - this.Area.Height / 2 - highestValidChild.Area.Top) / this.Scale + this.ChildPadding.Value.Height / 2;
         }
 
         /// <inheritdoc />
@@ -282,9 +282,9 @@ namespace MLEM.Ui.Elements {
 
             float childrenHeight;
             if (this.Children.Count > 1) {
-                var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
+                var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
                 var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden, true);
-                childrenHeight = lowestChild.GetTotalCoveredArea(false).Bottom - firstChild.Area.Top;
+                childrenHeight = lowestChild.GetTotalCoveredArea(false).Bottom - highestValidChild.Area.Top;
             } else {
                 // if we only have one child (the scroll bar), then the children take up no visual height
                 childrenHeight = 0;
