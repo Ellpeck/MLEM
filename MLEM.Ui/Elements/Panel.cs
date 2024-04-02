@@ -64,6 +64,7 @@ namespace MLEM.Ui.Elements {
         private float scrollBarChildOffset;
         private StyleProp<float> scrollBarOffset;
         private float lastScrollOffset;
+        private bool childrenDirtyForScroll;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -157,8 +158,16 @@ namespace MLEM.Ui.Elements {
 
             // when removing children, our scroll bar might have to be hidden
             // if we don't do this before adding children again, they might incorrectly assume that the scroll bar will still be visible and adjust their size accordingly
-            if (this.System != null)
+            this.childrenDirtyForScroll = true;
+        }
+
+        /// <inheritdoc />
+        public override T AddChild<T>(T element, int index = -1) {
+            // if children were recently removed, make sure to update the scroll bar before adding new ones so that they can't incorrectly assume the scroll bar will be visible
+            if (this.childrenDirtyForScroll && this.System != null)
                 this.ScrollSetup();
+
+            return base.AddChild(element, index);
         }
 
         /// <inheritdoc />
@@ -277,6 +286,8 @@ namespace MLEM.Ui.Elements {
         /// Prepares the panel for auto-scrolling, creating the render target and setting up the scroll bar's maximum value.
         /// </summary>
         protected virtual void ScrollSetup() {
+            this.childrenDirtyForScroll = false;
+
             if (!this.scrollOverflow || this.IsHidden)
                 return;
 
