@@ -121,11 +121,11 @@ namespace MLEM.Input {
         /// <summary>
         /// Contains the <see cref="LastTouchState"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
-        public IList<TouchLocation> LastViewportTouchState { get; private set; }
+        public IList<TouchLocation> LastViewportTouchState { get; private set; } = new List<TouchLocation>();
         /// <summary>
         /// Contains the <see cref="TouchState"/>, but with the <see cref="GraphicsDevice.Viewport"/> taken into account.
         /// </summary>
-        public IList<TouchLocation> ViewportTouchState { get; private set; }
+        public IList<TouchLocation> ViewportTouchState { get; private set; } = new List<TouchLocation>();
         /// <summary>
         /// Contains the amount of gamepads that are currently connected. Note that this value will be set to 0 if <see cref="HandleGamepads"/> is false.
         /// This field is automatically updated in <see cref="Update()"/>.
@@ -342,6 +342,7 @@ namespace MLEM.Input {
                 }
             } else {
                 this.TouchState = new TouchCollection(InputHandler.EmptyTouchLocations);
+                this.ViewportTouchState = this.TouchState;
                 this.gestures.Clear();
             }
 

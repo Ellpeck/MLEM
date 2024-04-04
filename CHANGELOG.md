@@ -2,6 +2,7 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**.
 
 Jump to version:
+- [6.3.0](#630)
 - [6.2.0](#620)
 - [6.1.0](#610)
 - [6.0.0](#600)
@@ -9,6 +10,57 @@ Jump to version:
 - [5.2.0](#520)
 - [5.1.0](#510)
 - [5.0.0](#500)
+
+## 6.3.0
+
+### MLEM
+Additions
+- Added GraphicsExtensions.WithRenderTargets, a multi-target version of WithRenderTarget
+- Added Zero, One, Linear and Clamp to Easings
+- Added GetRandomEntry and GetRandomWeightedEntry to SingleRandom
+- Added the ability to draw single corners of AutoTiling's extended auto tiles
+- Added ColorHelper.TryFromHexString, a non-throwing version of FromHexString
+- Added ToHexStringRgba and ToHexStringRgb to ColorExtensions
+
+Improvements
+- Stopped the text formatter throwing if a color can't be parsed
+- Improved text formatter tokenization performance
+- Allow using control and arrow keys to move the visible area of a text input
+- Allow formatting codes applied later to override settings of earlier ones
+
+Fixes
+- Fixed TextInput not working correctly when using surrogate pairs
+- Fixed InputHandler touch states being initialized incorrectly when touch handling is disabled
+- Fixed empty NinePatch regions stalling when using tile mode
+- Fixed bold and italic formatting code closing tags working on each other
+
+### MLEM.Ui
+Additions
+- Added UiControls.NavType, which stores the most recently used type of ui navigation
+- Added SetWidthBasedOnAspect and SetHeightBasedOnAspect to images
+- Added the ability to set a custom SamplerState for images
+- Added some useful additional constructors to various elements
+
+Improvements
+- Allow scrolling panels to contain other scrolling panels
+- Allow dropdowns to have scrolling panels
+- Improved Panel performance when adding and removing a lot of children
+- Don't reset the caret position of a text field when selecting or deselecting it
+- Improved UiParser.ParseImage with locks and a callback action
+
+Fixes
+- Fixed panels updating their relevant children too much when the scroll bar is hidden
+- Fixed a stack overflow exception when a panel's scroll bar auto-hiding causes elements to gain height
+- Fixed scrolling panels calculating their height incorrectly when their first child is hidden
+
+### MLEM.Extended
+Improvements
+- Updated to FontStashSharp 1.3.0's API
+- Expose character and line spacing in GenericStashFont
+
+### MLEM.Data
+Fixes
+- Fixed various exception types not being wrapped by ContentLoadExceptions when loading raw or JSON content
 
 ## 6.2.0
 

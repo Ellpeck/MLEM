@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Misc;
 using MLEM.Textures;
 
 namespace MLEM.Graphics {
@@ -86,92 +87,94 @@ namespace MLEM.Graphics {
         /// <param name="layerDepth">The layer depth to draw with.</param>
         /// <param name="overlayDepthOffset">An optional depth offset from <paramref name="layerDepth"/> that the overlay should be drawn with</param>
         public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, TextureRegion overlayTexture, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
-            var orig = origin ?? Vector2.Zero;
-            var sc = scale ?? Vector2.One;
-            var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo);
             if (backgroundTexture != null)
-                batch.Draw(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
-            if (r1 != Rectangle.Empty)
-                batch.Draw(overlayTexture.Texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-            if (r2 != Rectangle.Empty)
-                batch.Draw(overlayTexture.Texture, pos, r2, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-            if (r3 != Rectangle.Empty)
-                batch.Draw(overlayTexture.Texture, pos, r3, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-            if (r4 != Rectangle.Empty)
-                batch.Draw(overlayTexture.Texture, pos, r4, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                batch.Draw(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+            var od = layerDepth + overlayDepthOffset;
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.UpLeft, origin, scale, od);
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.UpRight, origin, scale, od);
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.DownLeft, origin, scale, od);
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od);
+        }
+
+        /// <summary>
+        /// This method allows for a single corner of a tiled texture to be drawn in an auto-tiling mode.
+        /// This allows, for example, a grass patch on a tilemap to have nice looking edges that transfer over into a path without any hard edges between tiles.
+        ///
+        /// For more information, and to draw all four corners at once, see <see cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
+        /// </summary>
+        /// <param name="batch">The sprite batch to use for drawing.</param>
+        /// <param name="pos">The position to draw at.</param>
+        /// <param name="overlayTexture">The first overlay region, as described in the summary.</param>
+        /// <param name="connectsTo">A function that determines whether two positions should connect.</param>
+        /// <param name="overlayColor">The color to draw border and corner textures with.</param>
+        /// <param name="corner">The corner of the auto-tile to draw. Can be <see cref="Direction2.UpLeft"/>, <see cref="Direction2.UpRight"/>, <see cref="Direction2.DownLeft"/> or <see cref="Direction2.DownRight"/>.</param>
+        /// <param name="origin">The origin to draw from.</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="layerDepth">The layer depth to draw with.</param>
+        public static void DrawExtendedAutoTileCorner(SpriteBatch batch, Vector2 pos, TextureRegion overlayTexture, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
+            var src = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo, corner);
+            if (src != Rectangle.Empty)
+                batch.Draw(overlayTexture.Texture, pos, src, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
         public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
-            var orig = origin ?? Vector2.Zero;
-            var sc = scale ?? Vector2.One;
-            var od = layerDepth + overlayDepthOffset;
-            var (xUl, xUr, xDl, xDr) = AutoTiling.CalculateExtendedAutoTileOffsets(connectsTo);
             if (backgroundTexture != null)
-                batch.Draw(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
-            if (xUl >= 0)
-                batch.Draw(overlayTextures(xUl), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-            if (xUr >= 0)
-                batch.Draw(overlayTextures(xUr), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-            if (xDl >= 0)
-                batch.Draw(overlayTextures(xDl), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-            if (xDr >= 0)
-                batch.Draw(overlayTextures(xDr), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+                batch.Draw(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+            var od = layerDepth + overlayDepthOffset;
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.UpLeft, origin, scale, od);
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.UpRight, origin, scale, od);
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownLeft, origin, scale, od);
+            AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od);
+        }
+
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        public static void DrawExtendedAutoTileCorner(SpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
+            var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
+            if (src >= 0)
+                batch.Draw(overlayTextures(src), pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
         public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, TextureRegion overlayTexture, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
-            var orig = origin ?? Vector2.Zero;
-            var sc = scale ?? Vector2.One;
-            var od = layerDepth + overlayDepthOffset;
-            var (r1, r2, r3, r4) = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo);
             if (backgroundTexture != null) {
-                var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
+                var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
                 items?.Add(background);
             }
-            if (r1 != Rectangle.Empty) {
-                var o1 = batch.Add(overlayTexture.Texture, pos, r1, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-                items?.Add(o1);
-            }
-            if (r2 != Rectangle.Empty) {
-                var o2 = batch.Add(overlayTexture.Texture, pos, r2, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-                items?.Add(o2);
-            }
-            if (r3 != Rectangle.Empty) {
-                var o3 = batch.Add(overlayTexture.Texture, pos, r3, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-                items?.Add(o3);
-            }
-            if (r4 != Rectangle.Empty) {
-                var o4 = batch.Add(overlayTexture.Texture, pos, r4, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+            var od = layerDepth + overlayDepthOffset;
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.UpLeft, origin, scale, od, items);
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.UpRight, origin, scale, od, items);
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.DownLeft, origin, scale, od, items);
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od, items);
+        }
+
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, TextureRegion overlayTexture, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
+            var src = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo, corner);
+            if (src != Rectangle.Empty) {
+                var o4 = batch.Add(overlayTexture.Texture, pos, src, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
                 items?.Add(o4);
             }
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,Func{int,MLEM.Textures.TextureRegion},MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
         public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
-            var orig = origin ?? Vector2.Zero;
-            var sc = scale ?? Vector2.One;
-            var od = layerDepth + overlayDepthOffset;
-            var (xUl, xUr, xDl, xDr) = AutoTiling.CalculateExtendedAutoTileOffsets(connectsTo);
             if (backgroundTexture != null) {
-                var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, orig, sc, SpriteEffects.None, layerDepth);
+                var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
                 items?.Add(background);
             }
-            if (xUl >= 0) {
-                var o1 = batch.Add(overlayTextures(xUl), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-                items?.Add(o1);
-            }
-            if (xUr >= 0) {
-                var o2 = batch.Add(overlayTextures(xUr), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-                items?.Add(o2);
-            }
-            if (xDl >= 0) {
-                var o3 = batch.Add(overlayTextures(xDl), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
-                items?.Add(o3);
-            }
-            if (xDr >= 0) {
-                var o4 = batch.Add(overlayTextures(xDr), pos, overlayColor, 0, orig, sc, SpriteEffects.None, od);
+            var od = layerDepth + overlayDepthOffset;
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.UpLeft, origin, scale, od, items);
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.UpRight, origin, scale, od, items);
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownLeft, origin, scale, od, items);
+            AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od, items);
+        }
+
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
+            var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
+            if (src >= 0) {
+                var o4 = batch.Add(overlayTextures(src), pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
                 items?.Add(o4);
             }
         }
@@ -194,26 +197,36 @@ namespace MLEM.Graphics {
                 new Vector2(pos.X + w2 * scale.X, pos.Y + h2 * scale.Y), new Rectangle(textureRegion.X + w2 + xDr * w, textureRegion.Y + h2, w2, h2));
         }
 
-        private static (int, int, int, int) CalculateExtendedAutoTileOffsets(ConnectsTo connectsTo) {
-            var up = connectsTo(0, -1);
-            var down = connectsTo(0, 1);
-            var left = connectsTo(-1, 0);
-            var right = connectsTo(1, 0);
-            return (
-                up && left ? connectsTo(-1, -1) ? -1 : 12 : left ? 0 : up ? 8 : 4,
-                up && right ? connectsTo(1, -1) ? -1 : 13 : right ? 1 : up ? 9 : 5,
-                down && left ? connectsTo(-1, 1) ? -1 : 14 : left ? 2 : down ? 10 : 6,
-                down && right ? connectsTo(1, 1) ? -1 : 15 : right ? 3 : down ? 11 : 7);
+        private static int CalculateExtendedAutoTileOffset(ConnectsTo connectsTo, Direction2 corner) {
+            switch (corner) {
+                case Direction2.UpLeft: {
+                    var up = connectsTo(0, -1);
+                    var left = connectsTo(-1, 0);
+                    return up && left ? connectsTo(-1, -1) ? -1 : 12 : left ? 0 : up ? 8 : 4;
+                }
+                case Direction2.UpRight: {
+                    var up = connectsTo(0, -1);
+                    var right = connectsTo(1, 0);
+                    return up && right ? connectsTo(1, -1) ? -1 : 13 : right ? 1 : up ? 9 : 5;
+                }
+                case Direction2.DownLeft: {
+                    var down = connectsTo(0, 1);
+                    var left = connectsTo(-1, 0);
+                    return down && left ? connectsTo(-1, 1) ? -1 : 14 : left ? 2 : down ? 10 : 6;
+                }
+                case Direction2.DownRight: {
+                    var down = connectsTo(0, 1);
+                    var right = connectsTo(1, 0);
+                    return down && right ? connectsTo(1, 1) ? -1 : 15 : right ? 3 : down ? 11 : 7;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(corner), corner, null);
+            }
         }
 
-        private static (Rectangle, Rectangle, Rectangle, Rectangle) CalculateExtendedAutoTile(Rectangle textureRegion, ConnectsTo connectsTo) {
-            var (xUl, xUr, xDl, xDr) = AutoTiling.CalculateExtendedAutoTileOffsets(connectsTo);
-            var (w, h) = (textureRegion.Width, textureRegion.Height);
-            return (
-                xUl < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xUl * w, textureRegion.Y, w, h),
-                xUr < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xUr * w, textureRegion.Y, w, h),
-                xDl < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xDl * w, textureRegion.Y, w, h),
-                xDr < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + xDr * w, textureRegion.Y, w, h));
+        private static Rectangle CalculateExtendedAutoTile(Rectangle textureRegion, ConnectsTo connectsTo, Direction2 corner) {
+            var off = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
+            return off < 0 ? Rectangle.Empty : new Rectangle(textureRegion.X + off * textureRegion.Width, textureRegion.Y, textureRegion.Width, textureRegion.Height);
         }
 
         /// <summary>

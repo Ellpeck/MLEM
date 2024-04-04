@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,7 @@ namespace MLEM.Formatting {
 
         /// <summary>
         /// The formatting codes that are applied on this token.
+        /// Codes are stored application order, with the first entry in the array being the code that was most recently applied.
         /// </summary>
         public readonly Code[] AppliedCodes;
         /// <summary>
@@ -45,11 +47,14 @@ namespace MLEM.Formatting {
         internal float[] InnerOffsets;
 
         internal Token(Code[] appliedCodes, int index, int rawIndex, string substring, string rawSubstring) {
+            Array.Reverse(appliedCodes);
             this.AppliedCodes = appliedCodes;
             this.Index = index;
             this.RawIndex = rawIndex;
             this.Substring = substring;
             this.RawSubstring = rawSubstring;
+            foreach (var code in appliedCodes)
+                code.Tokens.Add(this);
         }
 
         /// <summary>

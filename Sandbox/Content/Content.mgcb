@@ -10,8 +10,6 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll
-
 #---------------------------------- Content ---------------------------------#
 
 #begin Fonts/Cadman_Roman.otf
@@ -19,11 +17,6 @@
 
 #begin Fonts/Symbola-Emoji.ttf
 /copy:Fonts/Symbola-Emoji.ttf
-
-#begin Fonts/Regular.fnt
-/importer:BitmapFontImporter
-/processor:BitmapFontProcessor
-/build:Fonts/Regular.fnt
 
 #begin Fonts/RegularTexture.png
 /importer:TextureImporter
@@ -64,5 +57,3 @@
 
 #begin Textures/Test.png
 /copy:Textures/Test.png
-
-

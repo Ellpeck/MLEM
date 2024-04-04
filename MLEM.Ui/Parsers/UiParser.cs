@@ -139,21 +139,32 @@ namespace MLEM.Ui.Parsers {
         /// This method invokes an asynchronouns action, meaning the <see cref="Image"/>'s <see cref="Image.Texture"/> will likely not have loaded in when this method returns.
         /// </summary>
         /// <param name="path">The absolute, relative or web path to the image.</param>
+        /// <param name="onImageFetched">An action that is invoked with the loaded image once it is fetched. Note that this action will be invoked asynchronously.</param>
         /// <returns>The loaded image.</returns>
         /// <exception cref="NullReferenceException">Thrown if <see cref="GraphicsDevice"/> is null, or if there is an <see cref="Exception"/> loading the image and <see cref="ImageExceptionHandler"/> is unset.</exception>
-        protected Image ParseImage(string path) {
+        protected Image ParseImage(string path, Action<TextureRegion> onImageFetched = null) {
             if (this.GraphicsDevice == null)
                 throw new NullReferenceException("A UI parser requires a GraphicsDevice for parsing images");
 
+            var imageLock = new object();
             TextureRegion image = null;
-            return new Image(Anchor.AutoLeft, new Vector2(1, -1), _ => image) {
+            return new Image(Anchor.AutoLeft, Vector2.One, _ => {
+                lock (imageLock)
+                    return image;
+            }) {
+                SetHeightBasedOnAspect = true,
                 OnAddedToUi = e => {
-                    if (image == null)
+                    bool imageNull;
+                    lock (imageLock)
+                        imageNull = image == null;
+                    if (imageNull)
                         LoadImageAsync();
                 },
                 OnRemovedFromUi = e => {
-                    image?.Texture.Dispose();
-                    image = null;
+                    lock (imageLock) {
+                        image?.Texture.Dispose();
+                        image = null;
+                    }
                 }
             };
 
@@ -178,7 +189,12 @@ namespace MLEM.Ui.Parsers {
                         using (var stream = Path.IsPathRooted(path) ? File.OpenRead(path) : TitleContainer.OpenStream(path))
                             tex = Texture2D.FromStream(this.GraphicsDevice, stream);
                     }
-                    image = new TextureRegion(tex);
+                    lock (imageLock) {
+                        if (image == null) {
+                            image = new TextureRegion(tex);
+                            onImageFetched?.Invoke(image);
+                        }
+                    }
                 } catch (Exception e) {
                     if (this.ImageExceptionHandler != null) {
                         this.ImageExceptionHandler.Invoke(path, e);

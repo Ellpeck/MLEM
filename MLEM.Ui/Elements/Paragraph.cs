@@ -172,12 +172,42 @@ namespace MLEM.Ui.Elements {
         /// <param name="anchor">The paragraph's anchor</param>
         /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
         /// <param name="textCallback">The paragraph's text</param>
+        /// <param name="alignment">The paragraph's text alignment.</param>
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
+        public Paragraph(Anchor anchor, float width, TextCallback textCallback, TextAlignment alignment, bool autoAdjustWidth = false) : this(anchor, width, textCallback, autoAdjustWidth) {
+            this.Alignment = alignment;
+        }
+
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="text">The paragraph's text</param>
+        /// <param name="alignment">The paragraph's text alignment.</param>
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
+        public Paragraph(Anchor anchor, float width, string text, TextAlignment alignment, bool autoAdjustWidth = false) : this(anchor, width, text, autoAdjustWidth) {
+            this.Alignment = alignment;
+        }
+
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="textCallback">The paragraph's text</param>
         /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false) : this(anchor, width, string.Empty, autoAdjustWidth) {
             this.GetTextCallback = textCallback;
         }
 
-        /// <inheritdoc cref="Paragraph(Anchor,float,TextCallback,bool)"/>
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="text">The paragraph's text</param>
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
         public Paragraph(Anchor anchor, float width, string text, bool autoAdjustWidth = false) : base(anchor, new Vector2(width, 0)) {
             this.Text = text;
             this.AutoAdjustWidth = autoAdjustWidth;
@@ -232,7 +262,7 @@ namespace MLEM.Ui.Elements {
         private void SetTextDirty() {
             this.tokenizedText = null;
             // only set our area dirty if our size changed as a result of this action
-            if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon))
+            if (!this.AreaDirty && (this.System == null || !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon)))
                 this.SetAreaDirty();
         }
 

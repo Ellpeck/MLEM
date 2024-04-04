@@ -55,12 +55,16 @@ namespace MLEM.Ui.Elements {
         }
 
         private readonly List<Element> relevantChildren = new List<Element>();
+        private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
+        private readonly float[] scrollBarMaxHistory;
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
         private bool relevantChildrenDirty;
         private float scrollBarChildOffset;
         private StyleProp<float> scrollBarOffset;
+        private float lastScrollOffset;
+        private bool childrenDirtyForScroll;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -70,7 +74,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="positionOffset">The panel's offset from its anchor point</param>
         /// <param name="setHeightBasedOnChildren">Whether the panel should automatically calculate its height based on its children's size</param>
         /// <param name="scrollOverflow">Whether this panel should automatically add a scroll bar to scroll towards elements that are beyond the area this panel covers</param>
-        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling</param>
+        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling. This only has an effect if <paramref name="scrollOverflow"/> is <see langword="true"/>.</param>
         public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
@@ -94,8 +98,22 @@ namespace MLEM.Ui.Elements {
                     this.ScrollToElement(e);
                 };
                 this.AddChild(this.ScrollBar);
+
+                this.scrollBarMaxHistory = new float[3];
+                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
+                    this.scrollBarMaxHistory[i] = -1;
             }
         }
+
+        /// <summary>
+        /// Creates a new panel with the given settings.
+        /// </summary>
+        /// <param name="anchor">The panel's anchor</param>
+        /// <param name="size">The panel's default size</param>
+        /// <param name="setHeightBasedOnChildren">Whether the panel should automatically calculate its height based on its children's size</param>
+        /// <param name="scrollOverflow">Whether this panel should automatically add a scroll bar to scroll towards elements that are beyond the area this panel covers</param>
+        /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling. This only has an effect if <paramref name="scrollOverflow"/> is <see langword="true"/>.</param>
+        public Panel(Anchor anchor, Vector2 size, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : this(anchor, size, Vector2.Zero, setHeightBasedOnChildren, scrollOverflow, autoHideScrollbar) {}
 
         /// <inheritdoc />
         public override void ForceUpdateArea() {
@@ -106,11 +124,15 @@ namespace MLEM.Ui.Elements {
                 foreach (var child in this.Children) {
                     if (child != this.ScrollBar && !child.Anchor.IsAuto())
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
-                    if (child is Panel panel && panel.scrollOverflow)
-                        throw new NotSupportedException($"A panel that scrolls overflow cannot contain another panel that scrolls overflow ({child})");
                 }
             }
+
             base.ForceUpdateArea();
+            if (this.scrollOverflow) {
+                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
+                    this.scrollBarMaxHistory[i] = -1;
+            }
+
             this.SetScrollBarStyle();
         }
 
@@ -136,8 +158,16 @@ namespace MLEM.Ui.Elements {
 
             // when removing children, our scroll bar might have to be hidden
             // if we don't do this before adding children again, they might incorrectly assume that the scroll bar will still be visible and adjust their size accordingly
-            if (this.System != null)
+            this.childrenDirtyForScroll = true;
+        }
+
+        /// <inheritdoc />
+        public override T AddChild<T>(T element, int index = -1) {
+            // if children were recently removed, make sure to update the scroll bar before adding new ones so that they can't incorrectly assume the scroll bar will be visible
+            if (this.childrenDirtyForScroll && this.System != null)
                 this.ScrollSetup();
+
+            return base.AddChild(element, index);
         }
 
         /// <inheritdoc />
@@ -202,10 +232,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="elementY">The y coordinate to scroll to, which should have this element's <see cref="Element.Scale"/> applied.</param>
         public void ScrollToElement(float elementY) {
-            var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
-            if (firstChild == null)
+            var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
+            if (highestValidChild == null)
                 return;
-            this.ScrollBar.CurrentValue = (elementY - this.Area.Height / 2 - firstChild.Area.Top) / this.Scale + this.ChildPadding.Value.Height / 2;
+            this.ScrollBar.CurrentValue = (elementY - this.Area.Height / 2 - highestValidChild.Area.Top) / this.Scale + this.ChildPadding.Value.Height / 2;
         }
 
         /// <inheritdoc />
@@ -234,13 +264,12 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void OnChildAreaDirty(Element child, bool grandchild) {
             base.OnChildAreaDirty(child, grandchild);
-            // we only need to scroll when a grandchild changes, since all of our children are forced
-            // to be auto-anchored and so will automatically propagate their changes up to us
-            if (grandchild) {
+            if (grandchild && !this.AreaDirty) {
+                // we only need to scroll when a grandchild changes, since all of our children are forced
+                // to be auto-anchored and so will automatically propagate their changes up to us
                 this.ScrollChildren();
                 // we also need to re-setup here in case the child is involved in a special GetTotalCoveredArea
-                if (!this.AreaDirty)
-                    this.ScrollSetup();
+                this.ScrollSetup();
             }
         }
 
@@ -257,32 +286,41 @@ namespace MLEM.Ui.Elements {
         /// Prepares the panel for auto-scrolling, creating the render target and setting up the scroll bar's maximum value.
         /// </summary>
         protected virtual void ScrollSetup() {
+            this.childrenDirtyForScroll = false;
+
             if (!this.scrollOverflow || this.IsHidden)
                 return;
 
             float childrenHeight;
             if (this.Children.Count > 1) {
-                var firstChild = this.Children.FirstOrDefault(c => c != this.ScrollBar);
+                var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
                 var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden, true);
-                childrenHeight = lowestChild.GetTotalCoveredArea(false).Bottom - firstChild.Area.Top;
+                childrenHeight = lowestChild.GetTotalCoveredArea(false).Bottom - highestValidChild.Area.Top;
             } else {
                 // if we only have one child (the scroll bar), then the children take up no visual height
                 childrenHeight = 0;
             }
 
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
-            var scrollBarMax = (childrenHeight - this.ChildPaddedArea.Height) / this.Scale;
+            var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                this.ScrollBar.MaxValue = scrollBarMax;
-                this.relevantChildrenDirty = true;
+                // avoid a show/hide oscillation that occurs while updating our area with children that can lose height when the scroll bar is shown (like long paragraphs)
+                if (!this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) || !this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon)) {
+                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                    this.scrollBarMaxHistory[2] = scrollBarMax;
+
+                    this.ScrollBar.MaxValue = scrollBarMax;
+                    this.relevantChildrenDirty = true;
+                }
             }
 
             // update child padding based on whether the scroll bar is visible
             var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
-            if (!this.scrollBarChildOffset.Equals(childOffset, Element.Epsilon)) {
-                this.ChildPadding += new Padding(0, -this.scrollBarChildOffset + childOffset, 0, 0);
+            var childOffsetDelta = childOffset - this.scrollBarChildOffset;
+            if (!childOffsetDelta.Equals(0, Element.Epsilon)) {
                 this.scrollBarChildOffset = childOffset;
-                this.SetAreaDirty();
+                this.ChildPadding += new Padding(0, childOffsetDelta, 0, 0);
             }
 
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
@@ -290,15 +328,15 @@ namespace MLEM.Ui.Elements {
             this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
 
             // update the render target
-            var targetArea = (Rectangle) this.GetRenderTargetArea();
-            if (targetArea.Width <= 0 || targetArea.Height <= 0) {
+            var area = (Rectangle) this.GetRenderTargetArea();
+            if (area.Width <= 0 || area.Height <= 0) {
                 this.renderTarget?.Dispose();
                 this.renderTarget = null;
                 return;
             }
-            if (this.renderTarget == null || targetArea.Width != this.renderTarget.Width || targetArea.Height != this.renderTarget.Height) {
+            if (this.renderTarget == null || area.Width != this.renderTarget.Width || area.Height != this.renderTarget.Height) {
                 this.renderTarget?.Dispose();
-                this.renderTarget = targetArea.IsEmpty ? null : new RenderTarget2D(this.System.Game.GraphicsDevice, targetArea.Width, targetArea.Height);
+                this.renderTarget = new RenderTarget2D(this.System.Game.GraphicsDevice, area.Width, area.Height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                 this.relevantChildrenDirty = true;
             }
         }
@@ -330,7 +368,7 @@ namespace MLEM.Ui.Elements {
         }
 
         private RectangleF GetRenderTargetArea() {
-            var area = this.ChildPaddedArea;
+            var area = this.ChildPaddedArea.OffsetCopy(this.ScaledScrollOffset);
             area.X = this.DisplayArea.X;
             area.Width = this.DisplayArea.Width;
             return area;
@@ -339,9 +377,21 @@ namespace MLEM.Ui.Elements {
         private void ScrollChildren() {
             if (!this.scrollOverflow)
                 return;
+
+            var currentChildren = new HashSet<Element>();
+            // scroll all our children (and cache newly added ones)
             // we ignore false grandchildren so that the children of the scroll bar stay in place
-            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true))
-                child.ScrollOffset.Y = -this.ScrollBar.CurrentValue;
+            foreach (var child in this.GetChildren(c => c != this.ScrollBar, true, true)) {
+                // if a child was newly added later, the last scroll offset was never applied
+                if (this.scrolledChildren.Add(child))
+                    child.ScrollOffset.Y -= this.lastScrollOffset;
+                child.ScrollOffset.Y += (this.lastScrollOffset - this.ScrollBar.CurrentValue);
+                currentChildren.Add(child);
+            }
+            // remove cached scrolled children that aren't our children anymore
+            this.scrolledChildren.IntersectWith(currentChildren);
+
+            this.lastScrollOffset = this.ScrollBar.CurrentValue;
             this.relevantChildrenDirty = true;
         }
 

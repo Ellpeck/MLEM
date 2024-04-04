@@ -1236,12 +1236,13 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override string ToString() {
-            var ret = this.GetType().ToString();
-            // elements will contain their path up to the root (Paragraph@Panel@...@RootName)
+            var ret = this.GetType().Name;
+            // elements will contain their path up to the root and their index in each parent
+            // eg Paragraph 2 @ Panel 3 @ ... @ Group RootName
             if (this.Parent != null) {
-                ret += $"@{this.Parent}";
+                ret += $" {this.Parent.Children.IndexOf(this)} @ {this.Parent}";
             } else if (this.Root?.Element == this) {
-                ret += $"@{this.Root.Name}";
+                ret += $" {this.Root.Name}";
             }
             return ret;
         }

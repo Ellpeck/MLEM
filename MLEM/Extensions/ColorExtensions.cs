@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using Microsoft.Xna.Framework;
 
@@ -36,6 +37,27 @@ namespace MLEM.Extensions {
             return new Color(color.ToVector4() * other.ToVector4());
         }
 
+        /// <summary>
+        /// Returns the hexadecimal representation of this color as a string in the format <c>#AARRGGBB</c>, or optionally <c>AARRGGBB</c>, without the pound symbol.
+        /// </summary>
+        /// <param name="color">The color to convert.</param>
+        /// <param name="hash">Whether a # should prepend the string.</param>
+        /// <returns>The resulting hex string.</returns>
+        public static string ToHexStringRgba(this Color color, bool hash = true) {
+            return $"{(hash ? "#" : string.Empty)}{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
+        }
+
+        /// <summary>
+        /// Returns the hexadecimal representation of this color as a string in the format <c>#RRGGBB</c>, or optionally <c>RRGGBB</c>, without the pound symbol.
+        /// The alpha channel is ignored.
+        /// </summary>
+        /// <param name="color">The color to convert.</param>
+        /// <param name="hash">Whether a # should prepend the string.</param>
+        /// <returns>The resulting hex string.</returns>
+        public static string ToHexStringRgb(this Color color, bool hash = true) {
+            return $"{(hash ? "#" : string.Empty)}{color.R:X2}{color.G:X2}{color.B:X2}";
+        }
+
     }
 
     /// <summary>
@@ -64,16 +86,34 @@ namespace MLEM.Extensions {
         }
 
         /// <summary>
-        /// Parses a hexadecimal string into a color.
-        /// The string can either be formatted as RRGGBB or AARRGGBB and can optionally start with a <c>#</c>.
+        /// Parses a hexadecimal string into a color and throws a <see cref="FormatException"/> if parsing fails.
+        /// The string can either be formatted as <c>RRGGBB</c> or <c>AARRGGBB</c> and can optionally start with a <c>#</c>.
         /// </summary>
         /// <param name="value">The string to parse.</param>
         /// <returns>The resulting color.</returns>
+        /// <exception cref="FormatException">Thrown if parsing fails.</exception>
         public static Color FromHexString(string value) {
+            if (!ColorHelper.TryFromHexString(value, out var val))
+                throw new FormatException($"Cannot parse hex string {value}");
+            return val;
+        }
+
+        /// <summary>
+        /// Tries to parse a hexadecimal string into a color and returns whether a color was successfully parsed.
+        /// The string can either be formatted as <c>RRGGBB</c> or <c>AARRGGBB</c> and can optionally start with a <c>#</c>.
+        /// </summary>
+        /// <param name="value">The string to parse.</param>
+        /// <param name="color">The resulting color.</param>
+        /// <returns>Whether parsing was successful.</returns>
+        public static bool TryFromHexString(string value, out Color color) {
             if (value.StartsWith("#"))
                 value = value.Substring(1);
-            var val = int.Parse(value, NumberStyles.HexNumber);
-            return value.Length > 6 ? ColorHelper.FromHexRgba(val) : ColorHelper.FromHexRgb(val);
+            if (int.TryParse(value, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var val)) {
+                color = value.Length > 6 ? ColorHelper.FromHexRgba(val) : ColorHelper.FromHexRgb(val);
+                return true;
+            }
+            color = default;
+            return false;
         }
 
     }

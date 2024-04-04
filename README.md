@@ -11,6 +11,7 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 6.0 and .NET
 - See tutorials and API documentation on [the website](https://mlem.ellpeck.de/)
 - Check out [the demos](https://github.com/Ellpeck/MLEM/tree/main/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/main/Demos.DesktopGL) or [Android](https://github.com/Ellpeck/MLEM/tree/main/Demos.Android)
 - See [the changelog](https://github.com/Ellpeck/MLEM/blob/main/CHANGELOG.md) for information on updates
+- Join [the Discord server](https://link.ellpeck.de/discordweb) to ask questions
 
 # Packages
 - **MLEM** is the base package, which provides various small addons and abstractions for MonoGame and FNA, including a text formatting system and simple input handling

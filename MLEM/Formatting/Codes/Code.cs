@@ -23,9 +23,9 @@ namespace MLEM.Formatting.Codes {
         public readonly Match Match;
         /// <summary>
         /// The tokens that this formatting code is a part of.
-        /// Note that this array only has multiple entries if additional tokens have to be started while this code is still applied.
+        /// Note that this collection only has multiple entries if additional tokens have to be started while this code is still applied.
         /// </summary>
-        public IList<Token> Tokens { get; internal set; }
+        public readonly List<Token> Tokens = new List<Token>();
 
         /// <summary>
         /// Creates a new formatting code based on a formatting code regex and its match.

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible Condition="'$(TargetFramework)'=='net8.0'">true</IsAotCompatible>
         <RootNamespace>MLEM.Extended</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
         <NoWarn>NU1702</NoWarn>
@@ -24,10 +24,10 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <ProjectReference Include="..\FontStashSharp\src\XNA\FontStashSharp.FNA.csproj">
+        <ProjectReference Include="..\ThirdParty\FontStashSharp\src\XNA\FontStashSharp.FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
-        <ProjectReference Include="..\FNA\FNA.csproj">
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
 

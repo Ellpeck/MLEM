@@ -2,7 +2,7 @@
 #tool dotnet:?package=docfx&version=2.70.3
 
 // this is the upcoming version, for prereleases
-var version = Argument("version", "6.2.0");
+var version = Argument("version", "6.3.0");
 var target = Argument("target", "Default");
 var branch = Argument("branch", "main");
 var config = Argument("configuration", "Release");
@@ -14,8 +14,8 @@ Task("Prepare").Does(() => {
     DotNetRestore("MLEM.FNA.sln");
 
     if (branch != "release") {
-        var buildNum = EnvironmentVariable("CI_PIPELINE_NUMBER");
-        if (buildNum != null)
+        var buildNum = EnvironmentVariable("GITHUB_RUN_NUMBER");
+        if (!string.IsNullOrEmpty(buildNum))
             version += "-ci." + buildNum;
     }
 
@@ -25,7 +25,9 @@ Task("Prepare").Does(() => {
 Task("Build").IsDependentOn("Prepare").Does(() =>{
     var settings = new DotNetBuildSettings {
         Configuration = config,
-        ArgumentCustomization = args => args.Append($"/p:Version={version}")
+        ArgumentCustomization = args => args.Append($"/p:Version={version}"),
+        // .net 8 has an issue that causes simultaneous tool restores during build to fail
+        MSBuildSettings = new DotNetMSBuildSettings { MaxCpuCount = 1 }
     };
     DotNetBuild("MLEM.sln", settings);
     DotNetBuild("MLEM.FNA.sln", settings);
@@ -34,7 +36,8 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
 Task("Test").IsDependentOn("Build").Does(() => {
     var settings = new DotNetTestSettings {
         Configuration = config,
-        Collectors = {"XPlat Code Coverage"}
+        Collectors = {"XPlat Code Coverage"},
+        Loggers = {"console;verbosity=normal"}
     };
     DotNetTest("MLEM.sln", settings);
     DotNetTest("MLEM.FNA.sln", settings);
@@ -49,7 +52,7 @@ Task("Pack").IsDependentOn("Test").Does(() => {
     DotNetPack("MLEM.FNA.sln", settings);
 });
 
-Task("Push").WithCriteria(branch == "main" || branch == "release").IsDependentOn("Pack").Does(() => {
+Task("Push").WithCriteria(branch == "main" || branch == "release", "Not on main or release branch").IsDependentOn("Pack").Does(() => {
     DotNetNuGetPushSettings settings;
     if (branch == "release") {
         settings = new DotNetNuGetPushSettings {

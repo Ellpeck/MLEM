@@ -608,9 +608,10 @@ namespace MLEM.Ui {
         /// Optionally, automatic navigation can be forced on, causing the <see cref="UiStyle.SelectionIndicator"/> to be drawn around the element.
         /// </summary>
         /// <param name="element">The element to select, or null to deselect the selected element.</param>
-        /// <param name="autoNav">Whether automatic navigation should be forced on</param>
-        public void SelectElement(Element element, bool? autoNav = null) {
-            this.System.Controls.SelectElement(this, element, autoNav);
+        /// <param name="autoNav">Whether automatic navigation should be forced on. If this is <see langword="null"/>, the automatic navigation state will stay the same.</param>
+        /// <param name="navType">An optional <see cref="UiControls.NavigationType"/> to set. If this is <see langword="null"/>, the navigation type will stay the same.</param>
+        public void SelectElement(Element element, bool? autoNav = null, UiControls.NavigationType? navType = null) {
+            this.System.Controls.SelectElement(this, element, autoNav, navType);
         }
 
         /// <summary>

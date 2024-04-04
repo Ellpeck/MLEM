@@ -48,10 +48,10 @@ public class Activity1 : AndroidGameActivity {
         base.OnWindowFocusChanged(hasFocus);
         // hide the status bar
         if (hasFocus) {
-#pragma warning disable CA1422
+#pragma warning disable CS0618
             // TODO this is deprecated, find out how to replace it
             this.Window.DecorView.SystemUiVisibility = (StatusBarVisibility) (SystemUiFlags.ImmersiveSticky | SystemUiFlags.LayoutStable | SystemUiFlags.LayoutHideNavigation | SystemUiFlags.LayoutFullscreen | SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen);
-#pragma warning restore CA1422
+#pragma warning restore CS0618
         }
     }
 
