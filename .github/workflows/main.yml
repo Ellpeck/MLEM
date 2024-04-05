@@ -23,7 +23,7 @@ jobs:
       - name: Run cake
         uses: coactions/setup-xvfb@v1
         with:
-          run: dotnet cake --target Publish --branch ${{ github.ref_name }}
+          run: dotnet cake --target Publish --ref ${{ github.ref }} --run ${{ github.run_number }}
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
           BAGET_KEY: ${{ secrets.BAGET_KEY }}
@@ -41,9 +41,9 @@ jobs:
       - name: Restore tools
         run: dotnet tool restore
       - name: Run cake
-        run: dotnet cake --target Document --branch $GITHUB_REF_NAME
+        run: dotnet cake --target Document --ref ${{ github.ref }} --run ${{ github.run_number }}
       - name: Deploy
-        if: github.event_name == 'push' && github.ref_name == 'release'
+        if: startsWith(github.ref, 'refs/tags/')
         # this is a beautiful way to deploy a website and i will not take any criticism
         run: |
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb

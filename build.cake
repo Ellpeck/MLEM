@@ -4,19 +4,20 @@
 // this is the upcoming version, for prereleases
 var version = Argument("version", "6.3.1");
 var target = Argument("target", "Default");
-var branch = Argument("branch", "main");
+var gitRef = Argument("ref", "refs/heads/main");
+var buildNum = Argument("buildNum", "");
 var config = Argument("configuration", "Release");
 var serve = HasArgument("serve");
 
 Task("Prepare").Does(() => {
     DotNetWorkloadInstall("android");
+
     DotNetRestore("MLEM.sln");
     DotNetRestore("MLEM.FNA.sln");
 
-    if (branch != "release") {
-        var buildNum = EnvironmentVariable("GITHUB_RUN_NUMBER");
-        if (!string.IsNullOrEmpty(buildNum))
-            version += "-ci." + buildNum;
+    if (!gitRef.StartsWith("refs/tags/") && !string.IsNullOrEmpty(buildNum)) {
+        Information($"Appending {buildNum} to version");
+        version += $"-ci.{buildNum}";
     }
 
     DeleteFiles("**/MLEM*.nupkg");
@@ -52,14 +53,16 @@ Task("Pack").IsDependentOn("Test").Does(() => {
     DotNetPack("MLEM.FNA.sln", settings);
 });
 
-Task("Push").WithCriteria(branch == "main" || branch == "release", "Not on main or release branch").IsDependentOn("Pack").Does(() => {
+Task("Push").WithCriteria(gitRef == "refs/heads/main" || gitRef.StartsWith("refs/tags/"), "Not on main branch or tag").IsDependentOn("Pack").Does(() => {
     DotNetNuGetPushSettings settings;
-    if (branch == "release") {
+    if (gitRef.StartsWith("refs/tags/")) {
+        Information("Pushing to public feed");
         settings = new DotNetNuGetPushSettings {
             Source = "https://api.nuget.org/v3/index.json",
             ApiKey = EnvironmentVariable("NUGET_KEY")
         };
     } else {
+        Information("Pushing to private feed");
         settings = new DotNetNuGetPushSettings {
             Source = "https://nuget.ellpeck.de/v3/index.json",
             ApiKey = EnvironmentVariable("BAGET_KEY")
