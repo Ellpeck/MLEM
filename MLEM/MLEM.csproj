@@ -9,7 +9,7 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>The MLEM base package, which provides various small addons and abstractions for MonoGame, including a text formatting system and simple input handling</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

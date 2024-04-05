@@ -12,7 +12,7 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending FNA extension that ties in with other FNA libraries</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>fna ellpeck mlem utility extensions extended</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

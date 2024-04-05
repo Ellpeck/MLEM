@@ -12,7 +12,7 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>Simple loading and processing of textures and other data for FNA, including the ability to load non-XNB content files easily</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>fna ellpeck mlem utility extensions data serialize</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
