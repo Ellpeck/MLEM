@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Microsoft.Xna.Framework;
 using MLEM.Input;
 using MLEM.Ui.Style;
+using Color = Microsoft.Xna.Framework.Color;
+using RectangleF = MLEM.Misc.RectangleF;
 #if FNA
 using MLEM.Extensions;
 #endif
@@ -23,13 +26,25 @@ namespace MLEM.Ui.Elements {
         public readonly List<Paragraph> Paragraphs = new List<Paragraph>();
 
         /// <summary>
-        /// The offset that this tooltip's top left corner should have from the mouse position
+        /// The offset that this tooltip should have from the mouse position
         /// </summary>
         public StyleProp<Vector2> MouseOffset;
         /// <summary>
-        /// The offset that this tooltip's top center coordinate should have from the bottom center of the element snapped to when <see cref="DisplayInAutoNavMode"/> is true.
+        /// The offset that this tooltip  should have from the element snapped to when <see cref="DisplayInAutoNavMode"/> is true.
         /// </summary>
         public StyleProp<Vector2> AutoNavOffset;
+        /// <summary>
+        /// The anchor that should be used when this tooltip is displayed using the mouse. The <see cref="MouseOffset"/> will be applied.
+        /// </summary>
+        public StyleProp<Anchor> MouseAnchor;
+        /// <summary>
+        /// The anchor that should be used when this tooltip is displayed using auto-nav mode. The <see cref="AutoNavOffset"/> will be applied.
+        /// </summary>
+        public StyleProp<Anchor> AutoNavAnchor;
+        /// <summary>
+        /// If this is <see langword="true"/>, and the mouse is used, the tooltip will attach to the hovered element in a static position using the <see cref="AutoNavOffset"/> and <see cref="AutoNavAnchor"/> properties, rather than following the mouse cursor exactly.
+        /// </summary>
+        public StyleProp<bool> UseAutoNavBehaviorForMouse;
         /// <summary>
         /// The amount of time that the mouse has to be over an element before it appears
         /// </summary>
@@ -79,6 +94,7 @@ namespace MLEM.Ui.Elements {
         /// The position that this tooltip should be following (or snapped to) instead of the <see cref="InputHandler.ViewportMousePosition"/>.
         /// If this value is unset, <see cref="InputHandler.ViewportMousePosition"/> will be used as the snap position.
         /// Note that <see cref="MouseOffset"/> is still applied with this value set.
+        /// Note that, if <see cref="UseAutoNavBehaviorForMouse"/> is <see langword="true"/>, this value is ignored.
         /// </summary>
         public virtual Vector2? SnapPosition { get; set; }
 
@@ -151,6 +167,9 @@ namespace MLEM.Ui.Elements {
             this.Texture = this.Texture.OrStyle(style.TooltipBackground);
             this.MouseOffset = this.MouseOffset.OrStyle(style.TooltipOffset);
             this.AutoNavOffset = this.AutoNavOffset.OrStyle(style.TooltipAutoNavOffset);
+            this.MouseAnchor = this.MouseAnchor.OrStyle(style.TooltipMouseAnchor);
+            this.AutoNavAnchor = this.AutoNavAnchor.OrStyle(style.TooltipAutoNavAnchor);
+            this.UseAutoNavBehaviorForMouse = this.UseAutoNavBehaviorForMouse.OrStyle(style.TooltipUseAutoNavBehaviorForMouse);
             this.Delay = this.Delay.OrStyle(style.TooltipDelay);
             this.ParagraphTextColor = this.ParagraphTextColor.OrStyle(style.TooltipTextColor);
             this.ParagraphTextScale = this.ParagraphTextScale.OrStyle(style.TextScale);
@@ -201,11 +220,10 @@ namespace MLEM.Ui.Elements {
         public void SnapPositionToMouse() {
             Vector2 snapPosition;
             if (this.snapElement != null) {
-                // center our snap position below the snap element
-                snapPosition = new Vector2(this.snapElement.DisplayArea.Center.X, this.snapElement.DisplayArea.Bottom) + this.AutoNavOffset;
-                snapPosition.X -= this.DisplayArea.Width / 2F;
+                snapPosition = this.GetSnapOffset(this.AutoNavAnchor, this.snapElement.DisplayArea, this.AutoNavOffset);
             } else {
-                snapPosition = (this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2()) + this.MouseOffset.Value;
+                var mouseBounds = new RectangleF(this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2(), Vector2.Zero);
+                snapPosition = this.GetSnapOffset(this.MouseAnchor, mouseBounds, this.MouseOffset);
             }
 
             var viewport = this.System.Viewport;
@@ -255,8 +273,19 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public void AddToElement(Element elementToHover) {
-            elementToHover.OnMouseEnter += e => this.Display(e.System, $"{e.GetType().Name}Tooltip");
-            elementToHover.OnMouseExit += e => this.Remove();
+            // mouse controls
+            elementToHover.OnMouseEnter += e => {
+                if (this.UseAutoNavBehaviorForMouse)
+                    this.snapElement = e;
+                this.Display(e.System, $"{e.GetType().Name}Tooltip");
+            };
+            elementToHover.OnMouseExit += e => {
+                this.Remove();
+                if (this.UseAutoNavBehaviorForMouse)
+                    this.snapElement = null;
+            };
+
+            // auto-nav controls
             elementToHover.OnSelected += e => {
                 if (this.DisplayInAutoNavMode && e.Controls.IsAutoNavMode) {
                     this.snapElement = e;
@@ -310,6 +339,31 @@ namespace MLEM.Ui.Elements {
             paragraph.TextScale = paragraph.TextScale.OrStyle(this.ParagraphTextScale, 1);
             paragraph.Size = new Vector2(this.ParagraphWidth, 0);
             paragraph.AutoAdjustWidth = true;
+        }
+
+        private Vector2 GetSnapOffset(Anchor anchor, RectangleF snapBounds, Vector2 offset) {
+            switch (anchor) {
+                case Anchor.TopLeft:
+                    return snapBounds.Location - this.DisplayArea.Size - offset;
+                case Anchor.TopCenter:
+                    return new Vector2(snapBounds.Center.X - this.DisplayArea.Width / 2F, snapBounds.Top - this.DisplayArea.Height) - offset;
+                case Anchor.TopRight:
+                    return new Vector2(snapBounds.Right + offset.X, snapBounds.Top - this.DisplayArea.Height - offset.Y);
+                case Anchor.CenterLeft:
+                    return new Vector2(snapBounds.X - this.DisplayArea.Width - offset.X, snapBounds.Center.Y - this.DisplayArea.Height / 2 + offset.Y);
+                case Anchor.Center:
+                    return snapBounds.Center - this.DisplayArea.Size / 2 + offset;
+                case Anchor.CenterRight:
+                    return new Vector2(snapBounds.Right, snapBounds.Center.Y - this.DisplayArea.Height / 2) + offset;
+                case Anchor.BottomLeft:
+                    return new Vector2(snapBounds.X - this.DisplayArea.Width - offset.X, snapBounds.Bottom + offset.Y);
+                case Anchor.BottomCenter:
+                    return new Vector2(snapBounds.Center.X - this.DisplayArea.Width / 2F, snapBounds.Bottom) + offset;
+                case Anchor.BottomRight:
+                    return snapBounds.Location + snapBounds.Size + offset;
+                default:
+                    throw new NotSupportedException($"Tooltip anchors don't support the {anchor} value");
+            }
         }
 
     }

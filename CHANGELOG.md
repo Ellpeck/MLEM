@@ -15,6 +15,11 @@ Jump to version:
 
 ## 6.3.2 (In Development)
 
+### MLEM.Ui
+Additions
+- Added the ability to set the anchor that should be used when a tooltip attaches to an element or the mouse
+- Added the ability to display tooltips using the auto-nav style even when using the mouse
+
 ## 6.3.1
 
 No code changes

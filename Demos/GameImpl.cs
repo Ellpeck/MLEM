@@ -77,7 +77,8 @@ namespace Demos {
                         this.activeDemo = demo.Value.Item2.Invoke(this);
                         this.activeDemo.LoadContent();
                     },
-                    PositionOffset = new Vector2(0, 1)
+                    PositionOffset = new Vector2(0, 1),
+                    Tooltip = {DisplayInAutoNavMode = true}
                 });
             }
 

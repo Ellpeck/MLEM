@@ -166,6 +166,9 @@ namespace MLEM.Ui.Style {
         /// The offset of the <see cref="Tooltip"/> element's top center coordinate from the bottom center of the element snapped to when <see cref="Tooltip.DisplayInAutoNavMode"/> is true.
         /// </summary>
         public Vector2 TooltipAutoNavOffset = new Vector2(0, 8);
+        public Anchor TooltipAutoNavAnchor = Anchor.BottomCenter;
+        public Anchor TooltipMouseAnchor = Anchor.BottomRight;
+        public bool TooltipUseAutoNavBehaviorForMouse;
         /// <summary>
         /// The color that the text of a <see cref="Tooltip"/> should have
         /// </summary>
