@@ -176,6 +176,16 @@ namespace MLEM.Font {
             return GenericFont.SplitStringSeparate(Enumerable.Repeat(new DecoratedCodePointSource(new CodePointSource(text), this, 0), 1), width, scale).First();
         }
 
+        /// <summary>
+        /// Calculates a transformation matrix for drawing a string with the given data.
+        /// </summary>
+        /// <param name="position">The position to draw at.</param>
+        /// <param name="rotation">The rotation to draw with.</param>
+        /// <param name="origin">The origin to subtract from the position.</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="effects">The flipping to draw with.</param>
+        /// <param name="flipSize">The size of the string, which is only used when <paramref name="effects"/> is not <see cref="SpriteEffects.None"/>.</param>
+        /// <returns>A transformation matrix.</returns>
         public Matrix CalculateStringTransform(Vector2 position, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Vector2 flipSize) {
             var (flipX, flipY) = (0F, 0F);
             var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
@@ -210,6 +220,13 @@ namespace MLEM.Font {
             return trans;
         }
 
+        /// <summary>
+        /// Moves the passed <paramref name="charPos"/> based on the given flipping data.
+        /// </summary>
+        /// <param name="charPos">The position to move.</param>
+        /// <param name="effects">The flipping to move based on.</param>
+        /// <param name="charSize">The size of the object to move, which is only used when <paramref name="effects"/> is not <see cref="SpriteEffects.None"/>.</param>
+        /// <returns>The moved position.</returns>
         public Vector2 MoveFlipped(Vector2 charPos, SpriteEffects effects, Vector2 charSize) {
             if ((effects & SpriteEffects.FlipHorizontally) != 0)
                 charPos.X += charSize.X;
@@ -218,6 +235,19 @@ namespace MLEM.Font {
             return charPos;
         }
 
+        /// <summary>
+        /// Transforms the position of a single character to draw.
+        /// In general, it is efficient to calculate the transformation matrix once at the start (using <see cref="CalculateStringTransform"/>) and to then apply flipping data for each character individually (using <see cref="MoveFlipped"/>).
+        /// </summary>
+        /// <param name="stringPos">The position that the string is drawn at.</param>
+        /// <param name="charPosOffset">The offset from the <paramref name="stringPos"/> that the current character is drawn at.</param>
+        /// <param name="rotation">The rotation to draw with.</param>
+        /// <param name="origin">The origin to subtract from the position.</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="effects">The flipping to draw with.</param>
+        /// <param name="stringSize">The size of the string, which is only used when <paramref name="effects"/> is not <see cref="SpriteEffects.None"/>.</param>
+        /// <param name="charSize">The size of the current character, which is only used when <paramref name="effects"/> is not <see cref="SpriteEffects.None"/>.</param>
+        /// <returns>The transformed final draw position.</returns>
         public Vector2 TransformSingleCharacter(Vector2 stringPos, Vector2 charPosOffset, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             return Vector2.Transform(this.MoveFlipped(charPosOffset, effects, charSize), this.CalculateStringTransform(stringPos, rotation, origin, scale, effects, stringSize));
         }

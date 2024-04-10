@@ -180,6 +180,7 @@ namespace MLEM.Formatting {
             return null;
         }
 
+        /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None, int? startIndex = null, int? endIndex = null) {
             this.Draw(time, batch, pos, font, color, new Vector2(scale), depth, rotation, origin, effects, startIndex, endIndex);
         }

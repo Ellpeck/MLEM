@@ -271,7 +271,7 @@ public class GameImpl : MlemGame {
         var formatted = formatter.Tokenize(genericFont, testString);
 
         this.OnDraw += (_, time) => {
-            if (MlemGame.Input.IsKeyPressed(Keys.I)) {
+            if (MlemGame.Input.IsPressed(Keys.I)) {
                 index++;
                 if (index == 1) {
                     scale = 2;
@@ -289,7 +289,7 @@ public class GameImpl : MlemGame {
             }
 
             this.SpriteBatch.Begin();
-            if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
+            if (MlemGame.Input.IsDown(Keys.LeftShift)) {
                 this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
             } else {
                 formatted.Draw(time, this.SpriteBatch, pos, genericFont, Color.Green, scale, 0, rotation, origin, effects);

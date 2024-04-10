@@ -104,11 +104,16 @@ namespace MLEM.Formatting {
         /// </summary>
         /// <param name="time">The time</param>
         /// <param name="batch">The sprite batch to use</param>
-        /// <param name="pos">The position to draw the token at</param>
+        /// <param name="stringPos">The position the string is drawn at.</param>
+        /// <param name="charPosOffset">The offset from the <paramref name="stringPos"/> that the current character is drawn at.</param>
         /// <param name="font">The font to use to draw</param>
         /// <param name="color">The color to draw with</param>
-        /// <param name="scale">The scale to draw at</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="rotation">The rotation to draw with.</param>
+        /// <param name="origin">The origin to subtract from the position.</param>
         /// <param name="depth">The depth to draw at</param>
+        /// <param name="effects">The flipping to draw with.</param>
+        /// <param name="stringSize">The size of the string.</param>
         public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {
             foreach (var code in this.AppliedCodes)
                 code.DrawSelf(time, batch, this, stringPos, charPosOffset, font, color, scale, rotation, origin, depth, effects, stringSize);
@@ -122,11 +127,17 @@ namespace MLEM.Formatting {
         /// <param name="codePoint">The code point of the character to draw</param>
         /// <param name="character">The string representation of the character to draw</param>
         /// <param name="indexInToken">The index within this token that the character is at</param>
-        /// <param name="pos">The position to draw the token at</param>
+        /// <param name="stringPos">The position the string is drawn at.</param>
+        /// <param name="charPosOffset">The offset from the <paramref name="stringPos"/> that the current character is drawn at.</param>
         /// <param name="font">The font to use to draw</param>
         /// <param name="color">The color to draw with</param>
-        /// <param name="scale">The scale to draw at</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="rotation">The rotation to draw with.</param>
+        /// <param name="origin">The origin to subtract from the position.</param>
         /// <param name="depth">The depth to draw at</param>
+        /// <param name="effects">The flipping to draw with.</param>
+        /// <param name="stringSize">The size of the string.</param>
+        /// <param name="charSize">The size of the current character.</param>
         public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             foreach (var code in this.AppliedCodes) {
                 if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, stringPos, ref charPosOffset, font, ref color, ref scale, ref rotation, ref origin, depth, effects, stringSize, charSize))

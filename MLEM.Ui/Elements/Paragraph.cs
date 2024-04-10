@@ -141,12 +141,12 @@ namespace MLEM.Ui.Elements {
         }
         /// <summary>
         /// The inclusive index in this paragraph's <see cref="Text"/> to start drawing at.
-        /// This value is passed to <see cref="TokenizedString.Draw"/>.
+        /// This value is passed to <see cref="TokenizedString.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Vector2,float,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Nullable{int},System.Nullable{int})"/>.
         /// </summary>
         public int? DrawStartIndex;
         /// <summary>
         /// The exclusive index in this paragraph's <see cref="Text"/> to stop drawing at.
-        /// This value is passed to <see cref="TokenizedString.Draw"/>.
+        /// This value is passed to <see cref="TokenizedString.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Vector2,float,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Nullable{int},System.Nullable{int})"/>.
         /// </summary>
         public int? DrawEndIndex;
 
