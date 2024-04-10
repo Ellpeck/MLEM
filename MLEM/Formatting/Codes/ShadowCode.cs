@@ -20,7 +20,7 @@ namespace MLEM.Formatting.Codes {
         /// <inheritdoc />
         public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             var finalPos = font.TransformSingleCharacter(stringPos, charPosOffset + this.offset, rotation, origin, scale, effects, stringSize, charSize);
-            font.DrawString(batch, character, finalPos, this.color.CopyAlpha(color), rotation, Vector2.Zero, scale, effects, depth);
+            font.DrawCharacter(batch, codePoint, character, finalPos, this.color.CopyAlpha(color), rotation, scale, effects, depth);
             // we return false since we still want regular drawing to occur
             return false;
         }

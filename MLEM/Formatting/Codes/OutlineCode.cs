@@ -26,7 +26,7 @@ namespace MLEM.Formatting.Codes {
             foreach (var dir in this.diagonals ? Direction2Helper.AllExceptNone : Direction2Helper.Adjacent) {
                 var offset = Vector2.Normalize(dir.Offset().ToVector2()) * this.thickness;
                 var finalPos = font.TransformSingleCharacter(stringPos, charPosOffset + offset, rotation, origin, scale, effects, stringSize, charSize);
-                font.DrawString(batch, character, finalPos, this.color.CopyAlpha(color), rotation, Vector2.Zero, scale, effects, depth);
+                font.DrawCharacter(batch, codePoint, character, finalPos, this.color.CopyAlpha(color), rotation, scale, effects, depth);
             }
             return false;
         }
