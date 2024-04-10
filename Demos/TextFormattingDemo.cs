@@ -75,6 +75,10 @@ namespace Demos {
             var size = this.tokenizedText.GetArea(Vector2.Zero, this.Scale).Size;
             var pos = new Vector2(this.GraphicsDevice.Viewport.Width / 2, (this.GraphicsDevice.Viewport.Height - size.Y) / 2);
 
+            var rotation = this.transform ? 0.25F : 0;
+            var origin = this.transform ? new Vector2(size.X / this.Scale, 0) : Vector2.Zero;
+            var effects = this.transform ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
             // draw bounds, which can be toggled with B in this demo
             if (this.drawBounds) {
                 var blank = this.SpriteBatch.GetBlankTexture();
@@ -86,13 +90,14 @@ namespace Demos {
             }
 
             // draw the text itself (start and end indices are optional)
-            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0,
-                this.transform ? 0.25F : 0,
-                this.transform ? new Vector2(size.X / this.Scale, 128) : Vector2.Zero,
-                this.transform ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-                this.startIndex, this.endIndex);
+            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0, rotation, origin, effects, this.startIndex, this.endIndex);
 
             this.SpriteBatch.End();
+
+            // an example of how to interact with the text
+            var hovered = this.tokenizedText.GetTokenUnderPos(pos, this.InputHandler.ViewportMousePosition.ToVector2(), this.Scale, this.font, rotation, origin, effects);
+            if (hovered != null)
+                Console.WriteLine($"Hovering \"{hovered.Substring}\"");
         }
 
         public override void Update(GameTime time) {

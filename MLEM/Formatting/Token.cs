@@ -149,6 +149,11 @@ namespace MLEM.Formatting {
             font.DrawCharacter(batch, codePoint, character, finalPos, color, rotation, scale, effects, depth);
         }
 
+        /// <inheritdoc cref="GetArea(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"/>
+        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, float scale) {
+            return this.GetArea(stringPos, new Vector2(scale));
+        }
+
         /// <summary>
         /// Gets a list of rectangles that encompass this token's area.
         /// This can be used to invoke events when the mouse is hovered over the token, for example.
@@ -156,7 +161,7 @@ namespace MLEM.Formatting {
         /// <param name="stringPos">The position that the string is drawn at</param>
         /// <param name="scale">The scale that the string is drawn at</param>
         /// <returns>A set of rectangles that this token contains</returns>
-        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, float scale) {
+        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, Vector2 scale) {
             return this.Area.Select(a => new RectangleF(stringPos + a.Location * scale, a.Size * scale));
         }
 

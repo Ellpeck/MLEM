@@ -162,17 +162,30 @@ namespace MLEM.Formatting {
                 code.Update(time);
         }
 
+        /// <inheritdoc cref="GetTokenUnderPos(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects)"/>
+        public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, float scale, GenericFont font = null, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None) {
+            return this.GetTokenUnderPos(stringPos, target, new Vector2(scale), font, rotation, origin, effects);
+        }
+
         /// <summary>
         /// Returns the token under the given position.
         /// This can be used for hovering effects when the mouse is over a token, etc.
         /// </summary>
-        /// <param name="stringPos">The position that the string is drawn at</param>
-        /// <param name="target">The position to use for checking the token</param>
-        /// <param name="scale">The scale that the string is drawn at</param>
-        /// <returns>The token under the target position</returns>
-        public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, float scale) {
+        /// <param name="stringPos">The position that the string is drawn at.</param>
+        /// <param name="target">The position to use for checking the token.</param>
+        /// <param name="scale">The scale that the string is drawn at.</param>
+        /// <param name="font">The font that the string is being drawn with. If this is <see langword="null"/>, all following parameters are ignored.</param>
+        /// <param name="rotation">The rotation that the string is being drawn with. If <paramref name="font"/> is <see langword="null"/>, this this is ignored.</param>
+        /// <param name="origin">The origin that the string is being drawn with. If <paramref name="font"/> is <see langword="null"/>, this this is ignored.</param>
+        /// <param name="effects">The sprite effects that the string is being drawn with. If <paramref name="font"/> is <see langword="null"/>, this is ignored.</param>
+        /// <returns>The token under the target position</returns>^
+        public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, Vector2 scale, GenericFont font = null, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None) {
+            if (font != null) {
+                var transform = font.CalculateStringTransform(stringPos, rotation, origin, scale, effects, this.area.Size);
+                target = Vector2.Transform(target, Matrix.Invert(transform));
+            }
             foreach (var token in this.Tokens) {
-                foreach (var rect in token.GetArea(stringPos, scale)) {
+                foreach (var rect in font != null ? token.GetArea(Vector2.Zero, 1) : token.GetArea(stringPos, scale)) {
                     if (rect.Contains(target))
                         return token;
                 }
