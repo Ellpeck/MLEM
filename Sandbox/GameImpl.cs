@@ -11,6 +11,7 @@ using MLEM.Data;
 using MLEM.Data.Content;
 using MLEM.Extended.Font;
 using MLEM.Extensions;
+using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Graphics;
@@ -70,9 +71,7 @@ public class GameImpl : MlemGame {
         //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
         //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
         var font = new GenericStashFont(system.GetFont(32));
-        /*
         var spriteFont = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("Fonts/TestFont"));
-        */
         this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
             Font = font,
             TextScale = 0.5F,
@@ -258,7 +257,7 @@ public class GameImpl : MlemGame {
         }).SetData("Ref", "Main");
         this.UiSystem.Add("SpillTest", spillPanel);
 
-        /* var regularFont = spriteFont.Font;
+         var regularFont = spriteFont.Font;
          var genericFont = spriteFont;
 
          var index = 0;
@@ -294,7 +293,7 @@ public class GameImpl : MlemGame {
                  genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
              }
              this.SpriteBatch.End();
-         };*/
+         };
 
         /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
         var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));

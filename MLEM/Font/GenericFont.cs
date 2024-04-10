@@ -219,37 +219,8 @@ namespace MLEM.Font {
         }
 
         private void DrawString(SpriteBatch batch, CodePointSource text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            var (flipX, flipY) = (0F, 0F);
-            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
-            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
-            if (flippedV || flippedH) {
-                var size = this.MeasureString(text, false);
-                if (flippedH) {
-                    origin.X *= -1;
-                    flipX = -size.X;
-                }
-                if (flippedV) {
-                    origin.Y *= -1;
-                    flipY = this.LineHeight - size.Y;
-                }
-            }
-
-            var trans = Matrix.Identity;
-            if (rotation == 0) {
-                trans.M11 = flippedH ? -scale.X : scale.X;
-                trans.M22 = flippedV ? -scale.Y : scale.Y;
-                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
-                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
-            } else {
-                var sin = (float) Math.Sin(rotation);
-                var cos = (float) Math.Cos(rotation);
-                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
-                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
-                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
-                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
-                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
-                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
-            }
+            var flipSize = effects != SpriteEffects.None ? this.MeasureString(text, false) : Vector2.Zero;
+            var trans = this.CalculateStringTransform(position, rotation, origin, scale, flipSize, effects);
 
             var offset = Vector2.Zero;
             var index = 0;
@@ -263,11 +234,11 @@ namespace MLEM.Font {
                     var charSize = this.MeasureString(character);
 
                     var charPos = offset;
-                    if (flippedH)
+                    if ((effects & SpriteEffects.FlipHorizontally) != 0)
                         charPos.X += charSize.X;
-                    if (flippedV)
+                    if ((effects & SpriteEffects.FlipVertically) != 0)
                         charPos.Y += charSize.Y - this.LineHeight;
-                    Vector2.Transform(ref charPos, ref trans, out charPos);
+                    charPos = Vector2.Transform(charPos, trans);
 
                     this.DrawCharacter(batch, codePoint, character, charPos, color, rotation, scale, effects, layerDepth);
                     offset.X += charSize.X;
@@ -394,6 +365,40 @@ namespace MLEM.Font {
                 }
                 yield return curr;
             }
+        }
+
+        internal Matrix CalculateStringTransform(Vector2 position, float rotation, Vector2 origin, Vector2 scale, Vector2 flipSize, SpriteEffects effects) {
+            var (flipX, flipY) = (0F, 0F);
+            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
+            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
+            if (flippedV || flippedH) {
+                if (flippedH) {
+                    origin.X *= -1;
+                    flipX = -flipSize.X;
+                }
+                if (flippedV) {
+                    origin.Y *= -1;
+                    flipY = this.LineHeight - flipSize.Y;
+                }
+            }
+
+            var trans = Matrix.Identity;
+            if (rotation == 0) {
+                trans.M11 = flippedH ? -scale.X : scale.X;
+                trans.M22 = flippedV ? -scale.Y : scale.Y;
+                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
+                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
+            } else {
+                var sin = (float) Math.Sin(rotation);
+                var cos = (float) Math.Cos(rotation);
+                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
+                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
+                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
+                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
+                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
+                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
+            }
+            return trans;
         }
 
         private static bool IsTrailingSpace(CodePointSource s, int index) {
