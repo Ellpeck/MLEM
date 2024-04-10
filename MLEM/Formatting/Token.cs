@@ -109,9 +109,9 @@ namespace MLEM.Formatting {
         /// <param name="color">The color to draw with</param>
         /// <param name="scale">The scale to draw at</param>
         /// <param name="depth">The depth to draw at</param>
-        public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {
             foreach (var code in this.AppliedCodes)
-                code.DrawSelf(time, batch, this, pos, font, color, scale, depth);
+                code.DrawSelf(time, batch, this, stringPos, charPosOffset, font, color, scale, rotation, origin, depth, effects, stringSize);
         }
 
         /// <summary>
@@ -127,14 +127,15 @@ namespace MLEM.Formatting {
         /// <param name="color">The color to draw with</param>
         /// <param name="scale">The scale to draw at</param>
         /// <param name="depth">The depth to draw at</param>
-        public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             foreach (var code in this.AppliedCodes) {
-                if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, ref pos, font, ref color, ref scale, depth))
+                if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, stringPos, ref charPosOffset, font, ref color, ref scale, ref rotation, ref origin, depth, effects, stringSize, charSize))
                     return;
             }
 
             // if no code drew, we have to do it ourselves
-            font.DrawString(batch, character, pos, color, 0, Vector2.Zero, scale, SpriteEffects.None, depth);
+            var finalPos = font.TransformSingleCharacter(stringPos, charPosOffset, rotation, origin, scale, effects, stringSize, charSize);
+            font.DrawCharacter(batch, codePoint, character, finalPos, color, rotation, scale, effects, depth);
         }
 
         /// <summary>

@@ -246,7 +246,7 @@ namespace MLEM.Ui.Elements {
             var pos = this.DisplayArea.Location + new Vector2(this.GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
-            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, this.DrawStartIndex, this.DrawEndIndex);
+            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, 0, Vector2.Zero, SpriteEffects.None, this.DrawStartIndex, this.DrawEndIndex);
             base.Draw(time, batch, alpha, context);
         }
 

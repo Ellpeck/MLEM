@@ -27,6 +27,7 @@ namespace Demos {
         private TokenizedString tokenizedText;
         private GenericFont font;
         private bool drawBounds;
+        private bool transform;
         private float Scale {
             get {
                 // calculate our scale based on how much larger the window is, so that the text scales with the window
@@ -85,7 +86,11 @@ namespace Demos {
             }
 
             // draw the text itself (start and end indices are optional)
-            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0, this.startIndex, this.endIndex);
+            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0,
+                this.transform ? 0.25F : 0,
+                this.transform ? new Vector2(size.X / this.Scale, 128) : Vector2.Zero,
+                this.transform ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+                this.startIndex, this.endIndex);
 
             this.SpriteBatch.End();
         }
@@ -97,6 +102,8 @@ namespace Demos {
             // change some demo showcase info based on keybinds
             if (this.InputHandler.IsPressed(Keys.B))
                 this.drawBounds = !this.drawBounds;
+            if (this.InputHandler.IsPressed(Keys.T))
+                this.transform = !this.transform;
             if (this.startIndex > 0 && this.InputHandler.IsDown(Keys.Left))
                 this.startIndex--;
             if (this.startIndex < this.tokenizedText.String.Length && this.InputHandler.IsDown(Keys.Right))

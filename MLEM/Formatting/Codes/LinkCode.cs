@@ -40,9 +40,9 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             // since we inherit from UnderlineCode, we can just call base if selected
-            return this.IsSelected() && base.DrawCharacter(time, batch, codePoint, character, token, indexInToken, ref pos, font, ref color, ref scale, depth);
+            return this.IsSelected() && base.DrawCharacter(time, batch, codePoint, character, token, indexInToken, stringPos, ref charPosOffset, font, ref color, ref scale, ref rotation, ref origin, depth, effects, stringPos, charSize);
         }
 
     }

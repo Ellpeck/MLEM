@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Formatting;
+using MLEM.Formatting.Codes;
 using MLEM.Misc;
 
 namespace MLEM.Font {
@@ -59,7 +61,7 @@ namespace MLEM.Font {
 
         /// <summary>
         /// Draws the given code point with the given data for use in <see cref="DrawString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float)"/>.
-        /// Note that this method is only called internally.
+        /// Note that this method should only be called internally for rendering of more complex strings, like in <see cref="TextFormatter"/> <see cref="Code"/> implementations.
         /// </summary>
         /// <param name="batch">The sprite batch to draw with.</param>
         /// <param name="codePoint">The code point which will be drawn.</param>
@@ -70,7 +72,7 @@ namespace MLEM.Font {
         /// <param name="scale">A scaling of this character.</param>
         /// <param name="effects">Modificators for drawing. Can be combined.</param>
         /// <param name="layerDepth">A depth of the layer of this character.</param>
-        protected abstract void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth);
+        public abstract void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth);
 
         ///<inheritdoc cref="SpriteBatch.DrawString(SpriteFont,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
         public void DrawString(SpriteBatch batch, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
@@ -174,6 +176,52 @@ namespace MLEM.Font {
             return GenericFont.SplitStringSeparate(Enumerable.Repeat(new DecoratedCodePointSource(new CodePointSource(text), this, 0), 1), width, scale).First();
         }
 
+        public Matrix CalculateStringTransform(Vector2 position, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Vector2 flipSize) {
+            var (flipX, flipY) = (0F, 0F);
+            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
+            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
+            if (flippedV || flippedH) {
+                if (flippedH) {
+                    origin.X *= -1;
+                    flipX = -flipSize.X;
+                }
+                if (flippedV) {
+                    origin.Y *= -1;
+                    flipY = this.LineHeight - flipSize.Y;
+                }
+            }
+
+            var trans = Matrix.Identity;
+            if (rotation == 0) {
+                trans.M11 = flippedH ? -scale.X : scale.X;
+                trans.M22 = flippedV ? -scale.Y : scale.Y;
+                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
+                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
+            } else {
+                var sin = (float) Math.Sin(rotation);
+                var cos = (float) Math.Cos(rotation);
+                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
+                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
+                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
+                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
+                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
+                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
+            }
+            return trans;
+        }
+
+        public Vector2 MoveFlipped(Vector2 charPos, SpriteEffects effects, Vector2 charSize) {
+            if ((effects & SpriteEffects.FlipHorizontally) != 0)
+                charPos.X += charSize.X;
+            if ((effects & SpriteEffects.FlipVertically) != 0)
+                charPos.Y += charSize.Y - this.LineHeight;
+            return charPos;
+        }
+
+        public Vector2 TransformSingleCharacter(Vector2 stringPos, Vector2 charPosOffset, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
+            return Vector2.Transform(this.MoveFlipped(charPosOffset, effects, charSize), this.CalculateStringTransform(stringPos, rotation, origin, scale, effects, stringSize));
+        }
+
         private Vector2 MeasureString(CodePointSource text, bool ignoreTrailingSpaces) {
             var size = Vector2.Zero;
             if (text.Length <= 0)
@@ -220,7 +268,7 @@ namespace MLEM.Font {
 
         private void DrawString(SpriteBatch batch, CodePointSource text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             var flipSize = effects != SpriteEffects.None ? this.MeasureString(text, false) : Vector2.Zero;
-            var trans = this.CalculateStringTransform(position, rotation, origin, scale, flipSize, effects);
+            var trans = this.CalculateStringTransform(position, rotation, origin, scale, effects, flipSize);
 
             var offset = Vector2.Zero;
             var index = 0;
@@ -232,14 +280,7 @@ namespace MLEM.Font {
                 } else {
                     var character = CodePointSource.ToString(codePoint);
                     var charSize = this.MeasureString(character);
-
-                    var charPos = offset;
-                    if ((effects & SpriteEffects.FlipHorizontally) != 0)
-                        charPos.X += charSize.X;
-                    if ((effects & SpriteEffects.FlipVertically) != 0)
-                        charPos.Y += charSize.Y - this.LineHeight;
-                    charPos = Vector2.Transform(charPos, trans);
-
+                    var charPos = Vector2.Transform(this.MoveFlipped(offset, effects, charSize), trans);
                     this.DrawCharacter(batch, codePoint, character, charPos, color, rotation, scale, effects, layerDepth);
                     offset.X += charSize.X;
                 }
@@ -365,40 +406,6 @@ namespace MLEM.Font {
                 }
                 yield return curr;
             }
-        }
-
-        internal Matrix CalculateStringTransform(Vector2 position, float rotation, Vector2 origin, Vector2 scale, Vector2 flipSize, SpriteEffects effects) {
-            var (flipX, flipY) = (0F, 0F);
-            var flippedV = (effects & SpriteEffects.FlipVertically) != 0;
-            var flippedH = (effects & SpriteEffects.FlipHorizontally) != 0;
-            if (flippedV || flippedH) {
-                if (flippedH) {
-                    origin.X *= -1;
-                    flipX = -flipSize.X;
-                }
-                if (flippedV) {
-                    origin.Y *= -1;
-                    flipY = this.LineHeight - flipSize.Y;
-                }
-            }
-
-            var trans = Matrix.Identity;
-            if (rotation == 0) {
-                trans.M11 = flippedH ? -scale.X : scale.X;
-                trans.M22 = flippedV ? -scale.Y : scale.Y;
-                trans.M41 = (flipX - origin.X) * trans.M11 + position.X;
-                trans.M42 = (flipY - origin.Y) * trans.M22 + position.Y;
-            } else {
-                var sin = (float) Math.Sin(rotation);
-                var cos = (float) Math.Cos(rotation);
-                trans.M11 = (flippedH ? -scale.X : scale.X) * cos;
-                trans.M12 = (flippedH ? -scale.X : scale.X) * sin;
-                trans.M21 = (flippedV ? -scale.Y : scale.Y) * -sin;
-                trans.M22 = (flippedV ? -scale.Y : scale.Y) * cos;
-                trans.M41 = (flipX - origin.X) * trans.M11 + (flipY - origin.Y) * trans.M21 + position.X;
-                trans.M42 = (flipX - origin.X) * trans.M12 + (flipY - origin.Y) * trans.M22 + position.Y;
-            }
-            return trans;
         }
 
         private static bool IsTrailingSpace(CodePointSource s, int index) {

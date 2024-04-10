@@ -36,9 +36,11 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        public override void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {
             var actualColor = this.copyTextColor ? color : Color.White.CopyAlpha(color);
-            batch.Draw(this.image.CurrentRegion, new RectangleF(pos, new Vector2(font.LineHeight * scale)), actualColor);
+            var size = new Vector2(font.LineHeight);
+            var finalPos = font.TransformSingleCharacter(stringPos, charPosOffset, rotation, origin, scale, effects, stringSize, size);
+            batch.Draw(this.image.CurrentRegion, new RectangleF(finalPos, size * scale), actualColor, rotation, Vector2.Zero, effects, 0);
         }
 
     }

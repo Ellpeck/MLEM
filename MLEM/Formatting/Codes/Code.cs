@@ -92,12 +92,12 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawCharacter"/>
-        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             return false;
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawSelf"/>
-        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 pos, GenericFont font, Color color, float scale, float depth) {}
+        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {}
 
         /// <summary>
         /// Creates a new formatting code from the given regex and regex match.

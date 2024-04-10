@@ -180,9 +180,13 @@ namespace MLEM.Formatting {
             return null;
         }
 
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None, int? startIndex = null, int? endIndex = null) {
+            this.Draw(time, batch, pos, font, color, new Vector2(scale), depth, rotation, origin, effects, startIndex, endIndex);
+        }
+
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, int? startIndex = null, int? endIndex = null) {
-            var innerOffset = new Vector2(this.initialInnerOffset * scale, 0);
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, Vector2 scale, float depth, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None, int? startIndex = null, int? endIndex = null) {
+            var innerOffset = new Vector2(this.initialInnerOffset, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
                 if (endIndex != null && token.Index >= endIndex)
@@ -192,8 +196,8 @@ namespace MLEM.Formatting {
                 var drawColor = token.GetColor(color);
 
                 if (startIndex == null || token.Index >= startIndex)
-                    token.DrawSelf(time, batch, pos + innerOffset, drawFont, drawColor, scale, depth);
-                innerOffset.X += token.GetSelfWidth(drawFont) * scale;
+                    token.DrawSelf(time, batch, pos, innerOffset, drawFont, drawColor, scale, rotation, origin, depth, effects, this.area.Size);
+                innerOffset.X += token.GetSelfWidth(drawFont);
 
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
@@ -205,19 +209,20 @@ namespace MLEM.Formatting {
 
                         var (codePoint, length) = line.GetCodePoint(cpsIndex);
                         var character = CodePointSource.ToString(codePoint);
+                        var charSize = drawFont.MeasureString(character);
 
                         if (startIndex == null || token.Index + indexInToken >= startIndex)
-                            token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
+                            token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos, innerOffset, drawFont, drawColor, scale, rotation, origin, depth, effects, this.area.Size, charSize);
 
-                        innerOffset.X += drawFont.MeasureString(character).X * scale;
+                        innerOffset.X += charSize.X;
                         indexInToken += length;
                         cpsIndex += length;
                     }
 
                     // only split at a new line, not between tokens!
                     if (l < token.SplitDisplayString.Length - 1) {
-                        innerOffset.X = token.InnerOffsets[l] * scale;
-                        innerOffset.Y += drawFont.LineHeight * scale;
+                        innerOffset.X = token.InnerOffsets[l];
+                        innerOffset.Y += drawFont.LineHeight;
                     }
                 }
             }

@@ -257,43 +257,45 @@ public class GameImpl : MlemGame {
         }).SetData("Ref", "Main");
         this.UiSystem.Add("SpillTest", spillPanel);
 
-         var regularFont = spriteFont.Font;
-         var genericFont = spriteFont;
+        var regularFont = spriteFont.Font;
+        var genericFont = spriteFont;
 
-         var index = 0;
-         var pos = new Vector2(100, 20);
-         var scale = 1F;
-         var origin = Vector2.Zero;
-         var rotation = 0F;
-         var effects = SpriteEffects.None;
+        var index = 0;
+        var pos = new Vector2(100, 20);
+        var scale = 1F;
+        var origin = Vector2.Zero;
+        var rotation = 0F;
+        var effects = SpriteEffects.None;
 
-         this.OnDraw += (_, _) => {
-             const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
-             if (MlemGame.Input.IsKeyPressed(Keys.I)) {
-                 index++;
-                 if (index == 1) {
-                     scale = 2;
-                 } else if (index == 2) {
-                     origin = new Vector2(15, 15);
-                 } else if (index == 3) {
-                     rotation = 0.25F;
-                 } else if (index == 4) {
-                     effects = SpriteEffects.FlipHorizontally;
-                 } else if (index == 5) {
-                     effects = SpriteEffects.FlipVertically;
-                 } else if (index == 6) {
-                     effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
-                 }
-             }
+        const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
+        var formatted = formatter.Tokenize(genericFont, testString);
 
-             this.SpriteBatch.Begin();
-             if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
-                 this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
-             } else {
-                 genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
-             }
-             this.SpriteBatch.End();
-         };
+        this.OnDraw += (_, time) => {
+            if (MlemGame.Input.IsKeyPressed(Keys.I)) {
+                index++;
+                if (index == 1) {
+                    scale = 2;
+                } else if (index == 2) {
+                    origin = new Vector2(15, 15);
+                } else if (index == 3) {
+                    rotation = 0.25F;
+                } else if (index == 4) {
+                    effects = SpriteEffects.FlipHorizontally;
+                } else if (index == 5) {
+                    effects = SpriteEffects.FlipVertically;
+                } else if (index == 6) {
+                    effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+                }
+            }
+
+            this.SpriteBatch.Begin();
+            if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
+                this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
+            } else {
+                formatted.Draw(time, this.SpriteBatch, pos, genericFont, Color.Green, scale, 0, rotation, origin, effects);
+            }
+            this.SpriteBatch.End();
+        };
 
         /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
         var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));
