@@ -72,7 +72,7 @@ namespace Demos {
 
             // we draw the tokenized text in the center of the screen
             // since the text is already center-aligned, we only need to align it on the y axis here
-            var size = this.tokenizedText.GetArea(Vector2.Zero, this.Scale).Size;
+            var size = this.tokenizedText.GetArea(scale: this.Scale).Size;
             var pos = new Vector2(this.GraphicsDevice.Viewport.Width / 2, (this.GraphicsDevice.Viewport.Height - size.Y) / 2);
 
             var rotation = this.transform ? 0.25F : 0;

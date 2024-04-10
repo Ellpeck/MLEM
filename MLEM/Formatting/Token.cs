@@ -150,7 +150,7 @@ namespace MLEM.Formatting {
         }
 
         /// <inheritdoc cref="GetArea(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"/>
-        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, float scale) {
+        public IEnumerable<RectangleF> GetArea(Vector2 stringPos = default, float scale = 1) {
             return this.GetArea(stringPos, new Vector2(scale));
         }
 

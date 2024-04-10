@@ -228,7 +228,7 @@ namespace MLEM.Ui.Elements {
             this.CheckTextChange();
             this.TokenizeIfNecessary();
             this.AlignAndSplitIfNecessary(size);
-            var textSize = this.tokenizedText.GetArea(Vector2.Zero, this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
+            var textSize = this.tokenizedText.GetArea(scale: this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
             // if we auto-adjust our width, then we would also split the same way with our adjusted width, so cache that
             if (this.AutoAdjustWidth)
                 this.lastAlignSplitWidth = textSize.X;

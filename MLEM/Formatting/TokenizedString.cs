@@ -140,7 +140,7 @@ namespace MLEM.Formatting {
         /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
         [Obsolete("Measure is deprecated. Use GetArea, which returns the string's total size measurement, instead.")]
         public Vector2 Measure(GenericFont font) {
-            return this.GetArea(Vector2.Zero, 1).Size;
+            return this.GetArea().Size;
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace MLEM.Formatting {
         /// <param name="stringPos">The position that this string is being rendered at, which will offset the resulting <see cref="RectangleF"/>.</param>
         /// <param name="scale">The scale that this string is being rendered with, which will scale the resulting <see cref="RectangleF"/>.</param>
         /// <returns>The area that this tokenized string takes up.</returns>
-        public RectangleF GetArea(Vector2 stringPos, float scale) {
+        public RectangleF GetArea(Vector2 stringPos = default, float scale = 1) {
             return new RectangleF(stringPos + this.area.Location * scale, this.area.Size * scale);
         }
 
@@ -185,7 +185,7 @@ namespace MLEM.Formatting {
                 target = Vector2.Transform(target, Matrix.Invert(transform));
             }
             foreach (var token in this.Tokens) {
-                foreach (var rect in font != null ? token.GetArea(Vector2.Zero, 1) : token.GetArea(stringPos, scale)) {
+                foreach (var rect in font != null ? token.GetArea() : token.GetArea(stringPos, scale)) {
                     if (rect.Contains(target))
                         return token;
                 }
