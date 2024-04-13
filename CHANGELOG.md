@@ -18,6 +18,7 @@ Jump to version:
 ### MLEM
 Additions
 - **Added the ability for formatted (tokenized) strings to be drawn with custom rotation, origin and flipping**
+- Added a RectangleF.FromCorners overload that accepts points
 
 Improvements
 - Allow NumberExtensions.GetPoints to include bottom and right coordinates

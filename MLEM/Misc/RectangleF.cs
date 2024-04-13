@@ -264,8 +264,23 @@ namespace MLEM.Misc {
         /// </summary>
         /// <param name="corner1">The first corner to use</param>
         /// <param name="corner2">The second corner to use</param>
-        /// <returns></returns>
+        /// <returns>The created rectangle.</returns>
         public static RectangleF FromCorners(Vector2 corner1, Vector2 corner2) {
+            var minX = Math.Min(corner1.X, corner2.X);
+            var minY = Math.Min(corner1.Y, corner2.Y);
+            var maxX = Math.Max(corner1.X, corner2.X);
+            var maxY = Math.Max(corner1.Y, corner2.Y);
+            return new RectangleF(minX, minY, maxX - minX, maxY - minY);
+        }
+
+        /// <summary>
+        /// Creates a new rectangle based on two corners that form a bounding box.
+        /// The resulting rectangle will encompass both corners as well as all of the space between them.
+        /// </summary>
+        /// <param name="corner1">The first corner to use</param>
+        /// <param name="corner2">The second corner to use</param>
+        /// <returns>The created rectangle.</returns>
+        public static RectangleF FromCorners(Point corner1, Point corner2) {
             var minX = Math.Min(corner1.X, corner2.X);
             var minY = Math.Min(corner1.Y, corner2.Y);
             var maxX = Math.Max(corner1.X, corner2.X);
