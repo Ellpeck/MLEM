@@ -19,6 +19,9 @@ Jump to version:
 Additions
 - **Added the ability for formatted (tokenized) strings to be drawn with custom rotation, origin and flipping**
 
+Improvements
+- Allow NumberExtensions.GetPoints to include bottom and right coordinates
+
 ### MLEM.Ui
 Additions
 - Added the ability to set the anchor that should be used when a tooltip attaches to an element or the mouse

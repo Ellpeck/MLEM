@@ -166,28 +166,44 @@ namespace MLEM.Extensions {
 
         /// <summary>
         /// Returns a set of <see cref="Point"/> values that are contained in the given <see cref="Rectangle"/>.
-        /// Note that <see cref="Rectangle.Left"/> and <see cref="Rectangle.Top"/> are inclusive, but <see cref="Rectangle.Right"/> and <see cref="Rectangle.Bottom"/> are not.
+        /// Note that, by default, <see cref="Rectangle.Left"/> and <see cref="Rectangle.Top"/> are inclusive, but <see cref="Rectangle.Right"/> and <see cref="Rectangle.Bottom"/> are not.
         /// </summary>
         /// <param name="area">The area whose points to get</param>
+        /// <param name="bottomRightInclusive">Whether <see cref="Rectangle.Right"/> and <see cref="Rectangle.Bottom"/> should be inclusive, rather than exclusive.</param>
         /// <returns>The points contained in the area</returns>
-        public static IEnumerable<Point> GetPoints(this Rectangle area) {
-            for (var x = area.Left; x < area.Right; x++) {
-                for (var y = area.Top; y < area.Bottom; y++)
-                    yield return new Point(x, y);
+        public static IEnumerable<Point> GetPoints(this Rectangle area, bool bottomRightInclusive = false) {
+            if (bottomRightInclusive) {
+                for (var x = area.Left; x <= area.Right; x++) {
+                    for (var y = area.Top; y <= area.Bottom; y++)
+                        yield return new Point(x, y);
+                }
+            } else {
+                for (var x = area.Left; x < area.Right; x++) {
+                    for (var y = area.Top; y < area.Bottom; y++)
+                        yield return new Point(x, y);
+                }
             }
         }
 
         /// <summary>
         /// Returns a set of <see cref="Vector2"/> values that are contained in the given <see cref="RectangleF"/>.
-        /// Note that <see cref="RectangleF.Left"/> and <see cref="RectangleF.Top"/> are inclusive, but <see cref="RectangleF.Right"/> and <see cref="RectangleF.Bottom"/> are not.
+        /// Note that, by default, <see cref="RectangleF.Left"/> and <see cref="RectangleF.Top"/> are inclusive, but <see cref="RectangleF.Right"/> and <see cref="RectangleF.Bottom"/> are not.
         /// </summary>
         /// <param name="area">The area whose points to get</param>
         /// <param name="interval">The distance that should be traveled between each point that is to be returned</param>
+        /// <param name="bottomRightInclusive">Whether <see cref="RectangleF.Right"/> and <see cref="RectangleF.Bottom"/> should be inclusive, rather than exclusive.</param>
         /// <returns>The points contained in the area</returns>
-        public static IEnumerable<Vector2> GetPoints(this RectangleF area, float interval = 1) {
-            for (var x = area.Left; x < area.Right; x += interval) {
-                for (var y = area.Top; y < area.Bottom; y += interval)
-                    yield return new Vector2(x, y);
+        public static IEnumerable<Vector2> GetPoints(this RectangleF area, float interval = 1, bool bottomRightInclusive = false) {
+            if (bottomRightInclusive) {
+                for (var x = area.Left; x <= area.Right; x += interval) {
+                    for (var y = area.Top; y <= area.Bottom; y += interval)
+                        yield return new Vector2(x, y);
+                }
+            } else {
+                for (var x = area.Left; x < area.Right; x += interval) {
+                    for (var y = area.Top; y < area.Bottom; y += interval)
+                        yield return new Vector2(x, y);
+                }
             }
         }
 
