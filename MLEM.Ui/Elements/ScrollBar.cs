@@ -251,7 +251,7 @@ namespace MLEM.Ui.Elements {
             var foundMe = false;
             foreach (var child in this.Parent.GetChildren(regardGrandchildren: true)) {
                 if (foundMe) {
-                    if (child is ScrollBar b && !b.Horizontal && b.IsMousedForScrolling(moused))
+                    if (child is ScrollBar b && !b.IsHidden && !b.Horizontal && b.IsMousedForScrolling(moused))
                         return false;
                 } else if (child == this) {
                     // once we found ourselves, all subsequent children are deeper/older!

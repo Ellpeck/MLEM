@@ -31,6 +31,9 @@ Additions
 Improvements
 - Allow scrolling panels to set height based on children with TreatSizeAsMaximum
 
+Fixes
+- Fixed hidden scroll bars inhibiting scrolling on their parent panel
+
 ## 6.3.1
 
 No code changes
