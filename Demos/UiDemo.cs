@@ -226,8 +226,7 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             var dynamicSubPanel = this.root.AddChild(new Panel(Anchor.AutoLeft, new Vector2(1, 50), Vector2.Zero, true, true) {
                 Texture = null,
-                ChildPadding = Padding.Empty,
-                TreatSizeAsMaximum = true
+                ChildPadding = Padding.Empty
             });
             dynamicSubPanel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a dynamic height nested panel with a maximum height, at which point it starts displaying a scroll bar instead!"));
             dynamicSubPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Press to add more") {

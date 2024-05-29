@@ -29,7 +29,7 @@ Additions
 - Added the ability to display tooltips using the auto-nav style even when using the mouse
 
 Improvements
-- Allow scrolling panels to set height based on children with TreatSizeAsMaximum
+- Allow scrolling panels to set height based on children by setting TreatSizeAsMaximum
 
 Fixes
 - Fixed hidden scroll bars inhibiting scrolling on their parent panel

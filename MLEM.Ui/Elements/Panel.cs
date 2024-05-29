@@ -78,6 +78,7 @@ namespace MLEM.Ui.Elements {
         public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
             this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
+            this.TreatSizeAsMaximum = setHeightBasedOnChildren && scrollOverflow;
             this.scrollOverflow = scrollOverflow;
             this.CanBeSelected = false;
 
