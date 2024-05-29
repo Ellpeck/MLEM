@@ -119,8 +119,8 @@ namespace MLEM.Ui.Elements {
         public override void ForceUpdateArea() {
             if (this.scrollOverflow) {
                 // sanity check
-                if (this.SetHeightBasedOnChildren)
-                    throw new NotSupportedException("A panel can't both set height based on children and scroll overflow");
+                if (this.SetHeightBasedOnChildren && !this.TreatSizeAsMaximum)
+                    throw new NotSupportedException("A panel can't both scroll overflow and set height based on children without a maximum");
                 foreach (var child in this.Children) {
                     if (child != this.ScrollBar && !child.Anchor.IsAuto())
                         throw new NotSupportedException($"A panel that handles overflow can't contain non-automatic anchors ({child})");
@@ -295,7 +295,7 @@ namespace MLEM.Ui.Elements {
             if (this.Children.Count > 1) {
                 var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
                 var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden, true);
-                childrenHeight = lowestChild.GetTotalCoveredArea(false).Bottom - highestValidChild.Area.Top;
+                childrenHeight = lowestChild.GetTotalCoveredArea(true).Bottom - highestValidChild.UnscrolledArea.Top;
             } else {
                 // if we only have one child (the scroll bar), then the children take up no visual height
                 childrenHeight = 0;

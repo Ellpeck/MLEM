@@ -223,14 +223,16 @@ namespace Demos {
                 PositionOffset = new Vector2(0, 1)
             });
 
-            var subPanel = this.root.AddChild(new Panel(Anchor.AutoLeft, new Vector2(1, 25), Vector2.Zero, false, true) {
-                PositionOffset = new Vector2(0, 1),
+            this.root.AddChild(new VerticalSpace(3));
+            var dynamicSubPanel = this.root.AddChild(new Panel(Anchor.AutoLeft, new Vector2(1, 50), Vector2.Zero, true, true) {
                 Texture = null,
-                ChildPadding = Padding.Empty
+                ChildPadding = Padding.Empty,
+                TreatSizeAsMaximum = true
             });
-            subPanel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a nested scrolling panel!"));
-            for (var i = 1; i <= 5; i++)
-                subPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), $"Button {i}") {PositionOffset = new Vector2(0, 1)});
+            dynamicSubPanel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a dynamic height nested panel with a maximum height, at which point it starts displaying a scroll bar instead!"));
+            dynamicSubPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Press to add more") {
+                OnPressed = _ => dynamicSubPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "I do nothing"))
+            });
 
             const string alignText = "Paragraphs can have <l Left>left</l> aligned text, <l Right>right</l> aligned text and <l Center>center</l> aligned text.";
             this.root.AddChild(new VerticalSpace(3));
