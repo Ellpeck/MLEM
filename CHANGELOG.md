@@ -29,6 +29,7 @@ Additions
 - Added the ability to display tooltips using the auto-nav style even when using the mouse
 
 Improvements
+- **Include the SpriteBatchContext in OnDrawn, OnElementDrawn and OnSelectedElementDrawn**
 - Allow scrolling panels to set height based on children by setting TreatSizeAsMaximum
 
 Fixes

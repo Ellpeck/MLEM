@@ -1148,9 +1148,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="context">The sprite batch context to use for drawing</param>
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-            this.System.InvokeOnElementDrawn(this, time, batch, alpha);
+            this.System.InvokeOnElementDrawn(this, time, batch, alpha, context);
             if (this.IsSelected)
-                this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha);
+                this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha, context);
 
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden) {
@@ -1387,7 +1387,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch used for drawing</param>
         /// <param name="alpha">The alpha this element is drawn with</param>
-        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha);
+        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context);
 
         /// <summary>
         /// A generic delegate used inside of <see cref="Element.Update"/>

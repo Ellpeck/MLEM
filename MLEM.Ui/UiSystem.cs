@@ -215,7 +215,7 @@ namespace MLEM.Ui {
             this.Controls = new UiControls(this, inputHandler);
             this.style = style;
 
-            this.OnElementDrawn += (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
+            this.OnElementDrawn += (e, time, batch, alpha, context) => e.OnDrawn?.Invoke(e, time, batch, alpha, context);
             this.OnElementUpdated += (e, time) => e.OnUpdated?.Invoke(e, time);
             this.OnElementPressed += e => e.OnPressed?.Invoke(e);
             this.OnElementSecondaryPressed += e => e.OnSecondaryPressed?.Invoke(e);
@@ -230,7 +230,7 @@ namespace MLEM.Ui {
             this.OnMousedElementChanged += e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged += e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged += e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
-            this.OnSelectedElementDrawn += (element, time, batch, alpha) => {
+            this.OnSelectedElementDrawn += (element, time, batch, alpha, context) => {
                 if (this.Controls.IsAutoNavMode && element.SelectionIndicator.HasValue())
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
             };
@@ -427,12 +427,12 @@ namespace MLEM.Ui {
             }
         }
 
-        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
-            this.OnElementDrawn?.Invoke(element, time, batch, alpha);
+        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            this.OnElementDrawn?.Invoke(element, time, batch, alpha, context);
         }
 
-        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
-            this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha);
+        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha, context);
         }
 
         internal void InvokeOnElementUpdated(Element element, GameTime time) {
