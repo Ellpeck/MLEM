@@ -1387,6 +1387,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch used for drawing</param>
         /// <param name="alpha">The alpha this element is drawn with</param>
+        /// <param name="context">The sprite batch context to use for drawing</param>
         public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context);
 
         /// <summary>

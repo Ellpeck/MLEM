@@ -27,6 +27,7 @@ Improvements
 Additions
 - Added the ability to set the anchor that should be used when a tooltip attaches to an element or the mouse
 - Added the ability to display tooltips using the auto-nav style even when using the mouse
+- Added the ScissorGroup element, which applies a scissor rectangle when drawing its content
 
 Improvements
 - **Include the SpriteBatchContext in OnDrawn, OnElementDrawn and OnSelectedElementDrawn**
