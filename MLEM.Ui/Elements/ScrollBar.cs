@@ -145,65 +145,72 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             base.Update(time);
 
-            // MOUSE INPUT
-            var moused = this.Controls.MousedElement;
-            var wasMouseUp = this.Input.WasUp(MouseButton.Left);
-            var isMouseDown = this.Input.IsDown(MouseButton.Left);
-            if (moused == this && wasMouseUp && isMouseDown) {
-                this.isMouseScrolling = true;
-                this.scrollStartOffset = this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()) - this.ScrollerPosition;
-            } else if (!isMouseDown) {
-                this.isMouseScrolling = false;
-            }
-            if (this.isMouseScrolling)
-                this.ScrollToPos(this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()));
-            if (!this.Horizontal) {
-                if (this.IsMousedForScrolling(moused)) {
-                    var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
-                    if (scroll != 0)
-                        this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
-
-                    if (this.MouseDragScrolling && moused != this && wasMouseUp && isMouseDown)
-                        this.isMouseDragging = true;
+            if (!this.IsHidden) {
+                // MOUSE INPUT
+                var moused = this.Controls.MousedElement;
+                var wasMouseUp = this.Input.WasUp(MouseButton.Left);
+                var isMouseDown = this.Input.IsDown(MouseButton.Left);
+                if (moused == this && wasMouseUp && isMouseDown) {
+                    this.isMouseScrolling = true;
+                    this.scrollStartOffset = this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()) - this.ScrollerPosition;
+                } else if (!isMouseDown) {
+                    this.isMouseScrolling = false;
                 }
-                if (!isMouseDown)
-                    this.isMouseDragging = false;
-                if (this.isMouseDragging)
-                    this.CurrentValue -= (this.Input.MousePosition.Y - this.Input.LastMousePosition.Y) / this.Scale;
-            }
+                if (this.isMouseScrolling)
+                    this.ScrollToPos(this.TransformInverseAll(this.Input.ViewportMousePosition.ToVector2()));
+                if (!this.Horizontal) {
+                    if (this.IsMousedForScrolling(moused)) {
+                        var scroll = this.Input.LastScrollWheel - this.Input.ScrollWheel;
+                        if (scroll != 0)
+                            this.CurrentValue += this.StepPerScroll * Math.Sign(scroll);
 
-            // TOUCH INPUT
-            if (!this.Horizontal) {
-                // are we dragging on top of the panel?
-                if (this.Input.GetViewportGesture(GestureType.VerticalDrag, out var drag)) {
-                    // if the element under the drag's start position is on top of the panel, start dragging
-                    var touched = this.Parent.GetElementUnderPos(this.TransformInverseAll(drag.Position));
-                    if (touched != null && touched != this)
-                        this.isTouchDragging = true;
-
-                    // if we're dragging at all, then move the scroller
-                    if (this.isTouchDragging)
-                        this.CurrentValue -= drag.Delta.Y / this.Scale;
-                } else {
-                    this.isTouchDragging = false;
-                }
-            }
-            if (this.Input.ViewportTouchState.Count <= 0) {
-                // if no touch has occured this tick, then reset the variable
-                this.isTouchScrolling = false;
-            } else {
-                foreach (var loc in this.Input.ViewportTouchState) {
-                    var pos = this.TransformInverseAll(loc.Position);
-                    // if we just started touching and are on top of the scroller, then we should start scrolling
-                    if (this.DisplayArea.Contains(pos) && !loc.TryGetPreviousLocation(out _)) {
-                        this.isTouchScrolling = true;
-                        this.scrollStartOffset = pos - this.ScrollerPosition;
-                        break;
+                        if (this.MouseDragScrolling && moused != this && wasMouseUp && isMouseDown)
+                            this.isMouseDragging = true;
                     }
-                    // scroll no matter if we're on the scroller right now
-                    if (this.isTouchScrolling)
-                        this.ScrollToPos(pos);
+                    if (!isMouseDown)
+                        this.isMouseDragging = false;
+                    if (this.isMouseDragging)
+                        this.CurrentValue -= (this.Input.MousePosition.Y - this.Input.LastMousePosition.Y) / this.Scale;
                 }
+
+                // TOUCH INPUT
+                if (!this.Horizontal) {
+                    // are we dragging on top of the panel?
+                    if (this.Input.GetViewportGesture(GestureType.VerticalDrag, out var drag)) {
+                        // if the element under the drag's start position is on top of the panel, start dragging
+                        var touched = this.Parent.GetElementUnderPos(this.TransformInverseAll(drag.Position));
+                        if (touched != null && touched != this)
+                            this.isTouchDragging = true;
+
+                        // if we're dragging at all, then move the scroller
+                        if (this.isTouchDragging)
+                            this.CurrentValue -= drag.Delta.Y / this.Scale;
+                    } else {
+                        this.isTouchDragging = false;
+                    }
+                }
+                if (this.Input.ViewportTouchState.Count <= 0) {
+                    // if no touch has occured this tick, then reset the variable
+                    this.isTouchScrolling = false;
+                } else {
+                    foreach (var loc in this.Input.ViewportTouchState) {
+                        var pos = this.TransformInverseAll(loc.Position);
+                        // if we just started touching and are on top of the scroller, then we should start scrolling
+                        if (this.DisplayArea.Contains(pos) && !loc.TryGetPreviousLocation(out _)) {
+                            this.isTouchScrolling = true;
+                            this.scrollStartOffset = pos - this.ScrollerPosition;
+                            break;
+                        }
+                        // scroll no matter if we're on the scroller right now
+                        if (this.isTouchScrolling)
+                            this.ScrollToPos(pos);
+                    }
+                }
+            } else {
+                this.isMouseScrolling = false;
+                this.isMouseDragging = false;
+                this.isTouchScrolling = false;
+                this.isTouchDragging = false;
             }
 
             if (this.SmoothScrolling && this.scrollAdded != 0) {
