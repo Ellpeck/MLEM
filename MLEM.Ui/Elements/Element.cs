@@ -832,6 +832,11 @@ namespace MLEM.Ui.Elements {
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
                     if (!autoSize.Equals(this.UnscrolledArea.Size, Element.Epsilon)) {
                         recursion++;
+
+                        this.System.Metrics.SummedRecursionDepth++;
+                        if (recursion > this.System.Metrics.MaxRecursionDepth)
+                            this.System.Metrics.MaxRecursionDepth = recursion;
+
                         if (recursion >= 64)
                             throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
                         UpdateDisplayArea(autoSize);

@@ -29,6 +29,15 @@ namespace MLEM.Ui {
         /// The amount of times that <see cref="Element.Update"/> was called.
         /// </summary>
         public uint Updates { get; internal set; }
+        /// <summary>
+        /// The total amount of recursions that <see cref="Element.ForceUpdateArea"/> went through.
+        /// Can be divided by <see cref="ForceAreaUpdates"/> to get an average.
+        /// </summary>
+        public uint SummedRecursionDepth { get; internal set; }
+        /// <summary>
+        /// The maximum recursion depth that <see cref="Element.ForceUpdateArea"/> went through in a single call.
+        /// </summary>
+        public int MaxRecursionDepth { get; internal set; }
 
         /// <summary>
         /// The amount of time that <see cref="Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> took.
@@ -49,6 +58,8 @@ namespace MLEM.Ui {
             this.ForceAreaUpdates = 0;
             this.ActualAreaUpdates = 0;
             this.Updates = 0;
+            this.SummedRecursionDepth = 0;
+            this.MaxRecursionDepth = 0;
         }
 
         /// <summary>
@@ -62,7 +73,7 @@ namespace MLEM.Ui {
         /// <summary>Returns the fully qualified type name of this instance.</summary>
         /// <returns>The fully qualified type name.</returns>
         public override string ToString() {
-            return $"{nameof(this.ForceAreaUpdateTime)}: {this.ForceAreaUpdateTime}, {nameof(this.UpdateTime)}: {this.UpdateTime}, {nameof(this.ForceAreaUpdates)}: {this.ForceAreaUpdates}, {nameof(this.ActualAreaUpdates)}: {this.ActualAreaUpdates}, {nameof(this.Updates)}: {this.Updates}, {nameof(this.DrawTime)}: {this.DrawTime}, {nameof(this.Draws)}: {this.Draws}";
+            return $"{nameof(this.ForceAreaUpdateTime)}: {this.ForceAreaUpdateTime}, {nameof(this.UpdateTime)}: {this.UpdateTime}, {nameof(this.ForceAreaUpdates)}: {this.ForceAreaUpdates}, {nameof(this.ActualAreaUpdates)}: {this.ActualAreaUpdates}, {nameof(this.Updates)}: {this.Updates}, {nameof(this.SummedRecursionDepth)}: {this.SummedRecursionDepth}, {nameof(this.MaxRecursionDepth)}: {this.MaxRecursionDepth}, {nameof(this.DrawTime)}: {this.DrawTime}, {nameof(this.Draws)}: {this.Draws}";
         }
 
         /// <summary>
@@ -78,6 +89,8 @@ namespace MLEM.Ui {
                 ForceAreaUpdates = left.ForceAreaUpdates + right.ForceAreaUpdates,
                 ActualAreaUpdates = left.ActualAreaUpdates + right.ActualAreaUpdates,
                 Updates = left.Updates + right.Updates,
+                SummedRecursionDepth = left.SummedRecursionDepth + right.SummedRecursionDepth,
+                MaxRecursionDepth = left.MaxRecursionDepth + right.MaxRecursionDepth,
                 DrawTime = left.DrawTime + right.DrawTime,
                 Draws = left.Draws + right.Draws
             };
@@ -96,6 +109,8 @@ namespace MLEM.Ui {
                 ForceAreaUpdates = left.ForceAreaUpdates - right.ForceAreaUpdates,
                 ActualAreaUpdates = left.ActualAreaUpdates - right.ActualAreaUpdates,
                 Updates = left.Updates - right.Updates,
+                SummedRecursionDepth = left.SummedRecursionDepth - right.SummedRecursionDepth,
+                MaxRecursionDepth = left.MaxRecursionDepth - right.MaxRecursionDepth,
                 DrawTime = left.DrawTime - right.DrawTime,
                 Draws = left.Draws - right.Draws
             };
