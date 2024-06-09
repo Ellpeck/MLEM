@@ -36,6 +36,7 @@ Improvements
 Fixes
 - Fixed hidden scroll bars inhibiting scrolling on their parent panel
 - Fixed scroll bars doing unnecessary calculations when hidden
+- Fixed auto-sized elements sometimes updating their location based on outdated parent positions
 
 ## 6.3.1
 

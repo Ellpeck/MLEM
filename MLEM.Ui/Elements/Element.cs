@@ -683,20 +683,22 @@ namespace MLEM.Ui.Elements {
                 return;
             this.stopwatch.Restart();
 
-            var parentArea = this.ParentArea;
-            var parentCenterX = parentArea.X + parentArea.Width / 2;
-            var parentCenterY = parentArea.Y + parentArea.Height / 2;
-            var actualSize = this.CalcActualSize(parentArea);
-
             var recursion = 0;
-            UpdateDisplayArea(actualSize);
+            UpdateDisplayArea();
 
             this.stopwatch.Stop();
             this.System.Metrics.ForceAreaUpdateTime += this.stopwatch.Elapsed;
             this.System.Metrics.ForceAreaUpdates++;
 
-            void UpdateDisplayArea(Vector2 newSize) {
+            void UpdateDisplayArea(Vector2? overrideSize = null) {
+                var parentArea = this.ParentArea;
+                var parentCenterX = parentArea.X + parentArea.Width / 2;
+                var parentCenterY = parentArea.Y + parentArea.Height / 2;
+
+                var intendedSize = this.CalcActualSize(parentArea);
+                var newSize = overrideSize ?? intendedSize;
                 var pos = new Vector2();
+
                 switch (this.anchor) {
                     case Anchor.TopLeft:
                     case Anchor.AutoLeft:
@@ -822,9 +824,9 @@ namespace MLEM.Ui.Elements {
                     }
 
                     if (this.TreatSizeAsMinimum) {
-                        autoSize = Vector2.Max(autoSize, actualSize);
+                        autoSize = Vector2.Max(autoSize, intendedSize);
                     } else if (this.TreatSizeAsMaximum) {
-                        autoSize = Vector2.Min(autoSize, actualSize);
+                        autoSize = Vector2.Min(autoSize, intendedSize);
                     }
 
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
