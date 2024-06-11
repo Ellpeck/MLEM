@@ -254,9 +254,9 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "The code for this demo contains some examples for how to query element data. This is the output of that:"));
 
-            var children = this.root.GetChildren();
+            var children = this.root.Children;
             var totalChildren = this.root.GetChildren(regardGrandchildren: true);
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{children.Count()}</b> children, but there are <b>{totalChildren.Count()}</b> when regarding children's children"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{children.Count}</b> children, but there are <b>{totalChildren.Count()}</b> when regarding children's children"));
 
             var textFields = this.root.GetChildren<TextField>();
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{textFields.Count()}</b> text fields"));
@@ -270,7 +270,7 @@ namespace Demos {
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{autoWidthChildren.Count()}</b> auto-width children, <b>{autoWidthButtons.Count()}</b> of which are buttons"));
 
             // select the first element for auto-navigation
-            this.root.Root.SelectElement(this.root.GetChildren().First(c => c.CanBeSelected));
+            this.root.Root.SelectElement(this.root.Children.First(c => c.CanBeSelected));
         }
 
         // This method is used by the wobbling button (see above)

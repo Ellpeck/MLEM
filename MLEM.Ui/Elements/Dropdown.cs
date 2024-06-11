@@ -143,7 +143,7 @@ namespace MLEM.Ui.Elements {
             this.GetGamepadNextElement = (dir, usualNext) => {
                 // Force navigate down to our first child if we're open
                 if (this.IsOpen && dir == Direction2.Down)
-                    return this.Panel.GetChildren().FirstOrDefault(c => c.CanBeSelected) ?? usualNext;
+                    return this.Panel.Children.FirstOrDefault(c => c.CanBeSelected) ?? usualNext;
                 return usualNext;
             };
         }

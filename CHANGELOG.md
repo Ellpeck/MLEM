@@ -33,6 +33,7 @@ Improvements
 - **Include the SpriteBatchContext in OnDrawn, OnElementDrawn and OnSelectedElementDrawn**
 - Allow scrolling panels to set height based on children by setting TreatSizeAsMaximum
 - Track element area update recursion count in UiMetrics
+- Made the Element.Children collection public
 
 Fixes
 - Fixed hidden scroll bars inhibiting scrolling on their parent panel

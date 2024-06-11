@@ -497,7 +497,7 @@ namespace MLEM.Ui.Elements {
         /// A list of all of this element's direct children.
         /// Use <see cref="AddChild{T}"/> or <see cref="RemoveChild"/> to manipulate this list while calling all of the necessary callbacks.
         /// </summary>
-        protected readonly IList<Element> Children;
+        public readonly IList<Element> Children;
         /// <summary>
         /// A list of all of the <see cref="UiAnimation"/> instances that are currently playing.
         /// You can modify this collection through <see cref="PlayAnimation"/> and <see cref="StopAnimation"/>.

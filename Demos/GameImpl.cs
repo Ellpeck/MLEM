@@ -60,7 +60,7 @@ namespace Demos {
                     this.activeDemo = null;
                     selection.IsHidden = false;
                     e.IsHidden = true;
-                    selection.Root.SelectElement(selection.GetChildren().First(c => c.CanBeSelected));
+                    selection.Root.SelectElement(selection.Children.First(c => c.CanBeSelected));
                 },
                 IsHidden = true
             });
