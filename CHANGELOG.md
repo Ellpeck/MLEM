@@ -28,6 +28,7 @@ Additions
 - Added the ability to set the anchor that should be used when a tooltip attaches to an element or the mouse
 - Added the ability to display tooltips using the auto-nav style even when using the mouse
 - Added the ScissorGroup element, which applies a scissor rectangle when drawing its content
+- Added Panel.ScrollToTop and Panel.ScrollToBottom
 
 Improvements
 - **Include the SpriteBatchContext in OnDrawn, OnElementDrawn and OnSelectedElementDrawn**
@@ -39,6 +40,7 @@ Fixes
 - Fixed hidden scroll bars inhibiting scrolling on their parent panel
 - Fixed scroll bars doing unnecessary calculations when hidden
 - Fixed auto-sized elements sometimes updating their location based on outdated parent positions
+- Fixed Panel.ScrollToElement not scrolling correctly when the panel's area is dirty
 
 ## 6.3.1
 

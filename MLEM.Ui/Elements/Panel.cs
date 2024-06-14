@@ -236,7 +236,24 @@ namespace MLEM.Ui.Elements {
             var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
             if (highestValidChild == null)
                 return;
+            this.UpdateAreaIfDirty();
             this.ScrollBar.CurrentValue = (elementY - this.Area.Height / 2 - highestValidChild.Area.Top) / this.Scale + this.ChildPadding.Value.Height / 2;
+        }
+
+        /// <summary>
+        /// Scrolls this panel's <see cref="ScrollBar"/> to the top, causing the top of this panel to be shown.
+        /// </summary>
+        public void ScrollToTop() {
+            this.UpdateAreaIfDirty();
+            this.ScrollBar.CurrentValue = 0;
+        }
+
+        /// <summary>
+        /// Scrolls this panel's <see cref="ScrollBar"/> to the bottom, causing the bottom of this panel to be shown.
+        /// </summary>
+        public void ScrollToBottom() {
+            this.UpdateAreaIfDirty();
+            this.ScrollBar.CurrentValue = this.ScrollBar.MaxValue;
         }
 
         /// <inheritdoc />
