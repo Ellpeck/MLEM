@@ -22,6 +22,7 @@ Additions
 
 Improvements
 - Allow NumberExtensions.GetPoints to include bottom and right coordinates
+- Allow AutoTiling overlayTextures to return null texture regions
 
 ### MLEM.Ui
 Additions

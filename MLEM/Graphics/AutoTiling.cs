@@ -131,8 +131,11 @@ namespace MLEM.Graphics {
         /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
         public static void DrawExtendedAutoTileCorner(SpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
-            if (src >= 0)
-                batch.Draw(overlayTextures(src), pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+            if (src >= 0) {
+                var tex = overlayTextures(src);
+                if (tex != null)
+                    batch.Draw(tex, pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+            }
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
@@ -174,8 +177,11 @@ namespace MLEM.Graphics {
         public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
             if (src >= 0) {
-                var o4 = batch.Add(overlayTextures(src), pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
-                items?.Add(o4);
+                var tex = overlayTextures(src);
+                if (tex != null) {
+                    var o4 = batch.Add(tex, pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+                    items?.Add(o4);
+                }
             }
         }
 
