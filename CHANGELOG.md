@@ -43,6 +43,11 @@ Fixes
 - Fixed auto-sized elements sometimes updating their location based on outdated parent positions
 - Fixed Panel.ScrollToElement not scrolling correctly when the panel's area is dirty
 
+### MLEM.Extended
+Improvements
+- **Added compatibility for MonoGame.Extended 4.0.0**
+- Added compatibility for FNA.Extended
+
 ## 6.3.1
 
 No code changes

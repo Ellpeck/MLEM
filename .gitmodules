@@ -4,3 +4,6 @@
 [submodule "FontStashSharp"]
 	path = ThirdParty/FontStashSharp
 	url = https://github.com/FontStashSharp/FontStashSharp
+[submodule "ThirdParty/MonoGame.Extended"]
+	path = ThirdParty/MonoGame.Extended
+	url = https://github.com/craftworkgames/MonoGame.Extended

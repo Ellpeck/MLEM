@@ -33,8 +33,8 @@ namespace MLEM.Extended.Font {
 
         /// <inheritdoc />
         protected override float MeasureCharacter(int codePoint) {
-            var region = this.Font.GetCharacterRegion(codePoint);
-            return region != null ? new Vector2(region.XAdvance, region.Height).X : 0;
+            var region = this.Font.GetCharacter(codePoint);
+            return region != null ? new Vector2(region.XAdvance, region.TextureRegion.Height).X : 0;
         }
 
         /// <inheritdoc />

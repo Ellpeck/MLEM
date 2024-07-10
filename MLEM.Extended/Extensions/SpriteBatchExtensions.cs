@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Extensions;
-using MonoGame.Extended;
+using ShapeExtensions = MonoGame.Extended.ShapeExtensions;
+using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace MLEM.Extended.Extensions {
     /// <summary>
@@ -54,11 +55,11 @@ namespace MLEM.Extended.Extensions {
         public static void DrawGrid(this SpriteBatch batch, Vector2 start, Vector2 tileSize, Point tileCount, Color gridColor, float gridThickness = 1) {
             for (var y = 0; y < tileCount.Y; y++) {
                 for (var x = 0; x < tileCount.X; x++)
-                    batch.DrawRectangle(start + new Vector2(x, y) * tileSize, tileSize, gridColor, gridThickness / 2);
+                    ShapeExtensions.DrawRectangle(batch, start + new Vector2(x, y) * tileSize, tileSize, gridColor, gridThickness / 2);
             }
 
             var size = tileSize * tileCount.ToVector2() + new Vector2(gridThickness);
-            batch.DrawRectangle(start - new Vector2(gridThickness / 2), size, gridColor, gridThickness / 2);
+            ShapeExtensions.DrawRectangle(batch, start - new Vector2(gridThickness / 2), size, gridColor, gridThickness / 2);
         }
 
     }

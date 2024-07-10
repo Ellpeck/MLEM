@@ -145,7 +145,7 @@ namespace MLEM.Extended.Tiled {
             var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
             if (tilesetTile == null && createStub) {
                 if (!TiledExtensions.StubTilesetTiles.TryGetValue(localId, out tilesetTile)) {
-                    tilesetTile = new TiledMapTilesetTile(localId);
+                    tilesetTile = new TiledMapTilesetTile(localId, null, null);
                     TiledExtensions.StubTilesetTiles.Add(localId, tilesetTile);
                 }
             }

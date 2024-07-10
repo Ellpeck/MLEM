@@ -24,13 +24,18 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
+        <ProjectReference Condition="'$(TargetFramework)'=='net8.0'" Include="..\ThirdParty\MonoGame.Extended\source\MonoGame.Extended\FNA.Extended.csproj">
+            <PrivateAssets>all</PrivateAssets>
+        </ProjectReference>
         <ProjectReference Include="..\ThirdParty\FontStashSharp\src\XNA\FontStashSharp.FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
         <ProjectReference Include="..\ThirdParty\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
+    </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)'!='net8.0'">
         <Compile Remove="Tiled/**" />
         <Compile Remove="Extensions/**" />
         <Compile Remove="Font/GenericBitmapFont.cs" />
