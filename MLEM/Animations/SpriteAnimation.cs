@@ -14,6 +14,10 @@ namespace MLEM.Animations {
 
         private readonly AnimationFrame[] frames;
         /// <summary>
+        /// Returns the amount of <see cref="AnimationFrame"/> entries that this sprite animation has.
+        /// </summary>
+        public int Count => this.frames.Length;
+        /// <summary>
         /// Returns the <see cref="AnimationFrame"/> at the given index.
         /// Index ordering is based on the order that animation frames were added in.
         /// </summary>
@@ -26,15 +30,16 @@ namespace MLEM.Animations {
             get {
                 // we might have overshot the end time by a little bit, so just return the last frame
                 if (this.TimeIntoAnimation >= this.TotalTime)
-                    return this.frames[this.frames.Length - 1];
+                    return this[this.Count - 1];
                 var accum = 0D;
-                foreach (var frame in this.frames) {
+                for (var i = 0; i < this.Count; i++) {
+                    var frame = this[i];
                     accum += frame.Seconds;
                     if (accum >= this.TimeIntoAnimation)
                         return frame;
                 }
                 // if we're here then the time is negative for some reason, so just return the first frame
-                return this.frames[0];
+                return this[0];
             }
         }
         /// <summary>
