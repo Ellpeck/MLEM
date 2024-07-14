@@ -42,7 +42,7 @@ namespace MLEM.Animations {
         /// <summary>
         /// Returns the amount of <see cref="SpriteAnimation"/> entries that this sprite animation group has.
         /// </summary>
-        public int Count;
+        public int Count => this.animations.Count;
         /// <summary>
         /// Returns the <see cref="SpriteAnimation"/> at the given index.
         /// </summary>
