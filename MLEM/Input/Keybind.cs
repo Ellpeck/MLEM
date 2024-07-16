@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -21,43 +20,27 @@ namespace MLEM.Input {
         private static readonly Combination[] EmptyCombinations = new Combination[0];
         private static readonly GenericInput[] EmptyInputs = new GenericInput[0];
 
-        /// <summary>
-        /// A read-only collection containing all combinations that this keybind has.
-        /// This property is serializable using the <see cref="DataMemberAttribute"/>.
-        /// </summary>
         [DataMember]
-        public readonly IList<Combination> Combinations;
-
-        private readonly List<Combination> combinations = new List<Combination>();
+        private Combination[] combinations = Keybind.EmptyCombinations;
 
         /// <summary>
         /// Creates a new keybind and adds the given key and modifiers using <see cref="Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>
         /// </summary>
         /// <param name="key">The key to be pressed.</param>
         /// <param name="modifiers">The modifier keys that have to be held down.</param>
-        public Keybind(GenericInput key, params GenericInput[] modifiers) : this() {
+        public Keybind(GenericInput key, params GenericInput[] modifiers) {
             this.Add(key, modifiers);
         }
 
         /// <inheritdoc cref="Keybind(GenericInput, GenericInput[])"/>
-        public Keybind(GenericInput key, ModifierKey modifier) : this() {
+        public Keybind(GenericInput key, ModifierKey modifier) {
             this.Add(key, modifier);
-        }
-
-        /// <summary>
-        /// Creates a new keybind from the given set of <paramref name="combinations"/>. This constructor can be used when manually serializing and deserializing a keybind's <see cref="Combinations"/>.
-        /// </summary>
-        /// <param name="combinations">The combinations to add.</param>
-        public Keybind(IList<Combination> combinations) : this() {
-            this.combinations.AddRange(combinations);
         }
 
         /// <summary>
         /// Creates a new keybind with no default combinations
         /// </summary>
-        public Keybind() {
-            this.Combinations = new ReadOnlyCollection<Combination>(this.combinations);
-        }
+        public Keybind() {}
 
         /// <summary>
         /// Adds a new key combination to this keybind that can optionally be pressed for the keybind to trigger.
@@ -75,7 +58,7 @@ namespace MLEM.Input {
         /// <param name="combination">The combination to add.</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Add(Combination combination) {
-            this.combinations.Add(combination);
+            this.combinations = this.combinations.Append(combination).ToArray();
             return this;
         }
 
@@ -104,7 +87,7 @@ namespace MLEM.Input {
         /// <param name="combination">The combination to insert.</param>
         /// <returns>This keybind, for chaining.</returns>
         public Keybind Insert(int index, Combination combination) {
-            this.combinations.Insert(index, combination);
+            this.combinations = this.combinations.Take(index).Append(combination).Concat(this.combinations.Skip(index)).ToArray();
             return this;
         }
 
@@ -120,7 +103,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Clear() {
-            this.combinations.Clear();
+            this.combinations = Keybind.EmptyCombinations;
             return this;
         }
 
@@ -130,10 +113,7 @@ namespace MLEM.Input {
         /// <param name="predicate">The predicate to match against</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Remove(Func<Combination, int, bool> predicate) {
-            // we can't use RemoveAll here because it doesn't provide an index
-            var keep = this.combinations.Where((c, i) => !predicate(c, i)).ToArray();
-            this.combinations.Clear();
-            this.combinations.AddRange(keep);
+            this.combinations = this.combinations.Where((c, i) => !predicate(c, i)).ToArray();
             return this;
         }
 
@@ -144,7 +124,7 @@ namespace MLEM.Input {
         /// <param name="other">The keybind to copy from</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind CopyFrom(Keybind other) {
-            this.combinations.AddRange(other.combinations);
+            this.combinations = this.combinations.Concat(other.combinations).ToArray();
             return this;
         }
 
@@ -305,7 +285,7 @@ namespace MLEM.Input {
         /// <param name="combination">The combination, or default if this method returns false.</param>
         /// <returns>Whether the combination could be successfully retrieved or the index was out of bounds of this keybind's combination collection.</returns>
         public bool TryGetCombination(int index, out Combination combination) {
-            if (index >= 0 && index < this.combinations.Count) {
+            if (index >= 0 && index < this.combinations.Length) {
                 combination = this.combinations[index];
                 return true;
             } else {
