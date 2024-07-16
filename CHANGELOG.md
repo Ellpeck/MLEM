@@ -20,8 +20,10 @@ Additions
 - **Added the ability for formatted (tokenized) strings to be drawn with custom rotation, origin and flipping**
 - Added a RectangleF.FromCorners overload that accepts points
 - Added indexers and Count to SpriteAnimation and SpriteAnimationGroup
+- Added a Keybind constructor that accepts a set of combinations
 
 Improvements
+- **Made the Keybind.Combinations collection a public property**
 - Allow NumberExtensions.GetPoints to include bottom and right coordinates
 - Allow AutoTiling overlayTextures to return null texture regions
 
