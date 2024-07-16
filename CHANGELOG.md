@@ -18,6 +18,7 @@ Jump to version:
 ### MLEM
 Additions
 - **Added the ability for formatted (tokenized) strings to be drawn with custom rotation, origin and flipping**
+- **Added a public Combinations collection and associated constructor to Keybind**
 - Added a RectangleF.FromCorners overload that accepts points
 - Added indexers and Count to SpriteAnimation and SpriteAnimationGroup
 
