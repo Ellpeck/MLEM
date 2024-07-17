@@ -21,9 +21,6 @@ namespace MLEM.Font {
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.
         /// </summary>
         public const char Emsp = '\u2003';
-        /// <inheritdoc cref="Emsp"/>
-        [Obsolete("Use the Emsp field instead.")]
-        public const char OneEmSpace = GenericFont.Emsp;
         /// <summary>
         /// This field holds the unicode representation of a non-breaking space.
         /// Whereas a regular <see cref="SpriteFont"/> would have to explicitly support this character for width calculations, generic fonts implicitly support it in <see cref="MeasureString(string,bool)"/>.

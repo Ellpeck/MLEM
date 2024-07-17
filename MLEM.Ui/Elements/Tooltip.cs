@@ -81,11 +81,6 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// The paragraph of text that this tooltip displays
-        /// </summary>
-        [Obsolete("Use Paragraphs instead, which allows for multiple paragraphs to be managed by one tooltip")]
-        public Paragraph Paragraph;
-        /// <summary>
         /// Determines whether this tooltip should display when <see cref="UiControls.IsAutoNavMode"/> is true, which is when the UI is being controlled using a keyboard or gamepad.
         /// If this tooltip is displayed in auto-nav mode, it will display below the selected element with the <see cref="AutoNavOffset"/> applied.
         /// </summary>
@@ -115,11 +110,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public Tooltip(string text = null, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-            if (text != null) {
-#pragma warning disable CS0618
-                this.Paragraph = this.AddParagraph(text);
-#pragma warning restore CS0618
-            }
+            if (text != null)
+                this.AddParagraph(text);
             this.Init(elementToHover);
         }
 
@@ -130,9 +122,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="elementToHover">The element that should automatically cause the tooltip to appear and disappear when hovered and not hovered, respectively</param>
         public Tooltip(Paragraph.TextCallback textCallback, Element elementToHover = null) :
             base(Anchor.TopLeft, Vector2.One, Vector2.Zero) {
-#pragma warning disable CS0618
-            this.Paragraph = this.AddParagraph(textCallback);
-#pragma warning restore CS0618
+            this.AddParagraph(textCallback);
             this.Init(elementToHover);
         }
 
@@ -326,12 +316,6 @@ namespace MLEM.Ui.Elements {
         private void UpdateParagraphsStyles() {
             foreach (var paragraph in this.Paragraphs)
                 this.UpdateParagraphStyle(paragraph);
-
-#pragma warning disable CS0618
-            // still set style here in case someone changed the paragraph field manually
-            if (this.Paragraph != null)
-                this.UpdateParagraphStyle(this.Paragraph);
-#pragma warning restore CS0618
         }
 
         private void UpdateParagraphStyle(Paragraph paragraph) {

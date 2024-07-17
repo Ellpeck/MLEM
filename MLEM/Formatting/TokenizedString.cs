@@ -137,12 +137,6 @@ namespace MLEM.Formatting {
             }
         }
 
-        /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
-        [Obsolete("Measure is deprecated. Use GetArea, which returns the string's total size measurement, instead.")]
-        public Vector2 Measure(GenericFont font) {
-            return this.GetArea().Size;
-        }
-
         /// <summary>
         /// Measures the area that this entire tokenized string and all of its <see cref="Tokens"/> take up and returns it as a <see cref="RectangleF"/>.
         /// </summary>

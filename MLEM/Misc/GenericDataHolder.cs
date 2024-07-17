@@ -13,12 +13,6 @@ namespace MLEM.Misc {
         private Dictionary<string, object> data;
 
         /// <inheritdoc />
-        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
-        public void SetData(string key, object data) {
-            this.SetData<object>(key, data);
-        }
-
-        /// <inheritdoc />
         public void SetData<T>(string key, T data) {
             if (EqualityComparer<T>.Default.Equals(data, default)) {
                 if (this.data != null)
@@ -51,14 +45,6 @@ namespace MLEM.Misc {
     /// A lot of MLEM components extend this class to allow for users to add additional data to them easily.
     /// </summary>
     public interface IGenericDataHolder {
-
-        /// <summary>
-        /// Store a piece of generic data on this object.
-        /// </summary>
-        /// <param name="key">The key to store the data by</param>
-        /// <param name="data">The data to store in the object</param>
-        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
-        void SetData(string key, object data);
 
         /// <summary>
         /// Store a piece of generic data on this object.

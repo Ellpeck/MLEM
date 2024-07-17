@@ -169,14 +169,14 @@ namespace MLEM.Formatting {
                 // if we've reached the end of the string
                 if (next == null) {
                     var sub = s.Substring(rawIndex, s.Length - rawIndex);
-                    tokens.Add(new Token(applied.ToArray(), index, rawIndex, TextFormatter.StripFormatting(font, sub, applied), sub));
+                    tokens.Add(new Token(applied.ToArray(), index, rawIndex, TextFormatter.StripFormatting(sub, applied.Select(c => c.Regex)), sub));
                     break;
                 }
                 allCodes.Add(next);
 
                 // create a new token for the content up to the next code
                 var ret = s.Substring(rawIndex, next.Match.Index - rawIndex);
-                var strippedRet = TextFormatter.StripFormatting(font, ret, applied);
+                var strippedRet = TextFormatter.StripFormatting(ret, applied.Select(c => c.Regex));
                 tokens.Add(new Token(applied.ToArray(), index, rawIndex, strippedRet, ret));
 
                 // move to the start of the next code
@@ -187,7 +187,7 @@ namespace MLEM.Formatting {
                 applied.RemoveAll(c => c.EndsHere(next) || next.EndsOther(c));
                 applied.Add(next);
             }
-            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(font, s, allCodes), tokens.ToArray(), allCodes.ToArray());
+            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(s, allCodes.Select(c => c.Regex)), tokens.ToArray(), allCodes.ToArray());
         }
 
         /// <summary>
@@ -224,9 +224,7 @@ namespace MLEM.Formatting {
         /// <param name="s">The string to strip formatting codes from.</param>
         /// <returns>The stripped string.</returns>
         public string StripAllFormatting(string s) {
-            foreach (var regex in this.Codes.Keys)
-                s = regex.Replace(s, string.Empty);
-            return s;
+            return TextFormatter.StripFormatting(s, this.Codes.Keys);
         }
 
         private Code GetNextCode(string s, int index, int maxIndex = int.MaxValue) {
@@ -238,14 +236,9 @@ namespace MLEM.Formatting {
             return constructor?.Invoke(this, match, regex);
         }
 
-        private static string StripFormatting(GenericFont font, string s, IEnumerable<Code> codes) {
-            foreach (var code in codes) {
-#pragma warning disable CS0618
-                // this can be combined with StripAllFormatting (which was added after GetReplacementString was deprecated) once GetReplacementString is removed
-                // (just make this method accept a set of regular expressions, and then call it with all code keys in StripAllFormatting, and the applied codes' regexes in Tokenize)
-                s = code.Regex.Replace(s, code.GetReplacementString(font));
-#pragma warning restore CS0618
-            }
+        private static string StripFormatting(string s, IEnumerable<Regex> codes) {
+            foreach (var code in codes)
+                s = code.Replace(s, string.Empty);
             return s;
         }
 

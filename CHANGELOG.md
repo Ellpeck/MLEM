@@ -29,6 +29,7 @@ Improvements
 
 Removals
 - Marked SpriteAnimation.ByName obsolete in favor of the new indexer
+- **Removed obsolete methods and types CharExtensions, GenericFont.OneEmSpace, Code.GetReplacementString, TokenizedString.Measure, Keybind.GetDownTime, Keybind.GetUpTime, Keybind.GetTimeSincePress, EnumHelper, non-generic GenericDataHolder methods, as well as InputHandler key, gamepad and mouse-specific methods**
 
 ### MLEM.Ui
 Additions
@@ -49,10 +50,17 @@ Fixes
 - Fixed auto-sized elements sometimes updating their location based on outdated parent positions
 - Fixed Panel.ScrollToElement not scrolling correctly when the panel's area is dirty
 
+Removals
+- **Removed obsolete methods and properties Element.BeginImpl, Element.OnDisposed, parameter-heavy versions of Element.DrawTransformed and Element.Draw, Element.DrawEarly, Element.Dispose, Element.BeginDelegate, Tooltip.Paragraph, UiSystem.BlendState, UiSystem.SamplerState, UiSystem.DepthStencilState, UiSystem.Effect, as well as the StyleProp equality members**
+
 ### MLEM.Extended
 Improvements
 - **Added compatibility for MonoGame.Extended 4.0.0**
 - Added compatibility for FNA.Extended
+
+### MLEM.Data
+Removals
+- **Removed obsolete types DynamicEnumConverter, CopyExtensions, DynamicEnum, NetBufferSerializer, and NetExtensions**
 
 ## 6.3.1
 

@@ -76,29 +76,6 @@ namespace MLEM.Ui {
         /// </summary>
         public float DrawAlpha = 1;
         /// <summary>
-        /// The blend state that this ui system and all of its elements draw with
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public BlendState BlendState;
-        /// <summary>
-        /// The sampler state that this ui system and all of its elements draw with.
-        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"/>, as that is the one that works best with pixel graphics.
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public SamplerState SamplerState;
-        /// <summary>
-        /// The depth stencil state that this ui system and all of its elements draw with.
-        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.DepthStencilState.None"/>, which is also the default for <c>SpriteBatch.Begin</c>.
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public DepthStencilState DepthStencilState;
-        /// <summary>
-        /// The effect that this ui system and all of its elements draw with.
-        /// The default is null, which means that no custom effect will be used.
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public Effect Effect;
-        /// <summary>
         /// The spriteb atch context that this ui system and all of its elements should draw with.
         /// The default <see cref="MLEM.Graphics.SpriteBatchContext.SamplerState"/> is <see cref="Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"/>, as that is the one that works best with pixel graphics.
         /// </summary>
@@ -280,27 +257,6 @@ namespace MLEM.Ui {
         }
 
         /// <summary>
-        /// Draws any <see cref="Panel"/> and other elements that draw onto <see cref="RenderTarget2D"/> rather than directly onto the screen.
-        /// For drawing in this manner to work correctly, this method has to be called before your <see cref="GraphicsDevice"/> is cleared, and before everything else in your game is drawn.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        [Obsolete("DrawEarly is deprecated. Calling it is not required anymore, and there is no replacement.")]
-        public void DrawEarly(GameTime time, SpriteBatch batch) {
-            this.Metrics.ResetDraws();
-            this.stopwatch.Restart();
-
-            foreach (var root in this.rootElements) {
-                if (!root.Element.IsHidden)
-                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
-            }
-
-            this.stopwatch.Stop();
-            this.Metrics.DrawTime += this.stopwatch.Elapsed;
-            this.drewEarly = true;
-        }
-
-        /// <summary>
         /// Draws any <see cref="Element"/>s onto the screen.
         /// </summary>
         /// <param name="time">The game's time</param>
@@ -316,21 +272,8 @@ namespace MLEM.Ui {
                 var context = this.SpriteBatchContext;
                 context.TransformMatrix = root.Transform * context.TransformMatrix;
 
-#pragma warning disable CS0618
-                if (this.BlendState != null)
-                    context.BlendState = this.BlendState;
-                if (this.SamplerState != null)
-                    context.SamplerState = this.SamplerState;
-                if (this.DepthStencilState != null)
-                    context.DepthStencilState = this.DepthStencilState;
-                if (this.Effect != null)
-                    context.Effect = this.Effect;
-#pragma warning restore CS0618
-
                 batch.Begin(context);
-#pragma warning disable CS0618
-                root.Element.DrawTransformed(time, batch, this.DrawAlpha * root.Element.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
-#pragma warning restore CS0618
+                root.Element.DrawTransformed(time, batch, this.DrawAlpha * root.Element.DrawAlpha, context);
                 batch.End();
             }
 

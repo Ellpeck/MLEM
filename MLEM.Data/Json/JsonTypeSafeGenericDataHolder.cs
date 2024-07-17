@@ -20,12 +20,6 @@ namespace MLEM.Data.Json {
         private Dictionary<string, JsonTypeSafeWrapper> data;
 
         /// <inheritdoc />
-        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
-        public void SetData(string key, object data) {
-            this.SetData<object>(key, data);
-        }
-
-        /// <inheritdoc />
         public void SetData<T>(string key, T data) {
             if (EqualityComparer<T>.Default.Equals(data, default)) {
                 if (this.data != null)

@@ -13,9 +13,6 @@ namespace MLEM.Data.Json {
         /// </summary>
         public static readonly JsonConverter[] Converters = {
             new Direction2Converter(),
-#pragma warning disable CS0618
-            new DynamicEnumConverter(),
-#pragma warning restore CS0618
             new PointConverter(),
             new RectangleConverter(),
             new RectangleFConverter(),

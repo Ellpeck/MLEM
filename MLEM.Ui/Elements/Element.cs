@@ -18,7 +18,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// This class represents a generic base class for ui elements of a <see cref="UiSystem"/>.
     /// </summary>
-    public abstract class Element : GenericDataHolder, IDisposable {
+    public abstract class Element : GenericDataHolder {
 
         /// <summary>
         /// This field holds an epsilon value used in element <see cref="Size"/>, position and resulting <see cref="Area"/> calculations to mitigate floating point rounding inaccuracies.
@@ -202,14 +202,6 @@ namespace MLEM.Ui.Elements {
         /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
         /// </summary>
         public Matrix Transform = Matrix.Identity;
-        /// <summary>
-        /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
-        /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
-        /// </summary>
-#pragma warning disable CS0618
-        [Obsolete("BeginImpl is deprecated. You can create a custom element class and override Draw instead.")]
-        public BeginDelegate BeginImpl;
-#pragma warning restore CS0618
         /// <summary>
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
@@ -486,12 +478,6 @@ namespace MLEM.Ui.Elements {
         /// Event that is called when this element is removed from a <see cref="UiSystem"/>, that is, when this element's <see cref="System"/> is set to <see langword="null"/>.
         /// </summary>
         public GenericCallback OnRemovedFromUi;
-        /// <summary>
-        /// Event that is called when this element's <see cref="Dispose"/> method is called.
-        /// This event is useful for unregistering global event handlers when this object should be destroyed.
-        /// </summary>
-        [Obsolete("OnDisposed will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
-        public GenericCallback OnDisposed;
 
         /// <summary>
         /// A list of all of this element's direct children.
@@ -568,12 +554,6 @@ namespace MLEM.Ui.Elements {
 
             this.SetAreaDirty();
             this.SetSortedChildrenDirty();
-        }
-
-        /// <inheritdoc />
-        [Obsolete("Dispose will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
-        ~Element() {
-            this.Dispose();
         }
 
         /// <summary>
@@ -1077,32 +1057,14 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
-        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        /// <param name="alpha">The alpha to draw this element and its children with</param>
-        /// <param name="blendState">The blend state that is used for drawing</param>
-        /// <param name="samplerState">The sampler state that is used for drawing</param>
-        /// <param name="effect">The effect that is used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
-        /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("Use DrawTransformed that takes a SpriteBatchContext instead")]
-        public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            this.DrawTransformed(time, batch, alpha, new SpriteBatchContext(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix));
-        }
-
-        /// <summary>
-        /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
-        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
+        /// If <see cref="Transform"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="context">The sprite batch context to use for drawing</param>
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-#pragma warning disable CS0618
-            var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
+            var customDraw = this.Transform != Matrix.Identity;
             var transformed = context;
             transformed.TransformMatrix = this.Transform * transformed.TransformMatrix;
             // TODO ending and beginning again when the matrix changes isn't ideal (https://github.com/MonoGame/MonoGame/issues/3156)
@@ -1112,12 +1074,9 @@ namespace MLEM.Ui.Elements {
                 // begin our own draw call
                 batch.Begin(transformed);
             }
-#pragma warning restore CS0618
 
             // draw content in custom begin call
-#pragma warning disable CS0618
-            this.Draw(time, batch, alpha, transformed.BlendState, transformed.SamplerState, transformed.DepthStencilState, transformed.Effect, transformed.TransformMatrix);
-#pragma warning restore CS0618
+            this.Draw(time, batch, alpha, transformed);
             if (this.System != null)
                 this.System.Metrics.Draws++;
 
@@ -1136,23 +1095,6 @@ namespace MLEM.Ui.Elements {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
         /// <param name="alpha">The alpha to draw this element and its children with</param>
-        /// <param name="blendState">The blend state that is used for drawing</param>
-        /// <param name="samplerState">The sampler state that is used for drawing</param>
-        /// <param name="effect">The effect that is used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
-        /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("Use Draw that takes a SpriteBatchContext instead")]
-        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            this.Draw(time, batch, alpha, new SpriteBatchContext(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix));
-        }
-
-        /// <summary>
-        /// Draws this element and all of its children. Override this method to draw the content of custom elements.
-        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has already been called with custom <see cref="Transform"/> etc. applied.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="context">The sprite batch context to use for drawing</param>
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             this.System.InvokeOnElementDrawn(this, time, batch, alpha, context);
@@ -1160,32 +1102,8 @@ namespace MLEM.Ui.Elements {
                 this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha, context);
 
             foreach (var child in this.GetRelevantChildren()) {
-                if (!child.IsHidden) {
-#pragma warning disable CS0618
-                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
-#pragma warning restore CS0618
-                }
-            }
-        }
-
-        /// <summary>
-        /// Draws this element and all of its <see cref="GetRelevantChildren"/> early.
-        /// Drawing early involves drawing onto <see cref="RenderTarget2D"/> instances rather than onto the screen.
-        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has not yet been called.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        /// <param name="alpha">The alpha to draw this element and its children with</param>
-        /// <param name="blendState">The blend state that is used for drawing</param>
-        /// <param name="samplerState">The sampler state that is used for drawing</param>
-        /// <param name="effect">The effect that is used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
-        /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("DrawEarly is deprecated. For custom implementations, see Panel.Draw for how to replace this method.")]
-        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
-                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState, depthStencilState, effect, matrix);
+                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context);
             }
         }
 
@@ -1232,13 +1150,6 @@ namespace MLEM.Ui.Elements {
                 return true;
             }
             return false;
-        }
-
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        [Obsolete("Dispose will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
-        public virtual void Dispose() {
-            this.OnDisposed?.Invoke(this);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc />
@@ -1417,21 +1328,6 @@ namespace MLEM.Ui.Elements {
         /// <param name="dir">The direction of the gamepad button that was pressed</param>
         /// <param name="usualNext">The element that is considered to be the next element by default</param>
         public delegate Element GamepadNextElementCallback(Direction2 dir, Element usualNext);
-
-        /// <summary>
-        /// A delegate method used for <see cref="BeginImpl"/>
-        /// </summary>
-        /// <param name="element">The custom draw group</param>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch used for drawing</param>
-        /// <param name="alpha">This element's draw alpha</param>
-        /// <param name="blendState">The blend state used for drawing</param>
-        /// <param name="samplerState">The sampler state used for drawing</param>
-        /// <param name="effect">The effect used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state used for drawing</param>
-        /// <param name="matrix">The transform matrix used for drawing</param>
-        [Obsolete("BeginDelegate is deprecated. You can create a custom element class and override Draw instead.")]
-        public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix);
 
     }
 }

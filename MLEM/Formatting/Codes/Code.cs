@@ -80,17 +80,6 @@ namespace MLEM.Formatting.Codes {
         /// <param name="time">The game's time</param>
         public virtual void Update(GameTime time) {}
 
-        /// <summary>
-        /// Returns the string that this formatting code should be replaced with.
-        /// Usually, you'll just want an empty string here, but some formatting codes (like <see cref="ImageCode"/>) require their space to be filled by spaces.
-        /// </summary>
-        /// <param name="font">The font that is used</param>
-        /// <returns>The replacement string for this formatting code</returns>
-        [Obsolete("This method is deprecated. Use GetSelfWidth to add additional width to this code and DrawSelf or DrawCharacter to draw additional items.")]
-        public virtual string GetReplacementString(GenericFont font) {
-            return string.Empty;
-        }
-
         /// <inheritdoc cref="Formatting.Token.DrawCharacter"/>
         public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             return false;
