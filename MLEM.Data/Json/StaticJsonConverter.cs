@@ -58,8 +58,12 @@ namespace MLEM.Data.Json {
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, T value, JsonSerializer serializer) {
+            if (value == null) {
+                writer.WriteNull();
+                return;
+            }
             if (!this.inverse.TryGetValue(value, out var key))
-                throw new InvalidOperationException($"Cannot write {value} that is not a registered entry");
+                throw new KeyNotFoundException($"Cannot write {value} that is not a registered entry");
             writer.WriteValue(key);
         }
 
