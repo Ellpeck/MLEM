@@ -46,5 +46,4 @@ There are several other libraries and tools that work well in combination with M
 - [Contentless](https://github.com/Ellpeck/Contentless), a tool that removes the need to add assets to the MonoGame Content Pipeline manually
 - [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET applications into several distributable formats
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project
-- [DynamicEnums](https://github.com/Ellpeck/DynamicEnums), a package that provides enum-like single-instance values with many additional capabilities
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended), a package that also provides several additional features for MonoGame
