@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 
@@ -18,14 +17,17 @@ namespace MLEM.Data.Json {
 
         private readonly Dictionary<string, T> entries;
         private readonly Dictionary<T, string> inverse;
+        private readonly bool throwOnRead;
 
         /// <summary>
         /// Creates a new static json converter using the given underlying <see cref="Dictionary{T,T}"/>.
         /// </summary>
         /// <param name="entries">The dictionary to use</param>
-        public StaticJsonConverter(Dictionary<string, T> entries) {
+        /// <param name="throwOnRead">Whether to throw a <see cref="KeyNotFoundException"/> in <see cref="ReadJson"/> if a key is missing, or throw a <see cref="JsonSerializationException"/> if a stored json value is not a string. If this is <see langword="false"/>, <see cref="ReadJson"/> returns <see langword="default"/> instead.</param>
+        public StaticJsonConverter(Dictionary<string, T> entries, bool throwOnRead = false) {
             this.entries = entries;
-            this.inverse = entries.ToDictionary(kv => kv.Value, kv => kv.Key);
+            this.inverse = StaticJsonConverter<T>.CreateInverse(entries);
+            this.throwOnRead = throwOnRead;
         }
 
         /// <summary>
@@ -38,6 +40,18 @@ namespace MLEM.Data.Json {
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
 #endif
             Type type, string memberName) : this(StaticJsonConverter<T>.GetEntries(type, memberName)) {}
+
+        /// <summary>
+        /// Creates a new static json converter by finding the underlying <see cref="Dictionary{TKey,TValue}"/> from the given type and member name
+        /// </summary>
+        /// <param name="type">The type that the dictionary is declared in</param>
+        /// <param name="memberName">The name of the dictionary itself</param>
+        /// <param name="throwOnRead">Whether to throw a <see cref="KeyNotFoundException"/> in <see cref="ReadJson"/> if a key is missing, or throw a <see cref="JsonSerializationException"/> if a stored json value is not a string. If this is <see langword="false"/>, <see cref="ReadJson"/> returns <see langword="default"/> instead.</param>
+        public StaticJsonConverter(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+            Type type, string memberName, bool throwOnRead) : this(StaticJsonConverter<T>.GetEntries(type, memberName), throwOnRead) {}
 
         /// <summary>Writes the JSON representation of the object.</summary>
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
@@ -57,10 +71,15 @@ namespace MLEM.Data.Json {
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>The object value.</returns>
         public override T ReadJson(JsonReader reader, Type objectType, T existingValue, bool hasExistingValue, JsonSerializer serializer) {
-            var val = reader.Value?.ToString();
-            if (val == null)
+            if (reader.Value == null)
                 return default;
-            this.entries.TryGetValue(val, out var ret);
+            if (reader.TokenType != JsonToken.String) {
+                if (this.throwOnRead)
+                    throw new JsonSerializationException($"Expected a string value for {reader.Value}, got a {reader.TokenType}");
+                return default;
+            }
+            if (!this.entries.TryGetValue((string) reader.Value, out var ret) && this.throwOnRead)
+                throw new KeyNotFoundException($"Could not find registered entry for {reader.Value}");
             return ret;
         }
 
@@ -74,6 +93,16 @@ namespace MLEM.Data.Json {
             if (value == null)
                 throw new ArgumentException($"There is no property or field value for name {memberName}", nameof(memberName));
             return value as Dictionary<string, T> ?? throw new InvalidCastException($"{value} is not of expected type {typeof(T)}");
+        }
+
+        private static Dictionary<T, string> CreateInverse(Dictionary<string, T> entries) {
+            var ret = new Dictionary<T, string>();
+            foreach (var entry in entries) {
+                if (ret.ContainsKey(entry.Value))
+                    throw new ArgumentException($"Cannot create a static json converter with duplicate value {entry.Value}");
+                ret.Add(entry.Value, entry.Key);
+            }
+            return ret;
         }
 
     }

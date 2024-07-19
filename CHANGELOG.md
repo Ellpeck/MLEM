@@ -63,6 +63,7 @@ Improvements
 ### MLEM.Data
 Improvements
 - **Moved extension methods into matching namespaces to avoid unexpected suggestions**
+- Allow static json converters to throw an exception if a key does not exist
 
 Removals
 - **Removed obsolete types DynamicEnumConverter, CopyExtensions, DynamicEnum, NetBufferSerializer, and NetExtensions**
