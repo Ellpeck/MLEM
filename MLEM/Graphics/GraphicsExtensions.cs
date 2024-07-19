@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MLEM.Extensions {
+namespace MLEM.Graphics {
     /// <summary>
     /// A set of extensions for dealing with <see cref="GraphicsDevice"/> and <see cref="GraphicsDeviceManager"/>
     /// </summary>

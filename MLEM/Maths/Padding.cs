@@ -2,7 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 
-namespace MLEM.Misc {
+namespace MLEM.Maths {
     /// <summary>
     /// Represents a generic padding.
     /// A padding is an object of data that stores an offset from each side of a rectangle or square.

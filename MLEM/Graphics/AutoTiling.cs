@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Textures;
 
 namespace MLEM.Graphics {
@@ -128,7 +128,7 @@ namespace MLEM.Graphics {
             AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od);
         }
 
-        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
         public static void DrawExtendedAutoTileCorner(SpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
             if (src >= 0) {
@@ -151,7 +151,7 @@ namespace MLEM.Graphics {
             AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od, items);
         }
 
-        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
         public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, TextureRegion overlayTexture, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var src = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo, corner);
             if (src != Rectangle.Empty) {
@@ -173,7 +173,7 @@ namespace MLEM.Graphics {
             AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od, items);
         }
 
-        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
         public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
             if (src >= 0) {

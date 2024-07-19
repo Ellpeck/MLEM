@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Animations;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;

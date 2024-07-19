@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework.Audio;
-using MLEM.Extensions;
 
 namespace MLEM.Sound {
     /// <summary>

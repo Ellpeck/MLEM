@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Input;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
 #if NET452
-using MLEM.Extensions;
 #endif
 
 namespace MLEM.Ui {

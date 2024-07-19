@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Microsoft.Xna.Framework;
 
-namespace MLEM.Extensions {
+namespace MLEM.Graphics {
     /// <summary>
     /// A set of extensions for dealing with <see cref="Color"/> objects.
     /// </summary>

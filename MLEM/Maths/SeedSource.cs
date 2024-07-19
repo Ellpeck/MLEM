@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MLEM.Misc {
+namespace MLEM.Maths {
     /// <summary>
     /// A seed source contains an <see cref="int"/> value which can be used as a seed for a <see cref="System.Random"/> or <see cref="SingleRandom"/>. Seed sources feature a convenient way to add multiple seeds using <see cref="Add(int)"/>, which will be sufficiently scrambled to be deterministically pseudorandom and combined into a single <see cref="int"/>.
     /// This struct behaves similarly to <c>System.HashCode</c> in many ways, with an important distinction being that <see cref="SeedSource"/>'s scrambling procedure is not considered an implementation detail, and will stay consistent between process executions.

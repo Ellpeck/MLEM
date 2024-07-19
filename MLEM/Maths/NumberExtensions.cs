@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MLEM.Misc;
 
-namespace MLEM.Extensions {
+namespace MLEM.Maths {
     /// <summary>
     /// A set of extensions for dealing with <see cref="float"/>, <see cref="Vector2"/>, <see cref="Vector3"/>, <see cref="Vector4"/>, <see cref="Point"/>, <see cref="Matrix"/>, <see cref="Rectangle"/> and <see cref="RectangleF"/>
     /// </summary>

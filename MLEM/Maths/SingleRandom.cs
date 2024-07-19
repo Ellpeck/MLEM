@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MLEM.Extensions;
 
-namespace MLEM.Misc {
+namespace MLEM.Maths {
     /// <summary>
     /// The SingleRandom class allows generating single, one-off pseudorandom numbers based on a seed or a <see cref="SeedSource"/>.
     /// The types of numbers that can be generated are <see cref="int"/> and <see cref="float"/>, both of which can be generated with specific minimum and maximum values if desired.
@@ -167,7 +166,7 @@ namespace MLEM.Misc {
             return RandomExtensions.GetRandomWeightedEntry(entries, weightFunc, SingleRandom.Single(source));
         }
 
-        /// <inheritdoc cref="GetRandomWeightedEntry{T}(System.Collections.Generic.ICollection{T},System.Func{T,int},MLEM.Misc.SeedSource)"/>
+        /// <inheritdoc cref="GetRandomWeightedEntry{T}(System.Collections.Generic.ICollection{T},System.Func{T,int},MLEM.Maths.SeedSource)"/>
         public static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, float> weightFunc, SeedSource source) {
             return RandomExtensions.GetRandomWeightedEntry(entries, weightFunc, SingleRandom.Single(source));
         }

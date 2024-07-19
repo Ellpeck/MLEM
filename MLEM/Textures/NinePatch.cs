@@ -1,7 +1,8 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
+using MLEM.Graphics;
+using MLEM.Maths;
 using MLEM.Misc;
 
 namespace MLEM.Textures {
@@ -173,17 +174,17 @@ namespace MLEM.Textures {
             }
         }
 
-        /// <inheritdoc cref="Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float,float)"/>
+        /// <inheritdoc cref="Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,RectangleF,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float,float)"/>
         public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1) {
             batch.Draw(texture, (RectangleF) destinationRectangle, color, rotation, origin, effects, layerDepth, patchScale);
         }
 
-        /// <inheritdoc cref="Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float,float)"/>
+        /// <inheritdoc cref="Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,RectangleF,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float,float)"/>
         public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float patchScale = 1) {
             batch.Draw(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0, patchScale);
         }
 
-        /// <inheritdoc cref="Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float,float)"/>
+        /// <inheritdoc cref="Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,RectangleF,Microsoft.Xna.Framework.Color,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,float,float)"/>
         public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float patchScale = 1) {
             batch.Draw(texture, destinationRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0, patchScale);
         }

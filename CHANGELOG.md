@@ -24,6 +24,7 @@ Additions
 
 Improvements
 - **Made the Keybind.Combinations collection a public property**
+- **Moved extension methods into matching namespaces to avoid unexpected suggestions**
 - Allow NumberExtensions.GetPoints to include bottom and right coordinates
 - Allow AutoTiling overlayTextures to return null texture regions
 
@@ -56,9 +57,13 @@ Removals
 ### MLEM.Extended
 Improvements
 - **Added compatibility for MonoGame.Extended 4.0.0**
+- **Moved extension methods into matching namespaces to avoid unexpected suggestions**
 - Added compatibility for FNA.Extended
 
 ### MLEM.Data
+Improvements
+- **Moved extension methods into matching namespaces to avoid unexpected suggestions**
+
 Removals
 - **Removed obsolete types DynamicEnumConverter, CopyExtensions, DynamicEnum, NetBufferSerializer, and NetExtensions**
 

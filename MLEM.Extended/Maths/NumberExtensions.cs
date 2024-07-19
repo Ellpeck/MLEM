@@ -1,29 +1,31 @@
 using Microsoft.Xna.Framework;
-using MLEM.Extensions;
+using MLEM.Maths;
 using MonoGame.Extended;
+using MlemRectangleF = MLEM.Maths.RectangleF;
+using ExtRectangleF = MonoGame.Extended.RectangleF;
 
-namespace MLEM.Extended.Extensions {
+namespace MLEM.Extended.Maths {
     /// <summary>
     /// A set of extension methods that convert MLEM types to MonoGame.Extended types and vice versa.
     /// </summary>
     public static class NumberExtensions {
 
         /// <summary>
-        /// Converts a MLEM <see cref="Misc.RectangleF"/> to a MonoGame.Extended <see cref="RectangleF"/>.
+        /// Converts a MLEM <see cref="MlemRectangleF"/> to a MonoGame.Extended <see cref="ExtRectangleF"/>.
         /// </summary>
         /// <param name="rect">The rectangle to convert</param>
         /// <returns>The converted rectangle</returns>
-        public static RectangleF ToExtended(this Misc.RectangleF rect) {
-            return new RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
+        public static ExtRectangleF ToExtended(this MlemRectangleF rect) {
+            return new ExtRectangleF(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
         /// <summary>
-        /// Converts a MonoGame.Extended <see cref="RectangleF"/> to a MLEM <see cref="Misc.RectangleF"/>.
+        /// Converts a MonoGame.Extended <see cref="ExtRectangleF"/> to a MLEM <see cref="MlemRectangleF"/>.
         /// </summary>
         /// <param name="rect">The rectangle to convert</param>
         /// <returns>The converted rectangle</returns>
-        public static Misc.RectangleF ToMlem(this RectangleF rect) {
-            return new Misc.RectangleF(rect.X, rect.Y, rect.Width, rect.Height);
+        public static MlemRectangleF ToMlem(this ExtRectangleF rect) {
+            return new MlemRectangleF(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
         /// <summary>
@@ -36,7 +38,7 @@ namespace MLEM.Extended.Extensions {
         /// <param name="normal">The direction that the penetration occured in</param>
         /// <param name="penetration">The amount that the penetration occured by, in the direction of <paramref name="normal"/></param>
         /// <returns>Whether or not a penetration occured</returns>
-        public static bool Penetrate(this RectangleF rect, RectangleF other, out Vector2 normal, out float penetration) {
+        public static bool Penetrate(this ExtRectangleF rect, ExtRectangleF other, out Vector2 normal, out float penetration) {
             return rect.ToMlem().Penetrate(other.ToMlem(), out normal, out penetration);
         }
 

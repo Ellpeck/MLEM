@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 
-namespace MLEM.Misc {
+namespace MLEM.Maths {
     /// <summary>
     /// An enum that represents two-dimensional directions.
     /// Both straight and diagonal directions are supported.

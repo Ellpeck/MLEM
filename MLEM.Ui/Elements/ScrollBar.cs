@@ -5,12 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Graphics;
 using MLEM.Input;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Textures;
 using MLEM.Ui.Style;
-#if FNA
-using MLEM.Extensions;
-#endif
 
 namespace MLEM.Ui.Elements {
     /// <summary>

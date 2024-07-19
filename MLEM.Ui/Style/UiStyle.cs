@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Sound;
 using MLEM.Textures;

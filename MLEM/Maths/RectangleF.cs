@@ -1,9 +1,8 @@
 using System;
 using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
-using MLEM.Extensions;
 
-namespace MLEM.Misc {
+namespace MLEM.Maths {
     /// <summary>
     /// Represents a float-based version of <see cref="Rectangle"/>
     /// </summary>

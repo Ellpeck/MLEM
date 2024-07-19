@@ -1,10 +1,10 @@
-using MLEM.Extensions;
+using MLEM.Maths;
 using MLEM.Textures;
 using MonoGame.Extended.Graphics;
 using NinePatch = MLEM.Textures.NinePatch;
 using ExtNinePatch = MonoGame.Extended.Graphics.NinePatch;
 
-namespace MLEM.Extended.Extensions {
+namespace MLEM.Extended.Graphics {
     /// <summary>
     /// A set of extensions for converting texture-related types between MLEM and MonoGame.Extended.
     /// </summary>

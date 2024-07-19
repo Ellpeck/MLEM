@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using MLEM.Misc;
+using MLEM.Maths;
 using NUnit.Framework;
 
 namespace Tests;

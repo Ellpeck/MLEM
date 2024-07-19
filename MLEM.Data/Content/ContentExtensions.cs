@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using MLEM.Data.Json;
 using Newtonsoft.Json;
 
-namespace MLEM.Data {
+namespace MLEM.Data.Content {
     /// <summary>
     /// A set of extensions for dealing with <see cref="ContentManager"/>
     /// </summary>

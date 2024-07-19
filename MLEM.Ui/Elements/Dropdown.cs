@@ -1,6 +1,6 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
-using MLEM.Misc;
+using MLEM.Maths;
 
 namespace MLEM.Ui.Elements {
     /// <summary>

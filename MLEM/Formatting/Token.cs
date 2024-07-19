@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Maths;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {

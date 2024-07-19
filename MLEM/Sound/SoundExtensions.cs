@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Audio;
 
-namespace MLEM.Extensions {
+namespace MLEM.Sound {
     /// <summary>
     /// A set of extensions for dealing with <see cref="SoundEffect"/> and <see cref="SoundEffectInstance"/>
     /// </summary>

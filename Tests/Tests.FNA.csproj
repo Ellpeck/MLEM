@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\ThirdParty\MonoGame.Extended\source\MonoGame.Extended\FNA.Extended.csproj" />
         <ProjectReference Include="..\ThirdParty\FNA\FNA.Core.csproj" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 

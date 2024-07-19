@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MLEM.Extensions {
+namespace MLEM.Misc {
     /// <summary>
     /// A set of extensions for dealing with collections of various kinds
     /// </summary>

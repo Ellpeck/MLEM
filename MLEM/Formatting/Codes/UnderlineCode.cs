@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
-using MLEM.Misc;
+using MLEM.Graphics;
+using MLEM.Maths;
 
 namespace MLEM.Formatting.Codes {
     /// <inheritdoc />

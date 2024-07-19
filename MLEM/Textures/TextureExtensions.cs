@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MLEM.Extensions {
+namespace MLEM.Textures {
     /// <summary>
     /// A set of extensions for dealing with <see cref="Texture2D"/>
     /// </summary>

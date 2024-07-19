@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Textures;
 

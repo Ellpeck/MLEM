@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MLEM.Extensions {
+namespace MLEM.Maths {
     /// <summary>
     /// A set of extensions for dealing with <see cref="Random"/>
     /// </summary>

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MLEM.Misc {
+namespace MLEM.Maths {
     /// <summary>
     /// This class contains a set of easing functions, adapted from https://easings.net.
     /// These can be used for ui elements or any other kind of animations.
@@ -11,12 +11,12 @@ namespace MLEM.Misc {
 
         /// <summary>
         /// An easing function that constantly returns 0, regardless of the input percentage.
-        /// This is useful for chaining using <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing)"/>.
+        /// This is useful for chaining using <see cref="AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)"/>.
         /// </summary>
         public static readonly Easing Zero = p => 0;
         /// <summary>
         /// An easing function that constantly returns 1, regardless of the input percentage.
-        /// This is useful for chaining using <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing)"/>.
+        /// This is useful for chaining using <see cref="AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)"/>.
         /// </summary>
         public static readonly Easing One = p => 1;
         /// <summary>
@@ -160,7 +160,7 @@ namespace MLEM.Misc {
 
         /// <summary>
         /// Causes the easing function to play fully, followed by <paramref name="other"/> playing fully, in the span between an input of 0 and 1.
-        /// Note that <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing[])"/> provides a version of this method for any amount of follow-up easing functions.
+        /// Note that <see cref="AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])"/> provides a version of this method for any amount of follow-up easing functions.
         /// </summary>
         /// <param name="easing">The first easing function to play.</param>
         /// <param name="other">The second easing function to play.</param>
@@ -171,7 +171,7 @@ namespace MLEM.Misc {
 
         /// <summary>
         /// Causes the easing function to play fully, followed by all elements of <paramref name="others"/> playing fully, in the span between an input of 0 and 1.
-        /// This is an any-amount version of <see cref="AndThen(MLEM.Misc.Easings.Easing,MLEM.Misc.Easings.Easing)"/>.
+        /// This is an any-amount version of <see cref="AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)"/>.
         /// </summary>
         /// <param name="easing">The first easing function to play.</param>
         /// <param name="others">The next easing functions to play.</param>

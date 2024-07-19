@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Graphics;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Ui.Style;
 

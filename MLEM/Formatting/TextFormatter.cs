@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Graphics;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {

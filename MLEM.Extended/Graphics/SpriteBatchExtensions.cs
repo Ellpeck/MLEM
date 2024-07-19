@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
+using MLEM.Extended.Maths;
+using MLEM.Graphics;
+using MLEM.Maths;
 using ShapeExtensions = MonoGame.Extended.ShapeExtensions;
 using RectangleF = MonoGame.Extended.RectangleF;
 
-namespace MLEM.Extended.Extensions {
+namespace MLEM.Extended.Graphics {
     /// <summary>
     /// A set of extension methods for dealing with <see cref="SpriteBatch"/> and <see cref="RectangleF"/> in combination.
     /// </summary>

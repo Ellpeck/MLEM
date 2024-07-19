@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 
-namespace MLEM.Extended.Extensions {
+namespace MLEM.Extended.Maths {
     /// <summary>
     /// A set of extension methods for dealing with <see cref="Random"/>
     /// </summary>

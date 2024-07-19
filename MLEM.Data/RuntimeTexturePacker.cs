@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
+using MLEM.Maths;
 using MLEM.Textures;
-using static MLEM.Extensions.TextureExtensions;
+using static MLEM.Textures.TextureExtensions;
 
 namespace MLEM.Data {
     /// <summary>

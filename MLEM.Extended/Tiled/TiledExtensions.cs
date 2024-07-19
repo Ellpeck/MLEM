@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using ColorHelper = MLEM.Extensions.ColorHelper;
+using ColorHelper = MLEM.Graphics.ColorHelper;
 
 namespace MLEM.Extended.Tiled {
     /// <summary>

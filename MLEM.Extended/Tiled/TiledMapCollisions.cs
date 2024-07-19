@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using MLEM.Extended.Extensions;
-using MLEM.Extensions;
+using MLEM.Extended.Maths;
+using MLEM.Maths;
 using MLEM.Misc;
 using MonoGame.Extended.Tiled;
 using RectangleF = MonoGame.Extended.RectangleF;
@@ -125,7 +125,7 @@ namespace MLEM.Extended.Tiled {
 
         /// <summary>
         /// Returns an enumerable of normals and penetration amounts for each <see cref="TileCollisionInfo"/> that intersects with the given <see cref="RectangleF"/> area.
-        /// The normals and penetration amounts are based on <see cref="MLEM.Extensions.NumberExtensions.Penetrate"/>.
+        /// The normals and penetration amounts are based on <see cref="MLEM.Maths.NumberExtensions.Penetrate"/>.
         /// Note that all x penetrations are returned before all y penetrations, which improves collision detection in sidescrolling games with gravity. Note that this behavior can be inverted using <paramref name="prioritizeX"/>.
         /// </summary>
         /// <param name="getArea">The area to penetrate</param>

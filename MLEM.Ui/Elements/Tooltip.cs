@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using Microsoft.Xna.Framework;
 using MLEM.Input;
 using MLEM.Ui.Style;
 using Color = Microsoft.Xna.Framework.Color;
-using RectangleF = MLEM.Misc.RectangleF;
+using RectangleF = MLEM.Maths.RectangleF;
 #if FNA
-using MLEM.Extensions;
+using MLEM.Maths;
 #endif
 
 namespace MLEM.Ui.Elements {

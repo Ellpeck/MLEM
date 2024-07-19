@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 
 #if NET452
-using MLEM.Extensions;
+using MLEM.Misc;
 #endif
 
 namespace MLEM.Input {

@@ -34,7 +34,10 @@
 
     <ItemGroup Condition="'$(TargetFramework)'!='net8.0'">
         <Compile Remove="Tiled/**" />
-        <Compile Remove="Extensions/**" />
+        <Compile Remove="Graphics/SpriteBatchExtensions.cs" />
+        <Compile Remove="Graphics/TextureExtensions.cs" />
+        <Compile Remove="Maths/NumberExtensions.cs" />
+        <Compile Remove="Maths/RandomExtensions.cs" />
         <Compile Remove="Font/GenericBitmapFont.cs" />
     </ItemGroup>
 
