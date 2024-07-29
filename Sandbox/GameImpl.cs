@@ -19,6 +19,7 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using Group = MLEM.Ui.Elements.Group;
 
 namespace Sandbox;
 
@@ -87,6 +88,7 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };*/
 
+        /*
         var panel = new Panel(Anchor.Center, new Vector2(0, 100), Vector2.Zero) {SetWidthBasedOnChildren = true};
         panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
         panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
@@ -112,17 +114,21 @@ public class GameImpl : MlemGame {
             var dir = vec.ToDirection();
             Console.WriteLine(vec + " -> " + dir);
         }
+        */
 
+        /*
         var writer = new StringWriter();
-        this.Content.GetJsonSerializer().Serialize(writer, obj);
+        this.Content.GetJsonSerializer().Serialize(writer, obj);*/
         //Console.WriteLine(writer.ToString());
         // {"Vec":"10 20","Point":"20 30","Rectangle":"1 2 3 4","RectangleF":"4 5 6 7"}
 
         // Also:
         //this.Content.AddJsonConverter(new CustomConverter());
 
+        /*
         var res = this.Content.LoadJson<Test>("Test");
         Console.WriteLine("The res is " + res);
+        */
 
         //var gradient = this.SpriteBatch.GenerateGradientTexture(Color.Green, Color.Red, Color.Blue, Color.Yellow);
         /*this.OnDraw += (game, time) => {
@@ -139,6 +145,7 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };*/
 
+        /*
         var sc = 2;
         var formatter = new TextFormatter();
         formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
@@ -185,6 +192,7 @@ public class GameImpl : MlemGame {
             }
             this.tokenized.Update(time);
         };
+        */
 
         /*var testPanel = new Panel(Anchor.Center, new Vector2(0.5F, 100), Vector2.Zero);
         testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -1)));
@@ -225,6 +233,7 @@ public class GameImpl : MlemGame {
         par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
         this.UiSystem.Add("Load", loadGroup);*/
 
+        /*
         var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
         var squishingGroup = spillPanel.AddChild(new SquishingGroup(Anchor.TopLeft, Vector2.One));
         squishingGroup.AddChild(new Button(Anchor.TopLeft, new Vector2(30), "TL") {
@@ -293,6 +302,7 @@ public class GameImpl : MlemGame {
             }
             this.SpriteBatch.End();
         };
+        */
 
         /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
         var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));
@@ -387,6 +397,28 @@ public class GameImpl : MlemGame {
         Console.WriteLine("MouseButtons: " + string.Join(", ", GenericInput.AllMouseButtons));
         Console.WriteLine("Buttons: " + string.Join(", ", GenericInput.AllButtons));
         Console.WriteLine("Inputs: " + string.Join(", ", GenericInput.AllInputs));*/
+
+        var hsl = new Panel(Anchor.Center, new Vector2(100), true);
+        var color = Color.Pink.ToHsl();
+        hsl.AddChild(new Paragraph(Anchor.AutoLeft, 1, "H"));
+        hsl.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.H,
+            OnValueChanged = (_, v) => color.H = v
+        });
+        hsl.AddChild(new Paragraph(Anchor.AutoLeft, 1, "S"));
+        hsl.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.S,
+            OnValueChanged = (_, v) => color.S = v
+        });
+        hsl.AddChild(new Paragraph(Anchor.AutoLeft, 1, "L"));
+        hsl.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.L,
+            OnValueChanged = (_, v) => color.L = v
+        });
+        hsl.AddChild(new Group(Anchor.AutoLeft, new Vector2(1, 40), false) {
+            OnDrawn = (e, _, batch, _, _) => batch.Draw(batch.GetBlankTexture(), e.DisplayArea, ColorHelper.FromHsl(color))
+        });
+        this.UiSystem.Add("HSL", hsl);
     }
 
     protected override void DoUpdate(GameTime gameTime) {

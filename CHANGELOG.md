@@ -16,7 +16,9 @@ Jump to version:
 
 ## 7.0.1 (In Development)
 
-No code changes
+### MLEM
+Additions
+- Added ColorExtensions.ToHsl and ColorHelper.FromHsl
 
 ## 7.0.0
 
