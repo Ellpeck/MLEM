@@ -18,7 +18,7 @@ Jump to version:
 
 ### MLEM
 Additions
-- Added ColorExtensions.ToHsl and ColorHelper.FromHsl
+- Added ColorExtensions.ToHsl and ColorHelper.FromHsl as well as ColorExtensions.ToHsv and ColorHelper.FromHsv
 
 ## 7.0.0
 

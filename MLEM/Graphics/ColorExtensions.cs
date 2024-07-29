@@ -91,6 +91,38 @@ namespace MLEM.Graphics {
             return (h, s, l);
         }
 
+        /// <summary>
+        /// Converts the given <paramref name="color"/> into HSV representation and returns the result as a value tuple with values between 0 and 1.
+        /// </summary>
+        /// <remarks>This code is adapted from https://gist.github.com/mjackson/5311256.</remarks>
+        /// <param name="color">The color to convert.</param>
+        /// <returns>The resulting HSV color as a value tuple containing H, S and V, each between 0 and 1.</returns>
+        public static (float H, float S, float V) ToHsv(this Color color) {
+            var r = color.R / 255F;
+            var g = color.G / 255F;
+            var b = color.B / 255F;
+
+            var max = Math.Max(Math.Max(r, g), b);
+            var min = Math.Min(Math.Min(r, g), b);
+            var d = max - min;
+            float h, s = max == 0 ? 0 : d / max, v = max;
+
+            if (max == min) {
+                h = 0; // achromatic
+            } else {
+                if (r == max) {
+                    h = (g - b) / d + (g < b ? 6 : 0);
+                } else if (g == max) {
+                    h = (b - r) / d + 2;
+                } else {
+                    h = (r - g) / d + 4;
+                }
+                h /= 6;
+            }
+
+            return (h, s, v);
+        }
+
     }
 
     /// <summary>
@@ -182,6 +214,46 @@ namespace MLEM.Graphics {
             }
 
             return new Color(r, g, b);
+        }
+
+        /// <summary>
+        ///Converts the given HSV color to an RGB <see cref="Color"/> and returns the result.
+        /// </summary>
+        /// <remarks>This code is adapted from https://gist.github.com/mjackson/5311256.</remarks>
+        /// <param name="color">The HSV color to convert, as a value tuple that contains H, S and V values, each between 0 and 1.</param>
+        /// <returns>The resulting RGB color.</returns>
+        public static Color FromHsv((float H, float S, float V) color) {
+            return ColorHelper.FromHsv(color.H, color.S, color.V);
+        }
+
+        /// <summary>
+        ///Converts the given HSV values to an RGB <see cref="Color"/> and returns the result.
+        /// </summary>
+        /// <remarks>This code is adapted from https://gist.github.com/mjackson/5311256.</remarks>
+        /// <param name="h">The H component of the HSV color, between 0 and 1.</param>
+        /// <param name="s">The S component of the HSV color, between 0 and 1.</param>
+        /// <param name="v">The V component of the HSV color, between 0 and 1.</param>
+        /// <returns>The resulting RGB color.</returns>
+        public static Color FromHsv(float h, float s, float v) {
+            var i = (int) (h * 6);
+            var f = h * 6 - i;
+            var p = v * (1 - s);
+            var q = v * (1 - f * s);
+            var t = v * (1 - (1 - f) * s);
+            switch (i % 6) {
+                case 0:
+                    return new Color(v, t, p);
+                case 1:
+                    return new Color(q, v, p);
+                case 2:
+                    return new Color(p, v, t);
+                case 3:
+                    return new Color(p, q, v);
+                case 4:
+                    return new Color(t, p, v);
+                default: // 5
+                    return new Color(v, p, q);
+            }
         }
 
         private static float HueToRgb(float p, float q, float t) {

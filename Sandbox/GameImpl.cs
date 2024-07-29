@@ -398,27 +398,27 @@ public class GameImpl : MlemGame {
         Console.WriteLine("Buttons: " + string.Join(", ", GenericInput.AllButtons));
         Console.WriteLine("Inputs: " + string.Join(", ", GenericInput.AllInputs));*/
 
-        var hsl = new Panel(Anchor.Center, new Vector2(100), true);
-        var color = Color.Pink.ToHsl();
-        hsl.AddChild(new Paragraph(Anchor.AutoLeft, 1, "H"));
-        hsl.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+        var hsv = new Panel(Anchor.Center, new Vector2(100), true);
+        var color = Color.Pink.ToHsv();
+        hsv.AddChild(new Paragraph(Anchor.AutoLeft, 1, "H"));
+        hsv.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
             CurrentValue = color.H,
             OnValueChanged = (_, v) => color.H = v
         });
-        hsl.AddChild(new Paragraph(Anchor.AutoLeft, 1, "S"));
-        hsl.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+        hsv.AddChild(new Paragraph(Anchor.AutoLeft, 1, "S"));
+        hsv.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
             CurrentValue = color.S,
             OnValueChanged = (_, v) => color.S = v
         });
-        hsl.AddChild(new Paragraph(Anchor.AutoLeft, 1, "L"));
-        hsl.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
-            CurrentValue = color.L,
-            OnValueChanged = (_, v) => color.L = v
+        hsv.AddChild(new Paragraph(Anchor.AutoLeft, 1, "V"));
+        hsv.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.V,
+            OnValueChanged = (_, v) => color.V = v
         });
-        hsl.AddChild(new Group(Anchor.AutoLeft, new Vector2(1, 40), false) {
-            OnDrawn = (e, _, batch, _, _) => batch.Draw(batch.GetBlankTexture(), e.DisplayArea, ColorHelper.FromHsl(color))
+        hsv.AddChild(new Group(Anchor.AutoLeft, new Vector2(1, 40), false) {
+            OnDrawn = (e, _, batch, _, _) => batch.Draw(batch.GetBlankTexture(), e.DisplayArea, ColorHelper.FromHsv(color))
         });
-        this.UiSystem.Add("HSL", hsl);
+        this.UiSystem.Add("HSV", hsv);
     }
 
     protected override void DoUpdate(GameTime gameTime) {
