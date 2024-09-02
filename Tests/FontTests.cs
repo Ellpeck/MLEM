@@ -134,8 +134,11 @@ public class FontTests {
     [Test]
     public void TestConsistency() {
         void CompareSizes(string s) {
-            var spriteFont = ((GenericSpriteFont) this.font).Font;
-            Assert.AreEqual(spriteFont.MeasureString(s), this.font.MeasureString(s));
+            var spriteFont = ((GenericSpriteFont) this.font).Font.MeasureString(s);
+            var genericFont = this.font.MeasureString(s);
+            Assert.AreEqual(spriteFont.X, genericFont.X);
+            // we leave a bit of room for the Y value since sprite fonts sometimes increase line height for specific characters, which generic fonts don't
+            Assert.AreEqual(spriteFont.Y, genericFont.Y, 10);
         }
 
         CompareSizes("This is a very simple test string");

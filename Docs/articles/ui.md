@@ -1,6 +1,6 @@
 # MLEM.Ui
 
-**MLEM.Ui** is a Ui framework for MonoGame and FNA that features elements with automatic positioning and sizing. It contains various ready-made element types like buttons, paragraphs, text fields and more, along with the ability to easily create custom controls. It supports **mouse**, **keyboard**, **gamepad** and **touch** input with little to no additional setup work required.
+**MLEM.Ui** is a Ui framework for MonoGame, FNA and KNI that features elements with automatic positioning and sizing. It contains various ready-made element types like buttons, paragraphs, text fields and more, along with the ability to easily create custom controls. It supports **mouse**, **keyboard**, **gamepad** and **touch** input with little to no additional setup work required.
 
 To see some of what MLEM.Ui can do, you can check out [the demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/UiDemo.cs) as well.
 
@@ -35,7 +35,7 @@ On desktop devices, MonoGame provides the `Window.TextInput` event that gets cal
 
 To make MLEM compatible with all devices without publishing a separate version for each MonoGame platform, you have to set up the `MlemPlatform` class based on the system you're using MLEM.Ui with. This has to be done *before* initializing your `UiSystem`.
 
-DesktopGL and WindowsDX using MonoGame:
+DesktopGL and WindowsDX using MonoGame or KNI:
 ```cs
 MlemPlatform.Current = new MlemPlatform.DesktopGl<TextInputEventArgs>((w, c) => w.TextInput += c);
 ```

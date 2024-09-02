@@ -1,8 +1,8 @@
 ![The MLEM logo](https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Banner.png)
 
-**MLEM Library for Extending MonoGame and FNA** is a set of multipurpose libraries for the game frameworks [MonoGame](https://www.monogame.net/) and [FNA](https://fna-xna.github.io/) that provides abstractions, quality of life improvements and additional features like an extensive ui system and easy input handling.
+**MLEM Library for Extending MonoGame, FNA and KNI** is a set of multipurpose libraries for the game frameworks [MonoGame](https://www.monogame.net/), [FNA](https://fna-xna.github.io/) and [KNI](https://github.com/kniEngine/kni) that provides abstractions, quality of life improvements and additional features like an extensive ui system and easy input handling.
 
-MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET Framework 4.5.2, which makes it compatible with MonoGame and FNA on Desktop, mobile devices and consoles.
+MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET Framework 4.5.2, which makes it compatible with MonoGame, FNA and KNI on Desktop, mobile devices, consoles and web.
 
 # What next?
 - Get it on [NuGet](https://www.nuget.org/packages?q=ellpeck+mlem)
@@ -14,7 +14,7 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET
 - Join [the Discord server](https://link.ellpeck.de/discordweb) to ask questions
 
 # Packages
-- **MLEM** is the base package, which provides various small addons and abstractions for MonoGame and FNA, including a text formatting system and simple input handling
+- **MLEM** is the base package, which provides various small addons and abstractions for MonoGame, FNA and KNI, including a text formatting system and simple input handling
 - **MLEM.Ui** provides a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
 - **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame and FNA libraries
 - **MLEM.Data** provides simple loading and processing of textures and other data, including the ability to load non-XNB content files easily
@@ -42,7 +42,7 @@ MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting
 ![An image showing text with various colors and other formatting](https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Formatting.png)
 
 # Friends of MLEM
-There are several other libraries and tools that work well in combination with MonoGame, FNA and MLEM. Here are some of them:
+There are several other libraries and tools that work well in combination with MonoGame, FNA, KNI and MLEM. Here are some of them:
 - [Contentless](https://github.com/Ellpeck/Contentless), a tool that removes the need to add assets to the MonoGame Content Pipeline manually
 - [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET applications into several distributable formats
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project

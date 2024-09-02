@@ -9,7 +9,7 @@ namespace MLEM.Data.Content {
 
         /// <inheritdoc />
         protected override Texture2D Read(RawContentManager manager, string assetPath, Stream stream, Texture2D existing) {
-#if !FNA
+#if !FNA && !KNI
             if (existing != null) {
                 existing.Reload(stream);
                 return existing;

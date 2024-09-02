@@ -14,6 +14,7 @@ Task("Prepare").Does(() => {
 
     DotNetRestore("MLEM.sln");
     DotNetRestore("MLEM.FNA.sln");
+    DotNetRestore("MLEM.KNI.sln");
 
     if (!gitRef.StartsWith("refs/tags/") && !string.IsNullOrEmpty(buildNum)) {
         Information($"Appending {buildNum} to version");
@@ -32,6 +33,7 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
     };
     DotNetBuild("MLEM.sln", settings);
     DotNetBuild("MLEM.FNA.sln", settings);
+    DotNetBuild("MLEM.KNI.sln", settings);
 });
 
 Task("Test").IsDependentOn("Build").Does(() => {
@@ -42,6 +44,7 @@ Task("Test").IsDependentOn("Build").Does(() => {
     };
     DotNetTest("MLEM.sln", settings);
     DotNetTest("MLEM.FNA.sln", settings);
+    DotNetTest("MLEM.KNI.sln", settings);
 });
 
 Task("Pack").IsDependentOn("Test").Does(() => {
@@ -51,6 +54,7 @@ Task("Pack").IsDependentOn("Test").Does(() => {
     };
     DotNetPack("MLEM.sln", settings);
     DotNetPack("MLEM.FNA.sln", settings);
+    DotNetPack("MLEM.KNI.sln", settings);
 });
 
 Task("Push").WithCriteria(gitRef == "refs/heads/main" || gitRef.StartsWith("refs/tags/"), "Not on main branch or tag").IsDependentOn("Pack").Does(() => {

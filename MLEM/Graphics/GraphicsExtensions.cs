@@ -114,8 +114,8 @@ namespace MLEM.Graphics {
 
             private TargetContext(GraphicsDevice device) {
                 this.device = device;
-#if FNA
-                // RenderTargetCount doesn't exist in FNA but we still want the optimization in MG
+#if FNA || KNI
+                // RenderTargetCount doesn't exist in FNA or KNI but we still want the optimization in MG
                 this.lastTargets = device.GetRenderTargets();
 #else
                 this.lastTargets = device.RenderTargetCount <= 0 ? null : device.GetRenderTargets();

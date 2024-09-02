@@ -261,7 +261,7 @@ namespace MLEM.Input {
                     }
                 } else {
                     // mouse position and scroll wheel value should be preserved when the mouse is out of bounds
-#if FNA
+#if FNA || KNI
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0);
 #else
                     this.MouseState = new MouseState(state.X, state.Y, state.ScrollWheelValue, 0, 0, 0, 0, 0, state.HorizontalScrollWheelValue);

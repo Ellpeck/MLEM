@@ -19,6 +19,23 @@ Jump to version:
 ### MLEM
 Additions
 - Added ColorExtensions.ToHsl and ColorHelper.FromHsl as well as ColorExtensions.ToHsv and ColorHelper.FromHsv
+- Added MLEM.KNI, which is fully compatible with KNI
+
+### MLEM.Ui
+Additions
+- Added MLEM.Ui.KNI, which is fully compatible with KNI
+
+### MLEM.Extended
+Additions
+- Added MLEM.Extended.KNI, which is fully compatible with KNI
+
+### MLEM.Data
+Additions
+- Added MLEM.Data.KNI, which is fully compatible with KNI
+
+### MLEM.Startup
+Additions
+- Added MLEM.Startup.KNI, which is fully compatible with KNI
 
 ## 7.0.0
 

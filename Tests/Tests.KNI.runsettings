@@ -4,9 +4,7 @@
         <DataCollectors>
             <DataCollector friendlyName="XPlat Code Coverage">
                 <Configuration>
-                    <Include>[MLEM*]*</Include>
-                    <Exclude>[*.FNA]*</Exclude>
-                    <Exclude>[*.KNI]*</Exclude>
+                    <Include>[MLEM*.KNI]*</Include>
                 </Configuration>
             </DataCollector>
         </DataCollectors>

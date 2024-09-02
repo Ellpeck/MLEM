@@ -23,7 +23,7 @@ namespace MLEM.Data.Content {
         private readonly List<IDisposable> disposableAssets = new List<IDisposable>();
         private readonly List<RawContentReader> readers;
 
-#if FNA
+#if FNA || KNI
         private Dictionary<string, object> LoadedAssets { get; } = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
 #endif
 
@@ -73,7 +73,7 @@ namespace MLEM.Data.Content {
         /// <param name="currentAsset">The current asset instance.</param>
         /// <typeparam name="T">The asset's type.</typeparam>
         protected
-#if !FNA
+#if !FNA && !KNI
             override
 #endif
             void ReloadAsset<T>(string originalAssetName, T currentAsset) {
