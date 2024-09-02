@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>MLEM Web Demos</AssemblyName>
+        <RootNamespace>Demos.Web</RootNamespace>
+        <DefineConstants>$(DefineConstants);KNI</DefineConstants>
+        <IsPackable>false</IsPackable>
+        <KniPlatform>BlazorGL</KniPlatform>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Demos\Demos.KNI.csproj" />
+        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.KNI.csproj" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.KNI.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.KNI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="nkast.Xna.Framework" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Content" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Audio" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Media" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Game" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Input" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Blazor" Version="3.13.9001" />
+        <PackageReference Include="nkast.Xna.Framework.Content.Pipeline.Builder" Version="3.13.9001" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.3" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <KniContentReference Include="..\Demos\Content\Content.mgcb" />
+        <Content Include="..\Demos\Content\*\**" />
+    </ItemGroup>
+
+</Project>

@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.KNI", "Tests\Tests.KN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLEM.Extended.KNI", "MLEM.Extended\MLEM.Extended.KNI.csproj", "{A5B22930-DF4B-4A62-93ED-A6549F7B666B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Web.KNI", "Demos.Web\Demos.Web.KNI.csproj", "{F2C126BD-CB8A-4BE9-AD7A-4809D9308023}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,5 +76,9 @@ Global
 		{1A736385-E931-40A9-BBE0-A9286AB2F6B2}.Debug|Any CPU.Build.0 = Debug|x64
 		{1A736385-E931-40A9-BBE0-A9286AB2F6B2}.Release|Any CPU.ActiveCfg = Release|x64
 		{1A736385-E931-40A9-BBE0-A9286AB2F6B2}.Release|Any CPU.Build.0 = Release|x64
+		{F2C126BD-CB8A-4BE9-AD7A-4809D9308023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C126BD-CB8A-4BE9-AD7A-4809D9308023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C126BD-CB8A-4BE9-AD7A-4809D9308023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C126BD-CB8A-4BE9-AD7A-4809D9308023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
