@@ -26,7 +26,9 @@
         <PackageReference Include="nkast.Xna.Framework.Game" Version="3.13.9001" />
         <PackageReference Include="nkast.Xna.Framework.Input" Version="3.13.9001" />
         <PackageReference Include="MonoGame.Framework.DesktopGL.9000" Version="3.13.9001" />
-        <PackageReference Include="nkast.Xna.Framework.Content.Pipeline.Builder" Version="3.13.9001" />
+
+        <!-- The builder appears to only support Windows right now. We build for Linux in the CI but don't run there, so we don't need the content files. -->
+        <PackageReference Include="nkast.Xna.Framework.Content.Pipeline.Builder" Version="3.13.9001" Condition="$(Os.Contains('Windows'))"/>
     </ItemGroup>
 
     <ItemGroup>
