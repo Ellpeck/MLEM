@@ -156,8 +156,10 @@ namespace MLEM.Ui.Parsers {
                     if (!bytesNull) {
                         Texture2D tex;
                         lock (bytesLock) {
-                            using (var stream = new MemoryStream(bytes))
-                                tex = Texture2D.FromStream(this.GraphicsDevice, stream);
+                            using (var stream = new MemoryStream(bytes)) {
+                                using (var read = Texture2D.FromStream(this.GraphicsDevice, stream))
+                                    tex = read.PremultipliedCopy();
+                            }
                             bytes = null;
                         }
                         image = new TextureRegion(tex);

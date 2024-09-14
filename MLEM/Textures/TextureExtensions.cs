@@ -19,6 +19,24 @@ namespace MLEM.Textures {
         }
 
         /// <summary>
+        /// Creates and returns a copy of the given <paramref name="texture"/> with all colors converted to premultiplied alpha, which is the format that MonoGame's content pipeline loads textures in. This method uses <see cref="Color.FromNonPremultiplied(Microsoft.Xna.Framework.Vector4)"/> for all pixels in the <paramref name="texture"/>.
+        /// </summary>
+        /// <param name="texture">The texture of which to create a premultiplied copy.</param>
+        /// <returns>The premultiplied copy of the <paramref name="texture"/>.</returns>
+        public static Texture2D PremultipliedCopy(this Texture2D texture) {
+            var ret = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
+            using (var textureData = texture.GetTextureData()) {
+                using (var retData = ret.GetTextureData()) {
+                    for (var x = 0; x < ret.Width; x++) {
+                        for (var y = 0; y < ret.Height; y++)
+                            retData[x, y] = Color.FromNonPremultiplied(textureData[x, y].ToVector4());
+                    }
+                }
+            }
+            return ret;
+        }
+
+        /// <summary>
         /// A struct that represents the data of a texture, accessed through <see cref="TextureExtensions.GetTextureData"/>.
         /// </summary>
         public class TextureData : IDisposable {

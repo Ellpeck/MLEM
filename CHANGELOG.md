@@ -17,9 +17,14 @@ Jump to version:
 
 ## 7.1.1 (In Development)
 
+### MLEM
+Additions
+- Added TextureExtensions.PremultipliedCopy for textures
+
 ### MLEM.Ui
 Improvements
 - Construct images in UiParser.ParseImage on the main thread to support usage with KNI
+- Create a premultiplied copy of UiParser images to support usage with KNI
 
 ## 7.1.0
 
