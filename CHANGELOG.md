@@ -17,7 +17,9 @@ Jump to version:
 
 ## 7.1.1 (In Development)
 
-No code changes
+### MLEM.Ui
+Improvements
+- Construct images in UiParser.ParseImage on the main thread to support usage with KNI
 
 ## 7.1.0
 

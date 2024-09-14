@@ -10,7 +10,6 @@ using MLEM.Ui.Style;
 
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
 using System.Net.Http;
-
 #else
 using System.Net;
 #endif
@@ -139,43 +138,59 @@ namespace MLEM.Ui.Parsers {
         /// This method invokes an asynchronouns action, meaning the <see cref="Image"/>'s <see cref="Image.Texture"/> will likely not have loaded in when this method returns.
         /// </summary>
         /// <param name="path">The absolute, relative or web path to the image.</param>
-        /// <param name="onImageFetched">An action that is invoked with the loaded image once it is fetched. Note that this action will be invoked asynchronously.</param>
+        /// <param name="onImageFetched">An action that is invoked with the loaded image once it is fetched. Note that this action will be invoked synchronously.</param>
         /// <returns>The loaded image.</returns>
         /// <exception cref="NullReferenceException">Thrown if <see cref="GraphicsDevice"/> is null, or if there is an <see cref="Exception"/> loading the image and <see cref="ImageExceptionHandler"/> is unset.</exception>
         protected Image ParseImage(string path, Action<TextureRegion> onImageFetched = null) {
             if (this.GraphicsDevice == null)
                 throw new NullReferenceException("A UI parser requires a GraphicsDevice for parsing images");
 
-            var imageLock = new object();
+            var bytesLock = new object();
+            byte[] bytes = null;
             TextureRegion image = null;
             return new Image(Anchor.AutoLeft, Vector2.One, _ => {
-                lock (imageLock)
-                    return image;
+                if (image == null) {
+                    bool bytesNull;
+                    lock (bytesLock)
+                        bytesNull = bytes == null;
+                    if (!bytesNull) {
+                        Texture2D tex;
+                        lock (bytesLock) {
+                            using (var stream = new MemoryStream(bytes))
+                                tex = Texture2D.FromStream(this.GraphicsDevice, stream);
+                            bytes = null;
+                        }
+                        image = new TextureRegion(tex);
+                        onImageFetched?.Invoke(image);
+                    }
+                }
+                return image;
             }) {
                 SetHeightBasedOnAspect = true,
                 OnAddedToUi = e => {
-                    bool imageNull;
-                    lock (imageLock)
-                        imageNull = image == null;
-                    if (imageNull)
-                        LoadImageAsync();
+                    if (image == null) {
+                        bool bytesNull;
+                        lock (bytesLock)
+                            bytesNull = bytes == null;
+                        if (bytesNull)
+                            LoadImageStream();
+                    }
                 },
                 OnRemovedFromUi = e => {
-                    lock (imageLock) {
-                        image?.Texture.Dispose();
-                        image = null;
-                    }
+                    lock (bytesLock)
+                        bytes = null;
+                    image?.Texture.Dispose();
+                    image = null;
                 }
             };
 
-            async void LoadImageAsync() {
+            async void LoadImageStream() {
                 // only apply the base path for relative files
                 if (this.ImageBasePath != null && !path.StartsWith("http") && !Path.IsPathRooted(path))
                     path = $"{this.ImageBasePath}/{path}";
                 try {
-                    Texture2D tex;
+                    byte[] src;
                     if (path.StartsWith("http")) {
-                        byte[] src;
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
                         using (var client = new HttpClient())
                             src = await client.GetByteArrayAsync(path);
@@ -183,18 +198,16 @@ namespace MLEM.Ui.Parsers {
                         using (var client = new WebClient())
                             src = await client.DownloadDataTaskAsync(path);
 #endif
-                        using (var memory = new MemoryStream(src))
-                            tex = Texture2D.FromStream(this.GraphicsDevice, memory);
                     } else {
-                        using (var stream = Path.IsPathRooted(path) ? File.OpenRead(path) : TitleContainer.OpenStream(path))
-                            tex = Texture2D.FromStream(this.GraphicsDevice, stream);
-                    }
-                    lock (imageLock) {
-                        if (image == null) {
-                            image = new TextureRegion(tex);
-                            onImageFetched?.Invoke(image);
+                        using (var fileStream = Path.IsPathRooted(path) ? File.OpenRead(path) : TitleContainer.OpenStream(path)) {
+                            using (var memStream = new MemoryStream()) {
+                                await fileStream.CopyToAsync(memStream);
+                                src = memStream.ToArray();
+                            }
                         }
                     }
+                    lock (bytesLock)
+                        bytes = src;
                 } catch (Exception e) {
                     if (this.ImageExceptionHandler != null) {
                         this.ImageExceptionHandler.Invoke(path, e);
