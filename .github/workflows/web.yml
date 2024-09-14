@@ -1,0 +1,70 @@
+﻿on: [push, pull_request]
+jobs:
+  build-demo:
+    runs-on: windows-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Run PublishWeb
+        run: dotnet cake --target PublishWeb --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Upload demo artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: Demos.Web/bin/*/net*/publish/wwwroot
+          name: demo
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Run Document
+        run: dotnet cake --target Document --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: Docs/_site
+          name: docs
+  deploy:
+    needs: [build-demo, build-docs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download demo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: demo
+      - name: Download docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+      - name: Combine sites
+        run: |
+          mv docs _site
+          mv demo _site/demo
+      - name: Upload combined artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: _site
+          name: site
+      - name: Deploy
+        if: startsWith(github.ref, 'refs/tags/')
+        # this is a beautiful way to deploy a website and i will not take any criticism
+        run: |
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb
+          mkdir ~/.ssh && echo "${{ secrets.ELLBOT_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          rsync -rv --delete -e 'ssh -o "ProxyCommand cloudflared access ssh --hostname %h" -o "StrictHostKeyChecking=no"' _site/. ellbot@ssh.ellpeck.de:/var/www/MLEM

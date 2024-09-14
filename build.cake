@@ -83,6 +83,13 @@ Task("Document").Does(() => {
         DocFxServe("Docs/_site");
 });
 
+Task("PublishWeb").Does(() => {
+    DotNetPublish("Demos.Web/Demos.Web.KNI.csproj", new DotNetPublishSettings {
+        Configuration = config,
+        ArgumentCustomization = args => args.Append($"/p:Version={version}")
+    });
+});
+
 Task("Default").IsDependentOn("Pack");
 Task("Publish").IsDependentOn("Push");
 
