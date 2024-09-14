@@ -6,3 +6,5 @@
   href: api/
 - name: Changelog
   href: ../CHANGELOG.md
+- name: Web Demo
+  href: demo/

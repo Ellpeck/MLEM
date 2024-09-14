@@ -9,7 +9,7 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET
 - Get prerelease builds on [BaGet](https://nuget.ellpeck.de/?q=mlem)
 - See the source code on [GitHub](https://github.com/Ellpeck/MLEM)
 - See tutorials and API documentation on [the website](https://mlem.ellpeck.de/)
-- Check out [the demos](https://github.com/Ellpeck/MLEM/tree/main/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/main/Demos.DesktopGL) or [Android](https://github.com/Ellpeck/MLEM/tree/main/Demos.Android)
+- Check out [the demos](https://github.com/Ellpeck/MLEM/tree/main/Demos) on [Desktop](https://github.com/Ellpeck/MLEM/tree/main/Demos.DesktopGL), [Android](https://github.com/Ellpeck/MLEM/tree/main/Demos.Android) or [Web](https://mlem.ellpeck.de/demo)
 - See [the changelog](https://mlem.ellpeck.de/CHANGELOG.html) for information on updates
 - Join [the Discord server](https://link.ellpeck.de/discordweb) to ask questions
 

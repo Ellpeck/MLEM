@@ -20,32 +20,10 @@ jobs:
         uses: android-actions/setup-android@v3
       - name: Restore tools
         run: dotnet tool restore
-      - name: Run cake
+      - name: Run Publish
         uses: coactions/setup-xvfb@v1
         with:
           run: dotnet cake --target Publish --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
           BAGET_KEY: ${{ secrets.BAGET_KEY }}
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-      - name: Restore tools
-        run: dotnet tool restore
-      - name: Run cake
-        run: dotnet cake --target Document --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
-      - name: Deploy
-        if: startsWith(github.ref, 'refs/tags/')
-        # this is a beautiful way to deploy a website and i will not take any criticism
-        run: |
-          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb
-          mkdir ~/.ssh && echo "${{ secrets.ELLBOT_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-          rsync -rv --delete -e 'ssh -o "ProxyCommand cloudflared access ssh --hostname %h" -o "StrictHostKeyChecking=no"' Docs/_site/. ellbot@ssh.ellpeck.de:/var/www/MLEM
