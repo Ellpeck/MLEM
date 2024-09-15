@@ -1,0 +1,1945 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Misc.SingleRandom
+  commentId: T:MLEM.Misc.SingleRandom
+  id: SingleRandom
+  parent: MLEM.Misc
+  children:
+  - MLEM.Misc.SingleRandom.GetRandomEntry``1(System.Collections.Generic.ICollection{``0},MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Int32},MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Single},MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Int(MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Int(System.Int32)
+  - MLEM.Misc.SingleRandom.Int(System.Int32,MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32)
+  - MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32,MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32,System.Int32)
+  - MLEM.Misc.SingleRandom.Single(MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Single(System.Int32)
+  - MLEM.Misc.SingleRandom.Single(System.Single,MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Single(System.Single,System.Int32)
+  - MLEM.Misc.SingleRandom.Single(System.Single,System.Single,MLEM.Misc.SeedSource)
+  - MLEM.Misc.SingleRandom.Single(System.Single,System.Single,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: SingleRandom
+  nameWithType: SingleRandom
+  fullName: MLEM.Misc.SingleRandom
+  type: Class
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SingleRandom
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 10
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    The SingleRandom class allows generating single, one-off pseudorandom numbers based on a seed or a <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref>.
+
+    The types of numbers that can be generated are <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> and <xref href="System.Single" data-throw-if-not-resolved="false"></xref>, both of which can be generated with specific minimum and maximum values if desired.
+
+    Methods in this class are tested to be sufficiently "random", that is, to be sufficiently distributed throughout their range, as well as sufficiently different for neighboring seeds.
+  example: []
+  syntax:
+    content: public class SingleRandom
+    content.vb: Public Class SingleRandom
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+- uid: MLEM.Misc.SingleRandom.Int(System.Int32)
+  commentId: M:MLEM.Misc.SingleRandom.Int(System.Int32)
+  id: Int(System.Int32)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Int(int)
+  nameWithType: SingleRandom.Int(int)
+  fullName: MLEM.Misc.SingleRandom.Int(int)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Int
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom integer between 0 and <xref href="System.Int32.MaxValue" data-throw-if-not-resolved="false"></xref> based on a given <code class="paramref">seed</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">seed</code>.
+  example: []
+  syntax:
+    content: public static int Int(int seed)
+    parameters:
+    - id: seed
+      type: System.Int32
+      description: The seed to use.
+    return:
+      type: System.Int32
+      description: The generated number.
+    content.vb: Public Shared Function Int(seed As Integer) As Integer
+  overload: MLEM.Misc.SingleRandom.Int*
+  nameWithType.vb: SingleRandom.Int(Integer)
+  fullName.vb: MLEM.Misc.SingleRandom.Int(Integer)
+  name.vb: Int(Integer)
+- uid: MLEM.Misc.SingleRandom.Int(MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.Int(MLEM.Misc.SeedSource)
+  id: Int(MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Int(SeedSource)
+  nameWithType: SingleRandom.Int(SeedSource)
+  fullName: MLEM.Misc.SingleRandom.Int(MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Int
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 28
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom integer between 0 and <xref href="System.Int32.MaxValue" data-throw-if-not-resolved="false"></xref> based on a given <code class="paramref">source</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">source</code>.
+  example: []
+  syntax:
+    content: public static int Int(SeedSource source)
+    parameters:
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    return:
+      type: System.Int32
+      description: The generated number.
+    content.vb: Public Shared Function Int(source As SeedSource) As Integer
+  overload: MLEM.Misc.SingleRandom.Int*
+- uid: MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32)
+  commentId: M:MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32)
+  id: Int(System.Int32,System.Int32)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Int(int, int)
+  nameWithType: SingleRandom.Int(int, int)
+  fullName: MLEM.Misc.SingleRandom.Int(int, int)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Int
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 39
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom integer between 0 and <code class="paramref">maxValue</code> based on a given <code class="paramref">seed</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">seed</code>.
+  example: []
+  syntax:
+    content: public static int Int(int maxValue, int seed)
+    parameters:
+    - id: maxValue
+      type: System.Int32
+      description: The (exclusive) maximum value.
+    - id: seed
+      type: System.Int32
+      description: The seed to use.
+    return:
+      type: System.Int32
+      description: The generated number.
+    content.vb: Public Shared Function Int(maxValue As Integer, seed As Integer) As Integer
+  overload: MLEM.Misc.SingleRandom.Int*
+  nameWithType.vb: SingleRandom.Int(Integer, Integer)
+  fullName.vb: MLEM.Misc.SingleRandom.Int(Integer, Integer)
+  name.vb: Int(Integer, Integer)
+- uid: MLEM.Misc.SingleRandom.Int(System.Int32,MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.Int(System.Int32,MLEM.Misc.SeedSource)
+  id: Int(System.Int32,MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Int(int, SeedSource)
+  nameWithType: SingleRandom.Int(int, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.Int(int, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Int
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 50
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom integer between 0 and <code class="paramref">maxValue</code> based on a given <code class="paramref">source</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">source</code>.
+  example: []
+  syntax:
+    content: public static int Int(int maxValue, SeedSource source)
+    parameters:
+    - id: maxValue
+      type: System.Int32
+      description: The (exclusive) maximum value.
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    return:
+      type: System.Int32
+      description: The generated number.
+    content.vb: Public Shared Function Int(maxValue As Integer, source As SeedSource) As Integer
+  overload: MLEM.Misc.SingleRandom.Int*
+  nameWithType.vb: SingleRandom.Int(Integer, SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.Int(Integer, MLEM.Misc.SeedSource)
+  name.vb: Int(Integer, SeedSource)
+- uid: MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32,System.Int32)
+  id: Int(System.Int32,System.Int32,System.Int32)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Int(int, int, int)
+  nameWithType: SingleRandom.Int(int, int, int)
+  fullName: MLEM.Misc.SingleRandom.Int(int, int, int)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Int
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 62
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom integer between <code class="paramref">minValue</code> and <code class="paramref">maxValue</code> based on a given <code class="paramref">seed</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">seed</code>.
+  example: []
+  syntax:
+    content: public static int Int(int minValue, int maxValue, int seed)
+    parameters:
+    - id: minValue
+      type: System.Int32
+      description: The (inclusive) minimum value.
+    - id: maxValue
+      type: System.Int32
+      description: The (exclusive) maximum value.
+    - id: seed
+      type: System.Int32
+      description: The seed to use.
+    return:
+      type: System.Int32
+      description: The generated number.
+    content.vb: Public Shared Function Int(minValue As Integer, maxValue As Integer, seed As Integer) As Integer
+  overload: MLEM.Misc.SingleRandom.Int*
+  nameWithType.vb: SingleRandom.Int(Integer, Integer, Integer)
+  fullName.vb: MLEM.Misc.SingleRandom.Int(Integer, Integer, Integer)
+  name.vb: Int(Integer, Integer, Integer)
+- uid: MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32,MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.Int(System.Int32,System.Int32,MLEM.Misc.SeedSource)
+  id: Int(System.Int32,System.Int32,MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Int(int, int, SeedSource)
+  nameWithType: SingleRandom.Int(int, int, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.Int(int, int, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Int
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 74
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom integer between <code class="paramref">minValue</code> and <code class="paramref">maxValue</code> based on a given <code class="paramref">source</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">source</code>.
+  example: []
+  syntax:
+    content: public static int Int(int minValue, int maxValue, SeedSource source)
+    parameters:
+    - id: minValue
+      type: System.Int32
+      description: The (inclusive) minimum value.
+    - id: maxValue
+      type: System.Int32
+      description: The (exclusive) maximum value.
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    return:
+      type: System.Int32
+      description: The generated number.
+    content.vb: Public Shared Function Int(minValue As Integer, maxValue As Integer, source As SeedSource) As Integer
+  overload: MLEM.Misc.SingleRandom.Int*
+  nameWithType.vb: SingleRandom.Int(Integer, Integer, SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.Int(Integer, Integer, MLEM.Misc.SeedSource)
+  name.vb: Int(Integer, Integer, SeedSource)
+- uid: MLEM.Misc.SingleRandom.Single(System.Int32)
+  commentId: M:MLEM.Misc.SingleRandom.Single(System.Int32)
+  id: Single(System.Int32)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Single(int)
+  nameWithType: SingleRandom.Single(int)
+  fullName: MLEM.Misc.SingleRandom.Single(int)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Single
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 84
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom floating point number between 0 and 1 based on a given <code class="paramref">seed</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">seed</code>.
+  example: []
+  syntax:
+    content: public static float Single(int seed)
+    parameters:
+    - id: seed
+      type: System.Int32
+      description: The seed to use.
+    return:
+      type: System.Single
+      description: The generated number.
+    content.vb: Public Shared Function [Single](seed As Integer) As Single
+  overload: MLEM.Misc.SingleRandom.Single*
+  nameWithType.vb: SingleRandom.Single(Integer)
+  fullName.vb: MLEM.Misc.SingleRandom.Single(Integer)
+  name.vb: Single(Integer)
+- uid: MLEM.Misc.SingleRandom.Single(MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.Single(MLEM.Misc.SeedSource)
+  id: Single(MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Single(SeedSource)
+  nameWithType: SingleRandom.Single(SeedSource)
+  fullName: MLEM.Misc.SingleRandom.Single(MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Single
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 94
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom floating point number between 0 and 1 based on a given <code class="paramref">source</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">source</code>.
+  example: []
+  syntax:
+    content: public static float Single(SeedSource source)
+    parameters:
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    return:
+      type: System.Single
+      description: The generated number.
+    content.vb: Public Shared Function [Single](source As SeedSource) As Single
+  overload: MLEM.Misc.SingleRandom.Single*
+- uid: MLEM.Misc.SingleRandom.Single(System.Single,System.Int32)
+  commentId: M:MLEM.Misc.SingleRandom.Single(System.Single,System.Int32)
+  id: Single(System.Single,System.Int32)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Single(float, int)
+  nameWithType: SingleRandom.Single(float, int)
+  fullName: MLEM.Misc.SingleRandom.Single(float, int)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Single
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 105
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom floating point number between 0 and <code class="paramref">maxValue</code> based on a given <code class="paramref">seed</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">seed</code>.
+  example: []
+  syntax:
+    content: public static float Single(float maxValue, int seed)
+    parameters:
+    - id: maxValue
+      type: System.Single
+      description: The (exclusive) maximum value.
+    - id: seed
+      type: System.Int32
+      description: The seed to use.
+    return:
+      type: System.Single
+      description: The generated number.
+    content.vb: Public Shared Function [Single](maxValue As Single, seed As Integer) As Single
+  overload: MLEM.Misc.SingleRandom.Single*
+  nameWithType.vb: SingleRandom.Single(Single, Integer)
+  fullName.vb: MLEM.Misc.SingleRandom.Single(Single, Integer)
+  name.vb: Single(Single, Integer)
+- uid: MLEM.Misc.SingleRandom.Single(System.Single,MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.Single(System.Single,MLEM.Misc.SeedSource)
+  id: Single(System.Single,MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Single(float, SeedSource)
+  nameWithType: SingleRandom.Single(float, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.Single(float, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Single
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 116
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom floating point number between 0 and <code class="paramref">maxValue</code> based on a given <code class="paramref">source</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">source</code>.
+  example: []
+  syntax:
+    content: public static float Single(float maxValue, SeedSource source)
+    parameters:
+    - id: maxValue
+      type: System.Single
+      description: The (exclusive) maximum value.
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    return:
+      type: System.Single
+      description: The generated number.
+    content.vb: Public Shared Function [Single](maxValue As Single, source As SeedSource) As Single
+  overload: MLEM.Misc.SingleRandom.Single*
+  nameWithType.vb: SingleRandom.Single(Single, SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.Single(Single, MLEM.Misc.SeedSource)
+  name.vb: Single(Single, SeedSource)
+- uid: MLEM.Misc.SingleRandom.Single(System.Single,System.Single,System.Int32)
+  commentId: M:MLEM.Misc.SingleRandom.Single(System.Single,System.Single,System.Int32)
+  id: Single(System.Single,System.Single,System.Int32)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Single(float, float, int)
+  nameWithType: SingleRandom.Single(float, float, int)
+  fullName: MLEM.Misc.SingleRandom.Single(float, float, int)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Single
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 128
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom floating point number between <code class="paramref">minValue</code> and <code class="paramref">maxValue</code> based on a given <code class="paramref">seed</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">seed</code>.
+  example: []
+  syntax:
+    content: public static float Single(float minValue, float maxValue, int seed)
+    parameters:
+    - id: minValue
+      type: System.Single
+      description: The (inclusive) minimum value.
+    - id: maxValue
+      type: System.Single
+      description: The (exclusive) maximum value.
+    - id: seed
+      type: System.Int32
+      description: The seed to use.
+    return:
+      type: System.Single
+      description: The generated number.
+    content.vb: Public Shared Function [Single](minValue As Single, maxValue As Single, seed As Integer) As Single
+  overload: MLEM.Misc.SingleRandom.Single*
+  nameWithType.vb: SingleRandom.Single(Single, Single, Integer)
+  fullName.vb: MLEM.Misc.SingleRandom.Single(Single, Single, Integer)
+  name.vb: Single(Single, Single, Integer)
+- uid: MLEM.Misc.SingleRandom.Single(System.Single,System.Single,MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.Single(System.Single,System.Single,MLEM.Misc.SeedSource)
+  id: Single(System.Single,System.Single,MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: Single(float, float, SeedSource)
+  nameWithType: SingleRandom.Single(float, float, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.Single(float, float, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Single
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 140
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Generates a single, one-off pseudorandom floating point number between <code class="paramref">minValue</code> and <code class="paramref">maxValue</code> based on a given <code class="paramref">source</code>.
+
+    This method is guaranteed to return the same result for the same <code class="paramref">source</code>.
+  example: []
+  syntax:
+    content: public static float Single(float minValue, float maxValue, SeedSource source)
+    parameters:
+    - id: minValue
+      type: System.Single
+      description: The (inclusive) minimum value.
+    - id: maxValue
+      type: System.Single
+      description: The (exclusive) maximum value.
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    return:
+      type: System.Single
+      description: The generated number.
+    content.vb: Public Shared Function [Single](minValue As Single, maxValue As Single, source As SeedSource) As Single
+  overload: MLEM.Misc.SingleRandom.Single*
+  nameWithType.vb: SingleRandom.Single(Single, Single, SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.Single(Single, Single, MLEM.Misc.SeedSource)
+  name.vb: Single(Single, Single, SeedSource)
+- uid: MLEM.Misc.SingleRandom.GetRandomEntry``1(System.Collections.Generic.ICollection{``0},MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.GetRandomEntry``1(System.Collections.Generic.ICollection{``0},MLEM.Misc.SeedSource)
+  id: GetRandomEntry``1(System.Collections.Generic.ICollection{``0},MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: GetRandomEntry<T>(ICollection<T>, SeedSource)
+  nameWithType: SingleRandom.GetRandomEntry<T>(ICollection<T>, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.GetRandomEntry<T>(System.Collections.Generic.ICollection<T>, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetRandomEntry
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 151
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Gets a random entry from the given collection with uniform chance.
+  example: []
+  syntax:
+    content: public static T GetRandomEntry<T>(ICollection<T> entries, SeedSource source)
+    parameters:
+    - id: entries
+      type: System.Collections.Generic.ICollection{{T}}
+      description: The entries to choose from
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    typeParameters:
+    - id: T
+      description: The entries' type
+    return:
+      type: '{T}'
+      description: A random entry
+    content.vb: Public Shared Function GetRandomEntry(Of T)(entries As ICollection(Of T), source As SeedSource) As T
+  overload: MLEM.Misc.SingleRandom.GetRandomEntry*
+  nameWithType.vb: SingleRandom.GetRandomEntry(Of T)(ICollection(Of T), SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.GetRandomEntry(Of T)(System.Collections.Generic.ICollection(Of T), MLEM.Misc.SeedSource)
+  name.vb: GetRandomEntry(Of T)(ICollection(Of T), SeedSource)
+- uid: MLEM.Misc.SingleRandom.GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Int32},MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Int32},MLEM.Misc.SeedSource)
+  id: GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Int32},MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: GetRandomWeightedEntry<T>(ICollection<T>, Func<T, int>, SeedSource)
+  nameWithType: SingleRandom.GetRandomWeightedEntry<T>(ICollection<T>, Func<T, int>, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.GetRandomWeightedEntry<T>(System.Collections.Generic.ICollection<T>, System.Func<T, int>, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetRandomWeightedEntry
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 165
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Returns a random entry from the given collection based on the specified weight function.
+
+    A higher weight for an entry increases its likeliness of being picked.
+  example: []
+  syntax:
+    content: public static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, int> weightFunc, SeedSource source)
+    parameters:
+    - id: entries
+      type: System.Collections.Generic.ICollection{{T}}
+      description: The entries to choose from
+    - id: weightFunc
+      type: System.Func{{T},System.Int32}
+      description: A function that applies weight to each entry
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    typeParameters:
+    - id: T
+      description: The entries' type
+    return:
+      type: '{T}'
+      description: A random entry, based on the entries' weight
+    content.vb: Public Shared Function GetRandomWeightedEntry(Of T)(entries As ICollection(Of T), weightFunc As Func(Of T, Integer), source As SeedSource) As T
+  overload: MLEM.Misc.SingleRandom.GetRandomWeightedEntry*
+  exceptions:
+  - type: System.IndexOutOfRangeException
+    commentId: T:System.IndexOutOfRangeException
+    description: If the weight function returns different weights for the same entry
+  nameWithType.vb: SingleRandom.GetRandomWeightedEntry(Of T)(ICollection(Of T), Func(Of T, Integer), SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.GetRandomWeightedEntry(Of T)(System.Collections.Generic.ICollection(Of T), System.Func(Of T, Integer), MLEM.Misc.SeedSource)
+  name.vb: GetRandomWeightedEntry(Of T)(ICollection(Of T), Func(Of T, Integer), SeedSource)
+- uid: MLEM.Misc.SingleRandom.GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Single},MLEM.Misc.SeedSource)
+  commentId: M:MLEM.Misc.SingleRandom.GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Single},MLEM.Misc.SeedSource)
+  id: GetRandomWeightedEntry``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Single},MLEM.Misc.SeedSource)
+  parent: MLEM.Misc.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: GetRandomWeightedEntry<T>(ICollection<T>, Func<T, float>, SeedSource)
+  nameWithType: SingleRandom.GetRandomWeightedEntry<T>(ICollection<T>, Func<T, float>, SeedSource)
+  fullName: MLEM.Misc.SingleRandom.GetRandomWeightedEntry<T>(System.Collections.Generic.ICollection<T>, System.Func<T, float>, MLEM.Misc.SeedSource)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/SingleRandom.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetRandomWeightedEntry
+    path: ../MLEM/Misc/SingleRandom.cs
+    startLine: 170
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Returns a random entry from the given collection based on the specified weight function.
+
+    A higher weight for an entry increases its likeliness of being picked.
+  example: []
+  syntax:
+    content: public static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, float> weightFunc, SeedSource source)
+    parameters:
+    - id: entries
+      type: System.Collections.Generic.ICollection{{T}}
+      description: The entries to choose from
+    - id: weightFunc
+      type: System.Func{{T},System.Single}
+      description: A function that applies weight to each entry
+    - id: source
+      type: MLEM.Misc.SeedSource
+      description: The <xref href="MLEM.Misc.SeedSource" data-throw-if-not-resolved="false"></xref> to use.
+    typeParameters:
+    - id: T
+      description: The entries' type
+    return:
+      type: '{T}'
+      description: A random entry, based on the entries' weight
+    content.vb: Public Shared Function GetRandomWeightedEntry(Of T)(entries As ICollection(Of T), weightFunc As Func(Of T, Single), source As SeedSource) As T
+  overload: MLEM.Misc.SingleRandom.GetRandomWeightedEntry*
+  exceptions:
+  - type: System.IndexOutOfRangeException
+    commentId: T:System.IndexOutOfRangeException
+    description: If the weight function returns different weights for the same entry
+  nameWithType.vb: SingleRandom.GetRandomWeightedEntry(Of T)(ICollection(Of T), Func(Of T, Single), SeedSource)
+  fullName.vb: MLEM.Misc.SingleRandom.GetRandomWeightedEntry(Of T)(System.Collections.Generic.ICollection(Of T), System.Func(Of T, Single), MLEM.Misc.SeedSource)
+  name.vb: GetRandomWeightedEntry(Of T)(ICollection(Of T), Func(Of T, Single), SeedSource)
+references:
+- uid: MLEM.Misc.SeedSource
+  commentId: T:MLEM.Misc.SeedSource
+  parent: MLEM.Misc
+  href: MLEM.Misc.SeedSource.html
+  name: SeedSource
+  nameWithType: SeedSource
+  fullName: MLEM.Misc.SeedSource
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<SingleRandom>(SingleRandom, SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<SingleRandom>(SingleRandom, SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Misc.SingleRandom>(MLEM.Misc.SingleRandom, MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of SingleRandom)(SingleRandom, SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Misc.SingleRandom)(MLEM.Misc.SingleRandom, MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of SingleRandom)(SingleRandom, SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.SingleRandom,MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.SingleRandom,MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<SingleRandom>(SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<SingleRandom>(SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Misc.SingleRandom>(MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of SingleRandom)(SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Misc.SingleRandom)(MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of SingleRandom)(SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<SingleRandom>(SingleRandom, SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<SingleRandom>(SingleRandom, SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Misc.SingleRandom>(MLEM.Misc.SingleRandom, MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of SingleRandom)(SingleRandom, SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Misc.SingleRandom)(MLEM.Misc.SingleRandom, MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of SingleRandom)(SingleRandom, SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.SingleRandom,MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.SingleRandom,MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.SingleRandom.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<SingleRandom>(SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<SingleRandom>(SingleRandom, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Misc.SingleRandom>(MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of SingleRandom)(SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Misc.SingleRandom)(MLEM.Misc.SingleRandom, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of SingleRandom)(SingleRandom, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Misc.SingleRandom,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.SingleRandom
+    name: SingleRandom
+    href: MLEM.Misc.SingleRandom.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: System.Int32.MaxValue
+  commentId: F:System.Int32.MaxValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32.maxvalue
+  name: MaxValue
+  nameWithType: int.MaxValue
+  fullName: int.MaxValue
+  nameWithType.vb: Integer.MaxValue
+  fullName.vb: Integer.MaxValue
+- uid: MLEM.Misc.SingleRandom.Int*
+  commentId: Overload:MLEM.Misc.SingleRandom.Int
+  href: MLEM.Misc.SingleRandom.html#MLEM_Misc_SingleRandom_Int_System_Int32_
+  name: Int
+  nameWithType: SingleRandom.Int
+  fullName: MLEM.Misc.SingleRandom.Int
+- uid: MLEM.Misc.SingleRandom.Single*
+  commentId: Overload:MLEM.Misc.SingleRandom.Single
+  href: MLEM.Misc.SingleRandom.html#MLEM_Misc_SingleRandom_Single_System_Int32_
+  name: Single
+  nameWithType: SingleRandom.Single
+  fullName: MLEM.Misc.SingleRandom.Single
+- uid: MLEM.Misc.SingleRandom.GetRandomEntry*
+  commentId: Overload:MLEM.Misc.SingleRandom.GetRandomEntry
+  href: MLEM.Misc.SingleRandom.html#MLEM_Misc_SingleRandom_GetRandomEntry__1_System_Collections_Generic_ICollection___0__MLEM_Misc_SeedSource_
+  name: GetRandomEntry
+  nameWithType: SingleRandom.GetRandomEntry
+  fullName: MLEM.Misc.SingleRandom.GetRandomEntry
+- uid: System.Collections.Generic.ICollection{{T}}
+  commentId: T:System.Collections.Generic.ICollection{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.IndexOutOfRangeException
+  commentId: T:System.IndexOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.indexoutofrangeexception
+  name: IndexOutOfRangeException
+  nameWithType: IndexOutOfRangeException
+  fullName: System.IndexOutOfRangeException
+- uid: MLEM.Misc.SingleRandom.GetRandomWeightedEntry*
+  commentId: Overload:MLEM.Misc.SingleRandom.GetRandomWeightedEntry
+  href: MLEM.Misc.SingleRandom.html#MLEM_Misc_SingleRandom_GetRandomWeightedEntry__1_System_Collections_Generic_ICollection___0__System_Func___0_System_Int32__MLEM_Misc_SeedSource_
+  name: GetRandomWeightedEntry
+  nameWithType: SingleRandom.GetRandomWeightedEntry
+  fullName: MLEM.Misc.SingleRandom.GetRandomWeightedEntry
+- uid: System.Func{{T},System.Int32}
+  commentId: T:System.Func{``0,System.Int32}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, int>
+  nameWithType: Func<T, int>
+  fullName: System.Func<T, int>
+  nameWithType.vb: Func(Of T, Integer)
+  fullName.vb: System.Func(Of T, Integer)
+  name.vb: Func(Of T, Integer)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Func{{T},System.Single}
+  commentId: T:System.Func{``0,System.Single}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, float>
+  nameWithType: Func<T, float>
+  fullName: System.Func<T, float>
+  nameWithType.vb: Func(Of T, Single)
+  fullName.vb: System.Func(Of T, Single)
+  name.vb: Func(Of T, Single)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )

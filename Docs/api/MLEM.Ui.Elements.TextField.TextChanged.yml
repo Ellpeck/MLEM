@@ -1,0 +1,99 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.TextField.TextChanged
+  commentId: T:MLEM.Ui.Elements.TextField.TextChanged
+  id: TextField.TextChanged
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextField.TextChanged
+  nameWithType: TextField.TextChanged
+  fullName: MLEM.Ui.Elements.TextField.TextChanged
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/TextField.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextChanged
+    path: ../MLEM.Ui/Elements/TextField.cs
+    startLine: 283
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: A delegate method used for <xref href="MLEM.Ui.Elements.TextField.OnTextChange" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public delegate void TextField.TextChanged(TextField field, string text)
+    parameters:
+    - id: field
+      type: MLEM.Ui.Elements.TextField
+      description: The text field whose text changed
+    - id: text
+      type: System.String
+      description: The new text
+    content.vb: Public Delegate Sub TextField.TextChanged(field As TextField, text As String)
+references:
+- uid: MLEM.Ui.Elements.TextField.OnTextChange
+  commentId: F:MLEM.Ui.Elements.TextField.OnTextChange
+  href: MLEM.Ui.Elements.TextField.html#MLEM_Ui_Elements_TextField_OnTextChange
+  name: OnTextChange
+  nameWithType: TextField.OnTextChange
+  fullName: MLEM.Ui.Elements.TextField.OnTextChange
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: MLEM.Ui.Elements.TextField
+  commentId: T:MLEM.Ui.Elements.TextField
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.TextField.html
+  name: TextField
+  nameWithType: TextField
+  fullName: MLEM.Ui.Elements.TextField
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

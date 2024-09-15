@@ -1,0 +1,1945 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Tiled.LayerPositionF
+  commentId: T:MLEM.Extended.Tiled.LayerPositionF
+  id: LayerPositionF
+  parent: MLEM.Extended.Tiled
+  children:
+  - MLEM.Extended.Tiled.LayerPositionF.#ctor(System.String,System.Single,System.Single)
+  - MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  - MLEM.Extended.Tiled.LayerPositionF.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  - MLEM.Extended.Tiled.LayerPositionF.Equals(System.Object)
+  - MLEM.Extended.Tiled.LayerPositionF.GetHashCode
+  - MLEM.Extended.Tiled.LayerPositionF.Layer
+  - MLEM.Extended.Tiled.LayerPositionF.ToString
+  - MLEM.Extended.Tiled.LayerPositionF.X
+  - MLEM.Extended.Tiled.LayerPositionF.Y
+  - MLEM.Extended.Tiled.LayerPositionF.op_Addition(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  - MLEM.Extended.Tiled.LayerPositionF.op_Equality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  - MLEM.Extended.Tiled.LayerPositionF.op_Implicit(MLEM.Extended.Tiled.LayerPositionF)~MLEM.Extended.Tiled.LayerPosition
+  - MLEM.Extended.Tiled.LayerPositionF.op_Inequality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  - MLEM.Extended.Tiled.LayerPositionF.op_Subtraction(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  - MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation(MLEM.Extended.Tiled.LayerPositionF)
+  langs:
+  - csharp
+  - vb
+  name: LayerPositionF
+  nameWithType: LayerPositionF
+  fullName: MLEM.Extended.Tiled.LayerPositionF
+  type: Struct
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: LayerPositionF
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 9
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: >-
+    A struct that represents a position on a <xref href="MonoGame.Extended.Tiled.TiledMap" data-throw-if-not-resolved="false"></xref> with multiple layers, where the <xref href="MLEM.Extended.Tiled.LayerPositionF.X" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Extended.Tiled.LayerPositionF.Y" data-throw-if-not-resolved="false"></xref> coordinates are 32-bit floating point numbers.
+
+    See <xref href="MLEM.Extended.Tiled.LayerPosition" data-throw-if-not-resolved="false"></xref> for an integer position.
+  example: []
+  syntax:
+    content: >-
+      [DataContract]
+
+      public struct LayerPositionF : IEquatable<LayerPositionF>
+    content.vb: >-
+      <DataContract>
+
+      Public Structure LayerPositionF Implements IEquatable(Of LayerPositionF)
+  implements:
+  - System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  attributes:
+  - type: System.Runtime.Serialization.DataContractAttribute
+    ctor: System.Runtime.Serialization.DataContractAttribute.#ctor
+    arguments: []
+- uid: MLEM.Extended.Tiled.LayerPositionF.Layer
+  commentId: F:MLEM.Extended.Tiled.LayerPositionF.Layer
+  id: Layer
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: Layer
+  nameWithType: LayerPositionF.Layer
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Layer
+  type: Field
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Layer
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 16
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: The name of the layer that this position is on
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public string Layer
+    return:
+      type: System.String
+    content.vb: >-
+      <DataMember>
+
+      Public Layer As String
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Extended.Tiled.LayerPositionF.X
+  commentId: F:MLEM.Extended.Tiled.LayerPositionF.X
+  id: X
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: X
+  nameWithType: LayerPositionF.X
+  fullName: MLEM.Extended.Tiled.LayerPositionF.X
+  type: Field
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: X
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 21
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: The x coordinate of this position
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public float X
+    return:
+      type: System.Single
+    content.vb: >-
+      <DataMember>
+
+      Public X As Single
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Extended.Tiled.LayerPositionF.Y
+  commentId: F:MLEM.Extended.Tiled.LayerPositionF.Y
+  id: Y
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: Y
+  nameWithType: LayerPositionF.Y
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Y
+  type: Field
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Y
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 26
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: The y coordinate of this position
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public float Y
+    return:
+      type: System.Single
+    content.vb: >-
+      <DataMember>
+
+      Public Y As Single
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Extended.Tiled.LayerPositionF.#ctor(System.String,System.Single,System.Single)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.#ctor(System.String,System.Single,System.Single)
+  id: '#ctor(System.String,System.Single,System.Single)'
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: LayerPositionF(string, float, float)
+  nameWithType: LayerPositionF.LayerPositionF(string, float, float)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.LayerPositionF(string, float, float)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 34
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Creates a new layer position with the given settings
+  example: []
+  syntax:
+    content: public LayerPositionF(string layerName, float x, float y)
+    parameters:
+    - id: layerName
+      type: System.String
+      description: The layer name
+    - id: x
+      type: System.Single
+      description: The x coordinate
+    - id: y
+      type: System.Single
+      description: The y coordinate
+    content.vb: Public Sub New(layerName As String, x As Single, y As Single)
+  overload: MLEM.Extended.Tiled.LayerPositionF.#ctor*
+  nameWithType.vb: LayerPositionF.New(String, Single, Single)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.New(String, Single, Single)
+  name.vb: New(String, Single, Single)
+- uid: MLEM.Extended.Tiled.LayerPositionF.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  id: Equals(MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: Equals(LayerPositionF)
+  nameWithType: LayerPositionF.Equals(LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 41
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public bool Equals(LayerPositionF other)
+    parameters:
+    - id: other
+      type: MLEM.Extended.Tiled.LayerPositionF
+    return:
+      type: System.Boolean
+      description: true if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, false.
+    content.vb: Public Function Equals(other As LayerPositionF) As Boolean
+  overload: MLEM.Extended.Tiled.LayerPositionF.Equals*
+  implements:
+  - System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}.Equals(MLEM.Extended.Tiled.LayerPositionF)
+- uid: MLEM.Extended.Tiled.LayerPositionF.Equals(System.Object)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: Equals(object)
+  nameWithType: LayerPositionF.Equals(object)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Equals(object)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 48
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: true if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, false.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: MLEM.Extended.Tiled.LayerPositionF.Equals*
+  nameWithType.vb: LayerPositionF.Equals(Object)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.Equals(Object)
+  name.vb: Equals(Object)
+- uid: MLEM.Extended.Tiled.LayerPositionF.GetHashCode
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.GetHashCode
+  id: GetHashCode
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: LayerPositionF.GetHashCode()
+  fullName: MLEM.Extended.Tiled.LayerPositionF.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetHashCode
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 54
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: MLEM.Extended.Tiled.LayerPositionF.GetHashCode*
+- uid: MLEM.Extended.Tiled.LayerPositionF.ToString
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.ToString
+  id: ToString
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: LayerPositionF.ToString()
+  fullName: MLEM.Extended.Tiled.LayerPositionF.ToString()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToString
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 63
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Returns the fully qualified type name of this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The fully qualified type name.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: MLEM.Extended.Tiled.LayerPositionF.ToString*
+- uid: MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  id: Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: Add(LayerPositionF, LayerPositionF)
+  nameWithType: LayerPositionF.Add(LayerPositionF, LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 75
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: >-
+    Adds the given layer positions together, returning a new layer position with the sum of their coordinates.
+
+    If the two layer positions' <xref href="MLEM.Extended.Tiled.LayerPositionF.Layer" data-throw-if-not-resolved="false"></xref> differ, an <xref href="System.ArgumentException" data-throw-if-not-resolved="false"></xref> is thrown.
+  example: []
+  syntax:
+    content: public static LayerPositionF Add(LayerPositionF left, LayerPositionF right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The left position.
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The right position.
+    return:
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The sum of the positions.
+    content.vb: Public Shared Function Add(left As LayerPositionF, right As LayerPositionF) As LayerPositionF
+  overload: MLEM.Extended.Tiled.LayerPositionF.Add*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the two positions' <xref href="MLEM.Extended.Tiled.LayerPositionF.Layer" data-throw-if-not-resolved="false"></xref> are not the same.
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Equality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.op_Equality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  id: op_Equality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: operator ==(LayerPositionF, LayerPositionF)
+  nameWithType: LayerPositionF.operator ==(LayerPositionF, LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator ==(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Equality
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 82
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public static bool operator ==(LayerPositionF left, LayerPositionF right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPositionF
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPositionF
+    return:
+      type: System.Boolean
+      description: true if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, false.
+    content.vb: Public Shared Operator =(left As LayerPositionF, right As LayerPositionF) As Boolean
+  overload: MLEM.Extended.Tiled.LayerPositionF.op_Equality*
+  nameWithType.vb: LayerPositionF.=(LayerPositionF, LayerPositionF)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.=(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: =(LayerPositionF, LayerPositionF)
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Inequality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.op_Inequality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  id: op_Inequality(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: operator !=(LayerPositionF, LayerPositionF)
+  nameWithType: LayerPositionF.operator !=(LayerPositionF, LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator !=(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Inequality
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 87
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public static bool operator !=(LayerPositionF left, LayerPositionF right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPositionF
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPositionF
+    return:
+      type: System.Boolean
+      description: true if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, false.
+    content.vb: Public Shared Operator <>(left As LayerPositionF, right As LayerPositionF) As Boolean
+  overload: MLEM.Extended.Tiled.LayerPositionF.op_Inequality*
+  nameWithType.vb: LayerPositionF.<>(LayerPositionF, LayerPositionF)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.<>(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: <>(LayerPositionF, LayerPositionF)
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation(MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation(MLEM.Extended.Tiled.LayerPositionF)
+  id: op_UnaryNegation(MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: operator -(LayerPositionF)
+  nameWithType: LayerPositionF.operator -(LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator -(MLEM.Extended.Tiled.LayerPositionF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_UnaryNegation
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 96
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Returns the negative of the given layer position.
+  example: []
+  syntax:
+    content: public static LayerPositionF operator -(LayerPositionF position)
+    parameters:
+    - id: position
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The position to negate.
+    return:
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The negative position.
+    content.vb: Public Shared Operator -(position As LayerPositionF) As LayerPositionF
+  overload: MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation*
+  nameWithType.vb: LayerPositionF.-(LayerPositionF)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.-(MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: -(LayerPositionF)
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Addition(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.op_Addition(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  id: op_Addition(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: operator +(LayerPositionF, LayerPositionF)
+  nameWithType: LayerPositionF.operator +(LayerPositionF, LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator +(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Addition
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 106
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Returns the sum of the two layer positions using <xref href="MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF%2cMLEM.Extended.Tiled.LayerPositionF)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static LayerPositionF operator +(LayerPositionF left, LayerPositionF right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The left position.
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The right position.
+    return:
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The sum of the positions.
+    content.vb: Public Shared Operator +(left As LayerPositionF, right As LayerPositionF) As LayerPositionF
+  overload: MLEM.Extended.Tiled.LayerPositionF.op_Addition*
+  nameWithType.vb: LayerPositionF.+(LayerPositionF, LayerPositionF)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.+(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: +(LayerPositionF, LayerPositionF)
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Subtraction(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.op_Subtraction(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  id: op_Subtraction(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: operator -(LayerPositionF, LayerPositionF)
+  nameWithType: LayerPositionF.operator -(LayerPositionF, LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator -(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Subtraction
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 116
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: Subtracts the second from the first position using <xref href="MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF%2cMLEM.Extended.Tiled.LayerPositionF)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static LayerPositionF operator -(LayerPositionF left, LayerPositionF right)
+    parameters:
+    - id: left
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The left position.
+    - id: right
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The right position.
+    return:
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The difference of the positions.
+    content.vb: Public Shared Operator -(left As LayerPositionF, right As LayerPositionF) As LayerPositionF
+  overload: MLEM.Extended.Tiled.LayerPositionF.op_Subtraction*
+  nameWithType.vb: LayerPositionF.-(LayerPositionF, LayerPositionF)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.-(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: -(LayerPositionF, LayerPositionF)
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Implicit(MLEM.Extended.Tiled.LayerPositionF)~MLEM.Extended.Tiled.LayerPosition
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.op_Implicit(MLEM.Extended.Tiled.LayerPositionF)~MLEM.Extended.Tiled.LayerPosition
+  id: op_Implicit(MLEM.Extended.Tiled.LayerPositionF)~MLEM.Extended.Tiled.LayerPosition
+  parent: MLEM.Extended.Tiled.LayerPositionF
+  langs:
+  - csharp
+  - vb
+  name: implicit operator LayerPosition(LayerPositionF)
+  nameWithType: LayerPositionF.implicit operator LayerPosition(LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.implicit operator MLEM.Extended.Tiled.LayerPosition(MLEM.Extended.Tiled.LayerPositionF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/LayerPositionF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Implicit
+    path: ../MLEM.Extended/Tiled/LayerPositionF.cs
+    startLine: 126
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: >-
+    Implicitly converts a <xref href="MLEM.Extended.Tiled.LayerPositionF" data-throw-if-not-resolved="false"></xref> to a <xref href="MLEM.Extended.Tiled.LayerPosition" data-throw-if-not-resolved="false"></xref>.
+
+    The coordinates are typecast to 32-bit integers in the process.
+  example: []
+  syntax:
+    content: public static implicit operator LayerPosition(LayerPositionF position)
+    parameters:
+    - id: position
+      type: MLEM.Extended.Tiled.LayerPositionF
+      description: The position to convert.
+    return:
+      type: MLEM.Extended.Tiled.LayerPosition
+      description: The converted position.
+    content.vb: Public Shared Widening Operator CType(position As LayerPositionF) As LayerPosition
+  overload: MLEM.Extended.Tiled.LayerPositionF.op_Implicit*
+  nameWithType.vb: LayerPositionF.CType(LayerPositionF)
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.CType(MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: CType(LayerPositionF)
+references:
+- uid: MonoGame.Extended.Tiled.TiledMap
+  commentId: T:MonoGame.Extended.Tiled.TiledMap
+  parent: MonoGame.Extended.Tiled
+  isExternal: true
+  name: TiledMap
+  nameWithType: TiledMap
+  fullName: MonoGame.Extended.Tiled.TiledMap
+- uid: MLEM.Extended.Tiled.LayerPositionF.X
+  commentId: F:MLEM.Extended.Tiled.LayerPositionF.X
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_X
+  name: X
+  nameWithType: LayerPositionF.X
+  fullName: MLEM.Extended.Tiled.LayerPositionF.X
+- uid: MLEM.Extended.Tiled.LayerPositionF.Y
+  commentId: F:MLEM.Extended.Tiled.LayerPositionF.Y
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Y
+  name: Y
+  nameWithType: LayerPositionF.Y
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Y
+- uid: MLEM.Extended.Tiled.LayerPosition
+  commentId: T:MLEM.Extended.Tiled.LayerPosition
+  parent: MLEM.Extended.Tiled
+  href: MLEM.Extended.Tiled.LayerPosition.html
+  name: LayerPosition
+  nameWithType: LayerPosition
+  fullName: MLEM.Extended.Tiled.LayerPosition
+- uid: MLEM.Extended.Tiled
+  commentId: N:MLEM.Extended.Tiled
+  href: MLEM.html
+  name: MLEM.Extended.Tiled
+  nameWithType: MLEM.Extended.Tiled
+  fullName: MLEM.Extended.Tiled
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extended
+    name: Extended
+    href: MLEM.Extended.html
+  - name: .
+  - uid: MLEM.Extended.Tiled
+    name: Tiled
+    href: MLEM.Extended.Tiled.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extended
+    name: Extended
+    href: MLEM.Extended.html
+  - name: .
+  - uid: MLEM.Extended.Tiled
+    name: Tiled
+    href: MLEM.Extended.Tiled.html
+- uid: System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}
+  commentId: T:System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<LayerPositionF>
+  nameWithType: IEquatable<LayerPositionF>
+  fullName: System.IEquatable<MLEM.Extended.Tiled.LayerPositionF>
+  nameWithType.vb: IEquatable(Of LayerPositionF)
+  fullName.vb: System.IEquatable(Of MLEM.Extended.Tiled.LayerPositionF)
+  name.vb: IEquatable(Of LayerPositionF)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<LayerPositionF>(LayerPositionF, LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<LayerPositionF>(LayerPositionF, LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Extended.Tiled.LayerPositionF>(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of LayerPositionF)(LayerPositionF, LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Extended.Tiled.LayerPositionF)(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of LayerPositionF)(LayerPositionF, LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<LayerPositionF>(LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<LayerPositionF>(LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Extended.Tiled.LayerPositionF>(MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of LayerPositionF)(LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Extended.Tiled.LayerPositionF)(MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of LayerPositionF)(LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<LayerPositionF>(LayerPositionF, LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<LayerPositionF>(LayerPositionF, LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Extended.Tiled.LayerPositionF>(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of LayerPositionF)(LayerPositionF, LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Extended.Tiled.LayerPositionF)(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of LayerPositionF)(LayerPositionF, LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<LayerPositionF>(LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<LayerPositionF>(LayerPositionF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Extended.Tiled.LayerPositionF>(MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of LayerPositionF)(LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Extended.Tiled.LayerPositionF)(MLEM.Extended.Tiled.LayerPositionF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of LayerPositionF)(LayerPositionF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Extended.Tiled.LayerPositionF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MonoGame.Extended.Tiled
+  commentId: N:MonoGame.Extended.Tiled
+  isExternal: true
+  name: MonoGame.Extended.Tiled
+  nameWithType: MonoGame.Extended.Tiled
+  fullName: MonoGame.Extended.Tiled
+  spec.csharp:
+  - uid: MonoGame
+    name: MonoGame
+    isExternal: true
+  - name: .
+  - uid: MonoGame.Extended
+    name: Extended
+    isExternal: true
+  - name: .
+  - uid: MonoGame.Extended.Tiled
+    name: Tiled
+    isExternal: true
+  spec.vb:
+  - uid: MonoGame
+    name: MonoGame
+    isExternal: true
+  - name: .
+  - uid: MonoGame.Extended
+    name: Extended
+    isExternal: true
+  - name: .
+  - uid: MonoGame.Extended.Tiled
+    name: Tiled
+    isExternal: true
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Extended.Tiled.LayerPositionF.#ctor*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.#ctor
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF__ctor_System_String_System_Single_System_Single_
+  name: LayerPositionF
+  nameWithType: LayerPositionF.LayerPositionF
+  fullName: MLEM.Extended.Tiled.LayerPositionF.LayerPositionF
+  nameWithType.vb: LayerPositionF.New
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.New
+  name.vb: New
+- uid: MLEM.Extended.Tiled.LayerPositionF.Equals*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.Equals
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Equals_MLEM_Extended_Tiled_LayerPositionF_
+  name: Equals
+  nameWithType: LayerPositionF.Equals
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Equals
+- uid: System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  parent: System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(LayerPositionF)
+  nameWithType: IEquatable<LayerPositionF>.Equals(LayerPositionF)
+  fullName: System.IEquatable<MLEM.Extended.Tiled.LayerPositionF>.Equals(MLEM.Extended.Tiled.LayerPositionF)
+  nameWithType.vb: IEquatable(Of LayerPositionF).Equals(LayerPositionF)
+  fullName.vb: System.IEquatable(Of MLEM.Extended.Tiled.LayerPositionF).Equals(MLEM.Extended.Tiled.LayerPositionF)
+  spec.csharp:
+  - uid: System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}.Equals(MLEM.Extended.Tiled.LayerPositionF)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{MLEM.Extended.Tiled.LayerPositionF}.Equals(MLEM.Extended.Tiled.LayerPositionF)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF
+  commentId: T:MLEM.Extended.Tiled.LayerPositionF
+  parent: MLEM.Extended.Tiled
+  href: MLEM.Extended.Tiled.LayerPositionF.html
+  name: LayerPositionF
+  nameWithType: LayerPositionF
+  fullName: MLEM.Extended.Tiled.LayerPositionF
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.GetHashCode*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.GetHashCode
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_GetHashCode
+  name: GetHashCode
+  nameWithType: LayerPositionF.GetHashCode
+  fullName: MLEM.Extended.Tiled.LayerPositionF.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.ToString*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.ToString
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_ToString
+  name: ToString
+  nameWithType: LayerPositionF.ToString
+  fullName: MLEM.Extended.Tiled.LayerPositionF.ToString
+- uid: MLEM.Extended.Tiled.LayerPositionF.Layer
+  commentId: F:MLEM.Extended.Tiled.LayerPositionF.Layer
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Layer
+  name: Layer
+  nameWithType: LayerPositionF.Layer
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Layer
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: MLEM.Extended.Tiled.LayerPositionF.Add*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.Add
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Add_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  name: Add
+  nameWithType: LayerPositionF.Add
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Add
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Equality*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.op_Equality
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Equality_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  name: operator ==
+  nameWithType: LayerPositionF.operator ==
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator ==
+  nameWithType.vb: LayerPositionF.=
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF.op_Equality*
+    name: ==
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Equality_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Inequality*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.op_Inequality
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Inequality_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  name: operator !=
+  nameWithType: LayerPositionF.operator !=
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator !=
+  nameWithType.vb: LayerPositionF.<>
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF.op_Inequality*
+    name: '!='
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Inequality_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_UnaryNegation_MLEM_Extended_Tiled_LayerPositionF_
+  name: operator -
+  nameWithType: LayerPositionF.operator -
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator -
+  nameWithType.vb: LayerPositionF.-
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF.op_UnaryNegation*
+    name: '-'
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_UnaryNegation_MLEM_Extended_Tiled_LayerPositionF_
+- uid: MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  commentId: M:MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Add_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  name: Add(LayerPositionF, LayerPositionF)
+  nameWithType: LayerPositionF.Add(LayerPositionF, LayerPositionF)
+  fullName: MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF, MLEM.Extended.Tiled.LayerPositionF)
+  spec.csharp:
+  - uid: MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+    name: Add
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Add_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extended.Tiled.LayerPositionF.Add(MLEM.Extended.Tiled.LayerPositionF,MLEM.Extended.Tiled.LayerPositionF)
+    name: Add
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_Add_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  - name: (
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF
+    name: LayerPositionF
+    href: MLEM.Extended.Tiled.LayerPositionF.html
+  - name: )
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Addition*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.op_Addition
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Addition_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  name: operator +
+  nameWithType: LayerPositionF.operator +
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator +
+  nameWithType.vb: LayerPositionF.+
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.+
+  name.vb: +
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF.op_Addition*
+    name: +
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Addition_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Subtraction*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.op_Subtraction
+  href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Subtraction_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+  name: operator -
+  nameWithType: LayerPositionF.operator -
+  fullName: MLEM.Extended.Tiled.LayerPositionF.operator -
+  nameWithType.vb: LayerPositionF.-
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.-
+  name.vb: '-'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Extended.Tiled.LayerPositionF.op_Subtraction*
+    name: '-'
+    href: MLEM.Extended.Tiled.LayerPositionF.html#MLEM_Extended_Tiled_LayerPositionF_op_Subtraction_MLEM_Extended_Tiled_LayerPositionF_MLEM_Extended_Tiled_LayerPositionF_
+- uid: MLEM.Extended.Tiled.LayerPositionF.op_Implicit*
+  commentId: Overload:MLEM.Extended.Tiled.LayerPositionF.op_Implicit
+  name: implicit operator
+  nameWithType: LayerPositionF.implicit operator
+  fullName: MLEM.Extended.Tiled.LayerPositionF.implicit operator
+  nameWithType.vb: LayerPositionF.CType
+  fullName.vb: MLEM.Extended.Tiled.LayerPositionF.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator

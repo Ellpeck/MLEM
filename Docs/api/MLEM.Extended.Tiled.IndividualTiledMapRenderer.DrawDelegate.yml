@@ -1,0 +1,805 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  id: IndividualTiledMapRenderer.DrawDelegate
+  parent: MLEM.Extended.Tiled
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IndividualTiledMapRenderer.DrawDelegate
+  nameWithType: IndividualTiledMapRenderer.DrawDelegate
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawDelegate
+    path: ../MLEM.Extended/Tiled/IndividualTiledMapRenderer.cs
+    startLine: 207
+  assemblies:
+  - MLEM.Extended
+  namespace: MLEM.Extended.Tiled
+  summary: A delegate method used for drawing an <xref href="MLEM.Extended.Tiled.IndividualTiledMapRenderer" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public delegate void IndividualTiledMapRenderer.DrawDelegate(SpriteBatch batch, IndividualTiledMapRenderer.TileDrawInfo info)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch to use for drawing
+    - id: info
+      type: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+      description: The <xref href="MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo" data-throw-if-not-resolved="false"></xref> to draw
+    content.vb: Public Delegate Sub IndividualTiledMapRenderer.DrawDelegate(batch As SpriteBatch, info As IndividualTiledMapRenderer.TileDrawInfo)
+  extensionMethods:
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+references:
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer
+  parent: MLEM.Extended.Tiled
+  href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.html
+  name: IndividualTiledMapRenderer
+  nameWithType: IndividualTiledMapRenderer
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+  commentId: T:MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+  parent: MLEM.Extended.Tiled
+  href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.html
+  name: IndividualTiledMapRenderer.TileDrawInfo
+  nameWithType: IndividualTiledMapRenderer.TileDrawInfo
+  fullName: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+  spec.csharp:
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+    name: IndividualTiledMapRenderer
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.html
+  - name: .
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+    name: TileDrawInfo
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo.html
+  spec.vb:
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer
+    name: IndividualTiledMapRenderer
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.html
+  - name: .
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo
+    name: TileDrawInfo
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.TileDrawInfo.html
+- uid: MLEM.Extended.Tiled
+  commentId: N:MLEM.Extended.Tiled
+  href: MLEM.html
+  name: MLEM.Extended.Tiled
+  nameWithType: MLEM.Extended.Tiled
+  fullName: MLEM.Extended.Tiled
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extended
+    name: Extended
+    href: MLEM.Extended.html
+  - name: .
+  - uid: MLEM.Extended.Tiled
+    name: Tiled
+    href: MLEM.Extended.Tiled.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extended
+    name: Extended
+    href: MLEM.Extended.html
+  - name: .
+  - uid: MLEM.Extended.Tiled
+    name: Tiled
+    href: MLEM.Extended.Tiled.html
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<DrawDelegate>(DrawDelegate, DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<IndividualTiledMapRenderer.DrawDelegate>(IndividualTiledMapRenderer.DrawDelegate, IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate>(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of IndividualTiledMapRenderer.DrawDelegate)(IndividualTiledMapRenderer.DrawDelegate, IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of DrawDelegate)(DrawDelegate, DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<DrawDelegate>(DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<IndividualTiledMapRenderer.DrawDelegate>(IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate>(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of IndividualTiledMapRenderer.DrawDelegate)(IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of DrawDelegate)(DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<DrawDelegate>(DrawDelegate, DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<IndividualTiledMapRenderer.DrawDelegate>(IndividualTiledMapRenderer.DrawDelegate, IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate>(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of IndividualTiledMapRenderer.DrawDelegate)(IndividualTiledMapRenderer.DrawDelegate, IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of DrawDelegate)(DrawDelegate, DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<DrawDelegate>(DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<IndividualTiledMapRenderer.DrawDelegate>(IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate>(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of IndividualTiledMapRenderer.DrawDelegate)(IndividualTiledMapRenderer.DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate)(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of DrawDelegate)(DrawDelegate, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: )
+  - name: (
+  - uid: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate
+    name: DrawDelegate
+    href: MLEM.Extended.Tiled.IndividualTiledMapRenderer.DrawDelegate.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html

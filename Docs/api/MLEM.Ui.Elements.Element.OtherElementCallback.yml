@@ -1,0 +1,75 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.Element.OtherElementCallback
+  commentId: T:MLEM.Ui.Elements.Element.OtherElementCallback
+  id: Element.OtherElementCallback
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Element.OtherElementCallback
+  nameWithType: Element.OtherElementCallback
+  fullName: MLEM.Ui.Elements.Element.OtherElementCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/Element.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OtherElementCallback
+    path: ../MLEM.Ui/Elements/Element.cs
+    startLine: 1298
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: A generic element-specific delegate that includes a second element.
+  example: []
+  syntax:
+    content: public delegate void Element.OtherElementCallback(Element thisElement, Element otherElement)
+    parameters:
+    - id: thisElement
+      type: MLEM.Ui.Elements.Element
+      description: The current element
+    - id: otherElement
+      type: MLEM.Ui.Elements.Element
+      description: The other element
+    content.vb: Public Delegate Sub Element.OtherElementCallback(thisElement As Element, otherElement As Element)
+references:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element

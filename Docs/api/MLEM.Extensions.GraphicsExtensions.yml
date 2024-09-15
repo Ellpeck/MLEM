@@ -1,0 +1,709 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extensions.GraphicsExtensions
+  commentId: T:MLEM.Extensions.GraphicsExtensions
+  id: GraphicsExtensions
+  parent: MLEM.Extensions
+  children:
+  - MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely(Microsoft.Xna.Framework.GraphicsDeviceManager)
+  - MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight(Microsoft.Xna.Framework.GraphicsDeviceManager,Microsoft.Xna.Framework.GameWindow)
+  - MLEM.Extensions.GraphicsExtensions.SetFullscreen(Microsoft.Xna.Framework.GraphicsDeviceManager,System.Boolean)
+  - MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  - MLEM.Extensions.GraphicsExtensions.WithRenderTargets(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  langs:
+  - csharp
+  - vb
+  name: GraphicsExtensions
+  nameWithType: GraphicsExtensions
+  fullName: MLEM.Extensions.GraphicsExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM/Extensions/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GraphicsExtensions
+    path: ../MLEM/Extensions/GraphicsExtensions.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: A set of extensions for dealing with <xref href="Microsoft.Xna.Framework.Graphics.GraphicsDevice" data-throw-if-not-resolved="false"></xref> and <xref href="Microsoft.Xna.Framework.GraphicsDeviceManager" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static class GraphicsExtensions
+    content.vb: Public Module GraphicsExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Extensions.GraphicsExtensions.SetFullscreen(Microsoft.Xna.Framework.GraphicsDeviceManager,System.Boolean)
+  commentId: M:MLEM.Extensions.GraphicsExtensions.SetFullscreen(Microsoft.Xna.Framework.GraphicsDeviceManager,System.Boolean)
+  id: SetFullscreen(Microsoft.Xna.Framework.GraphicsDeviceManager,System.Boolean)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.GraphicsExtensions
+  langs:
+  - csharp
+  - vb
+  name: SetFullscreen(GraphicsDeviceManager, bool)
+  nameWithType: GraphicsExtensions.SetFullscreen(GraphicsDeviceManager, bool)
+  fullName: MLEM.Extensions.GraphicsExtensions.SetFullscreen(Microsoft.Xna.Framework.GraphicsDeviceManager, bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SetFullscreen
+    path: ../MLEM/Extensions/GraphicsExtensions.cs
+    startLine: 19
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: Sets the graphics device manager to fullscreen, properly taking into account the preferred backbuffer width and height to avoid lower resolutions for higher resolution screens.
+  example: []
+  syntax:
+    content: public static void SetFullscreen(this GraphicsDeviceManager manager, bool fullscreen)
+    parameters:
+    - id: manager
+      type: Microsoft.Xna.Framework.GraphicsDeviceManager
+      description: The graphics device manager
+    - id: fullscreen
+      type: System.Boolean
+      description: True if fullscreen should be enabled, false if disabled
+    content.vb: Public Shared Sub SetFullscreen(manager As GraphicsDeviceManager, fullscreen As Boolean)
+  overload: MLEM.Extensions.GraphicsExtensions.SetFullscreen*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown when changing out of fullscreen mode before changing into fullscreen mode using this method
+  nameWithType.vb: GraphicsExtensions.SetFullscreen(GraphicsDeviceManager, Boolean)
+  fullName.vb: MLEM.Extensions.GraphicsExtensions.SetFullscreen(Microsoft.Xna.Framework.GraphicsDeviceManager, Boolean)
+  name.vb: SetFullscreen(GraphicsDeviceManager, Boolean)
+- uid: MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely(Microsoft.Xna.Framework.GraphicsDeviceManager)
+  commentId: M:MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely(Microsoft.Xna.Framework.GraphicsDeviceManager)
+  id: ApplyChangesSafely(Microsoft.Xna.Framework.GraphicsDeviceManager)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.GraphicsExtensions
+  langs:
+  - csharp
+  - vb
+  name: ApplyChangesSafely(GraphicsDeviceManager)
+  nameWithType: GraphicsExtensions.ApplyChangesSafely(GraphicsDeviceManager)
+  fullName: MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely(Microsoft.Xna.Framework.GraphicsDeviceManager)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ApplyChangesSafely
+    path: ../MLEM/Extensions/GraphicsExtensions.cs
+    startLine: 43
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: Save version of <xref href="Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges" data-throw-if-not-resolved="false"></xref> that doesn't reset window size to defaults
+  example: []
+  syntax:
+    content: public static void ApplyChangesSafely(this GraphicsDeviceManager manager)
+    parameters:
+    - id: manager
+      type: Microsoft.Xna.Framework.GraphicsDeviceManager
+      description: The graphics device manager
+    content.vb: Public Shared Sub ApplyChangesSafely(manager As GraphicsDeviceManager)
+  overload: MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely*
+- uid: MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight(Microsoft.Xna.Framework.GraphicsDeviceManager,Microsoft.Xna.Framework.GameWindow)
+  commentId: M:MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight(Microsoft.Xna.Framework.GraphicsDeviceManager,Microsoft.Xna.Framework.GameWindow)
+  id: ResetWidthAndHeight(Microsoft.Xna.Framework.GraphicsDeviceManager,Microsoft.Xna.Framework.GameWindow)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.GraphicsExtensions
+  langs:
+  - csharp
+  - vb
+  name: ResetWidthAndHeight(GraphicsDeviceManager, GameWindow)
+  nameWithType: GraphicsExtensions.ResetWidthAndHeight(GraphicsDeviceManager, GameWindow)
+  fullName: MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight(Microsoft.Xna.Framework.GraphicsDeviceManager, Microsoft.Xna.Framework.GameWindow)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ResetWidthAndHeight
+    path: ../MLEM/Extensions/GraphicsExtensions.cs
+    startLine: 58
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: Resets preferred width and height back to the window's default bound values.
+  example: []
+  syntax:
+    content: public static void ResetWidthAndHeight(this GraphicsDeviceManager manager, GameWindow window)
+    parameters:
+    - id: manager
+      type: Microsoft.Xna.Framework.GraphicsDeviceManager
+      description: The graphics device manager
+    - id: window
+      type: Microsoft.Xna.Framework.GameWindow
+      description: The window whose bounds to use
+    content.vb: Public Shared Sub ResetWidthAndHeight(manager As GraphicsDeviceManager, window As GameWindow)
+  overload: MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight*
+- uid: MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  commentId: M:MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  id: WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.GraphicsExtensions
+  langs:
+  - csharp
+  - vb
+  name: WithRenderTarget(GraphicsDevice, RenderTarget2D)
+  nameWithType: GraphicsExtensions.WithRenderTarget(GraphicsDevice, RenderTarget2D)
+  fullName: MLEM.Extensions.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: WithRenderTarget
+    path: ../MLEM/Extensions/GraphicsExtensions.cs
+    startLine: 72
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: >-
+    Starts a new <xref href="MLEM.Extensions.GraphicsExtensions.TargetContext" data-throw-if-not-resolved="false"></xref> using the specified render target.
+
+    The returned context automatically disposes when used in a <code>using</code> statement, which causes any previously applied render targets to be reapplied automatically.
+  example: []
+  syntax:
+    content: public static GraphicsExtensions.TargetContext WithRenderTarget(this GraphicsDevice device, RenderTarget2D target)
+    parameters:
+    - id: device
+      type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+      description: The graphics device
+    - id: target
+      type: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+      description: The render target to apply
+    return:
+      type: MLEM.Extensions.GraphicsExtensions.TargetContext
+      description: The render target context, to be used in a <code>using</code> statement
+    content.vb: Public Shared Function WithRenderTarget(device As GraphicsDevice, target As RenderTarget2D) As GraphicsExtensions.TargetContext
+  overload: MLEM.Extensions.GraphicsExtensions.WithRenderTarget*
+- uid: MLEM.Extensions.GraphicsExtensions.WithRenderTargets(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  commentId: M:MLEM.Extensions.GraphicsExtensions.WithRenderTargets(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  id: WithRenderTargets(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  isExtensionMethod: true
+  parent: MLEM.Extensions.GraphicsExtensions
+  langs:
+  - csharp
+  - vb
+  name: WithRenderTargets(GraphicsDevice, params RenderTargetBinding[])
+  nameWithType: GraphicsExtensions.WithRenderTargets(GraphicsDevice, params RenderTargetBinding[])
+  fullName: MLEM.Extensions.GraphicsExtensions.WithRenderTargets(Microsoft.Xna.Framework.Graphics.GraphicsDevice, params Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: WithRenderTargets
+    path: ../MLEM/Extensions/GraphicsExtensions.cs
+    startLine: 83
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: >-
+    Starts a new <xref href="MLEM.Extensions.GraphicsExtensions.TargetContext" data-throw-if-not-resolved="false"></xref> using the specified render target bindings.
+
+    The returned context automatically disposes when used in a <code>using</code> statement, which causes any previously applied render targets to be reapplied automatically.
+  example: []
+  syntax:
+    content: public static GraphicsExtensions.TargetContext WithRenderTargets(this GraphicsDevice device, params RenderTargetBinding[] targets)
+    parameters:
+    - id: device
+      type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+      description: The graphics device
+    - id: targets
+      type: Microsoft.Xna.Framework.Graphics.RenderTargetBinding[]
+      description: The render targets to apply
+    return:
+      type: MLEM.Extensions.GraphicsExtensions.TargetContext
+      description: The render target context, to be used in a <code>using</code> statement
+    content.vb: Public Shared Function WithRenderTargets(device As GraphicsDevice, ParamArray targets As RenderTargetBinding()) As GraphicsExtensions.TargetContext
+  overload: MLEM.Extensions.GraphicsExtensions.WithRenderTargets*
+  nameWithType.vb: GraphicsExtensions.WithRenderTargets(GraphicsDevice, ParamArray RenderTargetBinding())
+  fullName.vb: MLEM.Extensions.GraphicsExtensions.WithRenderTargets(Microsoft.Xna.Framework.Graphics.GraphicsDevice, ParamArray Microsoft.Xna.Framework.Graphics.RenderTargetBinding())
+  name.vb: WithRenderTargets(GraphicsDevice, ParamArray RenderTargetBinding())
+references:
+- uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  commentId: T:Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: GraphicsDevice
+  nameWithType: GraphicsDevice
+  fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+- uid: Microsoft.Xna.Framework.GraphicsDeviceManager
+  commentId: T:Microsoft.Xna.Framework.GraphicsDeviceManager
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GraphicsDeviceManager
+  nameWithType: GraphicsDeviceManager
+  fullName: Microsoft.Xna.Framework.GraphicsDeviceManager
+- uid: MLEM.Extensions
+  commentId: N:MLEM.Extensions
+  href: MLEM.html
+  name: MLEM.Extensions
+  nameWithType: MLEM.Extensions
+  fullName: MLEM.Extensions
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: MLEM.Extensions.GraphicsExtensions.SetFullscreen*
+  commentId: Overload:MLEM.Extensions.GraphicsExtensions.SetFullscreen
+  href: MLEM.Extensions.GraphicsExtensions.html#MLEM_Extensions_GraphicsExtensions_SetFullscreen_Microsoft_Xna_Framework_GraphicsDeviceManager_System_Boolean_
+  name: SetFullscreen
+  nameWithType: GraphicsExtensions.SetFullscreen
+  fullName: MLEM.Extensions.GraphicsExtensions.SetFullscreen
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges
+  commentId: M:Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges
+  isExternal: true
+  name: ApplyChanges()
+  nameWithType: GraphicsDeviceManager.ApplyChanges()
+  fullName: Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges
+    name: ApplyChanges
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GraphicsDeviceManager.ApplyChanges
+    name: ApplyChanges
+    isExternal: true
+  - name: (
+  - name: )
+- uid: MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely*
+  commentId: Overload:MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely
+  href: MLEM.Extensions.GraphicsExtensions.html#MLEM_Extensions_GraphicsExtensions_ApplyChangesSafely_Microsoft_Xna_Framework_GraphicsDeviceManager_
+  name: ApplyChangesSafely
+  nameWithType: GraphicsExtensions.ApplyChangesSafely
+  fullName: MLEM.Extensions.GraphicsExtensions.ApplyChangesSafely
+- uid: MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight*
+  commentId: Overload:MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight
+  href: MLEM.Extensions.GraphicsExtensions.html#MLEM_Extensions_GraphicsExtensions_ResetWidthAndHeight_Microsoft_Xna_Framework_GraphicsDeviceManager_Microsoft_Xna_Framework_GameWindow_
+  name: ResetWidthAndHeight
+  nameWithType: GraphicsExtensions.ResetWidthAndHeight
+  fullName: MLEM.Extensions.GraphicsExtensions.ResetWidthAndHeight
+- uid: Microsoft.Xna.Framework.GameWindow
+  commentId: T:Microsoft.Xna.Framework.GameWindow
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameWindow
+  nameWithType: GameWindow
+  fullName: Microsoft.Xna.Framework.GameWindow
+- uid: MLEM.Extensions.GraphicsExtensions.TargetContext
+  commentId: T:MLEM.Extensions.GraphicsExtensions.TargetContext
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.GraphicsExtensions.html
+  name: GraphicsExtensions.TargetContext
+  nameWithType: GraphicsExtensions.TargetContext
+  fullName: MLEM.Extensions.GraphicsExtensions.TargetContext
+  spec.csharp:
+  - uid: MLEM.Extensions.GraphicsExtensions
+    name: GraphicsExtensions
+    href: MLEM.Extensions.GraphicsExtensions.html
+  - name: .
+  - uid: MLEM.Extensions.GraphicsExtensions.TargetContext
+    name: TargetContext
+    href: MLEM.Extensions.GraphicsExtensions.TargetContext.html
+  spec.vb:
+  - uid: MLEM.Extensions.GraphicsExtensions
+    name: GraphicsExtensions
+    href: MLEM.Extensions.GraphicsExtensions.html
+  - name: .
+  - uid: MLEM.Extensions.GraphicsExtensions.TargetContext
+    name: TargetContext
+    href: MLEM.Extensions.GraphicsExtensions.TargetContext.html
+- uid: MLEM.Extensions.GraphicsExtensions.WithRenderTarget*
+  commentId: Overload:MLEM.Extensions.GraphicsExtensions.WithRenderTarget
+  href: MLEM.Extensions.GraphicsExtensions.html#MLEM_Extensions_GraphicsExtensions_WithRenderTarget_Microsoft_Xna_Framework_Graphics_GraphicsDevice_Microsoft_Xna_Framework_Graphics_RenderTarget2D_
+  name: WithRenderTarget
+  nameWithType: GraphicsExtensions.WithRenderTarget
+  fullName: MLEM.Extensions.GraphicsExtensions.WithRenderTarget
+- uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.RenderTarget2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: RenderTarget2D
+  nameWithType: RenderTarget2D
+  fullName: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+- uid: MLEM.Extensions.GraphicsExtensions.WithRenderTargets*
+  commentId: Overload:MLEM.Extensions.GraphicsExtensions.WithRenderTargets
+  href: MLEM.Extensions.GraphicsExtensions.html#MLEM_Extensions_GraphicsExtensions_WithRenderTargets_Microsoft_Xna_Framework_Graphics_GraphicsDevice_Microsoft_Xna_Framework_Graphics_RenderTargetBinding___
+  name: WithRenderTargets
+  nameWithType: GraphicsExtensions.WithRenderTargets
+  fullName: MLEM.Extensions.GraphicsExtensions.WithRenderTargets
+- uid: Microsoft.Xna.Framework.Graphics.RenderTargetBinding[]
+  isExternal: true
+  name: RenderTargetBinding[]
+  nameWithType: RenderTargetBinding[]
+  fullName: Microsoft.Xna.Framework.Graphics.RenderTargetBinding[]
+  nameWithType.vb: RenderTargetBinding()
+  fullName.vb: Microsoft.Xna.Framework.Graphics.RenderTargetBinding()
+  name.vb: RenderTargetBinding()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Graphics.RenderTargetBinding
+    name: RenderTargetBinding
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Graphics.RenderTargetBinding
+    name: RenderTargetBinding
+    isExternal: true
+  - name: (
+  - name: )

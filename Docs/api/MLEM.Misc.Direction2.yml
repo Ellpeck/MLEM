@@ -1,0 +1,1621 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Misc.Direction2
+  commentId: T:MLEM.Misc.Direction2
+  id: Direction2
+  parent: MLEM.Misc
+  children:
+  - MLEM.Misc.Direction2.Down
+  - MLEM.Misc.Direction2.DownLeft
+  - MLEM.Misc.Direction2.DownRight
+  - MLEM.Misc.Direction2.Left
+  - MLEM.Misc.Direction2.None
+  - MLEM.Misc.Direction2.Right
+  - MLEM.Misc.Direction2.Up
+  - MLEM.Misc.Direction2.UpLeft
+  - MLEM.Misc.Direction2.UpRight
+  langs:
+  - csharp
+  - vb
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Misc.Direction2
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Direction2
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    An enum that represents two-dimensional directions.
+
+    Both straight and diagonal directions are supported.
+
+    There are several extension methods and arrays available in <xref href="MLEM.Misc.Direction2Helper" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      [DataContract]
+
+      public enum Direction2
+    content.vb: >-
+      <Flags>
+
+      <DataContract>
+
+      Public Enum Direction2
+  extensionMethods:
+  - MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Angle
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsAdjacent
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsDiagonal
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Offset
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Opposite
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+  - MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+  - type: System.Runtime.Serialization.DataContractAttribute
+    ctor: System.Runtime.Serialization.DataContractAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.None
+  commentId: F:MLEM.Misc.Direction2.None
+  id: None
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Direction2.None
+  fullName: MLEM.Misc.Direction2.None
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: None
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: No direction.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      None = 0
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      None = 0
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.Up
+  commentId: F:MLEM.Misc.Direction2.Up
+  id: Up
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Up
+  nameWithType: Direction2.Up
+  fullName: MLEM.Misc.Direction2.Up
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Up
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The up direction, or -y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Up = 1
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Up = 1
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.Right
+  commentId: F:MLEM.Misc.Direction2.Right
+  id: Right
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: Direction2.Right
+  fullName: MLEM.Misc.Direction2.Right
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The right direction, or +x.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Right = 2
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Right = 2
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.Down
+  commentId: F:MLEM.Misc.Direction2.Down
+  id: Down
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Down
+  nameWithType: Direction2.Down
+  fullName: MLEM.Misc.Direction2.Down
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Down
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 34
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The down direction, or +y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Down = 4
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Down = 4
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.Left
+  commentId: F:MLEM.Misc.Direction2.Left
+  id: Left
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: Direction2.Left
+  fullName: MLEM.Misc.Direction2.Left
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 39
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The left direction, or -x.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Left = 8
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Left = 8
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.UpRight
+  commentId: F:MLEM.Misc.Direction2.UpRight
+  id: UpRight
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: UpRight
+  nameWithType: Direction2.UpRight
+  fullName: MLEM.Misc.Direction2.UpRight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpRight
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 45
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The up and right direction, or +x, -y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      UpRight = Up | Right
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      UpRight = Up Or Right
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.DownRight
+  commentId: F:MLEM.Misc.Direction2.DownRight
+  id: DownRight
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: DownRight
+  nameWithType: Direction2.DownRight
+  fullName: MLEM.Misc.Direction2.DownRight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownRight
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 50
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The down and right direction, or +x, +y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      DownRight = Right | Down
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      DownRight = Right Or Down
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.UpLeft
+  commentId: F:MLEM.Misc.Direction2.UpLeft
+  id: UpLeft
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: UpLeft
+  nameWithType: Direction2.UpLeft
+  fullName: MLEM.Misc.Direction2.UpLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpLeft
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 55
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The up and left direction, or -x, -y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      UpLeft = Up | Left
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      UpLeft = Up Or Left
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.Direction2.DownLeft
+  commentId: F:MLEM.Misc.Direction2.DownLeft
+  id: DownLeft
+  parent: MLEM.Misc.Direction2
+  langs:
+  - csharp
+  - vb
+  name: DownLeft
+  nameWithType: Direction2.DownLeft
+  fullName: MLEM.Misc.Direction2.DownLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownLeft
+    path: ../MLEM/Misc/Direction2.cs
+    startLine: 60
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The down and left direction, or -x, +y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      DownLeft = Down | Left
+    return:
+      type: MLEM.Misc.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      DownLeft = Down Or Left
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+references:
+- uid: MLEM.Misc.Direction2Helper
+  commentId: T:MLEM.Misc.Direction2Helper
+  parent: MLEM.Misc
+  href: MLEM.Misc.Direction2Helper.html
+  name: Direction2Helper
+  nameWithType: Direction2Helper
+  fullName: MLEM.Misc.Direction2Helper
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<Direction2>(Direction2, Direction2, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<Direction2>(Direction2, Direction2, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Misc.Direction2>(MLEM.Misc.Direction2, MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of Direction2)(Direction2, Direction2, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Misc.Direction2)(MLEM.Misc.Direction2, MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of Direction2)(Direction2, Direction2, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.Direction2,MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.Direction2,MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<Direction2>(Direction2, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<Direction2>(Direction2, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Misc.Direction2>(MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of Direction2)(Direction2, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Misc.Direction2)(MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of Direction2)(Direction2, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<Direction2>(Direction2, Direction2, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<Direction2>(Direction2, Direction2, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Misc.Direction2>(MLEM.Misc.Direction2, MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of Direction2)(Direction2, Direction2, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Misc.Direction2)(MLEM.Misc.Direction2, MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of Direction2)(Direction2, Direction2, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.Direction2,MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.Direction2,MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<Direction2>(Direction2, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<Direction2>(Direction2, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Misc.Direction2>(MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of Direction2)(Direction2, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Misc.Direction2)(MLEM.Misc.Direction2, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of Direction2)(Direction2, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Misc.Direction2,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Angle
+  commentId: M:MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Angle_MLEM_Misc_Direction2_
+  name: Angle(Direction2)
+  nameWithType: Direction2Helper.Angle(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+    name: Angle
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Angle_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+    name: Angle
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Angle_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsAdjacent
+  commentId: M:MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsAdjacent_MLEM_Misc_Direction2_
+  name: IsAdjacent(Direction2)
+  nameWithType: Direction2Helper.IsAdjacent(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+    name: IsAdjacent
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsAdjacent_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+    name: IsAdjacent
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsAdjacent_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.IsDiagonal
+  commentId: M:MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsDiagonal_MLEM_Misc_Direction2_
+  name: IsDiagonal(Direction2)
+  nameWithType: Direction2Helper.IsDiagonal(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+    name: IsDiagonal
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsDiagonal_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+    name: IsDiagonal
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsDiagonal_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Offset
+  commentId: M:MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Offset_MLEM_Misc_Direction2_
+  name: Offset(Direction2)
+  nameWithType: Direction2Helper.Offset(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Offset_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Offset_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.Opposite
+  commentId: M:MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Opposite_MLEM_Misc_Direction2_
+  name: Opposite(Direction2)
+  nameWithType: Direction2Helper.Opposite(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+    name: Opposite
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Opposite_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+    name: Opposite
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Opposite_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateBy_MLEM_Misc_Direction2_MLEM_Misc_Direction2_MLEM_Misc_Direction2_
+  name: RotateBy(Direction2, Direction2, Direction2)
+  nameWithType: Direction2Helper.RotateBy(Direction2, Direction2, Direction2)
+  fullName: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2, MLEM.Misc.Direction2, MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+    name: RotateBy
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateBy_MLEM_Misc_Direction2_MLEM_Misc_Direction2_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+    name: RotateBy
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateBy_MLEM_Misc_Direction2_MLEM_Misc_Direction2_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCcw(System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCcw_MLEM_Misc_Direction2_System_Boolean_
+  name: RotateCcw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCcw(Direction2, bool)
+  fullName: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCcw(Direction2, Boolean)
+  fullName.vb: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2, Boolean)
+  name.vb: RotateCcw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCcw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCcw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Misc.Direction2.MLEM.Misc.Direction2Helper.RotateCw(System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  parent: MLEM.Misc.Direction2Helper
+  definition: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCw_MLEM_Misc_Direction2_System_Boolean_
+  name: RotateCw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCw(Direction2, bool)
+  fullName: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCw(Direction2, Boolean)
+  fullName.vb: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2, Boolean)
+  name.vb: RotateCw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Angle_MLEM_Misc_Direction2_
+  name: Angle(Direction2)
+  nameWithType: Direction2Helper.Angle(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+    name: Angle
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Angle_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Angle(MLEM.Misc.Direction2)
+    name: Angle
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Angle_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsAdjacent_MLEM_Misc_Direction2_
+  name: IsAdjacent(Direction2)
+  nameWithType: Direction2Helper.IsAdjacent(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+    name: IsAdjacent
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsAdjacent_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsAdjacent(MLEM.Misc.Direction2)
+    name: IsAdjacent
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsAdjacent_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsDiagonal_MLEM_Misc_Direction2_
+  name: IsDiagonal(Direction2)
+  nameWithType: Direction2Helper.IsDiagonal(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+    name: IsDiagonal
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsDiagonal_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.IsDiagonal(MLEM.Misc.Direction2)
+    name: IsDiagonal
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_IsDiagonal_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Offset_MLEM_Misc_Direction2_
+  name: Offset(Direction2)
+  nameWithType: Direction2Helper.Offset(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Offset_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Offset(MLEM.Misc.Direction2)
+    name: Offset
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Offset_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Opposite_MLEM_Misc_Direction2_
+  name: Opposite(Direction2)
+  nameWithType: Direction2Helper.Opposite(Direction2)
+  fullName: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+    name: Opposite
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Opposite_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.Opposite(MLEM.Misc.Direction2)
+    name: Opposite
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_Opposite_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateBy_MLEM_Misc_Direction2_MLEM_Misc_Direction2_MLEM_Misc_Direction2_
+  name: RotateBy(Direction2, Direction2, Direction2)
+  nameWithType: Direction2Helper.RotateBy(Direction2, Direction2, Direction2)
+  fullName: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2, MLEM.Misc.Direction2, MLEM.Misc.Direction2)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+    name: RotateBy
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateBy_MLEM_Misc_Direction2_MLEM_Misc_Direction2_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateBy(MLEM.Misc.Direction2,MLEM.Misc.Direction2,MLEM.Misc.Direction2)
+    name: RotateBy
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateBy_MLEM_Misc_Direction2_MLEM_Misc_Direction2_MLEM_Misc_Direction2_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+  isExternal: true
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCcw_MLEM_Misc_Direction2_System_Boolean_
+  name: RotateCcw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCcw(Direction2, bool)
+  fullName: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCcw(Direction2, Boolean)
+  fullName.vb: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2, Boolean)
+  name.vb: RotateCcw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCcw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCcw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCcw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  commentId: M:MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+  isExternal: true
+  href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCw_MLEM_Misc_Direction2_System_Boolean_
+  name: RotateCw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCw(Direction2, bool)
+  fullName: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCw(Direction2, Boolean)
+  fullName.vb: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2, Boolean)
+  name.vb: RotateCw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.Direction2Helper.RotateCw(MLEM.Misc.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Misc.Direction2Helper.html#MLEM_Misc_Direction2Helper_RotateCw_MLEM_Misc_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Misc.Direction2
+    name: Direction2
+    href: MLEM.Misc.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: MLEM.Misc.Direction2
+  commentId: T:MLEM.Misc.Direction2
+  parent: MLEM.Misc
+  href: MLEM.Misc.Direction2.html
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Misc.Direction2

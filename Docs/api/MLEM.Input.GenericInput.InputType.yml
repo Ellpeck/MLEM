@@ -1,0 +1,304 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Input.GenericInput.InputType
+  commentId: T:MLEM.Input.GenericInput.InputType
+  id: GenericInput.InputType
+  parent: MLEM.Input
+  children:
+  - MLEM.Input.GenericInput.InputType.Gamepad
+  - MLEM.Input.GenericInput.InputType.Keyboard
+  - MLEM.Input.GenericInput.InputType.Mouse
+  - MLEM.Input.GenericInput.InputType.None
+  langs:
+  - csharp
+  - vb
+  name: GenericInput.InputType
+  nameWithType: GenericInput.InputType
+  fullName: MLEM.Input.GenericInput.InputType
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Input/GenericInput.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InputType
+    path: ../MLEM/Input/GenericInput.cs
+    startLine: 205
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A type of input button.
+  example: []
+  syntax:
+    content: >-
+      [DataContract]
+
+      public enum GenericInput.InputType
+    content.vb: >-
+      <DataContract>
+
+      Public Enum GenericInput.InputType
+  attributes:
+  - type: System.Runtime.Serialization.DataContractAttribute
+    ctor: System.Runtime.Serialization.DataContractAttribute.#ctor
+    arguments: []
+- uid: MLEM.Input.GenericInput.InputType.None
+  commentId: F:MLEM.Input.GenericInput.InputType.None
+  id: None
+  parent: MLEM.Input.GenericInput.InputType
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: GenericInput.InputType.None
+  fullName: MLEM.Input.GenericInput.InputType.None
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/GenericInput.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: None
+    path: ../MLEM/Input/GenericInput.cs
+    startLine: 211
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A type representing no value
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      None = 0
+    return:
+      type: MLEM.Input.GenericInput.InputType
+    content.vb: >-
+      <EnumMember>
+
+      None = 0
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Input.GenericInput.InputType.Mouse
+  commentId: F:MLEM.Input.GenericInput.InputType.Mouse
+  id: Mouse
+  parent: MLEM.Input.GenericInput.InputType
+  langs:
+  - csharp
+  - vb
+  name: Mouse
+  nameWithType: GenericInput.InputType.Mouse
+  fullName: MLEM.Input.GenericInput.InputType.Mouse
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/GenericInput.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Mouse
+    path: ../MLEM/Input/GenericInput.cs
+    startLine: 216
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A type representing <xref href="MLEM.Input.GenericInput.MouseButton" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Mouse = 1
+    return:
+      type: MLEM.Input.GenericInput.InputType
+    content.vb: >-
+      <EnumMember>
+
+      Mouse = 1
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Input.GenericInput.InputType.Keyboard
+  commentId: F:MLEM.Input.GenericInput.InputType.Keyboard
+  id: Keyboard
+  parent: MLEM.Input.GenericInput.InputType
+  langs:
+  - csharp
+  - vb
+  name: Keyboard
+  nameWithType: GenericInput.InputType.Keyboard
+  fullName: MLEM.Input.GenericInput.InputType.Keyboard
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/GenericInput.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Keyboard
+    path: ../MLEM/Input/GenericInput.cs
+    startLine: 221
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A type representing <xref href="Microsoft.Xna.Framework.Input.Keys" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Keyboard = 2
+    return:
+      type: MLEM.Input.GenericInput.InputType
+    content.vb: >-
+      <EnumMember>
+
+      Keyboard = 2
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Input.GenericInput.InputType.Gamepad
+  commentId: F:MLEM.Input.GenericInput.InputType.Gamepad
+  id: Gamepad
+  parent: MLEM.Input.GenericInput.InputType
+  langs:
+  - csharp
+  - vb
+  name: Gamepad
+  nameWithType: GenericInput.InputType.Gamepad
+  fullName: MLEM.Input.GenericInput.InputType.Gamepad
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/GenericInput.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Gamepad
+    path: ../MLEM/Input/GenericInput.cs
+    startLine: 226
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A type representing <xref href="Microsoft.Xna.Framework.Input.Buttons" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Gamepad = 3
+    return:
+      type: MLEM.Input.GenericInput.InputType
+    content.vb: >-
+      <EnumMember>
+
+      Gamepad = 3
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+references:
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  href: MLEM.html
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+- uid: MLEM.Input.GenericInput.InputType
+  commentId: T:MLEM.Input.GenericInput.InputType
+  parent: MLEM.Input
+  href: MLEM.Input.GenericInput.html
+  name: GenericInput.InputType
+  nameWithType: GenericInput.InputType
+  fullName: MLEM.Input.GenericInput.InputType
+  spec.csharp:
+  - uid: MLEM.Input.GenericInput
+    name: GenericInput
+    href: MLEM.Input.GenericInput.html
+  - name: .
+  - uid: MLEM.Input.GenericInput.InputType
+    name: InputType
+    href: MLEM.Input.GenericInput.InputType.html
+  spec.vb:
+  - uid: MLEM.Input.GenericInput
+    name: GenericInput
+    href: MLEM.Input.GenericInput.html
+  - name: .
+  - uid: MLEM.Input.GenericInput.InputType
+    name: InputType
+    href: MLEM.Input.GenericInput.InputType.html
+- uid: MLEM.Input.GenericInput.MouseButton
+  commentId: P:MLEM.Input.GenericInput.MouseButton
+  href: MLEM.Input.GenericInput.html#MLEM_Input_GenericInput_MouseButton
+  name: MouseButton
+  nameWithType: GenericInput.MouseButton
+  fullName: MLEM.Input.GenericInput.MouseButton
+- uid: Microsoft.Xna.Framework.Input.Keys
+  commentId: T:Microsoft.Xna.Framework.Input.Keys
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Keys
+  nameWithType: Keys
+  fullName: Microsoft.Xna.Framework.Input.Keys
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+- uid: Microsoft.Xna.Framework.Input.Buttons
+  commentId: T:Microsoft.Xna.Framework.Input.Buttons
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Buttons
+  nameWithType: Buttons
+  fullName: Microsoft.Xna.Framework.Input.Buttons

@@ -1,0 +1,1623 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.RootElement
+  commentId: T:MLEM.Ui.RootElement
+  id: RootElement
+  parent: MLEM.Ui
+  children:
+  - MLEM.Ui.RootElement.ActualScale
+  - MLEM.Ui.RootElement.CanBeActive
+  - MLEM.Ui.RootElement.CanSelectContent
+  - MLEM.Ui.RootElement.Element
+  - MLEM.Ui.RootElement.InvTransform
+  - MLEM.Ui.RootElement.Name
+  - MLEM.Ui.RootElement.OnAddedToUi
+  - MLEM.Ui.RootElement.OnElementAdded
+  - MLEM.Ui.RootElement.OnElementRemoved
+  - MLEM.Ui.RootElement.OnRemovedFromUi
+  - MLEM.Ui.RootElement.Priority
+  - MLEM.Ui.RootElement.Scale
+  - MLEM.Ui.RootElement.ScaleOrigin(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  - MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  - MLEM.Ui.RootElement.SelectedElement
+  - MLEM.Ui.RootElement.System
+  - MLEM.Ui.RootElement.Transform
+  langs:
+  - csharp
+  - vb
+  name: RootElement
+  nameWithType: RootElement
+  fullName: MLEM.Ui.RootElement
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RootElement
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 449
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    A root element is a wrapper around an <xref href="MLEM.Ui.RootElement.Element" data-throw-if-not-resolved="false"></xref> that contains additional data.
+
+    Root elements are only used for the element in each element tree that doesn't have a <xref href="MLEM.Ui.Elements.Element.Parent" data-throw-if-not-resolved="false"></xref>
+
+    To create a new root element, use <xref href="MLEM.Ui.UiSystem.Add(System.String%2cMLEM.Ui.Elements.Element)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: 'public class RootElement : GenericDataHolder, IGenericDataHolder'
+    content.vb: Public Class RootElement Inherits GenericDataHolder Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Ui.RootElement.Name
+  commentId: F:MLEM.Ui.RootElement.Name
+  id: Name
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: RootElement.Name
+  fullName: MLEM.Ui.RootElement.Name
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Name
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 454
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The name of this root element
+  example: []
+  syntax:
+    content: public readonly string Name
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Name As String
+- uid: MLEM.Ui.RootElement.Element
+  commentId: F:MLEM.Ui.RootElement.Element
+  id: Element
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Element
+  nameWithType: RootElement.Element
+  fullName: MLEM.Ui.RootElement.Element
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Element
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 459
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The element that this root element represents.
+
+    This is the only element in its family tree that does not have a <xref href="MLEM.Ui.Elements.Element.Parent" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public readonly Element Element
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public ReadOnly Element As Element
+- uid: MLEM.Ui.RootElement.System
+  commentId: F:MLEM.Ui.RootElement.System
+  id: System
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: System
+  nameWithType: RootElement.System
+  fullName: MLEM.Ui.RootElement.System
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: System
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 463
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref> that this root element is a part of.
+  example: []
+  syntax:
+    content: public readonly UiSystem System
+    return:
+      type: MLEM.Ui.UiSystem
+    content.vb: Public ReadOnly System As UiSystem
+- uid: MLEM.Ui.RootElement.Scale
+  commentId: P:MLEM.Ui.RootElement.Scale
+  id: Scale
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Scale
+  nameWithType: RootElement.Scale
+  fullName: MLEM.Ui.RootElement.Scale
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Scale
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 468
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The scale of this root element.
+
+    Note that, to change the scale of every root element, you can use <xref href="MLEM.Ui.UiSystem.GlobalScale" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public float Scale { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Scale As Single
+  overload: MLEM.Ui.RootElement.Scale*
+- uid: MLEM.Ui.RootElement.Priority
+  commentId: P:MLEM.Ui.RootElement.Priority
+  id: Priority
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Priority
+  nameWithType: RootElement.Priority
+  fullName: MLEM.Ui.RootElement.Priority
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Priority
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 481
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The priority of this root element.
+
+    A higher priority means the element will be updated first, as well as rendered on top.
+  example: []
+  syntax:
+    content: public int Priority { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Priority As Integer
+  overload: MLEM.Ui.RootElement.Priority*
+- uid: MLEM.Ui.RootElement.ActualScale
+  commentId: P:MLEM.Ui.RootElement.ActualScale
+  id: ActualScale
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: ActualScale
+  nameWithType: RootElement.ActualScale
+  fullName: MLEM.Ui.RootElement.ActualScale
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ActualScale
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 492
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The actual scale of this root element.
+
+    This is a combination of this root element's <xref href="MLEM.Ui.RootElement.Scale" data-throw-if-not-resolved="false"></xref> as well as the ui system's <xref href="MLEM.Ui.UiSystem.GlobalScale" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public float ActualScale { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property ActualScale As Single
+  overload: MLEM.Ui.RootElement.ActualScale*
+- uid: MLEM.Ui.RootElement.Transform
+  commentId: F:MLEM.Ui.RootElement.Transform
+  id: Transform
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: Transform
+  nameWithType: RootElement.Transform
+  fullName: MLEM.Ui.RootElement.Transform
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Transform
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 497
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The transformation that this root element (and all of its children) has.
+
+    This transform is applied both to input, as well as to rendering.
+  example: []
+  syntax:
+    content: public Matrix Transform
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public Transform As Matrix
+- uid: MLEM.Ui.RootElement.InvTransform
+  commentId: P:MLEM.Ui.RootElement.InvTransform
+  id: InvTransform
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: InvTransform
+  nameWithType: RootElement.InvTransform
+  fullName: MLEM.Ui.RootElement.InvTransform
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InvTransform
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 501
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: An inversion of <xref href="MLEM.Ui.RootElement.Transform" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public Matrix InvTransform { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public ReadOnly Property InvTransform As Matrix
+  overload: MLEM.Ui.RootElement.InvTransform*
+- uid: MLEM.Ui.RootElement.SelectedElement
+  commentId: P:MLEM.Ui.RootElement.SelectedElement
+  id: SelectedElement
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: SelectedElement
+  nameWithType: RootElement.SelectedElement
+  fullName: MLEM.Ui.RootElement.SelectedElement
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SelectedElement
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 506
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The child element of this root element that is currently selected.
+
+    If there is no selected element in this root, this value will be <code>null</code>.
+  example: []
+  syntax:
+    content: public Element SelectedElement { get; }
+    parameters: []
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public ReadOnly Property SelectedElement As Element
+  overload: MLEM.Ui.RootElement.SelectedElement*
+- uid: MLEM.Ui.RootElement.CanSelectContent
+  commentId: P:MLEM.Ui.RootElement.CanSelectContent
+  id: CanSelectContent
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: CanSelectContent
+  nameWithType: RootElement.CanSelectContent
+  fullName: MLEM.Ui.RootElement.CanSelectContent
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CanSelectContent
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 511
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Determines whether this root element contains any children that <xref href="MLEM.Ui.Elements.Element.CanBeSelected" data-throw-if-not-resolved="false"></xref>.
+
+    This value is automatically calculated, and used in <xref href="MLEM.Ui.RootElement.CanBeActive" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool CanSelectContent { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property CanSelectContent As Boolean
+  overload: MLEM.Ui.RootElement.CanSelectContent*
+- uid: MLEM.Ui.RootElement.CanBeActive
+  commentId: P:MLEM.Ui.RootElement.CanBeActive
+  id: CanBeActive
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: CanBeActive
+  nameWithType: RootElement.CanBeActive
+  fullName: MLEM.Ui.RootElement.CanBeActive
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CanBeActive
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 516
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Determines whether this root element can become the <xref href="MLEM.Ui.UiControls.ActiveRoot" data-throw-if-not-resolved="false"></xref>.
+
+    This property returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <xref href="MLEM.Ui.RootElement.CanSelectContent" data-throw-if-not-resolved="false"></xref> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> and the <xref href="MLEM.Ui.RootElement.Element" data-throw-if-not-resolved="false"></xref> is not hidden, or if it has been set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> manually.
+  example: []
+  syntax:
+    content: public bool CanBeActive { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property CanBeActive As Boolean
+  overload: MLEM.Ui.RootElement.CanBeActive*
+- uid: MLEM.Ui.RootElement.OnElementAdded
+  commentId: E:MLEM.Ui.RootElement.OnElementAdded
+  id: OnElementAdded
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: OnElementAdded
+  nameWithType: RootElement.OnElementAdded
+  fullName: MLEM.Ui.RootElement.OnElementAdded
+  type: Event
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnElementAdded
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 524
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Event that is invoked when a <xref href="MLEM.Ui.RootElement.Element" data-throw-if-not-resolved="false"></xref> is added to this root element or any of its children.
+  example: []
+  syntax:
+    content: public event Element.GenericCallback OnElementAdded
+    return:
+      type: MLEM.Ui.Elements.Element.GenericCallback
+    content.vb: Public Event OnElementAdded As Element.GenericCallback
+- uid: MLEM.Ui.RootElement.OnElementRemoved
+  commentId: E:MLEM.Ui.RootElement.OnElementRemoved
+  id: OnElementRemoved
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: OnElementRemoved
+  nameWithType: RootElement.OnElementRemoved
+  fullName: MLEM.Ui.RootElement.OnElementRemoved
+  type: Event
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnElementRemoved
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 528
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Event that is invoked when a <xref href="MLEM.Ui.RootElement.Element" data-throw-if-not-resolved="false"></xref> is removed rom this root element or any of its children.
+  example: []
+  syntax:
+    content: public event Element.GenericCallback OnElementRemoved
+    return:
+      type: MLEM.Ui.Elements.Element.GenericCallback
+    content.vb: Public Event OnElementRemoved As Element.GenericCallback
+- uid: MLEM.Ui.RootElement.OnAddedToUi
+  commentId: E:MLEM.Ui.RootElement.OnAddedToUi
+  id: OnAddedToUi
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: OnAddedToUi
+  nameWithType: RootElement.OnAddedToUi
+  fullName: MLEM.Ui.RootElement.OnAddedToUi
+  type: Event
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnAddedToUi
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 532
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Event that is invoked when this <xref href="MLEM.Ui.RootElement" data-throw-if-not-resolved="false"></xref> gets added to a <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref> in <xref href="MLEM.Ui.UiSystem.Add(System.String%2cMLEM.Ui.Elements.Element)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public event Action<UiSystem> OnAddedToUi
+    return:
+      type: System.Action{MLEM.Ui.UiSystem}
+    content.vb: Public Event OnAddedToUi As Action(Of UiSystem)
+- uid: MLEM.Ui.RootElement.OnRemovedFromUi
+  commentId: E:MLEM.Ui.RootElement.OnRemovedFromUi
+  id: OnRemovedFromUi
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: OnRemovedFromUi
+  nameWithType: RootElement.OnRemovedFromUi
+  fullName: MLEM.Ui.RootElement.OnRemovedFromUi
+  type: Event
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnRemovedFromUi
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 536
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Event that is invoked when this <xref href="MLEM.Ui.RootElement" data-throw-if-not-resolved="false"></xref> gets removed from a <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref> in <xref href="MLEM.Ui.UiSystem.Remove(System.String)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public event Action<UiSystem> OnRemovedFromUi
+    return:
+      type: System.Action{MLEM.Ui.UiSystem}
+    content.vb: Public Event OnRemovedFromUi As Action(Of UiSystem)
+- uid: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  commentId: M:MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  id: SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: SelectElement(Element, bool?, NavigationType?)
+  nameWithType: RootElement.SelectElement(Element, bool?, UiControls.NavigationType?)
+  fullName: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element, bool?, MLEM.Ui.UiControls.NavigationType?)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SelectElement
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 555
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Selects the given element that is a child of this root element.
+
+    Optionally, automatic navigation can be forced on, causing the <xref href="MLEM.Ui.Style.UiStyle.SelectionIndicator" data-throw-if-not-resolved="false"></xref> to be drawn around the element.
+  example: []
+  syntax:
+    content: public void SelectElement(Element element, bool? autoNav = null, UiControls.NavigationType? navType = null)
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+      description: The element to select, or null to deselect the selected element.
+    - id: autoNav
+      type: System.Nullable{System.Boolean}
+      description: Whether automatic navigation should be forced on. If this is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the automatic navigation state will stay the same.
+    - id: navType
+      type: System.Nullable{MLEM.Ui.UiControls.NavigationType}
+      description: An optional <xref href="MLEM.Ui.UiControls.NavigationType" data-throw-if-not-resolved="false"></xref> to set. If this is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the navigation type will stay the same.
+    content.vb: Public Sub SelectElement(element As Element, autoNav As Boolean? = Nothing, navType As UiControls.NavigationType? = Nothing)
+  overload: MLEM.Ui.RootElement.SelectElement*
+  nameWithType.vb: RootElement.SelectElement(Element, Boolean?, UiControls.NavigationType?)
+  fullName.vb: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element, Boolean?, MLEM.Ui.UiControls.NavigationType?)
+  name.vb: SelectElement(Element, Boolean?, NavigationType?)
+- uid: MLEM.Ui.RootElement.ScaleOrigin(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  commentId: M:MLEM.Ui.RootElement.ScaleOrigin(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  id: ScaleOrigin(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  parent: MLEM.Ui.RootElement
+  langs:
+  - csharp
+  - vb
+  name: ScaleOrigin(float, Vector2?)
+  nameWithType: RootElement.ScaleOrigin(float, Vector2?)
+  fullName: MLEM.Ui.RootElement.ScaleOrigin(float, Microsoft.Xna.Framework.Vector2?)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScaleOrigin
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 564
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Scales this root element's <xref href="MLEM.Ui.RootElement.Transform" data-throw-if-not-resolved="false"></xref> matrix based on the given scale and origin.
+  example: []
+  syntax:
+    content: public void ScaleOrigin(float scale, Vector2? origin = null)
+    parameters:
+    - id: scale
+      type: System.Single
+      description: The scale to use
+    - id: origin
+      type: System.Nullable{Microsoft.Xna.Framework.Vector2}
+      description: The origin to use for scaling, or null to use this root's element's center point
+    content.vb: Public Sub ScaleOrigin(scale As Single, origin As Vector2? = Nothing)
+  overload: MLEM.Ui.RootElement.ScaleOrigin*
+  nameWithType.vb: RootElement.ScaleOrigin(Single, Vector2?)
+  fullName.vb: MLEM.Ui.RootElement.ScaleOrigin(Single, Microsoft.Xna.Framework.Vector2?)
+  name.vb: ScaleOrigin(Single, Vector2?)
+references:
+- uid: MLEM.Ui.RootElement.Element
+  commentId: F:MLEM.Ui.RootElement.Element
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_Element
+  name: Element
+  nameWithType: RootElement.Element
+  fullName: MLEM.Ui.RootElement.Element
+- uid: MLEM.Ui.Elements.Element.Parent
+  commentId: P:MLEM.Ui.Elements.Element.Parent
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Parent
+  name: Parent
+  nameWithType: Element.Parent
+  fullName: MLEM.Ui.Elements.Element.Parent
+- uid: MLEM.Ui.UiSystem.Add(System.String,MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.UiSystem.Add(System.String,MLEM.Ui.Elements.Element)
+  isExternal: true
+  href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_Add_System_String_MLEM_Ui_Elements_Element_
+  name: Add(string, Element)
+  nameWithType: UiSystem.Add(string, Element)
+  fullName: MLEM.Ui.UiSystem.Add(string, MLEM.Ui.Elements.Element)
+  nameWithType.vb: UiSystem.Add(String, Element)
+  fullName.vb: MLEM.Ui.UiSystem.Add(String, MLEM.Ui.Elements.Element)
+  name.vb: Add(String, Element)
+  spec.csharp:
+  - uid: MLEM.Ui.UiSystem.Add(System.String,MLEM.Ui.Elements.Element)
+    name: Add
+    href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_Add_System_String_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.UiSystem.Add(System.String,MLEM.Ui.Elements.Element)
+    name: Add
+    href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_Add_System_String_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  href: MLEM.html
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiSystem.html
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Ui.UiSystem.GlobalScale
+  commentId: P:MLEM.Ui.UiSystem.GlobalScale
+  href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_GlobalScale
+  name: GlobalScale
+  nameWithType: UiSystem.GlobalScale
+  fullName: MLEM.Ui.UiSystem.GlobalScale
+- uid: MLEM.Ui.RootElement.Scale*
+  commentId: Overload:MLEM.Ui.RootElement.Scale
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_Scale
+  name: Scale
+  nameWithType: RootElement.Scale
+  fullName: MLEM.Ui.RootElement.Scale
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Ui.RootElement.Priority*
+  commentId: Overload:MLEM.Ui.RootElement.Priority
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_Priority
+  name: Priority
+  nameWithType: RootElement.Priority
+  fullName: MLEM.Ui.RootElement.Priority
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MLEM.Ui.RootElement.Scale
+  commentId: P:MLEM.Ui.RootElement.Scale
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_Scale
+  name: Scale
+  nameWithType: RootElement.Scale
+  fullName: MLEM.Ui.RootElement.Scale
+- uid: MLEM.Ui.RootElement.ActualScale*
+  commentId: Overload:MLEM.Ui.RootElement.ActualScale
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_ActualScale
+  name: ActualScale
+  nameWithType: RootElement.ActualScale
+  fullName: MLEM.Ui.RootElement.ActualScale
+- uid: Microsoft.Xna.Framework.Matrix
+  commentId: T:Microsoft.Xna.Framework.Matrix
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Matrix
+  nameWithType: Matrix
+  fullName: Microsoft.Xna.Framework.Matrix
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: MLEM.Ui.RootElement.Transform
+  commentId: F:MLEM.Ui.RootElement.Transform
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_Transform
+  name: Transform
+  nameWithType: RootElement.Transform
+  fullName: MLEM.Ui.RootElement.Transform
+- uid: MLEM.Ui.RootElement.InvTransform*
+  commentId: Overload:MLEM.Ui.RootElement.InvTransform
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_InvTransform
+  name: InvTransform
+  nameWithType: RootElement.InvTransform
+  fullName: MLEM.Ui.RootElement.InvTransform
+- uid: MLEM.Ui.RootElement.SelectedElement*
+  commentId: Overload:MLEM.Ui.RootElement.SelectedElement
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_SelectedElement
+  name: SelectedElement
+  nameWithType: RootElement.SelectedElement
+  fullName: MLEM.Ui.RootElement.SelectedElement
+- uid: MLEM.Ui.Elements.Element.CanBeSelected
+  commentId: P:MLEM.Ui.Elements.Element.CanBeSelected
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CanBeSelected
+  name: CanBeSelected
+  nameWithType: Element.CanBeSelected
+  fullName: MLEM.Ui.Elements.Element.CanBeSelected
+- uid: MLEM.Ui.RootElement.CanBeActive
+  commentId: P:MLEM.Ui.RootElement.CanBeActive
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_CanBeActive
+  name: CanBeActive
+  nameWithType: RootElement.CanBeActive
+  fullName: MLEM.Ui.RootElement.CanBeActive
+- uid: MLEM.Ui.RootElement.CanSelectContent*
+  commentId: Overload:MLEM.Ui.RootElement.CanSelectContent
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_CanSelectContent
+  name: CanSelectContent
+  nameWithType: RootElement.CanSelectContent
+  fullName: MLEM.Ui.RootElement.CanSelectContent
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Ui.UiControls.ActiveRoot
+  commentId: P:MLEM.Ui.UiControls.ActiveRoot
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_ActiveRoot
+  name: ActiveRoot
+  nameWithType: UiControls.ActiveRoot
+  fullName: MLEM.Ui.UiControls.ActiveRoot
+- uid: MLEM.Ui.RootElement.CanSelectContent
+  commentId: P:MLEM.Ui.RootElement.CanSelectContent
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_CanSelectContent
+  name: CanSelectContent
+  nameWithType: RootElement.CanSelectContent
+  fullName: MLEM.Ui.RootElement.CanSelectContent
+- uid: MLEM.Ui.RootElement.CanBeActive*
+  commentId: Overload:MLEM.Ui.RootElement.CanBeActive
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_CanBeActive
+  name: CanBeActive
+  nameWithType: RootElement.CanBeActive
+  fullName: MLEM.Ui.RootElement.CanBeActive
+- uid: MLEM.Ui.Elements.Element.GenericCallback
+  commentId: T:MLEM.Ui.Elements.Element.GenericCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.GenericCallback
+  nameWithType: Element.GenericCallback
+  fullName: MLEM.Ui.Elements.Element.GenericCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GenericCallback
+    name: GenericCallback
+    href: MLEM.Ui.Elements.Element.GenericCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GenericCallback
+    name: GenericCallback
+    href: MLEM.Ui.Elements.Element.GenericCallback.html
+- uid: MLEM.Ui.RootElement
+  commentId: T:MLEM.Ui.RootElement
+  parent: MLEM.Ui
+  href: MLEM.Ui.RootElement.html
+  name: RootElement
+  nameWithType: RootElement
+  fullName: MLEM.Ui.RootElement
+- uid: System.Action{MLEM.Ui.UiSystem}
+  commentId: T:System.Action{MLEM.Ui.UiSystem}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<UiSystem>
+  nameWithType: Action<UiSystem>
+  fullName: System.Action<MLEM.Ui.UiSystem>
+  nameWithType.vb: Action(Of UiSystem)
+  fullName.vb: System.Action(Of MLEM.Ui.UiSystem)
+  name.vb: Action(Of UiSystem)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: MLEM.Ui.UiSystem
+    name: UiSystem
+    href: MLEM.Ui.UiSystem.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.UiSystem
+    name: UiSystem
+    href: MLEM.Ui.UiSystem.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.UiSystem.Remove(System.String)
+  commentId: M:MLEM.Ui.UiSystem.Remove(System.String)
+  isExternal: true
+  href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_Remove_System_String_
+  name: Remove(string)
+  nameWithType: UiSystem.Remove(string)
+  fullName: MLEM.Ui.UiSystem.Remove(string)
+  nameWithType.vb: UiSystem.Remove(String)
+  fullName.vb: MLEM.Ui.UiSystem.Remove(String)
+  name.vb: Remove(String)
+  spec.csharp:
+  - uid: MLEM.Ui.UiSystem.Remove(System.String)
+    name: Remove
+    href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_Remove_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.UiSystem.Remove(System.String)
+    name: Remove
+    href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_Remove_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Ui.Style.UiStyle.SelectionIndicator
+  commentId: F:MLEM.Ui.Style.UiStyle.SelectionIndicator
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_SelectionIndicator
+  name: SelectionIndicator
+  nameWithType: UiStyle.SelectionIndicator
+  fullName: MLEM.Ui.Style.UiStyle.SelectionIndicator
+- uid: MLEM.Ui.UiControls.NavigationType
+  commentId: T:MLEM.Ui.UiControls.NavigationType
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiControls.html
+  name: UiControls.NavigationType
+  nameWithType: UiControls.NavigationType
+  fullName: MLEM.Ui.UiControls.NavigationType
+  spec.csharp:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  spec.vb:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+- uid: MLEM.Ui.RootElement.SelectElement*
+  commentId: Overload:MLEM.Ui.RootElement.SelectElement
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_SelectElement_MLEM_Ui_Elements_Element_System_Nullable_System_Boolean__System_Nullable_MLEM_Ui_UiControls_NavigationType__
+  name: SelectElement
+  nameWithType: RootElement.SelectElement
+  fullName: MLEM.Ui.RootElement.SelectElement
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Nullable{MLEM.Ui.UiControls.NavigationType}
+  commentId: T:System.Nullable{MLEM.Ui.UiControls.NavigationType}
+  parent: System
+  definition: System.Nullable`1
+  href: MLEM.Ui.UiControls.html
+  name: UiControls.NavigationType?
+  nameWithType: UiControls.NavigationType?
+  fullName: MLEM.Ui.UiControls.NavigationType?
+  spec.csharp:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '?'
+  spec.vb:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '?'
+- uid: MLEM.Ui.Style.UiStyle
+  commentId: T:MLEM.Ui.Style.UiStyle
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.UiStyle.html
+  name: UiStyle
+  nameWithType: UiStyle
+  fullName: MLEM.Ui.Style.UiStyle
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Style
+  commentId: N:MLEM.Ui.Style
+  href: MLEM.html
+  name: MLEM.Ui.Style
+  nameWithType: MLEM.Ui.Style
+  fullName: MLEM.Ui.Style
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+- uid: MLEM.Ui.RootElement.ScaleOrigin*
+  commentId: Overload:MLEM.Ui.RootElement.ScaleOrigin
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_ScaleOrigin_System_Single_System_Nullable_Microsoft_Xna_Framework_Vector2__
+  name: ScaleOrigin
+  nameWithType: RootElement.ScaleOrigin
+  fullName: MLEM.Ui.RootElement.ScaleOrigin
+- uid: System.Nullable{Microsoft.Xna.Framework.Vector2}
+  commentId: T:System.Nullable{Microsoft.Xna.Framework.Vector2}
+  parent: System
+  definition: System.Nullable`1
+  name: Vector2?
+  nameWithType: Vector2?
+  fullName: Microsoft.Xna.Framework.Vector2?
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: '?'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: '?'

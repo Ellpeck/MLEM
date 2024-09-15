@@ -1,0 +1,813 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Sound.SoundEffectInfo
+  commentId: T:MLEM.Sound.SoundEffectInfo
+  id: SoundEffectInfo
+  parent: MLEM.Sound
+  children:
+  - MLEM.Sound.SoundEffectInfo.#ctor(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single)
+  - MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+  - MLEM.Sound.SoundEffectInfo.GetRandomPitch
+  - MLEM.Sound.SoundEffectInfo.Pan
+  - MLEM.Sound.SoundEffectInfo.Pitch
+  - MLEM.Sound.SoundEffectInfo.Play
+  - MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+  - MLEM.Sound.SoundEffectInfo.Sound
+  - MLEM.Sound.SoundEffectInfo.Volume
+  langs:
+  - csharp
+  - vb
+  name: SoundEffectInfo
+  nameWithType: SoundEffectInfo
+  fullName: MLEM.Sound.SoundEffectInfo
+  type: Class
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SoundEffectInfo
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 8
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    A sound effect info is a wrapper around <xref href="Microsoft.Xna.Framework.Audio.SoundEffect" data-throw-if-not-resolved="false"></xref> that additionally stores <xref href="MLEM.Sound.SoundEffectInfo.Volume" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Sound.SoundEffectInfo.Pitch" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Sound.SoundEffectInfo.Pan" data-throw-if-not-resolved="false"></xref> information.
+
+    Additionally, a <xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref> can be applied, a <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> can be created using <xref href="MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)" data-throw-if-not-resolved="false"></xref>, and more.
+  example: []
+  syntax:
+    content: public class SoundEffectInfo
+    content.vb: Public Class SoundEffectInfo
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Sound.SoundEffectInfo.Sound
+  commentId: F:MLEM.Sound.SoundEffectInfo.Sound
+  id: Sound
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: Sound
+  nameWithType: SoundEffectInfo.Sound
+  fullName: MLEM.Sound.SoundEffectInfo.Sound
+  type: Field
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Sound
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: The <xref href="Microsoft.Xna.Framework.Audio.SoundEffect" data-throw-if-not-resolved="false"></xref> that is played by this info.
+  example: []
+  syntax:
+    content: public readonly SoundEffect Sound
+    return:
+      type: Microsoft.Xna.Framework.Audio.SoundEffect
+    content.vb: Public ReadOnly Sound As SoundEffect
+- uid: MLEM.Sound.SoundEffectInfo.Volume
+  commentId: F:MLEM.Sound.SoundEffectInfo.Volume
+  id: Volume
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: Volume
+  nameWithType: SoundEffectInfo.Volume
+  fullName: MLEM.Sound.SoundEffectInfo.Volume
+  type: Field
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Volume
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 20
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Volume, ranging from 0.0 (silence) to 1.0 (full volume). Volume during playback is scaled by SoundEffect.MasterVolume.
+  example: []
+  syntax:
+    content: public float Volume
+    return:
+      type: System.Single
+    content.vb: Public Volume As Single
+- uid: MLEM.Sound.SoundEffectInfo.Pitch
+  commentId: F:MLEM.Sound.SoundEffectInfo.Pitch
+  id: Pitch
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: Pitch
+  nameWithType: SoundEffectInfo.Pitch
+  fullName: MLEM.Sound.SoundEffectInfo.Pitch
+  type: Field
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Pitch
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 25
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave).
+
+    To incorporate <xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref>, you can use <xref href="MLEM.Sound.SoundEffectInfo.GetRandomPitch" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public float Pitch
+    return:
+      type: System.Single
+    content.vb: Public Pitch As Single
+- uid: MLEM.Sound.SoundEffectInfo.Pan
+  commentId: F:MLEM.Sound.SoundEffectInfo.Pan
+  id: Pan
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: Pan
+  nameWithType: SoundEffectInfo.Pan
+  fullName: MLEM.Sound.SoundEffectInfo.Pan
+  type: Field
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Pan
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Pan value ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).
+  example: []
+  syntax:
+    content: public float Pan
+    return:
+      type: System.Single
+    content.vb: Public Pan As Single
+- uid: MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+  commentId: F:MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+  id: RandomPitchModifier
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: RandomPitchModifier
+  nameWithType: SoundEffectInfo.RandomPitchModifier
+  fullName: MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+  type: Field
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RandomPitchModifier
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 34
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    A value that allows randomly modifying <xref href="MLEM.Sound.SoundEffectInfo.Pitch" data-throw-if-not-resolved="false"></xref> every time <xref href="MLEM.Sound.SoundEffectInfo.Play" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)" data-throw-if-not-resolved="false"></xref> are used.
+
+    The random modifier that is added onto <xref href="MLEM.Sound.SoundEffectInfo.Pitch" data-throw-if-not-resolved="false"></xref> will be between -<xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public float RandomPitchModifier
+    return:
+      type: System.Single
+    content.vb: Public RandomPitchModifier As Single
+- uid: MLEM.Sound.SoundEffectInfo.#ctor(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single)
+  commentId: M:MLEM.Sound.SoundEffectInfo.#ctor(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single)
+  id: '#ctor(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single)'
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: SoundEffectInfo(SoundEffect, float, float, float)
+  nameWithType: SoundEffectInfo.SoundEffectInfo(SoundEffect, float, float, float)
+  fullName: MLEM.Sound.SoundEffectInfo.SoundEffectInfo(Microsoft.Xna.Framework.Audio.SoundEffect, float, float, float)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 43
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Creates a new sound effect info with the given values.
+  example: []
+  syntax:
+    content: public SoundEffectInfo(SoundEffect sound, float volume = 1, float pitch = 0, float pan = 0)
+    parameters:
+    - id: sound
+      type: Microsoft.Xna.Framework.Audio.SoundEffect
+      description: The sound to play
+    - id: volume
+      type: System.Single
+      description: The volume to play the sound with
+    - id: pitch
+      type: System.Single
+      description: The pitch to play the sound with
+    - id: pan
+      type: System.Single
+      description: The pan to play the sound with
+    content.vb: Public Sub New(sound As SoundEffect, volume As Single = 1, pitch As Single = 0, pan As Single = 0)
+  overload: MLEM.Sound.SoundEffectInfo.#ctor*
+  nameWithType.vb: SoundEffectInfo.New(SoundEffect, Single, Single, Single)
+  fullName.vb: MLEM.Sound.SoundEffectInfo.New(Microsoft.Xna.Framework.Audio.SoundEffect, Single, Single, Single)
+  name.vb: New(SoundEffect, Single, Single, Single)
+- uid: MLEM.Sound.SoundEffectInfo.GetRandomPitch
+  commentId: M:MLEM.Sound.SoundEffectInfo.GetRandomPitch
+  id: GetRandomPitch
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRandomPitch()
+  nameWithType: SoundEffectInfo.GetRandomPitch()
+  fullName: MLEM.Sound.SoundEffectInfo.GetRandomPitch()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetRandomPitch
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 55
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Returns a random pitch for this sound effect info that is between <xref href="MLEM.Sound.SoundEffectInfo.Pitch" data-throw-if-not-resolved="false"></xref> - <xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Sound.SoundEffectInfo.Pitch" data-throw-if-not-resolved="false"></xref> + <xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref>.
+
+    If <xref href="MLEM.Sound.SoundEffectInfo.RandomPitchModifier" data-throw-if-not-resolved="false"></xref> is 0, this method always returns <xref href="MLEM.Sound.SoundEffectInfo.Pitch" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public float GetRandomPitch()
+    return:
+      type: System.Single
+      description: A random pitch to use to play this sound effect
+    content.vb: Public Function GetRandomPitch() As Single
+  overload: MLEM.Sound.SoundEffectInfo.GetRandomPitch*
+- uid: MLEM.Sound.SoundEffectInfo.Play
+  commentId: M:MLEM.Sound.SoundEffectInfo.Play
+  id: Play
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: Play()
+  nameWithType: SoundEffectInfo.Play()
+  fullName: MLEM.Sound.SoundEffectInfo.Play()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Play
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 65
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Plays this info's <xref href="MLEM.Sound.SoundEffectInfo.Sound" data-throw-if-not-resolved="false"></xref> once.
+  example: []
+  syntax:
+    content: public bool Play()
+    return:
+      type: System.Boolean
+      description: False if more sounds are currently playing than the platform allows
+    content.vb: Public Function Play() As Boolean
+  overload: MLEM.Sound.SoundEffectInfo.Play*
+- uid: MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+  commentId: M:MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+  id: CreateInstance(System.Boolean)
+  parent: MLEM.Sound.SoundEffectInfo
+  langs:
+  - csharp
+  - vb
+  name: CreateInstance(bool)
+  nameWithType: SoundEffectInfo.CreateInstance(bool)
+  fullName: MLEM.Sound.SoundEffectInfo.CreateInstance(bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInfo.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CreateInstance
+    path: ../MLEM/Sound/SoundEffectInfo.cs
+    startLine: 74
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Creates a new <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> with this sound effect info's data.
+  example: []
+  syntax:
+    content: public SoundEffectInstance CreateInstance(bool isLooped = false)
+    parameters:
+    - id: isLooped
+      type: System.Boolean
+      description: The value to set the returned instance's <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped" data-throw-if-not-resolved="false"></xref> to. Defaults to false.
+    return:
+      type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: A new sound effect instance, with this info's data applied
+    content.vb: Public Function CreateInstance(isLooped As Boolean = False) As SoundEffectInstance
+  overload: MLEM.Sound.SoundEffectInfo.CreateInstance*
+  nameWithType.vb: SoundEffectInfo.CreateInstance(Boolean)
+  fullName.vb: MLEM.Sound.SoundEffectInfo.CreateInstance(Boolean)
+  name.vb: CreateInstance(Boolean)
+references:
+- uid: Microsoft.Xna.Framework.Audio.SoundEffect
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffect
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffect
+  nameWithType: SoundEffect
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffect
+- uid: MLEM.Sound.SoundEffectInfo.Volume
+  commentId: F:MLEM.Sound.SoundEffectInfo.Volume
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Volume
+  name: Volume
+  nameWithType: SoundEffectInfo.Volume
+  fullName: MLEM.Sound.SoundEffectInfo.Volume
+- uid: MLEM.Sound.SoundEffectInfo.Pitch
+  commentId: F:MLEM.Sound.SoundEffectInfo.Pitch
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Pitch
+  name: Pitch
+  nameWithType: SoundEffectInfo.Pitch
+  fullName: MLEM.Sound.SoundEffectInfo.Pitch
+- uid: MLEM.Sound.SoundEffectInfo.Pan
+  commentId: F:MLEM.Sound.SoundEffectInfo.Pan
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Pan
+  name: Pan
+  nameWithType: SoundEffectInfo.Pan
+  fullName: MLEM.Sound.SoundEffectInfo.Pan
+- uid: MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+  commentId: F:MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_RandomPitchModifier
+  name: RandomPitchModifier
+  nameWithType: SoundEffectInfo.RandomPitchModifier
+  fullName: MLEM.Sound.SoundEffectInfo.RandomPitchModifier
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffectInstance
+  nameWithType: SoundEffectInstance
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+- uid: MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+  commentId: M:MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+  isExternal: true
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_CreateInstance_System_Boolean_
+  name: CreateInstance(bool)
+  nameWithType: SoundEffectInfo.CreateInstance(bool)
+  fullName: MLEM.Sound.SoundEffectInfo.CreateInstance(bool)
+  nameWithType.vb: SoundEffectInfo.CreateInstance(Boolean)
+  fullName.vb: MLEM.Sound.SoundEffectInfo.CreateInstance(Boolean)
+  name.vb: CreateInstance(Boolean)
+  spec.csharp:
+  - uid: MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+    name: CreateInstance
+    href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_CreateInstance_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Sound.SoundEffectInfo.CreateInstance(System.Boolean)
+    name: CreateInstance
+    href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_CreateInstance_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Sound
+  commentId: N:MLEM.Sound
+  href: MLEM.html
+  name: MLEM.Sound
+  nameWithType: MLEM.Sound
+  fullName: MLEM.Sound
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Sound
+    name: Sound
+    href: MLEM.Sound.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Sound
+    name: Sound
+    href: MLEM.Sound.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Audio
+  commentId: N:Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: Microsoft.Xna.Framework.Audio
+  nameWithType: Microsoft.Xna.Framework.Audio
+  fullName: Microsoft.Xna.Framework.Audio
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Audio
+    name: Audio
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Audio
+    name: Audio
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Sound.SoundEffectInfo.GetRandomPitch
+  commentId: M:MLEM.Sound.SoundEffectInfo.GetRandomPitch
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_GetRandomPitch
+  name: GetRandomPitch()
+  nameWithType: SoundEffectInfo.GetRandomPitch()
+  fullName: MLEM.Sound.SoundEffectInfo.GetRandomPitch()
+  spec.csharp:
+  - uid: MLEM.Sound.SoundEffectInfo.GetRandomPitch
+    name: GetRandomPitch
+    href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_GetRandomPitch
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Sound.SoundEffectInfo.GetRandomPitch
+    name: GetRandomPitch
+    href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_GetRandomPitch
+  - name: (
+  - name: )
+- uid: MLEM.Sound.SoundEffectInfo.Play
+  commentId: M:MLEM.Sound.SoundEffectInfo.Play
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Play
+  name: Play()
+  nameWithType: SoundEffectInfo.Play()
+  fullName: MLEM.Sound.SoundEffectInfo.Play()
+  spec.csharp:
+  - uid: MLEM.Sound.SoundEffectInfo.Play
+    name: Play
+    href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Play
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Sound.SoundEffectInfo.Play
+    name: Play
+    href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Play
+  - name: (
+  - name: )
+- uid: MLEM.Sound.SoundEffectInfo.#ctor*
+  commentId: Overload:MLEM.Sound.SoundEffectInfo.#ctor
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo__ctor_Microsoft_Xna_Framework_Audio_SoundEffect_System_Single_System_Single_System_Single_
+  name: SoundEffectInfo
+  nameWithType: SoundEffectInfo.SoundEffectInfo
+  fullName: MLEM.Sound.SoundEffectInfo.SoundEffectInfo
+  nameWithType.vb: SoundEffectInfo.New
+  fullName.vb: MLEM.Sound.SoundEffectInfo.New
+  name.vb: New
+- uid: MLEM.Sound.SoundEffectInfo.GetRandomPitch*
+  commentId: Overload:MLEM.Sound.SoundEffectInfo.GetRandomPitch
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_GetRandomPitch
+  name: GetRandomPitch
+  nameWithType: SoundEffectInfo.GetRandomPitch
+  fullName: MLEM.Sound.SoundEffectInfo.GetRandomPitch
+- uid: MLEM.Sound.SoundEffectInfo.Sound
+  commentId: F:MLEM.Sound.SoundEffectInfo.Sound
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Sound
+  name: Sound
+  nameWithType: SoundEffectInfo.Sound
+  fullName: MLEM.Sound.SoundEffectInfo.Sound
+- uid: MLEM.Sound.SoundEffectInfo.Play*
+  commentId: Overload:MLEM.Sound.SoundEffectInfo.Play
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_Play
+  name: Play
+  nameWithType: SoundEffectInfo.Play
+  fullName: MLEM.Sound.SoundEffectInfo.Play
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped
+  commentId: P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped
+  isExternal: true
+  name: IsLooped
+  nameWithType: SoundEffectInstance.IsLooped
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped
+- uid: MLEM.Sound.SoundEffectInfo.CreateInstance*
+  commentId: Overload:MLEM.Sound.SoundEffectInfo.CreateInstance
+  href: MLEM.Sound.SoundEffectInfo.html#MLEM_Sound_SoundEffectInfo_CreateInstance_System_Boolean_
+  name: CreateInstance
+  nameWithType: SoundEffectInfo.CreateInstance
+  fullName: MLEM.Sound.SoundEffectInfo.CreateInstance

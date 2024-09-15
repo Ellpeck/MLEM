@@ -1,0 +1,108 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.Element.TabNextElementCallback
+  commentId: T:MLEM.Ui.Elements.Element.TabNextElementCallback
+  id: Element.TabNextElementCallback
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Element.TabNextElementCallback
+  nameWithType: Element.TabNextElementCallback
+  fullName: MLEM.Ui.Elements.Element.TabNextElementCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/Element.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TabNextElementCallback
+    path: ../MLEM.Ui/Elements/Element.cs
+    startLine: 1322
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: A delegate used by <xref href="MLEM.Ui.Elements.Element.GetTabNextElement" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public delegate Element Element.TabNextElementCallback(bool backward, Element usualNext)
+    parameters:
+    - id: backward
+      type: System.Boolean
+      description: If this value is true, <xref href="MLEM.Input.ModifierKey.Shift" data-throw-if-not-resolved="false"></xref> is being held
+    - id: usualNext
+      type: MLEM.Ui.Elements.Element
+      description: The element that is considered to be the next element by default
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public Delegate Function Element.TabNextElementCallback(backward As Boolean, usualNext As Element) As Element
+references:
+- uid: MLEM.Ui.Elements.Element.GetTabNextElement
+  commentId: F:MLEM.Ui.Elements.Element.GetTabNextElement
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetTabNextElement
+  name: GetTabNextElement
+  nameWithType: Element.GetTabNextElement
+  fullName: MLEM.Ui.Elements.Element.GetTabNextElement
+- uid: MLEM.Input.ModifierKey.Shift
+  commentId: F:MLEM.Input.ModifierKey.Shift
+  href: MLEM.Input.ModifierKey.html#MLEM_Input_ModifierKey_Shift
+  name: Shift
+  nameWithType: ModifierKey.Shift
+  fullName: MLEM.Input.ModifierKey.Shift
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

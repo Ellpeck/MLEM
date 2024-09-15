@@ -1,0 +1,1467 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.Codes.OutlineCode
+  commentId: T:MLEM.Formatting.Codes.OutlineCode
+  id: OutlineCode
+  parent: MLEM.Formatting.Codes
+  children:
+  - MLEM.Formatting.Codes.OutlineCode.#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,Microsoft.Xna.Framework.Color,System.Single,System.Boolean)
+  - MLEM.Formatting.Codes.OutlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  langs:
+  - csharp
+  - vb
+  name: OutlineCode
+  nameWithType: OutlineCode
+  fullName: MLEM.Formatting.Codes.OutlineCode
+  type: Class
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/OutlineCode.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutlineCode
+    path: ../MLEM/Formatting/Codes/OutlineCode.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  summary: >-
+    An instance of a formatting code that can be used for a <xref href="MLEM.Formatting.TextFormatter" data-throw-if-not-resolved="false"></xref>.
+
+    To add a new formatting code, see <xref href="MLEM.Formatting.TextFormatter.Codes" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: 'public class OutlineCode : Code, IGenericDataHolder'
+    content.vb: Public Class OutlineCode Inherits Code Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  - MLEM.Formatting.Codes.Code
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Formatting.Codes.Code.Regex
+  - MLEM.Formatting.Codes.Code.Match
+  - MLEM.Formatting.Codes.Code.Tokens
+  - MLEM.Formatting.Codes.Code.EndsHere(MLEM.Formatting.Codes.Code)
+  - MLEM.Formatting.Codes.Code.EndsOther(MLEM.Formatting.Codes.Code)
+  - MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  - MLEM.Formatting.Codes.Code.GetFont(MLEM.Font.GenericFont)
+  - MLEM.Formatting.Codes.Code.GetSelfWidth(MLEM.Font.GenericFont)
+  - MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Formatting.Token,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Formatting.Codes.OutlineCode.#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,Microsoft.Xna.Framework.Color,System.Single,System.Boolean)
+  commentId: M:MLEM.Formatting.Codes.OutlineCode.#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,Microsoft.Xna.Framework.Color,System.Single,System.Boolean)
+  id: '#ctor(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Regex,Microsoft.Xna.Framework.Color,System.Single,System.Boolean)'
+  parent: MLEM.Formatting.Codes.OutlineCode
+  langs:
+  - csharp
+  - vb
+  name: OutlineCode(Match, Regex, Color, float, bool)
+  nameWithType: OutlineCode.OutlineCode(Match, Regex, Color, float, bool)
+  fullName: MLEM.Formatting.Codes.OutlineCode.OutlineCode(System.Text.RegularExpressions.Match, System.Text.RegularExpressions.Regex, Microsoft.Xna.Framework.Color, float, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/OutlineCode.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Formatting/Codes/OutlineCode.cs
+    startLine: 16
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  example: []
+  syntax:
+    content: public OutlineCode(Match match, Regex regex, Color color, float thickness, bool diagonals)
+    parameters:
+    - id: match
+      type: System.Text.RegularExpressions.Match
+    - id: regex
+      type: System.Text.RegularExpressions.Regex
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+    - id: thickness
+      type: System.Single
+    - id: diagonals
+      type: System.Boolean
+    content.vb: Public Sub New(match As Match, regex As Regex, color As Color, thickness As Single, diagonals As Boolean)
+  overload: MLEM.Formatting.Codes.OutlineCode.#ctor*
+  nameWithType.vb: OutlineCode.New(Match, Regex, Color, Single, Boolean)
+  fullName.vb: MLEM.Formatting.Codes.OutlineCode.New(System.Text.RegularExpressions.Match, System.Text.RegularExpressions.Regex, Microsoft.Xna.Framework.Color, Single, Boolean)
+  name.vb: New(Match, Regex, Color, Single, Boolean)
+- uid: MLEM.Formatting.Codes.OutlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Formatting.Codes.OutlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  id: DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Formatting.Codes.OutlineCode
+  langs:
+  - csharp
+  - vb
+  name: DrawCharacter(GameTime, SpriteBatch, int, string, Token, int, Vector2, ref Vector2, GenericFont, ref Color, ref Vector2, ref float, ref Vector2, float, SpriteEffects, Vector2, Vector2)
+  nameWithType: OutlineCode.DrawCharacter(GameTime, SpriteBatch, int, string, Token, int, Vector2, ref Vector2, GenericFont, ref Color, ref Vector2, ref float, ref Vector2, float, SpriteEffects, Vector2, Vector2)
+  fullName: MLEM.Formatting.Codes.OutlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, int, string, MLEM.Formatting.Token, int, Microsoft.Xna.Framework.Vector2, ref Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, ref Microsoft.Xna.Framework.Color, ref Microsoft.Xna.Framework.Vector2, ref float, ref Microsoft.Xna.Framework.Vector2, float, Microsoft.Xna.Framework.Graphics.SpriteEffects, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/OutlineCode.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DrawCharacter
+    path: ../MLEM/Formatting/Codes/OutlineCode.cs
+    startLine: 23
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  summary: Draws a given code point using this token's formatting options.
+  example: []
+  syntax:
+    content: public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize)
+    parameters:
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+      description: The time
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch to use
+    - id: codePoint
+      type: System.Int32
+      description: The code point of the character to draw
+    - id: character
+      type: System.String
+      description: The string representation of the character to draw
+    - id: token
+      type: MLEM.Formatting.Token
+    - id: indexInToken
+      type: System.Int32
+      description: The index within this token that the character is at
+    - id: stringPos
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position the string is drawn at.
+    - id: charPosOffset
+      type: Microsoft.Xna.Framework.Vector2
+      description: The offset from the <code class="paramref">stringPos</code> that the current character is drawn at.
+    - id: font
+      type: MLEM.Font.GenericFont
+      description: The font to use to draw
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The color to draw with
+    - id: scale
+      type: Microsoft.Xna.Framework.Vector2
+      description: The scale to draw with.
+    - id: rotation
+      type: System.Single
+      description: The rotation to draw with.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: The origin to subtract from the position.
+    - id: depth
+      type: System.Single
+      description: The depth to draw at
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: The flipping to draw with.
+    - id: stringSize
+      type: Microsoft.Xna.Framework.Vector2
+      description: The size of the string.
+    - id: charSize
+      type: Microsoft.Xna.Framework.Vector2
+      description: The size of the current character.
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function DrawCharacter(time As GameTime, batch As SpriteBatch, codePoint As Integer, character As String, token As Token, indexInToken As Integer, stringPos As Vector2, charPosOffset As Vector2, font As GenericFont, color As Color, scale As Vector2, rotation As Single, origin As Vector2, depth As Single, effects As SpriteEffects, stringSize As Vector2, charSize As Vector2) As Boolean
+  overridden: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  overload: MLEM.Formatting.Codes.OutlineCode.DrawCharacter*
+  nameWithType.vb: OutlineCode.DrawCharacter(GameTime, SpriteBatch, Integer, String, Token, Integer, Vector2, Vector2, GenericFont, Color, Vector2, Single, Vector2, Single, SpriteEffects, Vector2, Vector2)
+  fullName.vb: MLEM.Formatting.Codes.OutlineCode.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, Integer, String, MLEM.Formatting.Token, Integer, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, Microsoft.Xna.Framework.Color, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  name.vb: DrawCharacter(GameTime, SpriteBatch, Integer, String, Token, Integer, Vector2, Vector2, GenericFont, Color, Vector2, Single, Vector2, Single, SpriteEffects, Vector2, Vector2)
+references:
+- uid: MLEM.Formatting.TextFormatter
+  commentId: T:MLEM.Formatting.TextFormatter
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TextFormatter.html
+  name: TextFormatter
+  nameWithType: TextFormatter
+  fullName: MLEM.Formatting.TextFormatter
+- uid: MLEM.Formatting.TextFormatter.Codes
+  commentId: F:MLEM.Formatting.TextFormatter.Codes
+  href: MLEM.Formatting.TextFormatter.html#MLEM_Formatting_TextFormatter_Codes
+  name: Codes
+  nameWithType: TextFormatter.Codes
+  fullName: MLEM.Formatting.TextFormatter.Codes
+- uid: MLEM.Formatting.Codes
+  commentId: N:MLEM.Formatting.Codes
+  href: MLEM.html
+  name: MLEM.Formatting.Codes
+  nameWithType: MLEM.Formatting.Codes
+  fullName: MLEM.Formatting.Codes
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  - name: .
+  - uid: MLEM.Formatting.Codes
+    name: Codes
+    href: MLEM.Formatting.Codes.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  - name: .
+  - uid: MLEM.Formatting.Codes
+    name: Codes
+    href: MLEM.Formatting.Codes.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Formatting.Codes.Code
+  commentId: T:MLEM.Formatting.Codes.Code
+  parent: MLEM.Formatting.Codes
+  href: MLEM.Formatting.Codes.Code.html
+  name: Code
+  nameWithType: Code
+  fullName: MLEM.Formatting.Codes.Code
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Formatting.Codes.Code.Regex
+  commentId: F:MLEM.Formatting.Codes.Code.Regex
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_Regex
+  name: Regex
+  nameWithType: Code.Regex
+  fullName: MLEM.Formatting.Codes.Code.Regex
+- uid: MLEM.Formatting.Codes.Code.Match
+  commentId: F:MLEM.Formatting.Codes.Code.Match
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_Match
+  name: Match
+  nameWithType: Code.Match
+  fullName: MLEM.Formatting.Codes.Code.Match
+- uid: MLEM.Formatting.Codes.Code.Tokens
+  commentId: F:MLEM.Formatting.Codes.Code.Tokens
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_Tokens
+  name: Tokens
+  nameWithType: Code.Tokens
+  fullName: MLEM.Formatting.Codes.Code.Tokens
+- uid: MLEM.Formatting.Codes.Code.EndsHere(MLEM.Formatting.Codes.Code)
+  commentId: M:MLEM.Formatting.Codes.Code.EndsHere(MLEM.Formatting.Codes.Code)
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_EndsHere_MLEM_Formatting_Codes_Code_
+  name: EndsHere(Code)
+  nameWithType: Code.EndsHere(Code)
+  fullName: MLEM.Formatting.Codes.Code.EndsHere(MLEM.Formatting.Codes.Code)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.EndsHere(MLEM.Formatting.Codes.Code)
+    name: EndsHere
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_EndsHere_MLEM_Formatting_Codes_Code_
+  - name: (
+  - uid: MLEM.Formatting.Codes.Code
+    name: Code
+    href: MLEM.Formatting.Codes.Code.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.EndsHere(MLEM.Formatting.Codes.Code)
+    name: EndsHere
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_EndsHere_MLEM_Formatting_Codes_Code_
+  - name: (
+  - uid: MLEM.Formatting.Codes.Code
+    name: Code
+    href: MLEM.Formatting.Codes.Code.html
+  - name: )
+- uid: MLEM.Formatting.Codes.Code.EndsOther(MLEM.Formatting.Codes.Code)
+  commentId: M:MLEM.Formatting.Codes.Code.EndsOther(MLEM.Formatting.Codes.Code)
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_EndsOther_MLEM_Formatting_Codes_Code_
+  name: EndsOther(Code)
+  nameWithType: Code.EndsOther(Code)
+  fullName: MLEM.Formatting.Codes.Code.EndsOther(MLEM.Formatting.Codes.Code)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.EndsOther(MLEM.Formatting.Codes.Code)
+    name: EndsOther
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_EndsOther_MLEM_Formatting_Codes_Code_
+  - name: (
+  - uid: MLEM.Formatting.Codes.Code
+    name: Code
+    href: MLEM.Formatting.Codes.Code.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.EndsOther(MLEM.Formatting.Codes.Code)
+    name: EndsOther
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_EndsOther_MLEM_Formatting_Codes_Code_
+  - name: (
+  - uid: MLEM.Formatting.Codes.Code
+    name: Code
+    href: MLEM.Formatting.Codes.Code.html
+  - name: )
+- uid: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetColor_Microsoft_Xna_Framework_Color_
+  name: GetColor(Color)
+  nameWithType: Code.GetColor(Color)
+  fullName: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+    name: GetColor
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetColor_Microsoft_Xna_Framework_Color_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.GetColor(Microsoft.Xna.Framework.Color)
+    name: GetColor
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetColor_Microsoft_Xna_Framework_Color_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: )
+- uid: MLEM.Formatting.Codes.Code.GetFont(MLEM.Font.GenericFont)
+  commentId: M:MLEM.Formatting.Codes.Code.GetFont(MLEM.Font.GenericFont)
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetFont_MLEM_Font_GenericFont_
+  name: GetFont(GenericFont)
+  nameWithType: Code.GetFont(GenericFont)
+  fullName: MLEM.Formatting.Codes.Code.GetFont(MLEM.Font.GenericFont)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.GetFont(MLEM.Font.GenericFont)
+    name: GetFont
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetFont_MLEM_Font_GenericFont_
+  - name: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.GetFont(MLEM.Font.GenericFont)
+    name: GetFont
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetFont_MLEM_Font_GenericFont_
+  - name: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: )
+- uid: MLEM.Formatting.Codes.Code.GetSelfWidth(MLEM.Font.GenericFont)
+  commentId: M:MLEM.Formatting.Codes.Code.GetSelfWidth(MLEM.Font.GenericFont)
+  parent: MLEM.Formatting.Codes.Code
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetSelfWidth_MLEM_Font_GenericFont_
+  name: GetSelfWidth(GenericFont)
+  nameWithType: Code.GetSelfWidth(GenericFont)
+  fullName: MLEM.Formatting.Codes.Code.GetSelfWidth(MLEM.Font.GenericFont)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.GetSelfWidth(MLEM.Font.GenericFont)
+    name: GetSelfWidth
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetSelfWidth_MLEM_Font_GenericFont_
+  - name: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.GetSelfWidth(MLEM.Font.GenericFont)
+    name: GetSelfWidth
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_GetSelfWidth_MLEM_Font_GenericFont_
+  - name: (
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: )
+- uid: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_Update_Microsoft_Xna_Framework_GameTime_
+  name: Update(GameTime)
+  nameWithType: Code.Update(GameTime)
+  fullName: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_Update_Microsoft_Xna_Framework_GameTime_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_Update_Microsoft_Xna_Framework_GameTime_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+- uid: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Formatting.Token,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Formatting.Token,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_DrawSelf_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_MLEM_Formatting_Token_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color_Microsoft_Xna_Framework_Vector2_System_Single_Microsoft_Xna_Framework_Vector2_System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_
+  name: DrawSelf(GameTime, SpriteBatch, Token, Vector2, Vector2, GenericFont, Color, Vector2, float, Vector2, float, SpriteEffects, Vector2)
+  nameWithType: Code.DrawSelf(GameTime, SpriteBatch, Token, Vector2, Vector2, GenericFont, Color, Vector2, float, Vector2, float, SpriteEffects, Vector2)
+  fullName: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Formatting.Token, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, Microsoft.Xna.Framework.Color, Microsoft.Xna.Framework.Vector2, float, Microsoft.Xna.Framework.Vector2, float, Microsoft.Xna.Framework.Graphics.SpriteEffects, Microsoft.Xna.Framework.Vector2)
+  nameWithType.vb: Code.DrawSelf(GameTime, SpriteBatch, Token, Vector2, Vector2, GenericFont, Color, Vector2, Single, Vector2, Single, SpriteEffects, Vector2)
+  fullName.vb: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Formatting.Token, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, Microsoft.Xna.Framework.Color, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, Microsoft.Xna.Framework.Vector2)
+  name.vb: DrawSelf(GameTime, SpriteBatch, Token, Vector2, Vector2, GenericFont, Color, Vector2, Single, Vector2, Single, SpriteEffects, Vector2)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Formatting.Token,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)
+    name: DrawSelf
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_DrawSelf_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_MLEM_Formatting_Token_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color_Microsoft_Xna_Framework_Vector2_System_Single_Microsoft_Xna_Framework_Vector2_System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Formatting.Token
+    name: Token
+    href: MLEM.Formatting.Token.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.DrawSelf(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Formatting.Token,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)
+    name: DrawSelf
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_DrawSelf_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_MLEM_Formatting_Token_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color_Microsoft_Xna_Framework_Vector2_System_Single_Microsoft_Xna_Framework_Vector2_System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Formatting.Token
+    name: Token
+    href: MLEM.Formatting.Token.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  href: MLEM.html
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Formatting.Codes.OutlineCode.#ctor*
+  commentId: Overload:MLEM.Formatting.Codes.OutlineCode.#ctor
+  href: MLEM.Formatting.Codes.OutlineCode.html#MLEM_Formatting_Codes_OutlineCode__ctor_System_Text_RegularExpressions_Match_System_Text_RegularExpressions_Regex_Microsoft_Xna_Framework_Color_System_Single_System_Boolean_
+  name: OutlineCode
+  nameWithType: OutlineCode.OutlineCode
+  fullName: MLEM.Formatting.Codes.OutlineCode.OutlineCode
+  nameWithType.vb: OutlineCode.New
+  fullName.vb: MLEM.Formatting.Codes.OutlineCode.New
+  name.vb: New
+- uid: System.Text.RegularExpressions.Match
+  commentId: T:System.Text.RegularExpressions.Match
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.match
+  name: Match
+  nameWithType: Match
+  fullName: System.Text.RegularExpressions.Match
+- uid: System.Text.RegularExpressions.Regex
+  commentId: T:System.Text.RegularExpressions.Regex
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.regex
+  name: Regex
+  nameWithType: Regex
+  fullName: System.Text.RegularExpressions.Regex
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Text.RegularExpressions
+  commentId: N:System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.RegularExpressions
+  nameWithType: System.Text.RegularExpressions
+  fullName: System.Text.RegularExpressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.RegularExpressions
+    name: RegularExpressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.RegularExpressions
+    name: RegularExpressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Formatting.Codes.Code
+  isExternal: true
+  href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_DrawCharacter_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Int32_System_String_MLEM_Formatting_Token_System_Int32_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2__MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color__Microsoft_Xna_Framework_Vector2__System_Single__Microsoft_Xna_Framework_Vector2__System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_
+  name: DrawCharacter(GameTime, SpriteBatch, int, string, Token, int, Vector2, ref Vector2, GenericFont, ref Color, ref Vector2, ref float, ref Vector2, float, SpriteEffects, Vector2, Vector2)
+  nameWithType: Code.DrawCharacter(GameTime, SpriteBatch, int, string, Token, int, Vector2, ref Vector2, GenericFont, ref Color, ref Vector2, ref float, ref Vector2, float, SpriteEffects, Vector2, Vector2)
+  fullName: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, int, string, MLEM.Formatting.Token, int, Microsoft.Xna.Framework.Vector2, ref Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, ref Microsoft.Xna.Framework.Color, ref Microsoft.Xna.Framework.Vector2, ref float, ref Microsoft.Xna.Framework.Vector2, float, Microsoft.Xna.Framework.Graphics.SpriteEffects, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  nameWithType.vb: Code.DrawCharacter(GameTime, SpriteBatch, Integer, String, Token, Integer, Vector2, Vector2, GenericFont, Color, Vector2, Single, Vector2, Single, SpriteEffects, Vector2, Vector2)
+  fullName.vb: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, Integer, String, MLEM.Formatting.Token, Integer, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, MLEM.Font.GenericFont, Microsoft.Xna.Framework.Color, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  name.vb: DrawCharacter(GameTime, SpriteBatch, Integer, String, Token, Integer, Vector2, Vector2, GenericFont, Color, Vector2, Single, Vector2, Single, SpriteEffects, Vector2, Vector2)
+  spec.csharp:
+  - uid: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+    name: DrawCharacter
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_DrawCharacter_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Int32_System_String_MLEM_Formatting_Token_System_Int32_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2__MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color__Microsoft_Xna_Framework_Vector2__System_Single__Microsoft_Xna_Framework_Vector2__System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MLEM.Formatting.Token
+    name: Token
+    href: MLEM.Formatting.Token.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - name: ref
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Formatting.Codes.Code.DrawCharacter(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Int32,System.String,MLEM.Formatting.Token,System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color@,Microsoft.Xna.Framework.Vector2@,System.Single@,Microsoft.Xna.Framework.Vector2@,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+    name: DrawCharacter
+    href: MLEM.Formatting.Codes.Code.html#MLEM_Formatting_Codes_Code_DrawCharacter_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Int32_System_String_MLEM_Formatting_Token_System_Int32_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2__MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color__Microsoft_Xna_Framework_Vector2__System_Single__Microsoft_Xna_Framework_Vector2__System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MLEM.Formatting.Token
+    name: Token
+    href: MLEM.Formatting.Token.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Font.GenericFont
+    name: GenericFont
+    href: MLEM.Font.GenericFont.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+    name: SpriteEffects
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Formatting.Codes.OutlineCode.DrawCharacter*
+  commentId: Overload:MLEM.Formatting.Codes.OutlineCode.DrawCharacter
+  href: MLEM.Formatting.Codes.OutlineCode.html#MLEM_Formatting_Codes_OutlineCode_DrawCharacter_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Int32_System_String_MLEM_Formatting_Token_System_Int32_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2__MLEM_Font_GenericFont_Microsoft_Xna_Framework_Color__Microsoft_Xna_Framework_Vector2__System_Single__Microsoft_Xna_Framework_Vector2__System_Single_Microsoft_Xna_Framework_Graphics_SpriteEffects_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_
+  name: DrawCharacter
+  nameWithType: OutlineCode.DrawCharacter
+  fullName: MLEM.Formatting.Codes.OutlineCode.DrawCharacter
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MLEM.Formatting.Token
+  commentId: T:MLEM.Formatting.Token
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: MLEM.Formatting.Token
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  href: MLEM.Font.GenericFont.html
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteEffects
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteEffects
+  nameWithType: SpriteEffects
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  href: MLEM.html
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Font
+    name: Font
+    href: MLEM.Font.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Font
+    name: Font
+    href: MLEM.Font.html

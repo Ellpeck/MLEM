@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  id: MLEM.Maths
+  children:
+  - MLEM.Maths.Direction2
+  - MLEM.Maths.Direction2Helper
+  - MLEM.Maths.Easings
+  - MLEM.Maths.Easings.Easing
+  - MLEM.Maths.NumberExtensions
+  - MLEM.Maths.Padding
+  - MLEM.Maths.RandomExtensions
+  - MLEM.Maths.RectangleF
+  - MLEM.Maths.SeedSource
+  - MLEM.Maths.SingleRandom
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Maths.Direction2
+  commentId: T:MLEM.Maths.Direction2
+  parent: MLEM.Maths
+  href: MLEM.Maths.Direction2.html
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Maths.Direction2
+- uid: MLEM.Maths.Direction2Helper
+  commentId: T:MLEM.Maths.Direction2Helper
+  parent: MLEM.Maths
+  href: MLEM.Maths.Direction2Helper.html
+  name: Direction2Helper
+  nameWithType: Direction2Helper
+  fullName: MLEM.Maths.Direction2Helper
+- uid: MLEM.Maths.Easings
+  commentId: T:MLEM.Maths.Easings
+  parent: MLEM.Maths
+  href: MLEM.Maths.Easings.html
+  name: Easings
+  nameWithType: Easings
+  fullName: MLEM.Maths.Easings
+- uid: MLEM.Maths.Easings.Easing
+  commentId: T:MLEM.Maths.Easings.Easing
+  parent: MLEM.Maths
+  href: MLEM.Maths.Easings.html
+  name: Easings.Easing
+  nameWithType: Easings.Easing
+  fullName: MLEM.Maths.Easings.Easing
+  spec.csharp:
+  - uid: MLEM.Maths.Easings
+    name: Easings
+    href: MLEM.Maths.Easings.html
+  - name: .
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  spec.vb:
+  - uid: MLEM.Maths.Easings
+    name: Easings
+    href: MLEM.Maths.Easings.html
+  - name: .
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+- uid: MLEM.Maths.NumberExtensions
+  commentId: T:MLEM.Maths.NumberExtensions
+  parent: MLEM.Maths
+  href: MLEM.Maths.NumberExtensions.html
+  name: NumberExtensions
+  nameWithType: NumberExtensions
+  fullName: MLEM.Maths.NumberExtensions
+- uid: MLEM.Maths.Padding
+  commentId: T:MLEM.Maths.Padding
+  parent: MLEM.Maths
+  href: MLEM.Maths.Padding.html
+  name: Padding
+  nameWithType: Padding
+  fullName: MLEM.Maths.Padding
+- uid: MLEM.Maths.RandomExtensions
+  commentId: T:MLEM.Maths.RandomExtensions
+  href: MLEM.Maths.RandomExtensions.html
+  name: RandomExtensions
+  nameWithType: RandomExtensions
+  fullName: MLEM.Maths.RandomExtensions
+- uid: MLEM.Maths.RectangleF
+  commentId: T:MLEM.Maths.RectangleF
+  parent: MLEM.Maths
+  href: MLEM.Maths.RectangleF.html
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Maths.RectangleF
+- uid: MLEM.Maths.SeedSource
+  commentId: T:MLEM.Maths.SeedSource
+  parent: MLEM.Maths
+  href: MLEM.Maths.SeedSource.html
+  name: SeedSource
+  nameWithType: SeedSource
+  fullName: MLEM.Maths.SeedSource
+- uid: MLEM.Maths.SingleRandom
+  commentId: T:MLEM.Maths.SingleRandom
+  href: MLEM.Maths.SingleRandom.html
+  name: SingleRandom
+  nameWithType: SingleRandom
+  fullName: MLEM.Maths.SingleRandom
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html

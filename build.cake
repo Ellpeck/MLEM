@@ -76,8 +76,11 @@ Task("Push").WithCriteria(gitRef == "refs/heads/main" || gitRef.StartsWith("refs
     DotNetNuGetPush("**/MLEM*.nupkg", settings);
 });
 
-Task("Document").Does(() => {
+Task("BuildDocsMetadata").Does(() => {
     DocFxMetadata("Docs/docfx.json");
+});
+
+Task("BuildDocsSite").Does(() => {
     DocFxBuild("Docs/docfx.json");
     if (serve)
         DocFxServe("Docs/_site");

@@ -1,0 +1,283 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  id: MouseButton
+  parent: MLEM.Input
+  children:
+  - MLEM.Input.MouseButton.Extra1
+  - MLEM.Input.MouseButton.Extra2
+  - MLEM.Input.MouseButton.Left
+  - MLEM.Input.MouseButton.Middle
+  - MLEM.Input.MouseButton.Right
+  langs:
+  - csharp
+  - vb
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: MouseButton
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 44
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: >-
+    This enum is a list of possible mouse buttons.
+
+    It serves as a wrapper around <xref href="Microsoft.Xna.Framework.Input.MouseState" data-throw-if-not-resolved="false"></xref>'s button properties.
+  example: []
+  syntax:
+    content: public enum MouseButton
+    content.vb: Public Enum MouseButton
+- uid: MLEM.Input.MouseButton.Left
+  commentId: F:MLEM.Input.MouseButton.Left
+  id: Left
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: MouseButton.Left
+  fullName: MLEM.Input.MouseButton.Left
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 49
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: The left mouse button, or <xref href="Microsoft.Xna.Framework.Input.MouseState.LeftButton" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: Left = 0
+    return:
+      type: MLEM.Input.MouseButton
+- uid: MLEM.Input.MouseButton.Middle
+  commentId: F:MLEM.Input.MouseButton.Middle
+  id: Middle
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Middle
+  nameWithType: MouseButton.Middle
+  fullName: MLEM.Input.MouseButton.Middle
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Middle
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 53
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: The middle mouse button, or <xref href="Microsoft.Xna.Framework.Input.MouseState.MiddleButton" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: Middle = 1
+    return:
+      type: MLEM.Input.MouseButton
+- uid: MLEM.Input.MouseButton.Right
+  commentId: F:MLEM.Input.MouseButton.Right
+  id: Right
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: MouseButton.Right
+  fullName: MLEM.Input.MouseButton.Right
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 57
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: The right mouse button, or <xref href="Microsoft.Xna.Framework.Input.MouseState.RightButton" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: Right = 2
+    return:
+      type: MLEM.Input.MouseButton
+- uid: MLEM.Input.MouseButton.Extra1
+  commentId: F:MLEM.Input.MouseButton.Extra1
+  id: Extra1
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Extra1
+  nameWithType: MouseButton.Extra1
+  fullName: MLEM.Input.MouseButton.Extra1
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Extra1
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 61
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: The first extra mouse button, or <xref href="Microsoft.Xna.Framework.Input.MouseState.XButton1" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: Extra1 = 3
+    return:
+      type: MLEM.Input.MouseButton
+- uid: MLEM.Input.MouseButton.Extra2
+  commentId: F:MLEM.Input.MouseButton.Extra2
+  id: Extra2
+  parent: MLEM.Input.MouseButton
+  langs:
+  - csharp
+  - vb
+  name: Extra2
+  nameWithType: MouseButton.Extra2
+  fullName: MLEM.Input.MouseButton.Extra2
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Extra2
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 65
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: The second extra mouse button, or <xref href="Microsoft.Xna.Framework.Input.MouseState.XButton2" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: Extra2 = 4
+    return:
+      type: MLEM.Input.MouseButton
+references:
+- uid: Microsoft.Xna.Framework.Input.MouseState
+  commentId: T:Microsoft.Xna.Framework.Input.MouseState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: MouseState
+  nameWithType: MouseState
+  fullName: Microsoft.Xna.Framework.Input.MouseState
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  href: MLEM.html
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+- uid: Microsoft.Xna.Framework.Input.MouseState.LeftButton
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.LeftButton
+  isExternal: true
+  name: LeftButton
+  nameWithType: MouseState.LeftButton
+  fullName: Microsoft.Xna.Framework.Input.MouseState.LeftButton
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  parent: MLEM.Input
+  href: MLEM.Input.MouseButton.html
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+- uid: Microsoft.Xna.Framework.Input.MouseState.MiddleButton
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.MiddleButton
+  isExternal: true
+  name: MiddleButton
+  nameWithType: MouseState.MiddleButton
+  fullName: Microsoft.Xna.Framework.Input.MouseState.MiddleButton
+- uid: Microsoft.Xna.Framework.Input.MouseState.RightButton
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.RightButton
+  isExternal: true
+  name: RightButton
+  nameWithType: MouseState.RightButton
+  fullName: Microsoft.Xna.Framework.Input.MouseState.RightButton
+- uid: Microsoft.Xna.Framework.Input.MouseState.XButton1
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.XButton1
+  isExternal: true
+  name: XButton1
+  nameWithType: MouseState.XButton1
+  fullName: Microsoft.Xna.Framework.Input.MouseState.XButton1
+- uid: Microsoft.Xna.Framework.Input.MouseState.XButton2
+  commentId: P:Microsoft.Xna.Framework.Input.MouseState.XButton2
+  isExternal: true
+  name: XButton2
+  nameWithType: MouseState.XButton2
+  fullName: Microsoft.Xna.Framework.Input.MouseState.XButton2

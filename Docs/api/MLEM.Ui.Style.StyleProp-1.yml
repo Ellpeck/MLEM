@@ -1,0 +1,983 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Style.StyleProp`1
+  commentId: T:MLEM.Ui.Style.StyleProp`1
+  id: StyleProp`1
+  parent: MLEM.Ui.Style
+  children:
+  - MLEM.Ui.Style.StyleProp`1.#ctor(`0)
+  - MLEM.Ui.Style.StyleProp`1.HasValue
+  - MLEM.Ui.Style.StyleProp`1.None
+  - MLEM.Ui.Style.StyleProp`1.OrDefault(`0)
+  - MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+  - MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+  - MLEM.Ui.Style.StyleProp`1.ToString
+  - MLEM.Ui.Style.StyleProp`1.Value
+  - MLEM.Ui.Style.StyleProp`1.op_Implicit(MLEM.Ui.Style.StyleProp{`0})~`0
+  - MLEM.Ui.Style.StyleProp`1.op_Implicit(`0)~MLEM.Ui.Style.StyleProp{`0}
+  langs:
+  - csharp
+  - vb
+  name: StyleProp<T>
+  nameWithType: StyleProp<T>
+  fullName: MLEM.Ui.Style.StyleProp<T>
+  type: Struct
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: StyleProp
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 10
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: >-
+    A struct used by <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> to store style properties.
+
+    This is a helper struct that allows default style settings from <xref href="MLEM.Ui.Style.UiStyle" data-throw-if-not-resolved="false"></xref> to be overridden by custom user settings easily.
+
+    Note that <code>T</code> implicitly converts to <code>StyleProp{T}</code> and vice versa.
+  example: []
+  syntax:
+    content: public readonly struct StyleProp<T>
+    typeParameters:
+    - id: T
+      description: The type of style setting that this property stores
+    content.vb: Public Structure StyleProp(Of T)
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  nameWithType.vb: StyleProp(Of T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T)
+  name.vb: StyleProp(Of T)
+- uid: MLEM.Ui.Style.StyleProp`1.None
+  commentId: P:MLEM.Ui.Style.StyleProp`1.None
+  id: None
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: StyleProp<T>.None
+  fullName: MLEM.Ui.Style.StyleProp<T>.None
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: None
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 15
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: The empty style property, with no <xref href="MLEM.Ui.Style.StyleProp%601.Value" data-throw-if-not-resolved="false"></xref> and a priority of 0.
+  example: []
+  syntax:
+    content: public static StyleProp<T> None { get; }
+    parameters: []
+    return:
+      type: MLEM.Ui.Style.StyleProp`1
+    content.vb: Public Shared ReadOnly Property None As StyleProp(Of T)
+  overload: MLEM.Ui.Style.StyleProp`1.None*
+  nameWithType.vb: StyleProp(Of T).None
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).None
+- uid: MLEM.Ui.Style.StyleProp`1.Value
+  commentId: F:MLEM.Ui.Style.StyleProp`1.Value
+  id: Value
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: StyleProp<T>.Value
+  fullName: MLEM.Ui.Style.StyleProp<T>.Value
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Value
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 20
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: The currently applied style
+  example: []
+  syntax:
+    content: public readonly T Value
+    return:
+      type: '{T}'
+    content.vb: Public ReadOnly Value As T
+  nameWithType.vb: StyleProp(Of T).Value
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).Value
+- uid: MLEM.Ui.Style.StyleProp`1.#ctor(`0)
+  commentId: M:MLEM.Ui.Style.StyleProp`1.#ctor(`0)
+  id: '#ctor(`0)'
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: StyleProp(T)
+  nameWithType: StyleProp<T>.StyleProp(T)
+  fullName: MLEM.Ui.Style.StyleProp<T>.StyleProp(T)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 28
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: >-
+    Creates a new style property with the given custom style and a priority of <xref href="System.Byte.MaxValue" data-throw-if-not-resolved="false"></xref>.
+
+    To create a style property with a lower priority, use <xref href="MLEM.Ui.Style.StyleProp%601.OrStyle(%600%2cSystem.Byte)" data-throw-if-not-resolved="false"></xref> on an existing priority, or use <xref href="MLEM.Ui.Style.StyleProp%601.None" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public StyleProp(T value)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The custom style to apply
+    content.vb: Public Sub New(value As T)
+  overload: MLEM.Ui.Style.StyleProp`1.#ctor*
+  nameWithType.vb: StyleProp(Of T).New(T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).New(T)
+  name.vb: New(T)
+- uid: MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+  commentId: M:MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+  id: OrStyle(`0,System.Byte)
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: OrStyle(T, byte)
+  nameWithType: StyleProp<T>.OrStyle(T, byte)
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrStyle(T, byte)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OrStyle
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 42
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: >-
+    Creates a copy of this style property and sets its value and marks it as being set by a <xref href="MLEM.Ui.Style.UiStyle" data-throw-if-not-resolved="false"></xref> if it doesn't have a custom value yet.
+
+    This allows this property to be overridden by custom style settings using <xref href="MLEM.Ui.Style.StyleProp%601.%23ctor(%600)" data-throw-if-not-resolved="false"></xref> or a higher <code class="paramref">priority</code>.
+  example: []
+  syntax:
+    content: public StyleProp<T> OrStyle(T value, byte priority = 0)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The style to apply
+    - id: priority
+      type: System.Byte
+      description: The priority that the style value has. Higher priority style values will override lower priority style values.
+    return:
+      type: MLEM.Ui.Style.StyleProp`1
+      description: The style with the higher priority
+    content.vb: Public Function OrStyle(value As T, priority As Byte = 0) As StyleProp(Of T)
+  overload: MLEM.Ui.Style.StyleProp`1.OrStyle*
+  nameWithType.vb: StyleProp(Of T).OrStyle(T, Byte)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrStyle(T, Byte)
+  name.vb: OrStyle(T, Byte)
+- uid: MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+  commentId: M:MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+  id: OrStyle(MLEM.Ui.Style.StyleProp{`0})
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: OrStyle(StyleProp<T>)
+  nameWithType: StyleProp<T>.OrStyle(StyleProp<T>)
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrStyle(MLEM.Ui.Style.StyleProp<T>)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OrStyle
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 52
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: >-
+    Chooses and returns the style property with the higher priority, out of this value and <code class="paramref">other</code>.
+
+    This allows this property to be overridden by custom style settings using <xref href="MLEM.Ui.Style.StyleProp%601.%23ctor(%600)" data-throw-if-not-resolved="false"></xref> or a higher priority.
+  example: []
+  syntax:
+    content: public StyleProp<T> OrStyle(StyleProp<T> other)
+    parameters:
+    - id: other
+      type: MLEM.Ui.Style.StyleProp`1
+      description: The style property to compare with
+    return:
+      type: MLEM.Ui.Style.StyleProp`1
+      description: The style property with the higher priority
+    content.vb: Public Function OrStyle(other As StyleProp(Of T)) As StyleProp(Of T)
+  overload: MLEM.Ui.Style.StyleProp`1.OrStyle*
+  nameWithType.vb: StyleProp(Of T).OrStyle(StyleProp(Of T))
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrStyle(MLEM.Ui.Style.StyleProp(Of T))
+  name.vb: OrStyle(StyleProp(Of T))
+- uid: MLEM.Ui.Style.StyleProp`1.OrDefault(`0)
+  commentId: M:MLEM.Ui.Style.StyleProp`1.OrDefault(`0)
+  id: OrDefault(`0)
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: OrDefault(T)
+  nameWithType: StyleProp<T>.OrDefault(T)
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrDefault(T)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OrDefault
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 61
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: Returns the current style value or, if <xref href="MLEM.Ui.Style.StyleProp%601.HasValue" data-throw-if-not-resolved="false"></xref> is false, the given default value.
+  example: []
+  syntax:
+    content: public T OrDefault(T def)
+    parameters:
+    - id: def
+      type: '{T}'
+      description: The default to return if this style property has no value
+    return:
+      type: '{T}'
+      description: The current value, or the default
+    content.vb: Public Function OrDefault(def As T) As T
+  overload: MLEM.Ui.Style.StyleProp`1.OrDefault*
+  nameWithType.vb: StyleProp(Of T).OrDefault(T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrDefault(T)
+- uid: MLEM.Ui.Style.StyleProp`1.HasValue
+  commentId: M:MLEM.Ui.Style.StyleProp`1.HasValue
+  id: HasValue
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: HasValue()
+  nameWithType: StyleProp<T>.HasValue()
+  fullName: MLEM.Ui.Style.StyleProp<T>.HasValue()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HasValue
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 69
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: Returns whether this style property has a value assigned to it using <xref href="MLEM.Ui.Style.StyleProp%601.OrStyle(MLEM.Ui.Style.StyleProp%7b%600%7d)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Ui.Style.StyleProp%601.%23ctor(%600)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool HasValue()
+    return:
+      type: System.Boolean
+      description: Whether this style property has a value
+    content.vb: Public Function HasValue() As Boolean
+  overload: MLEM.Ui.Style.StyleProp`1.HasValue*
+  nameWithType.vb: StyleProp(Of T).HasValue()
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).HasValue()
+- uid: MLEM.Ui.Style.StyleProp`1.ToString
+  commentId: M:MLEM.Ui.Style.StyleProp`1.ToString
+  id: ToString
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: StyleProp<T>.ToString()
+  fullName: MLEM.Ui.Style.StyleProp<T>.ToString()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToString
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 75
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: Returns the fully qualified type name of this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The fully qualified type name.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: MLEM.Ui.Style.StyleProp`1.ToString*
+  nameWithType.vb: StyleProp(Of T).ToString()
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).ToString()
+- uid: MLEM.Ui.Style.StyleProp`1.op_Implicit(MLEM.Ui.Style.StyleProp{`0})~`0
+  commentId: M:MLEM.Ui.Style.StyleProp`1.op_Implicit(MLEM.Ui.Style.StyleProp{`0})~`0
+  id: op_Implicit(MLEM.Ui.Style.StyleProp{`0})~`0
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: implicit operator T(StyleProp<T>)
+  nameWithType: StyleProp<T>.implicit operator T(StyleProp<T>)
+  fullName: MLEM.Ui.Style.StyleProp<T>.implicit operator T(MLEM.Ui.Style.StyleProp<T>)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Implicit
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 84
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: Implicitly converts a style property to its value.
+  example: []
+  syntax:
+    content: public static implicit operator T(StyleProp<T> prop)
+    parameters:
+    - id: prop
+      type: MLEM.Ui.Style.StyleProp`1
+      description: The property to convert
+    return:
+      type: '{T}'
+      description: The style that the style property holds
+    content.vb: Public Shared Widening Operator CType(prop As StyleProp(Of T)) As T
+  overload: MLEM.Ui.Style.StyleProp`1.op_Implicit*
+  nameWithType.vb: StyleProp(Of T).CType(StyleProp(Of T))
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).CType(MLEM.Ui.Style.StyleProp(Of T))
+  name.vb: CType(StyleProp(Of T))
+- uid: MLEM.Ui.Style.StyleProp`1.op_Implicit(`0)~MLEM.Ui.Style.StyleProp{`0}
+  commentId: M:MLEM.Ui.Style.StyleProp`1.op_Implicit(`0)~MLEM.Ui.Style.StyleProp{`0}
+  id: op_Implicit(`0)~MLEM.Ui.Style.StyleProp{`0}
+  parent: MLEM.Ui.Style.StyleProp`1
+  langs:
+  - csharp
+  - vb
+  name: implicit operator StyleProp<T>(T)
+  nameWithType: StyleProp<T>.implicit operator StyleProp<T>(T)
+  fullName: MLEM.Ui.Style.StyleProp<T>.implicit operator MLEM.Ui.Style.StyleProp<T>(T)
+  type: Operator
+  source:
+    remote:
+      path: MLEM.Ui/Style/StyleProp.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Implicit
+    path: ../MLEM.Ui/Style/StyleProp.cs
+    startLine: 93
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: Implicitly converts a style to a style property.
+  example: []
+  syntax:
+    content: public static implicit operator StyleProp<T>(T prop)
+    parameters:
+    - id: prop
+      type: '{T}'
+      description: The property to convert
+    return:
+      type: MLEM.Ui.Style.StyleProp`1
+      description: A style property with the given style value
+    content.vb: Public Shared Widening Operator CType(prop As T) As StyleProp(Of T)
+  overload: MLEM.Ui.Style.StyleProp`1.op_Implicit*
+  nameWithType.vb: StyleProp(Of T).CType(T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).CType(T)
+  name.vb: CType(T)
+references:
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: MLEM.Ui.Style.UiStyle
+  commentId: T:MLEM.Ui.Style.UiStyle
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.UiStyle.html
+  name: UiStyle
+  nameWithType: UiStyle
+  fullName: MLEM.Ui.Style.UiStyle
+- uid: MLEM.Ui.Style
+  commentId: N:MLEM.Ui.Style
+  href: MLEM.html
+  name: MLEM.Ui.Style
+  nameWithType: MLEM.Ui.Style
+  fullName: MLEM.Ui.Style
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Ui.Style.StyleProp`1.Value
+  commentId: F:MLEM.Ui.Style.StyleProp`1.Value
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_Value
+  name: Value
+  nameWithType: StyleProp<T>.Value
+  fullName: MLEM.Ui.Style.StyleProp<T>.Value
+  nameWithType.vb: StyleProp(Of T).Value
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).Value
+- uid: MLEM.Ui.Style.StyleProp`1.None*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.None
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_None
+  name: None
+  nameWithType: StyleProp<T>.None
+  fullName: MLEM.Ui.Style.StyleProp<T>.None
+  nameWithType.vb: StyleProp(Of T).None
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).None
+- uid: MLEM.Ui.Style.StyleProp`1
+  commentId: T:MLEM.Ui.Style.StyleProp`1
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.StyleProp-1.html
+  name: StyleProp<T>
+  nameWithType: StyleProp<T>
+  fullName: MLEM.Ui.Style.StyleProp<T>
+  nameWithType.vb: StyleProp(Of T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T)
+  name.vb: StyleProp(Of T)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Byte.MaxValue
+  commentId: F:System.Byte.MaxValue
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte.maxvalue
+  name: MaxValue
+  nameWithType: byte.MaxValue
+  fullName: byte.MaxValue
+  nameWithType.vb: Byte.MaxValue
+  fullName.vb: Byte.MaxValue
+- uid: MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+  commentId: M:MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+  isExternal: true
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle__0_System_Byte_
+  name: OrStyle(T, byte)
+  nameWithType: StyleProp<T>.OrStyle(T, byte)
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrStyle(T, byte)
+  nameWithType.vb: StyleProp(Of T).OrStyle(T, Byte)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrStyle(T, Byte)
+  name.vb: OrStyle(T, Byte)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+    name: OrStyle
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle__0_System_Byte_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1.OrStyle(`0,System.Byte)
+    name: OrStyle
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle__0_System_Byte_
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: MLEM.Ui.Style.StyleProp`1.None
+  commentId: P:MLEM.Ui.Style.StyleProp`1.None
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_None
+  name: None
+  nameWithType: StyleProp<T>.None
+  fullName: MLEM.Ui.Style.StyleProp<T>.None
+  nameWithType.vb: StyleProp(Of T).None
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).None
+- uid: MLEM.Ui.Style.StyleProp`1.#ctor*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.#ctor
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1__ctor__0_
+  name: StyleProp
+  nameWithType: StyleProp<T>.StyleProp
+  fullName: MLEM.Ui.Style.StyleProp<T>.StyleProp
+  nameWithType.vb: StyleProp(Of T).New
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).New
+  name.vb: New
+- uid: MLEM.Ui.Style.StyleProp`1.#ctor(`0)
+  commentId: M:MLEM.Ui.Style.StyleProp`1.#ctor(`0)
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1__ctor__0_
+  name: StyleProp(T)
+  nameWithType: StyleProp<T>.StyleProp(T)
+  fullName: MLEM.Ui.Style.StyleProp<T>.StyleProp(T)
+  nameWithType.vb: StyleProp(Of T).New(T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).New(T)
+  name.vb: New(T)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1.#ctor(`0)
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1__ctor__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - name: New
+  - name: (
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Style.StyleProp`1.OrStyle*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.OrStyle
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle__0_System_Byte_
+  name: OrStyle
+  nameWithType: StyleProp<T>.OrStyle
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrStyle
+  nameWithType.vb: StyleProp(Of T).OrStyle
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrStyle
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: MLEM.Ui.Style.StyleProp`1.HasValue
+  commentId: M:MLEM.Ui.Style.StyleProp`1.HasValue
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_HasValue
+  name: HasValue()
+  nameWithType: StyleProp<T>.HasValue()
+  fullName: MLEM.Ui.Style.StyleProp<T>.HasValue()
+  nameWithType.vb: StyleProp(Of T).HasValue()
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).HasValue()
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1.HasValue
+    name: HasValue
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_HasValue
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1.HasValue
+    name: HasValue
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_HasValue
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Style.StyleProp`1.OrDefault*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.OrDefault
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrDefault__0_
+  name: OrDefault
+  nameWithType: StyleProp<T>.OrDefault
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrDefault
+  nameWithType.vb: StyleProp(Of T).OrDefault
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrDefault
+- uid: MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+  commentId: M:MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle_MLEM_Ui_Style_StyleProp__0__
+  name: OrStyle(StyleProp<T>)
+  nameWithType: StyleProp<T>.OrStyle(StyleProp<T>)
+  fullName: MLEM.Ui.Style.StyleProp<T>.OrStyle(MLEM.Ui.Style.StyleProp<T>)
+  nameWithType.vb: StyleProp(Of T).OrStyle(StyleProp(Of T))
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).OrStyle(MLEM.Ui.Style.StyleProp(Of T))
+  name.vb: OrStyle(StyleProp(Of T))
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+    name: OrStyle
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle_MLEM_Ui_Style_StyleProp__0__
+  - name: (
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1.OrStyle(MLEM.Ui.Style.StyleProp{`0})
+    name: OrStyle
+    href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_OrStyle_MLEM_Ui_Style_StyleProp__0__
+  - name: (
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Style.StyleProp`1.HasValue*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.HasValue
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_HasValue
+  name: HasValue
+  nameWithType: StyleProp<T>.HasValue
+  fullName: MLEM.Ui.Style.StyleProp<T>.HasValue
+  nameWithType.vb: StyleProp(Of T).HasValue
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).HasValue
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Style.StyleProp`1.ToString*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.ToString
+  href: MLEM.Ui.Style.StyleProp-1.html#MLEM_Ui_Style_StyleProp_1_ToString
+  name: ToString
+  nameWithType: StyleProp<T>.ToString
+  fullName: MLEM.Ui.Style.StyleProp<T>.ToString
+  nameWithType.vb: StyleProp(Of T).ToString
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MLEM.Ui.Style.StyleProp`1.op_Implicit*
+  commentId: Overload:MLEM.Ui.Style.StyleProp`1.op_Implicit
+  name: implicit operator
+  nameWithType: StyleProp<T>.implicit operator
+  fullName: MLEM.Ui.Style.StyleProp<T>.implicit operator
+  nameWithType.vb: StyleProp(Of T).CType
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T).CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator

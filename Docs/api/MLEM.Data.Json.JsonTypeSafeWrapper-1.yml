@@ -1,0 +1,633 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper`1
+  commentId: T:MLEM.Data.Json.JsonTypeSafeWrapper`1
+  id: JsonTypeSafeWrapper`1
+  parent: MLEM.Data.Json
+  children:
+  - MLEM.Data.Json.JsonTypeSafeWrapper`1.#ctor(`0)
+  - MLEM.Data.Json.JsonTypeSafeWrapper`1.Value
+  langs:
+  - csharp
+  - vb
+  name: JsonTypeSafeWrapper<T>
+  nameWithType: JsonTypeSafeWrapper<T>
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper<T>
+  type: Class
+  source:
+    remote:
+      path: MLEM.Data/Json/JsonTypeSafeWrapper.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: JsonTypeSafeWrapper
+    path: ../MLEM.Data/Json/JsonTypeSafeWrapper.cs
+    startLine: 51
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Json
+  summary: >-
+    A json type-safe wrapper can be used to wrap any objects that have a custom <xref href="Newtonsoft.Json.JsonConverter" data-throw-if-not-resolved="false"></xref> which stores them as a primitive type and that are serialized using a <xref href="Newtonsoft.Json.JsonSerializer" data-throw-if-not-resolved="false"></xref> in cases where <xref href="Newtonsoft.Json.JsonSerializer.TypeNameHandling" data-throw-if-not-resolved="false"></xref> is not set to <xref href="Newtonsoft.Json.TypeNameHandling.None" data-throw-if-not-resolved="false"></xref>.
+
+    If these objects are not wrapped in this manner, the value deserialized from it might not have the same type as the originally serialized object. This behavior can be observed, for example, when serializing a <xref href="System.Collections.Generic.List%601" data-throw-if-not-resolved="false"></xref> of <xref href="System.Object" data-throw-if-not-resolved="false"></xref> entries, one of which is a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>: The <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> will be serialized as a <xref href="System.String" data-throw-if-not-resolved="false"></xref> and, upon deserialization, will remain a <xref href="System.String" data-throw-if-not-resolved="false"></xref>.
+
+    In general, wrapping objects in this manner is only useful in rare cases, where custom data of an unexpected or unknown type is stored.
+
+    See <xref href="MLEM.Data.Json.JsonTypeSafeGenericDataHolder" data-throw-if-not-resolved="false"></xref> for an example of how this class can be used, and see this stackoverflow answer for more information on the problem that this class solves: https://stackoverflow.com/a/38798114.
+  example: []
+  syntax:
+    content: 'public class JsonTypeSafeWrapper<T> : JsonTypeSafeWrapper'
+    typeParameters:
+    - id: T
+    content.vb: Public Class JsonTypeSafeWrapper(Of T) Inherits JsonTypeSafeWrapper
+  inheritance:
+  - System.Object
+  - MLEM.Data.Json.JsonTypeSafeWrapper
+  inheritedMembers:
+  - MLEM.Data.Json.JsonTypeSafeWrapper.GetValue``1
+  - MLEM.Data.Json.JsonTypeSafeWrapper.Of``1({T})
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  nameWithType.vb: JsonTypeSafeWrapper(Of T)
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper(Of T)
+  name.vb: JsonTypeSafeWrapper(Of T)
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper`1.Value
+  commentId: P:MLEM.Data.Json.JsonTypeSafeWrapper`1.Value
+  id: Value
+  parent: MLEM.Data.Json.JsonTypeSafeWrapper`1
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: JsonTypeSafeWrapper<T>.Value
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper<T>.Value
+  type: Property
+  source:
+    remote:
+      path: MLEM.Data/Json/JsonTypeSafeWrapper.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Value
+    path: ../MLEM.Data/Json/JsonTypeSafeWrapper.cs
+    startLine: 54
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Json
+  summary: Returns this json type-safe wrapper's value as an <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override object Value { get; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public Overrides ReadOnly Property Value As Object
+  overridden: MLEM.Data.Json.JsonTypeSafeWrapper.Value
+  overload: MLEM.Data.Json.JsonTypeSafeWrapper`1.Value*
+  nameWithType.vb: JsonTypeSafeWrapper(Of T).Value
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper(Of T).Value
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper`1.#ctor(`0)
+  commentId: M:MLEM.Data.Json.JsonTypeSafeWrapper`1.#ctor(`0)
+  id: '#ctor(`0)'
+  parent: MLEM.Data.Json.JsonTypeSafeWrapper`1
+  langs:
+  - csharp
+  - vb
+  name: JsonTypeSafeWrapper(T)
+  nameWithType: JsonTypeSafeWrapper<T>.JsonTypeSafeWrapper(T)
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper<T>.JsonTypeSafeWrapper(T)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Data/Json/JsonTypeSafeWrapper.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Data/Json/JsonTypeSafeWrapper.cs
+    startLine: 64
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Json
+  summary: >-
+    Creates a new json type-safe wrapper instance that wraps the given <code class="paramref">value</code>.
+
+    If the type of the value is unknown at compile time, <xref href="MLEM.Data.Json.JsonTypeSafeWrapper.Of%60%601(%60%600)" data-throw-if-not-resolved="false"></xref> can be used instead.
+  example: []
+  syntax:
+    content: public JsonTypeSafeWrapper(T value)
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The value to wrap
+    content.vb: Public Sub New(value As T)
+  overload: MLEM.Data.Json.JsonTypeSafeWrapper`1.#ctor*
+  nameWithType.vb: JsonTypeSafeWrapper(Of T).New(T)
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper(Of T).New(T)
+  name.vb: New(T)
+references:
+- uid: Newtonsoft.Json.JsonConverter
+  commentId: T:Newtonsoft.Json.JsonConverter
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonConverter
+  nameWithType: JsonConverter
+  fullName: Newtonsoft.Json.JsonConverter
+- uid: Newtonsoft.Json.JsonSerializer
+  commentId: T:Newtonsoft.Json.JsonSerializer
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonSerializer
+  nameWithType: JsonSerializer
+  fullName: Newtonsoft.Json.JsonSerializer
+- uid: Newtonsoft.Json.JsonSerializer.TypeNameHandling
+  commentId: P:Newtonsoft.Json.JsonSerializer.TypeNameHandling
+  isExternal: true
+  name: TypeNameHandling
+  nameWithType: JsonSerializer.TypeNameHandling
+  fullName: Newtonsoft.Json.JsonSerializer.TypeNameHandling
+- uid: Newtonsoft.Json.TypeNameHandling.None
+  commentId: F:Newtonsoft.Json.TypeNameHandling.None
+  isExternal: true
+  name: None
+  nameWithType: TypeNameHandling.None
+  fullName: Newtonsoft.Json.TypeNameHandling.None
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+  commentId: T:MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+  href: MLEM.Data.Json.JsonTypeSafeGenericDataHolder.html
+  name: JsonTypeSafeGenericDataHolder
+  nameWithType: JsonTypeSafeGenericDataHolder
+  fullName: MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+- uid: MLEM.Data.Json
+  commentId: N:MLEM.Data.Json
+  href: MLEM.html
+  name: MLEM.Data.Json
+  nameWithType: MLEM.Data.Json
+  fullName: MLEM.Data.Json
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Json
+    name: Json
+    href: MLEM.Data.Json.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Json
+    name: Json
+    href: MLEM.Data.Json.html
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper
+  commentId: T:MLEM.Data.Json.JsonTypeSafeWrapper
+  parent: MLEM.Data.Json
+  href: MLEM.Data.Json.JsonTypeSafeWrapper.html
+  name: JsonTypeSafeWrapper
+  nameWithType: JsonTypeSafeWrapper
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper.GetValue``1
+  commentId: M:MLEM.Data.Json.JsonTypeSafeWrapper.GetValue``1
+  parent: MLEM.Data.Json.JsonTypeSafeWrapper
+  href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_GetValue__1
+  name: GetValue<T>()
+  nameWithType: JsonTypeSafeWrapper.GetValue<T>()
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper.GetValue<T>()
+  nameWithType.vb: JsonTypeSafeWrapper.GetValue(Of T)()
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper.GetValue(Of T)()
+  name.vb: GetValue(Of T)()
+  spec.csharp:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper.GetValue``1
+    name: GetValue
+    href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_GetValue__1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper.GetValue``1
+    name: GetValue
+    href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_GetValue__1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: )
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1({T})
+  commentId: M:MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+  parent: MLEM.Data.Json.JsonTypeSafeWrapper
+  definition: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+  href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Of__1___0_
+  name: Of<T>(T)
+  nameWithType: JsonTypeSafeWrapper.Of<T>(T)
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper.Of<T>(T)
+  nameWithType.vb: JsonTypeSafeWrapper.Of(Of T)(T)
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper.Of(Of T)(T)
+  name.vb: Of(Of T)(T)
+  spec.csharp:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+    name: Of
+    href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Of__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+    name: Of
+    href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Of__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: Newtonsoft.Json
+  commentId: N:Newtonsoft.Json
+  isExternal: true
+  name: Newtonsoft.Json
+  nameWithType: Newtonsoft.Json
+  fullName: Newtonsoft.Json
+  spec.csharp:
+  - uid: Newtonsoft
+    name: Newtonsoft
+    isExternal: true
+  - name: .
+  - uid: Newtonsoft.Json
+    name: Json
+    isExternal: true
+  spec.vb:
+  - uid: Newtonsoft
+    name: Newtonsoft
+    isExternal: true
+  - name: .
+  - uid: Newtonsoft.Json
+    name: Json
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+  commentId: M:MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+  href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Of__1___0_
+  name: Of<T>(T)
+  nameWithType: JsonTypeSafeWrapper.Of<T>(T)
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper.Of<T>(T)
+  nameWithType.vb: JsonTypeSafeWrapper.Of(Of T)(T)
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper.Of(Of T)(T)
+  name.vb: Of(Of T)(T)
+  spec.csharp:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+    name: Of
+    href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Of__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper.Of``1(``0)
+    name: Of
+    href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Of__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper.Value
+  commentId: P:MLEM.Data.Json.JsonTypeSafeWrapper.Value
+  parent: MLEM.Data.Json.JsonTypeSafeWrapper
+  href: MLEM.Data.Json.JsonTypeSafeWrapper.html#MLEM_Data_Json_JsonTypeSafeWrapper_Value
+  name: Value
+  nameWithType: JsonTypeSafeWrapper.Value
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper.Value
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper`1.Value*
+  commentId: Overload:MLEM.Data.Json.JsonTypeSafeWrapper`1.Value
+  href: MLEM.Data.Json.JsonTypeSafeWrapper-1.html#MLEM_Data_Json_JsonTypeSafeWrapper_1_Value
+  name: Value
+  nameWithType: JsonTypeSafeWrapper<T>.Value
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper<T>.Value
+  nameWithType.vb: JsonTypeSafeWrapper(Of T).Value
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper(Of T).Value
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper`1.#ctor*
+  commentId: Overload:MLEM.Data.Json.JsonTypeSafeWrapper`1.#ctor
+  href: MLEM.Data.Json.JsonTypeSafeWrapper-1.html#MLEM_Data_Json_JsonTypeSafeWrapper_1__ctor__0_
+  name: JsonTypeSafeWrapper
+  nameWithType: JsonTypeSafeWrapper<T>.JsonTypeSafeWrapper
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper<T>.JsonTypeSafeWrapper
+  nameWithType.vb: JsonTypeSafeWrapper(Of T).New
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper(Of T).New
+  name.vb: New
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

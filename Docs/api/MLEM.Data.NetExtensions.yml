@@ -1,0 +1,888 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.NetExtensions
+  commentId: T:MLEM.Data.NetExtensions
+  id: NetExtensions
+  parent: MLEM.Data
+  children:
+  - MLEM.Data.NetExtensions.ReadDirection(Lidgren.Network.NetBuffer)
+  - MLEM.Data.NetExtensions.ReadGuid(Lidgren.Network.NetBuffer)
+  - MLEM.Data.NetExtensions.ReadObject``1(Lidgren.Network.NetBuffer,Newtonsoft.Json.JsonSerializer)
+  - MLEM.Data.NetExtensions.ReadVector2(Lidgren.Network.NetBuffer)
+  - MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,MLEM.Misc.Direction2)
+  - MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,Microsoft.Xna.Framework.Vector2)
+  - MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,System.Guid)
+  - MLEM.Data.NetExtensions.WriteObject``1(Lidgren.Network.NetBuffer,``0,Newtonsoft.Json.JsonSerializer)
+  langs:
+  - csharp
+  - vb
+  name: NetExtensions
+  nameWithType: NetExtensions
+  fullName: MLEM.Data.NetExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NetExtensions
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 14
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: A set of extensions for dealing with <xref href="Lidgren.Network.NetBuffer" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static class NetExtensions
+    content.vb: Public Module NetExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,Microsoft.Xna.Framework.Vector2)
+  id: Write(Lidgren.Network.NetBuffer,Microsoft.Xna.Framework.Vector2)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: Write(NetBuffer, Vector2)
+  nameWithType: NetExtensions.Write(NetBuffer, Vector2)
+  fullName: MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer, Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Write
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 21
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Writes a <xref href="Microsoft.Xna.Framework.Vector2" data-throw-if-not-resolved="false"></xref> to the given net buffer
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static void Write(this NetBuffer buffer, Vector2 vector)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to write to
+    - id: vector
+      type: Microsoft.Xna.Framework.Vector2
+      description: The vector to write
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Sub Write(buffer As NetBuffer, vector As Vector2)
+  overload: MLEM.Data.NetExtensions.Write*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetExtensions.ReadVector2(Lidgren.Network.NetBuffer)
+  commentId: M:MLEM.Data.NetExtensions.ReadVector2(Lidgren.Network.NetBuffer)
+  id: ReadVector2(Lidgren.Network.NetBuffer)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: ReadVector2(NetBuffer)
+  nameWithType: NetExtensions.ReadVector2(NetBuffer)
+  fullName: MLEM.Data.NetExtensions.ReadVector2(Lidgren.Network.NetBuffer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReadVector2
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 32
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Reads a <xref href="Microsoft.Xna.Framework.Vector2" data-throw-if-not-resolved="false"></xref> from the given net buffer
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static Vector2 ReadVector2(this NetBuffer buffer)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to read from
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+      description: The read vector
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Function ReadVector2(buffer As NetBuffer) As Vector2
+  overload: MLEM.Data.NetExtensions.ReadVector2*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,System.Guid)
+  commentId: M:MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,System.Guid)
+  id: Write(Lidgren.Network.NetBuffer,System.Guid)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: Write(NetBuffer, Guid)
+  nameWithType: NetExtensions.Write(NetBuffer, Guid)
+  fullName: MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Write
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 42
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Writes a <xref href="System.Guid" data-throw-if-not-resolved="false"></xref> to the given net buffer
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static void Write(this NetBuffer buffer, Guid guid)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to write to
+    - id: guid
+      type: System.Guid
+      description: The guid to write
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Sub Write(buffer As NetBuffer, guid As Guid)
+  overload: MLEM.Data.NetExtensions.Write*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetExtensions.ReadGuid(Lidgren.Network.NetBuffer)
+  commentId: M:MLEM.Data.NetExtensions.ReadGuid(Lidgren.Network.NetBuffer)
+  id: ReadGuid(Lidgren.Network.NetBuffer)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: ReadGuid(NetBuffer)
+  nameWithType: NetExtensions.ReadGuid(NetBuffer)
+  fullName: MLEM.Data.NetExtensions.ReadGuid(Lidgren.Network.NetBuffer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReadGuid
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 52
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Reads a <xref href="System.Guid" data-throw-if-not-resolved="false"></xref> from the given net buffer
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static Guid ReadGuid(this NetBuffer buffer)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to read from
+    return:
+      type: System.Guid
+      description: The read guid
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Function ReadGuid(buffer As NetBuffer) As Guid
+  overload: MLEM.Data.NetExtensions.ReadGuid*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,MLEM.Misc.Direction2)
+  commentId: M:MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer,MLEM.Misc.Direction2)
+  id: Write(Lidgren.Network.NetBuffer,MLEM.Misc.Direction2)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: Write(NetBuffer, Direction2)
+  nameWithType: NetExtensions.Write(NetBuffer, Direction2)
+  fullName: MLEM.Data.NetExtensions.Write(Lidgren.Network.NetBuffer, MLEM.Misc.Direction2)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Write
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 62
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Writes a <xref href="MLEM.Misc.Direction2" data-throw-if-not-resolved="false"></xref> to the given net buffer
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static void Write(this NetBuffer buffer, Direction2 direction)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to write to
+    - id: direction
+      type: MLEM.Misc.Direction2
+      description: The direction to write
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Sub Write(buffer As NetBuffer, direction As Direction2)
+  overload: MLEM.Data.NetExtensions.Write*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetExtensions.ReadDirection(Lidgren.Network.NetBuffer)
+  commentId: M:MLEM.Data.NetExtensions.ReadDirection(Lidgren.Network.NetBuffer)
+  id: ReadDirection(Lidgren.Network.NetBuffer)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: ReadDirection(NetBuffer)
+  nameWithType: NetExtensions.ReadDirection(NetBuffer)
+  fullName: MLEM.Data.NetExtensions.ReadDirection(Lidgren.Network.NetBuffer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReadDirection
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 72
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Reads a <xref href="MLEM.Misc.Direction2" data-throw-if-not-resolved="false"></xref> from the given net buffer
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static Direction2 ReadDirection(this NetBuffer buffer)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to read from
+    return:
+      type: MLEM.Misc.Direction2
+      description: The read direction
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Function ReadDirection(buffer As NetBuffer) As Direction2
+  overload: MLEM.Data.NetExtensions.ReadDirection*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetExtensions.WriteObject``1(Lidgren.Network.NetBuffer,``0,Newtonsoft.Json.JsonSerializer)
+  commentId: M:MLEM.Data.NetExtensions.WriteObject``1(Lidgren.Network.NetBuffer,``0,Newtonsoft.Json.JsonSerializer)
+  id: WriteObject``1(Lidgren.Network.NetBuffer,``0,Newtonsoft.Json.JsonSerializer)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: WriteObject<T>(NetBuffer, T, JsonSerializer)
+  nameWithType: NetExtensions.WriteObject<T>(NetBuffer, T, JsonSerializer)
+  fullName: MLEM.Data.NetExtensions.WriteObject<T>(Lidgren.Network.NetBuffer, T, Newtonsoft.Json.JsonSerializer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: WriteObject
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 84
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Writes a generic object to the given net buffer using a <xref href="Newtonsoft.Json.JsonSerializer" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static void WriteObject<T>(this NetBuffer buffer, T obj, JsonSerializer serializer)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to write to
+    - id: obj
+      type: '{T}'
+      description: The object to write
+    - id: serializer
+      type: Newtonsoft.Json.JsonSerializer
+      description: The JSON serializer to use
+    typeParameters:
+    - id: T
+      description: The type of object written
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Sub WriteObject(Of T)(buffer As NetBuffer, obj As T, serializer As JsonSerializer)
+  overload: MLEM.Data.NetExtensions.WriteObject*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+  nameWithType.vb: NetExtensions.WriteObject(Of T)(NetBuffer, T, JsonSerializer)
+  fullName.vb: MLEM.Data.NetExtensions.WriteObject(Of T)(Lidgren.Network.NetBuffer, T, Newtonsoft.Json.JsonSerializer)
+  name.vb: WriteObject(Of T)(NetBuffer, T, JsonSerializer)
+- uid: MLEM.Data.NetExtensions.ReadObject``1(Lidgren.Network.NetBuffer,Newtonsoft.Json.JsonSerializer)
+  commentId: M:MLEM.Data.NetExtensions.ReadObject``1(Lidgren.Network.NetBuffer,Newtonsoft.Json.JsonSerializer)
+  id: ReadObject``1(Lidgren.Network.NetBuffer,Newtonsoft.Json.JsonSerializer)
+  isExtensionMethod: true
+  parent: MLEM.Data.NetExtensions
+  langs:
+  - csharp
+  - vb
+  name: ReadObject<T>(NetBuffer, JsonSerializer)
+  nameWithType: NetExtensions.ReadObject<T>(NetBuffer, JsonSerializer)
+  fullName: MLEM.Data.NetExtensions.ReadObject<T>(Lidgren.Network.NetBuffer, Newtonsoft.Json.JsonSerializer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReadObject
+    path: ../MLEM.Data/NetExtensions.cs
+    startLine: 106
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Reads a generic object from the given buffer using a <xref href="Newtonsoft.Json.JsonSerializer" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public static T ReadObject<T>(this NetBuffer buffer, JsonSerializer serializer)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to read from
+    - id: serializer
+      type: Newtonsoft.Json.JsonSerializer
+      description: The JSON serializer to use
+    typeParameters:
+    - id: T
+      description: The type of object read
+    return:
+      type: '{T}'
+      description: The read object
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Shared Function ReadObject(Of T)(buffer As NetBuffer, serializer As JsonSerializer) As T
+  overload: MLEM.Data.NetExtensions.ReadObject*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+  nameWithType.vb: NetExtensions.ReadObject(Of T)(NetBuffer, JsonSerializer)
+  fullName.vb: MLEM.Data.NetExtensions.ReadObject(Of T)(Lidgren.Network.NetBuffer, Newtonsoft.Json.JsonSerializer)
+  name.vb: ReadObject(Of T)(NetBuffer, JsonSerializer)
+references:
+- uid: Lidgren.Network.NetBuffer
+  commentId: T:Lidgren.Network.NetBuffer
+  parent: Lidgren.Network
+  isExternal: true
+  name: NetBuffer
+  nameWithType: NetBuffer
+  fullName: Lidgren.Network.NetBuffer
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: Lidgren.Network
+  commentId: N:Lidgren.Network
+  isExternal: true
+  name: Lidgren.Network
+  nameWithType: Lidgren.Network
+  fullName: Lidgren.Network
+  spec.csharp:
+  - uid: Lidgren
+    name: Lidgren
+    isExternal: true
+  - name: .
+  - uid: Lidgren.Network
+    name: Network
+    isExternal: true
+  spec.vb:
+  - uid: Lidgren
+    name: Lidgren
+    isExternal: true
+  - name: .
+  - uid: Lidgren.Network
+    name: Network
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: MLEM.Data.NetExtensions.Write*
+  commentId: Overload:MLEM.Data.NetExtensions.Write
+  href: MLEM.Data.NetExtensions.html#MLEM_Data_NetExtensions_Write_Lidgren_Network_NetBuffer_Microsoft_Xna_Framework_Vector2_
+  name: Write
+  nameWithType: NetExtensions.Write
+  fullName: MLEM.Data.NetExtensions.Write
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: MLEM.Data.NetExtensions.ReadVector2*
+  commentId: Overload:MLEM.Data.NetExtensions.ReadVector2
+  href: MLEM.Data.NetExtensions.html#MLEM_Data_NetExtensions_ReadVector2_Lidgren_Network_NetBuffer_
+  name: ReadVector2
+  nameWithType: NetExtensions.ReadVector2
+  fullName: MLEM.Data.NetExtensions.ReadVector2
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: MLEM.Data.NetExtensions.ReadGuid*
+  commentId: Overload:MLEM.Data.NetExtensions.ReadGuid
+  href: MLEM.Data.NetExtensions.html#MLEM_Data_NetExtensions_ReadGuid_Lidgren_Network_NetBuffer_
+  name: ReadGuid
+  nameWithType: NetExtensions.ReadGuid
+  fullName: MLEM.Data.NetExtensions.ReadGuid
+- uid: MLEM.Misc.Direction2
+  commentId: T:MLEM.Misc.Direction2
+  parent: MLEM.Misc
+  href: MLEM.Misc.Direction2.html
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Misc.Direction2
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Data.NetExtensions.ReadDirection*
+  commentId: Overload:MLEM.Data.NetExtensions.ReadDirection
+  href: MLEM.Data.NetExtensions.html#MLEM_Data_NetExtensions_ReadDirection_Lidgren_Network_NetBuffer_
+  name: ReadDirection
+  nameWithType: NetExtensions.ReadDirection
+  fullName: MLEM.Data.NetExtensions.ReadDirection
+- uid: Newtonsoft.Json.JsonSerializer
+  commentId: T:Newtonsoft.Json.JsonSerializer
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonSerializer
+  nameWithType: JsonSerializer
+  fullName: Newtonsoft.Json.JsonSerializer
+- uid: MLEM.Data.NetExtensions.WriteObject*
+  commentId: Overload:MLEM.Data.NetExtensions.WriteObject
+  href: MLEM.Data.NetExtensions.html#MLEM_Data_NetExtensions_WriteObject__1_Lidgren_Network_NetBuffer___0_Newtonsoft_Json_JsonSerializer_
+  name: WriteObject
+  nameWithType: NetExtensions.WriteObject
+  fullName: MLEM.Data.NetExtensions.WriteObject
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Newtonsoft.Json
+  commentId: N:Newtonsoft.Json
+  isExternal: true
+  name: Newtonsoft.Json
+  nameWithType: Newtonsoft.Json
+  fullName: Newtonsoft.Json
+  spec.csharp:
+  - uid: Newtonsoft
+    name: Newtonsoft
+    isExternal: true
+  - name: .
+  - uid: Newtonsoft.Json
+    name: Json
+    isExternal: true
+  spec.vb:
+  - uid: Newtonsoft
+    name: Newtonsoft
+    isExternal: true
+  - name: .
+  - uid: Newtonsoft.Json
+    name: Json
+    isExternal: true
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: MLEM.Data.NetExtensions.ReadObject*
+  commentId: Overload:MLEM.Data.NetExtensions.ReadObject
+  href: MLEM.Data.NetExtensions.html#MLEM_Data_NetExtensions_ReadObject__1_Lidgren_Network_NetBuffer_Newtonsoft_Json_JsonSerializer_
+  name: ReadObject
+  nameWithType: NetExtensions.ReadObject
+  fullName: MLEM.Data.NetExtensions.ReadObject

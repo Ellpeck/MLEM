@@ -1,0 +1,1009 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  id: NinePatch
+  parent: MLEM.Textures
+  children:
+  - MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,MLEM.Maths.Padding,MLEM.Textures.NinePatchMode,System.Boolean)
+  - MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  - MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  - MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  - MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  - MLEM.Textures.NinePatch.Mode
+  - MLEM.Textures.NinePatch.Padding
+  - MLEM.Textures.NinePatch.Region
+  - MLEM.Textures.NinePatch.SourceRectangles
+  langs:
+  - csharp
+  - vb
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
+  type: Class
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NinePatch
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 13
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    This class represents a texture with nine areas.
+
+    A nine patch texture is useful if a big area should be covered by a small texture that has a specific outline, like a gui panel texture. The center of the texture will be stretched or tiled, while the outline of the texture will remain at its original size, keeping aspect ratios alive.
+
+    The nine patch can then be drawn using <xref href="MLEM.Textures.NinePatchExtensions" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public class NinePatch : GenericDataHolder, IGenericDataHolder'
+    content.vb: Public Class NinePatch Inherits GenericDataHolder Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Textures.NinePatch.Region
+  commentId: F:MLEM.Textures.NinePatch.Region
+  id: Region
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: Region
+  nameWithType: NinePatch.Region
+  fullName: MLEM.Textures.NinePatch.Region
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Region
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The texture region of this nine patch
+  example: []
+  syntax:
+    content: public readonly TextureRegion Region
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Region As TextureRegion
+- uid: MLEM.Textures.NinePatch.Padding
+  commentId: F:MLEM.Textures.NinePatch.Padding
+  id: Padding
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: Padding
+  nameWithType: NinePatch.Padding
+  fullName: MLEM.Textures.NinePatch.Padding
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Padding
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 22
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The padding in each direction that marks where the outline area stops, in pixels
+  example: []
+  syntax:
+    content: public readonly Padding Padding
+    return:
+      type: MLEM.Maths.Padding
+    content.vb: Public ReadOnly Padding As Padding
+- uid: MLEM.Textures.NinePatch.Mode
+  commentId: F:MLEM.Textures.NinePatch.Mode
+  id: Mode
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: Mode
+  nameWithType: NinePatch.Mode
+  fullName: MLEM.Textures.NinePatch.Mode
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Mode
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 26
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The <xref href="MLEM.Textures.NinePatchMode" data-throw-if-not-resolved="false"></xref> that this nine patch should use for drawing
+  example: []
+  syntax:
+    content: public readonly NinePatchMode Mode
+    return:
+      type: MLEM.Textures.NinePatchMode
+    content.vb: Public ReadOnly Mode As NinePatchMode
+- uid: MLEM.Textures.NinePatch.SourceRectangles
+  commentId: F:MLEM.Textures.NinePatch.SourceRectangles
+  id: SourceRectangles
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: SourceRectangles
+  nameWithType: NinePatch.SourceRectangles
+  fullName: MLEM.Textures.NinePatch.SourceRectangles
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SourceRectangles
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 30
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The nine patches that result from the <xref href="MLEM.Textures.NinePatch.Padding" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public readonly Rectangle[] SourceRectangles
+    return:
+      type: Microsoft.Xna.Framework.Rectangle[]
+    content.vb: Public ReadOnly SourceRectangles As Rectangle()
+- uid: MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,MLEM.Maths.Padding,MLEM.Textures.NinePatchMode,System.Boolean)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,MLEM.Maths.Padding,MLEM.Textures.NinePatchMode,System.Boolean)
+  id: '#ctor(MLEM.Textures.TextureRegion,MLEM.Maths.Padding,MLEM.Textures.NinePatchMode,System.Boolean)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(TextureRegion, Padding, NinePatchMode, bool)
+  nameWithType: NinePatch.NinePatch(TextureRegion, Padding, NinePatchMode, bool)
+  fullName: MLEM.Textures.NinePatch.NinePatch(MLEM.Textures.TextureRegion, MLEM.Maths.Padding, MLEM.Textures.NinePatchMode, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 39
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Creates a new nine patch from a texture and a padding
+  example: []
+  syntax:
+    content: public NinePatch(TextureRegion texture, Padding padding, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false)
+    parameters:
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: The texture to use
+    - id: padding
+      type: MLEM.Maths.Padding
+      description: The padding that marks where the outline area stops in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: mode
+      type: MLEM.Textures.NinePatchMode
+      description: The mode to use for drawing this nine patch, defaults to <xref href="MLEM.Textures.NinePatchMode.Stretch" data-throw-if-not-resolved="false"></xref>
+    - id: paddingPercent
+      type: System.Boolean
+      description: Whether the padding should represent a percentage of the underlying <code class="paramref">texture</code>'s size, rather than an absolute pixel amount
+    content.vb: Public Sub New(texture As TextureRegion, padding As Padding, mode As NinePatchMode = NinePatchMode.Stretch, paddingPercent As Boolean = False)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  nameWithType.vb: NinePatch.New(TextureRegion, Padding, NinePatchMode, Boolean)
+  fullName.vb: MLEM.Textures.NinePatch.New(MLEM.Textures.TextureRegion, MLEM.Maths.Padding, MLEM.Textures.NinePatchMode, Boolean)
+  name.vb: New(TextureRegion, Padding, NinePatchMode, Boolean)
+- uid: MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  id: '#ctor(MLEM.Textures.TextureRegion,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(TextureRegion, float, float, float, float, NinePatchMode, bool)
+  nameWithType: NinePatch.NinePatch(TextureRegion, float, float, float, float, NinePatchMode, bool)
+  fullName: MLEM.Textures.NinePatch.NinePatch(MLEM.Textures.TextureRegion, float, float, float, float, MLEM.Textures.NinePatchMode, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 58
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Creates a new nine patch from a texture and a padding
+  example: []
+  syntax:
+    content: public NinePatch(TextureRegion texture, float paddingLeft, float paddingRight, float paddingTop, float paddingBottom, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false)
+    parameters:
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: The texture to use
+    - id: paddingLeft
+      type: System.Single
+      description: The padding on the left edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: paddingRight
+      type: System.Single
+      description: The padding on the right edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: paddingTop
+      type: System.Single
+      description: The padding on the top edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: paddingBottom
+      type: System.Single
+      description: The padding on the bottom edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: mode
+      type: MLEM.Textures.NinePatchMode
+      description: The mode to use for drawing this nine patch, defaults to <xref href="MLEM.Textures.NinePatchMode.Stretch" data-throw-if-not-resolved="false"></xref>
+    - id: paddingPercent
+      type: System.Boolean
+      description: Whether the padding should represent a percentage of the underlying <code class="paramref">texture</code>'s size, rather than an absolute pixel amount
+    content.vb: Public Sub New(texture As TextureRegion, paddingLeft As Single, paddingRight As Single, paddingTop As Single, paddingBottom As Single, mode As NinePatchMode = NinePatchMode.Stretch, paddingPercent As Boolean = False)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  nameWithType.vb: NinePatch.New(TextureRegion, Single, Single, Single, Single, NinePatchMode, Boolean)
+  fullName.vb: MLEM.Textures.NinePatch.New(MLEM.Textures.TextureRegion, Single, Single, Single, Single, MLEM.Textures.NinePatchMode, Boolean)
+  name.vb: New(TextureRegion, Single, Single, Single, Single, NinePatchMode, Boolean)
+- uid: MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single,System.Single,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(Texture2D, float, float, float, float, NinePatchMode, bool)
+  nameWithType: NinePatch.NinePatch(Texture2D, float, float, float, float, NinePatchMode, bool)
+  fullName: MLEM.Textures.NinePatch.NinePatch(Microsoft.Xna.Framework.Graphics.Texture2D, float, float, float, float, MLEM.Textures.NinePatchMode, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 61
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Creates a new nine patch from a texture and a padding
+  example: []
+  syntax:
+    content: public NinePatch(Texture2D texture, float paddingLeft, float paddingRight, float paddingTop, float paddingBottom, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false)
+    parameters:
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use
+    - id: paddingLeft
+      type: System.Single
+      description: The padding on the left edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: paddingRight
+      type: System.Single
+      description: The padding on the right edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: paddingTop
+      type: System.Single
+      description: The padding on the top edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: paddingBottom
+      type: System.Single
+      description: The padding on the bottom edge in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: mode
+      type: MLEM.Textures.NinePatchMode
+      description: The mode to use for drawing this nine patch, defaults to <xref href="MLEM.Textures.NinePatchMode.Stretch" data-throw-if-not-resolved="false"></xref>
+    - id: paddingPercent
+      type: System.Boolean
+      description: Whether the padding should represent a percentage of the underlying <code class="paramref">texture</code>'s size, rather than an absolute pixel amount
+    content.vb: Public Sub New(texture As Texture2D, paddingLeft As Single, paddingRight As Single, paddingTop As Single, paddingBottom As Single, mode As NinePatchMode = NinePatchMode.Stretch, paddingPercent As Boolean = False)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  nameWithType.vb: NinePatch.New(Texture2D, Single, Single, Single, Single, NinePatchMode, Boolean)
+  fullName.vb: MLEM.Textures.NinePatch.New(Microsoft.Xna.Framework.Graphics.Texture2D, Single, Single, Single, Single, MLEM.Textures.NinePatchMode, Boolean)
+  name.vb: New(Texture2D, Single, Single, Single, Single, NinePatchMode, Boolean)
+- uid: MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(Texture2D, float, NinePatchMode, bool)
+  nameWithType: NinePatch.NinePatch(Texture2D, float, NinePatchMode, bool)
+  fullName: MLEM.Textures.NinePatch.NinePatch(Microsoft.Xna.Framework.Graphics.Texture2D, float, MLEM.Textures.NinePatchMode, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 70
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Creates a new nine patch from a texture and a uniform padding
+  example: []
+  syntax:
+    content: public NinePatch(Texture2D texture, float padding, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false)
+    parameters:
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use
+    - id: padding
+      type: System.Single
+      description: The padding that each edge should have in pixels, or as a percentage if <code class="paramref">paddingPercent</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>
+    - id: mode
+      type: MLEM.Textures.NinePatchMode
+      description: The mode to use for drawing this nine patch, defaults to <xref href="MLEM.Textures.NinePatchMode.Stretch" data-throw-if-not-resolved="false"></xref>
+    - id: paddingPercent
+      type: System.Boolean
+      description: Whether the padding should represent a percentage of the underlying <code class="paramref">texture</code>'s size, rather than an absolute pixel amount
+    content.vb: Public Sub New(texture As Texture2D, padding As Single, mode As NinePatchMode = NinePatchMode.Stretch, paddingPercent As Boolean = False)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  nameWithType.vb: NinePatch.New(Texture2D, Single, NinePatchMode, Boolean)
+  fullName.vb: MLEM.Textures.NinePatch.New(Microsoft.Xna.Framework.Graphics.Texture2D, Single, MLEM.Textures.NinePatchMode, Boolean)
+  name.vb: New(Texture2D, Single, NinePatchMode, Boolean)
+- uid: MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  commentId: M:MLEM.Textures.NinePatch.#ctor(MLEM.Textures.TextureRegion,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)
+  id: '#ctor(MLEM.Textures.TextureRegion,System.Single,MLEM.Textures.NinePatchMode,System.Boolean)'
+  parent: MLEM.Textures.NinePatch
+  langs:
+  - csharp
+  - vb
+  name: NinePatch(TextureRegion, float, NinePatchMode, bool)
+  nameWithType: NinePatch.NinePatch(TextureRegion, float, NinePatchMode, bool)
+  fullName: MLEM.Textures.NinePatch.NinePatch(MLEM.Textures.TextureRegion, float, MLEM.Textures.NinePatchMode, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 73
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  example: []
+  syntax:
+    content: public NinePatch(TextureRegion texture, float padding, NinePatchMode mode = NinePatchMode.Stretch, bool paddingPercent = false)
+    parameters:
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+    - id: padding
+      type: System.Single
+    - id: mode
+      type: MLEM.Textures.NinePatchMode
+    - id: paddingPercent
+      type: System.Boolean
+    content.vb: Public Sub New(texture As TextureRegion, padding As Single, mode As NinePatchMode = NinePatchMode.Stretch, paddingPercent As Boolean = False)
+  overload: MLEM.Textures.NinePatch.#ctor*
+  nameWithType.vb: NinePatch.New(TextureRegion, Single, NinePatchMode, Boolean)
+  fullName.vb: MLEM.Textures.NinePatch.New(MLEM.Textures.TextureRegion, Single, MLEM.Textures.NinePatchMode, Boolean)
+  name.vb: New(TextureRegion, Single, NinePatchMode, Boolean)
+references:
+- uid: MLEM.Textures.NinePatchExtensions
+  commentId: T:MLEM.Textures.NinePatchExtensions
+  href: MLEM.Textures.NinePatchExtensions.html
+  name: NinePatchExtensions
+  nameWithType: NinePatchExtensions
+  fullName: MLEM.Textures.NinePatchExtensions
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  href: MLEM.html
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  href: MLEM.Textures.TextureRegion.html
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Maths.Padding
+  commentId: T:MLEM.Maths.Padding
+  parent: MLEM.Maths
+  href: MLEM.Maths.Padding.html
+  name: Padding
+  nameWithType: Padding
+  fullName: MLEM.Maths.Padding
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+- uid: MLEM.Textures.NinePatchMode
+  commentId: T:MLEM.Textures.NinePatchMode
+  parent: MLEM.Textures
+  href: MLEM.Textures.NinePatchMode.html
+  name: NinePatchMode
+  nameWithType: NinePatchMode
+  fullName: MLEM.Textures.NinePatchMode
+- uid: MLEM.Textures.NinePatch.Padding
+  commentId: F:MLEM.Textures.NinePatch.Padding
+  href: MLEM.Textures.NinePatch.html#MLEM_Textures_NinePatch_Padding
+  name: Padding
+  nameWithType: NinePatch.Padding
+  fullName: MLEM.Textures.NinePatch.Padding
+- uid: Microsoft.Xna.Framework.Rectangle[]
+  isExternal: true
+  name: Rectangle[]
+  nameWithType: Rectangle[]
+  fullName: Microsoft.Xna.Framework.Rectangle[]
+  nameWithType.vb: Rectangle()
+  fullName.vb: Microsoft.Xna.Framework.Rectangle()
+  name.vb: Rectangle()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    isExternal: true
+  - name: (
+  - name: )
+- uid: MLEM.Textures.NinePatchMode.Stretch
+  commentId: F:MLEM.Textures.NinePatchMode.Stretch
+  href: MLEM.Textures.NinePatchMode.html#MLEM_Textures_NinePatchMode_Stretch
+  name: Stretch
+  nameWithType: NinePatchMode.Stretch
+  fullName: MLEM.Textures.NinePatchMode.Stretch
+- uid: MLEM.Textures.NinePatch.#ctor*
+  commentId: Overload:MLEM.Textures.NinePatch.#ctor
+  href: MLEM.Textures.NinePatch.html#MLEM_Textures_NinePatch__ctor_MLEM_Textures_TextureRegion_MLEM_Maths_Padding_MLEM_Textures_NinePatchMode_System_Boolean_
+  name: NinePatch
+  nameWithType: NinePatch.NinePatch
+  fullName: MLEM.Textures.NinePatch.NinePatch
+  nameWithType.vb: NinePatch.New
+  fullName.vb: MLEM.Textures.NinePatch.New
+  name.vb: New
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Microsoft.Xna.Framework.Graphics.Texture2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.Texture2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Microsoft.Xna.Framework.Graphics.Texture2D
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true

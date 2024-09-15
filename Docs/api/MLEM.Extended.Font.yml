@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extended.Font
+  commentId: N:MLEM.Extended.Font
+  id: MLEM.Extended.Font
+  children:
+  - MLEM.Extended.Font.GenericStashFont
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Extended.Font
+  nameWithType: MLEM.Extended.Font
+  fullName: MLEM.Extended.Font
+  type: Namespace
+  assemblies:
+  - MLEM.Extended
+references:
+- uid: MLEM.Extended.Font.GenericStashFont
+  commentId: T:MLEM.Extended.Font.GenericStashFont
+  href: MLEM.Extended.Font.GenericStashFont.html
+  name: GenericStashFont
+  nameWithType: GenericStashFont
+  fullName: MLEM.Extended.Font.GenericStashFont

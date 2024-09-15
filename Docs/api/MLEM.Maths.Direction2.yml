@@ -1,0 +1,960 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Maths.Direction2
+  commentId: T:MLEM.Maths.Direction2
+  id: Direction2
+  parent: MLEM.Maths
+  children:
+  - MLEM.Maths.Direction2.Down
+  - MLEM.Maths.Direction2.DownLeft
+  - MLEM.Maths.Direction2.DownRight
+  - MLEM.Maths.Direction2.Left
+  - MLEM.Maths.Direction2.None
+  - MLEM.Maths.Direction2.Right
+  - MLEM.Maths.Direction2.Up
+  - MLEM.Maths.Direction2.UpLeft
+  - MLEM.Maths.Direction2.UpRight
+  langs:
+  - csharp
+  - vb
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Maths.Direction2
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Direction2
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    An enum that represents two-dimensional directions.
+
+    Both straight and diagonal directions are supported.
+
+    There are several extension methods and arrays available in <xref href="MLEM.Maths.Direction2Helper" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      [DataContract]
+
+      public enum Direction2
+    content.vb: >-
+      <Flags>
+
+      <DataContract>
+
+      Public Enum Direction2
+  extensionMethods:
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.Angle
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.IsAdjacent
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.IsDiagonal
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.Offset
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.Opposite
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.RotateCcw(System.Boolean)
+  - MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.RotateCw(System.Boolean)
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+  - type: System.Runtime.Serialization.DataContractAttribute
+    ctor: System.Runtime.Serialization.DataContractAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.None
+  commentId: F:MLEM.Maths.Direction2.None
+  id: None
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: Direction2.None
+  fullName: MLEM.Maths.Direction2.None
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: None
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: No direction.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      None = 0
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      None = 0
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.Up
+  commentId: F:MLEM.Maths.Direction2.Up
+  id: Up
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Up
+  nameWithType: Direction2.Up
+  fullName: MLEM.Maths.Direction2.Up
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Up
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The up direction, or -y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Up = 1
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Up = 1
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.Right
+  commentId: F:MLEM.Maths.Direction2.Right
+  id: Right
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: Direction2.Right
+  fullName: MLEM.Maths.Direction2.Right
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The right direction, or +x.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Right = 2
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Right = 2
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.Down
+  commentId: F:MLEM.Maths.Direction2.Down
+  id: Down
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Down
+  nameWithType: Direction2.Down
+  fullName: MLEM.Maths.Direction2.Down
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Down
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 34
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The down direction, or +y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Down = 4
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Down = 4
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.Left
+  commentId: F:MLEM.Maths.Direction2.Left
+  id: Left
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: Direction2.Left
+  fullName: MLEM.Maths.Direction2.Left
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 39
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The left direction, or -x.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      Left = 8
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      Left = 8
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.UpRight
+  commentId: F:MLEM.Maths.Direction2.UpRight
+  id: UpRight
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: UpRight
+  nameWithType: Direction2.UpRight
+  fullName: MLEM.Maths.Direction2.UpRight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpRight
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 45
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The up and right direction, or +x, -y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      UpRight = Up | Right
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      UpRight = Up Or Right
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.DownRight
+  commentId: F:MLEM.Maths.Direction2.DownRight
+  id: DownRight
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: DownRight
+  nameWithType: Direction2.DownRight
+  fullName: MLEM.Maths.Direction2.DownRight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownRight
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 50
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The down and right direction, or +x, +y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      DownRight = Right | Down
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      DownRight = Right Or Down
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.UpLeft
+  commentId: F:MLEM.Maths.Direction2.UpLeft
+  id: UpLeft
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: UpLeft
+  nameWithType: Direction2.UpLeft
+  fullName: MLEM.Maths.Direction2.UpLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpLeft
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 55
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The up and left direction, or -x, -y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      UpLeft = Up | Left
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      UpLeft = Up Or Left
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Maths.Direction2.DownLeft
+  commentId: F:MLEM.Maths.Direction2.DownLeft
+  id: DownLeft
+  parent: MLEM.Maths.Direction2
+  langs:
+  - csharp
+  - vb
+  name: DownLeft
+  nameWithType: Direction2.DownLeft
+  fullName: MLEM.Maths.Direction2.DownLeft
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Direction2.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownLeft
+    path: ../MLEM/Maths/Direction2.cs
+    startLine: 60
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: The down and left direction, or -x, +y.
+  example: []
+  syntax:
+    content: >-
+      [EnumMember]
+
+      DownLeft = Down | Left
+    return:
+      type: MLEM.Maths.Direction2
+    content.vb: >-
+      <EnumMember>
+
+      DownLeft = Down Or Left
+  attributes:
+  - type: System.Runtime.Serialization.EnumMemberAttribute
+    ctor: System.Runtime.Serialization.EnumMemberAttribute.#ctor
+    arguments: []
+references:
+- uid: MLEM.Maths.Direction2Helper
+  commentId: T:MLEM.Maths.Direction2Helper
+  parent: MLEM.Maths
+  href: MLEM.Maths.Direction2Helper.html
+  name: Direction2Helper
+  nameWithType: Direction2Helper
+  fullName: MLEM.Maths.Direction2Helper
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.Angle
+  commentId: M:MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Angle_MLEM_Maths_Direction2_
+  name: Angle(Direction2)
+  nameWithType: Direction2Helper.Angle(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+    name: Angle
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Angle_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+    name: Angle
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Angle_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.IsAdjacent
+  commentId: M:MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsAdjacent_MLEM_Maths_Direction2_
+  name: IsAdjacent(Direction2)
+  nameWithType: Direction2Helper.IsAdjacent(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+    name: IsAdjacent
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsAdjacent_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+    name: IsAdjacent
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsAdjacent_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.IsDiagonal
+  commentId: M:MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsDiagonal_MLEM_Maths_Direction2_
+  name: IsDiagonal(Direction2)
+  nameWithType: Direction2Helper.IsDiagonal(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+    name: IsDiagonal
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsDiagonal_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+    name: IsDiagonal
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsDiagonal_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.Offset
+  commentId: M:MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Offset_MLEM_Maths_Direction2_
+  name: Offset(Direction2)
+  nameWithType: Direction2Helper.Offset(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+    name: Offset
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Offset_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+    name: Offset
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Offset_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.Opposite
+  commentId: M:MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Opposite_MLEM_Maths_Direction2_
+  name: Opposite(Direction2)
+  nameWithType: Direction2Helper.Opposite(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+    name: Opposite
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Opposite_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+    name: Opposite
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Opposite_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateBy_MLEM_Maths_Direction2_MLEM_Maths_Direction2_MLEM_Maths_Direction2_
+  name: RotateBy(Direction2, Direction2, Direction2)
+  nameWithType: Direction2Helper.RotateBy(Direction2, Direction2, Direction2)
+  fullName: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2, MLEM.Maths.Direction2, MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+    name: RotateBy
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateBy_MLEM_Maths_Direction2_MLEM_Maths_Direction2_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+    name: RotateBy
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateBy_MLEM_Maths_Direction2_MLEM_Maths_Direction2_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.RotateCcw(System.Boolean)
+  commentId: M:MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCcw_MLEM_Maths_Direction2_System_Boolean_
+  name: RotateCcw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCcw(Direction2, bool)
+  fullName: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCcw(Direction2, Boolean)
+  fullName.vb: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2, Boolean)
+  name.vb: RotateCcw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCcw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCcw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Maths.Direction2.MLEM.Maths.Direction2Helper.RotateCw(System.Boolean)
+  commentId: M:MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+  parent: MLEM.Maths.Direction2Helper
+  definition: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCw_MLEM_Maths_Direction2_System_Boolean_
+  name: RotateCw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCw(Direction2, bool)
+  fullName: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCw(Direction2, Boolean)
+  fullName.vb: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2, Boolean)
+  name.vb: RotateCw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Angle_MLEM_Maths_Direction2_
+  name: Angle(Direction2)
+  nameWithType: Direction2Helper.Angle(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+    name: Angle
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Angle_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.Angle(MLEM.Maths.Direction2)
+    name: Angle
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Angle_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsAdjacent_MLEM_Maths_Direction2_
+  name: IsAdjacent(Direction2)
+  nameWithType: Direction2Helper.IsAdjacent(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+    name: IsAdjacent
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsAdjacent_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.IsAdjacent(MLEM.Maths.Direction2)
+    name: IsAdjacent
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsAdjacent_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsDiagonal_MLEM_Maths_Direction2_
+  name: IsDiagonal(Direction2)
+  nameWithType: Direction2Helper.IsDiagonal(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+    name: IsDiagonal
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsDiagonal_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.IsDiagonal(MLEM.Maths.Direction2)
+    name: IsDiagonal
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_IsDiagonal_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Offset_MLEM_Maths_Direction2_
+  name: Offset(Direction2)
+  nameWithType: Direction2Helper.Offset(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+    name: Offset
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Offset_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.Offset(MLEM.Maths.Direction2)
+    name: Offset
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Offset_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Opposite_MLEM_Maths_Direction2_
+  name: Opposite(Direction2)
+  nameWithType: Direction2Helper.Opposite(Direction2)
+  fullName: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+    name: Opposite
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Opposite_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.Opposite(MLEM.Maths.Direction2)
+    name: Opposite
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_Opposite_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+  commentId: M:MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateBy_MLEM_Maths_Direction2_MLEM_Maths_Direction2_MLEM_Maths_Direction2_
+  name: RotateBy(Direction2, Direction2, Direction2)
+  nameWithType: Direction2Helper.RotateBy(Direction2, Direction2, Direction2)
+  fullName: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2, MLEM.Maths.Direction2, MLEM.Maths.Direction2)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+    name: RotateBy
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateBy_MLEM_Maths_Direction2_MLEM_Maths_Direction2_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.RotateBy(MLEM.Maths.Direction2,MLEM.Maths.Direction2,MLEM.Maths.Direction2)
+    name: RotateBy
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateBy_MLEM_Maths_Direction2_MLEM_Maths_Direction2_MLEM_Maths_Direction2_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+  commentId: M:MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+  isExternal: true
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCcw_MLEM_Maths_Direction2_System_Boolean_
+  name: RotateCcw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCcw(Direction2, bool)
+  fullName: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCcw(Direction2, Boolean)
+  fullName.vb: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2, Boolean)
+  name.vb: RotateCcw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCcw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.RotateCcw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCcw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCcw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+  commentId: M:MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+  isExternal: true
+  href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCw_MLEM_Maths_Direction2_System_Boolean_
+  name: RotateCw(Direction2, bool)
+  nameWithType: Direction2Helper.RotateCw(Direction2, bool)
+  fullName: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2, bool)
+  nameWithType.vb: Direction2Helper.RotateCw(Direction2, Boolean)
+  fullName.vb: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2, Boolean)
+  name.vb: RotateCw(Direction2, Boolean)
+  spec.csharp:
+  - uid: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Direction2Helper.RotateCw(MLEM.Maths.Direction2,System.Boolean)
+    name: RotateCw
+    href: MLEM.Maths.Direction2Helper.html#MLEM_Maths_Direction2Helper_RotateCw_MLEM_Maths_Direction2_System_Boolean_
+  - name: (
+  - uid: MLEM.Maths.Direction2
+    name: Direction2
+    href: MLEM.Maths.Direction2.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Maths.Direction2
+  commentId: T:MLEM.Maths.Direction2
+  parent: MLEM.Maths
+  href: MLEM.Maths.Direction2.html
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Maths.Direction2

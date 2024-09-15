@@ -1,0 +1,2 @@
+﻿# suppress diffs and stats for generated api yamls
+Docs/api/** linguist-generated

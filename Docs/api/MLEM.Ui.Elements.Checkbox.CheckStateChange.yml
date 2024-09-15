@@ -1,0 +1,107 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.Checkbox.CheckStateChange
+  commentId: T:MLEM.Ui.Elements.Checkbox.CheckStateChange
+  id: Checkbox.CheckStateChange
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Checkbox.CheckStateChange
+  nameWithType: Checkbox.CheckStateChange
+  fullName: MLEM.Ui.Elements.Checkbox.CheckStateChange
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/Checkbox.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CheckStateChange
+    path: ../MLEM.Ui/Elements/Checkbox.cs
+    startLine: 152
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: A delegate used for <xref href="MLEM.Ui.Elements.Checkbox.OnCheckStateChange" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public delegate void Checkbox.CheckStateChange(Checkbox box, bool checced)
+    parameters:
+    - id: box
+      type: MLEM.Ui.Elements.Checkbox
+      description: The checkbox whose checked state changed
+    - id: checced
+      type: System.Boolean
+      description: The new value of <xref href="MLEM.Ui.Elements.Checkbox.Checked" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Delegate Sub Checkbox.CheckStateChange(box As Checkbox, checced As Boolean)
+references:
+- uid: MLEM.Ui.Elements.Checkbox.OnCheckStateChange
+  commentId: F:MLEM.Ui.Elements.Checkbox.OnCheckStateChange
+  parent: MLEM.Ui.Elements.Checkbox
+  href: MLEM.Ui.Elements.Checkbox.html#MLEM_Ui_Elements_Checkbox_OnCheckStateChange
+  name: OnCheckStateChange
+  nameWithType: Checkbox.OnCheckStateChange
+  fullName: MLEM.Ui.Elements.Checkbox.OnCheckStateChange
+- uid: MLEM.Ui.Elements.Checkbox.Checked
+  commentId: P:MLEM.Ui.Elements.Checkbox.Checked
+  parent: MLEM.Ui.Elements.Checkbox
+  href: MLEM.Ui.Elements.Checkbox.html#MLEM_Ui_Elements_Checkbox_Checked
+  name: Checked
+  nameWithType: Checkbox.Checked
+  fullName: MLEM.Ui.Elements.Checkbox.Checked
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: MLEM.Ui.Elements.Checkbox
+  commentId: T:MLEM.Ui.Elements.Checkbox
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Checkbox.html
+  name: Checkbox
+  nameWithType: Checkbox
+  fullName: MLEM.Ui.Elements.Checkbox
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

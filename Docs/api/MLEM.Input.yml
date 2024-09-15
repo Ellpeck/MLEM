@@ -1,0 +1,204 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  id: MLEM.Input
+  children:
+  - MLEM.Input.GamepadExtensions
+  - MLEM.Input.GenericInput
+  - MLEM.Input.GenericInput.InputType
+  - MLEM.Input.InputHandler
+  - MLEM.Input.Keybind
+  - MLEM.Input.Keybind.Combination
+  - MLEM.Input.KeysExtensions
+  - MLEM.Input.ModifierKey
+  - MLEM.Input.MouseButton
+  - MLEM.Input.MouseExtensions
+  - MLEM.Input.TextInput
+  - MLEM.Input.TextInput.Rule
+  - MLEM.Input.TextInput.TextChanged
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Input.GamepadExtensions
+  commentId: T:MLEM.Input.GamepadExtensions
+  href: MLEM.Input.GamepadExtensions.html
+  name: GamepadExtensions
+  nameWithType: GamepadExtensions
+  fullName: MLEM.Input.GamepadExtensions
+- uid: MLEM.Input.GenericInput
+  commentId: T:MLEM.Input.GenericInput
+  parent: MLEM.Input
+  href: MLEM.Input.GenericInput.html
+  name: GenericInput
+  nameWithType: GenericInput
+  fullName: MLEM.Input.GenericInput
+- uid: MLEM.Input.GenericInput.InputType
+  commentId: T:MLEM.Input.GenericInput.InputType
+  parent: MLEM.Input
+  href: MLEM.Input.GenericInput.html
+  name: GenericInput.InputType
+  nameWithType: GenericInput.InputType
+  fullName: MLEM.Input.GenericInput.InputType
+  spec.csharp:
+  - uid: MLEM.Input.GenericInput
+    name: GenericInput
+    href: MLEM.Input.GenericInput.html
+  - name: .
+  - uid: MLEM.Input.GenericInput.InputType
+    name: InputType
+    href: MLEM.Input.GenericInput.InputType.html
+  spec.vb:
+  - uid: MLEM.Input.GenericInput
+    name: GenericInput
+    href: MLEM.Input.GenericInput.html
+  - name: .
+  - uid: MLEM.Input.GenericInput.InputType
+    name: InputType
+    href: MLEM.Input.GenericInput.InputType.html
+- uid: MLEM.Input.InputHandler
+  commentId: T:MLEM.Input.InputHandler
+  parent: MLEM.Input
+  href: MLEM.Input.InputHandler.html
+  name: InputHandler
+  nameWithType: InputHandler
+  fullName: MLEM.Input.InputHandler
+- uid: MLEM.Input.Keybind
+  commentId: T:MLEM.Input.Keybind
+  parent: MLEM.Input
+  href: MLEM.Input.Keybind.html
+  name: Keybind
+  nameWithType: Keybind
+  fullName: MLEM.Input.Keybind
+- uid: MLEM.Input.Keybind.Combination
+  commentId: T:MLEM.Input.Keybind.Combination
+  parent: MLEM.Input
+  href: MLEM.Input.Keybind.html
+  name: Keybind.Combination
+  nameWithType: Keybind.Combination
+  fullName: MLEM.Input.Keybind.Combination
+  spec.csharp:
+  - uid: MLEM.Input.Keybind
+    name: Keybind
+    href: MLEM.Input.Keybind.html
+  - name: .
+  - uid: MLEM.Input.Keybind.Combination
+    name: Combination
+    href: MLEM.Input.Keybind.Combination.html
+  spec.vb:
+  - uid: MLEM.Input.Keybind
+    name: Keybind
+    href: MLEM.Input.Keybind.html
+  - name: .
+  - uid: MLEM.Input.Keybind.Combination
+    name: Combination
+    href: MLEM.Input.Keybind.Combination.html
+- uid: MLEM.Input.KeysExtensions
+  commentId: T:MLEM.Input.KeysExtensions
+  parent: MLEM.Input
+  href: MLEM.Input.KeysExtensions.html
+  name: KeysExtensions
+  nameWithType: KeysExtensions
+  fullName: MLEM.Input.KeysExtensions
+- uid: MLEM.Input.ModifierKey
+  commentId: T:MLEM.Input.ModifierKey
+  parent: MLEM.Input
+  href: MLEM.Input.ModifierKey.html
+  name: ModifierKey
+  nameWithType: ModifierKey
+  fullName: MLEM.Input.ModifierKey
+- uid: MLEM.Input.MouseExtensions
+  commentId: T:MLEM.Input.MouseExtensions
+  href: MLEM.Input.MouseExtensions.html
+  name: MouseExtensions
+  nameWithType: MouseExtensions
+  fullName: MLEM.Input.MouseExtensions
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  parent: MLEM.Input
+  href: MLEM.Input.MouseButton.html
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+- uid: MLEM.Input.TextInput
+  commentId: T:MLEM.Input.TextInput
+  parent: MLEM.Input
+  href: MLEM.Input.TextInput.html
+  name: TextInput
+  nameWithType: TextInput
+  fullName: MLEM.Input.TextInput
+- uid: MLEM.Input.TextInput.TextChanged
+  commentId: T:MLEM.Input.TextInput.TextChanged
+  parent: MLEM.Input
+  href: MLEM.Input.TextInput.html
+  name: TextInput.TextChanged
+  nameWithType: TextInput.TextChanged
+  fullName: MLEM.Input.TextInput.TextChanged
+  spec.csharp:
+  - uid: MLEM.Input.TextInput
+    name: TextInput
+    href: MLEM.Input.TextInput.html
+  - name: .
+  - uid: MLEM.Input.TextInput.TextChanged
+    name: TextChanged
+    href: MLEM.Input.TextInput.TextChanged.html
+  spec.vb:
+  - uid: MLEM.Input.TextInput
+    name: TextInput
+    href: MLEM.Input.TextInput.html
+  - name: .
+  - uid: MLEM.Input.TextInput.TextChanged
+    name: TextChanged
+    href: MLEM.Input.TextInput.TextChanged.html
+- uid: MLEM.Input.TextInput.Rule
+  commentId: T:MLEM.Input.TextInput.Rule
+  parent: MLEM.Input
+  href: MLEM.Input.TextInput.html
+  name: TextInput.Rule
+  nameWithType: TextInput.Rule
+  fullName: MLEM.Input.TextInput.Rule
+  spec.csharp:
+  - uid: MLEM.Input.TextInput
+    name: TextInput
+    href: MLEM.Input.TextInput.html
+  - name: .
+  - uid: MLEM.Input.TextInput.Rule
+    name: Rule
+    href: MLEM.Input.TextInput.Rule.html
+  spec.vb:
+  - uid: MLEM.Input.TextInput
+    name: TextInput
+    href: MLEM.Input.TextInput.html
+  - name: .
+  - uid: MLEM.Input.TextInput.Rule
+    name: Rule
+    href: MLEM.Input.TextInput.Rule.html
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  href: MLEM.html
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html

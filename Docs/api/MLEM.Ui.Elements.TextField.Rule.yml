@@ -1,0 +1,115 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.TextField.Rule
+  commentId: T:MLEM.Ui.Elements.TextField.Rule
+  id: TextField.Rule
+  parent: MLEM.Ui.Elements
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextField.Rule
+  nameWithType: TextField.Rule
+  fullName: MLEM.Ui.Elements.TextField.Rule
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/Elements/TextField.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Rule
+    path: ../MLEM.Ui/Elements/TextField.cs
+    startLine: 291
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    A delegate method used for <xref href="MLEM.Ui.Elements.TextField.InputRule" data-throw-if-not-resolved="false"></xref>.
+
+    It should return whether the given text can be added to the text field.
+  example: []
+  syntax:
+    content: public delegate bool TextField.Rule(TextField field, string textToAdd)
+    parameters:
+    - id: field
+      type: MLEM.Ui.Elements.TextField
+      description: The text field
+    - id: textToAdd
+      type: System.String
+      description: The text that is tried to be added
+    return:
+      type: System.Boolean
+    content.vb: Public Delegate Function TextField.Rule(field As TextField, textToAdd As String) As Boolean
+references:
+- uid: MLEM.Ui.Elements.TextField.InputRule
+  commentId: F:MLEM.Ui.Elements.TextField.InputRule
+  href: MLEM.Ui.Elements.TextField.html#MLEM_Ui_Elements_TextField_InputRule
+  name: InputRule
+  nameWithType: TextField.InputRule
+  fullName: MLEM.Ui.Elements.TextField.InputRule
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: MLEM.Ui.Elements.TextField
+  commentId: T:MLEM.Ui.Elements.TextField
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.TextField.html
+  name: TextField
+  nameWithType: TextField
+  fullName: MLEM.Ui.Elements.TextField
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

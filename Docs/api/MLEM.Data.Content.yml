@@ -1,0 +1,131 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.Content
+  commentId: N:MLEM.Data.Content
+  id: MLEM.Data.Content
+  children:
+  - MLEM.Data.Content.ContentExtensions
+  - MLEM.Data.Content.JsonReader
+  - MLEM.Data.Content.RawContentManager
+  - MLEM.Data.Content.RawContentReader
+  - MLEM.Data.Content.RawContentReader`1
+  - MLEM.Data.Content.SongReader
+  - MLEM.Data.Content.SoundEffectReader
+  - MLEM.Data.Content.Texture2DReader
+  - MLEM.Data.Content.XmlReader
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Data.Content
+  nameWithType: MLEM.Data.Content
+  fullName: MLEM.Data.Content
+  type: Namespace
+  assemblies:
+  - MLEM.Data
+references:
+- uid: MLEM.Data.Content.ContentExtensions
+  commentId: T:MLEM.Data.Content.ContentExtensions
+  parent: MLEM.Data.Content
+  href: MLEM.Data.Content.ContentExtensions.html
+  name: ContentExtensions
+  nameWithType: ContentExtensions
+  fullName: MLEM.Data.Content.ContentExtensions
+- uid: MLEM.Data.Content.JsonReader
+  commentId: T:MLEM.Data.Content.JsonReader
+  href: MLEM.Data.Content.JsonReader.html
+  name: JsonReader
+  nameWithType: JsonReader
+  fullName: MLEM.Data.Content.JsonReader
+- uid: MLEM.Data.Content.RawContentManager
+  commentId: T:MLEM.Data.Content.RawContentManager
+  parent: MLEM.Data.Content
+  href: MLEM.Data.Content.RawContentManager.html
+  name: RawContentManager
+  nameWithType: RawContentManager
+  fullName: MLEM.Data.Content.RawContentManager
+- uid: MLEM.Data.Content.RawContentReader
+  commentId: T:MLEM.Data.Content.RawContentReader
+  parent: MLEM.Data.Content
+  href: MLEM.Data.Content.RawContentReader.html
+  name: RawContentReader
+  nameWithType: RawContentReader
+  fullName: MLEM.Data.Content.RawContentReader
+- uid: MLEM.Data.Content.RawContentReader`1
+  commentId: T:MLEM.Data.Content.RawContentReader`1
+  href: MLEM.Data.Content.RawContentReader-1.html
+  name: RawContentReader<T>
+  nameWithType: RawContentReader<T>
+  fullName: MLEM.Data.Content.RawContentReader<T>
+  nameWithType.vb: RawContentReader(Of T)
+  fullName.vb: MLEM.Data.Content.RawContentReader(Of T)
+  name.vb: RawContentReader(Of T)
+  spec.csharp:
+  - uid: MLEM.Data.Content.RawContentReader`1
+    name: RawContentReader
+    href: MLEM.Data.Content.RawContentReader-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Data.Content.RawContentReader`1
+    name: RawContentReader
+    href: MLEM.Data.Content.RawContentReader-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Data.Content.SongReader
+  commentId: T:MLEM.Data.Content.SongReader
+  href: MLEM.Data.Content.SongReader.html
+  name: SongReader
+  nameWithType: SongReader
+  fullName: MLEM.Data.Content.SongReader
+- uid: MLEM.Data.Content.SoundEffectReader
+  commentId: T:MLEM.Data.Content.SoundEffectReader
+  href: MLEM.Data.Content.SoundEffectReader.html
+  name: SoundEffectReader
+  nameWithType: SoundEffectReader
+  fullName: MLEM.Data.Content.SoundEffectReader
+- uid: MLEM.Data.Content.Texture2DReader
+  commentId: T:MLEM.Data.Content.Texture2DReader
+  href: MLEM.Data.Content.Texture2DReader.html
+  name: Texture2DReader
+  nameWithType: Texture2DReader
+  fullName: MLEM.Data.Content.Texture2DReader
+- uid: MLEM.Data.Content.XmlReader
+  commentId: T:MLEM.Data.Content.XmlReader
+  href: MLEM.Data.Content.XmlReader.html
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: MLEM.Data.Content.XmlReader
+- uid: MLEM.Data.Content
+  commentId: N:MLEM.Data.Content
+  href: MLEM.html
+  name: MLEM.Data.Content
+  nameWithType: MLEM.Data.Content
+  fullName: MLEM.Data.Content
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Content
+    name: Content
+    href: MLEM.Data.Content.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Content
+    name: Content
+    href: MLEM.Data.Content.html

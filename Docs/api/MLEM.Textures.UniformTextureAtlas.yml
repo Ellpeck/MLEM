@@ -1,0 +1,1479 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures.UniformTextureAtlas
+  commentId: T:MLEM.Textures.UniformTextureAtlas
+  id: UniformTextureAtlas
+  parent: MLEM.Textures
+  children:
+  - MLEM.Textures.UniformTextureAtlas.#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32)
+  - MLEM.Textures.UniformTextureAtlas.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32)
+  - MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  - MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Rectangle)
+  - MLEM.Textures.UniformTextureAtlas.Item(System.Int32)
+  - MLEM.Textures.UniformTextureAtlas.Item(System.Int32,System.Int32)
+  - MLEM.Textures.UniformTextureAtlas.Item(System.Int32,System.Int32,System.Int32,System.Int32)
+  - MLEM.Textures.UniformTextureAtlas.Region
+  - MLEM.Textures.UniformTextureAtlas.RegionAmountX
+  - MLEM.Textures.UniformTextureAtlas.RegionAmountY
+  - MLEM.Textures.UniformTextureAtlas.RegionHeight
+  - MLEM.Textures.UniformTextureAtlas.RegionPadding
+  - MLEM.Textures.UniformTextureAtlas.RegionWidth
+  - MLEM.Textures.UniformTextureAtlas.Texture
+  - MLEM.Textures.UniformTextureAtlas.ToDictionary
+  - MLEM.Textures.UniformTextureAtlas.ToList
+  langs:
+  - csharp
+  - vb
+  name: UniformTextureAtlas
+  nameWithType: UniformTextureAtlas
+  fullName: MLEM.Textures.UniformTextureAtlas
+  type: Class
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UniformTextureAtlas
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 11
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    This class represents an atlas of <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> objects that is uniform.
+
+    Uniform, in this case, means that the texture atlas' size is not determined by the width and height of the texture, but instead by the amount of sub-regions that the atlas has in the x and y direction.
+
+    Using a uniform texture atlas over a regular texture as an atlas allows for texture artists to create higher resolution textures without coordinates becoming off.
+  example: []
+  syntax:
+    content: 'public class UniformTextureAtlas : GenericDataHolder, IGenericDataHolder'
+    content.vb: Public Class UniformTextureAtlas Inherits GenericDataHolder Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Textures.UniformTextureAtlas.Region
+  commentId: F:MLEM.Textures.UniformTextureAtlas.Region
+  id: Region
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: Region
+  nameWithType: UniformTextureAtlas.Region
+  fullName: MLEM.Textures.UniformTextureAtlas.Region
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Region
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 17
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    The <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> that this uniform texture atlas uses as its basis.
+
+    In most cases, <xref href="MLEM.Textures.UniformTextureAtlas.Region" data-throw-if-not-resolved="false"></xref> has the full area of the underlying <xref href="MLEM.Textures.UniformTextureAtlas.Texture" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public readonly TextureRegion Region
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Region As TextureRegion
+- uid: MLEM.Textures.UniformTextureAtlas.RegionAmountX
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionAmountX
+  id: RegionAmountX
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: RegionAmountX
+  nameWithType: UniformTextureAtlas.RegionAmountX
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionAmountX
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RegionAmountX
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 21
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The amount of sub-regions this atlas has in the x direction
+  example: []
+  syntax:
+    content: public readonly int RegionAmountX
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly RegionAmountX As Integer
+- uid: MLEM.Textures.UniformTextureAtlas.RegionAmountY
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionAmountY
+  id: RegionAmountY
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: RegionAmountY
+  nameWithType: UniformTextureAtlas.RegionAmountY
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionAmountY
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RegionAmountY
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 25
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The amount of sub-regions this atlas has in the y direction
+  example: []
+  syntax:
+    content: public readonly int RegionAmountY
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly RegionAmountY As Integer
+- uid: MLEM.Textures.UniformTextureAtlas.RegionWidth
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionWidth
+  id: RegionWidth
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: RegionWidth
+  nameWithType: UniformTextureAtlas.RegionWidth
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionWidth
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RegionWidth
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The width of each region, based on the texture's width and the amount of regions
+  example: []
+  syntax:
+    content: public readonly int RegionWidth
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly RegionWidth As Integer
+- uid: MLEM.Textures.UniformTextureAtlas.RegionHeight
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionHeight
+  id: RegionHeight
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: RegionHeight
+  nameWithType: UniformTextureAtlas.RegionHeight
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionHeight
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RegionHeight
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 33
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: The height of reach region, based on the texture's height and the amount of regions
+  example: []
+  syntax:
+    content: public readonly int RegionHeight
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly RegionHeight As Integer
+- uid: MLEM.Textures.UniformTextureAtlas.RegionPadding
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionPadding
+  id: RegionPadding
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: RegionPadding
+  nameWithType: UniformTextureAtlas.RegionPadding
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionPadding
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RegionPadding
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 38
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    The padding that each texture region has around itself, in pixels, which will be taken away from each side of <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> objects created and returned by this texture atlas.
+
+    Creating a texture atlas with padding can be useful if texture bleeding issues occur due to texture coordinate rounding.
+  example: []
+  syntax:
+    content: public readonly int RegionPadding
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly RegionPadding As Integer
+- uid: MLEM.Textures.UniformTextureAtlas.Texture
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Texture
+  id: Texture
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: Texture
+  nameWithType: UniformTextureAtlas.Texture
+  fullName: MLEM.Textures.UniformTextureAtlas.Texture
+  type: Property
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Texture
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 44
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    The texture to use for this atlas.
+
+    Note that <xref href="MLEM.Textures.UniformTextureAtlas.Region" data-throw-if-not-resolved="false"></xref> stores the actual area that we depend on.
+  example: []
+  syntax:
+    content: public Texture2D Texture { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+    content.vb: Public ReadOnly Property Texture As Texture2D
+  overload: MLEM.Textures.UniformTextureAtlas.Texture*
+- uid: MLEM.Textures.UniformTextureAtlas.Item(System.Int32)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: UniformTextureAtlas.this[int]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[int]
+  type: Property
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: this[]
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 50
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Returns the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at this texture atlas's given index.
+
+    The index is zero-based, where rows come first and columns come second.
+  example: []
+  syntax:
+    content: public TextureRegion this[int index] { get; }
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The zero-based texture index
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Default Property this[](index As Integer) As TextureRegion
+  overload: MLEM.Textures.UniformTextureAtlas.Item*
+  nameWithType.vb: UniformTextureAtlas.this[](Integer)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Integer)
+  name.vb: this[](Integer)
+- uid: MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  id: Item(Microsoft.Xna.Framework.Point)
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: this[Point]
+  nameWithType: UniformTextureAtlas.this[Point]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[Microsoft.Xna.Framework.Point]
+  type: Property
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: this[]
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 55
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Returns the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at this texture atlas' given region position
+  example: []
+  syntax:
+    content: public TextureRegion this[Point point] { get; }
+    parameters:
+    - id: point
+      type: Microsoft.Xna.Framework.Point
+      description: The region's x and y location
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Default Property this[](point As Point) As TextureRegion
+  overload: MLEM.Textures.UniformTextureAtlas.Item*
+  nameWithType.vb: UniformTextureAtlas.this[](Point)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Microsoft.Xna.Framework.Point)
+  name.vb: this[](Point)
+- uid: MLEM.Textures.UniformTextureAtlas.Item(System.Int32,System.Int32)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(System.Int32,System.Int32)
+  id: Item(System.Int32,System.Int32)
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: this[int, int]
+  nameWithType: UniformTextureAtlas.this[int, int]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[int, int]
+  type: Property
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: this[]
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 57
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Returns the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at this texture atlas' given region position
+  example: []
+  syntax:
+    content: public TextureRegion this[int x, int y] { get; }
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Default Property this[](x As Integer, y As Integer) As TextureRegion
+  overload: MLEM.Textures.UniformTextureAtlas.Item*
+  nameWithType.vb: UniformTextureAtlas.this[](Integer, Integer)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Integer, Integer)
+  name.vb: this[](Integer, Integer)
+- uid: MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Rectangle)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Rectangle)
+  id: Item(Microsoft.Xna.Framework.Rectangle)
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: this[Rectangle]
+  nameWithType: UniformTextureAtlas.this[Rectangle]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[Microsoft.Xna.Framework.Rectangle]
+  type: Property
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: this[]
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 63
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Returns the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at this texture atlas' given region position and size.
+
+    Note that the region size is not in pixels, but in region units.
+  example: []
+  syntax:
+    content: public TextureRegion this[Rectangle rect] { get; }
+    parameters:
+    - id: rect
+      type: Microsoft.Xna.Framework.Rectangle
+      description: The region's area
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Default Property this[](rect As Rectangle) As TextureRegion
+  overload: MLEM.Textures.UniformTextureAtlas.Item*
+  nameWithType.vb: UniformTextureAtlas.this[](Rectangle)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Microsoft.Xna.Framework.Rectangle)
+  name.vb: this[](Rectangle)
+- uid: MLEM.Textures.UniformTextureAtlas.Item(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: Item(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: this[int, int, int, int]
+  nameWithType: UniformTextureAtlas.this[int, int, int, int]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[int, int, int, int]
+  type: Property
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: this[]
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 65
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Returns the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at this texture atlas' given region position and size.
+
+    Note that the region size is not in pixels, but in region units.
+  example: []
+  syntax:
+    content: public TextureRegion this[int x, int y, int width, int height] { get; }
+    parameters:
+    - id: x
+      type: System.Int32
+    - id: y
+      type: System.Int32
+    - id: width
+      type: System.Int32
+    - id: height
+      type: System.Int32
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Default Property this[](x As Integer, y As Integer, width As Integer, height As Integer) As TextureRegion
+  overload: MLEM.Textures.UniformTextureAtlas.Item*
+  nameWithType.vb: UniformTextureAtlas.this[](Integer, Integer, Integer, Integer)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Integer, Integer, Integer, Integer)
+  name.vb: this[](Integer, Integer, Integer, Integer)
+- uid: MLEM.Textures.UniformTextureAtlas.#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Textures.UniformTextureAtlas.#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32)
+  id: '#ctor(MLEM.Textures.TextureRegion,System.Int32,System.Int32,System.Int32)'
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: UniformTextureAtlas(TextureRegion, int, int, int)
+  nameWithType: UniformTextureAtlas.UniformTextureAtlas(TextureRegion, int, int, int)
+  fullName: MLEM.Textures.UniformTextureAtlas.UniformTextureAtlas(MLEM.Textures.TextureRegion, int, int, int)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 77
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Creates a new uniform texture atlas with the given texture region and region amount.
+
+    This atlas will only ever pull information from the given <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> and never exit the region's bounds.
+  example: []
+  syntax:
+    content: public UniformTextureAtlas(TextureRegion region, int regionAmountX, int regionAmountY, int regionPadding = 0)
+    parameters:
+    - id: region
+      type: MLEM.Textures.TextureRegion
+      description: The texture region to use for this atlas
+    - id: regionAmountX
+      type: System.Int32
+      description: The amount of texture regions in the x direction
+    - id: regionAmountY
+      type: System.Int32
+      description: The amount of texture regions in the y direction
+    - id: regionPadding
+      type: System.Int32
+      description: The padding that each texture region has around itself, in pixels, which will be taken away from each side of <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> objects created and returned by this texture atlas.
+    content.vb: Public Sub New(region As TextureRegion, regionAmountX As Integer, regionAmountY As Integer, regionPadding As Integer = 0)
+  overload: MLEM.Textures.UniformTextureAtlas.#ctor*
+  nameWithType.vb: UniformTextureAtlas.New(TextureRegion, Integer, Integer, Integer)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.New(MLEM.Textures.TextureRegion, Integer, Integer, Integer)
+  name.vb: New(TextureRegion, Integer, Integer, Integer)
+- uid: MLEM.Textures.UniformTextureAtlas.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32)
+  commentId: M:MLEM.Textures.UniformTextureAtlas.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32)'
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: UniformTextureAtlas(Texture2D, int, int, int)
+  nameWithType: UniformTextureAtlas.UniformTextureAtlas(Texture2D, int, int, int)
+  fullName: MLEM.Textures.UniformTextureAtlas.UniformTextureAtlas(Microsoft.Xna.Framework.Graphics.Texture2D, int, int, int)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 93
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Creates a new uniform texture atlas with the given texture and region amount.
+  example: []
+  syntax:
+    content: public UniformTextureAtlas(Texture2D texture, int regionAmountX, int regionAmountY, int regionPadding = 0)
+    parameters:
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture to use for this atlas
+    - id: regionAmountX
+      type: System.Int32
+      description: The amount of texture regions in the x direction
+    - id: regionAmountY
+      type: System.Int32
+      description: The amount of texture regions in the y direction
+    - id: regionPadding
+      type: System.Int32
+      description: The padding that each texture region has around itself, in pixels, which will be taken away from each side of <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> objects created and returned by this texture atlas.
+    content.vb: Public Sub New(texture As Texture2D, regionAmountX As Integer, regionAmountY As Integer, regionPadding As Integer = 0)
+  overload: MLEM.Textures.UniformTextureAtlas.#ctor*
+  nameWithType.vb: UniformTextureAtlas.New(Texture2D, Integer, Integer, Integer)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.New(Microsoft.Xna.Framework.Graphics.Texture2D, Integer, Integer, Integer)
+  name.vb: New(Texture2D, Integer, Integer, Integer)
+- uid: MLEM.Textures.UniformTextureAtlas.ToList
+  commentId: M:MLEM.Textures.UniformTextureAtlas.ToList
+  id: ToList
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: ToList()
+  nameWithType: UniformTextureAtlas.ToList()
+  fullName: MLEM.Textures.UniformTextureAtlas.ToList()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToList
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 101
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Converts this uniform texture atlas to a <xref href="System.Collections.Generic.List%601" data-throw-if-not-resolved="false"></xref> and returns the result.
+
+    The resulting list will contain all square 1x1 regions that this uniform texture atlas contains, based on <xref href="MLEM.Textures.UniformTextureAtlas.RegionAmountX" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Textures.UniformTextureAtlas.RegionAmountY" data-throw-if-not-resolved="false"></xref>, with each index containing the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at <xref href="MLEM.Textures.UniformTextureAtlas.Item(System.Int32)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public List<TextureRegion> ToList()
+    return:
+      type: System.Collections.Generic.List{MLEM.Textures.TextureRegion}
+      description: The list representation of this uniform texture atlas.
+    content.vb: Public Function ToList() As List(Of TextureRegion)
+  overload: MLEM.Textures.UniformTextureAtlas.ToList*
+- uid: MLEM.Textures.UniformTextureAtlas.ToDictionary
+  commentId: M:MLEM.Textures.UniformTextureAtlas.ToDictionary
+  id: ToDictionary
+  parent: MLEM.Textures.UniformTextureAtlas
+  langs:
+  - csharp
+  - vb
+  name: ToDictionary()
+  nameWithType: UniformTextureAtlas.ToDictionary()
+  fullName: MLEM.Textures.UniformTextureAtlas.ToDictionary()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/UniformTextureAtlas.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToDictionary
+    path: ../MLEM/Textures/UniformTextureAtlas.cs
+    startLine: 113
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Converts this uniform texture atlas to a <xref href="System.Collections.Generic.Dictionary%602" data-throw-if-not-resolved="false"></xref> and returns the result.
+
+    The resulting dictionary will contain all square 1x1 regions that this uniform texture atlas contains, based on <xref href="MLEM.Textures.UniformTextureAtlas.RegionAmountX" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Textures.UniformTextureAtlas.RegionAmountY" data-throw-if-not-resolved="false"></xref>, wich each key containing the <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref> at <xref href="MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Dictionary<Point, TextureRegion> ToDictionary()
+    return:
+      type: System.Collections.Generic.Dictionary{Microsoft.Xna.Framework.Point,MLEM.Textures.TextureRegion}
+      description: The dictionary representation of this uniform texture atlas.
+    content.vb: Public Function ToDictionary() As Dictionary(Of Point, TextureRegion)
+  overload: MLEM.Textures.UniformTextureAtlas.ToDictionary*
+references:
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  href: MLEM.Textures.TextureRegion.html
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  href: MLEM.html
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Textures.UniformTextureAtlas.Region
+  commentId: F:MLEM.Textures.UniformTextureAtlas.Region
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Region
+  name: Region
+  nameWithType: UniformTextureAtlas.Region
+  fullName: MLEM.Textures.UniformTextureAtlas.Region
+- uid: MLEM.Textures.UniformTextureAtlas.Texture
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Texture
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Texture
+  name: Texture
+  nameWithType: UniformTextureAtlas.Texture
+  fullName: MLEM.Textures.UniformTextureAtlas.Texture
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MLEM.Textures.UniformTextureAtlas.Texture*
+  commentId: Overload:MLEM.Textures.UniformTextureAtlas.Texture
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Texture
+  name: Texture
+  nameWithType: UniformTextureAtlas.Texture
+  fullName: MLEM.Textures.UniformTextureAtlas.Texture
+- uid: Microsoft.Xna.Framework.Graphics.Texture2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.Texture2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Microsoft.Xna.Framework.Graphics.Texture2D
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Textures.UniformTextureAtlas.Item*
+  commentId: Overload:MLEM.Textures.UniformTextureAtlas.Item
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Item_System_Int32_
+  name: this
+  nameWithType: UniformTextureAtlas.this
+  fullName: MLEM.Textures.UniformTextureAtlas.this
+  nameWithType.vb: UniformTextureAtlas.this[]
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[]
+  name.vb: this[]
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
+- uid: MLEM.Textures.UniformTextureAtlas.#ctor*
+  commentId: Overload:MLEM.Textures.UniformTextureAtlas.#ctor
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas__ctor_MLEM_Textures_TextureRegion_System_Int32_System_Int32_System_Int32_
+  name: UniformTextureAtlas
+  nameWithType: UniformTextureAtlas.UniformTextureAtlas
+  fullName: MLEM.Textures.UniformTextureAtlas.UniformTextureAtlas
+  nameWithType.vb: UniformTextureAtlas.New
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.New
+  name.vb: New
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Textures.UniformTextureAtlas.RegionAmountX
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionAmountX
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_RegionAmountX
+  name: RegionAmountX
+  nameWithType: UniformTextureAtlas.RegionAmountX
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionAmountX
+- uid: MLEM.Textures.UniformTextureAtlas.RegionAmountY
+  commentId: F:MLEM.Textures.UniformTextureAtlas.RegionAmountY
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_RegionAmountY
+  name: RegionAmountY
+  nameWithType: UniformTextureAtlas.RegionAmountY
+  fullName: MLEM.Textures.UniformTextureAtlas.RegionAmountY
+- uid: MLEM.Textures.UniformTextureAtlas.Item(System.Int32)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int]
+  nameWithType: UniformTextureAtlas.this[int]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[int]
+  nameWithType.vb: UniformTextureAtlas.this[](Integer)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Integer)
+  name.vb: this[](Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Textures.UniformTextureAtlas.Item(System.Int32)
+    name: this[]
+    href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Item_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: MLEM.Textures.UniformTextureAtlas.ToList*
+  commentId: Overload:MLEM.Textures.UniformTextureAtlas.ToList
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_ToList
+  name: ToList
+  nameWithType: UniformTextureAtlas.ToList
+  fullName: MLEM.Textures.UniformTextureAtlas.ToList
+- uid: System.Collections.Generic.List{MLEM.Textures.TextureRegion}
+  commentId: T:System.Collections.Generic.List{MLEM.Textures.TextureRegion}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<TextureRegion>
+  nameWithType: List<TextureRegion>
+  fullName: System.Collections.Generic.List<MLEM.Textures.TextureRegion>
+  nameWithType.vb: List(Of TextureRegion)
+  fullName.vb: System.Collections.Generic.List(Of MLEM.Textures.TextureRegion)
+  name.vb: List(Of TextureRegion)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  commentId: P:MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+  isExternal: true
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Item_Microsoft_Xna_Framework_Point_
+  name: this[Point]
+  nameWithType: UniformTextureAtlas.this[Point]
+  fullName: MLEM.Textures.UniformTextureAtlas.this[Microsoft.Xna.Framework.Point]
+  nameWithType.vb: UniformTextureAtlas.this[](Point)
+  fullName.vb: MLEM.Textures.UniformTextureAtlas.this[](Microsoft.Xna.Framework.Point)
+  name.vb: this[](Point)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    isExternal: true
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Textures.UniformTextureAtlas.Item(Microsoft.Xna.Framework.Point)
+    name: this[]
+    href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_Item_Microsoft_Xna_Framework_Point_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    isExternal: true
+  - name: )
+- uid: MLEM.Textures.UniformTextureAtlas.ToDictionary*
+  commentId: Overload:MLEM.Textures.UniformTextureAtlas.ToDictionary
+  href: MLEM.Textures.UniformTextureAtlas.html#MLEM_Textures_UniformTextureAtlas_ToDictionary
+  name: ToDictionary
+  nameWithType: UniformTextureAtlas.ToDictionary
+  fullName: MLEM.Textures.UniformTextureAtlas.ToDictionary
+- uid: System.Collections.Generic.Dictionary{Microsoft.Xna.Framework.Point,MLEM.Textures.TextureRegion}
+  commentId: T:System.Collections.Generic.Dictionary{Microsoft.Xna.Framework.Point,MLEM.Textures.TextureRegion}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Point, TextureRegion>
+  nameWithType: Dictionary<Point, TextureRegion>
+  fullName: System.Collections.Generic.Dictionary<Microsoft.Xna.Framework.Point, MLEM.Textures.TextureRegion>
+  nameWithType.vb: Dictionary(Of Point, TextureRegion)
+  fullName.vb: System.Collections.Generic.Dictionary(Of Microsoft.Xna.Framework.Point, MLEM.Textures.TextureRegion)
+  name.vb: Dictionary(Of Point, TextureRegion)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Point
+    name: Point
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: )

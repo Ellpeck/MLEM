@@ -1,0 +1,91 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Graphics.AutoTiling.ConnectsTo
+  commentId: T:MLEM.Graphics.AutoTiling.ConnectsTo
+  id: AutoTiling.ConnectsTo
+  parent: MLEM.Graphics
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: AutoTiling.ConnectsTo
+  nameWithType: AutoTiling.ConnectsTo
+  fullName: MLEM.Graphics.AutoTiling.ConnectsTo
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Graphics/AutoTiling.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ConnectsTo
+    path: ../MLEM/Graphics/AutoTiling.cs
+    startLine: 242
+  assemblies:
+  - MLEM
+  namespace: MLEM.Graphics
+  summary: A delegate function that determines if a given offset position connects to an auto-tile location.
+  example: []
+  syntax:
+    content: public delegate bool AutoTiling.ConnectsTo(int xOff, int yOff)
+    parameters:
+    - id: xOff
+      type: System.Int32
+      description: The x offset
+    - id: yOff
+      type: System.Int32
+      description: The y offset
+    return:
+      type: System.Boolean
+    content.vb: Public Delegate Function AutoTiling.ConnectsTo(xOff As Integer, yOff As Integer) As Boolean
+references:
+- uid: MLEM.Graphics
+  commentId: N:MLEM.Graphics
+  href: MLEM.html
+  name: MLEM.Graphics
+  nameWithType: MLEM.Graphics
+  fullName: MLEM.Graphics
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

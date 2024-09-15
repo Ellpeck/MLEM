@@ -1,0 +1,473 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Input.MouseExtensions
+  commentId: T:MLEM.Input.MouseExtensions
+  id: MouseExtensions
+  parent: MLEM.Input
+  children:
+  - MLEM.Input.MouseExtensions.GetState(Microsoft.Xna.Framework.Input.MouseState,MLEM.Input.MouseButton)
+  - MLEM.Input.MouseExtensions.MouseButtons
+  langs:
+  - csharp
+  - vb
+  name: MouseExtensions
+  nameWithType: MouseExtensions
+  fullName: MLEM.Input.MouseExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: MouseExtensions
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 7
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A set of extension methods for dealing with <xref href="MLEM.Input.MouseButton" data-throw-if-not-resolved="false"></xref> and <xref href="Microsoft.Xna.Framework.Input.Mouse" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static class MouseExtensions
+    content.vb: Public Module MouseExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Input.MouseExtensions.MouseButtons
+  commentId: F:MLEM.Input.MouseExtensions.MouseButtons
+  id: MouseButtons
+  parent: MLEM.Input.MouseExtensions
+  langs:
+  - csharp
+  - vb
+  name: MouseButtons
+  nameWithType: MouseExtensions.MouseButtons
+  fullName: MLEM.Input.MouseExtensions.MouseButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: MouseButtons
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: All enum values of <xref href="MLEM.Input.MouseButton" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static readonly MouseButton[] MouseButtons
+    return:
+      type: MLEM.Input.MouseButton[]
+    content.vb: Public Shared ReadOnly MouseButtons As MouseButton()
+- uid: MLEM.Input.MouseExtensions.GetState(Microsoft.Xna.Framework.Input.MouseState,MLEM.Input.MouseButton)
+  commentId: M:MLEM.Input.MouseExtensions.GetState(Microsoft.Xna.Framework.Input.MouseState,MLEM.Input.MouseButton)
+  id: GetState(Microsoft.Xna.Framework.Input.MouseState,MLEM.Input.MouseButton)
+  isExtensionMethod: true
+  parent: MLEM.Input.MouseExtensions
+  langs:
+  - csharp
+  - vb
+  name: GetState(MouseState, MouseButton)
+  nameWithType: MouseExtensions.GetState(MouseState, MouseButton)
+  fullName: MLEM.Input.MouseExtensions.GetState(Microsoft.Xna.Framework.Input.MouseState, MLEM.Input.MouseButton)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Input/MouseExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetState
+    path: ../MLEM/Input/MouseExtensions.cs
+    startLine: 21
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: Returns the <xref href="Microsoft.Xna.Framework.Input.ButtonState" data-throw-if-not-resolved="false"></xref> of the given mouse button.
+  example: []
+  syntax:
+    content: public static ButtonState GetState(this MouseState state, MouseButton button)
+    parameters:
+    - id: state
+      type: Microsoft.Xna.Framework.Input.MouseState
+      description: The mouse's current state
+    - id: button
+      type: MLEM.Input.MouseButton
+      description: The button whose state to query
+    return:
+      type: Microsoft.Xna.Framework.Input.ButtonState
+      description: The state of the button
+    content.vb: Public Shared Function GetState(state As MouseState, button As MouseButton) As ButtonState
+  overload: MLEM.Input.MouseExtensions.GetState*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If a mouse button out of range is passed
+references:
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  parent: MLEM.Input
+  href: MLEM.Input.MouseButton.html
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+- uid: Microsoft.Xna.Framework.Input.Mouse
+  commentId: T:Microsoft.Xna.Framework.Input.Mouse
+  isExternal: true
+  name: Mouse
+  nameWithType: Mouse
+  fullName: Microsoft.Xna.Framework.Input.Mouse
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  href: MLEM.html
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Input.MouseButton[]
+  isExternal: true
+  href: MLEM.Input.MouseButton.html
+  name: MouseButton[]
+  nameWithType: MouseButton[]
+  fullName: MLEM.Input.MouseButton[]
+  nameWithType.vb: MouseButton()
+  fullName.vb: MLEM.Input.MouseButton()
+  name.vb: MouseButton()
+  spec.csharp:
+  - uid: MLEM.Input.MouseButton
+    name: MouseButton
+    href: MLEM.Input.MouseButton.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Input.MouseButton
+    name: MouseButton
+    href: MLEM.Input.MouseButton.html
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Input.ButtonState
+  commentId: T:Microsoft.Xna.Framework.Input.ButtonState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: ButtonState
+  nameWithType: ButtonState
+  fullName: Microsoft.Xna.Framework.Input.ButtonState
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: MLEM.Input.MouseExtensions.GetState*
+  commentId: Overload:MLEM.Input.MouseExtensions.GetState
+  href: MLEM.Input.MouseExtensions.html#MLEM_Input_MouseExtensions_GetState_Microsoft_Xna_Framework_Input_MouseState_MLEM_Input_MouseButton_
+  name: GetState
+  nameWithType: MouseExtensions.GetState
+  fullName: MLEM.Input.MouseExtensions.GetState
+- uid: Microsoft.Xna.Framework.Input.MouseState
+  commentId: T:Microsoft.Xna.Framework.Input.MouseState
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: MouseState
+  nameWithType: MouseState
+  fullName: Microsoft.Xna.Framework.Input.MouseState
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true

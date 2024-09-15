@@ -1,0 +1,1237 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Style.UntexturedStyle
+  commentId: T:MLEM.Ui.Style.UntexturedStyle
+  id: UntexturedStyle
+  parent: MLEM.Ui.Style
+  children:
+  - MLEM.Ui.Style.UntexturedStyle.#ctor(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  langs:
+  - csharp
+  - vb
+  name: UntexturedStyle
+  nameWithType: UntexturedStyle
+  fullName: MLEM.Ui.Style.UntexturedStyle
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/Style/UntexturedStyle.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UntexturedStyle
+    path: ../MLEM.Ui/Style/UntexturedStyle.cs
+    startLine: 9
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: >-
+    The default, untextured <xref href="MLEM.Ui.Style.UiStyle" data-throw-if-not-resolved="false"></xref>.
+
+    Note that, as MLEM does not provide any texture or font assets, this default style is made up of single-color textures that were generated using <xref href="MLEM.Graphics.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch%2cMicrosoft.Xna.Framework.Color%2cSystem.Nullable%7bMicrosoft.Xna.Framework.Color%7d)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public class UntexturedStyle : UiStyle, IGenericDataHolder'
+    content.vb: Public Class UntexturedStyle Inherits UiStyle Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  - MLEM.Ui.Style.UiStyle
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Ui.Style.UiStyle.SelectionIndicator
+  - MLEM.Ui.Style.UiStyle.MouseEnterAnimation
+  - MLEM.Ui.Style.UiStyle.MouseExitAnimation
+  - MLEM.Ui.Style.UiStyle.ButtonTexture
+  - MLEM.Ui.Style.UiStyle.ButtonHoveredTexture
+  - MLEM.Ui.Style.UiStyle.ButtonHoveredColor
+  - MLEM.Ui.Style.UiStyle.ButtonDisabledTexture
+  - MLEM.Ui.Style.UiStyle.ButtonDisabledColor
+  - MLEM.Ui.Style.UiStyle.PanelTexture
+  - MLEM.Ui.Style.UiStyle.PanelColor
+  - MLEM.Ui.Style.UiStyle.PanelChildPadding
+  - MLEM.Ui.Style.UiStyle.PanelStepPerScroll
+  - MLEM.Ui.Style.UiStyle.PanelScrollerSize
+  - MLEM.Ui.Style.UiStyle.PanelScrollBarOffset
+  - MLEM.Ui.Style.UiStyle.TextFieldTexture
+  - MLEM.Ui.Style.UiStyle.TextFieldHoveredTexture
+  - MLEM.Ui.Style.UiStyle.TextFieldHoveredColor
+  - MLEM.Ui.Style.UiStyle.TextFieldTextOffsetX
+  - MLEM.Ui.Style.UiStyle.TextFieldCaretWidth
+  - MLEM.Ui.Style.UiStyle.ScrollBarBackground
+  - MLEM.Ui.Style.UiStyle.ScrollBarScrollerTexture
+  - MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrolling
+  - MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrollFactor
+  - MLEM.Ui.Style.UiStyle.CheckboxTexture
+  - MLEM.Ui.Style.UiStyle.CheckboxHoveredTexture
+  - MLEM.Ui.Style.UiStyle.CheckboxHoveredColor
+  - MLEM.Ui.Style.UiStyle.CheckboxDisabledTexture
+  - MLEM.Ui.Style.UiStyle.CheckboxDisabledColor
+  - MLEM.Ui.Style.UiStyle.CheckboxCheckmark
+  - MLEM.Ui.Style.UiStyle.CheckboxTextOffsetX
+  - MLEM.Ui.Style.UiStyle.RadioTexture
+  - MLEM.Ui.Style.UiStyle.RadioHoveredTexture
+  - MLEM.Ui.Style.UiStyle.RadioHoveredColor
+  - MLEM.Ui.Style.UiStyle.RadioCheckmark
+  - MLEM.Ui.Style.UiStyle.TooltipBackground
+  - MLEM.Ui.Style.UiStyle.TooltipOffset
+  - MLEM.Ui.Style.UiStyle.TooltipAutoNavOffset
+  - MLEM.Ui.Style.UiStyle.TooltipAutoNavAnchor
+  - MLEM.Ui.Style.UiStyle.TooltipMouseAnchor
+  - MLEM.Ui.Style.UiStyle.TooltipUseAutoNavBehaviorForMouse
+  - MLEM.Ui.Style.UiStyle.TooltipTextColor
+  - MLEM.Ui.Style.UiStyle.TooltipDelay
+  - MLEM.Ui.Style.UiStyle.TooltipTextWidth
+  - MLEM.Ui.Style.UiStyle.TooltipChildPadding
+  - MLEM.Ui.Style.UiStyle.ProgressBarTexture
+  - MLEM.Ui.Style.UiStyle.ProgressBarColor
+  - MLEM.Ui.Style.UiStyle.ProgressBarProgressPadding
+  - MLEM.Ui.Style.UiStyle.ProgressBarProgressTexture
+  - MLEM.Ui.Style.UiStyle.ProgressBarProgressColor
+  - MLEM.Ui.Style.UiStyle.Font
+  - MLEM.Ui.Style.UiStyle.TextScale
+  - MLEM.Ui.Style.UiStyle.TextColor
+  - MLEM.Ui.Style.UiStyle.TextAlignment
+  - MLEM.Ui.Style.UiStyle.ActionSound
+  - MLEM.Ui.Style.UiStyle.LinkColor
+  - MLEM.Ui.Style.UiStyle.AdditionalFonts
+  - MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{{T}},System.Boolean)
+  - MLEM.Ui.Style.UiStyle.ApplyCustomStyle(MLEM.Ui.Elements.Element)
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Ui.Style.UntexturedStyle.#ctor(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  commentId: M:MLEM.Ui.Style.UntexturedStyle.#ctor(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.SpriteBatch)'
+  parent: MLEM.Ui.Style.UntexturedStyle
+  langs:
+  - csharp
+  - vb
+  name: UntexturedStyle(SpriteBatch)
+  nameWithType: UntexturedStyle.UntexturedStyle(SpriteBatch)
+  fullName: MLEM.Ui.Style.UntexturedStyle.UntexturedStyle(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Ui/Style/UntexturedStyle.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Ui/Style/UntexturedStyle.cs
+    startLine: 15
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Style
+  summary: Creates a new untextured style with textures generated by the given sprite batch
+  example: []
+  syntax:
+    content: public UntexturedStyle(SpriteBatch batch)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch to generate the textures with
+    content.vb: Public Sub New(batch As SpriteBatch)
+  overload: MLEM.Ui.Style.UntexturedStyle.#ctor*
+  nameWithType.vb: UntexturedStyle.New(SpriteBatch)
+  fullName.vb: MLEM.Ui.Style.UntexturedStyle.New(Microsoft.Xna.Framework.Graphics.SpriteBatch)
+  name.vb: New(SpriteBatch)
+references:
+- uid: MLEM.Ui.Style.UiStyle
+  commentId: T:MLEM.Ui.Style.UiStyle
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.UiStyle.html
+  name: UiStyle
+  nameWithType: UiStyle
+  fullName: MLEM.Ui.Style.UiStyle
+- uid: MLEM.Graphics.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+  commentId: M:MLEM.Graphics.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+  isExternal: true
+  href: MLEM.Graphics.SpriteBatchExtensions.html#MLEM_Graphics_SpriteBatchExtensions_GenerateTexture_Microsoft_Xna_Framework_Graphics_SpriteBatch_Microsoft_Xna_Framework_Color_System_Nullable_Microsoft_Xna_Framework_Color__
+  name: GenerateTexture(SpriteBatch, Color, Color?)
+  nameWithType: SpriteBatchExtensions.GenerateTexture(SpriteBatch, Color, Color?)
+  fullName: MLEM.Graphics.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch, Microsoft.Xna.Framework.Color, Microsoft.Xna.Framework.Color?)
+  spec.csharp:
+  - uid: MLEM.Graphics.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+    name: GenerateTexture
+    href: MLEM.Graphics.SpriteBatchExtensions.html#MLEM_Graphics_SpriteBatchExtensions_GenerateTexture_Microsoft_Xna_Framework_Graphics_SpriteBatch_Microsoft_Xna_Framework_Color_System_Nullable_Microsoft_Xna_Framework_Color__
+  - name: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Graphics.SpriteBatchExtensions.GenerateTexture(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Color})
+    name: GenerateTexture
+    href: MLEM.Graphics.SpriteBatchExtensions.html#MLEM_Graphics_SpriteBatchExtensions_GenerateTexture_Microsoft_Xna_Framework_Graphics_SpriteBatch_Microsoft_Xna_Framework_Color_System_Nullable_Microsoft_Xna_Framework_Color__
+  - name: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Color
+    name: Color
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: MLEM.Ui.Style
+  commentId: N:MLEM.Ui.Style
+  href: MLEM.html
+  name: MLEM.Ui.Style
+  nameWithType: MLEM.Ui.Style
+  fullName: MLEM.Ui.Style
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Ui.Style.UiStyle.SelectionIndicator
+  commentId: F:MLEM.Ui.Style.UiStyle.SelectionIndicator
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_SelectionIndicator
+  name: SelectionIndicator
+  nameWithType: UiStyle.SelectionIndicator
+  fullName: MLEM.Ui.Style.UiStyle.SelectionIndicator
+- uid: MLEM.Ui.Style.UiStyle.MouseEnterAnimation
+  commentId: F:MLEM.Ui.Style.UiStyle.MouseEnterAnimation
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_MouseEnterAnimation
+  name: MouseEnterAnimation
+  nameWithType: UiStyle.MouseEnterAnimation
+  fullName: MLEM.Ui.Style.UiStyle.MouseEnterAnimation
+- uid: MLEM.Ui.Style.UiStyle.MouseExitAnimation
+  commentId: F:MLEM.Ui.Style.UiStyle.MouseExitAnimation
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_MouseExitAnimation
+  name: MouseExitAnimation
+  nameWithType: UiStyle.MouseExitAnimation
+  fullName: MLEM.Ui.Style.UiStyle.MouseExitAnimation
+- uid: MLEM.Ui.Style.UiStyle.ButtonTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.ButtonTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ButtonTexture
+  name: ButtonTexture
+  nameWithType: UiStyle.ButtonTexture
+  fullName: MLEM.Ui.Style.UiStyle.ButtonTexture
+- uid: MLEM.Ui.Style.UiStyle.ButtonHoveredTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.ButtonHoveredTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ButtonHoveredTexture
+  name: ButtonHoveredTexture
+  nameWithType: UiStyle.ButtonHoveredTexture
+  fullName: MLEM.Ui.Style.UiStyle.ButtonHoveredTexture
+- uid: MLEM.Ui.Style.UiStyle.ButtonHoveredColor
+  commentId: F:MLEM.Ui.Style.UiStyle.ButtonHoveredColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ButtonHoveredColor
+  name: ButtonHoveredColor
+  nameWithType: UiStyle.ButtonHoveredColor
+  fullName: MLEM.Ui.Style.UiStyle.ButtonHoveredColor
+- uid: MLEM.Ui.Style.UiStyle.ButtonDisabledTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.ButtonDisabledTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ButtonDisabledTexture
+  name: ButtonDisabledTexture
+  nameWithType: UiStyle.ButtonDisabledTexture
+  fullName: MLEM.Ui.Style.UiStyle.ButtonDisabledTexture
+- uid: MLEM.Ui.Style.UiStyle.ButtonDisabledColor
+  commentId: F:MLEM.Ui.Style.UiStyle.ButtonDisabledColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ButtonDisabledColor
+  name: ButtonDisabledColor
+  nameWithType: UiStyle.ButtonDisabledColor
+  fullName: MLEM.Ui.Style.UiStyle.ButtonDisabledColor
+- uid: MLEM.Ui.Style.UiStyle.PanelTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.PanelTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_PanelTexture
+  name: PanelTexture
+  nameWithType: UiStyle.PanelTexture
+  fullName: MLEM.Ui.Style.UiStyle.PanelTexture
+- uid: MLEM.Ui.Style.UiStyle.PanelColor
+  commentId: F:MLEM.Ui.Style.UiStyle.PanelColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_PanelColor
+  name: PanelColor
+  nameWithType: UiStyle.PanelColor
+  fullName: MLEM.Ui.Style.UiStyle.PanelColor
+- uid: MLEM.Ui.Style.UiStyle.PanelChildPadding
+  commentId: F:MLEM.Ui.Style.UiStyle.PanelChildPadding
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_PanelChildPadding
+  name: PanelChildPadding
+  nameWithType: UiStyle.PanelChildPadding
+  fullName: MLEM.Ui.Style.UiStyle.PanelChildPadding
+- uid: MLEM.Ui.Style.UiStyle.PanelStepPerScroll
+  commentId: F:MLEM.Ui.Style.UiStyle.PanelStepPerScroll
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_PanelStepPerScroll
+  name: PanelStepPerScroll
+  nameWithType: UiStyle.PanelStepPerScroll
+  fullName: MLEM.Ui.Style.UiStyle.PanelStepPerScroll
+- uid: MLEM.Ui.Style.UiStyle.PanelScrollerSize
+  commentId: F:MLEM.Ui.Style.UiStyle.PanelScrollerSize
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_PanelScrollerSize
+  name: PanelScrollerSize
+  nameWithType: UiStyle.PanelScrollerSize
+  fullName: MLEM.Ui.Style.UiStyle.PanelScrollerSize
+- uid: MLEM.Ui.Style.UiStyle.PanelScrollBarOffset
+  commentId: F:MLEM.Ui.Style.UiStyle.PanelScrollBarOffset
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_PanelScrollBarOffset
+  name: PanelScrollBarOffset
+  nameWithType: UiStyle.PanelScrollBarOffset
+  fullName: MLEM.Ui.Style.UiStyle.PanelScrollBarOffset
+- uid: MLEM.Ui.Style.UiStyle.TextFieldTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.TextFieldTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextFieldTexture
+  name: TextFieldTexture
+  nameWithType: UiStyle.TextFieldTexture
+  fullName: MLEM.Ui.Style.UiStyle.TextFieldTexture
+- uid: MLEM.Ui.Style.UiStyle.TextFieldHoveredTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.TextFieldHoveredTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextFieldHoveredTexture
+  name: TextFieldHoveredTexture
+  nameWithType: UiStyle.TextFieldHoveredTexture
+  fullName: MLEM.Ui.Style.UiStyle.TextFieldHoveredTexture
+- uid: MLEM.Ui.Style.UiStyle.TextFieldHoveredColor
+  commentId: F:MLEM.Ui.Style.UiStyle.TextFieldHoveredColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextFieldHoveredColor
+  name: TextFieldHoveredColor
+  nameWithType: UiStyle.TextFieldHoveredColor
+  fullName: MLEM.Ui.Style.UiStyle.TextFieldHoveredColor
+- uid: MLEM.Ui.Style.UiStyle.TextFieldTextOffsetX
+  commentId: F:MLEM.Ui.Style.UiStyle.TextFieldTextOffsetX
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextFieldTextOffsetX
+  name: TextFieldTextOffsetX
+  nameWithType: UiStyle.TextFieldTextOffsetX
+  fullName: MLEM.Ui.Style.UiStyle.TextFieldTextOffsetX
+- uid: MLEM.Ui.Style.UiStyle.TextFieldCaretWidth
+  commentId: F:MLEM.Ui.Style.UiStyle.TextFieldCaretWidth
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextFieldCaretWidth
+  name: TextFieldCaretWidth
+  nameWithType: UiStyle.TextFieldCaretWidth
+  fullName: MLEM.Ui.Style.UiStyle.TextFieldCaretWidth
+- uid: MLEM.Ui.Style.UiStyle.ScrollBarBackground
+  commentId: F:MLEM.Ui.Style.UiStyle.ScrollBarBackground
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ScrollBarBackground
+  name: ScrollBarBackground
+  nameWithType: UiStyle.ScrollBarBackground
+  fullName: MLEM.Ui.Style.UiStyle.ScrollBarBackground
+- uid: MLEM.Ui.Style.UiStyle.ScrollBarScrollerTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.ScrollBarScrollerTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ScrollBarScrollerTexture
+  name: ScrollBarScrollerTexture
+  nameWithType: UiStyle.ScrollBarScrollerTexture
+  fullName: MLEM.Ui.Style.UiStyle.ScrollBarScrollerTexture
+- uid: MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrolling
+  commentId: F:MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrolling
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ScrollBarSmoothScrolling
+  name: ScrollBarSmoothScrolling
+  nameWithType: UiStyle.ScrollBarSmoothScrolling
+  fullName: MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrolling
+- uid: MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrollFactor
+  commentId: F:MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrollFactor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ScrollBarSmoothScrollFactor
+  name: ScrollBarSmoothScrollFactor
+  nameWithType: UiStyle.ScrollBarSmoothScrollFactor
+  fullName: MLEM.Ui.Style.UiStyle.ScrollBarSmoothScrollFactor
+- uid: MLEM.Ui.Style.UiStyle.CheckboxTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxTexture
+  name: CheckboxTexture
+  nameWithType: UiStyle.CheckboxTexture
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxTexture
+- uid: MLEM.Ui.Style.UiStyle.CheckboxHoveredTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxHoveredTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxHoveredTexture
+  name: CheckboxHoveredTexture
+  nameWithType: UiStyle.CheckboxHoveredTexture
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxHoveredTexture
+- uid: MLEM.Ui.Style.UiStyle.CheckboxHoveredColor
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxHoveredColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxHoveredColor
+  name: CheckboxHoveredColor
+  nameWithType: UiStyle.CheckboxHoveredColor
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxHoveredColor
+- uid: MLEM.Ui.Style.UiStyle.CheckboxDisabledTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxDisabledTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxDisabledTexture
+  name: CheckboxDisabledTexture
+  nameWithType: UiStyle.CheckboxDisabledTexture
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxDisabledTexture
+- uid: MLEM.Ui.Style.UiStyle.CheckboxDisabledColor
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxDisabledColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxDisabledColor
+  name: CheckboxDisabledColor
+  nameWithType: UiStyle.CheckboxDisabledColor
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxDisabledColor
+- uid: MLEM.Ui.Style.UiStyle.CheckboxCheckmark
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxCheckmark
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxCheckmark
+  name: CheckboxCheckmark
+  nameWithType: UiStyle.CheckboxCheckmark
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxCheckmark
+- uid: MLEM.Ui.Style.UiStyle.CheckboxTextOffsetX
+  commentId: F:MLEM.Ui.Style.UiStyle.CheckboxTextOffsetX
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_CheckboxTextOffsetX
+  name: CheckboxTextOffsetX
+  nameWithType: UiStyle.CheckboxTextOffsetX
+  fullName: MLEM.Ui.Style.UiStyle.CheckboxTextOffsetX
+- uid: MLEM.Ui.Style.UiStyle.RadioTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.RadioTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_RadioTexture
+  name: RadioTexture
+  nameWithType: UiStyle.RadioTexture
+  fullName: MLEM.Ui.Style.UiStyle.RadioTexture
+- uid: MLEM.Ui.Style.UiStyle.RadioHoveredTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.RadioHoveredTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_RadioHoveredTexture
+  name: RadioHoveredTexture
+  nameWithType: UiStyle.RadioHoveredTexture
+  fullName: MLEM.Ui.Style.UiStyle.RadioHoveredTexture
+- uid: MLEM.Ui.Style.UiStyle.RadioHoveredColor
+  commentId: F:MLEM.Ui.Style.UiStyle.RadioHoveredColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_RadioHoveredColor
+  name: RadioHoveredColor
+  nameWithType: UiStyle.RadioHoveredColor
+  fullName: MLEM.Ui.Style.UiStyle.RadioHoveredColor
+- uid: MLEM.Ui.Style.UiStyle.RadioCheckmark
+  commentId: F:MLEM.Ui.Style.UiStyle.RadioCheckmark
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_RadioCheckmark
+  name: RadioCheckmark
+  nameWithType: UiStyle.RadioCheckmark
+  fullName: MLEM.Ui.Style.UiStyle.RadioCheckmark
+- uid: MLEM.Ui.Style.UiStyle.TooltipBackground
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipBackground
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipBackground
+  name: TooltipBackground
+  nameWithType: UiStyle.TooltipBackground
+  fullName: MLEM.Ui.Style.UiStyle.TooltipBackground
+- uid: MLEM.Ui.Style.UiStyle.TooltipOffset
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipOffset
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipOffset
+  name: TooltipOffset
+  nameWithType: UiStyle.TooltipOffset
+  fullName: MLEM.Ui.Style.UiStyle.TooltipOffset
+- uid: MLEM.Ui.Style.UiStyle.TooltipAutoNavOffset
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipAutoNavOffset
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipAutoNavOffset
+  name: TooltipAutoNavOffset
+  nameWithType: UiStyle.TooltipAutoNavOffset
+  fullName: MLEM.Ui.Style.UiStyle.TooltipAutoNavOffset
+- uid: MLEM.Ui.Style.UiStyle.TooltipAutoNavAnchor
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipAutoNavAnchor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipAutoNavAnchor
+  name: TooltipAutoNavAnchor
+  nameWithType: UiStyle.TooltipAutoNavAnchor
+  fullName: MLEM.Ui.Style.UiStyle.TooltipAutoNavAnchor
+- uid: MLEM.Ui.Style.UiStyle.TooltipMouseAnchor
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipMouseAnchor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipMouseAnchor
+  name: TooltipMouseAnchor
+  nameWithType: UiStyle.TooltipMouseAnchor
+  fullName: MLEM.Ui.Style.UiStyle.TooltipMouseAnchor
+- uid: MLEM.Ui.Style.UiStyle.TooltipUseAutoNavBehaviorForMouse
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipUseAutoNavBehaviorForMouse
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipUseAutoNavBehaviorForMouse
+  name: TooltipUseAutoNavBehaviorForMouse
+  nameWithType: UiStyle.TooltipUseAutoNavBehaviorForMouse
+  fullName: MLEM.Ui.Style.UiStyle.TooltipUseAutoNavBehaviorForMouse
+- uid: MLEM.Ui.Style.UiStyle.TooltipTextColor
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipTextColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipTextColor
+  name: TooltipTextColor
+  nameWithType: UiStyle.TooltipTextColor
+  fullName: MLEM.Ui.Style.UiStyle.TooltipTextColor
+- uid: MLEM.Ui.Style.UiStyle.TooltipDelay
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipDelay
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipDelay
+  name: TooltipDelay
+  nameWithType: UiStyle.TooltipDelay
+  fullName: MLEM.Ui.Style.UiStyle.TooltipDelay
+- uid: MLEM.Ui.Style.UiStyle.TooltipTextWidth
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipTextWidth
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipTextWidth
+  name: TooltipTextWidth
+  nameWithType: UiStyle.TooltipTextWidth
+  fullName: MLEM.Ui.Style.UiStyle.TooltipTextWidth
+- uid: MLEM.Ui.Style.UiStyle.TooltipChildPadding
+  commentId: F:MLEM.Ui.Style.UiStyle.TooltipChildPadding
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TooltipChildPadding
+  name: TooltipChildPadding
+  nameWithType: UiStyle.TooltipChildPadding
+  fullName: MLEM.Ui.Style.UiStyle.TooltipChildPadding
+- uid: MLEM.Ui.Style.UiStyle.ProgressBarTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.ProgressBarTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ProgressBarTexture
+  name: ProgressBarTexture
+  nameWithType: UiStyle.ProgressBarTexture
+  fullName: MLEM.Ui.Style.UiStyle.ProgressBarTexture
+- uid: MLEM.Ui.Style.UiStyle.ProgressBarColor
+  commentId: F:MLEM.Ui.Style.UiStyle.ProgressBarColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ProgressBarColor
+  name: ProgressBarColor
+  nameWithType: UiStyle.ProgressBarColor
+  fullName: MLEM.Ui.Style.UiStyle.ProgressBarColor
+- uid: MLEM.Ui.Style.UiStyle.ProgressBarProgressPadding
+  commentId: F:MLEM.Ui.Style.UiStyle.ProgressBarProgressPadding
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ProgressBarProgressPadding
+  name: ProgressBarProgressPadding
+  nameWithType: UiStyle.ProgressBarProgressPadding
+  fullName: MLEM.Ui.Style.UiStyle.ProgressBarProgressPadding
+- uid: MLEM.Ui.Style.UiStyle.ProgressBarProgressTexture
+  commentId: F:MLEM.Ui.Style.UiStyle.ProgressBarProgressTexture
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ProgressBarProgressTexture
+  name: ProgressBarProgressTexture
+  nameWithType: UiStyle.ProgressBarProgressTexture
+  fullName: MLEM.Ui.Style.UiStyle.ProgressBarProgressTexture
+- uid: MLEM.Ui.Style.UiStyle.ProgressBarProgressColor
+  commentId: F:MLEM.Ui.Style.UiStyle.ProgressBarProgressColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ProgressBarProgressColor
+  name: ProgressBarProgressColor
+  nameWithType: UiStyle.ProgressBarProgressColor
+  fullName: MLEM.Ui.Style.UiStyle.ProgressBarProgressColor
+- uid: MLEM.Ui.Style.UiStyle.Font
+  commentId: F:MLEM.Ui.Style.UiStyle.Font
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_Font
+  name: Font
+  nameWithType: UiStyle.Font
+  fullName: MLEM.Ui.Style.UiStyle.Font
+- uid: MLEM.Ui.Style.UiStyle.TextScale
+  commentId: F:MLEM.Ui.Style.UiStyle.TextScale
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextScale
+  name: TextScale
+  nameWithType: UiStyle.TextScale
+  fullName: MLEM.Ui.Style.UiStyle.TextScale
+- uid: MLEM.Ui.Style.UiStyle.TextColor
+  commentId: F:MLEM.Ui.Style.UiStyle.TextColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextColor
+  name: TextColor
+  nameWithType: UiStyle.TextColor
+  fullName: MLEM.Ui.Style.UiStyle.TextColor
+- uid: MLEM.Ui.Style.UiStyle.TextAlignment
+  commentId: F:MLEM.Ui.Style.UiStyle.TextAlignment
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_TextAlignment
+  name: TextAlignment
+  nameWithType: UiStyle.TextAlignment
+  fullName: MLEM.Ui.Style.UiStyle.TextAlignment
+- uid: MLEM.Ui.Style.UiStyle.ActionSound
+  commentId: F:MLEM.Ui.Style.UiStyle.ActionSound
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ActionSound
+  name: ActionSound
+  nameWithType: UiStyle.ActionSound
+  fullName: MLEM.Ui.Style.UiStyle.ActionSound
+- uid: MLEM.Ui.Style.UiStyle.LinkColor
+  commentId: F:MLEM.Ui.Style.UiStyle.LinkColor
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_LinkColor
+  name: LinkColor
+  nameWithType: UiStyle.LinkColor
+  fullName: MLEM.Ui.Style.UiStyle.LinkColor
+- uid: MLEM.Ui.Style.UiStyle.AdditionalFonts
+  commentId: F:MLEM.Ui.Style.UiStyle.AdditionalFonts
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AdditionalFonts
+  name: AdditionalFonts
+  nameWithType: UiStyle.AdditionalFonts
+  fullName: MLEM.Ui.Style.UiStyle.AdditionalFonts
+- uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{{T}},System.Boolean)
+  commentId: M:MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+  parent: MLEM.Ui.Style.UiStyle
+  definition: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  name: AddCustomStyle<T>(Action<T>, bool)
+  nameWithType: UiStyle.AddCustomStyle<T>(Action<T>, bool)
+  fullName: MLEM.Ui.Style.UiStyle.AddCustomStyle<T>(System.Action<T>, bool)
+  nameWithType.vb: UiStyle.AddCustomStyle(Of T)(Action(Of T), Boolean)
+  fullName.vb: MLEM.Ui.Style.UiStyle.AddCustomStyle(Of T)(System.Action(Of T), Boolean)
+  name.vb: AddCustomStyle(Of T)(Action(Of T), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+    name: AddCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+    name: AddCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Style.UiStyle.ApplyCustomStyle(MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.Style.UiStyle.ApplyCustomStyle(MLEM.Ui.Elements.Element)
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ApplyCustomStyle_MLEM_Ui_Elements_Element_
+  name: ApplyCustomStyle(Element)
+  nameWithType: UiStyle.ApplyCustomStyle(Element)
+  fullName: MLEM.Ui.Style.UiStyle.ApplyCustomStyle(MLEM.Ui.Elements.Element)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.UiStyle.ApplyCustomStyle(MLEM.Ui.Elements.Element)
+    name: ApplyCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ApplyCustomStyle_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.UiStyle.ApplyCustomStyle(MLEM.Ui.Elements.Element)
+    name: ApplyCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_ApplyCustomStyle_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+  commentId: M:MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+  isExternal: true
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  name: AddCustomStyle<T>(Action<T>, bool)
+  nameWithType: UiStyle.AddCustomStyle<T>(Action<T>, bool)
+  fullName: MLEM.Ui.Style.UiStyle.AddCustomStyle<T>(System.Action<T>, bool)
+  nameWithType.vb: UiStyle.AddCustomStyle(Of T)(Action(Of T), Boolean)
+  fullName.vb: MLEM.Ui.Style.UiStyle.AddCustomStyle(Of T)(System.Action(Of T), Boolean)
+  name.vb: AddCustomStyle(Of T)(Action(Of T), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+    name: AddCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+    name: AddCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Style.UntexturedStyle.#ctor*
+  commentId: Overload:MLEM.Ui.Style.UntexturedStyle.#ctor
+  href: MLEM.Ui.Style.UntexturedStyle.html#MLEM_Ui_Style_UntexturedStyle__ctor_Microsoft_Xna_Framework_Graphics_SpriteBatch_
+  name: UntexturedStyle
+  nameWithType: UntexturedStyle.UntexturedStyle
+  fullName: MLEM.Ui.Style.UntexturedStyle.UntexturedStyle
+  nameWithType.vb: UntexturedStyle.New
+  fullName.vb: MLEM.Ui.Style.UntexturedStyle.New
+  name.vb: New
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true

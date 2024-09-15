@@ -1,0 +1,3152 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Misc.RectangleF
+  commentId: T:MLEM.Misc.RectangleF
+  id: RectangleF
+  parent: MLEM.Misc
+  children:
+  - MLEM.Misc.RectangleF.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  - MLEM.Misc.RectangleF.#ctor(System.Single,System.Single,System.Single,System.Single)
+  - MLEM.Misc.RectangleF.Bottom
+  - MLEM.Misc.RectangleF.Center
+  - MLEM.Misc.RectangleF.Contains(MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.Contains(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Misc.RectangleF.Contains(System.Single,System.Single)
+  - MLEM.Misc.RectangleF.Deconstruct(System.Single@,System.Single@,System.Single@,System.Single@)
+  - MLEM.Misc.RectangleF.Distance(MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.DistanceSquared(MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.Empty
+  - MLEM.Misc.RectangleF.Equals(MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.Equals(System.Object)
+  - MLEM.Misc.RectangleF.FromCorners(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  - MLEM.Misc.RectangleF.GetHashCode
+  - MLEM.Misc.RectangleF.Height
+  - MLEM.Misc.RectangleF.Inflate(System.Single,System.Single)
+  - MLEM.Misc.RectangleF.Intersect(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.Intersects(MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.IsEmpty
+  - MLEM.Misc.RectangleF.Left
+  - MLEM.Misc.RectangleF.Location
+  - MLEM.Misc.RectangleF.Offset(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Misc.RectangleF.Offset(System.Single,System.Single)
+  - MLEM.Misc.RectangleF.Right
+  - MLEM.Misc.RectangleF.Size
+  - MLEM.Misc.RectangleF.ToString
+  - MLEM.Misc.RectangleF.Top
+  - MLEM.Misc.RectangleF.Union(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.Width
+  - MLEM.Misc.RectangleF.X
+  - MLEM.Misc.RectangleF.Y
+  - MLEM.Misc.RectangleF.op_Equality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  - MLEM.Misc.RectangleF.op_Explicit(MLEM.Misc.RectangleF)~Microsoft.Xna.Framework.Rectangle
+  - MLEM.Misc.RectangleF.op_Explicit(Microsoft.Xna.Framework.Rectangle)~MLEM.Misc.RectangleF
+  - MLEM.Misc.RectangleF.op_Inequality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  langs:
+  - csharp
+  - vb
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Misc.RectangleF
+  type: Struct
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RectangleF
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Represents a float-based version of <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: >-
+      [DataContract]
+
+      public struct RectangleF : IEquatable<RectangleF>
+    content.vb: >-
+      <DataContract>
+
+      Public Structure RectangleF Implements IEquatable(Of RectangleF)
+  implements:
+  - System.IEquatable{MLEM.Misc.RectangleF}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+  extensionMethods:
+  - MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.GetPoints(System.Single)
+  - MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.OffsetCopy(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+  - MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.Padding)
+  - MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.Shrink(Microsoft.Xna.Framework.Vector2)
+  attributes:
+  - type: System.Runtime.Serialization.DataContractAttribute
+    ctor: System.Runtime.Serialization.DataContractAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.RectangleF.Empty
+  commentId: P:MLEM.Misc.RectangleF.Empty
+  id: Empty
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Empty
+  nameWithType: RectangleF.Empty
+  fullName: MLEM.Misc.RectangleF.Empty
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Empty
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The empty rectangle, with an x, y, width and height of 0.
+  example: []
+  syntax:
+    content: public static RectangleF Empty { get; }
+    parameters: []
+    return:
+      type: MLEM.Misc.RectangleF
+    content.vb: Public Shared ReadOnly Property Empty As RectangleF
+  overload: MLEM.Misc.RectangleF.Empty*
+- uid: MLEM.Misc.RectangleF.X
+  commentId: F:MLEM.Misc.RectangleF.X
+  id: X
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: X
+  nameWithType: RectangleF.X
+  fullName: MLEM.Misc.RectangleF.X
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: X
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 21
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The x position of the top left corner of this rectangle.
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public float X
+    return:
+      type: System.Single
+    content.vb: >-
+      <DataMember>
+
+      Public X As Single
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.RectangleF.Y
+  commentId: F:MLEM.Misc.RectangleF.Y
+  id: Y
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Y
+  nameWithType: RectangleF.Y
+  fullName: MLEM.Misc.RectangleF.Y
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Y
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 26
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The y position of the top left corner of this rectangle.
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public float Y
+    return:
+      type: System.Single
+    content.vb: >-
+      <DataMember>
+
+      Public Y As Single
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.RectangleF.Width
+  commentId: F:MLEM.Misc.RectangleF.Width
+  id: Width
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: RectangleF.Width
+  fullName: MLEM.Misc.RectangleF.Width
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Width
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 31
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The width of this rectangle.
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public float Width
+    return:
+      type: System.Single
+    content.vb: >-
+      <DataMember>
+
+      Public Width As Single
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.RectangleF.Height
+  commentId: F:MLEM.Misc.RectangleF.Height
+  id: Height
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: RectangleF.Height
+  fullName: MLEM.Misc.RectangleF.Height
+  type: Field
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Height
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 36
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The height of this rectangle.
+  example: []
+  syntax:
+    content: >-
+      [DataMember]
+
+      public float Height
+    return:
+      type: System.Single
+    content.vb: >-
+      <DataMember>
+
+      Public Height As Single
+  attributes:
+  - type: System.Runtime.Serialization.DataMemberAttribute
+    ctor: System.Runtime.Serialization.DataMemberAttribute.#ctor
+    arguments: []
+- uid: MLEM.Misc.RectangleF.Left
+  commentId: P:MLEM.Misc.RectangleF.Left
+  id: Left
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: RectangleF.Left
+  fullName: MLEM.Misc.RectangleF.Left
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 39
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The x position of the top left corner of this rectangle.
+  example: []
+  syntax:
+    content: public float Left { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property Left As Single
+  overload: MLEM.Misc.RectangleF.Left*
+- uid: MLEM.Misc.RectangleF.Right
+  commentId: P:MLEM.Misc.RectangleF.Right
+  id: Right
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: RectangleF.Right
+  fullName: MLEM.Misc.RectangleF.Right
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 43
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The x position of the bottom right corner of this rectangle.
+  example: []
+  syntax:
+    content: public float Right { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property Right As Single
+  overload: MLEM.Misc.RectangleF.Right*
+- uid: MLEM.Misc.RectangleF.Top
+  commentId: P:MLEM.Misc.RectangleF.Top
+  id: Top
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Top
+  nameWithType: RectangleF.Top
+  fullName: MLEM.Misc.RectangleF.Top
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Top
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 45
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The y position of the top left corner of this rectangle.
+  example: []
+  syntax:
+    content: public float Top { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property Top As Single
+  overload: MLEM.Misc.RectangleF.Top*
+- uid: MLEM.Misc.RectangleF.Bottom
+  commentId: P:MLEM.Misc.RectangleF.Bottom
+  id: Bottom
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Bottom
+  nameWithType: RectangleF.Bottom
+  fullName: MLEM.Misc.RectangleF.Bottom
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Bottom
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 49
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The y position of the bottom right corner of this rectangle.
+  example: []
+  syntax:
+    content: public float Bottom { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property Bottom As Single
+  overload: MLEM.Misc.RectangleF.Bottom*
+- uid: MLEM.Misc.RectangleF.IsEmpty
+  commentId: P:MLEM.Misc.RectangleF.IsEmpty
+  id: IsEmpty
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: IsEmpty
+  nameWithType: RectangleF.IsEmpty
+  fullName: MLEM.Misc.RectangleF.IsEmpty
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsEmpty
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 54
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    A boolean that is true if this rectangle is empty.
+
+    A rectangle is considered empty if the width or height is 0.
+  example: []
+  syntax:
+    content: public bool IsEmpty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsEmpty As Boolean
+  overload: MLEM.Misc.RectangleF.IsEmpty*
+- uid: MLEM.Misc.RectangleF.Location
+  commentId: P:MLEM.Misc.RectangleF.Location
+  id: Location
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: RectangleF.Location
+  fullName: MLEM.Misc.RectangleF.Location
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Location
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 59
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The top left corner of this rectangle
+  example: []
+  syntax:
+    content: public Vector2 Location { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Location As Vector2
+  overload: MLEM.Misc.RectangleF.Location*
+- uid: MLEM.Misc.RectangleF.Size
+  commentId: P:MLEM.Misc.RectangleF.Size
+  id: Size
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: RectangleF.Size
+  fullName: MLEM.Misc.RectangleF.Size
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Size
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 69
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The size, that is, the width and height of this rectangle.
+  example: []
+  syntax:
+    content: public Vector2 Size { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Size As Vector2
+  overload: MLEM.Misc.RectangleF.Size*
+- uid: MLEM.Misc.RectangleF.Center
+  commentId: P:MLEM.Misc.RectangleF.Center
+  id: Center
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: RectangleF.Center
+  fullName: MLEM.Misc.RectangleF.Center
+  type: Property
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Center
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 79
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: The center of this rectangle, based on the top left corner and the size.
+  example: []
+  syntax:
+    content: public Vector2 Center { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public ReadOnly Property Center As Vector2
+  overload: MLEM.Misc.RectangleF.Center*
+- uid: MLEM.Misc.RectangleF.#ctor(System.Single,System.Single,System.Single,System.Single)
+  commentId: M:MLEM.Misc.RectangleF.#ctor(System.Single,System.Single,System.Single,System.Single)
+  id: '#ctor(System.Single,System.Single,System.Single,System.Single)'
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: RectangleF(float, float, float, float)
+  nameWithType: RectangleF.RectangleF(float, float, float, float)
+  fullName: MLEM.Misc.RectangleF.RectangleF(float, float, float, float)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 88
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Creates a new rectangle with the specified location and size
+  example: []
+  syntax:
+    content: public RectangleF(float x, float y, float width, float height)
+    parameters:
+    - id: x
+      type: System.Single
+      description: The x coordinate of the top left corner of the rectangle
+    - id: y
+      type: System.Single
+      description: The y coordinate of the top left corner of the rectangle
+    - id: width
+      type: System.Single
+      description: The width of the rectangle
+    - id: height
+      type: System.Single
+      description: The height of the rectangle
+    content.vb: Public Sub New(x As Single, y As Single, width As Single, height As Single)
+  overload: MLEM.Misc.RectangleF.#ctor*
+  nameWithType.vb: RectangleF.New(Single, Single, Single, Single)
+  fullName.vb: MLEM.Misc.RectangleF.New(Single, Single, Single, Single)
+  name.vb: New(Single, Single, Single, Single)
+- uid: MLEM.Misc.RectangleF.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Misc.RectangleF.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  id: '#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)'
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: RectangleF(Vector2, Vector2)
+  nameWithType: RectangleF.RectangleF(Vector2, Vector2)
+  fullName: MLEM.Misc.RectangleF.RectangleF(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 100
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Creates a new rectangle with the specified location and size vectors
+  example: []
+  syntax:
+    content: public RectangleF(Vector2 location, Vector2 size)
+    parameters:
+    - id: location
+      type: Microsoft.Xna.Framework.Vector2
+      description: The top left corner of the rectangle
+    - id: size
+      type: Microsoft.Xna.Framework.Vector2
+      description: The size of the rectangle, where x represents width and the y represents height
+    content.vb: Public Sub New(location As Vector2, size As Vector2)
+  overload: MLEM.Misc.RectangleF.#ctor*
+  nameWithType.vb: RectangleF.New(Vector2, Vector2)
+  fullName.vb: MLEM.Misc.RectangleF.New(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  name.vb: New(Vector2, Vector2)
+- uid: MLEM.Misc.RectangleF.Contains(System.Single,System.Single)
+  commentId: M:MLEM.Misc.RectangleF.Contains(System.Single,System.Single)
+  id: Contains(System.Single,System.Single)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Contains(float, float)
+  nameWithType: RectangleF.Contains(float, float)
+  fullName: MLEM.Misc.RectangleF.Contains(float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Contains
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 108
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Gets whether or not the provided coordinates lie within the bounds of this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Contains(float x, float y)
+    parameters:
+    - id: x
+      type: System.Single
+      description: The x coordinate of the point to check for containment.
+    - id: y
+      type: System.Single
+      description: The y coordinate of the point to check for containment.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the provided coordinates lie inside this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>; <code>false</code> otherwise.
+    content.vb: Public Function Contains(x As Single, y As Single) As Boolean
+  overload: MLEM.Misc.RectangleF.Contains*
+  nameWithType.vb: RectangleF.Contains(Single, Single)
+  fullName.vb: MLEM.Misc.RectangleF.Contains(Single, Single)
+  name.vb: Contains(Single, Single)
+- uid: MLEM.Misc.RectangleF.Contains(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Misc.RectangleF.Contains(Microsoft.Xna.Framework.Vector2)
+  id: Contains(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Contains(Vector2)
+  nameWithType: RectangleF.Contains(Vector2)
+  fullName: MLEM.Misc.RectangleF.Contains(Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Contains
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 113
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Gets whether or not the provided <xref href="Microsoft.Xna.Framework.Point" data-throw-if-not-resolved="false"></xref> lies within the bounds of this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Contains(Vector2 value)
+    parameters:
+    - id: value
+      type: Microsoft.Xna.Framework.Vector2
+      description: The coordinates to check for inclusion in this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the provided <xref href="Microsoft.Xna.Framework.Point" data-throw-if-not-resolved="false"></xref> lies inside this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>; <code>false</code> otherwise.
+    content.vb: Public Function Contains(value As Vector2) As Boolean
+  overload: MLEM.Misc.RectangleF.Contains*
+- uid: MLEM.Misc.RectangleF.Contains(MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Contains(MLEM.Misc.RectangleF)
+  id: Contains(MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Contains(RectangleF)
+  nameWithType: RectangleF.Contains(RectangleF)
+  fullName: MLEM.Misc.RectangleF.Contains(MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Contains
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 118
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Gets whether or not the provided <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> lies within the bounds of this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Contains(RectangleF value)
+    parameters:
+    - id: value
+      type: MLEM.Misc.RectangleF
+      description: The <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> to check for inclusion in this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the provided <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>'s bounds lie entirely inside this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>; <code>false</code> otherwise.
+    content.vb: Public Function Contains(value As RectangleF) As Boolean
+  overload: MLEM.Misc.RectangleF.Contains*
+- uid: MLEM.Misc.RectangleF.Equals(System.Object)
+  commentId: M:MLEM.Misc.RectangleF.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Equals(object)
+  nameWithType: RectangleF.Equals(object)
+  fullName: MLEM.Misc.RectangleF.Equals(object)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 125
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: MLEM.Misc.RectangleF.Equals*
+  nameWithType.vb: RectangleF.Equals(Object)
+  fullName.vb: MLEM.Misc.RectangleF.Equals(Object)
+  name.vb: Equals(Object)
+- uid: MLEM.Misc.RectangleF.Equals(MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Equals(MLEM.Misc.RectangleF)
+  id: Equals(MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Equals(RectangleF)
+  nameWithType: RectangleF.Equals(RectangleF)
+  fullName: MLEM.Misc.RectangleF.Equals(MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Equals
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 132
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(RectangleF other)
+    parameters:
+    - id: other
+      type: MLEM.Misc.RectangleF
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As RectangleF) As Boolean
+  overload: MLEM.Misc.RectangleF.Equals*
+  implements:
+  - System.IEquatable{MLEM.Misc.RectangleF}.Equals(MLEM.Misc.RectangleF)
+- uid: MLEM.Misc.RectangleF.GetHashCode
+  commentId: M:MLEM.Misc.RectangleF.GetHashCode
+  id: GetHashCode
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: RectangleF.GetHashCode()
+  fullName: MLEM.Misc.RectangleF.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetHashCode
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 138
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: MLEM.Misc.RectangleF.GetHashCode*
+- uid: MLEM.Misc.RectangleF.Inflate(System.Single,System.Single)
+  commentId: M:MLEM.Misc.RectangleF.Inflate(System.Single,System.Single)
+  id: Inflate(System.Single,System.Single)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Inflate(float, float)
+  nameWithType: RectangleF.Inflate(float, float)
+  fullName: MLEM.Misc.RectangleF.Inflate(float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Inflate
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 143
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Adjusts the edges of this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> by specified horizontal and vertical amounts.
+  example: []
+  syntax:
+    content: public void Inflate(float horizontalAmount, float verticalAmount)
+    parameters:
+    - id: horizontalAmount
+      type: System.Single
+      description: Value to adjust the left and right edges.
+    - id: verticalAmount
+      type: System.Single
+      description: Value to adjust the top and bottom edges.
+    content.vb: Public Sub Inflate(horizontalAmount As Single, verticalAmount As Single)
+  overload: MLEM.Misc.RectangleF.Inflate*
+  nameWithType.vb: RectangleF.Inflate(Single, Single)
+  fullName.vb: MLEM.Misc.RectangleF.Inflate(Single, Single)
+  name.vb: Inflate(Single, Single)
+- uid: MLEM.Misc.RectangleF.Intersects(MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Intersects(MLEM.Misc.RectangleF)
+  id: Intersects(MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Intersects(RectangleF)
+  nameWithType: RectangleF.Intersects(RectangleF)
+  fullName: MLEM.Misc.RectangleF.Intersects(MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Intersects
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 151
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Gets whether or not the other <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> intersects with this rectangle.
+  example: []
+  syntax:
+    content: public bool Intersects(RectangleF value)
+    parameters:
+    - id: value
+      type: MLEM.Misc.RectangleF
+      description: The other rectangle for testing.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if other <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> intersects with this rectangle; <code>false</code> otherwise.
+    content.vb: Public Function Intersects(value As RectangleF) As Boolean
+  overload: MLEM.Misc.RectangleF.Intersects*
+- uid: MLEM.Misc.RectangleF.Offset(System.Single,System.Single)
+  commentId: M:MLEM.Misc.RectangleF.Offset(System.Single,System.Single)
+  id: Offset(System.Single,System.Single)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Offset(float, float)
+  nameWithType: RectangleF.Offset(float, float)
+  fullName: MLEM.Misc.RectangleF.Offset(float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Offset
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 156
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Changes the <xref href="Microsoft.Xna.Framework.Rectangle.Location" data-throw-if-not-resolved="false"></xref> of this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public void Offset(float offsetX, float offsetY)
+    parameters:
+    - id: offsetX
+      type: System.Single
+      description: The x coordinate to add to this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    - id: offsetY
+      type: System.Single
+      description: The y coordinate to add to this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Sub Offset(offsetX As Single, offsetY As Single)
+  overload: MLEM.Misc.RectangleF.Offset*
+  nameWithType.vb: RectangleF.Offset(Single, Single)
+  fullName.vb: MLEM.Misc.RectangleF.Offset(Single, Single)
+  name.vb: Offset(Single, Single)
+- uid: MLEM.Misc.RectangleF.Offset(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Misc.RectangleF.Offset(Microsoft.Xna.Framework.Vector2)
+  id: Offset(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Offset(Vector2)
+  nameWithType: RectangleF.Offset(Vector2)
+  fullName: MLEM.Misc.RectangleF.Offset(Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Offset
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 162
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Changes the <xref href="Microsoft.Xna.Framework.Rectangle.Location" data-throw-if-not-resolved="false"></xref> of this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public void Offset(Vector2 amount)
+    parameters:
+    - id: amount
+      type: Microsoft.Xna.Framework.Vector2
+      description: The x and y components to add to this <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Sub Offset(amount As Vector2)
+  overload: MLEM.Misc.RectangleF.Offset*
+- uid: MLEM.Misc.RectangleF.DistanceSquared(MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.DistanceSquared(MLEM.Misc.RectangleF)
+  id: DistanceSquared(MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: DistanceSquared(RectangleF)
+  nameWithType: RectangleF.DistanceSquared(RectangleF)
+  fullName: MLEM.Misc.RectangleF.DistanceSquared(MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DistanceSquared
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 173
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Calculates the suqared distance between this rectangle and the <code class="paramref">value</code>.
+
+    The returned value is the smallest squared distance between any two edges or corners of the two rectangles.
+  example: []
+  syntax:
+    content: public float DistanceSquared(RectangleF value)
+    parameters:
+    - id: value
+      type: MLEM.Misc.RectangleF
+      description: The rectangle to calculate the squared distance to.
+    return:
+      type: System.Single
+      description: The squared distance between the two rectangles.
+    content.vb: Public Function DistanceSquared(value As RectangleF) As Single
+  overload: MLEM.Misc.RectangleF.DistanceSquared*
+- uid: MLEM.Misc.RectangleF.Distance(MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Distance(MLEM.Misc.RectangleF)
+  id: Distance(MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Distance(RectangleF)
+  nameWithType: RectangleF.Distance(RectangleF)
+  fullName: MLEM.Misc.RectangleF.Distance(MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Distance
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 207
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Calculates the distance between this rectangle and the <code class="paramref">value</code>.
+
+    The returned value is the smallest distance between any two edges or corners of the two rectangles.
+  example: []
+  syntax:
+    content: public float Distance(RectangleF value)
+    parameters:
+    - id: value
+      type: MLEM.Misc.RectangleF
+      description: The rectangle to calculate the distance to.
+    return:
+      type: System.Single
+      description: The distance between the two rectangles.
+    content.vb: Public Function Distance(value As RectangleF) As Single
+  overload: MLEM.Misc.RectangleF.Distance*
+- uid: MLEM.Misc.RectangleF.ToString
+  commentId: M:MLEM.Misc.RectangleF.ToString
+  id: ToString
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: RectangleF.ToString()
+  fullName: MLEM.Misc.RectangleF.ToString()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToString
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 213
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: MLEM.Misc.RectangleF.ToString*
+- uid: MLEM.Misc.RectangleF.Deconstruct(System.Single@,System.Single@,System.Single@,System.Single@)
+  commentId: M:MLEM.Misc.RectangleF.Deconstruct(System.Single@,System.Single@,System.Single@,System.Single@)
+  id: Deconstruct(System.Single@,System.Single@,System.Single@,System.Single@)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Deconstruct(out float, out float, out float, out float)
+  nameWithType: RectangleF.Deconstruct(out float, out float, out float, out float)
+  fullName: MLEM.Misc.RectangleF.Deconstruct(out float, out float, out float, out float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Deconstruct
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 224
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Deconstruction method for <xref href="MLEM.Misc.RectangleF" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public void Deconstruct(out float x, out float y, out float width, out float height)
+    parameters:
+    - id: x
+      type: System.Single
+      description: ''
+    - id: y
+      type: System.Single
+      description: ''
+    - id: width
+      type: System.Single
+      description: ''
+    - id: height
+      type: System.Single
+      description: ''
+    content.vb: Public Sub Deconstruct(x As Single, y As Single, width As Single, height As Single)
+  overload: MLEM.Misc.RectangleF.Deconstruct*
+  nameWithType.vb: RectangleF.Deconstruct(Single, Single, Single, Single)
+  fullName.vb: MLEM.Misc.RectangleF.Deconstruct(Single, Single, Single, Single)
+  name.vb: Deconstruct(Single, Single, Single, Single)
+- uid: MLEM.Misc.RectangleF.op_Explicit(MLEM.Misc.RectangleF)~Microsoft.Xna.Framework.Rectangle
+  commentId: M:MLEM.Misc.RectangleF.op_Explicit(MLEM.Misc.RectangleF)~Microsoft.Xna.Framework.Rectangle
+  id: op_Explicit(MLEM.Misc.RectangleF)~Microsoft.Xna.Framework.Rectangle
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: explicit operator Rectangle(RectangleF)
+  nameWithType: RectangleF.explicit operator Rectangle(RectangleF)
+  fullName: MLEM.Misc.RectangleF.explicit operator Microsoft.Xna.Framework.Rectangle(MLEM.Misc.RectangleF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Explicit
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 236
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Converts a float-based rectangle to an int-based rectangle, flooring each value in the process.
+  example: []
+  syntax:
+    content: public static explicit operator Rectangle(RectangleF rect)
+    parameters:
+    - id: rect
+      type: MLEM.Misc.RectangleF
+      description: The rectangle to convert
+    return:
+      type: Microsoft.Xna.Framework.Rectangle
+      description: The resulting rectangle
+    content.vb: Public Shared Narrowing Operator CType(rect As RectangleF) As Rectangle
+  overload: MLEM.Misc.RectangleF.op_Explicit*
+  nameWithType.vb: RectangleF.CType(RectangleF)
+  fullName.vb: MLEM.Misc.RectangleF.CType(MLEM.Misc.RectangleF)
+  name.vb: CType(RectangleF)
+- uid: MLEM.Misc.RectangleF.Union(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Union(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  id: Union(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Union(RectangleF, RectangleF)
+  nameWithType: RectangleF.Union(RectangleF, RectangleF)
+  fullName: MLEM.Misc.RectangleF.Union(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Union
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 241
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Creates a new <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> that completely contains two other rectangles.
+  example: []
+  syntax:
+    content: public static RectangleF Union(RectangleF value1, RectangleF value2)
+    parameters:
+    - id: value1
+      type: MLEM.Misc.RectangleF
+      description: The first <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    - id: value2
+      type: MLEM.Misc.RectangleF
+      description: The second <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: MLEM.Misc.RectangleF
+      description: The union of the two rectangles.
+    content.vb: Public Shared Function Union(value1 As RectangleF, value2 As RectangleF) As RectangleF
+  overload: MLEM.Misc.RectangleF.Union*
+- uid: MLEM.Misc.RectangleF.Intersect(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.Intersect(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  id: Intersect(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: Intersect(RectangleF, RectangleF)
+  nameWithType: RectangleF.Intersect(RectangleF, RectangleF)
+  fullName: MLEM.Misc.RectangleF.Intersect(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Intersect
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 248
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Creates a new <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref> that contains overlapping region of two other rectangles.
+  example: []
+  syntax:
+    content: public static RectangleF Intersect(RectangleF value1, RectangleF value2)
+    parameters:
+    - id: value1
+      type: MLEM.Misc.RectangleF
+      description: The first <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    - id: value2
+      type: MLEM.Misc.RectangleF
+      description: The second <xref href="Microsoft.Xna.Framework.Rectangle" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: MLEM.Misc.RectangleF
+      description: Overlapping region of the two rectangles.
+    content.vb: Public Shared Function Intersect(value1 As RectangleF, value2 As RectangleF) As RectangleF
+  overload: MLEM.Misc.RectangleF.Intersect*
+- uid: MLEM.Misc.RectangleF.FromCorners(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Misc.RectangleF.FromCorners(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  id: FromCorners(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: FromCorners(Vector2, Vector2)
+  nameWithType: RectangleF.FromCorners(Vector2, Vector2)
+  fullName: MLEM.Misc.RectangleF.FromCorners(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: FromCorners
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 267
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: >-
+    Creates a new rectangle based on two corners that form a bounding box.
+
+    The resulting rectangle will encompass both corners as well as all of the space between them.
+  example: []
+  syntax:
+    content: public static RectangleF FromCorners(Vector2 corner1, Vector2 corner2)
+    parameters:
+    - id: corner1
+      type: Microsoft.Xna.Framework.Vector2
+      description: The first corner to use
+    - id: corner2
+      type: Microsoft.Xna.Framework.Vector2
+      description: The second corner to use
+    return:
+      type: MLEM.Misc.RectangleF
+      description: ''
+    content.vb: Public Shared Function FromCorners(corner1 As Vector2, corner2 As Vector2) As RectangleF
+  overload: MLEM.Misc.RectangleF.FromCorners*
+- uid: MLEM.Misc.RectangleF.op_Explicit(Microsoft.Xna.Framework.Rectangle)~MLEM.Misc.RectangleF
+  commentId: M:MLEM.Misc.RectangleF.op_Explicit(Microsoft.Xna.Framework.Rectangle)~MLEM.Misc.RectangleF
+  id: op_Explicit(Microsoft.Xna.Framework.Rectangle)~MLEM.Misc.RectangleF
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: explicit operator RectangleF(Rectangle)
+  nameWithType: RectangleF.explicit operator RectangleF(Rectangle)
+  fullName: MLEM.Misc.RectangleF.explicit operator MLEM.Misc.RectangleF(Microsoft.Xna.Framework.Rectangle)
+  type: Operator
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Explicit
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 280
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Converts an int-based rectangle to a float-based rectangle.
+  example: []
+  syntax:
+    content: public static explicit operator RectangleF(Rectangle rect)
+    parameters:
+    - id: rect
+      type: Microsoft.Xna.Framework.Rectangle
+      description: The rectangle to convert
+    return:
+      type: MLEM.Misc.RectangleF
+      description: The resulting rectangle
+    content.vb: Public Shared Narrowing Operator CType(rect As Rectangle) As RectangleF
+  overload: MLEM.Misc.RectangleF.op_Explicit*
+  nameWithType.vb: RectangleF.CType(Rectangle)
+  fullName.vb: MLEM.Misc.RectangleF.CType(Microsoft.Xna.Framework.Rectangle)
+  name.vb: CType(Rectangle)
+- uid: MLEM.Misc.RectangleF.op_Equality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.op_Equality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  id: op_Equality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: operator ==(RectangleF, RectangleF)
+  nameWithType: RectangleF.operator ==(RectangleF, RectangleF)
+  fullName: MLEM.Misc.RectangleF.operator ==(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Equality
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 285
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public static bool operator ==(RectangleF a, RectangleF b)
+    parameters:
+    - id: a
+      type: MLEM.Misc.RectangleF
+    - id: b
+      type: MLEM.Misc.RectangleF
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Shared Operator =(a As RectangleF, b As RectangleF) As Boolean
+  overload: MLEM.Misc.RectangleF.op_Equality*
+  nameWithType.vb: RectangleF.=(RectangleF, RectangleF)
+  fullName.vb: MLEM.Misc.RectangleF.=(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF)
+  name.vb: =(RectangleF, RectangleF)
+- uid: MLEM.Misc.RectangleF.op_Inequality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  commentId: M:MLEM.Misc.RectangleF.op_Inequality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  id: op_Inequality(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF)
+  parent: MLEM.Misc.RectangleF
+  langs:
+  - csharp
+  - vb
+  name: operator !=(RectangleF, RectangleF)
+  nameWithType: RectangleF.operator !=(RectangleF, RectangleF)
+  fullName: MLEM.Misc.RectangleF.operator !=(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF)
+  type: Operator
+  source:
+    remote:
+      path: MLEM/Misc/RectangleF.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: op_Inequality
+    path: ../MLEM/Misc/RectangleF.cs
+    startLine: 290
+  assemblies:
+  - MLEM
+  namespace: MLEM.Misc
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public static bool operator !=(RectangleF a, RectangleF b)
+    parameters:
+    - id: a
+      type: MLEM.Misc.RectangleF
+    - id: b
+      type: MLEM.Misc.RectangleF
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Shared Operator <>(a As RectangleF, b As RectangleF) As Boolean
+  overload: MLEM.Misc.RectangleF.op_Inequality*
+  nameWithType.vb: RectangleF.<>(RectangleF, RectangleF)
+  fullName.vb: MLEM.Misc.RectangleF.<>(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF)
+  name.vb: <>(RectangleF, RectangleF)
+references:
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: System.IEquatable{MLEM.Misc.RectangleF}
+  commentId: T:System.IEquatable{MLEM.Misc.RectangleF}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<RectangleF>
+  nameWithType: IEquatable<RectangleF>
+  fullName: System.IEquatable<MLEM.Misc.RectangleF>
+  nameWithType.vb: IEquatable(Of RectangleF)
+  fullName.vb: System.IEquatable(Of MLEM.Misc.RectangleF)
+  name.vb: IEquatable(Of RectangleF)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<RectangleF>(RectangleF, RectangleF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<RectangleF>(RectangleF, RectangleF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Misc.RectangleF>(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of RectangleF)(RectangleF, RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Misc.RectangleF)(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of RectangleF)(RectangleF, RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<RectangleF>(RectangleF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<RectangleF>(RectangleF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Misc.RectangleF>(MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of RectangleF)(RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Misc.RectangleF)(MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of RectangleF)(RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<RectangleF>(RectangleF, RectangleF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<RectangleF>(RectangleF, RectangleF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Misc.RectangleF>(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of RectangleF)(RectangleF, RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Misc.RectangleF)(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of RectangleF)(RectangleF, RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<RectangleF>(RectangleF, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<RectangleF>(RectangleF, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Misc.RectangleF>(MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of RectangleF)(RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Misc.RectangleF)(MLEM.Misc.RectangleF, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of RectangleF)(RectangleF, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Misc.RectangleF,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.GetPoints(System.Single)
+  commentId: M:MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+  parent: MLEM.Extensions.NumberExtensions
+  definition: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_GetPoints_MLEM_Misc_RectangleF_System_Single_
+  name: GetPoints(RectangleF, float)
+  nameWithType: NumberExtensions.GetPoints(RectangleF, float)
+  fullName: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF, float)
+  nameWithType.vb: NumberExtensions.GetPoints(RectangleF, Single)
+  fullName.vb: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF, Single)
+  name.vb: GetPoints(RectangleF, Single)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+    name: GetPoints
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_GetPoints_MLEM_Misc_RectangleF_System_Single_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+    name: GetPoints
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_GetPoints_MLEM_Misc_RectangleF_System_Single_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.OffsetCopy(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Extensions.NumberExtensions
+  definition: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_OffsetCopy_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  name: OffsetCopy(RectangleF, Vector2)
+  nameWithType: NumberExtensions.OffsetCopy(RectangleF, Vector2)
+  fullName: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: OffsetCopy
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_OffsetCopy_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: OffsetCopy
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_OffsetCopy_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+  commentId: M:MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+  parent: MLEM.Extensions.NumberExtensions
+  definition: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Penetrate_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2__System_Single__
+  name: Penetrate(RectangleF, RectangleF, out Vector2, out float)
+  nameWithType: NumberExtensions.Penetrate(RectangleF, RectangleF, out Vector2, out float)
+  fullName: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, out Microsoft.Xna.Framework.Vector2, out float)
+  nameWithType.vb: NumberExtensions.Penetrate(RectangleF, RectangleF, Vector2, Single)
+  fullName.vb: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Vector2, Single)
+  name.vb: Penetrate(RectangleF, RectangleF, Vector2, Single)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+    name: Penetrate
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Penetrate_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2__System_Single__
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+    name: Penetrate
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Penetrate_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2__System_Single__
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.Padding)
+  commentId: M:MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+  parent: MLEM.Extensions.NumberExtensions
+  definition: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_MLEM_Misc_Padding_
+  name: Shrink(RectangleF, Padding)
+  nameWithType: NumberExtensions.Shrink(RectangleF, Padding)
+  fullName: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF, MLEM.Misc.Padding)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_MLEM_Misc_Padding_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Padding
+    name: Padding
+    href: MLEM.Misc.Padding.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_MLEM_Misc_Padding_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Padding
+    name: Padding
+    href: MLEM.Misc.Padding.html
+  - name: )
+- uid: MLEM.Misc.RectangleF.MLEM.Extensions.NumberExtensions.Shrink(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Extensions.NumberExtensions
+  definition: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  name: Shrink(RectangleF, Vector2)
+  nameWithType: NumberExtensions.Shrink(RectangleF, Vector2)
+  fullName: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+  commentId: M:MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+  isExternal: true
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_GetPoints_MLEM_Misc_RectangleF_System_Single_
+  name: GetPoints(RectangleF, float)
+  nameWithType: NumberExtensions.GetPoints(RectangleF, float)
+  fullName: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF, float)
+  nameWithType.vb: NumberExtensions.GetPoints(RectangleF, Single)
+  fullName.vb: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF, Single)
+  name.vb: GetPoints(RectangleF, Single)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+    name: GetPoints
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_GetPoints_MLEM_Misc_RectangleF_System_Single_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.GetPoints(MLEM.Misc.RectangleF,System.Single)
+    name: GetPoints
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_GetPoints_MLEM_Misc_RectangleF_System_Single_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: MLEM.Extensions.NumberExtensions
+  commentId: T:MLEM.Extensions.NumberExtensions
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.NumberExtensions.html
+  name: NumberExtensions
+  nameWithType: NumberExtensions
+  fullName: MLEM.Extensions.NumberExtensions
+- uid: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  isExternal: true
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_OffsetCopy_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  name: OffsetCopy(RectangleF, Vector2)
+  nameWithType: NumberExtensions.OffsetCopy(RectangleF, Vector2)
+  fullName: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: OffsetCopy
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_OffsetCopy_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.OffsetCopy(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: OffsetCopy
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_OffsetCopy_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+  commentId: M:MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+  isExternal: true
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Penetrate_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2__System_Single__
+  name: Penetrate(RectangleF, RectangleF, out Vector2, out float)
+  nameWithType: NumberExtensions.Penetrate(RectangleF, RectangleF, out Vector2, out float)
+  fullName: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, out Microsoft.Xna.Framework.Vector2, out float)
+  nameWithType.vb: NumberExtensions.Penetrate(RectangleF, RectangleF, Vector2, Single)
+  fullName.vb: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF, MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Vector2, Single)
+  name.vb: Penetrate(RectangleF, RectangleF, Vector2, Single)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+    name: Penetrate
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Penetrate_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2__System_Single__
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.Penetrate(MLEM.Misc.RectangleF,MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2@,System.Single@)
+    name: Penetrate
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Penetrate_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2__System_Single__
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+  commentId: M:MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_MLEM_Misc_Padding_
+  name: Shrink(RectangleF, Padding)
+  nameWithType: NumberExtensions.Shrink(RectangleF, Padding)
+  fullName: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF, MLEM.Misc.Padding)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_MLEM_Misc_Padding_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Padding
+    name: Padding
+    href: MLEM.Misc.Padding.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,MLEM.Misc.Padding)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_MLEM_Misc_Padding_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Misc.Padding
+    name: Padding
+    href: MLEM.Misc.Padding.html
+  - name: )
+- uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+  isExternal: true
+  href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  name: Shrink(RectangleF, Vector2)
+  nameWithType: NumberExtensions.Shrink(RectangleF, Vector2)
+  fullName: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF, Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Extensions.NumberExtensions.Shrink(MLEM.Misc.RectangleF,Microsoft.Xna.Framework.Vector2)
+    name: Shrink
+    href: MLEM.Extensions.NumberExtensions.html#MLEM_Extensions_NumberExtensions_Shrink_MLEM_Misc_RectangleF_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: MLEM.Extensions
+  commentId: N:MLEM.Extensions
+  href: MLEM.html
+  name: MLEM.Extensions
+  nameWithType: MLEM.Extensions
+  fullName: MLEM.Extensions
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+- uid: MLEM.Misc.RectangleF.Empty*
+  commentId: Overload:MLEM.Misc.RectangleF.Empty
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Empty
+  name: Empty
+  nameWithType: RectangleF.Empty
+  fullName: MLEM.Misc.RectangleF.Empty
+- uid: MLEM.Misc.RectangleF
+  commentId: T:MLEM.Misc.RectangleF
+  parent: MLEM.Misc
+  href: MLEM.Misc.RectangleF.html
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Misc.RectangleF
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Misc.RectangleF.Left*
+  commentId: Overload:MLEM.Misc.RectangleF.Left
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Left
+  name: Left
+  nameWithType: RectangleF.Left
+  fullName: MLEM.Misc.RectangleF.Left
+- uid: MLEM.Misc.RectangleF.Right*
+  commentId: Overload:MLEM.Misc.RectangleF.Right
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Right
+  name: Right
+  nameWithType: RectangleF.Right
+  fullName: MLEM.Misc.RectangleF.Right
+- uid: MLEM.Misc.RectangleF.Top*
+  commentId: Overload:MLEM.Misc.RectangleF.Top
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Top
+  name: Top
+  nameWithType: RectangleF.Top
+  fullName: MLEM.Misc.RectangleF.Top
+- uid: MLEM.Misc.RectangleF.Bottom*
+  commentId: Overload:MLEM.Misc.RectangleF.Bottom
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Bottom
+  name: Bottom
+  nameWithType: RectangleF.Bottom
+  fullName: MLEM.Misc.RectangleF.Bottom
+- uid: MLEM.Misc.RectangleF.IsEmpty*
+  commentId: Overload:MLEM.Misc.RectangleF.IsEmpty
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_IsEmpty
+  name: IsEmpty
+  nameWithType: RectangleF.IsEmpty
+  fullName: MLEM.Misc.RectangleF.IsEmpty
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Misc.RectangleF.Location*
+  commentId: Overload:MLEM.Misc.RectangleF.Location
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Location
+  name: Location
+  nameWithType: RectangleF.Location
+  fullName: MLEM.Misc.RectangleF.Location
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: MLEM.Misc.RectangleF.Size*
+  commentId: Overload:MLEM.Misc.RectangleF.Size
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Size
+  name: Size
+  nameWithType: RectangleF.Size
+  fullName: MLEM.Misc.RectangleF.Size
+- uid: MLEM.Misc.RectangleF.Center*
+  commentId: Overload:MLEM.Misc.RectangleF.Center
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Center
+  name: Center
+  nameWithType: RectangleF.Center
+  fullName: MLEM.Misc.RectangleF.Center
+- uid: MLEM.Misc.RectangleF.#ctor*
+  commentId: Overload:MLEM.Misc.RectangleF.#ctor
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF__ctor_System_Single_System_Single_System_Single_System_Single_
+  name: RectangleF
+  nameWithType: RectangleF.RectangleF
+  fullName: MLEM.Misc.RectangleF.RectangleF
+  nameWithType.vb: RectangleF.New
+  fullName.vb: MLEM.Misc.RectangleF.New
+  name.vb: New
+- uid: MLEM.Misc.RectangleF.Contains*
+  commentId: Overload:MLEM.Misc.RectangleF.Contains
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Contains_System_Single_System_Single_
+  name: Contains
+  nameWithType: RectangleF.Contains
+  fullName: MLEM.Misc.RectangleF.Contains
+- uid: Microsoft.Xna.Framework.Point
+  commentId: T:Microsoft.Xna.Framework.Point
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Point
+  nameWithType: Point
+  fullName: Microsoft.Xna.Framework.Point
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: MLEM.Misc.RectangleF.Equals*
+  commentId: Overload:MLEM.Misc.RectangleF.Equals
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Equals_System_Object_
+  name: Equals
+  nameWithType: RectangleF.Equals
+  fullName: MLEM.Misc.RectangleF.Equals
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.IEquatable{MLEM.Misc.RectangleF}.Equals(MLEM.Misc.RectangleF)
+  commentId: M:System.IEquatable{MLEM.Misc.RectangleF}.Equals(MLEM.Misc.RectangleF)
+  parent: System.IEquatable{MLEM.Misc.RectangleF}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(RectangleF)
+  nameWithType: IEquatable<RectangleF>.Equals(RectangleF)
+  fullName: System.IEquatable<MLEM.Misc.RectangleF>.Equals(MLEM.Misc.RectangleF)
+  nameWithType.vb: IEquatable(Of RectangleF).Equals(RectangleF)
+  fullName.vb: System.IEquatable(Of MLEM.Misc.RectangleF).Equals(MLEM.Misc.RectangleF)
+  spec.csharp:
+  - uid: System.IEquatable{MLEM.Misc.RectangleF}.Equals(MLEM.Misc.RectangleF)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{MLEM.Misc.RectangleF}.Equals(MLEM.Misc.RectangleF)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: MLEM.Misc.RectangleF
+    name: RectangleF
+    href: MLEM.Misc.RectangleF.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: MLEM.Misc.RectangleF.GetHashCode*
+  commentId: Overload:MLEM.Misc.RectangleF.GetHashCode
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_GetHashCode
+  name: GetHashCode
+  nameWithType: RectangleF.GetHashCode
+  fullName: MLEM.Misc.RectangleF.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MLEM.Misc.RectangleF.Inflate*
+  commentId: Overload:MLEM.Misc.RectangleF.Inflate
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Inflate_System_Single_System_Single_
+  name: Inflate
+  nameWithType: RectangleF.Inflate
+  fullName: MLEM.Misc.RectangleF.Inflate
+- uid: MLEM.Misc.RectangleF.Intersects*
+  commentId: Overload:MLEM.Misc.RectangleF.Intersects
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Intersects_MLEM_Misc_RectangleF_
+  name: Intersects
+  nameWithType: RectangleF.Intersects
+  fullName: MLEM.Misc.RectangleF.Intersects
+- uid: Microsoft.Xna.Framework.Rectangle.Location
+  commentId: P:Microsoft.Xna.Framework.Rectangle.Location
+  isExternal: true
+  name: Location
+  nameWithType: Rectangle.Location
+  fullName: Microsoft.Xna.Framework.Rectangle.Location
+- uid: MLEM.Misc.RectangleF.Offset*
+  commentId: Overload:MLEM.Misc.RectangleF.Offset
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Offset_System_Single_System_Single_
+  name: Offset
+  nameWithType: RectangleF.Offset
+  fullName: MLEM.Misc.RectangleF.Offset
+- uid: MLEM.Misc.RectangleF.DistanceSquared*
+  commentId: Overload:MLEM.Misc.RectangleF.DistanceSquared
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_DistanceSquared_MLEM_Misc_RectangleF_
+  name: DistanceSquared
+  nameWithType: RectangleF.DistanceSquared
+  fullName: MLEM.Misc.RectangleF.DistanceSquared
+- uid: MLEM.Misc.RectangleF.Distance*
+  commentId: Overload:MLEM.Misc.RectangleF.Distance
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Distance_MLEM_Misc_RectangleF_
+  name: Distance
+  nameWithType: RectangleF.Distance
+  fullName: MLEM.Misc.RectangleF.Distance
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: MLEM.Misc.RectangleF.ToString*
+  commentId: Overload:MLEM.Misc.RectangleF.ToString
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_ToString
+  name: ToString
+  nameWithType: RectangleF.ToString
+  fullName: MLEM.Misc.RectangleF.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MLEM.Misc.RectangleF.Deconstruct*
+  commentId: Overload:MLEM.Misc.RectangleF.Deconstruct
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Deconstruct_System_Single__System_Single__System_Single__System_Single__
+  name: Deconstruct
+  nameWithType: RectangleF.Deconstruct
+  fullName: MLEM.Misc.RectangleF.Deconstruct
+- uid: MLEM.Misc.RectangleF.op_Explicit*
+  commentId: Overload:MLEM.Misc.RectangleF.op_Explicit
+  name: explicit operator
+  nameWithType: RectangleF.explicit operator
+  fullName: MLEM.Misc.RectangleF.explicit operator
+  nameWithType.vb: RectangleF.CType
+  fullName.vb: MLEM.Misc.RectangleF.CType
+  name.vb: CType
+  spec.csharp:
+  - name: explicit
+  - name: " "
+  - name: operator
+- uid: MLEM.Misc.RectangleF.Union*
+  commentId: Overload:MLEM.Misc.RectangleF.Union
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Union_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_
+  name: Union
+  nameWithType: RectangleF.Union
+  fullName: MLEM.Misc.RectangleF.Union
+- uid: MLEM.Misc.RectangleF.Intersect*
+  commentId: Overload:MLEM.Misc.RectangleF.Intersect
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_Intersect_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_
+  name: Intersect
+  nameWithType: RectangleF.Intersect
+  fullName: MLEM.Misc.RectangleF.Intersect
+- uid: MLEM.Misc.RectangleF.FromCorners*
+  commentId: Overload:MLEM.Misc.RectangleF.FromCorners
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_FromCorners_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_
+  name: FromCorners
+  nameWithType: RectangleF.FromCorners
+  fullName: MLEM.Misc.RectangleF.FromCorners
+- uid: MLEM.Misc.RectangleF.op_Equality*
+  commentId: Overload:MLEM.Misc.RectangleF.op_Equality
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_op_Equality_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_
+  name: operator ==
+  nameWithType: RectangleF.operator ==
+  fullName: MLEM.Misc.RectangleF.operator ==
+  nameWithType.vb: RectangleF.=
+  fullName.vb: MLEM.Misc.RectangleF.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Misc.RectangleF.op_Equality*
+    name: ==
+    href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_op_Equality_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_
+- uid: MLEM.Misc.RectangleF.op_Inequality*
+  commentId: Overload:MLEM.Misc.RectangleF.op_Inequality
+  href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_op_Inequality_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_
+  name: operator !=
+  nameWithType: RectangleF.operator !=
+  fullName: MLEM.Misc.RectangleF.operator !=
+  nameWithType.vb: RectangleF.<>
+  fullName.vb: MLEM.Misc.RectangleF.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: MLEM.Misc.RectangleF.op_Inequality*
+    name: '!='
+    href: MLEM.Misc.RectangleF.html#MLEM_Misc_RectangleF_op_Inequality_MLEM_Misc_RectangleF_MLEM_Misc_RectangleF_

@@ -1,0 +1,4026 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements.ScrollBar
+  commentId: T:MLEM.Ui.Elements.ScrollBar
+  id: ScrollBar
+  parent: MLEM.Ui.Elements
+  children:
+  - MLEM.Ui.Elements.ScrollBar.#ctor(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean)
+  - MLEM.Ui.Elements.ScrollBar.AutoHideWhenEmpty
+  - MLEM.Ui.Elements.ScrollBar.Background
+  - MLEM.Ui.Elements.ScrollBar.CurrentValue
+  - MLEM.Ui.Elements.ScrollBar.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  - MLEM.Ui.Elements.ScrollBar.Horizontal
+  - MLEM.Ui.Elements.ScrollBar.InitStyle(MLEM.Ui.Style.UiStyle)
+  - MLEM.Ui.Elements.ScrollBar.IsBeingScrolled
+  - MLEM.Ui.Elements.ScrollBar.MaxValue
+  - MLEM.Ui.Elements.ScrollBar.MouseDragScrolling
+  - MLEM.Ui.Elements.ScrollBar.OnAutoHide
+  - MLEM.Ui.Elements.ScrollBar.OnValueChanged
+  - MLEM.Ui.Elements.ScrollBar.ScrollerPosition
+  - MLEM.Ui.Elements.ScrollBar.ScrollerSize
+  - MLEM.Ui.Elements.ScrollBar.ScrollerTexture
+  - MLEM.Ui.Elements.ScrollBar.SmoothScrollFactor
+  - MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+  - MLEM.Ui.Elements.ScrollBar.StepPerScroll
+  - MLEM.Ui.Elements.ScrollBar.Update(Microsoft.Xna.Framework.GameTime)
+  langs:
+  - csharp
+  - vb
+  name: ScrollBar
+  nameWithType: ScrollBar
+  fullName: MLEM.Ui.Elements.ScrollBar
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScrollBar
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 17
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    A scroll bar element to be used inside of a <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref>.
+
+    A scroll bar is an element that features a smaller scroller indicator inside of it that can move up and down.
+
+    A scroll bar can be scrolled using the mouse or by using the scroll wheel while hovering over its <xref href="MLEM.Ui.Elements.Element.Parent" data-throw-if-not-resolved="false"></xref> or any of its siblings.
+  example: []
+  syntax:
+    content: 'public class ScrollBar : Element, IGenericDataHolder'
+    content.vb: Public Class ScrollBar Inherits Element Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  - MLEM.Ui.Elements.Element
+  derivedClasses:
+  - MLEM.Ui.Elements.Slider
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Ui.Elements.Element.Epsilon
+  - MLEM.Ui.Elements.Element.System
+  - MLEM.Ui.Elements.Element.Controls
+  - MLEM.Ui.Elements.Element.Parent
+  - MLEM.Ui.Elements.Element.Root
+  - MLEM.Ui.Elements.Element.Scale
+  - MLEM.Ui.Elements.Element.Anchor
+  - MLEM.Ui.Elements.Element.Size
+  - MLEM.Ui.Elements.Element.ScaledSize
+  - MLEM.Ui.Elements.Element.AutoSizeAddedAbsolute
+  - MLEM.Ui.Elements.Element.ScaledAutoSizeAddedAbsolute
+  - MLEM.Ui.Elements.Element.PositionOffset
+  - MLEM.Ui.Elements.Element.ScaledOffset
+  - MLEM.Ui.Elements.Element.ScaledPadding
+  - MLEM.Ui.Elements.Element.ScaledChildPadding
+  - MLEM.Ui.Elements.Element.ChildPaddedArea
+  - MLEM.Ui.Elements.Element.UnscrolledArea
+  - MLEM.Ui.Elements.Element.Area
+  - MLEM.Ui.Elements.Element.DisplayArea
+  - MLEM.Ui.Elements.Element.ScrollOffset
+  - MLEM.Ui.Elements.Element.ScaledScrollOffset
+  - MLEM.Ui.Elements.Element.IsHidden
+  - MLEM.Ui.Elements.Element.Priority
+  - MLEM.Ui.Elements.Element.Transform
+  - MLEM.Ui.Elements.Element.CanBeSelected
+  - MLEM.Ui.Elements.Element.CanBeMoused
+  - MLEM.Ui.Elements.Element.CanBePressed
+  - MLEM.Ui.Elements.Element.CanAutoAnchorsAttach
+  - MLEM.Ui.Elements.Element.SetWidthBasedOnChildren
+  - MLEM.Ui.Elements.Element.SetHeightBasedOnChildren
+  - MLEM.Ui.Elements.Element.TreatSizeAsMinimum
+  - MLEM.Ui.Elements.Element.TreatSizeAsMaximum
+  - MLEM.Ui.Elements.Element.PreventParentSpill
+  - MLEM.Ui.Elements.Element.DrawAlpha
+  - MLEM.Ui.Elements.Element.IsMouseOver
+  - MLEM.Ui.Elements.Element.IsSelected
+  - MLEM.Ui.Elements.Element.IsSelectedActive
+  - MLEM.Ui.Elements.Element.AreaDirty
+  - MLEM.Ui.Elements.Element.AutoNavGroup
+  - MLEM.Ui.Elements.Element.Style
+  - MLEM.Ui.Elements.Element.SelectionIndicator
+  - MLEM.Ui.Elements.Element.ActionSound
+  - MLEM.Ui.Elements.Element.SecondActionSound
+  - MLEM.Ui.Elements.Element.Padding
+  - MLEM.Ui.Elements.Element.ChildPadding
+  - MLEM.Ui.Elements.Element.MouseEnterAnimation
+  - MLEM.Ui.Elements.Element.MouseExitAnimation
+  - MLEM.Ui.Elements.Element.OnDrawn
+  - MLEM.Ui.Elements.Element.OnUpdated
+  - MLEM.Ui.Elements.Element.OnPressed
+  - MLEM.Ui.Elements.Element.OnSecondaryPressed
+  - MLEM.Ui.Elements.Element.OnSelected
+  - MLEM.Ui.Elements.Element.OnDeselected
+  - MLEM.Ui.Elements.Element.OnMouseEnter
+  - MLEM.Ui.Elements.Element.OnMouseExit
+  - MLEM.Ui.Elements.Element.OnTouchEnter
+  - MLEM.Ui.Elements.Element.OnTouchExit
+  - MLEM.Ui.Elements.Element.OnTextInput
+  - MLEM.Ui.Elements.Element.OnAreaUpdated
+  - MLEM.Ui.Elements.Element.OnStyleInit
+  - MLEM.Ui.Elements.Element.OnMousedElementChanged
+  - MLEM.Ui.Elements.Element.OnTouchedElementChanged
+  - MLEM.Ui.Elements.Element.OnSelectedElementChanged
+  - MLEM.Ui.Elements.Element.GetTabNextElement
+  - MLEM.Ui.Elements.Element.GetGamepadNextElement
+  - MLEM.Ui.Elements.Element.OnChildAdded
+  - MLEM.Ui.Elements.Element.OnChildRemoved
+  - MLEM.Ui.Elements.Element.OnAddedToUi
+  - MLEM.Ui.Elements.Element.OnRemovedFromUi
+  - MLEM.Ui.Elements.Element.Children
+  - MLEM.Ui.Elements.Element.PlayingAnimations
+  - MLEM.Ui.Elements.Element.SortedChildren
+  - MLEM.Ui.Elements.Element.Input
+  - MLEM.Ui.Elements.Element.ParentArea
+  - MLEM.Ui.Elements.Element.AddChild``1({T},System.Int32)
+  - MLEM.Ui.Elements.Element.RemoveChild(MLEM.Ui.Elements.Element)
+  - MLEM.Ui.Elements.Element.RemoveChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  - MLEM.Ui.Elements.Element.SetSortedChildrenDirty
+  - MLEM.Ui.Elements.Element.UpdateSortedChildrenIfDirty
+  - MLEM.Ui.Elements.Element.ForceUpdateSortedChildren
+  - MLEM.Ui.Elements.Element.SetAreaDirty
+  - MLEM.Ui.Elements.Element.UpdateAreaIfDirty
+  - MLEM.Ui.Elements.Element.ForceUpdateArea
+  - MLEM.Ui.Elements.Element.SetAreaAndUpdateChildren(MLEM.Maths.RectangleF)
+  - MLEM.Ui.Elements.Element.CalcActualSize(MLEM.Maths.RectangleF)
+  - MLEM.Ui.Elements.Element.GetAreaForAutoAnchors
+  - MLEM.Ui.Elements.Element.GetLowestChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  - MLEM.Ui.Elements.Element.GetRightmostChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  - MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  - MLEM.Ui.Elements.Element.GetOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  - MLEM.Ui.Elements.Element.GetSiblings(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  - MLEM.Ui.Elements.Element.GetChildren``1(System.Func{{T},System.Boolean},System.Boolean,System.Boolean)
+  - MLEM.Ui.Elements.Element.GetChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean,System.Boolean)
+  - MLEM.Ui.Elements.Element.GetParentTree
+  - MLEM.Ui.Elements.Element.GetTotalCoveredArea(System.Boolean)
+  - MLEM.Ui.Elements.Element.GetRelevantChildren
+  - MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  - MLEM.Ui.Elements.Element.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Ui.Elements.Element.PlayAnimation(MLEM.Ui.UiAnimation)
+  - MLEM.Ui.Elements.Element.StopAnimation(MLEM.Ui.UiAnimation)
+  - MLEM.Ui.Elements.Element.ToString
+  - MLEM.Ui.Elements.Element.AndChildren(System.Action{MLEM.Ui.Elements.Element})
+  - MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison{MLEM.Ui.Elements.Element})
+  - MLEM.Ui.Elements.Element.ReverseChildren(System.Int32,System.Nullable{System.Int32})
+  - MLEM.Ui.Elements.Element.ScaleTransform(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  - MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element,System.Boolean)
+  - MLEM.Ui.Elements.Element.TransformInverse(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Ui.Elements.Element.TransformInverseAll(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Ui.Elements.Element.AddedToUi(MLEM.Ui.UiSystem,MLEM.Ui.RootElement)
+  - MLEM.Ui.Elements.Element.RemovedFromUi
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - MLEM.Ui.Elements.Element.MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Paragraph.TextCallback)
+  - MLEM.Ui.Elements.Element.MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Tooltip)
+  - MLEM.Ui.Elements.Element.MLEM.Ui.Elements.ElementExtensions.AddTooltip(System.String)
+- uid: MLEM.Ui.Elements.ScrollBar.Horizontal
+  commentId: F:MLEM.Ui.Elements.ScrollBar.Horizontal
+  id: Horizontal
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: Horizontal
+  nameWithType: ScrollBar.Horizontal
+  fullName: MLEM.Ui.Elements.ScrollBar.Horizontal
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Horizontal
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 22
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: Whether this scroll bar is horizontal
+  example: []
+  syntax:
+    content: public readonly bool Horizontal
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Horizontal As Boolean
+- uid: MLEM.Ui.Elements.ScrollBar.Background
+  commentId: F:MLEM.Ui.Elements.ScrollBar.Background
+  id: Background
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: Background
+  nameWithType: ScrollBar.Background
+  fullName: MLEM.Ui.Elements.ScrollBar.Background
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Background
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 27
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: The background texture for this scroll bar
+  example: []
+  syntax:
+    content: public StyleProp<NinePatch> Background
+    return:
+      type: MLEM.Ui.Style.StyleProp{MLEM.Textures.NinePatch}
+    content.vb: Public Background As StyleProp(Of NinePatch)
+- uid: MLEM.Ui.Elements.ScrollBar.ScrollerTexture
+  commentId: F:MLEM.Ui.Elements.ScrollBar.ScrollerTexture
+  id: ScrollerTexture
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: ScrollerTexture
+  nameWithType: ScrollBar.ScrollerTexture
+  fullName: MLEM.Ui.Elements.ScrollBar.ScrollerTexture
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScrollerTexture
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 31
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: The texture of this scroll bar's scroller indicator
+  example: []
+  syntax:
+    content: public StyleProp<NinePatch> ScrollerTexture
+    return:
+      type: MLEM.Ui.Style.StyleProp{MLEM.Textures.NinePatch}
+    content.vb: Public ScrollerTexture As StyleProp(Of NinePatch)
+- uid: MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+  commentId: F:MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+  id: SmoothScrolling
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: SmoothScrolling
+  nameWithType: ScrollBar.SmoothScrolling
+  fullName: MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SmoothScrolling
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 36
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    Whether smooth scrolling should be enabled for this scroll bar.
+
+    Smooth scrolling causes the <xref href="MLEM.Ui.Elements.ScrollBar.CurrentValue" data-throw-if-not-resolved="false"></xref> to change gradually rather than instantly when scrolling.
+  example: []
+  syntax:
+    content: public StyleProp<bool> SmoothScrolling
+    return:
+      type: MLEM.Ui.Style.StyleProp{System.Boolean}
+    content.vb: Public SmoothScrolling As StyleProp(Of Boolean)
+- uid: MLEM.Ui.Elements.ScrollBar.SmoothScrollFactor
+  commentId: F:MLEM.Ui.Elements.ScrollBar.SmoothScrollFactor
+  id: SmoothScrollFactor
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: SmoothScrollFactor
+  nameWithType: ScrollBar.SmoothScrollFactor
+  fullName: MLEM.Ui.Elements.ScrollBar.SmoothScrollFactor
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SmoothScrollFactor
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 40
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: The factor with which <xref href="MLEM.Ui.Elements.ScrollBar.SmoothScrolling" data-throw-if-not-resolved="false"></xref> happens.
+  example: []
+  syntax:
+    content: public StyleProp<float> SmoothScrollFactor
+    return:
+      type: MLEM.Ui.Style.StyleProp{System.Single}
+    content.vb: Public SmoothScrollFactor As StyleProp(Of Single)
+- uid: MLEM.Ui.Elements.ScrollBar.ScrollerSize
+  commentId: F:MLEM.Ui.Elements.ScrollBar.ScrollerSize
+  id: ScrollerSize
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: ScrollerSize
+  nameWithType: ScrollBar.ScrollerSize
+  fullName: MLEM.Ui.Elements.ScrollBar.ScrollerSize
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScrollerSize
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 45
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: The scroller's width and height
+  example: []
+  syntax:
+    content: public Vector2 ScrollerSize
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public ScrollerSize As Vector2
+- uid: MLEM.Ui.Elements.ScrollBar.MaxValue
+  commentId: P:MLEM.Ui.Elements.ScrollBar.MaxValue
+  id: MaxValue
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: MaxValue
+  nameWithType: ScrollBar.MaxValue
+  fullName: MLEM.Ui.Elements.ScrollBar.MaxValue
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: MaxValue
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 50
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    The max value that this scroll bar should be able to scroll to.
+
+    Note that the maximum value does not change the height of the scroll bar.
+  example: []
+  syntax:
+    content: public float MaxValue { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property MaxValue As Single
+  overload: MLEM.Ui.Elements.ScrollBar.MaxValue*
+- uid: MLEM.Ui.Elements.ScrollBar.CurrentValue
+  commentId: P:MLEM.Ui.Elements.ScrollBar.CurrentValue
+  id: CurrentValue
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: CurrentValue
+  nameWithType: ScrollBar.CurrentValue
+  fullName: MLEM.Ui.Elements.ScrollBar.CurrentValue
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CurrentValue
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 68
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    The current value of the scroll bar.
+
+    This is between 0 and <xref href="MLEM.Ui.Elements.ScrollBar.MaxValue" data-throw-if-not-resolved="false"></xref> at all times.
+  example: []
+  syntax:
+    content: public float CurrentValue { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property CurrentValue As Single
+  overload: MLEM.Ui.Elements.ScrollBar.CurrentValue*
+- uid: MLEM.Ui.Elements.ScrollBar.StepPerScroll
+  commentId: F:MLEM.Ui.Elements.ScrollBar.StepPerScroll
+  id: StepPerScroll
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: StepPerScroll
+  nameWithType: ScrollBar.StepPerScroll
+  fullName: MLEM.Ui.Elements.ScrollBar.StepPerScroll
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: StepPerScroll
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 83
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: The amount added or removed from <xref href="MLEM.Ui.Elements.ScrollBar.CurrentValue" data-throw-if-not-resolved="false"></xref> per single movement of the scroll wheel
+  example: []
+  syntax:
+    content: public float StepPerScroll
+    return:
+      type: System.Single
+    content.vb: Public StepPerScroll As Single
+- uid: MLEM.Ui.Elements.ScrollBar.OnValueChanged
+  commentId: F:MLEM.Ui.Elements.ScrollBar.OnValueChanged
+  id: OnValueChanged
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: OnValueChanged
+  nameWithType: ScrollBar.OnValueChanged
+  fullName: MLEM.Ui.Elements.ScrollBar.OnValueChanged
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnValueChanged
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 87
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: An event that is called when <xref href="MLEM.Ui.Elements.ScrollBar.CurrentValue" data-throw-if-not-resolved="false"></xref> changes
+  example: []
+  syntax:
+    content: public ScrollBar.ValueChanged OnValueChanged
+    return:
+      type: MLEM.Ui.Elements.ScrollBar.ValueChanged
+    content.vb: Public OnValueChanged As ScrollBar.ValueChanged
+- uid: MLEM.Ui.Elements.ScrollBar.OnAutoHide
+  commentId: F:MLEM.Ui.Elements.ScrollBar.OnAutoHide
+  id: OnAutoHide
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: OnAutoHide
+  nameWithType: ScrollBar.OnAutoHide
+  fullName: MLEM.Ui.Elements.ScrollBar.OnAutoHide
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnAutoHide
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 91
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: An event that is called when this scroll bar is automatically hidden from a <xref href="MLEM.Ui.Elements.Panel" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public Element.GenericCallback OnAutoHide
+    return:
+      type: MLEM.Ui.Elements.Element.GenericCallback
+    content.vb: Public OnAutoHide As Element.GenericCallback
+- uid: MLEM.Ui.Elements.ScrollBar.IsBeingScrolled
+  commentId: P:MLEM.Ui.Elements.ScrollBar.IsBeingScrolled
+  id: IsBeingScrolled
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: IsBeingScrolled
+  nameWithType: ScrollBar.IsBeingScrolled
+  fullName: MLEM.Ui.Elements.ScrollBar.IsBeingScrolled
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsBeingScrolled
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 95
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: This property is true while the user scrolls on the scroll bar using the mouse or touch input
+  example: []
+  syntax:
+    content: public bool IsBeingScrolled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsBeingScrolled As Boolean
+  overload: MLEM.Ui.Elements.ScrollBar.IsBeingScrolled*
+- uid: MLEM.Ui.Elements.ScrollBar.AutoHideWhenEmpty
+  commentId: F:MLEM.Ui.Elements.ScrollBar.AutoHideWhenEmpty
+  id: AutoHideWhenEmpty
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: AutoHideWhenEmpty
+  nameWithType: ScrollBar.AutoHideWhenEmpty
+  fullName: MLEM.Ui.Elements.ScrollBar.AutoHideWhenEmpty
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoHideWhenEmpty
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 99
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: This field determines if this scroll bar should automatically be hidden from a <xref href="MLEM.Ui.Elements.Panel" data-throw-if-not-resolved="false"></xref> if there aren't enough children to allow for scrolling.
+  example: []
+  syntax:
+    content: public bool AutoHideWhenEmpty
+    return:
+      type: System.Boolean
+    content.vb: Public AutoHideWhenEmpty As Boolean
+- uid: MLEM.Ui.Elements.ScrollBar.ScrollerPosition
+  commentId: P:MLEM.Ui.Elements.ScrollBar.ScrollerPosition
+  id: ScrollerPosition
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: ScrollerPosition
+  nameWithType: ScrollBar.ScrollerPosition
+  fullName: MLEM.Ui.Elements.ScrollBar.ScrollerPosition
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScrollerPosition
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 104
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    The position that this scroll bar's scroller is currently at.
+
+    This value takes the <xref href="MLEM.Ui.Elements.Element.DisplayArea" data-throw-if-not-resolved="false"></xref>, as well as the <xref href="MLEM.Ui.Elements.Element.Scale" data-throw-if-not-resolved="false"></xref> into account.
+  example: []
+  syntax:
+    content: public Vector2 ScrollerPosition { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public ReadOnly Property ScrollerPosition As Vector2
+  overload: MLEM.Ui.Elements.ScrollBar.ScrollerPosition*
+- uid: MLEM.Ui.Elements.ScrollBar.MouseDragScrolling
+  commentId: F:MLEM.Ui.Elements.ScrollBar.MouseDragScrolling
+  id: MouseDragScrolling
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: MouseDragScrolling
+  nameWithType: ScrollBar.MouseDragScrolling
+  fullName: MLEM.Ui.Elements.ScrollBar.MouseDragScrolling
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: MouseDragScrolling
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 110
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: Whether this scroll bar should allow dragging the mouse over its attached <xref href="MLEM.Ui.Elements.Panel" data-throw-if-not-resolved="false"></xref>'s content while holding the left mouse button to scroll, similarly to how scrolling using touch input works.
+  example: []
+  syntax:
+    content: public bool MouseDragScrolling
+    return:
+      type: System.Boolean
+    content.vb: Public MouseDragScrolling As Boolean
+- uid: MLEM.Ui.Elements.ScrollBar.#ctor(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean)
+  commentId: M:MLEM.Ui.Elements.ScrollBar.#ctor(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean)
+  id: '#ctor(MLEM.Ui.Anchor,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean)'
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: ScrollBar(Anchor, Vector2, int, float, bool)
+  nameWithType: ScrollBar.ScrollBar(Anchor, Vector2, int, float, bool)
+  fullName: MLEM.Ui.Elements.ScrollBar.ScrollBar(MLEM.Ui.Anchor, Microsoft.Xna.Framework.Vector2, int, float, bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 133
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: Creates a new scroll bar with the given settings
+  example: []
+  syntax:
+    content: public ScrollBar(Anchor anchor, Vector2 size, int scrollerSize, float maxValue, bool horizontal = false)
+    parameters:
+    - id: anchor
+      type: MLEM.Ui.Anchor
+      description: The scroll bar's anchor
+    - id: size
+      type: Microsoft.Xna.Framework.Vector2
+      description: The scroll bar's size
+    - id: scrollerSize
+      type: System.Int32
+      description: ''
+    - id: maxValue
+      type: System.Single
+      description: ''
+    - id: horizontal
+      type: System.Boolean
+      description: ''
+    content.vb: Public Sub New(anchor As Anchor, size As Vector2, scrollerSize As Integer, maxValue As Single, horizontal As Boolean = False)
+  overload: MLEM.Ui.Elements.ScrollBar.#ctor*
+  nameWithType.vb: ScrollBar.New(Anchor, Vector2, Integer, Single, Boolean)
+  fullName.vb: MLEM.Ui.Elements.ScrollBar.New(MLEM.Ui.Anchor, Microsoft.Xna.Framework.Vector2, Integer, Single, Boolean)
+  name.vb: New(Anchor, Vector2, Integer, Single, Boolean)
+- uid: MLEM.Ui.Elements.ScrollBar.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Ui.Elements.ScrollBar.Update(Microsoft.Xna.Framework.GameTime)
+  id: Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: Update(GameTime)
+  nameWithType: ScrollBar.Update(GameTime)
+  fullName: MLEM.Ui.Elements.ScrollBar.Update(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 141
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: Updates this element and all of its <xref href="MLEM.Ui.Elements.Element.SortedChildren" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public override void Update(GameTime time)
+    parameters:
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+      description: The game's time
+    content.vb: Public Overrides Sub Update(time As GameTime)
+  overridden: MLEM.Ui.Elements.Element.Update(Microsoft.Xna.Framework.GameTime)
+  overload: MLEM.Ui.Elements.ScrollBar.Update*
+- uid: MLEM.Ui.Elements.ScrollBar.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  commentId: M:MLEM.Ui.Elements.ScrollBar.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  id: Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: Draw(GameTime, SpriteBatch, float, SpriteBatchContext)
+  nameWithType: ScrollBar.Draw(GameTime, SpriteBatch, float, SpriteBatchContext)
+  fullName: MLEM.Ui.Elements.ScrollBar.Draw(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, float, MLEM.Graphics.SpriteBatchContext)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 232
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: >-
+    Draws this element and all of its children. Override this method to draw the content of custom elements.
+
+    Note that, when this is called, <code>SpriteBatch.Begin</code> has already been called with custom <xref href="MLEM.Ui.Elements.Element.Transform" data-throw-if-not-resolved="false"></xref> etc. applied.
+  example: []
+  syntax:
+    content: public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context)
+    parameters:
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+      description: The game's time
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The sprite batch to use for drawing
+    - id: alpha
+      type: System.Single
+      description: The alpha to draw this element and its children with
+    - id: context
+      type: MLEM.Graphics.SpriteBatchContext
+      description: The sprite batch context to use for drawing
+    content.vb: Public Overrides Sub Draw(time As GameTime, batch As SpriteBatch, alpha As Single, context As SpriteBatchContext)
+  overridden: MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  overload: MLEM.Ui.Elements.ScrollBar.Draw*
+  nameWithType.vb: ScrollBar.Draw(GameTime, SpriteBatch, Single, SpriteBatchContext)
+  fullName.vb: MLEM.Ui.Elements.ScrollBar.Draw(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, Single, MLEM.Graphics.SpriteBatchContext)
+  name.vb: Draw(GameTime, SpriteBatch, Single, SpriteBatchContext)
+- uid: MLEM.Ui.Elements.ScrollBar.InitStyle(MLEM.Ui.Style.UiStyle)
+  commentId: M:MLEM.Ui.Elements.ScrollBar.InitStyle(MLEM.Ui.Style.UiStyle)
+  id: InitStyle(MLEM.Ui.Style.UiStyle)
+  parent: MLEM.Ui.Elements.ScrollBar
+  langs:
+  - csharp
+  - vb
+  name: InitStyle(UiStyle)
+  nameWithType: ScrollBar.InitStyle(UiStyle)
+  fullName: MLEM.Ui.Elements.ScrollBar.InitStyle(MLEM.Ui.Style.UiStyle)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Elements/ScrollBar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InitStyle
+    path: ../MLEM.Ui/Elements/ScrollBar.cs
+    startLine: 242
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Elements
+  summary: Initializes this element's <xref href="MLEM.Ui.Style.StyleProp%601" data-throw-if-not-resolved="false"></xref> instances using the ui system's <xref href="MLEM.Ui.Style.UiStyle" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: protected override void InitStyle(UiStyle style)
+    parameters:
+    - id: style
+      type: MLEM.Ui.Style.UiStyle
+      description: The new style
+    content.vb: Protected Overrides Sub InitStyle(style As UiStyle)
+  overridden: MLEM.Ui.Elements.Element.InitStyle(MLEM.Ui.Style.UiStyle)
+  overload: MLEM.Ui.Elements.ScrollBar.InitStyle*
+references:
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiSystem.html
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Ui.Elements.Element.Parent
+  commentId: P:MLEM.Ui.Elements.Element.Parent
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Parent
+  name: Parent
+  nameWithType: Element.Parent
+  fullName: MLEM.Ui.Elements.Element.Parent
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Ui.Elements.Element.Epsilon
+  commentId: F:MLEM.Ui.Elements.Element.Epsilon
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Epsilon
+  name: Epsilon
+  nameWithType: Element.Epsilon
+  fullName: MLEM.Ui.Elements.Element.Epsilon
+- uid: MLEM.Ui.Elements.Element.System
+  commentId: P:MLEM.Ui.Elements.Element.System
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_System
+  name: System
+  nameWithType: Element.System
+  fullName: MLEM.Ui.Elements.Element.System
+- uid: MLEM.Ui.Elements.Element.Controls
+  commentId: F:MLEM.Ui.Elements.Element.Controls
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Controls
+  name: Controls
+  nameWithType: Element.Controls
+  fullName: MLEM.Ui.Elements.Element.Controls
+- uid: MLEM.Ui.Elements.Element.Root
+  commentId: P:MLEM.Ui.Elements.Element.Root
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Root
+  name: Root
+  nameWithType: Element.Root
+  fullName: MLEM.Ui.Elements.Element.Root
+- uid: MLEM.Ui.Elements.Element.Scale
+  commentId: P:MLEM.Ui.Elements.Element.Scale
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Scale
+  name: Scale
+  nameWithType: Element.Scale
+  fullName: MLEM.Ui.Elements.Element.Scale
+- uid: MLEM.Ui.Elements.Element.Anchor
+  commentId: P:MLEM.Ui.Elements.Element.Anchor
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Anchor
+  name: Anchor
+  nameWithType: Element.Anchor
+  fullName: MLEM.Ui.Elements.Element.Anchor
+- uid: MLEM.Ui.Elements.Element.Size
+  commentId: P:MLEM.Ui.Elements.Element.Size
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Size
+  name: Size
+  nameWithType: Element.Size
+  fullName: MLEM.Ui.Elements.Element.Size
+- uid: MLEM.Ui.Elements.Element.ScaledSize
+  commentId: P:MLEM.Ui.Elements.Element.ScaledSize
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaledSize
+  name: ScaledSize
+  nameWithType: Element.ScaledSize
+  fullName: MLEM.Ui.Elements.Element.ScaledSize
+- uid: MLEM.Ui.Elements.Element.AutoSizeAddedAbsolute
+  commentId: P:MLEM.Ui.Elements.Element.AutoSizeAddedAbsolute
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AutoSizeAddedAbsolute
+  name: AutoSizeAddedAbsolute
+  nameWithType: Element.AutoSizeAddedAbsolute
+  fullName: MLEM.Ui.Elements.Element.AutoSizeAddedAbsolute
+- uid: MLEM.Ui.Elements.Element.ScaledAutoSizeAddedAbsolute
+  commentId: P:MLEM.Ui.Elements.Element.ScaledAutoSizeAddedAbsolute
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaledAutoSizeAddedAbsolute
+  name: ScaledAutoSizeAddedAbsolute
+  nameWithType: Element.ScaledAutoSizeAddedAbsolute
+  fullName: MLEM.Ui.Elements.Element.ScaledAutoSizeAddedAbsolute
+- uid: MLEM.Ui.Elements.Element.PositionOffset
+  commentId: P:MLEM.Ui.Elements.Element.PositionOffset
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_PositionOffset
+  name: PositionOffset
+  nameWithType: Element.PositionOffset
+  fullName: MLEM.Ui.Elements.Element.PositionOffset
+- uid: MLEM.Ui.Elements.Element.ScaledOffset
+  commentId: P:MLEM.Ui.Elements.Element.ScaledOffset
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaledOffset
+  name: ScaledOffset
+  nameWithType: Element.ScaledOffset
+  fullName: MLEM.Ui.Elements.Element.ScaledOffset
+- uid: MLEM.Ui.Elements.Element.ScaledPadding
+  commentId: P:MLEM.Ui.Elements.Element.ScaledPadding
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaledPadding
+  name: ScaledPadding
+  nameWithType: Element.ScaledPadding
+  fullName: MLEM.Ui.Elements.Element.ScaledPadding
+- uid: MLEM.Ui.Elements.Element.ScaledChildPadding
+  commentId: P:MLEM.Ui.Elements.Element.ScaledChildPadding
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaledChildPadding
+  name: ScaledChildPadding
+  nameWithType: Element.ScaledChildPadding
+  fullName: MLEM.Ui.Elements.Element.ScaledChildPadding
+- uid: MLEM.Ui.Elements.Element.ChildPaddedArea
+  commentId: P:MLEM.Ui.Elements.Element.ChildPaddedArea
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ChildPaddedArea
+  name: ChildPaddedArea
+  nameWithType: Element.ChildPaddedArea
+  fullName: MLEM.Ui.Elements.Element.ChildPaddedArea
+- uid: MLEM.Ui.Elements.Element.UnscrolledArea
+  commentId: P:MLEM.Ui.Elements.Element.UnscrolledArea
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UnscrolledArea
+  name: UnscrolledArea
+  nameWithType: Element.UnscrolledArea
+  fullName: MLEM.Ui.Elements.Element.UnscrolledArea
+- uid: MLEM.Ui.Elements.Element.Area
+  commentId: P:MLEM.Ui.Elements.Element.Area
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Area
+  name: Area
+  nameWithType: Element.Area
+  fullName: MLEM.Ui.Elements.Element.Area
+- uid: MLEM.Ui.Elements.Element.DisplayArea
+  commentId: P:MLEM.Ui.Elements.Element.DisplayArea
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_DisplayArea
+  name: DisplayArea
+  nameWithType: Element.DisplayArea
+  fullName: MLEM.Ui.Elements.Element.DisplayArea
+- uid: MLEM.Ui.Elements.Element.ScrollOffset
+  commentId: F:MLEM.Ui.Elements.Element.ScrollOffset
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScrollOffset
+  name: ScrollOffset
+  nameWithType: Element.ScrollOffset
+  fullName: MLEM.Ui.Elements.Element.ScrollOffset
+- uid: MLEM.Ui.Elements.Element.ScaledScrollOffset
+  commentId: P:MLEM.Ui.Elements.Element.ScaledScrollOffset
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaledScrollOffset
+  name: ScaledScrollOffset
+  nameWithType: Element.ScaledScrollOffset
+  fullName: MLEM.Ui.Elements.Element.ScaledScrollOffset
+- uid: MLEM.Ui.Elements.Element.IsHidden
+  commentId: P:MLEM.Ui.Elements.Element.IsHidden
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_IsHidden
+  name: IsHidden
+  nameWithType: Element.IsHidden
+  fullName: MLEM.Ui.Elements.Element.IsHidden
+- uid: MLEM.Ui.Elements.Element.Priority
+  commentId: P:MLEM.Ui.Elements.Element.Priority
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Priority
+  name: Priority
+  nameWithType: Element.Priority
+  fullName: MLEM.Ui.Elements.Element.Priority
+- uid: MLEM.Ui.Elements.Element.Transform
+  commentId: F:MLEM.Ui.Elements.Element.Transform
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Transform
+  name: Transform
+  nameWithType: Element.Transform
+  fullName: MLEM.Ui.Elements.Element.Transform
+- uid: MLEM.Ui.Elements.Element.CanBeSelected
+  commentId: P:MLEM.Ui.Elements.Element.CanBeSelected
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CanBeSelected
+  name: CanBeSelected
+  nameWithType: Element.CanBeSelected
+  fullName: MLEM.Ui.Elements.Element.CanBeSelected
+- uid: MLEM.Ui.Elements.Element.CanBeMoused
+  commentId: P:MLEM.Ui.Elements.Element.CanBeMoused
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CanBeMoused
+  name: CanBeMoused
+  nameWithType: Element.CanBeMoused
+  fullName: MLEM.Ui.Elements.Element.CanBeMoused
+- uid: MLEM.Ui.Elements.Element.CanBePressed
+  commentId: P:MLEM.Ui.Elements.Element.CanBePressed
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CanBePressed
+  name: CanBePressed
+  nameWithType: Element.CanBePressed
+  fullName: MLEM.Ui.Elements.Element.CanBePressed
+- uid: MLEM.Ui.Elements.Element.CanAutoAnchorsAttach
+  commentId: P:MLEM.Ui.Elements.Element.CanAutoAnchorsAttach
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CanAutoAnchorsAttach
+  name: CanAutoAnchorsAttach
+  nameWithType: Element.CanAutoAnchorsAttach
+  fullName: MLEM.Ui.Elements.Element.CanAutoAnchorsAttach
+- uid: MLEM.Ui.Elements.Element.SetWidthBasedOnChildren
+  commentId: P:MLEM.Ui.Elements.Element.SetWidthBasedOnChildren
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetWidthBasedOnChildren
+  name: SetWidthBasedOnChildren
+  nameWithType: Element.SetWidthBasedOnChildren
+  fullName: MLEM.Ui.Elements.Element.SetWidthBasedOnChildren
+- uid: MLEM.Ui.Elements.Element.SetHeightBasedOnChildren
+  commentId: P:MLEM.Ui.Elements.Element.SetHeightBasedOnChildren
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetHeightBasedOnChildren
+  name: SetHeightBasedOnChildren
+  nameWithType: Element.SetHeightBasedOnChildren
+  fullName: MLEM.Ui.Elements.Element.SetHeightBasedOnChildren
+- uid: MLEM.Ui.Elements.Element.TreatSizeAsMinimum
+  commentId: P:MLEM.Ui.Elements.Element.TreatSizeAsMinimum
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TreatSizeAsMinimum
+  name: TreatSizeAsMinimum
+  nameWithType: Element.TreatSizeAsMinimum
+  fullName: MLEM.Ui.Elements.Element.TreatSizeAsMinimum
+- uid: MLEM.Ui.Elements.Element.TreatSizeAsMaximum
+  commentId: P:MLEM.Ui.Elements.Element.TreatSizeAsMaximum
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TreatSizeAsMaximum
+  name: TreatSizeAsMaximum
+  nameWithType: Element.TreatSizeAsMaximum
+  fullName: MLEM.Ui.Elements.Element.TreatSizeAsMaximum
+- uid: MLEM.Ui.Elements.Element.PreventParentSpill
+  commentId: P:MLEM.Ui.Elements.Element.PreventParentSpill
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_PreventParentSpill
+  name: PreventParentSpill
+  nameWithType: Element.PreventParentSpill
+  fullName: MLEM.Ui.Elements.Element.PreventParentSpill
+- uid: MLEM.Ui.Elements.Element.DrawAlpha
+  commentId: P:MLEM.Ui.Elements.Element.DrawAlpha
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_DrawAlpha
+  name: DrawAlpha
+  nameWithType: Element.DrawAlpha
+  fullName: MLEM.Ui.Elements.Element.DrawAlpha
+- uid: MLEM.Ui.Elements.Element.IsMouseOver
+  commentId: P:MLEM.Ui.Elements.Element.IsMouseOver
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_IsMouseOver
+  name: IsMouseOver
+  nameWithType: Element.IsMouseOver
+  fullName: MLEM.Ui.Elements.Element.IsMouseOver
+- uid: MLEM.Ui.Elements.Element.IsSelected
+  commentId: P:MLEM.Ui.Elements.Element.IsSelected
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_IsSelected
+  name: IsSelected
+  nameWithType: Element.IsSelected
+  fullName: MLEM.Ui.Elements.Element.IsSelected
+- uid: MLEM.Ui.Elements.Element.IsSelectedActive
+  commentId: P:MLEM.Ui.Elements.Element.IsSelectedActive
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_IsSelectedActive
+  name: IsSelectedActive
+  nameWithType: Element.IsSelectedActive
+  fullName: MLEM.Ui.Elements.Element.IsSelectedActive
+- uid: MLEM.Ui.Elements.Element.AreaDirty
+  commentId: P:MLEM.Ui.Elements.Element.AreaDirty
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AreaDirty
+  name: AreaDirty
+  nameWithType: Element.AreaDirty
+  fullName: MLEM.Ui.Elements.Element.AreaDirty
+- uid: MLEM.Ui.Elements.Element.AutoNavGroup
+  commentId: P:MLEM.Ui.Elements.Element.AutoNavGroup
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AutoNavGroup
+  name: AutoNavGroup
+  nameWithType: Element.AutoNavGroup
+  fullName: MLEM.Ui.Elements.Element.AutoNavGroup
+- uid: MLEM.Ui.Elements.Element.Style
+  commentId: P:MLEM.Ui.Elements.Element.Style
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Style
+  name: Style
+  nameWithType: Element.Style
+  fullName: MLEM.Ui.Elements.Element.Style
+- uid: MLEM.Ui.Elements.Element.SelectionIndicator
+  commentId: F:MLEM.Ui.Elements.Element.SelectionIndicator
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SelectionIndicator
+  name: SelectionIndicator
+  nameWithType: Element.SelectionIndicator
+  fullName: MLEM.Ui.Elements.Element.SelectionIndicator
+- uid: MLEM.Ui.Elements.Element.ActionSound
+  commentId: F:MLEM.Ui.Elements.Element.ActionSound
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ActionSound
+  name: ActionSound
+  nameWithType: Element.ActionSound
+  fullName: MLEM.Ui.Elements.Element.ActionSound
+- uid: MLEM.Ui.Elements.Element.SecondActionSound
+  commentId: F:MLEM.Ui.Elements.Element.SecondActionSound
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SecondActionSound
+  name: SecondActionSound
+  nameWithType: Element.SecondActionSound
+  fullName: MLEM.Ui.Elements.Element.SecondActionSound
+- uid: MLEM.Ui.Elements.Element.Padding
+  commentId: F:MLEM.Ui.Elements.Element.Padding
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Padding
+  name: Padding
+  nameWithType: Element.Padding
+  fullName: MLEM.Ui.Elements.Element.Padding
+- uid: MLEM.Ui.Elements.Element.ChildPadding
+  commentId: P:MLEM.Ui.Elements.Element.ChildPadding
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ChildPadding
+  name: ChildPadding
+  nameWithType: Element.ChildPadding
+  fullName: MLEM.Ui.Elements.Element.ChildPadding
+- uid: MLEM.Ui.Elements.Element.MouseEnterAnimation
+  commentId: F:MLEM.Ui.Elements.Element.MouseEnterAnimation
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_MouseEnterAnimation
+  name: MouseEnterAnimation
+  nameWithType: Element.MouseEnterAnimation
+  fullName: MLEM.Ui.Elements.Element.MouseEnterAnimation
+- uid: MLEM.Ui.Elements.Element.MouseExitAnimation
+  commentId: F:MLEM.Ui.Elements.Element.MouseExitAnimation
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_MouseExitAnimation
+  name: MouseExitAnimation
+  nameWithType: Element.MouseExitAnimation
+  fullName: MLEM.Ui.Elements.Element.MouseExitAnimation
+- uid: MLEM.Ui.Elements.Element.OnDrawn
+  commentId: F:MLEM.Ui.Elements.Element.OnDrawn
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnDrawn
+  name: OnDrawn
+  nameWithType: Element.OnDrawn
+  fullName: MLEM.Ui.Elements.Element.OnDrawn
+- uid: MLEM.Ui.Elements.Element.OnUpdated
+  commentId: F:MLEM.Ui.Elements.Element.OnUpdated
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnUpdated
+  name: OnUpdated
+  nameWithType: Element.OnUpdated
+  fullName: MLEM.Ui.Elements.Element.OnUpdated
+- uid: MLEM.Ui.Elements.Element.OnPressed
+  commentId: F:MLEM.Ui.Elements.Element.OnPressed
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnPressed
+  name: OnPressed
+  nameWithType: Element.OnPressed
+  fullName: MLEM.Ui.Elements.Element.OnPressed
+- uid: MLEM.Ui.Elements.Element.OnSecondaryPressed
+  commentId: F:MLEM.Ui.Elements.Element.OnSecondaryPressed
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnSecondaryPressed
+  name: OnSecondaryPressed
+  nameWithType: Element.OnSecondaryPressed
+  fullName: MLEM.Ui.Elements.Element.OnSecondaryPressed
+- uid: MLEM.Ui.Elements.Element.OnSelected
+  commentId: F:MLEM.Ui.Elements.Element.OnSelected
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnSelected
+  name: OnSelected
+  nameWithType: Element.OnSelected
+  fullName: MLEM.Ui.Elements.Element.OnSelected
+- uid: MLEM.Ui.Elements.Element.OnDeselected
+  commentId: F:MLEM.Ui.Elements.Element.OnDeselected
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnDeselected
+  name: OnDeselected
+  nameWithType: Element.OnDeselected
+  fullName: MLEM.Ui.Elements.Element.OnDeselected
+- uid: MLEM.Ui.Elements.Element.OnMouseEnter
+  commentId: F:MLEM.Ui.Elements.Element.OnMouseEnter
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnMouseEnter
+  name: OnMouseEnter
+  nameWithType: Element.OnMouseEnter
+  fullName: MLEM.Ui.Elements.Element.OnMouseEnter
+- uid: MLEM.Ui.Elements.Element.OnMouseExit
+  commentId: F:MLEM.Ui.Elements.Element.OnMouseExit
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnMouseExit
+  name: OnMouseExit
+  nameWithType: Element.OnMouseExit
+  fullName: MLEM.Ui.Elements.Element.OnMouseExit
+- uid: MLEM.Ui.Elements.Element.OnTouchEnter
+  commentId: F:MLEM.Ui.Elements.Element.OnTouchEnter
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnTouchEnter
+  name: OnTouchEnter
+  nameWithType: Element.OnTouchEnter
+  fullName: MLEM.Ui.Elements.Element.OnTouchEnter
+- uid: MLEM.Ui.Elements.Element.OnTouchExit
+  commentId: F:MLEM.Ui.Elements.Element.OnTouchExit
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnTouchExit
+  name: OnTouchExit
+  nameWithType: Element.OnTouchExit
+  fullName: MLEM.Ui.Elements.Element.OnTouchExit
+- uid: MLEM.Ui.Elements.Element.OnTextInput
+  commentId: F:MLEM.Ui.Elements.Element.OnTextInput
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnTextInput
+  name: OnTextInput
+  nameWithType: Element.OnTextInput
+  fullName: MLEM.Ui.Elements.Element.OnTextInput
+- uid: MLEM.Ui.Elements.Element.OnAreaUpdated
+  commentId: F:MLEM.Ui.Elements.Element.OnAreaUpdated
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnAreaUpdated
+  name: OnAreaUpdated
+  nameWithType: Element.OnAreaUpdated
+  fullName: MLEM.Ui.Elements.Element.OnAreaUpdated
+- uid: MLEM.Ui.Elements.Element.OnStyleInit
+  commentId: F:MLEM.Ui.Elements.Element.OnStyleInit
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnStyleInit
+  name: OnStyleInit
+  nameWithType: Element.OnStyleInit
+  fullName: MLEM.Ui.Elements.Element.OnStyleInit
+- uid: MLEM.Ui.Elements.Element.OnMousedElementChanged
+  commentId: F:MLEM.Ui.Elements.Element.OnMousedElementChanged
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnMousedElementChanged
+  name: OnMousedElementChanged
+  nameWithType: Element.OnMousedElementChanged
+  fullName: MLEM.Ui.Elements.Element.OnMousedElementChanged
+- uid: MLEM.Ui.Elements.Element.OnTouchedElementChanged
+  commentId: F:MLEM.Ui.Elements.Element.OnTouchedElementChanged
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnTouchedElementChanged
+  name: OnTouchedElementChanged
+  nameWithType: Element.OnTouchedElementChanged
+  fullName: MLEM.Ui.Elements.Element.OnTouchedElementChanged
+- uid: MLEM.Ui.Elements.Element.OnSelectedElementChanged
+  commentId: F:MLEM.Ui.Elements.Element.OnSelectedElementChanged
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnSelectedElementChanged
+  name: OnSelectedElementChanged
+  nameWithType: Element.OnSelectedElementChanged
+  fullName: MLEM.Ui.Elements.Element.OnSelectedElementChanged
+- uid: MLEM.Ui.Elements.Element.GetTabNextElement
+  commentId: F:MLEM.Ui.Elements.Element.GetTabNextElement
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetTabNextElement
+  name: GetTabNextElement
+  nameWithType: Element.GetTabNextElement
+  fullName: MLEM.Ui.Elements.Element.GetTabNextElement
+- uid: MLEM.Ui.Elements.Element.GetGamepadNextElement
+  commentId: F:MLEM.Ui.Elements.Element.GetGamepadNextElement
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetGamepadNextElement
+  name: GetGamepadNextElement
+  nameWithType: Element.GetGamepadNextElement
+  fullName: MLEM.Ui.Elements.Element.GetGamepadNextElement
+- uid: MLEM.Ui.Elements.Element.OnChildAdded
+  commentId: F:MLEM.Ui.Elements.Element.OnChildAdded
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnChildAdded
+  name: OnChildAdded
+  nameWithType: Element.OnChildAdded
+  fullName: MLEM.Ui.Elements.Element.OnChildAdded
+- uid: MLEM.Ui.Elements.Element.OnChildRemoved
+  commentId: F:MLEM.Ui.Elements.Element.OnChildRemoved
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnChildRemoved
+  name: OnChildRemoved
+  nameWithType: Element.OnChildRemoved
+  fullName: MLEM.Ui.Elements.Element.OnChildRemoved
+- uid: MLEM.Ui.Elements.Element.OnAddedToUi
+  commentId: F:MLEM.Ui.Elements.Element.OnAddedToUi
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnAddedToUi
+  name: OnAddedToUi
+  nameWithType: Element.OnAddedToUi
+  fullName: MLEM.Ui.Elements.Element.OnAddedToUi
+- uid: MLEM.Ui.Elements.Element.OnRemovedFromUi
+  commentId: F:MLEM.Ui.Elements.Element.OnRemovedFromUi
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnRemovedFromUi
+  name: OnRemovedFromUi
+  nameWithType: Element.OnRemovedFromUi
+  fullName: MLEM.Ui.Elements.Element.OnRemovedFromUi
+- uid: MLEM.Ui.Elements.Element.Children
+  commentId: F:MLEM.Ui.Elements.Element.Children
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Children
+  name: Children
+  nameWithType: Element.Children
+  fullName: MLEM.Ui.Elements.Element.Children
+- uid: MLEM.Ui.Elements.Element.PlayingAnimations
+  commentId: F:MLEM.Ui.Elements.Element.PlayingAnimations
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_PlayingAnimations
+  name: PlayingAnimations
+  nameWithType: Element.PlayingAnimations
+  fullName: MLEM.Ui.Elements.Element.PlayingAnimations
+- uid: MLEM.Ui.Elements.Element.SortedChildren
+  commentId: P:MLEM.Ui.Elements.Element.SortedChildren
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SortedChildren
+  name: SortedChildren
+  nameWithType: Element.SortedChildren
+  fullName: MLEM.Ui.Elements.Element.SortedChildren
+- uid: MLEM.Ui.Elements.Element.Input
+  commentId: P:MLEM.Ui.Elements.Element.Input
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Input
+  name: Input
+  nameWithType: Element.Input
+  fullName: MLEM.Ui.Elements.Element.Input
+- uid: MLEM.Ui.Elements.Element.ParentArea
+  commentId: P:MLEM.Ui.Elements.Element.ParentArea
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ParentArea
+  name: ParentArea
+  nameWithType: Element.ParentArea
+  fullName: MLEM.Ui.Elements.Element.ParentArea
+- uid: MLEM.Ui.Elements.Element.AddChild``1({T},System.Int32)
+  commentId: M:MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+  parent: MLEM.Ui.Elements.Element
+  definition: MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddChild__1___0_System_Int32_
+  name: AddChild<T>(T, int)
+  nameWithType: Element.AddChild<T>(T, int)
+  fullName: MLEM.Ui.Elements.Element.AddChild<T>(T, int)
+  nameWithType.vb: Element.AddChild(Of T)(T, Integer)
+  fullName.vb: MLEM.Ui.Elements.Element.AddChild(Of T)(T, Integer)
+  name.vb: AddChild(Of T)(T, Integer)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+    name: AddChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddChild__1___0_System_Int32_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+    name: AddChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddChild__1___0_System_Int32_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: MLEM.Ui.Elements.Element.RemoveChild(MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.Elements.Element.RemoveChild(MLEM.Ui.Elements.Element)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemoveChild_MLEM_Ui_Elements_Element_
+  name: RemoveChild(Element)
+  nameWithType: Element.RemoveChild(Element)
+  fullName: MLEM.Ui.Elements.Element.RemoveChild(MLEM.Ui.Elements.Element)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.RemoveChild(MLEM.Ui.Elements.Element)
+    name: RemoveChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemoveChild_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.RemoveChild(MLEM.Ui.Elements.Element)
+    name: RemoveChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemoveChild_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.RemoveChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  commentId: M:MLEM.Ui.Elements.Element.RemoveChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemoveChildren_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  name: RemoveChildren(Func<Element, bool>)
+  nameWithType: Element.RemoveChildren(Func<Element, bool>)
+  fullName: MLEM.Ui.Elements.Element.RemoveChildren(System.Func<MLEM.Ui.Elements.Element, bool>)
+  nameWithType.vb: Element.RemoveChildren(Func(Of Element, Boolean))
+  fullName.vb: MLEM.Ui.Elements.Element.RemoveChildren(System.Func(Of MLEM.Ui.Elements.Element, Boolean))
+  name.vb: RemoveChildren(Func(Of Element, Boolean))
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.RemoveChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+    name: RemoveChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemoveChildren_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.RemoveChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+    name: RemoveChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemoveChildren_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Elements.Element.SetSortedChildrenDirty
+  commentId: M:MLEM.Ui.Elements.Element.SetSortedChildrenDirty
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetSortedChildrenDirty
+  name: SetSortedChildrenDirty()
+  nameWithType: Element.SetSortedChildrenDirty()
+  fullName: MLEM.Ui.Elements.Element.SetSortedChildrenDirty()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.SetSortedChildrenDirty
+    name: SetSortedChildrenDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetSortedChildrenDirty
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.SetSortedChildrenDirty
+    name: SetSortedChildrenDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetSortedChildrenDirty
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.UpdateSortedChildrenIfDirty
+  commentId: M:MLEM.Ui.Elements.Element.UpdateSortedChildrenIfDirty
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UpdateSortedChildrenIfDirty
+  name: UpdateSortedChildrenIfDirty()
+  nameWithType: Element.UpdateSortedChildrenIfDirty()
+  fullName: MLEM.Ui.Elements.Element.UpdateSortedChildrenIfDirty()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.UpdateSortedChildrenIfDirty
+    name: UpdateSortedChildrenIfDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UpdateSortedChildrenIfDirty
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.UpdateSortedChildrenIfDirty
+    name: UpdateSortedChildrenIfDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UpdateSortedChildrenIfDirty
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.ForceUpdateSortedChildren
+  commentId: M:MLEM.Ui.Elements.Element.ForceUpdateSortedChildren
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ForceUpdateSortedChildren
+  name: ForceUpdateSortedChildren()
+  nameWithType: Element.ForceUpdateSortedChildren()
+  fullName: MLEM.Ui.Elements.Element.ForceUpdateSortedChildren()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.ForceUpdateSortedChildren
+    name: ForceUpdateSortedChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ForceUpdateSortedChildren
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.ForceUpdateSortedChildren
+    name: ForceUpdateSortedChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ForceUpdateSortedChildren
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.SetAreaDirty
+  commentId: M:MLEM.Ui.Elements.Element.SetAreaDirty
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetAreaDirty
+  name: SetAreaDirty()
+  nameWithType: Element.SetAreaDirty()
+  fullName: MLEM.Ui.Elements.Element.SetAreaDirty()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.SetAreaDirty
+    name: SetAreaDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetAreaDirty
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.SetAreaDirty
+    name: SetAreaDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetAreaDirty
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.UpdateAreaIfDirty
+  commentId: M:MLEM.Ui.Elements.Element.UpdateAreaIfDirty
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UpdateAreaIfDirty
+  name: UpdateAreaIfDirty()
+  nameWithType: Element.UpdateAreaIfDirty()
+  fullName: MLEM.Ui.Elements.Element.UpdateAreaIfDirty()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.UpdateAreaIfDirty
+    name: UpdateAreaIfDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UpdateAreaIfDirty
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.UpdateAreaIfDirty
+    name: UpdateAreaIfDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_UpdateAreaIfDirty
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.ForceUpdateArea
+  commentId: M:MLEM.Ui.Elements.Element.ForceUpdateArea
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ForceUpdateArea
+  name: ForceUpdateArea()
+  nameWithType: Element.ForceUpdateArea()
+  fullName: MLEM.Ui.Elements.Element.ForceUpdateArea()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.ForceUpdateArea
+    name: ForceUpdateArea
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ForceUpdateArea
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.ForceUpdateArea
+    name: ForceUpdateArea
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ForceUpdateArea
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.SetAreaAndUpdateChildren(MLEM.Maths.RectangleF)
+  commentId: M:MLEM.Ui.Elements.Element.SetAreaAndUpdateChildren(MLEM.Maths.RectangleF)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetAreaAndUpdateChildren_MLEM_Maths_RectangleF_
+  name: SetAreaAndUpdateChildren(RectangleF)
+  nameWithType: Element.SetAreaAndUpdateChildren(RectangleF)
+  fullName: MLEM.Ui.Elements.Element.SetAreaAndUpdateChildren(MLEM.Maths.RectangleF)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.SetAreaAndUpdateChildren(MLEM.Maths.RectangleF)
+    name: SetAreaAndUpdateChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetAreaAndUpdateChildren_MLEM_Maths_RectangleF_
+  - name: (
+  - uid: MLEM.Maths.RectangleF
+    name: RectangleF
+    href: MLEM.Maths.RectangleF.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.SetAreaAndUpdateChildren(MLEM.Maths.RectangleF)
+    name: SetAreaAndUpdateChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_SetAreaAndUpdateChildren_MLEM_Maths_RectangleF_
+  - name: (
+  - uid: MLEM.Maths.RectangleF
+    name: RectangleF
+    href: MLEM.Maths.RectangleF.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.CalcActualSize(MLEM.Maths.RectangleF)
+  commentId: M:MLEM.Ui.Elements.Element.CalcActualSize(MLEM.Maths.RectangleF)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CalcActualSize_MLEM_Maths_RectangleF_
+  name: CalcActualSize(RectangleF)
+  nameWithType: Element.CalcActualSize(RectangleF)
+  fullName: MLEM.Ui.Elements.Element.CalcActualSize(MLEM.Maths.RectangleF)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.CalcActualSize(MLEM.Maths.RectangleF)
+    name: CalcActualSize
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CalcActualSize_MLEM_Maths_RectangleF_
+  - name: (
+  - uid: MLEM.Maths.RectangleF
+    name: RectangleF
+    href: MLEM.Maths.RectangleF.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.CalcActualSize(MLEM.Maths.RectangleF)
+    name: CalcActualSize
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_CalcActualSize_MLEM_Maths_RectangleF_
+  - name: (
+  - uid: MLEM.Maths.RectangleF
+    name: RectangleF
+    href: MLEM.Maths.RectangleF.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetAreaForAutoAnchors
+  commentId: M:MLEM.Ui.Elements.Element.GetAreaForAutoAnchors
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetAreaForAutoAnchors
+  name: GetAreaForAutoAnchors()
+  nameWithType: Element.GetAreaForAutoAnchors()
+  fullName: MLEM.Ui.Elements.Element.GetAreaForAutoAnchors()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetAreaForAutoAnchors
+    name: GetAreaForAutoAnchors
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetAreaForAutoAnchors
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetAreaForAutoAnchors
+    name: GetAreaForAutoAnchors
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetAreaForAutoAnchors
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetLowestChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetLowestChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetLowestChild_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  name: GetLowestChild(Func<Element, bool>, bool)
+  nameWithType: Element.GetLowestChild(Func<Element, bool>, bool)
+  fullName: MLEM.Ui.Elements.Element.GetLowestChild(System.Func<MLEM.Ui.Elements.Element, bool>, bool)
+  nameWithType.vb: Element.GetLowestChild(Func(Of Element, Boolean), Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetLowestChild(System.Func(Of MLEM.Ui.Elements.Element, Boolean), Boolean)
+  name.vb: GetLowestChild(Func(Of Element, Boolean), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetLowestChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+    name: GetLowestChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetLowestChild_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetLowestChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+    name: GetLowestChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetLowestChild_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetRightmostChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetRightmostChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetRightmostChild_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  name: GetRightmostChild(Func<Element, bool>, bool)
+  nameWithType: Element.GetRightmostChild(Func<Element, bool>, bool)
+  fullName: MLEM.Ui.Elements.Element.GetRightmostChild(System.Func<MLEM.Ui.Elements.Element, bool>, bool)
+  nameWithType.vb: Element.GetRightmostChild(Func(Of Element, Boolean), Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetRightmostChild(System.Func(Of MLEM.Ui.Elements.Element, Boolean), Boolean)
+  name.vb: GetRightmostChild(Func(Of Element, Boolean), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetRightmostChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+    name: GetRightmostChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetRightmostChild_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetRightmostChild(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+    name: GetRightmostChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetRightmostChild_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetLowestOlderSibling_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  name: GetLowestOlderSibling(Func<Element, bool>, bool)
+  nameWithType: Element.GetLowestOlderSibling(Func<Element, bool>, bool)
+  fullName: MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func<MLEM.Ui.Elements.Element, bool>, bool)
+  nameWithType.vb: Element.GetLowestOlderSibling(Func(Of Element, Boolean), Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func(Of MLEM.Ui.Elements.Element, Boolean), Boolean)
+  name.vb: GetLowestOlderSibling(Func(Of Element, Boolean), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+    name: GetLowestOlderSibling
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetLowestOlderSibling_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetLowestOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean)
+    name: GetLowestOlderSibling
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetLowestOlderSibling_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  commentId: M:MLEM.Ui.Elements.Element.GetOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetOlderSibling_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  name: GetOlderSibling(Func<Element, bool>)
+  nameWithType: Element.GetOlderSibling(Func<Element, bool>)
+  fullName: MLEM.Ui.Elements.Element.GetOlderSibling(System.Func<MLEM.Ui.Elements.Element, bool>)
+  nameWithType.vb: Element.GetOlderSibling(Func(Of Element, Boolean))
+  fullName.vb: MLEM.Ui.Elements.Element.GetOlderSibling(System.Func(Of MLEM.Ui.Elements.Element, Boolean))
+  name.vb: GetOlderSibling(Func(Of Element, Boolean))
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+    name: GetOlderSibling
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetOlderSibling_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetOlderSibling(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+    name: GetOlderSibling
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetOlderSibling_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetSiblings(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  commentId: M:MLEM.Ui.Elements.Element.GetSiblings(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetSiblings_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  name: GetSiblings(Func<Element, bool>)
+  nameWithType: Element.GetSiblings(Func<Element, bool>)
+  fullName: MLEM.Ui.Elements.Element.GetSiblings(System.Func<MLEM.Ui.Elements.Element, bool>)
+  nameWithType.vb: Element.GetSiblings(Func(Of Element, Boolean))
+  fullName.vb: MLEM.Ui.Elements.Element.GetSiblings(System.Func(Of MLEM.Ui.Elements.Element, Boolean))
+  name.vb: GetSiblings(Func(Of Element, Boolean))
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetSiblings(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+    name: GetSiblings
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetSiblings_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetSiblings(System.Func{MLEM.Ui.Elements.Element,System.Boolean})
+    name: GetSiblings
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetSiblings_System_Func_MLEM_Ui_Elements_Element_System_Boolean__
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{{T},System.Boolean},System.Boolean,System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  definition: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren__1_System_Func___0_System_Boolean__System_Boolean_System_Boolean_
+  name: GetChildren<T>(Func<T, bool>, bool, bool)
+  nameWithType: Element.GetChildren<T>(Func<T, bool>, bool, bool)
+  fullName: MLEM.Ui.Elements.Element.GetChildren<T>(System.Func<T, bool>, bool, bool)
+  nameWithType.vb: Element.GetChildren(Of T)(Func(Of T, Boolean), Boolean, Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetChildren(Of T)(System.Func(Of T, Boolean), Boolean, Boolean)
+  name.vb: GetChildren(Of T)(Func(Of T, Boolean), Boolean, Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+    name: GetChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren__1_System_Func___0_System_Boolean__System_Boolean_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+    name: GetChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren__1_System_Func___0_System_Boolean__System_Boolean_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean,System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean,System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_System_Boolean_
+  name: GetChildren(Func<Element, bool>, bool, bool)
+  nameWithType: Element.GetChildren(Func<Element, bool>, bool, bool)
+  fullName: MLEM.Ui.Elements.Element.GetChildren(System.Func<MLEM.Ui.Elements.Element, bool>, bool, bool)
+  nameWithType.vb: Element.GetChildren(Func(Of Element, Boolean), Boolean, Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetChildren(System.Func(Of MLEM.Ui.Elements.Element, Boolean), Boolean, Boolean)
+  name.vb: GetChildren(Func(Of Element, Boolean), Boolean, Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean,System.Boolean)
+    name: GetChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetChildren(System.Func{MLEM.Ui.Elements.Element,System.Boolean},System.Boolean,System.Boolean)
+    name: GetChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren_System_Func_MLEM_Ui_Elements_Element_System_Boolean__System_Boolean_System_Boolean_
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetParentTree
+  commentId: M:MLEM.Ui.Elements.Element.GetParentTree
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetParentTree
+  name: GetParentTree()
+  nameWithType: Element.GetParentTree()
+  fullName: MLEM.Ui.Elements.Element.GetParentTree()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetParentTree
+    name: GetParentTree
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetParentTree
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetParentTree
+    name: GetParentTree
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetParentTree
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetTotalCoveredArea(System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetTotalCoveredArea(System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetTotalCoveredArea_System_Boolean_
+  name: GetTotalCoveredArea(bool)
+  nameWithType: Element.GetTotalCoveredArea(bool)
+  fullName: MLEM.Ui.Elements.Element.GetTotalCoveredArea(bool)
+  nameWithType.vb: Element.GetTotalCoveredArea(Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetTotalCoveredArea(Boolean)
+  name.vb: GetTotalCoveredArea(Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetTotalCoveredArea(System.Boolean)
+    name: GetTotalCoveredArea
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetTotalCoveredArea_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetTotalCoveredArea(System.Boolean)
+    name: GetTotalCoveredArea
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetTotalCoveredArea_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetRelevantChildren
+  commentId: M:MLEM.Ui.Elements.Element.GetRelevantChildren
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetRelevantChildren
+  name: GetRelevantChildren()
+  nameWithType: Element.GetRelevantChildren()
+  fullName: MLEM.Ui.Elements.Element.GetRelevantChildren()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetRelevantChildren
+    name: GetRelevantChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetRelevantChildren
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetRelevantChildren
+    name: GetRelevantChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetRelevantChildren
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  commentId: M:MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_DrawTransformed_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  name: DrawTransformed(GameTime, SpriteBatch, float, SpriteBatchContext)
+  nameWithType: Element.DrawTransformed(GameTime, SpriteBatch, float, SpriteBatchContext)
+  fullName: MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, float, MLEM.Graphics.SpriteBatchContext)
+  nameWithType.vb: Element.DrawTransformed(GameTime, SpriteBatch, Single, SpriteBatchContext)
+  fullName.vb: MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, Single, MLEM.Graphics.SpriteBatchContext)
+  name.vb: DrawTransformed(GameTime, SpriteBatch, Single, SpriteBatchContext)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+    name: DrawTransformed
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_DrawTransformed_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: MLEM.Graphics.SpriteBatchContext
+    name: SpriteBatchContext
+    href: MLEM.Graphics.SpriteBatchContext.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.DrawTransformed(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+    name: DrawTransformed
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_DrawTransformed_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: MLEM.Graphics.SpriteBatchContext
+    name: SpriteBatchContext
+    href: MLEM.Graphics.SpriteBatchContext.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Ui.Elements.Element.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetElementUnderPos_Microsoft_Xna_Framework_Vector2_
+  name: GetElementUnderPos(Vector2)
+  nameWithType: Element.GetElementUnderPos(Vector2)
+  fullName: MLEM.Ui.Elements.Element.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+    name: GetElementUnderPos
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetElementUnderPos_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+    name: GetElementUnderPos
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetElementUnderPos_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Ui.Elements.Element.PlayAnimation(MLEM.Ui.UiAnimation)
+  commentId: M:MLEM.Ui.Elements.Element.PlayAnimation(MLEM.Ui.UiAnimation)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_PlayAnimation_MLEM_Ui_UiAnimation_
+  name: PlayAnimation(UiAnimation)
+  nameWithType: Element.PlayAnimation(UiAnimation)
+  fullName: MLEM.Ui.Elements.Element.PlayAnimation(MLEM.Ui.UiAnimation)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.PlayAnimation(MLEM.Ui.UiAnimation)
+    name: PlayAnimation
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_PlayAnimation_MLEM_Ui_UiAnimation_
+  - name: (
+  - uid: MLEM.Ui.UiAnimation
+    name: UiAnimation
+    href: MLEM.Ui.UiAnimation.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.PlayAnimation(MLEM.Ui.UiAnimation)
+    name: PlayAnimation
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_PlayAnimation_MLEM_Ui_UiAnimation_
+  - name: (
+  - uid: MLEM.Ui.UiAnimation
+    name: UiAnimation
+    href: MLEM.Ui.UiAnimation.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.StopAnimation(MLEM.Ui.UiAnimation)
+  commentId: M:MLEM.Ui.Elements.Element.StopAnimation(MLEM.Ui.UiAnimation)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_StopAnimation_MLEM_Ui_UiAnimation_
+  name: StopAnimation(UiAnimation)
+  nameWithType: Element.StopAnimation(UiAnimation)
+  fullName: MLEM.Ui.Elements.Element.StopAnimation(MLEM.Ui.UiAnimation)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.StopAnimation(MLEM.Ui.UiAnimation)
+    name: StopAnimation
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_StopAnimation_MLEM_Ui_UiAnimation_
+  - name: (
+  - uid: MLEM.Ui.UiAnimation
+    name: UiAnimation
+    href: MLEM.Ui.UiAnimation.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.StopAnimation(MLEM.Ui.UiAnimation)
+    name: StopAnimation
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_StopAnimation_MLEM_Ui_UiAnimation_
+  - name: (
+  - uid: MLEM.Ui.UiAnimation
+    name: UiAnimation
+    href: MLEM.Ui.UiAnimation.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.ToString
+  commentId: M:MLEM.Ui.Elements.Element.ToString
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ToString
+  name: ToString()
+  nameWithType: Element.ToString()
+  fullName: MLEM.Ui.Elements.Element.ToString()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.ToString
+    name: ToString
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ToString
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.ToString
+    name: ToString
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ToString
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.AndChildren(System.Action{MLEM.Ui.Elements.Element})
+  commentId: M:MLEM.Ui.Elements.Element.AndChildren(System.Action{MLEM.Ui.Elements.Element})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AndChildren_System_Action_MLEM_Ui_Elements_Element__
+  name: AndChildren(Action<Element>)
+  nameWithType: Element.AndChildren(Action<Element>)
+  fullName: MLEM.Ui.Elements.Element.AndChildren(System.Action<MLEM.Ui.Elements.Element>)
+  nameWithType.vb: Element.AndChildren(Action(Of Element))
+  fullName.vb: MLEM.Ui.Elements.Element.AndChildren(System.Action(Of MLEM.Ui.Elements.Element))
+  name.vb: AndChildren(Action(Of Element))
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.AndChildren(System.Action{MLEM.Ui.Elements.Element})
+    name: AndChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AndChildren_System_Action_MLEM_Ui_Elements_Element__
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.AndChildren(System.Action{MLEM.Ui.Elements.Element})
+    name: AndChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AndChildren_System_Action_MLEM_Ui_Elements_Element__
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison{MLEM.Ui.Elements.Element})
+  commentId: M:MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison{MLEM.Ui.Elements.Element})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ReorderChildren_System_Comparison_MLEM_Ui_Elements_Element__
+  name: ReorderChildren(Comparison<Element>)
+  nameWithType: Element.ReorderChildren(Comparison<Element>)
+  fullName: MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison<MLEM.Ui.Elements.Element>)
+  nameWithType.vb: Element.ReorderChildren(Comparison(Of Element))
+  fullName.vb: MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison(Of MLEM.Ui.Elements.Element))
+  name.vb: ReorderChildren(Comparison(Of Element))
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison{MLEM.Ui.Elements.Element})
+    name: ReorderChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ReorderChildren_System_Comparison_MLEM_Ui_Elements_Element__
+  - name: (
+  - uid: System.Comparison`1
+    name: Comparison
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.comparison-1
+  - name: <
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.ReorderChildren(System.Comparison{MLEM.Ui.Elements.Element})
+    name: ReorderChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ReorderChildren_System_Comparison_MLEM_Ui_Elements_Element__
+  - name: (
+  - uid: System.Comparison`1
+    name: Comparison
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.comparison-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Elements.Element.ReverseChildren(System.Int32,System.Nullable{System.Int32})
+  commentId: M:MLEM.Ui.Elements.Element.ReverseChildren(System.Int32,System.Nullable{System.Int32})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ReverseChildren_System_Int32_System_Nullable_System_Int32__
+  name: ReverseChildren(int, int?)
+  nameWithType: Element.ReverseChildren(int, int?)
+  fullName: MLEM.Ui.Elements.Element.ReverseChildren(int, int?)
+  nameWithType.vb: Element.ReverseChildren(Integer, Integer?)
+  fullName.vb: MLEM.Ui.Elements.Element.ReverseChildren(Integer, Integer?)
+  name.vb: ReverseChildren(Integer, Integer?)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.ReverseChildren(System.Int32,System.Nullable{System.Int32})
+    name: ReverseChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ReverseChildren_System_Int32_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.ReverseChildren(System.Int32,System.Nullable{System.Int32})
+    name: ReverseChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ReverseChildren_System_Int32_System_Nullable_System_Int32__
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  - name: )
+- uid: MLEM.Ui.Elements.Element.ScaleTransform(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  commentId: M:MLEM.Ui.Elements.Element.ScaleTransform(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaleTransform_System_Single_System_Nullable_Microsoft_Xna_Framework_Vector2__
+  name: ScaleTransform(float, Vector2?)
+  nameWithType: Element.ScaleTransform(float, Vector2?)
+  fullName: MLEM.Ui.Elements.Element.ScaleTransform(float, Microsoft.Xna.Framework.Vector2?)
+  nameWithType.vb: Element.ScaleTransform(Single, Vector2?)
+  fullName.vb: MLEM.Ui.Elements.Element.ScaleTransform(Single, Microsoft.Xna.Framework.Vector2?)
+  name.vb: ScaleTransform(Single, Vector2?)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.ScaleTransform(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+    name: ScaleTransform
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaleTransform_System_Single_System_Nullable_Microsoft_Xna_Framework_Vector2__
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.ScaleTransform(System.Single,System.Nullable{Microsoft.Xna.Framework.Vector2})
+    name: ScaleTransform
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_ScaleTransform_System_Single_System_Nullable_Microsoft_Xna_Framework_Vector2__
+  - name: (
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element,System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element,System.Boolean)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnChildAreaDirty_MLEM_Ui_Elements_Element_System_Boolean_
+  name: OnChildAreaDirty(Element, bool)
+  nameWithType: Element.OnChildAreaDirty(Element, bool)
+  fullName: MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element, bool)
+  nameWithType.vb: Element.OnChildAreaDirty(Element, Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element, Boolean)
+  name.vb: OnChildAreaDirty(Element, Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element,System.Boolean)
+    name: OnChildAreaDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnChildAreaDirty_MLEM_Ui_Elements_Element_System_Boolean_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.OnChildAreaDirty(MLEM.Ui.Elements.Element,System.Boolean)
+    name: OnChildAreaDirty
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnChildAreaDirty_MLEM_Ui_Elements_Element_System_Boolean_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.Element.TransformInverse(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Ui.Elements.Element.TransformInverse(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TransformInverse_Microsoft_Xna_Framework_Vector2_
+  name: TransformInverse(Vector2)
+  nameWithType: Element.TransformInverse(Vector2)
+  fullName: MLEM.Ui.Elements.Element.TransformInverse(Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.TransformInverse(Microsoft.Xna.Framework.Vector2)
+    name: TransformInverse
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TransformInverse_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.TransformInverse(Microsoft.Xna.Framework.Vector2)
+    name: TransformInverse
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TransformInverse_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Ui.Elements.Element.TransformInverseAll(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Ui.Elements.Element.TransformInverseAll(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TransformInverseAll_Microsoft_Xna_Framework_Vector2_
+  name: TransformInverseAll(Vector2)
+  nameWithType: Element.TransformInverseAll(Vector2)
+  fullName: MLEM.Ui.Elements.Element.TransformInverseAll(Microsoft.Xna.Framework.Vector2)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.TransformInverseAll(Microsoft.Xna.Framework.Vector2)
+    name: TransformInverseAll
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TransformInverseAll_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.TransformInverseAll(Microsoft.Xna.Framework.Vector2)
+    name: TransformInverseAll
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_TransformInverseAll_Microsoft_Xna_Framework_Vector2_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Vector2
+    name: Vector2
+    isExternal: true
+  - name: )
+- uid: MLEM.Ui.Elements.Element.AddedToUi(MLEM.Ui.UiSystem,MLEM.Ui.RootElement)
+  commentId: M:MLEM.Ui.Elements.Element.AddedToUi(MLEM.Ui.UiSystem,MLEM.Ui.RootElement)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddedToUi_MLEM_Ui_UiSystem_MLEM_Ui_RootElement_
+  name: AddedToUi(UiSystem, RootElement)
+  nameWithType: Element.AddedToUi(UiSystem, RootElement)
+  fullName: MLEM.Ui.Elements.Element.AddedToUi(MLEM.Ui.UiSystem, MLEM.Ui.RootElement)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.AddedToUi(MLEM.Ui.UiSystem,MLEM.Ui.RootElement)
+    name: AddedToUi
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddedToUi_MLEM_Ui_UiSystem_MLEM_Ui_RootElement_
+  - name: (
+  - uid: MLEM.Ui.UiSystem
+    name: UiSystem
+    href: MLEM.Ui.UiSystem.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.RootElement
+    name: RootElement
+    href: MLEM.Ui.RootElement.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.AddedToUi(MLEM.Ui.UiSystem,MLEM.Ui.RootElement)
+    name: AddedToUi
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddedToUi_MLEM_Ui_UiSystem_MLEM_Ui_RootElement_
+  - name: (
+  - uid: MLEM.Ui.UiSystem
+    name: UiSystem
+    href: MLEM.Ui.UiSystem.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.RootElement
+    name: RootElement
+    href: MLEM.Ui.RootElement.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.RemovedFromUi
+  commentId: M:MLEM.Ui.Elements.Element.RemovedFromUi
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemovedFromUi
+  name: RemovedFromUi()
+  nameWithType: Element.RemovedFromUi()
+  fullName: MLEM.Ui.Elements.Element.RemovedFromUi()
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.RemovedFromUi
+    name: RemovedFromUi
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemovedFromUi
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.RemovedFromUi
+    name: RemovedFromUi
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_RemovedFromUi
+  - name: (
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Ui.Elements.Element.MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Paragraph.TextCallback)
+  commentId: M:MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+  parent: MLEM.Ui.Elements.ElementExtensions
+  definition: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+  href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Paragraph_TextCallback_
+  name: AddTooltip(Element, TextCallback)
+  nameWithType: ElementExtensions.AddTooltip(Element, Paragraph.TextCallback)
+  fullName: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, MLEM.Ui.Elements.Paragraph.TextCallback)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Paragraph_TextCallback_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Paragraph.TextCallback
+    name: TextCallback
+    href: MLEM.Ui.Elements.Paragraph.TextCallback.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Paragraph_TextCallback_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Paragraph.TextCallback
+    name: TextCallback
+    href: MLEM.Ui.Elements.Paragraph.TextCallback.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Tooltip)
+  commentId: M:MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+  parent: MLEM.Ui.Elements.ElementExtensions
+  definition: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+  href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Tooltip_
+  name: AddTooltip(Element, Tooltip)
+  nameWithType: ElementExtensions.AddTooltip(Element, Tooltip)
+  fullName: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, MLEM.Ui.Elements.Tooltip)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Tooltip_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Tooltip
+    name: Tooltip
+    href: MLEM.Ui.Elements.Tooltip.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Tooltip_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Tooltip
+    name: Tooltip
+    href: MLEM.Ui.Elements.Tooltip.html
+  - name: )
+- uid: MLEM.Ui.Elements.Element.MLEM.Ui.Elements.ElementExtensions.AddTooltip(System.String)
+  commentId: M:MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+  parent: MLEM.Ui.Elements.ElementExtensions
+  definition: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+  href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_System_String_
+  name: AddTooltip(Element, string)
+  nameWithType: ElementExtensions.AddTooltip(Element, string)
+  fullName: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, string)
+  nameWithType.vb: ElementExtensions.AddTooltip(Element, String)
+  fullName.vb: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, String)
+  name.vb: AddTooltip(Element, String)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_System_String_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_System_String_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  href: MLEM.html
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+  commentId: M:MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddChild__1___0_System_Int32_
+  name: AddChild<T>(T, int)
+  nameWithType: Element.AddChild<T>(T, int)
+  fullName: MLEM.Ui.Elements.Element.AddChild<T>(T, int)
+  nameWithType.vb: Element.AddChild(Of T)(T, Integer)
+  fullName.vb: MLEM.Ui.Elements.Element.AddChild(Of T)(T, Integer)
+  name.vb: AddChild(Of T)(T, Integer)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+    name: AddChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddChild__1___0_System_Int32_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.AddChild``1(``0,System.Int32)
+    name: AddChild
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_AddChild__1___0_System_Int32_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+  commentId: M:MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren__1_System_Func___0_System_Boolean__System_Boolean_System_Boolean_
+  name: GetChildren<T>(Func<T, bool>, bool, bool)
+  nameWithType: Element.GetChildren<T>(Func<T, bool>, bool, bool)
+  fullName: MLEM.Ui.Elements.Element.GetChildren<T>(System.Func<T, bool>, bool, bool)
+  nameWithType.vb: Element.GetChildren(Of T)(Func(Of T, Boolean), Boolean, Boolean)
+  fullName.vb: MLEM.Ui.Elements.Element.GetChildren(Of T)(System.Func(Of T, Boolean), Boolean, Boolean)
+  name.vb: GetChildren(Of T)(Func(Of T, Boolean), Boolean, Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+    name: GetChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren__1_System_Func___0_System_Boolean__System_Boolean_System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.GetChildren``1(System.Func{``0,System.Boolean},System.Boolean,System.Boolean)
+    name: GetChildren
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_GetChildren__1_System_Func___0_System_Boolean__System_Boolean_System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+  commentId: M:MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+  href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Paragraph_TextCallback_
+  name: AddTooltip(Element, TextCallback)
+  nameWithType: ElementExtensions.AddTooltip(Element, Paragraph.TextCallback)
+  fullName: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, MLEM.Ui.Elements.Paragraph.TextCallback)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Paragraph_TextCallback_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Paragraph.TextCallback
+    name: TextCallback
+    href: MLEM.Ui.Elements.Paragraph.TextCallback.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Paragraph.TextCallback)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Paragraph_TextCallback_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Paragraph.TextCallback
+    name: TextCallback
+    href: MLEM.Ui.Elements.Paragraph.TextCallback.html
+  - name: )
+- uid: MLEM.Ui.Elements.ElementExtensions
+  commentId: T:MLEM.Ui.Elements.ElementExtensions
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.ElementExtensions.html
+  name: ElementExtensions
+  nameWithType: ElementExtensions
+  fullName: MLEM.Ui.Elements.ElementExtensions
+- uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+  commentId: M:MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+  href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Tooltip_
+  name: AddTooltip(Element, Tooltip)
+  nameWithType: ElementExtensions.AddTooltip(Element, Tooltip)
+  fullName: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, MLEM.Ui.Elements.Tooltip)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Tooltip_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Tooltip
+    name: Tooltip
+    href: MLEM.Ui.Elements.Tooltip.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,MLEM.Ui.Elements.Tooltip)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_MLEM_Ui_Elements_Tooltip_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Tooltip
+    name: Tooltip
+    href: MLEM.Ui.Elements.Tooltip.html
+  - name: )
+- uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+  commentId: M:MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+  isExternal: true
+  href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_System_String_
+  name: AddTooltip(Element, string)
+  nameWithType: ElementExtensions.AddTooltip(Element, string)
+  fullName: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, string)
+  nameWithType.vb: ElementExtensions.AddTooltip(Element, String)
+  fullName.vb: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element, String)
+  name.vb: AddTooltip(Element, String)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_System_String_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ElementExtensions.AddTooltip(MLEM.Ui.Elements.Element,System.String)
+    name: AddTooltip
+    href: MLEM.Ui.Elements.ElementExtensions.html#MLEM_Ui_Elements_ElementExtensions_AddTooltip_MLEM_Ui_Elements_Element_System_String_
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Ui.Style.StyleProp{MLEM.Textures.NinePatch}
+  commentId: T:MLEM.Ui.Style.StyleProp{MLEM.Textures.NinePatch}
+  parent: MLEM.Ui.Style
+  definition: MLEM.Ui.Style.StyleProp`1
+  href: MLEM.Ui.Style.StyleProp-1.html
+  name: StyleProp<NinePatch>
+  nameWithType: StyleProp<NinePatch>
+  fullName: MLEM.Ui.Style.StyleProp<MLEM.Textures.NinePatch>
+  nameWithType.vb: StyleProp(Of NinePatch)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of MLEM.Textures.NinePatch)
+  name.vb: StyleProp(Of NinePatch)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: <
+  - uid: MLEM.Textures.NinePatch
+    name: NinePatch
+    href: MLEM.Textures.NinePatch.html
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Textures.NinePatch
+    name: NinePatch
+    href: MLEM.Textures.NinePatch.html
+  - name: )
+- uid: MLEM.Ui.Style.StyleProp`1
+  commentId: T:MLEM.Ui.Style.StyleProp`1
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.StyleProp-1.html
+  name: StyleProp<T>
+  nameWithType: StyleProp<T>
+  fullName: MLEM.Ui.Style.StyleProp<T>
+  nameWithType.vb: StyleProp(Of T)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of T)
+  name.vb: StyleProp(Of T)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Style
+  commentId: N:MLEM.Ui.Style
+  href: MLEM.html
+  name: MLEM.Ui.Style
+  nameWithType: MLEM.Ui.Style
+  fullName: MLEM.Ui.Style
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+- uid: MLEM.Ui.Elements.ScrollBar.CurrentValue
+  commentId: P:MLEM.Ui.Elements.ScrollBar.CurrentValue
+  parent: MLEM.Ui.Elements.ScrollBar
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_CurrentValue
+  name: CurrentValue
+  nameWithType: ScrollBar.CurrentValue
+  fullName: MLEM.Ui.Elements.ScrollBar.CurrentValue
+- uid: MLEM.Ui.Style.StyleProp{System.Boolean}
+  commentId: T:MLEM.Ui.Style.StyleProp{System.Boolean}
+  parent: MLEM.Ui.Style
+  definition: MLEM.Ui.Style.StyleProp`1
+  href: MLEM.Ui.Style.StyleProp-1.html
+  name: StyleProp<bool>
+  nameWithType: StyleProp<bool>
+  fullName: MLEM.Ui.Style.StyleProp<bool>
+  nameWithType.vb: StyleProp(Of Boolean)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of Boolean)
+  name.vb: StyleProp(Of Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Elements.ScrollBar
+  commentId: T:MLEM.Ui.Elements.ScrollBar
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.ScrollBar.html
+  name: ScrollBar
+  nameWithType: ScrollBar
+  fullName: MLEM.Ui.Elements.ScrollBar
+- uid: MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+  commentId: F:MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+  parent: MLEM.Ui.Elements.ScrollBar
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_SmoothScrolling
+  name: SmoothScrolling
+  nameWithType: ScrollBar.SmoothScrolling
+  fullName: MLEM.Ui.Elements.ScrollBar.SmoothScrolling
+- uid: MLEM.Ui.Style.StyleProp{System.Single}
+  commentId: T:MLEM.Ui.Style.StyleProp{System.Single}
+  parent: MLEM.Ui.Style
+  definition: MLEM.Ui.Style.StyleProp`1
+  href: MLEM.Ui.Style.StyleProp-1.html
+  name: StyleProp<float>
+  nameWithType: StyleProp<float>
+  fullName: MLEM.Ui.Style.StyleProp<float>
+  nameWithType.vb: StyleProp(Of Single)
+  fullName.vb: MLEM.Ui.Style.StyleProp(Of Single)
+  name.vb: StyleProp(Of Single)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: <
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Ui.Style.StyleProp`1
+    name: StyleProp
+    href: MLEM.Ui.Style.StyleProp-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: MLEM.Ui.Elements.ScrollBar.MaxValue*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.MaxValue
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_MaxValue
+  name: MaxValue
+  nameWithType: ScrollBar.MaxValue
+  fullName: MLEM.Ui.Elements.ScrollBar.MaxValue
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Ui.Elements.ScrollBar.MaxValue
+  commentId: P:MLEM.Ui.Elements.ScrollBar.MaxValue
+  parent: MLEM.Ui.Elements.ScrollBar
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_MaxValue
+  name: MaxValue
+  nameWithType: ScrollBar.MaxValue
+  fullName: MLEM.Ui.Elements.ScrollBar.MaxValue
+- uid: MLEM.Ui.Elements.ScrollBar.CurrentValue*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.CurrentValue
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_CurrentValue
+  name: CurrentValue
+  nameWithType: ScrollBar.CurrentValue
+  fullName: MLEM.Ui.Elements.ScrollBar.CurrentValue
+- uid: MLEM.Ui.Elements.ScrollBar.ValueChanged
+  commentId: T:MLEM.Ui.Elements.ScrollBar.ValueChanged
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.ScrollBar.html
+  name: ScrollBar.ValueChanged
+  nameWithType: ScrollBar.ValueChanged
+  fullName: MLEM.Ui.Elements.ScrollBar.ValueChanged
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ScrollBar
+    name: ScrollBar
+    href: MLEM.Ui.Elements.ScrollBar.html
+  - name: .
+  - uid: MLEM.Ui.Elements.ScrollBar.ValueChanged
+    name: ValueChanged
+    href: MLEM.Ui.Elements.ScrollBar.ValueChanged.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ScrollBar
+    name: ScrollBar
+    href: MLEM.Ui.Elements.ScrollBar.html
+  - name: .
+  - uid: MLEM.Ui.Elements.ScrollBar.ValueChanged
+    name: ValueChanged
+    href: MLEM.Ui.Elements.ScrollBar.ValueChanged.html
+- uid: MLEM.Ui.Elements.Panel
+  commentId: T:MLEM.Ui.Elements.Panel
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Panel.html
+  name: Panel
+  nameWithType: Panel
+  fullName: MLEM.Ui.Elements.Panel
+- uid: MLEM.Ui.Elements.Element.GenericCallback
+  commentId: T:MLEM.Ui.Elements.Element.GenericCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.GenericCallback
+  nameWithType: Element.GenericCallback
+  fullName: MLEM.Ui.Elements.Element.GenericCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GenericCallback
+    name: GenericCallback
+    href: MLEM.Ui.Elements.Element.GenericCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GenericCallback
+    name: GenericCallback
+    href: MLEM.Ui.Elements.Element.GenericCallback.html
+- uid: MLEM.Ui.Elements.ScrollBar.IsBeingScrolled*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.IsBeingScrolled
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_IsBeingScrolled
+  name: IsBeingScrolled
+  nameWithType: ScrollBar.IsBeingScrolled
+  fullName: MLEM.Ui.Elements.ScrollBar.IsBeingScrolled
+- uid: MLEM.Ui.Elements.ScrollBar.ScrollerPosition*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.ScrollerPosition
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_ScrollerPosition
+  name: ScrollerPosition
+  nameWithType: ScrollBar.ScrollerPosition
+  fullName: MLEM.Ui.Elements.ScrollBar.ScrollerPosition
+- uid: MLEM.Ui.Elements.ScrollBar.#ctor*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.#ctor
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar__ctor_MLEM_Ui_Anchor_Microsoft_Xna_Framework_Vector2_System_Int32_System_Single_System_Boolean_
+  name: ScrollBar
+  nameWithType: ScrollBar.ScrollBar
+  fullName: MLEM.Ui.Elements.ScrollBar.ScrollBar
+  nameWithType.vb: ScrollBar.New
+  fullName.vb: MLEM.Ui.Elements.ScrollBar.New
+  name.vb: New
+- uid: MLEM.Ui.Anchor
+  commentId: T:MLEM.Ui.Anchor
+  parent: MLEM.Ui
+  href: MLEM.Ui.Anchor.html
+  name: Anchor
+  nameWithType: Anchor
+  fullName: MLEM.Ui.Anchor
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MLEM.Ui.Elements.Element.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Ui.Elements.Element.Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Update_Microsoft_Xna_Framework_GameTime_
+  name: Update(GameTime)
+  nameWithType: Element.Update(GameTime)
+  fullName: MLEM.Ui.Elements.Element.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Update_Microsoft_Xna_Framework_GameTime_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Update_Microsoft_Xna_Framework_GameTime_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+- uid: MLEM.Ui.Elements.ScrollBar.Update*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.Update
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_Update_Microsoft_Xna_Framework_GameTime_
+  name: Update
+  nameWithType: ScrollBar.Update
+  fullName: MLEM.Ui.Elements.ScrollBar.Update
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  commentId: M:MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+  parent: MLEM.Ui.Elements.Element
+  isExternal: true
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Draw_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  name: Draw(GameTime, SpriteBatch, float, SpriteBatchContext)
+  nameWithType: Element.Draw(GameTime, SpriteBatch, float, SpriteBatchContext)
+  fullName: MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, float, MLEM.Graphics.SpriteBatchContext)
+  nameWithType.vb: Element.Draw(GameTime, SpriteBatch, Single, SpriteBatchContext)
+  fullName.vb: MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch, Single, MLEM.Graphics.SpriteBatchContext)
+  name.vb: Draw(GameTime, SpriteBatch, Single, SpriteBatchContext)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+    name: Draw
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Draw_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: MLEM.Graphics.SpriteBatchContext
+    name: SpriteBatchContext
+    href: MLEM.Graphics.SpriteBatchContext.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Single,MLEM.Graphics.SpriteBatchContext)
+    name: Draw
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_Draw_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    name: SpriteBatch
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: MLEM.Graphics.SpriteBatchContext
+    name: SpriteBatchContext
+    href: MLEM.Graphics.SpriteBatchContext.html
+  - name: )
+- uid: MLEM.Ui.Elements.ScrollBar.Draw*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.Draw
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_Draw_Microsoft_Xna_Framework_GameTime_Microsoft_Xna_Framework_Graphics_SpriteBatch_System_Single_MLEM_Graphics_SpriteBatchContext_
+  name: Draw
+  nameWithType: ScrollBar.Draw
+  fullName: MLEM.Ui.Elements.ScrollBar.Draw
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: MLEM.Graphics.SpriteBatchContext
+  commentId: T:MLEM.Graphics.SpriteBatchContext
+  parent: MLEM.Graphics
+  href: MLEM.Graphics.SpriteBatchContext.html
+  name: SpriteBatchContext
+  nameWithType: SpriteBatchContext
+  fullName: MLEM.Graphics.SpriteBatchContext
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Graphics
+  commentId: N:MLEM.Graphics
+  href: MLEM.html
+  name: MLEM.Graphics
+  nameWithType: MLEM.Graphics
+  fullName: MLEM.Graphics
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+- uid: MLEM.Ui.Style.UiStyle
+  commentId: T:MLEM.Ui.Style.UiStyle
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.UiStyle.html
+  name: UiStyle
+  nameWithType: UiStyle
+  fullName: MLEM.Ui.Style.UiStyle
+- uid: MLEM.Ui.Elements.Element.InitStyle(MLEM.Ui.Style.UiStyle)
+  commentId: M:MLEM.Ui.Elements.Element.InitStyle(MLEM.Ui.Style.UiStyle)
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_InitStyle_MLEM_Ui_Style_UiStyle_
+  name: InitStyle(UiStyle)
+  nameWithType: Element.InitStyle(UiStyle)
+  fullName: MLEM.Ui.Elements.Element.InitStyle(MLEM.Ui.Style.UiStyle)
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element.InitStyle(MLEM.Ui.Style.UiStyle)
+    name: InitStyle
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_InitStyle_MLEM_Ui_Style_UiStyle_
+  - name: (
+  - uid: MLEM.Ui.Style.UiStyle
+    name: UiStyle
+    href: MLEM.Ui.Style.UiStyle.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element.InitStyle(MLEM.Ui.Style.UiStyle)
+    name: InitStyle
+    href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_InitStyle_MLEM_Ui_Style_UiStyle_
+  - name: (
+  - uid: MLEM.Ui.Style.UiStyle
+    name: UiStyle
+    href: MLEM.Ui.Style.UiStyle.html
+  - name: )
+- uid: MLEM.Ui.Elements.ScrollBar.InitStyle*
+  commentId: Overload:MLEM.Ui.Elements.ScrollBar.InitStyle
+  href: MLEM.Ui.Elements.ScrollBar.html#MLEM_Ui_Elements_ScrollBar_InitStyle_MLEM_Ui_Style_UiStyle_
+  name: InitStyle
+  nameWithType: ScrollBar.InitStyle
+  fullName: MLEM.Ui.Elements.ScrollBar.InitStyle

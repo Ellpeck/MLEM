@@ -1,0 +1,727 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.Content.XmlReader
+  commentId: T:MLEM.Data.Content.XmlReader
+  id: XmlReader
+  parent: MLEM.Data.Content
+  children:
+  - MLEM.Data.Content.XmlReader.CanRead(System.Type)
+  - MLEM.Data.Content.XmlReader.GetFileExtensions
+  - MLEM.Data.Content.XmlReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: XmlReader
+  nameWithType: XmlReader
+  fullName: MLEM.Data.Content.XmlReader
+  type: Class
+  source:
+    remote:
+      path: MLEM.Data/Content/XmlReader.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: XmlReader
+    path: ../MLEM.Data/Content/XmlReader.cs
+    startLine: 6
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Content
+  summary: Represents a way for any kind of raw content file to be read using a <xref href="MLEM.Data.Content.RawContentManager" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: 'public class XmlReader : RawContentReader'
+    content.vb: Public Class XmlReader Inherits RawContentReader
+  inheritance:
+  - System.Object
+  - MLEM.Data.Content.RawContentReader
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Data.Content.XmlReader.CanRead(System.Type)
+  commentId: M:MLEM.Data.Content.XmlReader.CanRead(System.Type)
+  id: CanRead(System.Type)
+  parent: MLEM.Data.Content.XmlReader
+  langs:
+  - csharp
+  - vb
+  name: CanRead(Type)
+  nameWithType: XmlReader.CanRead(Type)
+  fullName: MLEM.Data.Content.XmlReader.CanRead(System.Type)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/Content/XmlReader.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CanRead
+    path: ../MLEM.Data/Content/XmlReader.cs
+    startLine: 9
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Content
+  summary: Returns if the given type can be loaded by this content reader
+  example: []
+  syntax:
+    content: public override bool CanRead(Type t)
+    parameters:
+    - id: t
+      type: System.Type
+      description: The type of asset
+    return:
+      type: System.Boolean
+      description: If the type can be loaded by this content reader
+    content.vb: Public Overrides Function CanRead(t As Type) As Boolean
+  overridden: MLEM.Data.Content.RawContentReader.CanRead(System.Type)
+  overload: MLEM.Data.Content.XmlReader.CanRead*
+- uid: MLEM.Data.Content.XmlReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  commentId: M:MLEM.Data.Content.XmlReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  id: Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  parent: MLEM.Data.Content.XmlReader
+  langs:
+  - csharp
+  - vb
+  name: Read(RawContentManager, string, Stream, Type, object)
+  nameWithType: XmlReader.Read(RawContentManager, string, Stream, Type, object)
+  fullName: MLEM.Data.Content.XmlReader.Read(MLEM.Data.Content.RawContentManager, string, System.IO.Stream, System.Type, object)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/Content/XmlReader.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Read
+    path: ../MLEM.Data/Content/XmlReader.cs
+    startLine: 18
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Content
+  summary: Reads the content file from disk and returns it.
+  example: []
+  syntax:
+    content: public override object Read(RawContentManager manager, string assetPath, Stream stream, Type t, object existing)
+    parameters:
+    - id: manager
+      type: MLEM.Data.Content.RawContentManager
+      description: The <xref href="MLEM.Data.Content.RawContentManager" data-throw-if-not-resolved="false"></xref> that is loading the asset
+    - id: assetPath
+      type: System.String
+      description: The full path to the asset, starting from the <xref href="Microsoft.Xna.Framework.Content.ContentManager.RootDirectory" data-throw-if-not-resolved="false"></xref>
+    - id: stream
+      type: System.IO.Stream
+      description: A stream that leads to this asset
+    - id: t
+      type: System.Type
+      description: The type of asset to load
+    - id: existing
+      type: System.Object
+      description: If this asset is being reloaded, this value contains the previous version of the asset.
+    return:
+      type: System.Object
+      description: The loaded asset
+    content.vb: Public Overrides Function Read(manager As RawContentManager, assetPath As String, stream As Stream, t As Type, existing As Object) As Object
+  overridden: MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  overload: MLEM.Data.Content.XmlReader.Read*
+  nameWithType.vb: XmlReader.Read(RawContentManager, String, Stream, Type, Object)
+  fullName.vb: MLEM.Data.Content.XmlReader.Read(MLEM.Data.Content.RawContentManager, String, System.IO.Stream, System.Type, Object)
+  name.vb: Read(RawContentManager, String, Stream, Type, Object)
+- uid: MLEM.Data.Content.XmlReader.GetFileExtensions
+  commentId: M:MLEM.Data.Content.XmlReader.GetFileExtensions
+  id: GetFileExtensions
+  parent: MLEM.Data.Content.XmlReader
+  langs:
+  - csharp
+  - vb
+  name: GetFileExtensions()
+  nameWithType: XmlReader.GetFileExtensions()
+  fullName: MLEM.Data.Content.XmlReader.GetFileExtensions()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/Content/XmlReader.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetFileExtensions
+    path: ../MLEM.Data/Content/XmlReader.cs
+    startLine: 23
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data.Content
+  summary: Represents the list of file extensions that this reader can read from.
+  example: []
+  syntax:
+    content: public override string[] GetFileExtensions()
+    return:
+      type: System.String[]
+      description: The list of valid extensions
+    content.vb: Public Overrides Function GetFileExtensions() As String()
+  overridden: MLEM.Data.Content.RawContentReader.GetFileExtensions
+  overload: MLEM.Data.Content.XmlReader.GetFileExtensions*
+references:
+- uid: MLEM.Data.Content.RawContentManager
+  commentId: T:MLEM.Data.Content.RawContentManager
+  parent: MLEM.Data.Content
+  href: MLEM.Data.Content.RawContentManager.html
+  name: RawContentManager
+  nameWithType: RawContentManager
+  fullName: MLEM.Data.Content.RawContentManager
+- uid: MLEM.Data.Content
+  commentId: N:MLEM.Data.Content
+  href: MLEM.html
+  name: MLEM.Data.Content
+  nameWithType: MLEM.Data.Content
+  fullName: MLEM.Data.Content
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Content
+    name: Content
+    href: MLEM.Data.Content.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Content
+    name: Content
+    href: MLEM.Data.Content.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Data.Content.RawContentReader
+  commentId: T:MLEM.Data.Content.RawContentReader
+  parent: MLEM.Data.Content
+  href: MLEM.Data.Content.RawContentReader.html
+  name: RawContentReader
+  nameWithType: RawContentReader
+  fullName: MLEM.Data.Content.RawContentReader
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Data.Content.RawContentReader.CanRead(System.Type)
+  commentId: M:MLEM.Data.Content.RawContentReader.CanRead(System.Type)
+  parent: MLEM.Data.Content.RawContentReader
+  isExternal: true
+  href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_CanRead_System_Type_
+  name: CanRead(Type)
+  nameWithType: RawContentReader.CanRead(Type)
+  fullName: MLEM.Data.Content.RawContentReader.CanRead(System.Type)
+  spec.csharp:
+  - uid: MLEM.Data.Content.RawContentReader.CanRead(System.Type)
+    name: CanRead
+    href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_CanRead_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.Content.RawContentReader.CanRead(System.Type)
+    name: CanRead
+    href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_CanRead_System_Type_
+  - name: (
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: )
+- uid: MLEM.Data.Content.XmlReader.CanRead*
+  commentId: Overload:MLEM.Data.Content.XmlReader.CanRead
+  href: MLEM.Data.Content.XmlReader.html#MLEM_Data_Content_XmlReader_CanRead_System_Type_
+  name: CanRead
+  nameWithType: XmlReader.CanRead
+  fullName: MLEM.Data.Content.XmlReader.CanRead
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+  commentId: P:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+  parent: Microsoft.Xna.Framework.Content.ContentManager
+  isExternal: true
+  name: RootDirectory
+  nameWithType: ContentManager.RootDirectory
+  fullName: Microsoft.Xna.Framework.Content.ContentManager.RootDirectory
+- uid: MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  commentId: M:MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+  parent: MLEM.Data.Content.RawContentReader
+  isExternal: true
+  href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_Read_MLEM_Data_Content_RawContentManager_System_String_System_IO_Stream_System_Type_System_Object_
+  name: Read(RawContentManager, string, Stream, Type, object)
+  nameWithType: RawContentReader.Read(RawContentManager, string, Stream, Type, object)
+  fullName: MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager, string, System.IO.Stream, System.Type, object)
+  nameWithType.vb: RawContentReader.Read(RawContentManager, String, Stream, Type, Object)
+  fullName.vb: MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager, String, System.IO.Stream, System.Type, Object)
+  name.vb: Read(RawContentManager, String, Stream, Type, Object)
+  spec.csharp:
+  - uid: MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+    name: Read
+    href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_Read_MLEM_Data_Content_RawContentManager_System_String_System_IO_Stream_System_Type_System_Object_
+  - name: (
+  - uid: MLEM.Data.Content.RawContentManager
+    name: RawContentManager
+    href: MLEM.Data.Content.RawContentManager.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.Content.RawContentReader.Read(MLEM.Data.Content.RawContentManager,System.String,System.IO.Stream,System.Type,System.Object)
+    name: Read
+    href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_Read_MLEM_Data_Content_RawContentManager_System_String_System_IO_Stream_System_Type_System_Object_
+  - name: (
+  - uid: MLEM.Data.Content.RawContentManager
+    name: RawContentManager
+    href: MLEM.Data.Content.RawContentManager.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: System.Type
+    name: Type
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.type
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: MLEM.Data.Content.XmlReader.Read*
+  commentId: Overload:MLEM.Data.Content.XmlReader.Read
+  href: MLEM.Data.Content.XmlReader.html#MLEM_Data_Content_XmlReader_Read_MLEM_Data_Content_RawContentManager_System_String_System_IO_Stream_System_Type_System_Object_
+  name: Read
+  nameWithType: XmlReader.Read
+  fullName: MLEM.Data.Content.XmlReader.Read
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: Microsoft.Xna.Framework.Content.ContentManager
+  commentId: T:Microsoft.Xna.Framework.Content.ContentManager
+  parent: Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: ContentManager
+  nameWithType: ContentManager
+  fullName: Microsoft.Xna.Framework.Content.ContentManager
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: Microsoft.Xna.Framework.Content
+  commentId: N:Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: Microsoft.Xna.Framework.Content
+  nameWithType: Microsoft.Xna.Framework.Content
+  fullName: Microsoft.Xna.Framework.Content
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Content
+    name: Content
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Content
+    name: Content
+    isExternal: true
+- uid: MLEM.Data.Content.RawContentReader.GetFileExtensions
+  commentId: M:MLEM.Data.Content.RawContentReader.GetFileExtensions
+  parent: MLEM.Data.Content.RawContentReader
+  href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_GetFileExtensions
+  name: GetFileExtensions()
+  nameWithType: RawContentReader.GetFileExtensions()
+  fullName: MLEM.Data.Content.RawContentReader.GetFileExtensions()
+  spec.csharp:
+  - uid: MLEM.Data.Content.RawContentReader.GetFileExtensions
+    name: GetFileExtensions
+    href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_GetFileExtensions
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.Content.RawContentReader.GetFileExtensions
+    name: GetFileExtensions
+    href: MLEM.Data.Content.RawContentReader.html#MLEM_Data_Content_RawContentReader_GetFileExtensions
+  - name: (
+  - name: )
+- uid: MLEM.Data.Content.XmlReader.GetFileExtensions*
+  commentId: Overload:MLEM.Data.Content.XmlReader.GetFileExtensions
+  href: MLEM.Data.Content.XmlReader.html#MLEM_Data_Content_XmlReader_GetFileExtensions
+  name: GetFileExtensions
+  nameWithType: XmlReader.GetFileExtensions
+  fullName: MLEM.Data.Content.XmlReader.GetFileExtensions
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )

@@ -1,0 +1,131 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures.NinePatchMode
+  commentId: T:MLEM.Textures.NinePatchMode
+  id: NinePatchMode
+  parent: MLEM.Textures
+  children:
+  - MLEM.Textures.NinePatchMode.Stretch
+  - MLEM.Textures.NinePatchMode.Tile
+  langs:
+  - csharp
+  - vb
+  name: NinePatchMode
+  nameWithType: NinePatchMode
+  fullName: MLEM.Textures.NinePatchMode
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NinePatchMode
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 117
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: An enumeration that represents the modes that a <xref href="MLEM.Textures.NinePatch" data-throw-if-not-resolved="false"></xref> uses to be drawn
+  example: []
+  syntax:
+    content: public enum NinePatchMode
+    content.vb: Public Enum NinePatchMode
+- uid: MLEM.Textures.NinePatchMode.Stretch
+  commentId: F:MLEM.Textures.NinePatchMode.Stretch
+  id: Stretch
+  parent: MLEM.Textures.NinePatchMode
+  langs:
+  - csharp
+  - vb
+  name: Stretch
+  nameWithType: NinePatchMode.Stretch
+  fullName: MLEM.Textures.NinePatchMode.Stretch
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Stretch
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 123
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    The nine resulting patches will each be stretched.
+
+    This mode is fitting for textures that don't have an intricate design on their edges.
+  example: []
+  syntax:
+    content: Stretch = 0
+    return:
+      type: MLEM.Textures.NinePatchMode
+- uid: MLEM.Textures.NinePatchMode.Tile
+  commentId: F:MLEM.Textures.NinePatchMode.Tile
+  id: Tile
+  parent: MLEM.Textures.NinePatchMode
+  langs:
+  - csharp
+  - vb
+  name: Tile
+  nameWithType: NinePatchMode.Tile
+  fullName: MLEM.Textures.NinePatchMode.Tile
+  type: Field
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Tile
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 128
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    The nine resulting paches will be tiled, repeating the texture multiple times.
+
+    This mode is fitting for textures that have a more complex design on their edges.
+  example: []
+  syntax:
+    content: Tile = 1
+    return:
+      type: MLEM.Textures.NinePatchMode
+references:
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  parent: MLEM.Textures
+  href: MLEM.Textures.NinePatch.html
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  href: MLEM.html
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+- uid: MLEM.Textures.NinePatchMode
+  commentId: T:MLEM.Textures.NinePatchMode
+  parent: MLEM.Textures
+  href: MLEM.Textures.NinePatchMode.html
+  name: NinePatchMode
+  nameWithType: NinePatchMode
+  fullName: MLEM.Textures.NinePatchMode

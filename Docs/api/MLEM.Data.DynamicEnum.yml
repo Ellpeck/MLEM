@@ -1,0 +1,2602 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.DynamicEnum
+  commentId: T:MLEM.Data.DynamicEnum
+  id: DynamicEnum
+  parent: MLEM.Data
+  children:
+  - MLEM.Data.DynamicEnum.#ctor(System.String,System.Numerics.BigInteger)
+  - MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+  - MLEM.Data.DynamicEnum.AddValue``1(System.String)
+  - MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+  - MLEM.Data.DynamicEnum.And``1(``0,``0)
+  - MLEM.Data.DynamicEnum.GetEnumValue(System.Type,System.Numerics.BigInteger)
+  - MLEM.Data.DynamicEnum.GetEnumValue``1(System.Numerics.BigInteger)
+  - MLEM.Data.DynamicEnum.GetFlags``1(``0,System.Boolean)
+  - MLEM.Data.DynamicEnum.GetUniqueFlags``1(``0)
+  - MLEM.Data.DynamicEnum.GetValue(MLEM.Data.DynamicEnum)
+  - MLEM.Data.DynamicEnum.GetValues(System.Type)
+  - MLEM.Data.DynamicEnum.GetValues``1
+  - MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  - MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  - MLEM.Data.DynamicEnum.IsDefined(MLEM.Data.DynamicEnum)
+  - MLEM.Data.DynamicEnum.IsDefined(System.Type,System.Numerics.BigInteger)
+  - MLEM.Data.DynamicEnum.Neg``1(``0)
+  - MLEM.Data.DynamicEnum.Or``1(``0,``0)
+  - MLEM.Data.DynamicEnum.Parse(System.Type,System.String)
+  - MLEM.Data.DynamicEnum.Parse``1(System.String)
+  - MLEM.Data.DynamicEnum.ToString
+  - MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+  langs:
+  - csharp
+  - vb
+  name: DynamicEnum
+  nameWithType: DynamicEnum
+  fullName: MLEM.Data.DynamicEnum
+  type: Class
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DynamicEnum
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 27
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    A dynamic enum is a class that represents enum-like single-instance value behavior with additional capabilities, including dynamic addition of new arbitrary values.
+
+    A dynamic enum uses <xref href="System.Numerics.BigInteger" data-throw-if-not-resolved="false"></xref> as its underlying type, allowing for an arbitrary number of enum values to be created, even when a <xref href="System.FlagsAttribute" data-throw-if-not-resolved="false"></xref>-like structure is used that would only allow for up to 64 values in a regular enum.
+
+    All enum operations including <xref href="MLEM.Data.DynamicEnum.And%60%601(%60%600%2c%60%600)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.Or%60%601(%60%600%2c%60%600)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.Xor%60%601(%60%600%2c%60%600)" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Data.DynamicEnum.Neg%60%601(%60%600)" data-throw-if-not-resolved="false"></xref> are supported and can be implemented in derived classes using operator overloads.
+
+    To create a custom dynamic enum, simply create a class that extends <xref href="MLEM.Data.DynamicEnum" data-throw-if-not-resolved="false"></xref>. New values can then be added using <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.AddValue%60%601(System.String)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Data.DynamicEnum.AddFlag%60%601(System.String)" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    To include enum-like operator overloads in a dynamic enum named MyEnum, the following code can be used:
+
+    <pre><code class="lang-csharp">public static implicit operator BigInteger(MyEnum value) =&gt; GetValue(value);
+
+    public static implicit operator MyEnum(BigInteger value) =&gt; GetEnumValue&lt;MyEnum&gt;(value);
+
+    public static MyEnum operator |(MyEnum left, MyEnum right) =&gt; Or(left, right);
+
+    public static MyEnum operator &amp;(MyEnum left, MyEnum right) =&gt; And(left, right);
+
+    public static MyEnum operator ^(MyEnum left, MyEnum right) =&gt; Xor(left, right);
+
+    public static MyEnum operator ~(MyEnum value) =&gt; Neg(value);</code></pre>
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("DynamicEnum has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums")]
+
+      [JsonConverter(typeof(DynamicEnumConverter))]
+
+      public abstract class DynamicEnum
+    content.vb: >-
+      <Obsolete("DynamicEnum has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums")>
+
+      <JsonConverter(GetType(DynamicEnumConverter))>
+
+      Public MustInherit Class DynamicEnum
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: 'DynamicEnum has been moved into the DynamicEnums library: https://www.nuget.org/packages/DynamicEnums'
+  - type: Newtonsoft.Json.JsonConverterAttribute
+    ctor: Newtonsoft.Json.JsonConverterAttribute.#ctor(System.Type)
+    arguments:
+    - type: System.Type
+      value: MLEM.Data.Json.DynamicEnumConverter
+- uid: MLEM.Data.DynamicEnum.#ctor(System.String,System.Numerics.BigInteger)
+  commentId: M:MLEM.Data.DynamicEnum.#ctor(System.String,System.Numerics.BigInteger)
+  id: '#ctor(System.String,System.Numerics.BigInteger)'
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: DynamicEnum(string, BigInteger)
+  nameWithType: DynamicEnum.DynamicEnum(string, BigInteger)
+  fullName: MLEM.Data.DynamicEnum.DynamicEnum(string, System.Numerics.BigInteger)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 46
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Creates a new dynamic enum instance.
+
+    This constructor is protected as it is only invoked via reflection.
+  example: []
+  syntax:
+    content: protected DynamicEnum(string name, BigInteger value)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the enum value
+    - id: value
+      type: System.Numerics.BigInteger
+      description: The value
+    content.vb: Protected Sub New(name As String, value As BigInteger)
+  overload: MLEM.Data.DynamicEnum.#ctor*
+  nameWithType.vb: DynamicEnum.New(String, BigInteger)
+  fullName.vb: MLEM.Data.DynamicEnum.New(String, System.Numerics.BigInteger)
+  name.vb: New(String, BigInteger)
+- uid: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  commentId: M:MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  id: HasFlag(MLEM.Data.DynamicEnum)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: HasFlag(DynamicEnum)
+  nameWithType: DynamicEnum.HasFlag(DynamicEnum)
+  fullName: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HasFlag
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 58
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns true if this enum value has ALL of the given <xref href="MLEM.Data.DynamicEnum" data-throw-if-not-resolved="false"></xref> flags on it.
+
+    This operation is equivalent to <xref href="System.Enum.HasFlag(System.Enum)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool HasFlag(DynamicEnum flags)
+    parameters:
+    - id: flags
+      type: MLEM.Data.DynamicEnum
+      description: The flags to query
+    return:
+      type: System.Boolean
+      description: True if all of the flags are present, false otherwise
+    content.vb: Public Function HasFlag(flags As DynamicEnum) As Boolean
+  overload: MLEM.Data.DynamicEnum.HasFlag*
+  seealso:
+  - linkId: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+    commentId: M:MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+- uid: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  commentId: M:MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  id: HasAnyFlag(MLEM.Data.DynamicEnum)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: HasAnyFlag(DynamicEnum)
+  nameWithType: DynamicEnum.HasAnyFlag(DynamicEnum)
+  fullName: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HasAnyFlag
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 74
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns true if this enum value has ANY of the given <xref href="MLEM.Data.DynamicEnum" data-throw-if-not-resolved="false"></xref> flags on it
+  example: []
+  syntax:
+    content: public bool HasAnyFlag(DynamicEnum flags)
+    parameters:
+    - id: flags
+      type: MLEM.Data.DynamicEnum
+      description: The flags to query
+    return:
+      type: System.Boolean
+      description: True if one of the flags is present, false otherwise
+    content.vb: Public Function HasAnyFlag(flags As DynamicEnum) As Boolean
+  overload: MLEM.Data.DynamicEnum.HasAnyFlag*
+  seealso:
+  - linkId: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+    commentId: M:MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+- uid: MLEM.Data.DynamicEnum.ToString
+  commentId: M:MLEM.Data.DynamicEnum.ToString
+  id: ToString
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: DynamicEnum.ToString()
+  fullName: MLEM.Data.DynamicEnum.ToString()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ToString
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 86
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: MLEM.Data.DynamicEnum.ToString*
+- uid: MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+  commentId: M:MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+  id: Add``1(System.String,System.Numerics.BigInteger)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: Add<T>(string, BigInteger)
+  nameWithType: DynamicEnum.Add<T>(string, BigInteger)
+  fullName: MLEM.Data.DynamicEnum.Add<T>(string, System.Numerics.BigInteger)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 108
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Adds a new enum value to the given enum type <code class="typeparamref">T</code>
+  example: []
+  syntax:
+    content: 'public static T Add<T>(string name, BigInteger value) where T : DynamicEnum'
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the enum value to add
+    - id: value
+      type: System.Numerics.BigInteger
+      description: The value to add
+    typeParameters:
+    - id: T
+      description: The type to add this value to
+    return:
+      type: '{T}'
+      description: The newly created enum value
+    content.vb: Public Shared Function Add(Of T As DynamicEnum)(name As String, value As BigInteger) As T
+  overload: MLEM.Data.DynamicEnum.Add*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the name or value passed are already present
+  nameWithType.vb: DynamicEnum.Add(Of T)(String, BigInteger)
+  fullName.vb: MLEM.Data.DynamicEnum.Add(Of T)(String, System.Numerics.BigInteger)
+  name.vb: Add(Of T)(String, BigInteger)
+- uid: MLEM.Data.DynamicEnum.AddValue``1(System.String)
+  commentId: M:MLEM.Data.DynamicEnum.AddValue``1(System.String)
+  id: AddValue``1(System.String)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: AddValue<T>(string)
+  nameWithType: DynamicEnum.AddValue<T>(string)
+  fullName: MLEM.Data.DynamicEnum.AddValue<T>(string)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AddValue
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 134
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Adds a new enum value to the given enum type <code class="typeparamref">T</code>.
+
+    This method differs from <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref> in that it automatically determines a value.
+
+    The value determined will be the next free number in a sequence, which represents the default behavior in an enum if enum values are not explicitly numbered.
+  example: []
+  syntax:
+    content: 'public static T AddValue<T>(string name) where T : DynamicEnum'
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the enum value to add
+    typeParameters:
+    - id: T
+      description: The type to add this value to
+    return:
+      type: '{T}'
+      description: The newly created enum value
+    content.vb: Public Shared Function AddValue(Of T As DynamicEnum)(name As String) As T
+  overload: MLEM.Data.DynamicEnum.AddValue*
+  nameWithType.vb: DynamicEnum.AddValue(Of T)(String)
+  fullName.vb: MLEM.Data.DynamicEnum.AddValue(Of T)(String)
+  name.vb: AddValue(Of T)(String)
+- uid: MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+  commentId: M:MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+  id: AddFlag``1(System.String)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: AddFlag<T>(string)
+  nameWithType: DynamicEnum.AddFlag<T>(string)
+  fullName: MLEM.Data.DynamicEnum.AddFlag<T>(string)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AddFlag
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 149
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Adds a new flag enum value to the given enum type <code class="typeparamref">T</code>.
+
+    This method differs from <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref> in that it automatically determines a value.
+
+    The value determined will be the next free power of two, allowing enum values to be combined using bitwise operations to create <xref href="System.FlagsAttribute" data-throw-if-not-resolved="false"></xref>-like behavior.
+  example: []
+  syntax:
+    content: 'public static T AddFlag<T>(string name) where T : DynamicEnum'
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the enum value to add
+    typeParameters:
+    - id: T
+      description: The type to add this value to
+    return:
+      type: '{T}'
+      description: The newly created enum value
+    content.vb: Public Shared Function AddFlag(Of T As DynamicEnum)(name As String) As T
+  overload: MLEM.Data.DynamicEnum.AddFlag*
+  nameWithType.vb: DynamicEnum.AddFlag(Of T)(String)
+  fullName.vb: MLEM.Data.DynamicEnum.AddFlag(Of T)(String)
+  name.vb: AddFlag(Of T)(String)
+- uid: MLEM.Data.DynamicEnum.GetValues``1
+  commentId: M:MLEM.Data.DynamicEnum.GetValues``1
+  id: GetValues``1
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetValues<T>()
+  nameWithType: DynamicEnum.GetValues<T>()
+  fullName: MLEM.Data.DynamicEnum.GetValues<T>()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetValues
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 162
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns a collection of all of the enum values that are explicitly defined for the given dynamic enum type <code class="typeparamref">T</code>.
+
+    A value counts as explicitly defined if it has been added using <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.AddValue%60%601(System.String)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Data.DynamicEnum.AddFlag%60%601(System.String)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public static IEnumerable<T> GetValues<T>() where T : DynamicEnum'
+    typeParameters:
+    - id: T
+      description: The type whose values to get
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: The defined values for the given type
+    content.vb: Public Shared Function GetValues(Of T As DynamicEnum)() As IEnumerable(Of T)
+  overload: MLEM.Data.DynamicEnum.GetValues*
+  nameWithType.vb: DynamicEnum.GetValues(Of T)()
+  fullName.vb: MLEM.Data.DynamicEnum.GetValues(Of T)()
+  name.vb: GetValues(Of T)()
+- uid: MLEM.Data.DynamicEnum.GetValues(System.Type)
+  commentId: M:MLEM.Data.DynamicEnum.GetValues(System.Type)
+  id: GetValues(System.Type)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetValues(Type)
+  nameWithType: DynamicEnum.GetValues(Type)
+  fullName: MLEM.Data.DynamicEnum.GetValues(System.Type)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetValues
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 172
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns a collection of all of the enum values that are explicitly defined for the given dynamic enum type <code class="paramref">type</code>.
+
+    A value counts as explicitly defined if it has been added using <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.AddValue%60%601(System.String)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Data.DynamicEnum.AddFlag%60%601(System.String)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static IEnumerable<DynamicEnum> GetValues(Type type)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The type whose values to get
+    return:
+      type: System.Collections.Generic.IEnumerable{MLEM.Data.DynamicEnum}
+      description: The defined values for the given type
+    content.vb: Public Shared Function GetValues(type As Type) As IEnumerable(Of DynamicEnum)
+  overload: MLEM.Data.DynamicEnum.GetValues*
+- uid: MLEM.Data.DynamicEnum.GetFlags``1(``0,System.Boolean)
+  commentId: M:MLEM.Data.DynamicEnum.GetFlags``1(``0,System.Boolean)
+  id: GetFlags``1(``0,System.Boolean)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetFlags<T>(T, bool)
+  nameWithType: DynamicEnum.GetFlags<T>(T, bool)
+  fullName: MLEM.Data.DynamicEnum.GetFlags<T>(T, bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetFlags
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 184
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns all of the defined values from the given dynamic enum type <code class="typeparamref">T</code> which are contained in <code class="paramref">combinedFlag</code>.
+
+    Note that, if combined flags are defined in <code class="typeparamref">T</code>, and <code class="paramref">combinedFlag</code> contains them, they will also be returned.
+  example: []
+  syntax:
+    content: 'public static IEnumerable<T> GetFlags<T>(T combinedFlag, bool includeZero = true) where T : DynamicEnum'
+    parameters:
+    - id: combinedFlag
+      type: '{T}'
+      description: The combined flags whose individual flags to return.
+    - id: includeZero
+      type: System.Boolean
+      description: Whether the enum value 0 should also be returned, if <code class="typeparamref">T</code> contains one.
+    typeParameters:
+    - id: T
+      description: The type of enum.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: All of the flags that make up <code class="paramref">combinedFlag</code>.
+    content.vb: Public Shared Function GetFlags(Of T As DynamicEnum)(combinedFlag As T, includeZero As Boolean = True) As IEnumerable(Of T)
+  overload: MLEM.Data.DynamicEnum.GetFlags*
+  nameWithType.vb: DynamicEnum.GetFlags(Of T)(T, Boolean)
+  fullName.vb: MLEM.Data.DynamicEnum.GetFlags(Of T)(T, Boolean)
+  name.vb: GetFlags(Of T)(T, Boolean)
+- uid: MLEM.Data.DynamicEnum.GetUniqueFlags``1(``0)
+  commentId: M:MLEM.Data.DynamicEnum.GetUniqueFlags``1(``0)
+  id: GetUniqueFlags``1(``0)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetUniqueFlags<T>(T)
+  nameWithType: DynamicEnum.GetUniqueFlags<T>(T)
+  fullName: MLEM.Data.DynamicEnum.GetUniqueFlags<T>(T)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetUniqueFlags
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 198
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns all of the defined unique flags from the given dynamic enum type <code class="typeparamref">T</code> which are contained in <code class="paramref">combinedFlag</code>.
+
+    Any combined flags (flags that aren't powers of two) which are defined in <code class="typeparamref">T</code> will not be returned.
+  example: []
+  syntax:
+    content: 'public static IEnumerable<T> GetUniqueFlags<T>(T combinedFlag) where T : DynamicEnum'
+    parameters:
+    - id: combinedFlag
+      type: '{T}'
+      description: The combined flags whose individual flags to return.
+    typeParameters:
+    - id: T
+      description: The type of enum.
+    return:
+      type: System.Collections.Generic.IEnumerable{{T}}
+      description: All of the unique flags that make up <code class="paramref">combinedFlag</code>.
+    content.vb: Public Shared Function GetUniqueFlags(Of T As DynamicEnum)(combinedFlag As T) As IEnumerable(Of T)
+  overload: MLEM.Data.DynamicEnum.GetUniqueFlags*
+  nameWithType.vb: DynamicEnum.GetUniqueFlags(Of T)(T)
+  fullName.vb: MLEM.Data.DynamicEnum.GetUniqueFlags(Of T)(T)
+  name.vb: GetUniqueFlags(Of T)(T)
+- uid: MLEM.Data.DynamicEnum.Or``1(``0,``0)
+  commentId: M:MLEM.Data.DynamicEnum.Or``1(``0,``0)
+  id: Or``1(``0,``0)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: Or<T>(T, T)
+  nameWithType: DynamicEnum.Or<T>(T, T)
+  fullName: MLEM.Data.DynamicEnum.Or<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Or
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 219
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the bitwise OR (|) combination of the two dynamic enum values
+  example: []
+  syntax:
+    content: 'public static T Or<T>(T left, T right) where T : DynamicEnum'
+    parameters:
+    - id: left
+      type: '{T}'
+      description: The left value
+    - id: right
+      type: '{T}'
+      description: The right value
+    typeParameters:
+    - id: T
+      description: The type of the values
+    return:
+      type: '{T}'
+      description: The bitwise OR (|) combination
+    content.vb: Public Shared Function [Or](Of T As DynamicEnum)(left As T, right As T) As T
+  overload: MLEM.Data.DynamicEnum.Or*
+  nameWithType.vb: DynamicEnum.Or(Of T)(T, T)
+  fullName.vb: MLEM.Data.DynamicEnum.Or(Of T)(T, T)
+  name.vb: Or(Of T)(T, T)
+- uid: MLEM.Data.DynamicEnum.And``1(``0,``0)
+  commentId: M:MLEM.Data.DynamicEnum.And``1(``0,``0)
+  id: And``1(``0,``0)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: And<T>(T, T)
+  nameWithType: DynamicEnum.And<T>(T, T)
+  fullName: MLEM.Data.DynamicEnum.And<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: And
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 235
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the bitwise AND (&amp;) combination of the two dynamic enum values
+  example: []
+  syntax:
+    content: 'public static T And<T>(T left, T right) where T : DynamicEnum'
+    parameters:
+    - id: left
+      type: '{T}'
+      description: The left value
+    - id: right
+      type: '{T}'
+      description: The right value
+    typeParameters:
+    - id: T
+      description: The type of the values
+    return:
+      type: '{T}'
+      description: The bitwise AND (&amp;) combination
+    content.vb: Public Shared Function [And](Of T As DynamicEnum)(left As T, right As T) As T
+  overload: MLEM.Data.DynamicEnum.And*
+  nameWithType.vb: DynamicEnum.And(Of T)(T, T)
+  fullName.vb: MLEM.Data.DynamicEnum.And(Of T)(T, T)
+  name.vb: And(Of T)(T, T)
+- uid: MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+  commentId: M:MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+  id: Xor``1(``0,``0)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: Xor<T>(T, T)
+  nameWithType: DynamicEnum.Xor<T>(T, T)
+  fullName: MLEM.Data.DynamicEnum.Xor<T>(T, T)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Xor
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 251
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the bitwise XOR (^) combination of the two dynamic enum values
+  example: []
+  syntax:
+    content: 'public static T Xor<T>(T left, T right) where T : DynamicEnum'
+    parameters:
+    - id: left
+      type: '{T}'
+      description: The left value
+    - id: right
+      type: '{T}'
+      description: The right value
+    typeParameters:
+    - id: T
+      description: The type of the values
+    return:
+      type: '{T}'
+      description: The bitwise XOR (^) combination
+    content.vb: Public Shared Function [Xor](Of T As DynamicEnum)(left As T, right As T) As T
+  overload: MLEM.Data.DynamicEnum.Xor*
+  nameWithType.vb: DynamicEnum.Xor(Of T)(T, T)
+  fullName.vb: MLEM.Data.DynamicEnum.Xor(Of T)(T, T)
+  name.vb: Xor(Of T)(T, T)
+- uid: MLEM.Data.DynamicEnum.Neg``1(``0)
+  commentId: M:MLEM.Data.DynamicEnum.Neg``1(``0)
+  id: Neg``1(``0)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: Neg<T>(T)
+  nameWithType: DynamicEnum.Neg<T>(T)
+  fullName: MLEM.Data.DynamicEnum.Neg<T>(T)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Neg
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 266
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the bitwise NEG (~) combination of the dynamic enum value
+  example: []
+  syntax:
+    content: 'public static T Neg<T>(T value) where T : DynamicEnum'
+    parameters:
+    - id: value
+      type: '{T}'
+      description: The value
+    typeParameters:
+    - id: T
+      description: The type of the values
+    return:
+      type: '{T}'
+      description: The bitwise NEG (~) value
+    content.vb: Public Shared Function Neg(Of T As DynamicEnum)(value As T) As T
+  overload: MLEM.Data.DynamicEnum.Neg*
+  nameWithType.vb: DynamicEnum.Neg(Of T)(T)
+  fullName.vb: MLEM.Data.DynamicEnum.Neg(Of T)(T)
+  name.vb: Neg(Of T)(T)
+- uid: MLEM.Data.DynamicEnum.GetValue(MLEM.Data.DynamicEnum)
+  commentId: M:MLEM.Data.DynamicEnum.GetValue(MLEM.Data.DynamicEnum)
+  id: GetValue(MLEM.Data.DynamicEnum)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetValue(DynamicEnum)
+  nameWithType: DynamicEnum.GetValue(DynamicEnum)
+  fullName: MLEM.Data.DynamicEnum.GetValue(MLEM.Data.DynamicEnum)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetValue
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 280
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the <xref href="System.Numerics.BigInteger" data-throw-if-not-resolved="false"></xref> representation of the given dynamic enum value
+  example: []
+  syntax:
+    content: public static BigInteger GetValue(DynamicEnum value)
+    parameters:
+    - id: value
+      type: MLEM.Data.DynamicEnum
+      description: The value whose number representation to get
+    return:
+      type: System.Numerics.BigInteger
+      description: The value's number representation
+    content.vb: Public Shared Function GetValue(value As DynamicEnum) As BigInteger
+  overload: MLEM.Data.DynamicEnum.GetValue*
+- uid: MLEM.Data.DynamicEnum.GetEnumValue``1(System.Numerics.BigInteger)
+  commentId: M:MLEM.Data.DynamicEnum.GetEnumValue``1(System.Numerics.BigInteger)
+  id: GetEnumValue``1(System.Numerics.BigInteger)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEnumValue<T>(BigInteger)
+  nameWithType: DynamicEnum.GetEnumValue<T>(BigInteger)
+  fullName: MLEM.Data.DynamicEnum.GetEnumValue<T>(System.Numerics.BigInteger)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetEnumValue
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 290
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the defined or combined dynamic enum value for the given <xref href="System.Numerics.BigInteger" data-throw-if-not-resolved="false"></xref> representation
+  example: []
+  syntax:
+    content: 'public static T GetEnumValue<T>(BigInteger value) where T : DynamicEnum'
+    parameters:
+    - id: value
+      type: System.Numerics.BigInteger
+      description: The value whose dynamic enum value to get
+    typeParameters:
+    - id: T
+      description: The type that the returned dynamic enum should have
+    return:
+      type: '{T}'
+      description: The defined or combined dynamic enum value
+    content.vb: Public Shared Function GetEnumValue(Of T As DynamicEnum)(value As BigInteger) As T
+  overload: MLEM.Data.DynamicEnum.GetEnumValue*
+  nameWithType.vb: DynamicEnum.GetEnumValue(Of T)(BigInteger)
+  fullName.vb: MLEM.Data.DynamicEnum.GetEnumValue(Of T)(System.Numerics.BigInteger)
+  name.vb: GetEnumValue(Of T)(BigInteger)
+- uid: MLEM.Data.DynamicEnum.GetEnumValue(System.Type,System.Numerics.BigInteger)
+  commentId: M:MLEM.Data.DynamicEnum.GetEnumValue(System.Type,System.Numerics.BigInteger)
+  id: GetEnumValue(System.Type,System.Numerics.BigInteger)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: GetEnumValue(Type, BigInteger)
+  nameWithType: DynamicEnum.GetEnumValue(Type, BigInteger)
+  fullName: MLEM.Data.DynamicEnum.GetEnumValue(System.Type, System.Numerics.BigInteger)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetEnumValue
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 300
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Returns the defined or combined dynamic enum value for the given <xref href="System.Numerics.BigInteger" data-throw-if-not-resolved="false"></xref> representation
+  example: []
+  syntax:
+    content: public static DynamicEnum GetEnumValue(Type type, BigInteger value)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The type that the returned dynamic enum should have
+    - id: value
+      type: System.Numerics.BigInteger
+      description: The value whose dynamic enum value to get
+    return:
+      type: MLEM.Data.DynamicEnum
+      description: The defined or combined dynamic enum value
+    content.vb: Public Shared Function GetEnumValue(type As Type, value As BigInteger) As DynamicEnum
+  overload: MLEM.Data.DynamicEnum.GetEnumValue*
+- uid: MLEM.Data.DynamicEnum.Parse``1(System.String)
+  commentId: M:MLEM.Data.DynamicEnum.Parse``1(System.String)
+  id: Parse``1(System.String)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: Parse<T>(string)
+  nameWithType: DynamicEnum.Parse<T>(string)
+  fullName: MLEM.Data.DynamicEnum.Parse<T>(string)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Parse
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 323
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Parses the given <xref href="System.String" data-throw-if-not-resolved="false"></xref> into a dynamic enum value and returns the result.
+
+    This method supports defined enum values as well as values combined using the pipe (|) character and any number of spaces.
+
+    If no enum value can be parsed, null is returned.
+  example: []
+  syntax:
+    content: 'public static T Parse<T>(string strg) where T : DynamicEnum'
+    parameters:
+    - id: strg
+      type: System.String
+      description: The string to parse into a dynamic enum value
+    typeParameters:
+    - id: T
+      description: The type of the dynamic enum value to parse
+    return:
+      type: '{T}'
+      description: The parsed enum value, or null if parsing fails
+    content.vb: Public Shared Function Parse(Of T As DynamicEnum)(strg As String) As T
+  overload: MLEM.Data.DynamicEnum.Parse*
+  nameWithType.vb: DynamicEnum.Parse(Of T)(String)
+  fullName.vb: MLEM.Data.DynamicEnum.Parse(Of T)(String)
+  name.vb: Parse(Of T)(String)
+- uid: MLEM.Data.DynamicEnum.Parse(System.Type,System.String)
+  commentId: M:MLEM.Data.DynamicEnum.Parse(System.Type,System.String)
+  id: Parse(System.Type,System.String)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: Parse(Type, string)
+  nameWithType: DynamicEnum.Parse(Type, string)
+  fullName: MLEM.Data.DynamicEnum.Parse(System.Type, string)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Parse
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 335
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Parses the given <xref href="System.String" data-throw-if-not-resolved="false"></xref> into a dynamic enum value and returns the result.
+
+    This method supports defined enum values as well as values combined using the pipe (|) character and any number of spaces.
+
+    If no enum value can be parsed, null is returned.
+  example: []
+  syntax:
+    content: public static DynamicEnum Parse(Type type, string strg)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The type of the dynamic enum value to parse
+    - id: strg
+      type: System.String
+      description: The string to parse into a dynamic enum value
+    return:
+      type: MLEM.Data.DynamicEnum
+      description: The parsed enum value, or null if parsing fails
+    content.vb: Public Shared Function Parse(type As Type, strg As String) As DynamicEnum
+  overload: MLEM.Data.DynamicEnum.Parse*
+  nameWithType.vb: DynamicEnum.Parse(Type, String)
+  fullName.vb: MLEM.Data.DynamicEnum.Parse(System.Type, String)
+  name.vb: Parse(Type, String)
+- uid: MLEM.Data.DynamicEnum.IsDefined(System.Type,System.Numerics.BigInteger)
+  commentId: M:MLEM.Data.DynamicEnum.IsDefined(System.Type,System.Numerics.BigInteger)
+  id: IsDefined(System.Type,System.Numerics.BigInteger)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: IsDefined(Type, BigInteger)
+  nameWithType: DynamicEnum.IsDefined(Type, BigInteger)
+  fullName: MLEM.Data.DynamicEnum.IsDefined(System.Type, System.Numerics.BigInteger)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsDefined
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 361
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns whether the given <code class="paramref">value</code> is defined in the given dynamic enum <code class="paramref">type</code>.
+
+    A value counts as explicitly defined if it has been added using <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.AddValue%60%601(System.String)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Data.DynamicEnum.AddFlag%60%601(System.String)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static bool IsDefined(Type type, BigInteger value)
+    parameters:
+    - id: type
+      type: System.Type
+      description: The dynamic enum type to query.
+    - id: value
+      type: System.Numerics.BigInteger
+      description: The value to query.
+    return:
+      type: System.Boolean
+      description: Whether the <code class="paramref">value</code> is defined.
+    content.vb: Public Shared Function IsDefined(type As Type, value As BigInteger) As Boolean
+  overload: MLEM.Data.DynamicEnum.IsDefined*
+- uid: MLEM.Data.DynamicEnum.IsDefined(MLEM.Data.DynamicEnum)
+  commentId: M:MLEM.Data.DynamicEnum.IsDefined(MLEM.Data.DynamicEnum)
+  id: IsDefined(MLEM.Data.DynamicEnum)
+  parent: MLEM.Data.DynamicEnum
+  langs:
+  - csharp
+  - vb
+  name: IsDefined(DynamicEnum)
+  nameWithType: DynamicEnum.IsDefined(DynamicEnum)
+  fullName: MLEM.Data.DynamicEnum.IsDefined(MLEM.Data.DynamicEnum)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/DynamicEnum.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsDefined
+    path: ../MLEM.Data/DynamicEnum.cs
+    startLine: 371
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Returns whether the given <code class="paramref">value</code> is defined in its dynamic enum type.
+
+    A value counts as explicitly defined if it has been added using <xref href="MLEM.Data.DynamicEnum.Add%60%601(System.String%2cSystem.Numerics.BigInteger)" data-throw-if-not-resolved="false"></xref>, <xref href="MLEM.Data.DynamicEnum.AddValue%60%601(System.String)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Data.DynamicEnum.AddFlag%60%601(System.String)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static bool IsDefined(DynamicEnum value)
+    parameters:
+    - id: value
+      type: MLEM.Data.DynamicEnum
+      description: The value to query.
+    return:
+      type: System.Boolean
+      description: Whether the <code class="paramref">value</code> is defined.
+    content.vb: Public Shared Function IsDefined(value As DynamicEnum) As Boolean
+  overload: MLEM.Data.DynamicEnum.IsDefined*
+references:
+- uid: System.Numerics.BigInteger
+  commentId: T:System.Numerics.BigInteger
+  parent: System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.numerics.biginteger
+  name: BigInteger
+  nameWithType: BigInteger
+  fullName: System.Numerics.BigInteger
+- uid: System.FlagsAttribute
+  commentId: T:System.FlagsAttribute
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.flagsattribute
+  name: FlagsAttribute
+  nameWithType: FlagsAttribute
+  fullName: System.FlagsAttribute
+- uid: MLEM.Data.DynamicEnum.And``1(``0,``0)
+  commentId: M:MLEM.Data.DynamicEnum.And``1(``0,``0)
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_And__1___0___0_
+  name: And<T>(T, T)
+  nameWithType: DynamicEnum.And<T>(T, T)
+  fullName: MLEM.Data.DynamicEnum.And<T>(T, T)
+  nameWithType.vb: DynamicEnum.And(Of T)(T, T)
+  fullName.vb: MLEM.Data.DynamicEnum.And(Of T)(T, T)
+  name.vb: And(Of T)(T, T)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.And``1(``0,``0)
+    name: And
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_And__1___0___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.And``1(``0,``0)
+    name: And
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_And__1___0___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Data.DynamicEnum.Or``1(``0,``0)
+  commentId: M:MLEM.Data.DynamicEnum.Or``1(``0,``0)
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Or__1___0___0_
+  name: Or<T>(T, T)
+  nameWithType: DynamicEnum.Or<T>(T, T)
+  fullName: MLEM.Data.DynamicEnum.Or<T>(T, T)
+  nameWithType.vb: DynamicEnum.Or(Of T)(T, T)
+  fullName.vb: MLEM.Data.DynamicEnum.Or(Of T)(T, T)
+  name.vb: Or(Of T)(T, T)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.Or``1(``0,``0)
+    name: Or
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Or__1___0___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.Or``1(``0,``0)
+    name: Or
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Or__1___0___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+  commentId: M:MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Xor__1___0___0_
+  name: Xor<T>(T, T)
+  nameWithType: DynamicEnum.Xor<T>(T, T)
+  fullName: MLEM.Data.DynamicEnum.Xor<T>(T, T)
+  nameWithType.vb: DynamicEnum.Xor(Of T)(T, T)
+  fullName.vb: MLEM.Data.DynamicEnum.Xor(Of T)(T, T)
+  name.vb: Xor(Of T)(T, T)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+    name: Xor
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Xor__1___0___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.Xor``1(``0,``0)
+    name: Xor
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Xor__1___0___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Data.DynamicEnum.Neg``1(``0)
+  commentId: M:MLEM.Data.DynamicEnum.Neg``1(``0)
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Neg__1___0_
+  name: Neg<T>(T)
+  nameWithType: DynamicEnum.Neg<T>(T)
+  fullName: MLEM.Data.DynamicEnum.Neg<T>(T)
+  nameWithType.vb: DynamicEnum.Neg(Of T)(T)
+  fullName.vb: MLEM.Data.DynamicEnum.Neg(Of T)(T)
+  name.vb: Neg(Of T)(T)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.Neg``1(``0)
+    name: Neg
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Neg__1___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.Neg``1(``0)
+    name: Neg
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Neg__1___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: )
+- uid: MLEM.Data.DynamicEnum
+  commentId: T:MLEM.Data.DynamicEnum
+  parent: MLEM.Data
+  href: MLEM.Data.DynamicEnum.html
+  name: DynamicEnum
+  nameWithType: DynamicEnum
+  fullName: MLEM.Data.DynamicEnum
+- uid: MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+  commentId: M:MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+  isExternal: true
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Add__1_System_String_System_Numerics_BigInteger_
+  name: Add<T>(string, BigInteger)
+  nameWithType: DynamicEnum.Add<T>(string, BigInteger)
+  fullName: MLEM.Data.DynamicEnum.Add<T>(string, System.Numerics.BigInteger)
+  nameWithType.vb: DynamicEnum.Add(Of T)(String, BigInteger)
+  fullName.vb: MLEM.Data.DynamicEnum.Add(Of T)(String, System.Numerics.BigInteger)
+  name.vb: Add(Of T)(String, BigInteger)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+    name: Add
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Add__1_System_String_System_Numerics_BigInteger_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Numerics.BigInteger
+    name: BigInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.biginteger
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.Add``1(System.String,System.Numerics.BigInteger)
+    name: Add
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Add__1_System_String_System_Numerics_BigInteger_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Numerics.BigInteger
+    name: BigInteger
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics.biginteger
+  - name: )
+- uid: MLEM.Data.DynamicEnum.AddValue``1(System.String)
+  commentId: M:MLEM.Data.DynamicEnum.AddValue``1(System.String)
+  isExternal: true
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddValue__1_System_String_
+  name: AddValue<T>(string)
+  nameWithType: DynamicEnum.AddValue<T>(string)
+  fullName: MLEM.Data.DynamicEnum.AddValue<T>(string)
+  nameWithType.vb: DynamicEnum.AddValue(Of T)(String)
+  fullName.vb: MLEM.Data.DynamicEnum.AddValue(Of T)(String)
+  name.vb: AddValue(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.AddValue``1(System.String)
+    name: AddValue
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddValue__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.AddValue``1(System.String)
+    name: AddValue
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddValue__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+  commentId: M:MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+  isExternal: true
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddFlag__1_System_String_
+  name: AddFlag<T>(string)
+  nameWithType: DynamicEnum.AddFlag<T>(string)
+  fullName: MLEM.Data.DynamicEnum.AddFlag<T>(string)
+  nameWithType.vb: DynamicEnum.AddFlag(Of T)(String)
+  fullName.vb: MLEM.Data.DynamicEnum.AddFlag(Of T)(String)
+  name.vb: AddFlag(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+    name: AddFlag
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddFlag__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.AddFlag``1(System.String)
+    name: AddFlag
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddFlag__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<DynamicEnum>(DynamicEnum, DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<DynamicEnum>(DynamicEnum, DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Data.DynamicEnum>(MLEM.Data.DynamicEnum, MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of DynamicEnum)(DynamicEnum, DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Data.DynamicEnum)(MLEM.Data.DynamicEnum, MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of DynamicEnum)(DynamicEnum, DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.DynamicEnum,MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.DynamicEnum,MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<DynamicEnum>(DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<DynamicEnum>(DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Data.DynamicEnum>(MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of DynamicEnum)(DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Data.DynamicEnum)(MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of DynamicEnum)(DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<DynamicEnum>(DynamicEnum, DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<DynamicEnum>(DynamicEnum, DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Data.DynamicEnum>(MLEM.Data.DynamicEnum, MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of DynamicEnum)(DynamicEnum, DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Data.DynamicEnum)(MLEM.Data.DynamicEnum, MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of DynamicEnum)(DynamicEnum, DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.DynamicEnum,MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.DynamicEnum,MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.DynamicEnum.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<DynamicEnum>(DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<DynamicEnum>(DynamicEnum, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Data.DynamicEnum>(MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of DynamicEnum)(DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Data.DynamicEnum)(MLEM.Data.DynamicEnum, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of DynamicEnum)(DynamicEnum, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Data.DynamicEnum,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: System.Numerics
+  commentId: N:System.Numerics
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Numerics
+  nameWithType: System.Numerics
+  fullName: System.Numerics
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Numerics
+    name: Numerics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.numerics
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.DynamicEnum.#ctor*
+  commentId: Overload:MLEM.Data.DynamicEnum.#ctor
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum__ctor_System_String_System_Numerics_BigInteger_
+  name: DynamicEnum
+  nameWithType: DynamicEnum.DynamicEnum
+  fullName: MLEM.Data.DynamicEnum.DynamicEnum
+  nameWithType.vb: DynamicEnum.New
+  fullName.vb: MLEM.Data.DynamicEnum.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  commentId: M:MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasAnyFlag_MLEM_Data_DynamicEnum_
+  name: HasAnyFlag(DynamicEnum)
+  nameWithType: DynamicEnum.HasAnyFlag(DynamicEnum)
+  fullName: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+    name: HasAnyFlag
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasAnyFlag_MLEM_Data_DynamicEnum_
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.HasAnyFlag(MLEM.Data.DynamicEnum)
+    name: HasAnyFlag
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasAnyFlag_MLEM_Data_DynamicEnum_
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+- uid: System.Enum.HasFlag(System.Enum)
+  commentId: M:System.Enum.HasFlag(System.Enum)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.enum.hasflag
+  name: HasFlag(Enum)
+  nameWithType: Enum.HasFlag(Enum)
+  fullName: System.Enum.HasFlag(System.Enum)
+  spec.csharp:
+  - uid: System.Enum.HasFlag(System.Enum)
+    name: HasFlag
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum.hasflag
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+  spec.vb:
+  - uid: System.Enum.HasFlag(System.Enum)
+    name: HasFlag
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum.hasflag
+  - name: (
+  - uid: System.Enum
+    name: Enum
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.enum
+  - name: )
+- uid: MLEM.Data.DynamicEnum.HasFlag*
+  commentId: Overload:MLEM.Data.DynamicEnum.HasFlag
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasFlag_MLEM_Data_DynamicEnum_
+  name: HasFlag
+  nameWithType: DynamicEnum.HasFlag
+  fullName: MLEM.Data.DynamicEnum.HasFlag
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  commentId: M:MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasFlag_MLEM_Data_DynamicEnum_
+  name: HasFlag(DynamicEnum)
+  nameWithType: DynamicEnum.HasFlag(DynamicEnum)
+  fullName: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+  spec.csharp:
+  - uid: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+    name: HasFlag
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasFlag_MLEM_Data_DynamicEnum_
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.DynamicEnum.HasFlag(MLEM.Data.DynamicEnum)
+    name: HasFlag
+    href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasFlag_MLEM_Data_DynamicEnum_
+  - name: (
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+- uid: MLEM.Data.DynamicEnum.HasAnyFlag*
+  commentId: Overload:MLEM.Data.DynamicEnum.HasAnyFlag
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_HasAnyFlag_MLEM_Data_DynamicEnum_
+  name: HasAnyFlag
+  nameWithType: DynamicEnum.HasAnyFlag
+  fullName: MLEM.Data.DynamicEnum.HasAnyFlag
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: MLEM.Data.DynamicEnum.ToString*
+  commentId: Overload:MLEM.Data.DynamicEnum.ToString
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_ToString
+  name: ToString
+  nameWithType: DynamicEnum.ToString
+  fullName: MLEM.Data.DynamicEnum.ToString
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: MLEM.Data.DynamicEnum.Add*
+  commentId: Overload:MLEM.Data.DynamicEnum.Add
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Add__1_System_String_System_Numerics_BigInteger_
+  name: Add
+  nameWithType: DynamicEnum.Add
+  fullName: MLEM.Data.DynamicEnum.Add
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: MLEM.Data.DynamicEnum.AddValue*
+  commentId: Overload:MLEM.Data.DynamicEnum.AddValue
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddValue__1_System_String_
+  name: AddValue
+  nameWithType: DynamicEnum.AddValue
+  fullName: MLEM.Data.DynamicEnum.AddValue
+- uid: MLEM.Data.DynamicEnum.AddFlag*
+  commentId: Overload:MLEM.Data.DynamicEnum.AddFlag
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_AddFlag__1_System_String_
+  name: AddFlag
+  nameWithType: DynamicEnum.AddFlag
+  fullName: MLEM.Data.DynamicEnum.AddFlag
+- uid: MLEM.Data.DynamicEnum.GetValues*
+  commentId: Overload:MLEM.Data.DynamicEnum.GetValues
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_GetValues__1
+  name: GetValues
+  nameWithType: DynamicEnum.GetValues
+  fullName: MLEM.Data.DynamicEnum.GetValues
+- uid: System.Collections.Generic.IEnumerable{{T}}
+  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Collections.Generic.IEnumerable{MLEM.Data.DynamicEnum}
+  commentId: T:System.Collections.Generic.IEnumerable{MLEM.Data.DynamicEnum}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<DynamicEnum>
+  nameWithType: IEnumerable<DynamicEnum>
+  fullName: System.Collections.Generic.IEnumerable<MLEM.Data.DynamicEnum>
+  nameWithType.vb: IEnumerable(Of DynamicEnum)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MLEM.Data.DynamicEnum)
+  name.vb: IEnumerable(Of DynamicEnum)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.DynamicEnum
+    name: DynamicEnum
+    href: MLEM.Data.DynamicEnum.html
+  - name: )
+- uid: MLEM.Data.DynamicEnum.GetFlags*
+  commentId: Overload:MLEM.Data.DynamicEnum.GetFlags
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_GetFlags__1___0_System_Boolean_
+  name: GetFlags
+  nameWithType: DynamicEnum.GetFlags
+  fullName: MLEM.Data.DynamicEnum.GetFlags
+- uid: MLEM.Data.DynamicEnum.GetUniqueFlags*
+  commentId: Overload:MLEM.Data.DynamicEnum.GetUniqueFlags
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_GetUniqueFlags__1___0_
+  name: GetUniqueFlags
+  nameWithType: DynamicEnum.GetUniqueFlags
+  fullName: MLEM.Data.DynamicEnum.GetUniqueFlags
+- uid: MLEM.Data.DynamicEnum.Or*
+  commentId: Overload:MLEM.Data.DynamicEnum.Or
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Or__1___0___0_
+  name: Or
+  nameWithType: DynamicEnum.Or
+  fullName: MLEM.Data.DynamicEnum.Or
+- uid: MLEM.Data.DynamicEnum.And*
+  commentId: Overload:MLEM.Data.DynamicEnum.And
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_And__1___0___0_
+  name: And
+  nameWithType: DynamicEnum.And
+  fullName: MLEM.Data.DynamicEnum.And
+- uid: MLEM.Data.DynamicEnum.Xor*
+  commentId: Overload:MLEM.Data.DynamicEnum.Xor
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Xor__1___0___0_
+  name: Xor
+  nameWithType: DynamicEnum.Xor
+  fullName: MLEM.Data.DynamicEnum.Xor
+- uid: MLEM.Data.DynamicEnum.Neg*
+  commentId: Overload:MLEM.Data.DynamicEnum.Neg
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Neg__1___0_
+  name: Neg
+  nameWithType: DynamicEnum.Neg
+  fullName: MLEM.Data.DynamicEnum.Neg
+- uid: MLEM.Data.DynamicEnum.GetValue*
+  commentId: Overload:MLEM.Data.DynamicEnum.GetValue
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_GetValue_MLEM_Data_DynamicEnum_
+  name: GetValue
+  nameWithType: DynamicEnum.GetValue
+  fullName: MLEM.Data.DynamicEnum.GetValue
+- uid: MLEM.Data.DynamicEnum.GetEnumValue*
+  commentId: Overload:MLEM.Data.DynamicEnum.GetEnumValue
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_GetEnumValue__1_System_Numerics_BigInteger_
+  name: GetEnumValue
+  nameWithType: DynamicEnum.GetEnumValue
+  fullName: MLEM.Data.DynamicEnum.GetEnumValue
+- uid: MLEM.Data.DynamicEnum.Parse*
+  commentId: Overload:MLEM.Data.DynamicEnum.Parse
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_Parse__1_System_String_
+  name: Parse
+  nameWithType: DynamicEnum.Parse
+  fullName: MLEM.Data.DynamicEnum.Parse
+- uid: MLEM.Data.DynamicEnum.IsDefined*
+  commentId: Overload:MLEM.Data.DynamicEnum.IsDefined
+  href: MLEM.Data.DynamicEnum.html#MLEM_Data_DynamicEnum_IsDefined_System_Type_System_Numerics_BigInteger_
+  name: IsDefined
+  nameWithType: DynamicEnum.IsDefined
+  fullName: MLEM.Data.DynamicEnum.IsDefined

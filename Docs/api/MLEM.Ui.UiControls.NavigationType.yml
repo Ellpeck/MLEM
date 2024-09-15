@@ -1,0 +1,244 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.UiControls.NavigationType
+  commentId: T:MLEM.Ui.UiControls.NavigationType
+  id: UiControls.NavigationType
+  parent: MLEM.Ui
+  children:
+  - MLEM.Ui.UiControls.NavigationType.Gamepad
+  - MLEM.Ui.UiControls.NavigationType.Keyboard
+  - MLEM.Ui.UiControls.NavigationType.Mouse
+  - MLEM.Ui.UiControls.NavigationType.Touch
+  - MLEM.Ui.UiControls.NavigationType.Unknown
+  langs:
+  - csharp
+  - vb
+  name: UiControls.NavigationType
+  nameWithType: UiControls.NavigationType
+  fullName: MLEM.Ui.UiControls.NavigationType
+  type: Enum
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NavigationType
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 491
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    An enumeration type that represents the possible types of navigation that a <xref href="MLEM.Ui.UiControls" data-throw-if-not-resolved="false"></xref> instance supports.
+
+    This is used by <xref href="MLEM.Ui.UiControls.NavType" data-throw-if-not-resolved="false"></xref>, which stores the most recently used navigation type for a <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public enum UiControls.NavigationType
+    content.vb: Public Enum UiControls.NavigationType
+- uid: MLEM.Ui.UiControls.NavigationType.Unknown
+  commentId: F:MLEM.Ui.UiControls.NavigationType.Unknown
+  id: Unknown
+  parent: MLEM.Ui.UiControls.NavigationType
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: UiControls.NavigationType.Unknown
+  fullName: MLEM.Ui.UiControls.NavigationType.Unknown
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Unknown
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 496
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: An unknown navigation type, which usually means there has not been any ui navigation of any type yet.
+  example: []
+  syntax:
+    content: Unknown = 0
+    return:
+      type: MLEM.Ui.UiControls.NavigationType
+- uid: MLEM.Ui.UiControls.NavigationType.Mouse
+  commentId: F:MLEM.Ui.UiControls.NavigationType.Mouse
+  id: Mouse
+  parent: MLEM.Ui.UiControls.NavigationType
+  langs:
+  - csharp
+  - vb
+  name: Mouse
+  nameWithType: UiControls.NavigationType.Mouse
+  fullName: MLEM.Ui.UiControls.NavigationType.Mouse
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Mouse
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 500
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Mouse cursor and mouse button navigation.
+  example: []
+  syntax:
+    content: Mouse = 1
+    return:
+      type: MLEM.Ui.UiControls.NavigationType
+- uid: MLEM.Ui.UiControls.NavigationType.Keyboard
+  commentId: F:MLEM.Ui.UiControls.NavigationType.Keyboard
+  id: Keyboard
+  parent: MLEM.Ui.UiControls.NavigationType
+  langs:
+  - csharp
+  - vb
+  name: Keyboard
+  nameWithType: UiControls.NavigationType.Keyboard
+  fullName: MLEM.Ui.UiControls.NavigationType.Keyboard
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Keyboard
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 504
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Keyboard navigation.
+  example: []
+  syntax:
+    content: Keyboard = 2
+    return:
+      type: MLEM.Ui.UiControls.NavigationType
+- uid: MLEM.Ui.UiControls.NavigationType.Touch
+  commentId: F:MLEM.Ui.UiControls.NavigationType.Touch
+  id: Touch
+  parent: MLEM.Ui.UiControls.NavigationType
+  langs:
+  - csharp
+  - vb
+  name: Touch
+  nameWithType: UiControls.NavigationType.Touch
+  fullName: MLEM.Ui.UiControls.NavigationType.Touch
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Touch
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 508
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Touch and gesture navigation.
+  example: []
+  syntax:
+    content: Touch = 3
+    return:
+      type: MLEM.Ui.UiControls.NavigationType
+- uid: MLEM.Ui.UiControls.NavigationType.Gamepad
+  commentId: F:MLEM.Ui.UiControls.NavigationType.Gamepad
+  id: Gamepad
+  parent: MLEM.Ui.UiControls.NavigationType
+  langs:
+  - csharp
+  - vb
+  name: Gamepad
+  nameWithType: UiControls.NavigationType.Gamepad
+  fullName: MLEM.Ui.UiControls.NavigationType.Gamepad
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Gamepad
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 512
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Gamepad-style navigation, which may also include arrow key-based navigation based on current <xref href="MLEM.Ui.UiControls" data-throw-if-not-resolved="false"></xref> settings.
+  example: []
+  syntax:
+    content: Gamepad = 4
+    return:
+      type: MLEM.Ui.UiControls.NavigationType
+references:
+- uid: MLEM.Ui.UiControls
+  commentId: T:MLEM.Ui.UiControls
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiControls.html
+  name: UiControls
+  nameWithType: UiControls
+  fullName: MLEM.Ui.UiControls
+- uid: MLEM.Ui.UiControls.NavType
+  commentId: P:MLEM.Ui.UiControls.NavType
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_NavType
+  name: NavType
+  nameWithType: UiControls.NavType
+  fullName: MLEM.Ui.UiControls.NavType
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiSystem.html
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  href: MLEM.html
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+- uid: MLEM.Ui.UiControls.NavigationType
+  commentId: T:MLEM.Ui.UiControls.NavigationType
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiControls.html
+  name: UiControls.NavigationType
+  nameWithType: UiControls.NavigationType
+  fullName: MLEM.Ui.UiControls.NavigationType
+  spec.csharp:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  spec.vb:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html

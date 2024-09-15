@@ -1,0 +1,91 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Input.TextInput.TextChanged
+  commentId: T:MLEM.Input.TextInput.TextChanged
+  id: TextInput.TextChanged
+  parent: MLEM.Input
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TextInput.TextChanged
+  nameWithType: TextInput.TextChanged
+  fullName: MLEM.Input.TextInput.TextChanged
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Input/TextInput.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextChanged
+    path: ../MLEM/Input/TextInput.cs
+    startLine: 634
+  assemblies:
+  - MLEM
+  namespace: MLEM.Input
+  summary: A delegate method used for <xref href="MLEM.Input.TextInput.OnTextChange" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public delegate void TextInput.TextChanged(TextInput input, string text)
+    parameters:
+    - id: input
+      type: MLEM.Input.TextInput
+      description: The text input whose text changed
+    - id: text
+      type: System.String
+      description: The new text
+    content.vb: Public Delegate Sub TextInput.TextChanged(input As TextInput, text As String)
+references:
+- uid: MLEM.Input.TextInput.OnTextChange
+  commentId: F:MLEM.Input.TextInput.OnTextChange
+  href: MLEM.Input.TextInput.html#MLEM_Input_TextInput_OnTextChange
+  name: OnTextChange
+  nameWithType: TextInput.OnTextChange
+  fullName: MLEM.Input.TextInput.OnTextChange
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  href: MLEM.html
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+- uid: MLEM.Input.TextInput
+  commentId: T:MLEM.Input.TextInput
+  parent: MLEM.Input
+  href: MLEM.Input.TextInput.html
+  name: TextInput
+  nameWithType: TextInput
+  fullName: MLEM.Input.TextInput
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System

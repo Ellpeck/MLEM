@@ -1,0 +1,171 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.Codes.Code.Constructor
+  commentId: T:MLEM.Formatting.Codes.Code.Constructor
+  id: Code.Constructor
+  parent: MLEM.Formatting.Codes
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Code.Constructor
+  nameWithType: Code.Constructor
+  fullName: MLEM.Formatting.Codes.Code.Constructor
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Formatting/Codes/Code.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Constructor
+    path: ../MLEM/Formatting/Codes/Code.cs
+    startLine: 96
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting.Codes
+  summary: >-
+    Creates a new formatting code from the given regex and regex match.
+
+    <xref href="MLEM.Formatting.TextFormatter.Codes" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public delegate Code Code.Constructor(TextFormatter formatter, Match match, Regex regex)
+    parameters:
+    - id: formatter
+      type: MLEM.Formatting.TextFormatter
+      description: The text formatter that created this code
+    - id: match
+      type: System.Text.RegularExpressions.Match
+      description: The match for the code's regex
+    - id: regex
+      type: System.Text.RegularExpressions.Regex
+      description: The regex used to create this code
+    return:
+      type: MLEM.Formatting.Codes.Code
+    content.vb: Public Delegate Function Code.Constructor(formatter As TextFormatter, match As Match, regex As Regex) As Code
+references:
+- uid: MLEM.Formatting.TextFormatter.Codes
+  commentId: F:MLEM.Formatting.TextFormatter.Codes
+  href: MLEM.Formatting.TextFormatter.html#MLEM_Formatting_TextFormatter_Codes
+  name: Codes
+  nameWithType: TextFormatter.Codes
+  fullName: MLEM.Formatting.TextFormatter.Codes
+- uid: MLEM.Formatting.Codes
+  commentId: N:MLEM.Formatting.Codes
+  href: MLEM.html
+  name: MLEM.Formatting.Codes
+  nameWithType: MLEM.Formatting.Codes
+  fullName: MLEM.Formatting.Codes
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  - name: .
+  - uid: MLEM.Formatting.Codes
+    name: Codes
+    href: MLEM.Formatting.Codes.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  - name: .
+  - uid: MLEM.Formatting.Codes
+    name: Codes
+    href: MLEM.Formatting.Codes.html
+- uid: MLEM.Formatting.TextFormatter
+  commentId: T:MLEM.Formatting.TextFormatter
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TextFormatter.html
+  name: TextFormatter
+  nameWithType: TextFormatter
+  fullName: MLEM.Formatting.TextFormatter
+- uid: System.Text.RegularExpressions.Match
+  commentId: T:System.Text.RegularExpressions.Match
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.match
+  name: Match
+  nameWithType: Match
+  fullName: System.Text.RegularExpressions.Match
+- uid: System.Text.RegularExpressions.Regex
+  commentId: T:System.Text.RegularExpressions.Regex
+  parent: System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.regex
+  name: Regex
+  nameWithType: Regex
+  fullName: System.Text.RegularExpressions.Regex
+- uid: MLEM.Formatting.Codes.Code
+  commentId: T:MLEM.Formatting.Codes.Code
+  parent: MLEM.Formatting.Codes
+  href: MLEM.Formatting.Codes.Code.html
+  name: Code
+  nameWithType: Code
+  fullName: MLEM.Formatting.Codes.Code
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  href: MLEM.html
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+- uid: System.Text.RegularExpressions
+  commentId: N:System.Text.RegularExpressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Text.RegularExpressions
+  nameWithType: System.Text.RegularExpressions
+  fullName: System.Text.RegularExpressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.RegularExpressions
+    name: RegularExpressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Text
+    name: Text
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text
+  - name: .
+  - uid: System.Text.RegularExpressions
+    name: RegularExpressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.text.regularexpressions

@@ -1,0 +1,676 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures.NinePatchExtensions
+  commentId: T:MLEM.Textures.NinePatchExtensions
+  id: NinePatchExtensions
+  parent: MLEM.Textures
+  children:
+  - MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single)
+  - MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  - MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single)
+  - MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  langs:
+  - csharp
+  - vb
+  name: NinePatchExtensions
+  nameWithType: NinePatchExtensions
+  fullName: MLEM.Textures.NinePatchExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NinePatchExtensions
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 135
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: A set of extensions that allow for <xref href="MLEM.Textures.NinePatch" data-throw-if-not-resolved="false"></xref> rendering
+  example: []
+  syntax:
+    content: public static class NinePatchExtensions
+    content.vb: Public Module NinePatchExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  commentId: M:MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.NinePatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, NinePatch, RectangleF, Color, float, Vector2, SpriteEffects, float, float)
+  nameWithType: NinePatchExtensions.Draw(SpriteBatch, NinePatch, RectangleF, Color, float, Vector2, SpriteEffects, float, float)
+  fullName: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 149
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Draws a nine patch area using the given sprite batch
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The batch to draw with
+    - id: texture
+      type: MLEM.Textures.NinePatch
+      description: The nine patch to draw
+    - id: destinationRectangle
+      type: MLEM.Maths.RectangleF
+      description: The area that should be covered by this nine patch
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The color to use
+    - id: rotation
+      type: System.Single
+      description: The rotation
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: The origin position
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: The effects that the sprite should have
+    - id: layerDepth
+      type: System.Single
+      description: The depth
+    - id: patchScale
+      type: System.Single
+      description: The scale of each area of the nine patch
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As NinePatch, destinationRectangle As RectangleF, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single, patchScale As Single = 1)
+  overload: MLEM.Textures.NinePatchExtensions.Draw*
+  nameWithType.vb: NinePatchExtensions.Draw(SpriteBatch, NinePatch, RectangleF, Color, Single, Vector2, SpriteEffects, Single, Single)
+  fullName.vb: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single, Single)
+  name.vb: Draw(SpriteBatch, NinePatch, RectangleF, Color, Single, Vector2, SpriteEffects, Single, Single)
+- uid: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  commentId: M:MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.NinePatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, NinePatch, Rectangle, Color, float, Vector2, SpriteEffects, float, float)
+  nameWithType: NinePatchExtensions.Draw(SpriteBatch, NinePatch, Rectangle, Color, float, Vector2, SpriteEffects, float, float)
+  fullName: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 177
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Draws a nine patch area using the given sprite batch
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, float patchScale = 1)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The batch to draw with
+    - id: texture
+      type: MLEM.Textures.NinePatch
+      description: The nine patch to draw
+    - id: destinationRectangle
+      type: Microsoft.Xna.Framework.Rectangle
+      description: The area that should be covered by this nine patch
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The color to use
+    - id: rotation
+      type: System.Single
+      description: The rotation
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: The origin position
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: The effects that the sprite should have
+    - id: layerDepth
+      type: System.Single
+      description: The depth
+    - id: patchScale
+      type: System.Single
+      description: The scale of each area of the nine patch
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As NinePatch, destinationRectangle As Rectangle, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single, patchScale As Single = 1)
+  overload: MLEM.Textures.NinePatchExtensions.Draw*
+  nameWithType.vb: NinePatchExtensions.Draw(SpriteBatch, NinePatch, Rectangle, Color, Single, Vector2, SpriteEffects, Single, Single)
+  fullName.vb: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single, Single)
+  name.vb: Draw(SpriteBatch, NinePatch, Rectangle, Color, Single, Vector2, SpriteEffects, Single, Single)
+- uid: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single)
+  commentId: M:MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.NinePatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, NinePatch, RectangleF, Color, float)
+  nameWithType: NinePatchExtensions.Draw(SpriteBatch, NinePatch, RectangleF, Color, float)
+  fullName: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 182
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Draws a nine patch area using the given sprite batch
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, NinePatch texture, RectangleF destinationRectangle, Color color, float patchScale = 1)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The batch to draw with
+    - id: texture
+      type: MLEM.Textures.NinePatch
+      description: The nine patch to draw
+    - id: destinationRectangle
+      type: MLEM.Maths.RectangleF
+      description: The area that should be covered by this nine patch
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The color to use
+    - id: patchScale
+      type: System.Single
+      description: The scale of each area of the nine patch
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As NinePatch, destinationRectangle As RectangleF, color As Color, patchScale As Single = 1)
+  overload: MLEM.Textures.NinePatchExtensions.Draw*
+  nameWithType.vb: NinePatchExtensions.Draw(SpriteBatch, NinePatch, RectangleF, Color, Single)
+  fullName.vb: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, Single)
+  name.vb: Draw(SpriteBatch, NinePatch, RectangleF, Color, Single)
+- uid: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single)
+  commentId: M:MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.NinePatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.NinePatchExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, NinePatch, Rectangle, Color, float)
+  nameWithType: NinePatchExtensions.Draw(SpriteBatch, NinePatch, Rectangle, Color, float)
+  fullName: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/NinePatch.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/NinePatch.cs
+    startLine: 187
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Draws a nine patch area using the given sprite batch
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, NinePatch texture, Rectangle destinationRectangle, Color color, float patchScale = 1)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+      description: The batch to draw with
+    - id: texture
+      type: MLEM.Textures.NinePatch
+      description: The nine patch to draw
+    - id: destinationRectangle
+      type: Microsoft.Xna.Framework.Rectangle
+      description: The area that should be covered by this nine patch
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: The color to use
+    - id: patchScale
+      type: System.Single
+      description: The scale of each area of the nine patch
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As NinePatch, destinationRectangle As Rectangle, color As Color, patchScale As Single = 1)
+  overload: MLEM.Textures.NinePatchExtensions.Draw*
+  nameWithType.vb: NinePatchExtensions.Draw(SpriteBatch, NinePatch, Rectangle, Color, Single)
+  fullName.vb: MLEM.Textures.NinePatchExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.NinePatch, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, Single)
+  name.vb: Draw(SpriteBatch, NinePatch, Rectangle, Color, Single)
+references:
+- uid: MLEM.Textures.NinePatch
+  commentId: T:MLEM.Textures.NinePatch
+  parent: MLEM.Textures
+  href: MLEM.Textures.NinePatch.html
+  name: NinePatch
+  nameWithType: NinePatch
+  fullName: MLEM.Textures.NinePatch
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  href: MLEM.html
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Textures.NinePatchExtensions.Draw*
+  commentId: Overload:MLEM.Textures.NinePatchExtensions.Draw
+  href: MLEM.Textures.NinePatchExtensions.html#MLEM_Textures_NinePatchExtensions_Draw_Microsoft_Xna_Framework_Graphics_SpriteBatch_MLEM_Textures_NinePatch_MLEM_Maths_RectangleF_Microsoft_Xna_Framework_Color_System_Single_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Graphics_SpriteEffects_System_Single_System_Single_
+  name: Draw
+  nameWithType: NinePatchExtensions.Draw
+  fullName: MLEM.Textures.NinePatchExtensions.Draw
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: MLEM.Maths.RectangleF
+  commentId: T:MLEM.Maths.RectangleF
+  parent: MLEM.Maths
+  href: MLEM.Maths.RectangleF.html
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Maths.RectangleF
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteEffects
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteEffects
+  nameWithType: SpriteEffects
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle

@@ -1,0 +1,2277 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.UiControls
+  commentId: T:MLEM.Ui.UiControls
+  id: UiControls
+  parent: MLEM.Ui
+  children:
+  - MLEM.Ui.UiControls.#ctor(MLEM.Ui.UiSystem,MLEM.Input.InputHandler)
+  - MLEM.Ui.UiControls.ActiveRoot
+  - MLEM.Ui.UiControls.AutoNavModeChanged
+  - MLEM.Ui.UiControls.DownButtons
+  - MLEM.Ui.UiControls.GamepadButtons
+  - MLEM.Ui.UiControls.GamepadIndex
+  - MLEM.Ui.UiControls.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  - MLEM.Ui.UiControls.GetGamepadNextElement(MLEM.Maths.Direction2)
+  - MLEM.Ui.UiControls.GetSelectedElement(MLEM.Ui.RootElement)
+  - MLEM.Ui.UiControls.GetTabNextElement(System.Boolean)
+  - MLEM.Ui.UiControls.HandleGamepad
+  - MLEM.Ui.UiControls.HandleKeyboard
+  - MLEM.Ui.UiControls.HandleMouse
+  - MLEM.Ui.UiControls.HandleTouch
+  - MLEM.Ui.UiControls.Input
+  - MLEM.Ui.UiControls.IsAutoNavMode
+  - MLEM.Ui.UiControls.IsInputOurs
+  - MLEM.Ui.UiControls.Keybinds
+  - MLEM.Ui.UiControls.KeyboardButtons
+  - MLEM.Ui.UiControls.LeftButtons
+  - MLEM.Ui.UiControls.MousedElement
+  - MLEM.Ui.UiControls.NavType
+  - MLEM.Ui.UiControls.NavTypeChanged
+  - MLEM.Ui.UiControls.PressElement(MLEM.Ui.Elements.Element,System.Boolean)
+  - MLEM.Ui.UiControls.RightButtons
+  - MLEM.Ui.UiControls.SecondaryGamepadButtons
+  - MLEM.Ui.UiControls.SelectElement(MLEM.Ui.RootElement,MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  - MLEM.Ui.UiControls.SelectedElement
+  - MLEM.Ui.UiControls.SetMousedElement(MLEM.Ui.Elements.Element)
+  - MLEM.Ui.UiControls.SetTouchedElement(MLEM.Ui.Elements.Element)
+  - MLEM.Ui.UiControls.System
+  - MLEM.Ui.UiControls.TouchedElement
+  - MLEM.Ui.UiControls.UpButtons
+  - MLEM.Ui.UiControls.Update
+  langs:
+  - csharp
+  - vb
+  name: UiControls
+  nameWithType: UiControls
+  fullName: MLEM.Ui.UiControls
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UiControls
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 20
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    UiControls holds and manages all of the controls for a <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref>.
+
+    UiControls supports keyboard, mouse, gamepad and touch input using an underlying <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public class UiControls
+    content.vb: Public Class UiControls
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Ui.UiControls.Input
+  commentId: F:MLEM.Ui.UiControls.Input
+  id: Input
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: Input
+  nameWithType: UiControls.Input
+  fullName: MLEM.Ui.UiControls.Input
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Input
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 25
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The input handler that is used for querying input
+  example: []
+  syntax:
+    content: public readonly InputHandler Input
+    return:
+      type: MLEM.Input.InputHandler
+    content.vb: Public ReadOnly Input As InputHandler
+- uid: MLEM.Ui.UiControls.KeyboardButtons
+  commentId: F:MLEM.Ui.UiControls.KeyboardButtons
+  id: KeyboardButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: KeyboardButtons
+  nameWithType: UiControls.KeyboardButtons
+  fullName: MLEM.Ui.UiControls.KeyboardButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: KeyboardButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 30
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    A list of <xref href="Microsoft.Xna.Framework.Input.Keys" data-throw-if-not-resolved="false"></xref>, <xref href="Microsoft.Xna.Framework.Input.Buttons" data-throw-if-not-resolved="false"></xref> and/or <xref href="MLEM.Input.MouseButton" data-throw-if-not-resolved="false"></xref> that act as the buttons on the keyboard which perform the <xref href="MLEM.Ui.Elements.Element.OnPressed" data-throw-if-not-resolved="false"></xref> action.
+
+    If the <xref href="MLEM.Input.ModifierKey.Shift" data-throw-if-not-resolved="false"></xref> is held, these buttons perform <xref href="MLEM.Ui.Elements.Element.OnSecondaryPressed" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public readonly Keybind KeyboardButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly KeyboardButtons As Keybind
+- uid: MLEM.Ui.UiControls.GamepadButtons
+  commentId: F:MLEM.Ui.UiControls.GamepadButtons
+  id: GamepadButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: GamepadButtons
+  nameWithType: UiControls.GamepadButtons
+  fullName: MLEM.Ui.UiControls.GamepadButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GamepadButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 34
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: AA <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> that acts as the buttons on a gamepad that perform the <xref href="MLEM.Ui.Elements.Element.OnPressed" data-throw-if-not-resolved="false"></xref> action.
+  example: []
+  syntax:
+    content: public readonly Keybind GamepadButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly GamepadButtons As Keybind
+- uid: MLEM.Ui.UiControls.SecondaryGamepadButtons
+  commentId: F:MLEM.Ui.UiControls.SecondaryGamepadButtons
+  id: SecondaryGamepadButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: SecondaryGamepadButtons
+  nameWithType: UiControls.SecondaryGamepadButtons
+  fullName: MLEM.Ui.UiControls.SecondaryGamepadButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SecondaryGamepadButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 38
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: A <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> that acts as the buttons on a gamepad that perform the <xref href="MLEM.Ui.Elements.Element.OnSecondaryPressed" data-throw-if-not-resolved="false"></xref> action.
+  example: []
+  syntax:
+    content: public readonly Keybind SecondaryGamepadButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly SecondaryGamepadButtons As Keybind
+- uid: MLEM.Ui.UiControls.UpButtons
+  commentId: F:MLEM.Ui.UiControls.UpButtons
+  id: UpButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: UpButtons
+  nameWithType: UiControls.UpButtons
+  fullName: MLEM.Ui.UiControls.UpButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UpButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 42
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: A <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> that acts as the buttons that select a <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> that is above the currently selected element.
+  example: []
+  syntax:
+    content: public readonly Keybind UpButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly UpButtons As Keybind
+- uid: MLEM.Ui.UiControls.DownButtons
+  commentId: F:MLEM.Ui.UiControls.DownButtons
+  id: DownButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: DownButtons
+  nameWithType: UiControls.DownButtons
+  fullName: MLEM.Ui.UiControls.DownButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: DownButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 46
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: A <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> that acts as the buttons that select a <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> that is below the currently selected element.
+  example: []
+  syntax:
+    content: public readonly Keybind DownButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly DownButtons As Keybind
+- uid: MLEM.Ui.UiControls.LeftButtons
+  commentId: F:MLEM.Ui.UiControls.LeftButtons
+  id: LeftButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: LeftButtons
+  nameWithType: UiControls.LeftButtons
+  fullName: MLEM.Ui.UiControls.LeftButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: LeftButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 50
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: A <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> that acts as the buttons that select a <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> that is to the left of the currently selected element.
+  example: []
+  syntax:
+    content: public readonly Keybind LeftButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly LeftButtons As Keybind
+- uid: MLEM.Ui.UiControls.RightButtons
+  commentId: F:MLEM.Ui.UiControls.RightButtons
+  id: RightButtons
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: RightButtons
+  nameWithType: UiControls.RightButtons
+  fullName: MLEM.Ui.UiControls.RightButtons
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RightButtons
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 54
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: A <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> that acts as the buttons that select a <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> that is to the right of the currently selected element.
+  example: []
+  syntax:
+    content: public readonly Keybind RightButtons
+    return:
+      type: MLEM.Input.Keybind
+    content.vb: Public ReadOnly RightButtons As Keybind
+- uid: MLEM.Ui.UiControls.Keybinds
+  commentId: F:MLEM.Ui.UiControls.Keybinds
+  id: Keybinds
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: Keybinds
+  nameWithType: UiControls.Keybinds
+  fullName: MLEM.Ui.UiControls.Keybinds
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Keybinds
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 59
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    All <xref href="MLEM.Input.Keybind" data-throw-if-not-resolved="false"></xref> instances used by these ui controls.
+
+    This can be used to easily serialize and deserialize all ui keybinds.
+  example: []
+  syntax:
+    content: public readonly Keybind[] Keybinds
+    return:
+      type: MLEM.Input.Keybind[]
+    content.vb: Public ReadOnly Keybinds As Keybind()
+- uid: MLEM.Ui.UiControls.ActiveRoot
+  commentId: P:MLEM.Ui.UiControls.ActiveRoot
+  id: ActiveRoot
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: ActiveRoot
+  nameWithType: UiControls.ActiveRoot
+  fullName: MLEM.Ui.UiControls.ActiveRoot
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ActiveRoot
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 65
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The <xref href="MLEM.Ui.RootElement" data-throw-if-not-resolved="false"></xref> that is currently active.
+
+    The active root element is the one with the highest <xref href="MLEM.Ui.RootElement.Priority" data-throw-if-not-resolved="false"></xref> that <xref href="MLEM.Ui.RootElement.CanBeActive" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public RootElement ActiveRoot { get; protected set; }
+    parameters: []
+    return:
+      type: MLEM.Ui.RootElement
+    content.vb: Public Property ActiveRoot As RootElement
+  overload: MLEM.Ui.UiControls.ActiveRoot*
+- uid: MLEM.Ui.UiControls.MousedElement
+  commentId: P:MLEM.Ui.UiControls.MousedElement
+  id: MousedElement
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: MousedElement
+  nameWithType: UiControls.MousedElement
+  fullName: MLEM.Ui.UiControls.MousedElement
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: MousedElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 69
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> that the mouse is currently over.
+  example: []
+  syntax:
+    content: public Element MousedElement { get; protected set; }
+    parameters: []
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public Property MousedElement As Element
+  overload: MLEM.Ui.UiControls.MousedElement*
+- uid: MLEM.Ui.UiControls.TouchedElement
+  commentId: P:MLEM.Ui.UiControls.TouchedElement
+  id: TouchedElement
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: TouchedElement
+  nameWithType: UiControls.TouchedElement
+  fullName: MLEM.Ui.UiControls.TouchedElement
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TouchedElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 73
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> that is currently touched.
+  example: []
+  syntax:
+    content: public Element TouchedElement { get; protected set; }
+    parameters: []
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public Property TouchedElement As Element
+  overload: MLEM.Ui.UiControls.TouchedElement*
+- uid: MLEM.Ui.UiControls.SelectedElement
+  commentId: P:MLEM.Ui.UiControls.SelectedElement
+  id: SelectedElement
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: SelectedElement
+  nameWithType: UiControls.SelectedElement
+  fullName: MLEM.Ui.UiControls.SelectedElement
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SelectedElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 78
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The element that is currently selected.
+
+    This is the <xref href="MLEM.Ui.RootElement.SelectedElement" data-throw-if-not-resolved="false"></xref> of the <xref href="MLEM.Ui.UiControls.ActiveRoot" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Element SelectedElement { get; }
+    parameters: []
+    return:
+      type: MLEM.Ui.Elements.Element
+    content.vb: Public ReadOnly Property SelectedElement As Element
+  overload: MLEM.Ui.UiControls.SelectedElement*
+- uid: MLEM.Ui.UiControls.GamepadIndex
+  commentId: F:MLEM.Ui.UiControls.GamepadIndex
+  id: GamepadIndex
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: GamepadIndex
+  nameWithType: UiControls.GamepadIndex
+  fullName: MLEM.Ui.UiControls.GamepadIndex
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GamepadIndex
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 83
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    The zero-based index of the <xref href="Microsoft.Xna.Framework.Input.GamePad" data-throw-if-not-resolved="false"></xref> used for gamepad input.
+
+    If this index is lower than 0, every connected gamepad will trigger input.
+  example: []
+  syntax:
+    content: public int GamepadIndex
+    return:
+      type: System.Int32
+    content.vb: Public GamepadIndex As Integer
+- uid: MLEM.Ui.UiControls.HandleMouse
+  commentId: F:MLEM.Ui.UiControls.HandleMouse
+  id: HandleMouse
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: HandleMouse
+  nameWithType: UiControls.HandleMouse
+  fullName: MLEM.Ui.UiControls.HandleMouse
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HandleMouse
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 88
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Set this to false to disable mouse input for these ui controls.
+
+    Note that this does not disable mouse input for the underlying <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool HandleMouse
+    return:
+      type: System.Boolean
+    content.vb: Public HandleMouse As Boolean
+- uid: MLEM.Ui.UiControls.HandleKeyboard
+  commentId: F:MLEM.Ui.UiControls.HandleKeyboard
+  id: HandleKeyboard
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: HandleKeyboard
+  nameWithType: UiControls.HandleKeyboard
+  fullName: MLEM.Ui.UiControls.HandleKeyboard
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HandleKeyboard
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 93
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Set this to false to disable keyboard input for these ui controls.
+
+    Note that this does not disable keyboard input for the underlying <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool HandleKeyboard
+    return:
+      type: System.Boolean
+    content.vb: Public HandleKeyboard As Boolean
+- uid: MLEM.Ui.UiControls.HandleTouch
+  commentId: F:MLEM.Ui.UiControls.HandleTouch
+  id: HandleTouch
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: HandleTouch
+  nameWithType: UiControls.HandleTouch
+  fullName: MLEM.Ui.UiControls.HandleTouch
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HandleTouch
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 98
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Set this to false to disable touch input for these ui controls.
+
+    Note that this does not disable touch input for the underlying <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool HandleTouch
+    return:
+      type: System.Boolean
+    content.vb: Public HandleTouch As Boolean
+- uid: MLEM.Ui.UiControls.HandleGamepad
+  commentId: F:MLEM.Ui.UiControls.HandleGamepad
+  id: HandleGamepad
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: HandleGamepad
+  nameWithType: UiControls.HandleGamepad
+  fullName: MLEM.Ui.UiControls.HandleGamepad
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: HandleGamepad
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 103
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Set this to false to disable gamepad input for these ui controls.
+
+    Note that this does not disable gamepad input for the underlying <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool HandleGamepad
+    return:
+      type: System.Boolean
+    content.vb: Public HandleGamepad As Boolean
+- uid: MLEM.Ui.UiControls.IsAutoNavMode
+  commentId: P:MLEM.Ui.UiControls.IsAutoNavMode
+  id: IsAutoNavMode
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: IsAutoNavMode
+  nameWithType: UiControls.IsAutoNavMode
+  fullName: MLEM.Ui.UiControls.IsAutoNavMode
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsAutoNavMode
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 108
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    If this value is true, the ui controls are in automatic navigation mode. The state of automatic navigation is usually based on the current <xref href="MLEM.Ui.UiControls.NavType" data-throw-if-not-resolved="false"></xref>.
+
+    This means that the <xref href="MLEM.Ui.Style.UiStyle.SelectionIndicator" data-throw-if-not-resolved="false"></xref> will be drawn around the <xref href="MLEM.Ui.UiControls.SelectedElement" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool IsAutoNavMode { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsAutoNavMode As Boolean
+  overload: MLEM.Ui.UiControls.IsAutoNavMode*
+- uid: MLEM.Ui.UiControls.NavType
+  commentId: P:MLEM.Ui.UiControls.NavType
+  id: NavType
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: NavType
+  nameWithType: UiControls.NavType
+  fullName: MLEM.Ui.UiControls.NavType
+  type: Property
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NavType
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 120
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The current <xref href="MLEM.Ui.UiControls.NavigationType" data-throw-if-not-resolved="false"></xref> of these ui controls, which represents the last type of interaction that was used to interact with the underlying <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public UiControls.NavigationType NavType { get; set; }
+    parameters: []
+    return:
+      type: MLEM.Ui.UiControls.NavigationType
+    content.vb: Public Property NavType As UiControls.NavigationType
+  overload: MLEM.Ui.UiControls.NavType*
+- uid: MLEM.Ui.UiControls.AutoNavModeChanged
+  commentId: E:MLEM.Ui.UiControls.AutoNavModeChanged
+  id: AutoNavModeChanged
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: AutoNavModeChanged
+  nameWithType: UiControls.AutoNavModeChanged
+  fullName: MLEM.Ui.UiControls.AutoNavModeChanged
+  type: Event
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AutoNavModeChanged
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 135
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    An event that is raised when <xref href="MLEM.Ui.UiControls.IsAutoNavMode" data-throw-if-not-resolved="false"></xref> is changed.
+
+    This can be used for custom actions like hiding the mouse cursor when automatic navigation is enabled.
+  example: []
+  syntax:
+    content: public event Action<bool> AutoNavModeChanged
+    return:
+      type: System.Action{System.Boolean}
+    content.vb: Public Event AutoNavModeChanged As Action(Of Boolean)
+- uid: MLEM.Ui.UiControls.NavTypeChanged
+  commentId: E:MLEM.Ui.UiControls.NavTypeChanged
+  id: NavTypeChanged
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: NavTypeChanged
+  nameWithType: UiControls.NavTypeChanged
+  fullName: MLEM.Ui.UiControls.NavTypeChanged
+  type: Event
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NavTypeChanged
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 139
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: An event that is raised when <xref href="MLEM.Ui.UiControls.NavType" data-throw-if-not-resolved="false"></xref> is changed. It receives the previous navigation type, as well as the newly set navigation type.
+  example: []
+  syntax:
+    content: public event Action<UiControls.NavigationType, UiControls.NavigationType> NavTypeChanged
+    return:
+      type: System.Action{MLEM.Ui.UiControls.NavigationType,MLEM.Ui.UiControls.NavigationType}
+    content.vb: Public Event NavTypeChanged As Action(Of UiControls.NavigationType, UiControls.NavigationType)
+- uid: MLEM.Ui.UiControls.IsInputOurs
+  commentId: F:MLEM.Ui.UiControls.IsInputOurs
+  id: IsInputOurs
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: IsInputOurs
+  nameWithType: UiControls.IsInputOurs
+  fullName: MLEM.Ui.UiControls.IsInputOurs
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsInputOurs
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 145
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    This value ist true if the <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref> was created by this ui controls instance, or if it was passed in.
+
+    If the input handler was created by this instance, its <xref href="MLEM.Input.InputHandler.Update" data-throw-if-not-resolved="false"></xref> method should be called by us.
+  example: []
+  syntax:
+    content: protected readonly bool IsInputOurs
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly IsInputOurs As Boolean
+- uid: MLEM.Ui.UiControls.System
+  commentId: F:MLEM.Ui.UiControls.System
+  id: System
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: System
+  nameWithType: UiControls.System
+  fullName: MLEM.Ui.UiControls.System
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: System
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 149
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: The <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref> that this ui controls instance is controlling
+  example: []
+  syntax:
+    content: protected readonly UiSystem System
+    return:
+      type: MLEM.Ui.UiSystem
+    content.vb: Protected ReadOnly System As UiSystem
+- uid: MLEM.Ui.UiControls.#ctor(MLEM.Ui.UiSystem,MLEM.Input.InputHandler)
+  commentId: M:MLEM.Ui.UiControls.#ctor(MLEM.Ui.UiSystem,MLEM.Input.InputHandler)
+  id: '#ctor(MLEM.Ui.UiSystem,MLEM.Input.InputHandler)'
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: UiControls(UiSystem, InputHandler)
+  nameWithType: UiControls.UiControls(UiSystem, InputHandler)
+  fullName: MLEM.Ui.UiControls.UiControls(MLEM.Ui.UiSystem, MLEM.Input.InputHandler)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 161
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Creates a new instance of the ui controls.
+
+    You should rarely have to invoke this manually, since the <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref> handles it.
+  example: []
+  syntax:
+    content: public UiControls(UiSystem system, InputHandler inputHandler = null)
+    parameters:
+    - id: system
+      type: MLEM.Ui.UiSystem
+      description: The ui system to control with these controls
+    - id: inputHandler
+      type: MLEM.Input.InputHandler
+      description: The input handler to use for controlling, or null to create a new one.
+    content.vb: Public Sub New(system As UiSystem, inputHandler As InputHandler = Nothing)
+  overload: MLEM.Ui.UiControls.#ctor*
+  nameWithType.vb: UiControls.New(UiSystem, InputHandler)
+  fullName.vb: MLEM.Ui.UiControls.New(MLEM.Ui.UiSystem, MLEM.Input.InputHandler)
+  name.vb: New(UiSystem, InputHandler)
+- uid: MLEM.Ui.UiControls.Update
+  commentId: M:MLEM.Ui.UiControls.Update
+  id: Update
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: Update()
+  nameWithType: UiControls.Update()
+  fullName: MLEM.Ui.UiControls.Update()
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 176
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Update this ui controls instance, causing the underlying <xref href="MLEM.Input.InputHandler" data-throw-if-not-resolved="false"></xref> to be updated, as well as ui input to be queried.
+  example: []
+  syntax:
+    content: public virtual void Update()
+    content.vb: Public Overridable Sub Update()
+  overload: MLEM.Ui.UiControls.Update*
+- uid: MLEM.Ui.UiControls.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  commentId: M:MLEM.Ui.UiControls.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  id: GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: GetElementUnderPos(Vector2)
+  nameWithType: UiControls.GetElementUnderPos(Vector2)
+  fullName: MLEM.Ui.UiControls.GetElementUnderPos(Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetElementUnderPos
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 298
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Returns the <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref> in the underlying <xref href="MLEM.Ui.UiSystem" data-throw-if-not-resolved="false"></xref> that is currently below the given position.
+
+    Throughout the ui system, this is used for mouse input querying.
+  example: []
+  syntax:
+    content: public virtual Element GetElementUnderPos(Vector2 position)
+    parameters:
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The position to query
+    return:
+      type: MLEM.Ui.Elements.Element
+      description: The element under the position, or null if there isn't one
+    content.vb: Public Overridable Function GetElementUnderPos(position As Vector2) As Element
+  overload: MLEM.Ui.UiControls.GetElementUnderPos*
+- uid: MLEM.Ui.UiControls.SelectElement(MLEM.Ui.RootElement,MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  commentId: M:MLEM.Ui.UiControls.SelectElement(MLEM.Ui.RootElement,MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  id: SelectElement(MLEM.Ui.RootElement,MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: SelectElement(RootElement, Element, bool?, NavigationType?)
+  nameWithType: UiControls.SelectElement(RootElement, Element, bool?, UiControls.NavigationType?)
+  fullName: MLEM.Ui.UiControls.SelectElement(MLEM.Ui.RootElement, MLEM.Ui.Elements.Element, bool?, MLEM.Ui.UiControls.NavigationType?)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SelectElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 317
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Selects the given element that is a child of the given root element.
+
+    Optionally, automatic navigation can be forced on, causing the <xref href="MLEM.Ui.Style.UiStyle.SelectionIndicator" data-throw-if-not-resolved="false"></xref> to be drawn around the element.
+
+    A simpler version of this method is <xref href="MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element%2cSystem.Nullable%7bSystem.Boolean%7d%2cSystem.Nullable%7bMLEM.Ui.UiControls.NavigationType%7d)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public void SelectElement(RootElement root, Element element, bool? autoNav = null, UiControls.NavigationType? navType = null)
+    parameters:
+    - id: root
+      type: MLEM.Ui.RootElement
+      description: The root element of the <xref href="MLEM.Ui.Elements.Element" data-throw-if-not-resolved="false"></xref>
+    - id: element
+      type: MLEM.Ui.Elements.Element
+      description: The element to select, or null to deselect the selected element.
+    - id: autoNav
+      type: System.Nullable{System.Boolean}
+      description: Whether automatic navigation should be forced on. If this is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the automatic navigation state will stay the same.
+    - id: navType
+      type: System.Nullable{MLEM.Ui.UiControls.NavigationType}
+      description: An optional <xref href="MLEM.Ui.UiControls.NavigationType" data-throw-if-not-resolved="false"></xref> to set. If this is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the navigation type will stay the same.
+    content.vb: Public Sub SelectElement(root As RootElement, element As Element, autoNav As Boolean? = Nothing, navType As UiControls.NavigationType? = Nothing)
+  overload: MLEM.Ui.UiControls.SelectElement*
+  nameWithType.vb: UiControls.SelectElement(RootElement, Element, Boolean?, UiControls.NavigationType?)
+  fullName.vb: MLEM.Ui.UiControls.SelectElement(MLEM.Ui.RootElement, MLEM.Ui.Elements.Element, Boolean?, MLEM.Ui.UiControls.NavigationType?)
+  name.vb: SelectElement(RootElement, Element, Boolean?, NavigationType?)
+- uid: MLEM.Ui.UiControls.SetMousedElement(MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.UiControls.SetMousedElement(MLEM.Ui.Elements.Element)
+  id: SetMousedElement(MLEM.Ui.Elements.Element)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: SetMousedElement(Element)
+  nameWithType: UiControls.SetMousedElement(Element)
+  fullName: MLEM.Ui.UiControls.SetMousedElement(MLEM.Ui.Elements.Element)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SetMousedElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 346
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Sets the <xref href="MLEM.Ui.UiControls.MousedElement" data-throw-if-not-resolved="false"></xref> to the given value, calling the appropriate events.
+  example: []
+  syntax:
+    content: public void SetMousedElement(Element element)
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+      description: The element to set as moused
+    content.vb: Public Sub SetMousedElement(element As Element)
+  overload: MLEM.Ui.UiControls.SetMousedElement*
+- uid: MLEM.Ui.UiControls.SetTouchedElement(MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.UiControls.SetTouchedElement(MLEM.Ui.Elements.Element)
+  id: SetTouchedElement(MLEM.Ui.Elements.Element)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: SetTouchedElement(Element)
+  nameWithType: UiControls.SetTouchedElement(Element)
+  fullName: MLEM.Ui.UiControls.SetTouchedElement(MLEM.Ui.Elements.Element)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SetTouchedElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 363
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Sets the <xref href="MLEM.Ui.UiControls.TouchedElement" data-throw-if-not-resolved="false"></xref> to the given value, calling the appropriate events.
+  example: []
+  syntax:
+    content: public void SetTouchedElement(Element element)
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+      description: The element to set as touched
+    content.vb: Public Sub SetTouchedElement(element As Element)
+  overload: MLEM.Ui.UiControls.SetTouchedElement*
+- uid: MLEM.Ui.UiControls.GetSelectedElement(MLEM.Ui.RootElement)
+  commentId: M:MLEM.Ui.UiControls.GetSelectedElement(MLEM.Ui.RootElement)
+  id: GetSelectedElement(MLEM.Ui.RootElement)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: GetSelectedElement(RootElement)
+  nameWithType: UiControls.GetSelectedElement(RootElement)
+  fullName: MLEM.Ui.UiControls.GetSelectedElement(MLEM.Ui.RootElement)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetSelectedElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 382
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Returns the selected element for the given root element.
+
+    A property equivalent to this method is <xref href="MLEM.Ui.RootElement.SelectedElement" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Element GetSelectedElement(RootElement root)
+    parameters:
+    - id: root
+      type: MLEM.Ui.RootElement
+      description: The root element whose selected element to return
+    return:
+      type: MLEM.Ui.Elements.Element
+      description: The given root's selected element, or null if the root doesn't exist, or if there is no selected element for that root.
+    content.vb: Public Function GetSelectedElement(root As RootElement) As Element
+  overload: MLEM.Ui.UiControls.GetSelectedElement*
+- uid: MLEM.Ui.UiControls.PressElement(MLEM.Ui.Elements.Element,System.Boolean)
+  commentId: M:MLEM.Ui.UiControls.PressElement(MLEM.Ui.Elements.Element,System.Boolean)
+  id: PressElement(MLEM.Ui.Elements.Element,System.Boolean)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: PressElement(Element, bool)
+  nameWithType: UiControls.PressElement(Element, bool)
+  fullName: MLEM.Ui.UiControls.PressElement(MLEM.Ui.Elements.Element, bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: PressElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 394
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Causes the passed element to be pressed, invoking its <xref href="MLEM.Ui.Elements.Element.OnPressed" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Ui.Elements.Element.OnSecondaryPressed" data-throw-if-not-resolved="false"></xref> through <xref href="MLEM.Ui.UiSystem.OnElementPressed" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Ui.UiSystem.OnElementSecondaryPressed" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public void PressElement(Element element, bool secondary = false)
+    parameters:
+    - id: element
+      type: MLEM.Ui.Elements.Element
+      description: The element to press.
+    - id: secondary
+      type: System.Boolean
+      description: Whether the secondary action should be invoked, rather than the primary one.
+    content.vb: Public Sub PressElement(element As Element, secondary As Boolean = False)
+  overload: MLEM.Ui.UiControls.PressElement*
+  nameWithType.vb: UiControls.PressElement(Element, Boolean)
+  fullName.vb: MLEM.Ui.UiControls.PressElement(MLEM.Ui.Elements.Element, Boolean)
+  name.vb: PressElement(Element, Boolean)
+- uid: MLEM.Ui.UiControls.GetTabNextElement(System.Boolean)
+  commentId: M:MLEM.Ui.UiControls.GetTabNextElement(System.Boolean)
+  id: GetTabNextElement(System.Boolean)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: GetTabNextElement(bool)
+  nameWithType: UiControls.GetTabNextElement(bool)
+  fullName: MLEM.Ui.UiControls.GetTabNextElement(bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetTabNextElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 408
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: >-
+    Returns the next element to select when pressing the <xref href="Microsoft.Xna.Framework.Input.Keys.Tab" data-throw-if-not-resolved="false"></xref> key during keyboard navigation.
+
+    If the <code>backward</code> boolean is true, the previous element should be returned instead.
+  example: []
+  syntax:
+    content: protected virtual Element GetTabNextElement(bool backward)
+    parameters:
+    - id: backward
+      type: System.Boolean
+      description: If we're going backwards (if <xref href="MLEM.Input.ModifierKey.Shift" data-throw-if-not-resolved="false"></xref> is held)
+    return:
+      type: MLEM.Ui.Elements.Element
+      description: The next or previous element to select
+    content.vb: Protected Overridable Function GetTabNextElement(backward As Boolean) As Element
+  overload: MLEM.Ui.UiControls.GetTabNextElement*
+  nameWithType.vb: UiControls.GetTabNextElement(Boolean)
+  fullName.vb: MLEM.Ui.UiControls.GetTabNextElement(Boolean)
+  name.vb: GetTabNextElement(Boolean)
+- uid: MLEM.Ui.UiControls.GetGamepadNextElement(MLEM.Maths.Direction2)
+  commentId: M:MLEM.Ui.UiControls.GetGamepadNextElement(MLEM.Maths.Direction2)
+  id: GetGamepadNextElement(MLEM.Maths.Direction2)
+  parent: MLEM.Ui.UiControls
+  langs:
+  - csharp
+  - vb
+  name: GetGamepadNextElement(Direction2)
+  nameWithType: UiControls.GetGamepadNextElement(Direction2)
+  fullName: MLEM.Ui.UiControls.GetGamepadNextElement(MLEM.Maths.Direction2)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/UiControls.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetGamepadNextElement
+    path: ../MLEM.Ui/UiControls.cs
+    startLine: 443
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: Returns the next element that should be selected during gamepad navigation, based on the <xref href="MLEM.Maths.Direction2" data-throw-if-not-resolved="false"></xref> that we're looking for elements in.
+  example: []
+  syntax:
+    content: protected virtual Element GetGamepadNextElement(Direction2 direction)
+    parameters:
+    - id: direction
+      type: MLEM.Maths.Direction2
+      description: The direction that we're looking for next elements in
+    return:
+      type: MLEM.Ui.Elements.Element
+      description: The first element found in that area
+    content.vb: Protected Overridable Function GetGamepadNextElement(direction As Direction2) As Element
+  overload: MLEM.Ui.UiControls.GetGamepadNextElement*
+references:
+- uid: MLEM.Ui.UiSystem
+  commentId: T:MLEM.Ui.UiSystem
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiSystem.html
+  name: UiSystem
+  nameWithType: UiSystem
+  fullName: MLEM.Ui.UiSystem
+- uid: MLEM.Input.InputHandler
+  commentId: T:MLEM.Input.InputHandler
+  parent: MLEM.Input
+  href: MLEM.Input.InputHandler.html
+  name: InputHandler
+  nameWithType: InputHandler
+  fullName: MLEM.Input.InputHandler
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  href: MLEM.html
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Input
+  commentId: N:MLEM.Input
+  href: MLEM.html
+  name: MLEM.Input
+  nameWithType: MLEM.Input
+  fullName: MLEM.Input
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Input
+    name: Input
+    href: MLEM.Input.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.Xna.Framework.Input.Keys
+  commentId: T:Microsoft.Xna.Framework.Input.Keys
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Keys
+  nameWithType: Keys
+  fullName: Microsoft.Xna.Framework.Input.Keys
+- uid: Microsoft.Xna.Framework.Input.Buttons
+  commentId: T:Microsoft.Xna.Framework.Input.Buttons
+  parent: Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Buttons
+  nameWithType: Buttons
+  fullName: Microsoft.Xna.Framework.Input.Buttons
+- uid: MLEM.Input.MouseButton
+  commentId: T:MLEM.Input.MouseButton
+  parent: MLEM.Input
+  href: MLEM.Input.MouseButton.html
+  name: MouseButton
+  nameWithType: MouseButton
+  fullName: MLEM.Input.MouseButton
+- uid: MLEM.Ui.Elements.Element.OnPressed
+  commentId: F:MLEM.Ui.Elements.Element.OnPressed
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnPressed
+  name: OnPressed
+  nameWithType: Element.OnPressed
+  fullName: MLEM.Ui.Elements.Element.OnPressed
+- uid: MLEM.Input.ModifierKey.Shift
+  commentId: F:MLEM.Input.ModifierKey.Shift
+  href: MLEM.Input.ModifierKey.html#MLEM_Input_ModifierKey_Shift
+  name: Shift
+  nameWithType: ModifierKey.Shift
+  fullName: MLEM.Input.ModifierKey.Shift
+- uid: MLEM.Ui.Elements.Element.OnSecondaryPressed
+  commentId: F:MLEM.Ui.Elements.Element.OnSecondaryPressed
+  parent: MLEM.Ui.Elements.Element
+  href: MLEM.Ui.Elements.Element.html#MLEM_Ui_Elements_Element_OnSecondaryPressed
+  name: OnSecondaryPressed
+  nameWithType: Element.OnSecondaryPressed
+  fullName: MLEM.Ui.Elements.Element.OnSecondaryPressed
+- uid: MLEM.Input.Keybind
+  commentId: T:MLEM.Input.Keybind
+  parent: MLEM.Input
+  href: MLEM.Input.Keybind.html
+  name: Keybind
+  nameWithType: Keybind
+  fullName: MLEM.Input.Keybind
+- uid: Microsoft.Xna.Framework.Input
+  commentId: N:Microsoft.Xna.Framework.Input
+  isExternal: true
+  name: Microsoft.Xna.Framework.Input
+  nameWithType: Microsoft.Xna.Framework.Input
+  fullName: Microsoft.Xna.Framework.Input
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Input
+    name: Input
+    isExternal: true
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: MLEM.Input.Keybind[]
+  isExternal: true
+  href: MLEM.Input.Keybind.html
+  name: Keybind[]
+  nameWithType: Keybind[]
+  fullName: MLEM.Input.Keybind[]
+  nameWithType.vb: Keybind()
+  fullName.vb: MLEM.Input.Keybind()
+  name.vb: Keybind()
+  spec.csharp:
+  - uid: MLEM.Input.Keybind
+    name: Keybind
+    href: MLEM.Input.Keybind.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Input.Keybind
+    name: Keybind
+    href: MLEM.Input.Keybind.html
+  - name: (
+  - name: )
+- uid: MLEM.Ui.RootElement
+  commentId: T:MLEM.Ui.RootElement
+  parent: MLEM.Ui
+  href: MLEM.Ui.RootElement.html
+  name: RootElement
+  nameWithType: RootElement
+  fullName: MLEM.Ui.RootElement
+- uid: MLEM.Ui.RootElement.Priority
+  commentId: P:MLEM.Ui.RootElement.Priority
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_Priority
+  name: Priority
+  nameWithType: RootElement.Priority
+  fullName: MLEM.Ui.RootElement.Priority
+- uid: MLEM.Ui.RootElement.CanBeActive
+  commentId: P:MLEM.Ui.RootElement.CanBeActive
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_CanBeActive
+  name: CanBeActive
+  nameWithType: RootElement.CanBeActive
+  fullName: MLEM.Ui.RootElement.CanBeActive
+- uid: MLEM.Ui.UiControls.ActiveRoot*
+  commentId: Overload:MLEM.Ui.UiControls.ActiveRoot
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_ActiveRoot
+  name: ActiveRoot
+  nameWithType: UiControls.ActiveRoot
+  fullName: MLEM.Ui.UiControls.ActiveRoot
+- uid: MLEM.Ui.UiControls.MousedElement*
+  commentId: Overload:MLEM.Ui.UiControls.MousedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_MousedElement
+  name: MousedElement
+  nameWithType: UiControls.MousedElement
+  fullName: MLEM.Ui.UiControls.MousedElement
+- uid: MLEM.Ui.UiControls.TouchedElement*
+  commentId: Overload:MLEM.Ui.UiControls.TouchedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_TouchedElement
+  name: TouchedElement
+  nameWithType: UiControls.TouchedElement
+  fullName: MLEM.Ui.UiControls.TouchedElement
+- uid: MLEM.Ui.RootElement.SelectedElement
+  commentId: P:MLEM.Ui.RootElement.SelectedElement
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_SelectedElement
+  name: SelectedElement
+  nameWithType: RootElement.SelectedElement
+  fullName: MLEM.Ui.RootElement.SelectedElement
+- uid: MLEM.Ui.UiControls.ActiveRoot
+  commentId: P:MLEM.Ui.UiControls.ActiveRoot
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_ActiveRoot
+  name: ActiveRoot
+  nameWithType: UiControls.ActiveRoot
+  fullName: MLEM.Ui.UiControls.ActiveRoot
+- uid: MLEM.Ui.UiControls.SelectedElement*
+  commentId: Overload:MLEM.Ui.UiControls.SelectedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_SelectedElement
+  name: SelectedElement
+  nameWithType: UiControls.SelectedElement
+  fullName: MLEM.Ui.UiControls.SelectedElement
+- uid: Microsoft.Xna.Framework.Input.GamePad
+  commentId: T:Microsoft.Xna.Framework.Input.GamePad
+  isExternal: true
+  name: GamePad
+  nameWithType: GamePad
+  fullName: Microsoft.Xna.Framework.Input.GamePad
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Ui.UiControls.NavType
+  commentId: P:MLEM.Ui.UiControls.NavType
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_NavType
+  name: NavType
+  nameWithType: UiControls.NavType
+  fullName: MLEM.Ui.UiControls.NavType
+- uid: MLEM.Ui.Style.UiStyle.SelectionIndicator
+  commentId: F:MLEM.Ui.Style.UiStyle.SelectionIndicator
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_SelectionIndicator
+  name: SelectionIndicator
+  nameWithType: UiStyle.SelectionIndicator
+  fullName: MLEM.Ui.Style.UiStyle.SelectionIndicator
+- uid: MLEM.Ui.UiControls.SelectedElement
+  commentId: P:MLEM.Ui.UiControls.SelectedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_SelectedElement
+  name: SelectedElement
+  nameWithType: UiControls.SelectedElement
+  fullName: MLEM.Ui.UiControls.SelectedElement
+- uid: MLEM.Ui.UiControls.IsAutoNavMode*
+  commentId: Overload:MLEM.Ui.UiControls.IsAutoNavMode
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_IsAutoNavMode
+  name: IsAutoNavMode
+  nameWithType: UiControls.IsAutoNavMode
+  fullName: MLEM.Ui.UiControls.IsAutoNavMode
+- uid: MLEM.Ui.Style.UiStyle
+  commentId: T:MLEM.Ui.Style.UiStyle
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.UiStyle.html
+  name: UiStyle
+  nameWithType: UiStyle
+  fullName: MLEM.Ui.Style.UiStyle
+- uid: MLEM.Ui.Style
+  commentId: N:MLEM.Ui.Style
+  href: MLEM.html
+  name: MLEM.Ui.Style
+  nameWithType: MLEM.Ui.Style
+  fullName: MLEM.Ui.Style
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+- uid: MLEM.Ui.UiControls.NavigationType
+  commentId: T:MLEM.Ui.UiControls.NavigationType
+  parent: MLEM.Ui
+  href: MLEM.Ui.UiControls.html
+  name: UiControls.NavigationType
+  nameWithType: UiControls.NavigationType
+  fullName: MLEM.Ui.UiControls.NavigationType
+  spec.csharp:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  spec.vb:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+- uid: MLEM.Ui.UiControls.NavType*
+  commentId: Overload:MLEM.Ui.UiControls.NavType
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_NavType
+  name: NavType
+  nameWithType: UiControls.NavType
+  fullName: MLEM.Ui.UiControls.NavType
+- uid: MLEM.Ui.UiControls.IsAutoNavMode
+  commentId: P:MLEM.Ui.UiControls.IsAutoNavMode
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_IsAutoNavMode
+  name: IsAutoNavMode
+  nameWithType: UiControls.IsAutoNavMode
+  fullName: MLEM.Ui.UiControls.IsAutoNavMode
+- uid: System.Action{System.Boolean}
+  commentId: T:System.Action{System.Boolean}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<bool>
+  nameWithType: Action<bool>
+  fullName: System.Action<bool>
+  nameWithType.vb: Action(Of Boolean)
+  fullName.vb: System.Action(Of Boolean)
+  name.vb: Action(Of Boolean)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action{MLEM.Ui.UiControls.NavigationType,MLEM.Ui.UiControls.NavigationType}
+  commentId: T:System.Action{MLEM.Ui.UiControls.NavigationType,MLEM.Ui.UiControls.NavigationType}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<UiControls.NavigationType, UiControls.NavigationType>
+  nameWithType: Action<UiControls.NavigationType, UiControls.NavigationType>
+  fullName: System.Action<MLEM.Ui.UiControls.NavigationType, MLEM.Ui.UiControls.NavigationType>
+  nameWithType.vb: Action(Of UiControls.NavigationType, UiControls.NavigationType)
+  fullName.vb: System.Action(Of MLEM.Ui.UiControls.NavigationType, MLEM.Ui.UiControls.NavigationType)
+  name.vb: Action(Of UiControls.NavigationType, UiControls.NavigationType)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: MLEM.Input.InputHandler.Update
+  commentId: M:MLEM.Input.InputHandler.Update
+  href: MLEM.Input.InputHandler.html#MLEM_Input_InputHandler_Update
+  name: Update()
+  nameWithType: InputHandler.Update()
+  fullName: MLEM.Input.InputHandler.Update()
+  spec.csharp:
+  - uid: MLEM.Input.InputHandler.Update
+    name: Update
+    href: MLEM.Input.InputHandler.html#MLEM_Input_InputHandler_Update
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Input.InputHandler.Update
+    name: Update
+    href: MLEM.Input.InputHandler.html#MLEM_Input_InputHandler_Update
+  - name: (
+  - name: )
+- uid: MLEM.Ui.UiControls.#ctor*
+  commentId: Overload:MLEM.Ui.UiControls.#ctor
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls__ctor_MLEM_Ui_UiSystem_MLEM_Input_InputHandler_
+  name: UiControls
+  nameWithType: UiControls.UiControls
+  fullName: MLEM.Ui.UiControls.UiControls
+  nameWithType.vb: UiControls.New
+  fullName.vb: MLEM.Ui.UiControls.New
+  name.vb: New
+- uid: MLEM.Ui.UiControls.Update*
+  commentId: Overload:MLEM.Ui.UiControls.Update
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_Update
+  name: Update
+  nameWithType: UiControls.Update
+  fullName: MLEM.Ui.UiControls.Update
+- uid: MLEM.Ui.UiControls.GetElementUnderPos*
+  commentId: Overload:MLEM.Ui.UiControls.GetElementUnderPos
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_GetElementUnderPos_Microsoft_Xna_Framework_Vector2_
+  name: GetElementUnderPos
+  nameWithType: UiControls.GetElementUnderPos
+  fullName: MLEM.Ui.UiControls.GetElementUnderPos
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  commentId: M:MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+  isExternal: true
+  href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_SelectElement_MLEM_Ui_Elements_Element_System_Nullable_System_Boolean__System_Nullable_MLEM_Ui_UiControls_NavigationType__
+  name: SelectElement(Element, bool?, NavigationType?)
+  nameWithType: RootElement.SelectElement(Element, bool?, UiControls.NavigationType?)
+  fullName: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element, bool?, MLEM.Ui.UiControls.NavigationType?)
+  nameWithType.vb: RootElement.SelectElement(Element, Boolean?, UiControls.NavigationType?)
+  fullName.vb: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element, Boolean?, MLEM.Ui.UiControls.NavigationType?)
+  name.vb: SelectElement(Element, Boolean?, NavigationType?)
+  spec.csharp:
+  - uid: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+    name: SelectElement
+    href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_SelectElement_MLEM_Ui_Elements_Element_System_Nullable_System_Boolean__System_Nullable_MLEM_Ui_UiControls_NavigationType__
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.RootElement.SelectElement(MLEM.Ui.Elements.Element,System.Nullable{System.Boolean},System.Nullable{MLEM.Ui.UiControls.NavigationType})
+    name: SelectElement
+    href: MLEM.Ui.RootElement.html#MLEM_Ui_RootElement_SelectElement_MLEM_Ui_Elements_Element_System_Nullable_System_Boolean__System_Nullable_MLEM_Ui_UiControls_NavigationType__
+  - name: (
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '?'
+  - name: )
+- uid: MLEM.Ui.UiControls.SelectElement*
+  commentId: Overload:MLEM.Ui.UiControls.SelectElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_SelectElement_MLEM_Ui_RootElement_MLEM_Ui_Elements_Element_System_Nullable_System_Boolean__System_Nullable_MLEM_Ui_UiControls_NavigationType__
+  name: SelectElement
+  nameWithType: UiControls.SelectElement
+  fullName: MLEM.Ui.UiControls.SelectElement
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.Nullable{MLEM.Ui.UiControls.NavigationType}
+  commentId: T:System.Nullable{MLEM.Ui.UiControls.NavigationType}
+  parent: System
+  definition: System.Nullable`1
+  href: MLEM.Ui.UiControls.html
+  name: UiControls.NavigationType?
+  nameWithType: UiControls.NavigationType?
+  fullName: MLEM.Ui.UiControls.NavigationType?
+  spec.csharp:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '?'
+  spec.vb:
+  - uid: MLEM.Ui.UiControls
+    name: UiControls
+    href: MLEM.Ui.UiControls.html
+  - name: .
+  - uid: MLEM.Ui.UiControls.NavigationType
+    name: NavigationType
+    href: MLEM.Ui.UiControls.NavigationType.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.UiControls.MousedElement
+  commentId: P:MLEM.Ui.UiControls.MousedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_MousedElement
+  name: MousedElement
+  nameWithType: UiControls.MousedElement
+  fullName: MLEM.Ui.UiControls.MousedElement
+- uid: MLEM.Ui.UiControls.SetMousedElement*
+  commentId: Overload:MLEM.Ui.UiControls.SetMousedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_SetMousedElement_MLEM_Ui_Elements_Element_
+  name: SetMousedElement
+  nameWithType: UiControls.SetMousedElement
+  fullName: MLEM.Ui.UiControls.SetMousedElement
+- uid: MLEM.Ui.UiControls.TouchedElement
+  commentId: P:MLEM.Ui.UiControls.TouchedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_TouchedElement
+  name: TouchedElement
+  nameWithType: UiControls.TouchedElement
+  fullName: MLEM.Ui.UiControls.TouchedElement
+- uid: MLEM.Ui.UiControls.SetTouchedElement*
+  commentId: Overload:MLEM.Ui.UiControls.SetTouchedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_SetTouchedElement_MLEM_Ui_Elements_Element_
+  name: SetTouchedElement
+  nameWithType: UiControls.SetTouchedElement
+  fullName: MLEM.Ui.UiControls.SetTouchedElement
+- uid: MLEM.Ui.UiControls.GetSelectedElement*
+  commentId: Overload:MLEM.Ui.UiControls.GetSelectedElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_GetSelectedElement_MLEM_Ui_RootElement_
+  name: GetSelectedElement
+  nameWithType: UiControls.GetSelectedElement
+  fullName: MLEM.Ui.UiControls.GetSelectedElement
+- uid: MLEM.Ui.UiSystem.OnElementPressed
+  commentId: E:MLEM.Ui.UiSystem.OnElementPressed
+  href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_OnElementPressed
+  name: OnElementPressed
+  nameWithType: UiSystem.OnElementPressed
+  fullName: MLEM.Ui.UiSystem.OnElementPressed
+- uid: MLEM.Ui.UiSystem.OnElementSecondaryPressed
+  commentId: E:MLEM.Ui.UiSystem.OnElementSecondaryPressed
+  href: MLEM.Ui.UiSystem.html#MLEM_Ui_UiSystem_OnElementSecondaryPressed
+  name: OnElementSecondaryPressed
+  nameWithType: UiSystem.OnElementSecondaryPressed
+  fullName: MLEM.Ui.UiSystem.OnElementSecondaryPressed
+- uid: MLEM.Ui.UiControls.PressElement*
+  commentId: Overload:MLEM.Ui.UiControls.PressElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_PressElement_MLEM_Ui_Elements_Element_System_Boolean_
+  name: PressElement
+  nameWithType: UiControls.PressElement
+  fullName: MLEM.Ui.UiControls.PressElement
+- uid: Microsoft.Xna.Framework.Input.Keys.Tab
+  commentId: F:Microsoft.Xna.Framework.Input.Keys.Tab
+  isExternal: true
+  name: Tab
+  nameWithType: Keys.Tab
+  fullName: Microsoft.Xna.Framework.Input.Keys.Tab
+- uid: MLEM.Ui.UiControls.GetTabNextElement*
+  commentId: Overload:MLEM.Ui.UiControls.GetTabNextElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_GetTabNextElement_System_Boolean_
+  name: GetTabNextElement
+  nameWithType: UiControls.GetTabNextElement
+  fullName: MLEM.Ui.UiControls.GetTabNextElement
+- uid: MLEM.Maths.Direction2
+  commentId: T:MLEM.Maths.Direction2
+  parent: MLEM.Maths
+  href: MLEM.Maths.Direction2.html
+  name: Direction2
+  nameWithType: Direction2
+  fullName: MLEM.Maths.Direction2
+- uid: MLEM.Ui.UiControls.GetGamepadNextElement*
+  commentId: Overload:MLEM.Ui.UiControls.GetGamepadNextElement
+  href: MLEM.Ui.UiControls.html#MLEM_Ui_UiControls_GetGamepadNextElement_MLEM_Maths_Direction2_
+  name: GetGamepadNextElement
+  nameWithType: UiControls.GetGamepadNextElement
+  fullName: MLEM.Ui.UiControls.GetGamepadNextElement
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html

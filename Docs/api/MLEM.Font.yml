@@ -1,0 +1,60 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  id: MLEM.Font
+  children:
+  - MLEM.Font.CodePointSource
+  - MLEM.Font.GenericFont
+  - MLEM.Font.GenericSpriteFont
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Font.CodePointSource
+  commentId: T:MLEM.Font.CodePointSource
+  href: MLEM.Font.CodePointSource.html
+  name: CodePointSource
+  nameWithType: CodePointSource
+  fullName: MLEM.Font.CodePointSource
+- uid: MLEM.Font.GenericFont
+  commentId: T:MLEM.Font.GenericFont
+  parent: MLEM.Font
+  href: MLEM.Font.GenericFont.html
+  name: GenericFont
+  nameWithType: GenericFont
+  fullName: MLEM.Font.GenericFont
+- uid: MLEM.Font.GenericSpriteFont
+  commentId: T:MLEM.Font.GenericSpriteFont
+  href: MLEM.Font.GenericSpriteFont.html
+  name: GenericSpriteFont
+  nameWithType: GenericSpriteFont
+  fullName: MLEM.Font.GenericSpriteFont
+- uid: MLEM.Font
+  commentId: N:MLEM.Font
+  href: MLEM.html
+  name: MLEM.Font
+  nameWithType: MLEM.Font
+  fullName: MLEM.Font
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Font
+    name: Font
+    href: MLEM.Font.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Font
+    name: Font
+    href: MLEM.Font.html

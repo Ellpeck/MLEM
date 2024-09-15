@@ -1,0 +1,532 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  id: MLEM.Ui.Elements
+  children:
+  - MLEM.Ui.Elements.Button
+  - MLEM.Ui.Elements.Checkbox
+  - MLEM.Ui.Elements.Checkbox.CheckStateChange
+  - MLEM.Ui.Elements.Dropdown
+  - MLEM.Ui.Elements.Element
+  - MLEM.Ui.Elements.Element.DrawCallback
+  - MLEM.Ui.Elements.Element.GamepadNextElementCallback
+  - MLEM.Ui.Elements.Element.GenericCallback
+  - MLEM.Ui.Elements.Element.OtherElementCallback
+  - MLEM.Ui.Elements.Element.TabNextElementCallback
+  - MLEM.Ui.Elements.Element.TextInputCallback
+  - MLEM.Ui.Elements.Element.TimeCallback
+  - MLEM.Ui.Elements.ElementExtensions
+  - MLEM.Ui.Elements.ElementHelper
+  - MLEM.Ui.Elements.Group
+  - MLEM.Ui.Elements.Image
+  - MLEM.Ui.Elements.Image.TextureCallback
+  - MLEM.Ui.Elements.Panel
+  - MLEM.Ui.Elements.Paragraph
+  - MLEM.Ui.Elements.Paragraph.Link
+  - MLEM.Ui.Elements.Paragraph.TextCallback
+  - MLEM.Ui.Elements.ProgressBar
+  - MLEM.Ui.Elements.RadioButton
+  - MLEM.Ui.Elements.ScissorGroup
+  - MLEM.Ui.Elements.ScrollBar
+  - MLEM.Ui.Elements.ScrollBar.ValueChanged
+  - MLEM.Ui.Elements.Slider
+  - MLEM.Ui.Elements.SpriteAnimationImage
+  - MLEM.Ui.Elements.SquishingGroup
+  - MLEM.Ui.Elements.TextField
+  - MLEM.Ui.Elements.TextField.Rule
+  - MLEM.Ui.Elements.TextField.TextChanged
+  - MLEM.Ui.Elements.Tooltip
+  - MLEM.Ui.Elements.VerticalSpace
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  type: Namespace
+  assemblies:
+  - MLEM.Ui
+references:
+- uid: MLEM.Ui.Elements.Button
+  commentId: T:MLEM.Ui.Elements.Button
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Button.html
+  name: Button
+  nameWithType: Button
+  fullName: MLEM.Ui.Elements.Button
+- uid: MLEM.Ui.Elements.Checkbox
+  commentId: T:MLEM.Ui.Elements.Checkbox
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Checkbox.html
+  name: Checkbox
+  nameWithType: Checkbox
+  fullName: MLEM.Ui.Elements.Checkbox
+- uid: MLEM.Ui.Elements.Checkbox.CheckStateChange
+  commentId: T:MLEM.Ui.Elements.Checkbox.CheckStateChange
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Checkbox.html
+  name: Checkbox.CheckStateChange
+  nameWithType: Checkbox.CheckStateChange
+  fullName: MLEM.Ui.Elements.Checkbox.CheckStateChange
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Checkbox
+    name: Checkbox
+    href: MLEM.Ui.Elements.Checkbox.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Checkbox.CheckStateChange
+    name: CheckStateChange
+    href: MLEM.Ui.Elements.Checkbox.CheckStateChange.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Checkbox
+    name: Checkbox
+    href: MLEM.Ui.Elements.Checkbox.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Checkbox.CheckStateChange
+    name: CheckStateChange
+    href: MLEM.Ui.Elements.Checkbox.CheckStateChange.html
+- uid: MLEM.Ui.Elements.Dropdown
+  commentId: T:MLEM.Ui.Elements.Dropdown
+  href: MLEM.Ui.Elements.Dropdown.html
+  name: Dropdown
+  nameWithType: Dropdown
+  fullName: MLEM.Ui.Elements.Dropdown
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: MLEM.Ui.Elements.Element.TextInputCallback
+  commentId: T:MLEM.Ui.Elements.Element.TextInputCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.TextInputCallback
+  nameWithType: Element.TextInputCallback
+  fullName: MLEM.Ui.Elements.Element.TextInputCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.TextInputCallback
+    name: TextInputCallback
+    href: MLEM.Ui.Elements.Element.TextInputCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.TextInputCallback
+    name: TextInputCallback
+    href: MLEM.Ui.Elements.Element.TextInputCallback.html
+- uid: MLEM.Ui.Elements.Element.GenericCallback
+  commentId: T:MLEM.Ui.Elements.Element.GenericCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.GenericCallback
+  nameWithType: Element.GenericCallback
+  fullName: MLEM.Ui.Elements.Element.GenericCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GenericCallback
+    name: GenericCallback
+    href: MLEM.Ui.Elements.Element.GenericCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GenericCallback
+    name: GenericCallback
+    href: MLEM.Ui.Elements.Element.GenericCallback.html
+- uid: MLEM.Ui.Elements.Element.OtherElementCallback
+  commentId: T:MLEM.Ui.Elements.Element.OtherElementCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.OtherElementCallback
+  nameWithType: Element.OtherElementCallback
+  fullName: MLEM.Ui.Elements.Element.OtherElementCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.OtherElementCallback
+    name: OtherElementCallback
+    href: MLEM.Ui.Elements.Element.OtherElementCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.OtherElementCallback
+    name: OtherElementCallback
+    href: MLEM.Ui.Elements.Element.OtherElementCallback.html
+- uid: MLEM.Ui.Elements.Element.DrawCallback
+  commentId: T:MLEM.Ui.Elements.Element.DrawCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.DrawCallback
+  nameWithType: Element.DrawCallback
+  fullName: MLEM.Ui.Elements.Element.DrawCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.DrawCallback
+    name: DrawCallback
+    href: MLEM.Ui.Elements.Element.DrawCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.DrawCallback
+    name: DrawCallback
+    href: MLEM.Ui.Elements.Element.DrawCallback.html
+- uid: MLEM.Ui.Elements.Element.TimeCallback
+  commentId: T:MLEM.Ui.Elements.Element.TimeCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.TimeCallback
+  nameWithType: Element.TimeCallback
+  fullName: MLEM.Ui.Elements.Element.TimeCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.TimeCallback
+    name: TimeCallback
+    href: MLEM.Ui.Elements.Element.TimeCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.TimeCallback
+    name: TimeCallback
+    href: MLEM.Ui.Elements.Element.TimeCallback.html
+- uid: MLEM.Ui.Elements.Element.TabNextElementCallback
+  commentId: T:MLEM.Ui.Elements.Element.TabNextElementCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.TabNextElementCallback
+  nameWithType: Element.TabNextElementCallback
+  fullName: MLEM.Ui.Elements.Element.TabNextElementCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.TabNextElementCallback
+    name: TabNextElementCallback
+    href: MLEM.Ui.Elements.Element.TabNextElementCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.TabNextElementCallback
+    name: TabNextElementCallback
+    href: MLEM.Ui.Elements.Element.TabNextElementCallback.html
+- uid: MLEM.Ui.Elements.Element.GamepadNextElementCallback
+  commentId: T:MLEM.Ui.Elements.Element.GamepadNextElementCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element.GamepadNextElementCallback
+  nameWithType: Element.GamepadNextElementCallback
+  fullName: MLEM.Ui.Elements.Element.GamepadNextElementCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GamepadNextElementCallback
+    name: GamepadNextElementCallback
+    href: MLEM.Ui.Elements.Element.GamepadNextElementCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Element.GamepadNextElementCallback
+    name: GamepadNextElementCallback
+    href: MLEM.Ui.Elements.Element.GamepadNextElementCallback.html
+- uid: MLEM.Ui.Elements.ElementHelper
+  commentId: T:MLEM.Ui.Elements.ElementHelper
+  href: MLEM.Ui.Elements.ElementHelper.html
+  name: ElementHelper
+  nameWithType: ElementHelper
+  fullName: MLEM.Ui.Elements.ElementHelper
+- uid: MLEM.Ui.Elements.ElementExtensions
+  commentId: T:MLEM.Ui.Elements.ElementExtensions
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.ElementExtensions.html
+  name: ElementExtensions
+  nameWithType: ElementExtensions
+  fullName: MLEM.Ui.Elements.ElementExtensions
+- uid: MLEM.Ui.Elements.Group
+  commentId: T:MLEM.Ui.Elements.Group
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Group.html
+  name: Group
+  nameWithType: Group
+  fullName: MLEM.Ui.Elements.Group
+- uid: MLEM.Ui.Elements.Image
+  commentId: T:MLEM.Ui.Elements.Image
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Image.html
+  name: Image
+  nameWithType: Image
+  fullName: MLEM.Ui.Elements.Image
+- uid: MLEM.Ui.Elements.Image.TextureCallback
+  commentId: T:MLEM.Ui.Elements.Image.TextureCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Image.html
+  name: Image.TextureCallback
+  nameWithType: Image.TextureCallback
+  fullName: MLEM.Ui.Elements.Image.TextureCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Image
+    name: Image
+    href: MLEM.Ui.Elements.Image.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Image.TextureCallback
+    name: TextureCallback
+    href: MLEM.Ui.Elements.Image.TextureCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Image
+    name: Image
+    href: MLEM.Ui.Elements.Image.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Image.TextureCallback
+    name: TextureCallback
+    href: MLEM.Ui.Elements.Image.TextureCallback.html
+- uid: MLEM.Ui.Elements.Panel
+  commentId: T:MLEM.Ui.Elements.Panel
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Panel.html
+  name: Panel
+  nameWithType: Panel
+  fullName: MLEM.Ui.Elements.Panel
+- uid: MLEM.Ui.Elements.Paragraph
+  commentId: T:MLEM.Ui.Elements.Paragraph
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Paragraph.html
+  name: Paragraph
+  nameWithType: Paragraph
+  fullName: MLEM.Ui.Elements.Paragraph
+- uid: MLEM.Ui.Elements.Paragraph.TextCallback
+  commentId: T:MLEM.Ui.Elements.Paragraph.TextCallback
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Paragraph.html
+  name: Paragraph.TextCallback
+  nameWithType: Paragraph.TextCallback
+  fullName: MLEM.Ui.Elements.Paragraph.TextCallback
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Paragraph
+    name: Paragraph
+    href: MLEM.Ui.Elements.Paragraph.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Paragraph.TextCallback
+    name: TextCallback
+    href: MLEM.Ui.Elements.Paragraph.TextCallback.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Paragraph
+    name: Paragraph
+    href: MLEM.Ui.Elements.Paragraph.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Paragraph.TextCallback
+    name: TextCallback
+    href: MLEM.Ui.Elements.Paragraph.TextCallback.html
+- uid: MLEM.Ui.Elements.Paragraph.Link
+  commentId: T:MLEM.Ui.Elements.Paragraph.Link
+  href: MLEM.Ui.Elements.Paragraph.html
+  name: Paragraph.Link
+  nameWithType: Paragraph.Link
+  fullName: MLEM.Ui.Elements.Paragraph.Link
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.Paragraph
+    name: Paragraph
+    href: MLEM.Ui.Elements.Paragraph.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Paragraph.Link
+    name: Link
+    href: MLEM.Ui.Elements.Paragraph.Link.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.Paragraph
+    name: Paragraph
+    href: MLEM.Ui.Elements.Paragraph.html
+  - name: .
+  - uid: MLEM.Ui.Elements.Paragraph.Link
+    name: Link
+    href: MLEM.Ui.Elements.Paragraph.Link.html
+- uid: MLEM.Ui.Elements.ProgressBar
+  commentId: T:MLEM.Ui.Elements.ProgressBar
+  href: MLEM.Ui.Elements.ProgressBar.html
+  name: ProgressBar
+  nameWithType: ProgressBar
+  fullName: MLEM.Ui.Elements.ProgressBar
+- uid: MLEM.Ui.Elements.RadioButton
+  commentId: T:MLEM.Ui.Elements.RadioButton
+  href: MLEM.Ui.Elements.RadioButton.html
+  name: RadioButton
+  nameWithType: RadioButton
+  fullName: MLEM.Ui.Elements.RadioButton
+- uid: MLEM.Ui.Elements.ScissorGroup
+  commentId: T:MLEM.Ui.Elements.ScissorGroup
+  href: MLEM.Ui.Elements.ScissorGroup.html
+  name: ScissorGroup
+  nameWithType: ScissorGroup
+  fullName: MLEM.Ui.Elements.ScissorGroup
+- uid: MLEM.Ui.Elements.ScrollBar
+  commentId: T:MLEM.Ui.Elements.ScrollBar
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.ScrollBar.html
+  name: ScrollBar
+  nameWithType: ScrollBar
+  fullName: MLEM.Ui.Elements.ScrollBar
+- uid: MLEM.Ui.Elements.ScrollBar.ValueChanged
+  commentId: T:MLEM.Ui.Elements.ScrollBar.ValueChanged
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.ScrollBar.html
+  name: ScrollBar.ValueChanged
+  nameWithType: ScrollBar.ValueChanged
+  fullName: MLEM.Ui.Elements.ScrollBar.ValueChanged
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.ScrollBar
+    name: ScrollBar
+    href: MLEM.Ui.Elements.ScrollBar.html
+  - name: .
+  - uid: MLEM.Ui.Elements.ScrollBar.ValueChanged
+    name: ValueChanged
+    href: MLEM.Ui.Elements.ScrollBar.ValueChanged.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.ScrollBar
+    name: ScrollBar
+    href: MLEM.Ui.Elements.ScrollBar.html
+  - name: .
+  - uid: MLEM.Ui.Elements.ScrollBar.ValueChanged
+    name: ValueChanged
+    href: MLEM.Ui.Elements.ScrollBar.ValueChanged.html
+- uid: MLEM.Ui.Elements.Slider
+  commentId: T:MLEM.Ui.Elements.Slider
+  href: MLEM.Ui.Elements.Slider.html
+  name: Slider
+  nameWithType: Slider
+  fullName: MLEM.Ui.Elements.Slider
+- uid: MLEM.Ui.Elements.SpriteAnimationImage
+  commentId: T:MLEM.Ui.Elements.SpriteAnimationImage
+  href: MLEM.Ui.Elements.SpriteAnimationImage.html
+  name: SpriteAnimationImage
+  nameWithType: SpriteAnimationImage
+  fullName: MLEM.Ui.Elements.SpriteAnimationImage
+- uid: MLEM.Ui.Elements.SquishingGroup
+  commentId: T:MLEM.Ui.Elements.SquishingGroup
+  href: MLEM.Ui.Elements.SquishingGroup.html
+  name: SquishingGroup
+  nameWithType: SquishingGroup
+  fullName: MLEM.Ui.Elements.SquishingGroup
+- uid: MLEM.Ui.Elements.TextField
+  commentId: T:MLEM.Ui.Elements.TextField
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.TextField.html
+  name: TextField
+  nameWithType: TextField
+  fullName: MLEM.Ui.Elements.TextField
+- uid: MLEM.Ui.Elements.TextField.TextChanged
+  commentId: T:MLEM.Ui.Elements.TextField.TextChanged
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.TextField.html
+  name: TextField.TextChanged
+  nameWithType: TextField.TextChanged
+  fullName: MLEM.Ui.Elements.TextField.TextChanged
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.TextField
+    name: TextField
+    href: MLEM.Ui.Elements.TextField.html
+  - name: .
+  - uid: MLEM.Ui.Elements.TextField.TextChanged
+    name: TextChanged
+    href: MLEM.Ui.Elements.TextField.TextChanged.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.TextField
+    name: TextField
+    href: MLEM.Ui.Elements.TextField.html
+  - name: .
+  - uid: MLEM.Ui.Elements.TextField.TextChanged
+    name: TextChanged
+    href: MLEM.Ui.Elements.TextField.TextChanged.html
+- uid: MLEM.Ui.Elements.TextField.Rule
+  commentId: T:MLEM.Ui.Elements.TextField.Rule
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.TextField.html
+  name: TextField.Rule
+  nameWithType: TextField.Rule
+  fullName: MLEM.Ui.Elements.TextField.Rule
+  spec.csharp:
+  - uid: MLEM.Ui.Elements.TextField
+    name: TextField
+    href: MLEM.Ui.Elements.TextField.html
+  - name: .
+  - uid: MLEM.Ui.Elements.TextField.Rule
+    name: Rule
+    href: MLEM.Ui.Elements.TextField.Rule.html
+  spec.vb:
+  - uid: MLEM.Ui.Elements.TextField
+    name: TextField
+    href: MLEM.Ui.Elements.TextField.html
+  - name: .
+  - uid: MLEM.Ui.Elements.TextField.Rule
+    name: Rule
+    href: MLEM.Ui.Elements.TextField.Rule.html
+- uid: MLEM.Ui.Elements.Tooltip
+  commentId: T:MLEM.Ui.Elements.Tooltip
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Tooltip.html
+  name: Tooltip
+  nameWithType: Tooltip
+  fullName: MLEM.Ui.Elements.Tooltip
+- uid: MLEM.Ui.Elements.VerticalSpace
+  commentId: T:MLEM.Ui.Elements.VerticalSpace
+  href: MLEM.Ui.Elements.VerticalSpace.html
+  name: VerticalSpace
+  nameWithType: VerticalSpace
+  fullName: MLEM.Ui.Elements.VerticalSpace
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html

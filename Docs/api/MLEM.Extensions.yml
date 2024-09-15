@@ -1,0 +1,159 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extensions
+  commentId: N:MLEM.Extensions
+  id: MLEM.Extensions
+  children:
+  - MLEM.Extensions.CharExtensions
+  - MLEM.Extensions.CollectionExtensions
+  - MLEM.Extensions.ColorExtensions
+  - MLEM.Extensions.ColorHelper
+  - MLEM.Extensions.GraphicsExtensions
+  - MLEM.Extensions.GraphicsExtensions.TargetContext
+  - MLEM.Extensions.NumberExtensions
+  - MLEM.Extensions.RandomExtensions
+  - MLEM.Extensions.SoundExtensions
+  - MLEM.Extensions.SpriteBatchExtensions
+  - MLEM.Extensions.TextureExtensions
+  - MLEM.Extensions.TextureExtensions.TextureData
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Extensions
+  nameWithType: MLEM.Extensions
+  fullName: MLEM.Extensions
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Extensions.CharExtensions
+  commentId: T:MLEM.Extensions.CharExtensions
+  href: MLEM.Extensions.CharExtensions.html
+  name: CharExtensions
+  nameWithType: CharExtensions
+  fullName: MLEM.Extensions.CharExtensions
+- uid: MLEM.Extensions.CollectionExtensions
+  commentId: T:MLEM.Extensions.CollectionExtensions
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.CollectionExtensions.html
+  name: CollectionExtensions
+  nameWithType: CollectionExtensions
+  fullName: MLEM.Extensions.CollectionExtensions
+- uid: MLEM.Extensions.ColorExtensions
+  commentId: T:MLEM.Extensions.ColorExtensions
+  href: MLEM.Extensions.ColorExtensions.html
+  name: ColorExtensions
+  nameWithType: ColorExtensions
+  fullName: MLEM.Extensions.ColorExtensions
+- uid: MLEM.Extensions.ColorHelper
+  commentId: T:MLEM.Extensions.ColorHelper
+  href: MLEM.Extensions.ColorHelper.html
+  name: ColorHelper
+  nameWithType: ColorHelper
+  fullName: MLEM.Extensions.ColorHelper
+- uid: MLEM.Extensions.GraphicsExtensions
+  commentId: T:MLEM.Extensions.GraphicsExtensions
+  href: MLEM.Extensions.GraphicsExtensions.html
+  name: GraphicsExtensions
+  nameWithType: GraphicsExtensions
+  fullName: MLEM.Extensions.GraphicsExtensions
+- uid: MLEM.Extensions.GraphicsExtensions.TargetContext
+  commentId: T:MLEM.Extensions.GraphicsExtensions.TargetContext
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.GraphicsExtensions.html
+  name: GraphicsExtensions.TargetContext
+  nameWithType: GraphicsExtensions.TargetContext
+  fullName: MLEM.Extensions.GraphicsExtensions.TargetContext
+  spec.csharp:
+  - uid: MLEM.Extensions.GraphicsExtensions
+    name: GraphicsExtensions
+    href: MLEM.Extensions.GraphicsExtensions.html
+  - name: .
+  - uid: MLEM.Extensions.GraphicsExtensions.TargetContext
+    name: TargetContext
+    href: MLEM.Extensions.GraphicsExtensions.TargetContext.html
+  spec.vb:
+  - uid: MLEM.Extensions.GraphicsExtensions
+    name: GraphicsExtensions
+    href: MLEM.Extensions.GraphicsExtensions.html
+  - name: .
+  - uid: MLEM.Extensions.GraphicsExtensions.TargetContext
+    name: TargetContext
+    href: MLEM.Extensions.GraphicsExtensions.TargetContext.html
+- uid: MLEM.Extensions.NumberExtensions
+  commentId: T:MLEM.Extensions.NumberExtensions
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.NumberExtensions.html
+  name: NumberExtensions
+  nameWithType: NumberExtensions
+  fullName: MLEM.Extensions.NumberExtensions
+- uid: MLEM.Extensions.RandomExtensions
+  commentId: T:MLEM.Extensions.RandomExtensions
+  href: MLEM.Extensions.RandomExtensions.html
+  name: RandomExtensions
+  nameWithType: RandomExtensions
+  fullName: MLEM.Extensions.RandomExtensions
+- uid: MLEM.Extensions.SoundExtensions
+  commentId: T:MLEM.Extensions.SoundExtensions
+  href: MLEM.Extensions.SoundExtensions.html
+  name: SoundExtensions
+  nameWithType: SoundExtensions
+  fullName: MLEM.Extensions.SoundExtensions
+- uid: MLEM.Extensions.SpriteBatchExtensions
+  commentId: T:MLEM.Extensions.SpriteBatchExtensions
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.SpriteBatchExtensions.html
+  name: SpriteBatchExtensions
+  nameWithType: SpriteBatchExtensions
+  fullName: MLEM.Extensions.SpriteBatchExtensions
+- uid: MLEM.Extensions.TextureExtensions
+  commentId: T:MLEM.Extensions.TextureExtensions
+  href: MLEM.Extensions.TextureExtensions.html
+  name: TextureExtensions
+  nameWithType: TextureExtensions
+  fullName: MLEM.Extensions.TextureExtensions
+- uid: MLEM.Extensions.TextureExtensions.TextureData
+  commentId: T:MLEM.Extensions.TextureExtensions.TextureData
+  parent: MLEM.Extensions
+  href: MLEM.Extensions.TextureExtensions.html
+  name: TextureExtensions.TextureData
+  nameWithType: TextureExtensions.TextureData
+  fullName: MLEM.Extensions.TextureExtensions.TextureData
+  spec.csharp:
+  - uid: MLEM.Extensions.TextureExtensions
+    name: TextureExtensions
+    href: MLEM.Extensions.TextureExtensions.html
+  - name: .
+  - uid: MLEM.Extensions.TextureExtensions.TextureData
+    name: TextureData
+    href: MLEM.Extensions.TextureExtensions.TextureData.html
+  spec.vb:
+  - uid: MLEM.Extensions.TextureExtensions
+    name: TextureExtensions
+    href: MLEM.Extensions.TextureExtensions.html
+  - name: .
+  - uid: MLEM.Extensions.TextureExtensions.TextureData
+    name: TextureData
+    href: MLEM.Extensions.TextureExtensions.TextureData.html
+- uid: MLEM.Extensions
+  commentId: N:MLEM.Extensions
+  href: MLEM.html
+  name: MLEM.Extensions
+  nameWithType: MLEM.Extensions
+  fullName: MLEM.Extensions
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html

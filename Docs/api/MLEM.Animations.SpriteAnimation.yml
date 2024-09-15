@@ -1,0 +1,1681 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Animations.SpriteAnimation
+  commentId: T:MLEM.Animations.SpriteAnimation
+  id: SpriteAnimation
+  parent: MLEM.Animations
+  children:
+  - MLEM.Animations.SpriteAnimation.#ctor(MLEM.Animations.AnimationFrame[])
+  - MLEM.Animations.SpriteAnimation.#ctor(System.Double,MLEM.Textures.TextureRegion[])
+  - MLEM.Animations.SpriteAnimation.#ctor(System.Double,MLEM.Textures.TextureRegion[][])
+  - MLEM.Animations.SpriteAnimation.#ctor(System.Double,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle[])
+  - MLEM.Animations.SpriteAnimation.Count
+  - MLEM.Animations.SpriteAnimation.CurrentFrame
+  - MLEM.Animations.SpriteAnimation.CurrentRegion
+  - MLEM.Animations.SpriteAnimation.CurrentRegions
+  - MLEM.Animations.SpriteAnimation.IsFinished
+  - MLEM.Animations.SpriteAnimation.IsLooping
+  - MLEM.Animations.SpriteAnimation.IsPaused
+  - MLEM.Animations.SpriteAnimation.Item(System.Int32)
+  - MLEM.Animations.SpriteAnimation.Name
+  - MLEM.Animations.SpriteAnimation.OnCompleted
+  - MLEM.Animations.SpriteAnimation.Restart
+  - MLEM.Animations.SpriteAnimation.SpeedMultiplier
+  - MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  - MLEM.Animations.SpriteAnimation.TotalTime
+  - MLEM.Animations.SpriteAnimation.Update(Microsoft.Xna.Framework.GameTime)
+  - MLEM.Animations.SpriteAnimation.Update(System.TimeSpan)
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimation
+  nameWithType: SpriteAnimation
+  fullName: MLEM.Animations.SpriteAnimation
+  type: Class
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SpriteAnimation
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: A sprite animation that allows for any number of frames that each last any number of seconds
+  example: []
+  syntax:
+    content: 'public class SpriteAnimation : GenericDataHolder, IGenericDataHolder'
+    content.vb: Public Class SpriteAnimation Inherits GenericDataHolder Implements IGenericDataHolder
+  inheritance:
+  - System.Object
+  - MLEM.Misc.GenericDataHolder
+  implements:
+  - MLEM.Misc.IGenericDataHolder
+  inheritedMembers:
+  - MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  - MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  - MLEM.Misc.GenericDataHolder.GetDataKeys
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Animations.SpriteAnimation.Count
+  commentId: P:MLEM.Animations.SpriteAnimation.Count
+  id: Count
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: SpriteAnimation.Count
+  fullName: MLEM.Animations.SpriteAnimation.Count
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Count
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Returns the amount of <xref href="MLEM.Animations.AnimationFrame" data-throw-if-not-resolved="false"></xref> entries that this sprite animation has.
+  example: []
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: MLEM.Animations.SpriteAnimation.Count*
+- uid: MLEM.Animations.SpriteAnimation.Item(System.Int32)
+  commentId: P:MLEM.Animations.SpriteAnimation.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: SpriteAnimation.this[int]
+  fullName: MLEM.Animations.SpriteAnimation.this[int]
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: this[]
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    Returns the <xref href="MLEM.Animations.AnimationFrame" data-throw-if-not-resolved="false"></xref> at the given index.
+
+    Index ordering is based on the order that animation frames were added in.
+  example: []
+  syntax:
+    content: public AnimationFrame this[int index] { get; }
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The index in the list of animation frames
+    return:
+      type: MLEM.Animations.AnimationFrame
+    content.vb: Public ReadOnly Default Property this[](index As Integer) As AnimationFrame
+  overload: MLEM.Animations.SpriteAnimation.Item*
+  nameWithType.vb: SpriteAnimation.this[](Integer)
+  fullName.vb: MLEM.Animations.SpriteAnimation.this[](Integer)
+  name.vb: this[](Integer)
+- uid: MLEM.Animations.SpriteAnimation.CurrentFrame
+  commentId: P:MLEM.Animations.SpriteAnimation.CurrentFrame
+  id: CurrentFrame
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: CurrentFrame
+  nameWithType: SpriteAnimation.CurrentFrame
+  fullName: MLEM.Animations.SpriteAnimation.CurrentFrame
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CurrentFrame
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 28
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: The frame that the animation is currently on.
+  example: []
+  syntax:
+    content: public AnimationFrame CurrentFrame { get; }
+    parameters: []
+    return:
+      type: MLEM.Animations.AnimationFrame
+    content.vb: Public ReadOnly Property CurrentFrame As AnimationFrame
+  overload: MLEM.Animations.SpriteAnimation.CurrentFrame*
+- uid: MLEM.Animations.SpriteAnimation.CurrentRegion
+  commentId: P:MLEM.Animations.SpriteAnimation.CurrentRegion
+  id: CurrentRegion
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: CurrentRegion
+  nameWithType: SpriteAnimation.CurrentRegion
+  fullName: MLEM.Animations.SpriteAnimation.CurrentRegion
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CurrentRegion
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 48
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    The texture region that this animation's <xref href="MLEM.Animations.SpriteAnimation.CurrentFrame" data-throw-if-not-resolved="false"></xref> should render.
+
+    If there are multiple regions, <xref href="MLEM.Animations.SpriteAnimation.CurrentRegions" data-throw-if-not-resolved="false"></xref> should be used instead.
+  example: []
+  syntax:
+    content: public TextureRegion CurrentRegion { get; }
+    parameters: []
+    return:
+      type: MLEM.Textures.TextureRegion
+    content.vb: Public ReadOnly Property CurrentRegion As TextureRegion
+  overload: MLEM.Animations.SpriteAnimation.CurrentRegion*
+- uid: MLEM.Animations.SpriteAnimation.CurrentRegions
+  commentId: P:MLEM.Animations.SpriteAnimation.CurrentRegions
+  id: CurrentRegions
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: CurrentRegions
+  nameWithType: SpriteAnimation.CurrentRegions
+  fullName: MLEM.Animations.SpriteAnimation.CurrentRegions
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CurrentRegions
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 53
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    The texture regions that this animation's <xref href="MLEM.Animations.SpriteAnimation.CurrentFrame" data-throw-if-not-resolved="false"></xref> should render.
+
+    If there is only one region, <xref href="MLEM.Animations.SpriteAnimation.CurrentRegion" data-throw-if-not-resolved="false"></xref> can be used for convenience.
+  example: []
+  syntax:
+    content: public IList<TextureRegion> CurrentRegions { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IList{MLEM.Textures.TextureRegion}
+    content.vb: Public ReadOnly Property CurrentRegions As IList(Of TextureRegion)
+  overload: MLEM.Animations.SpriteAnimation.CurrentRegions*
+- uid: MLEM.Animations.SpriteAnimation.TotalTime
+  commentId: F:MLEM.Animations.SpriteAnimation.TotalTime
+  id: TotalTime
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: TotalTime
+  nameWithType: SpriteAnimation.TotalTime
+  fullName: MLEM.Animations.SpriteAnimation.TotalTime
+  type: Field
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TotalTime
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 58
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    The total amount of time that this animation has.
+
+    This is auatomatically calculated based on the frame time of each frame.
+  example: []
+  syntax:
+    content: public readonly double TotalTime
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly TotalTime As Double
+- uid: MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  commentId: P:MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  id: TimeIntoAnimation
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: TimeIntoAnimation
+  nameWithType: SpriteAnimation.TimeIntoAnimation
+  fullName: MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TimeIntoAnimation
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 63
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    The amount of seconds that the animation has been going on for.
+
+    If <xref href="MLEM.Animations.SpriteAnimation.TotalTime" data-throw-if-not-resolved="false"></xref> is reached, this value resets to 0.
+  example: []
+  syntax:
+    content: public double TimeIntoAnimation { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public Property TimeIntoAnimation As Double
+  overload: MLEM.Animations.SpriteAnimation.TimeIntoAnimation*
+- uid: MLEM.Animations.SpriteAnimation.IsFinished
+  commentId: P:MLEM.Animations.SpriteAnimation.IsFinished
+  id: IsFinished
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: IsFinished
+  nameWithType: SpriteAnimation.IsFinished
+  fullName: MLEM.Animations.SpriteAnimation.IsFinished
+  type: Property
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsFinished
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 68
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    The finished state of this animation.
+
+    This is only true for longer than a frame if <xref href="MLEM.Animations.SpriteAnimation.IsLooping" data-throw-if-not-resolved="false"></xref> is false.
+  example: []
+  syntax:
+    content: public bool IsFinished { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsFinished As Boolean
+  overload: MLEM.Animations.SpriteAnimation.IsFinished*
+- uid: MLEM.Animations.SpriteAnimation.Name
+  commentId: F:MLEM.Animations.SpriteAnimation.Name
+  id: Name
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: SpriteAnimation.Name
+  fullName: MLEM.Animations.SpriteAnimation.Name
+  type: Field
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Name
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 72
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: The name of this animation. This is useful if used in combination with <xref href="MLEM.Animations.SpriteAnimationGroup" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public string Name
+    return:
+      type: System.String
+    content.vb: Public Name As String
+- uid: MLEM.Animations.SpriteAnimation.SpeedMultiplier
+  commentId: F:MLEM.Animations.SpriteAnimation.SpeedMultiplier
+  id: SpeedMultiplier
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: SpeedMultiplier
+  nameWithType: SpriteAnimation.SpeedMultiplier
+  fullName: MLEM.Animations.SpriteAnimation.SpeedMultiplier
+  type: Field
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SpeedMultiplier
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 77
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    The speed multiplier that this animation should run with.
+
+    Numbers higher than 1 will increase the speed.
+  example: []
+  syntax:
+    content: public float SpeedMultiplier
+    return:
+      type: System.Single
+    content.vb: Public SpeedMultiplier As Single
+- uid: MLEM.Animations.SpriteAnimation.IsLooping
+  commentId: F:MLEM.Animations.SpriteAnimation.IsLooping
+  id: IsLooping
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: IsLooping
+  nameWithType: SpriteAnimation.IsLooping
+  fullName: MLEM.Animations.SpriteAnimation.IsLooping
+  type: Field
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsLooping
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 82
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    Set to false to stop this animation from looping.
+
+    To check if the animation has finished playing, see <xref href="MLEM.Animations.SpriteAnimation.IsFinished" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool IsLooping
+    return:
+      type: System.Boolean
+    content.vb: Public IsLooping As Boolean
+- uid: MLEM.Animations.SpriteAnimation.OnCompleted
+  commentId: E:MLEM.Animations.SpriteAnimation.OnCompleted
+  id: OnCompleted
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: OnCompleted
+  nameWithType: SpriteAnimation.OnCompleted
+  fullName: MLEM.Animations.SpriteAnimation.OnCompleted
+  type: Event
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OnCompleted
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 86
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: A callback that gets fired when the animation completes.
+  example: []
+  syntax:
+    content: public event SpriteAnimation.Completed OnCompleted
+    return:
+      type: MLEM.Animations.SpriteAnimation.Completed
+    content.vb: Public Event OnCompleted As SpriteAnimation.Completed
+- uid: MLEM.Animations.SpriteAnimation.IsPaused
+  commentId: F:MLEM.Animations.SpriteAnimation.IsPaused
+  id: IsPaused
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: IsPaused
+  nameWithType: SpriteAnimation.IsPaused
+  fullName: MLEM.Animations.SpriteAnimation.IsPaused
+  type: Field
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: IsPaused
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 91
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: >-
+    Set this to true to pause the playback of the animation.
+
+    <xref href="MLEM.Animations.SpriteAnimation.TimeIntoAnimation" data-throw-if-not-resolved="false"></xref> will not continue and the <xref href="MLEM.Animations.SpriteAnimation.CurrentFrame" data-throw-if-not-resolved="false"></xref> will not change.
+  example: []
+  syntax:
+    content: public bool IsPaused
+    return:
+      type: System.Boolean
+    content.vb: Public IsPaused As Boolean
+- uid: MLEM.Animations.SpriteAnimation.#ctor(MLEM.Animations.AnimationFrame[])
+  commentId: M:MLEM.Animations.SpriteAnimation.#ctor(MLEM.Animations.AnimationFrame[])
+  id: '#ctor(MLEM.Animations.AnimationFrame[])'
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimation(params AnimationFrame[])
+  nameWithType: SpriteAnimation.SpriteAnimation(params AnimationFrame[])
+  fullName: MLEM.Animations.SpriteAnimation.SpriteAnimation(params MLEM.Animations.AnimationFrame[])
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 97
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Creates a new sprite animation that contains the given frames.
+  example: []
+  syntax:
+    content: public SpriteAnimation(params AnimationFrame[] frames)
+    parameters:
+    - id: frames
+      type: MLEM.Animations.AnimationFrame[]
+      description: The frames this animation should have
+    content.vb: Public Sub New(ParamArray frames As AnimationFrame())
+  overload: MLEM.Animations.SpriteAnimation.#ctor*
+  nameWithType.vb: SpriteAnimation.New(ParamArray AnimationFrame())
+  fullName.vb: MLEM.Animations.SpriteAnimation.New(ParamArray MLEM.Animations.AnimationFrame())
+  name.vb: New(ParamArray AnimationFrame())
+- uid: MLEM.Animations.SpriteAnimation.#ctor(System.Double,MLEM.Textures.TextureRegion[])
+  commentId: M:MLEM.Animations.SpriteAnimation.#ctor(System.Double,MLEM.Textures.TextureRegion[])
+  id: '#ctor(System.Double,MLEM.Textures.TextureRegion[])'
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimation(double, params TextureRegion[])
+  nameWithType: SpriteAnimation.SpriteAnimation(double, params TextureRegion[])
+  fullName: MLEM.Animations.SpriteAnimation.SpriteAnimation(double, params MLEM.Textures.TextureRegion[])
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 110
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Creates a new sprite animation that contains the given texture regions as frames.
+  example: []
+  syntax:
+    content: public SpriteAnimation(double timePerFrame, params TextureRegion[] regions)
+    parameters:
+    - id: timePerFrame
+      type: System.Double
+      description: The amount of time that each frame should last for
+    - id: regions
+      type: MLEM.Textures.TextureRegion[]
+      description: The texture regions that should make up this animation
+    content.vb: Public Sub New(timePerFrame As Double, ParamArray regions As TextureRegion())
+  overload: MLEM.Animations.SpriteAnimation.#ctor*
+  nameWithType.vb: SpriteAnimation.New(Double, ParamArray TextureRegion())
+  fullName.vb: MLEM.Animations.SpriteAnimation.New(Double, ParamArray MLEM.Textures.TextureRegion())
+  name.vb: New(Double, ParamArray TextureRegion())
+- uid: MLEM.Animations.SpriteAnimation.#ctor(System.Double,MLEM.Textures.TextureRegion[][])
+  commentId: M:MLEM.Animations.SpriteAnimation.#ctor(System.Double,MLEM.Textures.TextureRegion[][])
+  id: '#ctor(System.Double,MLEM.Textures.TextureRegion[][])'
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimation(double, params TextureRegion[][])
+  nameWithType: SpriteAnimation.SpriteAnimation(double, params TextureRegion[][])
+  fullName: MLEM.Animations.SpriteAnimation.SpriteAnimation(double, params MLEM.Textures.TextureRegion[][])
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 117
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Creates a new sprite animation that contains the given texture region arrays as frames, where each frame represents one set of texture regions.
+  example: []
+  syntax:
+    content: public SpriteAnimation(double timePerFrame, params TextureRegion[][] regions)
+    parameters:
+    - id: timePerFrame
+      type: System.Double
+      description: The amount of time that each frame should last for
+    - id: regions
+      type: MLEM.Textures.TextureRegion[][]
+      description: The texture regions that should make up this animation
+    content.vb: Public Sub New(timePerFrame As Double, ParamArray regions As TextureRegion()())
+  overload: MLEM.Animations.SpriteAnimation.#ctor*
+  nameWithType.vb: SpriteAnimation.New(Double, ParamArray TextureRegion()())
+  fullName.vb: MLEM.Animations.SpriteAnimation.New(Double, ParamArray MLEM.Textures.TextureRegion()())
+  name.vb: New(Double, ParamArray TextureRegion()())
+- uid: MLEM.Animations.SpriteAnimation.#ctor(System.Double,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle[])
+  commentId: M:MLEM.Animations.SpriteAnimation.#ctor(System.Double,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle[])
+  id: '#ctor(System.Double,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle[])'
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimation(double, Texture2D, params Rectangle[])
+  nameWithType: SpriteAnimation.SpriteAnimation(double, Texture2D, params Rectangle[])
+  fullName: MLEM.Animations.SpriteAnimation.SpriteAnimation(double, Microsoft.Xna.Framework.Graphics.Texture2D, params Microsoft.Xna.Framework.Rectangle[])
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 125
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Creates a new sprite animation based on the given texture regions in rectangle-based format.
+  example: []
+  syntax:
+    content: public SpriteAnimation(double timePerFrame, Texture2D texture, params Rectangle[] regions)
+    parameters:
+    - id: timePerFrame
+      type: System.Double
+      description: The amount of time that each frame should last for
+    - id: texture
+      type: Microsoft.Xna.Framework.Graphics.Texture2D
+      description: The texture that the regions should come from
+    - id: regions
+      type: Microsoft.Xna.Framework.Rectangle[]
+      description: The texture regions that should make up this animation
+    content.vb: Public Sub New(timePerFrame As Double, texture As Texture2D, ParamArray regions As Rectangle())
+  overload: MLEM.Animations.SpriteAnimation.#ctor*
+  nameWithType.vb: SpriteAnimation.New(Double, Texture2D, ParamArray Rectangle())
+  fullName.vb: MLEM.Animations.SpriteAnimation.New(Double, Microsoft.Xna.Framework.Graphics.Texture2D, ParamArray Microsoft.Xna.Framework.Rectangle())
+  name.vb: New(Double, Texture2D, ParamArray Rectangle())
+- uid: MLEM.Animations.SpriteAnimation.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Animations.SpriteAnimation.Update(Microsoft.Xna.Framework.GameTime)
+  id: Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: Update(GameTime)
+  nameWithType: SpriteAnimation.Update(GameTime)
+  fullName: MLEM.Animations.SpriteAnimation.Update(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 131
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Updates this animation, causing <xref href="MLEM.Animations.SpriteAnimation.TimeIntoAnimation" data-throw-if-not-resolved="false"></xref> to be increased and the <xref href="MLEM.Animations.SpriteAnimation.CurrentFrame" data-throw-if-not-resolved="false"></xref> to be updated.
+  example: []
+  syntax:
+    content: public void Update(GameTime time)
+    parameters:
+    - id: time
+      type: Microsoft.Xna.Framework.GameTime
+      description: The game's time
+    content.vb: Public Sub Update(time As GameTime)
+  overload: MLEM.Animations.SpriteAnimation.Update*
+- uid: MLEM.Animations.SpriteAnimation.Update(System.TimeSpan)
+  commentId: M:MLEM.Animations.SpriteAnimation.Update(System.TimeSpan)
+  id: Update(System.TimeSpan)
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: Update(TimeSpan)
+  nameWithType: SpriteAnimation.Update(TimeSpan)
+  fullName: MLEM.Animations.SpriteAnimation.Update(System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 139
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Updates this animation, causing <xref href="MLEM.Animations.SpriteAnimation.TimeIntoAnimation" data-throw-if-not-resolved="false"></xref> to be increased and the <xref href="MLEM.Animations.SpriteAnimation.CurrentFrame" data-throw-if-not-resolved="false"></xref> to be updated.
+  example: []
+  syntax:
+    content: public void Update(TimeSpan elapsed)
+    parameters:
+    - id: elapsed
+      type: System.TimeSpan
+      description: The amount of time that has passed
+    content.vb: Public Sub Update(elapsed As TimeSpan)
+  overload: MLEM.Animations.SpriteAnimation.Update*
+- uid: MLEM.Animations.SpriteAnimation.Restart
+  commentId: M:MLEM.Animations.SpriteAnimation.Restart
+  id: Restart
+  parent: MLEM.Animations.SpriteAnimation
+  langs:
+  - csharp
+  - vb
+  name: Restart()
+  nameWithType: SpriteAnimation.Restart()
+  fullName: MLEM.Animations.SpriteAnimation.Restart()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimation.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Restart
+    path: ../MLEM/Animations/SpriteAnimation.cs
+    startLine: 156
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: Restarts this animation from the first frame.
+  example: []
+  syntax:
+    content: public void Restart()
+    content.vb: Public Sub Restart()
+  overload: MLEM.Animations.SpriteAnimation.Restart*
+references:
+- uid: MLEM.Animations
+  commentId: N:MLEM.Animations
+  href: MLEM.html
+  name: MLEM.Animations
+  nameWithType: MLEM.Animations
+  fullName: MLEM.Animations
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Animations
+    name: Animations
+    href: MLEM.Animations.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Animations
+    name: Animations
+    href: MLEM.Animations.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Misc.GenericDataHolder
+  commentId: T:MLEM.Misc.GenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.GenericDataHolder.html
+  name: GenericDataHolder
+  nameWithType: GenericDataHolder
+  fullName: MLEM.Misc.GenericDataHolder
+- uid: MLEM.Misc.IGenericDataHolder
+  commentId: T:MLEM.Misc.IGenericDataHolder
+  parent: MLEM.Misc
+  href: MLEM.Misc.IGenericDataHolder.html
+  name: IGenericDataHolder
+  nameWithType: IGenericDataHolder
+  fullName: MLEM.Misc.IGenericDataHolder
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,{T})
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  parent: MLEM.Misc.GenericDataHolder
+  definition: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  commentId: M:MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+  parent: MLEM.Misc.GenericDataHolder
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  name: GetData<T>(string)
+  nameWithType: GenericDataHolder.GetData<T>(string)
+  fullName: MLEM.Misc.GenericDataHolder.GetData<T>(string)
+  nameWithType.vb: GenericDataHolder.GetData(Of T)(String)
+  fullName.vb: MLEM.Misc.GenericDataHolder.GetData(Of T)(String)
+  name.vb: GetData(Of T)(String)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetData``1(System.String)
+    name: GetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetData__1_System_String_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+  commentId: M:MLEM.Misc.GenericDataHolder.GetDataKeys
+  parent: MLEM.Misc.GenericDataHolder
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  name: GetDataKeys()
+  nameWithType: GenericDataHolder.GetDataKeys()
+  fullName: MLEM.Misc.GenericDataHolder.GetDataKeys()
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.GetDataKeys
+    name: GetDataKeys
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_GetDataKeys
+  - name: (
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  commentId: M:MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+  isExternal: true
+  href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  name: SetData<T>(string, T)
+  nameWithType: GenericDataHolder.SetData<T>(string, T)
+  fullName: MLEM.Misc.GenericDataHolder.SetData<T>(string, T)
+  nameWithType.vb: GenericDataHolder.SetData(Of T)(String, T)
+  fullName.vb: MLEM.Misc.GenericDataHolder.SetData(Of T)(String, T)
+  name.vb: SetData(Of T)(String, T)
+  spec.csharp:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.GenericDataHolder.SetData``1(System.String,``0)
+    name: SetData
+    href: MLEM.Misc.GenericDataHolder.html#MLEM_Misc_GenericDataHolder_SetData__1_System_String___0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Animations.AnimationFrame
+  commentId: T:MLEM.Animations.AnimationFrame
+  parent: MLEM.Animations
+  href: MLEM.Animations.AnimationFrame.html
+  name: AnimationFrame
+  nameWithType: AnimationFrame
+  fullName: MLEM.Animations.AnimationFrame
+- uid: MLEM.Animations.SpriteAnimation.Count*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.Count
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_Count
+  name: Count
+  nameWithType: SpriteAnimation.Count
+  fullName: MLEM.Animations.SpriteAnimation.Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: MLEM.Animations.SpriteAnimation.Item*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.Item
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_Item_System_Int32_
+  name: this
+  nameWithType: SpriteAnimation.this
+  fullName: MLEM.Animations.SpriteAnimation.this
+  nameWithType.vb: SpriteAnimation.this[]
+  fullName.vb: MLEM.Animations.SpriteAnimation.this[]
+  name.vb: this[]
+- uid: MLEM.Animations.SpriteAnimation.CurrentFrame*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.CurrentFrame
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_CurrentFrame
+  name: CurrentFrame
+  nameWithType: SpriteAnimation.CurrentFrame
+  fullName: MLEM.Animations.SpriteAnimation.CurrentFrame
+- uid: MLEM.Animations.SpriteAnimation.CurrentFrame
+  commentId: P:MLEM.Animations.SpriteAnimation.CurrentFrame
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_CurrentFrame
+  name: CurrentFrame
+  nameWithType: SpriteAnimation.CurrentFrame
+  fullName: MLEM.Animations.SpriteAnimation.CurrentFrame
+- uid: MLEM.Animations.SpriteAnimation.CurrentRegions
+  commentId: P:MLEM.Animations.SpriteAnimation.CurrentRegions
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_CurrentRegions
+  name: CurrentRegions
+  nameWithType: SpriteAnimation.CurrentRegions
+  fullName: MLEM.Animations.SpriteAnimation.CurrentRegions
+- uid: MLEM.Animations.SpriteAnimation.CurrentRegion*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.CurrentRegion
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_CurrentRegion
+  name: CurrentRegion
+  nameWithType: SpriteAnimation.CurrentRegion
+  fullName: MLEM.Animations.SpriteAnimation.CurrentRegion
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  href: MLEM.Textures.TextureRegion.html
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  href: MLEM.html
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+- uid: MLEM.Animations.SpriteAnimation.CurrentRegion
+  commentId: P:MLEM.Animations.SpriteAnimation.CurrentRegion
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_CurrentRegion
+  name: CurrentRegion
+  nameWithType: SpriteAnimation.CurrentRegion
+  fullName: MLEM.Animations.SpriteAnimation.CurrentRegion
+- uid: MLEM.Animations.SpriteAnimation.CurrentRegions*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.CurrentRegions
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_CurrentRegions
+  name: CurrentRegions
+  nameWithType: SpriteAnimation.CurrentRegions
+  fullName: MLEM.Animations.SpriteAnimation.CurrentRegions
+- uid: System.Collections.Generic.IList{MLEM.Textures.TextureRegion}
+  commentId: T:System.Collections.Generic.IList{MLEM.Textures.TextureRegion}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<TextureRegion>
+  nameWithType: IList<TextureRegion>
+  fullName: System.Collections.Generic.IList<MLEM.Textures.TextureRegion>
+  nameWithType.vb: IList(Of TextureRegion)
+  fullName.vb: System.Collections.Generic.IList(Of MLEM.Textures.TextureRegion)
+  name.vb: IList(Of TextureRegion)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: MLEM.Animations.SpriteAnimation.TotalTime
+  commentId: F:MLEM.Animations.SpriteAnimation.TotalTime
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_TotalTime
+  name: TotalTime
+  nameWithType: SpriteAnimation.TotalTime
+  fullName: MLEM.Animations.SpriteAnimation.TotalTime
+- uid: MLEM.Animations.SpriteAnimation.TimeIntoAnimation*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_TimeIntoAnimation
+  name: TimeIntoAnimation
+  nameWithType: SpriteAnimation.TimeIntoAnimation
+  fullName: MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+- uid: MLEM.Animations.SpriteAnimation.IsLooping
+  commentId: F:MLEM.Animations.SpriteAnimation.IsLooping
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_IsLooping
+  name: IsLooping
+  nameWithType: SpriteAnimation.IsLooping
+  fullName: MLEM.Animations.SpriteAnimation.IsLooping
+- uid: MLEM.Animations.SpriteAnimation.IsFinished*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.IsFinished
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_IsFinished
+  name: IsFinished
+  nameWithType: SpriteAnimation.IsFinished
+  fullName: MLEM.Animations.SpriteAnimation.IsFinished
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Animations.SpriteAnimationGroup
+  commentId: T:MLEM.Animations.SpriteAnimationGroup
+  parent: MLEM.Animations
+  href: MLEM.Animations.SpriteAnimationGroup.html
+  name: SpriteAnimationGroup
+  nameWithType: SpriteAnimationGroup
+  fullName: MLEM.Animations.SpriteAnimationGroup
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Animations.SpriteAnimation.IsFinished
+  commentId: P:MLEM.Animations.SpriteAnimation.IsFinished
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_IsFinished
+  name: IsFinished
+  nameWithType: SpriteAnimation.IsFinished
+  fullName: MLEM.Animations.SpriteAnimation.IsFinished
+- uid: MLEM.Animations.SpriteAnimation.Completed
+  commentId: T:MLEM.Animations.SpriteAnimation.Completed
+  parent: MLEM.Animations
+  href: MLEM.Animations.SpriteAnimation.html
+  name: SpriteAnimation.Completed
+  nameWithType: SpriteAnimation.Completed
+  fullName: MLEM.Animations.SpriteAnimation.Completed
+  spec.csharp:
+  - uid: MLEM.Animations.SpriteAnimation
+    name: SpriteAnimation
+    href: MLEM.Animations.SpriteAnimation.html
+  - name: .
+  - uid: MLEM.Animations.SpriteAnimation.Completed
+    name: Completed
+    href: MLEM.Animations.SpriteAnimation.Completed.html
+  spec.vb:
+  - uid: MLEM.Animations.SpriteAnimation
+    name: SpriteAnimation
+    href: MLEM.Animations.SpriteAnimation.html
+  - name: .
+  - uid: MLEM.Animations.SpriteAnimation.Completed
+    name: Completed
+    href: MLEM.Animations.SpriteAnimation.Completed.html
+- uid: MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  commentId: P:MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_TimeIntoAnimation
+  name: TimeIntoAnimation
+  nameWithType: SpriteAnimation.TimeIntoAnimation
+  fullName: MLEM.Animations.SpriteAnimation.TimeIntoAnimation
+- uid: MLEM.Animations.SpriteAnimation.#ctor*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.#ctor
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation__ctor_MLEM_Animations_AnimationFrame___
+  name: SpriteAnimation
+  nameWithType: SpriteAnimation.SpriteAnimation
+  fullName: MLEM.Animations.SpriteAnimation.SpriteAnimation
+  nameWithType.vb: SpriteAnimation.New
+  fullName.vb: MLEM.Animations.SpriteAnimation.New
+  name.vb: New
+- uid: MLEM.Animations.AnimationFrame[]
+  isExternal: true
+  href: MLEM.Animations.AnimationFrame.html
+  name: AnimationFrame[]
+  nameWithType: AnimationFrame[]
+  fullName: MLEM.Animations.AnimationFrame[]
+  nameWithType.vb: AnimationFrame()
+  fullName.vb: MLEM.Animations.AnimationFrame()
+  name.vb: AnimationFrame()
+  spec.csharp:
+  - uid: MLEM.Animations.AnimationFrame
+    name: AnimationFrame
+    href: MLEM.Animations.AnimationFrame.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Animations.AnimationFrame
+    name: AnimationFrame
+    href: MLEM.Animations.AnimationFrame.html
+  - name: (
+  - name: )
+- uid: MLEM.Textures.TextureRegion[]
+  isExternal: true
+  href: MLEM.Textures.TextureRegion.html
+  name: TextureRegion[]
+  nameWithType: TextureRegion[]
+  fullName: MLEM.Textures.TextureRegion[]
+  nameWithType.vb: TextureRegion()
+  fullName.vb: MLEM.Textures.TextureRegion()
+  name.vb: TextureRegion()
+  spec.csharp:
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: (
+  - name: )
+- uid: MLEM.Textures.TextureRegion[][]
+  isExternal: true
+  href: MLEM.Textures.TextureRegion.html
+  name: TextureRegion[][]
+  nameWithType: TextureRegion[][]
+  fullName: MLEM.Textures.TextureRegion[][]
+  nameWithType.vb: TextureRegion()()
+  fullName.vb: MLEM.Textures.TextureRegion()()
+  name.vb: TextureRegion()()
+  spec.csharp:
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: '['
+  - name: ']'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: (
+  - name: )
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics.Texture2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.Texture2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Texture2D
+  nameWithType: Texture2D
+  fullName: Microsoft.Xna.Framework.Graphics.Texture2D
+- uid: Microsoft.Xna.Framework.Rectangle[]
+  isExternal: true
+  name: Rectangle[]
+  nameWithType: Rectangle[]
+  fullName: Microsoft.Xna.Framework.Rectangle[]
+  nameWithType.vb: Rectangle()
+  fullName.vb: Microsoft.Xna.Framework.Rectangle()
+  name.vb: Rectangle()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Rectangle
+    name: Rectangle
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Animations.SpriteAnimation.Update*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.Update
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_Update_Microsoft_Xna_Framework_GameTime_
+  name: Update
+  nameWithType: SpriteAnimation.Update
+  fullName: MLEM.Animations.SpriteAnimation.Update
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: MLEM.Animations.SpriteAnimation.Restart*
+  commentId: Overload:MLEM.Animations.SpriteAnimation.Restart
+  href: MLEM.Animations.SpriteAnimation.html#MLEM_Animations_SpriteAnimation_Restart
+  name: Restart
+  nameWithType: SpriteAnimation.Restart
+  fullName: MLEM.Animations.SpriteAnimation.Restart

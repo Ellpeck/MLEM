@@ -1,0 +1,543 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Graphics.GraphicsExtensions.TargetContext
+  commentId: T:MLEM.Graphics.GraphicsExtensions.TargetContext
+  id: GraphicsExtensions.TargetContext
+  parent: MLEM.Graphics
+  children:
+  - MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  - MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  - MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose
+  langs:
+  - csharp
+  - vb
+  name: GraphicsExtensions.TargetContext
+  nameWithType: GraphicsExtensions.TargetContext
+  fullName: MLEM.Graphics.GraphicsExtensions.TargetContext
+  type: Struct
+  source:
+    remote:
+      path: MLEM/Graphics/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TargetContext
+    path: ../MLEM/Graphics/GraphicsExtensions.cs
+    startLine: 91
+  assemblies:
+  - MLEM
+  namespace: MLEM.Graphics
+  summary: >-
+    Represents a context in which a <xref href="Microsoft.Xna.Framework.Graphics.RenderTarget2D" data-throw-if-not-resolved="false"></xref> is applied.
+
+    This class should be used with <xref href="MLEM.Graphics.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice%2cMicrosoft.Xna.Framework.Graphics.RenderTarget2D)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public readonly struct GraphicsExtensions.TargetContext : IDisposable'
+    content.vb: Public Structure GraphicsExtensions.TargetContext Implements IDisposable
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+- uid: MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  commentId: M:MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)'
+  parent: MLEM.Graphics.GraphicsExtensions.TargetContext
+  langs:
+  - csharp
+  - vb
+  name: TargetContext(GraphicsDevice, RenderTarget2D)
+  nameWithType: GraphicsExtensions.TargetContext.TargetContext(GraphicsDevice, RenderTarget2D)
+  fullName: MLEM.Graphics.GraphicsExtensions.TargetContext.TargetContext(Microsoft.Xna.Framework.Graphics.GraphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Graphics/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Graphics/GraphicsExtensions.cs
+    startLine: 101
+  assemblies:
+  - MLEM
+  namespace: MLEM.Graphics
+  summary: Creates a new target context with the given settings.
+  example: []
+  syntax:
+    content: public TargetContext(GraphicsDevice device, RenderTarget2D target)
+    parameters:
+    - id: device
+      type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+      description: The graphics device to apply the target on
+    - id: target
+      type: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+      description: The target to apply
+    content.vb: Public Sub New(device As GraphicsDevice, target As RenderTarget2D)
+  overload: MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor*
+  nameWithType.vb: GraphicsExtensions.TargetContext.New(GraphicsDevice, RenderTarget2D)
+  fullName.vb: MLEM.Graphics.GraphicsExtensions.TargetContext.New(Microsoft.Xna.Framework.Graphics.GraphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  name.vb: New(GraphicsDevice, RenderTarget2D)
+- uid: MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  commentId: M:MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  id: '#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])'
+  parent: MLEM.Graphics.GraphicsExtensions.TargetContext
+  langs:
+  - csharp
+  - vb
+  name: TargetContext(GraphicsDevice, RenderTargetBinding[])
+  nameWithType: GraphicsExtensions.TargetContext.TargetContext(GraphicsDevice, RenderTargetBinding[])
+  fullName: MLEM.Graphics.GraphicsExtensions.TargetContext.TargetContext(Microsoft.Xna.Framework.Graphics.GraphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTargetBinding[])
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Graphics/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Graphics/GraphicsExtensions.cs
+    startLine: 110
+  assemblies:
+  - MLEM
+  namespace: MLEM.Graphics
+  summary: Creates a new target context with the given settings.
+  example: []
+  syntax:
+    content: public TargetContext(GraphicsDevice device, RenderTargetBinding[] targets)
+    parameters:
+    - id: device
+      type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+      description: The graphics device to apply the target on
+    - id: targets
+      type: Microsoft.Xna.Framework.Graphics.RenderTargetBinding[]
+      description: The targets to apply
+    content.vb: Public Sub New(device As GraphicsDevice, targets As RenderTargetBinding())
+  overload: MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor*
+  nameWithType.vb: GraphicsExtensions.TargetContext.New(GraphicsDevice, RenderTargetBinding())
+  fullName.vb: MLEM.Graphics.GraphicsExtensions.TargetContext.New(Microsoft.Xna.Framework.Graphics.GraphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTargetBinding())
+  name.vb: New(GraphicsDevice, RenderTargetBinding())
+- uid: MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose
+  commentId: M:MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose
+  id: Dispose
+  parent: MLEM.Graphics.GraphicsExtensions.TargetContext
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: GraphicsExtensions.TargetContext.Dispose()
+  fullName: MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Graphics/GraphicsExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Dispose
+    path: ../MLEM/Graphics/GraphicsExtensions.cs
+    startLine: 127
+  assemblies:
+  - MLEM
+  namespace: MLEM.Graphics
+  summary: Disposes this target context, which causes the graphics device's previous render targets to be re-applied.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+  commentId: T:Microsoft.Xna.Framework.Graphics.RenderTarget2D
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: RenderTarget2D
+  nameWithType: RenderTarget2D
+  fullName: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+- uid: MLEM.Graphics.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  commentId: M:MLEM.Graphics.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  isExternal: true
+  href: MLEM.Graphics.GraphicsExtensions.html#MLEM_Graphics_GraphicsExtensions_WithRenderTarget_Microsoft_Xna_Framework_Graphics_GraphicsDevice_Microsoft_Xna_Framework_Graphics_RenderTarget2D_
+  name: WithRenderTarget(GraphicsDevice, RenderTarget2D)
+  nameWithType: GraphicsExtensions.WithRenderTarget(GraphicsDevice, RenderTarget2D)
+  fullName: MLEM.Graphics.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+  spec.csharp:
+  - uid: MLEM.Graphics.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+    name: WithRenderTarget
+    href: MLEM.Graphics.GraphicsExtensions.html#MLEM_Graphics_GraphicsExtensions_WithRenderTarget_Microsoft_Xna_Framework_Graphics_GraphicsDevice_Microsoft_Xna_Framework_Graphics_RenderTarget2D_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+    name: GraphicsDevice
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+    name: RenderTarget2D
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Graphics.GraphicsExtensions.WithRenderTarget(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.RenderTarget2D)
+    name: WithRenderTarget
+    href: MLEM.Graphics.GraphicsExtensions.html#MLEM_Graphics_GraphicsExtensions_WithRenderTarget_Microsoft_Xna_Framework_Graphics_GraphicsDevice_Microsoft_Xna_Framework_Graphics_RenderTarget2D_
+  - name: (
+  - uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+    name: GraphicsDevice
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Graphics.RenderTarget2D
+    name: RenderTarget2D
+    isExternal: true
+  - name: )
+- uid: MLEM.Graphics
+  commentId: N:MLEM.Graphics
+  href: MLEM.html
+  name: MLEM.Graphics
+  nameWithType: MLEM.Graphics
+  fullName: MLEM.Graphics
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor*
+  commentId: Overload:MLEM.Graphics.GraphicsExtensions.TargetContext.#ctor
+  href: MLEM.Graphics.GraphicsExtensions.TargetContext.html#MLEM_Graphics_GraphicsExtensions_TargetContext__ctor_Microsoft_Xna_Framework_Graphics_GraphicsDevice_Microsoft_Xna_Framework_Graphics_RenderTarget2D_
+  name: TargetContext
+  nameWithType: GraphicsExtensions.TargetContext.TargetContext
+  fullName: MLEM.Graphics.GraphicsExtensions.TargetContext.TargetContext
+  nameWithType.vb: GraphicsExtensions.TargetContext.New
+  fullName.vb: MLEM.Graphics.GraphicsExtensions.TargetContext.New
+  name.vb: New
+- uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  commentId: T:Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: GraphicsDevice
+  nameWithType: GraphicsDevice
+  fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+- uid: Microsoft.Xna.Framework.Graphics.RenderTargetBinding[]
+  isExternal: true
+  name: RenderTargetBinding[]
+  nameWithType: RenderTargetBinding[]
+  fullName: Microsoft.Xna.Framework.Graphics.RenderTargetBinding[]
+  nameWithType.vb: RenderTargetBinding()
+  fullName.vb: Microsoft.Xna.Framework.Graphics.RenderTargetBinding()
+  name.vb: RenderTargetBinding()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Graphics.RenderTargetBinding
+    name: RenderTargetBinding
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Graphics.RenderTargetBinding
+    name: RenderTargetBinding
+    isExternal: true
+  - name: (
+  - name: )
+- uid: MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose*
+  commentId: Overload:MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose
+  href: MLEM.Graphics.GraphicsExtensions.TargetContext.html#MLEM_Graphics_GraphicsExtensions_TargetContext_Dispose
+  name: Dispose
+  nameWithType: GraphicsExtensions.TargetContext.Dispose
+  fullName: MLEM.Graphics.GraphicsExtensions.TargetContext.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

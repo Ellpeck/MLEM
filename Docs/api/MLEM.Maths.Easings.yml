@@ -1,0 +1,1928 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Maths.Easings
+  commentId: T:MLEM.Maths.Easings
+  id: Easings
+  parent: MLEM.Maths
+  children:
+  - MLEM.Maths.Easings.AndReverse(MLEM.Maths.Easings.Easing)
+  - MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+  - MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+  - MLEM.Maths.Easings.Clamp(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  - MLEM.Maths.Easings.InBack
+  - MLEM.Maths.Easings.InBounce
+  - MLEM.Maths.Easings.InCirc
+  - MLEM.Maths.Easings.InCubic
+  - MLEM.Maths.Easings.InElastic
+  - MLEM.Maths.Easings.InExpo
+  - MLEM.Maths.Easings.InOutBack
+  - MLEM.Maths.Easings.InOutBounce
+  - MLEM.Maths.Easings.InOutCirc
+  - MLEM.Maths.Easings.InOutCubic
+  - MLEM.Maths.Easings.InOutElastic
+  - MLEM.Maths.Easings.InOutExpo
+  - MLEM.Maths.Easings.InOutQuad
+  - MLEM.Maths.Easings.InOutQuart
+  - MLEM.Maths.Easings.InOutQuint
+  - MLEM.Maths.Easings.InOutSine
+  - MLEM.Maths.Easings.InQuad
+  - MLEM.Maths.Easings.InQuart
+  - MLEM.Maths.Easings.InQuint
+  - MLEM.Maths.Easings.InSine
+  - MLEM.Maths.Easings.Linear
+  - MLEM.Maths.Easings.One
+  - MLEM.Maths.Easings.OutBack
+  - MLEM.Maths.Easings.OutBounce
+  - MLEM.Maths.Easings.OutCirc
+  - MLEM.Maths.Easings.OutCubic
+  - MLEM.Maths.Easings.OutElastic
+  - MLEM.Maths.Easings.OutExpo
+  - MLEM.Maths.Easings.OutQuad
+  - MLEM.Maths.Easings.OutQuart
+  - MLEM.Maths.Easings.OutQuint
+  - MLEM.Maths.Easings.OutSine
+  - MLEM.Maths.Easings.ReverseInput(MLEM.Maths.Easings.Easing)
+  - MLEM.Maths.Easings.ReverseOutput(MLEM.Maths.Easings.Easing)
+  - MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  - MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  - MLEM.Maths.Easings.Zero
+  langs:
+  - csharp
+  - vb
+  name: Easings
+  nameWithType: Easings
+  fullName: MLEM.Maths.Easings
+  type: Class
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Easings
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    This class contains a set of easing functions, adapted from https://easings.net.
+
+    These can be used for ui elements or any other kind of animations.
+
+    By default, each function takes an input that ranges between 0 and 1, and produces an output that roughly ranges between 0 and 1. To change this behavior, you can use <xref href="MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing%2cSystem.Single%2cSystem.Single)" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing%2cSystem.Single%2cSystem.Single)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static class Easings
+    content.vb: Public Module Easings
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Maths.Easings.Zero
+  commentId: F:MLEM.Maths.Easings.Zero
+  id: Zero
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: Zero
+  nameWithType: Easings.Zero
+  fullName: MLEM.Maths.Easings.Zero
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Zero
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 15
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    An easing function that constantly returns 0, regardless of the input percentage.
+
+    This is useful for chaining using <xref href="MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing%2cMLEM.Maths.Easings.Easing)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing Zero
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly Zero As Easings.Easing
+- uid: MLEM.Maths.Easings.One
+  commentId: F:MLEM.Maths.Easings.One
+  id: One
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: One
+  nameWithType: Easings.One
+  fullName: MLEM.Maths.Easings.One
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: One
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 20
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    An easing function that constantly returns 1, regardless of the input percentage.
+
+    This is useful for chaining using <xref href="MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing%2cMLEM.Maths.Easings.Easing)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing One
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly One As Easings.Easing
+- uid: MLEM.Maths.Easings.Linear
+  commentId: F:MLEM.Maths.Easings.Linear
+  id: Linear
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: Linear
+  nameWithType: Easings.Linear
+  fullName: MLEM.Maths.Easings.Linear
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Linear
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: A linear easing function that returns the input percentage without modifying it.
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing Linear
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly Linear As Easings.Easing
+- uid: MLEM.Maths.Easings.InSine
+  commentId: F:MLEM.Maths.Easings.InSine
+  id: InSine
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InSine
+  nameWithType: Easings.InSine
+  fullName: MLEM.Maths.Easings.InSine
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InSine
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 27
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInSine
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InSine
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InSine As Easings.Easing
+- uid: MLEM.Maths.Easings.OutSine
+  commentId: F:MLEM.Maths.Easings.OutSine
+  id: OutSine
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutSine
+  nameWithType: Easings.OutSine
+  fullName: MLEM.Maths.Easings.OutSine
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutSine
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 29
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutSine
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutSine
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutSine As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutSine
+  commentId: F:MLEM.Maths.Easings.InOutSine
+  id: InOutSine
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutSine
+  nameWithType: Easings.InOutSine
+  fullName: MLEM.Maths.Easings.InOutSine
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutSine
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 31
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutSine
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutSine
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutSine As Easings.Easing
+- uid: MLEM.Maths.Easings.InQuad
+  commentId: F:MLEM.Maths.Easings.InQuad
+  id: InQuad
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InQuad
+  nameWithType: Easings.InQuad
+  fullName: MLEM.Maths.Easings.InQuad
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InQuad
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 34
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInQuad
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InQuad
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InQuad As Easings.Easing
+- uid: MLEM.Maths.Easings.OutQuad
+  commentId: F:MLEM.Maths.Easings.OutQuad
+  id: OutQuad
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutQuad
+  nameWithType: Easings.OutQuad
+  fullName: MLEM.Maths.Easings.OutQuad
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutQuad
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 36
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutQuad
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutQuad
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutQuad As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutQuad
+  commentId: F:MLEM.Maths.Easings.InOutQuad
+  id: InOutQuad
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutQuad
+  nameWithType: Easings.InOutQuad
+  fullName: MLEM.Maths.Easings.InOutQuad
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutQuad
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 38
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutQuad
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutQuad
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutQuad As Easings.Easing
+- uid: MLEM.Maths.Easings.InCubic
+  commentId: F:MLEM.Maths.Easings.InCubic
+  id: InCubic
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InCubic
+  nameWithType: Easings.InCubic
+  fullName: MLEM.Maths.Easings.InCubic
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InCubic
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 41
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInCubic
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InCubic
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InCubic As Easings.Easing
+- uid: MLEM.Maths.Easings.OutCubic
+  commentId: F:MLEM.Maths.Easings.OutCubic
+  id: OutCubic
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutCubic
+  nameWithType: Easings.OutCubic
+  fullName: MLEM.Maths.Easings.OutCubic
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutCubic
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 43
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutCubic
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutCubic
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutCubic As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutCubic
+  commentId: F:MLEM.Maths.Easings.InOutCubic
+  id: InOutCubic
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutCubic
+  nameWithType: Easings.InOutCubic
+  fullName: MLEM.Maths.Easings.InOutCubic
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutCubic
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 45
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutCubic
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutCubic
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutCubic As Easings.Easing
+- uid: MLEM.Maths.Easings.InQuart
+  commentId: F:MLEM.Maths.Easings.InQuart
+  id: InQuart
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InQuart
+  nameWithType: Easings.InQuart
+  fullName: MLEM.Maths.Easings.InQuart
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InQuart
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 48
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInQuart
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InQuart
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InQuart As Easings.Easing
+- uid: MLEM.Maths.Easings.OutQuart
+  commentId: F:MLEM.Maths.Easings.OutQuart
+  id: OutQuart
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutQuart
+  nameWithType: Easings.OutQuart
+  fullName: MLEM.Maths.Easings.OutQuart
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutQuart
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 50
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutQuart
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutQuart
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutQuart As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutQuart
+  commentId: F:MLEM.Maths.Easings.InOutQuart
+  id: InOutQuart
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutQuart
+  nameWithType: Easings.InOutQuart
+  fullName: MLEM.Maths.Easings.InOutQuart
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutQuart
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 52
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutQuart
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutQuart
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutQuart As Easings.Easing
+- uid: MLEM.Maths.Easings.InQuint
+  commentId: F:MLEM.Maths.Easings.InQuint
+  id: InQuint
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InQuint
+  nameWithType: Easings.InQuint
+  fullName: MLEM.Maths.Easings.InQuint
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InQuint
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 55
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInQuint
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InQuint
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InQuint As Easings.Easing
+- uid: MLEM.Maths.Easings.OutQuint
+  commentId: F:MLEM.Maths.Easings.OutQuint
+  id: OutQuint
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutQuint
+  nameWithType: Easings.OutQuint
+  fullName: MLEM.Maths.Easings.OutQuint
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutQuint
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 57
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutQuint
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutQuint
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutQuint As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutQuint
+  commentId: F:MLEM.Maths.Easings.InOutQuint
+  id: InOutQuint
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutQuint
+  nameWithType: Easings.InOutQuint
+  fullName: MLEM.Maths.Easings.InOutQuint
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutQuint
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 59
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutQuint
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutQuint
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutQuint As Easings.Easing
+- uid: MLEM.Maths.Easings.InExpo
+  commentId: F:MLEM.Maths.Easings.InExpo
+  id: InExpo
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InExpo
+  nameWithType: Easings.InExpo
+  fullName: MLEM.Maths.Easings.InExpo
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InExpo
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 62
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInExpo
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InExpo
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InExpo As Easings.Easing
+- uid: MLEM.Maths.Easings.OutExpo
+  commentId: F:MLEM.Maths.Easings.OutExpo
+  id: OutExpo
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutExpo
+  nameWithType: Easings.OutExpo
+  fullName: MLEM.Maths.Easings.OutExpo
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutExpo
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 64
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutExpo
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutExpo
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutExpo As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutExpo
+  commentId: F:MLEM.Maths.Easings.InOutExpo
+  id: InOutExpo
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutExpo
+  nameWithType: Easings.InOutExpo
+  fullName: MLEM.Maths.Easings.InOutExpo
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutExpo
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 66
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutExpo
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutExpo
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutExpo As Easings.Easing
+- uid: MLEM.Maths.Easings.InCirc
+  commentId: F:MLEM.Maths.Easings.InCirc
+  id: InCirc
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InCirc
+  nameWithType: Easings.InCirc
+  fullName: MLEM.Maths.Easings.InCirc
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InCirc
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 69
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInCirc
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InCirc
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InCirc As Easings.Easing
+- uid: MLEM.Maths.Easings.OutCirc
+  commentId: F:MLEM.Maths.Easings.OutCirc
+  id: OutCirc
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutCirc
+  nameWithType: Easings.OutCirc
+  fullName: MLEM.Maths.Easings.OutCirc
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutCirc
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 71
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutCirc
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutCirc
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutCirc As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutCirc
+  commentId: F:MLEM.Maths.Easings.InOutCirc
+  id: InOutCirc
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutCirc
+  nameWithType: Easings.InOutCirc
+  fullName: MLEM.Maths.Easings.InOutCirc
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutCirc
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 73
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutCirc
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutCirc
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutCirc As Easings.Easing
+- uid: MLEM.Maths.Easings.InBack
+  commentId: F:MLEM.Maths.Easings.InBack
+  id: InBack
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InBack
+  nameWithType: Easings.InBack
+  fullName: MLEM.Maths.Easings.InBack
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InBack
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 76
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInBack
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InBack
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InBack As Easings.Easing
+- uid: MLEM.Maths.Easings.OutBack
+  commentId: F:MLEM.Maths.Easings.OutBack
+  id: OutBack
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutBack
+  nameWithType: Easings.OutBack
+  fullName: MLEM.Maths.Easings.OutBack
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutBack
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 78
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutBack
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutBack
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutBack As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutBack
+  commentId: F:MLEM.Maths.Easings.InOutBack
+  id: InOutBack
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutBack
+  nameWithType: Easings.InOutBack
+  fullName: MLEM.Maths.Easings.InOutBack
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutBack
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 80
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutBack
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutBack
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutBack As Easings.Easing
+- uid: MLEM.Maths.Easings.InElastic
+  commentId: F:MLEM.Maths.Easings.InElastic
+  id: InElastic
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InElastic
+  nameWithType: Easings.InElastic
+  fullName: MLEM.Maths.Easings.InElastic
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InElastic
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 83
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInElastic
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InElastic
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InElastic As Easings.Easing
+- uid: MLEM.Maths.Easings.OutElastic
+  commentId: F:MLEM.Maths.Easings.OutElastic
+  id: OutElastic
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutElastic
+  nameWithType: Easings.OutElastic
+  fullName: MLEM.Maths.Easings.OutElastic
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutElastic
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 85
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutElastic
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutElastic
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutElastic As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutElastic
+  commentId: F:MLEM.Maths.Easings.InOutElastic
+  id: InOutElastic
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutElastic
+  nameWithType: Easings.InOutElastic
+  fullName: MLEM.Maths.Easings.InOutElastic
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutElastic
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 87
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutElastic
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutElastic
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutElastic As Easings.Easing
+- uid: MLEM.Maths.Easings.InBounce
+  commentId: F:MLEM.Maths.Easings.InBounce
+  id: InBounce
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InBounce
+  nameWithType: Easings.InBounce
+  fullName: MLEM.Maths.Easings.InBounce
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InBounce
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 90
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInBounce
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InBounce
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InBounce As Easings.Easing
+- uid: MLEM.Maths.Easings.OutBounce
+  commentId: F:MLEM.Maths.Easings.OutBounce
+  id: OutBounce
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: OutBounce
+  nameWithType: Easings.OutBounce
+  fullName: MLEM.Maths.Easings.OutBounce
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: OutBounce
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 92
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeOutBounce
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing OutBounce
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly OutBounce As Easings.Easing
+- uid: MLEM.Maths.Easings.InOutBounce
+  commentId: F:MLEM.Maths.Easings.InOutBounce
+  id: InOutBounce
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: InOutBounce
+  nameWithType: Easings.InOutBounce
+  fullName: MLEM.Maths.Easings.InOutBounce
+  type: Field
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: InOutBounce
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 106
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: https://easings.net/#easeInOutBounce
+  example: []
+  syntax:
+    content: public static readonly Easings.Easing InOutBounce
+    return:
+      type: MLEM.Maths.Easings.Easing
+    content.vb: Public Shared ReadOnly InOutBounce As Easings.Easing
+- uid: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  commentId: M:MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  id: ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: ScaleInput(Easing, float, float)
+  nameWithType: Easings.ScaleInput(Easings.Easing, float, float)
+  fullName: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing, float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScaleInput
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 116
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    Scales the input of an easing function, which is usually between 0 and 1, to a given minimum and maximum.
+
+    Note that the minimum needs to be smaller than the maximum.
+  example: []
+  syntax:
+    content: public static Easings.Easing ScaleInput(this Easings.Easing easing, float min, float max)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The easing function to scale
+    - id: min
+      type: System.Single
+      description: The minimum input value
+    - id: max
+      type: System.Single
+      description: The maximum input value
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: The scaled easing function
+    content.vb: Public Shared Function ScaleInput(easing As Easings.Easing, min As Single, max As Single) As Easings.Easing
+  overload: MLEM.Maths.Easings.ScaleInput*
+  nameWithType.vb: Easings.ScaleInput(Easings.Easing, Single, Single)
+  fullName.vb: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing, Single, Single)
+  name.vb: ScaleInput(Easing, Single, Single)
+- uid: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  commentId: M:MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  id: ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: ScaleOutput(Easing, float, float)
+  nameWithType: Easings.ScaleOutput(Easings.Easing, float, float)
+  fullName: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing, float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ScaleOutput
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 128
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    Scales the output of an easing function, which is usually between 0 and 1, to a given minimum and maximum.
+
+    Note that the minimum needs to be smaller than the maximum.
+  example: []
+  syntax:
+    content: public static Easings.Easing ScaleOutput(this Easings.Easing easing, float min, float max)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The easing function to scale
+    - id: min
+      type: System.Single
+      description: The minimum output value
+    - id: max
+      type: System.Single
+      description: The maximum output value
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: The scaled easing function
+    content.vb: Public Shared Function ScaleOutput(easing As Easings.Easing, min As Single, max As Single) As Easings.Easing
+  overload: MLEM.Maths.Easings.ScaleOutput*
+  nameWithType.vb: Easings.ScaleOutput(Easings.Easing, Single, Single)
+  fullName.vb: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing, Single, Single)
+  name.vb: ScaleOutput(Easing, Single, Single)
+- uid: MLEM.Maths.Easings.ReverseInput(MLEM.Maths.Easings.Easing)
+  commentId: M:MLEM.Maths.Easings.ReverseInput(MLEM.Maths.Easings.Easing)
+  id: ReverseInput(MLEM.Maths.Easings.Easing)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: ReverseInput(Easing)
+  nameWithType: Easings.ReverseInput(Easings.Easing)
+  fullName: MLEM.Maths.Easings.ReverseInput(MLEM.Maths.Easings.Easing)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReverseInput
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 137
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: Reverses the input of an easing function, which is usually between 0 and 1, to be passed into the easing function as if it were between 1 and 0.
+  example: []
+  syntax:
+    content: public static Easings.Easing ReverseInput(this Easings.Easing easing)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The easing function whose output to reverse.
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: The reversed easing function.
+    content.vb: Public Shared Function ReverseInput(easing As Easings.Easing) As Easings.Easing
+  overload: MLEM.Maths.Easings.ReverseInput*
+- uid: MLEM.Maths.Easings.ReverseOutput(MLEM.Maths.Easings.Easing)
+  commentId: M:MLEM.Maths.Easings.ReverseOutput(MLEM.Maths.Easings.Easing)
+  id: ReverseOutput(MLEM.Maths.Easings.Easing)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: ReverseOutput(Easing)
+  nameWithType: Easings.ReverseOutput(Easings.Easing)
+  fullName: MLEM.Maths.Easings.ReverseOutput(MLEM.Maths.Easings.Easing)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ReverseOutput
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 146
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: Reverses the output of an easing function, which is usually between 0 and 1, to return as if it were between 1 and 0.
+  example: []
+  syntax:
+    content: public static Easings.Easing ReverseOutput(this Easings.Easing easing)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The easing function whose input to reverse.
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: The reversed easing function.
+    content.vb: Public Shared Function ReverseOutput(easing As Easings.Easing) As Easings.Easing
+  overload: MLEM.Maths.Easings.ReverseOutput*
+- uid: MLEM.Maths.Easings.AndReverse(MLEM.Maths.Easings.Easing)
+  commentId: M:MLEM.Maths.Easings.AndReverse(MLEM.Maths.Easings.Easing)
+  id: AndReverse(MLEM.Maths.Easings.Easing)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: AndReverse(Easing)
+  nameWithType: Easings.AndReverse(Easings.Easing)
+  fullName: MLEM.Maths.Easings.AndReverse(MLEM.Maths.Easings.Easing)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AndReverse
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 156
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    Causes the easing functino to play fully, and then play fully in reverse, in the span between an input of 0 and 1.
+
+    In some places, this behavior is also called "auto-reversing".
+  example: []
+  syntax:
+    content: public static Easings.Easing AndReverse(this Easings.Easing easing)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The easing function to play in reverse as well
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: An auto-reversing version of the easing function
+    content.vb: Public Shared Function AndReverse(easing As Easings.Easing) As Easings.Easing
+  overload: MLEM.Maths.Easings.AndReverse*
+- uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+  commentId: M:MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+  id: AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: AndThen(Easing, Easing)
+  nameWithType: Easings.AndThen(Easings.Easing, Easings.Easing)
+  fullName: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing, MLEM.Maths.Easings.Easing)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AndThen
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 167
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    Causes the easing function to play fully, followed by <code class="paramref">other</code> playing fully, in the span between an input of 0 and 1.
+
+    Note that <xref href="MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing%2cMLEM.Maths.Easings.Easing%5b%5d)" data-throw-if-not-resolved="false"></xref> provides a version of this method for any amount of follow-up easing functions.
+  example: []
+  syntax:
+    content: public static Easings.Easing AndThen(this Easings.Easing easing, Easings.Easing other)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The first easing function to play.
+    - id: other
+      type: MLEM.Maths.Easings.Easing
+      description: The second easing function to play.
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: A combined easing function of the two functions passed.
+    content.vb: Public Shared Function AndThen(easing As Easings.Easing, other As Easings.Easing) As Easings.Easing
+  overload: MLEM.Maths.Easings.AndThen*
+- uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+  commentId: M:MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+  id: AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: AndThen(Easing, params Easing[])
+  nameWithType: Easings.AndThen(Easings.Easing, params Easings.Easing[])
+  fullName: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing, params MLEM.Maths.Easings.Easing[])
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AndThen
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 178
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: >-
+    Causes the easing function to play fully, followed by all elements of <code class="paramref">others</code> playing fully, in the span between an input of 0 and 1.
+
+    This is an any-amount version of <xref href="MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing%2cMLEM.Maths.Easings.Easing)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static Easings.Easing AndThen(this Easings.Easing easing, params Easings.Easing[] others)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The first easing function to play.
+    - id: others
+      type: MLEM.Maths.Easings.Easing[]
+      description: The next easing functions to play.
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: A combined easing function of all of the functions passed.
+    content.vb: Public Shared Function AndThen(easing As Easings.Easing, ParamArray others As Easings.Easing()) As Easings.Easing
+  overload: MLEM.Maths.Easings.AndThen*
+  nameWithType.vb: Easings.AndThen(Easings.Easing, ParamArray Easings.Easing())
+  fullName.vb: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing, ParamArray MLEM.Maths.Easings.Easing())
+  name.vb: AndThen(Easing, ParamArray Easing())
+- uid: MLEM.Maths.Easings.Clamp(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  commentId: M:MLEM.Maths.Easings.Clamp(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  id: Clamp(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Maths.Easings
+  langs:
+  - csharp
+  - vb
+  name: Clamp(Easing, float, float)
+  nameWithType: Easings.Clamp(Easings.Easing, float, float)
+  fullName: MLEM.Maths.Easings.Clamp(MLEM.Maths.Easings.Easing, float, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Maths/Easings.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Clamp
+    path: ../MLEM/Maths/Easings.cs
+    startLine: 195
+  assemblies:
+  - MLEM
+  namespace: MLEM.Maths
+  summary: Causes output from the easing function to be clamped between the <code class="paramref">min</code> and <code class="paramref">max</code> values passed.
+  example: []
+  syntax:
+    content: public static Easings.Easing Clamp(this Easings.Easing easing, float min = 0, float max = 1)
+    parameters:
+    - id: easing
+      type: MLEM.Maths.Easings.Easing
+      description: The easing function to clamp.
+    - id: min
+      type: System.Single
+      description: The minimum output value to clamp to, defaults to 0.
+    - id: max
+      type: System.Single
+      description: The maximum output value to clamp to, defaults to 1.
+    return:
+      type: MLEM.Maths.Easings.Easing
+      description: A clamped easing function.
+    content.vb: Public Shared Function Clamp(easing As Easings.Easing, min As Single = 0, max As Single = 1) As Easings.Easing
+  overload: MLEM.Maths.Easings.Clamp*
+  nameWithType.vb: Easings.Clamp(Easings.Easing, Single, Single)
+  fullName.vb: MLEM.Maths.Easings.Clamp(MLEM.Maths.Easings.Easing, Single, Single)
+  name.vb: Clamp(Easing, Single, Single)
+references:
+- uid: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  commentId: M:MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  isExternal: true
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleInput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  name: ScaleInput(Easing, float, float)
+  nameWithType: Easings.ScaleInput(Easings.Easing, float, float)
+  fullName: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing, float, float)
+  nameWithType.vb: Easings.ScaleInput(Easings.Easing, Single, Single)
+  fullName.vb: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing, Single, Single)
+  name.vb: ScaleInput(Easing, Single, Single)
+  spec.csharp:
+  - uid: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+    name: ScaleInput
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleInput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Easings.ScaleInput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+    name: ScaleInput
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleInput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  commentId: M:MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+  isExternal: true
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleOutput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  name: ScaleOutput(Easing, float, float)
+  nameWithType: Easings.ScaleOutput(Easings.Easing, float, float)
+  fullName: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing, float, float)
+  nameWithType.vb: Easings.ScaleOutput(Easings.Easing, Single, Single)
+  fullName.vb: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing, Single, Single)
+  name.vb: ScaleOutput(Easing, Single, Single)
+  spec.csharp:
+  - uid: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+    name: ScaleOutput
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleOutput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Easings.ScaleOutput(MLEM.Maths.Easings.Easing,System.Single,System.Single)
+    name: ScaleOutput
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleOutput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+  commentId: M:MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing_
+  name: AndThen(Easing, Easing)
+  nameWithType: Easings.AndThen(Easings.Easing, Easings.Easing)
+  fullName: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing, MLEM.Maths.Easings.Easing)
+  spec.csharp:
+  - uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+    name: AndThen
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing_
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing)
+    name: AndThen
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing_
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: )
+- uid: MLEM.Maths.Easings.Easing
+  commentId: T:MLEM.Maths.Easings.Easing
+  parent: MLEM.Maths
+  href: MLEM.Maths.Easings.html
+  name: Easings.Easing
+  nameWithType: Easings.Easing
+  fullName: MLEM.Maths.Easings.Easing
+  spec.csharp:
+  - uid: MLEM.Maths.Easings
+    name: Easings
+    href: MLEM.Maths.Easings.html
+  - name: .
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  spec.vb:
+  - uid: MLEM.Maths.Easings
+    name: Easings
+    href: MLEM.Maths.Easings.html
+  - name: .
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+- uid: MLEM.Maths.Easings.ScaleInput*
+  commentId: Overload:MLEM.Maths.Easings.ScaleInput
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleInput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  name: ScaleInput
+  nameWithType: Easings.ScaleInput
+  fullName: MLEM.Maths.Easings.ScaleInput
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: MLEM.Maths.Easings.ScaleOutput*
+  commentId: Overload:MLEM.Maths.Easings.ScaleOutput
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ScaleOutput_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  name: ScaleOutput
+  nameWithType: Easings.ScaleOutput
+  fullName: MLEM.Maths.Easings.ScaleOutput
+- uid: MLEM.Maths.Easings.ReverseInput*
+  commentId: Overload:MLEM.Maths.Easings.ReverseInput
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ReverseInput_MLEM_Maths_Easings_Easing_
+  name: ReverseInput
+  nameWithType: Easings.ReverseInput
+  fullName: MLEM.Maths.Easings.ReverseInput
+- uid: MLEM.Maths.Easings.ReverseOutput*
+  commentId: Overload:MLEM.Maths.Easings.ReverseOutput
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_ReverseOutput_MLEM_Maths_Easings_Easing_
+  name: ReverseOutput
+  nameWithType: Easings.ReverseOutput
+  fullName: MLEM.Maths.Easings.ReverseOutput
+- uid: MLEM.Maths.Easings.AndReverse*
+  commentId: Overload:MLEM.Maths.Easings.AndReverse
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndReverse_MLEM_Maths_Easings_Easing_
+  name: AndReverse
+  nameWithType: Easings.AndReverse
+  fullName: MLEM.Maths.Easings.AndReverse
+- uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+  commentId: M:MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing___
+  name: AndThen(Easing, params Easing[])
+  nameWithType: Easings.AndThen(Easings.Easing, params Easings.Easing[])
+  fullName: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing, params MLEM.Maths.Easings.Easing[])
+  nameWithType.vb: Easings.AndThen(Easings.Easing, ParamArray Easings.Easing())
+  fullName.vb: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing, ParamArray MLEM.Maths.Easings.Easing())
+  name.vb: AndThen(Easing, ParamArray Easing())
+  spec.csharp:
+  - uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+    name: AndThen
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing___
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - name: params
+  - name: " "
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Maths.Easings.AndThen(MLEM.Maths.Easings.Easing,MLEM.Maths.Easings.Easing[])
+    name: AndThen
+    href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing___
+  - name: (
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: ','
+  - name: " "
+  - name: ParamArray
+  - name: " "
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: (
+  - name: )
+  - name: )
+- uid: MLEM.Maths.Easings.AndThen*
+  commentId: Overload:MLEM.Maths.Easings.AndThen
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_AndThen_MLEM_Maths_Easings_Easing_MLEM_Maths_Easings_Easing_
+  name: AndThen
+  nameWithType: Easings.AndThen
+  fullName: MLEM.Maths.Easings.AndThen
+- uid: MLEM.Maths.Easings.Easing[]
+  isExternal: true
+  href: MLEM.Maths.Easings.Easing.html
+  name: Easing[]
+  nameWithType: Easings.Easing[]
+  fullName: MLEM.Maths.Easings.Easing[]
+  nameWithType.vb: Easings.Easing()
+  fullName.vb: MLEM.Maths.Easings.Easing()
+  name.vb: Easing()
+  spec.csharp:
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Maths.Easings.Easing
+    name: Easing
+    href: MLEM.Maths.Easings.Easing.html
+  - name: (
+  - name: )
+- uid: MLEM.Maths.Easings.Clamp*
+  commentId: Overload:MLEM.Maths.Easings.Clamp
+  href: MLEM.Maths.Easings.html#MLEM_Maths_Easings_Clamp_MLEM_Maths_Easings_Easing_System_Single_System_Single_
+  name: Clamp
+  nameWithType: Easings.Clamp
+  fullName: MLEM.Maths.Easings.Clamp

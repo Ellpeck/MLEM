@@ -1,0 +1,1815 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Sound.SoundEffectInstanceHandler
+  commentId: T:MLEM.Sound.SoundEffectInstanceHandler
+  id: SoundEffectInstanceHandler
+  parent: MLEM.Sound
+  children:
+  - MLEM.Sound.SoundEffectInstanceHandler.#ctor(Microsoft.Xna.Framework.Game)
+  - MLEM.Sound.SoundEffectInstanceHandler.Add(MLEM.Sound.SoundEffectInfo,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  - MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffect,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  - MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  - MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator
+  - MLEM.Sound.SoundEffectInstanceHandler.Pause
+  - MLEM.Sound.SoundEffectInstanceHandler.Resume
+  - MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+  - MLEM.Sound.SoundEffectInstanceHandler.Stop
+  - MLEM.Sound.SoundEffectInstanceHandler.Update
+  - MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  langs:
+  - csharp
+  - vb
+  name: SoundEffectInstanceHandler
+  nameWithType: SoundEffectInstanceHandler
+  fullName: MLEM.Sound.SoundEffectInstanceHandler
+  type: Class
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SoundEffectInstanceHandler
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 12
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    A simple class that handles automatically removing and disposing <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> objects once they are done playing to free up the audio source for new sounds.
+
+    Additionally, a callback can be registered that is invoked when the <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> finishes playing.
+
+    Note that an object of this class can be added to a <xref href="Microsoft.Xna.Framework.Game" data-throw-if-not-resolved="false"></xref> using its <xref href="Microsoft.Xna.Framework.GameComponentCollection" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public class SoundEffectInstanceHandler : GameComponent, IGameComponent, IUpdateable, IDisposable, IEnumerable<SoundEffectInstanceHandler.Entry>, IEnumerable'
+    content.vb: Public Class SoundEffectInstanceHandler Inherits GameComponent Implements IGameComponent, IUpdateable, IDisposable, IEnumerable(Of SoundEffectInstanceHandler.Entry), IEnumerable
+  inheritance:
+  - System.Object
+  - Microsoft.Xna.Framework.GameComponent
+  implements:
+  - Microsoft.Xna.Framework.IGameComponent
+  - Microsoft.Xna.Framework.IUpdateable
+  - System.IDisposable
+  - System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - Microsoft.Xna.Framework.GameComponent.Initialize
+  - Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(System.Object,System.EventArgs)
+  - Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(System.Object,System.EventArgs)
+  - Microsoft.Xna.Framework.GameComponent.Dispose(System.Boolean)
+  - Microsoft.Xna.Framework.GameComponent.Dispose
+  - Microsoft.Xna.Framework.GameComponent.Game
+  - Microsoft.Xna.Framework.GameComponent.Enabled
+  - Microsoft.Xna.Framework.GameComponent.UpdateOrder
+  - Microsoft.Xna.Framework.GameComponent.EnabledChanged
+  - Microsoft.Xna.Framework.GameComponent.UpdateOrderChanged
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.MLEM.Misc.CollectionExtensions.Append``1(MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  - System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.MLEM.Misc.CollectionExtensions.Prepend``1(MLEM.Sound.SoundEffectInstanceHandler.Entry)
+- uid: MLEM.Sound.SoundEffectInstanceHandler.#ctor(Microsoft.Xna.Framework.Game)
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.#ctor(Microsoft.Xna.Framework.Game)
+  id: '#ctor(Microsoft.Xna.Framework.Game)'
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: SoundEffectInstanceHandler(Game)
+  nameWithType: SoundEffectInstanceHandler.SoundEffectInstanceHandler(Game)
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.SoundEffectInstanceHandler(Microsoft.Xna.Framework.Game)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 21
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Creates a new sound effect instance handler with the given settings
+  example: []
+  syntax:
+    content: public SoundEffectInstanceHandler(Game game)
+    parameters:
+    - id: game
+      type: Microsoft.Xna.Framework.Game
+      description: The game instance
+    content.vb: Public Sub New(game As Game)
+  overload: MLEM.Sound.SoundEffectInstanceHandler.#ctor*
+  nameWithType.vb: SoundEffectInstanceHandler.New(Game)
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.New(Microsoft.Xna.Framework.Game)
+  name.vb: New(Game)
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  id: Update(Microsoft.Xna.Framework.GameTime)
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Update(GameTime)
+  nameWithType: SoundEffectInstanceHandler.Update(GameTime)
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 24
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Updates this sound effect handler and manages all of the <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> objects in it.
+
+    If <xref href="MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener%5b%5d)" data-throw-if-not-resolved="false"></xref> has been called, all sounds will additionally be updated in 3D space.
+
+    This should be called each update frame.
+  example: []
+  syntax:
+    content: public override void Update(GameTime gameTime)
+    parameters:
+    - id: gameTime
+      type: Microsoft.Xna.Framework.GameTime
+    content.vb: Public Overrides Sub Update(gameTime As GameTime)
+  overridden: Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Update*
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Update
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Update
+  id: Update
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Update()
+  nameWithType: SoundEffectInstanceHandler.Update()
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Update()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Update
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 33
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Updates this sound effect handler and manages all of the <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> objects in it.
+
+    If <xref href="MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener%5b%5d)" data-throw-if-not-resolved="false"></xref> has been called, all sounds will additionally be updated in 3D space.
+
+    This should be called each update frame.
+  example: []
+  syntax:
+    content: public void Update()
+    content.vb: Public Sub Update()
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Update*
+- uid: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+  id: SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: SetListeners(params AudioListener[])
+  nameWithType: SoundEffectInstanceHandler.SetListeners(params AudioListener[])
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(params Microsoft.Xna.Framework.Audio.AudioListener[])
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SetListeners
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 49
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Sets the collection <xref href="Microsoft.Xna.Framework.Audio.AudioListener" data-throw-if-not-resolved="false"></xref> objects that should be listening to the sounds in this handler in 3D space.
+
+    If there are one or more listeners, this handler applies 3d effects to all sound effect instances that have been added to this handler along with an <xref href="Microsoft.Xna.Framework.Audio.AudioEmitter" data-throw-if-not-resolved="false"></xref> in <xref href="MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)" data-throw-if-not-resolved="false"></xref> automatically.
+  example: []
+  syntax:
+    content: public void SetListeners(params AudioListener[] listeners)
+    parameters:
+    - id: listeners
+      type: Microsoft.Xna.Framework.Audio.AudioListener[]
+    content.vb: Public Sub SetListeners(ParamArray listeners As AudioListener())
+  overload: MLEM.Sound.SoundEffectInstanceHandler.SetListeners*
+  nameWithType.vb: SoundEffectInstanceHandler.SetListeners(ParamArray AudioListener())
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(ParamArray Microsoft.Xna.Framework.Audio.AudioListener())
+  name.vb: SetListeners(ParamArray AudioListener())
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Pause
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Pause
+  id: Pause
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Pause()
+  nameWithType: SoundEffectInstanceHandler.Pause()
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Pause()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Pause
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 56
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Pauses all of the sound effect instances that are currently playing
+  example: []
+  syntax:
+    content: public void Pause()
+    content.vb: Public Sub Pause()
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Pause*
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Resume
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Resume
+  id: Resume
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Resume()
+  nameWithType: SoundEffectInstanceHandler.Resume()
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Resume()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Resume
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 64
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Resumes all of the sound effect instances in this handler
+  example: []
+  syntax:
+    content: public void Resume()
+    content.vb: Public Sub [Resume]()
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Resume*
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Stop
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Stop
+  id: Stop
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: SoundEffectInstanceHandler.Stop()
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Stop()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Stop
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 72
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Stops all of the sound effect instances in this handler
+  example: []
+  syntax:
+    content: public void Stop()
+    content.vb: Public Sub [Stop]()
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Stop*
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  id: Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Add(SoundEffectInstance, Action<SoundEffectInstance>, AudioEmitter)
+  nameWithType: SoundEffectInstanceHandler.Add(SoundEffectInstance, Action<SoundEffectInstance>, AudioEmitter)
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance, System.Action<Microsoft.Xna.Framework.Audio.SoundEffectInstance>, Microsoft.Xna.Framework.Audio.AudioEmitter)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 87
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Adds a new <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> to this handler.
+
+    This also starts playing the instance.
+  example: []
+  syntax:
+    content: public SoundEffectInstance Add(SoundEffectInstance instance, Action<SoundEffectInstance> onStopped = null, AudioEmitter emitter = null)
+    parameters:
+    - id: instance
+      type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: The instance to add
+    - id: onStopped
+      type: System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance}
+      description: The function that should be invoked when this instance stops playing, defaults to null
+    - id: emitter
+      type: Microsoft.Xna.Framework.Audio.AudioEmitter
+      description: An optional audio emitter with which 3d sound can be applied
+    return:
+      type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: The passed instance, for chaining
+    content.vb: Public Function Add(instance As SoundEffectInstance, onStopped As Action(Of SoundEffectInstance) = Nothing, emitter As AudioEmitter = Nothing) As SoundEffectInstance
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Add*
+  nameWithType.vb: SoundEffectInstanceHandler.Add(SoundEffectInstance, Action(Of SoundEffectInstance), AudioEmitter)
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance, System.Action(Of Microsoft.Xna.Framework.Audio.SoundEffectInstance), Microsoft.Xna.Framework.Audio.AudioEmitter)
+  name.vb: Add(SoundEffectInstance, Action(Of SoundEffectInstance), AudioEmitter)
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Add(MLEM.Sound.SoundEffectInfo,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Add(MLEM.Sound.SoundEffectInfo,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  id: Add(MLEM.Sound.SoundEffectInfo,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Add(SoundEffectInfo, Action<SoundEffectInstance>, AudioEmitter)
+  nameWithType: SoundEffectInstanceHandler.Add(SoundEffectInfo, Action<SoundEffectInstance>, AudioEmitter)
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Add(MLEM.Sound.SoundEffectInfo, System.Action<Microsoft.Xna.Framework.Audio.SoundEffectInstance>, Microsoft.Xna.Framework.Audio.AudioEmitter)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 103
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Adds a new <xref href="MLEM.Sound.SoundEffectInfo" data-throw-if-not-resolved="false"></xref> to this handler.
+
+    This also starts playing the created instance.
+  example: []
+  syntax:
+    content: public SoundEffectInstance Add(SoundEffectInfo info, Action<SoundEffectInstance> onStopped = null, AudioEmitter emitter = null)
+    parameters:
+    - id: info
+      type: MLEM.Sound.SoundEffectInfo
+      description: The info for which to add a <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref>
+    - id: onStopped
+      type: System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance}
+      description: The function that should be invoked when this instance stops playing, defaults to null
+    - id: emitter
+      type: Microsoft.Xna.Framework.Audio.AudioEmitter
+      description: An optional audio emitter with which 3d sound can be applied
+    return:
+      type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: The newly created <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Function Add(info As SoundEffectInfo, onStopped As Action(Of SoundEffectInstance) = Nothing, emitter As AudioEmitter = Nothing) As SoundEffectInstance
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Add*
+  nameWithType.vb: SoundEffectInstanceHandler.Add(SoundEffectInfo, Action(Of SoundEffectInstance), AudioEmitter)
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.Add(MLEM.Sound.SoundEffectInfo, System.Action(Of Microsoft.Xna.Framework.Audio.SoundEffectInstance), Microsoft.Xna.Framework.Audio.AudioEmitter)
+  name.vb: Add(SoundEffectInfo, Action(Of SoundEffectInstance), AudioEmitter)
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffect,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffect,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  id: Add(Microsoft.Xna.Framework.Audio.SoundEffect,System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance},Microsoft.Xna.Framework.Audio.AudioEmitter)
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: Add(SoundEffect, Action<SoundEffectInstance>, AudioEmitter)
+  nameWithType: SoundEffectInstanceHandler.Add(SoundEffect, Action<SoundEffectInstance>, AudioEmitter)
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffect, System.Action<Microsoft.Xna.Framework.Audio.SoundEffectInstance>, Microsoft.Xna.Framework.Audio.AudioEmitter)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 115
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: >-
+    Adds a new <xref href="Microsoft.Xna.Framework.Audio.SoundEffect" data-throw-if-not-resolved="false"></xref> to this handler.
+
+    This also starts playing the created instance.
+  example: []
+  syntax:
+    content: public SoundEffectInstance Add(SoundEffect effect, Action<SoundEffectInstance> onStopped = null, AudioEmitter emitter = null)
+    parameters:
+    - id: effect
+      type: Microsoft.Xna.Framework.Audio.SoundEffect
+      description: The sound for which to add a <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref>
+    - id: onStopped
+      type: System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance}
+      description: The function that should be invoked when this instance stops playing, defaults to null
+    - id: emitter
+      type: Microsoft.Xna.Framework.Audio.AudioEmitter
+      description: An optional audio emitter with which 3d sound can be applied
+    return:
+      type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: The newly created <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Function Add(effect As SoundEffect, onStopped As Action(Of SoundEffectInstance) = Nothing, emitter As AudioEmitter = Nothing) As SoundEffectInstance
+  overload: MLEM.Sound.SoundEffectInstanceHandler.Add*
+  nameWithType.vb: SoundEffectInstanceHandler.Add(SoundEffect, Action(Of SoundEffectInstance), AudioEmitter)
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.Add(Microsoft.Xna.Framework.Audio.SoundEffect, System.Action(Of Microsoft.Xna.Framework.Audio.SoundEffectInstance), Microsoft.Xna.Framework.Audio.AudioEmitter)
+  name.vb: Add(SoundEffect, Action(Of SoundEffectInstance), AudioEmitter)
+- uid: MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator
+  id: GetEnumerator
+  parent: MLEM.Sound.SoundEffectInstanceHandler
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: SoundEffectInstanceHandler.GetEnumerator()
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: MLEM/Sound/SoundEffectInstanceHandler.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GetEnumerator
+    path: ../MLEM/Sound/SoundEffectInstanceHandler.cs
+    startLine: 121
+  assemblies:
+  - MLEM
+  namespace: MLEM.Sound
+  summary: Returns an enumerator that iterates through the collection.
+  example: []
+  syntax:
+    content: public IEnumerator<SoundEffectInstanceHandler.Entry> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+      description: An enumerator that can be used to iterate through the collection.
+    content.vb: Public Function GetEnumerator() As IEnumerator(Of SoundEffectInstanceHandler.Entry)
+  overload: MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.GetEnumerator
+references:
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffectInstance
+  nameWithType: SoundEffectInstance
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+- uid: Microsoft.Xna.Framework.Game
+  commentId: T:Microsoft.Xna.Framework.Game
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Game
+  nameWithType: Game
+  fullName: Microsoft.Xna.Framework.Game
+- uid: Microsoft.Xna.Framework.GameComponentCollection
+  commentId: T:Microsoft.Xna.Framework.GameComponentCollection
+  isExternal: true
+  name: GameComponentCollection
+  nameWithType: GameComponentCollection
+  fullName: Microsoft.Xna.Framework.GameComponentCollection
+- uid: MLEM.Sound
+  commentId: N:MLEM.Sound
+  href: MLEM.html
+  name: MLEM.Sound
+  nameWithType: MLEM.Sound
+  fullName: MLEM.Sound
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Sound
+    name: Sound
+    href: MLEM.Sound.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Sound
+    name: Sound
+    href: MLEM.Sound.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Microsoft.Xna.Framework.GameComponent
+  commentId: T:Microsoft.Xna.Framework.GameComponent
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameComponent
+  nameWithType: GameComponent
+  fullName: Microsoft.Xna.Framework.GameComponent
+- uid: Microsoft.Xna.Framework.IGameComponent
+  commentId: T:Microsoft.Xna.Framework.IGameComponent
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: IGameComponent
+  nameWithType: IGameComponent
+  fullName: Microsoft.Xna.Framework.IGameComponent
+- uid: Microsoft.Xna.Framework.IUpdateable
+  commentId: T:Microsoft.Xna.Framework.IUpdateable
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: IUpdateable
+  nameWithType: IUpdateable
+  fullName: Microsoft.Xna.Framework.IUpdateable
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+  commentId: T:System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<SoundEffectInstanceHandler.Entry>
+  nameWithType: IEnumerable<SoundEffectInstanceHandler.Entry>
+  fullName: System.Collections.Generic.IEnumerable<MLEM.Sound.SoundEffectInstanceHandler.Entry>
+  nameWithType.vb: IEnumerable(Of SoundEffectInstanceHandler.Entry)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  name.vb: IEnumerable(Of SoundEffectInstanceHandler.Entry)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: MLEM.Sound.SoundEffectInstanceHandler
+    name: SoundEffectInstanceHandler
+    href: MLEM.Sound.SoundEffectInstanceHandler.html
+  - name: .
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler
+    name: SoundEffectInstanceHandler
+    href: MLEM.Sound.SoundEffectInstanceHandler.html
+  - name: .
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: Microsoft.Xna.Framework.GameComponent.Initialize
+  commentId: M:Microsoft.Xna.Framework.GameComponent.Initialize
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: Initialize()
+  nameWithType: GameComponent.Initialize()
+  fullName: Microsoft.Xna.Framework.GameComponent.Initialize()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GameComponent.Initialize
+    name: Initialize
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GameComponent.Initialize
+    name: Initialize
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(System.Object,System.EventArgs)
+  commentId: M:Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(System.Object,System.EventArgs)
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: OnUpdateOrderChanged(object, EventArgs)
+  nameWithType: GameComponent.OnUpdateOrderChanged(object, EventArgs)
+  fullName: Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(object, System.EventArgs)
+  nameWithType.vb: GameComponent.OnUpdateOrderChanged(Object, EventArgs)
+  fullName.vb: Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(Object, System.EventArgs)
+  name.vb: OnUpdateOrderChanged(Object, EventArgs)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(System.Object,System.EventArgs)
+    name: OnUpdateOrderChanged
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GameComponent.OnUpdateOrderChanged(System.Object,System.EventArgs)
+    name: OnUpdateOrderChanged
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(System.Object,System.EventArgs)
+  commentId: M:Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(System.Object,System.EventArgs)
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: OnEnabledChanged(object, EventArgs)
+  nameWithType: GameComponent.OnEnabledChanged(object, EventArgs)
+  fullName: Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(object, System.EventArgs)
+  nameWithType.vb: GameComponent.OnEnabledChanged(Object, EventArgs)
+  fullName.vb: Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(Object, System.EventArgs)
+  name.vb: OnEnabledChanged(Object, EventArgs)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(System.Object,System.EventArgs)
+    name: OnEnabledChanged
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GameComponent.OnEnabledChanged(System.Object,System.EventArgs)
+    name: OnEnabledChanged
+    isExternal: true
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.EventArgs
+    name: EventArgs
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventargs
+  - name: )
+- uid: Microsoft.Xna.Framework.GameComponent.Dispose(System.Boolean)
+  commentId: M:Microsoft.Xna.Framework.GameComponent.Dispose(System.Boolean)
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: Dispose(bool)
+  nameWithType: GameComponent.Dispose(bool)
+  fullName: Microsoft.Xna.Framework.GameComponent.Dispose(bool)
+  nameWithType.vb: GameComponent.Dispose(Boolean)
+  fullName.vb: Microsoft.Xna.Framework.GameComponent.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GameComponent.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GameComponent.Dispose(System.Boolean)
+    name: Dispose
+    isExternal: true
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Microsoft.Xna.Framework.GameComponent.Dispose
+  commentId: M:Microsoft.Xna.Framework.GameComponent.Dispose
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: Dispose()
+  nameWithType: GameComponent.Dispose()
+  fullName: Microsoft.Xna.Framework.GameComponent.Dispose()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GameComponent.Dispose
+    name: Dispose
+    isExternal: true
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GameComponent.Dispose
+    name: Dispose
+    isExternal: true
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.GameComponent.Game
+  commentId: P:Microsoft.Xna.Framework.GameComponent.Game
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: Game
+  nameWithType: GameComponent.Game
+  fullName: Microsoft.Xna.Framework.GameComponent.Game
+- uid: Microsoft.Xna.Framework.GameComponent.Enabled
+  commentId: P:Microsoft.Xna.Framework.GameComponent.Enabled
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: Enabled
+  nameWithType: GameComponent.Enabled
+  fullName: Microsoft.Xna.Framework.GameComponent.Enabled
+- uid: Microsoft.Xna.Framework.GameComponent.UpdateOrder
+  commentId: P:Microsoft.Xna.Framework.GameComponent.UpdateOrder
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: UpdateOrder
+  nameWithType: GameComponent.UpdateOrder
+  fullName: Microsoft.Xna.Framework.GameComponent.UpdateOrder
+- uid: Microsoft.Xna.Framework.GameComponent.EnabledChanged
+  commentId: E:Microsoft.Xna.Framework.GameComponent.EnabledChanged
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: EnabledChanged
+  nameWithType: GameComponent.EnabledChanged
+  fullName: Microsoft.Xna.Framework.GameComponent.EnabledChanged
+- uid: Microsoft.Xna.Framework.GameComponent.UpdateOrderChanged
+  commentId: E:Microsoft.Xna.Framework.GameComponent.UpdateOrderChanged
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: UpdateOrderChanged
+  nameWithType: GameComponent.UpdateOrderChanged
+  fullName: Microsoft.Xna.Framework.GameComponent.UpdateOrderChanged
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.MLEM.Misc.CollectionExtensions.Append``1(MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  commentId: M:MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)
+  parent: MLEM.Misc.CollectionExtensions
+  definition: MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)
+  href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Append__1_System_Collections_Generic_IEnumerable___0____0_
+  name: Append<Entry>(IEnumerable<Entry>, Entry)
+  nameWithType: CollectionExtensions.Append<SoundEffectInstanceHandler.Entry>(IEnumerable<SoundEffectInstanceHandler.Entry>, SoundEffectInstanceHandler.Entry)
+  fullName: MLEM.Misc.CollectionExtensions.Append<MLEM.Sound.SoundEffectInstanceHandler.Entry>(System.Collections.Generic.IEnumerable<MLEM.Sound.SoundEffectInstanceHandler.Entry>, MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  nameWithType.vb: CollectionExtensions.Append(Of SoundEffectInstanceHandler.Entry)(IEnumerable(Of SoundEffectInstanceHandler.Entry), SoundEffectInstanceHandler.Entry)
+  fullName.vb: MLEM.Misc.CollectionExtensions.Append(Of MLEM.Sound.SoundEffectInstanceHandler.Entry)(System.Collections.Generic.IEnumerable(Of MLEM.Sound.SoundEffectInstanceHandler.Entry), MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  name.vb: Append(Of Entry)(IEnumerable(Of Entry), Entry)
+  spec.csharp:
+  - uid: MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry},MLEM.Sound.SoundEffectInstanceHandler.Entry)
+    name: Append
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Append__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: <
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry},MLEM.Sound.SoundEffectInstanceHandler.Entry)
+    name: Append
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Append__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.MLEM.Misc.CollectionExtensions.Prepend``1(MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  commentId: M:MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)
+  parent: MLEM.Misc.CollectionExtensions
+  definition: MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)
+  href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_
+  name: Prepend<Entry>(IEnumerable<Entry>, Entry)
+  nameWithType: CollectionExtensions.Prepend<SoundEffectInstanceHandler.Entry>(IEnumerable<SoundEffectInstanceHandler.Entry>, SoundEffectInstanceHandler.Entry)
+  fullName: MLEM.Misc.CollectionExtensions.Prepend<MLEM.Sound.SoundEffectInstanceHandler.Entry>(System.Collections.Generic.IEnumerable<MLEM.Sound.SoundEffectInstanceHandler.Entry>, MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  nameWithType.vb: CollectionExtensions.Prepend(Of SoundEffectInstanceHandler.Entry)(IEnumerable(Of SoundEffectInstanceHandler.Entry), SoundEffectInstanceHandler.Entry)
+  fullName.vb: MLEM.Misc.CollectionExtensions.Prepend(Of MLEM.Sound.SoundEffectInstanceHandler.Entry)(System.Collections.Generic.IEnumerable(Of MLEM.Sound.SoundEffectInstanceHandler.Entry), MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  name.vb: Prepend(Of Entry)(IEnumerable(Of Entry), Entry)
+  spec.csharp:
+  - uid: MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry},MLEM.Sound.SoundEffectInstanceHandler.Entry)
+    name: Prepend
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: <
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry},MLEM.Sound.SoundEffectInstanceHandler.Entry)
+    name: Prepend
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+- uid: Microsoft.Xna.Framework.Audio
+  commentId: N:Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: Microsoft.Xna.Framework.Audio
+  nameWithType: Microsoft.Xna.Framework.Audio
+  fullName: Microsoft.Xna.Framework.Audio
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Audio
+    name: Audio
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Audio
+    name: Audio
+    isExternal: true
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)
+  commentId: M:MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)
+  isExternal: true
+  href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Append__1_System_Collections_Generic_IEnumerable___0____0_
+  name: Append<T>(IEnumerable<T>, T)
+  nameWithType: CollectionExtensions.Append<T>(IEnumerable<T>, T)
+  fullName: MLEM.Misc.CollectionExtensions.Append<T>(System.Collections.Generic.IEnumerable<T>, T)
+  nameWithType.vb: CollectionExtensions.Append(Of T)(IEnumerable(Of T), T)
+  fullName.vb: MLEM.Misc.CollectionExtensions.Append(Of T)(System.Collections.Generic.IEnumerable(Of T), T)
+  name.vb: Append(Of T)(IEnumerable(Of T), T)
+  spec.csharp:
+  - uid: MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)
+    name: Append
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Append__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)
+    name: Append
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Append__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc.CollectionExtensions
+  commentId: T:MLEM.Misc.CollectionExtensions
+  parent: MLEM.Misc
+  href: MLEM.Misc.CollectionExtensions.html
+  name: CollectionExtensions
+  nameWithType: CollectionExtensions
+  fullName: MLEM.Misc.CollectionExtensions
+- uid: MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)
+  commentId: M:MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)
+  isExternal: true
+  href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_
+  name: Prepend<T>(IEnumerable<T>, T)
+  nameWithType: CollectionExtensions.Prepend<T>(IEnumerable<T>, T)
+  fullName: MLEM.Misc.CollectionExtensions.Prepend<T>(System.Collections.Generic.IEnumerable<T>, T)
+  nameWithType.vb: CollectionExtensions.Prepend(Of T)(IEnumerable(Of T), T)
+  fullName.vb: MLEM.Misc.CollectionExtensions.Prepend(Of T)(System.Collections.Generic.IEnumerable(Of T), T)
+  name.vb: Prepend(Of T)(IEnumerable(Of T), T)
+  spec.csharp:
+  - uid: MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)
+    name: Prepend
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: MLEM.Misc.CollectionExtensions.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)
+    name: Prepend
+    href: MLEM.Misc.CollectionExtensions.html#MLEM_Misc_CollectionExtensions_Prepend__1_System_Collections_Generic_IEnumerable___0____0_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Misc
+  commentId: N:MLEM.Misc
+  href: MLEM.html
+  name: MLEM.Misc
+  nameWithType: MLEM.Misc
+  fullName: MLEM.Misc
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Misc
+    name: Misc
+    href: MLEM.Misc.html
+- uid: MLEM.Sound.SoundEffectInstanceHandler.#ctor*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.#ctor
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler__ctor_Microsoft_Xna_Framework_Game_
+  name: SoundEffectInstanceHandler
+  nameWithType: SoundEffectInstanceHandler.SoundEffectInstanceHandler
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.SoundEffectInstanceHandler
+  nameWithType.vb: SoundEffectInstanceHandler.New
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.New
+  name.vb: New
+- uid: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+  isExternal: true
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_SetListeners_Microsoft_Xna_Framework_Audio_AudioListener___
+  name: SetListeners(params AudioListener[])
+  nameWithType: SoundEffectInstanceHandler.SetListeners(params AudioListener[])
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(params Microsoft.Xna.Framework.Audio.AudioListener[])
+  nameWithType.vb: SoundEffectInstanceHandler.SetListeners(ParamArray AudioListener())
+  fullName.vb: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(ParamArray Microsoft.Xna.Framework.Audio.AudioListener())
+  name.vb: SetListeners(ParamArray AudioListener())
+  spec.csharp:
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+    name: SetListeners
+    href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_SetListeners_Microsoft_Xna_Framework_Audio_AudioListener___
+  - name: (
+  - name: params
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Audio.AudioListener
+    name: AudioListener
+    isExternal: true
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.SetListeners(Microsoft.Xna.Framework.Audio.AudioListener[])
+    name: SetListeners
+    href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_SetListeners_Microsoft_Xna_Framework_Audio_AudioListener___
+  - name: (
+  - name: ParamArray
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Audio.AudioListener
+    name: AudioListener
+    isExternal: true
+  - name: (
+  - name: )
+  - name: )
+- uid: Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
+  parent: Microsoft.Xna.Framework.GameComponent
+  isExternal: true
+  name: Update(GameTime)
+  nameWithType: GameComponent.Update(GameTime)
+  fullName: Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    isExternal: true
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.GameComponent.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    isExternal: true
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Update*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.Update
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Update_Microsoft_Xna_Framework_GameTime_
+  name: Update
+  nameWithType: SoundEffectInstanceHandler.Update
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Update
+- uid: Microsoft.Xna.Framework.GameTime
+  commentId: T:Microsoft.Xna.Framework.GameTime
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GameTime
+  nameWithType: GameTime
+  fullName: Microsoft.Xna.Framework.GameTime
+- uid: Microsoft.Xna.Framework.Audio.AudioListener
+  commentId: T:Microsoft.Xna.Framework.Audio.AudioListener
+  isExternal: true
+  name: AudioListener
+  nameWithType: AudioListener
+  fullName: Microsoft.Xna.Framework.Audio.AudioListener
+- uid: Microsoft.Xna.Framework.Audio.AudioEmitter
+  commentId: T:Microsoft.Xna.Framework.Audio.AudioEmitter
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: AudioEmitter
+  nameWithType: AudioEmitter
+  fullName: Microsoft.Xna.Framework.Audio.AudioEmitter
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  commentId: M:MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  isExternal: true
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Update_Microsoft_Xna_Framework_GameTime_
+  name: Update(GameTime)
+  nameWithType: SoundEffectInstanceHandler.Update(GameTime)
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+  spec.csharp:
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Update_Microsoft_Xna_Framework_GameTime_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Update(Microsoft.Xna.Framework.GameTime)
+    name: Update
+    href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Update_Microsoft_Xna_Framework_GameTime_
+  - name: (
+  - uid: Microsoft.Xna.Framework.GameTime
+    name: GameTime
+    isExternal: true
+  - name: )
+- uid: MLEM.Sound.SoundEffectInstanceHandler.SetListeners*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.SetListeners
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_SetListeners_Microsoft_Xna_Framework_Audio_AudioListener___
+  name: SetListeners
+  nameWithType: SoundEffectInstanceHandler.SetListeners
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.SetListeners
+- uid: Microsoft.Xna.Framework.Audio.AudioListener[]
+  isExternal: true
+  name: AudioListener[]
+  nameWithType: AudioListener[]
+  fullName: Microsoft.Xna.Framework.Audio.AudioListener[]
+  nameWithType.vb: AudioListener()
+  fullName.vb: Microsoft.Xna.Framework.Audio.AudioListener()
+  name.vb: AudioListener()
+  spec.csharp:
+  - uid: Microsoft.Xna.Framework.Audio.AudioListener
+    name: AudioListener
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: Microsoft.Xna.Framework.Audio.AudioListener
+    name: AudioListener
+    isExternal: true
+  - name: (
+  - name: )
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Pause*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.Pause
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Pause
+  name: Pause
+  nameWithType: SoundEffectInstanceHandler.Pause
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Pause
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Resume*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.Resume
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Resume
+  name: Resume
+  nameWithType: SoundEffectInstanceHandler.Resume
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Resume
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Stop*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.Stop
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Stop
+  name: Stop
+  nameWithType: SoundEffectInstanceHandler.Stop
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Stop
+- uid: MLEM.Sound.SoundEffectInstanceHandler.Add*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.Add
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_Add_Microsoft_Xna_Framework_Audio_SoundEffectInstance_System_Action_Microsoft_Xna_Framework_Audio_SoundEffectInstance__Microsoft_Xna_Framework_Audio_AudioEmitter_
+  name: Add
+  nameWithType: SoundEffectInstanceHandler.Add
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.Add
+- uid: System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance}
+  commentId: T:System.Action{Microsoft.Xna.Framework.Audio.SoundEffectInstance}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<SoundEffectInstance>
+  nameWithType: Action<SoundEffectInstance>
+  fullName: System.Action<Microsoft.Xna.Framework.Audio.SoundEffectInstance>
+  nameWithType.vb: Action(Of SoundEffectInstance)
+  fullName.vb: System.Action(Of Microsoft.Xna.Framework.Audio.SoundEffectInstance)
+  name.vb: Action(Of SoundEffectInstance)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+    name: SoundEffectInstance
+    isExternal: true
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+    name: SoundEffectInstance
+    isExternal: true
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Sound.SoundEffectInfo
+  commentId: T:MLEM.Sound.SoundEffectInfo
+  parent: MLEM.Sound
+  href: MLEM.Sound.SoundEffectInfo.html
+  name: SoundEffectInfo
+  nameWithType: SoundEffectInfo
+  fullName: MLEM.Sound.SoundEffectInfo
+- uid: Microsoft.Xna.Framework.Audio.SoundEffect
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffect
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffect
+  nameWithType: SoundEffect
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffect
+- uid: MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator*
+  commentId: Overload:MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator
+  href: MLEM.Sound.SoundEffectInstanceHandler.html#MLEM_Sound_SoundEffectInstanceHandler_GetEnumerator
+  name: GetEnumerator
+  nameWithType: SoundEffectInstanceHandler.GetEnumerator
+  fullName: MLEM.Sound.SoundEffectInstanceHandler.GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<SoundEffectInstanceHandler.Entry>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<MLEM.Sound.SoundEffectInstanceHandler.Entry>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of SoundEffectInstanceHandler.Entry).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MLEM.Sound.SoundEffectInstanceHandler.Entry).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable{MLEM.Sound.SoundEffectInstanceHandler.Entry}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+  commentId: T:System.Collections.Generic.IEnumerator{MLEM.Sound.SoundEffectInstanceHandler.Entry}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<SoundEffectInstanceHandler.Entry>
+  nameWithType: IEnumerator<SoundEffectInstanceHandler.Entry>
+  fullName: System.Collections.Generic.IEnumerator<MLEM.Sound.SoundEffectInstanceHandler.Entry>
+  nameWithType.vb: IEnumerator(Of SoundEffectInstanceHandler.Entry)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of MLEM.Sound.SoundEffectInstanceHandler.Entry)
+  name.vb: IEnumerator(Of SoundEffectInstanceHandler.Entry)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - uid: MLEM.Sound.SoundEffectInstanceHandler
+    name: SoundEffectInstanceHandler
+    href: MLEM.Sound.SoundEffectInstanceHandler.html
+  - name: .
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Sound.SoundEffectInstanceHandler
+    name: SoundEffectInstanceHandler
+    href: MLEM.Sound.SoundEffectInstanceHandler.html
+  - name: .
+  - uid: MLEM.Sound.SoundEffectInstanceHandler.Entry
+    name: Entry
+    href: MLEM.Sound.SoundEffectInstanceHandler.Entry.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

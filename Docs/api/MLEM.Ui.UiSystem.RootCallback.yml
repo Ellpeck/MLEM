@@ -1,0 +1,64 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.UiSystem.RootCallback
+  commentId: T:MLEM.Ui.UiSystem.RootCallback
+  id: UiSystem.RootCallback
+  parent: MLEM.Ui
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: UiSystem.RootCallback
+  nameWithType: UiSystem.RootCallback
+  fullName: MLEM.Ui.UiSystem.RootCallback
+  type: Delegate
+  source:
+    remote:
+      path: MLEM.Ui/UiSystem.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: RootCallback
+    path: ../MLEM.Ui/UiSystem.cs
+    startLine: 440
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui
+  summary: A delegate used for callbacks that involve a <xref href="MLEM.Ui.RootElement" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public delegate void UiSystem.RootCallback(RootElement root)
+    parameters:
+    - id: root
+      type: MLEM.Ui.RootElement
+      description: The root element
+    content.vb: Public Delegate Sub UiSystem.RootCallback(root As RootElement)
+references:
+- uid: MLEM.Ui.RootElement
+  commentId: T:MLEM.Ui.RootElement
+  parent: MLEM.Ui
+  href: MLEM.Ui.RootElement.html
+  name: RootElement
+  nameWithType: RootElement
+  fullName: MLEM.Ui.RootElement
+- uid: MLEM.Ui
+  commentId: N:MLEM.Ui
+  href: MLEM.html
+  name: MLEM.Ui
+  nameWithType: MLEM.Ui
+  fullName: MLEM.Ui
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html

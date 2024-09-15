@@ -1,0 +1,155 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.Json
+  commentId: N:MLEM.Data.Json
+  id: MLEM.Data.Json
+  children:
+  - MLEM.Data.Json.Direction2Converter
+  - MLEM.Data.Json.JsonConverters
+  - MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+  - MLEM.Data.Json.JsonTypeSafeWrapper
+  - MLEM.Data.Json.JsonTypeSafeWrapper`1
+  - MLEM.Data.Json.PointConverter
+  - MLEM.Data.Json.RectangleConverter
+  - MLEM.Data.Json.RectangleFConverter
+  - MLEM.Data.Json.StaticJsonConverter`1
+  - MLEM.Data.Json.Vector2Converter
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Data.Json
+  nameWithType: MLEM.Data.Json
+  fullName: MLEM.Data.Json
+  type: Namespace
+  assemblies:
+  - MLEM.Data
+references:
+- uid: MLEM.Data.Json.Direction2Converter
+  commentId: T:MLEM.Data.Json.Direction2Converter
+  href: MLEM.Data.Json.Direction2Converter.html
+  name: Direction2Converter
+  nameWithType: Direction2Converter
+  fullName: MLEM.Data.Json.Direction2Converter
+- uid: MLEM.Data.Json.JsonConverters
+  commentId: T:MLEM.Data.Json.JsonConverters
+  href: MLEM.Data.Json.JsonConverters.html
+  name: JsonConverters
+  nameWithType: JsonConverters
+  fullName: MLEM.Data.Json.JsonConverters
+- uid: MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+  commentId: T:MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+  href: MLEM.Data.Json.JsonTypeSafeGenericDataHolder.html
+  name: JsonTypeSafeGenericDataHolder
+  nameWithType: JsonTypeSafeGenericDataHolder
+  fullName: MLEM.Data.Json.JsonTypeSafeGenericDataHolder
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper
+  commentId: T:MLEM.Data.Json.JsonTypeSafeWrapper
+  parent: MLEM.Data.Json
+  href: MLEM.Data.Json.JsonTypeSafeWrapper.html
+  name: JsonTypeSafeWrapper
+  nameWithType: JsonTypeSafeWrapper
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper
+- uid: MLEM.Data.Json.JsonTypeSafeWrapper`1
+  commentId: T:MLEM.Data.Json.JsonTypeSafeWrapper`1
+  href: MLEM.Data.Json.JsonTypeSafeWrapper-1.html
+  name: JsonTypeSafeWrapper<T>
+  nameWithType: JsonTypeSafeWrapper<T>
+  fullName: MLEM.Data.Json.JsonTypeSafeWrapper<T>
+  nameWithType.vb: JsonTypeSafeWrapper(Of T)
+  fullName.vb: MLEM.Data.Json.JsonTypeSafeWrapper(Of T)
+  name.vb: JsonTypeSafeWrapper(Of T)
+  spec.csharp:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper`1
+    name: JsonTypeSafeWrapper
+    href: MLEM.Data.Json.JsonTypeSafeWrapper-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Data.Json.JsonTypeSafeWrapper`1
+    name: JsonTypeSafeWrapper
+    href: MLEM.Data.Json.JsonTypeSafeWrapper-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Data.Json.PointConverter
+  commentId: T:MLEM.Data.Json.PointConverter
+  href: MLEM.Data.Json.PointConverter.html
+  name: PointConverter
+  nameWithType: PointConverter
+  fullName: MLEM.Data.Json.PointConverter
+- uid: MLEM.Data.Json.RectangleConverter
+  commentId: T:MLEM.Data.Json.RectangleConverter
+  href: MLEM.Data.Json.RectangleConverter.html
+  name: RectangleConverter
+  nameWithType: RectangleConverter
+  fullName: MLEM.Data.Json.RectangleConverter
+- uid: MLEM.Data.Json.RectangleFConverter
+  commentId: T:MLEM.Data.Json.RectangleFConverter
+  href: MLEM.Data.Json.RectangleFConverter.html
+  name: RectangleFConverter
+  nameWithType: RectangleFConverter
+  fullName: MLEM.Data.Json.RectangleFConverter
+- uid: MLEM.Data.Json.StaticJsonConverter`1
+  commentId: T:MLEM.Data.Json.StaticJsonConverter`1
+  href: MLEM.Data.Json.StaticJsonConverter-1.html
+  name: StaticJsonConverter<T>
+  nameWithType: StaticJsonConverter<T>
+  fullName: MLEM.Data.Json.StaticJsonConverter<T>
+  nameWithType.vb: StaticJsonConverter(Of T)
+  fullName.vb: MLEM.Data.Json.StaticJsonConverter(Of T)
+  name.vb: StaticJsonConverter(Of T)
+  spec.csharp:
+  - uid: MLEM.Data.Json.StaticJsonConverter`1
+    name: StaticJsonConverter
+    href: MLEM.Data.Json.StaticJsonConverter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: MLEM.Data.Json.StaticJsonConverter`1
+    name: StaticJsonConverter
+    href: MLEM.Data.Json.StaticJsonConverter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Data.Json.Vector2Converter
+  commentId: T:MLEM.Data.Json.Vector2Converter
+  href: MLEM.Data.Json.Vector2Converter.html
+  name: Vector2Converter
+  nameWithType: Vector2Converter
+  fullName: MLEM.Data.Json.Vector2Converter
+- uid: MLEM.Data.Json
+  commentId: N:MLEM.Data.Json
+  href: MLEM.html
+  name: MLEM.Data.Json
+  nameWithType: MLEM.Data.Json
+  fullName: MLEM.Data.Json
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Json
+    name: Json
+    href: MLEM.Data.Json.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  - name: .
+  - uid: MLEM.Data.Json
+    name: Json
+    href: MLEM.Data.Json.html

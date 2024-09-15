@@ -1,0 +1,1295 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Textures.TextureRegionExtensions
+  commentId: T:MLEM.Textures.TextureRegionExtensions
+  id: TextureRegionExtensions
+  parent: MLEM.Textures
+  children:
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  - MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  langs:
+  - csharp
+  - vb
+  name: TextureRegionExtensions
+  nameWithType: TextureRegionExtensions
+  fullName: MLEM.Textures.TextureRegionExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextureRegionExtensions
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 145
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: This class provides a set of extension methods for dealing with <xref href="MLEM.Textures.TextureRegion" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static class TextureRegionExtensions
+    content.vb: Public Module TextureRegionExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, Vector2, Color, float, Vector2, Vector2, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Vector2, Color, float, Vector2, Vector2, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 148
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The drawing location on screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: scale
+      type: Microsoft.Xna.Framework.Vector2
+      description: A scaling of this sprite.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Vector2, effects As SpriteEffects, layerDepth As Single)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+  nameWithType.vb: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Draw(SpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, Vector2, Color, float, Vector2, float, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Vector2, Color, float, Vector2, float, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, float, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 153
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The drawing location on screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: scale
+      type: System.Single
+      description: A scaling of this sprite.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Single, effects As SpriteEffects, layerDepth As Single)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+  nameWithType.vb: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Draw(SpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, Rectangle, Color, float, Vector2, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Rectangle, Color, float, Vector2, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 158
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: Microsoft.Xna.Framework.Rectangle
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, destinationRectangle As Rectangle, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+  nameWithType.vb: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Rectangle, Color, Single, Vector2, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Draw(SpriteBatch, TextureRegion, Rectangle, Color, Single, Vector2, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, RectangleF, Color, float, Vector2, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, RectangleF, Color, float, Vector2, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 163
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: MLEM.Maths.RectangleF
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, destinationRectangle As RectangleF, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+  nameWithType.vb: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, RectangleF, Color, Single, Vector2, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Draw(SpriteBatch, TextureRegion, RectangleF, Color, Single, Vector2, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, Vector2, Color)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Vector2, Color)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 168
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Vector2 position, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The drawing location on screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, position As Vector2, color As Color)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, Rectangle, Color)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, Rectangle, Color)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 173
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: Microsoft.Xna.Framework.Rectangle
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, destinationRectangle As Rectangle, color As Color)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+- uid: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  id: Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Draw(SpriteBatch, TextureRegion, RectangleF, Color)
+  nameWithType: TextureRegionExtensions.Draw(SpriteBatch, TextureRegion, RectangleF, Color)
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch, MLEM.Textures.TextureRegion, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Draw
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 178
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: Submit a sprite for drawing in the current batch.
+  example: []
+  syntax:
+    content: public static void Draw(this SpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color)
+    parameters:
+    - id: batch
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: MLEM.Maths.RectangleF
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    content.vb: Public Shared Sub Draw(batch As SpriteBatch, texture As TextureRegion, destinationRectangle As RectangleF, color As Color)
+  overload: MLEM.Textures.TextureRegionExtensions.Draw*
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, Vector2, Color, float, Vector2, Vector2, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Vector2, Color, float, Vector2, Vector2, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 183
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The drawing location on screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: scale
+      type: Microsoft.Xna.Framework.Vector2
+      description: A scaling of this sprite.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Vector2, effects As SpriteEffects, layerDepth As Single) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+  nameWithType.vb: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Add(StaticSpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Vector2, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, Vector2, Color, float, Vector2, float, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Vector2, Color, float, Vector2, float, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, float, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 188
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The drawing location on screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: scale
+      type: System.Single
+      description: A scaling of this sprite.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, position As Vector2, color As Color, rotation As Single, origin As Vector2, scale As Single, effects As SpriteEffects, layerDepth As Single) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+  nameWithType.vb: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Single, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Add(StaticSpriteBatch, TextureRegion, Vector2, Color, Single, Vector2, Single, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, Rectangle, Color, float, Vector2, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Rectangle, Color, float, Vector2, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 193
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: Microsoft.Xna.Framework.Rectangle
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, destinationRectangle As Rectangle, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+  nameWithType.vb: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Rectangle, Color, Single, Vector2, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Add(StaticSpriteBatch, TextureRegion, Rectangle, Color, Single, Vector2, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, RectangleF, Color, float, Vector2, SpriteEffects, float)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, RectangleF, Color, float, Vector2, SpriteEffects, float)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, float, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, float)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 198
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: MLEM.Maths.RectangleF
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    - id: rotation
+      type: System.Single
+      description: A rotation of this sprite.
+    - id: origin
+      type: Microsoft.Xna.Framework.Vector2
+      description: Center of the rotation. 0,0 by default.
+    - id: effects
+      type: Microsoft.Xna.Framework.Graphics.SpriteEffects
+      description: Modificators for drawing. Can be combined.
+    - id: layerDepth
+      type: System.Single
+      description: A depth of the layer of this sprite.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, destinationRectangle As RectangleF, color As Color, rotation As Single, origin As Vector2, effects As SpriteEffects, layerDepth As Single) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+  nameWithType.vb: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, RectangleF, Color, Single, Vector2, SpriteEffects, Single)
+  fullName.vb: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color, Single, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Graphics.SpriteEffects, Single)
+  name.vb: Add(StaticSpriteBatch, TextureRegion, RectangleF, Color, Single, Vector2, SpriteEffects, Single)
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, Vector2, Color)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Vector2, Color)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 203
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Vector2 position, Color color)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: position
+      type: Microsoft.Xna.Framework.Vector2
+      description: The drawing location on screen.
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, position As Vector2, color As Color) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, Rectangle, Color)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, Rectangle, Color)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, Microsoft.Xna.Framework.Rectangle, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 208
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, Rectangle destinationRectangle, Color color)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: Microsoft.Xna.Framework.Rectangle
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, destinationRectangle As Rectangle, color As Color) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+- uid: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  commentId: M:MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  id: Add(MLEM.Graphics.StaticSpriteBatch,MLEM.Textures.TextureRegion,MLEM.Maths.RectangleF,Microsoft.Xna.Framework.Color)
+  isExtensionMethod: true
+  parent: MLEM.Textures.TextureRegionExtensions
+  langs:
+  - csharp
+  - vb
+  name: Add(StaticSpriteBatch, TextureRegion, RectangleF, Color)
+  nameWithType: TextureRegionExtensions.Add(StaticSpriteBatch, TextureRegion, RectangleF, Color)
+  fullName: MLEM.Textures.TextureRegionExtensions.Add(MLEM.Graphics.StaticSpriteBatch, MLEM.Textures.TextureRegion, MLEM.Maths.RectangleF, Microsoft.Xna.Framework.Color)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Textures/TextureRegion.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Add
+    path: ../MLEM/Textures/TextureRegion.cs
+    startLine: 213
+  assemblies:
+  - MLEM
+  namespace: MLEM.Textures
+  summary: >-
+    Adds an item to this batch.
+
+    Note that this batch needs to currently be batching, meaning <xref href="MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable%7bMicrosoft.Xna.Framework.Graphics.SpriteSortMode%7d)" data-throw-if-not-resolved="false"></xref> has to have been called previously.
+  example: []
+  syntax:
+    content: public static StaticSpriteBatch.Item Add(this StaticSpriteBatch batch, TextureRegion texture, RectangleF destinationRectangle, Color color)
+    parameters:
+    - id: batch
+      type: MLEM.Graphics.StaticSpriteBatch
+    - id: texture
+      type: MLEM.Textures.TextureRegion
+      description: A texture.
+    - id: destinationRectangle
+      type: MLEM.Maths.RectangleF
+    - id: color
+      type: Microsoft.Xna.Framework.Color
+      description: A color mask.
+    return:
+      type: MLEM.Graphics.StaticSpriteBatch.Item
+      description: The <xref href="MLEM.Graphics.StaticSpriteBatch.Item" data-throw-if-not-resolved="false"></xref> that was created from the added data
+    content.vb: Public Shared Function Add(batch As StaticSpriteBatch, texture As TextureRegion, destinationRectangle As RectangleF, color As Color) As StaticSpriteBatch.Item
+  overload: MLEM.Textures.TextureRegionExtensions.Add*
+references:
+- uid: MLEM.Textures.TextureRegion
+  commentId: T:MLEM.Textures.TextureRegion
+  parent: MLEM.Textures
+  href: MLEM.Textures.TextureRegion.html
+  name: TextureRegion
+  nameWithType: TextureRegion
+  fullName: MLEM.Textures.TextureRegion
+- uid: MLEM.Textures
+  commentId: N:MLEM.Textures
+  href: MLEM.html
+  name: MLEM.Textures
+  nameWithType: MLEM.Textures
+  fullName: MLEM.Textures
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Textures
+    name: Textures
+    href: MLEM.Textures.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Textures.TextureRegionExtensions.Draw*
+  commentId: Overload:MLEM.Textures.TextureRegionExtensions.Draw
+  href: MLEM.Textures.TextureRegionExtensions.html#MLEM_Textures_TextureRegionExtensions_Draw_Microsoft_Xna_Framework_Graphics_SpriteBatch_MLEM_Textures_TextureRegion_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_System_Single_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Graphics_SpriteEffects_System_Single_
+  name: Draw
+  nameWithType: TextureRegionExtensions.Draw
+  fullName: MLEM.Textures.TextureRegionExtensions.Draw
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework.Color
+  commentId: T:Microsoft.Xna.Framework.Color
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Microsoft.Xna.Framework.Color
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Microsoft.Xna.Framework.Graphics.SpriteEffects
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteEffects
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteEffects
+  nameWithType: SpriteEffects
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteEffects
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: Microsoft.Xna.Framework.Rectangle
+  commentId: T:Microsoft.Xna.Framework.Rectangle
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Rectangle
+  nameWithType: Rectangle
+  fullName: Microsoft.Xna.Framework.Rectangle
+- uid: MLEM.Maths.RectangleF
+  commentId: T:MLEM.Maths.RectangleF
+  parent: MLEM.Maths
+  href: MLEM.Maths.RectangleF.html
+  name: RectangleF
+  nameWithType: RectangleF
+  fullName: MLEM.Maths.RectangleF
+- uid: MLEM.Maths
+  commentId: N:MLEM.Maths
+  href: MLEM.html
+  name: MLEM.Maths
+  nameWithType: MLEM.Maths
+  fullName: MLEM.Maths
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Maths
+    name: Maths
+    href: MLEM.Maths.html
+- uid: MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable{Microsoft.Xna.Framework.Graphics.SpriteSortMode})
+  commentId: M:MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable{Microsoft.Xna.Framework.Graphics.SpriteSortMode})
+  isExternal: true
+  href: MLEM.Graphics.StaticSpriteBatch.html#MLEM_Graphics_StaticSpriteBatch_BeginBatch_System_Nullable_Microsoft_Xna_Framework_Graphics_SpriteSortMode__
+  name: BeginBatch(SpriteSortMode?)
+  nameWithType: StaticSpriteBatch.BeginBatch(SpriteSortMode?)
+  fullName: MLEM.Graphics.StaticSpriteBatch.BeginBatch(Microsoft.Xna.Framework.Graphics.SpriteSortMode?)
+  spec.csharp:
+  - uid: MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable{Microsoft.Xna.Framework.Graphics.SpriteSortMode})
+    name: BeginBatch
+    href: MLEM.Graphics.StaticSpriteBatch.html#MLEM_Graphics_StaticSpriteBatch_BeginBatch_System_Nullable_Microsoft_Xna_Framework_Graphics_SpriteSortMode__
+  - name: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteSortMode
+    name: SpriteSortMode
+    isExternal: true
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Graphics.StaticSpriteBatch.BeginBatch(System.Nullable{Microsoft.Xna.Framework.Graphics.SpriteSortMode})
+    name: BeginBatch
+    href: MLEM.Graphics.StaticSpriteBatch.html#MLEM_Graphics_StaticSpriteBatch_BeginBatch_System_Nullable_Microsoft_Xna_Framework_Graphics_SpriteSortMode__
+  - name: (
+  - uid: Microsoft.Xna.Framework.Graphics.SpriteSortMode
+    name: SpriteSortMode
+    isExternal: true
+  - name: '?'
+  - name: )
+- uid: MLEM.Graphics.StaticSpriteBatch.Item
+  commentId: T:MLEM.Graphics.StaticSpriteBatch.Item
+  parent: MLEM.Graphics
+  href: MLEM.Graphics.StaticSpriteBatch.html
+  name: StaticSpriteBatch.Item
+  nameWithType: StaticSpriteBatch.Item
+  fullName: MLEM.Graphics.StaticSpriteBatch.Item
+  spec.csharp:
+  - uid: MLEM.Graphics.StaticSpriteBatch
+    name: StaticSpriteBatch
+    href: MLEM.Graphics.StaticSpriteBatch.html
+  - name: .
+  - uid: MLEM.Graphics.StaticSpriteBatch.Item
+    name: Item
+    href: MLEM.Graphics.StaticSpriteBatch.Item.html
+  spec.vb:
+  - uid: MLEM.Graphics.StaticSpriteBatch
+    name: StaticSpriteBatch
+    href: MLEM.Graphics.StaticSpriteBatch.html
+  - name: .
+  - uid: MLEM.Graphics.StaticSpriteBatch.Item
+    name: Item
+    href: MLEM.Graphics.StaticSpriteBatch.Item.html
+- uid: MLEM.Textures.TextureRegionExtensions.Add*
+  commentId: Overload:MLEM.Textures.TextureRegionExtensions.Add
+  href: MLEM.Textures.TextureRegionExtensions.html#MLEM_Textures_TextureRegionExtensions_Add_MLEM_Graphics_StaticSpriteBatch_MLEM_Textures_TextureRegion_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_System_Single_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Graphics_SpriteEffects_System_Single_
+  name: Add
+  nameWithType: TextureRegionExtensions.Add
+  fullName: MLEM.Textures.TextureRegionExtensions.Add
+- uid: MLEM.Graphics.StaticSpriteBatch
+  commentId: T:MLEM.Graphics.StaticSpriteBatch
+  parent: MLEM.Graphics
+  href: MLEM.Graphics.StaticSpriteBatch.html
+  name: StaticSpriteBatch
+  nameWithType: StaticSpriteBatch
+  fullName: MLEM.Graphics.StaticSpriteBatch
+- uid: MLEM.Graphics
+  commentId: N:MLEM.Graphics
+  href: MLEM.html
+  name: MLEM.Graphics
+  nameWithType: MLEM.Graphics
+  fullName: MLEM.Graphics
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Graphics
+    name: Graphics
+    href: MLEM.Graphics.html

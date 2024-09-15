@@ -1,0 +1,1548 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Parsers.UiParser
+  commentId: T:MLEM.Ui.Parsers.UiParser
+  id: UiParser
+  parent: MLEM.Ui.Parsers
+  children:
+  - MLEM.Ui.Parsers.UiParser.#ctor(System.Boolean)
+  - MLEM.Ui.Parsers.UiParser.CodeFont
+  - MLEM.Ui.Parsers.UiParser.ElementTypes
+  - MLEM.Ui.Parsers.UiParser.GraphicsDevice
+  - MLEM.Ui.Parsers.UiParser.ImageBasePath
+  - MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+  - MLEM.Ui.Parsers.UiParser.Parse(System.String)
+  - MLEM.Ui.Parsers.UiParser.ParseImage(System.String,System.Action{MLEM.Textures.TextureRegion})
+  - MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+  - MLEM.Ui.Parsers.UiParser.ParseUnstyled(System.String)
+  - MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: UiParser
+  nameWithType: UiParser
+  fullName: MLEM.Ui.Parsers.UiParser
+  type: Class
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: UiParser
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 21
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    A base class for parsing various types of formatted strings into a set of MLEM.Ui elements with styling for each individual <xref href="MLEM.Ui.Parsers.UiParser.ElementType" data-throw-if-not-resolved="false"></xref>.
+
+    The only parser currently implemented is <xref href="MLEM.Ui.Parsers.UiMarkdownParser" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public abstract class UiParser
+    content.vb: Public MustInherit Class UiParser
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - MLEM.Ui.Parsers.UiMarkdownParser
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Ui.Parsers.UiParser.ElementTypes
+  commentId: F:MLEM.Ui.Parsers.UiParser.ElementTypes
+  id: ElementTypes
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: ElementTypes
+  nameWithType: UiParser.ElementTypes
+  fullName: MLEM.Ui.Parsers.UiParser.ElementTypes
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ElementTypes
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 26
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: An array containing all of the <xref href="MLEM.Ui.Parsers.UiParser.ElementType" data-throw-if-not-resolved="false"></xref> enum values.
+  example: []
+  syntax:
+    content: public static readonly UiParser.ElementType[] ElementTypes
+    return:
+      type: MLEM.Ui.Parsers.UiParser.ElementType[]
+    content.vb: Public Shared ReadOnly ElementTypes As UiParser.ElementType()
+- uid: MLEM.Ui.Parsers.UiParser.ImageBasePath
+  commentId: F:MLEM.Ui.Parsers.UiParser.ImageBasePath
+  id: ImageBasePath
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: ImageBasePath
+  nameWithType: UiParser.ImageBasePath
+  fullName: MLEM.Ui.Parsers.UiParser.ImageBasePath
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ImageBasePath
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 36
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: The base path for images, which is prepended to the image link.
+  example: []
+  syntax:
+    content: public string ImageBasePath
+    return:
+      type: System.String
+    content.vb: Public ImageBasePath As String
+- uid: MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+  commentId: F:MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+  id: ImageExceptionHandler
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: ImageExceptionHandler
+  nameWithType: UiParser.ImageExceptionHandler
+  fullName: MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ImageExceptionHandler
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 41
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    An action that is invoked when an image fails to load while parsing.
+
+    This action receives the expected location of the image, as well as the <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> that occured.
+  example: []
+  syntax:
+    content: public Action<string, Exception> ImageExceptionHandler
+    return:
+      type: System.Action{System.String,System.Exception}
+    content.vb: Public ImageExceptionHandler As Action(Of String, Exception)
+- uid: MLEM.Ui.Parsers.UiParser.GraphicsDevice
+  commentId: F:MLEM.Ui.Parsers.UiParser.GraphicsDevice
+  id: GraphicsDevice
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: GraphicsDevice
+  nameWithType: UiParser.GraphicsDevice
+  fullName: MLEM.Ui.Parsers.UiParser.GraphicsDevice
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: GraphicsDevice
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 45
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: The graphics device that should be used when loading images and other graphics-dependent content.
+  example: []
+  syntax:
+    content: public GraphicsDevice GraphicsDevice
+    return:
+      type: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+    content.vb: Public GraphicsDevice As GraphicsDevice
+- uid: MLEM.Ui.Parsers.UiParser.CodeFont
+  commentId: F:MLEM.Ui.Parsers.UiParser.CodeFont
+  id: CodeFont
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: CodeFont
+  nameWithType: UiParser.CodeFont
+  fullName: MLEM.Ui.Parsers.UiParser.CodeFont
+  type: Field
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CodeFont
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 51
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    The name of the font used for inline code as well as code blocks.
+
+    This only has an effect if a font with this name is added to the used <xref href="MLEM.Ui.Style.UiStyle" data-throw-if-not-resolved="false"></xref>'s <xref href="MLEM.Ui.Style.UiStyle.AdditionalFonts" data-throw-if-not-resolved="false"></xref>.
+
+    This defaults to "Monospaced" if default styling is applied in <xref href="MLEM.Ui.Parsers.UiParser.%23ctor(System.Boolean)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public string CodeFont
+    return:
+      type: System.String
+    content.vb: Public CodeFont As String
+- uid: MLEM.Ui.Parsers.UiParser.#ctor(System.Boolean)
+  commentId: M:MLEM.Ui.Parsers.UiParser.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: UiParser(bool)
+  nameWithType: UiParser.UiParser(bool)
+  fullName: MLEM.Ui.Parsers.UiParser.UiParser(bool)
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 59
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: Creates a new UI parser and optionally initializes some default style settings.
+  example: []
+  syntax:
+    content: protected UiParser(bool applyDefaultStyling)
+    parameters:
+    - id: applyDefaultStyling
+      type: System.Boolean
+      description: Whether default style settings should be applied.
+    content.vb: Protected Sub New(applyDefaultStyling As Boolean)
+  overload: MLEM.Ui.Parsers.UiParser.#ctor*
+  nameWithType.vb: UiParser.New(Boolean)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.New(Boolean)
+  name.vb: New(Boolean)
+- uid: MLEM.Ui.Parsers.UiParser.ParseUnstyled(System.String)
+  commentId: M:MLEM.Ui.Parsers.UiParser.ParseUnstyled(System.String)
+  id: ParseUnstyled(System.String)
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: ParseUnstyled(string)
+  nameWithType: UiParser.ParseUnstyled(string)
+  fullName: MLEM.Ui.Parsers.UiParser.ParseUnstyled(string)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ParseUnstyled
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 79
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    Parses the given raw formatted string into a set of elements and returns them along with their <xref href="MLEM.Ui.Parsers.UiParser.ElementType" data-throw-if-not-resolved="false"></xref>.
+
+    This method is used by implementors to parse specific text, and it is used by <xref href="MLEM.Ui.Parsers.UiParser.Parse(System.String)" data-throw-if-not-resolved="false"></xref> and <xref href="MLEM.Ui.Parsers.UiParser.ParseInto(System.String%2cMLEM.Ui.Elements.Element)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: protected abstract IEnumerable<(UiParser.ElementType, Element)> ParseUnstyled(string raw)
+    parameters:
+    - id: raw
+      type: System.String
+      description: The raw string to parse.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.ValueTuple{MLEM.Ui.Parsers.UiParser.ElementType,MLEM.Ui.Elements.Element}}
+      description: The parsed elements, without styling.
+    content.vb: Protected MustOverride Function ParseUnstyled(raw As String) As IEnumerable(Of (UiParser.ElementType, Element))
+  overload: MLEM.Ui.Parsers.UiParser.ParseUnstyled*
+  nameWithType.vb: UiParser.ParseUnstyled(String)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.ParseUnstyled(String)
+  name.vb: ParseUnstyled(String)
+- uid: MLEM.Ui.Parsers.UiParser.Parse(System.String)
+  commentId: M:MLEM.Ui.Parsers.UiParser.Parse(System.String)
+  id: Parse(System.String)
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: Parse(string)
+  nameWithType: UiParser.Parse(string)
+  fullName: MLEM.Ui.Parsers.UiParser.Parse(string)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Parse
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 87
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    Parses the given raw formatted string into a set of elements and returns them along with their <xref href="MLEM.Ui.Parsers.UiParser.ElementType" data-throw-if-not-resolved="false"></xref>.
+
+    During this process, the element stylings specified using <xref href="MLEM.Ui.Parsers.UiParser.Style%60%601(MLEM.Ui.Parsers.UiParser.ElementType%2cSystem.Action%7b%60%600%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref> are also applied.
+  example: []
+  syntax:
+    content: public IEnumerable<(UiParser.ElementType, Element)> Parse(string raw)
+    parameters:
+    - id: raw
+      type: System.String
+      description: The raw string to parse.
+    return:
+      type: System.Collections.Generic.IEnumerable{System.ValueTuple{MLEM.Ui.Parsers.UiParser.ElementType,MLEM.Ui.Elements.Element}}
+      description: The parsed elements.
+    content.vb: Public Function Parse(raw As String) As IEnumerable(Of (UiParser.ElementType, Element))
+  overload: MLEM.Ui.Parsers.UiParser.Parse*
+  nameWithType.vb: UiParser.Parse(String)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.Parse(String)
+  name.vb: Parse(String)
+- uid: MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+  id: ParseInto(System.String,MLEM.Ui.Elements.Element)
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: ParseInto(string, Element)
+  nameWithType: UiParser.ParseInto(string, Element)
+  fullName: MLEM.Ui.Parsers.UiParser.ParseInto(string, MLEM.Ui.Elements.Element)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ParseInto
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 102
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    Parses the given raw formatted string into a set of elements (using <xref href="MLEM.Ui.Parsers.UiParser.Parse(System.String)" data-throw-if-not-resolved="false"></xref>) and adds them as children to the givem <code class="paramref">element</code>.
+
+    During this process, the element stylings specified using <xref href="MLEM.Ui.Parsers.UiParser.Style%60%601(MLEM.Ui.Parsers.UiParser.ElementType%2cSystem.Action%7b%60%600%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref> are also applied.
+  example: []
+  syntax:
+    content: public Element ParseInto(string raw, Element element)
+    parameters:
+    - id: raw
+      type: System.String
+      description: The raw string to parse.
+    - id: element
+      type: MLEM.Ui.Elements.Element
+      description: The element to add the parsed elements to.
+    return:
+      type: MLEM.Ui.Elements.Element
+      description: The <code class="paramref">element</code>, for chaining.
+    content.vb: Public Function ParseInto(raw As String, element As Element) As Element
+  overload: MLEM.Ui.Parsers.UiParser.ParseInto*
+  nameWithType.vb: UiParser.ParseInto(String, Element)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.ParseInto(String, MLEM.Ui.Elements.Element)
+  name.vb: ParseInto(String, Element)
+- uid: MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+  commentId: M:MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+  id: Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: Style<T>(ElementType, Action<T>, bool)
+  nameWithType: UiParser.Style<T>(UiParser.ElementType, Action<T>, bool)
+  fullName: MLEM.Ui.Parsers.UiParser.Style<T>(MLEM.Ui.Parsers.UiParser.ElementType, System.Action<T>, bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Style
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 117
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    Specifies an action to be invoked when a new element with the given <xref href="MLEM.Ui.Parsers.UiParser.ElementType" data-throw-if-not-resolved="false"></xref> is parsed in <xref href="MLEM.Ui.Parsers.UiParser.Parse(System.String)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Ui.Parsers.UiParser.ParseInto(System.String%2cMLEM.Ui.Elements.Element)" data-throw-if-not-resolved="false"></xref>.
+
+    These actions can be used to modify the style properties of the created elements similarly to <xref href="MLEM.Ui.Style.UiStyle.AddCustomStyle%60%601(System.Action%7b%60%600%7d%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public UiParser Style<T>(UiParser.ElementType types, Action<T> style, bool add = false) where T : Element'
+    parameters:
+    - id: types
+      type: MLEM.Ui.Parsers.UiParser.ElementType
+      description: The element types that should be styled. Can be a combined flag.
+    - id: style
+      type: System.Action{{T}}
+      description: The action that styles the elements with the given element type.
+    - id: add
+      type: System.Boolean
+      description: Whether the <code class="paramref">style</code> function should be added to the existing style settings rather than replacing them.
+    typeParameters:
+    - id: T
+      description: The type of elements that the given <xref href="MLEM.Ui.Parsers.UiParser.ElementType" data-throw-if-not-resolved="false"></xref> flags are expected to be.
+    return:
+      type: MLEM.Ui.Parsers.UiParser
+      description: This parser, for chaining.
+    content.vb: Public Function Style(Of T As Element)(types As UiParser.ElementType, style As Action(Of T), add As Boolean = False) As UiParser
+  overload: MLEM.Ui.Parsers.UiParser.Style*
+  nameWithType.vb: UiParser.Style(Of T)(UiParser.ElementType, Action(Of T), Boolean)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.Style(Of T)(MLEM.Ui.Parsers.UiParser.ElementType, System.Action(Of T), Boolean)
+  name.vb: Style(Of T)(ElementType, Action(Of T), Boolean)
+- uid: MLEM.Ui.Parsers.UiParser.ParseImage(System.String,System.Action{MLEM.Textures.TextureRegion})
+  commentId: M:MLEM.Ui.Parsers.UiParser.ParseImage(System.String,System.Action{MLEM.Textures.TextureRegion})
+  id: ParseImage(System.String,System.Action{MLEM.Textures.TextureRegion})
+  parent: MLEM.Ui.Parsers.UiParser
+  langs:
+  - csharp
+  - vb
+  name: ParseImage(string, Action<TextureRegion>)
+  nameWithType: UiParser.ParseImage(string, Action<TextureRegion>)
+  fullName: MLEM.Ui.Parsers.UiParser.ParseImage(string, System.Action<MLEM.Textures.TextureRegion>)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Ui/Parsers/UiParser.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: ParseImage
+    path: ../MLEM.Ui/Parsers/UiParser.cs
+    startLine: 143
+  assemblies:
+  - MLEM.Ui
+  namespace: MLEM.Ui.Parsers
+  summary: >-
+    Parses the given path into a <xref href="MLEM.Ui.Elements.Image" data-throw-if-not-resolved="false"></xref> element by loading it from disk or downloading it from the internet.
+
+    Note that, for a <code class="paramref">path</code> that doesn't start with <code>http</code> and isn't rooted, the <xref href="MLEM.Ui.Parsers.UiParser.ImageBasePath" data-throw-if-not-resolved="false"></xref> is prepended automatically.
+
+    This method invokes an asynchronouns action, meaning the <xref href="MLEM.Ui.Elements.Image" data-throw-if-not-resolved="false"></xref>'s <xref href="MLEM.Ui.Elements.Image.Texture" data-throw-if-not-resolved="false"></xref> will likely not have loaded in when this method returns.
+  example: []
+  syntax:
+    content: protected Image ParseImage(string path, Action<TextureRegion> onImageFetched = null)
+    parameters:
+    - id: path
+      type: System.String
+      description: The absolute, relative or web path to the image.
+    - id: onImageFetched
+      type: System.Action{MLEM.Textures.TextureRegion}
+      description: An action that is invoked with the loaded image once it is fetched. Note that this action will be invoked synchronously.
+    return:
+      type: MLEM.Ui.Elements.Image
+      description: The loaded image.
+    content.vb: Protected Function ParseImage(path As String, onImageFetched As Action(Of TextureRegion) = Nothing) As Image
+  overload: MLEM.Ui.Parsers.UiParser.ParseImage*
+  exceptions:
+  - type: System.NullReferenceException
+    commentId: T:System.NullReferenceException
+    description: Thrown if <xref href="MLEM.Ui.Parsers.UiParser.GraphicsDevice" data-throw-if-not-resolved="false"></xref> is null, or if there is an <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> loading the image and <xref href="MLEM.Ui.Parsers.UiParser.ImageExceptionHandler" data-throw-if-not-resolved="false"></xref> is unset.
+  nameWithType.vb: UiParser.ParseImage(String, Action(Of TextureRegion))
+  fullName.vb: MLEM.Ui.Parsers.UiParser.ParseImage(String, System.Action(Of MLEM.Textures.TextureRegion))
+  name.vb: ParseImage(String, Action(Of TextureRegion))
+references:
+- uid: MLEM.Ui.Parsers.UiParser.ElementType
+  commentId: T:MLEM.Ui.Parsers.UiParser.ElementType
+  parent: MLEM.Ui.Parsers
+  href: MLEM.Ui.Parsers.UiParser.html
+  name: UiParser.ElementType
+  nameWithType: UiParser.ElementType
+  fullName: MLEM.Ui.Parsers.UiParser.ElementType
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html
+  - name: .
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  spec.vb:
+  - uid: MLEM.Ui.Parsers.UiParser
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html
+  - name: .
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+- uid: MLEM.Ui.Parsers.UiMarkdownParser
+  commentId: T:MLEM.Ui.Parsers.UiMarkdownParser
+  href: MLEM.Ui.Parsers.UiMarkdownParser.html
+  name: UiMarkdownParser
+  nameWithType: UiMarkdownParser
+  fullName: MLEM.Ui.Parsers.UiMarkdownParser
+- uid: MLEM.Ui.Parsers
+  commentId: N:MLEM.Ui.Parsers
+  href: MLEM.html
+  name: MLEM.Ui.Parsers
+  nameWithType: MLEM.Ui.Parsers
+  fullName: MLEM.Ui.Parsers
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Parsers
+    name: Parsers
+    href: MLEM.Ui.Parsers.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Parsers
+    name: Parsers
+    href: MLEM.Ui.Parsers.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Ui.Parsers.UiParser.ElementType[]
+  isExternal: true
+  href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  name: ElementType[]
+  nameWithType: UiParser.ElementType[]
+  fullName: MLEM.Ui.Parsers.UiParser.ElementType[]
+  nameWithType.vb: UiParser.ElementType()
+  fullName.vb: MLEM.Ui.Parsers.UiParser.ElementType()
+  name.vb: ElementType()
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  - name: (
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Exception
+  commentId: T:System.Exception
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.Action{System.String,System.Exception}
+  commentId: T:System.Action{System.String,System.Exception}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<string, Exception>
+  nameWithType: Action<string, Exception>
+  fullName: System.Action<string, System.Exception>
+  nameWithType.vb: Action(Of String, Exception)
+  fullName.vb: System.Action(Of String, System.Exception)
+  name.vb: Action(Of String, Exception)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Exception
+    name: Exception
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.Exception
+    name: Exception
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.exception
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  commentId: T:Microsoft.Xna.Framework.Graphics.GraphicsDevice
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: GraphicsDevice
+  nameWithType: GraphicsDevice
+  fullName: Microsoft.Xna.Framework.Graphics.GraphicsDevice
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: MLEM.Ui.Style.UiStyle
+  commentId: T:MLEM.Ui.Style.UiStyle
+  parent: MLEM.Ui.Style
+  href: MLEM.Ui.Style.UiStyle.html
+  name: UiStyle
+  nameWithType: UiStyle
+  fullName: MLEM.Ui.Style.UiStyle
+- uid: MLEM.Ui.Style.UiStyle.AdditionalFonts
+  commentId: F:MLEM.Ui.Style.UiStyle.AdditionalFonts
+  parent: MLEM.Ui.Style.UiStyle
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AdditionalFonts
+  name: AdditionalFonts
+  nameWithType: UiStyle.AdditionalFonts
+  fullName: MLEM.Ui.Style.UiStyle.AdditionalFonts
+- uid: MLEM.Ui.Parsers.UiParser.#ctor(System.Boolean)
+  commentId: M:MLEM.Ui.Parsers.UiParser.#ctor(System.Boolean)
+  isExternal: true
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser__ctor_System_Boolean_
+  name: UiParser(bool)
+  nameWithType: UiParser.UiParser(bool)
+  fullName: MLEM.Ui.Parsers.UiParser.UiParser(bool)
+  nameWithType.vb: UiParser.New(Boolean)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.New(Boolean)
+  name.vb: New(Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser.#ctor(System.Boolean)
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser__ctor_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - name: New
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Style
+  commentId: N:MLEM.Ui.Style
+  href: MLEM.html
+  name: MLEM.Ui.Style
+  nameWithType: MLEM.Ui.Style
+  fullName: MLEM.Ui.Style
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Style
+    name: Style
+    href: MLEM.Ui.Style.html
+- uid: MLEM.Ui.Parsers.UiParser.#ctor*
+  commentId: Overload:MLEM.Ui.Parsers.UiParser.#ctor
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser__ctor_System_Boolean_
+  name: UiParser
+  nameWithType: UiParser.UiParser
+  fullName: MLEM.Ui.Parsers.UiParser.UiParser
+  nameWithType.vb: UiParser.New
+  fullName.vb: MLEM.Ui.Parsers.UiParser.New
+  name.vb: New
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: MLEM.Ui.Parsers.UiParser.Parse(System.String)
+  commentId: M:MLEM.Ui.Parsers.UiParser.Parse(System.String)
+  parent: MLEM.Ui.Parsers.UiParser
+  isExternal: true
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Parse_System_String_
+  name: Parse(string)
+  nameWithType: UiParser.Parse(string)
+  fullName: MLEM.Ui.Parsers.UiParser.Parse(string)
+  nameWithType.vb: UiParser.Parse(String)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.Parse(String)
+  name.vb: Parse(String)
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser.Parse(System.String)
+    name: Parse
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Parsers.UiParser.Parse(System.String)
+    name: Parse
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Parse_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+  commentId: M:MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+  parent: MLEM.Ui.Parsers.UiParser
+  isExternal: true
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ParseInto_System_String_MLEM_Ui_Elements_Element_
+  name: ParseInto(string, Element)
+  nameWithType: UiParser.ParseInto(string, Element)
+  fullName: MLEM.Ui.Parsers.UiParser.ParseInto(string, MLEM.Ui.Elements.Element)
+  nameWithType.vb: UiParser.ParseInto(String, Element)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.ParseInto(String, MLEM.Ui.Elements.Element)
+  name.vb: ParseInto(String, Element)
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+    name: ParseInto
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ParseInto_System_String_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Parsers.UiParser.ParseInto(System.String,MLEM.Ui.Elements.Element)
+    name: ParseInto
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ParseInto_System_String_MLEM_Ui_Elements_Element_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+- uid: MLEM.Ui.Parsers.UiParser.ParseUnstyled*
+  commentId: Overload:MLEM.Ui.Parsers.UiParser.ParseUnstyled
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ParseUnstyled_System_String_
+  name: ParseUnstyled
+  nameWithType: UiParser.ParseUnstyled
+  fullName: MLEM.Ui.Parsers.UiParser.ParseUnstyled
+- uid: System.Collections.Generic.IEnumerable{System.ValueTuple{MLEM.Ui.Parsers.UiParser.ElementType,MLEM.Ui.Elements.Element}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.ValueTuple{MLEM.Ui.Parsers.UiParser.ElementType,MLEM.Ui.Elements.Element}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<(UiParser.ElementType, Element)>
+  nameWithType: IEnumerable<(UiParser.ElementType, Element)>
+  fullName: System.Collections.Generic.IEnumerable<(MLEM.Ui.Parsers.UiParser.ElementType, MLEM.Ui.Elements.Element)>
+  nameWithType.vb: IEnumerable(Of (UiParser.ElementType, Element))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of (MLEM.Ui.Parsers.UiParser.ElementType, MLEM.Ui.Elements.Element))
+  name.vb: IEnumerable(Of (UiParser.ElementType, Element))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: (
+  - uid: MLEM.Ui.Parsers.UiParser
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html
+  - name: .
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: (
+  - uid: MLEM.Ui.Parsers.UiParser
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html
+  - name: .
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Ui.Elements.Element
+    name: Element
+    href: MLEM.Ui.Elements.Element.html
+  - name: )
+  - name: )
+- uid: MLEM.Ui.Parsers.UiParser
+  commentId: T:MLEM.Ui.Parsers.UiParser
+  parent: MLEM.Ui.Parsers
+  href: MLEM.Ui.Parsers.UiParser.html
+  name: UiParser
+  nameWithType: UiParser
+  fullName: MLEM.Ui.Parsers.UiParser
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+  commentId: M:MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+  isExternal: true
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Style__1_MLEM_Ui_Parsers_UiParser_ElementType_System_Action___0__System_Boolean_
+  name: Style<T>(ElementType, Action<T>, bool)
+  nameWithType: UiParser.Style<T>(UiParser.ElementType, Action<T>, bool)
+  fullName: MLEM.Ui.Parsers.UiParser.Style<T>(MLEM.Ui.Parsers.UiParser.ElementType, System.Action<T>, bool)
+  nameWithType.vb: UiParser.Style(Of T)(UiParser.ElementType, Action(Of T), Boolean)
+  fullName.vb: MLEM.Ui.Parsers.UiParser.Style(Of T)(MLEM.Ui.Parsers.UiParser.ElementType, System.Action(Of T), Boolean)
+  name.vb: Style(Of T)(ElementType, Action(Of T), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+    name: Style
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Style__1_MLEM_Ui_Parsers_UiParser_ElementType_System_Action___0__System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Parsers.UiParser.Style``1(MLEM.Ui.Parsers.UiParser.ElementType,System.Action{``0},System.Boolean)
+    name: Style
+    href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Style__1_MLEM_Ui_Parsers_UiParser_ElementType_System_Action___0__System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  - name: ','
+  - name: " "
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Parsers.UiParser.Parse*
+  commentId: Overload:MLEM.Ui.Parsers.UiParser.Parse
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Parse_System_String_
+  name: Parse
+  nameWithType: UiParser.Parse
+  fullName: MLEM.Ui.Parsers.UiParser.Parse
+- uid: MLEM.Ui.Parsers.UiParser.ParseInto*
+  commentId: Overload:MLEM.Ui.Parsers.UiParser.ParseInto
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ParseInto_System_String_MLEM_Ui_Elements_Element_
+  name: ParseInto
+  nameWithType: UiParser.ParseInto
+  fullName: MLEM.Ui.Parsers.UiParser.ParseInto
+- uid: MLEM.Ui.Elements.Element
+  commentId: T:MLEM.Ui.Elements.Element
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Element.html
+  name: Element
+  nameWithType: Element
+  fullName: MLEM.Ui.Elements.Element
+- uid: MLEM.Ui.Elements
+  commentId: N:MLEM.Ui.Elements
+  href: MLEM.html
+  name: MLEM.Ui.Elements
+  nameWithType: MLEM.Ui.Elements
+  fullName: MLEM.Ui.Elements
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Elements
+    name: Elements
+    href: MLEM.Ui.Elements.html
+- uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+  commentId: M:MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+  isExternal: true
+  href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  name: AddCustomStyle<T>(Action<T>, bool)
+  nameWithType: UiStyle.AddCustomStyle<T>(Action<T>, bool)
+  fullName: MLEM.Ui.Style.UiStyle.AddCustomStyle<T>(System.Action<T>, bool)
+  nameWithType.vb: UiStyle.AddCustomStyle(Of T)(Action(Of T), Boolean)
+  fullName.vb: MLEM.Ui.Style.UiStyle.AddCustomStyle(Of T)(System.Action(Of T), Boolean)
+  name.vb: AddCustomStyle(Of T)(Action(Of T), Boolean)
+  spec.csharp:
+  - uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+    name: AddCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: MLEM.Ui.Style.UiStyle.AddCustomStyle``1(System.Action{``0},System.Boolean)
+    name: AddCustomStyle
+    href: MLEM.Ui.Style.UiStyle.html#MLEM_Ui_Style_UiStyle_AddCustomStyle__1_System_Action___0__System_Boolean_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: MLEM.Ui.Parsers.UiParser.Style*
+  commentId: Overload:MLEM.Ui.Parsers.UiParser.Style
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_Style__1_MLEM_Ui_Parsers_UiParser_ElementType_System_Action___0__System_Boolean_
+  name: Style
+  nameWithType: UiParser.Style
+  fullName: MLEM.Ui.Parsers.UiParser.Style
+- uid: System.Action{{T}}
+  commentId: T:System.Action{``0}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: MLEM.Ui.Elements.Image
+  commentId: T:MLEM.Ui.Elements.Image
+  parent: MLEM.Ui.Elements
+  href: MLEM.Ui.Elements.Image.html
+  name: Image
+  nameWithType: Image
+  fullName: MLEM.Ui.Elements.Image
+- uid: MLEM.Ui.Parsers.UiParser.ImageBasePath
+  commentId: F:MLEM.Ui.Parsers.UiParser.ImageBasePath
+  parent: MLEM.Ui.Parsers.UiParser
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ImageBasePath
+  name: ImageBasePath
+  nameWithType: UiParser.ImageBasePath
+  fullName: MLEM.Ui.Parsers.UiParser.ImageBasePath
+- uid: MLEM.Ui.Elements.Image.Texture
+  commentId: P:MLEM.Ui.Elements.Image.Texture
+  parent: MLEM.Ui.Elements.Image
+  href: MLEM.Ui.Elements.Image.html#MLEM_Ui_Elements_Image_Texture
+  name: Texture
+  nameWithType: Image.Texture
+  fullName: MLEM.Ui.Elements.Image.Texture
+- uid: MLEM.Ui.Parsers.UiParser.GraphicsDevice
+  commentId: F:MLEM.Ui.Parsers.UiParser.GraphicsDevice
+  parent: MLEM.Ui.Parsers.UiParser
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_GraphicsDevice
+  name: GraphicsDevice
+  nameWithType: UiParser.GraphicsDevice
+  fullName: MLEM.Ui.Parsers.UiParser.GraphicsDevice
+- uid: MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+  commentId: F:MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+  parent: MLEM.Ui.Parsers.UiParser
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ImageExceptionHandler
+  name: ImageExceptionHandler
+  nameWithType: UiParser.ImageExceptionHandler
+  fullName: MLEM.Ui.Parsers.UiParser.ImageExceptionHandler
+- uid: System.NullReferenceException
+  commentId: T:System.NullReferenceException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullreferenceexception
+  name: NullReferenceException
+  nameWithType: NullReferenceException
+  fullName: System.NullReferenceException
+- uid: MLEM.Ui.Parsers.UiParser.ParseImage*
+  commentId: Overload:MLEM.Ui.Parsers.UiParser.ParseImage
+  href: MLEM.Ui.Parsers.UiParser.html#MLEM_Ui_Parsers_UiParser_ParseImage_System_String_System_Action_MLEM_Textures_TextureRegion__
+  name: ParseImage
+  nameWithType: UiParser.ParseImage
+  fullName: MLEM.Ui.Parsers.UiParser.ParseImage
+- uid: System.Action{MLEM.Textures.TextureRegion}
+  commentId: T:System.Action{MLEM.Textures.TextureRegion}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<TextureRegion>
+  nameWithType: Action<TextureRegion>
+  fullName: System.Action<MLEM.Textures.TextureRegion>
+  nameWithType.vb: Action(Of TextureRegion)
+  fullName.vb: System.Action(Of MLEM.Textures.TextureRegion)
+  name.vb: Action(Of TextureRegion)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Textures.TextureRegion
+    name: TextureRegion
+    href: MLEM.Textures.TextureRegion.html
+  - name: )

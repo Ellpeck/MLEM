@@ -1,0 +1,1566 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Data.NetBufferSerializer
+  commentId: T:MLEM.Data.NetBufferSerializer
+  id: NetBufferSerializer
+  parent: MLEM.Data
+  children:
+  - MLEM.Data.NetBufferSerializer.#ctor
+  - MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+  - MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+  - MLEM.Data.NetBufferSerializer.Deserialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  - MLEM.Data.NetBufferSerializer.Serialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  langs:
+  - csharp
+  - vb
+  name: NetBufferSerializer
+  nameWithType: NetBufferSerializer
+  fullName: MLEM.Data.NetBufferSerializer
+  type: Class
+  source:
+    remote:
+      path: MLEM.Data/NetBufferSerializer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: NetBufferSerializer
+    path: ../MLEM.Data/NetBufferSerializer.cs
+    startLine: 12
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    A net buffer serializer allows easily writing generic objects into a Lidgren.Network <xref href="Lidgren.Network.NetBuffer" data-throw-if-not-resolved="false"></xref>.
+
+    It can be used both for serialization of outgoing packets, and deserialization of incoming packets.
+
+    Before serializing and deserializing an object, each of the object's fields has to have a handler. New handlers can be added using <xref href="MLEM.Data.NetBufferSerializer.AddHandler%60%601(System.Action%7bLidgren.Network.NetBuffer%2c%60%600%7d%2cSystem.Func%7bLidgren.Network.NetBuffer%2c%60%600%7d)" data-throw-if-not-resolved="false"></xref> or <xref href="MLEM.Data.NetBufferSerializer.AddHandler%60%601(Newtonsoft.Json.JsonSerializer)" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")]
+
+      public class NetBufferSerializer
+    content.vb: >-
+      <Obsolete("Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.")>
+
+      Public Class NetBufferSerializer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  - MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Lidgren.Network support is deprecated. Consider using LiteNetLib or a custom implementation instead.
+- uid: MLEM.Data.NetBufferSerializer.#ctor
+  commentId: M:MLEM.Data.NetBufferSerializer.#ctor
+  id: '#ctor'
+  parent: MLEM.Data.NetBufferSerializer
+  langs:
+  - csharp
+  - vb
+  name: NetBufferSerializer()
+  nameWithType: NetBufferSerializer.NetBufferSerializer()
+  fullName: MLEM.Data.NetBufferSerializer.NetBufferSerializer()
+  type: Constructor
+  source:
+    remote:
+      path: MLEM.Data/NetBufferSerializer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: .ctor
+    path: ../MLEM.Data/NetBufferSerializer.cs
+    startLine: 25
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Create a new net buffer serializer with some default serialization and deserialization implementations for various types.
+  example: []
+  syntax:
+    content: public NetBufferSerializer()
+    content.vb: Public Sub New()
+  overload: MLEM.Data.NetBufferSerializer.#ctor*
+  nameWithType.vb: NetBufferSerializer.New()
+  fullName.vb: MLEM.Data.NetBufferSerializer.New()
+  name.vb: New()
+- uid: MLEM.Data.NetBufferSerializer.Serialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  commentId: M:MLEM.Data.NetBufferSerializer.Serialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  id: Serialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  parent: MLEM.Data.NetBufferSerializer
+  langs:
+  - csharp
+  - vb
+  name: Serialize(NetBuffer, object, BindingFlags)
+  nameWithType: NetBufferSerializer.Serialize(NetBuffer, object, BindingFlags)
+  fullName: MLEM.Data.NetBufferSerializer.Serialize(Lidgren.Network.NetBuffer, object, System.Reflection.BindingFlags)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetBufferSerializer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Serialize
+    path: ../MLEM.Data/NetBufferSerializer.cs
+    startLine: 50
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Serializes the given object into the given net buffer.
+
+    Note that each field in the object has to have a handler (<xref href="MLEM.Data.NetBufferSerializer.AddHandler%60%601(System.Action%7bLidgren.Network.NetBuffer%2c%60%600%7d%2cSystem.Func%7bLidgren.Network.NetBuffer%2c%60%600%7d)" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: public void Serialize(NetBuffer buffer, object o, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to serialize into
+    - id: o
+      type: System.Object
+      description: The object to serialize
+    - id: flags
+      type: System.Reflection.BindingFlags
+      description: The binding flags to search for fields in the object by
+    content.vb: Public Sub Serialize(buffer As NetBuffer, o As Object, flags As BindingFlags = BindingFlags.Instance Or BindingFlags.Public Or BindingFlags.NonPublic)
+  overload: MLEM.Data.NetBufferSerializer.Serialize*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If any of the object's fields has no writer
+  nameWithType.vb: NetBufferSerializer.Serialize(NetBuffer, Object, BindingFlags)
+  fullName.vb: MLEM.Data.NetBufferSerializer.Serialize(Lidgren.Network.NetBuffer, Object, System.Reflection.BindingFlags)
+  name.vb: Serialize(NetBuffer, Object, BindingFlags)
+- uid: MLEM.Data.NetBufferSerializer.Deserialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  commentId: M:MLEM.Data.NetBufferSerializer.Deserialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  id: Deserialize(Lidgren.Network.NetBuffer,System.Object,System.Reflection.BindingFlags)
+  parent: MLEM.Data.NetBufferSerializer
+  langs:
+  - csharp
+  - vb
+  name: Deserialize(NetBuffer, object, BindingFlags)
+  nameWithType: NetBufferSerializer.Deserialize(NetBuffer, object, BindingFlags)
+  fullName: MLEM.Data.NetBufferSerializer.Deserialize(Lidgren.Network.NetBuffer, object, System.Reflection.BindingFlags)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetBufferSerializer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Deserialize
+    path: ../MLEM.Data/NetBufferSerializer.cs
+    startLine: 66
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Deserializes the net buffer's content into the given object.
+
+    If this is used for packet serialization, a new instance of the required type has to be created before this method is called.
+  example: []
+  syntax:
+    content: public void Deserialize(NetBuffer buffer, object o, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+    parameters:
+    - id: buffer
+      type: Lidgren.Network.NetBuffer
+      description: The buffer to read the data from
+    - id: o
+      type: System.Object
+      description: The object to serialize into
+    - id: flags
+      type: System.Reflection.BindingFlags
+      description: The binding flags to search for fields in the object by
+    content.vb: Public Sub Deserialize(buffer As NetBuffer, o As Object, flags As BindingFlags = BindingFlags.Instance Or BindingFlags.Public Or BindingFlags.NonPublic)
+  overload: MLEM.Data.NetBufferSerializer.Deserialize*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: If any of the object's fields has no reader
+  nameWithType.vb: NetBufferSerializer.Deserialize(NetBuffer, Object, BindingFlags)
+  fullName.vb: MLEM.Data.NetBufferSerializer.Deserialize(Lidgren.Network.NetBuffer, Object, System.Reflection.BindingFlags)
+  name.vb: Deserialize(NetBuffer, Object, BindingFlags)
+- uid: MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+  commentId: M:MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+  id: AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+  parent: MLEM.Data.NetBufferSerializer
+  langs:
+  - csharp
+  - vb
+  name: AddHandler<T>(Action<NetBuffer, T>, Func<NetBuffer, T>)
+  nameWithType: NetBufferSerializer.AddHandler<T>(Action<NetBuffer, T>, Func<NetBuffer, T>)
+  fullName: MLEM.Data.NetBufferSerializer.AddHandler<T>(System.Action<Lidgren.Network.NetBuffer, T>, System.Func<Lidgren.Network.NetBuffer, T>)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetBufferSerializer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AddHandler
+    path: ../MLEM.Data/NetBufferSerializer.cs
+    startLine: 89
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: Adds a manually created deserialization and serialization handler to this net buffer serializer.
+  example: []
+  syntax:
+    content: public void AddHandler<T>(Action<NetBuffer, T> write, Func<NetBuffer, T> read)
+    parameters:
+    - id: write
+      type: System.Action{Lidgren.Network.NetBuffer,{T}}
+      description: The function to write the given object into the net buffer
+    - id: read
+      type: System.Func{Lidgren.Network.NetBuffer,{T}}
+      description: The function to read the given object out of the net buffer
+    typeParameters:
+    - id: T
+      description: The type that will be serialized and deserialized
+    content.vb: Public Sub [AddHandler](Of T)(write As Action(Of NetBuffer, T), read As Func(Of NetBuffer, T))
+  overload: MLEM.Data.NetBufferSerializer.AddHandler*
+  nameWithType.vb: NetBufferSerializer.AddHandler(Of T)(Action(Of NetBuffer, T), Func(Of NetBuffer, T))
+  fullName.vb: MLEM.Data.NetBufferSerializer.AddHandler(Of T)(System.Action(Of Lidgren.Network.NetBuffer, T), System.Func(Of Lidgren.Network.NetBuffer, T))
+  name.vb: AddHandler(Of T)(Action(Of NetBuffer, T), Func(Of NetBuffer, T))
+- uid: MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+  commentId: M:MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+  id: AddHandler``1(Newtonsoft.Json.JsonSerializer)
+  parent: MLEM.Data.NetBufferSerializer
+  langs:
+  - csharp
+  - vb
+  name: AddHandler<T>(JsonSerializer)
+  nameWithType: NetBufferSerializer.AddHandler<T>(JsonSerializer)
+  fullName: MLEM.Data.NetBufferSerializer.AddHandler<T>(Newtonsoft.Json.JsonSerializer)
+  type: Method
+  source:
+    remote:
+      path: MLEM.Data/NetBufferSerializer.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AddHandler
+    path: ../MLEM.Data/NetBufferSerializer.cs
+    startLine: 100
+  assemblies:
+  - MLEM.Data
+  namespace: MLEM.Data
+  summary: >-
+    Adds a JSON-based deserialization and serialization handler to this net buffer serializer.
+
+    Objects that are serialized in this way are converted to JSON, and the resulting JSON is compressed.
+  example: []
+  syntax:
+    content: public void AddHandler<T>(JsonSerializer serializer)
+    parameters:
+    - id: serializer
+      type: Newtonsoft.Json.JsonSerializer
+      description: The JSON serializer to use
+    typeParameters:
+    - id: T
+      description: The type that will be serialized and deserialized
+    content.vb: Public Sub [AddHandler](Of T)(serializer As JsonSerializer)
+  overload: MLEM.Data.NetBufferSerializer.AddHandler*
+  nameWithType.vb: NetBufferSerializer.AddHandler(Of T)(JsonSerializer)
+  fullName.vb: MLEM.Data.NetBufferSerializer.AddHandler(Of T)(Newtonsoft.Json.JsonSerializer)
+  name.vb: AddHandler(Of T)(JsonSerializer)
+references:
+- uid: Lidgren.Network.NetBuffer
+  commentId: T:Lidgren.Network.NetBuffer
+  parent: Lidgren.Network
+  isExternal: true
+  name: NetBuffer
+  nameWithType: NetBuffer
+  fullName: Lidgren.Network.NetBuffer
+- uid: MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+  commentId: M:MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+  isExternal: true
+  href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_System_Action_Lidgren_Network_NetBuffer___0__System_Func_Lidgren_Network_NetBuffer___0__
+  name: AddHandler<T>(Action<NetBuffer, T>, Func<NetBuffer, T>)
+  nameWithType: NetBufferSerializer.AddHandler<T>(Action<NetBuffer, T>, Func<NetBuffer, T>)
+  fullName: MLEM.Data.NetBufferSerializer.AddHandler<T>(System.Action<Lidgren.Network.NetBuffer, T>, System.Func<Lidgren.Network.NetBuffer, T>)
+  nameWithType.vb: NetBufferSerializer.AddHandler(Of T)(Action(Of NetBuffer, T), Func(Of NetBuffer, T))
+  fullName.vb: MLEM.Data.NetBufferSerializer.AddHandler(Of T)(System.Action(Of Lidgren.Network.NetBuffer, T), System.Func(Of Lidgren.Network.NetBuffer, T))
+  name.vb: AddHandler(Of T)(Action(Of NetBuffer, T), Func(Of NetBuffer, T))
+  spec.csharp:
+  - uid: MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+    name: AddHandler
+    href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_System_Action_Lidgren_Network_NetBuffer___0__System_Func_Lidgren_Network_NetBuffer___0__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.NetBufferSerializer.AddHandler``1(System.Action{Lidgren.Network.NetBuffer,``0},System.Func{Lidgren.Network.NetBuffer,``0})
+    name: AddHandler
+    href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_System_Action_Lidgren_Network_NetBuffer___0__System_Func_Lidgren_Network_NetBuffer___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+  commentId: M:MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+  isExternal: true
+  href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_Newtonsoft_Json_JsonSerializer_
+  name: AddHandler<T>(JsonSerializer)
+  nameWithType: NetBufferSerializer.AddHandler<T>(JsonSerializer)
+  fullName: MLEM.Data.NetBufferSerializer.AddHandler<T>(Newtonsoft.Json.JsonSerializer)
+  nameWithType.vb: NetBufferSerializer.AddHandler(Of T)(JsonSerializer)
+  fullName.vb: MLEM.Data.NetBufferSerializer.AddHandler(Of T)(Newtonsoft.Json.JsonSerializer)
+  name.vb: AddHandler(Of T)(JsonSerializer)
+  spec.csharp:
+  - uid: MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+    name: AddHandler
+    href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_Newtonsoft_Json_JsonSerializer_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.NetBufferSerializer.AddHandler``1(Newtonsoft.Json.JsonSerializer)
+    name: AddHandler
+    href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_Newtonsoft_Json_JsonSerializer_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: Newtonsoft.Json.JsonSerializer
+    name: JsonSerializer
+    isExternal: true
+  - name: )
+- uid: MLEM.Data
+  commentId: N:MLEM.Data
+  href: MLEM.html
+  name: MLEM.Data
+  nameWithType: MLEM.Data
+  fullName: MLEM.Data
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Data
+    name: Data
+    href: MLEM.Data.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<NetBufferSerializer>(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<NetBufferSerializer>(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<MLEM.Data.NetBufferSerializer>(MLEM.Data.NetBufferSerializer, MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of NetBufferSerializer)(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of MLEM.Data.NetBufferSerializer)(MLEM.Data.NetBufferSerializer, MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of NetBufferSerializer)(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.NetBufferSerializer,MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(MLEM.Data.NetBufferSerializer,MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.Copy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<NetBufferSerializer>(NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<NetBufferSerializer>(NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<MLEM.Data.NetBufferSerializer>(MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of NetBufferSerializer)(NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of MLEM.Data.NetBufferSerializer)(MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of NetBufferSerializer)(NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<NetBufferSerializer>(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<NetBufferSerializer>(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<MLEM.Data.NetBufferSerializer>(MLEM.Data.NetBufferSerializer, MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of NetBufferSerializer)(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of MLEM.Data.NetBufferSerializer)(MLEM.Data.NetBufferSerializer, MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of NetBufferSerializer)(NetBufferSerializer, NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.NetBufferSerializer,MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(MLEM.Data.NetBufferSerializer,MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.NetBufferSerializer.MLEM.Data.CopyExtensions.DeepCopy``1(System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  parent: MLEM.Data.CopyExtensions
+  definition: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<NetBufferSerializer>(NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<NetBufferSerializer>(NetBufferSerializer, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<MLEM.Data.NetBufferSerializer>(MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of NetBufferSerializer)(NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of MLEM.Data.NetBufferSerializer)(MLEM.Data.NetBufferSerializer, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of NetBufferSerializer)(NetBufferSerializer, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: '>'
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(MLEM.Data.NetBufferSerializer,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: )
+  - name: (
+  - uid: MLEM.Data.NetBufferSerializer
+    name: NetBufferSerializer
+    href: MLEM.Data.NetBufferSerializer.html
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: Lidgren.Network
+  commentId: N:Lidgren.Network
+  isExternal: true
+  name: Lidgren.Network
+  nameWithType: Lidgren.Network
+  fullName: Lidgren.Network
+  spec.csharp:
+  - uid: Lidgren
+    name: Lidgren
+    isExternal: true
+  - name: .
+  - uid: Lidgren.Network
+    name: Network
+    isExternal: true
+  spec.vb:
+  - uid: Lidgren
+    name: Lidgren
+    isExternal: true
+  - name: .
+  - uid: Lidgren.Network
+    name: Network
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.CopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.CopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.CopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: CopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.CopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: CopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_CopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions
+  commentId: T:MLEM.Data.CopyExtensions
+  parent: MLEM.Data
+  href: MLEM.Data.CopyExtensions.html
+  name: CopyExtensions
+  nameWithType: CopyExtensions
+  fullName: MLEM.Data.CopyExtensions
+- uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.Copy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.Copy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.Copy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: Copy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.Copy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: Copy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_Copy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopyInto<T>(T, T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopyInto<T>(T, T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopyInto(Of T)(T, T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopyInto(Of T)(T, T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopyInto``1(``0,``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopyInto
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopyInto__1___0___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  commentId: M:MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+  isExternal: true
+  href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  name: DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  nameWithType: CopyExtensions.DeepCopy<T>(T, BindingFlags, Predicate<FieldInfo>)
+  fullName: MLEM.Data.CopyExtensions.DeepCopy<T>(T, System.Reflection.BindingFlags, System.Predicate<System.Reflection.FieldInfo>)
+  nameWithType.vb: CopyExtensions.DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  fullName.vb: MLEM.Data.CopyExtensions.DeepCopy(Of T)(T, System.Reflection.BindingFlags, System.Predicate(Of System.Reflection.FieldInfo))
+  name.vb: DeepCopy(Of T)(T, BindingFlags, Predicate(Of FieldInfo))
+  spec.csharp:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: MLEM.Data.CopyExtensions.DeepCopy``1(``0,System.Reflection.BindingFlags,System.Predicate{System.Reflection.FieldInfo})
+    name: DeepCopy
+    href: MLEM.Data.CopyExtensions.html#MLEM_Data_CopyExtensions_DeepCopy__1___0_System_Reflection_BindingFlags_System_Predicate_System_Reflection_FieldInfo__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Reflection.BindingFlags
+    name: BindingFlags
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  - name: ','
+  - name: " "
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Reflection.FieldInfo
+    name: FieldInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo
+  - name: )
+  - name: )
+- uid: MLEM.Data.NetBufferSerializer.#ctor*
+  commentId: Overload:MLEM.Data.NetBufferSerializer.#ctor
+  href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer__ctor
+  name: NetBufferSerializer
+  nameWithType: NetBufferSerializer.NetBufferSerializer
+  fullName: MLEM.Data.NetBufferSerializer.NetBufferSerializer
+  nameWithType.vb: NetBufferSerializer.New
+  fullName.vb: MLEM.Data.NetBufferSerializer.New
+  name.vb: New
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: MLEM.Data.NetBufferSerializer.Serialize*
+  commentId: Overload:MLEM.Data.NetBufferSerializer.Serialize
+  href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_Serialize_Lidgren_Network_NetBuffer_System_Object_System_Reflection_BindingFlags_
+  name: Serialize
+  nameWithType: NetBufferSerializer.Serialize
+  fullName: MLEM.Data.NetBufferSerializer.Serialize
+- uid: System.Reflection.BindingFlags
+  commentId: T:System.Reflection.BindingFlags
+  parent: System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags
+  name: BindingFlags
+  nameWithType: BindingFlags
+  fullName: System.Reflection.BindingFlags
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Reflection
+    name: Reflection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.reflection
+- uid: MLEM.Data.NetBufferSerializer.Deserialize*
+  commentId: Overload:MLEM.Data.NetBufferSerializer.Deserialize
+  href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_Deserialize_Lidgren_Network_NetBuffer_System_Object_System_Reflection_BindingFlags_
+  name: Deserialize
+  nameWithType: NetBufferSerializer.Deserialize
+  fullName: MLEM.Data.NetBufferSerializer.Deserialize
+- uid: MLEM.Data.NetBufferSerializer.AddHandler*
+  commentId: Overload:MLEM.Data.NetBufferSerializer.AddHandler
+  href: MLEM.Data.NetBufferSerializer.html#MLEM_Data_NetBufferSerializer_AddHandler__1_System_Action_Lidgren_Network_NetBuffer___0__System_Func_Lidgren_Network_NetBuffer___0__
+  name: AddHandler
+  nameWithType: NetBufferSerializer.AddHandler
+  fullName: MLEM.Data.NetBufferSerializer.AddHandler
+- uid: System.Action{Lidgren.Network.NetBuffer,{T}}
+  commentId: T:System.Action{Lidgren.Network.NetBuffer,``0}
+  parent: System
+  definition: System.Action`2
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<NetBuffer, T>
+  nameWithType: Action<NetBuffer, T>
+  fullName: System.Action<Lidgren.Network.NetBuffer, T>
+  nameWithType.vb: Action(Of NetBuffer, T)
+  fullName.vb: System.Action(Of Lidgren.Network.NetBuffer, T)
+  name.vb: Action(Of NetBuffer, T)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Func{Lidgren.Network.NetBuffer,{T}}
+  commentId: T:System.Func{Lidgren.Network.NetBuffer,``0}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<NetBuffer, T>
+  nameWithType: Func<NetBuffer, T>
+  fullName: System.Func<Lidgren.Network.NetBuffer, T>
+  nameWithType.vb: Func(Of NetBuffer, T)
+  fullName.vb: System.Func(Of Lidgren.Network.NetBuffer, T)
+  name.vb: Func(Of NetBuffer, T)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Lidgren.Network.NetBuffer
+    name: NetBuffer
+    isExternal: true
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Action`2
+  commentId: T:System.Action`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-2
+  name: Action<T1, T2>
+  nameWithType: Action<T1, T2>
+  fullName: System.Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
+  fullName.vb: System.Action(Of T1, T2)
+  name.vb: Action(Of T1, T2)
+  spec.csharp:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: <
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`2
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: Newtonsoft.Json.JsonSerializer
+  commentId: T:Newtonsoft.Json.JsonSerializer
+  parent: Newtonsoft.Json
+  isExternal: true
+  name: JsonSerializer
+  nameWithType: JsonSerializer
+  fullName: Newtonsoft.Json.JsonSerializer
+- uid: Newtonsoft.Json
+  commentId: N:Newtonsoft.Json
+  isExternal: true
+  name: Newtonsoft.Json
+  nameWithType: Newtonsoft.Json
+  fullName: Newtonsoft.Json
+  spec.csharp:
+  - uid: Newtonsoft
+    name: Newtonsoft
+    isExternal: true
+  - name: .
+  - uid: Newtonsoft.Json
+    name: Json
+    isExternal: true
+  spec.vb:
+  - uid: Newtonsoft
+    name: Newtonsoft
+    isExternal: true
+  - name: .
+  - uid: Newtonsoft.Json
+    name: Json
+    isExternal: true

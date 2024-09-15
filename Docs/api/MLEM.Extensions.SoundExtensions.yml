@@ -1,0 +1,456 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Extensions.SoundExtensions
+  commentId: T:MLEM.Extensions.SoundExtensions
+  id: SoundExtensions
+  parent: MLEM.Extensions
+  children:
+  - MLEM.Extensions.SoundExtensions.CreateInstance(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: SoundExtensions
+  nameWithType: SoundExtensions
+  fullName: MLEM.Extensions.SoundExtensions
+  type: Class
+  source:
+    remote:
+      path: MLEM/Extensions/SoundExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: SoundExtensions
+    path: ../MLEM/Extensions/SoundExtensions.cs
+    startLine: 6
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: A set of extensions for dealing with <xref href="Microsoft.Xna.Framework.Audio.SoundEffect" data-throw-if-not-resolved="false"></xref> and <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static class SoundExtensions
+    content.vb: Public Module SoundExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: MLEM.Extensions.SoundExtensions.CreateInstance(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single,System.Boolean)
+  commentId: M:MLEM.Extensions.SoundExtensions.CreateInstance(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single,System.Boolean)
+  id: CreateInstance(Microsoft.Xna.Framework.Audio.SoundEffect,System.Single,System.Single,System.Single,System.Boolean)
+  isExtensionMethod: true
+  parent: MLEM.Extensions.SoundExtensions
+  langs:
+  - csharp
+  - vb
+  name: CreateInstance(SoundEffect, float, float, float, bool)
+  nameWithType: SoundExtensions.CreateInstance(SoundEffect, float, float, float, bool)
+  fullName: MLEM.Extensions.SoundExtensions.CreateInstance(Microsoft.Xna.Framework.Audio.SoundEffect, float, float, float, bool)
+  type: Method
+  source:
+    remote:
+      path: MLEM/Extensions/SoundExtensions.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CreateInstance
+    path: ../MLEM/Extensions/SoundExtensions.cs
+    startLine: 17
+  assemblies:
+  - MLEM
+  namespace: MLEM.Extensions
+  summary: Creates a new <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance" data-throw-if-not-resolved="false"></xref> from the given <xref href="Microsoft.Xna.Framework.Audio.SoundEffect" data-throw-if-not-resolved="false"></xref>, allowing optional instance data to be supplied as part of the method call
+  example: []
+  syntax:
+    content: public static SoundEffectInstance CreateInstance(this SoundEffect effect, float volume = 1, float pitch = 0, float pan = 0, bool isLooped = false)
+    parameters:
+    - id: effect
+      type: Microsoft.Xna.Framework.Audio.SoundEffect
+      description: The sound effect to create an instance from
+    - id: volume
+      type: System.Single
+      description: The value to set the returned instance's <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume" data-throw-if-not-resolved="false"></xref> to. Defaults to 1.
+    - id: pitch
+      type: System.Single
+      description: The value to set the returned instance's <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch" data-throw-if-not-resolved="false"></xref> to. Defaults to 0.
+    - id: pan
+      type: System.Single
+      description: The value to set the returned instance's <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan" data-throw-if-not-resolved="false"></xref> to. Defaults to 0.
+    - id: isLooped
+      type: System.Boolean
+      description: The value to set the returned instance's <xref href="Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped" data-throw-if-not-resolved="false"></xref> to. Defaults to false.
+    return:
+      type: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+      description: ''
+    content.vb: Public Shared Function CreateInstance(effect As SoundEffect, volume As Single = 1, pitch As Single = 0, pan As Single = 0, isLooped As Boolean = False) As SoundEffectInstance
+  overload: MLEM.Extensions.SoundExtensions.CreateInstance*
+  nameWithType.vb: SoundExtensions.CreateInstance(SoundEffect, Single, Single, Single, Boolean)
+  fullName.vb: MLEM.Extensions.SoundExtensions.CreateInstance(Microsoft.Xna.Framework.Audio.SoundEffect, Single, Single, Single, Boolean)
+  name.vb: CreateInstance(SoundEffect, Single, Single, Single, Boolean)
+references:
+- uid: Microsoft.Xna.Framework.Audio.SoundEffect
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffect
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffect
+  nameWithType: SoundEffect
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffect
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  commentId: T:Microsoft.Xna.Framework.Audio.SoundEffectInstance
+  parent: Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: SoundEffectInstance
+  nameWithType: SoundEffectInstance
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance
+- uid: MLEM.Extensions
+  commentId: N:MLEM.Extensions
+  href: MLEM.html
+  name: MLEM.Extensions
+  nameWithType: MLEM.Extensions
+  fullName: MLEM.Extensions
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Extensions
+    name: Extensions
+    href: MLEM.Extensions.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: Microsoft.Xna.Framework.Audio
+  commentId: N:Microsoft.Xna.Framework.Audio
+  isExternal: true
+  name: Microsoft.Xna.Framework.Audio
+  nameWithType: Microsoft.Xna.Framework.Audio
+  fullName: Microsoft.Xna.Framework.Audio
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Audio
+    name: Audio
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Audio
+    name: Audio
+    isExternal: true
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume
+  commentId: P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume
+  isExternal: true
+  name: Volume
+  nameWithType: SoundEffectInstance.Volume
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch
+  commentId: P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch
+  isExternal: true
+  name: Pitch
+  nameWithType: SoundEffectInstance.Pitch
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan
+  commentId: P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan
+  isExternal: true
+  name: Pan
+  nameWithType: SoundEffectInstance.Pan
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan
+- uid: Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped
+  commentId: P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped
+  isExternal: true
+  name: IsLooped
+  nameWithType: SoundEffectInstance.IsLooped
+  fullName: Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped
+- uid: MLEM.Extensions.SoundExtensions.CreateInstance*
+  commentId: Overload:MLEM.Extensions.SoundExtensions.CreateInstance
+  href: MLEM.Extensions.SoundExtensions.html#MLEM_Extensions_SoundExtensions_CreateInstance_Microsoft_Xna_Framework_Audio_SoundEffect_System_Single_System_Single_System_Single_System_Boolean_
+  name: CreateInstance
+  nameWithType: SoundExtensions.CreateInstance
+  fullName: MLEM.Extensions.SoundExtensions.CreateInstance
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

@@ -1,0 +1,157 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting.TextAlignment
+  commentId: T:MLEM.Formatting.TextAlignment
+  id: TextAlignment
+  parent: MLEM.Formatting
+  children:
+  - MLEM.Formatting.TextAlignment.Center
+  - MLEM.Formatting.TextAlignment.Left
+  - MLEM.Formatting.TextAlignment.Right
+  langs:
+  - csharp
+  - vb
+  name: TextAlignment
+  nameWithType: TextAlignment
+  fullName: MLEM.Formatting.TextAlignment
+  type: Enum
+  source:
+    remote:
+      path: MLEM/Formatting/TextAlignment.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: TextAlignment
+    path: ../MLEM/Formatting/TextAlignment.cs
+    startLine: 4
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  summary: An enumeration that represents a set of alignment options for <xref href="MLEM.Formatting.TokenizedString" data-throw-if-not-resolved="false"></xref> objects and MLEM.Ui paragraphs.
+  example: []
+  syntax:
+    content: public enum TextAlignment
+    content.vb: Public Enum TextAlignment
+- uid: MLEM.Formatting.TextAlignment.Left
+  commentId: F:MLEM.Formatting.TextAlignment.Left
+  id: Left
+  parent: MLEM.Formatting.TextAlignment
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: TextAlignment.Left
+  fullName: MLEM.Formatting.TextAlignment.Left
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/TextAlignment.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Left
+    path: ../MLEM/Formatting/TextAlignment.cs
+    startLine: 9
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  summary: Left alignment, which is also the default value
+  example: []
+  syntax:
+    content: Left = 0
+    return:
+      type: MLEM.Formatting.TextAlignment
+- uid: MLEM.Formatting.TextAlignment.Center
+  commentId: F:MLEM.Formatting.TextAlignment.Center
+  id: Center
+  parent: MLEM.Formatting.TextAlignment
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: TextAlignment.Center
+  fullName: MLEM.Formatting.TextAlignment.Center
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/TextAlignment.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Center
+    path: ../MLEM/Formatting/TextAlignment.cs
+    startLine: 13
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  summary: Center alignment
+  example: []
+  syntax:
+    content: Center = 1
+    return:
+      type: MLEM.Formatting.TextAlignment
+- uid: MLEM.Formatting.TextAlignment.Right
+  commentId: F:MLEM.Formatting.TextAlignment.Right
+  id: Right
+  parent: MLEM.Formatting.TextAlignment
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: TextAlignment.Right
+  fullName: MLEM.Formatting.TextAlignment.Right
+  type: Field
+  source:
+    remote:
+      path: MLEM/Formatting/TextAlignment.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: Right
+    path: ../MLEM/Formatting/TextAlignment.cs
+    startLine: 18
+  assemblies:
+  - MLEM
+  namespace: MLEM.Formatting
+  summary: >-
+    Right alignment.
+
+    In this alignment option, trailing spaces are ignored to ensure that visual alignment is consistent.
+  example: []
+  syntax:
+    content: Right = 2
+    return:
+      type: MLEM.Formatting.TextAlignment
+references:
+- uid: MLEM.Formatting.TokenizedString
+  commentId: T:MLEM.Formatting.TokenizedString
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TokenizedString.html
+  name: TokenizedString
+  nameWithType: TokenizedString
+  fullName: MLEM.Formatting.TokenizedString
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  href: MLEM.html
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+- uid: MLEM.Formatting.TextAlignment
+  commentId: T:MLEM.Formatting.TextAlignment
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TextAlignment.html
+  name: TextAlignment
+  nameWithType: TextAlignment
+  fullName: MLEM.Formatting.TextAlignment

@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Ui.Parsers
+  commentId: N:MLEM.Ui.Parsers
+  id: MLEM.Ui.Parsers
+  children:
+  - MLEM.Ui.Parsers.UiMarkdownParser
+  - MLEM.Ui.Parsers.UiParser
+  - MLEM.Ui.Parsers.UiParser.ElementType
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Ui.Parsers
+  nameWithType: MLEM.Ui.Parsers
+  fullName: MLEM.Ui.Parsers
+  type: Namespace
+  assemblies:
+  - MLEM.Ui
+references:
+- uid: MLEM.Ui.Parsers.UiMarkdownParser
+  commentId: T:MLEM.Ui.Parsers.UiMarkdownParser
+  href: MLEM.Ui.Parsers.UiMarkdownParser.html
+  name: UiMarkdownParser
+  nameWithType: UiMarkdownParser
+  fullName: MLEM.Ui.Parsers.UiMarkdownParser
+- uid: MLEM.Ui.Parsers.UiParser
+  commentId: T:MLEM.Ui.Parsers.UiParser
+  parent: MLEM.Ui.Parsers
+  href: MLEM.Ui.Parsers.UiParser.html
+  name: UiParser
+  nameWithType: UiParser
+  fullName: MLEM.Ui.Parsers.UiParser
+- uid: MLEM.Ui.Parsers.UiParser.ElementType
+  commentId: T:MLEM.Ui.Parsers.UiParser.ElementType
+  parent: MLEM.Ui.Parsers
+  href: MLEM.Ui.Parsers.UiParser.html
+  name: UiParser.ElementType
+  nameWithType: UiParser.ElementType
+  fullName: MLEM.Ui.Parsers.UiParser.ElementType
+  spec.csharp:
+  - uid: MLEM.Ui.Parsers.UiParser
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html
+  - name: .
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+  spec.vb:
+  - uid: MLEM.Ui.Parsers.UiParser
+    name: UiParser
+    href: MLEM.Ui.Parsers.UiParser.html
+  - name: .
+  - uid: MLEM.Ui.Parsers.UiParser.ElementType
+    name: ElementType
+    href: MLEM.Ui.Parsers.UiParser.ElementType.html
+- uid: MLEM.Ui.Parsers
+  commentId: N:MLEM.Ui.Parsers
+  href: MLEM.html
+  name: MLEM.Ui.Parsers
+  nameWithType: MLEM.Ui.Parsers
+  fullName: MLEM.Ui.Parsers
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Parsers
+    name: Parsers
+    href: MLEM.Ui.Parsers.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Ui
+    name: Ui
+    href: MLEM.Ui.html
+  - name: .
+  - uid: MLEM.Ui.Parsers
+    name: Parsers
+    href: MLEM.Ui.Parsers.html

@@ -1,0 +1,167 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Pathfinding.AStar`1.CollectAdditionalNeighbors
+  commentId: T:MLEM.Pathfinding.AStar`1.CollectAdditionalNeighbors
+  id: AStar`1.CollectAdditionalNeighbors
+  parent: MLEM.Pathfinding
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: AStar<T>.CollectAdditionalNeighbors
+  nameWithType: AStar<T>.CollectAdditionalNeighbors
+  fullName: MLEM.Pathfinding.AStar<T>.CollectAdditionalNeighbors
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Pathfinding/AStar.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: CollectAdditionalNeighbors
+    path: ../MLEM/Pathfinding/AStar.cs
+    startLine: 192
+  assemblies:
+  - MLEM
+  namespace: MLEM.Pathfinding
+  summary: A delegate that determines a set of additional <code class="paramref">neighbors</code> to be considered for a given <code class="paramref">position</code>.
+  example: []
+  syntax:
+    content: public delegate void AStar<T>.CollectAdditionalNeighbors(T position, ISet<T> neighbors)
+    parameters:
+    - id: position
+      type: '{T}'
+      description: The position whose neighbors to return.
+    - id: neighbors
+      type: System.Collections.Generic.ISet{{T}}
+      description: The set to populate with neighbors.
+    content.vb: Public Delegate Sub AStar(Of T).CollectAdditionalNeighbors(position As T, neighbors As ISet(Of T))
+  nameWithType.vb: AStar(Of T).CollectAdditionalNeighbors
+  fullName.vb: MLEM.Pathfinding.AStar(Of T).CollectAdditionalNeighbors
+  name.vb: AStar(Of T).CollectAdditionalNeighbors
+references:
+- uid: MLEM.Pathfinding
+  commentId: N:MLEM.Pathfinding
+  href: MLEM.html
+  name: MLEM.Pathfinding
+  nameWithType: MLEM.Pathfinding
+  fullName: MLEM.Pathfinding
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Pathfinding
+    name: Pathfinding
+    href: MLEM.Pathfinding.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Pathfinding
+    name: Pathfinding
+    href: MLEM.Pathfinding.html
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Collections.Generic.ISet{{T}}
+  commentId: T:System.Collections.Generic.ISet{`0}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

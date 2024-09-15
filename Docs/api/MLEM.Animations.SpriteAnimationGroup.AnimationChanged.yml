@@ -1,0 +1,74 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Animations.SpriteAnimationGroup.AnimationChanged
+  commentId: T:MLEM.Animations.SpriteAnimationGroup.AnimationChanged
+  id: SpriteAnimationGroup.AnimationChanged
+  parent: MLEM.Animations
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: SpriteAnimationGroup.AnimationChanged
+  nameWithType: SpriteAnimationGroup.AnimationChanged
+  fullName: MLEM.Animations.SpriteAnimationGroup.AnimationChanged
+  type: Delegate
+  source:
+    remote:
+      path: MLEM/Animations/SpriteAnimationGroup.cs
+      branch: main
+      repo: https://github.com/Ellpeck/MLEM
+    id: AnimationChanged
+    path: ../MLEM/Animations/SpriteAnimationGroup.cs
+    startLine: 138
+  assemblies:
+  - MLEM
+  namespace: MLEM.Animations
+  summary: A callback delegate for when a <xref href="MLEM.Animations.SpriteAnimationGroup" data-throw-if-not-resolved="false"></xref>'s current animation changed.
+  example: []
+  syntax:
+    content: public delegate void SpriteAnimationGroup.AnimationChanged(SpriteAnimation oldAnim, SpriteAnimation newAnim)
+    parameters:
+    - id: oldAnim
+      type: MLEM.Animations.SpriteAnimation
+      description: The previous animation
+    - id: newAnim
+      type: MLEM.Animations.SpriteAnimation
+      description: The new animation
+    content.vb: Public Delegate Sub SpriteAnimationGroup.AnimationChanged(oldAnim As SpriteAnimation, newAnim As SpriteAnimation)
+references:
+- uid: MLEM.Animations.SpriteAnimationGroup
+  commentId: T:MLEM.Animations.SpriteAnimationGroup
+  parent: MLEM.Animations
+  href: MLEM.Animations.SpriteAnimationGroup.html
+  name: SpriteAnimationGroup
+  nameWithType: SpriteAnimationGroup
+  fullName: MLEM.Animations.SpriteAnimationGroup
+- uid: MLEM.Animations
+  commentId: N:MLEM.Animations
+  href: MLEM.html
+  name: MLEM.Animations
+  nameWithType: MLEM.Animations
+  fullName: MLEM.Animations
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Animations
+    name: Animations
+    href: MLEM.Animations.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Animations
+    name: Animations
+    href: MLEM.Animations.html
+- uid: MLEM.Animations.SpriteAnimation
+  commentId: T:MLEM.Animations.SpriteAnimation
+  parent: MLEM.Animations
+  href: MLEM.Animations.SpriteAnimation.html
+  name: SpriteAnimation
+  nameWithType: SpriteAnimation
+  fullName: MLEM.Animations.SpriteAnimation

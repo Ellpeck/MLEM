@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  id: MLEM.Formatting
+  children:
+  - MLEM.Formatting.TextAlignment
+  - MLEM.Formatting.TextFormatter
+  - MLEM.Formatting.TextFormatter.Macro
+  - MLEM.Formatting.Token
+  - MLEM.Formatting.TokenizedString
+  langs:
+  - csharp
+  - vb
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+  type: Namespace
+  assemblies:
+  - MLEM
+references:
+- uid: MLEM.Formatting.TextAlignment
+  commentId: T:MLEM.Formatting.TextAlignment
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TextAlignment.html
+  name: TextAlignment
+  nameWithType: TextAlignment
+  fullName: MLEM.Formatting.TextAlignment
+- uid: MLEM.Formatting.TextFormatter
+  commentId: T:MLEM.Formatting.TextFormatter
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TextFormatter.html
+  name: TextFormatter
+  nameWithType: TextFormatter
+  fullName: MLEM.Formatting.TextFormatter
+- uid: MLEM.Formatting.TextFormatter.Macro
+  commentId: T:MLEM.Formatting.TextFormatter.Macro
+  href: MLEM.Formatting.TextFormatter.html
+  name: TextFormatter.Macro
+  nameWithType: TextFormatter.Macro
+  fullName: MLEM.Formatting.TextFormatter.Macro
+  spec.csharp:
+  - uid: MLEM.Formatting.TextFormatter
+    name: TextFormatter
+    href: MLEM.Formatting.TextFormatter.html
+  - name: .
+  - uid: MLEM.Formatting.TextFormatter.Macro
+    name: Macro
+    href: MLEM.Formatting.TextFormatter.Macro.html
+  spec.vb:
+  - uid: MLEM.Formatting.TextFormatter
+    name: TextFormatter
+    href: MLEM.Formatting.TextFormatter.html
+  - name: .
+  - uid: MLEM.Formatting.TextFormatter.Macro
+    name: Macro
+    href: MLEM.Formatting.TextFormatter.Macro.html
+- uid: MLEM.Formatting.Token
+  commentId: T:MLEM.Formatting.Token
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: MLEM.Formatting.Token
+- uid: MLEM.Formatting.TokenizedString
+  commentId: T:MLEM.Formatting.TokenizedString
+  parent: MLEM.Formatting
+  href: MLEM.Formatting.TokenizedString.html
+  name: TokenizedString
+  nameWithType: TokenizedString
+  fullName: MLEM.Formatting.TokenizedString
+- uid: MLEM.Formatting
+  commentId: N:MLEM.Formatting
+  href: MLEM.html
+  name: MLEM.Formatting
+  nameWithType: MLEM.Formatting
+  fullName: MLEM.Formatting
+  spec.csharp:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
+  spec.vb:
+  - uid: MLEM
+    name: MLEM
+    href: MLEM.html
+  - name: .
+  - uid: MLEM.Formatting
+    name: Formatting
+    href: MLEM.Formatting.html
