@@ -35,11 +35,8 @@ jobs:
           dotnet-version: '8.0.x'
       - name: Restore tools
         run: dotnet tool restore
-      - name: Run BuildDocsMetadata
-        if: startsWith(github.ref, 'refs/tags/')
-        run: dotnet cake --target BuildDocsMetadata --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
-      - name: Run BuildDocsSite
-        run: dotnet cake --target BuildDocsSite --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Run Document
+        run: dotnet cake --target Document --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
       - name: Upload docs artifact
         uses: actions/upload-artifact@v4
         with:
@@ -73,7 +70,7 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
       - name: Deploy
-        if: github.event_name == 'push'
+        if: startsWith(github.ref, 'refs/tags/')
         # this is a beautiful way to deploy a website and i will not take any criticism
         run: |
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb
