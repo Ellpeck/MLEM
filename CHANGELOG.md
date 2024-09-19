@@ -18,7 +18,9 @@ Jump to version:
 
 ## 7.1.2 (In Development)
 
-No code changes
+### MLEM.Ui
+Additions
+- Added Panel.IsVisible method to check if a child element is visible
 
 ## 7.1.1
 
@@ -27,9 +29,6 @@ Additions
 - Added TextureExtensions.PremultipliedCopy for textures
 
 ### MLEM.Ui
-Additions
-- Added Panel.IsVisible method to check if a child element is visible
-
 Improvements
 - Construct images in UiParser.ParseImage on the main thread to support usage with KNI
 - Create a premultiplied copy of UiParser images to support usage with KNI
