@@ -255,6 +255,16 @@ namespace MLEM.Ui.Elements {
             this.ScrollBar.CurrentValue = this.ScrollBar.MaxValue;
         }
 
+        /// <summary>
+        /// Returns whether the given <paramref name="element"/> is currently visible within this panel if it scrolls overflow.
+        /// This method will return <see langword="true"/> on any elements whose <see cref="Element.Area"/> intersects this panel's render target area, regardless of whether it is a child or grandchild of this panel.
+        /// </summary>
+        /// <param name="element">The element to query for visibility.</param>
+        /// <returns>Whether the element is in this panel's visible area.</returns>
+        public bool IsVisible(Element element) {
+            return element.Area.Intersects(this.GetRenderTargetArea());
+        }
+
         /// <inheritdoc />
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
@@ -369,13 +379,12 @@ namespace MLEM.Ui.Elements {
         private void ForceUpdateRelevantChildren() {
             this.relevantChildrenDirty = false;
             this.relevantChildren.Clear();
-            var visible = this.GetRenderTargetArea();
             foreach (var child in this.SortedChildren) {
-                if (child.Area.Intersects(visible)) {
+                if (this.IsVisible(child)) {
                     this.relevantChildren.Add(child);
                 } else {
                     foreach (var c in child.GetChildren(regardGrandchildren: true)) {
-                        if (c.Area.Intersects(visible)) {
+                        if (this.IsVisible(c)) {
                             this.relevantChildren.Add(child);
                             break;
                         }
