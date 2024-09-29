@@ -18,6 +18,10 @@ Jump to version:
 
 ## 7.1.2 (In Development)
 
+### MLEM
+Fixes
+- Fixed formatting codes at the start of strings not being added to the AllCodes collection
+
 ### MLEM.Ui
 Additions
 - Added Panel.IsVisible method to check if a child element is visible

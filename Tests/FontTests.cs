@@ -118,11 +118,11 @@ public class FontTests {
     [Test]
     public void TestFormatting() {
         this.formatter.AddImage("Test", new TextureRegion((Texture2D) null, 0, 8, 24, 24));
-        const string strg = "Lorem Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+        const string strg = "<b>Lorem</b> Ipsum <i Test> is simply dummy text of the <i Test> printing and typesetting <i Test> industry. Lorem Ipsum has been the industry's standard dummy text <i Test> ever since the <i Test> 1500s, when <i Test><i Test><i Test><i Test><i Test><i Test><i Test> an unknown printer took a galley of type and scrambled it to make a type specimen <b></b>book.";
         var ret = this.formatter.Tokenize(this.font, strg);
-        Assert.AreEqual(ret.Tokens.Length, 13);
+        Assert.AreEqual(ret.Tokens.Length, 16);
         Assert.AreEqual(ret.DisplayString, "Lorem Ipsum  is simply dummy text of the  printing and typesetting  industry. Lorem Ipsum has been the industry's standard dummy text  ever since the  1500s, when  an unknown printer took a galley of type and scrambled it to make a type specimen book.");
-        Assert.AreEqual(ret.AllCodes.Length, 12);
+        Assert.AreEqual(ret.AllCodes.Length, 16);
     }
 
     [Test]

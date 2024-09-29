@@ -160,8 +160,10 @@ namespace MLEM.Formatting {
             var allCodes = new List<Code>();
             // add the formatting code right at the start of the string
             var firstCode = this.GetNextCode(s, 0, 0);
-            if (firstCode != null)
+            if (firstCode != null) {
+                allCodes.Add(firstCode);
                 applied.Add(firstCode);
+            }
             var index = 0;
             var rawIndex = 0;
             while (rawIndex < s.Length) {
