@@ -142,6 +142,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public string MobileDescription;
         /// <summary>
+        /// An event that is invoked if <see cref="Keys.Enter"/> is pressed while this text field is active.
+        /// Note that, for text fields that are <see cref="Multiline"/>, this is ignored.
+        /// This also occurs once the text input window is successfully closed on a mobile device.
+        /// If another <see cref="Element"/>'s press behavior should be invoked when enter is pressed, <see cref="EnterReceiver"/> can be used instead.
+        /// </summary>
+        public GenericCallback OnEnterPressed;
+        /// <summary>
         /// An element that should be pressed (using <see cref="UiControls.PressElement"/>) if <see cref="Keys.Enter"/> is pressed while this text field is active.
         /// Note that, for text fields that are <see cref="Multiline"/>, this is ignored.
         /// This also occurs once the text input window is successfully closed on a mobile device.
@@ -198,12 +205,12 @@ namespace MLEM.Ui.Elements {
                 var result = await MlemPlatform.Current.OpenOnScreenKeyboard(title, this.MobileDescription, this.Text, false);
                 if (result != null) {
                     this.SetText(this.Multiline ? result : result.Replace('\n', ' '), true);
-                    this.EnterReceiver?.Controls?.PressElement(this.EnterReceiver);
+                    this.InvokeOnEnter();
                 }
             };
             this.OnTextInput += (element, key, character) => {
                 if (this.IsSelectedActive && !this.IsHidden && !this.textInput.OnTextInput(key, character) && key == Keys.Enter && !this.Multiline)
-                    this.EnterReceiver?.Controls?.PressElement(this.EnterReceiver);
+                    this.InvokeOnEnter();
             };
         }
 
@@ -221,8 +228,8 @@ namespace MLEM.Ui.Elements {
                 this.textInput.Update(time, this.Input);
 #if FNA
                 // this occurs in OnTextInput outside FNA, where special keys are also counted as text input
-                if (this.EnterReceiver != null && !this.Multiline && this.Input.TryConsumePressed(Keys.Enter))
-                    this.EnterReceiver.Controls?.PressElement(this.EnterReceiver);
+                if ((this.OnEnterPressed != null || this.EnterReceiver != null) && !this.Multiline && this.Input.TryConsumePressed(Keys.Enter))
+                    this.InvokeOnEnter();
 #endif
             }
         }
@@ -274,6 +281,11 @@ namespace MLEM.Ui.Elements {
             this.HoveredColor = this.HoveredColor.OrStyle(style.TextFieldHoveredColor);
             this.TextOffsetX = this.TextOffsetX.OrStyle(style.TextFieldTextOffsetX);
             this.CaretWidth = this.CaretWidth.OrStyle(style.TextFieldCaretWidth);
+        }
+
+        private void InvokeOnEnter() {
+            this.OnEnterPressed?.Invoke(this);
+            this.EnterReceiver?.Controls?.PressElement(this.EnterReceiver);
         }
 
         /// <summary>

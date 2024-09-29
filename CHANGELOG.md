@@ -25,6 +25,7 @@ Fixes
 ### MLEM.Ui
 Additions
 - Added Panel.IsVisible method to check if a child element is visible
+- Added TextField.OnEnterPressed event
 
 ## 7.1.1
 
