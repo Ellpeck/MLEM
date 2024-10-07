@@ -32,7 +32,7 @@ public class UiTests {
         };
         invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
         invalidPanel.AddChild(new VerticalSpace(1));
-        Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel));
+        Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel, out _, out _));
     }
 
     [Test]
@@ -40,7 +40,7 @@ public class UiTests {
         var oddPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
         oddPanel.AddChild(new Group(Anchor.TopCenter, new Vector2(100), false));
         oddPanel.AddChild(new Group(Anchor.AutoRight, new Vector2(120), false));
-        this.AddAndUpdate(oddPanel);
+        this.AddAndUpdate(oddPanel, out _, out _);
         Assert.AreEqual(120 + 10, oddPanel.DisplayArea.Width);
     }
 
@@ -60,7 +60,7 @@ public class UiTests {
                 CanBeMoused = false
             });
         }
-        this.AddAndUpdate(group);
+        this.AddAndUpdate(group, out _, out _);
 
         // group has 1 panel with 1 scroll bar, and the panel's 10 children
         Assert.AreEqual(1, group.GetChildren().Count());
@@ -89,7 +89,7 @@ public class UiTests {
         var el2 = parent.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -0.5F)) {
             AutoSizeAddedAbsolute = new Vector2(-25, 50)
         });
-        this.AddAndUpdate(parent);
+        this.AddAndUpdate(parent, out _, out _);
 
         Assert.AreEqual(0.5F * 200 - 50, el1.DisplayArea.Width);
         Assert.AreEqual(0.75F * 100 + 25, el1.DisplayArea.Height);
@@ -118,8 +118,7 @@ public class UiTests {
     }
 
     [Test]
-    public void TestAutoAreaPerformance() {
-        var stopwatch = new Stopwatch();
+    public void TestAutoAreaPerformanceDeep() {
         for (var i = 1; i <= 100; i++) {
             var totalUpdates = 0;
             var main = new Group(Anchor.TopLeft, new Vector2(50)) {
@@ -131,20 +130,65 @@ public class UiTests {
                     OnAreaUpdated = _ => totalUpdates++
                 });
             }
-            stopwatch.Restart();
-            this.AddAndUpdate(main);
-            stopwatch.Stop();
+            this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {stopwatch.Elapsed.TotalMilliseconds * 1000000}ns");
+            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update");
         }
     }
 
-    private void AddAndUpdate(Element element) {
+    [Test]
+    public void TestAutoAreaPerformanceSideBySide() {
+        for (var i = 1; i <= 100; i++) {
+            var totalUpdates = 0;
+            var main = new Group(Anchor.TopLeft, new Vector2(50)) {
+                OnAreaUpdated = _ => totalUpdates++
+            };
+            for (var g = 0; g < i; g++) {
+                main.AddChild(new Group(Anchor.AutoInlineIgnoreOverflow, new Vector2(1F / i, 1)) {
+                    OnAreaUpdated = _ => totalUpdates++
+                });
+            }
+            this.AddAndUpdate(main, out var addTime, out var updateTime);
+            var allChildren = main.GetChildren(regardGrandchildren: true);
+            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update");
+        }
+    }
+
+    [Test]
+    public void TestAutoAreaPerformanceRandom() {
+        for (var i = 0; i <= 1000; i += 10) {
+            var random = new Random(93829345);
+            var totalUpdates = 0;
+            var main = new Group(Anchor.TopLeft, new Vector2(50)) {
+                OnAreaUpdated = _ => totalUpdates++
+            };
+            var group = main;
+            for (var g = 0; g < i; g++) {
+                var newGroup = group.AddChild(new Group(Anchor.TopLeft, Vector2.One) {
+                    OnAreaUpdated = _ => totalUpdates++
+                });
+                if (random.NextSingle() <= 0.25F)
+                    group = newGroup;
+            }
+            this.AddAndUpdate(main, out var addTime, out var updateTime);
+            var allChildren = main.GetChildren(regardGrandchildren: true);
+            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update");
+        }
+    }
+
+    private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.game.UiSystem.GetRootElements())
             this.game.UiSystem.Remove(root.Name);
 
+        var stopwatch = Stopwatch.StartNew();
         this.game.UiSystem.Add("Test", element);
+        stopwatch.Stop();
+        addTime = stopwatch.Elapsed;
+
+        stopwatch.Restart();
         element.ForceUpdateArea();
+        stopwatch.Stop();
+        updateTime = stopwatch.Elapsed;
     }
 
 }
