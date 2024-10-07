@@ -120,37 +120,25 @@ public class UiTests {
     [Test]
     public void TestAutoAreaPerformanceDeep() {
         for (var i = 1; i <= 100; i++) {
-            var totalUpdates = 0;
-            var main = new Group(Anchor.TopLeft, new Vector2(50)) {
-                OnAreaUpdated = _ => totalUpdates++
-            };
+            var main = new Group(Anchor.TopLeft, new Vector2(50));
             var group = main;
-            for (var g = 0; g < i; g++) {
-                group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One) {
-                    OnAreaUpdated = _ => totalUpdates++
-                });
-            }
+            for (var g = 0; g < i; g++)
+                group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One));
             this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.game.UiSystem.Metrics}");
         }
     }
 
     [Test]
     public void TestAutoAreaPerformanceSideBySide() {
         for (var i = 1; i <= 100; i++) {
-            var totalUpdates = 0;
-            var main = new Group(Anchor.TopLeft, new Vector2(50)) {
-                OnAreaUpdated = _ => totalUpdates++
-            };
-            for (var g = 0; g < i; g++) {
-                main.AddChild(new Group(Anchor.AutoInlineIgnoreOverflow, new Vector2(1F / i, 1)) {
-                    OnAreaUpdated = _ => totalUpdates++
-                });
-            }
+            var main = new Group(Anchor.TopLeft, new Vector2(50));
+            for (var g = 0; g < i; g++)
+                main.AddChild(new Group(Anchor.AutoInlineIgnoreOverflow, new Vector2(1F / i, 1)));
             this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.game.UiSystem.Metrics}");
         }
     }
 
@@ -158,27 +146,23 @@ public class UiTests {
     public void TestAutoAreaPerformanceRandom() {
         for (var i = 0; i <= 1000; i += 10) {
             var random = new Random(93829345);
-            var totalUpdates = 0;
-            var main = new Group(Anchor.TopLeft, new Vector2(50)) {
-                OnAreaUpdated = _ => totalUpdates++
-            };
+            var main = new Group(Anchor.TopLeft, new Vector2(50));
             var group = main;
             for (var g = 0; g < i; g++) {
-                var newGroup = group.AddChild(new Group(Anchor.TopLeft, Vector2.One) {
-                    OnAreaUpdated = _ => totalUpdates++
-                });
+                var newGroup = group.AddChild(new Group(Anchor.TopLeft, Vector2.One));
                 if (random.NextSingle() <= 0.25F)
                     group = newGroup;
             }
             this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.game.UiSystem.Metrics}");
         }
     }
 
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.game.UiSystem.GetRootElements())
             this.game.UiSystem.Remove(root.Name);
+        this.game.UiSystem.Metrics.ResetUpdates();
 
         var stopwatch = Stopwatch.StartNew();
         this.game.UiSystem.Add("Test", element);
