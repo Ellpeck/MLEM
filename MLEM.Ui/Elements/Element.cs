@@ -197,9 +197,10 @@ namespace MLEM.Ui.Elements {
             }
         }
         /// <summary>
-        /// This element's transform matrix.
-        /// Can easily be scaled using <see cref="ScaleTransform"/>.
-        /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
+        /// This element's transform matrix, which is used for drawing and mouse/touch interaction. All children and grandchildren of this element will have this transform applied to them, along with their own transforms. This can be useful for briefly changing the visuals of an element when using a <see cref="UiAnimation"/>.
+        /// This matrix has no bearing on this element's permanent <see cref="DisplayArea"/> or <see cref="Scale"/>, as it is only applied "on the fly" in <see cref="Draw"/> and <see cref="TransformInverse"/>.
+        /// When this is anything other than <see cref="Matrix.Identity"/>, a new <c>SpriteBatch.Begin</c> call is used for this element when drawing.
+        /// This matrix can easily be scaled relative to its center or an arbitrary point using <see cref="ScaleTransform"/>.
         /// </summary>
         public Matrix Transform = Matrix.Identity;
         /// <summary>
@@ -1194,6 +1195,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Scales this element's <see cref="Transform"/> matrix based on the given scale and origin.
+        /// Please note the documentation for <see cref="Transform"/> for in-depth information about how this matrix is used.
         /// </summary>
         /// <param name="scale">The scale to use</param>
         /// <param name="origin">The origin to use for scaling, or null to use this element's center point</param>
