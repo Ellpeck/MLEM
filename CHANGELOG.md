@@ -26,6 +26,7 @@ Fixes
 Additions
 - Added Panel.IsVisible method to check if a child element is visible
 - Added TextField.OnEnterPressed event
+- Added Tooltip.IgnoreViewport and allow overriding the default viewport using Tooltip.Viewport
 
 ## 7.1.1
 

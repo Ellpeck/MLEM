@@ -91,6 +91,14 @@ namespace MLEM.Ui.Elements {
         /// Note that, if <see cref="UseAutoNavBehaviorForMouse"/> is <see langword="true"/>, this value is ignored.
         /// </summary>
         public virtual Vector2? SnapPosition { get; set; }
+        /// <summary>
+        /// Determines whether this tooltip should ignore its viewport, which is either this tooltip's <see cref="Viewport"/> or the underlying <see cref="Element.System"/>'s <see cref="UiSystem.Viewport"/>. If this is <see langword="true"/>, the tooltip is allowed to display outside of the viewport, without being bounded in <see cref="SnapPositionToMouse"/>.
+        /// </summary>
+        public virtual bool IgnoreViewport { get; set; }
+        /// <summary>
+        /// The viewport that this tooltip should be bound to. If this value is unset, the underlying <see cref="Element.System"/>'s <see cref="UiSystem.Viewport"/> will be used. Note that, if <see cref="IgnoreViewport"/> is <see langword="true"/>, this value is ignored.
+        /// </summary>
+        public virtual Rectangle? Viewport { get; set; }
 
         /// <inheritdoc />
         public override bool IsHidden => this.autoHidden || base.IsHidden;
@@ -207,25 +215,28 @@ namespace MLEM.Ui.Elements {
         /// Causes this tooltip's position to be snapped to the mouse position, or the element to snap to if <see cref="DisplayInAutoNavMode"/> is true, or the <see cref="SnapPosition"/> if set.
         /// </summary>
         public void SnapPositionToMouse() {
-            Vector2 snapPosition;
+            Vector2 snap;
+
             if (this.snapElement != null) {
-                snapPosition = this.GetSnapOffset(this.AutoNavAnchor, this.snapElement.DisplayArea, this.AutoNavOffset);
+                snap = this.GetSnapOffset(this.AutoNavAnchor, this.snapElement.DisplayArea, this.AutoNavOffset) / this.Scale;
             } else {
                 var mouseBounds = new RectangleF(this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2(), Vector2.Zero);
-                snapPosition = this.GetSnapOffset(this.MouseAnchor, mouseBounds, this.MouseOffset);
+                snap = this.GetSnapOffset(this.MouseAnchor, mouseBounds, this.MouseOffset) / this.Scale;
             }
 
-            var viewport = this.System.Viewport;
-            var offset = snapPosition / this.Scale;
-            if (offset.X < viewport.X)
-                offset.X = viewport.X;
-            if (offset.Y < viewport.Y)
-                offset.Y = viewport.Y;
-            if (offset.X * this.Scale + this.Area.Width >= viewport.Right)
-                offset.X = (viewport.Right - this.Area.Width) / this.Scale;
-            if (offset.Y * this.Scale + this.Area.Height >= viewport.Bottom)
-                offset.Y = (viewport.Bottom - this.Area.Height) / this.Scale;
-            this.PositionOffset = offset;
+            if (!this.IgnoreViewport) {
+                var view = this.Viewport ?? this.System.Viewport;
+                if (snap.X < view.X)
+                    snap.X = view.X;
+                if (snap.Y < view.Y)
+                    snap.Y = view.Y;
+                if (snap.X * this.Scale + this.Area.Width >= view.Right)
+                    snap.X = (view.Right - this.Area.Width) / this.Scale;
+                if (snap.Y * this.Scale + this.Area.Height >= view.Bottom)
+                    snap.Y = (view.Bottom - this.Area.Height) / this.Scale;
+            }
+
+            this.PositionOffset = snap;
         }
 
         /// <summary>
