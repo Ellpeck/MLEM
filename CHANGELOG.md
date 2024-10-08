@@ -28,6 +28,9 @@ Additions
 - Added TextField.OnEnterPressed event
 - Added Tooltip.IgnoreViewport and allow overriding the default viewport using Tooltip.Viewport
 
+Fixes
+- Fixed tooltips not being bounded correctly for viewports that don't start at the origin
+
 ## 7.1.1
 
 ### MLEM

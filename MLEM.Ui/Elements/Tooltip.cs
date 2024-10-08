@@ -226,10 +226,10 @@ namespace MLEM.Ui.Elements {
 
             if (!this.IgnoreViewport) {
                 var view = this.Viewport ?? this.System.Viewport;
-                if (snap.X < view.X)
-                    snap.X = view.X;
-                if (snap.Y < view.Y)
-                    snap.Y = view.Y;
+                if (snap.X * this.Scale < view.X)
+                    snap.X = view.X / this.Scale;
+                if (snap.Y * this.Scale < view.Y)
+                    snap.Y = view.Y / this.Scale;
                 if (snap.X * this.Scale + this.Area.Width >= view.Right)
                     snap.X = (view.Right - this.Area.Width) / this.Scale;
                 if (snap.Y * this.Scale + this.Area.Height >= view.Bottom)
