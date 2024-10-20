@@ -31,6 +31,10 @@ Additions
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin
 
+### MLEM.Data
+Improvements
+- Made fields and methods in StaticJsonConverter protected to allow extending it
+
 ## 7.1.1
 
 ### MLEM

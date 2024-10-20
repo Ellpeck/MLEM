@@ -15,19 +15,30 @@ namespace MLEM.Data.Json {
     /// <typeparam name="T">The type of the object to convert</typeparam>
     public class StaticJsonConverter<T> : JsonConverter<T> {
 
-        private readonly Dictionary<string, T> entries;
-        private readonly Dictionary<T, string> inverse;
-        private readonly bool throwOnRead;
+        /// <summary>
+        /// The entries, or registry, that this static json converter uses.
+        /// </summary>
+        protected readonly Dictionary<string, T> Entries;
+        /// <summary>
+        /// The inverse of this static json converter's <see cref="Entries"/>, mapping the values to their respective keys.
+        /// Note that this dictionary is only created once and is not automatically updated should the <see cref="Entries"/> be modified.
+        /// </summary>
+        protected readonly Dictionary<T, string> Inverse;
+        /// <summary>
+        /// Whether to throw a <see cref="KeyNotFoundException"/> in <see cref="ReadJson"/> if a key is missing, or throw a <see cref="JsonSerializationException"/> if a stored json value is not a string.
+        /// If this is <see langword="false"/>, <see cref="ReadJson"/> returns <see langword="default"/> instead.
+        /// </summary>
+        protected readonly bool ThrowOnRead;
 
         /// <summary>
         /// Creates a new static json converter using the given underlying <see cref="Dictionary{T,T}"/>.
         /// </summary>
-        /// <param name="entries">The dictionary to use</param>
+        /// <param name="entries">The entries, or registry, that this static json converter uses.</param>
         /// <param name="throwOnRead">Whether to throw a <see cref="KeyNotFoundException"/> in <see cref="ReadJson"/> if a key is missing, or throw a <see cref="JsonSerializationException"/> if a stored json value is not a string. If this is <see langword="false"/>, <see cref="ReadJson"/> returns <see langword="default"/> instead.</param>
         public StaticJsonConverter(Dictionary<string, T> entries, bool throwOnRead = false) {
-            this.entries = entries;
-            this.inverse = StaticJsonConverter<T>.CreateInverse(entries);
-            this.throwOnRead = throwOnRead;
+            this.Entries = entries;
+            this.Inverse = StaticJsonConverter<T>.CreateInverse(entries);
+            this.ThrowOnRead = throwOnRead;
         }
 
         /// <summary>
@@ -62,7 +73,7 @@ namespace MLEM.Data.Json {
                 writer.WriteNull();
                 return;
             }
-            if (!this.inverse.TryGetValue(value, out var key))
+            if (!this.Inverse.TryGetValue(value, out var key))
                 throw new KeyNotFoundException($"Cannot write {value} that is not a registered entry");
             writer.WriteValue(key);
         }
@@ -78,16 +89,24 @@ namespace MLEM.Data.Json {
             if (reader.Value == null)
                 return default;
             if (reader.TokenType != JsonToken.String) {
-                if (this.throwOnRead)
+                if (this.ThrowOnRead)
                     throw new JsonSerializationException($"Expected a string value for {reader.Value}, got a {reader.TokenType}");
                 return default;
             }
-            if (!this.entries.TryGetValue((string) reader.Value, out var ret) && this.throwOnRead)
+            if (!this.Entries.TryGetValue((string) reader.Value, out var ret) && this.ThrowOnRead)
                 throw new KeyNotFoundException($"Could not find registered entry for {reader.Value}");
             return ret;
         }
 
-        private static Dictionary<string, T> GetEntries(
+        /// <summary>
+        /// Returns the entries, or registry, that this static json converter should use, using reflection to find the passed <paramref name="memberName"/> in the passed <paramref name="type"/>.
+        /// </summary>
+        /// <param name="type">The type to find the entries in.</param>
+        /// <param name="memberName">The name of the field or property that the entries are in within the given <paramref name="type"/>.</param>
+        /// <returns>The found property or field's value.</returns>
+        /// <exception cref="ArgumentException">Thrown if there is no property or field with the <paramref name="memberName"/> in the given <paramref name="type"/>.</exception>
+        /// <exception cref="InvalidCastException">Thrown if the value of the <paramref name="memberName"/> is not of the expected type.</exception>
+        protected static Dictionary<string, T> GetEntries(
 #if NET6_0_OR_GREATER
             [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties | DynamicallyAccessedMemberTypes.PublicFields | DynamicallyAccessedMemberTypes.NonPublicFields)]
 #endif
@@ -99,7 +118,13 @@ namespace MLEM.Data.Json {
             return value as Dictionary<string, T> ?? throw new InvalidCastException($"{value} is not of expected type {typeof(T)}");
         }
 
-        private static Dictionary<T, string> CreateInverse(Dictionary<string, T> entries) {
+        /// <summary>
+        /// Creates the inverse version of the passed <paramref name="entries"/>, mapping the values to their keys, and throws an exception if there are any duplicate values.
+        /// </summary>
+        /// <param name="entries">The entries to create an inverse of.</param>
+        /// <returns>The inverse of the given <paramref name="entries"/>, mapping the values to their keys.</returns>
+        /// <exception cref="ArgumentException">Thrown if the <paramref name="entries"/> contains duplicate values, making it impossible to create a valid inverse.</exception>
+        protected static Dictionary<T, string> CreateInverse(Dictionary<string, T> entries) {
             var ret = new Dictionary<T, string>();
             foreach (var entry in entries) {
                 if (ret.ContainsKey(entry.Value))
