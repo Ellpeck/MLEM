@@ -30,6 +30,7 @@ Additions
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin
+- Fixed a stack overflow exception when a panel's children have just enough height to cause a scroll bar to appear
 
 ### MLEM.Data
 Improvements
