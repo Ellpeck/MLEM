@@ -7,22 +7,19 @@ using NUnit.Framework;
 
 namespace Tests;
 
-public class TexturePackerTests {
+public class TexturePackerTests : GameTestFixture {
 
     private Texture2D testTexture;
     private Texture2D disposedTestTexture;
-    private TestGame game;
 
     [SetUp]
     public void SetUp() {
-        this.game = TestGame.Create();
-        this.testTexture = new Texture2D(this.game.GraphicsDevice, 2048, 2048);
-        this.disposedTestTexture = new Texture2D(this.game.GraphicsDevice, 16, 16);
+        this.testTexture = new Texture2D(this.Game.GraphicsDevice, 2048, 2048);
+        this.disposedTestTexture = new Texture2D(this.Game.GraphicsDevice, 16, 16);
     }
 
     [TearDown]
     public void TearDown() {
-        this.game?.Dispose();
         this.testTexture?.Dispose();
         this.disposedTestTexture?.Dispose();
     }
@@ -37,7 +34,7 @@ public class TexturePackerTests {
                 Assert.AreEqual(r.Height, 64);
             });
         }
-        packer.Pack(this.game.GraphicsDevice);
+        packer.Pack(this.Game.GraphicsDevice);
         Assert.AreEqual(packer.PackedTexture.Width, 16 + 32 + 48 + 64 + 80);
         Assert.AreEqual(packer.PackedTexture.Height, 64);
     }
@@ -48,7 +45,7 @@ public class TexturePackerTests {
         using (var packer = new RuntimeTexturePacker(8192)) {
             for (var i = 1; i <= 1000; i++)
                 packer.Add(new TextureRegion(this.testTexture, 0, 0, i % 239, i % 673), packed.Add);
-            packer.Pack(this.game.GraphicsDevice);
+            packer.Pack(this.Game.GraphicsDevice);
         }
 
         foreach (var r1 in packed) {
@@ -65,7 +62,7 @@ public class TexturePackerTests {
         using var packer = new RuntimeTexturePacker(128, disposeTextures: true);
         packer.Add(new TextureRegion(this.disposedTestTexture), TexturePackerTests.StubResult);
         packer.Add(new TextureRegion(this.disposedTestTexture, 0, 0, 8, 8), TexturePackerTests.StubResult);
-        packer.Pack(this.game.GraphicsDevice);
+        packer.Pack(this.Game.GraphicsDevice);
         Assert.True(this.disposedTestTexture.IsDisposed);
         Assert.False(packer.PackedTexture.IsDisposed);
     }
@@ -83,19 +80,19 @@ public class TexturePackerTests {
         Assert.DoesNotThrow(() => {
             packer2.Add(new TextureRegion(this.testTexture, 0, 0, 256, 128), TexturePackerTests.StubResult);
         });
-        packer2.Pack(this.game.GraphicsDevice);
+        packer2.Pack(this.Game.GraphicsDevice);
 
         // test power of two forcing
         using var packer3 = new RuntimeTexturePacker(128, forcePowerOfTwo: true);
         packer3.Add(new TextureRegion(this.testTexture, 0, 0, 37, 170), TexturePackerTests.StubResult);
-        packer3.Pack(this.game.GraphicsDevice);
+        packer3.Pack(this.Game.GraphicsDevice);
         Assert.AreEqual(64, packer3.PackedTexture.Width);
         Assert.AreEqual(256, packer3.PackedTexture.Height);
 
         // test square forcing
         using var packer4 = new RuntimeTexturePacker(128, forceSquare: true);
         packer4.Add(new TextureRegion(this.testTexture, 0, 0, 37, 170), TexturePackerTests.StubResult);
-        packer4.Pack(this.game.GraphicsDevice);
+        packer4.Pack(this.Game.GraphicsDevice);
         Assert.AreEqual(170, packer4.PackedTexture.Width);
         Assert.AreEqual(170, packer4.PackedTexture.Height);
     }
@@ -108,17 +105,17 @@ public class TexturePackerTests {
         var results = 0;
         for (var i = 0; i < 10; i++)
             packer.Add(new TextureRegion(this.testTexture, 0, 0, 64, 64), _ => results++);
-        packer.Pack(this.game.GraphicsDevice);
+        packer.Pack(this.Game.GraphicsDevice);
         Assert.AreEqual(10, results);
 
         // pack without resizing
         packer.Add(new TextureRegion(this.testTexture, 0, 0, 0, 0), _ => results++);
-        packer.Pack(this.game.GraphicsDevice);
+        packer.Pack(this.Game.GraphicsDevice);
         Assert.AreEqual(11, results);
 
         // pack and force a resize
         packer.Add(new TextureRegion(this.testTexture, 0, 0, 64, 64), _ => results++);
-        packer.Pack(this.game.GraphicsDevice);
+        packer.Pack(this.Game.GraphicsDevice);
         // all callbacks are called again, so we add 11 again, as well as the callback we just added
         Assert.AreEqual(2 * 11 + 1, results);
     }
@@ -132,8 +129,8 @@ public class TexturePackerTests {
                 sameSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10, 10), TexturePackerTests.StubResult);
                 diffSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10 + i % 129, 10 * (i % 5 + 1)), TexturePackerTests.StubResult);
             }
-            sameSizePacker.Pack(this.game.GraphicsDevice);
-            diffSizePacker.Pack(this.game.GraphicsDevice);
+            sameSizePacker.Pack(this.Game.GraphicsDevice);
+            diffSizePacker.Pack(this.Game.GraphicsDevice);
 
             TestContext.WriteLine($"""
                 {total} regions,

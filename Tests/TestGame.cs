@@ -2,6 +2,7 @@
 using MLEM.Data.Content;
 using MLEM.Font;
 using MLEM.Startup;
+using NUnit.Framework;
 
 namespace Tests;
 
@@ -33,6 +34,23 @@ public class TestGame : MlemGame {
         var game = new TestGame();
         game.RunOneFrame();
         return game;
+    }
+
+}
+
+public class GameTestFixture {
+
+    protected TestGame Game { get; private set; }
+
+    [SetUp]
+    public void SetUpGame() {
+        this.Game = TestGame.Create();
+    }
+
+    [TearDown]
+    public void TearDownGame() {
+        this.Game?.Dispose();
+        this.Game = null;
     }
 
 }

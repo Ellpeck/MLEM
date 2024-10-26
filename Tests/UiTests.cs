@@ -10,19 +10,7 @@ using NUnit.Framework;
 
 namespace Tests;
 
-public class UiTests {
-
-    private TestGame game;
-
-    [SetUp]
-    public void SetUp() {
-        this.game = TestGame.Create();
-    }
-
-    [TearDown]
-    public void TearDown() {
-        this.game?.Dispose();
-    }
+public class UiTests : GameTestFixture {
 
     [Test]
     public void TestInvalidPanel() {
@@ -126,7 +114,7 @@ public class UiTests {
                 group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One));
             this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.game.UiSystem.Metrics}");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.Game.UiSystem.Metrics}");
         }
     }
 
@@ -138,7 +126,7 @@ public class UiTests {
                 main.AddChild(new Group(Anchor.AutoInlineIgnoreOverflow, new Vector2(1F / i, 1)));
             this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.game.UiSystem.Metrics}");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.Game.UiSystem.Metrics}");
         }
     }
 
@@ -155,17 +143,17 @@ public class UiTests {
             }
             this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.game.UiSystem.Metrics}");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.Game.UiSystem.Metrics}");
         }
     }
 
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
-        foreach (var root in this.game.UiSystem.GetRootElements())
-            this.game.UiSystem.Remove(root.Name);
-        this.game.UiSystem.Metrics.ResetUpdates();
+        foreach (var root in this.Game.UiSystem.GetRootElements())
+            this.Game.UiSystem.Remove(root.Name);
+        this.Game.UiSystem.Metrics.ResetUpdates();
 
         var stopwatch = Stopwatch.StartNew();
-        this.game.UiSystem.Add("Test", element);
+        this.Game.UiSystem.Add("Test", element);
         stopwatch.Stop();
         addTime = stopwatch.Elapsed;
 

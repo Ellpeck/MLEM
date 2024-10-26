@@ -7,14 +7,13 @@ using NUnit.Framework;
 
 namespace Tests;
 
-public class TestDataTextureAtlas {
+public class TestDataTextureAtlas : GameTestFixture {
 
     [Test]
     public void Test([Values(0, 4)] int regionX, [Values(0, 4)] int regionY) {
-        using var game = TestGame.Create();
-        using var texture = new Texture2D(game.GraphicsDevice, 1, 1);
+        using var texture = new Texture2D(this.Game.GraphicsDevice, 1, 1);
         var region = new TextureRegion(texture, regionX, regionY, 1, 1);
-        var atlas = DataTextureAtlas.LoadAtlasData(region, game.RawContent, "Texture.atlas");
+        var atlas = DataTextureAtlas.LoadAtlasData(region, this.Game.RawContent, "Texture.atlas");
         Assert.AreEqual(12, atlas.Regions.Count());
 
         // no pivot
