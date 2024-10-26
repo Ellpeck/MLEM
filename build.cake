@@ -10,8 +10,6 @@ var config = Argument("configuration", "Release");
 var serve = HasArgument("serve");
 
 Task("Prepare").Does(() => {
-    DotNetWorkloadInstall("android");
-
     DotNetRestore("MLEM.sln");
     DotNetRestore("MLEM.FNA.sln");
     DotNetRestore("MLEM.KNI.sln");
