@@ -36,7 +36,7 @@ Task("Build").IsDependentOn("Prepare").Does(() =>{
     DotNetBuild("MLEM.KNI.sln", settings);
 });
 
-Task("Test").IsDependentOn("Build").Does(() => {
+Task("Test").IsDependentOn("Prepare").Does(() => {
     var settings = new DotNetTestSettings {
         Configuration = config,
         Collectors = {"XPlat Code Coverage"},
@@ -47,7 +47,7 @@ Task("Test").IsDependentOn("Build").Does(() => {
     DotNetTest("MLEM.KNI.sln", settings);
 });
 
-Task("Pack").IsDependentOn("Test").Does(() => {
+Task("Pack").IsDependentOn("Prepare").Does(() => {
     var settings = new DotNetPackSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
@@ -90,7 +90,7 @@ Task("PublishWeb").Does(() => {
     });
 });
 
-Task("Default").IsDependentOn("Pack");
+Task("Default").IsDependentOn("Build").IsDependentOn("Test").IsDependentOn("Pack");
 Task("Publish").IsDependentOn("Push");
 
 RunTarget(target);

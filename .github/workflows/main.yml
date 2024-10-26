@@ -23,7 +23,9 @@ jobs:
       - name: Run Publish
         uses: coactions/setup-xvfb@v1
         with:
-          run: dotnet cake --target Publish --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+          run: dotnet cake --target Test --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Run Publish
+        run: dotnet cake --target Publish --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
           BAGET_KEY: ${{ secrets.BAGET_KEY }}
