@@ -23,7 +23,7 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
   deploy-demo:
-    if: github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
     needs: [build-demo]
     runs-on: ubuntu-latest
     steps:

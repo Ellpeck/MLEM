@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MLEM.Data.Content;
 using MLEM.Font;
 using MLEM.Startup;
@@ -20,6 +21,10 @@ public class TestGame : MlemGame {
     protected override void LoadContent() {
         base.LoadContent();
         this.RawContent = new RawContentManager(this.Services, this.Content.RootDirectory);
+
+        // make sure that the viewport is always the same size, since RunOneFrame doesn't ensure window size is correct
+        this.UiSystem.Viewport = new Rectangle(0, 0, 1280, 720);
+
         // we use precompiled fonts and kni uses a different asset compilation system, so we just have both stored
         this.UiSystem.Style.Font = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>(
 #if KNI

@@ -147,6 +147,34 @@ public class UiTests : GameTestFixture {
         }
     }
 
+    [Test]
+    public void TestIssue27([Values(5, 50, 15)] int numChildren) {
+        // Stack overflow related to panel scrolling and scrollbar auto-hiding
+
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        var leftColumn = new Panel(Anchor.TopLeft, new Vector2(500, 1), scrollOverflow: true);
+        group.AddChild(leftColumn);
+        for (var i = 0; i < numChildren; i++) {
+            var c = new Panel(Anchor.AutoLeft, new Vector2(1, 30));
+            c.DrawColor = Color.Green;
+            c.Padding = new MLEM.Maths.Padding(5);
+            leftColumn.AddChild(c);
+        }
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
+
+        this.AddAndUpdate(group, out _, out _);
+    }
+
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.Game.UiSystem.GetRootElements())
             this.Game.UiSystem.Remove(root.Name);

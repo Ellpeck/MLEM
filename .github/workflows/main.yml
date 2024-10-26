@@ -20,10 +20,14 @@ jobs:
         uses: android-actions/setup-android@v3
       - name: Restore tools
         run: dotnet tool restore
-      - name: Run Publish
+      - name: Run Build
+        run: dotnet cake --target Build --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Run Test
         uses: coactions/setup-xvfb@v1
         with:
-          run: dotnet cake --target Publish --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+          run: dotnet cake --target Test --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Run Publish
+        run: dotnet cake --target Publish --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
           BAGET_KEY: ${{ secrets.BAGET_KEY }}
