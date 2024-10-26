@@ -20,7 +20,7 @@ jobs:
         uses: android-actions/setup-android@v3
       - name: Restore tools
         run: dotnet tool restore
-      - name: Run Publish
+      - name: Run Test
         uses: coactions/setup-xvfb@v1
         with:
           run: dotnet cake --target Test --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
