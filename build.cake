@@ -76,14 +76,14 @@ Task("Push").WithCriteria(gitRef == "refs/heads/main" || gitRef.StartsWith("refs
     DotNetNuGetPush("**/MLEM*.nupkg", settings);
 });
 
-Task("Document").Does(() => {
+Task("Document").IsDependentOn("Prepare").Does(() => {
     DocFxMetadata("Docs/docfx.json");
     DocFxBuild("Docs/docfx.json");
     if (serve)
         DocFxServe("Docs/_site");
 });
 
-Task("PublishWeb").Does(() => {
+Task("PublishWeb").IsDependentOn("Prepare").Does(() => {
     DotNetPublish("Demos.Web/Demos.Web.KNI.csproj", new DotNetPublishSettings {
         Configuration = config,
         ArgumentCustomization = args => args.Append($"/p:Version={version}")
