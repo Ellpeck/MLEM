@@ -124,8 +124,12 @@ public class FontTests : GameTestFixture {
             var spriteFont = ((GenericSpriteFont) this.Font).Font.MeasureString(s);
             var genericFont = this.Font.MeasureString(s);
             Assert.AreEqual(spriteFont.X, genericFont.X);
-            // we leave a bit of room for the Y value since sprite fonts sometimes increase line height for specific characters, which generic fonts don't
-            Assert.AreEqual(spriteFont.Y, genericFont.Y, 10);
+            Assert.AreEqual(spriteFont.Y, genericFont.Y
+#if KNI
+                // we leave a bit of room for the Y value since KNI's sprite fonts sometimes increase line height for specific characters, which generic fonts don't
+                , spriteFont.Y / 10
+#endif
+            );
         }
 
         CompareSizes("This is a very simple test string");
