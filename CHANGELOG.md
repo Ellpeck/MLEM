@@ -2,7 +2,7 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**.
 
 Jump to version:
-- [7.1.2](#712-in-development)
+- [7.2.0](#720-in-development)
 - [7.1.1](#711)
 - [7.1.0](#710)
 - [7.0.0](#700)
@@ -16,7 +16,7 @@ Jump to version:
 - [5.1.0](#510)
 - [5.0.0](#500)
 
-## 7.1.2 (In Development)
+## 7.2.0 (In Development)
 
 ### MLEM
 Fixes
