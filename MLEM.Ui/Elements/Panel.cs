@@ -82,6 +82,9 @@ namespace MLEM.Ui.Elements {
             this.CanBeSelected = false;
 
             if (scrollOverflow) {
+                this.scrollBarMaxHistory = new float[3];
+                this.ResetScrollBarMaxHistory();
+
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
@@ -98,10 +101,6 @@ namespace MLEM.Ui.Elements {
                     this.ScrollToElement(e);
                 };
                 this.AddChild(this.ScrollBar);
-
-                this.scrollBarMaxHistory = new float[3];
-                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
-                    this.scrollBarMaxHistory[i] = -1;
             }
         }
 
@@ -150,6 +149,8 @@ namespace MLEM.Ui.Elements {
                 throw new NotSupportedException("A panel that scrolls overflow cannot have its scroll bar removed from its list of children");
             base.RemoveChild(element);
 
+            this.ResetScrollBarMaxHistory();
+
             // when removing children, our scroll bar might have to be hidden
             // if we don't do this before adding children again, they might incorrectly assume that the scroll bar will still be visible and adjust their size accordingly
             this.childrenDirtyForScroll = true;
@@ -160,6 +161,8 @@ namespace MLEM.Ui.Elements {
             // if children were recently removed, make sure to update the scroll bar before adding new ones so that they can't incorrectly assume the scroll bar will be visible
             if (this.childrenDirtyForScroll && this.System != null)
                 this.ScrollSetup();
+
+            this.ResetScrollBarMaxHistory();
 
             return base.AddChild(element, index);
         }
@@ -324,16 +327,16 @@ namespace MLEM.Ui.Elements {
 
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
+            // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
+            if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
+                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                // avoid a show/hide oscillation that occurs while updating our area with children that can lose height when the scroll bar is shown (like long paragraphs)
-                if (!this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) || !this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon)) {
-                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
-                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
-                    this.scrollBarMaxHistory[2] = scrollBarMax;
+                this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                this.scrollBarMaxHistory[2] = scrollBarMax;
 
-                    this.ScrollBar.MaxValue = scrollBarMax;
-                    this.relevantChildrenDirty = true;
-                }
+                this.ScrollBar.MaxValue = scrollBarMax;
+                this.relevantChildrenDirty = true;
             }
 
             // update child padding based on whether the scroll bar is visible
@@ -413,6 +416,13 @@ namespace MLEM.Ui.Elements {
 
             this.lastScrollOffset = this.ScrollBar.CurrentValue;
             this.relevantChildrenDirty = true;
+        }
+
+        private void ResetScrollBarMaxHistory() {
+            if (this.scrollOverflow) {
+                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
+                    this.scrollBarMaxHistory[i] = -1;
+            }
         }
 
     }
