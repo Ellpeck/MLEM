@@ -569,7 +569,8 @@ namespace MLEM.Ui.Elements {
                 index = this.children.Count;
             this.children.Insert(index, element);
             element.Parent = this;
-            element.AndChildren(e => e.AddedToUi(this.System, this.Root));
+            if (this.System != null)
+                element.AndChildren(e => e.AddedToUi(this.System, this.Root));
             this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
             element.SetAreaDirty();
@@ -588,7 +589,8 @@ namespace MLEM.Ui.Elements {
             // upwards to us if the element is auto-positioned
             element.SetAreaDirty();
             element.Parent = null;
-            element.AndChildren(e => e.RemovedFromUi());
+            if (this.System != null)
+                element.AndChildren(e => e.RemovedFromUi());
             this.OnChildRemoved?.Invoke(this, element);
             this.SetSortedChildrenDirty();
         }
@@ -1256,7 +1258,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Called when this element is added to a <see cref="UiSystem"/> and, optionally, a given <see cref="RootElement"/>.
-        /// This method is called in <see cref="AddChild{T}"/> and <see cref="UiSystem.Add"/>.
+        /// This method is called in <see cref="AddChild{T}"/> for a parent whose <see cref="System"/> is set, as well as <see cref="UiSystem.Add"/>.
         /// </summary>
         /// <param name="system">The ui system to add to.</param>
         /// <param name="root">The root element to add to.</param>
@@ -1269,7 +1271,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Called when this element is removed from a <see cref="UiSystem"/> and <see cref="RootElement"/>.
-        /// This method is called in <see cref="RemoveChild"/> and <see cref="UiSystem.Remove"/>.
+        /// This method is called in <see cref="RemoveChild"/> for a parent whose <see cref="System"/> is set, as well as <see cref="UiSystem.Remove"/>.
         /// </summary>
         protected internal virtual void RemovedFromUi() {
             var root = this.Root;
