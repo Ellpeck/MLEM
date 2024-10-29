@@ -177,7 +177,7 @@ public class UiTests : GameTestFixture {
 
     // Removing and re-adding to a scrolling panel causes a stack overflow
     [Test]
-    public void TestIssue29([Values(5, 50, 15)] int numChildren) {
+    public void TestIssue29StackOverflow([Values(5, 50, 15)] int numChildren) {
         var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
 
         var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
@@ -214,6 +214,44 @@ public class UiTests : GameTestFixture {
                 listView.AddChild(c);
             }
         }
+    }
+
+    // Adding children causes the scroll bar to disappear when it shouldn't
+    [Test]
+    public void TestIssue29Inconsistencies() {
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        var listView = new Panel(Anchor.TopLeft, new Vector2(1, 1), false, true);
+        group.AddChild(listView);
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
+
+        Assert.DoesNotThrow(() => this.AddAndUpdate(group, out _, out _));
+
+        var appeared = false;
+        for (var i = 0; i < 100; i++) {
+            var c = new Panel(Anchor.AutoLeft, new Vector2(1, 50));
+            c.DrawColor = Color.Green;
+            c.Padding = new MLEM.Maths.Padding(5);
+            listView.AddChild(c);
+            Console.WriteLine($"Adding child, up to {i}");
+
+            Assert.DoesNotThrow(() => UiTests.ForceUpdate(group, out _));
+            if (appeared) {
+                Assert.False(listView.ScrollBar.IsHidden, $"Fail bar was hidden after {i} children");
+            } else if (!listView.ScrollBar.IsHidden) {
+                appeared = true;
+            }
+        }
+        Assert.True(appeared, "Scroll bar never appeared");
     }
 
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {

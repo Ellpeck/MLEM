@@ -336,14 +336,6 @@ namespace MLEM.Ui.Elements {
 
                     this.ScrollBar.MaxValue = scrollBarMax;
                     this.relevantChildrenDirty = true;
-                } else {
-                    // when an oscillation is detected, we overestimate the maximum required space
-                    // TODO UNCOMMENT? potentially fixes second part of issue
-                    /*var historyMax = this.scrollBarMaxHistory.Max();
-                    if (!this.ScrollBar.MaxValue.Equals(historyMax, Element.Epsilon)) {
-                        this.ScrollBar.MaxValue = historyMax;
-                        this.relevantChildrenDirty = true;
-                    }*/
                 }
             }
 
