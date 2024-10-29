@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Data.Content;
 using MLEM.Font;
@@ -24,7 +27,6 @@ public class TestGame : MlemGame {
 
         // make sure that the viewport is always the same size, since RunOneFrame doesn't ensure window size is correct
         this.UiSystem.Viewport = new Rectangle(0, 0, 1280, 720);
-
         // we use precompiled fonts and kni uses a different asset compilation system, so we just have both stored
         this.UiSystem.Style.Font = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>(
 #if KNI
@@ -33,6 +35,8 @@ public class TestGame : MlemGame {
             "TestFont"
 #endif
         ));
+        // make sure we catch a potential ui stack overflow as part of the tests by ensuring a sufficient execution stack
+        this.UiSystem.OnElementAreaUpdated += _ => RuntimeHelpers.EnsureSufficientExecutionStack();
     }
 
     public static TestGame Create() {

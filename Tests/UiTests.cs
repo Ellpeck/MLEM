@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using MLEM.Maths;
 using MLEM.Ui;
@@ -147,10 +148,9 @@ public class UiTests : GameTestFixture {
         }
     }
 
+    // Stack overflow related to panel scrolling and scrollbar auto-hiding
     [Test]
     public void TestIssue27([Values(5, 50, 15)] int numChildren) {
-        // Stack overflow related to panel scrolling and scrollbar auto-hiding
-
         var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
 
         var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
@@ -172,7 +172,48 @@ public class UiTests : GameTestFixture {
         var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
         group.AddChild(bottomPane);
 
-        this.AddAndUpdate(group, out _, out _);
+        Assert.DoesNotThrow(() => this.AddAndUpdate(group, out _, out _));
+    }
+
+    // Removing and re-adding to a scrolling panel causes a stack overflow
+    [Test]
+    public void TestIssue29([Values(5, 50, 15)] int numChildren) {
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        var leftColumn = new SquishingGroup(Anchor.TopLeft, new Vector2(500, 1));
+        group.AddChild(leftColumn);
+        var namePanel = new Panel(Anchor.TopLeft, new Vector2(1, 50), true);
+        var test = new Panel(Anchor.TopCenter, new Vector2(1, 30));
+        test.DrawColor = Color.Red;
+        namePanel.AddChild(test);
+        var listView = new Panel(Anchor.TopLeft, new Vector2(1, 1), false, true);
+        leftColumn.AddChild(listView);
+        leftColumn.AddChild(namePanel);
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
+
+        Repopulate();
+        Assert.DoesNotThrow(() => this.AddAndUpdate(group, out _, out _));
+        Repopulate();
+        Assert.DoesNotThrow(() => UiTests.ForceUpdate(group, out _));
+
+        void Repopulate() {
+            listView.RemoveChildren();
+            for (var i = 0; i < numChildren; i++) {
+                var c = new Panel(Anchor.AutoLeft, new Vector2(1, 30));
+                c.DrawColor = Color.Green;
+                c.Padding = new MLEM.Maths.Padding(5);
+                listView.AddChild(c);
+            }
+        }
     }
 
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
@@ -185,7 +226,11 @@ public class UiTests : GameTestFixture {
         stopwatch.Stop();
         addTime = stopwatch.Elapsed;
 
-        stopwatch.Restart();
+        UiTests.ForceUpdate(element, out updateTime);
+    }
+
+    private static void ForceUpdate(Element element, out TimeSpan updateTime) {
+        var stopwatch = Stopwatch.StartNew();
         element.ForceUpdateArea();
         stopwatch.Stop();
         updateTime = stopwatch.Elapsed;
