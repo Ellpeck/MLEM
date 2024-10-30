@@ -13,6 +13,7 @@ namespace MLEM.Ui.Elements {
     /// A panel element to be used inside of a <see cref="UiSystem"/>.
     /// The panel is a complex element that displays a box as a background to all of its child elements.
     /// Additionally, a panel can be set to scroll overflowing elements on construction, which causes all elements that don't fit into the panel to be hidden until scrolled to using a <see cref="ScrollBar"/>.
+    /// If an element similar to a <see cref="Group"/>, but with scrolling content, is desired, a panel with its <see cref="Texture"/> set to <see langword="null"/> can be used.
     /// </summary>
     public class Panel : Element {
 
@@ -24,7 +25,8 @@ namespace MLEM.Ui.Elements {
         public readonly ScrollBar ScrollBar;
 
         /// <summary>
-        /// The texture that this panel should have, or null if it should be invisible.
+        /// The texture that this panel should have.
+        /// If this is set to <see langword="null"/>, this panel will not have a texture, but all of its content will still be visible.
         /// </summary>
         public StyleProp<NinePatch> Texture;
         /// <summary>
