@@ -86,6 +86,7 @@ namespace MLEM.Ui.Elements {
 
             if (scrollOverflow) {
                 this.scrollBarMaxHistory = new float[3];
+                this.scrollBarMaxHistoryDirty = true;
                 this.ResetScrollBarMaxHistory();
 
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {

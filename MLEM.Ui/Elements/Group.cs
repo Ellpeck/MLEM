@@ -6,7 +6,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// A group element to be used inside of a <see cref="UiSystem"/>.
     /// A group is an element that has no rendering or interaction on its own, but that can aid with automatic placement of child elements.
-    /// If a grouping whose children scroll, and which has a <see cref="ScrollBar"/>, is desired, a panel with its <see cref="Panel.Texture"/> set to <see langword="null"/> can be used.
+    /// If a grouping whose children scroll, and which has a <see cref="ScrollBar"/>, is desired, a <see cref="Panel"/> with its <see cref="Panel.Texture"/> set to <see langword="null"/> can be used.
     /// </summary>
     public class Group : Element {
 

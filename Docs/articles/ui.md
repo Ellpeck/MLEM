@@ -13,7 +13,7 @@ protected override void LoadContent() {
     // Load your other content here
 
     // Initialize the Ui system
-    this.UiSystem = new UiSystem(this.Window, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch));
+    this.UiSystem = new UiSystem(this, this.GraphicsDevice, new UntexturedStyle(this.SpriteBatch));
 }
 
 protected override void Update(GameTime gameTime) {
