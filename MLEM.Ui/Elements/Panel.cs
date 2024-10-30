@@ -64,6 +64,7 @@ namespace MLEM.Ui.Elements {
         private StyleProp<float> scrollBarOffset;
         private float lastScrollOffset;
         private bool childrenDirtyForScroll;
+        private bool scrollBarMaxHistoryDirty;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -170,6 +171,14 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void RemoveChildren(Func<Element, bool> condition = null) {
             base.RemoveChildren(e => e != this.ScrollBar && (condition == null || condition(e)));
+        }
+
+        /// <inheritdoc />
+        public override void Update(GameTime time) {
+            // reset the scroll bar's max history when an update happens, at which point we know that any scroll bar recursion has "settled"
+            // (this reset ensures that the max history is recursion-internal and old values aren't reused when elements get modified later)
+            this.ResetScrollBarMaxHistory();
+            base.Update(time);
         }
 
         /// <inheritdoc />
@@ -334,6 +343,7 @@ namespace MLEM.Ui.Elements {
                 this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
                 this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
                 this.scrollBarMaxHistory[2] = scrollBarMax;
+                this.scrollBarMaxHistoryDirty = true;
 
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
@@ -419,9 +429,10 @@ namespace MLEM.Ui.Elements {
         }
 
         private void ResetScrollBarMaxHistory() {
-            if (this.scrollOverflow) {
+            if (this.scrollOverflow && this.scrollBarMaxHistoryDirty) {
                 for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
                     this.scrollBarMaxHistory[i] = -1;
+                this.scrollBarMaxHistoryDirty = false;
             }
         }
 
