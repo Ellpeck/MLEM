@@ -122,12 +122,13 @@ public class TexturePackerTests : GameTestFixture {
 
     [Test]
     public void TestPackTimes() {
+        var random = new Random(1238492384);
         for (var total = 1; total <= 10001; total += 1000) {
             using var sameSizePacker = new RuntimeTexturePacker();
             using var diffSizePacker = new RuntimeTexturePacker();
             for (var i = 0; i < total; i++) {
                 sameSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10, 10), TexturePackerTests.StubResult);
-                diffSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10 + i % 129, 10 * (i % 5 + 1)), TexturePackerTests.StubResult);
+                diffSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, random.Next(10, 200), random.Next(10, 200)), TexturePackerTests.StubResult);
             }
             sameSizePacker.Pack(this.Game.GraphicsDevice);
             diffSizePacker.Pack(this.Game.GraphicsDevice);
