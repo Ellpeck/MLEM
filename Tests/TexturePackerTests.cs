@@ -123,8 +123,8 @@ public class TexturePackerTests : GameTestFixture {
         sameSizePacker.Pack(this.Game.GraphicsDevice);
         diffSizePacker.Pack(this.Game.GraphicsDevice);
 
-        TexturePackerTests.SaveTexture(sameSizePacker, "SameSize");
-        TexturePackerTests.SaveTexture(diffSizePacker, "DiffSize");
+        TexturePackerTests.SaveTexture(sameSizePacker, $"SameSize{total}");
+        TexturePackerTests.SaveTexture(diffSizePacker, $"DiffSize{total}");
 
         TestContext.WriteLine($"""
             {total} regions,
