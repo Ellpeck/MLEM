@@ -2,7 +2,7 @@
 #tool dotnet:?package=docfx&version=2.75.3
 
 // this is the upcoming version, for prereleases
-var version = Argument("version", "7.2.0");
+var version = Argument("version", "8.0.0");
 var target = Argument("target", "Default");
 var gitRef = Argument("ref", "refs/heads/main");
 var buildNum = Argument("buildNum", "");
@@ -40,7 +40,7 @@ Task("Test").IsDependentOn("Prepare").Does(() => {
     var settings = new DotNetTestSettings {
         Configuration = config,
         Collectors = {"XPlat Code Coverage"},
-        Loggers = {"console;verbosity=normal"}
+        Loggers = {"console;verbosity=normal", "nunit"}
     };
     DotNetTest("MLEM.sln", settings);
     DotNetTest("MLEM.FNA.sln", settings);
