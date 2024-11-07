@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Maths;
 using MLEM.Textures;
 using static MLEM.Textures.TextureExtensions;
 
@@ -14,6 +13,9 @@ namespace MLEM.Data {
     /// Packing textures in this manner allows for faster rendering, as fewer texture swaps are required.
     /// The resulting texture segments are returned as <see cref="TextureRegion"/> instances.
     /// </summary>
+    /// <remarks>
+    /// The algorithm used by this implementation is based on the blog post "Binary Tree Bin Packing Algorithm", which can be found at https://codeincomplete.com/articles/bin-packing/.
+    /// </remarks>
     public class RuntimeTexturePacker : IDisposable {
 
         /// <summary>
@@ -36,31 +38,21 @@ namespace MLEM.Data {
         /// <summary>
         /// The amount of currently packed texture regions.
         /// </summary>
-        public int PackedTextures => this.packedTextures.Count;
+        public int PackedTextures => this.PackedTexture != null ? this.requests.Count : 0;
 
-        private readonly List<Request> texturesToPack = new List<Request>();
-        private readonly List<Request> packedTextures = new List<Request>();
-        private readonly Dictionary<Point, Request> occupiedPositions = new Dictionary<Point, Request>();
-        private readonly Dictionary<Point, Point> initialPositions = new Dictionary<Point, Point>();
+        private readonly List<Request> requests = new List<Request>();
         private readonly Dictionary<Texture2D, TextureData> dataCache = new Dictionary<Texture2D, TextureData>();
-        private readonly bool autoIncreaseMaxWidth;
         private readonly bool forcePowerOfTwo;
         private readonly bool forceSquare;
         private readonly bool disposeTextures;
 
-        private int maxWidth;
-
         /// <summary>
         /// Creates a new runtime texture packer with the given settings.
         /// </summary>
-        /// <param name="maxWidth">The maximum width that the packed texture can have. Defaults to 2048.</param>
-        /// <param name="autoIncreaseMaxWidth">Whether the maximum width should be increased if there is a texture to be packed that is wider than the maximum width specified in the constructor. Defaults to false.</param>
         /// <param name="forcePowerOfTwo">Whether the resulting <see cref="PackedTexture"/> should have a width and height that is a power of two.</param>
         /// <param name="forceSquare">Whether the resulting <see cref="PackedTexture"/> should be square regardless of required size.</param>
         /// <param name="disposeTextures">Whether the original textures submitted to this texture packer should be disposed after packing.</param>
-        public RuntimeTexturePacker(int maxWidth = 2048, bool autoIncreaseMaxWidth = false, bool forcePowerOfTwo = false, bool forceSquare = false, bool disposeTextures = false) {
-            this.maxWidth = maxWidth;
-            this.autoIncreaseMaxWidth = autoIncreaseMaxWidth;
+        public RuntimeTexturePacker(bool forcePowerOfTwo = false, bool forceSquare = false, bool disposeTextures = false) {
             this.forcePowerOfTwo = forcePowerOfTwo;
             this.forceSquare = forceSquare;
             this.disposeTextures = disposeTextures;
@@ -145,15 +137,7 @@ namespace MLEM.Data {
         /// <param name="padWithPixels">Whether the texture's padding should be filled with a copy of the texture's border, rather than transparent pixels. This value only has an effect if <paramref name="padding"/> is greater than 0.</param>
         /// <exception cref="InvalidOperationException">Thrown when trying to add a texture width a width greater than the defined max width.</exception>
         public void Add(TextureRegion texture, Action<TextureRegion> result, int padding = 0, bool padWithPixels = false) {
-            var paddedWidth = texture.Width + 2 * padding;
-            if (paddedWidth > this.maxWidth) {
-                if (this.autoIncreaseMaxWidth) {
-                    this.maxWidth = paddedWidth;
-                } else {
-                    throw new InvalidOperationException($"Cannot add texture with width {texture.Width} to a texture packer with max width {this.maxWidth}");
-                }
-            }
-            this.texturesToPack.Add(new Request(texture, result, padding, padWithPixels));
+            this.requests.Add(new Request(texture, result, padding, padWithPixels));
         }
 
         /// <summary>
@@ -163,19 +147,32 @@ namespace MLEM.Data {
         /// </summary>
         /// <param name="device">The graphics device to use for texture generation</param>
         public void Pack(GraphicsDevice device) {
-            // set pack areas for each request
-            // we pack larger textures first, so that smaller textures can fit in the gaps that larger ones leave
+            // set pack areas for each request based on the algo in https://codeincomplete.com/articles/bin-packing/
             var stopwatch = Stopwatch.StartNew();
-            foreach (var request in this.texturesToPack.OrderByDescending(t => t.Texture.Width * t.Texture.Height)) {
-                request.PackedArea = this.OccupyFreeArea(request);
-                this.packedTextures.Add(request);
+            RequestNode root = null;
+            foreach (var request in this.requests.OrderByDescending(t => Math.Max(t.Texture.Width, t.Texture.Height) + t.Padding * 2)) {
+                var size = new Point(request.Texture.Width, request.Texture.Height);
+                size.X += request.Padding * 2;
+                size.Y += request.Padding * 2;
+
+                if (root == null)
+                    root = new RequestNode(0, 0, size.X, size.Y);
+
+                var node = RuntimeTexturePacker.FindNode(size, root);
+                if (node == null) {
+                    root = RuntimeTexturePacker.GrowNode(size, root);
+                    node = RuntimeTexturePacker.FindNode(size, root);
+                }
+
+                request.Node = node;
+                node.Split(size);
             }
             stopwatch.Stop();
             this.LastCalculationTime = stopwatch.Elapsed;
 
             // figure out texture size and regenerate texture if necessary
-            var width = this.packedTextures.Max(t => t.PackedArea.Right);
-            var height = this.packedTextures.Max(t => t.PackedArea.Bottom);
+            var width = root.Area.Width;
+            var height = root.Area.Height;
             if (this.forcePowerOfTwo) {
                 width = RuntimeTexturePacker.ToPowerOfTwo(width);
                 height = RuntimeTexturePacker.ToPowerOfTwo(height);
@@ -184,26 +181,23 @@ namespace MLEM.Data {
                 width = height = Math.Max(width, height);
 
             // if we don't need to regenerate, we only need to add newly added regions
-            IEnumerable<Request> texturesToCopy = this.texturesToPack;
             if (this.PackedTexture == null || this.PackedTexture.Width != width || this.PackedTexture.Height != height) {
                 this.PackedTexture?.Dispose();
                 this.PackedTexture = new Texture2D(device, width, height);
-                // if we need to regenerate, we need to copy all regions since the old ones were deleted
-                texturesToCopy = this.packedTextures;
             }
 
             // copy texture data onto the packed texture
             stopwatch.Restart();
             using (var data = this.PackedTexture.GetTextureData()) {
-                foreach (var request in texturesToCopy)
+                foreach (var request in this.requests)
                     this.CopyRegion(data, request);
             }
             stopwatch.Stop();
             this.LastPackTime = stopwatch.Elapsed;
 
             // invoke callbacks for textures we copied
-            foreach (var request in texturesToCopy) {
-                var packedArea = request.PackedArea.Shrink(new Point(request.Padding, request.Padding));
+            foreach (var request in this.requests) {
+                var packedArea = new Rectangle(request.Node.Area.Location + new Point(request.Padding), request.Texture.Size);
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea) {
                     Pivot = request.Texture.Pivot,
                     Name = request.Texture.Name,
@@ -213,7 +207,6 @@ namespace MLEM.Data {
                     request.Texture.Texture.Dispose();
             }
 
-            this.texturesToPack.Clear();
             this.dataCache.Clear();
         }
 
@@ -225,10 +218,7 @@ namespace MLEM.Data {
             this.PackedTexture = null;
             this.LastCalculationTime = TimeSpan.Zero;
             this.LastPackTime = TimeSpan.Zero;
-            this.texturesToPack.Clear();
-            this.packedTextures.Clear();
-            this.initialPositions.Clear();
-            this.occupiedPositions.Clear();
+            this.requests.Clear();
             this.dataCache.Clear();
         }
 
@@ -237,53 +227,9 @@ namespace MLEM.Data {
             this.Reset();
         }
 
-        private Rectangle OccupyFreeArea(Request request) {
-            var size = new Point(request.Texture.Width, request.Texture.Height);
-            size.X += request.Padding * 2;
-            size.Y += request.Padding * 2;
-
-            // exit early if the texture doesn't need to find a free location
-            if (size.X <= 0 || size.Y <= 0)
-                return Rectangle.Empty;
-
-            var pos = this.initialPositions.TryGetValue(size, out var first) ? first : Point.Zero;
-            var area = new Rectangle(pos.X, pos.Y, size.X, size.Y);
-            var lowestY = int.MaxValue;
-            while (true) {
-                // check if the current area is already occupied
-                if (!this.occupiedPositions.TryGetValue(area.Location, out var existing)) {
-                    existing = this.packedTextures.FirstOrDefault(t => t.PackedArea.Intersects(area));
-                    // if no texture is occupying this space, we have found a free area
-                    if (existing == null) {
-                        // if this is the first position that this request fit in, no other requests of the same size will find a position before it
-                        this.initialPositions[new Point(area.Width, area.Height)] = area.Location;
-                        this.occupiedPositions.Add(area.Location, request);
-                        return area;
-                    }
-
-                    // also cache the existing texture for this position, in case we check it again in the future
-                    this.occupiedPositions.Add(area.Location, existing);
-                }
-
-                // move to the right by the existing texture's width
-                area.X = existing.PackedArea.Right;
-
-                // remember the smallest intersecting texture's height for when we move down
-                if (lowestY > existing.PackedArea.Bottom)
-                    lowestY = existing.PackedArea.Bottom;
-
-                // move down a row if we exceed our maximum width
-                if (area.Right > this.maxWidth) {
-                    area.X = 0;
-                    area.Y = lowestY;
-                    lowestY = int.MaxValue;
-                }
-            }
-        }
-
         private void CopyRegion(TextureData destination, Request request) {
             var data = this.GetCachedTextureData(request.Texture.Texture);
-            var location = request.PackedArea.Location + new Point(request.Padding, request.Padding);
+            var location = request.Node.Area.Location + new Point(request.Padding, request.Padding);
             for (var x = -request.Padding; x < request.Texture.Width + request.Padding; x++) {
                 for (var y = -request.Padding; y < request.Texture.Height + request.Padding; y++) {
                     Color srcColor;
@@ -328,19 +274,80 @@ namespace MLEM.Data {
             return ret;
         }
 
+        private static RequestNode FindNode(Point requestSize, RequestNode node) {
+            if (node.Down != null && node.Right != null) {
+                return RuntimeTexturePacker.FindNode(requestSize, node.Right) ?? RuntimeTexturePacker.FindNode(requestSize, node.Down);
+            } else if (requestSize.X <= node.Area.Width && requestSize.Y <= node.Area.Height) {
+                return node;
+            } else {
+                return null;
+            }
+        }
+
+        private static RequestNode GrowNode(Point requestSize, RequestNode node) {
+            var canGrowDown = requestSize.X <= node.Area.Width;
+            var canGrowRight = requestSize.Y <= node.Area.Height;
+
+            var shouldGrowRight = canGrowRight && node.Area.Height >= node.Area.Width + requestSize.X;
+            var shouldGrowDown = canGrowDown && node.Area.Width >= node.Area.Height + requestSize.Y;
+
+            if (shouldGrowRight) {
+                return RuntimeTexturePacker.GrowNodeRight(requestSize, node);
+            } else if (shouldGrowDown) {
+                return RuntimeTexturePacker.GrowNodeDown(requestSize, node);
+            } else if (canGrowRight) {
+                return RuntimeTexturePacker.GrowNodeRight(requestSize, node);
+            } else if (canGrowDown) {
+                return RuntimeTexturePacker.GrowNodeDown(requestSize, node);
+            } else {
+                return null;
+            }
+        }
+
+        private static RequestNode GrowNodeRight(Point requestSize, RequestNode node) {
+            return new RequestNode(0, 0, node.Area.Width + requestSize.X, node.Area.Height) {
+                Right = new RequestNode(node.Area.Width, 0, requestSize.X, node.Area.Height),
+                Down = node
+            };
+        }
+
+        private static RequestNode GrowNodeDown(Point requestSize, RequestNode node) {
+            return new RequestNode(0, 0, node.Area.Width, node.Area.Height + requestSize.Y) {
+                Right = node,
+                Down = new RequestNode(0, node.Area.Height, node.Area.Width, requestSize.Y)
+            };
+        }
+
         private class Request {
 
             public readonly TextureRegion Texture;
             public readonly Action<TextureRegion> Result;
             public readonly int Padding;
             public readonly bool PadWithPixels;
-            public Rectangle PackedArea;
+            public RequestNode Node;
 
             public Request(TextureRegion texture, Action<TextureRegion> result, int padding, bool padWithPixels) {
                 this.Texture = texture;
                 this.Result = result;
                 this.Padding = padding;
                 this.PadWithPixels = padWithPixels;
+            }
+
+        }
+
+        private class RequestNode {
+
+            public readonly Rectangle Area;
+            public RequestNode Down;
+            public RequestNode Right;
+
+            public RequestNode(int x, int y, int width, int height) {
+                this.Area = new Rectangle(x, y, width, height);
+            }
+
+            public void Split(Point requestSize) {
+                this.Down = new RequestNode(this.Area.X, this.Area.Y + requestSize.Y, this.Area.Width, this.Area.Height - requestSize.Y);
+                this.Right = new RequestNode(this.Area.X + requestSize.X, this.Area.Y, this.Area.Width - requestSize.X, requestSize.Y);
             }
 
         }

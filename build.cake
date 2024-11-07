@@ -40,7 +40,7 @@ Task("Test").IsDependentOn("Prepare").Does(() => {
     var settings = new DotNetTestSettings {
         Configuration = config,
         Collectors = {"XPlat Code Coverage"},
-        Loggers = {"console;verbosity=normal"}
+        Loggers = {"console;verbosity=normal", "nunit"}
     };
     DotNetTest("MLEM.sln", settings);
     DotNetTest("MLEM.FNA.sln", settings);
