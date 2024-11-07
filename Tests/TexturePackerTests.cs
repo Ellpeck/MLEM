@@ -49,10 +49,18 @@ public class TexturePackerTests : GameTestFixture {
         }
 
         foreach (var r1 in packed) {
+            var r1Padded = r1.Area;
+            r1Padded.Inflate(padding, padding);
+
             foreach (var r2 in packed) {
                 if (r1 == r2)
                     continue;
+
                 Assert.False(r1.Area.Intersects(r2.Area));
+
+                var r2Padded = r2.Area;
+                r2Padded.Inflate(padding, padding);
+                Assert.False(r1Padded.Intersects(r2Padded));
             }
         }
     }
