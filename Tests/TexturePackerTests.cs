@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Data;
+using MLEM.Graphics;
 using MLEM.Maths;
 using MLEM.Textures;
 using NUnit.Framework;
@@ -133,7 +134,7 @@ public class TexturePackerTests : GameTestFixture {
     }
 
     private TextureRegion MakeTextureRegion(int width, int height) {
-        var color = new Color((uint) SingleRandom.Int(this.generatedTextures.Count)) {A = 255};
+        var color = ColorHelper.FromHexRgb(SingleRandom.Int(this.generatedTextures.Count));
         var texture = new Texture2D(this.Game.GraphicsDevice, Math.Max(width, 1), Math.Max(height, 1));
         using (var data = texture.GetTextureData()) {
             for (var x = 0; x < texture.Width; x++) {

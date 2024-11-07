@@ -197,7 +197,8 @@ namespace MLEM.Data {
 
             // invoke callbacks for textures we copied
             foreach (var request in this.requests) {
-                var packedArea = new Rectangle(request.Node.Area.Location + new Point(request.Padding), request.Texture.Size);
+                var packedLoc = request.Node.Area.Location + new Point(request.Padding, request.Padding);
+                var packedArea = new Rectangle(packedLoc.X, packedLoc.Y, request.Texture.Width, request.Texture.Height);
                 request.Result.Invoke(new TextureRegion(this.PackedTexture, packedArea) {
                     Pivot = request.Texture.Pivot,
                     Name = request.Texture.Name,
