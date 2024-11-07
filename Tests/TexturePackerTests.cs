@@ -40,11 +40,11 @@ public class TexturePackerTests : GameTestFixture {
     }
 
     [Test]
-    public void TestOverlap() {
+    public void TestOverlap([Values(0, 1, 5, 10)] int padding) {
         var packed = new List<TextureRegion>();
         using (var packer = new RuntimeTexturePacker(8192)) {
             for (var i = 1; i <= 1000; i++)
-                packer.Add(new TextureRegion(this.testTexture, 0, 0, i % 239, i % 673), packed.Add);
+                packer.Add(new TextureRegion(this.testTexture, 0, 0, i % 239, i % 673), packed.Add, padding);
             packer.Pack(this.Game.GraphicsDevice);
         }
 
