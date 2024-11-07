@@ -121,24 +121,23 @@ public class TexturePackerTests : GameTestFixture {
     }
 
     [Test]
-    public void TestPackTimes() {
+    public void TestPackTimes([Values(1, 100, 1000, 5000, 10000)] int total) {
         var random = new Random(1238492384);
-        for (var total = 1; total <= 10001; total += 1000) {
-            using var sameSizePacker = new RuntimeTexturePacker();
-            using var diffSizePacker = new RuntimeTexturePacker();
-            for (var i = 0; i < total; i++) {
-                sameSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10, 10), TexturePackerTests.StubResult);
-                diffSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, random.Next(10, 200), random.Next(10, 200)), TexturePackerTests.StubResult);
-            }
-            sameSizePacker.Pack(this.Game.GraphicsDevice);
-            diffSizePacker.Pack(this.Game.GraphicsDevice);
-
-            TestContext.WriteLine($"""
-                {total} regions,
-                same-size {sameSizePacker.LastCalculationTime.TotalMilliseconds} calc, {sameSizePacker.LastPackTime.TotalMilliseconds} pack, {sameSizePacker.LastTotalTime.TotalMilliseconds} total,
-                diff-size {diffSizePacker.LastCalculationTime.TotalMilliseconds} calc, {diffSizePacker.LastPackTime.TotalMilliseconds} pack, {diffSizePacker.LastTotalTime.TotalMilliseconds} total
-                """);
+        var width = total >= 5000 ? 8192 : 2048;
+        using var sameSizePacker = new RuntimeTexturePacker(width);
+        using var diffSizePacker = new RuntimeTexturePacker(width);
+        for (var i = 0; i < total; i++) {
+            sameSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, 10, 10), TexturePackerTests.StubResult);
+            diffSizePacker.Add(new TextureRegion(this.testTexture, 0, 0, random.Next(10, 200), random.Next(10, 200)), TexturePackerTests.StubResult);
         }
+        sameSizePacker.Pack(this.Game.GraphicsDevice);
+        diffSizePacker.Pack(this.Game.GraphicsDevice);
+
+        TestContext.WriteLine($"""
+            {total} regions,
+            same-size {sameSizePacker.LastCalculationTime.TotalMilliseconds}ms calc, {sameSizePacker.LastPackTime.TotalMilliseconds}ms pack, {sameSizePacker.LastTotalTime.TotalMilliseconds}ms total,
+            diff-size {diffSizePacker.LastCalculationTime.TotalMilliseconds}ms calc, {diffSizePacker.LastPackTime.TotalMilliseconds}ms pack, {diffSizePacker.LastTotalTime.TotalMilliseconds}ms total
+            """);
     }
 
     private static void StubResult(TextureRegion region) {}
