@@ -154,16 +154,22 @@ namespace MLEM.Ui.Parsers {
                     lock (bytesLock)
                         bytesNull = bytes == null;
                     if (!bytesNull) {
-                        Texture2D tex;
+                        Texture2D tex = null;
                         lock (bytesLock) {
-                            using (var stream = new MemoryStream(bytes)) {
-                                using (var read = Texture2D.FromStream(this.GraphicsDevice, stream))
-                                    tex = read.PremultipliedCopy();
+                            try {
+                                using (var stream = new MemoryStream(bytes)) {
+                                    using (var read = Texture2D.FromStream(this.GraphicsDevice, stream))
+                                        tex = read.PremultipliedCopy();
+                                }
+                            } catch (Exception e) {
+                                CatchOrRethrow(e);
                             }
                             bytes = null;
                         }
-                        image = new TextureRegion(tex);
-                        onImageFetched?.Invoke(image);
+                        if (tex != null) {
+                            image = new TextureRegion(tex);
+                            onImageFetched?.Invoke(image);
+                        }
                     }
                 }
                 return image;
@@ -211,11 +217,15 @@ namespace MLEM.Ui.Parsers {
                     lock (bytesLock)
                         bytes = src;
                 } catch (Exception e) {
-                    if (this.ImageExceptionHandler != null) {
-                        this.ImageExceptionHandler.Invoke(path, e);
-                    } else {
-                        throw new NullReferenceException($"Couldn't parse image {path}, and no ImageExceptionHandler was set", e);
-                    }
+                    CatchOrRethrow(e);
+                }
+            }
+
+            void CatchOrRethrow(Exception e) {
+                if (this.ImageExceptionHandler != null) {
+                    this.ImageExceptionHandler.Invoke(path, e);
+                } else {
+                    throw new NullReferenceException($"Couldn't parse image {path}, and no ImageExceptionHandler was set", e);
                 }
             }
         }
