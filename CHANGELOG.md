@@ -2,7 +2,7 @@
 MLEM tries to adhere to [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**.
 
 Jump to version:
-- [7.2.0](#720-in-development)
+- [8.0.0](#800-in-development)
 - [7.1.1](#711)
 - [7.1.0](#710)
 - [7.0.0](#700)
@@ -16,7 +16,7 @@ Jump to version:
 - [5.1.0](#510)
 - [5.0.0](#500)
 
-## 7.2.0 (In Development)
+## 8.0.0 (In Development)
 
 ### MLEM
 Fixes
@@ -36,6 +36,7 @@ Fixes
 
 ### MLEM.Data
 Improvements
+- **Use a binary tree algorithm for RuntimeTexturePacker to vastly increase packing speed**
 - Made fields and methods in StaticJsonConverter protected to allow extending it
 
 ## 7.1.1
