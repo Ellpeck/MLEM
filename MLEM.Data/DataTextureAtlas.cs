@@ -104,7 +104,7 @@ namespace MLEM.Data {
                 throw new ContentLoadException($"Couldn't load data texture atlas data from {info}", e);
             }
             var atlas = new DataTextureAtlas(texture);
-            var words = Regex.Split(text, @"\s+");
+            var words = Regex.Split(text.Trim(), @"\s+");
 
             var namesOffsets = new List<(string, Vector2)>();
             var customData = new Dictionary<string, string>();
