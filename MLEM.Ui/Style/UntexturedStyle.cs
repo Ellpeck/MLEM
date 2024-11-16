@@ -5,7 +5,7 @@ using MLEM.Graphics;
 namespace MLEM.Ui.Style {
     /// <summary>
     /// The default, untextured <see cref="UiStyle"/>.
-    /// Note that, as MLEM does not provide any texture or font assets, this default style is made up of single-color textures that were generated using <see cref="SpriteBatchExtensions.GenerateTexture"/>.
+    /// Note that, as MLEM does not provide any texture or font assets, this default style is made up of single-color textures that were generated using <see cref="SpriteBatchExtensions.GenerateNinePatch"/>.
     /// </summary>
     public class UntexturedStyle : UiStyle {
 
@@ -14,18 +14,18 @@ namespace MLEM.Ui.Style {
         /// </summary>
         /// <param name="batch">The sprite batch to generate the textures with</param>
         public UntexturedStyle(SpriteBatch batch) {
-            this.SelectionIndicator = batch.GenerateTexture(Color.Transparent, Color.Red);
-            this.ButtonTexture = batch.GenerateTexture(Color.CadetBlue);
-            this.PanelTexture = batch.GenerateTexture(Color.Gray);
-            this.TextFieldTexture = batch.GenerateTexture(Color.MediumBlue);
-            this.ScrollBarBackground = batch.GenerateTexture(Color.LightBlue);
-            this.ScrollBarScrollerTexture = batch.GenerateTexture(Color.Blue);
-            this.CheckboxTexture = batch.GenerateTexture(Color.LightBlue);
-            this.CheckboxCheckmark = batch.GenerateTexture(Color.Blue).Region;
-            this.RadioTexture = batch.GenerateTexture(Color.AliceBlue);
-            this.RadioCheckmark = batch.GenerateTexture(Color.CornflowerBlue).Region;
-            this.TooltipBackground = batch.GenerateTexture(Color.Black * 0.65F, Color.Black * 0.65F);
-            this.ProgressBarTexture = batch.GenerateTexture(Color.RoyalBlue);
+            this.SelectionIndicator = batch.GenerateNinePatch(Color.Transparent, Color.Red);
+            this.ButtonTexture = batch.GenerateNinePatch(Color.CadetBlue, Color.Black);
+            this.PanelTexture = batch.GenerateNinePatch(Color.Gray, Color.Black);
+            this.TextFieldTexture = batch.GenerateNinePatch(Color.MediumBlue, Color.Black);
+            this.ScrollBarBackground = batch.GenerateNinePatch(Color.LightBlue, Color.Black);
+            this.ScrollBarScrollerTexture = batch.GenerateNinePatch(Color.Blue, Color.Black);
+            this.CheckboxTexture = batch.GenerateNinePatch(Color.LightBlue, Color.Black);
+            this.CheckboxCheckmark = batch.GenerateNinePatch(Color.Blue, Color.Black).Region;
+            this.RadioTexture = batch.GenerateNinePatch(Color.AliceBlue, Color.Black);
+            this.RadioCheckmark = batch.GenerateNinePatch(Color.CornflowerBlue, Color.Black).Region;
+            this.TooltipBackground = batch.GenerateNinePatch(Color.Black * 0.65F, Color.Black * 0.65F);
+            this.ProgressBarTexture = batch.GenerateNinePatch(Color.RoyalBlue, Color.Black);
         }
 
     }

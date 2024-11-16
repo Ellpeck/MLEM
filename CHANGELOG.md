@@ -21,10 +21,14 @@ Jump to version:
 ### MLEM
 Improvements
 - Allow getting and setting TextureData by index
-- Improve TextureExtensions.PremultipliedCopy memory performance
+- Improved TextureExtensions.PremultipliedCopy memory performance
+- Improved the naming of SpriteBatchExtensions texture generation methods
 
 Fixes
 - Fixed formatting codes at the start of strings not being added to the AllCodes collection
+
+Removals
+- Marked SpriteBatchExtensions GenerateTexture and GenerateSquareTexture as obsolete in favor of their more clearly named replacements
 
 ### MLEM.Ui
 Additions

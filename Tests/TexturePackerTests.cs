@@ -135,13 +135,7 @@ public class TexturePackerTests : GameTestFixture {
 
     private TextureRegion MakeTextureRegion(int width, int height) {
         var color = ColorHelper.FromHexRgb(SingleRandom.Int(this.generatedTextures.Count));
-        var texture = new Texture2D(this.Game.GraphicsDevice, Math.Max(width, 1), Math.Max(height, 1));
-        using (var data = texture.GetTextureData()) {
-            for (var x = 0; x < texture.Width; x++) {
-                for (var y = 0; y < texture.Height; y++)
-                    data[x, y] = color;
-            }
-        }
+        var texture = this.Game.SpriteBatch.GenerateTexture(color, Math.Max(width, 1), Math.Max(height, 1));
         var region = new TextureRegion(texture, 0, 0, width, height);
         this.generatedTextures.Add(region);
         return region;

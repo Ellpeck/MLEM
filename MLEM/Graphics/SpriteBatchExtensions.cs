@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Maths;
@@ -18,11 +19,8 @@ namespace MLEM.Graphics {
         /// <param name="batch">The sprite batch</param>
         /// <returns>A 1x1 pixel white texture</returns>
         public static Texture2D GetBlankTexture(this SpriteBatch batch) {
-            if (SpriteBatchExtensions.blankTexture == null) {
-                SpriteBatchExtensions.blankTexture = new Texture2D(batch.GraphicsDevice, 1, 1);
-                SpriteBatchExtensions.blankTexture.SetData(new[] {Color.White});
-                SpriteBatchExtensions.AutoDispose(batch, SpriteBatchExtensions.blankTexture);
-            }
+            if (SpriteBatchExtensions.blankTexture == null)
+                SpriteBatchExtensions.blankTexture = batch.GenerateTexture(Color.White, 1, 1);
             return SpriteBatchExtensions.blankTexture;
         }
 
@@ -34,13 +32,25 @@ namespace MLEM.Graphics {
         /// <param name="color">The fill color of the texture</param>
         /// <param name="outlineColor">The outline color of the texture</param>
         /// <returns>A <see cref="NinePatch"/> containing a 3x3 texture with an outline</returns>
+        [Obsolete("Use the new GenerateNinePatch instead")]
         public static NinePatch GenerateTexture(this SpriteBatch batch, Color color, Color? outlineColor = null) {
-            var outli = outlineColor ?? Color.Black;
+            return batch.GenerateNinePatch(color, outlineColor ?? Color.Black);
+        }
+
+        /// <summary>
+        /// Generates a <see cref="NinePatch"/> that has a texture with a given color and outline color.
+        /// This texture is automatically disposed of when the batch is disposed.
+        /// </summary>
+        /// <param name="batch">The sprite batch</param>
+        /// <param name="color">The fill color of the texture</param>
+        /// <param name="outlineColor">The outline color of the texture</param>
+        /// <returns>A <see cref="NinePatch"/> containing a 3x3 texture with an outline</returns>
+        public static NinePatch GenerateNinePatch(this SpriteBatch batch, Color color, Color outlineColor) {
             var tex = new Texture2D(batch.GraphicsDevice, 3, 3);
             tex.SetData(new[] {
-                outli, outli, outli,
-                outli, color, outli,
-                outli, outli, outli
+                outlineColor, outlineColor, outlineColor,
+                outlineColor, color, outlineColor,
+                outlineColor, outlineColor, outlineColor
             });
             SpriteBatchExtensions.AutoDispose(batch, tex);
             return new NinePatch(tex, 1);
@@ -53,9 +63,26 @@ namespace MLEM.Graphics {
         /// <param name="batch">The sprite batch</param>
         /// <param name="color">The color of the texture</param>
         /// <returns>A new texture with the given data</returns>
+        [Obsolete("Use the new GenerateTexture instead")]
         public static Texture2D GenerateSquareTexture(this SpriteBatch batch, Color color) {
-            var tex = new Texture2D(batch.GraphicsDevice, 1, 1);
-            tex.SetData(new[] {color});
+            return batch.GenerateTexture(color, 1, 1);
+        }
+
+        /// <summary>
+        /// Generates a texture with the given <paramref name="width"/> and <paramref name="height"/>, which will be filled with the given <paramref name="color"/>.
+        /// This texture is automatically disposed of when the batch is disposed.
+        /// </summary>
+        /// <param name="batch">The sprite batch</param>
+        /// <param name="color">The color of the texture</param>
+        /// <param name="width">The width of the resulting texture</param>
+        /// <param name="height">The height of the resulting texture</param>
+        /// <returns>A new texture with the given data</returns>
+        public static Texture2D GenerateTexture(this SpriteBatch batch, Color color, int width, int height) {
+            var tex = new Texture2D(batch.GraphicsDevice, width, height);
+            using (var data = tex.GetTextureData()) {
+                for (var i = 0; i < data.Length; i++)
+                    data[i] = color;
+            }
             SpriteBatchExtensions.AutoDispose(batch, tex);
             return tex;
         }
