@@ -24,15 +24,12 @@ namespace MLEM.Textures {
         /// <param name="texture">The texture of which to create a premultiplied copy.</param>
         /// <returns>The premultiplied copy of the <paramref name="texture"/>.</returns>
         public static Texture2D PremultipliedCopy(this Texture2D texture) {
+            var data = new Color[texture.Width * texture.Height];
+            texture.GetData(data);
+            for (var i = 0; i < data.Length; i++)
+                data[i] = Color.FromNonPremultiplied(data[i].ToVector4());
             var ret = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
-            using (var textureData = texture.GetTextureData()) {
-                using (var retData = ret.GetTextureData()) {
-                    for (var x = 0; x < ret.Width; x++) {
-                        for (var y = 0; y < ret.Height; y++)
-                            retData[x, y] = Color.FromNonPremultiplied(textureData[x, y].ToVector4());
-                    }
-                }
-            }
+            ret.SetData(data);
             return ret;
         }
 
@@ -51,20 +48,34 @@ namespace MLEM.Textures {
             /// <param name="x">The x coordinate of the texture location</param>
             /// <param name="y">The y coordinate of the texture location</param>
             public Color this[int x, int y] {
-                get => this.data[this.ToIndex(x, y)];
+                get => this[this.ToIndex(x, y)];
+                set => this[this.ToIndex(x, y)] = value;
+            }
+            /// <summary>
+            /// Returns the color at the given x,y position of the texture, where 0,0 represents the bottom left.
+            /// </summary>
+            /// <param name="point">The x and y coordinates of the texture location</param>
+            public Color this[Point point] {
+                get => this[point.X, point.Y];
+                set => this[point.X, point.Y] = value;
+            }
+            /// <summary>
+            /// Returns the color at the given index of the texture data, which is the index in the <see cref="Texture2D.GetData{T}(T[])"/> array.
+            /// </summary>
+            /// <param name="index">The index.</param>
+            public Color this[int index] {
+                get => this.data[index];
                 set {
-                    var index = this.ToIndex(x, y);
                     if (this.data[index] != value) {
                         this.data[index] = value;
                         this.dirty = true;
                     }
                 }
             }
-            /// <inheritdoc cref="this[int,int]"/>
-            public Color this[Point point] {
-                get => this[point.X, point.Y];
-                set => this[point.X, point.Y] = value;
-            }
+            /// <summary>
+            /// The length of the underlying texture data array, which is the texture's width multiplied by its height.
+            /// </summary>
+            public int Length => this.data.Length;
 
             /// <summary>
             /// Creates a new texture data instance for the given texture.
@@ -107,7 +118,7 @@ namespace MLEM.Textures {
             /// <returns>The corresponding texture coordinate</returns>
             /// <exception cref="ArgumentException">If the given index is out of bounds</exception>
             public Point FromIndex(int index) {
-                if (index < 0 || index >= this.data.Length)
+                if (index < 0 || index >= this.Length)
                     throw new ArgumentException();
                 return new Point(index % this.texture.Width, index / this.texture.Width);
             }

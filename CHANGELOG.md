@@ -19,6 +19,10 @@ Jump to version:
 ## 8.0.0 (In Development)
 
 ### MLEM
+Improvements
+- Allow getting and setting TextureData by index
+- Improve TextureExtensions.PremultipliedCopy memory performance
+
 Fixes
 - Fixed formatting codes at the start of strings not being added to the AllCodes collection
 
