@@ -35,6 +35,7 @@ Additions
 - Added Panel.IsVisible method to check if a child element is visible
 - Added TextField.OnEnterPressed event
 - Added Tooltip.IgnoreViewport and allow overriding the default viewport using Tooltip.Viewport
+- Added the ability for Dropdown to display an arrow texture based on its open state
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin

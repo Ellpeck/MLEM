@@ -1,6 +1,8 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Maths;
+using MLEM.Textures;
+using MLEM.Ui.Style;
 
 namespace MLEM.Ui.Elements {
     /// <summary>
@@ -14,12 +16,17 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public Panel Panel { get; private set; }
         /// <summary>
+        /// The <see cref="Image"/> that contains the currently active arrow texture for this dropdown, which is either <see cref="ClosedArrowTexture"/> or <see cref="OpenedArrowTexture"/>.
+        /// </summary>
+        public Image Arrow { get; private set; }
+        /// <summary>
         /// This property stores whether the dropdown is currently opened or not
         /// </summary>
         public bool IsOpen {
             get => !this.Panel.IsHidden;
             set {
                 this.Panel.IsHidden = !value;
+                this.UpdateArrowStyle();
                 this.OnOpenedOrClosed?.Invoke(this);
             }
         }
@@ -27,6 +34,41 @@ namespace MLEM.Ui.Elements {
         /// An event that is invoked when <see cref="IsOpen"/> changes
         /// </summary>
         public GenericCallback OnOpenedOrClosed;
+
+        /// <summary>
+        /// A style property containing the <see cref="Padding"/> that should be passed to the <see cref="Arrow"/> child element.
+        /// </summary>
+        public StyleProp<Padding> ArrowPadding {
+            get => this.arrowPadding;
+            set {
+                this.arrowPadding = value;
+                this.UpdateArrowStyle();
+            }
+        }
+        /// <summary>
+        /// A style property containing the <see cref="TextureRegion"/> that should be displayed on this dropdown's <see cref="Arrow"/> when the dropdown is closed (<see cref="IsOpen"/> is <see langword="false"/>).
+        /// </summary>
+        public StyleProp<TextureRegion> ClosedArrowTexture {
+            get => this.closedArrowTexture;
+            set {
+                this.closedArrowTexture = value;
+                this.UpdateArrowStyle();
+            }
+        }
+        /// <summary>
+        /// A style property containing the <see cref="TextureRegion"/> that should be displayed on this dropdown's <see cref="Arrow"/> when the dropdown is open (<see cref="IsOpen"/> is <see langword="true"/>).
+        /// </summary>
+        public StyleProp<TextureRegion> OpenedArrowTexture {
+            get => this.openedArrowTexture;
+            set {
+                this.openedArrowTexture = value;
+                this.UpdateArrowStyle();
+            }
+        }
+
+        private StyleProp<TextureRegion> openedArrowTexture;
+        private StyleProp<TextureRegion> closedArrowTexture;
+        private StyleProp<Padding> arrowPadding;
 
         /// <summary>
         /// Creates a new dropdown with the given settings and no text or tooltip.
@@ -125,6 +167,8 @@ namespace MLEM.Ui.Elements {
             this.Panel = this.AddChild(new Panel(Anchor.TopCenter, Vector2.Zero, panelHeight == 0, scrollPanel, autoHidePanelScrollbar) {
                 IsHidden = true
             });
+            this.Arrow = this.AddChild(new Image(Anchor.CenterRight, new Vector2(-1, 1), this.ClosedArrowTexture));
+            this.UpdateArrowStyle();
             this.OnAreaUpdated += e => {
                 this.Panel.Size = new Vector2(e.Area.Width / e.Scale, panelHeight);
                 this.Panel.PositionOffset = new Vector2(0, e.Area.Height / e.Scale);
@@ -146,6 +190,20 @@ namespace MLEM.Ui.Elements {
                     return this.Panel.Children.FirstOrDefault(c => c.CanBeSelected) ?? usualNext;
                 return usualNext;
             };
+        }
+
+        /// <inheritdoc />
+        protected override void InitStyle(UiStyle style) {
+            base.InitStyle(style);
+            this.ArrowPadding = this.ArrowPadding.OrStyle(style.DropdownArrowPadding);
+            this.ClosedArrowTexture = this.ClosedArrowTexture.OrStyle(style.DropdownClosedArrowTexture);
+            this.OpenedArrowTexture = this.OpenedArrowTexture.OrStyle(style.DropdownOpenedArrowTexture);
+            this.UpdateArrowStyle();
+        }
+
+        private void UpdateArrowStyle() {
+            this.Arrow.Padding = this.Arrow.Padding.OrStyle(this.ArrowPadding, 1);
+            this.Arrow.Texture = this.IsOpen ? this.OpenedArrowTexture : this.ClosedArrowTexture;
         }
 
     }

@@ -50,7 +50,10 @@ namespace Demos {
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8),
-                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}}
+                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}},
+                DropdownClosedArrowTexture = new TextureRegion(this.testTexture, 40, 0, 8, 8),
+                DropdownOpenedArrowTexture = new TextureRegion(this.testTexture, 48, 0, 8, 8),
+                DropdownArrowPadding = new Padding(0, 4, 0, 0)
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,

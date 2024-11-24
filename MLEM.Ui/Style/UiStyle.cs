@@ -243,6 +243,22 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Color? LinkColor = Color.CornflowerBlue;
         /// <summary>
+        /// The default padding that a <see cref="Dropdown"/>'s <see cref="Dropdown.Arrow"/> should have.
+        /// This value is passed to <see cref="Dropdown.ArrowPadding"/>.
+        /// </summary>
+        public Padding DropdownArrowPadding;
+        /// <summary>
+        /// The texture that a <see cref="Dropdown"/>'s <see cref="Dropdown.Arrow"/> should display when the dropdown is closed.
+        /// This value is passed to <see cref="Dropdown.ClosedArrowTexture"/>.
+        /// </summary>
+        public TextureRegion DropdownClosedArrowTexture;
+        /// <summary>
+        /// The texture that a <see cref="Dropdown"/>'s <see cref="Dropdown.Arrow"/> should display when the dropdown is open.
+        /// This value is passed to <see cref="Dropdown.OpenedArrowTexture"/>.
+        /// </summary>
+        public TextureRegion DropdownOpenedArrowTexture;
+
+        /// <summary>
         /// A set of additional fonts that can be used for the <c>&lt;f FontName&gt;</c> formatting code
         /// </summary>
         public Dictionary<string, GenericFont> AdditionalFonts = new Dictionary<string, GenericFont>();
