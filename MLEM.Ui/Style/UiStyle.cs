@@ -257,6 +257,16 @@ namespace MLEM.Ui.Style {
         /// This value is passed to <see cref="Dropdown.OpenedArrowTexture"/>.
         /// </summary>
         public TextureRegion DropdownOpenedArrowTexture;
+        /// <summary>
+        /// The color that a <see cref="Dropdown"/>'s paragraphs should have by default.
+        /// This value is passed to <see cref="Dropdown.TextColor"/>.
+        /// </summary>
+        public Color DropdownTextColor = Color.White;
+        /// <summary>
+        /// The color that a <see cref="Dropdown"/>'s paragraphs should have when hovered.
+        /// This value is passed to <see cref="Dropdown.HoveredTextColor"/>.
+        /// </summary>
+        public Color DropdownHoveredTextColor = Color.LightGray;
 
         /// <summary>
         /// A set of additional fonts that can be used for the <c>&lt;f FontName&gt;</c> formatting code

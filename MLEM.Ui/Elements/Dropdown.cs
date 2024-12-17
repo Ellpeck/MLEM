@@ -8,11 +8,13 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// A dropdown component to use inside of a <see cref="UiSystem"/>.
     /// A dropdown is a component that contains a hidden panel which is displayed upon pressing the dropdown button.
+    /// Elements can be added to the dropdown's <see cref="Dropdown.Panel"/> through <see cref="AddElement(MLEM.Ui.Elements.Element,int)"/> or one of its overloads, which additionally causes them to have correct gamepad navigation behavior.
     /// </summary>
     public class Dropdown : Button {
 
         /// <summary>
         /// The panel that this dropdown contains. It will be displayed upon pressing the dropdown button.
+        /// To add elements to this panel, you can use <see cref="AddElement(MLEM.Ui.Elements.Element,int)"/> or one of its overloads, which additionally causes them to have correct gamepad navigation behavior.
         /// </summary>
         public Panel Panel { get; private set; }
         /// <summary>
@@ -65,6 +67,16 @@ namespace MLEM.Ui.Elements {
                 this.UpdateArrowStyle();
             }
         }
+        /// <summary>
+        /// A style property containing the <see cref="Color"/> that a paragraph added to this dropdown through <see cref="M:MLEM.Ui.Elements.Dropdown.AddElement(MLEM.Ui.Elements.Paragraph.TextCallback,MLEM.Ui.Elements.Element.GenericCallback,System.Int32)"/> should have by default.
+        /// For elements added through other overloads of <see cref="AddElement(MLEM.Ui.Elements.Element,int)"/>, this property has no effect.
+        /// </summary>
+        public StyleProp<Color> TextColor;
+        /// <summary>
+        /// A style property containing the <see cref="Color"/> that a paragraph added to this dropdown through <see cref="M:MLEM.Ui.Elements.Dropdown.AddElement(MLEM.Ui.Elements.Paragraph.TextCallback,MLEM.Ui.Elements.Element.GenericCallback,System.Int32)"/> should have when hovered.
+        /// For elements added through other overloads of <see cref="AddElement(MLEM.Ui.Elements.Element,int)"/>, this property has no effect.
+        /// </summary>
+        public StyleProp<Color> HoveredTextColor;
 
         private StyleProp<TextureRegion> openedArrowTexture;
         private StyleProp<TextureRegion> closedArrowTexture;
@@ -144,7 +156,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Adds a pressable <see cref="Paragraph"/> element to this dropdown's <see cref="Panel"/>.
-        /// By default, the paragraph's text color will change from <see cref="Color.White"/> to <see cref="Color.LightGray"/> when hovering over it.
+        /// By default, the paragraph's text color will change from <see cref="TextColor"/> to <see cref="HoveredTextColor"/> when hovering over it.
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
@@ -157,8 +169,8 @@ namespace MLEM.Ui.Elements {
             };
             if (pressed != null)
                 paragraph.OnPressed += pressed;
-            paragraph.OnMouseEnter += e => paragraph.TextColor = Color.LightGray;
-            paragraph.OnMouseExit += e => paragraph.TextColor = Color.White;
+            paragraph.OnMouseEnter += e => paragraph.TextColor = this.HoveredTextColor;
+            paragraph.OnMouseExit += e => paragraph.TextColor = this.TextColor;
             this.AddElement(paragraph, index);
             return paragraph;
         }
@@ -198,6 +210,8 @@ namespace MLEM.Ui.Elements {
             this.ArrowPadding = this.ArrowPadding.OrStyle(style.DropdownArrowPadding);
             this.ClosedArrowTexture = this.ClosedArrowTexture.OrStyle(style.DropdownClosedArrowTexture);
             this.OpenedArrowTexture = this.OpenedArrowTexture.OrStyle(style.DropdownOpenedArrowTexture);
+            this.TextColor = this.TextColor.OrStyle(style.DropdownTextColor);
+            this.HoveredTextColor = this.HoveredTextColor.OrStyle(style.DropdownHoveredTextColor);
             this.UpdateArrowStyle();
         }
 

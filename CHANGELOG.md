@@ -36,6 +36,7 @@ Additions
 - Added TextField.OnEnterPressed event
 - Added Tooltip.IgnoreViewport and allow overriding the default viewport using Tooltip.Viewport
 - Added the ability for Dropdown to display an arrow texture based on its open state
+- Added the ability to specify Dropdown paragraph colors through style properties
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin
