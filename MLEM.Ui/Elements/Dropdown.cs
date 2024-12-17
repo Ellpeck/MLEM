@@ -127,7 +127,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="element">The element to add</param>
         /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
-        public void AddElement(Element element, int index = -1) {
+        public Element AddElement(Element element, int index = -1) {
             this.Panel.AddChild(element, index);
             // Since the dropdown causes elements to be over each other,
             // usual gamepad code doesn't apply
@@ -142,6 +142,7 @@ namespace MLEM.Ui.Elements {
                 }
                 return usualNext;
             };
+            return element;
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
         /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
-        public Element AddElement(string text, GenericCallback pressed = null, int index = -1) {
+        public Paragraph AddElement(string text, GenericCallback pressed = null, int index = -1) {
             return this.AddElement(p => text, pressed, index);
         }
 
@@ -161,7 +162,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="text">The text to display</param>
         /// <param name="pressed">The resulting paragraph's <see cref="Element.OnPressed"/> event</param>
         /// <param name="index">The index to add the child at, or -1 to add it to the end of the <see cref="Element.Children"/> list</param>
-        public Element AddElement(Paragraph.TextCallback text, GenericCallback pressed = null, int index = -1) {
+        public Paragraph AddElement(Paragraph.TextCallback text, GenericCallback pressed = null, int index = -1) {
             var paragraph = new Paragraph(Anchor.AutoLeft, 1, text) {
                 CanBeMoused = true,
                 CanBeSelected = true,
