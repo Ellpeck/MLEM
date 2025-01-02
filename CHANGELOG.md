@@ -46,6 +46,7 @@ Fixes
 - Fixed a stack overflow exception when a panel's children have just enough height to cause a scroll bar to appear
 - Fixed AddedToUi and RemovedFromUi being called for freshly added or removed children whose parents are not in a ui system
 - Fixed UiParser ImageExceptionHandler being ignored when an exception occurs during texture construction
+- Fixed images displaying the initial texture when the texture callback starts returning null
 
 ### MLEM.Data
 Improvements

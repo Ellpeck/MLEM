@@ -125,7 +125,6 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc cref="Image(Anchor,Vector2,TextureRegion,bool)"/>
         public Image(Anchor anchor, Vector2 size, TextureCallback getTextureCallback, bool scaleToImage = false) : base(anchor, size) {
             this.GetTextureCallback = getTextureCallback;
-            this.Texture = getTextureCallback(this);
             this.ScaleToImage = scaleToImage;
             this.CanBeSelected = false;
             this.CanBeMoused = false;
