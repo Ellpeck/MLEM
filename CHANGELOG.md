@@ -57,6 +57,10 @@ Improvements
 Fixes
 - Fixed DataTextureAtlas creating unnamed entries if there are empty lines at the start or end of the atlas file
 
+### MLEM.Startup
+Additions
+- Added InitializeUiSystem and InitializeInputHandler to MlemGame to allow overriding default initialization
+
 ## 7.1.1
 
 ### MLEM
