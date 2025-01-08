@@ -47,6 +47,7 @@ Fixes
 - Fixed AddedToUi and RemovedFromUi being called for freshly added or removed children whose parents are not in a ui system
 - Fixed UiParser ImageExceptionHandler being ignored when an exception occurs during texture construction
 - Fixed images displaying the initial texture when the texture callback starts returning null
+- Fixed UiStyle copy constructor not copying all style properties
 
 ### MLEM.Data
 Improvements

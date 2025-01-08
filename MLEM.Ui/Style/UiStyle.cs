@@ -322,6 +322,9 @@ namespace MLEM.Ui.Style {
             this.TooltipBackground = original.TooltipBackground;
             this.TooltipOffset = original.TooltipOffset;
             this.TooltipAutoNavOffset = original.TooltipAutoNavOffset;
+            this.TooltipAutoNavAnchor = original.TooltipAutoNavAnchor;
+            this.TooltipMouseAnchor = original.TooltipMouseAnchor;
+            this.TooltipUseAutoNavBehaviorForMouse = original.TooltipUseAutoNavBehaviorForMouse;
             this.TooltipTextColor = original.TooltipTextColor;
             this.TooltipDelay = original.TooltipDelay;
             this.TooltipTextWidth = original.TooltipTextWidth;
@@ -337,6 +340,11 @@ namespace MLEM.Ui.Style {
             this.TextAlignment = original.TextAlignment;
             this.ActionSound = original.ActionSound;
             this.LinkColor = original.LinkColor;
+            this.DropdownArrowPadding = original.DropdownArrowPadding;
+            this.DropdownClosedArrowTexture = original.DropdownClosedArrowTexture;
+            this.DropdownOpenedArrowTexture = original.DropdownOpenedArrowTexture;
+            this.DropdownTextColor = original.DropdownTextColor;
+            this.DropdownHoveredTextColor = original.DropdownHoveredTextColor;
             this.AdditionalFonts = new Dictionary<string, GenericFont>(original.AdditionalFonts);
             this.elementStyles = new Dictionary<Type, Action<Element>>(original.elementStyles);
         }
