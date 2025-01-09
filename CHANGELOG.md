@@ -53,6 +53,7 @@ Fixes
 Improvements
 - **Use a binary tree algorithm for RuntimeTexturePacker to vastly increase packing speed**
 - Made fields and methods in StaticJsonConverter protected to allow extending it
+- Allow wrapping DataTextureAtlas arguments in quotes to allow them to contain spaces
 
 Fixes
 - Fixed DataTextureAtlas creating unnamed entries if there are empty lines at the start or end of the atlas file

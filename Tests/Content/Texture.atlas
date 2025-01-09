@@ -18,6 +18,11 @@ piv -32 +46
 
 
 
+"Region with Spaces"
+location 1 2 3 4
+data SomeData 'Some Value with Spaces'
+data "Some Data with Spaces" SomeValue
+
 
 
 DataTest
