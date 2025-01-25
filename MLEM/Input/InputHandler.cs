@@ -414,6 +414,7 @@ namespace MLEM.Input {
             }
             return false;
         }
+
         /// <summary>
         /// Queries for a gesture of a given type that finished during the current update call.
         /// </summary>
@@ -609,6 +610,14 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad</param>
         /// <returns>Whether the given control is pressed, ignoring repeat events.</returns>
         public bool IsPressedIgnoreRepeats(GenericInput control, int index = -1) {
+            // special handling for index -1, since we have to check if the down/up state changed on *the same* gamepad
+            if (control.Type == InputType.Gamepad && index < 0) {
+                for (var i = 0; i < this.ConnectedGamepads; i++) {
+                    if (this.IsPressedIgnoreRepeats(control, i))
+                        return true;
+                }
+                return false;
+            }
             if (this.InvertPressBehavior)
                 return this.WasDown(control, index) && this.IsUp(control, index);
             return this.WasUp(control, index) && this.IsDown(control, index);
@@ -647,6 +656,14 @@ namespace MLEM.Input {
         /// <param name="index">The index of the gamepad to query (if applicable), or -1 for any gamepad.</param>
         /// <returns>Whether the given control was pressed for less than the given time.</returns>
         public bool WasPressedForLess(GenericInput control, TimeSpan time, int index = -1) {
+            // special handling for index -1, since we have to check if the down/up state changed on *the same* gamepad
+            if (control.Type == InputType.Gamepad && index < 0) {
+                for (var i = 0; i < this.ConnectedGamepads; i++) {
+                    if (this.WasPressedForLess(control, time, i))
+                        return true;
+                }
+                return false;
+            }
             return this.WasDown(control, index) && this.IsUp(control, index) && this.GetDownTime(control, index) < time;
         }
 
