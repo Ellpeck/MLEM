@@ -27,7 +27,6 @@ namespace Demos {
             GameImpl.Demos.Add("Easings", ("An example of MLEM's Easings class, an adaptation of easings.net", game => new EasingsDemo(game)));
             GameImpl.Demos.Add("Pathfinding", ("An example of MLEM's A* pathfinding implementation in 2D", game => new PathfindingDemo(game)));
             GameImpl.Demos.Add("Animation and Texture Atlas", ("An example of UniformTextureAtlases, SpriteAnimations and SpriteAnimationGroups", game => new AnimationDemo(game)));
-            GameImpl.Demos.Add("Auto Tiling", ("A demonstration of the AutoTiling class that MLEM provides", game => new AutoTilingDemo(game)));
         }
 
         public GameImpl() {

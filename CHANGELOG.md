@@ -30,6 +30,7 @@ Fixes
 
 Removals
 - Marked SpriteBatchExtensions GenerateTexture and GenerateSquareTexture as obsolete in favor of their more clearly named replacements
+- Marked the AutoTiling system as deprecated for removal in a future version
 
 ### MLEM.Ui
 Additions
