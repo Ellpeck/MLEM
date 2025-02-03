@@ -52,6 +52,9 @@ Fixes
 - Fixed images displaying the initial texture when the texture callback starts returning null
 - Fixed UiStyle copy constructor not copying all style properties
 
+Removals
+- Marked RootElement.OnAddedToUi as obsolete in favor of UiSystem.OnRootAdded
+
 ### MLEM.Data
 Improvements
 - **Use a binary tree algorithm for RuntimeTexturePacker to vastly increase packing speed**

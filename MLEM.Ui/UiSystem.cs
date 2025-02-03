@@ -530,6 +530,7 @@ namespace MLEM.Ui {
         /// <summary>
         /// Event that is invoked when this <see cref="RootElement"/> gets added to a <see cref="UiSystem"/> in <see cref="UiSystem.Add"/>
         /// </summary>
+        [Obsolete("This event is only invoked once, after internal RootElement construction, and has very little practical use. Use UiSystem.OnRootAdded instead.")]
         public event Action<UiSystem> OnAddedToUi;
         /// <summary>
         /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/>
