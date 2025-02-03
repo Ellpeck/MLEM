@@ -1,5 +1,5 @@
 #addin nuget:?package=Cake.DocFx&version=1.0.0
-#tool dotnet:?package=docfx&version=2.75.3
+#tool dotnet:?package=docfx&version=2.78.2
 
 // this is the upcoming version, for prereleases
 var version = Argument("version", "8.0.0");

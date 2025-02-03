@@ -1,4 +1,4 @@
-# MLEM.Ui
+# Introduction to MLEM.Ui
 
 **MLEM.Ui** is a Ui framework for MonoGame, FNA and KNI that features elements with automatic positioning and sizing. It contains various ready-made element types like buttons, paragraphs, text fields and more, along with the ability to easily create custom controls. It supports **mouse**, **keyboard**, **gamepad** and **touch** input with little to no additional setup work required.
 
@@ -63,7 +63,8 @@ var style = new UntexturedStyle(this.SpriteBatch) {
     ButtonTexture = new NinePatch(this.Content.Load<Texture2D>("Textures/ExampleTexture"), padding: 1)
 };
 ```
-Note that MLEM.Ui is also compatible with [MonoGame.Extended](http://www.monogameextended.net/)'s Bitmap Fonts by installing **MLEM.Extended** and using `GenericBitmapFont` instead.
+
+Note that MLEM.Ui uses [generic fonts](font_extensions.md) for text rendering, making it compatible with [MonoGame.Extended](http://www.monogameextended.net/)'s Bitmap Fonts, as well as [FontStashSharp](https://github.com/rds1983/FontStashSharp)'s fonts.
 
 ### Scaling
 To change the scaling of your ui, you can use the `UiSystem`'s `Scale` property. Additionally, you can enable `AutoScaleWithScreen` to cause the entire ui to scale automatically when resizing the game window.

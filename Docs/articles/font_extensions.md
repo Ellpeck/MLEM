@@ -6,7 +6,7 @@ The **MLEM** base package features several additional font manipulation methods,
 MLEM features the `GenericFont` class along with a `GenericSpriteFont` implementation. This is used by the **MLEM.Ui** package, but it can also be used separately to have more control over font rendering.
 
 Additionally, the **MLEM.Extended** package provides the following generic fonts:
-- `GenericBitmapFont`, which uses [MonoGame.Extended](http://www.monogameextended.net/)'s `SpriteFont`
+- `GenericBitmapFont`, which uses [MonoGame.Extended](http://www.monogameextended.net/)'s `BitmapFont`
 - `GenericStashFont`, which uses [FontStashSharp](https://github.com/rds1983/FontStashSharp)'s fonts
 
 ### Creating a generic font

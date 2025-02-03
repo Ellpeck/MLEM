@@ -1,6 +1,6 @@
 # Sprite Animations
 
-The **MLEM** package contains a very simple sprite animation system that features different-length frames as well as animation grouping.
+The **MLEM** package contains a simple sprite animation system that features different-length frames as well as conditioned animations and grouping.
 
 ## Using animations
 You can create an animation like so:
