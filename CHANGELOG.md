@@ -42,6 +42,7 @@ Additions
 
 Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
+- Use max and min MaxRecursionDepth rather than sum and difference when combining UiMetrics
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin

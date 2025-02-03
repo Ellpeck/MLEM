@@ -78,6 +78,7 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// Adds two ui metrics together, causing all of their values to be combined.
+        /// For <see cref="MaxRecursionDepth"/>, the maximum value is chosen instead of the sum.
         /// </summary>
         /// <param name="left">The left metrics</param>
         /// <param name="right">The right metrics</param>
@@ -90,7 +91,7 @@ namespace MLEM.Ui {
                 ActualAreaUpdates = left.ActualAreaUpdates + right.ActualAreaUpdates,
                 Updates = left.Updates + right.Updates,
                 SummedRecursionDepth = left.SummedRecursionDepth + right.SummedRecursionDepth,
-                MaxRecursionDepth = left.MaxRecursionDepth + right.MaxRecursionDepth,
+                MaxRecursionDepth = Math.Max(left.MaxRecursionDepth, right.MaxRecursionDepth),
                 DrawTime = left.DrawTime + right.DrawTime,
                 Draws = left.Draws + right.Draws
             };
@@ -98,6 +99,7 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// Subtracts two ui metrics from each other, causing their values to be subtracted.
+        /// For <see cref="MaxRecursionDepth"/>, the minimum value is chosen instead of the difference.
         /// </summary>
         /// <param name="left">The left metrics</param>
         /// <param name="right">The right metrics</param>
@@ -110,7 +112,7 @@ namespace MLEM.Ui {
                 ActualAreaUpdates = left.ActualAreaUpdates - right.ActualAreaUpdates,
                 Updates = left.Updates - right.Updates,
                 SummedRecursionDepth = left.SummedRecursionDepth - right.SummedRecursionDepth,
-                MaxRecursionDepth = left.MaxRecursionDepth - right.MaxRecursionDepth,
+                MaxRecursionDepth = Math.Min(left.MaxRecursionDepth, right.MaxRecursionDepth),
                 DrawTime = left.DrawTime - right.DrawTime,
                 Draws = left.Draws - right.Draws
             };
