@@ -1,20 +1,5 @@
 # Changelog
-MLEM tries to adhere to [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**.
-
-Jump to version:
-- [8.0.0](#800-in-development)
-- [7.1.1](#711)
-- [7.1.0](#710)
-- [7.0.0](#700)
-- [6.3.1](#631)
-- [6.3.0](#630)
-- [6.2.0](#620)
-- [6.1.0](#610)
-- [6.0.0](#600)
-- [5.3.0](#530)
-- [5.2.0](#520)
-- [5.1.0](#510)
-- [5.0.0](#500)
+MLEM uses [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**. Each newly released version also has a corresponding [tag](https://github.com/Ellpeck/MLEM/tags).
 
 ## 8.0.0 (In Development)
 
