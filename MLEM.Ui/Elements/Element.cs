@@ -18,7 +18,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// This class represents a generic base class for ui elements of a <see cref="UiSystem"/>.
     /// </summary>
-    public abstract class Element : GenericDataHolder {
+    public abstract class Element : GenericDataHolder, ILayoutItem {
 
         /// <summary>
         /// This field holds an epsilon value used in element <see cref="Size"/>, position and resulting <see cref="Area"/> calculations to mitigate floating point rounding inaccuracies.
@@ -510,6 +510,11 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.System.Viewport;
 
+        ILayoutItem ILayoutItem.Parent => this.Parent;
+        RectangleF ILayoutItem.ParentArea => this.ParentArea;
+        IEnumerable<ILayoutItem> ILayoutItem.Children => this.Children;
+        RectangleF ILayoutItem.AutoAnchorArea => this.GetAreaForAutoAnchors();
+
         private readonly List<Element> children = new List<Element>();
         private readonly Stopwatch stopwatch = new Stopwatch();
         private bool sortedChildrenDirty;
@@ -666,166 +671,11 @@ namespace MLEM.Ui.Elements {
                 return;
             this.stopwatch.Restart();
 
-            var recursion = 0;
-            UpdateDisplayArea();
+            UiLayouter.Layout(this, Element.Epsilon);
 
             this.stopwatch.Stop();
             this.System.Metrics.ForceAreaUpdateTime += this.stopwatch.Elapsed;
             this.System.Metrics.ForceAreaUpdates++;
-
-            void UpdateDisplayArea(Vector2? overrideSize = null) {
-                var parentArea = this.ParentArea;
-                var parentCenterX = parentArea.X + parentArea.Width / 2;
-                var parentCenterY = parentArea.Y + parentArea.Height / 2;
-
-                var intendedSize = this.CalcActualSize(parentArea);
-                var newSize = overrideSize ?? intendedSize;
-                var pos = new Vector2();
-
-                switch (this.anchor) {
-                    case Anchor.TopLeft:
-                    case Anchor.AutoLeft:
-                    case Anchor.AutoInline:
-                    case Anchor.AutoInlineCenter:
-                    case Anchor.AutoInlineBottom:
-                    case Anchor.AutoInlineIgnoreOverflow:
-                    case Anchor.AutoInlineCenterIgnoreOverflow:
-                    case Anchor.AutoInlineBottomIgnoreOverflow:
-                        pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.TopCenter:
-                    case Anchor.AutoCenter:
-                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.TopRight:
-                    case Anchor.AutoRight:
-                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
-                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.CenterLeft:
-                        pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.Center:
-                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.CenterRight:
-                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
-                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.BottomLeft:
-                        pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
-                        break;
-                    case Anchor.BottomCenter:
-                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
-                        break;
-                    case Anchor.BottomRight:
-                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
-                        break;
-                }
-
-                if (this.Anchor.IsAuto()) {
-                    if (this.Anchor.IsInline()) {
-                        var anchorEl = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                        if (anchorEl != null) {
-                            var anchorElArea = anchorEl.GetAreaForAutoAnchors();
-                            var newX = anchorElArea.Right + this.ScaledOffset.X;
-                            // with awkward ui scale values, floating point rounding can cause an element that would usually
-                            // be positioned correctly to be pushed into the next line due to a very small deviation
-                            if (this.Anchor.IsIgnoreOverflow() || newX + newSize.X <= parentArea.Right + Element.Epsilon) {
-                                pos.X = newX;
-                                pos.Y = anchorElArea.Y + this.ScaledOffset.Y;
-                                if (this.Anchor == Anchor.AutoInlineCenter || this.Anchor == Anchor.AutoInlineCenterIgnoreOverflow) {
-                                    pos.Y += (anchorElArea.Height - newSize.Y) / 2;
-                                } else if (this.Anchor == Anchor.AutoInlineBottom || this.Anchor == Anchor.AutoInlineBottomIgnoreOverflow) {
-                                    pos.Y += anchorElArea.Height - newSize.Y;
-                                }
-                            } else {
-                                // inline anchors that overflow into the next line act like AutoLeft
-                                var newlineAnchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                                if (newlineAnchorEl != null)
-                                    pos.Y = newlineAnchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
-                            }
-                        }
-                    } else {
-                        // auto anchors keep their x coordinates from the switch above
-                        var anchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                        if (anchorEl != null)
-                            pos.Y = anchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
-                    }
-                }
-
-                if (this.PreventParentSpill) {
-                    if (pos.X < parentArea.X)
-                        pos.X = parentArea.X;
-                    if (pos.Y < parentArea.Y)
-                        pos.Y = parentArea.Y;
-                    if (pos.X + newSize.X > parentArea.Right)
-                        newSize.X = parentArea.Right - pos.X;
-                    if (pos.Y + newSize.Y > parentArea.Bottom)
-                        newSize.Y = parentArea.Bottom - pos.Y;
-                }
-
-                this.SetAreaAndUpdateChildren(new RectangleF(pos, newSize));
-
-                if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
-                    Element foundChild = null;
-                    var autoSize = this.UnscrolledArea.Size;
-
-                    if (this.SetHeightBasedOnChildren) {
-                        var lowest = this.GetLowestChild(e => !e.IsHidden);
-                        if (lowest != null) {
-                            if (lowest.Anchor.IsTopAligned()) {
-                                autoSize.Y = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
-                            } else {
-                                autoSize.Y = lowest.UnscrolledArea.Height + this.ScaledChildPadding.Height;
-                            }
-                            foundChild = lowest;
-                        } else {
-                            autoSize.Y = 0;
-                        }
-                    }
-
-                    if (this.SetWidthBasedOnChildren) {
-                        var rightmost = this.GetRightmostChild(e => !e.IsHidden);
-                        if (rightmost != null) {
-                            if (rightmost.Anchor.IsLeftAligned()) {
-                                autoSize.X = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
-                            } else {
-                                autoSize.X = rightmost.UnscrolledArea.Width + this.ScaledChildPadding.Width;
-                            }
-                            foundChild = rightmost;
-                        } else {
-                            autoSize.X = 0;
-                        }
-                    }
-
-                    if (this.TreatSizeAsMinimum) {
-                        autoSize = Vector2.Max(autoSize, intendedSize);
-                    } else if (this.TreatSizeAsMaximum) {
-                        autoSize = Vector2.Min(autoSize, intendedSize);
-                    }
-
-                    // we want to leave some leeway to prevent float rounding causing an infinite loop
-                    if (!autoSize.Equals(this.UnscrolledArea.Size, Element.Epsilon)) {
-                        recursion++;
-
-                        this.System.Metrics.SummedRecursionDepth++;
-                        if (recursion > this.System.Metrics.MaxRecursionDepth)
-                            this.System.Metrics.MaxRecursionDepth = recursion;
-
-                        if (recursion >= 64)
-                            throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
-                        UpdateDisplayArea(autoSize);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -874,19 +724,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The lowest element, or null if no such element exists</returns>
         public Element GetLowestChild(Func<Element, bool> condition = null, bool total = false) {
-            Element lowest = null;
-            var lowestX = float.MinValue;
-            foreach (var child in this.Children) {
-                if (condition != null && !condition(child))
-                    continue;
-                var covered = total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea;
-                var x = !child.Anchor.IsTopAligned() ? covered.Height : covered.Bottom;
-                if (x >= lowestX) {
-                    lowest = child;
-                    lowestX = x;
-                }
-            }
-            return lowest;
+            return UiLayouter.GetLowestChild(this, condition, total);
         }
 
         /// <summary>
@@ -896,19 +734,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The rightmost element, or null if no such element exists</returns>
         public Element GetRightmostChild(Func<Element, bool> condition = null, bool total = false) {
-            Element rightmost = null;
-            var rightmostX = float.MinValue;
-            foreach (var child in this.Children) {
-                if (condition != null && !condition(child))
-                    continue;
-                var covered = total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea;
-                var x = !child.Anchor.IsLeftAligned() ? covered.Width : covered.Right;
-                if (x >= rightmostX) {
-                    rightmost = child;
-                    rightmostX = x;
-                }
-            }
-            return rightmost;
+            return UiLayouter.GetRightmostChild(this, condition, total);
         }
 
         /// <summary>
@@ -919,18 +745,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The lowest older sibling of this element, or null if no such element exists</returns>
         public Element GetLowestOlderSibling(Func<Element, bool> condition = null, bool total = false) {
-            if (this.Parent == null)
-                return null;
-            Element lowest = null;
-            foreach (var child in this.Parent.Children) {
-                if (child == this)
-                    break;
-                if (condition != null && !condition(child))
-                    continue;
-                if (lowest == null || (total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea).Bottom >= lowest.UnscrolledArea.Bottom)
-                    lowest = child;
-            }
-            return lowest;
+            return UiLayouter.GetLowestOlderSibling(this, condition, total);
         }
 
         /// <summary>
@@ -940,17 +755,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="condition">The condition to match</param>
         /// <returns>The older sibling, or null if no such element exists</returns>
         public Element GetOlderSibling(Func<Element, bool> condition = null) {
-            if (this.Parent == null)
-                return null;
-            Element older = null;
-            foreach (var child in this.Parent.Children) {
-                if (child == this)
-                    break;
-                if (condition != null && !condition(child))
-                    continue;
-                older = child;
-            }
-            return older;
+            return UiLayouter.GetOlderSibling(this, condition);
         }
 
         /// <summary>
@@ -980,20 +785,12 @@ namespace MLEM.Ui.Elements {
         /// <typeparam name="T">The type of children to search for</typeparam>
         /// <returns>All children that match the condition</returns>
         public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) where T : Element {
-            foreach (var child in this.Children) {
-                var applies = child is T t && (condition == null || condition(t));
-                if (applies)
-                    yield return (T) child;
-                if (regardGrandchildren && (!ignoreFalseGrandchildren || applies)) {
-                    foreach (var cc in child.GetChildren(condition, true, ignoreFalseGrandchildren))
-                        yield return cc;
-                }
-            }
+            return UiLayouter.GetChildren(this, condition, regardGrandchildren, ignoreFalseGrandchildren);
         }
 
         /// <inheritdoc cref="GetChildren{T}"/>
         public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) {
-            return this.GetChildren<Element>(condition, regardGrandchildren, ignoreFalseGrandchildren);
+            return UiLayouter.GetChildren(this, condition, regardGrandchildren, ignoreFalseGrandchildren);
         }
 
         /// <summary>
@@ -1279,6 +1076,19 @@ namespace MLEM.Ui.Elements {
             this.System = null;
             this.OnRemovedFromUi?.Invoke(this);
             root?.InvokeOnElementRemoved(this);
+        }
+
+        void ILayoutItem.OnLayoutRecursion(int recursion, ILayoutItem relevantChild) {
+            this.System.Metrics.SummedRecursionDepth++;
+            if (recursion > this.System.Metrics.MaxRecursionDepth)
+                this.System.Metrics.MaxRecursionDepth = recursion;
+
+            if (recursion >= 64)
+                throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {relevantChild} contain any conflicting auto-sizing settings?");
+        }
+
+        Vector2 ILayoutItem.CalcActualSize(RectangleF parentArea) {
+            return this.CalcActualSize(parentArea);
         }
 
         /// <summary>

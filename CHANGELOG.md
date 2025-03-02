@@ -24,6 +24,7 @@ Additions
 - Added Tooltip.IgnoreViewport and allow overriding the default viewport using Tooltip.Viewport
 - Added the ability for Dropdown to display an arrow texture based on its open state
 - Added the ability to specify Dropdown paragraph colors through style properties
+- Added the UiLayouter class and ILayoutItem interface to allow using MLEM.Ui's layouting system for custom ui systems
 
 Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
