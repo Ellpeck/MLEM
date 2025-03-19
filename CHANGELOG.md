@@ -8,6 +8,7 @@ Improvements
 - Allow getting and setting TextureData by index
 - Improved TextureExtensions.PremultipliedCopy memory performance
 - Improved the naming of SpriteBatchExtensions texture generation methods
+- Improved AStar memory performance by avoiding excessive enumerator allocations
 
 Fixes
 - Fixed formatting codes at the start of strings not being added to the AllCodes collection
