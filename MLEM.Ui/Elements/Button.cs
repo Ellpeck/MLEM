@@ -20,7 +20,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The color that the button draws its texture with
         /// </summary>
-        public StyleProp<Color> NormalColor = Color.White;
+        public StyleProp<Color> NormalColor;
         /// <summary>
         /// The texture that the button uses while being moused over.
         /// If this is null, it uses its default <see cref="Texture"/>.
@@ -141,18 +141,18 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             var tex = this.Texture;
-            var color = this.NormalColor;
+            var color = this.NormalColor.OrDefault(Color.White);
             if (this.IsDisabled) {
                 tex = this.DisabledTexture.OrDefault(tex);
-                color = this.DisabledColor;
+                color = this.DisabledColor.OrDefault(color);
             } else if (this.IsMouseOver) {
                 tex = this.HoveredTexture.OrDefault(tex);
-                color = this.HoveredColor;
+                color = this.HoveredColor.OrDefault(color);
             } else if (this.IsSelected && this.Controls.IsAutoNavMode) {
                 tex = this.SelectedTexture.OrDefault(tex);
-                color = this.SelectedColor;
+                color = this.SelectedColor.OrDefault(color);
             }
-            batch.Draw(tex, this.DisplayArea, color.Value * alpha, this.Scale);
+            batch.Draw(tex, this.DisplayArea, color * alpha, this.Scale);
             base.Draw(time, batch, alpha, context);
         }
 
