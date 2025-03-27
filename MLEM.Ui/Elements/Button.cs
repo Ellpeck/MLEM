@@ -31,6 +31,16 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<Color> HoveredColor;
         /// <summary>
+        /// The texture that this button uses while it <see cref="Element.IsSelected"/> and the <see cref="UiControls"/> are in auto-navigation mode (<see cref="UiControls.IsAutoNavMode"/>).
+        /// If the selection indicator should not be drawn while the button is selected, keep in mind to additionally set <see cref="Element.SelectionIndicator"/> to <see langword="null"/>.
+        /// If this is <see langword="null"/>, it uses its default <see cref="Texture"/> in that state.
+        /// </summary>
+        public StyleProp<NinePatch> SelectedTexture;
+        /// <summary>
+        /// The color that this button uses for drawing while it <see cref="Element.IsSelected"/> and the <see cref="UiControls"/> are in auto-navigation mode (<see cref="UiControls.IsAutoNavMode"/>).
+        /// </summary>
+        public StyleProp<Color> SelectedColor;
+        /// <summary>
         /// The texture that the button uses when it <see cref="IsDisabled"/>.
         /// If this is null, it uses its default <see cref="Texture"/>.
         /// </summary>
@@ -131,15 +141,18 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             var tex = this.Texture;
-            var color = (Color) this.NormalColor * alpha;
+            var color = this.NormalColor;
             if (this.IsDisabled) {
                 tex = this.DisabledTexture.OrDefault(tex);
-                color = (Color) this.DisabledColor * alpha;
+                color = this.DisabledColor;
             } else if (this.IsMouseOver) {
                 tex = this.HoveredTexture.OrDefault(tex);
-                color = (Color) this.HoveredColor * alpha;
+                color = this.HoveredColor;
+            } else if (this.IsSelected && this.Controls.IsAutoNavMode) {
+                tex = this.SelectedTexture.OrDefault(tex);
+                color = this.SelectedColor;
             }
-            batch.Draw(tex, this.DisplayArea, color, this.Scale);
+            batch.Draw(tex, this.DisplayArea, color.Value * alpha, this.Scale);
             base.Draw(time, batch, alpha, context);
         }
 
