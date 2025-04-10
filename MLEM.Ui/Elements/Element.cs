@@ -425,7 +425,7 @@ namespace MLEM.Ui.Elements {
         /// Event that is called when text input is made.
         /// When an element uses this event, it should call <see cref="MlemPlatform.EnsureExists"/> on construction to ensure that the MLEM platform is initialized.
         /// Note that this event is called for every element, even if it is not selected.
-        /// Also note that if the active <see cref="MlemPlatform"/> uses an on-screen keyboard, this event is never called.
+        /// Also note that if the active <see cref="MlemPlatform"/> doesn't support <see cref="MlemPlatform.AddTextInputListener"/>, this event is never called.
         /// </summary>
         public TextInputCallback OnTextInput;
         /// <summary>
