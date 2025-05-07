@@ -88,9 +88,15 @@ namespace MLEM.Ui.Elements {
         /// The position that this tooltip should be following (or snapped to) instead of the <see cref="InputHandler.ViewportMousePosition"/>.
         /// If this value is unset, <see cref="InputHandler.ViewportMousePosition"/> will be used as the snap position.
         /// Note that <see cref="MouseOffset"/> is still applied with this value set.
-        /// Note that, if <see cref="UseAutoNavBehaviorForMouse"/> is <see langword="true"/>, this value is ignored.
+        /// Note that, if <see cref="UseAutoNavBehaviorForMouse"/> is <see langword="true"/> or <see cref="SnapElement"/> is set, this value is ignored.
         /// </summary>
         public virtual Vector2? SnapPosition { get; set; }
+        /// <summary>
+        /// The ui element that this tooltip should be snapped to when <see cref="Display"/> is called.
+        /// If this value is unset, default snapping behavior is used: the elements in <see cref="AddToElement"/> are snapped to, based on the behavior outlined in the <see cref="SnapPosition"/> documentation.
+        /// Note that <see cref="MouseOffset"/> is still applied with this value set.
+        /// </summary>
+        public virtual Element SnapElement { get; set; }
         /// <summary>
         /// Determines whether this tooltip should ignore its viewport, which is either this tooltip's <see cref="Viewport"/> or the underlying <see cref="Element.System"/>'s <see cref="UiSystem.Viewport"/>. If this is <see langword="true"/>, the tooltip is allowed to display outside of the viewport, without being bounded in <see cref="SnapPositionToMouse"/>.
         /// </summary>
@@ -105,7 +111,7 @@ namespace MLEM.Ui.Elements {
 
         private TimeSpan delayCountdown;
         private bool autoHidden;
-        private Element snapElement;
+        private Element autoNavSnapElement;
         private StyleProp<float> paragraphWidth;
         private StyleProp<float> paragraphTextScale;
         private StyleProp<Color> paragraphTextColor;
@@ -217,8 +223,9 @@ namespace MLEM.Ui.Elements {
         public void SnapPositionToMouse() {
             Vector2 snap;
 
-            if (this.snapElement != null) {
-                snap = this.GetSnapOffset(this.AutoNavAnchor, this.snapElement.DisplayArea, this.AutoNavOffset) / this.Scale;
+            var snapEl = this.SnapElement ?? this.autoNavSnapElement;
+            if (snapEl != null) {
+                snap = this.GetSnapOffset(this.AutoNavAnchor, snapEl.DisplayArea, this.AutoNavOffset) / this.Scale;
             } else {
                 var mouseBounds = new RectangleF(this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2(), Vector2.Zero);
                 snap = this.GetSnapOffset(this.MouseAnchor, mouseBounds, this.MouseOffset) / this.Scale;
@@ -276,26 +283,26 @@ namespace MLEM.Ui.Elements {
             // mouse controls
             elementToHover.OnMouseEnter += e => {
                 if (this.UseAutoNavBehaviorForMouse)
-                    this.snapElement = e;
+                    this.autoNavSnapElement = e;
                 this.Display(e.System, $"{e.GetType().Name}Tooltip");
             };
             elementToHover.OnMouseExit += e => {
                 this.Remove();
                 if (this.UseAutoNavBehaviorForMouse)
-                    this.snapElement = null;
+                    this.autoNavSnapElement = null;
             };
 
             // auto-nav controls
             elementToHover.OnSelected += e => {
                 if (this.DisplayInAutoNavMode && e.Controls.IsAutoNavMode) {
-                    this.snapElement = e;
+                    this.autoNavSnapElement = e;
                     this.Display(e.System, $"{e.GetType().Name}Tooltip");
                 }
             };
             elementToHover.OnDeselected += e => {
                 if (this.DisplayInAutoNavMode) {
                     this.Remove();
-                    this.snapElement = null;
+                    this.autoNavSnapElement = null;
                 }
             };
         }

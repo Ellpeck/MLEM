@@ -27,6 +27,7 @@ Additions
 - Added the ability to specify Dropdown paragraph colors through style properties
 - Added the UiLayouter class and ILayoutItem interface to allow using MLEM.Ui's layouting system for custom ui systems
 - Added the ability to set a selected texture and color for buttons
+- Added the ability for tooltips to snap to a specified selection-independent element
 
 Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
