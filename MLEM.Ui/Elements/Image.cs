@@ -67,6 +67,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public float ImageRotation;
         /// <summary>
+        /// Whether to take into account the <see cref="Texture"/>'s <see cref="TextureRegion.PivotPixels"/> value when calculating the location to draw this image at.
+        /// </summary>
+        public bool UseImagePivot = true;
+        /// <summary>
         /// Whether this image's width should automatically be calculated based on this image's calculated height in relation to its <see cref="Texture"/>'s aspect ratio.
         /// Note that, if this is <see langword="true"/>, the <see cref="Element.AutoSizeAddedAbsolute"/> value will still be applied to this image's width.
         /// </summary>
@@ -169,14 +173,15 @@ namespace MLEM.Ui.Elements {
             }
 
             var center = new Vector2(this.Texture.Width / 2F, this.Texture.Height / 2F);
+            var pivot = center - (this.UseImagePivot ? Vector2.Zero : this.Texture.PivotPixels);
             var color = this.Color.OrDefault(Microsoft.Xna.Framework.Color.White) * alpha;
             if (this.MaintainImageAspect) {
                 var scale = Math.Min(this.DisplayArea.Width / this.Texture.Width, this.DisplayArea.Height / this.Texture.Height);
                 var imageOffset = new Vector2(this.DisplayArea.Width / 2F - this.Texture.Width * scale / 2, this.DisplayArea.Height / 2F - this.Texture.Height * scale / 2);
-                batch.Draw(this.Texture, this.DisplayArea.Location + center * scale + imageOffset, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
+                batch.Draw(this.Texture, this.DisplayArea.Location + center * scale + imageOffset, color, this.ImageRotation, pivot, scale * this.ImageScale, this.ImageEffects, 0);
             } else {
                 var scale = new Vector2(1F / this.Texture.Width, 1F / this.Texture.Height) * this.DisplayArea.Size;
-                batch.Draw(this.Texture, this.DisplayArea.Location + center * scale, color, this.ImageRotation, center, scale * this.ImageScale, this.ImageEffects, 0);
+                batch.Draw(this.Texture, this.DisplayArea.Location + center * scale, color, this.ImageRotation, pivot, scale * this.ImageScale, this.ImageEffects, 0);
             }
 
             if (this.SamplerState != null) {

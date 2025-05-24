@@ -28,6 +28,7 @@ Additions
 - Added the UiLayouter class and ILayoutItem interface to allow using MLEM.Ui's layouting system for custom ui systems
 - Added the ability to set a selected texture and color for buttons
 - Added the ability for tooltips to snap to a specified selection-independent element
+- Added Image.UseImagePivot to allow disabling texture region pivot being taken into account
 
 Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
