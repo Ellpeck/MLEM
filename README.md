@@ -27,6 +27,7 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET
 - [Don't Wake Up](https://ellpeck.itch.io/dont-wake-up), a short puzzle game ([Source](https://github.com/Ellpeck/DontLetGo))
 - Pong Clone, a very simple pong clone demo ([Source](https://github.com/luanfagu/pong))
 - [Tiny Life](https://tinylifegame.com), an isometric life simulation game ([Modding API](https://github.com/Ellpeck/TinyLifeExampleMod))
+- [Vulcard](https://store.steampowered.com/app/3764530/Vulcard/), a two-player deckbuilding card battler
 
 If you created a project with the help of MLEM, you can get it added to this list by submitting an issue or a pull request. If its source is public, other people will be able to use your project as an example, too!
 
