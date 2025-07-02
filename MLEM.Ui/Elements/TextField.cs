@@ -209,8 +209,10 @@ namespace MLEM.Ui.Elements {
                 }
             };
             this.OnTextInput += (element, key, character) => {
-                if (this.IsSelectedActive && !this.IsHidden && !this.textInput.OnTextInput(key, character) && key == Keys.Enter && !this.Multiline)
-                    this.InvokeOnEnter();
+                if (this.IsSelectedActive && !this.IsHidden && !this.textInput.OnTextInput(key, character) && key == Keys.Enter && !this.Multiline) {
+                    // enqueue the press to be executed next update since all other presses are executed in the regular update loop
+                    this.System.EnqueueAction((_, t) => ((TextField) t).InvokeOnEnter(), this);
+                }
             };
         }
 

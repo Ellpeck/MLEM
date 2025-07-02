@@ -169,6 +169,8 @@ namespace MLEM.Ui {
         /// </summary>
         public event RootCallback OnRootRemoved;
 
+        private readonly Queue<(Action<UiSystem, object> Action, object ActionObject)> nextUpdateActions = new Queue<(Action<UiSystem, object> Action, object ActionObject)>();
+        private readonly object nextUpdateActionsLock = new object();
         private readonly List<RootElement> rootElements = new List<RootElement>();
         private readonly Stopwatch stopwatch = new Stopwatch();
         private float globalScale = 1;
@@ -249,6 +251,12 @@ namespace MLEM.Ui {
             this.stopwatch.Restart();
 
             this.Controls.Update();
+            lock (this.nextUpdateActionsLock) {
+                while (this.nextUpdateActions.Count > 0) {
+                    var next = this.nextUpdateActions.Dequeue();
+                    next.Action.Invoke(this, next.ActionObject);
+                }
+            }
             for (var i = this.rootElements.Count - 1; i >= 0; i--)
                 this.rootElements[i].Element.Update(time);
 
@@ -330,6 +338,17 @@ namespace MLEM.Ui {
         public RootElement Get(string name) {
             var index = this.IndexOf(name);
             return index < 0 ? null : this.rootElements[index];
+        }
+
+        /// <summary>
+        /// Enqueues the given <paramref name="action"/> (optionally with the given <paramref name="actionObject"/> attached) to be executed the next time <see cref="Update"/> is called, before all of this ui system's elements are updated.
+        /// This method is thread-safe, meaning actions can be enqueued from other threads (for example, after downloading content to display) and they will be executed on the main thread.
+        /// </summary>
+        /// <param name="action">The action to enqueue.</param>
+        /// <param name="actionObject">An optional object to attach to the action, which will be passed as the second parameter to <paramref name="action"/>.</param>
+        public void EnqueueAction(Action<UiSystem, object> action, object actionObject = null) {
+            lock (this.nextUpdateActionsLock)
+                this.nextUpdateActions.Enqueue((action, actionObject));
         }
 
         private int IndexOf(string name) {

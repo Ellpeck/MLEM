@@ -29,6 +29,7 @@ Additions
 - Added the ability to set a selected texture and color for buttons
 - Added the ability for tooltips to snap to a specified selection-independent element
 - Added Image.UseImagePivot to allow disabling texture region pivot being taken into account
+- Added UiSystem.EnqueueAction to do work synchronously next time the ui system updates
 
 Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
@@ -41,6 +42,7 @@ Fixes
 - Fixed UiParser ImageExceptionHandler being ignored when an exception occurs during texture construction
 - Fixed images displaying the initial texture when the texture callback starts returning null
 - Fixed UiStyle copy constructor not copying all style properties
+- Fixed TextField EnterReceiver not allowing element addition or removal in OnPressed
 
 Removals
 - Marked RootElement.OnAddedToUi as obsolete in favor of UiSystem.OnRootAdded
