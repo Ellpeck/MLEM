@@ -14,6 +14,8 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET
 - Join [the Discord server](https://link.ellpeck.de/discordweb) to ask questions
 
 # Packages
+MLEM has a modular architecture, meaning you can pick and choose the components that you'd like to install and use. All other MLEM packages depend on the MLEM base package.
+
 - **MLEM** is the base package, which provides various small addons and abstractions for MonoGame, FNA and KNI, including a text formatting system and simple input handling
 - **MLEM.Ui** provides a mouse, keyboard, gamepad and touch ready Ui system that features automatic anchoring, sizing and several ready-to-use element types
 - **MLEM.Extended** ties in with MonoGame.Extended and other MonoGame and FNA libraries
