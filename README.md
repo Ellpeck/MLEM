@@ -22,25 +22,28 @@ MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET
 - **MLEM.Templates** contains cross-platform project templates
 
 # Made with MLEM
+MLEM has been used to make some very cool games, and it's an honor to showcase them here! For screenshots of games that use MLEM.Ui in particular, see the [MLEM.Ui Gallery](https://mlem.ellpeck.de/articles/ui_gallery.html).
+
 - [Touchy Tickets](https://ell.lt/touchytickets), a mobile idle game ([Source](https://git.ellpeck.de/Ellpeck/TouchyTickets))
 - [A Breath of Spring Air](https://ellpeck.itch.io/a-breath-of-spring-air), a short platformer ([Source](https://git.ellpeck.de/Ellpeck/GreatSpringGameJam))
 - [Don't Wake Up](https://ellpeck.itch.io/dont-wake-up), a short puzzle game ([Source](https://github.com/Ellpeck/DontLetGo))
 - Pong Clone, a very simple pong clone demo ([Source](https://github.com/luanfagu/pong))
 - [Tiny Life](https://tinylifegame.com), an isometric life simulation game ([Modding API](https://github.com/Ellpeck/TinyLifeExampleMod))
 - [Vulcard](https://store.steampowered.com/app/3764530/Vulcard/), a two-player deckbuilding card battler
+- [Foe Frenzy](https://store.steampowered.com/app/1194170/Foe_Frenzy/), a fast-paced battle party game
 
 If you created a project with the help of MLEM, you can get it added to this list by submitting an issue or a pull request. If its source is public, other people will be able to use your project as an example, too!
 
 # Gallery
 Here are some images that show a couple of MLEM's features.
 
-The [MLEM.Ui](https://mlem.ellpeck.de/articles/ui) demo in action:
-
 ![A gif showing various user interface elements from the MLEM.Ui demo](https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Ui.gif)
 
-MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting), which is compatible with both MLEM.Ui and regular sprite batch rendering:
+The [MLEM.Ui](https://mlem.ellpeck.de/articles/ui.html) demo in action. Also check out the [MLEM.Ui Gallery](https://mlem.ellpeck.de/articles/ui_gallery.html) for screenshots of games that use MLEM.Ui.
 
 ![An image showing text with various colors and other formatting](https://raw.githubusercontent.com/Ellpeck/MLEM/main/Media/Formatting.png)
+
+MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting.html), which is compatible with both MLEM.Ui and regular sprite batch rendering.
 
 # Friends of MLEM
 There are several other libraries and tools that work well in combination with MonoGame, FNA, KNI and MLEM. Here are some of them:

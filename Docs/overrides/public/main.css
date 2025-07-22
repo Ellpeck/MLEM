@@ -1,0 +1,9 @@
+﻿h1, h2 {
+    padding-bottom: 0.25em;
+    margin-bottom: 0.5em;
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+
+h2, h3, h4, h5, h6 {
+    padding-top: 0.5em;
+}

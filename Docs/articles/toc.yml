@@ -11,6 +11,8 @@
 - name: MLEM.Ui
 - name: Introduction to MLEM.Ui
   href: ui.md
+- name: MLEM.Ui Gallery
+  href: ui_gallery.md
 
 - name: MLEM.Extended
 - name: Tiled Extensions
