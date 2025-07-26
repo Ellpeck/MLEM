@@ -33,7 +33,7 @@ namespace MLEM.Maths {
         /// <param name="seed">The seed to add.</param>
         /// <returns>A new seed source with the seed added.</returns>
         public SeedSource Add(float seed) {
-            return this.Add((int) seed).Add((seed - (int) seed) * int.MaxValue);
+            return this.Add((int) seed).Add((int) ((seed - (int) seed) * int.MaxValue));
         }
 
         /// <summary>

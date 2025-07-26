@@ -13,6 +13,7 @@ Improvements
 Fixes
 - Fixed formatting codes at the start of strings not being added to the AllCodes collection
 - Fixed input handler marking gamepad buttons as pressed when querying any gamepad with multiple gamepads connected
+- Fixed an infinite loop in the float version of SeedSource.Add
 
 Removals
 - Marked SpriteBatchExtensions GenerateTexture and GenerateSquareTexture as obsolete in favor of their more clearly named replacements
