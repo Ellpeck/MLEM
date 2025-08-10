@@ -5,7 +5,7 @@ namespace MLEM.Maths {
     /// <summary>
     /// The SingleRandom class allows generating single, one-off pseudorandom numbers based on a seed or a <see cref="SeedSource"/>.
     /// The types of numbers that can be generated are <see cref="int"/> and <see cref="float"/>, both of which can be generated with specific minimum and maximum values if desired.
-    /// Methods in this class are tested to be sufficiently "random", that is, to be sufficiently distributed throughout their range, as well as sufficiently different for neighboring seeds.
+    /// Methods in this class rely on <see cref="SeedSource"/> for pseudorandom number generation, which is a linear congruential generator (LCG).
     /// </summary>
     public class SingleRandom {
 
