@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Demos"
+    "\\Demos",
+    "\\Demos.DesktopGL"
   ],
-  "SelectedNode": "\\Demos\\UiDemo.cs",
+  "SelectedNode": "\\MLEM.sln",
   "PreviewInSolutionExplorer": false
 }
