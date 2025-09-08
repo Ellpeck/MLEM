@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 #if FNA
-using MLEM.Extensions;
+using MLEM.Maths;
 using System.IO;
 #endif
 

@@ -5,11 +5,10 @@ using System.Linq;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Input;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
@@ -51,7 +50,10 @@ namespace Demos {
                 CheckboxCheckmark = new TextureRegion(this.testTexture, 24, 0, 8, 8),
                 RadioTexture = new NinePatch(new TextureRegion(this.testTexture, 16, 0, 8, 8), 3),
                 RadioCheckmark = new TextureRegion(this.testTexture, 32, 0, 8, 8),
-                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}}
+                AdditionalFonts = {{"Monospaced", new GenericSpriteFont(Demo.LoadContent<SpriteFont>("Fonts/MonospacedFont"))}},
+                DropdownClosedArrowTexture = new TextureRegion(this.testTexture, 40, 0, 8, 8),
+                DropdownOpenedArrowTexture = new TextureRegion(this.testTexture, 48, 0, 8, 8),
+                DropdownArrowPadding = new Padding(0, 4, 0, 0)
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,
@@ -223,14 +225,15 @@ namespace Demos {
                 PositionOffset = new Vector2(0, 1)
             });
 
-            var subPanel = this.root.AddChild(new Panel(Anchor.AutoLeft, new Vector2(1, 25), Vector2.Zero, false, true) {
-                PositionOffset = new Vector2(0, 1),
+            this.root.AddChild(new VerticalSpace(3));
+            var dynamicSubPanel = this.root.AddChild(new Panel(Anchor.AutoLeft, new Vector2(1, 50), Vector2.Zero, true, true) {
                 Texture = null,
                 ChildPadding = Padding.Empty
             });
-            subPanel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a nested scrolling panel!"));
-            for (var i = 1; i <= 5; i++)
-                subPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), $"Button {i}") {PositionOffset = new Vector2(0, 1)});
+            dynamicSubPanel.AddChild(new Paragraph(Anchor.AutoLeft, 1, "This is a dynamic height nested panel with a maximum height, at which point it starts displaying a scroll bar instead!"));
+            dynamicSubPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Press to add more") {
+                OnPressed = _ => dynamicSubPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(1, 10), "I do nothing"))
+            });
 
             const string alignText = "Paragraphs can have <l Left>left</l> aligned text, <l Right>right</l> aligned text and <l Center>center</l> aligned text.";
             this.root.AddChild(new VerticalSpace(3));
@@ -253,9 +256,9 @@ namespace Demos {
             this.root.AddChild(new VerticalSpace(3));
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, "The code for this demo contains some examples for how to query element data. This is the output of that:"));
 
-            var children = this.root.GetChildren();
+            var children = this.root.Children;
             var totalChildren = this.root.GetChildren(regardGrandchildren: true);
-            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{children.Count()}</b> children, but there are <b>{totalChildren.Count()}</b> when regarding children's children"));
+            this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{children.Count}</b> children, but there are <b>{totalChildren.Count()}</b> when regarding children's children"));
 
             var textFields = this.root.GetChildren<TextField>();
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{textFields.Count()}</b> text fields"));
@@ -269,7 +272,7 @@ namespace Demos {
             this.root.AddChild(new Paragraph(Anchor.AutoLeft, 1, $"The root has <b>{autoWidthChildren.Count()}</b> auto-width children, <b>{autoWidthButtons.Count()}</b> of which are buttons"));
 
             // select the first element for auto-navigation
-            this.root.Root.SelectElement(this.root.GetChildren().First(c => c.CanBeSelected));
+            this.root.Root.SelectElement(this.root.Children.First(c => c.CanBeSelected));
         }
 
         // This method is used by the wobbling button (see above)

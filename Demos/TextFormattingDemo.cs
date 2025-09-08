@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
-using MLEM.Misc;
+using MLEM.Graphics;
+using MLEM.Maths;
 using MLEM.Startup;
 using MLEM.Textures;
 
@@ -15,7 +15,7 @@ namespace Demos {
 
         private const string Text =
             "MLEM's text formatting system allows for various <b>formatting codes</b> to be applied in the middle of a string. Here's a demonstration of some of them.\n\n" +
-            "You can write in <b>bold</i>, <i>italics</i>, <u>with an underline</u>, <st>strikethrough</st>, with a <s>drop shadow</s> whose <s #ff0000 4>color</s> and <s #000000 10>offset</s> you can modify in each application of the code, with an <o>outline</o> that you can also <o #ff0000 4>modify</o> <o #ff00ff 2>dynamically</o>, or with various types of <b>combined <c Pink>formatting</c> codes</b>.\n\n" +
+            "You can write in <b>bold</b>, <i>italics</i>, <u>with an underline</u>, <st>strikethrough</st>, with a <s>drop shadow</s> whose <s #ff0000 4>color</s> and <s #000000 10>offset</s> you can modify in each application of the code, with an <o>outline</o> that you can also <o #ff0000 4>modify</o> <o #ff00ff 2>dynamically</o>, or with various types of <b>combined <c Pink>formatting</c> codes</b>.\n\n" +
             "You can apply <c CornflowerBlue>custom</c> <c Yellow>colors</c> to text, including all default <c Orange>MonoGame colors</c> and <c #aabb00>inline custom colors</c>.\n\n" +
             "You can also use animations like <a wobbly>a wobbly one</a>, as well as create custom ones using the <a wobbly>Code class</a>.\n\n" +
             "You can also display <i grass> icons in your text, and use super<sup>script</sup> or sub<sub>script</sub> formatting!\n\n" +
@@ -27,6 +27,7 @@ namespace Demos {
         private TokenizedString tokenizedText;
         private GenericFont font;
         private bool drawBounds;
+        private bool transform;
         private float Scale {
             get {
                 // calculate our scale based on how much larger the window is, so that the text scales with the window
@@ -71,8 +72,12 @@ namespace Demos {
 
             // we draw the tokenized text in the center of the screen
             // since the text is already center-aligned, we only need to align it on the y axis here
-            var size = this.tokenizedText.GetArea(Vector2.Zero, this.Scale).Size;
+            var size = this.tokenizedText.GetArea(scale: this.Scale).Size;
             var pos = new Vector2(this.GraphicsDevice.Viewport.Width / 2, (this.GraphicsDevice.Viewport.Height - size.Y) / 2);
+
+            var rotation = this.transform ? 0.25F : 0;
+            var origin = this.transform ? new Vector2(size.X / this.Scale, 0) : Vector2.Zero;
+            var effects = this.transform ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             // draw bounds, which can be toggled with B in this demo
             if (this.drawBounds) {
@@ -85,9 +90,14 @@ namespace Demos {
             }
 
             // draw the text itself (start and end indices are optional)
-            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0, this.startIndex, this.endIndex);
+            this.tokenizedText.Draw(time, this.SpriteBatch, pos, this.font, Color.White, this.Scale, 0, rotation, origin, effects, this.startIndex, this.endIndex);
 
             this.SpriteBatch.End();
+
+            // an example of how to interact with the text
+            var hovered = this.tokenizedText.GetTokenUnderPos(pos, this.InputHandler.ViewportMousePosition.ToVector2(), this.Scale, this.font, rotation, origin, effects);
+            if (hovered != null)
+                Console.WriteLine($"Hovering \"{hovered.Substring}\"");
         }
 
         public override void Update(GameTime time) {
@@ -97,6 +107,8 @@ namespace Demos {
             // change some demo showcase info based on keybinds
             if (this.InputHandler.IsPressed(Keys.B))
                 this.drawBounds = !this.drawBounds;
+            if (this.InputHandler.IsPressed(Keys.T))
+                this.transform = !this.transform;
             if (this.startIndex > 0 && this.InputHandler.IsDown(Keys.Left))
                 this.startIndex--;
             if (this.startIndex < this.tokenizedText.String.Length && this.InputHandler.IsDown(Keys.Right))

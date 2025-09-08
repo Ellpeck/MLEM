@@ -18,5 +18,11 @@ namespace MLEM.Formatting.Codes {
             return this.font?.Invoke(defaultPick);
         }
 
+        /// <inheritdoc />
+        public override bool EndsHere(Code other) {
+            // turning a string bold/italic should only end when that specific code is ended using SimpleEndCode
+            return false;
+        }
+
     }
 }

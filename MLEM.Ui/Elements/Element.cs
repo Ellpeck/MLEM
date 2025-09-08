@@ -6,9 +6,9 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MLEM.Extensions;
 using MLEM.Graphics;
 using MLEM.Input;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Sound;
 using MLEM.Textures;
@@ -18,7 +18,7 @@ namespace MLEM.Ui.Elements {
     /// <summary>
     /// This class represents a generic base class for ui elements of a <see cref="UiSystem"/>.
     /// </summary>
-    public abstract class Element : GenericDataHolder, IDisposable {
+    public abstract class Element : GenericDataHolder, ILayoutItem {
 
         /// <summary>
         /// This field holds an epsilon value used in element <see cref="Size"/>, position and resulting <see cref="Area"/> calculations to mitigate floating point rounding inaccuracies.
@@ -197,19 +197,12 @@ namespace MLEM.Ui.Elements {
             }
         }
         /// <summary>
-        /// This element's transform matrix.
-        /// Can easily be scaled using <see cref="ScaleTransform"/>.
-        /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
+        /// This element's transform matrix, which is used for drawing and mouse/touch interaction. All children and grandchildren of this element will have this transform applied to them, along with their own transforms. This can be useful for briefly changing the visuals of an element when using a <see cref="UiAnimation"/>.
+        /// This matrix has no bearing on this element's permanent <see cref="DisplayArea"/> or <see cref="Scale"/>, as it is only applied "on the fly" in <see cref="Draw"/> and <see cref="TransformInverse"/>.
+        /// When this is anything other than <see cref="Matrix.Identity"/>, a new <c>SpriteBatch.Begin</c> call is used for this element when drawing.
+        /// This matrix can easily be scaled relative to its center or an arbitrary point using <see cref="ScaleTransform"/>.
         /// </summary>
         public Matrix Transform = Matrix.Identity;
-        /// <summary>
-        /// The call that this element should make to <see cref="SpriteBatch"/> to begin drawing.
-        /// Note that, when this is non-null, a new <c>SpriteBatch.Begin</c> call is used for this element.
-        /// </summary>
-#pragma warning disable CS0618
-        [Obsolete("BeginImpl is deprecated. You can create a custom element class and override Draw instead.")]
-        public BeginDelegate BeginImpl;
-#pragma warning restore CS0618
         /// <summary>
         /// Set this field to false to disallow the element from being selected.
         /// An unselectable element is skipped by automatic navigation and its <see cref="OnSelected"/> callback will never be called.
@@ -432,7 +425,7 @@ namespace MLEM.Ui.Elements {
         /// Event that is called when text input is made.
         /// When an element uses this event, it should call <see cref="MlemPlatform.EnsureExists"/> on construction to ensure that the MLEM platform is initialized.
         /// Note that this event is called for every element, even if it is not selected.
-        /// Also note that if the active <see cref="MlemPlatform"/> uses an on-screen keyboard, this event is never called.
+        /// Also note that if the active <see cref="MlemPlatform"/> doesn't support <see cref="MlemPlatform.AddTextInputListener"/>, this event is never called.
         /// </summary>
         public TextInputCallback OnTextInput;
         /// <summary>
@@ -486,18 +479,12 @@ namespace MLEM.Ui.Elements {
         /// Event that is called when this element is removed from a <see cref="UiSystem"/>, that is, when this element's <see cref="System"/> is set to <see langword="null"/>.
         /// </summary>
         public GenericCallback OnRemovedFromUi;
-        /// <summary>
-        /// Event that is called when this element's <see cref="Dispose"/> method is called.
-        /// This event is useful for unregistering global event handlers when this object should be destroyed.
-        /// </summary>
-        [Obsolete("OnDisposed will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
-        public GenericCallback OnDisposed;
 
         /// <summary>
         /// A list of all of this element's direct children.
         /// Use <see cref="AddChild{T}"/> or <see cref="RemoveChild"/> to manipulate this list while calling all of the necessary callbacks.
         /// </summary>
-        protected readonly IList<Element> Children;
+        public readonly IList<Element> Children;
         /// <summary>
         /// A list of all of the <see cref="UiAnimation"/> instances that are currently playing.
         /// You can modify this collection through <see cref="PlayAnimation"/> and <see cref="StopAnimation"/>.
@@ -522,6 +509,11 @@ namespace MLEM.Ui.Elements {
         /// This value is the one that is passed to <see cref="CalcActualSize"/> during <see cref="ForceUpdateArea"/>.
         /// </summary>
         protected RectangleF ParentArea => this.Parent?.ChildPaddedArea ?? (RectangleF) this.System.Viewport;
+
+        ILayoutItem ILayoutItem.Parent => this.Parent;
+        RectangleF ILayoutItem.ParentArea => this.ParentArea;
+        IEnumerable<ILayoutItem> ILayoutItem.Children => this.Children;
+        RectangleF ILayoutItem.AutoAnchorArea => this.GetAreaForAutoAnchors();
 
         private readonly List<Element> children = new List<Element>();
         private readonly Stopwatch stopwatch = new Stopwatch();
@@ -570,12 +562,6 @@ namespace MLEM.Ui.Elements {
             this.SetSortedChildrenDirty();
         }
 
-        /// <inheritdoc />
-        [Obsolete("Dispose will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
-        ~Element() {
-            this.Dispose();
-        }
-
         /// <summary>
         /// Adds a child to this element.
         /// </summary>
@@ -588,7 +574,8 @@ namespace MLEM.Ui.Elements {
                 index = this.children.Count;
             this.children.Insert(index, element);
             element.Parent = this;
-            element.AndChildren(e => e.AddedToUi(this.System, this.Root));
+            if (this.System != null)
+                element.AndChildren(e => e.AddedToUi(this.System, this.Root));
             this.OnChildAdded?.Invoke(this, element);
             this.SetSortedChildrenDirty();
             element.SetAreaDirty();
@@ -607,7 +594,8 @@ namespace MLEM.Ui.Elements {
             // upwards to us if the element is auto-positioned
             element.SetAreaDirty();
             element.Parent = null;
-            element.AndChildren(e => e.RemovedFromUi());
+            if (this.System != null)
+                element.AndChildren(e => e.RemovedFromUi());
             this.OnChildRemoved?.Invoke(this, element);
             this.SetSortedChildrenDirty();
         }
@@ -683,159 +671,11 @@ namespace MLEM.Ui.Elements {
                 return;
             this.stopwatch.Restart();
 
-            var parentArea = this.ParentArea;
-            var parentCenterX = parentArea.X + parentArea.Width / 2;
-            var parentCenterY = parentArea.Y + parentArea.Height / 2;
-            var actualSize = this.CalcActualSize(parentArea);
-
-            var recursion = 0;
-            UpdateDisplayArea(actualSize);
+            UiLayouter.Layout(this, Element.Epsilon);
 
             this.stopwatch.Stop();
             this.System.Metrics.ForceAreaUpdateTime += this.stopwatch.Elapsed;
             this.System.Metrics.ForceAreaUpdates++;
-
-            void UpdateDisplayArea(Vector2 newSize) {
-                var pos = new Vector2();
-                switch (this.anchor) {
-                    case Anchor.TopLeft:
-                    case Anchor.AutoLeft:
-                    case Anchor.AutoInline:
-                    case Anchor.AutoInlineCenter:
-                    case Anchor.AutoInlineBottom:
-                    case Anchor.AutoInlineIgnoreOverflow:
-                    case Anchor.AutoInlineCenterIgnoreOverflow:
-                    case Anchor.AutoInlineBottomIgnoreOverflow:
-                        pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.TopCenter:
-                    case Anchor.AutoCenter:
-                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.TopRight:
-                    case Anchor.AutoRight:
-                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
-                        pos.Y = parentArea.Y + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.CenterLeft:
-                        pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.Center:
-                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.CenterRight:
-                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
-                        pos.Y = parentCenterY - newSize.Y / 2 + this.ScaledOffset.Y;
-                        break;
-                    case Anchor.BottomLeft:
-                        pos.X = parentArea.X + this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
-                        break;
-                    case Anchor.BottomCenter:
-                        pos.X = parentCenterX - newSize.X / 2 + this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
-                        break;
-                    case Anchor.BottomRight:
-                        pos.X = parentArea.Right - newSize.X - this.ScaledOffset.X;
-                        pos.Y = parentArea.Bottom - newSize.Y - this.ScaledOffset.Y;
-                        break;
-                }
-
-                if (this.Anchor.IsAuto()) {
-                    if (this.Anchor.IsInline()) {
-                        var anchorEl = this.GetOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                        if (anchorEl != null) {
-                            var anchorElArea = anchorEl.GetAreaForAutoAnchors();
-                            var newX = anchorElArea.Right + this.ScaledOffset.X;
-                            // with awkward ui scale values, floating point rounding can cause an element that would usually
-                            // be positioned correctly to be pushed into the next line due to a very small deviation
-                            if (this.Anchor.IsIgnoreOverflow() || newX + newSize.X <= parentArea.Right + Element.Epsilon) {
-                                pos.X = newX;
-                                pos.Y = anchorElArea.Y + this.ScaledOffset.Y;
-                                if (this.Anchor == Anchor.AutoInlineCenter || this.Anchor == Anchor.AutoInlineCenterIgnoreOverflow) {
-                                    pos.Y += (anchorElArea.Height - newSize.Y) / 2;
-                                } else if (this.Anchor == Anchor.AutoInlineBottom || this.Anchor == Anchor.AutoInlineBottomIgnoreOverflow) {
-                                    pos.Y += anchorElArea.Height - newSize.Y;
-                                }
-                            } else {
-                                // inline anchors that overflow into the next line act like AutoLeft
-                                var newlineAnchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                                if (newlineAnchorEl != null)
-                                    pos.Y = newlineAnchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
-                            }
-                        }
-                    } else {
-                        // auto anchors keep their x coordinates from the switch above
-                        var anchorEl = this.GetLowestOlderSibling(e => !e.IsHidden && e.CanAutoAnchorsAttach);
-                        if (anchorEl != null)
-                            pos.Y = anchorEl.GetAreaForAutoAnchors().Bottom + this.ScaledOffset.Y;
-                    }
-                }
-
-                if (this.PreventParentSpill) {
-                    if (pos.X < parentArea.X)
-                        pos.X = parentArea.X;
-                    if (pos.Y < parentArea.Y)
-                        pos.Y = parentArea.Y;
-                    if (pos.X + newSize.X > parentArea.Right)
-                        newSize.X = parentArea.Right - pos.X;
-                    if (pos.Y + newSize.Y > parentArea.Bottom)
-                        newSize.Y = parentArea.Bottom - pos.Y;
-                }
-
-                this.SetAreaAndUpdateChildren(new RectangleF(pos, newSize));
-
-                if (this.SetWidthBasedOnChildren || this.SetHeightBasedOnChildren) {
-                    Element foundChild = null;
-                    var autoSize = this.UnscrolledArea.Size;
-
-                    if (this.SetHeightBasedOnChildren) {
-                        var lowest = this.GetLowestChild(e => !e.IsHidden);
-                        if (lowest != null) {
-                            if (lowest.Anchor.IsTopAligned()) {
-                                autoSize.Y = lowest.UnscrolledArea.Bottom - pos.Y + this.ScaledChildPadding.Bottom;
-                            } else {
-                                autoSize.Y = lowest.UnscrolledArea.Height + this.ScaledChildPadding.Height;
-                            }
-                            foundChild = lowest;
-                        } else {
-                            autoSize.Y = 0;
-                        }
-                    }
-
-                    if (this.SetWidthBasedOnChildren) {
-                        var rightmost = this.GetRightmostChild(e => !e.IsHidden);
-                        if (rightmost != null) {
-                            if (rightmost.Anchor.IsLeftAligned()) {
-                                autoSize.X = rightmost.UnscrolledArea.Right - pos.X + this.ScaledChildPadding.Right;
-                            } else {
-                                autoSize.X = rightmost.UnscrolledArea.Width + this.ScaledChildPadding.Width;
-                            }
-                            foundChild = rightmost;
-                        } else {
-                            autoSize.X = 0;
-                        }
-                    }
-
-                    if (this.TreatSizeAsMinimum) {
-                        autoSize = Vector2.Max(autoSize, actualSize);
-                    } else if (this.TreatSizeAsMaximum) {
-                        autoSize = Vector2.Min(autoSize, actualSize);
-                    }
-
-                    // we want to leave some leeway to prevent float rounding causing an infinite loop
-                    if (!autoSize.Equals(this.UnscrolledArea.Size, Element.Epsilon)) {
-                        recursion++;
-                        if (recursion >= 64)
-                            throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {foundChild} contain any conflicting auto-sizing settings?");
-                        UpdateDisplayArea(autoSize);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -884,19 +724,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The lowest element, or null if no such element exists</returns>
         public Element GetLowestChild(Func<Element, bool> condition = null, bool total = false) {
-            Element lowest = null;
-            var lowestX = float.MinValue;
-            foreach (var child in this.Children) {
-                if (condition != null && !condition(child))
-                    continue;
-                var covered = total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea;
-                var x = !child.Anchor.IsTopAligned() ? covered.Height : covered.Bottom;
-                if (x >= lowestX) {
-                    lowest = child;
-                    lowestX = x;
-                }
-            }
-            return lowest;
+            return UiLayouter.GetLowestChild(this, condition, total);
         }
 
         /// <summary>
@@ -906,19 +734,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The rightmost element, or null if no such element exists</returns>
         public Element GetRightmostChild(Func<Element, bool> condition = null, bool total = false) {
-            Element rightmost = null;
-            var rightmostX = float.MinValue;
-            foreach (var child in this.Children) {
-                if (condition != null && !condition(child))
-                    continue;
-                var covered = total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea;
-                var x = !child.Anchor.IsLeftAligned() ? covered.Width : covered.Right;
-                if (x >= rightmostX) {
-                    rightmost = child;
-                    rightmostX = x;
-                }
-            }
-            return rightmost;
+            return UiLayouter.GetRightmostChild(this, condition, total);
         }
 
         /// <summary>
@@ -929,18 +745,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="total">Whether to evaluate based on the child's <see cref="GetTotalCoveredArea"/>, rather than its <see cref="UnscrolledArea"/>.</param>
         /// <returns>The lowest older sibling of this element, or null if no such element exists</returns>
         public Element GetLowestOlderSibling(Func<Element, bool> condition = null, bool total = false) {
-            if (this.Parent == null)
-                return null;
-            Element lowest = null;
-            foreach (var child in this.Parent.Children) {
-                if (child == this)
-                    break;
-                if (condition != null && !condition(child))
-                    continue;
-                if (lowest == null || (total ? child.GetTotalCoveredArea(true) : child.UnscrolledArea).Bottom >= lowest.UnscrolledArea.Bottom)
-                    lowest = child;
-            }
-            return lowest;
+            return UiLayouter.GetLowestOlderSibling(this, condition, total);
         }
 
         /// <summary>
@@ -950,17 +755,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="condition">The condition to match</param>
         /// <returns>The older sibling, or null if no such element exists</returns>
         public Element GetOlderSibling(Func<Element, bool> condition = null) {
-            if (this.Parent == null)
-                return null;
-            Element older = null;
-            foreach (var child in this.Parent.Children) {
-                if (child == this)
-                    break;
-                if (condition != null && !condition(child))
-                    continue;
-                older = child;
-            }
-            return older;
+            return UiLayouter.GetOlderSibling(this, condition);
         }
 
         /// <summary>
@@ -990,20 +785,12 @@ namespace MLEM.Ui.Elements {
         /// <typeparam name="T">The type of children to search for</typeparam>
         /// <returns>All children that match the condition</returns>
         public IEnumerable<T> GetChildren<T>(Func<T, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) where T : Element {
-            foreach (var child in this.Children) {
-                var applies = child is T t && (condition == null || condition(t));
-                if (applies)
-                    yield return (T) child;
-                if (regardGrandchildren && (!ignoreFalseGrandchildren || applies)) {
-                    foreach (var cc in child.GetChildren(condition, true, ignoreFalseGrandchildren))
-                        yield return cc;
-                }
-            }
+            return UiLayouter.GetChildren(this, condition, regardGrandchildren, ignoreFalseGrandchildren);
         }
 
         /// <inheritdoc cref="GetChildren{T}"/>
         public IEnumerable<Element> GetChildren(Func<Element, bool> condition = null, bool regardGrandchildren = false, bool ignoreFalseGrandchildren = false) {
-            return this.GetChildren<Element>(condition, regardGrandchildren, ignoreFalseGrandchildren);
+            return UiLayouter.GetChildren(this, condition, regardGrandchildren, ignoreFalseGrandchildren);
         }
 
         /// <summary>
@@ -1070,32 +857,14 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
-        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        /// <param name="alpha">The alpha to draw this element and its children with</param>
-        /// <param name="blendState">The blend state that is used for drawing</param>
-        /// <param name="samplerState">The sampler state that is used for drawing</param>
-        /// <param name="effect">The effect that is used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
-        /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("Use DrawTransformed that takes a SpriteBatchContext instead")]
-        public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            this.DrawTransformed(time, batch, alpha, new SpriteBatchContext(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix));
-        }
-
-        /// <summary>
-        /// Draws this element by calling <see cref="Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,float,MLEM.Graphics.SpriteBatchContext)"/> internally.
-        /// If <see cref="Transform"/> or <see cref="BeginImpl"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
+        /// If <see cref="Transform"/> is set, a new <c>SpriteBatch.Begin</c> call is also started.
         /// </summary>
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
         /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="context">The sprite batch context to use for drawing</param>
         public void DrawTransformed(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-#pragma warning disable CS0618
-            var customDraw = this.BeginImpl != null || this.Transform != Matrix.Identity;
+            var customDraw = this.Transform != Matrix.Identity;
             var transformed = context;
             transformed.TransformMatrix = this.Transform * transformed.TransformMatrix;
             // TODO ending and beginning again when the matrix changes isn't ideal (https://github.com/MonoGame/MonoGame/issues/3156)
@@ -1105,12 +874,9 @@ namespace MLEM.Ui.Elements {
                 // begin our own draw call
                 batch.Begin(transformed);
             }
-#pragma warning restore CS0618
 
             // draw content in custom begin call
-#pragma warning disable CS0618
-            this.Draw(time, batch, alpha, transformed.BlendState, transformed.SamplerState, transformed.DepthStencilState, transformed.Effect, transformed.TransformMatrix);
-#pragma warning restore CS0618
+            this.Draw(time, batch, alpha, transformed);
             if (this.System != null)
                 this.System.Metrics.Draws++;
 
@@ -1129,56 +895,15 @@ namespace MLEM.Ui.Elements {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch to use for drawing</param>
         /// <param name="alpha">The alpha to draw this element and its children with</param>
-        /// <param name="blendState">The blend state that is used for drawing</param>
-        /// <param name="samplerState">The sampler state that is used for drawing</param>
-        /// <param name="effect">The effect that is used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
-        /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("Use Draw that takes a SpriteBatchContext instead")]
-        public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
-            this.Draw(time, batch, alpha, new SpriteBatchContext(SpriteSortMode.Deferred, blendState, samplerState, depthStencilState, null, effect, matrix));
-        }
-
-        /// <summary>
-        /// Draws this element and all of its children. Override this method to draw the content of custom elements.
-        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has already been called with custom <see cref="Transform"/> etc. applied.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        /// <param name="alpha">The alpha to draw this element and its children with</param>
         /// <param name="context">The sprite batch context to use for drawing</param>
         public virtual void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-            this.System.InvokeOnElementDrawn(this, time, batch, alpha);
+            this.System.InvokeOnElementDrawn(this, time, batch, alpha, context);
             if (this.IsSelected)
-                this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha);
+                this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha, context);
 
-            foreach (var child in this.GetRelevantChildren()) {
-                if (!child.IsHidden) {
-#pragma warning disable CS0618
-                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
-#pragma warning restore CS0618
-                }
-            }
-        }
-
-        /// <summary>
-        /// Draws this element and all of its <see cref="GetRelevantChildren"/> early.
-        /// Drawing early involves drawing onto <see cref="RenderTarget2D"/> instances rather than onto the screen.
-        /// Note that, when this is called, <c>SpriteBatch.Begin</c> has not yet been called.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        /// <param name="alpha">The alpha to draw this element and its children with</param>
-        /// <param name="blendState">The blend state that is used for drawing</param>
-        /// <param name="samplerState">The sampler state that is used for drawing</param>
-        /// <param name="effect">The effect that is used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state that is used for drawing</param>
-        /// <param name="matrix">The transformation matrix that is used for drawing</param>
-        [Obsolete("DrawEarly is deprecated. For custom implementations, see Panel.Draw for how to replace this method.")]
-        public virtual void DrawEarly(GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix) {
             foreach (var child in this.GetRelevantChildren()) {
                 if (!child.IsHidden)
-                    child.DrawEarly(time, batch, alpha * child.DrawAlpha, blendState, samplerState, depthStencilState, effect, matrix);
+                    child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context);
             }
         }
 
@@ -1227,21 +952,15 @@ namespace MLEM.Ui.Elements {
             return false;
         }
 
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-        [Obsolete("Dispose will be removed in a future update. To unregister custom event handlers, use OnRemovedFromUi instead.")]
-        public virtual void Dispose() {
-            this.OnDisposed?.Invoke(this);
-            GC.SuppressFinalize(this);
-        }
-
         /// <inheritdoc />
         public override string ToString() {
-            var ret = this.GetType().ToString();
-            // elements will contain their path up to the root (Paragraph@Panel@...@RootName)
+            var ret = this.GetType().Name;
+            // elements will contain their path up to the root and their index in each parent
+            // eg Paragraph 2 @ Panel 3 @ ... @ Group RootName
             if (this.Parent != null) {
-                ret += $"@{this.Parent}";
+                ret += $" {this.Parent.Children.IndexOf(this)} @ {this.Parent}";
             } else if (this.Root?.Element == this) {
-                ret += $"@{this.Root.Name}";
+                ret += $" {this.Root.Name}";
             }
             return ret;
         }
@@ -1275,6 +994,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Scales this element's <see cref="Transform"/> matrix based on the given scale and origin.
+        /// Please note the documentation for <see cref="Transform"/> for in-depth information about how this matrix is used.
         /// </summary>
         /// <param name="scale">The scale to use</param>
         /// <param name="origin">The origin to use for scaling, or null to use this element's center point</param>
@@ -1335,7 +1055,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Called when this element is added to a <see cref="UiSystem"/> and, optionally, a given <see cref="RootElement"/>.
-        /// This method is called in <see cref="AddChild{T}"/> and <see cref="UiSystem.Add"/>.
+        /// This method is called in <see cref="AddChild{T}"/> for a parent whose <see cref="System"/> is set, as well as <see cref="UiSystem.Add"/>.
         /// </summary>
         /// <param name="system">The ui system to add to.</param>
         /// <param name="root">The root element to add to.</param>
@@ -1348,7 +1068,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Called when this element is removed from a <see cref="UiSystem"/> and <see cref="RootElement"/>.
-        /// This method is called in <see cref="RemoveChild"/> and <see cref="UiSystem.Remove"/>.
+        /// This method is called in <see cref="RemoveChild"/> for a parent whose <see cref="System"/> is set, as well as <see cref="UiSystem.Remove"/>.
         /// </summary>
         protected internal virtual void RemovedFromUi() {
             var root = this.Root;
@@ -1356,6 +1076,19 @@ namespace MLEM.Ui.Elements {
             this.System = null;
             this.OnRemovedFromUi?.Invoke(this);
             root?.InvokeOnElementRemoved(this);
+        }
+
+        void ILayoutItem.OnLayoutRecursion(int recursion, ILayoutItem relevantChild) {
+            this.System.Metrics.SummedRecursionDepth++;
+            if (recursion > this.System.Metrics.MaxRecursionDepth)
+                this.System.Metrics.MaxRecursionDepth = recursion;
+
+            if (recursion >= 64)
+                throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {relevantChild} contain any conflicting auto-sizing settings?");
+        }
+
+        Vector2 ILayoutItem.CalcActualSize(RectangleF parentArea) {
+            return this.CalcActualSize(parentArea);
         }
 
         /// <summary>
@@ -1386,7 +1119,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="time">The game's time</param>
         /// <param name="batch">The sprite batch used for drawing</param>
         /// <param name="alpha">The alpha this element is drawn with</param>
-        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha);
+        /// <param name="context">The sprite batch context to use for drawing</param>
+        public delegate void DrawCallback(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context);
 
         /// <summary>
         /// A generic delegate used inside of <see cref="Element.Update"/>
@@ -1408,21 +1142,6 @@ namespace MLEM.Ui.Elements {
         /// <param name="dir">The direction of the gamepad button that was pressed</param>
         /// <param name="usualNext">The element that is considered to be the next element by default</param>
         public delegate Element GamepadNextElementCallback(Direction2 dir, Element usualNext);
-
-        /// <summary>
-        /// A delegate method used for <see cref="BeginImpl"/>
-        /// </summary>
-        /// <param name="element">The custom draw group</param>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch used for drawing</param>
-        /// <param name="alpha">This element's draw alpha</param>
-        /// <param name="blendState">The blend state used for drawing</param>
-        /// <param name="samplerState">The sampler state used for drawing</param>
-        /// <param name="effect">The effect used for drawing</param>
-        /// <param name="depthStencilState">The depth stencil state used for drawing</param>
-        /// <param name="matrix">The transform matrix used for drawing</param>
-        [Obsolete("BeginDelegate is deprecated. You can create a custom element class and override Draw instead.")]
-        public delegate void BeginDelegate(Element element, GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, Effect effect, Matrix matrix);
 
     }
 }

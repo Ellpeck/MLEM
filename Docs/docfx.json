@@ -8,11 +8,15 @@
                         "**/MLEM**.csproj"
                     ],
                     "exclude": [
-                        "**.FNA.**"
+                        "**.FNA.**",
+                        "**.KNI.**"
                     ]
                 }
             ],
-            "dest": "api"
+            "dest": "api",
+            "properties": {
+                "TargetFramework": "net8.0"
+            }
         }
     ],
     "build": {
@@ -41,7 +45,7 @@
             },
             {
                 "files": [
-                    "*"
+                    "**"
                 ],
                 "src": "../Media"
             }
@@ -49,7 +53,7 @@
         "globalMetadata": {
             "_appTitle": "MLEM Documentation",
             "_appLogoPath": "Logo.svg",
-            "_appFooter": "<a href=\"https://github.com/Ellpeck/MLEM\">&copy; 2019-2023 Ellpeck</a> &ndash; <a href=\"https://ellpeck.de/impressum\">Impressum</a> &ndash; <a href=\"https://ellpeck.de/privacy\">Privacy</a> &ndash; <a href=\"https://status.ellpeck.de\">Status</a>",
+            "_appFooter": "<a href=\"https://github.com/Ellpeck/MLEM\">&copy; 2019-2024 Ellpeck</a> &ndash; <a href=\"https://ellpeck.de/impressum\">Impressum</a> &ndash; <a href=\"https://ellpeck.de/privacy\">Privacy</a> &ndash; <a href=\"https://status.ellpeck.de\">Status</a>",
             "_enableSearch": true
         },
         "dest": "_site",

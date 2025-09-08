@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Graphics;
+using MLEM.Maths;
 using MLEM.Misc;
 
 namespace MLEM.Textures {

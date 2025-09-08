@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Graphics;
 
 namespace MLEM.Formatting.Codes {
     /// <inheritdoc />
@@ -18,8 +18,9 @@ namespace MLEM.Formatting.Codes {
         }
 
         /// <inheritdoc />
-        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
-            font.DrawString(batch, character, pos + this.offset * scale, this.color.CopyAlpha(color), 0, Vector2.Zero, scale, SpriteEffects.None, depth);
+        public override bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
+            var finalPos = font.TransformSingleCharacter(stringPos, charPosOffset + this.offset, rotation, origin, scale, effects, stringSize, charSize);
+            font.DrawCharacter(batch, codePoint, character, finalPos, this.color.CopyAlpha(color), rotation, scale, effects, depth);
             // we return false since we still want regular drawing to occur
             return false;
         }

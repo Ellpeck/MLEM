@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Microsoft.Xna.Framework;
 using MLEM.Data.Json;
-using MLEM.Misc;
+using MLEM.Maths;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Vector2 = Microsoft.Xna.Framework.Vector2;

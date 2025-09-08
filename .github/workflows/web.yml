@@ -1,0 +1,86 @@
+﻿on: [push, pull_request]
+jobs:
+  build-demo:
+    runs-on: windows-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Run PublishWeb
+        run: dotnet cake --target PublishWeb --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Upload demo artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: Demos.Web/bin/Release/net8.0/publish/wwwroot
+          name: demo
+          include-hidden-files: true
+          if-no-files-found: error
+  deploy-demo:
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+    needs: [build-demo]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download demo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: demo
+          path: demo
+      - name: Deploy demo
+        # this is a beautiful way to deploy a website and i will not take any criticism
+        run: |
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb
+          mkdir ~/.ssh && echo "${{ secrets.ELLBOT_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          rsync -rv --delete -e 'ssh -o "ProxyCommand cloudflared access ssh --hostname %h" -o "StrictHostKeyChecking=no"' demo/. ellbot@ssh.ellpeck.de:/var/www/MLEM/demo
+        env:
+          TUNNEL_SERVICE_TOKEN_ID: ${{ secrets.TUNNEL_SERVICE_TOKEN_ID }}
+          TUNNEL_SERVICE_TOKEN_SECRET: ${{ secrets.TUNNEL_SERVICE_TOKEN_SECRET }}
+      - name: Purge Cloudflare cache
+        uses: NathanVaughn/actions-cloudflare-purge@v3.1.0
+        with:
+          cf_zone: ${{ secrets.CLOUDFLARE_ZONE }}
+          cf_auth: ${{ secrets.CLOUDFLARE_TOKEN }}
+  build-deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Run Document
+        run: dotnet cake --target Document --ref ${{ github.ref }} --buildNum ${{ github.run_number }}
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: Docs/_site
+          name: docs
+          include-hidden-files: true
+          if-no-files-found: error
+      - name: Deploy docs
+        # this is a beautiful way to deploy a website and i will not take any criticism
+        run: |
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb
+          mkdir ~/.ssh && echo "${{ secrets.ELLBOT_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+          rsync -rv --delete -e 'ssh -o "ProxyCommand cloudflared access ssh --hostname %h" -o "StrictHostKeyChecking=no"' \
+            --exclude /demo ${{ !startsWith(github.ref, 'refs/tags/') && '--exclude /api' || '' }} \
+            Docs/_site/. ellbot@ssh.ellpeck.de:/var/www/MLEM
+        env:
+          TUNNEL_SERVICE_TOKEN_ID: ${{ secrets.TUNNEL_SERVICE_TOKEN_ID }}
+          TUNNEL_SERVICE_TOKEN_SECRET: ${{ secrets.TUNNEL_SERVICE_TOKEN_SECRET }}
+      - name: Purge Cloudflare cache
+        uses: NathanVaughn/actions-cloudflare-purge@v3.1.0
+        with:
+          cf_zone: ${{ secrets.CLOUDFLARE_ZONE }}
+          cf_auth: ${{ secrets.CLOUDFLARE_TOKEN }}

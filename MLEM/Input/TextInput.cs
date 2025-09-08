@@ -5,8 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MLEM.Extensions;
 using MLEM.Font;
+using MLEM.Graphics;
+using MLEM.Maths;
 using MLEM.Misc;
 
 namespace MLEM.Input {
@@ -204,6 +205,21 @@ namespace MLEM.Input {
             }
         }
         /// <summary>
+        /// The maximum amount of lines that can be visible in this text input, based on its <see cref="Size"/>, the used <see cref="Font"/> and its <see cref="TextScale"/>.
+        /// Note that this may return a number higher than 1 even if this is not a <see cref="Multiline"/> text input.
+        /// </summary>
+        public int MaxDisplayedLines => (this.Size.Y / (this.Font.LineHeight * this.TextScale)).Floor();
+        /// <summary>
+        /// The index of the first line that is currently visible.
+        /// This value can be changed using <see cref="ShowLine"/>.
+        /// </summary>
+        public int FirstVisibleLine { get; private set; }
+        /// <summary>
+        /// The total amount of lines of text that this text input currently has, including additional lines added by automatic wrapping.
+        /// If this is not a <see cref="Multiline"/> text input, this value is always 1.
+        /// </summary>
+        public int Lines { get; private set; }
+        /// <summary>
         /// A function that is invoked when a string of text should be copied to the clipboard.
         /// MLEM.Ui uses the TextCopy package for this, but other options are available.
         /// </summary>
@@ -218,10 +234,9 @@ namespace MLEM.Input {
 
         private char? maskingCharacter;
         private double caretBlinkTimer;
-        private string displayedText;
-        private string[] splitText;
+        private string visibleText;
+        private string[] multilineSplitText;
         private int textOffset;
-        private int lineOffset;
         private int caretPos;
         private int caretLine;
         private int caretPosInLine;
@@ -302,9 +317,9 @@ namespace MLEM.Input {
                 this.CaretPos--;
             } else if (this.CaretPos < this.text.Length && input.TryConsumePressed(Keys.Right)) {
                 this.CaretPos++;
-            } else if (this.Multiline && input.IsPressedAvailable(Keys.Up) && this.MoveCaretToLine(this.CaretLine - 1)) {
+            } else if (this.Multiline && input.IsPressedAvailable(Keys.Up) && (input.IsModifierKeyDown(ModifierKey.Control) ? this.ShowLine(this.FirstVisibleLine - 1) : this.MoveCaretToLine(this.CaretLine - 1))) {
                 input.TryConsumePressed(Keys.Up);
-            } else if (this.Multiline && input.IsPressedAvailable(Keys.Down) && this.MoveCaretToLine(this.CaretLine + 1)) {
+            } else if (this.Multiline && input.IsPressedAvailable(Keys.Down) && (input.IsModifierKeyDown(ModifierKey.Control) ? this.ShowLine(this.FirstVisibleLine + 1) : this.MoveCaretToLine(this.CaretLine + 1))) {
                 input.TryConsumePressed(Keys.Down);
             } else if (this.CaretPos != 0 && input.TryConsumePressed(Keys.Home)) {
                 this.CaretPos = 0;
@@ -340,12 +355,12 @@ namespace MLEM.Input {
             this.UpdateTextDataIfDirty();
 
             var scale = this.TextScale * drawScale;
-            this.Font.DrawString(batch, this.displayedText, textPos, textColor, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+            this.Font.DrawString(batch, this.visibleText, textPos, textColor, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
 
             if (caretWidth > 0 && this.caretBlinkTimer < 0.5F) {
                 var caretDrawPos = textPos + new Vector2(this.caretDrawOffset * scale, 0);
                 if (this.Multiline)
-                    caretDrawPos.Y += this.Font.LineHeight * (this.CaretLine - this.lineOffset) * scale;
+                    caretDrawPos.Y += this.Font.LineHeight * (this.CaretLine - this.FirstVisibleLine) * scale;
                 batch.Draw(batch.GetBlankTexture(), new RectangleF(caretDrawPos, new Vector2(caretWidth * drawScale, this.Font.LineHeight * scale)), null, textColor);
             }
         }
@@ -428,6 +443,26 @@ namespace MLEM.Input {
             return false;
         }
 
+        /// <summary>
+        /// Moves visual focus into such bounds that the given line will be the first visible line of this text input.
+        /// </summary>
+        /// <param name="line">The first line that should be visible.</param>
+        /// <returns>Whether the line can be the fist visible line, and wasn't already the first visible line.</returns>
+        public bool ShowLine(int line) {
+            if (this.FirstVisibleLine != line && line >= 0 && line < this.Lines - (this.MaxDisplayedLines - 1)) {
+                this.FirstVisibleLine = line;
+
+                // move the caret into visible bounds if necessary
+                var clampedCaretLine = (int) MathHelper.Clamp(this.CaretLine, line, line + this.MaxDisplayedLines - 1F);
+                if (clampedCaretLine != this.CaretLine)
+                    this.MoveCaretToLine(clampedCaretLine);
+
+                this.SetTextDataDirty(false);
+                return true;
+            }
+            return false;
+        }
+
         private bool FilterText(ref string text, bool removeMismatching) {
             var result = new StringBuilder();
             foreach (var codePoint in new CodePointSource(text)) {
@@ -460,49 +495,50 @@ namespace MLEM.Input {
 
             if (this.Multiline) {
                 // soft wrap if we're multiline
-                this.splitText = this.Font.SplitStringSeparate(visualText, this.Size.X, this.TextScale).ToArray();
-                this.displayedText = string.Join("\n", this.splitText);
+                this.multilineSplitText = this.Font.SplitStringSeparate(visualText, this.Size.X, this.TextScale).ToArray();
+                this.visibleText = string.Join("\n", this.multilineSplitText);
+                this.Lines = this.visibleText.Count(c => c == '\n') + 1;
                 this.UpdateCaretData();
 
-                if (this.Font.MeasureString(this.displayedText).Y * this.TextScale > this.Size.Y) {
-                    var maxLines = (this.Size.Y / (this.Font.LineHeight * this.TextScale)).Floor();
-                    if (this.lineOffset > this.CaretLine) {
+                if (this.Font.MeasureString(this.visibleText).Y * this.TextScale > this.Size.Y) {
+                    if (this.FirstVisibleLine > this.CaretLine) {
                         // if we're moving up
-                        this.lineOffset = this.CaretLine;
-                    } else if (this.CaretLine >= maxLines) {
+                        this.FirstVisibleLine = this.CaretLine;
+                    } else if (this.CaretLine >= this.MaxDisplayedLines) {
                         // if we're moving down
-                        var limit = this.CaretLine - (maxLines - 1);
-                        if (limit > this.lineOffset)
-                            this.lineOffset = limit;
+                        var limit = this.CaretLine - (this.MaxDisplayedLines - 1);
+                        if (limit > this.FirstVisibleLine)
+                            this.FirstVisibleLine = limit;
                     }
                     // calculate resulting string
                     var ret = new StringBuilder();
                     var lines = 0;
                     var originalIndex = 0;
-                    for (var i = 0; i < this.displayedText.Length; i++) {
-                        if (lines >= this.lineOffset) {
+                    for (var i = 0; i < this.visibleText.Length; i++) {
+                        if (lines >= this.FirstVisibleLine) {
                             if (ret.Length <= 0)
                                 this.textOffset = originalIndex;
-                            ret.Append(this.displayedText[i]);
+                            ret.Append(this.visibleText[i]);
                         }
-                        if (this.displayedText[i] == '\n') {
+                        if (this.visibleText[i] == '\n') {
                             lines++;
                             if (visualText[originalIndex] == '\n')
                                 originalIndex++;
                         } else {
                             originalIndex++;
                         }
-                        if (lines - this.lineOffset >= maxLines)
+                        if (lines - this.FirstVisibleLine >= this.MaxDisplayedLines)
                             break;
                     }
-                    this.displayedText = ret.ToString();
+                    this.visibleText = ret.ToString();
                 } else {
-                    this.lineOffset = 0;
+                    this.FirstVisibleLine = 0;
                     this.textOffset = 0;
                 }
             } else {
-                this.splitText = null;
-                this.lineOffset = 0;
+                this.multilineSplitText = null;
+                this.FirstVisibleLine = 0;
+                this.Lines = 1;
                 // not multiline, so scroll horizontally based on caret position
                 if (this.Font.MeasureString(visualText).X * this.TextScale > this.Size.X) {
                     if (this.textOffset > this.CaretPos) {
@@ -516,9 +552,9 @@ namespace MLEM.Input {
                             this.textOffset = bound;
                     }
                     var visible = visualText.ToString(this.textOffset, visualText.Length - this.textOffset);
-                    this.displayedText = this.Font.TruncateString(visible, this.Size.X, this.TextScale);
+                    this.visibleText = this.Font.TruncateString(visible, this.Size.X, this.TextScale);
                 } else {
-                    this.displayedText = visualText.ToString();
+                    this.visibleText = visualText.ToString();
                     this.textOffset = 0;
                 }
                 this.UpdateCaretData();
@@ -526,9 +562,9 @@ namespace MLEM.Input {
         }
 
         private void UpdateCaretData() {
-            if (this.splitText != null) {
+            if (this.multilineSplitText != null) {
                 // the code below will never execute if our text is empty, so reset our caret position fully
-                if (this.splitText.Length <= 0) {
+                if (this.multilineSplitText.Length <= 0) {
                     this.caretLine = 0;
                     this.caretPosInLine = 0;
                     this.caretDrawOffset = 0;
@@ -537,9 +573,9 @@ namespace MLEM.Input {
 
                 var line = 0;
                 var index = 0;
-                for (var d = 0; d < this.splitText.Length; d++) {
+                for (var d = 0; d < this.multilineSplitText.Length; d++) {
                     var startOfLine = 0;
-                    var split = this.splitText[d];
+                    var split = this.multilineSplitText[d];
                     for (var i = 0; i <= split.Length; i++) {
                         if (index == this.CaretPos) {
                             this.caretLine = line;
@@ -559,20 +595,20 @@ namespace MLEM.Input {
                     // max width splits
                     line++;
                 }
-            } else if (this.displayedText != null) {
+            } else if (this.visibleText != null) {
                 this.caretLine = 0;
                 this.caretPosInLine = this.CaretPos;
-                this.caretDrawOffset = this.Font.MeasureString(this.displayedText.Substring(0, this.CaretPos - this.textOffset)).X;
+                this.caretDrawOffset = this.Font.MeasureString(this.visibleText.Substring(0, this.CaretPos - this.textOffset)).X;
             }
         }
 
         private (int, int) GetLineBounds(int boundLine) {
-            if (this.splitText != null) {
+            if (this.multilineSplitText != null) {
                 var line = 0;
                 var index = 0;
                 var startOfLineIndex = 0;
-                for (var d = 0; d < this.splitText.Length; d++) {
-                    var split = this.splitText[d];
+                for (var d = 0; d < this.multilineSplitText.Length; d++) {
+                    var split = this.multilineSplitText[d];
                     for (var i = 0; i < split.Length; i++) {
                         index++;
                         if (split[i] == '\n') {

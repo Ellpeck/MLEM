@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Sound;
 using MLEM.Textures;
@@ -171,6 +172,18 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Vector2 TooltipAutoNavOffset = new Vector2(0, 8);
         /// <summary>
+        /// The auto-nav anchor that is used or tooltips by default.
+        /// </summary>
+        public Anchor TooltipAutoNavAnchor = Anchor.BottomCenter;
+        /// <summary>
+        /// The mouse anchor that is used for tooltips by default.
+        /// </summary>
+        public Anchor TooltipMouseAnchor = Anchor.BottomRight;
+        /// <summary>
+        /// Whether tooltips should use auto-nav rendering behavior for tooltips even when using a mouse by default.
+        /// </summary>
+        public bool TooltipUseAutoNavBehaviorForMouse;
+        /// <summary>
         /// The color that the text of a <see cref="Tooltip"/> should have
         /// </summary>
         public Color TooltipTextColor = Color.White;
@@ -234,6 +247,32 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public Color? LinkColor = Color.CornflowerBlue;
         /// <summary>
+        /// The default padding that a <see cref="Dropdown"/>'s <see cref="Dropdown.Arrow"/> should have.
+        /// This value is passed to <see cref="Dropdown.ArrowPadding"/>.
+        /// </summary>
+        public Padding DropdownArrowPadding;
+        /// <summary>
+        /// The texture that a <see cref="Dropdown"/>'s <see cref="Dropdown.Arrow"/> should display when the dropdown is closed.
+        /// This value is passed to <see cref="Dropdown.ClosedArrowTexture"/>.
+        /// </summary>
+        public TextureRegion DropdownClosedArrowTexture;
+        /// <summary>
+        /// The texture that a <see cref="Dropdown"/>'s <see cref="Dropdown.Arrow"/> should display when the dropdown is open.
+        /// This value is passed to <see cref="Dropdown.OpenedArrowTexture"/>.
+        /// </summary>
+        public TextureRegion DropdownOpenedArrowTexture;
+        /// <summary>
+        /// The color that a <see cref="Dropdown"/>'s paragraphs should have by default.
+        /// This value is passed to <see cref="Dropdown.TextColor"/>.
+        /// </summary>
+        public Color DropdownTextColor = Color.White;
+        /// <summary>
+        /// The color that a <see cref="Dropdown"/>'s paragraphs should have when hovered.
+        /// This value is passed to <see cref="Dropdown.HoveredTextColor"/>.
+        /// </summary>
+        public Color DropdownHoveredTextColor = Color.LightGray;
+
+        /// <summary>
         /// A set of additional fonts that can be used for the <c>&lt;f FontName&gt;</c> formatting code
         /// </summary>
         public Dictionary<string, GenericFont> AdditionalFonts = new Dictionary<string, GenericFont>();
@@ -288,6 +327,9 @@ namespace MLEM.Ui.Style {
             this.TooltipBackground = original.TooltipBackground;
             this.TooltipOffset = original.TooltipOffset;
             this.TooltipAutoNavOffset = original.TooltipAutoNavOffset;
+            this.TooltipAutoNavAnchor = original.TooltipAutoNavAnchor;
+            this.TooltipMouseAnchor = original.TooltipMouseAnchor;
+            this.TooltipUseAutoNavBehaviorForMouse = original.TooltipUseAutoNavBehaviorForMouse;
             this.TooltipTextColor = original.TooltipTextColor;
             this.TooltipDelay = original.TooltipDelay;
             this.TooltipTextWidth = original.TooltipTextWidth;
@@ -303,6 +345,11 @@ namespace MLEM.Ui.Style {
             this.TextAlignment = original.TextAlignment;
             this.ActionSound = original.ActionSound;
             this.LinkColor = original.LinkColor;
+            this.DropdownArrowPadding = original.DropdownArrowPadding;
+            this.DropdownClosedArrowTexture = original.DropdownClosedArrowTexture;
+            this.DropdownOpenedArrowTexture = original.DropdownOpenedArrowTexture;
+            this.DropdownTextColor = original.DropdownTextColor;
+            this.DropdownHoveredTextColor = original.DropdownHoveredTextColor;
             this.AdditionalFonts = new Dictionary<string, GenericFont>(original.AdditionalFonts);
             this.elementStyles = new Dictionary<Type, Action<Element>>(original.elementStyles);
         }

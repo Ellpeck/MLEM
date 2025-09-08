@@ -1,6 +1,9 @@
 [submodule "FNA"]
-	path = FNA
+	path = ThirdParty/FNA
 	url = https://github.com/FNA-XNA/FNA
 [submodule "FontStashSharp"]
-	path = FontStashSharp
+	path = ThirdParty/FontStashSharp
 	url = https://github.com/FontStashSharp/FontStashSharp
+[submodule "ThirdParty/MonoGame.Extended"]
+	path = ThirdParty/MonoGame.Extended
+	url = https://github.com/craftworkgames/MonoGame.Extended

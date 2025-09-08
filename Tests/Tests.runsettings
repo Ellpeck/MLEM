@@ -6,6 +6,7 @@
                 <Configuration>
                     <Include>[MLEM*]*</Include>
                     <Exclude>[*.FNA]*</Exclude>
+                    <Exclude>[*.KNI]*</Exclude>
                 </Configuration>
             </DataCollector>
         </DataCollectors>

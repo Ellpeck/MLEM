@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net452;netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible Condition="'$(TargetFramework)'=='net8.0'">true</IsAotCompatible>
     </PropertyGroup>
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>A mouse, keyboard, gamepad and touch ready Ui system for MonoGame that features automatic anchoring, sizing and several ready-to-use element types</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>monogame ellpeck mlem ui user interface graphical gui system mouse keyboard gamepad touch</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

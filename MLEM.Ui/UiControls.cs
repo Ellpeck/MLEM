@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MLEM.Input;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 
 #if NET452
-using MLEM.Extensions;
 #endif
 
 namespace MLEM.Ui {
@@ -103,7 +103,7 @@ namespace MLEM.Ui {
         /// </summary>
         public bool HandleGamepad = true;
         /// <summary>
-        /// If this value is true, the ui controls are in automatic navigation mode.
+        /// If this value is true, the ui controls are in automatic navigation mode. The state of automatic navigation is usually based on the current <see cref="NavType"/>.
         /// This means that the <see cref="UiStyle.SelectionIndicator"/> will be drawn around the <see cref="SelectedElement"/>.
         /// </summary>
         public bool IsAutoNavMode {
@@ -115,12 +115,29 @@ namespace MLEM.Ui {
                 }
             }
         }
+        /// <summary>
+        /// The current <see cref="NavigationType"/> of these ui controls, which represents the last type of interaction that was used to interact with the underlying <see cref="UiSystem"/>.
+        /// </summary>
+        public NavigationType NavType {
+            get => this.navType;
+            set {
+                if (this.navType != value) {
+                    var last = this.navType;
+                    this.navType = value;
+                    this.NavTypeChanged?.Invoke(last, value);
+                }
+            }
+        }
 
         /// <summary>
         /// An event that is raised when <see cref="IsAutoNavMode"/> is changed.
         /// This can be used for custom actions like hiding the mouse cursor when automatic navigation is enabled.
         /// </summary>
         public event Action<bool> AutoNavModeChanged;
+        /// <summary>
+        /// An event that is raised when <see cref="NavType"/> is changed. It receives the previous navigation type, as well as the newly set navigation type.
+        /// </summary>
+        public event Action<NavigationType, NavigationType> NavTypeChanged;
 
         /// <summary>
         /// This value ist true if the <see cref="InputHandler"/> was created by this ui controls instance, or if it was passed in.
@@ -134,6 +151,7 @@ namespace MLEM.Ui {
 
         private readonly Dictionary<string, Element> selectedElements = new Dictionary<string, Element>();
         private bool isAutoNavMode;
+        private NavigationType navType;
 
         /// <summary>
         /// Creates a new instance of the ui controls.
@@ -167,6 +185,7 @@ namespace MLEM.Ui {
 
                 if (this.Input.IsPressedAvailable(MouseButton.Left)) {
                     this.IsAutoNavMode = false;
+                    this.NavType = NavigationType.Mouse;
                     var selectedNow = mousedNow != null && mousedNow.CanBeSelected ? mousedNow : null;
                     this.SelectElement(this.ActiveRoot, selectedNow);
                     if (mousedNow != null && mousedNow.CanBePressed) {
@@ -175,6 +194,7 @@ namespace MLEM.Ui {
                     }
                 } else if (this.Input.IsPressedAvailable(MouseButton.Right)) {
                     this.IsAutoNavMode = false;
+                    this.NavType = NavigationType.Mouse;
                     if (mousedNow != null && mousedNow.CanBePressed) {
                         this.PressElement(mousedNow, true);
                         this.Input.TryConsumePressed(MouseButton.Right);
@@ -187,12 +207,14 @@ namespace MLEM.Ui {
             if (this.HandleKeyboard) {
                 if (this.KeyboardButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
+                        this.NavType = NavigationType.Keyboard;
                         // primary or secondary action on element using space or enter
                         this.PressElement(this.SelectedElement, this.Input.IsModifierKeyDown(ModifierKey.Shift));
                         this.KeyboardButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
                 } else if (this.Input.IsPressedAvailable(Keys.Tab)) {
                     this.IsAutoNavMode = true;
+                    this.NavType = NavigationType.Keyboard;
                     // tab or shift-tab to next or previous element
                     var backward = this.Input.IsModifierKeyDown(ModifierKey.Shift);
                     var next = this.GetTabNextElement(backward);
@@ -208,12 +230,14 @@ namespace MLEM.Ui {
             if (this.HandleTouch) {
                 if (this.Input.GetViewportGesture(GestureType.Tap, out var tap)) {
                     this.IsAutoNavMode = false;
+                    this.NavType = NavigationType.Touch;
                     var tapped = this.GetElementUnderPos(tap.Position);
                     this.SelectElement(this.ActiveRoot, tapped);
                     if (tapped != null && tapped.CanBePressed)
                         this.PressElement(tapped);
                 } else if (this.Input.GetViewportGesture(GestureType.Hold, out var hold)) {
                     this.IsAutoNavMode = false;
+                    this.NavType = NavigationType.Touch;
                     var held = this.GetElementUnderPos(hold.Position);
                     this.SelectElement(this.ActiveRoot, held);
                     if (held != null && held.CanBePressed)
@@ -224,6 +248,7 @@ namespace MLEM.Ui {
                     foreach (var location in this.Input.ViewportTouchState) {
                         var element = this.GetElementUnderPos(location.Position);
                         if (location.State == TouchLocationState.Pressed) {
+                            this.NavType = NavigationType.Touch;
                             // start touching an element if we just touched down on it
                             this.SetTouchedElement(element);
                         } else if (element != this.TouchedElement) {
@@ -239,11 +264,13 @@ namespace MLEM.Ui {
             if (this.HandleGamepad) {
                 if (this.GamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
+                        this.NavType = NavigationType.Gamepad;
                         this.PressElement(this.SelectedElement);
                         this.GamepadButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
                 } else if (this.SecondaryGamepadButtons.IsPressedAvailable(this.Input, this.GamepadIndex)) {
                     if (this.SelectedElement?.Root != null && this.SelectedElement.CanBePressed) {
+                        this.NavType = NavigationType.Gamepad;
                         this.PressElement(this.SelectedElement, true);
                         this.SecondaryGamepadButtons.TryConsumePressed(this.Input, this.GamepadIndex);
                     }
@@ -286,8 +313,9 @@ namespace MLEM.Ui {
         /// </summary>
         /// <param name="root">The root element of the <see cref="Element"/></param>
         /// <param name="element">The element to select, or null to deselect the selected element.</param>
-        /// <param name="autoNav">Whether automatic navigation should be forced on</param>
-        public void SelectElement(RootElement root, Element element, bool? autoNav = null) {
+        /// <param name="autoNav">Whether automatic navigation should be forced on. If this is <see langword="null"/>, the automatic navigation state will stay the same.</param>
+        /// <param name="navType">An optional <see cref="NavigationType"/> to set. If this is <see langword="null"/>, the navigation type will stay the same.</param>
+        public void SelectElement(RootElement root, Element element, bool? autoNav = null, NavigationType? navType = null) {
             if (root == null)
                 return;
             if (element != null && !element.CanBeSelected)
@@ -308,6 +336,8 @@ namespace MLEM.Ui {
 
             if (autoNav != null)
                 this.IsAutoNavMode = autoNav.Value;
+            if (navType != null)
+                this.NavType = navType.Value;
         }
 
         /// <summary>
@@ -444,6 +474,7 @@ namespace MLEM.Ui {
 
         private bool HandleGamepadNextElement(Direction2 dir) {
             this.IsAutoNavMode = true;
+            this.NavType = NavigationType.Gamepad;
             var next = this.GetGamepadNextElement(dir);
             if (this.SelectedElement != null)
                 next = this.SelectedElement.GetGamepadNextElement(dir, next);
@@ -452,6 +483,35 @@ namespace MLEM.Ui {
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// An enumeration type that represents the possible types of navigation that a <see cref="UiControls"/> instance supports.
+        /// This is used by <see cref="UiControls.NavType"/>, which stores the most recently used navigation type for a <see cref="UiSystem"/>.
+        /// </summary>
+        public enum NavigationType {
+
+            /// <summary>
+            /// An unknown navigation type, which usually means there has not been any ui navigation of any type yet.
+            /// </summary>
+            Unknown = 0,
+            /// <summary>
+            /// Mouse cursor and mouse button navigation.
+            /// </summary>
+            Mouse,
+            /// <summary>
+            /// Keyboard navigation.
+            /// </summary>
+            Keyboard,
+            /// <summary>
+            /// Touch and gesture navigation.
+            /// </summary>
+            Touch,
+            /// <summary>
+            /// Gamepad-style navigation, which may also include arrow key-based navigation based on current <see cref="UiControls"/> settings.
+            /// </summary>
+            Gamepad
+
         }
 
     }

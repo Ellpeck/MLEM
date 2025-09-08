@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using ColorHelper = MLEM.Extensions.ColorHelper;
+using ColorHelper = MLEM.Graphics.ColorHelper;
 
 namespace MLEM.Extended.Tiled {
     /// <summary>
@@ -44,7 +44,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The color property</returns>
         public static Color GetColor(this TiledMapProperties properties, string key) {
-            return ColorHelper.FromHexString(properties.Get(key));
+            ColorHelper.TryFromHexString(properties.Get(key), out var val);
+            return val;
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace MLEM.Extended.Tiled {
             var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
             if (tilesetTile == null && createStub) {
                 if (!TiledExtensions.StubTilesetTiles.TryGetValue(localId, out tilesetTile)) {
-                    tilesetTile = new TiledMapTilesetTile(localId);
+                    tilesetTile = new TiledMapTilesetTile(localId, null, null);
                     TiledExtensions.StubTilesetTiles.Add(localId, tilesetTile);
                 }
             }

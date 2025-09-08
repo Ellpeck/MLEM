@@ -11,12 +11,22 @@ namespace MLEM.Extended.Font {
         /// The <see cref="SpriteFontBase"/> that is being wrapped by this generic font
         /// </summary>
         public readonly SpriteFontBase Font;
+
         /// <inheritdoc />
         public override GenericFont Bold { get; }
         /// <inheritdoc />
         public override GenericFont Italic { get; }
         /// <inheritdoc />
         public override float LineHeight => this.Font.LineHeight;
+
+        /// <summary>
+        /// The character spacing that will be passed to the underlying <see cref="Font"/>.
+        /// </summary>
+        public float CharacterSpacing { get; set; }
+        /// <summary>
+        /// The line spacing that will be passed to the underlying <see cref="Font"/>.
+        /// </summary>
+        public float LineSpacing { get; set; }
 
         /// <summary>
         /// Creates a new generic font using <see cref="SpriteFontBase"/>.
@@ -33,12 +43,12 @@ namespace MLEM.Extended.Font {
 
         /// <inheritdoc />
         protected override float MeasureCharacter(int codePoint) {
-            return this.Font.MeasureString(CodePointSource.ToString(codePoint)).X;
+            return this.Font.MeasureString(CodePointSource.ToString(codePoint), null, this.CharacterSpacing, this.LineSpacing).X;
         }
 
         /// <inheritdoc />
-        protected override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
-            this.Font.DrawText(batch, character, position, color, scale, rotation, Vector2.Zero, layerDepth);
+        public override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            this.Font.DrawText(batch, character, position, color, rotation, Vector2.Zero, scale, layerDepth, this.CharacterSpacing, this.LineSpacing);
         }
 
     }

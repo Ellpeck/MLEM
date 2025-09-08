@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Demos</RootNamespace>
+        <DefineConstants>$(DefineConstants);KNI</DefineConstants>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MLEM.Startup\MLEM.Startup.KNI.csproj" />
+        <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.KNI.csproj" />
+        <ProjectReference Include="..\MLEM\MLEM.KNI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="nkast.Xna.Framework" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="nkast.Xna.Framework.Content" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="nkast.Xna.Framework.Audio" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="nkast.Xna.Framework.Media" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="nkast.Xna.Framework.Input" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="nkast.Xna.Framework.Game" Version="3.13.9001">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>

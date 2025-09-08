@@ -1,4 +1,4 @@
-using MLEM.Extensions;
+using MLEM.Misc;
 using NUnit.Framework;
 
 namespace Tests;

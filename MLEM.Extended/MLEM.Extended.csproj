@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible Condition="'$(TargetFramework)'=='net8.0'">true</IsAotCompatible>
     </PropertyGroup>
 
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending MonoGame extension that ties in with MonoGame.Extended and other MonoGame libraries</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>monogame ellpeck mlem utility extensions monogame.extended extended</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
@@ -21,18 +21,24 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
 
-        <PackageReference Include="MonoGame.Extended" Version="3.8.0">
+        <PackageReference Condition="'$(TargetFramework)'=='net8.0'" Include="MonoGame.Extended" Version="4.0.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0">
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="FontStashSharp.MonoGame" Version="1.2.8">
+        <PackageReference Include="FontStashSharp.MonoGame" Version="1.3.3">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'!='net8.0'">
+        <Compile Remove="Tiled/**" />
+        <Compile Remove="Graphics/SpriteBatchExtensions.cs" />
+        <Compile Remove="Graphics/TextureExtensions.cs" />
+        <Compile Remove="Maths/NumberExtensions.cs" />
+        <Compile Remove="Maths/RandomExtensions.cs" />
+        <Compile Remove="Font/GenericBitmapFont.cs" />
     </ItemGroup>
 
     <ItemGroup>

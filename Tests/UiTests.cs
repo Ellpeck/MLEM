@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
@@ -10,19 +11,7 @@ using NUnit.Framework;
 
 namespace Tests;
 
-public class UiTests {
-
-    private TestGame game;
-
-    [SetUp]
-    public void SetUp() {
-        this.game = TestGame.Create();
-    }
-
-    [TearDown]
-    public void TearDown() {
-        this.game?.Dispose();
-    }
+public class UiTests : GameTestFixture {
 
     [Test]
     public void TestInvalidPanel() {
@@ -32,7 +21,7 @@ public class UiTests {
         };
         invalidPanel.AddChild(new Paragraph(Anchor.AutoRight, 1, "This is some test text!", true));
         invalidPanel.AddChild(new VerticalSpace(1));
-        Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel));
+        Assert.Throws<ArithmeticException>(() => this.AddAndUpdate(invalidPanel, out _, out _));
     }
 
     [Test]
@@ -40,7 +29,7 @@ public class UiTests {
         var oddPanel = new Panel(Anchor.Center, Vector2.One, Vector2.Zero, true) {SetWidthBasedOnChildren = true};
         oddPanel.AddChild(new Group(Anchor.TopCenter, new Vector2(100), false));
         oddPanel.AddChild(new Group(Anchor.AutoRight, new Vector2(120), false));
-        this.AddAndUpdate(oddPanel);
+        this.AddAndUpdate(oddPanel, out _, out _);
         Assert.AreEqual(120 + 10, oddPanel.DisplayArea.Width);
     }
 
@@ -60,7 +49,7 @@ public class UiTests {
                 CanBeMoused = false
             });
         }
-        this.AddAndUpdate(group);
+        this.AddAndUpdate(group, out _, out _);
 
         // group has 1 panel with 1 scroll bar, and the panel's 10 children
         Assert.AreEqual(1, group.GetChildren().Count());
@@ -89,7 +78,7 @@ public class UiTests {
         var el2 = parent.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -0.5F)) {
             AutoSizeAddedAbsolute = new Vector2(-25, 50)
         });
-        this.AddAndUpdate(parent);
+        this.AddAndUpdate(parent, out _, out _);
 
         Assert.AreEqual(0.5F * 200 - 50, el1.DisplayArea.Width);
         Assert.AreEqual(0.75F * 100 + 25, el1.DisplayArea.Height);
@@ -118,33 +107,171 @@ public class UiTests {
     }
 
     [Test]
-    public void TestAutoAreaPerformance() {
-        var stopwatch = new Stopwatch();
+    public void TestAutoAreaPerformanceDeep() {
         for (var i = 1; i <= 100; i++) {
-            var totalUpdates = 0;
-            var main = new Group(Anchor.TopLeft, new Vector2(50)) {
-                OnAreaUpdated = _ => totalUpdates++
-            };
+            var main = new Group(Anchor.TopLeft, new Vector2(50));
             var group = main;
-            for (var g = 0; g < i; g++) {
-                group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One) {
-                    OnAreaUpdated = _ => totalUpdates++
-                });
-            }
-            stopwatch.Restart();
-            this.AddAndUpdate(main);
-            stopwatch.Stop();
+            for (var g = 0; g < i; g++)
+                group = group.AddChild(new Group(Anchor.TopLeft, Vector2.One));
+            this.AddAndUpdate(main, out var addTime, out var updateTime);
             var allChildren = main.GetChildren(regardGrandchildren: true);
-            TestContext.WriteLine($"{allChildren.Count()} children, {totalUpdates} updates total, took {stopwatch.Elapsed.TotalMilliseconds * 1000000}ns");
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.Game.UiSystem.Metrics}");
         }
     }
 
-    private void AddAndUpdate(Element element) {
-        foreach (var root in this.game.UiSystem.GetRootElements())
-            this.game.UiSystem.Remove(root.Name);
+    [Test]
+    public void TestAutoAreaPerformanceSideBySide() {
+        for (var i = 1; i <= 100; i++) {
+            var main = new Group(Anchor.TopLeft, new Vector2(50));
+            for (var g = 0; g < i; g++)
+                main.AddChild(new Group(Anchor.AutoInlineIgnoreOverflow, new Vector2(1F / i, 1)));
+            this.AddAndUpdate(main, out var addTime, out var updateTime);
+            var allChildren = main.GetChildren(regardGrandchildren: true);
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.Game.UiSystem.Metrics}");
+        }
+    }
 
-        this.game.UiSystem.Add("Test", element);
+    [Test]
+    public void TestAutoAreaPerformanceRandom() {
+        for (var i = 0; i <= 1000; i += 10) {
+            var random = new Random(93829345);
+            var main = new Group(Anchor.TopLeft, new Vector2(50));
+            var group = main;
+            for (var g = 0; g < i; g++) {
+                var newGroup = group.AddChild(new Group(Anchor.TopLeft, Vector2.One));
+                if (random.NextSingle() <= 0.25F)
+                    group = newGroup;
+            }
+            this.AddAndUpdate(main, out var addTime, out var updateTime);
+            var allChildren = main.GetChildren(regardGrandchildren: true);
+            TestContext.WriteLine($"{allChildren.Count()} children, took {addTime.TotalMilliseconds * 1000000}ns to add, {updateTime.TotalMilliseconds * 1000000}ns to update, metrics {this.Game.UiSystem.Metrics}");
+        }
+    }
+
+    // Stack overflow related to panel scrolling and scrollbar auto-hiding
+    [Test]
+    public void TestIssue27([Values(5, 50, 15)] int numChildren) {
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        var leftColumn = new Panel(Anchor.TopLeft, new Vector2(500, 1), scrollOverflow: true);
+        group.AddChild(leftColumn);
+        for (var i = 0; i < numChildren; i++) {
+            var c = new Panel(Anchor.AutoLeft, new Vector2(1, 30));
+            c.DrawColor = Color.Green;
+            c.Padding = new MLEM.Maths.Padding(5);
+            leftColumn.AddChild(c);
+        }
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
+
+        Assert.DoesNotThrow(() => this.AddAndUpdate(group, out _, out _));
+    }
+
+    // Removing and re-adding to a scrolling panel causes a stack overflow
+    [Test]
+    public void TestIssue29StackOverflow([Values(5, 50, 15)] int numChildren) {
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        var leftColumn = new SquishingGroup(Anchor.TopLeft, new Vector2(500, 1));
+        group.AddChild(leftColumn);
+        var namePanel = new Panel(Anchor.TopLeft, new Vector2(1, 50), true);
+        var test = new Panel(Anchor.TopCenter, new Vector2(1, 30));
+        test.DrawColor = Color.Red;
+        namePanel.AddChild(test);
+        var listView = new Panel(Anchor.TopLeft, new Vector2(1, 1), false, true);
+        leftColumn.AddChild(listView);
+        leftColumn.AddChild(namePanel);
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
+
+        Repopulate();
+        Assert.DoesNotThrow(() => this.AddAndUpdate(group, out _, out _));
+        Repopulate();
+        Assert.DoesNotThrow(() => UiTests.ForceUpdate(group, out _));
+
+        void Repopulate() {
+            listView.RemoveChildren();
+            for (var i = 0; i < numChildren; i++) {
+                var c = new Panel(Anchor.AutoLeft, new Vector2(1, 30));
+                c.DrawColor = Color.Green;
+                c.Padding = new MLEM.Maths.Padding(5);
+                listView.AddChild(c);
+            }
+        }
+    }
+
+    // Adding children causes the scroll bar to disappear when it shouldn't
+    [Test]
+    public void TestIssue29Inconsistencies() {
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        var listView = new Panel(Anchor.TopLeft, new Vector2(1, 1), false, true);
+        group.AddChild(listView);
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
+
+        Assert.DoesNotThrow(() => this.AddAndUpdate(group, out _, out _));
+
+        var appeared = false;
+        for (var i = 0; i < 100; i++) {
+            var c = new Panel(Anchor.AutoLeft, new Vector2(1, 50));
+            c.DrawColor = Color.Green;
+            c.Padding = new MLEM.Maths.Padding(5);
+            listView.AddChild(c);
+            Console.WriteLine($"Adding child, up to {i}");
+
+            Assert.DoesNotThrow(() => UiTests.ForceUpdate(group, out _));
+            if (appeared) {
+                Assert.False(listView.ScrollBar.IsHidden, $"Fail bar was hidden after {i} children");
+            } else if (!listView.ScrollBar.IsHidden) {
+                appeared = true;
+            }
+        }
+        Assert.True(appeared, "Scroll bar never appeared");
+    }
+
+    private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
+        foreach (var root in this.Game.UiSystem.GetRootElements())
+            this.Game.UiSystem.Remove(root.Name);
+        this.Game.UiSystem.Metrics.ResetUpdates();
+
+        var stopwatch = Stopwatch.StartNew();
+        this.Game.UiSystem.Add("Test", element);
+        stopwatch.Stop();
+        addTime = stopwatch.Elapsed;
+
+        UiTests.ForceUpdate(element, out updateTime);
+    }
+
+    private static void ForceUpdate(Element element, out TimeSpan updateTime) {
+        var stopwatch = Stopwatch.StartNew();
         element.ForceUpdateArea();
+        stopwatch.Stop();
+        updateTime = stopwatch.Elapsed;
     }
 
 }

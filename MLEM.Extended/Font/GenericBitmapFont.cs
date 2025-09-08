@@ -33,12 +33,12 @@ namespace MLEM.Extended.Font {
 
         /// <inheritdoc />
         protected override float MeasureCharacter(int codePoint) {
-            var region = this.Font.GetCharacterRegion(codePoint);
-            return region != null ? new Vector2(region.XAdvance, region.Height).X : 0;
+            var region = this.Font.GetCharacter(codePoint);
+            return region != null ? new Vector2(region.XAdvance, region.TextureRegion.Height).X : 0;
         }
 
         /// <inheritdoc />
-        protected override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
+        public override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
             batch.DrawString(this.Font, character, position, color, rotation, Vector2.Zero, scale, effects, layerDepth);
         }
 

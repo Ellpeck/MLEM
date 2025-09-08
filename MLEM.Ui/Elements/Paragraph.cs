@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Graphics;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Ui.Style;
 
@@ -141,12 +141,12 @@ namespace MLEM.Ui.Elements {
         }
         /// <summary>
         /// The inclusive index in this paragraph's <see cref="Text"/> to start drawing at.
-        /// This value is passed to <see cref="TokenizedString.Draw"/>.
+        /// This value is passed to <see cref="TokenizedString.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Vector2,float,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Nullable{int},System.Nullable{int})"/>.
         /// </summary>
         public int? DrawStartIndex;
         /// <summary>
         /// The exclusive index in this paragraph's <see cref="Text"/> to stop drawing at.
-        /// This value is passed to <see cref="TokenizedString.Draw"/>.
+        /// This value is passed to <see cref="TokenizedString.Draw(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,Microsoft.Xna.Framework.Color,Vector2,float,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Nullable{int},System.Nullable{int})"/>.
         /// </summary>
         public int? DrawEndIndex;
 
@@ -172,12 +172,42 @@ namespace MLEM.Ui.Elements {
         /// <param name="anchor">The paragraph's anchor</param>
         /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
         /// <param name="textCallback">The paragraph's text</param>
+        /// <param name="alignment">The paragraph's text alignment.</param>
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
+        public Paragraph(Anchor anchor, float width, TextCallback textCallback, TextAlignment alignment, bool autoAdjustWidth = false) : this(anchor, width, textCallback, autoAdjustWidth) {
+            this.Alignment = alignment;
+        }
+
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="text">The paragraph's text</param>
+        /// <param name="alignment">The paragraph's text alignment.</param>
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
+        public Paragraph(Anchor anchor, float width, string text, TextAlignment alignment, bool autoAdjustWidth = false) : this(anchor, width, text, autoAdjustWidth) {
+            this.Alignment = alignment;
+        }
+
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="textCallback">The paragraph's text</param>
         /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
         public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false) : this(anchor, width, string.Empty, autoAdjustWidth) {
             this.GetTextCallback = textCallback;
         }
 
-        /// <inheritdoc cref="Paragraph(Anchor,float,TextCallback,bool)"/>
+        /// <summary>
+        /// Creates a new paragraph with the given settings.
+        /// </summary>
+        /// <param name="anchor">The paragraph's anchor</param>
+        /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
+        /// <param name="text">The paragraph's text</param>
+        /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
         public Paragraph(Anchor anchor, float width, string text, bool autoAdjustWidth = false) : base(anchor, new Vector2(width, 0)) {
             this.Text = text;
             this.AutoAdjustWidth = autoAdjustWidth;
@@ -198,7 +228,7 @@ namespace MLEM.Ui.Elements {
             this.CheckTextChange();
             this.TokenizeIfNecessary();
             this.AlignAndSplitIfNecessary(size);
-            var textSize = this.tokenizedText.GetArea(Vector2.Zero, this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
+            var textSize = this.tokenizedText.GetArea(scale: this.TextScale * this.TextScaleMultiplier * this.Scale).Size;
             // if we auto-adjust our width, then we would also split the same way with our adjusted width, so cache that
             if (this.AutoAdjustWidth)
                 this.lastAlignSplitWidth = textSize.X;
@@ -216,7 +246,7 @@ namespace MLEM.Ui.Elements {
             var pos = this.DisplayArea.Location + new Vector2(this.GetAlignmentOffset(), 0);
             var sc = this.TextScale * this.TextScaleMultiplier * this.Scale;
             var color = this.TextColor.OrDefault(Color.White) * alpha;
-            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, this.DrawStartIndex, this.DrawEndIndex);
+            this.TokenizedText.Draw(time, batch, pos, this.RegularFont, color, sc, 0, 0, Vector2.Zero, SpriteEffects.None, this.DrawStartIndex, this.DrawEndIndex);
             base.Draw(time, batch, alpha, context);
         }
 
@@ -232,7 +262,7 @@ namespace MLEM.Ui.Elements {
         private void SetTextDirty() {
             this.tokenizedText = null;
             // only set our area dirty if our size changed as a result of this action
-            if (!this.AreaDirty && !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon))
+            if (!this.AreaDirty && (this.System == null || !this.CalcActualSize(this.ParentArea).Equals(this.DisplayArea.Size, Element.Epsilon)))
                 this.SetAreaDirty();
         }
 

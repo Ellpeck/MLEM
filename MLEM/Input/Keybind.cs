@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 
 #if NET452
-using MLEM.Extensions;
+using MLEM.Misc;
 #endif
 
 namespace MLEM.Input {
@@ -20,8 +20,12 @@ namespace MLEM.Input {
         private static readonly Combination[] EmptyCombinations = new Combination[0];
         private static readonly GenericInput[] EmptyInputs = new GenericInput[0];
 
+        /// <summary>
+        /// The combinations that make up this keybind.
+        /// This collection can be modified using <see cref="Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>, <see cref="Remove"/>, <see cref="Clear"/>, <see cref="CopyFrom"/>, etc.
+        /// </summary>
         [DataMember]
-        private Combination[] combinations = Keybind.EmptyCombinations;
+        public Combination[] Combinations { get; private set; } = Keybind.EmptyCombinations;
 
         /// <summary>
         /// Creates a new keybind and adds the given key and modifiers using <see cref="Add(MLEM.Input.GenericInput,MLEM.Input.GenericInput[])"/>
@@ -35,6 +39,14 @@ namespace MLEM.Input {
         /// <inheritdoc cref="Keybind(GenericInput, GenericInput[])"/>
         public Keybind(GenericInput key, ModifierKey modifier) {
             this.Add(key, modifier);
+        }
+
+        /// <summary>
+        /// Creates a new keybind with the given <paramref name="combinations"/>.
+        /// </summary>
+        /// <param name="combinations">The combinations to initialize this keybind with.</param>
+        public Keybind(params Combination[] combinations) {
+            this.Combinations = combinations.ToArray();
         }
 
         /// <summary>
@@ -58,7 +70,7 @@ namespace MLEM.Input {
         /// <param name="combination">The combination to add.</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Add(Combination combination) {
-            this.combinations = this.combinations.Append(combination).ToArray();
+            this.Combinations = this.Combinations.Append(combination).ToArray();
             return this;
         }
 
@@ -87,7 +99,7 @@ namespace MLEM.Input {
         /// <param name="combination">The combination to insert.</param>
         /// <returns>This keybind, for chaining.</returns>
         public Keybind Insert(int index, Combination combination) {
-            this.combinations = this.combinations.Take(index).Append(combination).Concat(this.combinations.Skip(index)).ToArray();
+            this.Combinations = this.Combinations.Take(index).Append(combination).Concat(this.Combinations.Skip(index)).ToArray();
             return this;
         }
 
@@ -103,7 +115,7 @@ namespace MLEM.Input {
         /// </summary>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Clear() {
-            this.combinations = Keybind.EmptyCombinations;
+            this.Combinations = Keybind.EmptyCombinations;
             return this;
         }
 
@@ -113,7 +125,7 @@ namespace MLEM.Input {
         /// <param name="predicate">The predicate to match against</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind Remove(Func<Combination, int, bool> predicate) {
-            this.combinations = this.combinations.Where((c, i) => !predicate(c, i)).ToArray();
+            this.Combinations = this.Combinations.Where((c, i) => !predicate(c, i)).ToArray();
             return this;
         }
 
@@ -124,7 +136,7 @@ namespace MLEM.Input {
         /// <param name="other">The keybind to copy from</param>
         /// <returns>This keybind, for chaining</returns>
         public Keybind CopyFrom(Keybind other) {
-            this.combinations = this.combinations.Concat(other.combinations).ToArray();
+            this.Combinations = this.Combinations.Concat(other.Combinations).ToArray();
             return this;
         }
 
@@ -136,7 +148,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether this keybind is considered to be down</returns>
         public bool IsDown(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.IsDown(handler, gamepadIndex))
                     return true;
             }
@@ -151,7 +163,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether this keybind was considered to be down</returns>
         public bool WasDown(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.WasDown(handler, gamepadIndex))
                     return true;
             }
@@ -166,7 +178,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether this keybind is considered to be pressed</returns>
         public bool IsPressed(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.IsPressed(handler, gamepadIndex))
                     return true;
             }
@@ -181,7 +193,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether this keybind is considered to be pressed</returns>
         public bool IsPressedAvailable(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.IsPressedAvailable(handler, gamepadIndex))
                     return true;
             }
@@ -196,7 +208,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether this keybind is considered to be pressed</returns>
         public bool TryConsumePressed(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.TryConsumePressed(handler, gamepadIndex))
                     return true;
             }
@@ -211,7 +223,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether any of this keyboard's modifier keys are down</returns>
         public bool IsModifierDown(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.IsModifierDown(handler, gamepadIndex))
                     return true;
             }
@@ -226,7 +238,7 @@ namespace MLEM.Input {
         /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
         /// <returns>Whether any of this keyboard's modifier keys were down</returns>
         public bool WasModifierDown(InputHandler handler, int gamepadIndex = -1) {
-            foreach (var combination in this.combinations) {
+            foreach (var combination in this.Combinations) {
                 if (combination.WasModifierDown(handler, gamepadIndex))
                     return true;
             }
@@ -234,47 +246,11 @@ namespace MLEM.Input {
         }
 
         /// <summary>
-        /// Returns the amount of time that this keybind has been held down for.
-        /// If this input isn't currently down, this method returns <see cref="TimeSpan.Zero"/>.
-        /// </summary>
-        /// <param name="handler">The input handler to query the keys with</param>
-        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
-        /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
-        [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetDownTime or custom handling instead.")]
-        public TimeSpan GetDownTime(InputHandler handler, int gamepadIndex = -1) {
-            return this.combinations.Max(c => c.GetDownTime(handler, gamepadIndex));
-        }
-
-        /// <summary>
-        /// Returns the amount of time that this keybind has been up for since the last time it was down.
-        /// If this input isn't currently up, this method returns <see cref="TimeSpan.Zero"/>.
-        /// </summary>
-        /// <param name="handler">The input handler to query the keys with</param>
-        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
-        /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
-        [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetUpTime or custom handling instead.")]
-        public TimeSpan GetUpTime(InputHandler handler, int gamepadIndex = -1) {
-            return this.combinations.Min(c => c.GetUpTime(handler, gamepadIndex));
-        }
-
-        /// <summary>
-        /// Returns the amount of time that has passed since this keybind last counted as pressed.
-        /// If this input hasn't been pressed previously, or is currently pressed, this method returns <see cref="TimeSpan.Zero"/>.
-        /// </summary>
-        /// <param name="handler">The input handler to query the keys with</param>
-        /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
-        /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
-        [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetTimeSincePress or custom handling instead.")]
-        public TimeSpan GetTimeSincePress(InputHandler handler, int gamepadIndex = -1) {
-            return this.combinations.Min(c => c.GetTimeSincePress(handler, gamepadIndex));
-        }
-
-        /// <summary>
         /// Returns an enumerable of all of the combinations that this keybind currently contains
         /// </summary>
         /// <returns>This keybind's combinations</returns>
         public IEnumerable<Combination> GetCombinations() {
-            foreach (var combination in this.combinations)
+            foreach (var combination in this.Combinations)
                 yield return combination;
         }
 
@@ -285,8 +261,8 @@ namespace MLEM.Input {
         /// <param name="combination">The combination, or default if this method returns false.</param>
         /// <returns>Whether the combination could be successfully retrieved or the index was out of bounds of this keybind's combination collection.</returns>
         public bool TryGetCombination(int index, out Combination combination) {
-            if (index >= 0 && index < this.combinations.Length) {
-                combination = this.combinations[index];
+            if (index >= 0 && index < this.Combinations.Length) {
+                combination = this.Combinations[index];
                 return true;
             } else {
                 combination = default;
@@ -303,7 +279,7 @@ namespace MLEM.Input {
         /// <param name="inputName">The function to use for determining the display name of generic inputs, see <see cref="Combination.ToString(string,System.Func{MLEM.Input.GenericInput,string})"/></param>
         /// <returns>A human-readable string representing this keybind</returns>
         public string ToString(string joiner, string combinationJoiner = " + ", Func<GenericInput, string> inputName = null) {
-            return string.Join(joiner, this.combinations.Select(c => c.ToString(combinationJoiner, inputName)));
+            return string.Join(joiner, this.Combinations.Select(c => c.ToString(combinationJoiner, inputName)));
         }
 
         /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
@@ -312,7 +288,7 @@ namespace MLEM.Input {
         ///
         /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item></list></returns>
         public int CompareTo(Keybind other) {
-            return this.combinations.Sum(c => other.combinations.Sum(c.CompareTo));
+            return this.Combinations.Sum(c => other.Combinations.Sum(c.CompareTo));
         }
 
         /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
@@ -490,41 +466,6 @@ namespace MLEM.Input {
                 return true;
             }
 
-            /// <summary>
-            /// Returns the amount of time that this combination has been held down for.
-            /// If this input isn't currently down, this method returns <see cref="TimeSpan.Zero"/>.
-            /// </summary>
-            /// <param name="handler">The input handler to query the keys with</param>
-            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
-            /// <returns>The resulting down time, or <see cref="TimeSpan.Zero"/> if the input is not being held.</returns>
-            [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetDownTime or custom handling instead.")]
-            public TimeSpan GetDownTime(InputHandler handler, int gamepadIndex = -1) {
-                return handler.GetDownTime(this.Key, gamepadIndex);
-            }
-
-            /// <summary>
-            /// Returns the amount of time that this combination has been up for since the last time it was down.
-            /// If this input isn't currently up, this method returns <see cref="TimeSpan.Zero"/>.
-            /// </summary>
-            /// <param name="handler">The input handler to query the keys with</param>
-            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
-            /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input is being held.</returns>
-            [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetUpTime or custom handling instead.")]
-            public TimeSpan GetUpTime(InputHandler handler, int gamepadIndex = -1) {
-                return handler.GetUpTime(this.Key, gamepadIndex);
-            }
-
-            /// <summary>
-            /// Returns the amount of time that has passed since this combination last counted as pressed.
-            /// If this input hasn't been pressed previously, or is currently pressed, this method returns <see cref="TimeSpan.Zero"/>.
-            /// </summary>
-            /// <param name="handler">The input handler to query the keys with</param>
-            /// <param name="gamepadIndex">The index of the gamepad to query, or -1 to query all gamepads</param>
-            /// <returns>The resulting up time, or <see cref="TimeSpan.Zero"/> if the input has never been pressed, or is currently pressed.</returns>
-            [Obsolete("This method is deprecated, as it does not query Modifiers or InverseModifiers. Use InputHandler.GetTimeSincePress or custom handling instead.")]
-            public TimeSpan GetTimeSincePress(InputHandler handler, int gamepadIndex = -1) {
-                return handler.GetTimeSincePress(this.Key, gamepadIndex);
-            }
 
             /// <summary>
             /// Converts this combination into an easily human-readable string.

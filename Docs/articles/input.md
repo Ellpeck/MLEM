@@ -4,7 +4,7 @@ The **MLEM** base package features an extended `InputHandler` class that allows 
 
 Rather than using an event-based structure, the MLEM input handler relies on the game's `Update` frames: To query input through the input handler, you have to query it every Update frame, and input information will only be available for a single update frame in most situations.
 
-The input handler makes use of the `GenericInput` struct, which is a MLEM wrapper around the three main types of input that MonoGame and FNA provide: `Keys`, `Buttons` and `MouseButton` (the latter of which is a MLEM abstraction of mouse buttons). Values of all of these types can be converted into `GenericInput` implicitly, and a `GenericInput` can be converted back implicitly as well, so you will rarely ever have to interact with the `GenericInput` type manually.
+The input handler makes use of the `GenericInput` struct, which is a MLEM wrapper around the three main types of input that MonoGame, FNA and KNI provide: `Keys`, `Buttons` and `MouseButton` (the latter of which is a MLEM abstraction of mouse buttons). Values of all of these types can be converted into `GenericInput` implicitly, and a `GenericInput` can be converted back implicitly as well, so you will rarely ever have to interact with the `GenericInput` type manually.
 
 ## Setting it up
 To set it up, all you have to do is create a new instance. The constructor optionally accepts parameters to enable or disable certain kinds of input.

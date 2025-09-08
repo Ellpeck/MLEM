@@ -39,7 +39,7 @@ namespace MLEM.Font {
         }
 
         /// <inheritdoc />
-        protected override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
+        public override void DrawCharacter(SpriteBatch batch, int codePoint, string character, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects effects, float layerDepth) {
             batch.DrawString(this.Font, character, position, color, rotation, Vector2.Zero, scale, effects, layerDepth);
         }
 
@@ -47,6 +47,17 @@ namespace MLEM.Font {
 #if FNA
             // none of the copying is available with FNA
             return font;
+#elif KNI
+            // we copy the font here to set the default character to a space
+            return new SpriteFont(
+                font.Texture,
+                font.Glyphs.Select(g => g.Value.BoundsInTexture).ToList(),
+                font.Glyphs.Select(g => g.Value.Cropping).ToList(),
+                font.Characters.ToList(),
+                font.LineSpacing,
+                font.Spacing,
+                font.Glyphs.Select(g => new Vector3(g.Value.LeftSideBearing, g.Value.Width, g.Value.RightSideBearing)).ToList(),
+                ' ');
 #else
             // we copy the font here to set the default character to a space
             return new SpriteFont(

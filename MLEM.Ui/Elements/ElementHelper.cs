@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MLEM.Input;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Textures;
 

@@ -7,15 +7,14 @@ using NUnit.Framework;
 
 namespace Tests;
 
-public class TestDataTextureAtlas {
+public class TestDataTextureAtlas : GameTestFixture {
 
     [Test]
     public void Test([Values(0, 4)] int regionX, [Values(0, 4)] int regionY) {
-        using var game = TestGame.Create();
-        using var texture = new Texture2D(game.GraphicsDevice, 1, 1);
+        using var texture = new Texture2D(this.Game.GraphicsDevice, 1, 1);
         var region = new TextureRegion(texture, regionX, regionY, 1, 1);
-        var atlas = DataTextureAtlas.LoadAtlasData(region, game.RawContent, "Texture.atlas");
-        Assert.AreEqual(12, atlas.Regions.Count());
+        var atlas = DataTextureAtlas.LoadAtlasData(region, this.Game.RawContent, "Texture.atlas");
+        Assert.AreEqual(13, atlas.Regions.Count());
 
         // no pivot
         var plant = atlas["Plant"];
@@ -55,6 +54,13 @@ public class TestDataTextureAtlas {
         Assert.AreEqual("ThisIsSomeData", data.GetData<string>("DataPoint1"));
         Assert.AreEqual("3.5", data.GetData<string>("DataPoint2"));
         Assert.AreEqual("---", data.GetData<string>("DataPoint3"));
+
+        // spaces
+        var spaces = atlas["Region with Spaces"];
+        Assert.AreEqual(spaces.Area, new Rectangle(1 + regionX, 2 + regionY, 3, 4));
+        Assert.AreEqual(spaces.GetDataKeys().Count(), 2);
+        Assert.AreEqual(spaces.GetData<string>("SomeData"), "Some Value with Spaces");
+        Assert.AreEqual(spaces.GetData<string>("Some Data with Spaces"), "SomeValue");
     }
 
 }
