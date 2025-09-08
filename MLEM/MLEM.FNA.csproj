@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net452;netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible Condition="'$(TargetFramework)'=='net8.0'">true</IsAotCompatible>
         <RootNamespace>MLEM</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
     </PropertyGroup>
@@ -11,7 +11,7 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>The MLEM base package, which provides various small addons and abstractions for FNA, including a text formatting system and simple input handling</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>fna ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
@@ -21,7 +21,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FNA\FNA.csproj">
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
 

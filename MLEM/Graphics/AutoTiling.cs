@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Textures;
 
 namespace MLEM.Graphics {
@@ -10,6 +10,7 @@ namespace MLEM.Graphics {
     /// This class contains a <see cref="DrawAutoTile"/> method that allows users to easily draw a tile with automatic connections, as well as a more complex <see cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/> method.
     /// Note that <see cref="StaticSpriteBatch"/> can also be used for drawing by using the <see cref="AddAutoTile"/> and <see cref="AddExtendedAutoTile(MLEM.Graphics.StaticSpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float,System.Collections.Generic.ICollection{MLEM.Graphics.StaticSpriteBatch.Item})"/> methods instead.
     /// </summary>
+    [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
     public static class AutoTiling {
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace MLEM.Graphics {
         /// <param name="origin">The origin to draw from.</param>
         /// <param name="scale">The scale to draw with.</param>
         /// <param name="layerDepth">The layer depth to draw with.</param>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void DrawAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion texture, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
@@ -45,6 +47,7 @@ namespace MLEM.Graphics {
         }
 
         /// <inheritdoc cref="DrawAutoTile"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void AddAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion texture, ConnectsTo connectsTo, Color color, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var orig = origin ?? Vector2.Zero;
             var sc = scale ?? Vector2.One;
@@ -86,6 +89,7 @@ namespace MLEM.Graphics {
         /// <param name="scale">The scale to draw with.</param>
         /// <param name="layerDepth">The layer depth to draw with.</param>
         /// <param name="overlayDepthOffset">An optional depth offset from <paramref name="layerDepth"/> that the overlay should be drawn with</param>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, TextureRegion overlayTexture, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
             if (backgroundTexture != null)
                 batch.Draw(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
@@ -111,6 +115,7 @@ namespace MLEM.Graphics {
         /// <param name="origin">The origin to draw from.</param>
         /// <param name="scale">The scale to draw with.</param>
         /// <param name="layerDepth">The layer depth to draw with.</param>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void DrawExtendedAutoTileCorner(SpriteBatch batch, Vector2 pos, TextureRegion overlayTexture, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var src = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo, corner);
             if (src != Rectangle.Empty)
@@ -118,6 +123,7 @@ namespace MLEM.Graphics {
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void DrawExtendedAutoTile(SpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0) {
             if (backgroundTexture != null)
                 batch.Draw(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
@@ -128,14 +134,19 @@ namespace MLEM.Graphics {
             AutoTiling.DrawExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od);
         }
 
-        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void DrawExtendedAutoTileCorner(SpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0) {
             var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
-            if (src >= 0)
-                batch.Draw(overlayTextures(src), pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+            if (src >= 0) {
+                var tex = overlayTextures(src);
+                if (tex != null)
+                    batch.Draw(tex, pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+            }
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, TextureRegion overlayTexture, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             if (backgroundTexture != null) {
                 var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
@@ -148,7 +159,8 @@ namespace MLEM.Graphics {
             AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTexture, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od, items);
         }
 
-        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, TextureRegion overlayTexture, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var src = AutoTiling.CalculateExtendedAutoTile(overlayTexture.Area, connectsTo, corner);
             if (src != Rectangle.Empty) {
@@ -158,6 +170,7 @@ namespace MLEM.Graphics {
         }
 
         /// <inheritdoc cref="DrawExtendedAutoTile(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,Func{int,MLEM.Textures.TextureRegion},MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float,float)"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void AddExtendedAutoTile(StaticSpriteBatch batch, Vector2 pos, TextureRegion backgroundTexture, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color backgroundColor, Color overlayColor, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, float overlayDepthOffset = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             if (backgroundTexture != null) {
                 var background = batch.Add(backgroundTexture, pos, backgroundColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
@@ -170,12 +183,16 @@ namespace MLEM.Graphics {
             AutoTiling.AddExtendedAutoTileCorner(batch, pos, overlayTextures, connectsTo, overlayColor, Direction2.DownRight, origin, scale, od, items);
         }
 
-        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,MLEM.Misc.Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        /// <inheritdoc cref="DrawExtendedAutoTileCorner(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,MLEM.Textures.TextureRegion,MLEM.Graphics.AutoTiling.ConnectsTo,Microsoft.Xna.Framework.Color,Direction2,System.Nullable{Microsoft.Xna.Framework.Vector2},System.Nullable{Microsoft.Xna.Framework.Vector2},float)"/>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public static void AddExtendedAutoTileCorner(StaticSpriteBatch batch, Vector2 pos, Func<int, TextureRegion> overlayTextures, ConnectsTo connectsTo, Color overlayColor, Direction2 corner, Vector2? origin = null, Vector2? scale = null, float layerDepth = 0, ICollection<StaticSpriteBatch.Item> items = null) {
             var src = AutoTiling.CalculateExtendedAutoTileOffset(connectsTo, corner);
             if (src >= 0) {
-                var o4 = batch.Add(overlayTextures(src), pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
-                items?.Add(o4);
+                var tex = overlayTextures(src);
+                if (tex != null) {
+                    var o4 = batch.Add(tex, pos, overlayColor, 0, origin ?? Vector2.Zero, scale ?? Vector2.One, SpriteEffects.None, layerDepth);
+                    items?.Add(o4);
+                }
             }
         }
 
@@ -234,6 +251,7 @@ namespace MLEM.Graphics {
         /// </summary>
         /// <param name="xOff">The x offset</param>
         /// <param name="yOff">The y offset</param>
+        [Obsolete("MLEM's auto-tiling system is deprecated and will be removed in a future version. It is recommended to switch to a custom approach or a more robust library.")]
         public delegate bool ConnectsTo(int xOff, int yOff);
 
     }

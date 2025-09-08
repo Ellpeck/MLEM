@@ -82,9 +82,9 @@ namespace MLEM.Startup {
         /// </summary>
         protected override void LoadContent() {
             this.SpriteBatch = new SpriteBatch(this.GraphicsDevice);
-            this.InputHandler = new InputHandler(this);
+            this.InputHandler = this.InitializeInputHandler();
             this.Components.Add(this.InputHandler);
-            this.UiSystem = new UiSystem(this, this.InitializeDefaultUiStyle(this.SpriteBatch), this.InputHandler);
+            this.UiSystem = this.InitializeUiSystem(this.InitializeDefaultUiStyle(this.SpriteBatch));
             this.Components.Add(this.UiSystem);
             this.OnLoadContent?.Invoke(this);
         }
@@ -116,9 +116,6 @@ namespace MLEM.Startup {
             this.PreDraw?.Invoke(this, gameTime);
             CoroutineHandler.RaiseEvent(CoroutineEvents.PreDraw);
 
-#pragma warning disable CS0618
-            this.UiSystem.DrawEarly(gameTime, this.SpriteBatch);
-#pragma warning restore CS0618
             this.DoDraw(gameTime);
             this.UiSystem.Draw(gameTime, this.SpriteBatch);
 
@@ -152,6 +149,25 @@ namespace MLEM.Startup {
         /// <returns>The <see cref="UiStyle"/> to use for this game's <see cref="UiSystem"/>.</returns>
         protected virtual UiStyle InitializeDefaultUiStyle(SpriteBatch batch) {
             return new UntexturedStyle(batch);
+        }
+
+        /// <summary>
+        /// This method is called in <see cref="LoadContent"/> when the <see cref="UiSystem"/> is initialized.
+        /// Override this method to easily modify or create a new <see cref="MLEM.Ui.UiSystem"/> for this game.
+        /// </summary>
+        /// <param name="style">The ui style to use, gathered from <see cref="InitializeDefaultUiStyle"/>.</param>
+        /// <returns>The <see cref="MLEM.Ui.UiSystem"/> to use for this game.</returns>
+        protected virtual UiSystem InitializeUiSystem(UiStyle style) {
+            return new UiSystem(this, style, this.InputHandler);
+        }
+
+        /// <summary>
+        /// This method is called in <see cref="LoadContent"/> when the <see cref="InputHandler"/> is initialized.
+        /// Override this method to easily modify or create a new <see cref="MLEM.Input.InputHandler"/> for this game.
+        /// </summary>
+        /// <returns>The <see cref="MLEM.Input.InputHandler"/> to use for this game.</returns>
+        protected virtual InputHandler InitializeInputHandler() {
+            return new InputHandler(this);
         }
 
         /// <summary>

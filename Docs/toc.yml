@@ -1,6 +1,10 @@
-- name: Tutorials
+- name: Home
+  href: /
+- name: Articles
   href: articles/
 - name: API Documentation
   href: api/
 - name: Changelog
   href: ../CHANGELOG.md
+- name: Web Demo
+  href: demo/

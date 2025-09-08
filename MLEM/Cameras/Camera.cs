@@ -1,8 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
-using MLEM.Misc;
+using MLEM.Maths;
 
 namespace MLEM.Cameras {
     /// <summary>

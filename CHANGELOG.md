@@ -1,17 +1,160 @@
 # Changelog
-MLEM tries to adhere to [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**.
+MLEM uses [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**. Each newly released version also has a corresponding [tag](https://github.com/Ellpeck/MLEM/tags).
 
-Jump to version:
-- [6.3.0](#630-in-development)
-- [6.2.0](#620)
-- [6.1.0](#610)
-- [6.0.0](#600)
-- [5.3.0](#530)
-- [5.2.0](#520)
-- [5.1.0](#510)
-- [5.0.0](#500)
+## 8.0.0 (In Development)
 
-## 6.3.0 (In Development)
+### MLEM
+Improvements
+- Allow getting and setting TextureData by index
+- Improved TextureExtensions.PremultipliedCopy memory performance
+- Improved the naming of SpriteBatchExtensions texture generation methods
+- Improved AStar memory performance by avoiding excessive enumerator allocations
+
+Fixes
+- Fixed formatting codes at the start of strings not being added to the AllCodes collection
+- Fixed input handler marking gamepad buttons as pressed when querying any gamepad with multiple gamepads connected
+- Fixed an infinite loop in the float version of SeedSource.Add
+
+Removals
+- Marked SpriteBatchExtensions GenerateTexture and GenerateSquareTexture as obsolete in favor of their more clearly named replacements
+- Marked the AutoTiling system as deprecated for removal in a future version
+
+### MLEM.Ui
+Additions
+- Added Panel.IsVisible method to check if a child element is visible
+- Added TextField.OnEnterPressed event
+- Added Tooltip.IgnoreViewport and allow overriding the default viewport using Tooltip.Viewport
+- Added the ability for Dropdown to display an arrow texture based on its open state
+- Added the ability to specify Dropdown paragraph colors through style properties
+- Added the UiLayouter class and ILayoutItem interface to allow using MLEM.Ui's layouting system for custom ui systems
+- Added the ability to set a selected texture and color for buttons
+- Added the ability for tooltips to snap to a specified selection-independent element
+- Added Image.UseImagePivot to allow disabling texture region pivot being taken into account
+- Added UiSystem.EnqueueAction to do work synchronously next time the ui system updates
+
+Improvements
+- Explicitly return the element type from Dropdown.AddElement overloads
+- Use max and min MaxRecursionDepth rather than sum and difference when combining UiMetrics
+
+Fixes
+- Fixed tooltips not being bounded correctly for viewports that don't start at the origin
+- Fixed a stack overflow exception when a panel's children have just enough height to cause a scroll bar to appear
+- Fixed AddedToUi and RemovedFromUi being called for freshly added or removed children whose parents are not in a ui system
+- Fixed UiParser ImageExceptionHandler being ignored when an exception occurs during texture construction
+- Fixed images displaying the initial texture when the texture callback starts returning null
+- Fixed UiStyle copy constructor not copying all style properties
+- Fixed TextField EnterReceiver not allowing element addition or removal in OnPressed
+
+Removals
+- Marked RootElement.OnAddedToUi as obsolete in favor of UiSystem.OnRootAdded
+
+### MLEM.Data
+Improvements
+- **Use a binary tree algorithm for RuntimeTexturePacker to vastly increase packing speed**
+- Made fields and methods in StaticJsonConverter protected to allow extending it
+- Allow wrapping DataTextureAtlas arguments in quotes to allow them to contain spaces
+
+Fixes
+- Fixed DataTextureAtlas creating unnamed entries if there are empty lines at the start or end of the atlas file
+
+### MLEM.Startup
+Additions
+- Added InitializeUiSystem and InitializeInputHandler to MlemGame to allow overriding default initialization
+
+## 7.1.1
+
+### MLEM
+Additions
+- Added TextureExtensions.PremultipliedCopy for textures
+
+### MLEM.Ui
+Improvements
+- Construct images in UiParser.ParseImage on the main thread to support usage with KNI
+- Create a premultiplied copy of UiParser images to support usage with KNI
+
+## 7.1.0
+
+### MLEM
+Additions
+- Added ColorExtensions.ToHsl and ColorHelper.FromHsl as well as ColorExtensions.ToHsv and ColorHelper.FromHsv
+- Added MLEM.KNI, which is fully compatible with KNI
+
+### MLEM.Ui
+Additions
+- Added MLEM.Ui.KNI, which is fully compatible with KNI
+
+### MLEM.Extended
+Additions
+- Added MLEM.Extended.KNI, which is fully compatible with KNI
+
+### MLEM.Data
+Additions
+- Added MLEM.Data.KNI, which is fully compatible with KNI
+
+### MLEM.Startup
+Additions
+- Added MLEM.Startup.KNI, which is fully compatible with KNI
+
+## 7.0.0
+
+### MLEM
+Additions
+- **Added the ability for formatted (tokenized) strings to be drawn with custom rotation, origin and flipping**
+- Added a RectangleF.FromCorners overload that accepts points
+- Added indexers and Count to SpriteAnimation and SpriteAnimationGroup
+- Added a Keybind constructor that accepts a set of combinations
+
+Improvements
+- **Made the Keybind.Combinations collection a public property**
+- **Moved extension methods into matching namespaces to avoid unexpected suggestions**
+- Allow NumberExtensions.GetPoints to include bottom and right coordinates
+- Allow AutoTiling overlayTextures to return null texture regions
+
+Removals
+- Marked SpriteAnimation.ByName obsolete in favor of the new indexer
+- **Removed obsolete methods and types CharExtensions, GenericFont.OneEmSpace, Code.GetReplacementString, TokenizedString.Measure, Keybind.GetDownTime, Keybind.GetUpTime, Keybind.GetTimeSincePress, EnumHelper, non-generic GenericDataHolder methods, as well as InputHandler key, gamepad and mouse-specific methods**
+
+### MLEM.Ui
+Additions
+- Added the ability to set the anchor that should be used when a tooltip attaches to an element or the mouse
+- Added the ability to display tooltips using the auto-nav style even when using the mouse
+- Added the ScissorGroup element, which applies a scissor rectangle when drawing its content
+- Added Panel.ScrollToTop and Panel.ScrollToBottom
+
+Improvements
+- **Include the SpriteBatchContext in OnDrawn, OnElementDrawn and OnSelectedElementDrawn**
+- Allow scrolling panels to set height based on children by setting TreatSizeAsMaximum
+- Track element area update recursion count in UiMetrics
+- Made the Element.Children collection public
+
+Fixes
+- Fixed hidden scroll bars inhibiting scrolling on their parent panel
+- Fixed scroll bars doing unnecessary calculations when hidden
+- Fixed auto-sized elements sometimes updating their location based on outdated parent positions
+- Fixed Panel.ScrollToElement not scrolling correctly when the panel's area is dirty
+
+Removals
+- **Removed obsolete methods and properties Element.BeginImpl, Element.OnDisposed, parameter-heavy versions of Element.DrawTransformed and Element.Draw, Element.DrawEarly, Element.Dispose, Element.BeginDelegate, Tooltip.Paragraph, UiSystem.BlendState, UiSystem.SamplerState, UiSystem.DepthStencilState, UiSystem.Effect, as well as the StyleProp equality members**
+
+### MLEM.Extended
+Improvements
+- **Added compatibility for MonoGame.Extended 4.0.0**
+- **Moved extension methods into matching namespaces to avoid unexpected suggestions**
+- Added compatibility for FNA.Extended
+
+### MLEM.Data
+Improvements
+- **Moved extension methods into matching namespaces to avoid unexpected suggestions**
+- Allow static json converters to write null values and to throw an exception if a key does not exist
+
+Removals
+- **Removed obsolete types DynamicEnumConverter, CopyExtensions, DynamicEnum, NetBufferSerializer, and NetExtensions**
+
+## 6.3.1
+
+No code changes
+
+## 6.3.0
 
 ### MLEM
 Additions
@@ -19,14 +162,48 @@ Additions
 - Added Zero, One, Linear and Clamp to Easings
 - Added GetRandomEntry and GetRandomWeightedEntry to SingleRandom
 - Added the ability to draw single corners of AutoTiling's extended auto tiles
+- Added ColorHelper.TryFromHexString, a non-throwing version of FromHexString
+- Added ToHexStringRgba and ToHexStringRgb to ColorExtensions
+
+Improvements
+- Stopped the text formatter throwing if a color can't be parsed
+- Improved text formatter tokenization performance
+- Allow using control and arrow keys to move the visible area of a text input
+- Allow formatting codes applied later to override settings of earlier ones
 
 Fixes
 - Fixed TextInput not working correctly when using surrogate pairs
+- Fixed InputHandler touch states being initialized incorrectly when touch handling is disabled
+- Fixed empty NinePatch regions stalling when using tile mode
+- Fixed bold and italic formatting code closing tags working on each other
 
 ### MLEM.Ui
+Additions
+- Added UiControls.NavType, which stores the most recently used type of ui navigation
+- Added SetWidthBasedOnAspect and SetHeightBasedOnAspect to images
+- Added the ability to set a custom SamplerState for images
+- Added some useful additional constructors to various elements
+
 Improvements
 - Allow scrolling panels to contain other scrolling panels
 - Allow dropdowns to have scrolling panels
+- Improved Panel performance when adding and removing a lot of children
+- Don't reset the caret position of a text field when selecting or deselecting it
+- Improved UiParser.ParseImage with locks and a callback action
+
+Fixes
+- Fixed panels updating their relevant children too much when the scroll bar is hidden
+- Fixed a stack overflow exception when a panel's scroll bar auto-hiding causes elements to gain height
+- Fixed scrolling panels calculating their height incorrectly when their first child is hidden
+
+### MLEM.Extended
+Improvements
+- Updated to FontStashSharp 1.3.0's API
+- Expose character and line spacing in GenericStashFont
+
+### MLEM.Data
+Fixes
+- Fixed various exception types not being wrapped by ContentLoadExceptions when loading raw or JSON content
 
 ## 6.2.0
 

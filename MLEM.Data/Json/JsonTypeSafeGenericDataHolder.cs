@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MLEM.Misc;
 using Newtonsoft.Json;
 
@@ -18,12 +17,6 @@ namespace MLEM.Data.Json {
 
         [JsonProperty]
         private Dictionary<string, JsonTypeSafeWrapper> data;
-
-        /// <inheritdoc />
-        [Obsolete("This method will be removed in a future update in favor of the generic SetData<T>.")]
-        public void SetData(string key, object data) {
-            this.SetData<object>(key, data);
-        }
 
         /// <inheritdoc />
         public void SetData<T>(string key, T data) {

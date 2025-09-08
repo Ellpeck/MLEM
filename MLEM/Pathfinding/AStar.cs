@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MLEM.Pathfinding {
     /// <summary>
@@ -86,11 +87,12 @@ namespace MLEM.Pathfinding {
             var tries = maxTries ?? this.DefaultMaxTries;
             var defCost = defaultCost ?? this.DefaultCost;
             var additional = additionalNeighbors ?? this.DefaultAdditionalNeighbors;
+            var goalArray = goals as T[] ?? goals.ToArray();
 
             var neighbors = new HashSet<T>();
             var open = new Dictionary<T, PathPoint<T>>();
             var closed = new Dictionary<T, PathPoint<T>>();
-            open.Add(start, new PathPoint<T>(start, this.GetMinHeuristicDistance(start, goals), null, 0, defCost));
+            open.Add(start, new PathPoint<T>(start, this.GetMinHeuristicDistance(start, goalArray), null, 0, defCost));
 
             var count = 0;
             while (open.Count > 0) {
@@ -118,7 +120,7 @@ namespace MLEM.Pathfinding {
                 foreach (var neighborPos in neighbors) {
                     var cost = getCost(current.Pos, neighborPos);
                     if (!float.IsPositiveInfinity(cost) && cost < float.MaxValue && !closed.ContainsKey(neighborPos)) {
-                        var neighbor = new PathPoint<T>(neighborPos, this.GetMinHeuristicDistance(neighborPos, goals), current, cost, defCost);
+                        var neighbor = new PathPoint<T>(neighborPos, this.GetMinHeuristicDistance(neighborPos, goalArray), current, cost, defCost);
                         // check if we already have a waypoint at this location with a worse path
                         if (open.TryGetValue(neighborPos, out var alreadyNeighbor)) {
                             if (neighbor.G < alreadyNeighbor.G) {
@@ -160,10 +162,10 @@ namespace MLEM.Pathfinding {
         /// <param name="neighbors">The set to populate with neighbors.</param>
         protected abstract void CollectNeighbors(T position, ISet<T> neighbors);
 
-        private float GetMinHeuristicDistance(T start, IEnumerable<T> positions) {
+        private float GetMinHeuristicDistance(T start, T[] positions) {
             var min = float.MaxValue;
-            foreach (var position in positions)
-                min = Math.Min(min, this.GetHeuristicDistance(start, position));
+            for (var i = 0; i < positions.Length; i++)
+                min = Math.Min(min, this.GetHeuristicDistance(start, positions[i]));
             return min;
         }
 

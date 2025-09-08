@@ -53,7 +53,7 @@ namespace MLEM.Ui.Parsers {
                 }
 
                 // images
-                var imageMatch = Regex.Match(line, @"!\[\]\(([^)]+)\)");
+                var imageMatch = Regex.Match(line, @"!\[\]\((.+?)\)");
                 if (imageMatch.Success) {
                     yield return (ElementType.Image, this.ParseImage(imageMatch.Groups[1].Value));
                     continue;
@@ -79,16 +79,16 @@ namespace MLEM.Ui.Parsers {
 
         private string ParseParagraph(string par) {
             // replace links
-            par = Regex.Replace(par, @"<([^>]+)>", "<l $1>$1</l>");
-            par = Regex.Replace(par, @"\[([^\]]+)\]\(([^)]+)\)", "<l $2>$1</l>");
+            par = Regex.Replace(par, "<(.+?)>", "<l $1>$1</l>");
+            par = Regex.Replace(par, @"\[(.+?)\]\((.+?)\)", "<l $2>$1</l>");
             // replace formatting
-            par = Regex.Replace(par, @"\*\*([^\*]+)\*\*", "<b>$1</b>");
-            par = Regex.Replace(par, @"__([^_]+)__", "<b>$1</b>");
-            par = Regex.Replace(par, @"\*([^\*]+)\*", "<i>$1</i>");
-            par = Regex.Replace(par, @"_([^_]+)_", "<i>$1</i>");
-            par = Regex.Replace(par, @"~~([^~]+)~~", "<st>$1</st>");
+            par = Regex.Replace(par, @"\*\*(.+?)\*\*", "<b>$1</b>");
+            par = Regex.Replace(par, "__(.+?)__", "<b>$1</b>");
+            par = Regex.Replace(par, @"\*(.+?)\*", "<i>$1</i>");
+            par = Regex.Replace(par, "_(.+?)_", "<i>$1</i>");
+            par = Regex.Replace(par, "~~(.+?)~~", "<st>$1</st>");
             // replace inline code with custom code font
-            par = Regex.Replace(par, @"`([^`]+)`", $"<f {this.CodeFont}>$1</f>");
+            par = Regex.Replace(par, "`(.+?)`", $"<f {this.CodeFont}>$1</f>");
             return par;
         }
 

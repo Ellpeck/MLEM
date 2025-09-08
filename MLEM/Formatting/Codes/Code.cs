@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
@@ -23,9 +22,9 @@ namespace MLEM.Formatting.Codes {
         public readonly Match Match;
         /// <summary>
         /// The tokens that this formatting code is a part of.
-        /// Note that this array only has multiple entries if additional tokens have to be started while this code is still applied.
+        /// Note that this collection only has multiple entries if additional tokens have to be started while this code is still applied.
         /// </summary>
-        public IList<Token> Tokens { get; internal set; }
+        public readonly List<Token> Tokens = new List<Token>();
 
         /// <summary>
         /// Creates a new formatting code based on a formatting code regex and its match.
@@ -80,24 +79,13 @@ namespace MLEM.Formatting.Codes {
         /// <param name="time">The game's time</param>
         public virtual void Update(GameTime time) {}
 
-        /// <summary>
-        /// Returns the string that this formatting code should be replaced with.
-        /// Usually, you'll just want an empty string here, but some formatting codes (like <see cref="ImageCode"/>) require their space to be filled by spaces.
-        /// </summary>
-        /// <param name="font">The font that is used</param>
-        /// <returns>The replacement string for this formatting code</returns>
-        [Obsolete("This method is deprecated. Use GetSelfWidth to add additional width to this code and DrawSelf or DrawCharacter to draw additional items.")]
-        public virtual string GetReplacementString(GenericFont font) {
-            return string.Empty;
-        }
-
         /// <inheritdoc cref="Formatting.Token.DrawCharacter"/>
-        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, ref Vector2 pos, GenericFont font, ref Color color, ref float scale, float depth) {
+        public virtual bool DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, Token token, int indexInToken, Vector2 stringPos, ref Vector2 charPosOffset, GenericFont font, ref Color color, ref Vector2 scale, ref float rotation, ref Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             return false;
         }
 
         /// <inheritdoc cref="Formatting.Token.DrawSelf"/>
-        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 pos, GenericFont font, Color color, float scale, float depth) {}
+        public virtual void DrawSelf(GameTime time, SpriteBatch batch, Token token, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {}
 
         /// <summary>
         /// Creates a new formatting code from the given regex and regex match.

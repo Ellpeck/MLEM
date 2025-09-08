@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Maths;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {
@@ -14,6 +16,7 @@ namespace MLEM.Formatting {
 
         /// <summary>
         /// The formatting codes that are applied on this token.
+        /// Codes are stored application order, with the first entry in the array being the code that was most recently applied.
         /// </summary>
         public readonly Code[] AppliedCodes;
         /// <summary>
@@ -45,11 +48,14 @@ namespace MLEM.Formatting {
         internal float[] InnerOffsets;
 
         internal Token(Code[] appliedCodes, int index, int rawIndex, string substring, string rawSubstring) {
+            Array.Reverse(appliedCodes);
             this.AppliedCodes = appliedCodes;
             this.Index = index;
             this.RawIndex = rawIndex;
             this.Substring = substring;
             this.RawSubstring = rawSubstring;
+            foreach (var code in appliedCodes)
+                code.Tokens.Add(this);
         }
 
         /// <summary>
@@ -99,14 +105,19 @@ namespace MLEM.Formatting {
         /// </summary>
         /// <param name="time">The time</param>
         /// <param name="batch">The sprite batch to use</param>
-        /// <param name="pos">The position to draw the token at</param>
+        /// <param name="stringPos">The position the string is drawn at.</param>
+        /// <param name="charPosOffset">The offset from the <paramref name="stringPos"/> that the current character is drawn at.</param>
         /// <param name="font">The font to use to draw</param>
         /// <param name="color">The color to draw with</param>
-        /// <param name="scale">The scale to draw at</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="rotation">The rotation to draw with.</param>
+        /// <param name="origin">The origin to subtract from the position.</param>
         /// <param name="depth">The depth to draw at</param>
-        public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        /// <param name="effects">The flipping to draw with.</param>
+        /// <param name="stringSize">The size of the string.</param>
+        public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {
             foreach (var code in this.AppliedCodes)
-                code.DrawSelf(time, batch, this, pos, font, color, scale, depth);
+                code.DrawSelf(time, batch, this, stringPos, charPosOffset, font, color, scale, rotation, origin, depth, effects, stringSize);
         }
 
         /// <summary>
@@ -117,19 +128,31 @@ namespace MLEM.Formatting {
         /// <param name="codePoint">The code point of the character to draw</param>
         /// <param name="character">The string representation of the character to draw</param>
         /// <param name="indexInToken">The index within this token that the character is at</param>
-        /// <param name="pos">The position to draw the token at</param>
+        /// <param name="stringPos">The position the string is drawn at.</param>
+        /// <param name="charPosOffset">The offset from the <paramref name="stringPos"/> that the current character is drawn at.</param>
         /// <param name="font">The font to use to draw</param>
         /// <param name="color">The color to draw with</param>
-        /// <param name="scale">The scale to draw at</param>
+        /// <param name="scale">The scale to draw with.</param>
+        /// <param name="rotation">The rotation to draw with.</param>
+        /// <param name="origin">The origin to subtract from the position.</param>
         /// <param name="depth">The depth to draw at</param>
-        public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 pos, GenericFont font, Color color, float scale, float depth) {
+        /// <param name="effects">The flipping to draw with.</param>
+        /// <param name="stringSize">The size of the string.</param>
+        /// <param name="charSize">The size of the current character.</param>
+        public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
             foreach (var code in this.AppliedCodes) {
-                if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, ref pos, font, ref color, ref scale, depth))
+                if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, stringPos, ref charPosOffset, font, ref color, ref scale, ref rotation, ref origin, depth, effects, stringSize, charSize))
                     return;
             }
 
             // if no code drew, we have to do it ourselves
-            font.DrawString(batch, character, pos, color, 0, Vector2.Zero, scale, SpriteEffects.None, depth);
+            var finalPos = font.TransformSingleCharacter(stringPos, charPosOffset, rotation, origin, scale, effects, stringSize, charSize);
+            font.DrawCharacter(batch, codePoint, character, finalPos, color, rotation, scale, effects, depth);
+        }
+
+        /// <inheritdoc cref="GetArea(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)"/>
+        public IEnumerable<RectangleF> GetArea(Vector2 stringPos = default, float scale = 1) {
+            return this.GetArea(stringPos, new Vector2(scale));
         }
 
         /// <summary>
@@ -139,7 +162,7 @@ namespace MLEM.Formatting {
         /// <param name="stringPos">The position that the string is drawn at</param>
         /// <param name="scale">The scale that the string is drawn at</param>
         /// <returns>A set of rectangles that this token contains</returns>
-        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, float scale) {
+        public IEnumerable<RectangleF> GetArea(Vector2 stringPos, Vector2 scale) {
             return this.Area.Select(a => new RectangleF(stringPos + a.Location * scale, a.Size * scale));
         }
 

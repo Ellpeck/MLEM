@@ -76,29 +76,6 @@ namespace MLEM.Ui {
         /// </summary>
         public float DrawAlpha = 1;
         /// <summary>
-        /// The blend state that this ui system and all of its elements draw with
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public BlendState BlendState;
-        /// <summary>
-        /// The sampler state that this ui system and all of its elements draw with.
-        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"/>, as that is the one that works best with pixel graphics.
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public SamplerState SamplerState;
-        /// <summary>
-        /// The depth stencil state that this ui system and all of its elements draw with.
-        /// The default is <see cref="Microsoft.Xna.Framework.Graphics.DepthStencilState.None"/>, which is also the default for <c>SpriteBatch.Begin</c>.
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public DepthStencilState DepthStencilState;
-        /// <summary>
-        /// The effect that this ui system and all of its elements draw with.
-        /// The default is null, which means that no custom effect will be used.
-        /// </summary>
-        [Obsolete("Set this through SpriteBatchContext instead")]
-        public Effect Effect;
-        /// <summary>
         /// The spriteb atch context that this ui system and all of its elements should draw with.
         /// The default <see cref="MLEM.Graphics.SpriteBatchContext.SamplerState"/> is <see cref="Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp"/>, as that is the one that works best with pixel graphics.
         /// </summary>
@@ -192,6 +169,8 @@ namespace MLEM.Ui {
         /// </summary>
         public event RootCallback OnRootRemoved;
 
+        private readonly Queue<(Action<UiSystem, object> Action, object ActionObject)> nextUpdateActions = new Queue<(Action<UiSystem, object> Action, object ActionObject)>();
+        private readonly object nextUpdateActionsLock = new object();
         private readonly List<RootElement> rootElements = new List<RootElement>();
         private readonly Stopwatch stopwatch = new Stopwatch();
         private float globalScale = 1;
@@ -215,7 +194,7 @@ namespace MLEM.Ui {
             this.Controls = new UiControls(this, inputHandler);
             this.style = style;
 
-            this.OnElementDrawn += (e, time, batch, alpha) => e.OnDrawn?.Invoke(e, time, batch, alpha);
+            this.OnElementDrawn += (e, time, batch, alpha, context) => e.OnDrawn?.Invoke(e, time, batch, alpha, context);
             this.OnElementUpdated += (e, time) => e.OnUpdated?.Invoke(e, time);
             this.OnElementPressed += e => e.OnPressed?.Invoke(e);
             this.OnElementSecondaryPressed += e => e.OnSecondaryPressed?.Invoke(e);
@@ -230,7 +209,7 @@ namespace MLEM.Ui {
             this.OnMousedElementChanged += e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
             this.OnTouchedElementChanged += e => this.ApplyToAll(t => t.OnTouchedElementChanged?.Invoke(t, e));
             this.OnSelectedElementChanged += e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
-            this.OnSelectedElementDrawn += (element, time, batch, alpha) => {
+            this.OnSelectedElementDrawn += (element, time, batch, alpha, context) => {
                 if (this.Controls.IsAutoNavMode && element.SelectionIndicator.HasValue())
                     batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
             };
@@ -255,10 +234,10 @@ namespace MLEM.Ui {
 
             this.TextFormatter = new TextFormatter(hasFontModifierFormatting, hasColorFormatting, hasAnimationFormatting, hasMacroFormatting);
             if (hasUiFormatting) {
-                this.TextFormatter.Codes.Add(new Regex("<l(?: ([^>]+))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
+                this.TextFormatter.Codes.Add(new Regex("<l(?: (.+?))?>"), (f, m, r) => new LinkCode(m, r, 1 / 16F, 0.85F,
                     t => this.Controls.MousedElement is Paragraph.Link l1 && l1.Token == t || this.Controls.TouchedElement is Paragraph.Link l2 && l2.Token == t,
                     d => this.Style.LinkColor));
-                this.TextFormatter.Codes.Add(new Regex("<f ([^>]+)>"), (_, m, r) => new FontCode(m, r,
+                this.TextFormatter.Codes.Add(new Regex("<f (.+?)>"), (_, m, r) => new FontCode(m, r,
                     f => this.Style.AdditionalFonts != null && this.Style.AdditionalFonts.TryGetValue(m.Groups[1].Value, out var c) ? c : f));
             }
         }
@@ -272,32 +251,17 @@ namespace MLEM.Ui {
             this.stopwatch.Restart();
 
             this.Controls.Update();
+            lock (this.nextUpdateActionsLock) {
+                while (this.nextUpdateActions.Count > 0) {
+                    var next = this.nextUpdateActions.Dequeue();
+                    next.Action.Invoke(this, next.ActionObject);
+                }
+            }
             for (var i = this.rootElements.Count - 1; i >= 0; i--)
                 this.rootElements[i].Element.Update(time);
 
             this.stopwatch.Stop();
             this.Metrics.UpdateTime += this.stopwatch.Elapsed;
-        }
-
-        /// <summary>
-        /// Draws any <see cref="Panel"/> and other elements that draw onto <see cref="RenderTarget2D"/> rather than directly onto the screen.
-        /// For drawing in this manner to work correctly, this method has to be called before your <see cref="GraphicsDevice"/> is cleared, and before everything else in your game is drawn.
-        /// </summary>
-        /// <param name="time">The game's time</param>
-        /// <param name="batch">The sprite batch to use for drawing</param>
-        [Obsolete("DrawEarly is deprecated. Calling it is not required anymore, and there is no replacement.")]
-        public void DrawEarly(GameTime time, SpriteBatch batch) {
-            this.Metrics.ResetDraws();
-            this.stopwatch.Restart();
-
-            foreach (var root in this.rootElements) {
-                if (!root.Element.IsHidden)
-                    root.Element.DrawEarly(time, batch, this.DrawAlpha * root.Element.DrawAlpha, this.BlendState, this.SamplerState, this.DepthStencilState, this.Effect, root.Transform);
-            }
-
-            this.stopwatch.Stop();
-            this.Metrics.DrawTime += this.stopwatch.Elapsed;
-            this.drewEarly = true;
         }
 
         /// <summary>
@@ -316,21 +280,8 @@ namespace MLEM.Ui {
                 var context = this.SpriteBatchContext;
                 context.TransformMatrix = root.Transform * context.TransformMatrix;
 
-#pragma warning disable CS0618
-                if (this.BlendState != null)
-                    context.BlendState = this.BlendState;
-                if (this.SamplerState != null)
-                    context.SamplerState = this.SamplerState;
-                if (this.DepthStencilState != null)
-                    context.DepthStencilState = this.DepthStencilState;
-                if (this.Effect != null)
-                    context.Effect = this.Effect;
-#pragma warning restore CS0618
-
                 batch.Begin(context);
-#pragma warning disable CS0618
-                root.Element.DrawTransformed(time, batch, this.DrawAlpha * root.Element.DrawAlpha, context.BlendState, context.SamplerState, context.DepthStencilState, context.Effect, context.TransformMatrix);
-#pragma warning restore CS0618
+                root.Element.DrawTransformed(time, batch, this.DrawAlpha * root.Element.DrawAlpha, context);
                 batch.End();
             }
 
@@ -389,6 +340,17 @@ namespace MLEM.Ui {
             return index < 0 ? null : this.rootElements[index];
         }
 
+        /// <summary>
+        /// Enqueues the given <paramref name="action"/> (optionally with the given <paramref name="actionObject"/> attached) to be executed the next time <see cref="Update"/> is called, before all of this ui system's elements are updated.
+        /// This method is thread-safe, meaning actions can be enqueued from other threads (for example, after downloading content to display) and they will be executed on the main thread.
+        /// </summary>
+        /// <param name="action">The action to enqueue.</param>
+        /// <param name="actionObject">An optional object to attach to the action, which will be passed as the second parameter to <paramref name="action"/>.</param>
+        public void EnqueueAction(Action<UiSystem, object> action, object actionObject = null) {
+            lock (this.nextUpdateActionsLock)
+                this.nextUpdateActions.Enqueue((action, actionObject));
+        }
+
         private int IndexOf(string name) {
             return this.rootElements.FindIndex(element => element.Name == name);
         }
@@ -427,12 +389,12 @@ namespace MLEM.Ui {
             }
         }
 
-        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
-            this.OnElementDrawn?.Invoke(element, time, batch, alpha);
+        internal void InvokeOnElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            this.OnElementDrawn?.Invoke(element, time, batch, alpha, context);
         }
 
-        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha) {
-            this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha);
+        internal void InvokeOnSelectedElementDrawn(Element element, GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            this.OnSelectedElementDrawn?.Invoke(element, time, batch, alpha, context);
         }
 
         internal void InvokeOnElementUpdated(Element element, GameTime time) {
@@ -587,6 +549,7 @@ namespace MLEM.Ui {
         /// <summary>
         /// Event that is invoked when this <see cref="RootElement"/> gets added to a <see cref="UiSystem"/> in <see cref="UiSystem.Add"/>
         /// </summary>
+        [Obsolete("This event is only invoked once, after internal RootElement construction, and has very little practical use. Use UiSystem.OnRootAdded instead.")]
         public event Action<UiSystem> OnAddedToUi;
         /// <summary>
         /// Event that is invoked when this <see cref="RootElement"/> gets removed from a <see cref="UiSystem"/> in <see cref="UiSystem.Remove"/>
@@ -608,9 +571,10 @@ namespace MLEM.Ui {
         /// Optionally, automatic navigation can be forced on, causing the <see cref="UiStyle.SelectionIndicator"/> to be drawn around the element.
         /// </summary>
         /// <param name="element">The element to select, or null to deselect the selected element.</param>
-        /// <param name="autoNav">Whether automatic navigation should be forced on</param>
-        public void SelectElement(Element element, bool? autoNav = null) {
-            this.System.Controls.SelectElement(this, element, autoNav);
+        /// <param name="autoNav">Whether automatic navigation should be forced on. If this is <see langword="null"/>, the automatic navigation state will stay the same.</param>
+        /// <param name="navType">An optional <see cref="UiControls.NavigationType"/> to set. If this is <see langword="null"/>, the navigation type will stay the same.</param>
+        public void SelectElement(Element element, bool? autoNav = null, UiControls.NavigationType? navType = null) {
+            this.System.Controls.SelectElement(this, element, autoNav, navType);
         }
 
         /// <summary>

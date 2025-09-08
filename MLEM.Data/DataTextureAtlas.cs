@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
+using MLEM.Maths;
 using MLEM.Misc;
 using MLEM.Textures;
 
@@ -18,7 +19,7 @@ namespace MLEM.Data {
     /// </para>
     /// <para>
     /// Data texture atlases are designed to be easy to write by hand. Because of this, their structure is very simple.
-    /// Each texture region defined in the atlas consists of its names (where multiple names can be separated by whitespace), followed by a set of possible instructions and their arguments, also separated by whitespace.
+    /// Each texture region defined in the atlas consists of its names (where multiple names can be separated by whitespace), followed by a set of possible instructions and their arguments, also separated by whitespace. Any whitespace can be escaped by wrapping the region name or argument in single or double quotes.
     /// <list type="bullet">
     /// <item><description>The <c>loc</c> (or <c>location</c>) instruction defines the <see cref="TextureRegion.Area"/> of the texture region as a rectangle whose origin is its top-left corner. It requires four arguments: x, y, width and height of the rectangle.</description></item>
     /// <item><description>The (optional) <c>piv</c> (or <c>pivot</c>) instruction defines the <see cref="TextureRegion.PivotPixels"/> of the texture region. It requires two arguments: x and y. If it is not supplied, the pivot defaults to the top-left corner of the texture region.</description></item>
@@ -104,7 +105,7 @@ namespace MLEM.Data {
                 throw new ContentLoadException($"Couldn't load data texture atlas data from {info}", e);
             }
             var atlas = new DataTextureAtlas(texture);
-            var words = Regex.Split(text, @"\s+");
+            var words = Regex.Matches(text.Trim(), "(?:(?<Quote>[\"'])(?<Content>.+?)\\k<Quote>)|(?<Content>\\S+)").Cast<Match>().Select(m => m.Groups["Content"].Value).ToArray();
 
             var namesOffsets = new List<(string, Vector2)>();
             var customData = new Dictionary<string, string>();

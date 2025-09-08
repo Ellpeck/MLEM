@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using MLEM.Misc;
+using MLEM.Maths;
 using NUnit.Framework;
 
 namespace Tests;

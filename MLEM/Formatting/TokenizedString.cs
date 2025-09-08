@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Maths;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {
@@ -42,17 +40,11 @@ namespace MLEM.Formatting {
         private float initialInnerOffset;
         private RectangleF area;
 
-        internal TokenizedString(GenericFont font, TextAlignment alignment, string rawString, string strg, Token[] tokens) {
+        internal TokenizedString(GenericFont font, TextAlignment alignment, string rawString, string strg, Token[] tokens, Code[] allCodes) {
             this.RawString = rawString;
             this.String = strg;
             this.Tokens = tokens;
-
-            // since a code can be present in multiple tokens, we use Distinct here
-            this.AllCodes = tokens.SelectMany(t => t.AppliedCodes).Distinct().ToArray();
-            // TODO this can probably be optimized by keeping track of a code's tokens while tokenizing
-            foreach (var code in this.AllCodes)
-                code.Tokens = new ReadOnlyCollection<Token>(this.Tokens.Where(t => t.AppliedCodes.Contains(code)).ToList());
-
+            this.AllCodes = allCodes;
             this.Realign(font, alignment);
         }
 
@@ -145,19 +137,13 @@ namespace MLEM.Formatting {
             }
         }
 
-        /// <inheritdoc cref="GenericFont.MeasureString(string,bool)"/>
-        [Obsolete("Measure is deprecated. Use GetArea, which returns the string's total size measurement, instead.")]
-        public Vector2 Measure(GenericFont font) {
-            return this.GetArea(Vector2.Zero, 1).Size;
-        }
-
         /// <summary>
         /// Measures the area that this entire tokenized string and all of its <see cref="Tokens"/> take up and returns it as a <see cref="RectangleF"/>.
         /// </summary>
         /// <param name="stringPos">The position that this string is being rendered at, which will offset the resulting <see cref="RectangleF"/>.</param>
         /// <param name="scale">The scale that this string is being rendered with, which will scale the resulting <see cref="RectangleF"/>.</param>
         /// <returns>The area that this tokenized string takes up.</returns>
-        public RectangleF GetArea(Vector2 stringPos, float scale) {
+        public RectangleF GetArea(Vector2 stringPos = default, float scale = 1) {
             return new RectangleF(stringPos + this.area.Location * scale, this.area.Size * scale);
         }
 
@@ -170,17 +156,30 @@ namespace MLEM.Formatting {
                 code.Update(time);
         }
 
+        /// <inheritdoc cref="GetTokenUnderPos(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects)"/>
+        public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, float scale, GenericFont font = null, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None) {
+            return this.GetTokenUnderPos(stringPos, target, new Vector2(scale), font, rotation, origin, effects);
+        }
+
         /// <summary>
         /// Returns the token under the given position.
         /// This can be used for hovering effects when the mouse is over a token, etc.
         /// </summary>
-        /// <param name="stringPos">The position that the string is drawn at</param>
-        /// <param name="target">The position to use for checking the token</param>
-        /// <param name="scale">The scale that the string is drawn at</param>
-        /// <returns>The token under the target position</returns>
-        public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, float scale) {
+        /// <param name="stringPos">The position that the string is drawn at.</param>
+        /// <param name="target">The position to use for checking the token.</param>
+        /// <param name="scale">The scale that the string is drawn at.</param>
+        /// <param name="font">The font that the string is being drawn with. If this is <see langword="null"/>, all following parameters are ignored.</param>
+        /// <param name="rotation">The rotation that the string is being drawn with. If <paramref name="font"/> is <see langword="null"/>, this this is ignored.</param>
+        /// <param name="origin">The origin that the string is being drawn with. If <paramref name="font"/> is <see langword="null"/>, this this is ignored.</param>
+        /// <param name="effects">The sprite effects that the string is being drawn with. If <paramref name="font"/> is <see langword="null"/>, this is ignored.</param>
+        /// <returns>The token under the target position</returns>^
+        public Token GetTokenUnderPos(Vector2 stringPos, Vector2 target, Vector2 scale, GenericFont font = null, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None) {
+            if (font != null) {
+                var transform = font.CalculateStringTransform(stringPos, rotation, origin, scale, effects, this.area.Size);
+                target = Vector2.Transform(target, Matrix.Invert(transform));
+            }
             foreach (var token in this.Tokens) {
-                foreach (var rect in token.GetArea(stringPos, scale)) {
+                foreach (var rect in font != null ? token.GetArea() : token.GetArea(stringPos, scale)) {
                     if (rect.Contains(target))
                         return token;
                 }
@@ -189,8 +188,13 @@ namespace MLEM.Formatting {
         }
 
         /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
-        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, int? startIndex = null, int? endIndex = null) {
-            var innerOffset = new Vector2(this.initialInnerOffset * scale, 0);
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, float scale, float depth, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None, int? startIndex = null, int? endIndex = null) {
+            this.Draw(time, batch, pos, font, color, new Vector2(scale), depth, rotation, origin, effects, startIndex, endIndex);
+        }
+
+        /// <inheritdoc cref="GenericFont.DrawString(SpriteBatch,string,Vector2,Color,float,Vector2,float,SpriteEffects,float)"/>
+        public void Draw(GameTime time, SpriteBatch batch, Vector2 pos, GenericFont font, Color color, Vector2 scale, float depth, float rotation = 0, Vector2 origin = default, SpriteEffects effects = SpriteEffects.None, int? startIndex = null, int? endIndex = null) {
+            var innerOffset = new Vector2(this.initialInnerOffset, 0);
             for (var t = 0; t < this.Tokens.Length; t++) {
                 var token = this.Tokens[t];
                 if (endIndex != null && token.Index >= endIndex)
@@ -200,8 +204,8 @@ namespace MLEM.Formatting {
                 var drawColor = token.GetColor(color);
 
                 if (startIndex == null || token.Index >= startIndex)
-                    token.DrawSelf(time, batch, pos + innerOffset, drawFont, drawColor, scale, depth);
-                innerOffset.X += token.GetSelfWidth(drawFont) * scale;
+                    token.DrawSelf(time, batch, pos, innerOffset, drawFont, drawColor, scale, rotation, origin, depth, effects, this.area.Size);
+                innerOffset.X += token.GetSelfWidth(drawFont);
 
                 var indexInToken = 0;
                 for (var l = 0; l < token.SplitDisplayString.Length; l++) {
@@ -213,19 +217,20 @@ namespace MLEM.Formatting {
 
                         var (codePoint, length) = line.GetCodePoint(cpsIndex);
                         var character = CodePointSource.ToString(codePoint);
+                        var charSize = drawFont.MeasureString(character);
 
                         if (startIndex == null || token.Index + indexInToken >= startIndex)
-                            token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos + innerOffset, drawFont, drawColor, scale, depth);
+                            token.DrawCharacter(time, batch, codePoint, character, indexInToken, pos, innerOffset, drawFont, drawColor, scale, rotation, origin, depth, effects, this.area.Size, charSize);
 
-                        innerOffset.X += drawFont.MeasureString(character).X * scale;
+                        innerOffset.X += charSize.X;
                         indexInToken += length;
                         cpsIndex += length;
                     }
 
                     // only split at a new line, not between tokens!
                     if (l < token.SplitDisplayString.Length - 1) {
-                        innerOffset.X = token.InnerOffsets[l] * scale;
-                        innerOffset.Y += drawFont.LineHeight * scale;
+                        innerOffset.X = token.InnerOffsets[l];
+                        innerOffset.Y += drawFont.LineHeight;
                     }
                 }
             }

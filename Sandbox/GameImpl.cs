@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using FontStashSharp;
@@ -10,17 +9,17 @@ using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
 using MLEM.Extended.Font;
-using MLEM.Extensions;
+using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
 using MLEM.Graphics;
-using MLEM.Input;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Startup;
 using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using Group = MLEM.Ui.Elements.Group;
 
 namespace Sandbox;
 
@@ -70,10 +69,8 @@ public class GameImpl : MlemGame {
         //var font = new GenericSpriteFont(LoadContent<SpriteFont>("Fonts/TestFont"));
         //var font = new GenericBitmapFont(LoadContent<BitmapFont>("Fonts/Regular"));
         var font = new GenericStashFont(system.GetFont(32));
-        /*
         var spriteFont = new GenericSpriteFont(MlemGame.LoadContent<SpriteFont>("Fonts/TestFont"));
-        */
-        this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
+        /*this.UiSystem.Style = new UntexturedStyle(this.SpriteBatch) {
             Font = font,
             TextScale = 0.5F,
             PanelTexture = new NinePatch(new TextureRegion(tex, 0, 8, 24, 24), 8),
@@ -81,7 +78,7 @@ public class GameImpl : MlemGame {
         };
         this.UiSystem.AutoScaleReferenceSize = new Point(1280, 720);
         this.UiSystem.AutoScaleWithScreen = true;
-        this.UiSystem.GlobalScale = 5;
+        this.UiSystem.GlobalScale = 5;*/
 
         /*this.OnDraw += (g, time) => {
             const string strg = "This is a test string\nto test things\n\nMany things are being tested, like the ability\nfor this font to agree\n\nwith newlines";
@@ -91,6 +88,7 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };*/
 
+        /*
         var panel = new Panel(Anchor.Center, new Vector2(0, 100), Vector2.Zero) {SetWidthBasedOnChildren = true};
         panel.AddChild(new Button(Anchor.AutoLeft, new Vector2(100, 10)));
         panel.AddChild(new Button(Anchor.AutoCenter, new Vector2(80, 10)));
@@ -116,17 +114,21 @@ public class GameImpl : MlemGame {
             var dir = vec.ToDirection();
             Console.WriteLine(vec + " -> " + dir);
         }
+        */
 
+        /*
         var writer = new StringWriter();
-        this.Content.GetJsonSerializer().Serialize(writer, obj);
+        this.Content.GetJsonSerializer().Serialize(writer, obj);*/
         //Console.WriteLine(writer.ToString());
         // {"Vec":"10 20","Point":"20 30","Rectangle":"1 2 3 4","RectangleF":"4 5 6 7"}
 
         // Also:
         //this.Content.AddJsonConverter(new CustomConverter());
 
+        /*
         var res = this.Content.LoadJson<Test>("Test");
         Console.WriteLine("The res is " + res);
+        */
 
         //var gradient = this.SpriteBatch.GenerateGradientTexture(Color.Green, Color.Red, Color.Blue, Color.Yellow);
         /*this.OnDraw += (game, time) => {
@@ -143,6 +145,7 @@ public class GameImpl : MlemGame {
             this.SpriteBatch.End();
         };*/
 
+        /*
         var sc = 2;
         var formatter = new TextFormatter();
         formatter.AddImage("Test", new TextureRegion(tex, 0, 8, 24, 24));
@@ -189,6 +192,7 @@ public class GameImpl : MlemGame {
             }
             this.tokenized.Update(time);
         };
+        */
 
         /*var testPanel = new Panel(Anchor.Center, new Vector2(0.5F, 100), Vector2.Zero);
         testPanel.AddChild(new Button(Anchor.AutoLeft, new Vector2(0.25F, -1)));
@@ -229,6 +233,7 @@ public class GameImpl : MlemGame {
         par.OnDrawn = (e, time, batch, a) => batch.DrawRectangle(e.DisplayArea.ToExtended(), Color.Red);
         this.UiSystem.Add("Load", loadGroup);*/
 
+        /*
         var spillPanel = new Panel(Anchor.Center, new Vector2(100), Vector2.Zero);
         var squishingGroup = spillPanel.AddChild(new SquishingGroup(Anchor.TopLeft, Vector2.One));
         squishingGroup.AddChild(new Button(Anchor.TopLeft, new Vector2(30), "TL") {
@@ -258,43 +263,46 @@ public class GameImpl : MlemGame {
         }).SetData("Ref", "Main");
         this.UiSystem.Add("SpillTest", spillPanel);
 
-        /* var regularFont = spriteFont.Font;
-         var genericFont = spriteFont;
+        var regularFont = spriteFont.Font;
+        var genericFont = spriteFont;
 
-         var index = 0;
-         var pos = new Vector2(100, 20);
-         var scale = 1F;
-         var origin = Vector2.Zero;
-         var rotation = 0F;
-         var effects = SpriteEffects.None;
+        var index = 0;
+        var pos = new Vector2(100, 20);
+        var scale = 1F;
+        var origin = Vector2.Zero;
+        var rotation = 0F;
+        var effects = SpriteEffects.None;
 
-         this.OnDraw += (_, _) => {
-             const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
-             if (MlemGame.Input.IsKeyPressed(Keys.I)) {
-                 index++;
-                 if (index == 1) {
-                     scale = 2;
-                 } else if (index == 2) {
-                     origin = new Vector2(15, 15);
-                 } else if (index == 3) {
-                     rotation = 0.25F;
-                 } else if (index == 4) {
-                     effects = SpriteEffects.FlipHorizontally;
-                 } else if (index == 5) {
-                     effects = SpriteEffects.FlipVertically;
-                 } else if (index == 6) {
-                     effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
-                 }
-             }
+        const string testString = "This is a\ntest string\n\twith long lines.\nLet's write some more stuff. Let's\r\nsplit lines weirdly.";
+        var formatted = formatter.Tokenize(genericFont, testString);
 
-             this.SpriteBatch.Begin();
-             if (MlemGame.Input.IsKeyDown(Keys.LeftShift)) {
-                 this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
-             } else {
-                 genericFont.DrawString(this.SpriteBatch, testString, pos, Color.Green, rotation, origin, scale, effects, 0);
-             }
-             this.SpriteBatch.End();
-         };*/
+        this.OnDraw += (_, time) => {
+            if (MlemGame.Input.IsPressed(Keys.I)) {
+                index++;
+                if (index == 1) {
+                    scale = 2;
+                } else if (index == 2) {
+                    origin = new Vector2(15, 15);
+                } else if (index == 3) {
+                    rotation = 0.25F;
+                } else if (index == 4) {
+                    effects = SpriteEffects.FlipHorizontally;
+                } else if (index == 5) {
+                    effects = SpriteEffects.FlipVertically;
+                } else if (index == 6) {
+                    effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+                }
+            }
+
+            this.SpriteBatch.Begin();
+            if (MlemGame.Input.IsDown(Keys.LeftShift)) {
+                this.SpriteBatch.DrawString(regularFont, testString, pos, Color.Red, rotation, origin, scale, effects, 0);
+            } else {
+                formatted.Draw(time, this.SpriteBatch, pos, genericFont, Color.Green, scale, 0, rotation, origin, effects);
+            }
+            this.SpriteBatch.End();
+        };
+        */
 
         /*var viewport = new BoxingViewportAdapter(this.Window, this.GraphicsDevice, 1280, 720);
         var newPanel = new Panel(Anchor.TopLeft, new Vector2(200, 100), new Vector2(10, 10));
@@ -389,7 +397,47 @@ public class GameImpl : MlemGame {
         Console.WriteLine("MouseButtons: " + string.Join(", ", GenericInput.AllMouseButtons));
         Console.WriteLine("Buttons: " + string.Join(", ", GenericInput.AllButtons));
         Console.WriteLine("Inputs: " + string.Join(", ", GenericInput.AllInputs));*/
+
+        /*var hsv = new Panel(Anchor.Center, new Vector2(100), true);
+        var color = Color.Pink.ToHsv();
+        hsv.AddChild(new Paragraph(Anchor.AutoLeft, 1, "H"));
+        hsv.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.H,
+            OnValueChanged = (_, v) => color.H = v
+        });
+        hsv.AddChild(new Paragraph(Anchor.AutoLeft, 1, "S"));
+        hsv.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.S,
+            OnValueChanged = (_, v) => color.S = v
+        });
+        hsv.AddChild(new Paragraph(Anchor.AutoLeft, 1, "V"));
+        hsv.AddChild(new Slider(Anchor.AutoLeft, new Vector2(1, 10), 5, 1) {
+            CurrentValue = color.V,
+            OnValueChanged = (_, v) => color.V = v
+        });
+        hsv.AddChild(new Group(Anchor.AutoLeft, new Vector2(1, 40), false) {
+            OnDrawn = (e, _, batch, _, _) => batch.Draw(batch.GetBlankTexture(), e.DisplayArea, ColorHelper.FromHsv(color))
+        });
+        this.UiSystem.Add("HSV", hsv);*/
+
+        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+        var root = this.UiSystem.Add("UI", group);
+
+        var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
+        var centerPanel = new Panel(Anchor.TopRight, Vector2.One);
+        centerPanel.DrawColor = Color.Red;
+        centerPanel.Padding = new MLEM.Maths.Padding(5);
+        centerGroup.AddChild(centerPanel);
+        group.AddChild(centerGroup);
+
+        this.listView = new Panel(Anchor.TopLeft, new Vector2(1, 1), false, true);
+        group.AddChild(this.listView);
+
+        var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
+        group.AddChild(bottomPane);
     }
+
+    private Panel listView;
 
     protected override void DoUpdate(GameTime gameTime) {
         base.DoUpdate(gameTime);
@@ -399,6 +447,13 @@ public class GameImpl : MlemGame {
         var delta = this.InputHandler.ScrollWheel - this.InputHandler.LastScrollWheel;
         if (delta != 0) {
             this.camera.Zoom(0.1F * Math.Sign(delta), this.InputHandler.ViewportMousePosition.ToVector2());
+        }
+
+        if (this.InputHandler.TryConsumePressed(Keys.Space)) {
+            var c = new Panel(Anchor.AutoLeft, new Vector2(1, 50), false);
+            c.DrawColor = Color.Green;
+            c.Padding = new MLEM.Maths.Padding(5);
+            this.listView.AddChild(c);
         }
 
         /*if (Input.InputsDown.Length > 0)

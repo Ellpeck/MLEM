@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net452;netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <IncludeContentInPack>true</IncludeContentInPack>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ContentTargetFolders>content</ContentTargetFolders>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <IsTrimmable>true</IsTrimmable>
         <NoWarn>NU5128</NoWarn>
     </PropertyGroup>
 
@@ -15,7 +14,7 @@
         <Title>MLEM Templates</Title>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending MonoGame cross-platform project templates</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>dotnet-new templates monogame ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>

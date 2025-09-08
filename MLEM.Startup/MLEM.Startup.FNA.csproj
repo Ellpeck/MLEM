@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net452;netstandard2.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible Condition="'$(TargetFramework)'=='net8.0'">true</IsAotCompatible>
         <RootNamespace>MLEM.Startup</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
     </PropertyGroup>
@@ -12,7 +12,7 @@
     <PropertyGroup>
         <Authors>Ellpeck</Authors>
         <Description>MLEM Library for Extending FNA combined with some other useful libraries into a quick Game startup class</Description>
-        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG</PackageReleaseNotes>
+        <PackageReleaseNotes>See the full changelog at https://mlem.ellpeck.de/CHANGELOG.html</PackageReleaseNotes>
         <PackageTags>fna ellpeck mlem utility extensions</PackageTags>
         <PackageProjectUrl>https://mlem.ellpeck.de/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Ellpeck/MLEM</RepositoryUrl>
@@ -22,11 +22,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Coroutine" Version="2.1.4" />
+        <PackageReference Include="Coroutine" Version="2.1.5" />
         <ProjectReference Include="..\MLEM.Ui\MLEM.Ui.FNA.csproj" />
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <ProjectReference Include="..\FNA\FNA.csproj">
+        <ProjectReference Include="..\ThirdParty\FNA\FNA.csproj">
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
     </ItemGroup>

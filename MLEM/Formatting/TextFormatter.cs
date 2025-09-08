@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using MLEM.Extensions;
 using MLEM.Font;
 using MLEM.Formatting.Codes;
+using MLEM.Graphics;
 using MLEM.Misc;
 
 namespace MLEM.Formatting {
@@ -102,7 +102,7 @@ namespace MLEM.Formatting {
                 this.Codes.Add(new Regex("<b>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Bold));
                 this.Codes.Add(new Regex("<i>"), (f, m, r) => new FontCode(m, r, fnt => fnt.Italic));
                 this.Codes.Add(new Regex(@"<s(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new ShadowCode(m, r,
-                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : this.DefaultShadowColor,
+                    ColorHelper.TryFromHexString(m.Groups[1].Value, out var color) ? color : this.DefaultShadowColor,
                     float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var offset) ? new Vector2(offset) : this.DefaultShadowOffset));
                 this.Codes.Add(new Regex("<u>"), (f, m, r) => new UnderlineCode(m, r, this.LineThickness, this.UnderlineOffset));
                 this.Codes.Add(new Regex("<st>"), (f, m, r) => new UnderlineCode(m, r, this.LineThickness, this.StrikethroughOffset));
@@ -111,7 +111,7 @@ namespace MLEM.Formatting {
                 this.Codes.Add(new Regex(@"<sup(?: ([+-.0-9]+))?>"), (f, m, r) => new SubSupCode(m, r,
                     float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var off) ? -off : this.DefaultSupOffset));
                 this.Codes.Add(new Regex(@"<o(?: #([0-9\w]{6,8}) (([+-.0-9]*)))?>"), (f, m, r) => new OutlineCode(m, r,
-                    m.Groups[1].Success ? ColorHelper.FromHexString(m.Groups[1].Value) : this.DefaultOutlineColor,
+                    ColorHelper.TryFromHexString(m.Groups[1].Value, out var color) ? color : this.DefaultOutlineColor,
                     float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var thickness) ? thickness : this.DefaultOutlineThickness,
                     this.OutlineDiagonals));
             }
@@ -124,12 +124,13 @@ namespace MLEM.Formatting {
                         this.Codes.Add(new Regex($"<c {c.Name}>"), (f, m, r) => new ColorCode(m, r, value));
                     }
                 }
-                this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r, ColorHelper.FromHexString(m.Groups[1].Value)));
+                this.Codes.Add(new Regex(@"<c #([0-9\w]{6,8})>"), (f, m, r) => new ColorCode(m, r,
+                    ColorHelper.TryFromHexString(m.Groups[1].Value, out var color) ? color : Color.Red));
             }
 
             // animation codes
             if (hasAnimations) {
-                this.Codes.Add(new Regex(@"<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
+                this.Codes.Add(new Regex("<a wobbly(?: ([+-.0-9]*) ([+-.0-9]*))?>"), (f, m, r) => new WobblyCode(m, r,
                     float.TryParse(m.Groups[1].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var mod) ? mod : this.DefaultWobblyModifier,
                     float.TryParse(m.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var heightMod) ? heightMod : this.DefaultWobblyHeight));
             }
@@ -155,11 +156,14 @@ namespace MLEM.Formatting {
             // resolve macros
             s = this.ResolveMacros(s);
             var tokens = new List<Token>();
-            var codes = new List<Code>();
+            var applied = new List<Code>();
+            var allCodes = new List<Code>();
             // add the formatting code right at the start of the string
             var firstCode = this.GetNextCode(s, 0, 0);
-            if (firstCode != null)
-                codes.Add(firstCode);
+            if (firstCode != null) {
+                allCodes.Add(firstCode);
+                applied.Add(firstCode);
+            }
             var index = 0;
             var rawIndex = 0;
             while (rawIndex < s.Length) {
@@ -167,24 +171,25 @@ namespace MLEM.Formatting {
                 // if we've reached the end of the string
                 if (next == null) {
                     var sub = s.Substring(rawIndex, s.Length - rawIndex);
-                    tokens.Add(new Token(codes.ToArray(), index, rawIndex, TextFormatter.StripFormatting(font, sub, codes), sub));
+                    tokens.Add(new Token(applied.ToArray(), index, rawIndex, TextFormatter.StripFormatting(sub, applied.Select(c => c.Regex)), sub));
                     break;
                 }
+                allCodes.Add(next);
 
                 // create a new token for the content up to the next code
                 var ret = s.Substring(rawIndex, next.Match.Index - rawIndex);
-                var strippedRet = TextFormatter.StripFormatting(font, ret, codes);
-                tokens.Add(new Token(codes.ToArray(), index, rawIndex, strippedRet, ret));
+                var strippedRet = TextFormatter.StripFormatting(ret, applied.Select(c => c.Regex));
+                tokens.Add(new Token(applied.ToArray(), index, rawIndex, strippedRet, ret));
 
                 // move to the start of the next code
                 rawIndex = next.Match.Index;
                 index += strippedRet.Length;
 
                 // remove all codes that are incompatible with the next one and apply it
-                codes.RemoveAll(c => c.EndsHere(next) || next.EndsOther(c));
-                codes.Add(next);
+                applied.RemoveAll(c => c.EndsHere(next) || next.EndsOther(c));
+                applied.Add(next);
             }
-            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(font, s, tokens.SelectMany(t => t.AppliedCodes)), tokens.ToArray());
+            return new TokenizedString(font, alignment, s, TextFormatter.StripFormatting(s, allCodes.Select(c => c.Regex)), tokens.ToArray(), allCodes.ToArray());
         }
 
         /// <summary>
@@ -221,9 +226,7 @@ namespace MLEM.Formatting {
         /// <param name="s">The string to strip formatting codes from.</param>
         /// <returns>The stripped string.</returns>
         public string StripAllFormatting(string s) {
-            foreach (var regex in this.Codes.Keys)
-                s = regex.Replace(s, string.Empty);
-            return s;
+            return TextFormatter.StripFormatting(s, this.Codes.Keys);
         }
 
         private Code GetNextCode(string s, int index, int maxIndex = int.MaxValue) {
@@ -235,14 +238,9 @@ namespace MLEM.Formatting {
             return constructor?.Invoke(this, match, regex);
         }
 
-        private static string StripFormatting(GenericFont font, string s, IEnumerable<Code> codes) {
-            foreach (var code in codes) {
-#pragma warning disable CS0618
-                // this can be combined with StripAllFormatting (which was added after GetReplacementString was deprecated) once GetReplacementString is removed
-                // (just make this method accept a set of regular expressions, and then call it with all code keys in StripAllFormatting, and the applied codes' regexes in Tokenize)
-                s = code.Regex.Replace(s, code.GetReplacementString(font));
-#pragma warning restore CS0618
-            }
+        private static string StripFormatting(string s, IEnumerable<Regex> codes) {
+            foreach (var code in codes)
+                s = code.Replace(s, string.Empty);
             return s;
         }
 

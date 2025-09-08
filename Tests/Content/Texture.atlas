@@ -1,3 +1,6 @@
+
+
+
 SimpleDeskUp
 loc 0 0 48 32
 piv 16 16
@@ -13,6 +16,15 @@ TestRegionNegativePivot
 loc 0 32 +16 16
 piv -32 +46
 
+
+
+"Region with Spaces"
+location 1 2 3 4
+data SomeData 'Some Value with Spaces'
+data "Some Data with Spaces" SomeValue
+
+
+
 DataTest
 loc 0 0 16 16
 dat DataPoint1 ThisIsSomeData
@@ -26,6 +38,7 @@ cpy Copy2 32 4
 
 Copy3 from
 LongTableUp off 2 4
+
 
 LongTableRight LongTableDown LongTableLeft
 location 32 30 64 48

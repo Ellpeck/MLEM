@@ -35,13 +35,27 @@ namespace MLEM.Animations {
         /// <inheritdoc cref="SpriteAnimation.SpeedMultiplier"/>
         public float SpeedMultiplier {
             set {
-                foreach (var anim in this.animations)
-                    anim.Animation.SpeedMultiplier = value;
+                for (var i = 0; i < this.Count; i++)
+                    this[i].SpeedMultiplier = value;
             }
         }
+        /// <summary>
+        /// Returns the amount of <see cref="SpriteAnimation"/> entries that this sprite animation group has.
+        /// </summary>
+        public int Count => this.animations.Count;
+        /// <summary>
+        /// Returns the <see cref="SpriteAnimation"/> at the given index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        public SpriteAnimation this[int index] => this.animations[index].Animation;
+        /// <summary>
+        /// Returns the <see cref="SpriteAnimation"/> in this animation group with the given <see cref="SpriteAnimation.Name"/>, if it exists, and <see langword="null"/> otherwise.
+        /// </summary>
+        /// <param name="name">The name of the animation.</param>
+        public SpriteAnimation this[string name] => this.animations.Find(anim => anim.Animation.Name == name)?.Animation;
 
         /// <summary>
-        /// A callback for when the currently displaying animation has changed due to a condition with a higher priority being met. 
+        /// A callback for when the currently displaying animation has changed due to a condition with a higher priority being met.
         /// </summary>
         public event AnimationChanged OnAnimationChanged;
 
@@ -79,8 +93,9 @@ namespace MLEM.Animations {
         /// </summary>
         /// <param name="name">The <see cref="SpriteAnimation.Name"/> of the animation</param>
         /// <returns>The animation by that name, or <c>null</c> if there is none</returns>
+        [Obsolete("Use the name-based indexer instead")]
         public SpriteAnimation ByName(string name) {
-            return this.animations.Find(anim => anim.Animation.Name == name)?.Animation;
+            return this[name];
         }
 
         private void FindAnimationToPlay() {
@@ -90,7 +105,8 @@ namespace MLEM.Animations {
             if (this.currentAnimation != null && this.currentAnimation.ShouldPlay())
                 animToPlay = this.currentAnimation;
 
-            foreach (var anim in this.animations) {
+            for (var i = 0; i < this.Count; i++) {
+                var anim = this.animations[i];
                 // if we find an animation with a lower priority then it means we can break since the list is sorted by priority
                 if (animToPlay != null && anim.Priority <= animToPlay.Priority)
                     break;
@@ -122,18 +138,18 @@ namespace MLEM.Animations {
         /// <param name="newAnim">The new animation</param>
         public delegate void AnimationChanged(SpriteAnimation oldAnim, SpriteAnimation newAnim);
 
-    }
+        private class ConditionedAnimation {
 
-    internal class ConditionedAnimation {
+            public readonly SpriteAnimation Animation;
+            public readonly Func<bool> ShouldPlay;
+            public readonly int Priority;
 
-        public readonly SpriteAnimation Animation;
-        public readonly Func<bool> ShouldPlay;
-        public readonly int Priority;
+            public ConditionedAnimation(SpriteAnimation animation, Func<bool> shouldPlay, int priority) {
+                this.Animation = animation;
+                this.ShouldPlay = shouldPlay;
+                this.Priority = priority;
+            }
 
-        public ConditionedAnimation(SpriteAnimation animation, Func<bool> shouldPlay, int priority) {
-            this.Animation = animation;
-            this.ShouldPlay = shouldPlay;
-            this.Priority = priority;
         }
 
     }

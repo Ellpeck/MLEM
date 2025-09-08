@@ -1,5 +1,5 @@
 using System;
-using MLEM.Misc;
+using MLEM.Maths;
 using Newtonsoft.Json;
 
 namespace MLEM.Data.Json {

@@ -9,7 +9,7 @@ using MLEM.Formatting.Codes;
 namespace MLEM.Misc {
     /// <summary>
     /// MlemPlatform is a wrapper around some of MonoGame's platform-dependent behavior to allow for MLEM to stay platform-independent.
-    /// See <see cref="DesktopGl{T}"/>, <see cref="DesktopFna"/>, <see cref="Mobile"/> and <see cref="None"/> for information on the specific platforms.
+    /// See <see cref="DesktopGl{T}"/>, <see cref="DesktopFna"/>, <see cref="Mobile"/> and <see cref="None"/>, as well as the online documentation at https://mlem.ellpeck.de/articles/ui.html#text-input for information on the specific platforms.
     /// The MLEM demos' main classes also make use of this functionality: https://github.com/Ellpeck/MLEM/blob/main/Demos.DesktopGL/Program.cs#L8 and https://github.com/Ellpeck/MLEM/blob/main/Demos.Android/Activity1.cs#L33.
     /// </summary>
     public abstract class MlemPlatform {
@@ -51,7 +51,7 @@ namespace MLEM.Misc {
         /// <exception cref="InvalidOperationException">If <see cref="Current"/> is null</exception>
         public static void EnsureExists() {
             if (MlemPlatform.Current == null)
-                throw new InvalidOperationException("MlemPlatform was not initialized. For more information, see the MlemPlatform class or https://mlem.ellpeck.de/api/MLEM.Misc.MlemPlatform");
+                throw new InvalidOperationException("MlemPlatform was not initialized. For more information, see the MlemPlatform documentation at https://mlem.ellpeck.de/api/MLEM.Misc.MlemPlatform or https://mlem.ellpeck.de/articles/ui.html#text-input");
         }
 
         /// <summary>
