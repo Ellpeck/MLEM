@@ -34,6 +34,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public NinePatch ButtonTexture;
         /// <summary>
+        /// The color that the <see cref="Button"/> element renders
+        /// </summary>
+        public Color ButtonColor = Color.White;
+        /// <summary>
         /// The texture that the <see cref="Button"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// Note that, if you just want to change the button's color when hovered, use <see cref="ButtonHoveredColor"/>.
         /// </summary>
@@ -250,6 +254,7 @@ namespace MLEM.Ui.Style {
             this.MouseEnterAnimation = original.MouseEnterAnimation;
             this.MouseExitAnimation = original.MouseExitAnimation;
             this.ButtonTexture = original.ButtonTexture;
+            this.ButtonColor = original.ButtonColor;
             this.ButtonHoveredTexture = original.ButtonHoveredTexture;
             this.ButtonHoveredColor = original.ButtonHoveredColor;
             this.ButtonDisabledTexture = original.ButtonDisabledTexture;
