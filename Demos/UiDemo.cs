@@ -59,6 +59,9 @@ namespace Demos {
                 TextScale = style.TextScale,
                 Font = style.Font,
                 TextFieldTextColor = Color.Yellow,
+                CheckboxCheckmark = style.CheckboxCheckmark,
+                CheckboxCheckColor = Color.Yellow,
+                CheckboxUncheckedColor = Color.DarkGray,
             };
             // set the defined style as the current one
             this.UiSystem.Style = style;

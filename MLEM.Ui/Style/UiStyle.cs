@@ -137,6 +137,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public NinePatch CheckboxTexture;
         /// <summary>
+        /// The color that the <see cref="Checkbox"/> element uses
+        /// </summary>
+        public Color CheckboxColor = Color.White;
+        /// <summary>
         /// The texture that the <see cref="Checkbox"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// </summary>
         public NinePatch CheckboxHoveredTexture;
@@ -156,6 +160,15 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="Checkbox"/> element renders on top of its regular texture when it is <see cref="Checkbox.Checked"/>
         /// </summary>
         public TextureRegion CheckboxCheckmark;
+        /// <summary>
+        /// The color of the check mark that the <see cref="Checkbox"/> element uses when it is <see cref="Checkbox.Checked"/>
+        /// </summary>
+        public Color CheckboxCheckColor = Color.White;
+        /// <summary>
+        /// The color of the check mark that the <see cref="Checkbox"/> element uses when it is not <see cref="Checkbox.Checked"/>.
+        /// Set alpha to 0 to disable this behavior
+        /// </summary>
+        public Color CheckboxUncheckedColor = Color.Transparent;
         /// <summary>
         /// The width of the space between a <see cref="Checkbox"/> and its <see cref="Checkbox.Label"/>
         /// </summary>

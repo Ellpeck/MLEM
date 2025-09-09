@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{1BC4682B-AA14-4937-B5C7-707E20FE88FF}|Demos\\Demos.csproj|solutionrelative:demos\\uidemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|c:\\users\\oskar\\documents\\github\\mlem\\mlem.ui\\style\\uistyle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|solutionrelative:mlem.ui\\style\\uistyle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|c:\\users\\oskar\\documents\\github\\mlem\\mlem.ui\\elements\\checkbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|solutionrelative:mlem.ui\\elements\\checkbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|c:\\users\\oskar\\documents\\github\\mlem\\mlem.ui\\elements\\textfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|solutionrelative:mlem.ui\\elements\\textfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|c:\\users\\oskar\\documents\\github\\mlem\\mlem.ui\\style\\uistyle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F00629A-8B87-4264-8896-19983285E32F}|MLEM.Ui\\MLEM.Ui.csproj|solutionrelative:mlem.ui\\style\\uistyle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Checkbox.cs",
+              "DocumentMoniker": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\MLEM.Ui\\Elements\\Checkbox.cs",
+              "RelativeDocumentMoniker": "MLEM.Ui\\Elements\\Checkbox.cs",
+              "ToolTip": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\MLEM.Ui\\Elements\\Checkbox.cs",
+              "RelativeToolTip": "MLEM.Ui\\Elements\\Checkbox.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAAASwIgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T18:45:45.335Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -32,7 +45,7 @@
               "RelativeDocumentMoniker": "Demos\\UiDemo.cs",
               "ToolTip": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\Demos\\UiDemo.cs",
               "RelativeToolTip": "Demos\\UiDemo.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwDwAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwD0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-09T18:33:42.042Z",
               "EditorCaption": ""
@@ -40,25 +53,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "TextField.cs",
-              "DocumentMoniker": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\MLEM.Ui\\Elements\\TextField.cs",
-              "RelativeDocumentMoniker": "MLEM.Ui\\Elements\\TextField.cs",
-              "ToolTip": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\MLEM.Ui\\Elements\\TextField.cs",
-              "RelativeToolTip": "MLEM.Ui\\Elements\\TextField.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAwDgAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-09T18:26:43.922Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "UiStyle.cs",
               "DocumentMoniker": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\MLEM.Ui\\Style\\UiStyle.cs",
               "RelativeDocumentMoniker": "MLEM.Ui\\Style\\UiStyle.cs",
               "ToolTip": "C:\\Users\\Oskar\\Documents\\GitHub\\MLEM\\MLEM.Ui\\Style\\UiStyle.cs",
               "RelativeToolTip": "MLEM.Ui\\Style\\UiStyle.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAAwFYAAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAAAKoAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-09T18:26:04.593Z",
               "EditorCaption": ""

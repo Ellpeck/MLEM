@@ -18,6 +18,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> Texture;
         /// <summary>
+        /// The color that this checkbox uses for drawing.
+        /// </summary>
+        public StyleProp<Color> BackColor;
+        /// <summary>
         /// The texture that this checkbox uses when it is hovered.
         /// If this is null, the default <see cref="Texture"/> is used.
         /// </summary>
@@ -39,6 +43,16 @@ namespace MLEM.Ui.Elements {
         /// The texture that is rendered on top of this checkbox when it is <see cref="Checked"/>.
         /// </summary>
         public StyleProp<TextureRegion> Checkmark;
+        /// <summary>
+        /// The color of the check mark that is rendered on top of this checkbox when it is <see cref="Checked"/>.
+        /// </summary>
+        public StyleProp<Color> CheckColor;
+        /// <summary>
+        /// The color of the check mark that is rendered on top of this checkbox when it is not <see cref="Checked"/>.
+        /// Set alpha to 0 to disable this behavior.
+        /// </summary>
+        public StyleProp<Color> UncheckColor;
+
         /// <summary>
         /// The label <see cref="Paragraph"/> that displays next to this checkbox
         /// </summary>
@@ -117,7 +131,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             var tex = this.Texture;
-            var color = Color.White * alpha;
+            var color = this.BackColor.OrDefault(Color.White) * alpha;
             if (this.IsDisabled) {
                 tex = this.DisabledTexture.OrDefault(tex);
                 color = (Color) this.DisabledColor * alpha;
@@ -128,8 +142,12 @@ namespace MLEM.Ui.Elements {
 
             var boxDisplayArea = new RectangleF(this.DisplayArea.Location, new Vector2(this.DisplayArea.Height));
             batch.Draw(tex, boxDisplayArea, color, this.Scale);
+            var uncheckedColor = this.UncheckColor.OrDefault(Color.Transparent);
             if (this.Checked)
-                batch.Draw(this.Checkmark, boxDisplayArea, Color.White * alpha);
+                batch.Draw(this.Checkmark, boxDisplayArea, this.CheckColor.OrDefault(Color.White) * alpha);
+            else if(uncheckedColor.A != 0) {
+                batch.Draw(this.Checkmark, boxDisplayArea, uncheckedColor * alpha);
+            }
             base.Draw(time, batch, alpha, context);
         }
 
@@ -137,11 +155,14 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture = this.Texture.OrStyle(style.CheckboxTexture);
+            this.BackColor = this.BackColor.OrStyle(style.CheckboxColor);
             this.HoveredTexture = this.HoveredTexture.OrStyle(style.CheckboxHoveredTexture);
             this.HoveredColor = this.HoveredColor.OrStyle(style.CheckboxHoveredColor);
             this.DisabledTexture = this.DisabledTexture.OrStyle(style.CheckboxDisabledTexture);
             this.DisabledColor = this.DisabledColor.OrStyle(style.CheckboxDisabledColor);
             this.Checkmark = this.Checkmark.OrStyle(style.CheckboxCheckmark);
+            this.CheckColor = this.CheckColor.OrStyle(style.CheckboxCheckColor);
+            this.UncheckColor = this.UncheckColor.OrStyle(style.CheckboxUncheckedColor);
             this.TextOffsetX = this.TextOffsetX.OrStyle(style.CheckboxTextOffsetX);
         }
 
