@@ -168,6 +168,7 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture = this.Texture.OrStyle(style.TooltipBackground);
+            this.DrawColor = this.DrawColor.OrStyle(style.TooltipBackColor);
             this.MouseOffset = this.MouseOffset.OrStyle(style.TooltipOffset);
             this.AutoNavOffset = this.AutoNavOffset.OrStyle(style.TooltipAutoNavOffset);
             this.MouseAnchor = this.MouseAnchor.OrStyle(style.TooltipMouseAnchor);

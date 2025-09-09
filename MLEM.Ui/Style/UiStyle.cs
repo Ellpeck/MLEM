@@ -173,8 +173,6 @@ namespace MLEM.Ui.Style {
         /// The width of the space between a <see cref="Checkbox"/> and its <see cref="Checkbox.Label"/>
         /// </summary>
         public float CheckboxTextOffsetX = 2;
-
-        //RADIOS
         /// <summary>
         /// The texture that the <see cref="RadioButton"/> element uses
         /// </summary>
@@ -210,6 +208,10 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="Tooltip"/> uses for its background
         /// </summary>
         public NinePatch TooltipBackground;
+        /// <summary>
+        /// The color that the <see cref="Tooltip"/> uses for its background
+        /// </summary>
+        public Color TooltipBackColor = Color.White;
         /// <summary>
         /// The offset of the <see cref="Tooltip"/> element's top left corner from the mouse position
         /// </summary>
