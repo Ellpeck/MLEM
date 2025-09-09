@@ -94,7 +94,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The ui element that this tooltip should be snapped to when <see cref="Display"/> is called.
         /// If this value is unset, default snapping behavior is used: the elements in <see cref="AddToElement"/> are snapped to, based on the behavior outlined in the <see cref="SnapPosition"/> documentation.
-        /// Note that <see cref="MouseOffset"/> is still applied with this value set.
+        /// Note that <see cref="AutoNavOffset"/> is still applied with this value set.
         /// </summary>
         public virtual Element SnapElement { get; set; }
         /// <summary>
