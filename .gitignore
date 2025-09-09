@@ -5,3 +5,4 @@ packages
 *.user
 tools
 TestResults*
+.vs
