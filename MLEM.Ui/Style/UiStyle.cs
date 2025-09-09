@@ -23,6 +23,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public NinePatch SelectionIndicator;
         /// <summary>
+        /// The color of the selector that is rendered on top of the <see cref="UiControls.SelectedElement"/>
+        /// </summary>
+        public Color SelectionColor = Color.White;
+        /// <summary>
         /// A <see cref="UiAnimation"/> that is played when the mouse enters an element.
         /// </summary>
         public UiAnimation MouseEnterAnimation;
@@ -131,7 +135,6 @@ namespace MLEM.Ui.Style {
         /// The factor with which a <see cref="ScrollBar"/>'s smooth scrolling happens
         /// </summary>
         public float ScrollBarSmoothScrollFactor = 0.75F;
-
         /// <summary>
         /// The texture that the <see cref="Checkbox"/> element uses
         /// </summary>
@@ -202,8 +205,6 @@ namespace MLEM.Ui.Style {
         /// Set the alpha to 0 to disable this behavior
         /// </summary>
         public Color RadioUncheckedColor = Color.Transparent;
-
-        //TOOLTIPS
         /// <summary>
         /// The texture that the <see cref="Tooltip"/> uses for its background
         /// </summary>
@@ -248,8 +249,6 @@ namespace MLEM.Ui.Style {
         /// The <see cref="Element.ChildPadding"/> to apply to a <see cref="Tooltip"/> by default
         /// </summary>
         public Padding TooltipChildPadding = new Vector2(2);
-
-        //PROGRESS BARS
         /// <summary>
         /// The texture that the <see cref="ProgressBar"/> element uses for its background
         /// </summary>
@@ -270,8 +269,6 @@ namespace MLEM.Ui.Style {
         /// The color that the <see cref="ProgressBar"/> renders its progress texture with
         /// </summary>
         public Color ProgressBarProgressColor = Color.Red;
-
-        //TEXT
         /// <summary>
         /// The font that <see cref="Paragraph"/> and other elements should use for rendering.
         /// Note that, to specify a bold and italic font for <see cref="TextFormatter"/>, you should use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.

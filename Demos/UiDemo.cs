@@ -65,6 +65,7 @@ namespace Demos {
                 RadioCheckmark = style.CheckboxCheckmark,
                 RadioCheckColor = Color.Cyan,
                 RadioUncheckedColor = Color.DarkCyan,
+                SelectionColor = Color.Red,
             };
             // set the defined style as the current one
             this.UiSystem.Style = style;

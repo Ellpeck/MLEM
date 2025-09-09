@@ -211,7 +211,7 @@ namespace MLEM.Ui {
             this.OnSelectedElementChanged += e => this.ApplyToAll(t => t.OnSelectedElementChanged?.Invoke(t, e));
             this.OnSelectedElementDrawn += (element, time, batch, alpha, context) => {
                 if (this.Controls.IsAutoNavMode && element.SelectionIndicator.HasValue())
-                    batch.Draw(element.SelectionIndicator, element.DisplayArea, Color.White * alpha, element.Scale / 2);
+                    batch.Draw(element.SelectionIndicator, element.DisplayArea, element.SelectionColor.OrDefault(Color.White) * alpha, element.Scale / 2);
             };
             this.OnElementPressed += e => {
                 if (e.OnPressed != null)
