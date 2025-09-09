@@ -30,8 +30,6 @@ namespace MLEM.Ui.Style {
         /// A <see cref="UiAnimation"/> that is played when the mouse exists an element.
         /// </summary>
         public UiAnimation MouseExitAnimation;
-
-        //BUTTONS
         /// <summary>
         /// The texture that the <see cref="Button"/> element uses
         /// </summary>
@@ -57,8 +55,6 @@ namespace MLEM.Ui.Style {
         /// The color that the <see cref="Button"/> element uses when it <see cref="Button.IsDisabled"/>
         /// </summary>
         public Color ButtonDisabledColor = Color.Gray;
-
-        //PANELS
         /// <summary>
         /// The texture that the <see cref="Panel"/> element uses
         /// </summary>
@@ -83,12 +79,18 @@ namespace MLEM.Ui.Style {
         /// The amount of pixels of room there should be between a <see cref="Panel"/>'s scroll bar and the rest of its content
         /// </summary>
         public float PanelScrollBarOffset = 1;
-
-        //TEXT FIELDS
+        /// <summary>
+        /// The text color of text the <see cref="TextField"/> element uses
+        /// </summary>
+        public Color TextFieldTextColor = Color.White;
         /// <summary>
         /// The texture that the <see cref="TextField"/> element uses
         /// </summary>
         public NinePatch TextFieldTexture;
+        /// <summary>
+        /// The color that the <see cref="TextField"/> renders with when it is idle
+        /// </summary>
+        public Color TextFieldColor = Color.LightGray;
         /// <summary>
         /// The texture that the <see cref="TextField"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// </summary>

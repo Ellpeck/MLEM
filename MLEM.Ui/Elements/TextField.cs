@@ -56,6 +56,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> Texture;
         /// <summary>
+        /// This text field's background color
+        /// </summary>
+        public StyleProp<Color> BackColor;
+        /// <summary>
         /// This text field's texture while it is hovered
         /// </summary>
         public StyleProp<NinePatch> HoveredTexture;
@@ -239,7 +243,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             var tex = this.Texture;
-            var color = Color.White * alpha;
+            var color = (Color) this.BackColor * alpha;
             if (this.IsMouseOver) {
                 tex = this.HoveredTexture.OrDefault(tex);
                 color = (Color) this.HoveredColor * alpha;
@@ -278,7 +282,9 @@ namespace MLEM.Ui.Elements {
             base.InitStyle(style);
             this.TextScale = this.TextScale.OrStyle(style.TextScale);
             this.Font = this.Font.OrStyle(style.Font);
+            this.TextColor = this.TextColor.OrStyle(style.TextFieldTextColor);
             this.Texture = this.Texture.OrStyle(style.TextFieldTexture);
+            this.BackColor = this.BackColor.OrStyle(style.TextFieldColor);
             this.HoveredTexture = this.HoveredTexture.OrStyle(style.TextFieldHoveredTexture);
             this.HoveredColor = this.HoveredColor.OrStyle(style.TextFieldHoveredColor);
             this.TextOffsetX = this.TextOffsetX.OrStyle(style.TextFieldTextOffsetX);
