@@ -30,6 +30,8 @@ namespace MLEM.Ui.Style {
         /// A <see cref="UiAnimation"/> that is played when the mouse exists an element.
         /// </summary>
         public UiAnimation MouseExitAnimation;
+
+        //BUTTONS
         /// <summary>
         /// The texture that the <see cref="Button"/> element uses
         /// </summary>
@@ -55,6 +57,8 @@ namespace MLEM.Ui.Style {
         /// The color that the <see cref="Button"/> element uses when it <see cref="Button.IsDisabled"/>
         /// </summary>
         public Color ButtonDisabledColor = Color.Gray;
+
+        //PANELS
         /// <summary>
         /// The texture that the <see cref="Panel"/> element uses
         /// </summary>
@@ -79,6 +83,8 @@ namespace MLEM.Ui.Style {
         /// The amount of pixels of room there should be between a <see cref="Panel"/>'s scroll bar and the rest of its content
         /// </summary>
         public float PanelScrollBarOffset = 1;
+
+        //TEXT FIELDS
         /// <summary>
         /// The texture that the <see cref="TextField"/> element uses
         /// </summary>
@@ -99,6 +105,8 @@ namespace MLEM.Ui.Style {
         /// The width that a <see cref="TextField"/>'s caret should render with
         /// </summary>
         public float TextFieldCaretWidth = 0.5F;
+
+        //SCROLL BARS
         /// <summary>
         /// The background texture that the <see cref="ScrollBar"/> element uses
         /// </summary>
@@ -115,6 +123,8 @@ namespace MLEM.Ui.Style {
         /// The factor with which a <see cref="ScrollBar"/>'s smooth scrolling happens
         /// </summary>
         public float ScrollBarSmoothScrollFactor = 0.75F;
+
+        //CHECKBOXES
         /// <summary>
         /// The texture that the <see cref="Checkbox"/> element uses
         /// </summary>
@@ -143,6 +153,8 @@ namespace MLEM.Ui.Style {
         /// The width of the space between a <see cref="Checkbox"/> and its <see cref="Checkbox.Label"/>
         /// </summary>
         public float CheckboxTextOffsetX = 2;
+
+        //RADIOS
         /// <summary>
         /// The texture that the <see cref="RadioButton"/> element uses
         /// </summary>
@@ -159,6 +171,8 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="RadioButton"/> renders on top of its regular texture when it is <see cref="Checkbox.Checked"/>
         /// </summary>
         public TextureRegion RadioCheckmark;
+
+        //TOOLTIPS
         /// <summary>
         /// The texture that the <see cref="Tooltip"/> uses for its background
         /// </summary>
@@ -199,6 +213,8 @@ namespace MLEM.Ui.Style {
         /// The <see cref="Element.ChildPadding"/> to apply to a <see cref="Tooltip"/> by default
         /// </summary>
         public Padding TooltipChildPadding = new Vector2(2);
+
+        //PROGRESS BARS
         /// <summary>
         /// The texture that the <see cref="ProgressBar"/> element uses for its background
         /// </summary>
@@ -219,6 +235,8 @@ namespace MLEM.Ui.Style {
         /// The color that the <see cref="ProgressBar"/> renders its progress texture with
         /// </summary>
         public Color ProgressBarProgressColor = Color.Red;
+
+        //TEXT
         /// <summary>
         /// The font that <see cref="Paragraph"/> and other elements should use for rendering.
         /// Note that, to specify a bold and italic font for <see cref="TextFormatter"/>, you should use <see cref="GenericFont.Bold"/> and <see cref="GenericFont.Italic"/>.
