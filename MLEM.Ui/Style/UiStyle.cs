@@ -107,16 +107,22 @@ namespace MLEM.Ui.Style {
         /// The width that a <see cref="TextField"/>'s caret should render with
         /// </summary>
         public float TextFieldCaretWidth = 0.5F;
-
-        //SCROLL BARS
         /// <summary>
         /// The background texture that the <see cref="ScrollBar"/> element uses
         /// </summary>
         public NinePatch ScrollBarBackground;
         /// <summary>
+        /// The background color that the <see cref="ScrollBar"/> element uses
+        /// </summary>
+        public Color ScrollBarBackColor = Color.White;
+        /// <summary>
         /// The texture that the scroll indicator of the <see cref="ScrollBar"/> element uses
         /// </summary>
         public NinePatch ScrollBarScrollerTexture;
+        /// <summary>
+        /// The color that the scroll indicator of the <see cref="ScrollBar"/> element uses
+        /// </summary>
+        public Color ScrollBarScrollerColor = Color.White;
         /// <summary>
         /// Whether or not a <see cref="ScrollBar"/> should use smooth scrolling
         /// </summary>
@@ -126,7 +132,6 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public float ScrollBarSmoothScrollFactor = 0.75F;
 
-        //CHECKBOXES
         /// <summary>
         /// The texture that the <see cref="Checkbox"/> element uses
         /// </summary>

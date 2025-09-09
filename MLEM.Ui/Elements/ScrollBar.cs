@@ -27,9 +27,17 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> Background;
         /// <summary>
+        /// The background color for this scroll bar
+        /// </summary>
+        public StyleProp<Color> BackColor;
+        /// <summary>
         /// The texture of this scroll bar's scroller indicator
         /// </summary>
         public StyleProp<NinePatch> ScrollerTexture;
+        /// <summary>
+        /// The color of this scroll bar's scroller indicator
+        /// </summary>
+        public StyleProp<Color> ScrollerColor;
         /// <summary>
         /// Whether smooth scrolling should be enabled for this scroll bar.
         /// Smooth scrolling causes the <see cref="CurrentValue"/> to change gradually rather than instantly when scrolling.
@@ -231,10 +239,10 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-            batch.Draw(this.Background, this.DisplayArea, Color.White * alpha, this.Scale);
+            batch.Draw(this.Background, this.DisplayArea, this.BackColor.OrDefault(Color.White) * alpha, this.Scale);
             if (this.MaxValue > 0) {
                 var scrollerRect = new RectangleF(this.ScrollerPosition, this.ScrollerSize * this.Scale);
-                batch.Draw(this.ScrollerTexture, scrollerRect, Color.White * alpha, this.Scale);
+                batch.Draw(this.ScrollerTexture, scrollerRect, this.ScrollerColor.OrDefault(Color.White) * alpha, this.Scale);
             }
             base.Draw(time, batch, alpha, context);
         }
@@ -243,7 +251,9 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Background = this.Background.OrStyle(style.ScrollBarBackground);
+            this.BackColor = this.BackColor.OrStyle(style.ScrollBarBackColor);
             this.ScrollerTexture = this.ScrollerTexture.OrStyle(style.ScrollBarScrollerTexture);
+            this.ScrollerColor = this.ScrollerColor.OrStyle(style.ScrollBarScrollerColor);
             this.SmoothScrolling = this.SmoothScrolling.OrStyle(style.ScrollBarSmoothScrolling);
             this.SmoothScrollFactor = this.SmoothScrollFactor.OrStyle(style.ScrollBarSmoothScrollFactor);
         }
