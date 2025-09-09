@@ -69,6 +69,7 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
       - name: Deploy docs
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
         # this is a beautiful way to deploy a website and i will not take any criticism
         run: |
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb
