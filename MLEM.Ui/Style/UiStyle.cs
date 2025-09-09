@@ -180,6 +180,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public NinePatch RadioTexture;
         /// <summary>
+        /// The color that the <see cref="RadioButton"/> element uses
+        /// </summary>
+        public Color RadioColor = Color.White;
+        /// <summary>
         /// The texture that the <see cref="RadioButton"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// </summary>
         public NinePatch RadioHoveredTexture;
@@ -191,6 +195,15 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="RadioButton"/> renders on top of its regular texture when it is <see cref="Checkbox.Checked"/>
         /// </summary>
         public TextureRegion RadioCheckmark;
+        /// <summary>
+        /// The color of the check mark that the <see cref="RadioButton"/> uses when it is <see cref="Checkbox.Checked"/>
+        /// </summary>
+        public Color RadioCheckColor = Color.White;
+        /// <summary>
+        /// The color of the check mark that the <see cref="RadioButton"/> uses when it is not <see cref="Checkbox.Checked"/>
+        /// Set the alpha to 0 to disable this behavior
+        /// </summary>
+        public Color RadioUncheckedColor = Color.Transparent;
 
         //TOOLTIPS
         /// <summary>
