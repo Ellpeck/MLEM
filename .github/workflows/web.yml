@@ -81,6 +81,7 @@ jobs:
           TUNNEL_SERVICE_TOKEN_ID: ${{ secrets.TUNNEL_SERVICE_TOKEN_ID }}
           TUNNEL_SERVICE_TOKEN_SECRET: ${{ secrets.TUNNEL_SERVICE_TOKEN_SECRET }}
       - name: Purge Cloudflare cache
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
         uses: NathanVaughn/actions-cloudflare-purge@v3.1.0
         with:
           cf_zone: ${{ secrets.CLOUDFLARE_ZONE }}
