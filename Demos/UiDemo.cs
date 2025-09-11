@@ -58,14 +58,6 @@ namespace Demos {
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,
                 Font = style.Font,
-                TextFieldTextColor = Color.Yellow,
-                CheckboxCheckmark = style.CheckboxCheckmark,
-                CheckboxCheckColor = Color.Yellow,
-                CheckboxUncheckedColor = Color.DarkGray,
-                RadioCheckmark = style.CheckboxCheckmark,
-                RadioCheckColor = Color.Cyan,
-                RadioUncheckedColor = Color.DarkCyan,
-                SelectionColor = Color.Red,
             };
             // set the defined style as the current one
             this.UiSystem.Style = style;
