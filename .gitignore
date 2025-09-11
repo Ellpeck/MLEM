@@ -5,10 +5,4 @@ packages
 *.user
 tools
 TestResults*
-.vs/**
-# User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+.vs

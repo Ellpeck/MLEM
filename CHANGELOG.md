@@ -31,6 +31,7 @@ Additions
 - Added the ability for tooltips to snap to a specified selection-independent element
 - Added Image.UseImagePivot to allow disabling texture region pivot being taken into account
 - Added UiSystem.EnqueueAction to do work synchronously next time the ui system updates
+- Added various additional preset UiStyle configuration options
 
 Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
