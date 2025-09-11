@@ -349,6 +349,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public StyleProp<NinePatch> SelectionIndicator;
         /// <summary>
+        /// A style property that contains the color of the selection indicator that is displayed on this element if it is the <see cref="RootElement.SelectedElement"/>
+        /// </summary>
+        public StyleProp<Color> SelectionColor;
+        /// <summary>
         /// A style property that contains the sound effect that is played when this element's <see cref="OnPressed"/> is called
         /// </summary>
         public StyleProp<SoundEffectInfo> ActionSound;

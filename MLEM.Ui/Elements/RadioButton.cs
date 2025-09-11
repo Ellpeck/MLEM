@@ -40,9 +40,12 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture = this.Texture.OrStyle(style.RadioTexture);
+            this.BackColor = this.BackColor.OrStyle(style.RadioColor);
             this.HoveredTexture = this.HoveredTexture.OrStyle(style.RadioHoveredTexture);
             this.HoveredColor = this.HoveredColor.OrStyle(style.RadioHoveredColor);
             this.Checkmark = this.Checkmark.OrStyle(style.RadioCheckmark);
+            this.CheckColor = this.CheckColor.OrStyle(style.RadioCheckColor);
+            this.UncheckColor = this.UncheckColor.OrStyle(style.RadioUncheckedColor);
         }
 
     }

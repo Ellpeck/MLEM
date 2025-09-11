@@ -57,7 +57,7 @@ namespace Demos {
             };
             var untexturedStyle = new UntexturedStyle(this.SpriteBatch) {
                 TextScale = style.TextScale,
-                Font = style.Font
+                Font = style.Font,
             };
             // set the defined style as the current one
             this.UiSystem.Style = style;

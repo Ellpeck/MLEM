@@ -23,6 +23,10 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public NinePatch SelectionIndicator;
         /// <summary>
+        /// The color of the selector that is rendered on top of the <see cref="UiControls.SelectedElement"/>
+        /// </summary>
+        public Color SelectionColor = Color.White;
+        /// <summary>
         /// A <see cref="UiAnimation"/> that is played when the mouse enters an element.
         /// </summary>
         public UiAnimation MouseEnterAnimation;
@@ -34,6 +38,10 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="Button"/> element uses
         /// </summary>
         public NinePatch ButtonTexture;
+        /// <summary>
+        /// The color that the <see cref="Button"/> element renders
+        /// </summary>
+        public Color ButtonColor = Color.White;
         /// <summary>
         /// The texture that the <see cref="Button"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// Note that, if you just want to change the button's color when hovered, use <see cref="ButtonHoveredColor"/>.
@@ -76,9 +84,17 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public float PanelScrollBarOffset = 1;
         /// <summary>
+        /// The text color of text the <see cref="TextField"/> element uses
+        /// </summary>
+        public Color TextFieldTextColor = Color.White;
+        /// <summary>
         /// The texture that the <see cref="TextField"/> element uses
         /// </summary>
         public NinePatch TextFieldTexture;
+        /// <summary>
+        /// The color that the <see cref="TextField"/> renders with when it is idle
+        /// </summary>
+        public Color TextFieldColor = Color.LightGray;
         /// <summary>
         /// The texture that the <see cref="TextField"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// </summary>
@@ -100,9 +116,17 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public NinePatch ScrollBarBackground;
         /// <summary>
+        /// The background color that the <see cref="ScrollBar"/> element uses
+        /// </summary>
+        public Color ScrollBarBackColor = Color.White;
+        /// <summary>
         /// The texture that the scroll indicator of the <see cref="ScrollBar"/> element uses
         /// </summary>
         public NinePatch ScrollBarScrollerTexture;
+        /// <summary>
+        /// The color that the scroll indicator of the <see cref="ScrollBar"/> element uses
+        /// </summary>
+        public Color ScrollBarScrollerColor = Color.White;
         /// <summary>
         /// Whether or not a <see cref="ScrollBar"/> should use smooth scrolling
         /// </summary>
@@ -115,6 +139,10 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="Checkbox"/> element uses
         /// </summary>
         public NinePatch CheckboxTexture;
+        /// <summary>
+        /// The color that the <see cref="Checkbox"/> element uses
+        /// </summary>
+        public Color CheckboxColor = Color.White;
         /// <summary>
         /// The texture that the <see cref="Checkbox"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// </summary>
@@ -136,6 +164,15 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public TextureRegion CheckboxCheckmark;
         /// <summary>
+        /// The color of the check mark that the <see cref="Checkbox"/> element uses when it is <see cref="Checkbox.Checked"/>
+        /// </summary>
+        public Color CheckboxCheckColor = Color.White;
+        /// <summary>
+        /// The color of the check mark that the <see cref="Checkbox"/> element uses when it is not <see cref="Checkbox.Checked"/>.
+        /// Set alpha to 0 to disable this behavior
+        /// </summary>
+        public Color CheckboxUncheckedColor = Color.Transparent;
+        /// <summary>
         /// The width of the space between a <see cref="Checkbox"/> and its <see cref="Checkbox.Label"/>
         /// </summary>
         public float CheckboxTextOffsetX = 2;
@@ -143,6 +180,10 @@ namespace MLEM.Ui.Style {
         /// The texture that the <see cref="RadioButton"/> element uses
         /// </summary>
         public NinePatch RadioTexture;
+        /// <summary>
+        /// The color that the <see cref="RadioButton"/> element uses
+        /// </summary>
+        public Color RadioColor = Color.White;
         /// <summary>
         /// The texture that the <see cref="RadioButton"/> element uses when it is moused over (<see cref="Element.IsMouseOver"/>)
         /// </summary>
@@ -156,9 +197,22 @@ namespace MLEM.Ui.Style {
         /// </summary>
         public TextureRegion RadioCheckmark;
         /// <summary>
+        /// The color of the check mark that the <see cref="RadioButton"/> uses when it is <see cref="Checkbox.Checked"/>
+        /// </summary>
+        public Color RadioCheckColor = Color.White;
+        /// <summary>
+        /// The color of the check mark that the <see cref="RadioButton"/> uses when it is not <see cref="Checkbox.Checked"/>
+        /// Set the alpha to 0 to disable this behavior
+        /// </summary>
+        public Color RadioUncheckedColor = Color.Transparent;
+        /// <summary>
         /// The texture that the <see cref="Tooltip"/> uses for its background
         /// </summary>
         public NinePatch TooltipBackground;
+        /// <summary>
+        /// The color that the <see cref="Tooltip"/> uses for its background
+        /// </summary>
+        public Color TooltipBackColor = Color.White;
         /// <summary>
         /// The offset of the <see cref="Tooltip"/> element's top left corner from the mouse position
         /// </summary>
@@ -286,9 +340,11 @@ namespace MLEM.Ui.Style {
         /// <param name="original">The original style settings, to copy into the new instance.</param>
         public UiStyle(UiStyle original) {
             this.SelectionIndicator = original.SelectionIndicator;
+            this.SelectionColor = original.SelectionColor;
             this.MouseEnterAnimation = original.MouseEnterAnimation;
             this.MouseExitAnimation = original.MouseExitAnimation;
             this.ButtonTexture = original.ButtonTexture;
+            this.ButtonColor = original.ButtonColor;
             this.ButtonHoveredTexture = original.ButtonHoveredTexture;
             this.ButtonHoveredColor = original.ButtonHoveredColor;
             this.ButtonDisabledTexture = original.ButtonDisabledTexture;
@@ -300,26 +356,36 @@ namespace MLEM.Ui.Style {
             this.PanelScrollerSize = original.PanelScrollerSize;
             this.PanelScrollBarOffset = original.PanelScrollBarOffset;
             this.TextFieldTexture = original.TextFieldTexture;
+            this.TextFieldColor = original.TextFieldColor;
             this.TextFieldHoveredTexture = original.TextFieldHoveredTexture;
             this.TextFieldHoveredColor = original.TextFieldHoveredColor;
             this.TextFieldTextOffsetX = original.TextFieldTextOffsetX;
             this.TextFieldCaretWidth = original.TextFieldCaretWidth;
             this.ScrollBarBackground = original.ScrollBarBackground;
+            this.ScrollBarBackColor = original.ScrollBarBackColor;
             this.ScrollBarScrollerTexture = original.ScrollBarScrollerTexture;
+            this.ScrollBarScrollerColor = original.ScrollBarScrollerColor;
             this.ScrollBarSmoothScrolling = original.ScrollBarSmoothScrolling;
             this.ScrollBarSmoothScrollFactor = original.ScrollBarSmoothScrollFactor;
             this.CheckboxTexture = original.CheckboxTexture;
+            this.CheckboxColor = original.CheckboxColor;
             this.CheckboxHoveredTexture = original.CheckboxHoveredTexture;
             this.CheckboxHoveredColor = original.CheckboxHoveredColor;
             this.CheckboxDisabledTexture = original.CheckboxDisabledTexture;
             this.CheckboxDisabledColor = original.CheckboxDisabledColor;
             this.CheckboxCheckmark = original.CheckboxCheckmark;
+            this.CheckboxCheckColor = original.CheckboxCheckColor;
+            this.CheckboxUncheckedColor = original.CheckboxUncheckedColor;
             this.CheckboxTextOffsetX = original.CheckboxTextOffsetX;
             this.RadioTexture = original.RadioTexture;
+            this.RadioColor = original.RadioColor;
             this.RadioHoveredTexture = original.RadioHoveredTexture;
             this.RadioHoveredColor = original.RadioHoveredColor;
             this.RadioCheckmark = original.RadioCheckmark;
+            this.RadioCheckColor = original.RadioCheckColor;
+            this.RadioUncheckedColor = original.RadioUncheckedColor;
             this.TooltipBackground = original.TooltipBackground;
+            this.TooltipBackColor = original.TooltipBackColor;
             this.TooltipOffset = original.TooltipOffset;
             this.TooltipAutoNavOffset = original.TooltipAutoNavOffset;
             this.TooltipAutoNavAnchor = original.TooltipAutoNavAnchor;

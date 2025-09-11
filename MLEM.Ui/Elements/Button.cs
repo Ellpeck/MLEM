@@ -160,6 +160,7 @@ namespace MLEM.Ui.Elements {
         protected override void InitStyle(UiStyle style) {
             base.InitStyle(style);
             this.Texture = this.Texture.OrStyle(style.ButtonTexture);
+            this.NormalColor = this.NormalColor.OrStyle(style.ButtonColor);
             this.HoveredTexture = this.HoveredTexture.OrStyle(style.ButtonHoveredTexture);
             this.HoveredColor = this.HoveredColor.OrStyle(style.ButtonHoveredColor);
             this.DisabledTexture = this.DisabledTexture.OrStyle(style.ButtonDisabledTexture);
