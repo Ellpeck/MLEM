@@ -850,7 +850,8 @@ namespace MLEM.Ui.Elements {
             }
 
             // update all sorted children, not just relevant ones, because they might become relevant or irrelevant through updates
-            foreach (var child in this.SortedChildren) {
+            for (var i = 0; i < this.SortedChildren.Count; i++) {
+                var child = this.SortedChildren[i];
                 if (child.System != null)
                     child.Update(time);
             }
@@ -905,7 +906,9 @@ namespace MLEM.Ui.Elements {
             if (this.IsSelected)
                 this.System.InvokeOnSelectedElementDrawn(this, time, batch, alpha, context);
 
-            foreach (var child in this.GetRelevantChildren()) {
+            var relevant = this.GetRelevantChildren();
+            for (var i = 0; i < relevant.Count; i++) {
+                var child = relevant[i];
                 if (!child.IsHidden)
                     child.DrawTransformed(time, batch, alpha * child.DrawAlpha, context);
             }
