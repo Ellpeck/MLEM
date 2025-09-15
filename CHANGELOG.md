@@ -9,6 +9,7 @@ Improvements
 - Improved TextureExtensions.PremultipliedCopy memory performance
 - Improved the naming of SpriteBatchExtensions texture generation methods
 - Improved AStar memory performance by avoiding excessive enumerator allocations
+- Allow changing the selection and color functions for an existing LinkCode
 
 Fixes
 - Fixed formatting codes at the start of strings not being added to the AllCodes collection
@@ -37,6 +38,7 @@ Improvements
 - Explicitly return the element type from Dropdown.AddElement overloads
 - Use max and min MaxRecursionDepth rather than sum and difference when combining UiMetrics
 - Avoid unnecessary enumerator allocations when updating and drawing elements
+- Allow setting a custom link color per paragraph
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin

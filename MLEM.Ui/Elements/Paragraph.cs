@@ -55,6 +55,17 @@ namespace MLEM.Ui.Elements {
             }
         }
         /// <summary>
+        /// The color that this paragraph's <see cref="Paragraph.Link"/> codes should have.
+        /// If this style property does not return a non-<see langword="null"/> value, the link's text color is the same as the text before it.
+        /// </summary>
+        public StyleProp<Color?> LinkColor {
+            get => this.linkColor;
+            set {
+                this.linkColor = value;
+                this.SetTextDirty();
+            }
+        }
+        /// <summary>
         /// A multiplier that will be applied to <see cref="TextScale"/>.
         /// To change the text scale itself, use <see cref="TextScale"/>.
         /// </summary>
@@ -158,6 +169,7 @@ namespace MLEM.Ui.Elements {
         private StyleProp<TextAlignment> alignment;
         private StyleProp<GenericFont> regularFont;
         private StyleProp<float> textScale;
+        private StyleProp<Color?> linkColor;
         private TokenizedString tokenizedText;
         private float? lastAlignSplitWidth;
         private float? lastAlignSplitScale;
@@ -257,6 +269,7 @@ namespace MLEM.Ui.Elements {
             this.TextScale = this.TextScale.OrStyle(style.TextScale);
             this.TextColor = this.TextColor.OrStyle(style.TextColor);
             this.Alignment = this.Alignment.OrStyle(style.TextAlignment);
+            this.LinkColor = this.LinkColor.OrStyle(style.LinkColor);
         }
 
         private void SetTextDirty() {
@@ -297,8 +310,12 @@ namespace MLEM.Ui.Elements {
 
             // add links to the paragraph
             this.RemoveChildren(c => c is Link);
-            foreach (var link in this.tokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode)))
+            Func<Color, Color?> linkColorFunc = _ => this.LinkColor;
+            foreach (var link in this.tokenizedText.Tokens.Where(t => t.AppliedCodes.Any(c => c is LinkCode))) {
+                foreach (var code in link.AppliedCodes.OfType<LinkCode>())
+                    code.Color = linkColorFunc;
                 this.AddChild(new Link(Anchor.TopLeft, link, this.TextScale * this.TextScaleMultiplier));
+            }
         }
 
         private void AlignAndSplitIfNecessary(Vector2 size) {

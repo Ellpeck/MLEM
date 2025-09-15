@@ -8,14 +8,22 @@ namespace MLEM.Formatting.Codes {
     /// <inheritdoc />
     public class LinkCode : UnderlineCode {
 
-        private readonly Func<Token, bool> isSelected;
-        private readonly Func<Color, Color?> color;
+        /// <summary>
+        /// A function that returns whether the link is currently considered selected, in which case it will draw with an underscore by default.
+        /// This function is queried in <see cref="IsSelected"/>.
+        /// </summary>
+        public Func<Token, bool> IsSelectedFunc;
+        /// <summary>
+        /// A function that returns the color to use when rendering this link code.
+        /// The passed <see cref="Color"/> parameter is the color that the text currently has.
+        /// </summary>
+        public Func<Color, Color?> Color;
 
         /// <inheritdoc />
         public LinkCode(Match match, Regex regex, float thickness, float yOffset, Func<Token, bool> isSelected, Func<Color, Color?> color) :
             base(match, regex, thickness, yOffset) {
-            this.isSelected = isSelected;
-            this.color = color;
+            this.IsSelectedFunc = isSelected;
+            this.Color = color;
         }
 
         /// <inheritdoc />
@@ -28,7 +36,7 @@ namespace MLEM.Formatting.Codes {
         /// <returns>True if this code is currently selected</returns>
         public virtual bool IsSelected() {
             foreach (var token in this.Tokens) {
-                if (this.isSelected(token))
+                if (this.IsSelectedFunc(token))
                     return true;
             }
             return false;
@@ -36,7 +44,7 @@ namespace MLEM.Formatting.Codes {
 
         /// <inheritdoc />
         public override Color? GetColor(Color defaultPick) {
-            return this.color.Invoke(defaultPick);
+            return this.Color.Invoke(defaultPick);
         }
 
         /// <inheritdoc />
