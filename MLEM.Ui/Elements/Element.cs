@@ -1043,7 +1043,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="position">The position to transform</param>
         /// <returns>The transformed position</returns>
-        protected Vector2 TransformInverse(Vector2 position) {
+        public Vector2 TransformInverse(Vector2 position) {
             return this.Transform != Matrix.Identity ? Vector2.Transform(position, Matrix.Invert(this.Transform)) : position;
         }
 
@@ -1053,7 +1053,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="position">The position to transform</param>
         /// <returns>The transformed position</returns>
-        protected Vector2 TransformInverseAll(Vector2 position) {
+        public Vector2 TransformInverseAll(Vector2 position) {
             position = Vector2.Transform(position, this.Root.InvTransform);
             foreach (var parent in this.GetParentTree().Reverse())
                 position = parent.TransformInverse(position);
