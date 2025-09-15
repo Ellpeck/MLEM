@@ -507,7 +507,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The input handler that this element's <see cref="Controls"/> use
         /// </summary>
-        protected InputHandler Input => this.Controls.Input;
+        public InputHandler Input => this.Controls.Input;
         /// <summary>
         /// The <see cref="ChildPaddedArea"/> of this element's <see cref="Parent"/>, or the <see cref="UiSystem.Viewport"/> if this element has no parent.
         /// This value is the one that is passed to <see cref="CalcActualSize"/> during <see cref="ForceUpdateArea"/>.
