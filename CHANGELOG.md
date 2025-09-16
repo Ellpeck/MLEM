@@ -50,7 +50,6 @@ Fixes
 - Fixed images displaying the initial texture when the texture callback starts returning null
 - Fixed UiStyle copy constructor not copying all style properties
 - Fixed TextField EnterReceiver not allowing element addition or removal in OnPressed
-- Fixed paragraphs with text callbacks setting their area dirty excessively when first added
 
 Removals
 - Marked RootElement.OnAddedToUi as obsolete in favor of UiSystem.OnRootAdded
