@@ -1091,7 +1091,7 @@ namespace MLEM.Ui.Elements {
             if (recursion > this.System.Metrics.MaxRecursionDepth)
                 this.System.Metrics.MaxRecursionDepth = recursion;
 
-            if (recursion >= 64) {
+            if (recursion >= 256) {
                 var exceptionText = $"The area of {this} has recursively updated too often.";
                 if (relevantChild != null)
                     exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";
