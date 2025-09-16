@@ -40,6 +40,7 @@ Improvements
 - Avoid unnecessary enumerator allocations when updating and drawing elements
 - Allow setting a custom link color per paragraph
 - Made Element TransformInverse, TransformInverseAll and Input public
+- Track and set an upper limit for recursive area updates across elements
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin

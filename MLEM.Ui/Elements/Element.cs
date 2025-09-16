@@ -540,6 +540,7 @@ namespace MLEM.Ui.Elements {
         private bool treatSizeAsMinimum;
         private bool treatSizeAsMaximum;
         private bool preventParentSpill;
+        private int layoutRecursion;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.
@@ -675,7 +676,7 @@ namespace MLEM.Ui.Elements {
                 return;
             this.stopwatch.Restart();
 
-            UiLayouter.Layout(this, Element.Epsilon);
+            UiLayouter.Layout(this, ref this.layoutRecursion, Element.Epsilon);
 
             this.stopwatch.Stop();
             this.System.Metrics.ForceAreaUpdateTime += this.stopwatch.Elapsed;
@@ -1090,8 +1091,12 @@ namespace MLEM.Ui.Elements {
             if (recursion > this.System.Metrics.MaxRecursionDepth)
                 this.System.Metrics.MaxRecursionDepth = recursion;
 
-            if (recursion >= 64)
-                throw new ArithmeticException($"The area of {this} has recursively updated too often. Does its child {relevantChild} contain any conflicting auto-sizing settings?");
+            if (recursion >= 64) {
+                var exceptionText = $"The area of {this} has recursively updated too often.";
+                if (relevantChild != null)
+                    exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";
+                throw new ArithmeticException(exceptionText);
+            }
         }
 
         Vector2 ILayoutItem.CalcActualSize(RectangleF parentArea) {

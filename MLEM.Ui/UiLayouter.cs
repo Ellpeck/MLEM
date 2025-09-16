@@ -15,11 +15,20 @@ namespace MLEM.Ui {
         /// Lays out the given <paramref name="item"/> based on the information specified in its <see cref="ILayoutItem"/> interface.
         /// </summary>
         /// <param name="item">The item to lay out.</param>
+        /// <param name="layoutRecursionTracker">A reference to a field in the <paramref name="item"/> that is used by the layouter to track recursion counts across <see cref="Layout"/> calls.</param>
         /// <param name="epsilon">An epsilon value used in layout item size, position and resulting area calculations to mitigate floating point rounding inaccuracies.</param>
         /// <typeparam name="T"></typeparam>
-        public static void Layout<T>(T item, float epsilon = 0) where T : class, ILayoutItem {
-            var recursion = 0;
+        public static void Layout<T>(T item, ref int layoutRecursionTracker, float epsilon = 0) where T : class, ILayoutItem {
+            var initiatedLayouting = layoutRecursionTracker <= 0;
+            if (!initiatedLayouting)
+                item.OnLayoutRecursion(layoutRecursionTracker, null);
+            layoutRecursionTracker++;
+
+            var internalRecursion = 0;
             UpdateDisplayArea();
+
+            if (initiatedLayouting)
+                layoutRecursionTracker = 0;
 
             void UpdateDisplayArea(Vector2? overrideSize = null) {
                 var parentArea = item.ParentArea;
@@ -162,8 +171,8 @@ namespace MLEM.Ui {
 
                     // we want to leave some leeway to prevent float rounding causing an infinite loop
                     if (!autoSize.Equals(item.UnscrolledArea.Size, epsilon)) {
-                        recursion++;
-                        item.OnLayoutRecursion(recursion, foundChild);
+                        internalRecursion++;
+                        item.OnLayoutRecursion(internalRecursion, foundChild);
                         UpdateDisplayArea(autoSize);
                     }
                 }
@@ -394,7 +403,7 @@ namespace MLEM.Ui {
         /// A method called by <see cref="UiLayouter.Layout{T}"/> when a layout item's size is being recalculated based on its children.
         /// </summary>
         /// <param name="recursion">The current recursion depth.</param>
-        /// <param name="relevantChild">The child that triggered the layout recursion.</param>
+        /// <param name="relevantChild">The child that triggered the layout recursion. May be <see langword="null"/> in case the source of the layout recursion is unknown.</param>
         void OnLayoutRecursion(int recursion, ILayoutItem relevantChild);
 
     }
