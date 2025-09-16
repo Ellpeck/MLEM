@@ -57,7 +57,6 @@ namespace MLEM.Ui.Elements {
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
-        private readonly float[] scrollBarMaxHistory;
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -66,7 +65,8 @@ namespace MLEM.Ui.Elements {
         private StyleProp<float> scrollBarOffset;
         private float lastScrollOffset;
         private bool childrenDirtyForScroll;
-        private bool scrollBarMaxHistoryDirty;
+        private int scrollBarRecursionCount;
+        private float scrollBarRecursionMaxHeight;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -85,10 +85,8 @@ namespace MLEM.Ui.Elements {
             this.CanBeSelected = false;
 
             if (scrollOverflow) {
-                this.scrollBarMaxHistory = new float[3];
-                this.scrollBarMaxHistoryDirty = true;
-                this.ResetScrollBarMaxHistory();
-
+                this.scrollBarRecursionCount = 0;
+                this.scrollBarRecursionMaxHeight = 0;
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
@@ -153,7 +151,8 @@ namespace MLEM.Ui.Elements {
                 throw new NotSupportedException("A panel that scrolls overflow cannot have its scroll bar removed from its list of children");
             base.RemoveChild(element);
 
-            this.ResetScrollBarMaxHistory();
+            this.scrollBarRecursionCount = 0;
+            this.scrollBarRecursionMaxHeight = 0;
 
             // when removing children, our scroll bar might have to be hidden
             // if we don't do this before adding children again, they might incorrectly assume that the scroll bar will still be visible and adjust their size accordingly
@@ -166,7 +165,8 @@ namespace MLEM.Ui.Elements {
             if (this.childrenDirtyForScroll && this.System != null)
                 this.ScrollSetup();
 
-            this.ResetScrollBarMaxHistory();
+            this.scrollBarRecursionCount = 0;
+            this.scrollBarRecursionMaxHeight = 0;
 
             return base.AddChild(element, index);
         }
@@ -180,7 +180,9 @@ namespace MLEM.Ui.Elements {
         public override void Update(GameTime time) {
             // reset the scroll bar's max history when an update happens, at which point we know that any scroll bar recursion has "settled"
             // (this reset ensures that the max history is recursion-internal and old values aren't reused when elements get modified later)
-            this.ResetScrollBarMaxHistory();
+            this.scrollBarRecursionCount = 0;
+            this.scrollBarRecursionMaxHeight = 0;
+
             base.Update(time);
         }
 
@@ -340,13 +342,11 @@ namespace MLEM.Ui.Elements {
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
-            if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
-                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
+            if (this.scrollBarRecursionCount >= 4)
+                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarRecursionMaxHeight);
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
-                this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
-                this.scrollBarMaxHistory[2] = scrollBarMax;
-                this.scrollBarMaxHistoryDirty = true;
+                this.scrollBarRecursionCount++;
+                this.scrollBarRecursionMaxHeight = Math.Max(this.scrollBarRecursionMaxHeight, scrollBarMax);
 
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
@@ -429,14 +429,6 @@ namespace MLEM.Ui.Elements {
 
             this.lastScrollOffset = this.ScrollBar.CurrentValue;
             this.relevantChildrenDirty = true;
-        }
-
-        private void ResetScrollBarMaxHistory() {
-            if (this.scrollOverflow && this.scrollBarMaxHistoryDirty) {
-                for (var i = 0; i < this.scrollBarMaxHistory.Length; i++)
-                    this.scrollBarMaxHistory[i] = -1;
-                this.scrollBarMaxHistoryDirty = false;
-            }
         }
 
     }
