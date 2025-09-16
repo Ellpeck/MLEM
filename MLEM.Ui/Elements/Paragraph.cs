@@ -209,8 +209,11 @@ namespace MLEM.Ui.Elements {
         /// <param name="width">The paragraph's width. Note that its height is automatically calculated.</param>
         /// <param name="textCallback">The paragraph's text</param>
         /// <param name="autoAdjustWidth">Whether the paragraph's width should automatically be calculated based on the text within it.</param>
-        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false) : this(anchor, width, string.Empty, autoAdjustWidth) {
+        public Paragraph(Anchor anchor, float width, TextCallback textCallback, bool autoAdjustWidth = false) : base(anchor, new Vector2(width, 0)) {
             this.GetTextCallback = textCallback;
+            this.AutoAdjustWidth = autoAdjustWidth;
+            this.CanBeSelected = false;
+            this.CanBeMoused = false;
         }
 
         /// <summary>
@@ -280,7 +283,7 @@ namespace MLEM.Ui.Elements {
         }
 
         private void CheckTextChange() {
-            var newText = this.GetTextCallback?.Invoke(this) ?? this.explicitlySetText;
+            var newText = this.GetTextCallback?.Invoke(this) ?? this.explicitlySetText ?? string.Empty;
             if (this.displayedText == newText)
                 return;
             var emptyChanged = string.IsNullOrWhiteSpace(this.displayedText) != string.IsNullOrWhiteSpace(newText);
