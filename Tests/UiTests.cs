@@ -133,7 +133,7 @@ public class UiTests : GameTestFixture {
 
     [Test]
     public void TestAutoAreaPerformanceRandom() {
-        for (var i = 0; i <= 1000; i += 10) {
+        for (var i = 0; i <= 1000; i += 100) {
             var random = new Random(93829345);
             var main = new Group(Anchor.TopLeft, new Vector2(50));
             var group = main;

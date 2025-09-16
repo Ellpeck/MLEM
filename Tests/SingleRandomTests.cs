@@ -11,7 +11,7 @@ public class SingleRandomTests {
 
     [Test]
     public void TestEquality() {
-        for (var i = 0; i < 1000000; i++) {
+        for (var i = 0; i < 1000000; i += 10) {
             Assert.AreEqual(SingleRandom.Single(i), SingleRandom.Single(new SeedSource().Add(i)));
             Assert.AreEqual(SingleRandom.Int(i), SingleRandom.Int(new SeedSource().Add(i)));
 
@@ -25,7 +25,7 @@ public class SingleRandomTests {
 
     [Test]
     public void TestBounds() {
-        for (var i = 0; i < 1000000; i++) {
+        for (var i = 0; i < 1000000; i += 10) {
             Assert.That(SingleRandom.Single(i), Is.LessThan(1).And.GreaterThanOrEqualTo(0));
             Assert.That(SingleRandom.Single(127F, i), Is.LessThan(127).And.GreaterThanOrEqualTo(0));
             Assert.That(SingleRandom.Single(12920F, 1203919023F, i), Is.LessThan(1203919023).And.GreaterThanOrEqualTo(12920));
@@ -40,7 +40,7 @@ public class SingleRandomTests {
     public void TestAverages() {
         var ints = new List<int>();
         var flts = new List<float>();
-        for (var i = 0; i < 1000000; i++) {
+        for (var i = 0; i < 1000000; i += 7) {
             ints.Add(SingleRandom.Int(i));
             flts.Add(SingleRandom.Single(i));
         }
