@@ -342,7 +342,7 @@ namespace MLEM.Ui.Elements {
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
-            if (this.scrollBarRecursionCount >= 4)
+            if (this.scrollBarRecursionCount >= 16)
                 scrollBarMax = Math.Max(scrollBarMax, this.scrollBarRecursionMaxHeight);
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.scrollBarRecursionCount++;
