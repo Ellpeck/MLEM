@@ -135,6 +135,12 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
+        public override void ForceUpdateArea() {
+            this.CheckTextureChange();
+            base.ForceUpdateArea();
+        }
+
+        /// <inheritdoc />
         protected override Vector2 CalcActualSize(RectangleF parentArea) {
             var ret = base.CalcActualSize(parentArea);
             if (this.Texture != null) {
@@ -198,7 +204,7 @@ namespace MLEM.Ui.Elements {
                 return;
             var nullChanged = this.displayedTexture == null != (newTexture == null);
             this.displayedTexture = newTexture;
-            if (nullChanged || this.ScaleToImage || this.SetWidthBasedOnAspect || this.SetHeightBasedOnAspect)
+            if (!this.AreaDirty && (nullChanged || this.ScaleToImage || this.SetWidthBasedOnAspect || this.SetHeightBasedOnAspect))
                 this.SetAreaDirty();
         }
 
