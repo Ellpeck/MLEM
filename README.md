@@ -4,7 +4,7 @@
 
 MLEM is platform-agnostic and multi-targets .NET Standard 2.0, .NET 8.0 and .NET Framework 4.5.2, which makes it compatible with MonoGame, FNA and KNI on Desktop, mobile devices, consoles and web.
 
-# What next?
+# What Next?
 - Get it on [NuGet](https://www.nuget.org/packages?q=ellpeck+mlem)
 - Get prerelease builds on [BaGet](https://nuget.ellpeck.de/?q=mlem)
 - See the source code on [GitHub](https://github.com/Ellpeck/MLEM)

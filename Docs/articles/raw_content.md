@@ -4,12 +4,12 @@ Sometimes, there's a good reason for wanting to load game assets directly rather
 
 The **MLEM.Data** package contains a solution for this: `RawContentManager`.
 
-## What it does
+## What it Does
 A raw content manager works very similarly to a regular `ContentManager`: You can load different types of assets through the `Load<T>` method, and they will automatically be managed and disposed when the game closes.
 
 However, the `RawContentManager` loads assets in their usual file type, rather than `xnb`, meaning that they don't have to be compiled using the Content Pipeline first. 
 
-## How to use it
+## How to Use it
 To create a new raw content manager, simply call its constructor in your `LoadContent` method. Optionally, you can add it as a game component, which will automatically dispose it when the game closes.
 ```cs
 protected override void LoadContent() {
@@ -25,7 +25,7 @@ Then, you can simply load an asset in your `Content` directory like you would wi
 this.testTexture = this.rawContent.Load<Texture2D>("Textures/Test");
 ```
 
-## Adding more content types
+## Adding More Content Types
 By default, the raw content manager supports the following types, as long as their files are appended with one of the supported file extensions:
 - `Texture2D` (png, bmp, gif, jpg, tif, dds)
 - `SoundEffect` (ogg, wav, mp3)
@@ -58,7 +58,7 @@ namespace Test {
 ```
 As `RawContentManager` automatically collects all raw content readers in the loaded assemblies, you don't have to register your custom reader anywhere.
 
-## Environments without reflection or with trimming
+## Environments Without Reflection or With Trimming
 By default, the `RawContentManager` finds all types that extend `RawContentReader` in all loaded assemblies, so they don't have to be added manually. This won't work in environments like NativeAOT, where reflection isn't as readily available, or in assemblies that get trimmed.
 
 If you're in an environment with this restriction, you can manually collect all the content readers that you plan on using and call the constructor that accepts a list of content readers instead:

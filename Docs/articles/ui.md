@@ -4,7 +4,13 @@
 
 To see some of what MLEM.Ui can do, you can check out [the demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/UiDemo.cs) as well.
 
-## Setting it up
+## About Ui Systems
+
+There are several ways to create Ui in games, and a variety of libraries to do so. To get an overview of some of the considerations to keep in mind when creating Ui for your game, check out the MonoGame documentation's [User Interface Fundamentals](https://docs.monogame.net/articles/tutorials/building_2d_games/19_user_interface_fundamentals/index.html) article.
+
+Referring to the article's categories, MLEM.Ui features a tree-based **layout engine** whose layouts are focused on **anchoring**. You can achieve **docking** in various ways using MLEM.Ui, like [relative sizing](#about-sizing) and [squishing groups](xref:MLEM.Ui.Elements.SquishingGroup).
+
+## Setting it Up
 To get set up with MLEM.Ui, there are only a few things that need to be done in your Game class:
 ```cs
 public UiSystem UiSystem;
@@ -55,7 +61,7 @@ Initializing the platform in this way also allows for links in paragraphs to be 
 
 For more info on MLEM's platform-related code, you can also check out MlemPlatform's [documentation](xref:MLEM.Misc.MlemPlatform).
 
-## Setting the style
+## Setting the Style
 By default, MLEM.Ui's controls look pretty bland, since it doesn't ship with any fonts or textures for any of its controls. To change the style of your ui, simply expand your `new UntexturedStyle(this.SpriteBatch)` call to include fonts and textures of your choosing, for example:
 ```cs
 var style = new UntexturedStyle(this.SpriteBatch) {
@@ -69,7 +75,7 @@ Note that MLEM.Ui uses [generic fonts](font_extensions.md) for text rendering, m
 ### Scaling
 To change the scaling of your ui, you can use the `UiSystem`'s `Scale` property. Additionally, you can enable `AutoScaleWithScreen` to cause the entire ui to scale automatically when resizing the game window.
 
-## Adding elements
+## Adding Elements
 To add elements to your ui, you first have to add a **root element**. A root element can be any type of element, but to add it to the ui system, you have to give it a name:
 ```cs
 var panel = new Panel(Anchor.Center, size: new Vector2(100, 100), positionOffset: Vector2.Zero);
@@ -90,7 +96,7 @@ box.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 20), "Okay") {
 this.UiSystem.Add("InfoBox", box);
 ```
 
-### About sizing
+### About Sizing
 Note that, when setting the width and height of any element, there are some things to note:
 - Each element has a `SetWidthBasedOnChildren` and a `SetHeightBasedOnChildren` property, which allow them to change their size automatically based on their content
 - When specifying a width or height *lower than or equal to 1*, it is seen as a percentage based on the parent's size instead. For example, a paragraph with a width of `0.5F` inside a panel width a width of `200` will be `100` units wide.
