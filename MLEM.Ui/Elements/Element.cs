@@ -25,6 +25,11 @@ namespace MLEM.Ui.Elements {
         /// If ui elements used are extremely small or extremely large, this value can be reduced or increased.
         /// </summary>
         public static float Epsilon = 0.01F;
+        /// <summary>
+        /// This field holds a recursion limit used in element layouting to determine whether there is a potentially infinite recursive area update due to incompatible element sizing or positioning options.
+        /// Especially for debugging such issues, it may be useful to increase or lower this value.
+        /// </summary>
+        public static int RecursionLimit = 256;
 
         /// <summary>
         /// The ui system that this element is currently a part of
@@ -1091,7 +1096,7 @@ namespace MLEM.Ui.Elements {
             if (recursion > this.System.Metrics.MaxRecursionDepth)
                 this.System.Metrics.MaxRecursionDepth = recursion;
 
-            if (recursion >= 256) {
+            if (recursion >= Element.RecursionLimit) {
                 var exceptionText = $"The area of {this} has recursively updated too often.";
                 if (relevantChild != null)
                     exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";

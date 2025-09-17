@@ -88,6 +88,11 @@ namespace MLEM.Formatting {
         /// Note that this value only has an effect on the default formatting codes created through the <see cref="TextFormatter(bool, bool, bool, bool)"/> constructor.
         /// </summary>
         public bool OutlineDiagonals = true;
+        /// <summary>
+        /// The amount of times that macros can resolve into other macros, as evaluated by <see cref="ResolveMacros"/>.
+        /// Especially for debugging macro resolving issues, it may be useful to increase or lower this value.
+        /// </summary>
+        public int MacroRecursionLimit = 64;
 
         /// <summary>
         /// Creates a new text formatter with an optional set of default formatting codes.
@@ -213,7 +218,7 @@ namespace MLEM.Formatting {
                     });
                 }
                 rec++;
-                if (rec >= 64)
+                if (rec >= this.MacroRecursionLimit)
                     throw new ArithmeticException($"A string resolved macros recursively too many times. Does it contain any conflicting macros?\nOriginal: {s}\nCurrent: {ret}");
             } while (matched);
             return ret;

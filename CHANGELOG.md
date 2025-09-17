@@ -10,6 +10,7 @@ Improvements
 - Improved the naming of SpriteBatchExtensions texture generation methods
 - Improved AStar memory performance by avoiding excessive enumerator allocations
 - Allow changing the selection and color functions for an existing LinkCode
+- Allow configuring the recursive macro resolve limit
 
 Fixes
 - Fixed formatting codes at the start of strings not being added to the AllCodes collection
@@ -41,6 +42,7 @@ Improvements
 - Allow setting a custom link color per paragraph
 - Made Element TransformInverse, TransformInverseAll and Input public
 - Track and set an upper limit for recursive area updates across elements
+- Allow configuring the layout recursion limit
 
 Fixes
 - Fixed tooltips not being bounded correctly for viewports that don't start at the origin
