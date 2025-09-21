@@ -344,8 +344,9 @@ namespace MLEM.Ui.Elements {
         public StyleProp<UiStyle> Style {
             get => this.style;
             set {
+                var prev = this.style.Value;
                 this.style = value;
-                if (this.style.HasValue())
+                if (this.style.HasValue() && this.style.Value != prev)
                     this.InitStyle(this.style);
             }
         }

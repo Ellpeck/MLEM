@@ -254,6 +254,18 @@ public class UiTests : GameTestFixture {
         Assert.True(appeared, "Scroll bar never appeared");
     }
 
+    // removing a button whose paragraph has a custom style throws an exception
+    [Test]
+    public void TestIssue40() {
+        var style = new UntexturedStyle(this.Game.SpriteBatch) {Font = this.Game.UiSystem.Style.Font};
+        var secondStyle = new UiStyle(style) {Font = this.Game.UiSystem.Style.Font};
+        var button = new Button(Anchor.Center, new Vector2(0.5f, 0.5f), "Test text") {
+            Text = {Style = secondStyle}
+        };
+        this.AddAndUpdate(button, out _, out _);
+        this.Game.UiSystem.Remove("Test");
+    }
+
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.Game.UiSystem.GetRootElements())
             this.Game.UiSystem.Remove(root.Name);

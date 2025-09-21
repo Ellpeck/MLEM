@@ -53,6 +53,7 @@ Fixes
 - Fixed UiStyle copy constructor not copying all style properties
 - Fixed TextField EnterReceiver not allowing element addition or removal in OnPressed
 - Fixed paragraphs and images with text/image callbacks setting their area dirty excessively when first added
+- Fixed paragraphs with custom style causing an exception when removed from a ui
 
 Removals
 - Marked RootElement.OnAddedToUi as obsolete in favor of UiSystem.OnRootAdded
