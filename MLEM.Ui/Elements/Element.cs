@@ -59,7 +59,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The scale that this ui element renders with
         /// </summary>
-        public float Scale => this.Root.ActualScale;
+        public float Scale => this.Root?.ActualScale ?? 0;
         /// <summary>
         /// The <see cref="Anchor"/> that this element uses for positioning within its parent
         /// </summary>
