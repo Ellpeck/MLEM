@@ -59,7 +59,7 @@ namespace MLEM.Ui.Elements {
         /// <summary>
         /// The scale that this ui element renders with
         /// </summary>
-        public float Scale => this.Root.ActualScale;
+        public float Scale => this.Root?.ActualScale ?? throw new NullReferenceException($"Cannot query scale of element {this} that does not have a root element");
         /// <summary>
         /// The <see cref="Anchor"/> that this element uses for positioning within its parent
         /// </summary>
@@ -320,7 +320,7 @@ namespace MLEM.Ui.Elements {
         /// Returns whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/>.
         /// Note that, unlike <see cref="IsSelectedActive"/>, this property will be <see langword="true"/> even if this element's <see cref="Root"/> is not the <see cref="UiControls.ActiveRoot"/>.
         /// </summary>
-        public bool IsSelected => this.Root.SelectedElement == this;
+        public bool IsSelected => this.Root?.SelectedElement == this;
         /// <summary>
         /// Returns whether this element is its <see cref="Controls"/>'s <see cref="UiControls.SelectedElement"/>.
         /// Note that <see cref="IsSelected"/> can be used to query whether this element is its <see cref="Root"/>'s <see cref="RootElement.SelectedElement"/> instead.
@@ -1061,7 +1061,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="position">The position to transform</param>
         /// <returns>The transformed position</returns>
         public Vector2 TransformInverseAll(Vector2 position) {
-            position = Vector2.Transform(position, this.Root.InvTransform);
+            if (this.Root != null)
+                position = Vector2.Transform(position, this.Root.InvTransform);
             foreach (var parent in this.GetParentTree().Reverse())
                 position = parent.TransformInverse(position);
             return this.TransformInverse(position);
