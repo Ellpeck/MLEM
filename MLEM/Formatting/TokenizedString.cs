@@ -237,7 +237,7 @@ namespace MLEM.Formatting {
         }
 
         private float GetInnerOffsetX(GenericFont defaultFont, int tokenIndex, int lineIndex, TextAlignment alignment) {
-            if (alignment > TextAlignment.Left) {
+            if (alignment > TextAlignment.Left && this.Tokens.Length > tokenIndex) {
                 var token = this.Tokens[tokenIndex];
                 var tokenFont = token.GetFont(defaultFont);
                 var tokenWidth = lineIndex <= 0 ? token.GetSelfWidth(tokenFont) : 0;

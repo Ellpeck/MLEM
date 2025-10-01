@@ -156,4 +156,13 @@ public class FontTests : GameTestFixture {
         Assert.AreEqual(new Vector2(0, this.Font.LineHeight), this.Font.MeasureString(GenericFont.Zwsp.ToString()));
     }
 
+    // empty strings cause issues when tokenizing with alignment set
+    [Test]
+    public void TestIssue42([Values(TextAlignment.Left, TextAlignment.Center, TextAlignment.Right)] TextAlignment alignment) {
+        var result = this.Formatter.Tokenize(this.Font, "", alignment);
+        Assert.AreEqual(0, result.AllCodes.Length);
+        Assert.AreEqual("", result.RawString);
+        Assert.AreEqual("", result.String);
+    }
+
 }
