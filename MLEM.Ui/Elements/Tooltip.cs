@@ -226,10 +226,8 @@ namespace MLEM.Ui.Elements {
 
             var snapEl = this.SnapElement ?? this.autoNavSnapElement;
             if (snapEl != null) {
-                if (snapEl.Root == null) {
-                    this.Remove();
+                if (snapEl.Root == null)
                     return;
-                }
                 snap = this.GetSnapOffset(this.AutoNavAnchor, snapEl.DisplayArea, this.AutoNavOffset) / this.Scale;
             } else {
                 var mouseBounds = new RectangleF(this.SnapPosition ?? this.Input.ViewportMousePosition.ToVector2(), Vector2.Zero);
