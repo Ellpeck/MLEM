@@ -1,6 +1,10 @@
 # Changelog
 MLEM uses [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**. Each newly released version also has a corresponding [tag](https://github.com/Ellpeck/MLEM/tags).
 
+## 8.0.1 (In Development)
+
+No code changes
+
 ## 8.0.0
 
 ### MLEM
