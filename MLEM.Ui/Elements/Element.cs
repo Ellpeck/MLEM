@@ -439,6 +439,10 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public TextInputCallback OnTextInput;
         /// <summary>
+        /// Event that is called when this element's area is marked dirty using <see cref="Element.SetAreaDirty"/>.
+        /// </summary>
+        public GenericCallback OnAreaDirty;
+        /// <summary>
         /// Event that is called when this element's <see cref="DisplayArea"/> is changed.
         /// </summary>
         public GenericCallback OnAreaUpdated;
@@ -653,6 +657,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         public void SetAreaDirty() {
             this.AreaDirty = true;
+            this.System?.InvokeOnElementAreaDirty(this);
             this.Parent?.OnChildAreaDirty(this, false);
         }
 

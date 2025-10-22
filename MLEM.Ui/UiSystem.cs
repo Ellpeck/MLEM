@@ -141,6 +141,10 @@ namespace MLEM.Ui {
         /// </summary>
         public event Element.GenericCallback OnElementTouchExit;
         /// <summary>
+        /// Event that is invoked when an <see cref="Element"/>'s display area is marked dirty
+        /// </summary>
+        public event Element.GenericCallback OnElementAreaDirty;
+        /// <summary>
         /// Event that is invoked when an <see cref="Element"/>'s display area changes
         /// </summary>
         public event Element.GenericCallback OnElementAreaUpdated;
@@ -204,6 +208,7 @@ namespace MLEM.Ui {
             this.OnElementMouseExit += e => e.OnMouseExit?.Invoke(e);
             this.OnElementTouchEnter += e => e.OnTouchEnter?.Invoke(e);
             this.OnElementTouchExit += e => e.OnTouchExit?.Invoke(e);
+            this.OnElementAreaDirty += e => e.OnAreaDirty?.Invoke(e);
             this.OnElementAreaUpdated += e => e.OnAreaUpdated?.Invoke(e);
             this.OnElementStyleInit += e => e.OnStyleInit?.Invoke(e);
             this.OnMousedElementChanged += e => this.ApplyToAll(t => t.OnMousedElementChanged?.Invoke(t, e));
@@ -398,6 +403,10 @@ namespace MLEM.Ui {
 
         internal void InvokeOnElementUpdated(Element element, GameTime time) {
             this.OnElementUpdated?.Invoke(element, time);
+        }
+
+        internal void InvokeOnElementAreaDirty(Element element) {
+            this.OnElementAreaDirty?.Invoke(element);
         }
 
         internal void InvokeOnElementAreaUpdated(Element element) {

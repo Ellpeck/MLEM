@@ -1,9 +1,11 @@
 # Changelog
 MLEM uses [semantic versioning](https://semver.org/). Potentially breaking changes are written in **bold**. Each newly released version also has a corresponding [tag](https://github.com/Ellpeck/MLEM/tags).
 
-## 8.0.1 (In Development)
+## 8.1.0 (In Development)
 
-No code changes
+### MLEM.Ui
+Additions
+- Added UiSystem.OnElementAreaDirty and Element.OnAreaDirty events
 
 ## 8.0.0
 
