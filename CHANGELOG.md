@@ -7,6 +7,9 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 Additions
 - Added UiSystem.OnElementAreaDirty and Element.OnAreaDirty events
 
+Improvements
+- Made the exception thrown after the element recursion limit is reached more helpful
+
 ## 8.0.0
 
 ### MLEM
