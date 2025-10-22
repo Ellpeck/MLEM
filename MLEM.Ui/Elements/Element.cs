@@ -1125,6 +1125,8 @@ namespace MLEM.Ui.Elements {
                     exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";
                 throw new ArithmeticException(exceptionText);
             }
+
+            this.EnsureSufficientExecutionStack();
         }
 
         Vector2 ILayoutItem.CalcActualSize(RectangleF parentArea) {
