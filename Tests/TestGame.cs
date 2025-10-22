@@ -35,6 +35,8 @@ public class TestGame : MlemGame {
             "TestFont"
 #endif
         ));
+        // make sure we catch a potential ui stack overflow as part of the tests by ensuring a sufficient execution stack
+        this.UiSystem.OnElementAreaUpdated += _ => RuntimeHelpers.EnsureSufficientExecutionStack();
     }
 
     public static TestGame Create() {

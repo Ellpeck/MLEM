@@ -323,7 +323,6 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         protected virtual void ScrollSetup() {
             this.childrenDirtyForScroll = false;
-            this.EnsureSufficientExecutionStack();
 
             if (!this.scrollOverflow || this.IsHidden)
                 return;

@@ -3,9 +3,7 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 
 ## 8.0.1 (In Development)
 
-### MLEM.Ui
-Improvements
-- Elements now check for a sufficient execution stack during recursive operations as a fail-safe for bugs in the layouter
+No code changes
 
 ## 8.0.0
 
