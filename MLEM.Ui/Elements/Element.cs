@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -652,6 +653,7 @@ namespace MLEM.Ui.Elements {
         /// If this element is auto-anchored or its parent automatically changes its size based on its children, this element's parent's area is also marked dirty.
         /// </summary>
         public void SetAreaDirty() {
+            this.EnsureSufficientExecutionStack();
             this.AreaDirty = true;
             this.Parent?.OnChildAreaDirty(this, false);
         }
@@ -696,6 +698,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <seealso cref="ForceUpdateArea"/>
         public virtual void SetAreaAndUpdateChildren(RectangleF area) {
+            this.EnsureSufficientExecutionStack();
             this.area = area;
             this.System.InvokeOnElementAreaUpdated(this);
             foreach (var child in this.Children)
@@ -1093,13 +1096,31 @@ namespace MLEM.Ui.Elements {
             root?.InvokeOnElementRemoved(this);
         }
 
+        /// <summary>
+        /// This method ensures there is a sufficiently large remaining execution stack using <see cref="RuntimeHelpers.EnsureSufficientExecutionStack"/>. If there is not enough remaining stack space, an <see cref="InsufficientExecutionStackException"/> is thrown with additional information about the context of the exception attached to its message.
+        /// </summary>
+        /// <exception cref="InsufficientExecutionStackException">Thrown when there is an insufficient execution stack.</exception>
+        protected void EnsureSufficientExecutionStack() {
+#if NET6_0_OR_GREATER
+            if (RuntimeHelpers.TryEnsureSufficientExecutionStack())
+                return;
+#else
+            // we try-catch here since the newer TryEnsureSufficientExecutionStack is not available, but we still want to attach our exception information
+            try {
+                RuntimeHelpers.EnsureSufficientExecutionStack();
+                return;
+            } catch (InsufficientExecutionStackException) {}
+#endif
+            throw new InsufficientExecutionStackException($"Detected insufficient execution stack while updating {this}. Please report this exception to the MLEM issue tracker at https://github.com/Ellpeck/MLEM/issues, as illegal recursive layouting operations should be caught by the layouter after the configured Element.RecursionLimit rather than triggering this fail-safe.");
+        }
+
         void ILayoutItem.OnLayoutRecursion(int recursion, ILayoutItem relevantChild) {
             this.System.Metrics.SummedRecursionDepth++;
             if (recursion > this.System.Metrics.MaxRecursionDepth)
                 this.System.Metrics.MaxRecursionDepth = recursion;
 
             if (recursion >= Element.RecursionLimit) {
-                var exceptionText = $"The area of {this} has recursively updated too often.";
+                var exceptionText = $"The area of {this} has recursively updated more often than the configured Element.RecursionLimit. This issue may occur due to this element or one of its children containing conflicting auto-sizing settings, a custom element setting its area dirty too frequently, or this element being part of a complex layout tree that should be split up into multiple groups.";
                 if (relevantChild != null)
                     exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";
                 throw new ArithmeticException(exceptionText);
