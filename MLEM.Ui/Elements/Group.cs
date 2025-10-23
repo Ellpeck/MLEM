@@ -26,9 +26,9 @@ namespace MLEM.Ui.Elements {
         /// <param name="setWidthBasedOnChildren">Whether the group's width should be based on its children's width, see <see cref="Element.SetWidthBasedOnChildren"/>.</param>
         /// <param name="setHeightBasedOnChildren">Whether the group's height should be based on its children's height, see <see cref="Element.SetHeightBasedOnChildren"/>.</param>
         public Group(Anchor anchor, Vector2 size, bool setWidthBasedOnChildren, bool setHeightBasedOnChildren) : base(anchor, size) {
-            this.SetWidthBasedOnChildren = setWidthBasedOnChildren;
-            this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
-            this.CanBeSelected = false;
+            base.SetWidthBasedOnChildren = setWidthBasedOnChildren;
+            base.SetHeightBasedOnChildren = setHeightBasedOnChildren;
+            base.CanBeSelected = false;
         }
 
     }

@@ -12,7 +12,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="height">The height of the vertical space</param>
         public VerticalSpace(float height) : base(Anchor.AutoCenter, new Vector2(1, height)) {
-            this.CanBeSelected = false;
+            base.CanBeSelected = false;
         }
 
     }

@@ -69,7 +69,7 @@ namespace MLEM.Ui.Elements {
             this.Direction = direction;
             this.MaxValue = maxValue;
             this.currentValue = currentValue;
-            this.CanBeSelected = false;
+            base.CanBeSelected = false;
         }
 
         /// <inheritdoc />

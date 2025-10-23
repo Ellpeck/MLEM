@@ -115,7 +115,7 @@ namespace MLEM.Ui.Elements {
             if (text != null) {
                 this.Text = new Paragraph(Anchor.Center, 1, text, true);
                 this.Text.Padding = this.Text.Padding.OrStyle(new Padding(1), 1);
-                this.AddChild(this.Text);
+                base.AddChild(this.Text);
             }
             if (tooltipText != null)
                 this.Tooltip = this.AddTooltip(tooltipText);
@@ -132,7 +132,7 @@ namespace MLEM.Ui.Elements {
             if (textCallback != null) {
                 this.Text = new Paragraph(Anchor.Center, 1, textCallback, true);
                 this.Text.Padding = this.Text.Padding.OrStyle(new Padding(1), 1);
-                this.AddChild(this.Text);
+                base.AddChild(this.Text);
             }
             if (tooltipTextCallback != null)
                 this.Tooltip = this.AddTooltip(tooltipTextCallback);

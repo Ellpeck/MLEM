@@ -79,10 +79,10 @@ namespace MLEM.Ui.Elements {
         /// <param name="autoHideScrollbar">Whether the scroll bar should be hidden automatically if the panel does not contain enough children to allow for scrolling. This only has an effect if <paramref name="scrollOverflow"/> is <see langword="true"/>.</param>
         public Panel(Anchor anchor, Vector2 size, Vector2 positionOffset, bool setHeightBasedOnChildren = false, bool scrollOverflow = false, bool autoHideScrollbar = true) : base(anchor, size) {
             this.PositionOffset = positionOffset;
-            this.SetHeightBasedOnChildren = setHeightBasedOnChildren;
-            this.TreatSizeAsMaximum = setHeightBasedOnChildren && scrollOverflow;
+            base.SetHeightBasedOnChildren = setHeightBasedOnChildren;
+            base.TreatSizeAsMaximum = setHeightBasedOnChildren && scrollOverflow;
             this.scrollOverflow = scrollOverflow;
-            this.CanBeSelected = false;
+            base.CanBeSelected = false;
 
             if (scrollOverflow) {
                 this.scrollBarMaxHistory = new float[3];
@@ -104,7 +104,7 @@ namespace MLEM.Ui.Elements {
                         return;
                     this.ScrollToElement(e);
                 };
-                this.AddChild(this.ScrollBar);
+                base.AddChild(this.ScrollBar);
             }
         }
 

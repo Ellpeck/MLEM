@@ -115,7 +115,7 @@ namespace MLEM.Ui.Elements {
 
             if (label != null) {
                 this.Label = new Paragraph(Anchor.CenterLeft, 0, label);
-                this.AddChild(this.Label);
+                base.AddChild(this.Label);
             }
         }
 
@@ -145,7 +145,7 @@ namespace MLEM.Ui.Elements {
             var uncheckedColor = this.UncheckColor.OrDefault(Color.Transparent);
             if (this.Checked)
                 batch.Draw(this.Checkmark, boxDisplayArea, this.CheckColor.OrDefault(Color.White) * alpha);
-            else if(uncheckedColor.A != 0) {
+            else if (uncheckedColor.A != 0) {
                 batch.Draw(this.Checkmark, boxDisplayArea, uncheckedColor * alpha);
             }
             base.Draw(time, batch, alpha, context);

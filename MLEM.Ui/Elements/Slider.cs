@@ -17,7 +17,7 @@ namespace MLEM.Ui.Elements {
         /// <param name="maxValue">The slider's maximum value</param>
         public Slider(Anchor anchor, Vector2 size, int scrollerSize, float maxValue) :
             base(anchor, size, scrollerSize, maxValue, true) {
-            this.CanBeSelected = true;
+            base.CanBeSelected = true;
             this.GetGamepadNextElement = (dir, next) => {
                 if (dir == Direction2.Left || dir == Direction2.Right)
                     return null;

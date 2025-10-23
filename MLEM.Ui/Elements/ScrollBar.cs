@@ -143,7 +143,7 @@ namespace MLEM.Ui.Elements {
             this.maxValue = maxValue;
             this.Horizontal = horizontal;
             this.ScrollerSize = new Vector2(horizontal ? scrollerSize : size.X, !horizontal ? scrollerSize : size.Y);
-            this.CanBeSelected = false;
+            base.CanBeSelected = false;
         }
 
         /// <inheritdoc />

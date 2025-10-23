@@ -223,8 +223,8 @@ namespace MLEM.Ui.Elements {
         public Paragraph(Anchor anchor, float width, string text, bool autoAdjustWidth = false) : base(anchor, new Vector2(width, 0)) {
             this.Text = text;
             this.AutoAdjustWidth = autoAdjustWidth;
-            this.CanBeSelected = false;
-            this.CanBeMoused = false;
+            base.CanBeSelected = false;
+            base.CanBeMoused = false;
         }
 
         /// <inheritdoc />
