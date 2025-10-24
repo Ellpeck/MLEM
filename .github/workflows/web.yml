@@ -48,6 +48,8 @@ jobs:
           cf_auth: ${{ secrets.CLOUDFLARE_TOKEN }}
   build-deploy-docs:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # allow surge-preview to create/update PR comments
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -68,6 +70,14 @@ jobs:
           name: docs
           include-hidden-files: true
           if-no-files-found: error
+      - name: Surge Preview
+        if: github.event_name == 'pull_request'
+        uses: afc163/surge-preview@v1
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          dist: Docs/_site
+          teardown: true
+          build: echo # see https://github.com/afc163/surge-preview/issues/231
       - name: Deploy docs
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
         # this is a beautiful way to deploy a website and i will not take any criticism
