@@ -6,6 +6,7 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 ### MLEM.Ui
 Additions
 - Added UiSystem.OnElementAreaDirty and Element.OnAreaDirty events
+- Added Element.DebugName to allow describing ui elements in ToString
 
 Improvements
 - Made the exception thrown after the element recursion limit is reached more helpful

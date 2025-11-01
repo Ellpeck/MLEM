@@ -336,6 +336,11 @@ namespace MLEM.Ui.Elements {
         /// Note that, if no element is previously selected and auto-navigation is invoked, this element cannot be chosen as the first element to navigate to if its auto-nav group is non-null.
         /// </summary>
         public virtual string AutoNavGroup { get; set; }
+        /// <summary>
+        /// An optional string to display as this element's name in its <see cref="ToString"/> method.
+        /// If this is unset, this element's underlying type's <see cref="Type.Name"/> is displayed instead.
+        /// </summary>
+        public virtual string DebugName { get; set; }
 
         /// <summary>
         /// This Element's current <see cref="UiStyle"/>.
@@ -973,7 +978,7 @@ namespace MLEM.Ui.Elements {
 
         /// <inheritdoc />
         public override string ToString() {
-            var ret = this.GetType().Name;
+            var ret = this.DebugName ?? this.GetType().Name;
             // elements will contain their path up to the root and their index in each parent
             // eg Paragraph 2 @ Panel 3 @ ... @ Group RootName
             if (this.Parent != null) {

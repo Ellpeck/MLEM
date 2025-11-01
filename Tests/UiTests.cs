@@ -266,6 +266,21 @@ public class UiTests : GameTestFixture {
         this.Game.UiSystem.Remove("Test");
     }
 
+    [Test]
+    public void TestToString() {
+        var panel = new Panel(Anchor.TopLeft, Vector2.One);
+        var group = panel.AddChild(new Group(Anchor.TopLeft, Vector2.One, false, false));
+        var button = group.AddChild(new Button(Anchor.TopLeft, Vector2.One));
+
+        Assert.AreEqual(button.ToString(), "Button 0 @ Group 0 @ Panel");
+        this.AddAndUpdate(panel, out _, out _);
+        Assert.AreEqual(button.ToString(), "Button 0 @ Group 0 @ Panel Test");
+
+        button.DebugName = "Test Button";
+        group.DebugName = "Test Group";
+        Assert.AreEqual(button.ToString(), "Test Button 0 @ Test Group 0 @ Panel Test");
+    }
+
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.Game.UiSystem.GetRootElements())
             this.Game.UiSystem.Remove(root.Name);
