@@ -38,6 +38,13 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
+        public override Element GetElementUnderPos(Vector2 position) {
+            // be sure to update our area before since our children may not have been squished yet
+            this.UpdateAreaIfDirty();
+            return base.GetElementUnderPos(position);
+        }
+
+        /// <inheritdoc />
         protected override void OnChildAreaDirty(Element child, bool grandchild) {
             base.OnChildAreaDirty(child, grandchild);
             if (!grandchild)
