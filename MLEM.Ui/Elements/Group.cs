@@ -31,5 +31,12 @@ namespace MLEM.Ui.Elements {
             base.CanBeSelected = false;
         }
 
+        /// <inheritdoc />
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            // since the group never accesses its own area when drawing, we have to update it manually
+            this.UpdateAreaIfDirty();
+            base.Draw(time, batch, alpha, context);
+        }
+
     }
 }
