@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MLEM.Graphics;
 using MLEM.Maths;
 
 namespace MLEM.Ui.Elements {
@@ -26,6 +28,13 @@ namespace MLEM.Ui.Elements {
                 if (SquishingGroup.SquishChild(child, out var squished))
                     child.SetAreaAndUpdateChildren(squished);
             }
+        }
+
+        /// <inheritdoc />
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            // be sure to update our area before drawing since our children may not have been squished yet
+            this.UpdateAreaIfDirty();
+            base.Draw(time, batch, alpha, context);
         }
 
         /// <inheritdoc />
