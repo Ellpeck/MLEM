@@ -338,7 +338,7 @@ namespace MLEM.Ui.Elements {
         public virtual string AutoNavGroup { get; set; }
         /// <summary>
         /// An optional string to display as this element's name in its <see cref="ToString"/> method.
-        /// If this is unset, this element's underlying type's <see cref="Type.Name"/> is displayed instead.
+        /// If this is unset, this element's underlying type's <see cref="System.Reflection.MemberInfo.Name"/> is displayed instead.
         /// </summary>
         public virtual string DebugName { get; set; }
 
@@ -1066,6 +1066,12 @@ namespace MLEM.Ui.Elements {
             this.Parent?.OnChildAreaDirty(child, true);
         }
 
+        /// <summary>
+        /// A method that gets called by this element's <see cref="Parent"/> or any of its grandparents when their <see cref="SetAreaDirty"/> methods get called.
+        /// Note that the element's area might already be dirty, which will not stop this method from being called.
+        /// </summary>
+        /// <param name="parent">The parent whose area is being set dirty.</param>
+        /// <param name="grandparent">Whether the passed <paramref name="parent"/> is a grandparent of this element. If this is <see langword="false"/>, the passed <paramref name="parent"/> is expected to be this element's <see cref="Parent"/>.</param>
         protected virtual void OnParentAreaDirty(Element parent, bool grandparent) {
             if (!grandparent)
                 this.parentPotentiallyDirty = true;
