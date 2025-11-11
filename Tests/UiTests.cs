@@ -281,6 +281,22 @@ public class UiTests : GameTestFixture {
         Assert.AreEqual(button.ToString(), "Test Button 0 @ Test Group 0 @ Panel Test");
     }
 
+    [Test]
+    public void TestGroupDirtyPropagation() {
+        var group = new Group(Anchor.BottomRight, Vector2.One) {SetWidthBasedOnChildren = true};
+        var btn = group.AddChild(new Button(Anchor.AutoInlineBottomIgnoreOverflow, new Vector2(12)));
+        var panel = group.AddChild(new Panel(Anchor.AutoRight, new Vector2(120, 175), Vector2.Zero, false, true) {PositionOffset = new Vector2(0, 1)});
+
+        this.AddAndUpdate(group, out _, out _);
+        Assert.AreEqual(btn.System.Viewport.Height - 175 - 1 - 12, btn.DisplayArea.Y);
+
+        // hiding the panel should update the button's display area,
+        // but due to elements that don't draw themselves previously not propagating updates correctly,
+        // this was not the case
+        panel.IsHidden = true;
+        Assert.AreEqual(btn.System.Viewport.Height - 12, btn.DisplayArea.Y);
+    }
+
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.Game.UiSystem.GetRootElements())
             this.Game.UiSystem.Remove(root.Name);

@@ -556,6 +556,7 @@ namespace MLEM.Ui.Elements {
         private bool treatSizeAsMaximum;
         private bool preventParentSpill;
         private int layoutRecursion;
+        private bool parentPotentiallyDirty = true;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.
@@ -664,6 +665,8 @@ namespace MLEM.Ui.Elements {
             this.AreaDirty = true;
             this.System?.InvokeOnElementAreaDirty(this);
             this.Parent?.OnChildAreaDirty(this, false);
+            foreach (var child in this.Children)
+                child.OnParentAreaDirty(this, false);
         }
 
         /// <summary>
@@ -671,6 +674,13 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <returns>Whether <see cref="AreaDirty"/> was true and <see cref="ForceUpdateArea"/> was called</returns>
         public bool UpdateAreaIfDirty() {
+            // ensure we are positioned correctly in our parent by updating its area if it is dirty.
+            // this ensures that area updates are correctly propagated even for elements that don't access their own areas while drawing or updating.
+            // if the parent's area was dirty and updated our area, our AreaDirty will have already been set to false before we reach the code below.
+            if (this.parentPotentiallyDirty) {
+                this.parentPotentiallyDirty = false;
+                this.Parent?.UpdateAreaIfDirty();
+            }
             if (this.AreaDirty) {
                 this.ForceUpdateArea();
                 return true;
@@ -688,6 +698,7 @@ namespace MLEM.Ui.Elements {
                 return;
             // if the parent's area is dirty, it would get updated anyway when querying its ChildPaddedArea,
             // which would cause our ForceUpdateArea code to be run twice, so we only update our parent instead
+            this.parentPotentiallyDirty = false;
             if (this.Parent != null && this.Parent.UpdateAreaIfDirty())
                 return;
             this.stopwatch.Restart();
@@ -1053,6 +1064,13 @@ namespace MLEM.Ui.Elements {
                     this.SetAreaDirty();
             }
             this.Parent?.OnChildAreaDirty(child, true);
+        }
+
+        protected virtual void OnParentAreaDirty(Element parent, bool grandparent) {
+            if (!grandparent)
+                this.parentPotentiallyDirty = true;
+            foreach (var child in this.Children)
+                child.OnParentAreaDirty(parent, true);
         }
 
         /// <summary>

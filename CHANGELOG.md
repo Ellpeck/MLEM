@@ -11,6 +11,9 @@ Additions
 Improvements
 - Made the exception thrown after the element recursion limit is reached more helpful
 
+Fixes
+- Fixed undrawn elements not updating their area correctly even if their children are drawn or accessed
+
 ## 8.0.0
 
 ### MLEM

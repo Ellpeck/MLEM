@@ -31,14 +31,5 @@ namespace MLEM.Ui.Elements {
             base.CanBeSelected = false;
         }
 
-        /// <inheritdoc />
-        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
-            // TODO since the group never accesses its own area when drawing, we have to update it manually :/
-            //  this is a little terrible but removing it causes a lot of issues when it comes to location updates for grouped elements
-            //  & this is a pretty good sign that we really need to streamline the element dirtying & updating order
-            this.UpdateAreaIfDirty();
-            base.Draw(time, batch, alpha, context);
-        }
-
     }
 }
