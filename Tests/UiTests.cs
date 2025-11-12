@@ -297,6 +297,27 @@ public class UiTests : GameTestFixture {
         Assert.AreEqual(btn.System.Viewport.Height - 12, btn.DisplayArea.Y);
     }
 
+    [Test]
+    public void TestAreaUpdateAmounts() {
+        var fixedSizePanel = new Panel(Anchor.TopLeft, Vector2.One);
+        fixedSizePanel.AddChild(new Button(Anchor.TopLeft, new Vector2(12)));
+        this.AddAndUpdate(fixedSizePanel, out _, out _);
+        Assert.AreEqual(2, fixedSizePanel.System.Metrics.ActualAreaUpdates);
+
+        var dynSizePanel = new Panel(Anchor.TopLeft, Vector2.One) {SetHeightBasedOnChildren = true};
+        dynSizePanel.AddChild(new Button(Anchor.TopLeft, new Vector2(12)));
+        this.AddAndUpdate(dynSizePanel, out _, out _);
+        // panel update -> regular button update -> repeated panel update to set height -> repeated button update
+        Assert.AreEqual(4, dynSizePanel.System.Metrics.ActualAreaUpdates);
+
+        var groupWithPanel = new Group(Anchor.BottomRight, Vector2.One) {SetWidthBasedOnChildren = true};
+        var panel = groupWithPanel.AddChild(new Panel(Anchor.TopLeft, Vector2.One) {SetHeightBasedOnChildren = true});
+        panel.AddChild(new Button(Anchor.TopLeft, new Vector2(12)));
+        this.AddAndUpdate(groupWithPanel, out _, out _);
+        // group update -> panel update -> button update -> panel resize -> button update -> group resize -> panel update -> button update
+        Assert.AreEqual(8, groupWithPanel.System.Metrics.ActualAreaUpdates);
+    }
+
     private void AddAndUpdate(Element element, out TimeSpan addTime, out TimeSpan updateTime) {
         foreach (var root in this.Game.UiSystem.GetRootElements())
             this.Game.UiSystem.Remove(root.Name);
