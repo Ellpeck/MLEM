@@ -556,7 +556,7 @@ namespace MLEM.Ui.Elements {
         private bool treatSizeAsMaximum;
         private bool preventParentSpill;
         private int layoutRecursion;
-        private bool parentPotentiallyDirty = true;
+        private bool parentPotentiallyDirty;
 
         /// <summary>
         /// Creates a new element with the given anchor and size and sets up some default event reactions.
@@ -670,27 +670,29 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Updates this element's <see cref="Area"/> and all of its <see cref="Children"/> by calling <see cref="ForceUpdateArea"/> if <see cref="AreaDirty"/> is true.
+        /// Updates this element's <see cref="Area"/> and all of its <see cref="Children"/> by calling <see cref="ForceUpdateArea"/> if <see cref="AreaDirty"/> is true, and by previously ensuring that this element's <see cref="Parent"/>'s <see cref="Element.Area"/> is also up-to-date.
         /// </summary>
-        /// <returns>Whether <see cref="AreaDirty"/> was true and <see cref="ForceUpdateArea"/> was called</returns>
+        /// <returns>Whether this element's <see cref="Area"/> was updated as a result of this method's invocation.</returns>
         public bool UpdateAreaIfDirty() {
+            var updated = false;
             // ensure we are positioned correctly in our parent by updating its area if it is dirty.
             // this ensures that area updates are correctly propagated even for elements that don't access their own areas while drawing or updating.
             // if the parent's area was dirty and updated our area, our AreaDirty will have already been set to false before we reach the code below.
             if (this.parentPotentiallyDirty) {
                 this.parentPotentiallyDirty = false;
-                this.Parent?.UpdateAreaIfDirty();
+                if (this.Parent != null && this.Parent.UpdateAreaIfDirty())
+                    updated = true;
             }
             if (this.AreaDirty) {
                 this.ForceUpdateArea();
-                return true;
+                updated = true;
             }
-            return false;
+            return updated;
         }
 
         /// <summary>
         /// Forces this element's <see cref="Area"/> to be updated if it is not <see cref="IsHidden"/>.
-        /// This method also updates all of this element's <see cref="Children"/>'s areas.
+        /// This method also updates all of this element's <see cref="Children"/>'s areas through its call to this element's <see cref="SetAreaAndUpdateChildren"/> method.
         /// </summary>
         public virtual void ForceUpdateArea() {
             this.AreaDirty = false;
@@ -712,7 +714,7 @@ namespace MLEM.Ui.Elements {
 
         /// <summary>
         /// Sets this element's <see cref="Area"/> to the given <see cref="RectangleF"/> and invokes the <see cref="UiSystem.OnElementAreaUpdated"/> event.
-        /// This method also updates all of this element's <see cref="Children"/>'s areas.
+        /// This method also updates all of this element's <see cref="Children"/>'s areas by invoking <see cref="Element.ForceUpdateArea"/> on them.
         /// Note that this method does not take into account any auto-sizing, anchoring or positioning, and so it should be used sparingly, if at all.
         /// </summary>
         /// <seealso cref="ForceUpdateArea"/>
@@ -1073,8 +1075,8 @@ namespace MLEM.Ui.Elements {
         /// <param name="parent">The parent whose area is being set dirty.</param>
         /// <param name="grandparent">Whether the passed <paramref name="parent"/> is a grandparent of this element. If this is <see langword="false"/>, the passed <paramref name="parent"/> is expected to be this element's <see cref="Parent"/>.</param>
         protected virtual void OnParentAreaDirty(Element parent, bool grandparent) {
-            if (!grandparent)
-                this.parentPotentiallyDirty = true;
+            // if our parent's area was marked dirty, we make sure to call UpdateAreaIfDirty on it next time we retrieve our area so that it's definitely up-to-date
+            this.parentPotentiallyDirty = true;
             foreach (var child in this.Children)
                 child.OnParentAreaDirty(parent, true);
         }
@@ -1111,6 +1113,7 @@ namespace MLEM.Ui.Elements {
         protected internal virtual void AddedToUi(UiSystem system, RootElement root) {
             this.Root = root;
             this.System = system;
+            this.parentPotentiallyDirty = true;
             this.OnAddedToUi?.Invoke(this);
             root?.InvokeOnElementAdded(this);
         }
