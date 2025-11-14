@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-android</TargetFramework>
+        <TargetFramework>net9.0-android</TargetFramework>
         <SupportedOSPlatformVersion>31</SupportedOSPlatformVersion>
         <OutputType>Exe</OutputType>
         <ApplicationId>de.ellpeck.mlem.demos.android</ApplicationId>
@@ -12,8 +12,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
-        <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4.1" />
+        <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4.1" />
 
         <ProjectReference Include="..\Demos\Demos.csproj" />
     </ItemGroup>
