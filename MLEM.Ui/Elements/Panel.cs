@@ -350,19 +350,19 @@ namespace MLEM.Ui.Elements {
 
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
-            }
 
-            // update child padding based on whether the scroll bar is visible
-            var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
-            var childOffsetDelta = childOffset - this.scrollBarChildOffset;
-            if (!childOffsetDelta.Equals(0, Element.Epsilon)) {
-                this.scrollBarChildOffset = childOffset;
-                this.ChildPadding += new Padding(0, childOffsetDelta, 0, 0);
-            }
+                // update child padding based on whether the scroll bar is visible
+                var childOffset = this.ScrollBar.IsHidden ? 0 : this.ScrollerSize.Value.X + this.ScrollBarOffset;
+                var childOffsetDelta = childOffset - this.scrollBarChildOffset;
+                if (!childOffsetDelta.Equals(0, Element.Epsilon)) {
+                    this.scrollBarChildOffset = childOffset;
+                    this.ChildPadding += new Padding(0, childOffsetDelta, 0, 0);
+                }
 
-            // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
-            var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
-            this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
+                // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
+                var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
+                this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
+            }
 
             // update the render target
             var area = (Rectangle) this.GetRenderTargetArea();
