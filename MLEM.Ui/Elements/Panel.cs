@@ -343,11 +343,13 @@ namespace MLEM.Ui.Elements {
             if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
                 scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
-                this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
-                this.scrollBarMaxHistory[2] = scrollBarMax;
-                this.scrollBarMaxHistoryDirty = true;
-
+                // avoid adding duplicate entries if the previous condition triggered and changed our max to the overall max
+                if (!this.scrollBarMaxHistory[2].Equals(scrollBarMax, Element.Epsilon)) {
+                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                    this.scrollBarMaxHistory[2] = scrollBarMax;
+                    this.scrollBarMaxHistoryDirty = true;
+                }
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
             }
