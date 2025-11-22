@@ -174,7 +174,8 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {
             base.OnLayoutRecursionSettled(totalRecursion, elementInternal);
-            this.scrollBarMaxHistory.Clear();
+            if (!elementInternal)
+                this.scrollBarMaxHistory.Clear();
         }
 
         /// <inheritdoc />
