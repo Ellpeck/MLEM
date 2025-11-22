@@ -172,10 +172,11 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        protected override void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {
-            base.OnLayoutRecursionSettled(totalRecursion, elementInternal);
-            if (!elementInternal)
-                this.scrollBarMaxHistory.Clear();
+        public override void Update(GameTime time) {
+            // reset the scroll bar's max history when an update happens, at which point we know that any scroll bar recursion has "settled"
+            // (this reset ensures that the max history is recursion-internal and old values aren't reused when elements get modified later)
+            this.scrollBarMaxHistory.Clear();
+            base.Update(time);
         }
 
         /// <inheritdoc />
@@ -335,7 +336,7 @@ namespace MLEM.Ui.Elements {
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
             if (this.scrollBarMaxHistory.Count(v => v.Equals(scrollBarMax, Element.Epsilon)) >= 2)
-                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
+                scrollBarMax = this.scrollBarMaxHistory.Max();
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.scrollBarMaxHistory.Add(scrollBarMax);
                 if (this.scrollBarMaxHistory.Count > 8)
@@ -355,10 +356,6 @@ namespace MLEM.Ui.Elements {
                 // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
                 var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
                 this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
-
-                // update our area after changing our scroll bar and child padding so that any recursive operations
-                // caused by this change are kept "layouting-internal" within the changes to this panel
-                this.UpdateAreaIfDirty();
             }
 
             // update the render target
