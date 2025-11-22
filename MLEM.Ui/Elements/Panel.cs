@@ -336,7 +336,7 @@ namespace MLEM.Ui.Elements {
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
             if (this.scrollBarMaxHistory.Count(v => v.Equals(scrollBarMax, Element.Epsilon)) >= 2)
-                scrollBarMax = this.scrollBarMaxHistory.Max();
+                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.scrollBarMaxHistory.Add(scrollBarMax);
                 if (this.scrollBarMaxHistory.Count > 8)
