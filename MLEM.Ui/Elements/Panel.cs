@@ -172,11 +172,9 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        public override void Update(GameTime time) {
-            // reset the scroll bar's max history when an update happens, at which point we know that any scroll bar recursion has "settled"
-            // (this reset ensures that the max history is recursion-internal and old values aren't reused when elements get modified later)
+        protected override void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {
+            base.OnLayoutRecursionSettled(totalRecursion, elementInternal);
             this.scrollBarMaxHistory.Clear();
-            base.Update(time);
         }
 
         /// <inheritdoc />
@@ -336,7 +334,7 @@ namespace MLEM.Ui.Elements {
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
             if (this.scrollBarMaxHistory.Count(v => v.Equals(scrollBarMax, Element.Epsilon)) >= 2)
-                scrollBarMax = this.scrollBarMaxHistory.Max();
+                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.scrollBarMaxHistory.Add(scrollBarMax);
                 if (this.scrollBarMaxHistory.Count > 8)
