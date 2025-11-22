@@ -7,11 +7,9 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 Additions
 - Added UiSystem.OnElementAreaDirty and Element.OnAreaDirty events
 - Added Element.DebugName to allow describing ui elements in ToString
-- Added ILayoutItem.OnLayoutRecursionSettled which is called when recursive ui layouting has finished
 
 Improvements
 - Made the exception thrown after the element recursion limit is reached more helpful
-- **Implemented a more robust UiLayouter recursion tracking system**
 
 Fixes
 - Fixed undrawn elements not updating their area correctly even if their children are drawn or accessed

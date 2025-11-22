@@ -172,10 +172,11 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        protected override void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {
-            base.OnLayoutRecursionSettled(totalRecursion, elementInternal);
-            if (!elementInternal)
-                this.scrollBarMaxHistory.Clear();
+        public override void Update(GameTime time) {
+            // reset the scroll bar's max history when an update happens, at which point we know that any scroll bar recursion has "settled"
+            // (this reset ensures that the max history is recursion-internal and old values aren't reused when elements get modified later)
+            this.scrollBarMaxHistory.Clear();
+            base.Update(time);
         }
 
         /// <inheritdoc />
@@ -335,13 +336,12 @@ namespace MLEM.Ui.Elements {
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
             if (this.scrollBarMaxHistory.Count(v => v.Equals(scrollBarMax, Element.Epsilon)) >= 2)
-                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
+                scrollBarMax = this.scrollBarMaxHistory.Max();
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.scrollBarMaxHistory.Add(scrollBarMax);
                 if (this.scrollBarMaxHistory.Count > 8)
                     this.scrollBarMaxHistory.RemoveAt(0);
 
-                var wasHidden = this.ScrollBar.IsHidden;
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
 
@@ -352,11 +352,6 @@ namespace MLEM.Ui.Elements {
                     this.scrollBarChildOffset = childOffset;
                     this.ChildPadding += new Padding(0, childOffsetDelta, 0, 0);
                 }
-
-                // if we know we'll have to update our area, do it now so that the UiLayouter recursion tracker counts this change as "recursion-internal"
-                // (we use our child padded area below when changing the scroll bar's scroller size, so force update before that!)
-                if (this.ScrollBar.IsHidden != wasHidden || !childOffsetDelta.Equals(0, Element.Epsilon))
-                    this.ForceUpdateArea();
 
                 // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
                 var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;

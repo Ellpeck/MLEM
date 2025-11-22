@@ -555,7 +555,7 @@ namespace MLEM.Ui.Elements {
         private bool treatSizeAsMinimum;
         private bool treatSizeAsMaximum;
         private bool preventParentSpill;
-        private (int, int) layoutRecursion;
+        private int layoutRecursion;
         private bool parentPotentiallyDirty;
 
         /// <summary>
@@ -1105,32 +1105,6 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// A method called by <see cref="UiLayouter.Layout{T}"/> when a layout item's size is being recalculated based on its children.
-        /// </summary>
-        /// <param name="recursion">The current recursion depth.</param>
-        /// <param name="relevantChild">The child that triggered the layout recursion. May be <see langword="null"/> in case the source of the layout recursion is unknown.</param>
-        protected virtual void OnLayoutRecursion(int recursion, ILayoutItem relevantChild) {
-            this.System.Metrics.SummedRecursionDepth++;
-            if (recursion > this.System.Metrics.MaxRecursionDepth)
-                this.System.Metrics.MaxRecursionDepth = recursion;
-
-            if (recursion >= Element.RecursionLimit) {
-                var exceptionText = $"The area of {this} has recursively updated more often than the configured Element.RecursionLimit. This issue may occur due to this element or one of its children containing conflicting auto-sizing settings, a custom element setting its area dirty too frequently, or this element being part of a complex layout tree that should be split up into multiple groups.";
-                if (relevantChild != null)
-                    exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";
-                throw new ArithmeticException(exceptionText);
-            }
-        }
-
-        /// <summary>
-        /// A method called by <see cref="UiLayouter.Layout{T}"/> when a layout item's size is being calculated, but recursive calculations have settled.
-        /// Also see <see cref="OnLayoutRecursion"/>, which is called for every recursive operation during element layouting.
-        /// </summary>
-        /// <param name="totalRecursion">The total reached recursion depth.</param>
-        /// <param name="elementInternal"><see langword="true"/> if the settled recursive operation was element-internal (ie related to properties like <see cref="SetWidthBasedOnChildren"/> and <see cref="SetHeightBasedOnChildren"/>); <see langword="false"/> if the settled recursive operation was related to recursively updated children or parents of this element.</param>
-        protected virtual void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {}
-
-        /// <summary>
         /// Called when this element is added to a <see cref="UiSystem"/> and, optionally, a given <see cref="RootElement"/>.
         /// This method is called in <see cref="AddChild{T}"/> for a parent whose <see cref="System"/> is set, as well as <see cref="UiSystem.Add"/>.
         /// </summary>
@@ -1157,11 +1131,16 @@ namespace MLEM.Ui.Elements {
         }
 
         void ILayoutItem.OnLayoutRecursion(int recursion, ILayoutItem relevantChild) {
-            this.OnLayoutRecursion(recursion, relevantChild);
-        }
+            this.System.Metrics.SummedRecursionDepth++;
+            if (recursion > this.System.Metrics.MaxRecursionDepth)
+                this.System.Metrics.MaxRecursionDepth = recursion;
 
-        void ILayoutItem.OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {
-            this.OnLayoutRecursionSettled(totalRecursion, elementInternal);
+            if (recursion >= Element.RecursionLimit) {
+                var exceptionText = $"The area of {this} has recursively updated more often than the configured Element.RecursionLimit. This issue may occur due to this element or one of its children containing conflicting auto-sizing settings, a custom element setting its area dirty too frequently, or this element being part of a complex layout tree that should be split up into multiple groups.";
+                if (relevantChild != null)
+                    exceptionText += $" Does its child {relevantChild} contain any conflicting auto-sizing settings?";
+                throw new ArithmeticException(exceptionText);
+            }
         }
 
         Vector2 ILayoutItem.CalcActualSize(RectangleF parentArea) {
