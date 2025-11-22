@@ -15,22 +15,24 @@ namespace MLEM.Ui {
         /// Lays out the given <paramref name="item"/> based on the information specified in its <see cref="ILayoutItem"/> interface.
         /// </summary>
         /// <param name="item">The item to lay out.</param>
-        /// <param name="layoutRecursionTracker">A reference to a field in the <paramref name="item"/> that is used by the layouter to track recursion counts across <see cref="Layout"/> calls.</param>
+        /// <param name="recursionTracker">A reference to a field in the <paramref name="item"/> that is used by the layouter to track recursion counts across <see cref="Layout"/> calls.</param>
         /// <param name="epsilon">An epsilon value used in layout item size, position and resulting area calculations to mitigate floating point rounding inaccuracies.</param>
         /// <typeparam name="T"></typeparam>
-        public static void Layout<T>(T item, ref int layoutRecursionTracker, float epsilon = 0) where T : class, ILayoutItem {
-            var initiatedLayouting = layoutRecursionTracker <= 0;
-            if (!initiatedLayouting)
-                item.OnLayoutRecursion(layoutRecursionTracker, null);
-            layoutRecursionTracker++;
+        public static void Layout<T>(T item, ref (int Layer, int Depth) recursionTracker, float epsilon = 0) where T : class, ILayoutItem {
+            if (recursionTracker.Depth > 0)
+                item.OnLayoutRecursion(recursionTracker.Depth, null);
+            recursionTracker.Layer++;
+            recursionTracker.Depth++;
 
             var internalRecursion = 0;
             UpdateDisplayArea();
             item.OnLayoutRecursionSettled(internalRecursion, true);
 
-            if (initiatedLayouting) {
-                item.OnLayoutRecursionSettled(layoutRecursionTracker, false);
-                layoutRecursionTracker = 0;
+            recursionTracker.Layer--;
+            if (recursionTracker.Layer <= 0) {
+                item.OnLayoutRecursionSettled(recursionTracker.Depth, false);
+                recursionTracker.Layer = 0;
+                recursionTracker.Depth = 0;
             }
 
             void UpdateDisplayArea(Vector2? overrideSize = null) {
