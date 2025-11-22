@@ -555,7 +555,7 @@ namespace MLEM.Ui.Elements {
         private bool treatSizeAsMinimum;
         private bool treatSizeAsMaximum;
         private bool preventParentSpill;
-        private int layoutRecursion;
+        private (int, int) layoutRecursion;
         private bool parentPotentiallyDirty;
 
         /// <summary>

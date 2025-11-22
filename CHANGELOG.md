@@ -11,6 +11,7 @@ Additions
 
 Improvements
 - Made the exception thrown after the element recursion limit is reached more helpful
+- **Implemented a more robust UiLayouter recursion tracking system**
 
 Fixes
 - Fixed undrawn elements not updating their area correctly even if their children are drawn or accessed
