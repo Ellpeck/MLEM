@@ -14,7 +14,6 @@ Improvements
 
 Fixes
 - Fixed undrawn elements not updating their area correctly even if their children are drawn or accessed
-- Fixed rare unbound recursion issue with auto-hiding scroll bars and elements that just about don't fit the panel
 
 ## 8.0.0
 
