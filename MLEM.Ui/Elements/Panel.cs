@@ -172,10 +172,11 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <inheritdoc />
-        protected override void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal) {
-            base.OnLayoutRecursionSettled(totalRecursion, elementInternal);
-            if (!elementInternal)
-                this.scrollBarMaxHistory.Clear();
+        public override void Update(GameTime time) {
+            // reset the scroll bar's max history when an update happens, at which point we know that any scroll bar recursion has "settled"
+            // (this reset ensures that the max history is recursion-internal and old values aren't reused when elements get modified later)
+            this.scrollBarMaxHistory.Clear();
+            base.Update(time);
         }
 
         /// <inheritdoc />
