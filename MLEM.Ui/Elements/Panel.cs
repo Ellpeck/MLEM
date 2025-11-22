@@ -355,6 +355,7 @@ namespace MLEM.Ui.Elements {
                 // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
                 var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
                 this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
+                this.ScrollBar.UpdateAreaIfDirty();
             }
 
             // update the render target
