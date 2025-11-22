@@ -26,9 +26,12 @@ namespace MLEM.Ui {
 
             var internalRecursion = 0;
             UpdateDisplayArea();
+            item.OnLayoutRecursionSettled(internalRecursion, true);
 
-            if (initiatedLayouting)
+            if (initiatedLayouting) {
+                item.OnLayoutRecursionSettled(layoutRecursionTracker, false);
                 layoutRecursionTracker = 0;
+            }
 
             void UpdateDisplayArea(Vector2? overrideSize = null) {
                 var parentArea = item.ParentArea;
@@ -376,11 +379,10 @@ namespace MLEM.Ui {
         bool CanAutoAnchorsAttach { get; }
 
         /// <summary>
-        /// Calculates the actual size that this layout item should take up, based on the area that its parent encompasses.
-        /// By default, this is based on the information specified in <see cref="System.Drawing.Size"/>'s documentation.
+        /// Calculates the actual total size that this element should take up.
         /// </summary>
-        /// <param name="parentArea">This parent's area, or the ui system's viewport if it has no parent</param>
-        /// <returns>The actual size of this layout item, any scaling into account</returns>
+        /// <param name="parentArea">This parent's area, or the ui system's viewport if it has no parent.</param>
+        /// <returns>The actual size of this element.</returns>
         Vector2 CalcActualSize(RectangleF parentArea);
 
         /// <summary>
@@ -401,10 +403,19 @@ namespace MLEM.Ui {
 
         /// <summary>
         /// A method called by <see cref="UiLayouter.Layout{T}"/> when a layout item's size is being recalculated based on its children.
+        /// Also see <see cref="OnLayoutRecursionSettled"/>, which is called after recursive operations during element layouting have completed.
         /// </summary>
         /// <param name="recursion">The current recursion depth.</param>
         /// <param name="relevantChild">The child that triggered the layout recursion. May be <see langword="null"/> in case the source of the layout recursion is unknown.</param>
         void OnLayoutRecursion(int recursion, ILayoutItem relevantChild);
+
+        /// <summary>
+        /// A method called by <see cref="UiLayouter.Layout{T}"/> when a layout item's size is being calculated, but recursive calculations have settled.
+        /// Also see <see cref="OnLayoutRecursion"/>, which is called for every recursive operation during element layouting.
+        /// </summary>
+        /// <param name="totalRecursion">The total reached recursion depth.</param>
+        /// <param name="elementInternal"><see langword="true"/> if the settled recursive operation was element-internal (ie related to properties like <see cref="SetWidthBasedOnChildren"/> and <see cref="SetHeightBasedOnChildren"/>); <see langword="false"/> if the settled recursive operation was related to recursively updated children or parents of this element.</param>
+        void OnLayoutRecursionSettled(int totalRecursion, bool elementInternal);
 
     }
 }
