@@ -57,7 +57,6 @@ namespace MLEM.Ui.Elements {
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
-        private readonly float[] scrollBarMaxHistory;
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -67,6 +66,7 @@ namespace MLEM.Ui.Elements {
         private float lastScrollOffset;
         private bool childrenDirtyForScroll;
         private bool scrollBarMaxHistoryDirty;
+        private float[] scrollBarMaxHistory;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -85,10 +85,6 @@ namespace MLEM.Ui.Elements {
             base.CanBeSelected = false;
 
             if (scrollOverflow) {
-                this.scrollBarMaxHistory = new float[3];
-                this.scrollBarMaxHistoryDirty = true;
-                this.ResetScrollBarMaxHistory();
-
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
@@ -337,17 +333,29 @@ namespace MLEM.Ui.Elements {
                 childrenHeight = 0;
             }
 
+            // height doesn't change when modifying ChildPadding below, so avoid a needless update later
+            var areaHeight = this.ChildPaddedArea.Height;
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
-            var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
-            // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
-            if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
-                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
-            if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
-                this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
-                this.scrollBarMaxHistory[2] = scrollBarMax;
-                this.scrollBarMaxHistoryDirty = true;
+            var scrollBarMax = Math.Max(0, (childrenHeight - areaHeight) / this.Scale);
 
+            // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
+            if (this.ScrollBar.AutoHideWhenEmpty && this.ScrollBar.MaxValue > Element.Epsilon != scrollBarMax > Element.Epsilon) {
+                if (this.scrollBarMaxHistory == null) {
+                    this.scrollBarMaxHistory = new float[3];
+                    this.scrollBarMaxHistoryDirty = true;
+                    this.ResetScrollBarMaxHistory();
+                }
+                if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
+                    scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
+                if (!scrollBarMax.Equals(this.scrollBarMaxHistory[2], Element.Epsilon)) {
+                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                    this.scrollBarMaxHistory[2] = scrollBarMax;
+                    this.scrollBarMaxHistoryDirty = true;
+                }
+            }
+
+            if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
             }
@@ -361,7 +369,7 @@ namespace MLEM.Ui.Elements {
             }
 
             // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
-            var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
+            var scrollerHeight = Math.Min(areaHeight / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
             this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
 
             // update the render target
