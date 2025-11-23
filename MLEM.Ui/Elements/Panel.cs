@@ -57,7 +57,6 @@ namespace MLEM.Ui.Elements {
 
         private readonly List<Element> relevantChildren = new List<Element>();
         private readonly HashSet<Element> scrolledChildren = new HashSet<Element>();
-        private readonly float[] scrollBarMaxHistory;
         private readonly bool scrollOverflow;
 
         private RenderTarget2D renderTarget;
@@ -67,6 +66,7 @@ namespace MLEM.Ui.Elements {
         private float lastScrollOffset;
         private bool childrenDirtyForScroll;
         private bool scrollBarMaxHistoryDirty;
+        private float[] scrollBarMaxHistory;
 
         /// <summary>
         /// Creates a new panel with the given settings.
@@ -85,10 +85,6 @@ namespace MLEM.Ui.Elements {
             base.CanBeSelected = false;
 
             if (scrollOverflow) {
-                this.scrollBarMaxHistory = new float[3];
-                this.scrollBarMaxHistoryDirty = true;
-                this.ResetScrollBarMaxHistory();
-
                 this.ScrollBar = new ScrollBar(Anchor.TopRight, Vector2.Zero, 0, 0) {
                     OnValueChanged = (element, value) => this.ScrollChildren(),
                     CanAutoAnchorsAttach = false,
@@ -340,14 +336,23 @@ namespace MLEM.Ui.Elements {
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
             var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
-            if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
-                scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
+            var hiddenChange = this.ScrollBar.AutoHideWhenEmpty && this.ScrollBar.MaxValue > Element.Epsilon != scrollBarMax > Element.Epsilon;
+            if (hiddenChange) {
+                if (this.scrollBarMaxHistory == null) {
+                    this.scrollBarMaxHistory = new float[3];
+                    this.scrollBarMaxHistoryDirty = true;
+                    this.ResetScrollBarMaxHistory();
+                }
+                if (this.scrollBarMaxHistory[0].Equals(this.scrollBarMaxHistory[2], Element.Epsilon) && this.scrollBarMaxHistory[1].Equals(scrollBarMax, Element.Epsilon))
+                    scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
+            }
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
-                this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
-                this.scrollBarMaxHistory[2] = scrollBarMax;
-                this.scrollBarMaxHistoryDirty = true;
-
+                if (hiddenChange) {
+                    this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
+                    this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
+                    this.scrollBarMaxHistory[2] = scrollBarMax;
+                    this.scrollBarMaxHistoryDirty = true;
+                }
                 this.ScrollBar.MaxValue = scrollBarMax;
                 this.relevantChildrenDirty = true;
 
