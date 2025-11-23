@@ -347,7 +347,7 @@ namespace MLEM.Ui.Elements {
                     scrollBarMax = Math.Max(scrollBarMax, this.scrollBarMaxHistory.Max());
             }
             if (!this.ScrollBar.MaxValue.Equals(scrollBarMax, Element.Epsilon)) {
-                if (hiddenChange) {
+                if (hiddenChange && !scrollBarMax.Equals(this.scrollBarMaxHistory[2], Element.Epsilon)) {
                     this.scrollBarMaxHistory[0] = this.scrollBarMaxHistory[1];
                     this.scrollBarMaxHistory[1] = this.scrollBarMaxHistory[2];
                     this.scrollBarMaxHistory[2] = scrollBarMax;
