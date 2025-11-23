@@ -333,8 +333,10 @@ namespace MLEM.Ui.Elements {
                 childrenHeight = 0;
             }
 
+            // height doesn't change when modifying ChildPadding below, so avoid a needless update later
+            var areaHeight = this.ChildPaddedArea.Height;
             // the max value of the scroll bar is the amount of non-scaled pixels taken up by overflowing components
-            var scrollBarMax = Math.Max(0, (childrenHeight - this.ChildPaddedArea.Height) / this.Scale);
+            var scrollBarMax = Math.Max(0, (childrenHeight - areaHeight) / this.Scale);
             // avoid an infinite show/hide oscillation that occurs while updating our area by simply using the maximum recent height in that case
             var hiddenChange = this.ScrollBar.AutoHideWhenEmpty && this.ScrollBar.MaxValue > Element.Epsilon != scrollBarMax > Element.Epsilon;
             if (hiddenChange) {
@@ -365,7 +367,7 @@ namespace MLEM.Ui.Elements {
                 }
 
                 // the scroller height has the same relation to the scroll bar height as the visible area has to the total height of the panel's content
-                var scrollerHeight = Math.Min(this.ChildPaddedArea.Height / childrenHeight / this.Scale, 1) * this.ScrollBar.Area.Height;
+                var scrollerHeight = Math.Min(areaHeight / (scrollBarMax * this.Scale + areaHeight) / this.Scale, 1) * this.ScrollBar.Area.Height;
                 this.ScrollBar.ScrollerSize = new Vector2(this.ScrollerSize.Value.X, Math.Max(this.ScrollerSize.Value.Y, scrollerHeight));
             }
 
