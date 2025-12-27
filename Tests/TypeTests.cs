@@ -47,12 +47,20 @@ public class TypeTests {
     }
 
     [Test]
-    public void TestRemoveAssemblyDetails() {
+    public void TestRemoveAssemblyMetadata() {
         const string spc = "System.Private.CoreLib";
         (Type, string)[] types = [
             (typeof(string), $"System.String, {spc}"),
             (typeof(int), $"System.Int32, {spc}"),
-            (typeof(Vector2), "Microsoft.Xna.Framework.Vector2, MonoGame.Framework"),
+            (typeof(Vector2), "Microsoft.Xna.Framework.Vector2, " +
+#if KNI
+                "Xna.Framework"
+#elif FNA
+                "FNA"
+#else
+                "MonoGame.Framework"
+#endif
+            ),
             (typeof(Dictionary<int, string>), $"System.Collections.Generic.Dictionary`2[[System.Int32, {spc}],[System.String, {spc}]], {spc}"),
         ];
         foreach (var (type, expected) in types) {
