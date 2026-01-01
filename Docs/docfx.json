@@ -53,7 +53,7 @@
         "globalMetadata": {
             "_appTitle": "MLEM Documentation",
             "_appLogoPath": "Logo.svg",
-            "_appFooter": "<a href=\"https://github.com/Ellpeck/MLEM\">&copy; 2019-2024 Ellpeck</a> &ndash; <a href=\"https://ellpeck.de/impressum\">Impressum</a> &ndash; <a href=\"https://ellpeck.de/privacy\">Privacy</a> &ndash; <a href=\"https://status.ellpeck.de\">Status</a>",
+            "_appFooter": "<a href=\"https://github.com/Ellpeck/MLEM\">&copy; 2019-2026 Ellpeck</a> &ndash; <a href=\"https://ellpeck.de/impressum\">Impressum</a> &ndash; <a href=\"https://ellpeck.de/privacy\">Privacy</a> &ndash; <a href=\"https://status.ellpeck.de\">Status</a>",
             "_enableSearch": true
         },
         "dest": "_site",
