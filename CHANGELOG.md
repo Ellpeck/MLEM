@@ -3,6 +3,10 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 
 ## 8.1.0 (In Development)
 
+### MLEM
+Fixes
+- Fixed sprite animation groups not advancing to their first frame immediately
+
 ### MLEM.Ui
 Additions
 - Added UiSystem.OnElementAreaDirty and Element.OnAreaDirty events

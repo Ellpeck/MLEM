@@ -16,7 +16,8 @@ namespace MLEM.Animations {
         /// </summary>
         public SpriteAnimation CurrentAnimation {
             get {
-                this.SortAnimationsIfDirty(true);
+                if (this.SortAnimationsIfDirty() || this.currentAnimation == null)
+                    this.FindAnimationToPlay();
                 return this.currentAnimation?.Animation;
             }
         }
@@ -99,7 +100,7 @@ namespace MLEM.Animations {
         }
 
         private void FindAnimationToPlay() {
-            this.SortAnimationsIfDirty(false);
+            this.SortAnimationsIfDirty();
 
             ConditionedAnimation animToPlay = null;
             if (this.currentAnimation != null && this.currentAnimation.ShouldPlay())
@@ -122,13 +123,12 @@ namespace MLEM.Animations {
             }
         }
 
-        private void SortAnimationsIfDirty(bool findAnimationToPlay) {
-            if (this.animationsDirty) {
-                this.animationsDirty = false;
-                this.animations.Sort((a1, a2) => a2.Priority.CompareTo(a1.Priority));
-                if (findAnimationToPlay)
-                    this.FindAnimationToPlay();
-            }
+        private bool SortAnimationsIfDirty() {
+            if (!this.animationsDirty)
+                return false;
+            this.animationsDirty = false;
+            this.animations.Sort((a1, a2) => a2.Priority.CompareTo(a1.Priority));
+            return true;
         }
 
         /// <summary>
