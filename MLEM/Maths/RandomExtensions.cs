@@ -8,6 +8,8 @@ namespace MLEM.Maths {
     /// </summary>
     public static class RandomExtensions {
 
+        private const string IndexOutOfRangeString = "Reached end of the collection in GetRandomWeightedEntry. For each entry, the passed weight function should return the same value on each invocation.";
+
         /// <summary>
         /// Gets a random entry from the given collection with uniform chance.
         /// </summary>
@@ -80,10 +82,10 @@ namespace MLEM.Maths {
             var currWeight = 0;
             foreach (var entry in entries) {
                 currWeight += weightFunc(entry);
-                if (currWeight > goalWeight)
+                if (currWeight >= goalWeight)
                     return entry;
             }
-            throw new IndexOutOfRangeException();
+            throw new IndexOutOfRangeException(RandomExtensions.IndexOutOfRangeString);
         }
 
         internal static T GetRandomWeightedEntry<T>(ICollection<T> entries, Func<T, float> weightFunc, float randomValue) {
@@ -91,10 +93,10 @@ namespace MLEM.Maths {
             var currWeight = 0F;
             foreach (var entry in entries) {
                 currWeight += weightFunc(entry);
-                if (currWeight > goalWeight)
+                if (currWeight >= goalWeight)
                     return entry;
             }
-            throw new IndexOutOfRangeException();
+            throw new IndexOutOfRangeException(RandomExtensions.IndexOutOfRangeString);
         }
 
     }

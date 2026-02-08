@@ -6,6 +6,7 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 ### MLEM
 Fixes
 - Fixed sprite animation groups not advancing to their first frame immediately
+- Fixed GetRandomWeightedEntry throwing an exception when the random value is very close to 1
 
 ### MLEM.Ui
 Additions
