@@ -4,7 +4,7 @@
         <VSTestLogger>nunit</VSTestLogger>
         <VSTestResultsDirectory>TestResults.KNI</VSTestResultsDirectory>
         <RunSettingsFilePath>Tests.KNI.runsettings</RunSettingsFilePath>
-        <RootNamespace>Tests</RootNamespace>
+        <RootNamespace>MLEM.Tests</RootNamespace>
         <DefineConstants>$(DefineConstants);KNI</DefineConstants>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

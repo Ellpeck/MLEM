@@ -2,7 +2,7 @@
 using MLEM.Graphics;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class ColorTests {
 

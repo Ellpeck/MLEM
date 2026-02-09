@@ -4,7 +4,7 @@ using NUnit.Framework;
 using RectangleF = MLEM.Maths.RectangleF;
 using MLEM.Maths;
 using MonoGame.Extended;
-namespace Tests;
+namespace MLEM.Tests;
 
 public class NumberTests {
 

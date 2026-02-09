@@ -9,7 +9,7 @@ using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class UiTests : GameTestFixture {
 

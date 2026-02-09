@@ -5,7 +5,7 @@ using MLEM.Data;
 using MLEM.Textures;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class TestDataTextureAtlas : GameTestFixture {
 

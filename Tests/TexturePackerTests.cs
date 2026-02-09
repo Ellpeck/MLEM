@@ -9,7 +9,7 @@ using MLEM.Textures;
 using NUnit.Framework;
 using Color = Microsoft.Xna.Framework.Color;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class TexturePackerTests : GameTestFixture {
 

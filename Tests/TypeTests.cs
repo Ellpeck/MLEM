@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using NUnit.Framework;
 using TypeHelper = MLEM.Data.TypeHelper;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class TypeTests {
 

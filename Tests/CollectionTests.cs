@@ -5,7 +5,7 @@ using MLEM.Maths;
 using MLEM.Misc;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class CollectionTests {
 

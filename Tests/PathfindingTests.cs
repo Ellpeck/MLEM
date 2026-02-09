@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using MLEM.Pathfinding;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class PathfindingTests {
 

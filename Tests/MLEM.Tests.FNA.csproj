@@ -4,7 +4,7 @@
         <VSTestLogger>nunit</VSTestLogger>
         <VSTestResultsDirectory>TestResults.FNA</VSTestResultsDirectory>
         <RunSettingsFilePath>Tests.FNA.runsettings</RunSettingsFilePath>
-        <RootNamespace>Tests</RootNamespace>
+        <RootNamespace>MLEM.Tests</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>
         <IsPackable>false</IsPackable>
     </PropertyGroup>

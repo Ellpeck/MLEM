@@ -5,7 +5,7 @@ using System.Linq;
 using MLEM.Maths;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class SingleRandomTests {
 

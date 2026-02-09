@@ -8,7 +8,7 @@ using MLEM.Font;
 using MLEM.Startup;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class TestGame : MlemGame {
 

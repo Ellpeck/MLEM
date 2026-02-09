@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class DataTests {
 

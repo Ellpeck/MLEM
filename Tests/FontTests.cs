@@ -8,7 +8,7 @@ using MLEM.Formatting.Codes;
 using MLEM.Textures;
 using NUnit.Framework;
 
-namespace Tests;
+namespace MLEM.Tests;
 
 public class FontTests : GameTestFixture {
 
