@@ -5,6 +5,7 @@ using System.Linq;
 using Coroutine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MLEM.Animations;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Input;
@@ -15,6 +16,7 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Parsers;
 using MLEM.Ui.Style;
+using static MLEM.Animations.StepAnimator<MLEM.Ui.Elements.Element>;
 
 namespace Demos {
     public class UiDemo : Demo {
@@ -168,10 +170,10 @@ namespace Demos {
             // Another button that shows animations!
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Fancy Hover") {
                 PositionOffset = new Vector2(0, 1),
-                MouseEnterAnimation = new UiAnimation(0.15, (a, e, p) => e.ScaleTransform(1 + Easings.OutSine(p) * 0.05F)),
-                MouseExitAnimation = new UiAnimation(0.15, (a, e, p) => e.ScaleTransform(1 + Easings.OutSine.ReverseOutput()(p) * 0.05F)) {
-                    Finished = (a, e) => e.Transform = Matrix.Identity
-                }
+                MouseEnterAnimation = new UiAnimation(0.15, (a, s, e, p) => e.ScaleTransform(1 + Easings.OutSine(p) * 0.05F)),
+                MouseExitAnimation = new UiAnimation(new Step(TimeSpan.FromSeconds(0.15), (a, s, e, p) => e.ScaleTransform(1 + Easings.OutSine.ReverseOutput()(p) * 0.05F)) {
+                    Finished = (a, s, e) => e.Transform = Matrix.Identity
+                })
             });
             this.root.AddChild(new Button(Anchor.AutoCenter, new Vector2(0.5F, 10), "Transform Ui", "This button causes the entire ui to be transformed (both in positioning, rotation and scale)") {
                 OnPressed = element => {

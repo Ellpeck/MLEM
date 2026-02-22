@@ -18,6 +18,7 @@ Additions
 - Added ILayoutItem.OnLayoutRecursionSettled which is called when recursive ui layouting has finished
 
 Improvements
+- **Use the new StepAnimator as the underlying type for UiAnimation**
 - Made the exception thrown after the element recursion limit is reached more helpful
 
 Fixes

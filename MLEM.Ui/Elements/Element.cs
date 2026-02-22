@@ -873,8 +873,8 @@ namespace MLEM.Ui.Elements {
 
             for (var i = this.PlayingAnimations.Count - 1; i >= 0; i--) {
                 var anim = this.PlayingAnimations[i];
-                if (anim.Update(this, time)) {
-                    anim.OnFinished(this);
+                if (anim.Update(this, time.ElapsedGameTime)) {
+                    anim.Reset(this);
                     this.PlayingAnimations.RemoveAt(i);
                 }
             }
@@ -970,20 +970,20 @@ namespace MLEM.Ui.Elements {
         public virtual void PlayAnimation(UiAnimation animation) {
             if (this.PlayingAnimations.Contains(animation)) {
                 // if we're already playing this animation, just restart it
-                animation.OnFinished(this);
+                animation.Reset(this);
             } else {
                 this.PlayingAnimations.Add(animation);
             }
         }
 
         /// <summary>
-        /// Stops the given <see cref="UiAnimation"/> on this element, causing it to be removed from the <see cref="PlayingAnimations"/> and <see cref="UiAnimation.OnFinished"/> to be invoked.
+        /// Stops the given <see cref="UiAnimation"/> on this element, causing it to be removed from the <see cref="PlayingAnimations"/> and <see cref="UiAnimation.Reset"/> to be invoked.
         /// </summary>
         /// <param name="animation">The animation to stop.</param>
         /// <returns>Whether the animation was present in this element's <see cref="PlayingAnimations"/>.</returns>
         public virtual bool StopAnimation(UiAnimation animation) {
             if (this.PlayingAnimations.Remove(animation)) {
-                animation.OnFinished(this);
+                animation.Reset(this);
                 return true;
             }
             return false;
