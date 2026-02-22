@@ -4,6 +4,9 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 ## 8.1.0 (In Development)
 
 ### MLEM
+Additions
+- Added StepAnimator to facilitate multi-step, timed, and optionally looping "animations" in the form of event callbacks
+
 Fixes
 - Fixed sprite animation groups not advancing to their first frame immediately
 - Fixed GetRandomWeightedEntry throwing an exception when the random value is very close to 1
