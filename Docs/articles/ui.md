@@ -2,7 +2,10 @@
 
 **MLEM.Ui** is a Ui framework for MonoGame, FNA and KNI that features elements with automatic positioning and sizing. It contains various ready-made element types like buttons, paragraphs, text fields and more, along with the ability to easily create custom controls. It supports **mouse**, **keyboard**, **gamepad** and **touch** input with little to no additional setup work required.
 
-To see some of what MLEM.Ui can do, you can check out [the demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/UiDemo.cs) as well. If you have additional questions about MLEM.Ui after reading this article, be sure to check the [MLEM.Ui FAQ](ui_faq.md) as well!
+## MLEM.Ui Resources
+- Check out the [MLEM.Ui Gallery](ui_gallery.md) to see some games that use MLEM.Ui and get some inspiration!
+- To see some of what MLEM.Ui can do in action, take a look at [the demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/UiDemo.cs), which is also available on [the web](https://mlem.ellpeck.de/demo).
+- If you have additional questions about MLEM.Ui after reading this article, be sure to check the [MLEM.Ui FAQ](ui_faq.md) as well.
 
 ## About Ui Systems
 
