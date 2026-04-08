@@ -25,6 +25,10 @@ Fixes
 - Fixed undrawn elements not updating their area correctly even if their children are drawn or accessed
 - Fixed rare unbound recursion issue with auto-hiding scroll bars and elements that just about don't fit the panel
 
+### MLEM.Extended
+Improvements
+- MLEM.Extended.KNI now supports FontStashSharp
+
 ### MLEM.Data
 Additions
 - Added the TypeHelper utility class

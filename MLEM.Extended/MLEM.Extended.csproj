@@ -24,7 +24,7 @@
         <PackageReference Condition="'$(TargetFramework)'=='net8.0'" Include="MonoGame.Extended" Version="4.0.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="FontStashSharp.MonoGame" Version="1.3.3">
+        <PackageReference Include="FontStashSharp.MonoGame" Version="1.5.4">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
