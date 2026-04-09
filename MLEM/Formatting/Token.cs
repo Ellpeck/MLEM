@@ -64,8 +64,8 @@ namespace MLEM.Formatting {
         /// <param name="defaultPick">The default color, if none is specified</param>
         /// <returns>The color to render with</returns>
         public Color GetColor(Color defaultPick) {
-            foreach (var code in this.AppliedCodes) {
-                var color = code.GetColor(defaultPick);
+            for (var i = 0; i < this.AppliedCodes.Length; i++) {
+                var color = this.AppliedCodes[i].GetColor(defaultPick);
                 if (color.HasValue)
                     return color.Value;
             }
@@ -78,8 +78,8 @@ namespace MLEM.Formatting {
         /// <param name="defaultPick">The default font, if none is specified</param>
         /// <returns>The font to render with</returns>
         public GenericFont GetFont(GenericFont defaultPick) {
-            foreach (var code in this.AppliedCodes) {
-                var font = code.GetFont(defaultPick);
+            for (var i = 0; i < this.AppliedCodes.Length; i++) {
+                var font = this.AppliedCodes[i].GetFont(defaultPick);
                 if (font != null)
                     return font;
             }
@@ -94,8 +94,8 @@ namespace MLEM.Formatting {
         /// <returns>The width of this token itself.</returns>
         public float GetSelfWidth(GenericFont font) {
             var ret = 0F;
-            foreach (var code in this.AppliedCodes)
-                ret += code.GetSelfWidth(font);
+            for (var i = 0; i < this.AppliedCodes.Length; i++)
+                ret += this.AppliedCodes[i].GetSelfWidth(font);
             return ret;
         }
 
@@ -116,8 +116,8 @@ namespace MLEM.Formatting {
         /// <param name="effects">The flipping to draw with.</param>
         /// <param name="stringSize">The size of the string.</param>
         public void DrawSelf(GameTime time, SpriteBatch batch, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize) {
-            foreach (var code in this.AppliedCodes)
-                code.DrawSelf(time, batch, this, stringPos, charPosOffset, font, color, scale, rotation, origin, depth, effects, stringSize);
+            for (var i = 0; i < this.AppliedCodes.Length; i++)
+                this.AppliedCodes[i].DrawSelf(time, batch, this, stringPos, charPosOffset, font, color, scale, rotation, origin, depth, effects, stringSize);
         }
 
         /// <summary>
@@ -140,8 +140,8 @@ namespace MLEM.Formatting {
         /// <param name="stringSize">The size of the string.</param>
         /// <param name="charSize">The size of the current character.</param>
         public void DrawCharacter(GameTime time, SpriteBatch batch, int codePoint, string character, int indexInToken, Vector2 stringPos, Vector2 charPosOffset, GenericFont font, Color color, Vector2 scale, float rotation, Vector2 origin, float depth, SpriteEffects effects, Vector2 stringSize, Vector2 charSize) {
-            foreach (var code in this.AppliedCodes) {
-                if (code.DrawCharacter(time, batch, codePoint, character, this, indexInToken, stringPos, ref charPosOffset, font, ref color, ref scale, ref rotation, ref origin, depth, effects, stringSize, charSize))
+            for (var i = 0; i < this.AppliedCodes.Length; i++) {
+                if (this.AppliedCodes[i].DrawCharacter(time, batch, codePoint, character, this, indexInToken, stringPos, ref charPosOffset, font, ref color, ref scale, ref rotation, ref origin, depth, effects, stringSize, charSize))
                     return;
             }
 

@@ -152,8 +152,8 @@ namespace MLEM.Formatting {
         /// </summary>
         /// <param name="time">The game's time</param>
         public void Update(GameTime time) {
-            foreach (var code in this.AllCodes)
-                code.Update(time);
+            for (var i = 0; i < this.AllCodes.Length; i++)
+                this.AllCodes[i].Update(time);
         }
 
         /// <inheritdoc cref="GetTokenUnderPos(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,MLEM.Font.GenericFont,float,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects)"/>

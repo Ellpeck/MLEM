@@ -3,7 +3,9 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 
 ## 8.1.1 (In Development)
 
-No code changes
+### MLEM
+Improvements
+- Improved rendering performance of formatted strings
 
 ## 8.1.0
 

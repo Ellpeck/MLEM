@@ -35,8 +35,8 @@ namespace MLEM.Formatting.Codes {
         /// </summary>
         /// <returns>True if this code is currently selected</returns>
         public virtual bool IsSelected() {
-            foreach (var token in this.Tokens) {
-                if (this.IsSelectedFunc(token))
+            for (var i = 0; i < this.Tokens.Count; i++) {
+                if (this.IsSelectedFunc(this.Tokens[i]))
                     return true;
             }
             return false;
