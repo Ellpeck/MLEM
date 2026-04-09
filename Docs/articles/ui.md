@@ -5,6 +5,7 @@
 ## MLEM.Ui Resources
 - Check out the [MLEM.Ui Gallery](ui_gallery.md) to see some games that use MLEM.Ui and get some inspiration!
 - To see some of what MLEM.Ui can do in action, take a look at [the demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/UiDemo.cs), which is also available on [the web](https://mlem.ellpeck.de/demo).
+- Check out and play around with the [MLEM.Ui example](https://xnafiddle.net/?example=MlemUi) on [XnaFiddle](https://xnafiddle.net/).
 - If you have additional questions about MLEM.Ui after reading this article, be sure to check the [MLEM.Ui FAQ](ui_faq.md) as well.
 
 ## About Ui Systems

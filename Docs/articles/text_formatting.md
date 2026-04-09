@@ -4,7 +4,8 @@ The **MLEM** package contains a simple text formatting system that supports colo
 
 Text formatting makes use of [generic fonts](font_extensions.md), and [MLEM.Ui](ui.md)'s `Paragraph` supports text formatting out of the box, but using it for your own text rendering is very simple.
 
-[The demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/TextFormattingDemo.cs) features plenty of examples of the formatting codes that are available by default, as well as examples of the ability to add custom codes and interact with formatted text.
+[The demo](https://github.com/Ellpeck/MLEM/blob/main/Demos/TextFormattingDemo.cs) features plenty of examples of the formatting codes that are available by default, as well as examples of the ability to add custom codes and interact with formatted text. You can also check out and play around with the [text formatting example](https://xnafiddle.net/?example=MlemTextFormatting) on [XnaFiddle](https://xnafiddle.net/).
+
 
 ## Formatting Codes
 To format your text, you can insert *formatting codes* into it. Almost all of these codes are single letters surrounded by `<>`, and some formatting codes can accept additional parameters after their letter representation.
