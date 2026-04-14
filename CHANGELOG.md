@@ -7,6 +7,10 @@ MLEM uses [semantic versioning](https://semver.org/). Potentially breaking chang
 Improvements
 - Improved rendering performance of formatted strings
 
+### MLEM.Ui
+Fixes
+- Fixed tooltips sticking around for one frame when their text is cleared
+
 ## 8.1.0
 
 ### MLEM

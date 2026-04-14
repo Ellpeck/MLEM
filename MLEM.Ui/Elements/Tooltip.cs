@@ -182,6 +182,13 @@ namespace MLEM.Ui.Elements {
             this.UpdateParagraphsStyles();
         }
 
+        /// <inheritdoc />
+        protected override void OnChildAreaDirty(Element child, bool grandchild) {
+            base.OnChildAreaDirty(child, grandchild);
+            if (!grandchild)
+                this.UpdateAutoHidden();
+        }
+
         /// <summary>
         /// Adds the given paragraph to this tooltip's managed <see cref="Paragraphs"/> list, as well as to its children using <see cref="Element.AddChild{T}"/>.
         /// A paragraph that is contained in the <see cref="Paragraphs"/> list will automatically have the <see cref="UiStyle.TooltipTextWidth"/> and <see cref="UiStyle.TooltipTextColor"/> applied.
