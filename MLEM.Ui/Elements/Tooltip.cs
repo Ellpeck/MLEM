@@ -185,7 +185,7 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void OnChildAreaDirty(Element child, bool grandchild) {
             base.OnChildAreaDirty(child, grandchild);
-            if (!grandchild)
+            if (!grandchild && this.System != null)
                 this.UpdateAutoHidden();
         }
 
