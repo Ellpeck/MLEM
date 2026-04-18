@@ -161,6 +161,7 @@ namespace MLEM.Ui.Elements {
             if (this.Parent != null)
                 throw new NotSupportedException($"A tooltip shouldn't be the child of another element ({this.Parent})");
             base.ForceUpdateArea();
+            this.UpdateAutoHidden();
             this.SnapPositionToMouse();
         }
 
@@ -185,8 +186,9 @@ namespace MLEM.Ui.Elements {
         /// <inheritdoc />
         protected override void OnChildAreaDirty(Element child, bool grandchild) {
             base.OnChildAreaDirty(child, grandchild);
-            if (!grandchild && this.System != null)
-                this.UpdateAutoHidden();
+            // set our area dirty whenever our children change to ensure UpdateAutoHidden is called when our area updates
+            if (!grandchild)
+                this.SetAreaDirty();
         }
 
         /// <summary>
