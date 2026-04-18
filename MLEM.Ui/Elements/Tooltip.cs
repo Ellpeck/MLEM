@@ -161,6 +161,7 @@ namespace MLEM.Ui.Elements {
             if (this.Parent != null)
                 throw new NotSupportedException($"A tooltip shouldn't be the child of another element ({this.Parent})");
             base.ForceUpdateArea();
+            this.UpdateAutoHidden();
             this.SnapPositionToMouse();
         }
 
@@ -180,13 +181,6 @@ namespace MLEM.Ui.Elements {
             this.ParagraphWidth = this.ParagraphWidth.OrStyle(style.TooltipTextWidth);
             this.ChildPadding = this.ChildPadding.OrStyle(style.TooltipChildPadding);
             this.UpdateParagraphsStyles();
-        }
-
-        /// <inheritdoc />
-        protected override void OnChildAreaDirty(Element child, bool grandchild) {
-            base.OnChildAreaDirty(child, grandchild);
-            if (!grandchild && this.System != null)
-                this.UpdateAutoHidden();
         }
 
         /// <summary>
