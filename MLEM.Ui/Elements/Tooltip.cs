@@ -107,7 +107,12 @@ namespace MLEM.Ui.Elements {
         public virtual Rectangle? Viewport { get; set; }
 
         /// <inheritdoc />
-        public override bool IsHidden => this.autoHidden || base.IsHidden;
+        public override bool IsHidden {
+            get {
+                this.UpdateAutoHidden();
+                return this.autoHidden || base.IsHidden;
+            }
+        }
 
         private TimeSpan delayCountdown;
         private bool autoHidden;
@@ -148,11 +153,8 @@ namespace MLEM.Ui.Elements {
                 this.delayCountdown -= time.ElapsedGameTime;
                 if (this.delayCountdown <= TimeSpan.Zero) {
                     this.IsHidden = false;
-                    this.UpdateAutoHidden();
                     this.SnapPositionToMouse();
                 }
-            } else {
-                this.UpdateAutoHidden();
             }
         }
 
@@ -161,7 +163,6 @@ namespace MLEM.Ui.Elements {
             if (this.Parent != null)
                 throw new NotSupportedException($"A tooltip shouldn't be the child of another element ({this.Parent})");
             base.ForceUpdateArea();
-            this.UpdateAutoHidden();
             this.SnapPositionToMouse();
         }
 
@@ -327,8 +328,8 @@ namespace MLEM.Ui.Elements {
 
         private void UpdateAutoHidden() {
             var shouldBeHidden = true;
-            foreach (var child in this.Children) {
-                if (!child.IsHidden) {
+            for (var i = 0; i < this.Children.Count; i++) {
+                if (!this.Children[i].IsHidden) {
                     shouldBeHidden = false;
                     break;
                 }
