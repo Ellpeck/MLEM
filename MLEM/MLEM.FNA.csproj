@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MLEM.props" />
+
     <PropertyGroup>
         <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -25,7 +27,7 @@
             <PrivateAssets>all</PrivateAssets>
         </ProjectReference>
 
-        <PackageReference Include="System.ValueTuple" Version="4.5.0" Condition="'$(TargetFramework)'=='net452'" />
+        <PackageReference Include="System.ValueTuple" Version="$(ValueTupleVersion)" Condition="'$(TargetFramework)'=='net452'" />
     </ItemGroup>
 
     <ItemGroup>

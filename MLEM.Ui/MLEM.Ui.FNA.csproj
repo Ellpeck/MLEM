@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MLEM.props" />
+
     <PropertyGroup>
         <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -21,7 +23,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="TextCopy" Version="6.2.0" Condition="'$(TargetFramework)'!='net452'" />
+        <PackageReference Include="TextCopy" Version="$(TextCopyVersion)" Condition="'$(TargetFramework)'!='net452'" />
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
         <ProjectReference Include="..\ThirdParty\FNA\FNA.csproj">

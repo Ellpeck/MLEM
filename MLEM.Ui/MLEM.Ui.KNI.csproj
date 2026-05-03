@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MLEM.props" />
+
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -21,37 +23,37 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="TextCopy" Version="6.2.0" Condition="'$(TargetFramework)'!='net452'" />
+        <PackageReference Include="TextCopy" Version="$(TextCopyVersion)" Condition="'$(TargetFramework)'!='net452'" />
         <ProjectReference Include="..\MLEM\MLEM.KNI.csproj" />
 
-        <PackageReference Include="nkast.Xna.Framework" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Content" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Content" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Devices" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Devices" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Audio" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Audio" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Media" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Media" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Input" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Input" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Game" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Game" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Storage" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.Storage" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.XR" Version="4.1.9001">
+        <PackageReference Include="nkast.Xna.Framework.XR" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>

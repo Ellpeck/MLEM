@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MLEM.props" />
+
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -21,13 +23,13 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.csproj" />
 
-        <PackageReference Condition="'$(TargetFramework)'=='net8.0'" Include="MonoGame.Extended" Version="4.0.0">
+        <PackageReference Condition="'$(TargetFramework)'=='net8.0'" Include="MonoGame.Extended" Version="$(MonoGameExtendedVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="FontStashSharp.MonoGame" Version="1.5.4">
+        <PackageReference Include="FontStashSharp.MonoGame" Version="$(FontStashSharpVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="$(MonoGameVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>

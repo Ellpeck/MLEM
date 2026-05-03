@@ -1,4 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MLEM.props" />
+
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
@@ -20,13 +22,13 @@
     <ItemGroup>
         <ProjectReference Include="..\ThirdParty\MonoGame.Extended\source\MonoGame.Extended\FNA.Extended.csproj" />
         <ProjectReference Include="..\ThirdParty\FNA\FNA.Core.csproj" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
 
-        <PackageReference Include="coverlet.collector" Version="6.0.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-        <PackageReference Include="NUnit" Version="3.14.0" />
-        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-        <PackageReference Include="NunitXml.TestLogger" Version="3.1.15" />
+        <PackageReference Include="coverlet.collector" Version="$(CoverletVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(NetTestSdkVersion)" />
+        <PackageReference Include="NUnit" Version="$(NUnitVersion)" />
+        <PackageReference Include="NUnit3TestAdapter" Version="$(NUnitAdapterVersion)" />
+        <PackageReference Include="NunitXml.TestLogger" Version="$(NUnitLoggerVersion)" />
     </ItemGroup>
 
     <ItemGroup>

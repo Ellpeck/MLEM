@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MLEM.props" />
+
     <PropertyGroup>
         <TargetFrameworks>net452;netstandard2.0;net8.0</TargetFrameworks>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -24,10 +26,10 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.FNA.csproj" />
 
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3">
+        <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2">
+        <PackageReference Include="Newtonsoft.Json.Bson" Version="$(NewtonsoftBsonVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 

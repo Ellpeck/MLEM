@@ -1,0 +1,22 @@
+﻿<Project>
+    <PropertyGroup>
+        <MonoGameVersion>3.8.0.1641</MonoGameVersion>
+        <KniVersion>4.1.9001</KniVersion>
+
+        <MonoGameExtendedVersion>4.0.0</MonoGameExtendedVersion>
+        <FontStashSharpVersion>1.5.4</FontStashSharpVersion>
+
+        <NewtonsoftJsonVersion>13.0.3</NewtonsoftJsonVersion>
+        <NewtonsoftBsonVersion>1.0.2</NewtonsoftBsonVersion>
+
+        <CoroutineVersion>2.1.5</CoroutineVersion>
+        <TextCopyVersion>6.2.0</TextCopyVersion>
+        <ValueTupleVersion>4.5.0</ValueTupleVersion>
+
+        <CoverletVersion>6.0.0</CoverletVersion>
+        <NetTestSdkVersion>17.8.0</NetTestSdkVersion>
+        <NUnitVersion>3.14.0</NUnitVersion>
+        <NUnitAdapterVersion>4.5.0</NUnitAdapterVersion>
+        <NUnitLoggerVersion>3.1.15</NUnitLoggerVersion>
+    </PropertyGroup>
+</Project>
