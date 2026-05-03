@@ -3,7 +3,7 @@
         <MonoGameVersion>3.8.0.1641</MonoGameVersion>
         <KniVersion>4.1.9001</KniVersion>
 
-        <MonoGameExtendedVersion>4.0.0</MonoGameExtendedVersion>
+        <MonoGameExtendedVersion>6.0.0</MonoGameExtendedVersion>
         <FontStashSharpVersion>1.5.4</FontStashSharpVersion>
 
         <NewtonsoftJsonVersion>13.0.3</NewtonsoftJsonVersion>

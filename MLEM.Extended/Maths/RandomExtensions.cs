@@ -14,7 +14,7 @@ namespace MLEM.Extended.Maths {
         /// <param name="random">The random to use for generation</param>
         /// <param name="range">The range in which numbers will be generated</param>
         /// <returns>A number in the given range</returns>
-        public static int Range(this Random random, Range<int> range) {
+        public static int Range(this Random random, Interval<int> range) {
             return random.Next(range.Min, range.Max);
         }
 
@@ -24,7 +24,7 @@ namespace MLEM.Extended.Maths {
         /// <param name="random">The random to use for generation</param>
         /// <param name="range">The range in which numbers will be generated</param>
         /// <returns>A number in the given range</returns>
-        public static float Range(this Random random, Range<float> range) {
+        public static float Range(this Random random, Interval<float> range) {
             return random.NextSingle(range.Min, range.Max);
         }
 

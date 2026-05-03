@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tilemaps;
 using ColorHelper = MLEM.Graphics.ColorHelper;
 
 namespace MLEM.Extended.Tiled {
@@ -13,61 +13,56 @@ namespace MLEM.Extended.Tiled {
     /// </summary>
     public static class TiledExtensions {
 
-        private static readonly Dictionary<int, TiledMapTilesetTile> StubTilesetTiles = new Dictionary<int, TiledMapTilesetTile>();
+        private static readonly Dictionary<int, TilemapTileData> StubTilesetTiles = new Dictionary<int, TilemapTileData>();
 
         /// <summary>
-        /// Gets the property with the given key, or null if there is none.
+        /// Gets the property with the given key, or <see langword="null"/> if there is none.
         /// </summary>
         /// <param name="properties">The set of properties</param>
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The property, or null if there is none</returns>
-        public static string Get(this TiledMapProperties properties, string key) {
-            properties.TryGetValue(key, out var val);
-            return val;
+        public static string Get(this TilemapProperties properties, string key) {
+            return properties.TryGetValue(key, out var val) && val.Type == TilemapPropertyType.String ? val.AsString() : null;
         }
 
         /// <summary>
-        /// Gets a boolean property with the given key, or null if there is none.
+        /// Gets a boolean property with the given key, or <see langword="false"/> if there is none.
         /// </summary>
         /// <param name="properties">The set of properties</param>
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The boolean property, or false if there is none</returns>
-        public static bool GetBool(this TiledMapProperties properties, string key) {
-            bool.TryParse(properties.Get(key), out var val);
-            return val;
+        public static bool GetBool(this TilemapProperties properties, string key) {
+            return properties.TryGetValue(key, out var val) && val.Type == TilemapPropertyType.Bool && val.AsBool();
         }
 
         /// <summary>
-        /// Gets a Color property with the given key, or null if there is none.
+        /// Gets a Color property with the given key, or <see langword="default"/> if there is none.
         /// </summary>
         /// <param name="properties">The set of properties</param>
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The color property</returns>
-        public static Color GetColor(this TiledMapProperties properties, string key) {
-            ColorHelper.TryFromHexString(properties.Get(key), out var val);
-            return val;
+        public static Color GetColor(this TilemapProperties properties, string key) {
+            return properties.TryGetValue(key, out var val) && val.Type == TilemapPropertyType.Color ? val.AsColor() : default;
         }
 
         /// <summary>
-        /// Gets a float property with the given key, or null if there is none.
+        /// Gets a float property with the given key, or 0 if there is none.
         /// </summary>
         /// <param name="properties">The set of properties</param>
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The float property, or 0 if there is none</returns>
-        public static float GetFloat(this TiledMapProperties properties, string key) {
-            float.TryParse(properties.Get(key), NumberStyles.Number, CultureInfo.InvariantCulture, out var val);
-            return val;
+        public static float GetFloat(this TilemapProperties properties, string key) {
+            return properties.TryGetValue(key, out var val) && val.Type == TilemapPropertyType.Float ? val.AsFloat() : 0;
         }
 
         /// <summary>
-        /// Gets an int property with the given key, or null if there is none.
+        /// Gets an int property with the given key, or 0 if there is none.
         /// </summary>
         /// <param name="properties">The set of properties</param>
         /// <param name="key">The key by which to get a property</param>
         /// <returns>The int property, or 0 if there is none</returns>
-        public static int GetInt(this TiledMapProperties properties, string key) {
-            int.TryParse(properties.Get(key), NumberStyles.Number, CultureInfo.InvariantCulture, out var val);
-            return val;
+        public static int GetInt(this TilemapProperties properties, string key) {
+            return properties.TryGetValue(key, out var val) && val.Type == TilemapPropertyType.Int ? val.AsInt() : 0;
         }
 
         /// <summary>
@@ -76,8 +71,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="tile">The tile</param>
         /// <param name="map">The map the tile is on</param>
         /// <returns>The tileset that the tile came from</returns>
-        public static TiledMapTileset GetTileset(this TiledMapTile tile, TiledMap map) {
-            return map.GetTilesetByTileGlobalIdentifier(tile.GlobalIdentifier);
+        public static TilemapTileset GetTileset(this TilemapTile tile, Tilemap map) {
+            return map.Tilesets.GetTilesetForGid(tile.GlobalId);
         }
 
         /// <summary>
@@ -88,8 +83,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="tileset">The tileset the tile is from</param>
         /// <param name="map">The map the tile is on</param>
         /// <returns>The local identifier</returns>
-        public static int GetLocalIdentifier(this TiledMapTile tile, TiledMapTileset tileset, TiledMap map) {
-            return tile.GlobalIdentifier - map.GetTilesetFirstGlobalIdentifier(tileset);
+        public static int GetLocalIdentifier(this TilemapTile tile, TilemapTileset tileset, Tilemap map) {
+            return tile.GlobalId - map.Tilesets.GetTilesetForGid(tile.GlobalId).FirstGlobalId;
         }
 
         /// <summary>
@@ -98,10 +93,9 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="tile">The tile whose global identifier to get</param>
         /// <param name="tileset">The tileset the tile is from</param>
-        /// <param name="map">The map the tile is on</param>
         /// <returns>The global identifier</returns>
-        public static int GetGlobalIdentifier(this TiledMapTilesetTile tile, TiledMapTileset tileset, TiledMap map) {
-            return map.GetTilesetFirstGlobalIdentifier(tileset) + tile.LocalTileIdentifier;
+        public static int GetGlobalIdentifier(this TilemapTileData tile, TilemapTileset tileset) {
+            return tileset.FirstGlobalId + tile.LocalId;
         }
 
         /// <summary>
@@ -112,24 +106,22 @@ namespace MLEM.Extended.Tiled {
         /// <param name="map">The map the tile is on</param>
         /// <param name="createStub">If a tileset tile has no special properties, there is no pre-made object for it. If this boolean is true, a stub object with no extra data will be created instead of returning null.</param>
         /// <returns>null if the tile is blank or the tileset tile if there is one or createStub is true</returns>
-        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, TiledMapTile tile, TiledMap map, bool createStub = true) {
-            if (tile.IsBlank)
+        public static TilemapTileData GetTilesetTile(this TilemapTileset tileset, TilemapTile? tile, Tilemap map, bool createStub = true) {
+            if (tile == null)
                 return null;
-            var localId = tile.GetLocalIdentifier(tileset, map);
+            var localId = tile.Value.GlobalId - map.Tilesets.GetTilesetForGid(tile.Value.GlobalId).FirstGlobalId;
             return tileset.GetTilesetTile(localId, createStub);
         }
 
         /// <summary>
         /// Gets the tileset tile on the given tileset for the given tile.
-        /// If the tileset is already known, you should use <see cref="GetTilesetTile(MonoGame.Extended.Tiled.TiledMapTileset,MonoGame.Extended.Tiled.TiledMapTile,MonoGame.Extended.Tiled.TiledMap,bool)"/> instead for performance.
+        /// If the tileset is already known, you should use <see cref="GetTilesetTile(TilemapTileset,TilemapTile?,Tilemap,bool)"/> instead for performance.
         /// </summary>
         /// <param name="tile">The tile</param>
         /// <param name="map">The map the tile is on</param>
         /// <param name="createStub">If a tileset tile has no special properties, there is no pre-made object for it. If this boolean is true, a stub object with no extra data will be created instead of returning null.</param>
         /// <returns>null if the tile is blank or the tileset tile if there is one or createStub is true</returns>
-        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTile tile, TiledMap map, bool createStub = true) {
-            if (tile.IsBlank)
-                return null;
+        public static TilemapTileData GetTilesetTile(this TilemapTile tile, Tilemap map, bool createStub = true) {
             var tileset = tile.GetTileset(map);
             return tileset.GetTilesetTile(tile, map, createStub);
         }
@@ -141,11 +133,11 @@ namespace MLEM.Extended.Tiled {
         /// <param name="localId">The tile's local id</param>
         /// <param name="createStub">If a tileset tile has no special properties, there is no pre-made object for it. If this boolean is true, a stub object with no extra data will be created instead of returning null.</param>
         /// <returns>null if the tile is blank or the tileset tile if there is one or createStub is true</returns>
-        public static TiledMapTilesetTile GetTilesetTile(this TiledMapTileset tileset, int localId, bool createStub = true) {
-            var tilesetTile = tileset.Tiles.FirstOrDefault(t => t.LocalTileIdentifier == localId);
+        public static TilemapTileData GetTilesetTile(this TilemapTileset tileset, int localId, bool createStub = true) {
+            var tilesetTile = tileset.GetTileData(localId);
             if (tilesetTile == null && createStub) {
                 if (!TiledExtensions.StubTilesetTiles.TryGetValue(localId, out tilesetTile)) {
-                    tilesetTile = new TiledMapTilesetTile(localId, null, null);
+                    tilesetTile = new TilemapTileData(localId);
                     TiledExtensions.StubTilesetTiles.Add(localId, tilesetTile);
                 }
             }
@@ -153,14 +145,14 @@ namespace MLEM.Extended.Tiled {
         }
 
         /// <summary>
-        /// Gets the layer index of the layer with the given name in the <see cref="TiledMap.Layers"/> array.
+        /// Gets the layer index of the layer with the given name in the <see cref="Tilemap.Layers"/> collection.
         /// </summary>
         /// <param name="map">The map</param>
         /// <param name="layerName">The name of the layer</param>
         /// <returns>The resulting index</returns>
-        public static int GetTileLayerIndex(this TiledMap map, string layerName) {
-            var layer = map.GetLayer<TiledMapTileLayer>(layerName);
-            return map.TileLayers.IndexOf(layer);
+        public static int GetTileLayerIndex(this Tilemap map, string layerName) {
+            var layer = map.Layers.GetLayer<TilemapTileLayer>(layerName);
+            return map.Layers.IndexOf(layer);
         }
 
         /// <summary>
@@ -171,9 +163,9 @@ namespace MLEM.Extended.Tiled {
         /// <param name="x">The x coordinate of the tile</param>
         /// <param name="y">The y coordinate of the tile</param>
         /// <returns>The tile at the given location, or default if the layer does not exist</returns>
-        public static TiledMapTile GetTile(this TiledMap map, string layerName, int x, int y) {
-            var layer = map.GetLayer<TiledMapTileLayer>(layerName);
-            return layer != null ? layer.GetTile(x, y) : default;
+        public static TilemapTile? GetTile(this Tilemap map, string layerName, int x, int y) {
+            var layer = map.Layers.GetLayer<TilemapTileLayer>(layerName);
+            return layer != null ? layer.GetTile(x, y) : null;
         }
 
         /// <summary>
@@ -182,7 +174,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="map">The map</param>
         /// <param name="pos">The layer position to get the tile at</param>
         /// <returns>The tile at the given location, or default if the layer does not exist</returns>
-        public static TiledMapTile GetTile(this TiledMap map, LayerPosition pos) {
+        public static TilemapTile? GetTile(this Tilemap map, LayerPosition pos) {
             return map.GetTile(pos.Layer, pos.X, pos.Y);
         }
 
@@ -194,10 +186,10 @@ namespace MLEM.Extended.Tiled {
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
         /// <param name="globalTile">The tile's global identifier to set</param>
-        public static void SetTile(this TiledMap map, string layerName, int x, int y, int globalTile) {
-            var layer = map.GetLayer<TiledMapTileLayer>(layerName);
+        public static void SetTile(this Tilemap map, string layerName, int x, int y, int globalTile) {
+            var layer = map.Layers.GetLayer<TilemapTileLayer>(layerName);
             if (layer != null)
-                layer.SetTile((ushort) x, (ushort) y, (uint) globalTile);
+                layer.SetTile(x, y, new TilemapTile(globalTile));
         }
 
         /// <summary>
@@ -210,8 +202,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="y">The y coordinate</param>
         /// <param name="tileset">The tileset to use, or null to remove the tile</param>
         /// <param name="tile">The tile to place, from the given tileset, or null to remove the tile</param>
-        public static void SetTile(this TiledMap map, string layerName, int x, int y, TiledMapTileset tileset, TiledMapTilesetTile tile) {
-            map.SetTile(layerName, x, y, tileset != null && tile != null ? tile.GetGlobalIdentifier(tileset, map) : 0);
+        public static void SetTile(this Tilemap map, string layerName, int x, int y, TilemapTileset tileset, TilemapTileData tile) {
+            map.SetTile(layerName, x, y, tileset != null && tile != null ? tile.GetGlobalIdentifier(tileset) : 0);
         }
 
         /// <summary>
@@ -220,7 +212,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="map">The map</param>
         /// <param name="pos">The layer position</param>
         /// <param name="globalTile">The tile's global identifier to set</param>
-        public static void SetTile(this TiledMap map, LayerPosition pos, int globalTile) {
+        public static void SetTile(this Tilemap map, LayerPosition pos, int globalTile) {
             map.SetTile(pos.Layer, pos.X, pos.Y, globalTile);
         }
 
@@ -232,22 +224,22 @@ namespace MLEM.Extended.Tiled {
         /// <param name="pos">The layer position</param>
         /// <param name="tileset">The tileset to use, or null to remove the tile</param>
         /// <param name="tile">The tile to place, from the given tileset, or null to remove the tile</param>
-        public static void SetTile(this TiledMap map, LayerPosition pos, TiledMapTileset tileset, TiledMapTilesetTile tile) {
+        public static void SetTile(this Tilemap map, LayerPosition pos, TilemapTileset tileset, TilemapTileData tile) {
             map.SetTile(pos.Layer, pos.X, pos.Y, tileset, tile);
         }
 
         /// <summary>
-        /// For an x and y coordinate, returns an enumerable of all of the tiles on each of the map's <see cref="TiledMap.TileLayers"/>.
+        /// For an x and y coordinate, returns an enumerable of all of the tiles on each of the map's <see cref="Tilemap.Layers"/> that are of type <see cref="TilemapTileLayer"/>.
         /// </summary>
         /// <param name="map">The map</param>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
         /// <returns>All of the tiles on the map at the given location</returns>
-        public static IEnumerable<TiledMapTile> GetTiles(this TiledMap map, int x, int y) {
-            foreach (var layer in map.TileLayers) {
+        public static IEnumerable<TilemapTile> GetTiles(this Tilemap map, int x, int y) {
+            foreach (var layer in map.Layers.GetLayers<TilemapTileLayer>()) {
                 var tile = layer.GetTile(x, y);
-                if (!tile.IsBlank)
-                    yield return tile;
+                if (tile != null)
+                    yield return tile.Value;
             }
         }
 
@@ -258,8 +250,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="x">The tile's x coordinate</param>
         /// <param name="y">The tile's y coordinate</param>
         /// <returns>The tiled map tile at the location, or default if the location is out of bounds</returns>
-        public static TiledMapTile GetTile(this TiledMapTileLayer layer, int x, int y) {
-            return !layer.IsInBounds(x, y) ? default : layer.GetTile((ushort) x, (ushort) y);
+        public static TilemapTile? GetTile(this TilemapTileLayer layer, int x, int y) {
+            return !layer.IsInBounds(x, y) ? null : layer.GetTile(x, y);
         }
 
         /// <summary>
@@ -271,12 +263,12 @@ namespace MLEM.Extended.Tiled {
         /// <param name="position">The position to add to the object's position</param>
         /// <param name="flipFlags">The flipping of the tile that this object belongs to. If set, the returned area will be "flipped" in the tile's space so that it matches the flip flags.</param>
         /// <returns>The area that the tile covers</returns>
-        public static RectangleF GetArea(this TiledMapObject obj, TiledMap map, Vector2? position = null, TiledMapTileFlipFlags flipFlags = TiledMapTileFlipFlags.None) {
+        public static RectangleF GetArea(this TilemapObject obj, Tilemap map, Vector2? position = null, TilemapTileFlipFlags flipFlags = TilemapTileFlipFlags.None) {
             var tileSize = map.GetTileSize();
-            var area = new RectangleF(obj.Position / tileSize, obj.Size / tileSize);
-            if (flipFlags.HasFlag(TiledMapTileFlipFlags.FlipHorizontally))
+            var area = new RectangleF(obj.Position / tileSize, obj.Bounds.Size / tileSize);
+            if (flipFlags.HasFlag(TilemapTileFlipFlags.FlipHorizontally))
                 area.X = 1 - area.X - area.Width;
-            if (flipFlags.HasFlag(TiledMapTileFlipFlags.FlipVertically))
+            if (flipFlags.HasFlag(TilemapTileFlipFlags.FlipVertically))
                 area.Y = 1 - area.Y - area.Height;
             if (position != null)
                 area.Offset(position.Value);
@@ -288,7 +280,7 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="map">The map</param>
         /// <returns>The width and height of a tile</returns>
-        public static Vector2 GetTileSize(this TiledMap map) {
+        public static Vector2 GetTileSize(this Tilemap map) {
             return new Vector2(map.TileWidth, map.TileHeight);
         }
 
@@ -299,7 +291,7 @@ namespace MLEM.Extended.Tiled {
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
         /// <returns>Whether the position is in bounds of the layer</returns>
-        public static bool IsInBounds(this TiledMapTileLayer layer, int x, int y) {
+        public static bool IsInBounds(this TilemapTileLayer layer, int x, int y) {
             return x >= 0 && y >= 0 && x < layer.Width && y < layer.Height;
         }
 
@@ -311,9 +303,9 @@ namespace MLEM.Extended.Tiled {
         /// <param name="searchName">Whether to search object names</param>
         /// <param name="searchType">Whether to search object types</param>
         /// <returns>An enumerable of tiled map objects that match the search</returns>
-        public static IEnumerable<TiledMapObject> GetObjects(this TiledMapObjectLayer layer, string id, bool searchName = true, bool searchType = false) {
+        public static IEnumerable<TilemapObject> GetObjects(this TilemapObjectLayer layer, string id, bool searchName = true, bool searchType = false) {
             foreach (var obj in layer.Objects) {
-                if (searchName && obj.Name == id || searchType && obj.Type == id)
+                if (searchName && obj.Name == id || searchType && obj.Class == id)
                     yield return obj;
             }
         }
@@ -326,8 +318,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="searchName">Whether to search object names</param>
         /// <param name="searchType">Whether to search object types</param>
         /// <returns>An enumerable of tiled map objects that match the search</returns>
-        public static IEnumerable<TiledMapObject> GetObjects(this TiledMap map, string id, bool searchName = true, bool searchType = false) {
-            foreach (var layer in map.ObjectLayers) {
+        public static IEnumerable<TilemapObject> GetObjects(this Tilemap map, string id, bool searchName = true, bool searchType = false) {
+            foreach (var layer in map.Layers.GetLayers<TilemapObjectLayer>()) {
                 foreach (var obj in layer.GetObjects(id, searchName, searchType))
                     yield return obj;
             }
@@ -339,10 +331,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="tileset">The tileset the tile is on</param>
         /// <param name="tile">The tile</param>
         /// <returns>The tile's texture region, in pixels.</returns>
-        public static Rectangle GetTextureRegion(this TiledMapTileset tileset, TiledMapTilesetTile tile) {
-            var id = tile.LocalTileIdentifier;
-            if (tile is TiledMapTilesetAnimatedTile animated)
-                id = animated.CurrentAnimationFrame.LocalTileIdentifier;
+        public static Rectangle GetTextureRegion(this TilemapTileset tileset, TilemapTileData tile) {
+            var id = tile.Animation != null ? tile.Animation.CurrentFrame.TileId : tile.LocalId;
             return tileset.GetTileRegion(id);
         }
 
@@ -351,11 +341,11 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="tile">The tile whose flip settings to convert</param>
         /// <returns>The tile's flip settings as sprite effects</returns>
-        public static SpriteEffects GetSpriteEffects(this TiledMapTile tile) {
+        public static SpriteEffects GetSpriteEffects(this TilemapTile tile) {
             var flipping = SpriteEffects.None;
-            if (tile.IsFlippedHorizontally)
+            if (tile.FlipFlags.HasFlag(TilemapTileFlipFlags.FlipHorizontally))
                 flipping |= SpriteEffects.FlipHorizontally;
-            if (tile.IsFlippedVertically)
+            if (tile.FlipFlags.HasFlag(TilemapTileFlipFlags.FlipVertically))
                 flipping |= SpriteEffects.FlipVertically;
             return flipping;
         }

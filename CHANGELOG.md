@@ -11,6 +11,10 @@ Improvements
 Fixes
 - Fixed tooltips sticking around for one frame when their text is cleared
 
+### MLEM.Extended
+Improvements
+- Now supports MonoGame.Extended 6.0.0, which is a **breaking change if using Tiled support**
+
 ## 8.1.0
 
 ### MLEM

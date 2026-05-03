@@ -9,6 +9,8 @@ using MLEM.Cameras;
 using MLEM.Data;
 using MLEM.Data.Content;
 using MLEM.Extended.Font;
+using MLEM.Extended.Maths;
+using MLEM.Extended.Tiled;
 using MLEM.Font;
 using MLEM.Formatting;
 using MLEM.Formatting.Codes;
@@ -19,16 +21,19 @@ using MLEM.Textures;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Ui.Style;
+using MonoGame.Extended;
+using MonoGame.Extended.Tilemaps;
 using Group = MLEM.Ui.Elements.Group;
+using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace Sandbox;
 
 public class GameImpl : MlemGame {
 
     private Camera camera;
-    /*private TiledMap map;
+    private Tilemap map;
     private IndividualTiledMapRenderer mapRenderer;
-    private TiledMapCollisions collisions;*/
+    private TiledMapCollisions collisions;
     private RawContentManager rawContent;
     private TokenizedString tokenized;
 
@@ -44,14 +49,14 @@ public class GameImpl : MlemGame {
 
         this.Components.Add(this.rawContent = new RawContentManager(this.Services));
 
-        /*this.map = MlemGame.LoadContent<TiledMap>("Tiled/Map");
+        this.map = MlemGame.LoadContent<Tilemap>("Tiled/Map");
         this.mapRenderer = new IndividualTiledMapRenderer(this.map);
-        this.collisions = new TiledMapCollisions(this.map);*/
+        this.collisions = new TiledMapCollisions(this.map);
 
         this.camera = new Camera(this.GraphicsDevice) {
             AutoScaleWithScreen = true,
             Scale = 2,
-            /*LookingPosition = new Vector2(25, 25) * this.map.GetTileSize(),*/
+            LookingPosition = new Vector2(25, 25) * this.map.GetTileSize(),
             MinScale = 0.25F,
             MaxScale = 4
         };
@@ -420,7 +425,7 @@ public class GameImpl : MlemGame {
         });
         this.UiSystem.Add("HSV", hsv);*/
 
-        var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
+        /*var group = new SquishingGroup(Anchor.TopLeft, Vector2.One);
         var root = this.UiSystem.Add("UI", group);
 
         var centerGroup = new ScissorGroup(Anchor.TopCenter, Vector2.One);
@@ -434,7 +439,7 @@ public class GameImpl : MlemGame {
         group.AddChild(this.listView);
 
         var bottomPane = new Panel(Anchor.BottomCenter, new Vector2(1, 500));
-        group.AddChild(bottomPane);
+        group.AddChild(bottomPane);*/
     }
 
     private Panel listView;
@@ -472,13 +477,13 @@ public class GameImpl : MlemGame {
     protected override void DoDraw(GameTime gameTime) {
         this.GraphicsDevice.Clear(Color.Black);
         this.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, this.camera.ViewMatrix);
-        /*this.mapRenderer.Draw(this.SpriteBatch, this.camera.GetVisibleRectangle().ToExtended());
+        this.mapRenderer.Draw(this.SpriteBatch, this.camera.GetVisibleRectangle().ToExtended());
 
         foreach (var tile in this.collisions.GetCollidingTiles(new RectangleF(0, 0, this.map.Width, this.map.Height))) {
             foreach (var area in tile.Collisions) {
                 this.SpriteBatch.DrawRectangle(area.Position * this.map.GetTileSize(), area.Size * this.map.GetTileSize(), Color.Red);
             }
-        }*/
+        }
 
         this.SpriteBatch.End();
         base.DoDraw(gameTime);

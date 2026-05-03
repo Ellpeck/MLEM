@@ -1,10 +1,10 @@
 using System;
 using System.Runtime.Serialization;
-using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tilemaps;
 
 namespace MLEM.Extended.Tiled {
     /// <summary>
-    /// A struct that represents a position on a <see cref="TiledMap"/> with multiple layers, where the <see cref="X"/> and <see cref="Y"/> coordinates are 32-bit floating point numbers.
+    /// A struct that represents a position on a <see cref="Tilemap"/> with multiple layers, where the <see cref="X"/> and <see cref="Y"/> coordinates are 32-bit floating point numbers.
     /// See <see cref="LayerPosition"/> for an integer position.
     /// </summary>
     [DataContract]

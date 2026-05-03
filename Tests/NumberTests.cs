@@ -4,6 +4,7 @@ using NUnit.Framework;
 using RectangleF = MLEM.Maths.RectangleF;
 using MLEM.Maths;
 using MonoGame.Extended;
+
 namespace MLEM.Tests;
 
 public class NumberTests {
@@ -71,24 +72,24 @@ public class NumberTests {
 
     [Test]
     public void TestRangePercentage() {
-        Assert.AreEqual(0.5F, new Range<int>(1, 7).GetPercentage(4));
-        Assert.AreEqual(1, new Range<int>(1, 7).GetPercentage(7));
-        Assert.AreEqual(0, new Range<int>(1, 7).GetPercentage(1));
-        Assert.AreEqual(4, new Range<int>(1, 7).FromPercentage(0.5F));
-        Assert.AreEqual(7, new Range<int>(1, 7).FromPercentage(1));
-        Assert.AreEqual(1, new Range<int>(1, 7).FromPercentage(0));
+        Assert.AreEqual(0.5F, new Interval<int>(1, 7).GetPercentage(4));
+        Assert.AreEqual(1, new Interval<int>(1, 7).GetPercentage(7));
+        Assert.AreEqual(0, new Interval<int>(1, 7).GetPercentage(1));
+        Assert.AreEqual(4, new Interval<int>(1, 7).FromPercentage(0.5F));
+        Assert.AreEqual(7, new Interval<int>(1, 7).FromPercentage(1));
+        Assert.AreEqual(1, new Interval<int>(1, 7).FromPercentage(0));
 
-        Assert.AreEqual(0.5F, new Range<float>(-1, 1).GetPercentage(0));
-        Assert.AreEqual(0.25F, new Range<float>(-1, 1).GetPercentage(-0.5F));
-        Assert.AreEqual(0.75F, new Range<float>(-1, 1).GetPercentage(0.5F));
-        Assert.AreEqual(0, new Range<float>(-1, 1).FromPercentage(0.5F));
-        Assert.AreEqual(-0.5F, new Range<float>(-1, 1).FromPercentage(0.25F));
-        Assert.AreEqual(0.5F, new Range<float>(-1, 1).FromPercentage(0.75F));
+        Assert.AreEqual(0.5F, new Interval<float>(-1, 1).GetPercentage(0));
+        Assert.AreEqual(0.25F, new Interval<float>(-1, 1).GetPercentage(-0.5F));
+        Assert.AreEqual(0.75F, new Interval<float>(-1, 1).GetPercentage(0.5F));
+        Assert.AreEqual(0, new Interval<float>(-1, 1).FromPercentage(0.5F));
+        Assert.AreEqual(-0.5F, new Interval<float>(-1, 1).FromPercentage(0.25F));
+        Assert.AreEqual(0.5F, new Interval<float>(-1, 1).FromPercentage(0.75F));
 
-        Assert.AreEqual(1.5F, new Range<float>(8, 10).GetPercentage(11));
-        Assert.AreEqual(-0.5F, new Range<float>(8, 10).GetPercentage(7));
-        Assert.AreEqual(11, new Range<float>(8, 10).FromPercentage(1.5F));
-        Assert.AreEqual(7, new Range<float>(8, 10).FromPercentage(-0.5F));
+        Assert.AreEqual(1.5F, new Interval<float>(8, 10).GetPercentage(11));
+        Assert.AreEqual(-0.5F, new Interval<float>(8, 10).GetPercentage(7));
+        Assert.AreEqual(11, new Interval<float>(8, 10).FromPercentage(1.5F));
+        Assert.AreEqual(7, new Interval<float>(8, 10).FromPercentage(-0.5F));
     }
 
 }

@@ -10,13 +10,12 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\pipeline-references\MonoGame.Extended.Content.Pipeline.dll
+
 #---------------------------------- Content ---------------------------------#
 
 #begin Fonts/Cadman_Roman.otf
 /copy:Fonts/Cadman_Roman.otf
-
-#begin Fonts/Symbola-Emoji.ttf
-/copy:Fonts/Symbola-Emoji.ttf
 
 #begin Fonts/RegularTexture.png
 /importer:TextureImporter
@@ -29,6 +28,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Fonts/RegularTexture.png
+
+#begin Fonts/Symbola-Emoji.ttf
+/copy:Fonts/Symbola-Emoji.ttf
 
 #begin Fonts/TestFont.spritefont
 /importer:FontDescriptionImporter
@@ -57,3 +59,13 @@
 
 #begin Textures/Test.png
 /copy:Textures/Test.png
+
+#begin Tiled/Map.tmx
+/importer:TiledTilemapImporter
+/processor:TilemapProcessor
+/build:Tiled/Map.tmx
+
+#begin Tiled/Tileset.tsx
+/importer:TilemapTilesetImporter
+/processor:TilemapTilesetProcessor
+/build:Tiled/Tileset.tsx

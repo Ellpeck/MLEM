@@ -6,7 +6,7 @@ using MLEM.Cameras;
 using MLEM.Graphics;
 using MLEM.Maths;
 using MLEM.Misc;
-using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tilemaps;
 using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace MLEM.Extended.Tiled {
@@ -16,17 +16,17 @@ namespace MLEM.Extended.Tiled {
     /// </summary>
     public class IndividualTiledMapRenderer {
 
-        private TiledMap map;
+        private Tilemap map;
         private TileDrawInfo[,,] drawInfos;
         private GetDepth depthFunction;
-        private List<TiledMapTilesetAnimatedTile> animatedTiles;
+        private List<TilemapTileAnimation> animatedTiles;
 
         /// <summary>
         /// Creates a new individual tiled map renderer using the given map and depth function
         /// </summary>
         /// <param name="map">The map to use</param>
         /// <param name="depthFunction">The depth function to use. Defaults to a function that assigns a depth of 0 to every tile.</param>
-        public IndividualTiledMapRenderer(TiledMap map = null, GetDepth depthFunction = null) {
+        public IndividualTiledMapRenderer(Tilemap map = null, GetDepth depthFunction = null) {
             if (map != null)
                 this.SetMap(map, depthFunction);
         }
@@ -36,12 +36,12 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="map">The map to use</param>
         /// <param name="depthFunction">The depth function to use. Defaults to a function that assigns a depth of 0 to every tile.</param>
-        public void SetMap(TiledMap map, GetDepth depthFunction = null) {
+        public void SetMap(Tilemap map, GetDepth depthFunction = null) {
             this.map = map;
             this.depthFunction = depthFunction ?? ((tile, layer, layerIndex, position) => 0);
 
-            this.drawInfos = new TileDrawInfo[map.TileLayers.Count, map.Width, map.Height];
-            for (var i = 0; i < map.TileLayers.Count; i++) {
+            this.drawInfos = new TileDrawInfo[map.Layers.Count, map.Width, map.Height];
+            for (var i = 0; i < map.Layers.Count; i++) {
                 for (var x = 0; x < map.Width; x++) {
                     for (var y = 0; y < map.Height; y++) {
                         this.UpdateDrawInfo(i, x, y);
@@ -49,34 +49,32 @@ namespace MLEM.Extended.Tiled {
                 }
             }
 
-            this.animatedTiles = new List<TiledMapTilesetAnimatedTile>();
+            this.animatedTiles = new List<TilemapTileAnimation>();
             foreach (var tileset in map.Tilesets) {
-                foreach (var tile in tileset.Tiles) {
-                    if (tile is TiledMapTilesetAnimatedTile animated) {
-                        this.animatedTiles.Add(animated);
-                    }
-                }
+                foreach (var tile in tileset.GetAnimatedTiles())
+                    this.animatedTiles.Add(tile.Animation);
             }
         }
 
         /// <summary>
         /// Updates the rendering information for the tile in the given layer, x and y.
         /// </summary>
-        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="layerIndex">The index of the layer in <see cref="Tilemap.Layers"/></param>
         /// <param name="x">The x coordinate of the tile</param>
         /// <param name="y">The y coordinate of the tile</param>
         public void UpdateDrawInfo(int layerIndex, int x, int y) {
-            var layer = this.map.TileLayers[layerIndex];
+            if (this.map.Layers[layerIndex] is not TilemapTileLayer layer)
+                return;
             var tile = layer.GetTile(x, y);
-            if (tile.IsBlank) {
+            if (tile == null) {
                 this.drawInfos[layerIndex, x, y] = null;
                 return;
             }
-            var tileset = tile.GetTileset(this.map);
+            var tileset = tile.Value.GetTileset(this.map);
             var tilesetTile = tileset.GetTilesetTile(tile, this.map);
             var pos = new Point(x, y);
-            var depth = this.depthFunction(tile, layer, layerIndex, pos);
-            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tile, tileset, tilesetTile, pos, depth);
+            var depth = this.depthFunction(tile.Value, layer, layerIndex, pos);
+            this.drawInfos[layerIndex, x, y] = new TileDrawInfo(this, tile.Value, tileset, tilesetTile, pos, depth);
         }
 
         /// <summary>
@@ -87,8 +85,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="frustum">The area that is visible, in pixel space.</param>
         /// <param name="drawFunction">The draw function to use, or null to use <see cref="DefaultDraw"/></param>
         public void Draw(SpriteBatch batch, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
-            for (var i = 0; i < this.map.TileLayers.Count; i++) {
-                if (this.map.TileLayers[i].IsVisible)
+            for (var i = 0; i < this.map.Layers.Count; i++) {
+                if (this.map.Layers[i] is TilemapTileLayer layer && layer.IsVisible)
                     this.DrawLayer(batch, i, frustum, drawFunction);
             }
         }
@@ -101,8 +99,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="frustum">The area that is visible, in pixel space.</param>
         /// <param name="addFunction">The add function to use, or null to use <see cref="DefaultAdd"/>.</param>
         public void Add(StaticSpriteBatch batch, RectangleF? frustum = null, AddDelegate addFunction = null) {
-            for (var i = 0; i < this.map.TileLayers.Count; i++) {
-                if (this.map.TileLayers[i].IsVisible)
+            for (var i = 0; i < this.map.Layers.Count; i++) {
+                if (this.map.Layers[i] is TilemapTileLayer layer && layer.IsVisible)
                     this.AddLayer(batch, i, frustum, addFunction);
             }
         }
@@ -112,7 +110,7 @@ namespace MLEM.Extended.Tiled {
         /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
         /// </summary>
         /// <param name="batch">The sprite batch to use</param>
-        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="layerIndex">The index of the layer in <see cref="Tilemap.Layers"/></param>
         /// <param name="frustum">The area that is visible, in pixel space.</param>
         /// <param name="drawFunction">The draw function to use, or null to use <see cref="DefaultDraw"/></param>
         public void DrawLayer(SpriteBatch batch, int layerIndex, RectangleF? frustum = null, DrawDelegate drawFunction = null) {
@@ -132,7 +130,7 @@ namespace MLEM.Extended.Tiled {
         /// Optionally, a frustum can be supplied that determines which positions, in pixel space, are visible at this time. <see cref="Camera"/> provides <see cref="Camera.GetVisibleRectangle"/> for this purpose.
         /// </summary>
         /// <param name="batch">The static sprite batch to use for drawing.</param>
-        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/>.</param>
+        /// <param name="layerIndex">The index of the layer in <see cref="Tilemap.Layers"/>.</param>
         /// <param name="frustum">The area that is visible, in pixel space.</param>
         /// <param name="addFunction">The add function to use, or null to use <see cref="DefaultAdd"/>.</param>
         public void AddLayer(StaticSpriteBatch batch, int layerIndex, RectangleF? frustum = null, AddDelegate addFunction = null) {
@@ -152,8 +150,9 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="time">The game's time</param>
         public void UpdateAnimations(GameTime time) {
+            var deltaTime = (float) time.ElapsedGameTime.TotalSeconds;
             foreach (var animation in this.animatedTiles)
-                animation.Update(time);
+                animation.Update(deltaTime);
         }
 
         private (int MinX, int MinY, int MaxX, int MaxY) GetFrustum(RectangleF? frustum) {
@@ -196,9 +195,9 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="tile">The tile whose depth to get</param>
         /// <param name="layer">The layer the tile is on</param>
-        /// <param name="layerIndex">The index of the layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="layerIndex">The index of the layer in <see cref="Tilemap.Layers"/></param>
         /// <param name="position">The tile position of this tile</param>
-        public delegate float GetDepth(TiledMapTile tile, TiledMapTileLayer layer, int layerIndex, Point position);
+        public delegate float GetDepth(TilemapTile tile, TilemapTileLayer layer, int layerIndex, Point position);
 
         /// <summary>
         /// A delegate method used for drawing an <see cref="IndividualTiledMapRenderer"/>.
@@ -227,15 +226,15 @@ namespace MLEM.Extended.Tiled {
             /// <summary>
             /// The tiled map tile to draw
             /// </summary>
-            public readonly TiledMapTile Tile;
+            public readonly TilemapTile Tile;
             /// <summary>
             /// The tileset that <see cref="Tile"/> is on
             /// </summary>
-            public readonly TiledMapTileset Tileset;
+            public readonly TilemapTileset Tileset;
             /// <summary>
             /// The tileset tile that corresponds to <see cref="Tile"/>
             /// </summary>
-            public readonly TiledMapTilesetTile TilesetTile;
+            public readonly TilemapTileData TilesetTile;
             /// <summary>
             /// The position, in tile space, of <see cref="Tile"/>
             /// </summary>
@@ -245,7 +244,7 @@ namespace MLEM.Extended.Tiled {
             /// </summary>
             public readonly float Depth;
 
-            internal TileDrawInfo(IndividualTiledMapRenderer renderer, TiledMapTile tile, TiledMapTileset tileset, TiledMapTilesetTile tilesetTile, Point position, float depth) {
+            internal TileDrawInfo(IndividualTiledMapRenderer renderer, TilemapTile tile, TilemapTileset tileset, TilemapTileData tilesetTile, Point position, float depth) {
                 this.Renderer = renderer;
                 this.Tile = tile;
                 this.Tileset = tileset;

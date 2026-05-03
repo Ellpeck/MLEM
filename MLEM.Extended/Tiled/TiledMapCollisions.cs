@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using MLEM.Extended.Maths;
 using MLEM.Maths;
 using MLEM.Misc;
-using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tilemaps;
 using RectangleF = MonoGame.Extended.RectangleF;
 
 namespace MLEM.Extended.Tiled {
@@ -15,7 +15,7 @@ namespace MLEM.Extended.Tiled {
     /// </summary>
     public class TiledMapCollisions {
 
-        private TiledMap map;
+        private Tilemap map;
         private TileCollisionInfo[,,] collisionInfos;
         private CollectCollisions collisionFunction;
 
@@ -24,7 +24,7 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="map">The map</param>
         /// <param name="collisionFunction">The function used to collect the collision info of a tile, or null to use <see cref="DefaultCollectCollisions"/></param>
-        public TiledMapCollisions(TiledMap map = null, CollectCollisions collisionFunction = null) {
+        public TiledMapCollisions(Tilemap map = null, CollectCollisions collisionFunction = null) {
             if (map != null)
                 this.SetMap(map, collisionFunction);
         }
@@ -34,11 +34,11 @@ namespace MLEM.Extended.Tiled {
         /// </summary>
         /// <param name="map">The map</param>
         /// <param name="collisionFunction">The function used to collect the collision info of a tile, or null to use <see cref="DefaultCollectCollisions"/></param>
-        public void SetMap(TiledMap map, CollectCollisions collisionFunction = null) {
+        public void SetMap(Tilemap map, CollectCollisions collisionFunction = null) {
             this.map = map;
             this.collisionFunction = collisionFunction ?? TiledMapCollisions.DefaultCollectCollisions;
             this.collisionInfos = new TileCollisionInfo[map.Layers.Count, map.Width, map.Height];
-            for (var i = 0; i < map.TileLayers.Count; i++) {
+            for (var i = 0; i < map.Layers.Count; i++) {
                 for (var x = 0; x < map.Width; x++) {
                     for (var y = 0; y < map.Height; y++) {
                         this.UpdateCollisionInfo(i, x, y);
@@ -50,18 +50,19 @@ namespace MLEM.Extended.Tiled {
         /// <summary>
         /// Updates the collision info for the tile at the given position.
         /// </summary>
-        /// <param name="layerIndex">The index of the tile's layer in <see cref="TiledMap.TileLayers"/></param>
+        /// <param name="layerIndex">The index of the tile's layer in <see cref="Tilemap.Layers"/></param>
         /// <param name="x">The tile's x coordinate</param>
         /// <param name="y">The tile's y coordinate</param>
         public void UpdateCollisionInfo(int layerIndex, int x, int y) {
-            var layer = this.map.TileLayers[layerIndex];
+            if (this.map.Layers[layerIndex] is not TilemapTileLayer layer)
+                return;
             var tile = layer.GetTile(x, y);
-            if (tile.IsBlank) {
+            if (tile == null) {
                 this.collisionInfos[layerIndex, x, y] = null;
                 return;
             }
-            var tilesetTile = tile.GetTilesetTile(this.map);
-            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile, layer, tilesetTile, this.collisionFunction);
+            var tilesetTile = tile.Value.GetTilesetTile(this.map);
+            this.collisionInfos[layerIndex, x, y] = new TileCollisionInfo(this.map, new Vector2(x, y), tile.Value, layer, tilesetTile, this.collisionFunction);
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace MLEM.Extended.Tiled {
             var maxX = Math.Min(this.map.Width - 1, area.Right.Floor());
             var minY = Math.Max(0, area.Top.Floor());
             var maxY = Math.Min(this.map.Height - 1, area.Bottom.Floor());
-            for (var i = 0; i < this.map.TileLayers.Count; i++) {
+            for (var i = 0; i < this.map.Layers.Count; i++) {
                 for (var y = maxY; y >= minY; y--) {
                     for (var x = minX; x <= maxX; x++) {
                         var tile = this.collisionInfos[i, x, y];
@@ -149,8 +150,8 @@ namespace MLEM.Extended.Tiled {
         /// <param name="collisions">The list of collisions to add to</param>
         /// <param name="tile">The tile's collision information</param>
         public static void DefaultCollectCollisions(List<RectangleF> collisions, TileCollisionInfo tile) {
-            foreach (var obj in tile.TilesetTile.Objects)
-                collisions.Add(obj.GetArea(tile.Map, tile.Position, tile.Tile.Flags));
+            foreach (var obj in tile.TilesetTile.CollisionObjects)
+                collisions.Add(obj.GetArea(tile.Map, tile.Position, tile.Tile.FlipFlags));
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace MLEM.Extended.Tiled {
             /// <summary>
             /// The map the tile is on
             /// </summary>
-            public readonly TiledMap Map;
+            public readonly Tilemap Map;
             /// <summary>
             /// The position of the tile, in tile units
             /// </summary>
@@ -176,21 +177,21 @@ namespace MLEM.Extended.Tiled {
             /// <summary>
             /// The tiled map tile
             /// </summary>
-            public readonly TiledMapTile Tile;
+            public readonly TilemapTile Tile;
             /// <summary>
             /// The layer that this tile is on
             /// </summary>
-            public readonly TiledMapTileLayer Layer;
+            public readonly TilemapTileLayer Layer;
             /// <summary>
             /// The tileset tile for this tile
             /// </summary>
-            public readonly TiledMapTilesetTile TilesetTile;
+            public readonly TilemapTileData TilesetTile;
             /// <summary>
             /// The list of colliders for this tile
             /// </summary>
             public readonly List<RectangleF> Collisions;
 
-            internal TileCollisionInfo(TiledMap map, Vector2 position, TiledMapTile tile, TiledMapTileLayer layer, TiledMapTilesetTile tilesetTile, CollectCollisions collisionFunction) {
+            internal TileCollisionInfo(Tilemap map, Vector2 position, TilemapTile tile, TilemapTileLayer layer, TilemapTileData tilesetTile, CollectCollisions collisionFunction) {
                 this.TilesetTile = tilesetTile;
                 this.Layer = layer;
                 this.Tile = tile;

@@ -6,3 +6,4 @@ packages
 tools
 TestResults*
 .vs
+pipeline-references
