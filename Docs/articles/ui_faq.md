@@ -2,6 +2,17 @@
 
 This article compiles some frequently asked questions about MLEM.Ui and tries to answer them succinctly. If you haven't checked out the [introductory article](ui.md) to MLEM.Ui yet, it's recommended you do that first!
 
+## How do I create an area with a scroll bar?
+[Panels](xref:MLEM.Ui.Elements.Panel) optionally allow setting their `scrollOverflow` parameter in their constructor. If this is set to `true`, the panel will automatically contain a scroll bar and its children will be hidden or visible based on the scroll bar's position.
+
+If an area should have a scroll bar, but not a panel texture, the panel's `Texture` can be set to `null`, and the panel's `ChildPadding` can be set to `Empty` to avoid the area's elements being padded:
+```cs
+var scrollArea = new Panel(anchor, size, offset, scrollOverflow: true) {
+    Texture = null,
+    ChildPadding = Padding.Empty
+};
+```
+
 ## How Do I Structure My UI Code?
 
 Of course, you can structure your UI code any way you like, but here are two suggestions: the way that MLEM.Ui was designed for, and the way that many users have chosen to do it instead!
