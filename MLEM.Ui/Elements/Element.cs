@@ -846,7 +846,7 @@ namespace MLEM.Ui.Elements {
         /// </summary>
         /// <param name="unscrolled">Whether to use elements' <see cref="UnscrolledArea"/> (instead of their <see cref="Area"/>).</param>
         /// <returns>This element's total covered area.</returns>
-        public RectangleF GetTotalCoveredArea(bool unscrolled) {
+        public virtual RectangleF GetTotalCoveredArea(bool unscrolled) {
             var ret = unscrolled ? this.UnscrolledArea : this.Area;
             foreach (var child in this.Children) {
                 if (!child.IsHidden)

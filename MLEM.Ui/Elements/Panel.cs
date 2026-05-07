@@ -314,6 +314,14 @@ namespace MLEM.Ui.Elements {
             this.renderTarget = null;
         }
 
+        /// <inheritdoc />
+        public override RectangleF GetTotalCoveredArea(bool unscrolled) {
+            // if we're scrolling, then we don't want to count children as extending beyond our bounds!
+            if (this.scrollOverflow)
+                return unscrolled ? this.UnscrolledArea : this.Area;
+            return base.GetTotalCoveredArea(unscrolled);
+        }
+
         /// <summary>
         /// Prepares the panel for auto-scrolling, creating the render target and setting up the scroll bar's maximum value.
         /// </summary>

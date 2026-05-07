@@ -11,6 +11,7 @@ Improvements
 Fixes
 - Fixed tooltips sticking around for one frame when their text is cleared
 - Fixed dropdown content staying selected when a dropdown is closed
+- Fixed the children of panels within panels contributing to the maximum height of the outer panel
 
 ### MLEM.Extended
 Improvements
