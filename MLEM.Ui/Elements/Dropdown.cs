@@ -186,7 +186,13 @@ namespace MLEM.Ui.Elements {
                 this.Panel.Size = new Vector2(e.Area.Width / e.Scale, panelHeight);
                 this.Panel.PositionOffset = new Vector2(0, e.Area.Height / e.Scale);
             };
-            this.OnOpenedOrClosed += e => this.Priority = this.IsOpen ? 10000 : 0;
+            this.OnOpenedOrClosed += e => {
+                this.Priority = this.IsOpen ? 10000 : 0;
+
+                // when closing a dropdown while a child is selected, select the dropdown itself instead
+                if (!this.IsOpen && this.Root?.SelectedElement?.GetParentTree().Contains(this.Panel) == true)
+                    this.Root.SelectElement(this);
+            };
             this.OnPressed += e => {
                 this.IsOpen = !this.IsOpen;
                 // close other dropdowns in the same root when we open

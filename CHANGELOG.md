@@ -10,6 +10,7 @@ Improvements
 ### MLEM.Ui
 Fixes
 - Fixed tooltips sticking around for one frame when their text is cleared
+- Fixed dropdown content staying selected when a dropdown is closed
 
 ### MLEM.Extended
 Improvements

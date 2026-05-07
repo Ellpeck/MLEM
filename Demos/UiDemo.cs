@@ -202,6 +202,7 @@ namespace Demos {
             dropdown.AddElement("First Option");
             dropdown.AddElement("Second Option");
             dropdown.AddElement("Third Option");
+            dropdown.AddElement("Close", _ => dropdown.IsOpen = false);
             dropdown.AddElement(new Paragraph(Anchor.AutoLeft, 1, "Dropdowns are basically just prioritized panels, so they can contain all controls, including paragraphs and"));
             dropdown.AddElement(new Button(Anchor.AutoLeft, new Vector2(1, 10), "Buttons"));
 
