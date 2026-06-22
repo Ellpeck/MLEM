@@ -50,6 +50,7 @@ MLEM's [text formatting system](https://mlem.ellpeck.de/articles/text_formatting
 
 # Friends of MLEM
 There are several other libraries and tools that work well in combination with MonoGame, FNA, KNI and MLEM. Here are some of them:
+- [Vulcard.AtlasPacker](https://github.com/gewlar/AtlasPacker), a MonoGame content pipeline extension that packs sprites into MLEM's [DataTextureAtlas](https://mlem.ellpeck.de/api/MLEM.Data.DataTextureAtlas.html) format
 - [Contentless](https://github.com/Ellpeck/Contentless), a tool that removes the need to add assets to the MonoGame Content Pipeline manually
 - [GameBundle](https://github.com/Ellpeck/GameBundle), a tool that packages MonoGame and other .NET applications into several distributable formats
 - [Coroutine](https://github.com/Ellpeck/Coroutine), a package that implements Unity-style coroutines for any project

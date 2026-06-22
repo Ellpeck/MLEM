@@ -39,8 +39,9 @@ namespace MLEM.Data {
     /// </example>
     /// </summary>
     /// <remarks>
-    /// To see a Data Texture Atlas in action, you can check out the sandbox project: https://github.com/Ellpeck/MLEM/blob/main/Sandbox/Content/Textures/Furniture.atlas.
-    /// Additionally, if you are using Aseprite, there is a script to automatically populate it: https://gist.github.com/Ellpeck/e597c1412465c10f41a42050ec117ea2.
+    /// <para>To see a Data Texture Atlas in action, you can check out the sandbox project: https://github.com/Ellpeck/MLEM/blob/main/Sandbox/Content/Textures/Furniture.atlas.</para>
+    /// <para>Additionally, if you are using Aseprite, there is a script to automatically populate it: https://gist.github.com/Ellpeck/e597c1412465c10f41a42050ec117ea2.</para>
+    /// <para>The Vulcard.AtlasPacker NuGet project further allows packing multiple textures into a Data Texture Atlas using MonoGame's content pipeline: https://www.nuget.org/packages/Vulcard.AtlasPacker.</para>
     /// </remarks>
     public class DataTextureAtlas {
 
