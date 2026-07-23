@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MLEM.Animations;
 using MLEM.Graphics;
 using MLEM.Input;
 using MLEM.Maths;
@@ -977,7 +978,7 @@ namespace MLEM.Ui.Elements {
         }
 
         /// <summary>
-        /// Stops the given <see cref="UiAnimation"/> on this element, causing it to be removed from the <see cref="PlayingAnimations"/> and <see cref="UiAnimation.Reset"/> to be invoked.
+        /// Stops the given <see cref="UiAnimation"/> on this element, causing it to be removed from the <see cref="PlayingAnimations"/> and <see cref="StepAnimator{TObject}.Reset"/> to be invoked.
         /// </summary>
         /// <param name="animation">The animation to stop.</param>
         /// <returns>Whether the animation was present in this element's <see cref="PlayingAnimations"/>.</returns>
