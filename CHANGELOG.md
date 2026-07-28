@@ -18,6 +18,10 @@ Fixes
 Improvements
 - Now supports MonoGame.Extended 6.0.0, which is a **breaking change if using Tiled support**
 
+### MLEM.Data
+Fixes
+- **Fixed incorrect path being passed to RawContentReader.Read**
+
 ## 8.1.0
 
 ### MLEM

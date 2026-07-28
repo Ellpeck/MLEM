@@ -90,7 +90,7 @@ namespace MLEM.Data.Content {
                     triedFiles.Add(file);
                     try {
                         using (var stream = Path.IsPathRooted(file) ? File.OpenRead(file) : TitleContainer.OpenStream(file)) {
-                            var read = reader.Read(this, assetName, stream, typeof(T), existing);
+                            var read = reader.Read(this, file, stream, typeof(T), existing);
                             if (!(read is T t))
                                 throw new ContentLoadException($"{reader} returned non-{typeof(T)} for asset {assetName}");
                             this.LoadedAssets[assetName] = t;
