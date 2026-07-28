@@ -332,9 +332,9 @@ namespace MLEM.Ui.Elements {
                 return;
 
             float childrenHeight;
-            if (this.Children.Count > 1) {
-                var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
-                var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden, true);
+            var highestValidChild = this.Children.FirstOrDefault(c => c != this.ScrollBar && !c.IsHidden);
+            var lowestChild = this.GetLowestChild(c => c != this.ScrollBar && !c.IsHidden, true);
+            if (highestValidChild != null && lowestChild != null) {
                 childrenHeight = lowestChild.GetTotalCoveredArea(true).Bottom - highestValidChild.UnscrolledArea.Top;
             } else {
                 // if we only have one child (the scroll bar), then the children take up no visual height
