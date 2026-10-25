@@ -12,7 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4.1" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.6" />
         <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4.1" />
 
         <ProjectReference Include="..\Demos\Demos.csproj" />
