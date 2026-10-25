@@ -2,23 +2,35 @@
     <PropertyGroup>
         <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
 
-        <MonoGameVersion>3.8.0.1641</MonoGameVersion>
-        <KniVersion>4.1.9001</KniVersion>
+        <MonoGameVersion RenovateHint="MonoGame.Framework.DesktopGL">3.8.0.1641</MonoGameVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Content">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Devices">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Graphics">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Audio">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Media">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Game">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Input">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.Storage">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Xna.Framework.XR">4.1.9001</KniVersion>
+        <KniVersion RenovateHint="nkast.Kni.Platform.SDL2.GL">4.1.9001</KniVersion>
 
-        <MonoGameExtendedVersion>6.1.0</MonoGameExtendedVersion>
-        <FontStashSharpVersion>1.5.4</FontStashSharpVersion>
+        <MonoGameExtendedVersion RenovateHint="MonoGame.Extended">6.1.0</MonoGameExtendedVersion>
+        <KniExtendedVersion RenovateHint="KNI.Extended">6.1.0</KniExtendedVersion>
+        <FontStashSharpVersion RenovateHint="FontStashSharp.MonoGame">1.5.4</FontStashSharpVersion>
+        <FontStashSharpKniVersion RenovateHint="FontStashSharp.KNI">1.5.4</FontStashSharpKniVersion>
 
-        <NewtonsoftJsonVersion>13.0.3</NewtonsoftJsonVersion>
-        <NewtonsoftBsonVersion>1.0.2</NewtonsoftBsonVersion>
+        <NewtonsoftJsonVersion RenovateHint="Newtonsoft.Json">13.0.3</NewtonsoftJsonVersion>
+        <NewtonsoftBsonVersion RenovateHint="Newtonsoft.Json.Bson">1.0.2</NewtonsoftBsonVersion>
 
-        <CoroutineVersion>2.1.5</CoroutineVersion>
-        <TextCopyVersion>6.2.0</TextCopyVersion>
-        <ValueTupleVersion>4.5.0</ValueTupleVersion>
+        <CoroutineVersion RenovateHint="Coroutine">2.1.5</CoroutineVersion>
+        <TextCopyVersion RenovateHint="TextCopy">6.2.0</TextCopyVersion>
+        <ValueTupleVersion RenovateHint="System.ValueTuple">4.5.0</ValueTupleVersion>
 
-        <CoverletVersion>6.0.0</CoverletVersion>
-        <NetTestSdkVersion>17.8.0</NetTestSdkVersion>
-        <NUnitVersion>3.14.0</NUnitVersion>
-        <NUnitAdapterVersion>4.5.0</NUnitAdapterVersion>
-        <NUnitLoggerVersion>3.1.15</NUnitLoggerVersion>
+        <CoverletVersion RenovateHint="coverlet.collector">6.0.0</CoverletVersion>
+        <NetTestSdkVersion RenovateHint="Microsoft.NET.Test.Sdk">17.8.0</NetTestSdkVersion>
+        <NUnitVersion RenovateHint="NUnit">3.14.0</NUnitVersion>
+        <NUnitAdapterVersion RenovateHint="NUnit3TestAdapter">4.5.0</NUnitAdapterVersion>
+        <NUnitLoggerVersion RenovateHint="NunitXml.TestLogger">3.1.15</NUnitLoggerVersion>
     </PropertyGroup>
 </Project>

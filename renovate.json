@@ -2,5 +2,29 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "config:recommended"
+    ],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "fileMatch": ["Directory.Build.props"],
+            "matchStrings": [
+                "<.+? RenovateHint=\"(?<depName>.+?)\".*?>(?<currentValue>.+?)</.+?>"
+            ],
+            "datasourceTemplate": "nuget"
+        }
+    ],
+    "packageRules": [
+        {
+            "groupName": "MonoGame.Extended",
+            "matchDepNames": ["MonoGame.Extended", "KNI.Extended"]
+        },
+        {
+            "groupName": "FontStashSharp",
+            "matchDepNames": ["FontStashSharp.MonoGame", "FontStashSharp.KNI"]
+        },
+        {
+            "groupName": "KNI",
+            "matchDepNames": ["nkast.Xna.Framework", "nkast.Xna.Framework.Content", "nkast.Xna.Framework.Devices", "nkast.Xna.Framework.Graphics", "nkast.Xna.Framework.Audio", "nkast.Xna.Framework.Media", "nkast.Xna.Framework.Game", "nkast.Xna.Framework.Input", "nkast.Xna.Framework.Storage", "nkast.Xna.Framework.XR", "nkast.Kni.Platform.SDL2.GL"]
+        }
     ]
 }

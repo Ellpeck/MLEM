@@ -19,17 +19,17 @@
 
     <ItemGroup>
         <PackageReference Include="nkast.Xna.Framework" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Content" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Devices" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Audio" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Media" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Game" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Input" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.Storage" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Xna.Framework.XR" Version="$(KniVersion)" />
-        <PackageReference Include="nkast.Kni.Platform.SDL2.GL" Version="$(KniVersion)" />
-        <PackageReference Include="KNI.Extended" Version="$(MonoGameExtendedVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Content" Version="$(KniContentVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Devices" Version="$(KniDevicesVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="$(KniGraphicsVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Audio" Version="$(KniAudioVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Media" Version="$(KniMediaVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Game" Version="$(KniGameVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Input" Version="$(KniInputVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.Storage" Version="$(KniStorageVersion)" />
+        <PackageReference Include="nkast.Xna.Framework.XR" Version="$(KniXrVersion)" />
+        <PackageReference Include="nkast.Kni.Platform.SDL2.GL" Version="$(KniSdlVersion)" />
+        <PackageReference Include="KNI.Extended" Version="$(KniExtendedVersion)" />
         <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
 
         <PackageReference Include="coverlet.collector" Version="$(CoverletVersion)" />

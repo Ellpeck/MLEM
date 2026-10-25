@@ -24,31 +24,31 @@
         <PackageReference Include="nkast.Xna.Framework" Version="$(KniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Content" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Content" Version="$(KniContentVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Devices" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Devices" Version="$(KniDevicesVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Graphics" Version="$(KniGraphicsVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Audio" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Audio" Version="$(KniAudioVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Media" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Media" Version="$(KniMediaVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Input" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Input" Version="$(KniInputVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Game" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Game" Version="$(KniGameVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.Storage" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.Storage" Version="$(KniStorageVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="nkast.Xna.Framework.XR" Version="$(KniVersion)">
+        <PackageReference Include="nkast.Xna.Framework.XR" Version="$(KniXrVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
 

@@ -24,10 +24,10 @@
     <ItemGroup>
         <ProjectReference Include="..\MLEM\MLEM.KNI.csproj" />
 
-        <PackageReference Condition="'$(TargetFramework)'=='net8.0'" Include="KNI.Extended" Version="$(MonoGameExtendedVersion)">
+        <PackageReference Condition="'$(TargetFramework)'=='net8.0'" Include="KNI.Extended" Version="$(KniExtendedVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="FontStashSharp.KNI" Version="$(FontStashSharpversion)">
+        <PackageReference Include="FontStashSharp.KNI" Version="$(FontStashSharpKniVersion)">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="nkast.Xna.Framework" Version="$(KniVersion)">

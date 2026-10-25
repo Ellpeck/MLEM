@@ -2,6 +2,7 @@
 jobs:
   enforce-changelog:
     runs-on: ubuntu-latest
+    if: github.actor != 'renovate[bot]'
     steps:
       - uses: dangoslen/changelog-enforcer@v3
         with:
