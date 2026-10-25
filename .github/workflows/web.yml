@@ -18,7 +18,7 @@ jobs:
       - name: Upload demo artifact
         uses: actions/upload-artifact@v4
         with:
-          path: Demos.Web/bin/Release/net8.0/publish/wwwroot
+          path: artifacts/publish/Demos.Web.KNI/release/wwwroot
           name: demo
           include-hidden-files: true
           if-no-files-found: error

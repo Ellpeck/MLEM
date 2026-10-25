@@ -1,10 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../MLEM.props" />
-
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
-        <VSTestResultsDirectory>TestResults.FNA</VSTestResultsDirectory>
+        <VSTestResultsDirectory>../artifacts/test/MLEM.Tests.FNA</VSTestResultsDirectory>
         <RunSettingsFilePath>Tests.FNA.runsettings</RunSettingsFilePath>
         <RootNamespace>MLEM.Tests</RootNamespace>
         <DefineConstants>$(DefineConstants);FNA</DefineConstants>

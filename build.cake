@@ -20,8 +20,6 @@ Task("Prepare").Does(() => {
         Information($"Appending {buildNum} to version");
         version += $"-ci.{buildNum}";
     }
-
-    DeleteFiles("**/MLEM*.nupkg");
 });
 
 Task("Build").IsDependentOn("Prepare").Does(() =>{
@@ -73,7 +71,7 @@ Task("Push").WithCriteria(gitRef == "refs/heads/main" || gitRef.StartsWith("refs
         };
     }
     settings.SkipDuplicate = true;
-    DotNetNuGetPush("**/MLEM*.nupkg", settings);
+    DotNetNuGetPush($"artifacts/package/release/MLEM*.{version}.nupkg", settings);
 });
 
 Task("Document").IsDependentOn("Prepare").Does(() => {

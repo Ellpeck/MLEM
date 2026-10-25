@@ -28,4 +28,9 @@
     <ItemGroup>
         <Content Include="Content\Fonts\Symbola-Emoji.ttf" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Content\bin\DesktopGL\Content\Fonts\Cadman_Roman.otf" />
+      <None Remove="Content\obj\DesktopGL\net8.0\Content\.mgcontent" />
+    </ItemGroup>
 </Project>

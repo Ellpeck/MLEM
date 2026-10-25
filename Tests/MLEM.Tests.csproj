@@ -1,10 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../MLEM.props" />
-
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <VSTestLogger>nunit</VSTestLogger>
-        <VSTestResultsDirectory>TestResults</VSTestResultsDirectory>
+        <VSTestResultsDirectory>../artifacts/test/MLEM.Tests</VSTestResultsDirectory>
         <RunSettingsFilePath>Tests.runsettings</RunSettingsFilePath>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
@@ -33,5 +31,9 @@
         <Content Include="Content/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="TestResults\4e00db98-ce33-4b96-b307-a8f78ee7eb35\coverage.cobertura.xml" />
     </ItemGroup>
 </Project>

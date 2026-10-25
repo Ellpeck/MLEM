@@ -1,9 +1,9 @@
 .idea
 bin
 obj
+artifacts
 packages
 *.user
 tools
-TestResults*
 .vs
 pipeline-references

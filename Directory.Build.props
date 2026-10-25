@@ -1,5 +1,7 @@
-﻿<Project>
+<Project>
     <PropertyGroup>
+        <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
+
         <MonoGameVersion>3.8.0.1641</MonoGameVersion>
         <KniVersion>4.1.9001</KniVersion>
 
