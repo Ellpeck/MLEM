@@ -15,7 +15,8 @@
             "matchStrings": [
                 "<.+? Label=\"(?<depName>.+?)\".*?>(?<currentValue>.+?)</.+?>"
             ],
-            "datasourceTemplate": "nuget"
+            "datasourceTemplate": "nuget",
+            "versioningTemplate": "nuget"
         }
     ],
     "packageRules": [
