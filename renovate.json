@@ -8,12 +8,16 @@
             "customType": "regex",
             "fileMatch": ["Directory.Build.props"],
             "matchStrings": [
-                "<.+? RenovateHint=\"(?<depName>.+?)\".*?>(?<currentValue>.+?)</.+?>"
+                "<.+? Label=\"(?<depName>.+?)\".*?>(?<currentValue>.+?)</.+?>"
             ],
             "datasourceTemplate": "nuget"
         }
     ],
     "packageRules": [
+        {
+            "groupName": "MonoGame",
+            "matchDepNames": ["MonoGame.Framework.DesktopGL", "MonoGame.Framework.Android", "MonoGame.Content.Builder.Task"]
+        },
         {
             "groupName": "MonoGame.Extended",
             "matchDepNames": ["MonoGame.Extended", "KNI.Extended"]
@@ -24,7 +28,7 @@
         },
         {
             "groupName": "KNI",
-            "matchDepNames": ["nkast.Xna.Framework", "nkast.Xna.Framework.Content", "nkast.Xna.Framework.Devices", "nkast.Xna.Framework.Graphics", "nkast.Xna.Framework.Audio", "nkast.Xna.Framework.Media", "nkast.Xna.Framework.Game", "nkast.Xna.Framework.Input", "nkast.Xna.Framework.Storage", "nkast.Xna.Framework.XR", "nkast.Kni.Platform.SDL2.GL"]
+            "matchDepNames": ["nkast.Xna.Framework", "nkast.Xna.Framework.Content", "nkast.Xna.Framework.Devices", "nkast.Xna.Framework.Graphics", "nkast.Xna.Framework.Audio", "nkast.Xna.Framework.Media", "nkast.Xna.Framework.Game", "nkast.Xna.Framework.Input", "nkast.Xna.Framework.Storage", "nkast.Xna.Framework.XR", "nkast.Kni.Platform.SDL2.GL", "nkast.Xna.Framework.Content.Pipeline.Builder"]
         }
     ]
 }
