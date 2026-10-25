@@ -25,11 +25,11 @@
         },
         {
             "groupName": "MonoGame.Extended",
-            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "https://github.com/craftworkgames/MonoGame.Extended"]
+            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended"]
         },
         {
             "groupName": "FontStashSharp",
-            "matchDepNames": ["FontStashSharp.MonoGame", "FontStashSharp.KNI", "https://github.com/FontStashSharp/FontStashSharp"]
+            "matchDepNames": ["FontStashSharp.MonoGame", "FontStashSharp.KNI", "ThirdParty/FontStashSharp"]
         },
         {
             "groupName": "KNI",
