@@ -9,7 +9,9 @@
     "customManagers": [
         {
             "customType": "regex",
-            "fileMatch": ["Directory.Build.props"],
+            "managerFilePatterns": [
+                "/Directory.Build.props/"
+            ],
             "matchStrings": [
                 "<.+? Label=\"(?<depName>.+?)\".*?>(?<currentValue>.+?)</.+?>"
             ],
