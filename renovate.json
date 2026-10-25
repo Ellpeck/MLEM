@@ -3,6 +3,9 @@
     "extends": [
         "config:recommended"
     ],
+    "git-submodules": {
+        "enabled": true
+    },
     "customManagers": [
         {
             "customType": "regex",
@@ -20,11 +23,11 @@
         },
         {
             "groupName": "MonoGame.Extended",
-            "matchDepNames": ["MonoGame.Extended", "KNI.Extended"]
+            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "https://github.com/craftworkgames/MonoGame.Extended"]
         },
         {
             "groupName": "FontStashSharp",
-            "matchDepNames": ["FontStashSharp.MonoGame", "FontStashSharp.KNI"]
+            "matchDepNames": ["FontStashSharp.MonoGame", "FontStashSharp.KNI", "https://github.com/FontStashSharp/FontStashSharp"]
         },
         {
             "groupName": "KNI",

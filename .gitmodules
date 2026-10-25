@@ -1,9 +1,12 @@
 [submodule "FNA"]
 	path = ThirdParty/FNA
 	url = https://github.com/FNA-XNA/FNA
+	branch = 26.05
 [submodule "FontStashSharp"]
 	path = ThirdParty/FontStashSharp
 	url = https://github.com/FontStashSharp/FontStashSharp
+	branch = 1.5.4
 [submodule "ThirdParty/MonoGame.Extended"]
 	path = ThirdParty/MonoGame.Extended
 	url = https://github.com/craftworkgames/MonoGame.Extended
+	branch = v6.1.0
