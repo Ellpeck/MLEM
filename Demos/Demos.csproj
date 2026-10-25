@@ -17,22 +17,4 @@
         </PackageReference>
     </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="Content\bin\DesktopGL\Content\Textures\Anim.xnb" />
-      <None Remove="Content\bin\DesktopGL\Content\Textures\Test.xnb" />
-      <None Remove="Content\bin\DesktopGL\Fonts\MonospacedFont.xnb" />
-      <None Remove="Content\obj\Android\net9.0-android\Content\Fonts\Roboto.mgcontent" />
-      <None Remove="Content\obj\Android\net9.0-android\Content\Fonts\RobotoBold.mgcontent" />
-      <None Remove="Content\obj\Android\net9.0-android\Content\Fonts\RobotoItalic.mgcontent" />
-      <None Remove="Content\obj\Android\net9.0-android\Content\Fonts\TestFontBold.mgcontent" />
-      <None Remove="Content\obj\BlazorGL\Content.kniContent" />
-      <None Remove="Content\obj\BlazorGL\Content\Fonts\MonospacedFont.kniContent" />
-      <None Remove="Content\obj\DesktopGL\net8.0\Content\.mgstats" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Content\bin\DesktopGL\Content\Textures\" />
-      <Folder Include="Content\bin\DesktopGL\Fonts\" />
-    </ItemGroup>
-
 </Project>

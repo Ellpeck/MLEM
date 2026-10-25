@@ -32,8 +32,4 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="TestResults\4e00db98-ce33-4b96-b307-a8f78ee7eb35\coverage.cobertura.xml" />
-    </ItemGroup>
 </Project>
