@@ -16,7 +16,7 @@
                 "<.+? Label=\"(?<depName>.+?)\".*?>(?<currentValue>.+?)</.+?>"
             ],
             "datasourceTemplate": "nuget",
-            "versioningTemplate": "nuget"
+            "versioningTemplate": "semver-coerced"
         }
     ],
     "packageRules": [
@@ -26,7 +26,7 @@
         },
         {
             "groupName": "MonoGame.Extended",
-            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended"]
+            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended", "MonoGame.Extended.Content.Pipeline"]
         },
         {
             "groupName": "FontStashSharp",
