@@ -28,7 +28,7 @@
         <FontStashSharpKniVersion Label="FontStashSharp.KNI">1.5.4</FontStashSharpKniVersion>
 
         <NewtonsoftJsonVersion Label="Newtonsoft.Json">13.0.3</NewtonsoftJsonVersion>
-        <NewtonsoftBsonVersion Label="Newtonsoft.Json.Bson">1.0.2</NewtonsoftBsonVersion>
+        <NewtonsoftBsonVersion Label="Newtonsoft.Json.Bson">1.0.3</NewtonsoftBsonVersion>
 
         <CoroutineVersion Label="Coroutine">2.1.5</CoroutineVersion>
         <TextCopyVersion Label="TextCopy">6.2.0</TextCopyVersion>
