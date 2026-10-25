@@ -2,9 +2,9 @@
     <PropertyGroup>
         <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
 
-        <MonoGameVersion Label="MonoGame.Framework.DesktopGL">3.8.0.1641</MonoGameVersion>
-        <MonoGameAndroidVersion Label="MonoGame.Framework.Android">3.8.0.1641</MonoGameAndroidVersion>
-        <MonoGameBuilderVersion Label="MonoGame.Content.Builder.Task">3.8.0.1641</MonoGameBuilderVersion>
+        <MonoGameVersion Label="MonoGame.Framework.DesktopGL">3.8.6</MonoGameVersion>
+        <MonoGameAndroidVersion Label="MonoGame.Framework.Android">3.8.6</MonoGameAndroidVersion>
+        <MonoGameBuilderVersion Label="MonoGame.Content.Builder.Task">3.8.6</MonoGameBuilderVersion>
 
         <KniVersion Label="nkast.Xna.Framework">4.1.9001</KniVersion>
         <KniContentVersion Label="nkast.Xna.Framework.Content">4.1.9001</KniContentVersion>
