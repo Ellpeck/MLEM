@@ -20,9 +20,9 @@
         <KniBlazorVersion Label="nkast.Kni.Platform.Blazor.GL">4.1.9001</KniBlazorVersion>
         <KniBuilderVersion Label="nkast.Xna.Framework.Content.Pipeline.Builder">4.1.9001</KniBuilderVersion>
 
-        <MonoGameExtendedVersion Label="MonoGame.Extended">6.1.0</MonoGameExtendedVersion>
-        <MonoGameExtendedPipelineVersion Label="MonoGame.Extended.Content.Pipeline">6.1.0</MonoGameExtendedPipelineVersion>
-        <KniExtendedVersion Label="KNI.Extended">6.1.0</KniExtendedVersion>
+        <MonoGameExtendedVersion Label="MonoGame.Extended">6.1.1</MonoGameExtendedVersion>
+        <MonoGameExtendedPipelineVersion Label="MonoGame.Extended.Content.Pipeline">6.1.1</MonoGameExtendedPipelineVersion>
+        <KniExtendedVersion Label="KNI.Extended">6.1.1</KniExtendedVersion>
 
         <FontStashSharpVersion Label="FontStashSharp.MonoGame">1.5.4</FontStashSharpVersion>
         <FontStashSharpKniVersion Label="FontStashSharp.KNI">1.5.4</FontStashSharpKniVersion>
