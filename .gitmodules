@@ -9,4 +9,4 @@
 [submodule "ThirdParty/MonoGame.Extended"]
 	path = ThirdParty/MonoGame.Extended
 	url = https://github.com/craftworkgames/MonoGame.Extended
-	branch = v6.1.0
+	branch = v6.1.1
