@@ -26,7 +26,7 @@
         },
         {
             "groupName": "MonoGame.Extended",
-            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended", "MonoGame.Extended.Content.Pipeline"]
+            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended", "MonoGame.Extended.Content.Pipeline", "dotnet-mgcb", "dotnet-mgcb-editor", "dotnet-mgcb-editor-linux", "dotnet-mgcb-editor-windows", "dotnet-mgcb-editor-mac"]
         },
         {
             "groupName": "FontStashSharp",
