@@ -1,4 +1,4 @@
-﻿on: [push, pull_request]
+on: [push, pull_request]
 jobs:
   build-demo:
     runs-on: windows-latest

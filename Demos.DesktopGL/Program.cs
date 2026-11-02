@@ -1,4 +1,4 @@
-﻿using MLEM.Misc;
+using MLEM.Misc;
 #if !FNA && !KNI
 using Microsoft.Xna.Framework;
 #else

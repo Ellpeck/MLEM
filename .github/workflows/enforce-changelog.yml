@@ -1,4 +1,4 @@
-﻿on: pull_request
+on: pull_request
 jobs:
   enforce-changelog:
     runs-on: ubuntu-latest

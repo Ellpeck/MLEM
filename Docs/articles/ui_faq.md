@@ -1,4 +1,4 @@
-﻿# Frequently Asked Questions About MLEM.Ui
+# Frequently Asked Questions About MLEM.Ui
 
 This article compiles some frequently asked questions about MLEM.Ui and tries to answer them succinctly. If you haven't checked out the [introductory article](ui.md) to MLEM.Ui yet, it's recommended you do that first!
 
