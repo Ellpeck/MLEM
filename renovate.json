@@ -22,11 +22,11 @@
     "packageRules": [
         {
             "groupName": "MonoGame",
-            "matchDepNames": ["MonoGame.Framework.DesktopGL", "MonoGame.Framework.Android", "MonoGame.Content.Builder.Task"]
+            "matchDepNames": ["MonoGame.Framework.DesktopGL", "MonoGame.Framework.Android", "MonoGame.Content.Builder.Task", "dotnet-mgcb", "dotnet-mgcb-editor", "dotnet-mgcb-editor-linux", "dotnet-mgcb-editor-windows", "dotnet-mgcb-editor-mac"]
         },
         {
             "groupName": "MonoGame.Extended",
-            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended", "MonoGame.Extended.Content.Pipeline", "dotnet-mgcb", "dotnet-mgcb-editor", "dotnet-mgcb-editor-linux", "dotnet-mgcb-editor-windows", "dotnet-mgcb-editor-mac"]
+            "matchDepNames": ["MonoGame.Extended", "KNI.Extended", "ThirdParty/MonoGame.Extended", "MonoGame.Extended.Content.Pipeline"]
         },
         {
             "groupName": "FontStashSharp",
