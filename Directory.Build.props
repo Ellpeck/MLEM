@@ -34,7 +34,7 @@
         <TextCopyVersion Label="TextCopy">6.2.0</TextCopyVersion>
         <ValueTupleVersion Label="System.ValueTuple">4.5.0</ValueTupleVersion>
 
-        <CoverletVersion Label="coverlet.collector">6.0.0</CoverletVersion>
+        <CoverletVersion Label="coverlet.collector">6.0.4</CoverletVersion>
         <NetTestSdkVersion Label="Microsoft.NET.Test.Sdk">17.8.0</NetTestSdkVersion>
         <NUnitVersion Label="NUnit">3.14.0</NUnitVersion>
         <NUnitAdapterVersion Label="NUnit3TestAdapter">4.5.0</NUnitAdapterVersion>
