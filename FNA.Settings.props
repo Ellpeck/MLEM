@@ -7,7 +7,7 @@
 
     <ItemGroup>
         <!-- include reference assemblies so we can build for old framework versions without having to install them -->
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
     </ItemGroup>
 
     <!-- dummy pack target to allow for this (non-SDK-style) project to be included in dotnet pack -->
