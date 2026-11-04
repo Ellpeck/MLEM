@@ -33,8 +33,8 @@
         <!-- The builder appears to only support Windows right now. We build for Linux in the CI but don't run there, so we don't need the content files. -->
         <PackageReference Include="nkast.Xna.Framework.Content.Pipeline.Builder" Version="4.1.9001" Condition="$(Os.Contains('Windows'))" />
 
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.11" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.11" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.33" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.33" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
