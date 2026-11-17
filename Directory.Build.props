@@ -27,7 +27,7 @@
         <FontStashSharpVersion Label="FontStashSharp.MonoGame">1.5.4</FontStashSharpVersion>
         <FontStashSharpKniVersion Label="FontStashSharp.KNI">1.5.4</FontStashSharpKniVersion>
 
-        <NewtonsoftJsonVersion Label="Newtonsoft.Json">13.0.3</NewtonsoftJsonVersion>
+        <NewtonsoftJsonVersion Label="Newtonsoft.Json">13.0.4</NewtonsoftJsonVersion>
         <NewtonsoftBsonVersion Label="Newtonsoft.Json.Bson">1.0.2</NewtonsoftBsonVersion>
 
         <CoroutineVersion Label="Coroutine">2.1.5</CoroutineVersion>
