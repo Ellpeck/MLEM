@@ -38,6 +38,6 @@
         <NetTestSdkVersion Label="Microsoft.NET.Test.Sdk">17.8.0</NetTestSdkVersion>
         <NUnitVersion Label="NUnit">3.14.0</NUnitVersion>
         <NUnitAdapterVersion Label="NUnit3TestAdapter">4.5.0</NUnitAdapterVersion>
-        <NUnitLoggerVersion Label="NunitXml.TestLogger">3.1.15</NUnitLoggerVersion>
+        <NUnitLoggerVersion Label="NunitXml.TestLogger">3.1.20</NUnitLoggerVersion>
     </PropertyGroup>
 </Project>
