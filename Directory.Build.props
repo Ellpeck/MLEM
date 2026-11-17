@@ -31,7 +31,7 @@
         <NewtonsoftBsonVersion Label="Newtonsoft.Json.Bson">1.0.2</NewtonsoftBsonVersion>
 
         <CoroutineVersion Label="Coroutine">2.1.5</CoroutineVersion>
-        <TextCopyVersion Label="TextCopy">6.2.0</TextCopyVersion>
+        <TextCopyVersion Label="TextCopy">6.2.1</TextCopyVersion>
         <ValueTupleVersion Label="System.ValueTuple">4.5.0</ValueTupleVersion>
 
         <CoverletVersion Label="coverlet.collector">6.0.0</CoverletVersion>
